@@ -18,7 +18,7 @@ const TwoColumns = (data: any) => {
 };
 
 const Buttons = (data: any) => {
-  if (!data.Button) return null;
+  if (!data.Button) return <></>;
 
   return (
     <div className="flex gap-4">
