@@ -61,7 +61,8 @@ export const SpeakerDetails = (props: any) => {
           // src={props.speaker.avatar ?? makeBlockie(props.speaker.name || props.speaker.id)}
           src={makeBlockie(props.speaker.name || props.speaker.id)}
           alt={props.speaker.name}
-          layout="fill"
+          className="object-contain"
+          fill
         />
       </div>
 

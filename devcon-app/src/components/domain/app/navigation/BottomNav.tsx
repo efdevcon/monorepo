@@ -39,11 +39,11 @@ const navItems = [
     icon: IconPin,
     to: '/venue',
   },
-  {
-    title: 'Info',
-    icon: IconInfo,
-    to: '/info',
-  },
+  // {
+  //   title: 'Info',
+  //   icon: IconInfo,
+  //   to: '/info',
+  // },
 ] as NavLinkWithIcon[]
 
 export const BottomNav = () => {

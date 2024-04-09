@@ -107,7 +107,7 @@ export const fetchSessions = async (): Promise<SessionType[]> => {
 
 export const fetchSpeakers = async (): Promise<Speaker[]> => {
     const sessions = await fetchSessions()
-    const speakersData = await get(`/speakers`); // await get(`/events/${eventName}/speakers`)
+    const speakersData = await get(`/speakers?size=1100`); // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
     const speakers = speakersData.map((i: any) => {
       const speakerSessions = sessions.filter((session: SessionType) => session.speakers.some((speaker) => i.id === speaker.id))
       const organization = i.answers?.filter((i: any) => i.question.id === organizationQuestionId).reverse()[0]?.answer
