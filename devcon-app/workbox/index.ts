@@ -19,31 +19,26 @@ const _self = self as unknown as ServiceWorkerGlobalScope
 //   // console.log(process.env, 'env')
 // })
 
-self.addEventListener("fetch", (e: any) => {
-  // console.log('[demoPWA - ServiceWorker] Fetch event fired.', e.request.url);
+_self.addEventListener("fetch", (e: any) => {
+  console.log('FETCH', e.request.url)
   // const controlledRoutes = ['/schedule', '/speakers', '/rooms'];
-  // const requestURL = e.request.url;
+  const requestURL = e.request.url;
   // const controlledRoute = controlledRoutes.find(route => requestURL.includes(route));
 
-  // if (controlledRoute) {
-  //   const urlWithNoQuery = requestURL.split('?')[0];
+  if (requestURL.includes('api.devcon.org')) {
+    // const urlWithNoQuery = requestURL.split('?')[0];
 
-  //   console.log(requestURL, 'request url')
-  //   console.log(urlWithNoQuery, 'no query redirect!')
-
-  //   // e.respondWith(fetch(urlWithNoQuery));
-  //   e.respondWith(caches.match(urlWithNoQuery).then(response => {
-  //       if (response) {
-  //           console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
-  //           return response;
-  //       }
-  //       console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
-  //       return fetch(e.request);
-  //   }))
-  //   // );
-  // } else {
-  //   e.respondWith(fetch(e.request));
-  // }
+    // e.respondWith(fetch(urlWithNoQuery));
+    e.respondWith(caches.match(e.request).then(response => {
+        if (response) {
+            console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
+            return response;
+        }
+        console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
+        return fetch(e.request);
+    }))
+    // );
+  } 
 
   // e.respondWith(
   //   caches.match(e.request).then(function(response) {
@@ -73,13 +68,13 @@ self.addEventListener("fetch", (e: any) => {
 //   }
 // });
 
-_self.addEventListener('push', event => {
-  console.log(event, 'push event')
-  _self.registration.showNotification('Devcon App', {
-    body: event.data.text(),
-    icon: '/icons/android-chrome-192x192.png',
-  })
-})
+// _self.addEventListener('push', event => {
+//   console.log(event, 'push event')
+//   _self.registration.showNotification('Devcon App', {
+//     body: event.data.text(),
+//     icon: '/icons/android-chrome-192x192.png',
+//   })
+// })
 
 // _self.addEventListener('notificationclick', event => {
 //   event?.notification.close()
