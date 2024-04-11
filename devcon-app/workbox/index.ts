@@ -1,4 +1,4 @@
-const _self = self as unknown as ServiceWorkerGlobalScope
+// const _self = self as unknown as ServiceWorkerGlobalScope
 
 // To disable all workbox logging during development, you can set self.__WB_DISABLE_DEV_LOGS to true
 // https://developers.google.com/web/tools/workbox/guides/configure-workbox#disable_logging
@@ -19,26 +19,26 @@ const _self = self as unknown as ServiceWorkerGlobalScope
 //   // console.log(process.env, 'env')
 // })
 
-_self.addEventListener("fetch", (e: any) => {
-  console.log('FETCH', e.request.url)
-  // const controlledRoutes = ['/schedule', '/speakers', '/rooms'];
-  const requestURL = e.request.url;
-  // const controlledRoute = controlledRoutes.find(route => requestURL.includes(route));
+// _self.addEventListener("fetch", (e: any) => {
+//   console.log('FETCH', e.request.url)
+//   // const controlledRoutes = ['/schedule', '/speakers', '/rooms'];
+//   const requestURL = e.request.url;
+//   // const controlledRoute = controlledRoutes.find(route => requestURL.includes(route));
 
-  if (requestURL.includes('api.devcon.org')) {
-    // const urlWithNoQuery = requestURL.split('?')[0];
+//   if (requestURL.includes('api.devcon.org')) {
+//     // const urlWithNoQuery = requestURL.split('?')[0];
 
-    // e.respondWith(fetch(urlWithNoQuery));
-    e.respondWith(caches.match(e.request).then(response => {
-        if (response) {
-            console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
-            return response;
-        }
-        console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
-        return fetch(e.request);
-    }))
-    // );
-  } 
+//     // e.respondWith(fetch(urlWithNoQuery));
+//     e.respondWith(caches.match(e.request).then(response => {
+//         if (response) {
+//             console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
+//             return response;
+//         }
+//         console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
+//         return fetch(e.request);
+//     }))
+//     // );
+//   } 
 
   // e.respondWith(
   //   caches.match(e.request).then(function(response) {
@@ -50,7 +50,7 @@ _self.addEventListener("fetch", (e: any) => {
   //       return fetch(e.request);
   //   })
   // );
-});
+// });
 
 // _self.addEventListener('activate', event => {
 //   console.log('activated')
