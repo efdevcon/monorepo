@@ -14,6 +14,7 @@ eventsRouter.get(`/events/:id/sessions`, GetEventSessions)
 eventsRouter.get(`/events/:id/speakers`, GetEventSpeakers)
 eventsRouter.get(`/events/:id/rooms`, GetRooms)
 
+
 let version = 1;
 // Since the event data sets are so large, it helps to have an endpoint we can ping to check updates to the underlying data - 
 // this helps the pwa react to updates and only redownload everything when its local data is out of date
