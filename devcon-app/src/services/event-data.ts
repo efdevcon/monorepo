@@ -7,7 +7,7 @@ import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
 
 const cache = new Map()
-const baseUrl = 'https://api.devcon.org' // 'https://speak.devcon.org/api'
+const baseUrl = process.env.NODE_ENV === 'production' ? 'http://localhost:4000' : 'https://api.devcon.org' // 'https://speak.devcon.org/api'
 const eventName = 'devcon-6' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
 const websiteQuestionId = 29
 const twitterQuestionId = 44
@@ -38,23 +38,75 @@ export const fuseOptions = {
 
 export const useSessionData = (): SessionType[] | null => {
     const [sessions, setSessions] = useState<SessionType[] | null>(null)
+    const version = useEventVersion();
   
     useEffect(() => {
-      fetchSessions().then(setSessions)
-    }, [])
+      if (version) {
+        fetchSessions(version).then(setSessions)
+      }
+    }, [version])
   
     return sessions;
 }
 
 export const useSpeakerData = (): Speaker[] | null => {
     const [speakers, setSpeakers] = useState<Speaker[] | null>(null)
+    const version = useEventVersion();
   
     useEffect(() => {
-      fetchSpeakers().then(setSpeakers)
-    }, [])
+      if (version) {
+        fetchSpeakers(version).then(setSpeakers)
+      }
+    }, [version])
 
     return speakers;
 } 
+  
+export const useEventVersion = () => {
+  const [version, setVersion] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Whenever version changes or the service worker installs for the first time, we want to repopulate the cache immediately
+    const fillEventCache = () => {
+      fetchEventVersion().then(setVersion)
+
+      if (version) {
+        // This will use the http cache if multiple requests are sent in close succession, so it's not wasteful
+        fetchSessions(version);
+        fetchSpeakers(version);
+      }
+    };
+
+    fillEventCache();
+
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('controllerchange', fillEventCache);
+    }
+
+    return () => {
+        // Remove the service worker update listener if it was added
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.removeEventListener('controllerchange', fillEventCache);
+        }
+    };
+  }, [version])
+
+  useEffect(() => {
+    fetchEventVersion().then(setVersion)
+
+    const onWindowFocus = () => {
+      fetchEventVersion().then(setVersion)
+    }
+
+    window.addEventListener("focus", onWindowFocus);
+
+    return () => {
+        window.removeEventListener("focus", onWindowFocus);
+    };
+  }, [])
+
+  return version;
+}
 
 export const useSpeakersWithSessions = () => {
   const [speakersWithSessions, setSpeakersWithSessions] = useState<any>(null);
@@ -89,8 +141,15 @@ export const useSpeakersWithSessions = () => {
   return speakersWithSessions;
 }
 
-export const fetchSessions = async (): Promise<SessionType[]> => {
-    const sessions = await get(`/events/${eventName}/sessions?size=1000`)
+// Ssimple endpoint we can ping to see if event data updated - we append this to requests to speakers and sessions to break their caches
+export const fetchEventVersion = async (): Promise<string> => {
+  const version = await get(`/events/${eventName}/version`);
+
+  return version;
+}
+
+export const fetchSessions = async (version?: string): Promise<SessionType[]> => {
+    const sessions = await get(`/events/${eventName}/sessions?size=1000&version=${version}`)
 
     return sessions.map((session: SessionType) => {
         const startTS = moment.utc(session.slot_start).subtract(5, 'hours')
@@ -105,9 +164,9 @@ export const fetchSessions = async (): Promise<SessionType[]> => {
     })
 }
 
-export const fetchSpeakers = async (): Promise<Speaker[]> => {
-    const sessions = await fetchSessions()
-    const speakersData = await get(`/speakers?size=1100`); // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
+export const fetchSpeakers = async (version?: string): Promise<Speaker[]> => {
+    const sessions = await fetchSessions(version)
+    const speakersData = await get(`/speakers?size=1100&version=${version}`); // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
     const speakers = speakersData.map((i: any) => {
       const speakerSessions = sessions.filter((session: SessionType) => session.speakers.some((speaker) => i.id === speaker.id))
       const organization = i.answers?.filter((i: any) => i.question.id === organizationQuestionId).reverse()[0]?.answer
@@ -231,7 +290,8 @@ export const fetchSpeaker = async (id: string): Promise<Speaker | undefined> => 
 };
 
 async function get(slug: string) {
-    if (cache.has(slug)) {
+    // Never cache version
+    if (cache.has(slug) && !slug.endsWith('/version'))  {
       return cache.get(slug)
     }
   

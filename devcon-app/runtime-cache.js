@@ -1,7 +1,8 @@
 'use strict'
 
+// This is a decent set of default caching strategies
 // Workbox RuntimeCaching config: https://developers.google.com/web/tools/workbox/reference-docs/latest/module-workbox-build#.RuntimeCachingEntry
-module.exports = [
+const defaultRules = [
   {
     urlPattern: /^https:\/\/fonts\.(?:gstatic)\.com\/.*/i,
     handler: 'CacheFirst',
@@ -182,3 +183,133 @@ module.exports = [
     },
   },
 ]
+
+const customRules = [
+  {
+    urlPattern: ({ url }) => {
+      const { origin, pathname } = url
+
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
+
+      if (isApi && pathname.includes('/version')) {
+        return true
+      }
+
+      return false
+    },
+    handler: 'NetworkFirst', // Network first for version name always; this is what we use to detect if we have to perform requests to speakers/sessions (which are massive datasets with aggressive client side caches)
+    options: {
+      expiration: {
+        maxEntries: 1,
+      },
+      cacheName: 'devcon-api-version',
+      networkTimeoutSeconds: 3,
+    },
+  },
+  // Always use cache for large data sets like speakers and sessions - the cache will be broken by appending a new version to the url on the client side
+  {
+    urlPattern: ({ url }) => {
+      const { origin, pathname } = url
+
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
+
+      if (isApi && pathname.includes('/sessions')) {
+        return true
+      }
+
+      return false
+    },
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'devcon-api-sessions',
+      expiration: {
+        // This will clean up the old cache when a new request is cached - important because this data set is so large
+        maxEntries: 1,
+      },
+      plugins: [
+        {
+          // This is a bit of an edge case where the client cache mismatches because a new version has been detected but the new data fetch fails - we want it to still return the old data in this case
+          // e.g.: https://api.devcon.org/sessions?version=1 is cached, request to https://api.devcon.org/sessions?version=2 fails -
+          // handlerDidError makes sure it returns the "version 1" cache anyway, which is not the default behaviour (it matches on the slug by default, which differs here)
+          handlerDidError: async ({ event, request, state }) => {
+            console.log('Edge case met on sessions fetch: pulling whatever is in cache.')
+            // Open the specific cache
+            const cache = await caches.open('devcon-api-sessions')
+            // Attempt to find any response in this cache
+            const keys = await cache.keys()
+            let response = null
+            for (const key of keys) {
+              response = await cache.match(key)
+              if (response) break
+            }
+            return response || Response.error() // Return the found cached response or an error
+          },
+        },
+      ],
+    },
+  },
+  // Always use cache for large data sets like speakers and sessions - the cache will be broken by appending a new version to the url on the client side
+  {
+    urlPattern: ({ url }) => {
+      const { origin, pathname } = url
+
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
+
+      if (isApi && pathname.includes('/speakers')) {
+        return true
+      }
+
+      return false
+    },
+    handler: 'CacheFirst',
+    options: {
+      cacheName: 'devcon-api-speakers',
+      expiration: {
+        // This will clean up the old cache when a new request is cached - important because this data set is so large
+        maxEntries: 1,
+      },
+      plugins: [
+        {
+          // This is a bit of an edge case where the client cache mismatches because a new version has been detected but the new data fetch fails - we want it to still return the old data in this case
+          // e.g.: https://api.devcon.org/speakers?version=1 is cached, request to https://api.devcon.org/speakers?version=2 fails -
+          // handlerDidError makes sure it returns the "version 1" cache anyway, which is not the default behaviour (it matches on the slug by default, which differs here)
+          handlerDidError: async ({ event, request, state }) => {
+            console.log('Edge case met on speakers fetch: pulling whatever is in cache.')
+            // Open the specific cache
+            const cache = await caches.open('devcon-api-speakers')
+            // Attempt to find any response in this cache
+            const keys = await cache.keys()
+            let response = null
+            for (const key of keys) {
+              response = await cache.match(key)
+              if (response) break
+            }
+            return response || Response.error() // Return the found cached response or an error
+          },
+        },
+      ],
+    },
+  },
+  // // Use stale while revalidate for the rest, decent fallback
+  // {
+  //   urlPattern: ({ url }) => {
+  //     const { origin, pathname } = url
+
+  //     if (['/speakers', '/sessions', '/version'].every(match => pathname.includes(match))) {
+  //       return false
+  //     }
+
+  //     const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
+
+  //     if (isApi) return true
+
+  //     return false
+  //   },
+  //   handler: 'StaleWhileRevalidate',
+  //   options: {
+  //     cacheName: 'devcon-api',
+  //   },
+  // },
+]
+
+module.exports = [...customRules, ...defaultRules]

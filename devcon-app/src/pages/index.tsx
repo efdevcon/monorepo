@@ -15,6 +15,8 @@ import { useSessionData, useSpeakerData } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 export default (props: any) => {
+  // const eventData = useEventData()
+  // const sessions = eventData?.sessions
   const sessions = useSessionData()
   // const speakers = useSpeakerData()
   const context = {
