@@ -153,7 +153,7 @@ export const Notifications = (props: any) => {
 
       <h2 className="font-lg-fixed mt-8 mb-2">Push Notifications</h2>
 
-      <SubscribePushNotification />
+      {/* <SubscribePushNotification /> */}
 
       <div className={css['background']}>
         <AppLogo />
