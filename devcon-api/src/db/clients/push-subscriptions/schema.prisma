@@ -1,0 +1,21 @@
+// Not sure how we want to set this up yet, just getting something working
+
+datasource db {
+  provider = "postgres"
+  url      = env("DB_CONNECTION_STRING")
+}
+
+// datasource db {
+//  provider = "sqlite"
+//  url      = "file:push-subscriptions.db"
+// }
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./clients/push-subscriptions"
+}
+
+model PushSubscription {
+  endpoint String @id
+  keys String
+}

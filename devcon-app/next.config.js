@@ -152,8 +152,6 @@ const createConfig = phase => {
     ...nextConfig,
     generateBuildId: () => buildId,
   }
-
-  // if (phase === PHASE_PRODUCTION_BUILD) {
   const pwaConfig = withPWA({
     dest: '/public',
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
@@ -171,9 +169,6 @@ const createConfig = phase => {
   })
 
   return pwaConfig(config)
-  // }
-
-  return config
 }
 
 // const config = createConfig()

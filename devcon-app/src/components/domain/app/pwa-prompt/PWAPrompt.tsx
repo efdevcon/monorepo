@@ -9,6 +9,7 @@ import { Button } from 'components/common/button'
 import { pwaUtilities } from './pwa-utilities'
 import moment from 'moment'
 
+const apiUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://api.devcon.org'
 const lastSeenKey = 'pwa_prompt_timestamp'
 const howOftenToPrompt = [8, 'hours'] // [30, 'seconds']
 
@@ -45,6 +46,7 @@ export const PWAPrompt = () => {
     }
   }, [requiresManualInstall, promptIfNotLocked])
 
+  // Automatically request permission for push subscriptions on mount
   useEffect(() => {
     // @ts-ignore
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
@@ -64,7 +66,13 @@ export const PWAPrompt = () => {
                 console.log('User is subscribed:', subscription)
 
                 // Send subscription to your server
-                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+                return fetch(`${apiUrl}/push-subscriptions/subscribe`, {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(subscription),
+                })
               })
               .catch(function (err) {
                 console.log('Failed to subscribe the user: ', err)
@@ -147,103 +155,135 @@ export const SubscribePushNotification = () => {
   const [pwaEnabled, setPwaEnabled] = React.useState(false)
   const [dummyValue, setDummyValue] = React.useState('')
   const [pushSubscription, setPushSubscription] = React.useState<any>(null)
+  const [loading, setLoading] = React.useState(true)
 
+  const getLocalSubscription = () => {
+    return navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+      // Check if the user is already subscribed
+      return serviceWorkerRegistration.pushManager.getSubscription()
+    })
+  }
+
+  const subscribe = () => {
+    navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+      setLoading(true)
+
+      serviceWorkerRegistration.pushManager
+        .subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: process.env.VAPID_PUBLIC,
+        })
+        .then(function (subscription) {
+          console.log('User is subscribed:', subscription)
+
+          // Send subscription to your server
+          return fetch(`${apiUrl}/push-subscriptions/subscribe`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(subscription),
+          }).then(res => {
+            if (res.status === 200) {
+              setPushSubscription(subscription)
+            } else {
+              throw `Error code: ${res.status}`
+            }
+          })
+        })
+        .catch(function (err) {
+          console.log('Failed to subscribe the user: ', err)
+        })
+        .finally(() => setLoading(false))
+    })
+  }
+
+  // Just to recover from inconsistent state (don't want client to think it has a subscription that backend hasn't registered)
+  const verifyBackendHasSubscription = async (subscription: PushSubscription) => {
+    return fetch(`${apiUrl}/push-subscriptions/verify/${encodeURIComponent(subscription.endpoint)}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then(res => {
+        const hasPushSubscription = res.status === 200
+
+        if (hasPushSubscription) {
+          return setPushSubscription(subscription)
+        } else {
+          return unsubscribe(subscription)
+        }
+      })
+      .catch(err => {
+        console.error('Issue verifying push subscription:', err)
+
+        return err
+      })
+  }
+
+  const unsubscribe = async (subscription: PushSubscription) => {
+    setLoading(true)
+
+    subscription
+      .unsubscribe()
+      .then(() => {
+        setPushSubscription(null)
+        console.log('Unsubscription successful')
+      })
+      .catch((error: Error) => {
+        // Unsubscription failed
+        console.log('Unsubscription failed:', error)
+      })
+      .finally(() => setLoading(false))
+  }
+
+  // If service worker is enabled, load any local push subscriptions and verify they exist on the backend
   React.useEffect(() => {
     // @ts-ignore
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+      setLoading(true)
       setPwaEnabled(true)
-
-      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-        // Check if the user is already subscribed
-        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+      getLocalSubscription()
+        .then((subscription: any) => {
           if (subscription) {
-            setPushSubscription(subscription)
-
-            console.log('saving subscription!')
-          } else {
-            // User is not subscribed, proceed to subscribe
-            serviceWorkerRegistration.pushManager
-              .subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: process.env.VAPID_PUBLIC,
-              })
-              .then(function (subscription) {
-                console.log('User is subscribed:', subscription)
-
-                // Send subscription to your server
-                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
-              })
-              .catch(function (err) {
-                console.log('Failed to subscribe the user: ', err)
-              })
+            return verifyBackendHasSubscription(subscription)
           }
         })
-      })
+        .catch(e => {
+          console.error('Subscription not found:', e)
+        })
+        .finally(() => setLoading(false))
     }
   }, [])
-
-  console.log(pushSubscription, 'push subscription')
 
   if (!pwaEnabled) return null
 
   return (
     <div className="flex flex-col gap-4 items-start justify-start">
-      {!pushSubscription && (
-        <Button
-          className="green sm"
-          onClick={() => {
-            navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-              // Check if the user is already subscribed
-              serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
-                if (subscription) {
-                  setPushSubscription(subscription)
-                } else {
-                  // User is not subscribed, proceed to subscribe
-                  serviceWorkerRegistration.pushManager
-                    .subscribe({
-                      userVisibleOnly: true,
-                      applicationServerKey: process.env.VAPID_PUBLIC,
-                    })
-                    .then(function (subscription) {
-                      setPushSubscription(subscription)
-                      console.log('User is subscribed:', subscription)
+      {!loading && (
+        <>
+          {!pushSubscription && (
+            <Button
+              className="green sm"
+              onClick={() => {
+                subscribe()
+              }}
+            >
+              Enable push notifications
+            </Button>
+          )}
 
-                      // Send subscription to your server
-                      return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
-                    })
-                    .catch(function (err) {
-                      console.log('Failed to subscribe the user: ', err)
-                    })
-                }
-              })
-            })
-          }}
-        >
-          Subscribe to push notifications
-        </Button>
-      )}
-
-      {pushSubscription && (
-        <Button
-          className="red sm"
-          onClick={() => {
-            pushSubscription
-              .unsubscribe()
-              .then(() => {
-                setPushSubscription(null)
-                console.log('UnpushSubscription successful')
-              })
-              // .then(() => {
-              //   removePushSubscriptionFromServer(pushSubscription)
-              // })
-              .catch((error: Error) => {
-                // Unsubscription failed
-                console.log('Unsubscription failed:', error)
-              })
-          }}
-        >
-          Unsubscribe from push notifications
-        </Button>
+          {pushSubscription && (
+            <Button
+              className="red sm"
+              onClick={() => {
+                unsubscribe(pushSubscription)
+              }}
+            >
+              Disable push notifications
+            </Button>
+          )}
+        </>
       )}
 
       {process.env.NODE_ENV === 'development' && (
@@ -258,7 +298,16 @@ export const SubscribePushNotification = () => {
           <Button
             className="green sm shadow-xl"
             onClick={() => {
-              fetch('/api/notifications/send', { method: 'POST', body: dummyValue })
+              return fetch(`${apiUrl}/push-subscriptions/send`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  message: dummyValue,
+                  secret: '67oUKQ46zQsNAPO8vIU6jnAVkOWn',
+                }),
+              })
             }}
           >
             Send notification

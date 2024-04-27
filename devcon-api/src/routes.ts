@@ -4,6 +4,7 @@ import { eventsRouter } from 'controllers/events'
 import { rssRouter } from 'controllers/rss'
 import { sessionsRouter } from 'controllers/sessions'
 import { speakersRouter } from 'controllers/speakers'
+import { pushSubscriptionsRouter } from 'controllers/push-subscriptions'
 import { Router } from 'express'
 import { API_INFO } from 'utils/config'
 
@@ -21,3 +22,4 @@ router.use(eventsRouter)
 router.use(rssRouter)
 router.use(sessionsRouter)
 router.use(speakersRouter)
+router.use(pushSubscriptionsRouter)

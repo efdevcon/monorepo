@@ -110,9 +110,9 @@ export const Notifications = (props: any) => {
 
   return (
     <div className={css['container']}>
-      <div className={css['header']}>
-        <h2 className="font-lg-fixed">Notifications</h2>
-        {unseenNotifications && (
+      {unseenNotifications && (
+        <div className={`${css['header']} mb-8`}>
+          <h2 className="font-lg-fixed">Notifications</h2>
           <Button
             className="red sm"
             onClick={() => {
@@ -121,8 +121,8 @@ export const Notifications = (props: any) => {
           >
             Mark all as read
           </Button>
-        )}
-      </div>
+        </div>
+      )}
 
       {/* <Basic
         className={css['filter']}
@@ -151,9 +151,9 @@ export const Notifications = (props: any) => {
           )
         })}
 
-      <h2 className="font-lg-fixed mt-8 mb-2">Push Notifications</h2>
+      <h2 className="font-lg-fixed mb-2">Push Notifications</h2>
 
-      {/* <SubscribePushNotification /> */}
+      <SubscribePushNotification />
 
       <div className={css['background']}>
         <AppLogo />
