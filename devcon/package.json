@@ -16,7 +16,8 @@
     "scripts:db-cleanup": "ts-node src/scripts/db-cleanup",
     "scripts:pretalx-import": "ts-node src/scripts/pretalx-import",
     "scripts:twitter-import": "ts-node src/scripts/twitter-import",
-    "ai": "ts-node src/pages/api/ai/open-ai"
+    "ai": "ts-node src/pages/api/ai/open-ai",
+    "ai-tina": "ts-node src/pages/api/ai/format-content"
   },
   "dependencies": {
     "@elastic/elasticsearch": "^8.1.0",

@@ -34,26 +34,6 @@ function cosineSimilarity(vecA: number[], vecB: number[]): number {
   return dotProduct / (magnitudeA * magnitudeB);
 }
 
-
-// // Function to find the most relevant section
-// async function findMostRelevantSection(query: any) {
-//   const embeddings = loadEmbeddings();
-//   const queryEmbedding = await createOpenAIEmbedding(query);
-
-//   let highestSimilarity = -1;
-//   let mostRelevantSection = null;
-
-//   embeddings.forEach((section: any, index: any) => {
-//     const similarity = cosineSimilarity(queryEmbedding, section.embedding); // Directly use `section.embedding` since it's an array
-//     if (similarity > highestSimilarity) {
-//       highestSimilarity = similarity;
-//       mostRelevantSection = section; // `Section ${index + 1}`; // You may want to replace this with a more descriptive identifier
-//     }
-//   });
-
-//   return mostRelevantSection;
-// }
-
 // Function to create a single OpenAI embedding
 async function createOpenAIEmbedding(text: any) {
   const response = await openai.embeddings.create({
@@ -65,48 +45,25 @@ async function createOpenAIEmbedding(text: any) {
   return response.data[0].embedding;
 }
 
-// Function to create OpenAI embeddings
-// async function createOpenAIEmbeddings(sections: string): Promise<void> {
-//   try {
-//     const embedding = await openai.embeddings.create({
-//       model: "text-embedding-3-small",
-//       input: sections,
-//       encoding_format: "float",
-//     });
-
-//     fs.writeFileSync(path.resolve(__dirname, 'openai_embeddings.json'), JSON.stringify(embedding));
-  
-//     console.log('OpenAI Embeddings:', embedding);
-//   } catch (error) {
-//     console.error('Error creating OpenAI embeddings:', error);
-//   }
-// }
-
-async function generateResponseUsingCompletionsAPI(relevantText: string, query: string) {
-  const prompt = `Based on the following information: "${relevantText}", how would you answer the question: "${query}"?`;
-  const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo",
-    messages: [
-      {"role": "system", "content": "You are a helpful assistant."},
-      {"role": "user", "content": "Who won the world series in 2020?"}
-
-    ],
-    max_tokens: 150,
-    temperature: 0.5
-  });
-
-  return completion.choices[0];
-}
-
 const api = (() => {
   const _interface = {
     createEmbeddingsFromContent: async () => {
-      const formattedSections = Object.entries(sections).map(([key, value]) => {
-        return `Page ${key}: ${value}`;
-      })
+      const contentDir = path.resolve(__dirname, 'content');
+      const files = fs.readdirSync(contentDir);
+    
+      // Filter only .txt files
+      const txtFiles = files.filter(file => file.endsWith('.txt'));
+    
+      // Read content of each .txt file and prepare sections array
+      const sections = txtFiles.map(file => {
+        const content = fs.readFileSync(path.join(contentDir, file), 'utf8');
+
+        return content;
+        // return `Page ${file.replace('.txt', '')}: ${content}`;
+      });
       
       try {
-        const allPromises = formattedSections.map(async (section) => {
+        const allPromises = sections.map(async (section) => {
           const embedding = await createOpenAIEmbedding(section);
 
           return {
@@ -123,28 +80,46 @@ const api = (() => {
         console.error('Error creating OpenAI embeddings:', error);
       }
     },
-    getRelevantTextByQuery: async (query: string) => {
+    getRelevantTextByQuery: async (query: string, maxTokens: number = 10000, minSimilarity: number = 0.3) => {
       const embeddings = loadEmbeddings();
       const queryEmbedding = await createOpenAIEmbedding(query);
+      
+      let sectionsWithSimilarity = [] as any;
     
-      let highestSimilarity = -1;
-      let mostRelevantSection = '';
-    
-      embeddings.forEach((section: any, index: any) => {
-        const similarity = cosineSimilarity(queryEmbedding, section.embedding); // Directly use `section.embedding` since it's an array
-
-        if (similarity > highestSimilarity) {
-          highestSimilarity = similarity;
-          mostRelevantSection = section.text; // `Section ${index + 1}`; // You may want to replace this with a more descriptive identifier
+      // Calculate similarity for each section
+      embeddings.forEach((section: any) => {
+        const similarity = cosineSimilarity(queryEmbedding, section.embedding);
+        if (similarity > minSimilarity) {  // Only include sections above the similarity threshold
+          sectionsWithSimilarity.push({
+            text: section.text,
+            similarity: similarity
+          });
         }
       });
     
-      return mostRelevantSection;
+      // Sort sections by similarity in descending order
+      sectionsWithSimilarity.sort((a: any, b: any) => b.similarity - a.similarity);
+    
+      // Select top sections within the token limit
+      let tokenCount = 0;
+      let selectedText = "";
+      for (let section of sectionsWithSimilarity) {
+        const sectionTokenCount = section.text.split(/\s+/).length; // Estimate token count as number of words
+        if (tokenCount + sectionTokenCount > maxTokens) {
+          break;  // Stop adding sections if max token count is reached
+        }
+        selectedText += section.text + "\n\n"; // Add two new lines for clear separation
+        tokenCount += sectionTokenCount;
+      }
+    
+      return selectedText.trim() || "No sufficiently relevant section found.";
     },
     generateResponseUsingCompletionsAPI: async (relevantText: string, query: string) => {
-      const prompt = `Based on the following information: "${relevantText}", how would you answer the question: "${query}"?`;
+      console.log(relevantText, 'relevant text')
+      const prompt = `You are tasked to help users answer questions about Devcon and its history. When possible, try to refer the user to the relevant category. The current date is ${new Date().toLocaleDateString()}. Based on the following content from our website: "${relevantText}", how would you answer the question: "${query}"? The user does not know which content you are provided, so be sensitive to how they perceive your answer.`;
+      // const clarifications = `If the content is irrelevant, say "I don't know". The current date is ${new Date().toLocaleDateString()}.`;
       const completion = await openai.chat.completions.create({
-        model: "gpt-3.5-turbo",
+        model: "gpt-3.5-turbo-0125",
         messages: [
           {"role": "system", "content": prompt},
         ]
@@ -159,18 +134,33 @@ const api = (() => {
 
 // api.createEmbeddingsFromContent();
 
-const main = async () => {
-  const query = 'Where was Devcon 0 held?';
+// const queries = [
+//   'How many weeks until Devcon?',
+//   'What is Devcon?',
+//   'How many days until Devcon?',
+//   'What is the difference between Devcon and Devconnect?',
+//   'When is Devcon?',
+//   'What is the Ethereum Foundation?',
+//   'What is Ethereum?',
+//   'How many Devcon attendees are there?',
+//   'When is Devconnect?',
+// ]
+
+const main = async (query: string) => {
   // Compare embedding of query with each section, return most similar
+  
   const mostRelevantSection = await api.getRelevantTextByQuery(query)
   // Take result of most relevant section and generate response
   const relevantText = await api.generateResponseUsingCompletionsAPI(mostRelevantSection, query)
 
   console.log('The query was: ', query);
   console.log('The answer was: ', relevantText);
-
 }
 
-main();
+// queries.forEach(query => {
+//     main(query);
+// })
+
+main('Where were the past Devcons held?');
 
 // https://cookbook.openai.com/examples/question_answering_using_embeddings
