@@ -56,6 +56,7 @@ const DevaBot = () => {
     } catch (e) {
       console.error(e, 'error')
 
+      // @ts-ignore
       setError(e.message)
     }
 
