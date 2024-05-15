@@ -8,6 +8,7 @@ const testLimit = 0
 async function main() {
   let file: FileHandle | undefined
   try {
+    console.log('Trying to import db.json (MongoDb export)..')
     file = await open(path.join(__dirname, '../../', 'db.json'))
   } catch (e) {
     console.log('Error opening file')

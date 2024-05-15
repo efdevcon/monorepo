@@ -131,6 +131,7 @@ exports.Prisma.AccountScalarFieldEnum = {
   id: 'id',
   username: 'username',
   email: 'email',
+  activeAddress: 'activeAddress',
   addresses: 'addresses',
   disabled: 'disabled',
   favorite_speakers: 'favorite_speakers',

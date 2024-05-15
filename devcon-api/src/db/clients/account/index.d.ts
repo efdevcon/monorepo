@@ -1866,6 +1866,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     email: string | null
+    activeAddress: string | null
     disabled: boolean | null
     publicSchedule: boolean | null
     notifications: boolean | null
@@ -1878,6 +1879,7 @@ export namespace Prisma {
     id: string | null
     username: string | null
     email: string | null
+    activeAddress: string | null
     disabled: boolean | null
     publicSchedule: boolean | null
     notifications: boolean | null
@@ -1890,6 +1892,7 @@ export namespace Prisma {
     id: number
     username: number
     email: number
+    activeAddress: number
     addresses: number
     disabled: number
     favorite_speakers: number
@@ -1908,6 +1911,7 @@ export namespace Prisma {
     id?: true
     username?: true
     email?: true
+    activeAddress?: true
     disabled?: true
     publicSchedule?: true
     notifications?: true
@@ -1920,6 +1924,7 @@ export namespace Prisma {
     id?: true
     username?: true
     email?: true
+    activeAddress?: true
     disabled?: true
     publicSchedule?: true
     notifications?: true
@@ -1932,6 +1937,7 @@ export namespace Prisma {
     id?: true
     username?: true
     email?: true
+    activeAddress?: true
     addresses?: true
     disabled?: true
     favorite_speakers?: true
@@ -2021,6 +2027,7 @@ export namespace Prisma {
     id: string
     username: string | null
     email: string | null
+    activeAddress: string | null
     addresses: string[]
     disabled: boolean
     favorite_speakers: string[]
@@ -2054,6 +2061,7 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     email?: boolean
+    activeAddress?: boolean
     addresses?: boolean
     disabled?: boolean
     favorite_speakers?: boolean
@@ -2070,6 +2078,7 @@ export namespace Prisma {
     id?: boolean
     username?: boolean
     email?: boolean
+    activeAddress?: boolean
     addresses?: boolean
     disabled?: boolean
     favorite_speakers?: boolean
@@ -2090,6 +2099,7 @@ export namespace Prisma {
       id: string
       username: string | null
       email: string | null
+      activeAddress: string | null
       addresses: string[]
       disabled: boolean
       favorite_speakers: string[]
@@ -2497,6 +2507,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Account", 'String'>
     readonly username: FieldRef<"Account", 'String'>
     readonly email: FieldRef<"Account", 'String'>
+    readonly activeAddress: FieldRef<"Account", 'String'>
     readonly addresses: FieldRef<"Account", 'String[]'>
     readonly disabled: FieldRef<"Account", 'Boolean'>
     readonly favorite_speakers: FieldRef<"Account", 'String[]'>
@@ -2823,6 +2834,7 @@ export namespace Prisma {
     id: 'id',
     username: 'username',
     email: 'email',
+    activeAddress: 'activeAddress',
     addresses: 'addresses',
     disabled: 'disabled',
     favorite_speakers: 'favorite_speakers',
@@ -2994,6 +3006,7 @@ export namespace Prisma {
     id?: StringFilter<"Account"> | string
     username?: StringNullableFilter<"Account"> | string | null
     email?: StringNullableFilter<"Account"> | string | null
+    activeAddress?: StringNullableFilter<"Account"> | string | null
     addresses?: StringNullableListFilter<"Account">
     disabled?: BoolFilter<"Account"> | boolean
     favorite_speakers?: StringNullableListFilter<"Account">
@@ -3010,6 +3023,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    activeAddress?: SortOrderInput | SortOrder
     addresses?: SortOrder
     disabled?: SortOrder
     favorite_speakers?: SortOrder
@@ -3029,6 +3043,7 @@ export namespace Prisma {
     NOT?: AccountWhereInput | AccountWhereInput[]
     username?: StringNullableFilter<"Account"> | string | null
     email?: StringNullableFilter<"Account"> | string | null
+    activeAddress?: StringNullableFilter<"Account"> | string | null
     addresses?: StringNullableListFilter<"Account">
     disabled?: BoolFilter<"Account"> | boolean
     favorite_speakers?: StringNullableListFilter<"Account">
@@ -3045,6 +3060,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
+    activeAddress?: SortOrderInput | SortOrder
     addresses?: SortOrder
     disabled?: SortOrder
     favorite_speakers?: SortOrder
@@ -3067,6 +3083,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Account"> | string
     username?: StringNullableWithAggregatesFilter<"Account"> | string | null
     email?: StringNullableWithAggregatesFilter<"Account"> | string | null
+    activeAddress?: StringNullableWithAggregatesFilter<"Account"> | string | null
     addresses?: StringNullableListFilter<"Account">
     disabled?: BoolWithAggregatesFilter<"Account"> | boolean
     favorite_speakers?: StringNullableListFilter<"Account">
@@ -3139,6 +3156,7 @@ export namespace Prisma {
     id?: string
     username?: string | null
     email?: string | null
+    activeAddress?: string | null
     addresses?: AccountCreateaddressesInput | string[]
     disabled?: boolean
     favorite_speakers?: AccountCreatefavorite_speakersInput | string[]
@@ -3155,6 +3173,7 @@ export namespace Prisma {
     id?: string
     username?: string | null
     email?: string | null
+    activeAddress?: string | null
     addresses?: AccountCreateaddressesInput | string[]
     disabled?: boolean
     favorite_speakers?: AccountCreatefavorite_speakersInput | string[]
@@ -3171,6 +3190,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    activeAddress?: NullableStringFieldUpdateOperationsInput | string | null
     addresses?: AccountUpdateaddressesInput | string[]
     disabled?: BoolFieldUpdateOperationsInput | boolean
     favorite_speakers?: AccountUpdatefavorite_speakersInput | string[]
@@ -3187,6 +3207,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    activeAddress?: NullableStringFieldUpdateOperationsInput | string | null
     addresses?: AccountUpdateaddressesInput | string[]
     disabled?: BoolFieldUpdateOperationsInput | boolean
     favorite_speakers?: AccountUpdatefavorite_speakersInput | string[]
@@ -3203,6 +3224,7 @@ export namespace Prisma {
     id?: string
     username?: string | null
     email?: string | null
+    activeAddress?: string | null
     addresses?: AccountCreateaddressesInput | string[]
     disabled?: boolean
     favorite_speakers?: AccountCreatefavorite_speakersInput | string[]
@@ -3219,6 +3241,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    activeAddress?: NullableStringFieldUpdateOperationsInput | string | null
     addresses?: AccountUpdateaddressesInput | string[]
     disabled?: BoolFieldUpdateOperationsInput | boolean
     favorite_speakers?: AccountUpdatefavorite_speakersInput | string[]
@@ -3235,6 +3258,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     username?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
+    activeAddress?: NullableStringFieldUpdateOperationsInput | string | null
     addresses?: AccountUpdateaddressesInput | string[]
     disabled?: BoolFieldUpdateOperationsInput | boolean
     favorite_speakers?: AccountUpdatefavorite_speakersInput | string[]
@@ -3412,6 +3436,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     email?: SortOrder
+    activeAddress?: SortOrder
     addresses?: SortOrder
     disabled?: SortOrder
     favorite_speakers?: SortOrder
@@ -3428,6 +3453,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     email?: SortOrder
+    activeAddress?: SortOrder
     disabled?: SortOrder
     publicSchedule?: SortOrder
     notifications?: SortOrder
@@ -3440,6 +3466,7 @@ export namespace Prisma {
     id?: SortOrder
     username?: SortOrder
     email?: SortOrder
+    activeAddress?: SortOrder
     disabled?: SortOrder
     publicSchedule?: SortOrder
     notifications?: SortOrder
