@@ -84,8 +84,6 @@ async function Verify(req: Request, res: Response) {
     console.error('Unable to verify message', e)
     return res.status(400).send({ status: 400, message: 'Unable to verify message', data: false })
   }
-
-  res.status(400).send({ status: 400, message: '', data: false })
 }
 
 async function Logout(req: Request, res: Response) {
