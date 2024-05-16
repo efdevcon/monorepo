@@ -143,7 +143,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/home/w/Code/devcon-mono/devcon-api/src/db/clients/account",
+      "value": "/home/w/Code/devcon/mono/devcon-api/src/db/clients/account",
       "fromEnvVar": null
     },
     "config": {
