@@ -1,5 +1,4 @@
 import { Request, Response, Router } from 'express'
-import { SiweMessage, generateNonce } from 'siwe'
 import { API_INFO } from 'utils/config'
 import { PrismaClient } from 'db/clients/account'
 import { UserAccount } from 'types/accounts'
