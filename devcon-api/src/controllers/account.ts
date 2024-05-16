@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { API_INFO } from 'utils/config'
-import { PrismaClient } from '../db/clients/account'
+import { PrismaClient } from 'db/clients/account'
 import { UserAccount } from 'types/accounts'
 import { sendMail } from 'services/email'
 import { isValidSignature } from 'utils/web3'
