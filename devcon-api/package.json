@@ -20,7 +20,7 @@
     "lint": "eslint --fix",
     "prettier": "prettier './src' --write",
     "db:generate": "prisma db push --force-reset --accept-data-loss && prisma db seed && yarn db:generate:account",
-    "db:generate:account": "prisma db push --schema src/db/account.prisma",
+    "db:generate:account": "prisma db push --schema src/db/account.prisma && cp src/db/clients dist/db/clients -r",
     "db:seed:account": "prisma db push --force-reset --accept-data-loss --schema src/db/account.prisma && ts-node src/db/account-seed",
     "db:studio": "prisma studio",
     "db:studio:account": "prisma studio --schema src/db/account.prisma",
