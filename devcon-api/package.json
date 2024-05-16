@@ -24,7 +24,7 @@
     "db:studio": "prisma studio",
     "db:studio:account": "prisma studio --schema src/db/account.prisma",
     "swagger:generate": "ts-node ./src/swagger/generate",
-    "postinstall": "tsc && yarn swagger:generate && yarn db:generate"
+    "postinstall": "yarn swagger:generate && yarn db:generate"
   },
   "prisma": {
     "schema": "./src/db/schema.prisma",
