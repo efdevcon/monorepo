@@ -13,10 +13,10 @@ accountRouter.get(`/account`, GetAccount)
 accountRouter.put(`/account/:id`, UpdateAccount)
 accountRouter.delete(`/account/:id`, DeleteAccount)
 accountRouter.post(`/account/token`, Token)
-accountRouter.get(`/account/login/email`, LoginEmail)
-accountRouter.get(`/account/login/token`, LoginToken)
-accountRouter.get(`/account/login/web3`, LoginWeb3)
-accountRouter.get(`/account/logout`, Logout)
+accountRouter.post(`/account/login/email`, LoginEmail)
+accountRouter.post(`/account/login/token`, LoginToken)
+accountRouter.post(`/account/login/web3`, LoginWeb3)
+accountRouter.post(`/account/logout`, Logout)
 
 async function GetAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
