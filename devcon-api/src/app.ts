@@ -15,10 +15,16 @@ const app = express()
 
 // configure express app
 app.use(helmet())
-app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
+
+const corsConfig: cors.CorsOptions = {}
+if (SERVER_CONFIG.NODE_ENV === 'production') {
+  corsConfig.origin = ['https://devcon.org', 'https://app.devcon.org', 'https://api.devcon.org']
+  corsConfig.credentials = true
+}
+app.use(cors(corsConfig))
 
 const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
