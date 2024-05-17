@@ -10,6 +10,7 @@ import { notFoundHandler } from 'middleware/notfound'
 import { logHandler } from 'middleware/log'
 import { router } from './routes'
 import { SERVER_CONFIG, SESSION_CONFIG } from 'utils/config'
+import createMemoryStore from 'memorystore'
 
 const app = express()
 
@@ -26,12 +27,16 @@ if (SERVER_CONFIG.NODE_ENV === 'production') {
 }
 app.use(cors(corsConfig))
 
+const store = createMemoryStore(session)
 const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
   cookie: {},
   resave: false,
   saveUninitialized: true,
+  store: new store({
+      checkPeriod: 86400000 // prune expired entries every 24h
+  }),
 }
 if (SERVER_CONFIG.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // for secure cookies and when using HTTPS: https://expressjs.com/en/guide/behind-proxies.html

@@ -151,12 +151,28 @@
       }
     },
     "/account/login/email": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "example": "any"
+                },
+                "nonce": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -171,12 +187,25 @@
       }
     },
     "/account/login/token": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nonce": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -191,12 +220,34 @@
       }
     },
     "/account/login/web3": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "example": "any"
+                },
+                "nonce": {
+                  "example": "any"
+                },
+                "msg": {
+                  "example": "any"
+                },
+                "signed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -211,7 +262,7 @@
       }
     },
     "/account/logout": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
