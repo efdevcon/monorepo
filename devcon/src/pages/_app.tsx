@@ -43,6 +43,20 @@ const DevaBot = () => {
       //   url += `?threadID=${threadID}`
       // }
 
+      const resultTest = await (
+        await fetch('http://localhost:4000/ai/devcon-website/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ query, threadID }),
+        })
+      ).json()
+
+      console.log(resultTest, 'hello from backend')
+
+      return
+
       const result = await (
         await fetch(url, { method: 'POST', body: JSON.stringify({ message: query, threadID }) })
       ).json()
