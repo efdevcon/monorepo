@@ -5,9 +5,10 @@ import { Speaker } from 'types/Speaker';
 import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
+import { APP_CONFIG } from 'utils/config'
 
 const cache = new Map()
-const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://api.devcon.org' // 'https://speak.devcon.org/api'
+const baseUrl = APP_CONFIG.API_BASE_URL
 const eventName = 'devcon-6' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
 const websiteQuestionId = 29
 const twitterQuestionId = 44
