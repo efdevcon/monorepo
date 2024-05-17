@@ -3,7 +3,6 @@ import { pageHOC } from 'context/pageHOC'
 import React from 'react'
 import { API_URL, DEFAULT_APP_PAGE } from 'utils/constants'
 import { getGlobalData } from 'services/global'
-import { UserAccountRepository } from 'server/repositories/UserAccountRepository'
 import { Schedule } from 'components/domain/app/schedule'
 import { GetTracks } from 'services/page'
 import { fetchEvent } from 'services/event-data'
@@ -40,14 +39,13 @@ export default pageHOC((props: any) => {
 })
 
 export async function getServerSideProps(context: any) {
-  const repo = new UserAccountRepository()
 
   return {
     props: {
       page: DEFAULT_APP_PAGE,
       event: await fetchEvent(),
       userId: context.params.id,
-      userSchedule: (await repo.findPersonalizedAgenda(context.params.id)) ?? null,
+      userSchedule: null, // TODO: Move to Devcon API
       tracks: await GetTracks(),
     },
   }

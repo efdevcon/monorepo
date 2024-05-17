@@ -1,19 +1,16 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { withSessionRoute } from "server/withIronSession"
 import webPush, { PushSubscription } from 'web-push';
 import { subscriptions, clearSubscriptions } from '../index';
 
-// const repo = new UserAccountRepository()
+// TODO: Only allow logged-in users to send notifications
 
-export default withSessionRoute(async function route(req: NextApiRequest, res: NextApiResponse) {
+export default async function route(req: NextApiRequest, res: NextApiResponse) {
     const { id } = req.query
     
     if (req.method === 'POST') {
         return post(req, res);
     }
-
-    // return get(req, res);
-})
+}
 
 webPush.setVapidDetails(
     'mailto:devcon-website@ethereum.org',
