@@ -140,6 +140,7 @@ async function Token(req: any, res: Response) {
     }
 
     req.session.tokenId = data?.id
+    req.session.save()
 
     return res.status(200).send({ code: 200, message: '', data: data })
   } catch (e) {
@@ -203,6 +204,7 @@ async function LoginEmail(req: Request, res: Response) {
   let userAccount = await client.account.findFirst({ where: { email: address } })
   if (userAccount) {
     req.session.userId = userAccount.id
+    req.session.save()
 
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
@@ -212,6 +214,7 @@ async function LoginEmail(req: Request, res: Response) {
 
     if (userAccount) {
       req.session.userId = userAccount.id
+      req.session.save()
 
       return res.status(200).send({ code: 200, message: '', data: userAccount })
     }
@@ -272,6 +275,7 @@ async function LoginToken(req: Request, res: Response) {
   let userAccount = await client.account.findFirst({ where: { email: address } })
   if (userAccount) {
     req.session.userId = userAccount.id
+    req.session.save()
 
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
@@ -281,6 +285,7 @@ async function LoginToken(req: Request, res: Response) {
 
     if (userAccount) {
       req.session.userId = userAccount.id
+      req.session.save()
 
       return res.status(200).send({ code: 200, message: '', data: userAccount })
     }
@@ -357,6 +362,7 @@ async function LoginWeb3(req: Request, res: Response) {
   let userAccount = await client.account.findFirst({ where: { addresses: { has: address } } })
   if (userAccount) {
     req.session.userId = userAccount.id
+    req.session.save()
 
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
@@ -364,6 +370,7 @@ async function LoginWeb3(req: Request, res: Response) {
   userAccount = await client.account.create({ data: { addresses: [address], activeAddress: address } })
   if (userAccount) {
     req.session.userId = userAccount.id
+    req.session.save()
 
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }

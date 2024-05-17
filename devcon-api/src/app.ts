@@ -2,7 +2,7 @@ import express, { json, urlencoded } from 'express'
 import path from 'path'
 import cors from 'cors'
 import helmet from 'helmet'
-import session from 'express-session'
+import session, { SessionOptions } from 'express-session'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocument from 'swagger/definition.json'
 import { errorHandler } from 'middleware/error'
@@ -20,7 +20,7 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
-const sessionConfig = {
+const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
   cookie: {},
@@ -29,7 +29,7 @@ const sessionConfig = {
 }
 if (SERVER_CONFIG.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // for secure cookies and when using HTTPS: https://expressjs.com/en/guide/behind-proxies.html
-  sessionConfig.cookie = { secure: true }
+  sessionConfig.cookie = { ...sessionConfig.cookie, secure: true }
 }
 app.use(session(sessionConfig))
 
