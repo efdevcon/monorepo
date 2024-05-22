@@ -22,7 +22,7 @@ app.use(logHandler)
 
 const corsConfig: cors.CorsOptions = {}
 if (SERVER_CONFIG.NODE_ENV === 'production') {
-  corsConfig.origin = ['https://devcon.org', 'https://*.devcon.org']
+  corsConfig.origin = '*', // allow all origins
   corsConfig.credentials = true
 }
 app.use(cors(corsConfig))
