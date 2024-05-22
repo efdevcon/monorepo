@@ -22,7 +22,7 @@ app.use(logHandler)
 
 const corsConfig: cors.CorsOptions = {}
 if (SERVER_CONFIG.NODE_ENV === 'production') {
-  corsConfig.origin = ['https://devcon.org', 'https://app.devcon.org', 'https://api.devcon.org']
+  corsConfig.origin = ['https://devcon.org', 'https://*.devcon.org']
   corsConfig.credentials = true
 }
 app.use(cors(corsConfig))
@@ -35,7 +35,7 @@ const sessionConfig: SessionOptions = {
   resave: false,
   saveUninitialized: true,
   store: new store({
-      checkPeriod: 86400000 // prune expired entries every 24h
+    checkPeriod: 86400000, // prune expired entries every 24h
   }),
 }
 if (SERVER_CONFIG.NODE_ENV === 'production') {
