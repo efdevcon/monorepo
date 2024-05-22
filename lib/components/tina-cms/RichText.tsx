@@ -21,7 +21,7 @@ const Buttons = (data: any) => {
   if (!data.Button) return <></>;
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4" data-cms-element="button">
       {data.Button.map(({ text, url }: any) => {
         if (!url || !text) return null;
 

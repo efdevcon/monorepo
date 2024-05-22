@@ -1,23 +1,44 @@
 .rich-text {
-  b, strong {
+  b,
+  strong {
     font-weight: 600;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-      font-weight: normal !important;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: normal !important;
   }
 
   ul {
-      display: block;
+    display: block;
   }
 
   a {
-    @apply text-blue-500 hover:text-blue-600 hover:underline
+    @apply text-blue-500 hover:text-blue-600 hover:underline;
+  }
+
+  [data-cms-header="h1"],
+  [data-cms-header="h2"],
+  [data-cms-header="h3"],
+  [data-cms-header="h4"],
+  [data-cms-header="h5"],
+  [data-cms-header="h6"] {
+    margin-bottom: 1rem;
+  }
+
+  [data-cms-element="button"] {
+    &:not(&:first-child) {
+      padding-top: 0.5rem;
+    }
   }
 
   > * {
-      &:not(&:last-child) {
-          margin-bottom: 1rem;
-      }
+    &:not(&:last-child) {
+      margin-bottom: 1rem;
+    }
   }
 }
