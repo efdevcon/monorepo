@@ -97,15 +97,9 @@ export const RoadToDevconGrants = ({ pages, down }: any) => {
 
       <div className="md:basis-[800px] shrink">
         <RichText content={pages.section3?.body}></RichText>
-
-        <Link to={pages.section3?.button_info?.link}>
-          <Button fat color="purple-1" className="mt-8" fill>
-            {pages.section3?.button_info?.text}
-          </Button>
-        </Link>
       </div>
       <div className="flex grow shrink-0 items-center justify-center self-center">
-        <Link to={pages.section3?.button_info?.link}>
+        <Link to={pages.section3?.graphic_url}>
           <div className={css['tilt-hover-image']}>
             <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
           </div>
@@ -247,7 +241,9 @@ export default pageHOC(function Index(props: any) {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8">
-              <RichText content={pages.section2?.top}></RichText>
+              <div>
+                <RichText content={pages.section2?.top}></RichText>
+              </div>
 
               <div className="flex flex-col items-center justify-center">
                 <ImageNew
@@ -280,7 +276,7 @@ export default pageHOC(function Index(props: any) {
                 </div>
               </div>
             </div>
-            <div className="flex flex-col md:flex-row gap-8">
+            {/* <div className="flex flex-col md:flex-row gap-8">
               <RichText content={pages.section2?.left}></RichText>
 
               <RichText content={pages.section2?.right}></RichText>
@@ -290,7 +286,7 @@ export default pageHOC(function Index(props: any) {
               <Button fat color="purple-1" fill href="">
                 {pages.section2?.button_info?.text}
               </Button>
-            </Link>
+            </Link> */}
           </div>
 
           <div className="mb-4">
@@ -325,12 +321,6 @@ export default pageHOC(function Index(props: any) {
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>
             </div>
-
-            <Link to={pages.section4?.button_info?.link}>
-              <Button fat color="purple-1" className="relative z-10 pointer-events-auto" fill>
-                {pages.section4?.button_info?.text}
-              </Button>
-            </Link>
 
             <div className="sm:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto" ref={scrollRef}>
               {isInView && (
