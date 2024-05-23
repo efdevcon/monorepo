@@ -111,7 +111,7 @@ const TopSection = () => {
 
           <div className={css['col-2']}>
             <div>
-              <p className="semi-bold mb-2">{intl('footer_about_devcon_1')}</p>
+              <p className="semi-bold !mb-2">{intl('footer_about_devcon_1')}</p>
               <p>{intl('footer_about_devcon_2')}</p>
               <p>{intl('footer_about_devcon_3')}</p>
             </div>
