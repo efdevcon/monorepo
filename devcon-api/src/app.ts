@@ -22,7 +22,8 @@ app.use(logHandler)
 
 const corsConfig: cors.CorsOptions = {}
 if (SERVER_CONFIG.NODE_ENV === 'production') {
-  corsConfig.origin = '*', // allow all origins
+  // corsConfig.origin = '*', // allow all origins
+  corsConfig.origin = ['https://www.devcon.org/', /\.devcon\.org$/] 
   corsConfig.credentials = true
 }
 app.use(cors(corsConfig))
@@ -38,6 +39,7 @@ const sessionConfig: SessionOptions = {
     checkPeriod: 86400000, // prune expired entries every 24h
   }),
 }
+
 if (SERVER_CONFIG.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // for secure cookies and when using HTTPS: https://expressjs.com/en/guide/behind-proxies.html
   sessionConfig.cookie = { ...sessionConfig.cookie, secure: true }
