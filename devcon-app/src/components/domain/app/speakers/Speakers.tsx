@@ -299,10 +299,6 @@ export const Speakers = (props: any) => {
   const [selectedSessionTypes, setSelectedSessionTypes] = React.useState({} as { [key: string]: boolean })
   const [selectedExpertise, setSelectedExpertise] = React.useState({} as { [key: string]: boolean })
 
-  // const searcher = React.useMemo(
-  //   () => new FuzzySearch(props.speakers, ['name', 'tracks.name', 'description', 'company']),
-  //   [props.speakers]
-  // )
   const favoritedSpeakers = account?.appState?.speakers
 
   const speakers = props.speakers.filter((speaker: Speaker) => {

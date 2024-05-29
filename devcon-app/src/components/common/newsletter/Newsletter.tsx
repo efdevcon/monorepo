@@ -1,6 +1,4 @@
 import React from 'react'
-import jsonp from 'jsonp'
-import { validate } from 'email-validator'
 import { useFormField } from 'hooks/useFormField'
 import { useTranslations } from 'next-intl'
 import css from './newsletter.module.scss'
