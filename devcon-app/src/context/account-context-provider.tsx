@@ -59,17 +59,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
   async function connectWeb3(): Promise<providers.Web3Provider | undefined> {
     try {
-      const web3Modal = getWeb3Modal()
-      if (!web3Modal) {
-        console.error('Unable to initialize web3Modal')
-        return
-      }
-
-      web3Modal.clearCachedProvider()
-      const web3 = await web3Modal.connect()
-      const provider = new providers.Web3Provider(web3)
-      // setContext({ ...context, provider: provider })
-      return provider
+      
     } catch (e) {
       console.log('Unable to connect to web3')
       console.error(e)
@@ -191,9 +181,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function logout(): Promise<boolean> {
-    // if (!context.web3Modal) return false // isSSR
-
-    // context.web3Modal.clearCachedProvider()
     const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/logout`, {
       method: 'POST',
       credentials: 'include',
@@ -206,7 +193,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return true
     }
 
-    // else: set error/message
     return false
   }
 
@@ -244,7 +230,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return true
     }
 
-    // else: set error/message
     return false
   }
 
@@ -260,7 +245,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return true
     }
 
-    // else: set error/message
     return false
   }
 

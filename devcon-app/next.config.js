@@ -32,6 +32,9 @@ const nextConfig = {
   //   hideSourceMaps: true,
   // },
   webpack: (config, { buildId }) => {
+    // Web3Modal
+    config.externals.push('pino-pretty', 'lokijs', 'encoding')
+
     return {
       ...config,
       plugins: [

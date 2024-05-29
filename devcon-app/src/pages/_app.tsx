@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app'
 import React from 'react'
-import { NextIntlProvider } from 'next-intl'
 import Head from 'next/head'
 import { PWAPrompt } from 'components/domain/app/pwa-prompt'
 import 'slick-carousel/slick/slick.css'
@@ -9,6 +8,7 @@ import 'assets/css/index.scss'
 import { HistoryTracker } from 'components/domain/app/history-tracker'
 import { SEO } from 'components/domain/seo'
 import { ScheduleState } from 'components/domain/app/schedule/Schedule'
+import { Web3Provider } from 'context/web3'
 
 function App({ Component, pageProps }: AppProps) {
   return (
@@ -25,7 +25,7 @@ function App({ Component, pageProps }: AppProps) {
         <SEO />
       </Head>
 
-      <NextIntlProvider locale="en" messages={pageProps.messages}>
+      <Web3Provider>
         <PWAPrompt />
         <HistoryTracker>
           <ScheduleState {...pageProps}>
@@ -33,7 +33,7 @@ function App({ Component, pageProps }: AppProps) {
             {/* <ComponentWithSchedule {...pageProps} /> */}
           </ScheduleState>
         </HistoryTracker>
-      </NextIntlProvider>
+      </Web3Provider>
     </>
   )
 }
