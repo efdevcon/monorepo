@@ -268,6 +268,15 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
+          title: 'Press Kit',
+          url:
+            // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
+            process.env.NODE_ENV === 'development'
+              ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+              : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+          type: 'page',
+        },
+        {
           title: 'Videos',
           url: 'https://archive.devcon.org/archive/',
           type: 'link',
