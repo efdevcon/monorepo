@@ -20,7 +20,7 @@ const setupVectorStore = async () => {
 
   retriever = index.asRetriever()
 
-  retriever.similarityTopK = 5
+  retriever.similarityTopK = 2
 
   // queryEngine = index.asQueryEngine()
 }

@@ -1,6 +1,6 @@
 import { client } from '../../../../devcon/tina/__generated__/client'
 import path from 'path'
-const fs = require('fs')
+import fs from 'fs'
 
 function cleanUpText(text: string): string {
   // Fix spacing around periods and braces that are incorrectly joined to words
@@ -13,6 +13,20 @@ function cleanUpText(text: string): string {
 }
 
 const devconDir = path.resolve(__dirname, '../../../../devcon')
+const contentDir = path.resolve(__dirname, 'formatted-content')
+
+const writeFile = async (fileName: any) => {
+  const sourcePath = path.join(devconDir, 'cms/pages', fileName)
+  const destinationPath = path.join(contentDir, fileName.split('.mdx')[0] + '.txt')
+
+  try {
+    const fileContent = fs.readFileSync(sourcePath, 'utf-8')
+    fs.writeFileSync(destinationPath, fileContent, 'utf-8')
+    console.log(`Content written to ${destinationPath}`)
+  } catch (error) {
+    console.error('Error reading or writing the file:', fileName, error)
+  }
+}
 
 const processContent = async (fileName: any) => {
   try {
@@ -86,12 +100,6 @@ const processContent = async (fileName: any) => {
       }
     })
 
-    // Ensure the content directory exists
-    const contentDir = path.resolve(__dirname, 'formatted-content')
-    if (!fs.existsSync(contentDir)) {
-      fs.mkdirSync(contentDir)
-    }
-
     // Writing the content to a file
     const filename = path.join(contentDir, jsonData._sys.filename.replace(/\.[^/.]+$/, '') + '.txt')
 
@@ -119,8 +127,16 @@ function loadAllFilesFromFolder() {
   }
 }
 
+if (!fs.existsSync(contentDir)) {
+  fs.mkdirSync(contentDir)
+}
+
 const contentFiles = loadAllFilesFromFolder()
 
+// contentFiles.forEach((fileName: any) => {
+//   processContent(fileName)
+// })
+
 contentFiles.forEach((fileName: any) => {
-  processContent(fileName)
+  writeFile(fileName)
 })
