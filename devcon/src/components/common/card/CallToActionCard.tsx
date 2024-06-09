@@ -1,7 +1,8 @@
 import React from 'react'
 import css from './call-to-action.module.scss'
-import { Button } from '../button'
+import { Button } from 'lib/components/button'
 import { Link } from '../link'
+import cn from 'classnames'
 
 type CallToActionProps = {
   title: string
@@ -9,9 +10,9 @@ type CallToActionProps = {
   children: any
   color?: 'orange' | 'purple' | 'blue'
   BackgroundSvg: any
-  link: any
-  linkText: string
-  meta: string
+  link?: any
+  linkText?: any
+  meta?: string
 }
 
 const CallToAction = (props: CallToActionProps) => {
@@ -33,21 +34,23 @@ const CallToAction = (props: CallToActionProps) => {
   }
 
   return (
-    <div className={className}>
+    <div className={cn(className, 'rounded-xl shadow')}>
       <div className={css['background']}>
         <props.BackgroundSvg />
       </div>
 
       <div className={css['header']}>
-        <p className="h3">{props.title}</p>
-        {props.tag && <div className={`label ${buttonColor} bold ${css['tag']} ghost`}>{props.tag}</div>}
+        <p className="bold font-lg">{props.title}</p>
+        {props.tag && <div className={`label purple bold ${css['tag']} ghost rounded-lg`}>{props.tag}</div>}
       </div>
 
       {props.children}
 
       <div className={css['footer']}>
         <Link to={props.link}>
-          <Button className={`${buttonColor} lg`}>{props.linkText}</Button>
+          <Button color="purple-1" className="z-10" fill size="lg">
+            {props.linkText}
+          </Button>
         </Link>
         <p className="bold font-sm">{props.meta}</p>
       </div>

@@ -4,6 +4,9 @@ import road from './templates/road'
 import past_events from './templates/past_events'
 import dips from './templates/dips'
 import index from './templates/index'
+import supporters from './templates/supporters'
+import programming from './templates/programming'
+import tickets from './templates/tickets'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
@@ -32,7 +35,7 @@ export default defineConfig({
         label: 'Pages',
         path: 'cms/pages',
         format: 'mdx',
-        templates: [index, dips, past_events, road, faq],
+        templates: [index, dips, past_events, road, faq, supporters, programming, tickets],
         ui: {
           router: ({ document }) => {
             const filename = document._sys.filename
@@ -46,9 +49,12 @@ export default defineConfig({
                 return '/past-events'
               case 'road_to_devcon':
                 return '/road-to-devcon'
-
               case 'faq':
-                  return '/'
+                return '/'
+              case 'programming':
+                return '/programming'
+              case 'tickets':
+                return '/tickets'
 
               default:
                 return filename

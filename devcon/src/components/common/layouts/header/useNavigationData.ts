@@ -15,16 +15,16 @@ const useNavigationData = () => {
       //   url: 'https://archive.devcon.org/archive/',
       //   type: 'link',
       // },
-      // {
-      //   title: intl('navigation_forum'),
-      //   url: 'https://forum.devcon.org/',
-      //   type: 'link',
-      // },
-      // {
-      //   title: intl('navigation_blog'),
-      //   url: '/blogs',
-      //   type: 'page',
-      // },
+      {
+        title: intl('navigation_forum'),
+        url: 'https://forum.devcon.org/',
+        type: 'link',
+      },
+      {
+        title: intl('navigation_blog'),
+        url: '/blogs',
+        type: 'page',
+      },
     ],
     site: [
       {
@@ -196,6 +196,16 @@ const useNavigationData = () => {
       //     },
       //   ],
       // },
+      {
+        title: 'Program',
+        url: '/programming',
+        type: 'page',
+      },
+      {
+        title: 'Tickets',
+        url: '/tickets',
+        type: 'page',
+      },
       {
         title: intl('navigation_forum'),
         url: 'https://forum.devcon.org/',
