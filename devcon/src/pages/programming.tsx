@@ -16,6 +16,7 @@ import RichText from 'lib/components/tina-cms/RichText'
 import cn from 'classnames'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import TrackList from 'components/domain/index/track-list'
+import css from './programming.module.scss'
 import indexCss from './index.module.scss'
 import { motion } from 'framer-motion'
 import { Link } from 'components/common/link'
@@ -30,11 +31,10 @@ export default pageHOC(function Programming(props: any) {
   const faq = pages.faq
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
 
-  console.log(pages, 'pages hello')
-
   return (
     <Page theme={themes['purple']}>
       <PageHero
+        title="Program"
         heroBackground={HeroBackground}
         path={[{ text: <span className="bold">Event</span> }, { text: 'Programming' }]}
         navigation={[
@@ -60,7 +60,7 @@ export default pageHOC(function Programming(props: any) {
       <div className="section" id="overview">
         <div className={cn('flex justify-between gap-8 flex-col lg:flex-row mb-8')}>
           <div className="grow">{pages?.overview?.intro && <RichText content={pages.overview.intro} />}</div>
-          <div className="flex-0 shrink-0 max-w-[800px] w-[600px]">
+          <div className="flex-0 shrink-0 max-w-[100%] w-[600px]">
             <CallToAction
               color="purple"
               title={'Speaker Applications'}
@@ -103,9 +103,21 @@ export default pageHOC(function Programming(props: any) {
 
           {pages?.rfp?.description && <RichText content={pages.rfp?.description} />}
 
-          <div className="flex flex-col">
-            {pages.rfp?.steps?.map(({ title, answer }: any) => {
-              return <RichText key={title} content={answer} />
+          <div className="flex flex-col gap-4">
+            {pages.rfp?.steps?.map(({ title, answer }: any, index: number) => {
+              return (
+                <div className="flex flex-row" key={index}>
+                  <button className={cn(css['round-button'], 'mr-4 shrink-0')}>
+                    <span>{index + 1}</span>
+                  </button>
+                  <div className="flex flex-col">
+                    <div className="bold mb-4 h5">{title}</div>
+                    <div className="text-sm">
+                      <RichText content={answer}></RichText>
+                    </div>
+                  </div>
+                </div>
+              )
             })}
           </div>
 
@@ -118,7 +130,7 @@ export default pageHOC(function Programming(props: any) {
       </div>
 
       <div className="section" id="faq">
-        <div className="mt-8 h2 bold mb-4">Frequently Asked</div>
+        <div className="mt-8 h2 bold mb-6">Frequently Asked</div>
         <div className="flex flex-col">
           {faq?.map(({ question, answer }: any) => {
             const open = question === openFAQ
