@@ -12,12 +12,18 @@ const programming: Template = {
       fields: [createRichText('intro'), createRichText('speaker_applications'), button('button')],
     },
     createRichText('tracks'),
-    // {
-    //   label: 'tracks',
-    //   name: 'tracks',
-    //   type: 'object',
-    //   fields: [createRichText('description')],
-    // },
+    {
+      label: 'track_descriptions',
+      name: 'track_descriptions',
+      list: true,
+      type: 'object',
+      fields: [
+        { label: 'id', name: 'id', type: 'string' },
+        { label: 'name', name: 'name', type: 'string' },
+        createRichText('description'),
+        { label: 'tags', name: 'tags', type: 'string' },
+      ],
+    },
     {
       label: 'rfp',
       name: 'rfp',

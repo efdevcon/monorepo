@@ -263,19 +263,34 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'Past Events',
-          url: '/past-events',
+          title: 'Tickets',
+          url: '/tickets',
           type: 'page',
         },
         {
-          title: 'News',
-          url: '/news',
+          title: 'Program',
+          url: '/programming',
           type: 'page',
         },
         {
           title: intl('navigation_blog'),
           url: '/blogs',
           type: 'page',
+        },
+        {
+          title: 'Past Events',
+          url: '/past-events',
+          type: 'page',
+        },
+        // {
+        //   title: 'News',
+        //   url: '/news',
+        //   type: 'page',
+        // },
+        {
+          title: 'Videos',
+          url: 'https://archive.devcon.org/archive/',
+          type: 'link',
         },
         {
           title: 'Press Kit',
@@ -285,16 +300,6 @@ const useNavigationData = () => {
               ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
           type: 'page',
-        },
-        {
-          title: 'Videos',
-          url: 'https://archive.devcon.org/archive/',
-          type: 'link',
-        },
-        {
-          title: 'Devconnect',
-          url: 'https://devconnect.org',
-          type: 'link',
         },
       ],
       right: [
@@ -321,6 +326,11 @@ const useNavigationData = () => {
         {
           title: 'Github',
           url: 'https://github.com/efdevcon/',
+          type: 'link',
+        },
+        {
+          title: 'Devconnect',
+          url: 'https://devconnect.org',
           type: 'link',
         },
       ],

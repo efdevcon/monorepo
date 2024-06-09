@@ -24,12 +24,69 @@ import { Button } from 'lib/components/button'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 
+import CoreProtocol from 'assets/images/programming/CoreProtocol.png'
+import Cypherpunk from 'assets/images/programming/Cypherpunk.png'
+import Usability from 'assets/images/programming/Usability.png'
+import RealWorldEthereum from 'assets/images/programming/RealWorldEthereum.png'
+import AppliedCryptography from 'assets/images/programming/AppliedCryptography.png'
+import CryptoEconomics from 'assets/images/programming/CryptoEconomics.png'
+import Coordination from 'assets/images/programming/Coordination.png'
+import DeveloperExperience from 'assets/images/programming/DeveloperExperience.png'
+import Security from 'assets/images/programming/Security.png'
+import Layer2 from 'assets/images/programming/Layer2.png'
+
 export default pageHOC(function Programming(props: any) {
-  const pageContext = usePageContext()
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesProgramming
   const faq = pages.faq
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
+
+  const formattedTracks = (() => {
+    const tracks = pages.track_descriptions
+
+    return tracks?.map((track: any) => {
+      let trackLogo = CoreProtocol
+
+      if (track.id === 'core-protocol') {
+        trackLogo = CoreProtocol
+      }
+      if (track.id === 'cypherpunk') {
+        trackLogo = Cypherpunk
+      }
+      if (track.id === 'usability') {
+        trackLogo = Usability
+      }
+      if (track.id === 'real-world-ethereum') {
+        trackLogo = RealWorldEthereum
+      }
+      if (track.id === 'applied-cryptography') {
+        trackLogo = AppliedCryptography
+      }
+      if (track.id === 'crypto-economics') {
+        trackLogo = CryptoEconomics
+      }
+      if (track.id === 'coordination') {
+        trackLogo = Coordination
+      }
+      if (track.id === 'developer-experience') {
+        trackLogo = DeveloperExperience
+      }
+      if (track.id === 'security') {
+        trackLogo = Security
+      }
+      if (track.id === 'layer-2s') {
+        trackLogo = Layer2
+      }
+
+      return {
+        id: track.id,
+        title: track.name,
+        body: track.description,
+        tags: track.tags,
+        logo: trackLogo,
+      }
+    })
+  })()
 
   return (
     <Page theme={themes['purple']}>
@@ -90,14 +147,14 @@ export default pageHOC(function Programming(props: any) {
       </div>
 
       <div className="section">
-        <TrackList tracks={props.tracks} />
+        <TrackList isThailand tracks={formattedTracks || props.tracks} />
       </div>
 
       <div className="section mt-8" id="rfp">
         <div className={cn('flex flex-col justify-between gap-4 pb-8 pt-8 border-top border-bottom relative')}>
           <div className={`${indexCss['scrolling-text-background']} ${indexCss['alternate']}`}>
             <InfiniteScroller nDuplications={2} speed="120s">
-              <p className="bold">REQUESTS FOR PROPOSALS&nbsp;</p>
+              <p className="bold">REQUEST FOR PROPOSALS&nbsp;</p>
             </InfiniteScroller>
           </div>
 
@@ -105,16 +162,20 @@ export default pageHOC(function Programming(props: any) {
 
           <div className="flex flex-col gap-4">
             {pages.rfp?.steps?.map(({ title, answer }: any, index: number) => {
+              // @ts-ignore
+              const isLast = pages.rfp.steps.length - 1 === index
+
               return (
-                <div className="flex flex-row" key={index}>
-                  <button className={cn(css['round-button'], 'mr-4 shrink-0')}>
-                    <span>{index + 1}</span>
-                  </button>
-                  <div className="flex flex-col">
-                    <div className="bold mb-4 h5">{title}</div>
-                    <div className="text-sm">
-                      <RichText content={answer}></RichText>
-                    </div>
+                <div className={cn('flex flex-col pb-8', { 'border-bottom pb-8': !isLast })} key={index}>
+                  <div className="flex items-center mb-4">
+                    <button className={cn(css['round-button'], 'mr-4 shrink-0')}>
+                      <span>{index + 1}</span>
+                    </button>
+                    <div className="bold h5 flex items-center justify-center">{title}</div>
+                  </div>
+
+                  <div className="text">
+                    <RichText content={answer}></RichText>
                   </div>
                 </div>
               )
@@ -122,7 +183,7 @@ export default pageHOC(function Programming(props: any) {
           </div>
 
           <Link to={pages.rfp?.button?.link} className="self-start">
-            <Button fat fill color="purple-1" className="mt-4">
+            <Button fat fill color="purple-1">
               {pages.rfp?.button?.text}
             </Button>
           </Link>
@@ -192,3 +253,10 @@ export async function getStaticProps(context: any) {
     },
   }
 }
+
+/*
+  Color
+  Tracks
+  Menu Footer
+  Menu Header
+*/
