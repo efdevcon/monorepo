@@ -14,6 +14,7 @@ import HeaderLogo from 'components/common/layouts/header/HeaderLogo'
 import AppLogoColor from 'assets/images/app-logo-color.png'
 import Image from 'next/image'
 import css from 'components/domain/app/login-modal.module.scss'
+import { APP_CONFIG } from 'utils/config'
 
 interface AccountContextProviderProps {
   children: ReactNode
@@ -111,8 +112,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function getToken(identifier: string, update: boolean): Promise<VerificationToken | undefined> {
-    const response = await fetch('/api/account/token', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/token`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         identifier: identifier,
@@ -132,8 +134,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     message: string,
     signature: string
   ): Promise<UserAccount | undefined> {
-    const response = await fetch('/api/account/login/web3', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/login/web3`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         address: address,
@@ -153,8 +156,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function loginEmail(email: string, nonce: number): Promise<UserAccount | undefined> {
-    const response = await fetch('/api/account/login/email', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/login/email`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         address: email,
@@ -170,8 +174,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function loginToken(nonce: number): Promise<UserAccount | undefined> {
-    const response = await fetch('/api/account/login/token', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/login/token`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         nonce: nonce,
@@ -189,8 +194,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     // if (!context.web3Modal) return false // isSSR
 
     // context.web3Modal.clearCachedProvider()
-    const response = await fetch('/api/account/logout', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/logout`, {
       method: 'POST',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
     })
 
@@ -205,8 +211,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function getAccount(): Promise<UserAccount | undefined> {
-    const response = await fetch('/api/account', {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account`, {
       method: 'GET',
+      credentials: 'include',
     })
 
     if (response.status === 200) {
@@ -221,8 +228,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function updateAccount(id: string, account: UserAccount): Promise<boolean> {
-    const response = await fetch('/api/account/' + id, {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/${id}`, {
       method: 'PUT',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ account }),
     }).catch(e => {
@@ -241,8 +249,9 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function deleteAccount(id: string): Promise<boolean> {
-    const response = await fetch('/api/account/' + id, {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/${id}`, {
       method: 'DELETE',
+      credentials: 'include',
     })
 
     if (response.status === 200) {

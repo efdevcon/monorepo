@@ -20,6 +20,7 @@ model Account {
   id String @default(cuid()) @id
   username String?
   email String?
+  activeAddress String?
   addresses String[]
   disabled Boolean @default(false)
   

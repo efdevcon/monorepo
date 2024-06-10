@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 import webPush from 'web-push';
 import { PushNotification } from 'types/PushNotification'
 import { INotificationRepository } from '../repositories/interfaces/INotificationRepository'
-import { IUserAccountRepository } from '../repositories/interfaces/IUserAccountRepository'
 import { Types } from 'mongoose';
 
 require('dotenv').config();
@@ -15,11 +14,9 @@ webPush.setVapidDetails(
 
 export class NotificationController {
   private _repository: INotificationRepository
-  private _userRepository: IUserAccountRepository
 
-  constructor(repository: INotificationRepository, userRepository: IUserAccountRepository) {
+  constructor(repository: INotificationRepository) {
     this._repository = repository
-    this._userRepository = userRepository
 
     this.createSubscription = this.createSubscription.bind(this);
     this.getNotifications = this.getNotifications.bind(this);
@@ -91,11 +88,12 @@ export class NotificationController {
           query = { _id: { $in: Array.from(recipientIDs) } };
         }
 
-        const recipients = await this._userRepository._model.find(query, '_id pushSubscription');
+        // TODO: Move to Devcon API
+        // const recipients = await this._userRepository._model.find(query, '_id pushSubscription');
 
-        recipients.forEach(({ _id, pushSubscription }) => {
-          subscriptions[_id] = pushSubscription;
-        })
+        // recipients.forEach(({ _id, pushSubscription }) => {
+        //   subscriptions[_id] = pushSubscription;
+        // })
 
         return subscriptions;
       })();
@@ -130,7 +128,8 @@ export class NotificationController {
 
   private async unsubscribe(userID: string) {
     try {
-      await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $unset: { pushSubscription: 1 }}); 
+      // TODO: Move to Devcon API
+      // await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $unset: { pushSubscription: 1 }}); 
     } catch(e) {
       console.error(e, 'Unsubscribe failed');
 
@@ -140,7 +139,8 @@ export class NotificationController {
 
   private async subscribe(userID: string, subscription: any) {
     try {
-      await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $set: { pushSubscription: subscription } });
+      // TODO: Move to Devcon API
+      // await this._userRepository._model.updateOne({ _id: new Types.ObjectId(userID) }, { $set: { pushSubscription: subscription } });
     } catch(e) {
       console.error(e, 'Subscribe failed');
 
@@ -161,18 +161,9 @@ export class NotificationController {
   }
 
   public async testNotification(req: Request & any, res: Response) {
-    const user: any = await this._userRepository._model.findById(new Types.ObjectId(req.user));
-    await this.pushNotification(req.user, { [req.user]: user.pushSubscription });
-    // console.log(user)
-
-    // console.log(subs, 'subs');
-
-    // const queue = Object.entries(subs).map(([user, sub]) => {
-    //   console.log( user, sub, 'user sub')
-    //   return this.pushNotification(user, sub);
-    // }); 
-
-    // await Promise.all(queue);
+    // TODO: Move to Devcon API
+    // const user: any = await this._userRepository._model.findById(new Types.ObjectId(req.user));
+    await this.pushNotification(req.user, { [req.user]: {} });
 
     res.status(200).send({ code: 200, message: 'OK', data: 'Message sent!' })
   }

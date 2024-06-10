@@ -158,6 +158,17 @@ const useNavigationData = () => {
           },
         ],
       },
+      {
+        title: 'Tickets',
+        url: '/tickets',
+        type: 'page',
+      },
+      {
+        title: 'Program',
+        url: '/programming',
+        type: 'page',
+      },
+
       // {
       //   title: intl('navigation_event'),
       //   url: '#',
@@ -230,7 +241,6 @@ const useNavigationData = () => {
         type: 'page',
         highlight: 'archive',
       },
-
     ],
     footer: {
       bottom: [
@@ -249,21 +259,19 @@ const useNavigationData = () => {
       ],
       left: [
         {
-          title: 'DIPs',
-          url: '/dips',
-          type: 'page',
-        },
-      ],
-      right: [
-        {
           title: intl('navigation_about'),
           url: '/about',
           type: 'page',
         },
         {
-          title: intl('navigation_forum'),
-          url: 'https://forum.devcon.org/',
-          type: 'link',
+          title: 'Tickets',
+          url: '/tickets',
+          type: 'page',
+        },
+        {
+          title: 'Program',
+          url: '/programming',
+          type: 'page',
         },
         {
           title: intl('navigation_blog'),
@@ -271,42 +279,74 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
+          title: 'Past Events',
+          url: '/past-events',
+          type: 'page',
+        },
+        // {
+        //   title: 'News',
+        //   url: '/news',
+        //   type: 'page',
+        // },
+        {
+          title: 'Videos',
+          url: 'https://archive.devcon.org/archive/',
+          type: 'link',
+        },
+        {
+          title: 'Press Kit',
+          url:
+            // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
+            process.env.NODE_ENV === 'development'
+              ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+              : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+          type: 'page',
+        },
+      ],
+      right: [
+        {
+          title: 'Events',
+          url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'DIPs',
+          url: '/dips',
+          type: 'page',
+        },
+        {
+          title: 'RTD Grants',
+          url: 'https://esp.ethereum.foundation/devcon-grants',
+          type: 'link',
+        },
+        {
+          title: intl('navigation_forum'),
+          url: 'https://forum.devcon.org/',
+          type: 'link',
+        },
+        {
+          title: 'Github',
+          url: 'https://github.com/efdevcon/',
+          type: 'link',
+        },
+        {
           title: 'Devconnect',
           url: 'https://devconnect.org',
           type: 'link',
         },
-        {
-          title: intl('navigation_archive'),
-          url: 'https://archive.devcon.org/archive/',
-          type: 'link',
-        },
-
-        // {
-        //   title: intl('navigation_tickets'),
-        //   url: '/tickets',
-        //   type: 'page',
-        // },
-        // {
-        //   title: intl('navigation_program'),
-        //   url: '/program',
-        //   type: 'page',
-        // },
-        // {
-        //   title: 'DIPs',
-        //   url: '/dips',
-        //   type: 'page',
-        // },
-        // {
-        //   title: intl('navigation_city_guide'),
-        //   url: '/bogota',
-        //   type: 'page',
-        // },
-        // {
-        //   title: 'FAQ',
-        //   url: '/faq',
-        //   type: 'page',
-        // },
       ],
+      // rightBottom: [
+      //   {
+      //     title: intl('navigation_forum'),
+      //     url: 'https://forum.devcon.org/',
+      //     type: 'link',
+      //   },
+      //   {
+      //     title: 'Github',
+      //     url: 'https://github.com/efdevcon/',
+      //     type: 'link',
+      //   },
+      // ],
     },
   }
 }

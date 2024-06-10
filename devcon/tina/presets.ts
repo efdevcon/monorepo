@@ -1,5 +1,46 @@
 import { defineConfig, Template, RichTextType } from 'tinacms'
 
+const RichTextButtons = {
+  name: 'Buttons',
+  label: 'Buttons',
+  fields: [
+    {
+      name: 'Button',
+      label: 'Button',
+      list: true,
+      type: 'object',
+      fields: [
+        {
+          name: 'text',
+          label: 'text',
+          type: 'string',
+        },
+        {
+          name: 'url',
+          label: 'url',
+          type: 'string',
+        },
+        {
+          component: 'select',
+          options: [
+            {
+              label: 'purple',
+              value: 'purple-1',
+            },
+            {
+              label: 'blue',
+              value: 'blue-1',
+            },
+          ],
+          name: 'color',
+          label: 'color',
+          type: 'string',
+        },
+      ],
+    },
+  ],
+}
+
 // Field utilities
 export const createRichText = (name: string, extra?: any): RichTextType => {
   return {
@@ -16,38 +57,17 @@ export const createRichText = (name: string, extra?: any): RichTextType => {
             name: 'left',
             label: 'Left',
             type: 'rich-text',
+            templates: [RichTextButtons],
           },
           {
             name: 'right',
             label: 'Right',
             type: 'rich-text',
+            templates: [RichTextButtons],
           },
         ],
       },
-      {
-        name: 'Buttons',
-        label: 'Buttons',
-        fields: [
-          {
-            name: 'Button',
-            label: 'Button',
-            list: true,
-            type: 'object',
-            fields: [
-              {
-                name: 'text',
-                label: 'text',
-                type: 'string'
-              },
-              {
-                name: 'url',
-                label: 'url',
-                type: 'string'
-              },
-            ]
-          }
-        ]
-      },
+      RichTextButtons,
     ],
   }
 }
@@ -62,13 +82,18 @@ export const button = (name: string, extra?: any) => {
       {
         label: 'link',
         name: 'link',
-        type: 'string'
+        type: 'string',
       },
       {
         label: 'text',
         name: 'text',
-        type: 'string'
-      }
-    ]
+        type: 'string',
+      },
+      {
+        label: 'color',
+        name: 'color',
+        type: 'string',
+      },
+    ],
   }
 }

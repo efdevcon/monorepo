@@ -14,7 +14,7 @@
       "url": "https://github.com/efdevcon/api"
     }
   },
-  "host": "localhost:3000",
+  "host": "localhost:4000",
   "basePath": "/",
   "schemes": [
     "http"
@@ -26,6 +26,7 @@
           "Default"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -39,9 +40,13 @@
           "Account"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -58,11 +63,25 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -77,11 +96,22 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -92,61 +122,158 @@
           "Account"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "identifier": {
+                  "type": "string",
+                  "example": "your@email.com"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/account/login/email": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "example": "any"
+                },
+                "nonce": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/account/login/token": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nonce": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/account/login/web3": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "example": "any"
+                },
+                "nonce": {
+                  "example": "any"
+                },
+                "msg": {
+                  "example": "any"
+                },
+                "signed": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/account/logout": {
-      "get": {
+      "post": {
         "tags": [
           "Account"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -157,6 +284,7 @@
           "DIPs"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -170,6 +298,7 @@
           "DIPs"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -183,6 +312,7 @@
           "Events"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -270,11 +400,7 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
+        "responses": {}
       }
     },
     "/events/{id}/speakers": {
@@ -297,11 +423,7 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "default": {
-            "description": ""
-          }
-        }
+        "responses": {}
       }
     },
     "/events/{id}/rooms": {
@@ -334,6 +456,7 @@
           "RSS"
         ],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
