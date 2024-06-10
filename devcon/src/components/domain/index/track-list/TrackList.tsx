@@ -151,7 +151,7 @@ const Tracks = (props: Props) => {
 
             if (props.isThailand) {
               return (
-                <FlipCard key={track.slug} className={className} to={archiveUrl}>
+                <FlipCard key={track.id} className={className} to={archiveUrl}>
                   <div className="flex flex-col p-4 relative h-full select-none">
                     <div className={css['title']}>{track.title}</div>
 
@@ -189,7 +189,7 @@ const Tracks = (props: Props) => {
             }
 
             return (
-              <FlipCard key={track.slug} className={className} to={archiveUrl}>
+              <FlipCard key={track.id} className={className} to={archiveUrl}>
                 <div className={css['image']}>{getTrackImage(track.id)}</div>
                 <div className={css['details']}>
                   <div className={css['title']}>{track.title}</div>
