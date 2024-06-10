@@ -24,7 +24,7 @@ interface Props {
 }
 
 const settings = {
-  infinite: false,
+  infinite: true,
   touchThreshold: 100,
   speed: 500,
   variableWidth: true,
@@ -156,7 +156,13 @@ const Tracks = (props: Props) => {
                     <div className={css['title']}>{track.title}</div>
 
                     <div className="relative grow">
-                      <ImageNew className="object-contain p-4" fill src={track.logo} alt={track.title} />
+                      <ImageNew
+                        draggable="false"
+                        className="object-contain p-4 select-none"
+                        fill
+                        src={track.logo}
+                        alt={track.title}
+                      />
                     </div>
                   </div>
                   <div className={cn(css['details'], 'flex flex-col justify-between')}>

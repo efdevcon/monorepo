@@ -66,11 +66,20 @@ const EnhancedTinaMarkdown = (props: any) => {
 
 const TwoColumns = (data: any) => {
   return (
-    <div className={`flex flex-grid md:grid-cols-2 gap-8 w-full grid-cols-1`}>
-      <div className={`${css["rich-text"]}  grow`}>
+    <div
+      data-type="two-columns"
+      className={`flex flex-col lg:flex-row gap-8 w-full`}
+    >
+      <div
+        data-type="two-columns-left"
+        className={`${css["rich-text"]} flex-1`}
+      >
         <EnhancedTinaMarkdown content={data?.left} />
       </div>
-      <div className={`${css["rich-text"]}  grow`}>
+      <div
+        data-type="two-columns-right"
+        className={`${css["rich-text"]} flex-1`}
+      >
         <EnhancedTinaMarkdown content={data?.right} />
       </div>
     </div>

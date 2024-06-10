@@ -117,7 +117,7 @@ export default pageHOC(function Programming(props: any) {
       <div className="section" id="overview">
         <div className={cn('flex justify-between gap-8 flex-col lg:flex-row mb-8')}>
           <div className="grow">{pages?.overview?.intro && <RichText content={pages.overview.intro} />}</div>
-          <div className="flex-0 shrink-0 max-w-[100%] w-[600px]">
+          <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[550px]">
             <CallToAction
               color="purple"
               title={'Speaker Applications'}
@@ -147,13 +147,13 @@ export default pageHOC(function Programming(props: any) {
       </div>
 
       <div className="section">
-        <TrackList isThailand tracks={formattedTracks || props.tracks} />
+        <TrackList isThailand tracks={formattedTracks || props.tracks} title="Hover over cards to read more" />
       </div>
 
       <div className="section mt-8" id="rfp">
         <div className={cn('flex flex-col justify-between gap-4 pb-8 pt-8 border-top border-bottom relative')}>
-          <div className={`${indexCss['scrolling-text-background']} ${indexCss['alternate']}`}>
-            <InfiniteScroller nDuplications={2} speed="120s">
+          <div className={`${indexCss['scrolling-text-background']} ${indexCss['alternate']} ${css['fade-color']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">REQUEST FOR PROPOSALS&nbsp;</p>
             </InfiniteScroller>
           </div>
@@ -166,9 +166,9 @@ export default pageHOC(function Programming(props: any) {
               const isLast = pages.rfp.steps.length - 1 === index
 
               return (
-                <div className={cn('flex flex-col pb-8', { 'border-bottom pb-8': !isLast })} key={index}>
+                <div className={cn('flex flex-col', { 'border-bottom pb-8': !isLast })} key={index}>
                   <div className="flex items-center mb-4">
-                    <button className={cn(css['round-button'], 'mr-4 shrink-0')}>
+                    <button className={cn(css['round-button'], 'mr-3 shrink-0')}>
                       <span>{index + 1}</span>
                     </button>
                     <div className="bold h5 flex items-center justify-center">{title}</div>
@@ -182,7 +182,7 @@ export default pageHOC(function Programming(props: any) {
             })}
           </div>
 
-          <Link to={pages.rfp?.button?.link} className="self-start">
+          <Link to={pages.rfp?.button?.link} className="self-start mt-3">
             <Button fat fill color="purple-1">
               {pages.rfp?.button?.text}
             </Button>
@@ -226,7 +226,7 @@ export default pageHOC(function Programming(props: any) {
       </div>
 
       <div className="section" id="overview">
-        <div className="flex flex-col border-top mt-8 pt-8 mb-16">
+        <div className="flex border-top mt-8 pt-8 mb-12">
           <div className="grow">{pages?.supporters_tickets && <RichText content={pages.supporters_tickets} />}</div>
         </div>
       </div>
