@@ -20,6 +20,22 @@ const RichTextButtons = {
           label: 'url',
           type: 'string',
         },
+        {
+          component: 'select',
+          options: [
+            {
+              label: 'purple',
+              value: 'purple-1',
+            },
+            {
+              label: 'blue',
+              value: 'blue-1',
+            },
+          ],
+          name: 'color',
+          label: 'color',
+          type: 'string',
+        },
       ],
     },
   ],
@@ -71,6 +87,11 @@ export const button = (name: string, extra?: any) => {
       {
         label: 'text',
         name: 'text',
+        type: 'string',
+      },
+      {
+        label: 'color',
+        name: 'color',
         type: 'string',
       },
     ],

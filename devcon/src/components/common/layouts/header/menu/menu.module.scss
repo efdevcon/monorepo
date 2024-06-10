@@ -33,7 +33,7 @@
     display: none;
     align-items: center;
 
-    @media (min-width: 1351px) {
+    @media (min-width: 1251px) {
       display: flex;
     }
   }
@@ -47,7 +47,7 @@
     flex-direction: row;
     justify-content: flex-end;
 
-    @media (max-width: 1350px) {
+    @media (max-width: 1250px) {
       :global(#language-toggle) {
         display: none;
       } 
@@ -98,7 +98,7 @@
         transform: translateX(10px);
       }
 
-      @media (max-width: 1350px) {
+      @media (max-width: 1250px) {
         touch-action: none;
         display: flex;
       }
@@ -151,7 +151,7 @@
 .desktop {
   display: none !important;
 
-  @media (min-width: 1351px) {
+  @media (min-width: 1251px) {
     display: flex !important;
   }
 }
@@ -159,7 +159,7 @@
 .mobile {
   display: none !important;
 
-  @media (max-width: 1350px) {
+  @media (max-width: 1250px) {
     display: block !important;
   }
 }

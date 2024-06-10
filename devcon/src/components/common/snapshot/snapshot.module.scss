@@ -3,24 +3,24 @@
 .container {
   width: 100%;
   margin-top: -12px;
-  @include fonts-sm;
+  // @include fonts-sm;
 }
 
 .list {
   list-style-type: none;
-  margin-bottom: $gaps-gap-4;
+  // margin-bottom: $gaps-gap-4;
 }
 
 .list-item {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 12px 8px;
+  padding: 14px 8px;
   border-bottom: 1px solid $colors-monochrome-10;
-  @include fonts-sm;
+  // @include fonts-sm;
 
   > svg {
-    font-size: 1.3em;
+    font-size: 1.5em;
     margin-right: 12px;
   }
 

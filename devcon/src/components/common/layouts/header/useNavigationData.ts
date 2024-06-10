@@ -159,15 +159,16 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: 'Program',
-        url: '/programming',
-        type: 'page',
-      },
-      {
         title: 'Tickets',
         url: '/tickets',
         type: 'page',
       },
+      {
+        title: 'Program',
+        url: '/programming',
+        type: 'page',
+      },
+
       // {
       //   title: intl('navigation_event'),
       //   url: '#',

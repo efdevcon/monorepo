@@ -191,7 +191,8 @@ export default pageHOC(function Programming(props: any) {
         </div>
       </div>
 
-      <div className="section" id="faq">
+      <div className="section relative">
+        <div className="anchor absolute -top-20" id="faq"></div>
         <div className="mt-8 h2 bold mb-6">Frequently Asked</div>
         <div className="flex flex-col">
           {faq?.map(({ question, answer }: any) => {
