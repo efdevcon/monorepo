@@ -6,7 +6,7 @@ import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
 import { GetPage } from 'services/page'
 import { usePageContext } from 'context/page-context'
-import HeroBackground from 'assets/images/pages/hero-bgs/programming.jpg'
+import HeroBackground from 'assets/images/pages/hero-bgs/ticketing.jpeg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesTickets, PagesQuery } from '../../tina/__generated__/types'
@@ -61,11 +61,12 @@ export default pageHOC(function Tickets(props: any) {
           <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[750px]">
             <CallToAction
               color="blue"
-              title={'Raffle Auction'}
-              tag="Raffle Auction Is Live"
+              title={'Raffle-Auction'}
+              tag="Raffle-Auction Coming Soon"
               BackgroundSvg={SpeakersBackground}
               link={pages.overview?.button?.link}
               linkText={pages.overview?.button?.text}
+              buttonDisabled
               meta=""
             >
               {pages?.overview?.card && <RichText content={pages.overview.card} />}
@@ -117,8 +118,8 @@ export default pageHOC(function Tickets(props: any) {
         <div className="mt-10">
           {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.sybil_resistance} />}
         </div>
-        <div className="mt-8 border-top pt-8 pb-8 relative">
-          {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.specs} />}
+        <div className="mt-8 relative ">
+          {/* {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.specs} />} */}
           <div className={`${indexCss['scrolling-text-background']} ${css['fade-color']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">RAFFLE AUCTION&nbsp;</p>
@@ -126,14 +127,14 @@ export default pageHOC(function Tickets(props: any) {
           </div>
         </div>
       </div>
-
+      {/* 
       <div className="section">
         <div className="py-8 border-top">
           <div className="h2 mb-8">Other methods to attend</div>
-          {/* {pages?.other_methods_to_attend && <RichText content={pages.other_methods_to_attend} />} */}
+          
 
           <div className="flex flex-col gap-4">
-            {/* @ts-ignore */}
+            {/* @ts-ignore }
             {pages?.other_methods_to_attend?.steps_raffle.map(({ title, answer }: any, index: number) => {
               // @ts-ignore
               const isLast = pages?.other_methods_to_attend?.steps_raffle - 1 === index
@@ -155,11 +156,11 @@ export default pageHOC(function Tickets(props: any) {
             })}
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="section mb-12 relative">
         <div className="anchor absolute -top-20" id="faq"></div>
-        <div className="h2 bold mb-6">Frequently Asked</div>
+        <div className="h2 bold mb-6 pt-8 border-top">Frequently Asked</div>
         <div className="flex flex-col">
           {faq?.map(({ question, answer }: any) => {
             const open = question === openFAQ
@@ -201,7 +202,9 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       ...globalData,
-      page: {},
+      page: {
+        title: 'Tickets',
+      },
       cms: {
         variables: content.variables,
         data: content.data,

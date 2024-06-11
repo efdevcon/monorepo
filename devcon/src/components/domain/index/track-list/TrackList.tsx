@@ -173,7 +173,7 @@ const Tracks = (props: Props) => {
                     </div>
 
                     {track.tags && (
-                      <div className={`flex gap-1 flex-wrap`}>
+                      <div className={`flex gap-1 flex-wrap mt-8`}>
                         {track.tags.split(',').map((tag: string) => {
                           return (
                             <div className="label rounded-lg !py-0.5" key={tag}>
