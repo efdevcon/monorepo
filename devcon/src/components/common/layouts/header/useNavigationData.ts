@@ -230,11 +230,11 @@ const useNavigationData = () => {
       //   type: 'page',
       //   highlight: 'app',
       // },
-      {
-        title: 'Devconnect',
-        url: 'https://devconnect.org',
-        type: 'link',
-      },
+      // {
+      //   title: 'Devconnect',
+      //   url: 'https://devconnect.org',
+      //   type: 'link',
+      // },
       {
         title: intl('navigation_archive'),
         url: 'https://archive.devcon.org',
