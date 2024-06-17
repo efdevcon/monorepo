@@ -8,7 +8,7 @@ type CallToActionProps = {
   title: string
   tag?: string
   children: any
-  color?: 'orange' | 'purple' | 'blue'
+  color?: 'orange' | 'purple' | 'blue' | 'teal'
   BackgroundSvg: any
   link?: any
   linkText?: any
@@ -36,6 +36,12 @@ const CallToAction = (props: CallToActionProps) => {
 
       break
     }
+
+    case 'teal': {
+      buttonColor = 'teal-1'
+
+      break
+    }
   }
 
   return (
@@ -53,12 +59,12 @@ const CallToAction = (props: CallToActionProps) => {
 
       <div className={css['footer']}>
         {props.buttonDisabled ? (
-          <Button disabled={props.buttonDisabled} color={buttonColor} className="z-10" fill size="lg">
+          <Button disabled={props.buttonDisabled} color={buttonColor} className="" fill size="lg">
             {props.linkText}
           </Button>
         ) : (
           <Link to={props.link}>
-            <Button disabled={props.buttonDisabled} color={buttonColor} className="z-10" fill size="lg">
+            <Button disabled={props.buttonDisabled} color={buttonColor} className="" fill size="lg">
               {props.linkText}
             </Button>
           </Link>

@@ -31,6 +31,10 @@ const RichTextButtons = {
               label: 'blue',
               value: 'blue-1',
             },
+            {
+              label: 'teal',
+              value: 'teal-1',
+            },
           ],
           name: 'color',
           label: 'color',

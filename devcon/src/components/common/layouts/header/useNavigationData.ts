@@ -117,10 +117,16 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Supporters',
+            url: '/supporters',
+            type: 'page',
+          },
+          {
             title: 'RTD Grants',
             url: 'https://esp.ethereum.foundation/devcon-grants',
             type: 'link',
           },
+
           // {
           //   title: intl('navigation_supporters'),
           //   url: '/supporters',
@@ -289,7 +295,7 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
         {
-          title: 'Videos',
+          title: 'Archive',
           url: 'https://archive.devcon.org/archive/',
           type: 'link',
         },
@@ -307,6 +313,11 @@ const useNavigationData = () => {
         {
           title: 'Events',
           url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'Supporters',
+          url: '/supporters',
           type: 'page',
         },
         {
