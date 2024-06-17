@@ -112,13 +112,13 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'DIPs',
-            url: '/dips',
+            title: 'Supporters',
+            url: '/supporters',
             type: 'page',
           },
           {
-            title: 'Supporters',
-            url: '/supporters',
+            title: 'DIPs',
+            url: '/dips',
             type: 'page',
           },
           {
