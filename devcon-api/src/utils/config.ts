@@ -32,7 +32,7 @@ export const API_DEFAULTS = {
 
 export const SERVER_CONFIG = {
   NODE_ENV: process.env.RENDER ? 'production' : process.env.NODE_ENV || 'development',
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 4000,
 
   DB_CONNECTION_STRING: process.env.DB_CONNECTION_STRING || '',
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,

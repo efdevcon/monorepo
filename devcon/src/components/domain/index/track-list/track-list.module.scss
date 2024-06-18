@@ -102,6 +102,59 @@
     }
   }
 
+  // THAILAND SPECIFIC
+  &.thailand-core-protocol {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #F6F2FF;
+    }
+  }
+  &.thailand-cypherpunk {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #FFF4FF;
+    }
+  }
+  &.thailand-usability {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #FFF4F4;
+    }
+  }
+  &.thailand-real-world-ethereum {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #FFEDDF;
+    }
+  }
+  &.thailand-applied-cryptography {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #FFFEF4;
+    }
+  }
+  &.thailand-crypto-economics {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #F9FFDF;
+    }
+  }
+  &.thailand-coordination {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #E9FFD7;
+    }
+  }
+  &.thailand-developer-experience {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #E8FDFF;
+    }
+  }
+  &.thailand-security {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #E4EEFF;
+    }
+  }
+  &.thailand-layer-2s {
+    [data-type="flip-card-front"], [data-type="flip-card-back"] {
+      background: #F0F1FF;
+    }
+  }
+  // THAILAND SPECIFIC END 
+
   .image {
       display: flex;
       align-items: center;
@@ -115,15 +168,15 @@
     flex-direction: column;
     padding: 20px;
 
-    .title {
-      @include fonts-lg;
-      @include fonts-bold;
-      margin-bottom: 12px;
-    }
-
     .text {
       @include fonts-sm;
     }
   }
+}
+
+.title {
+  @include fonts-lg;
+  @include fonts-bold;
+  margin-bottom: 12px;
 }
 

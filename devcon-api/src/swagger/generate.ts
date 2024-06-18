@@ -17,7 +17,7 @@ const doc = {
       url: API_INFO.repository,
     },
   },
-  host: SERVER_CONFIG.NODE_ENV === 'production' ? API_INFO.host : 'localhost:3000',
+  host: SERVER_CONFIG.NODE_ENV === 'production' ? API_INFO.host : 'localhost:4000',
   schemes: SERVER_CONFIG.NODE_ENV === 'production' ? ['https'] : ['http'],
 }
 const outputFile = './definition.json'

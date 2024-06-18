@@ -1,7 +1,6 @@
 import React from 'react'
 import css from './track-list.module.scss'
-import Accordion from 'components/common/accordion'
-import Image from 'next/legacy/image'
+import ImageNew from 'next/image'
 import Layer1 from 'assets/images/tracks/big-icons/Layer 1 Protocol.svg'
 import Cryptoeconomics from 'assets/images/tracks/big-icons/Cryptoeconomics.svg'
 import DeveloperInfra from 'assets/images/tracks/big-icons/Developer Infrastructure.svg'
@@ -12,18 +11,20 @@ import Security from 'assets/images/tracks/big-icons/Security.svg'
 import Staking from 'assets/images/tracks/big-icons/Staking & Validator Experience.svg'
 import UXDesign from 'assets/images/tracks/big-icons/UX & Design.svg'
 import ZKPs from 'assets/images/tracks/big-icons/ZKPs and Privacy.svg'
-// import TriangleBackground from 'assets/images/background-triangles.png'
 import { Track } from 'types/Track'
-import { Card } from 'components/common/card'
 import { Slider, useSlider } from 'components/common/slider'
 import { FlipCard } from 'components/common/flip-card'
+import RichText from 'lib/components/tina-cms/RichText'
+import cn from 'classnames'
 
 interface Props {
+  isThailand?: boolean
+  title?: string
   tracks: Track[]
 }
 
 const settings = {
-  infinite: false,
+  infinite: true,
   touchThreshold: 100,
   speed: 500,
   variableWidth: true,
@@ -132,49 +133,73 @@ const Tracks = (props: Props) => {
 
   return (
     <div className={`${css['container']}`} id="tracks">
-      {/* <div className={`${css['background']} expand`}>
-        <Image src={TriangleBackground} alt="Triangles" />
-      </div> */}
-      {/* <h2 className="border-top clear-top">Tracks</h2> */}
-
       <div className={css['tracks']}>
-        <Slider sliderProps={sliderProps} title="Track Playlists">
+        <Slider sliderProps={sliderProps} title={props.title || 'Track Playlists'}>
           {props.tracks.map((track: Track, i: number) => {
             let className = css['card']
 
-            className += ` ${css[track.id]}`
+            if (props.isThailand) {
+              className += ` ${css['thailand-' + track.id]}`
+            } else {
+              className += ` ${css[track.id]}`
+            }
+
+            const archiveSlug = getArchiveSlug(track.id)
+            const archiveUrl = archiveSlug
+              ? `https://archive.devcon.org/archive/watch?order=desc&sort=edition&tags=${archiveSlug}`
+              : undefined
+
+            if (props.isThailand) {
+              return (
+                <FlipCard key={track.id} className={className} to={archiveUrl}>
+                  <div className="flex flex-col p-4 relative h-full select-none">
+                    <div className={css['title']}>{track.title}</div>
+
+                    <div className="relative grow">
+                      <ImageNew
+                        draggable="false"
+                        className="object-contain p-4 select-none"
+                        fill
+                        src={track.logo}
+                        alt={track.title}
+                      />
+                    </div>
+                  </div>
+                  <div className={cn(css['details'], 'flex flex-col justify-between')}>
+                    <div className={css['title']}>{track.title}</div>
+                    <div className={cn(css['text'], 'grow')}>
+                      {/* @ts-ignore */}
+                      <RichText content={track.body} />
+                    </div>
+
+                    {track.tags && (
+                      <div className={`flex gap-1 flex-wrap mt-8`}>
+                        {track.tags.split(',').map((tag: string) => {
+                          return (
+                            <div className="label rounded-lg !py-0.5" key={tag}>
+                              {tag}
+                            </div>
+                          )
+                        })}
+                      </div>
+                    )}
+                  </div>
+                </FlipCard>
+              )
+            }
 
             return (
-              <FlipCard
-                key={track.slug}
-                className={className}
-                to={`https://archive.devcon.org/archive/watch?order=desc&sort=edition&tags=${getArchiveSlug(track.id)}`}
-              >
+              <FlipCard key={track.id} className={className} to={archiveUrl}>
                 <div className={css['image']}>{getTrackImage(track.id)}</div>
                 <div className={css['details']}>
-                  <p className={css['title']}>{track.title}</p>
-                  <p className={css['text']}>{track.body}</p>
+                  <div className={css['title']}>{track.title}</div>
+                  <div className={css['text']}>{track.body}</div>
                 </div>
               </FlipCard>
             )
           })}
         </Slider>
       </div>
-      {/* <Accordion
-        dense
-        items={props.tracks.map((i: Track) => {
-          return {
-            id: i.id,
-            title: (
-              <div className={css['track-title']}>
-                <span className={css['icon-container']}>{getTrackImage(i.id)}</span>
-                {i.title}
-              </div>
-            ),
-            body: <div className={css['track-body']}>{i.body}</div>,
-          }
-        })}
-      /> */}
     </div>
   )
 }

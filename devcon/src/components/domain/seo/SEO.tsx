@@ -33,6 +33,8 @@ export function SEO(props: SEOProps) {
     title = `${props.title} ${separator} ${title}`
   }
 
+  // console.log(pageContext, 'page contxt hello')
+
   const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
   const globalImage = 'https://www.devcon.org/assets/images/dc7-og.png'

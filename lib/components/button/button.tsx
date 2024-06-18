@@ -2,7 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import css from "./button.module.scss";
 
-type ColorType = "default" | "black-1" | "purple-1" | "green-1";
+type ColorType =
+  | "default"
+  | "black-1"
+  | "purple-1"
+  | "green-1"
+  | "blue-1"
+  | "teal-1";
 type SizeType = "sm" | "md" | "lg";
 
 type ButtonProps = {
@@ -55,6 +61,28 @@ export const colors = {
     ghost: {
       color: "#8c72ae",
       hover: "#8c72ae20",
+    },
+  },
+  "blue-1": {
+    fill: {
+      color: "#ffffff",
+      background: "#1B6FAE",
+      hover: "#448dc3",
+    },
+    ghost: {
+      color: "#1B6FAE",
+      hover: "#1B6FAE20",
+    },
+  },
+  "teal-1": {
+    fill: {
+      color: "#ffffff",
+      background: "#00B3A4",
+      hover: "#008176",
+    },
+    ghost: {
+      color: "#00B3A4",
+      hover: "#00B3A420",
     },
   },
   "green-1": {

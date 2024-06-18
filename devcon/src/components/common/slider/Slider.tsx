@@ -6,6 +6,7 @@ import ChevronLeft from 'assets/icons/arrow_left.svg'
 import ChevronRight from 'assets/icons/arrow_right.svg'
 import { motion } from 'framer-motion'
 import { Button } from 'lib/components/button'
+import cn from 'classnames'
 
 export const useSlider = (settings: any) => {
   const [currentIndex, setCurrentIndex] = React.useState(0)
@@ -75,7 +76,7 @@ const Arrows = (props: any) => {
   if (!canNext && !canBack) return null
 
   return (
-    <div className={css['arrows']}>
+    <div className={cn(css['arrows'], 'shrink-0')}>
       <Button
         disabled={!canBack}
         circle

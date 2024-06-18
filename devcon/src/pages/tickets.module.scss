@@ -1,0 +1,24 @@
+@use 'assets/css/partials/index' as *;
+
+.round-button {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #8c72ae;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight: bold; /* Optional: to make the number bold */
+  color: black; /* Optional: change the number color */
+  background-color: white; /* Optional: change background color */
+}
+
+.round-button span {
+  display: inline-block;
+  line-height: 1; /* Ensures vertical centering */
+}
+
+.fade-color {
+  --custom-fade-color: #b6b8ff;
+}

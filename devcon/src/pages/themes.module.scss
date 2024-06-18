@@ -18,6 +18,24 @@
   );
 }
 
+.purple {
+  --theme-color: #8c72ae;
+  --theme-color-hover: #8c72ae;
+  --theme-logo: url('../assets/images/theme/info.svg');
+  --theme-gradient: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #8756c7 0%,
+    rgba(179, 0, 255, 0.4) 58.33%,
+    rgba(13, 174, 208, 0) 100%
+  );
+  --theme-gradient-footer: radial-gradient(
+    73.15% 179.46% at 90.19% 25.94%,
+    #8756c7 0%,
+    rgba(179, 0, 255, 0.4) 58.33%,
+    rgba(13, 174, 208, 0) 100%
+  );
+}
+
 .blog {
   --theme-color: #{$colors-track-yellow};
   --theme-color-hover: #{$colors-track-yellow-hover};
