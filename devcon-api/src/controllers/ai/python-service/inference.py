@@ -126,6 +126,9 @@ def infer(query: str, context: str, messages: list):
 
     response_data = response.json()
 
+    if ('error' in response_data and response_data['error']):
+        raise Exception(response_data['error'])
+
     # Extract the assistant's response
     full_text = response_data[0]['generated_text']
 
