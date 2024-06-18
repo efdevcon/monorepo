@@ -20,7 +20,7 @@ const DevaBot = () => {
   const [executingQuery, setExecutingQuery] = React.useState(false)
   const [error, setError] = React.useState('')
   const [threadID, setThreadID] = React.useState('')
-  const [messages, setMessages] = React.useState([])
+  const [messages, setMessages] = React.useState<any>([])
 
   React.useEffect(() => {
     setError('')
@@ -43,30 +43,57 @@ const DevaBot = () => {
       //   url += `?threadID=${threadID}`
       // }
 
-      const resultTest = await (
+      const response = await (
         await fetch('http://localhost:4000/ai/devcon-website/ask', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ query, threadID }),
+          body: JSON.stringify({ query, threadID, messages }),
         })
       ).json()
 
-      console.log(resultTest, 'hello from backend')
+      console.log(response, 'response')
 
-      return
+      // const nextMessages = response.map((message: any) => {
+      //   return {
+      //     id: message,
+      //     role: 'assistant',
+      //     text: message.generated_text.split('[/INST]').pop().trim(),
+      //   }
+      // })
 
-      const result = await (
-        await fetch(url, { method: 'POST', body: JSON.stringify({ message: query, threadID }) })
-      ).json()
+      // console.log(nextMessages, 'hello')
 
-      console.log(result, 'hello')
+      setMessages([
+        ...messages,
+        {
+          // id: query,
+          role: 'user',
+          content: query,
+        },
+        {
+          // id: Math.random(),
+          role: 'assistant',
+          content: response, // .generated_text.split('[/INST]').pop().trim(),
+        },
+        // ...nextMessages,
+      ])
 
-      // add error case for run status not equal to whatever success string is from open ai
+      // console.log(resultTest, 'hello from backend')
 
-      setThreadID(result.threadID)
-      setMessages(result.messages)
+      // return
+
+      // const result = await (
+      //   await fetch(url, { method: 'POST', body: JSON.stringify({ message: query, threadID }) })
+      // ).json()
+
+      // console.log(result, 'hello')
+
+      // // add error case for run status not equal to whatever success string is from open ai
+
+      // setThreadID(result.threadID)
+      // setMessages(result.messages)
     } catch (e) {
       console.error(e, 'error')
 
@@ -77,6 +104,8 @@ const DevaBot = () => {
     setExecutingQuery(false)
   }
 
+  console.log(messages, 'messages')
+
   return (
     <>
       {visible && (
@@ -85,8 +114,12 @@ const DevaBot = () => {
 
           <div className="overflow-auto flex flex-col grow w-full gap-4">
             {messages.length > 0 &&
-              messages.map((message: any) => {
-                return <div key={message.id}>{message.text}</div>
+              messages.map((message: any, index: any) => {
+                return (
+                  <div key={index} className="shrink-0">
+                    {message.content}
+                  </div>
+                )
               })}
           </div>
 

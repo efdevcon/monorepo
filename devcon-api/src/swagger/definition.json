@@ -16,15 +16,11 @@
   },
   "host": "localhost:4000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
+  "schemes": ["http"],
   "paths": {
     "/": {
       "get": {
-        "tags": [
-          "Default"
-        ],
+        "tags": ["Default"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -36,9 +32,7 @@
     },
     "/account": {
       "get": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -53,9 +47,7 @@
     },
     "/account/{id}": {
       "put": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -86,9 +78,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -118,9 +108,7 @@
     },
     "/account/token": {
       "post": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -152,9 +140,7 @@
     },
     "/account/login/email": {
       "post": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -188,9 +174,7 @@
     },
     "/account/login/token": {
       "post": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -221,9 +205,7 @@
     },
     "/account/login/web3": {
       "post": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [
           {
@@ -263,9 +245,7 @@
     },
     "/account/logout": {
       "post": {
-        "tags": [
-          "Account"
-        ],
+        "tags": ["Account"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -280,9 +260,7 @@
     },
     "/dips": {
       "get": {
-        "tags": [
-          "DIPs"
-        ],
+        "tags": ["DIPs"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -294,9 +272,7 @@
     },
     "/dips/contributors": {
       "get": {
-        "tags": [
-          "DIPs"
-        ],
+        "tags": ["DIPs"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -308,9 +284,7 @@
     },
     "/events": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -322,9 +296,7 @@
     },
     "/events/{id}": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -382,9 +354,7 @@
     },
     "/events/{id}/sessions": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -405,9 +375,7 @@
     },
     "/events/{id}/speakers": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -428,9 +396,7 @@
     },
     "/events/{id}/rooms": {
       "get": {
-        "tags": [
-          "Events"
-        ],
+        "tags": ["Events"],
         "description": "",
         "parameters": [
           {
@@ -452,9 +418,7 @@
     },
     "/rss/podcast": {
       "get": {
-        "tags": [
-          "RSS"
-        ],
+        "tags": ["RSS"],
         "description": "",
         "parameters": [],
         "responses": {
@@ -466,9 +430,7 @@
     },
     "/sessions": {
       "get": {
-        "tags": [
-          "Sessions"
-        ],
+        "tags": ["Sessions"],
         "description": "",
         "parameters": [
           {
@@ -526,9 +488,7 @@
     },
     "/sessions/{id}": {
       "get": {
-        "tags": [
-          "Sessions"
-        ],
+        "tags": ["Sessions"],
         "description": "",
         "parameters": [
           {
@@ -550,13 +510,9 @@
     },
     "/sessions/{id}/image": {
       "get": {
-        "tags": [
-          "Sessions"
-        ],
+        "tags": ["Sessions"],
         "description": "",
-        "produces": [
-          "image/png"
-        ],
+        "produces": ["image/png"],
         "parameters": [
           {
             "name": "id",
@@ -577,9 +533,7 @@
     },
     "/speakers": {
       "get": {
-        "tags": [
-          "Speakers"
-        ],
+        "tags": ["Speakers"],
         "description": "",
         "parameters": [
           {
@@ -617,9 +571,7 @@
     },
     "/speakers/{id}": {
       "get": {
-        "tags": [
-          "Speakers"
-        ],
+        "tags": ["Speakers"],
         "description": "",
         "parameters": [
           {
