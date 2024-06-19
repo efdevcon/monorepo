@@ -7,6 +7,7 @@ import index from './templates/index'
 import supporters from './templates/supporters'
 import programming from './templates/programming'
 import tickets from './templates/tickets'
+import { createRichText } from './presets'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
@@ -62,6 +63,19 @@ export default defineConfig({
           },
         },
       },
+      // {
+      //   name: 'page_cross_links',
+      //   label: 'Page_cross_links',
+      //   path: 'cms/page_cross_links',
+      //   format: 'mdx',
+      //   templates: [
+      //     {
+      //       name: 'entry',
+      //       label: 'entry',
+      //       fields: [createRichText('body')],
+      //     },
+      //   ],
+      // },
     ],
   },
 })

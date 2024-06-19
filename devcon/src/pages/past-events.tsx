@@ -18,7 +18,9 @@ import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesPast_Events, PagesQuery } from '../../tina/__generated__/types'
+import InfiniteScroller from 'lib/components/infinite-scroll'
 import RichText from 'lib/components/tina-cms/RichText'
+import indexCss from './index.module.scss'
 
 export default pageHOC(function PastEvents(props: any) {
   const intl = useTranslations()
@@ -41,24 +43,19 @@ export default pageHOC(function PastEvents(props: any) {
       />
 
       <div className="section">
-        <div className={`two-columns ${css['about']} clear-bottom border-bottom margin-bottom`}>
+        <div className={`two-columns ${css['about']} clear-bottom border-bottom margin-bottom relative`}>
           <div className={`left ${css['left']}`}>
             <RichText content={pages.section1?.about} />
-
-            <div className={css['links']}>
-              {/* <Link to="/program" className="text-uppercase hover-underline font-lg bold">
-                {intl('program_programming')}
-                <ArrowRight />
-              </Link> */}
-              <Link to="https://archive.devcon.org/archive/" className="text-uppercase hover-underline font-lg bold">
-                {intl('navigation_archive')}
-                <ArrowRight />
-              </Link>
-            </div>
           </div>
           <div className={`right ${css['right']}`}>
             <h2 className="spaced">{intl('past_events_locations')}</h2>
             <Image src={EventLocations} alt="Devcon events on world map" />
+          </div>
+
+          <div className={`${indexCss['scrolling-text-background']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s">
+              <p className="bold">PAST DEVCONS&nbsp;</p>
+            </InfiniteScroller>
           </div>
         </div>
 
