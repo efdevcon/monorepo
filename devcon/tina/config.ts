@@ -7,6 +7,7 @@ import index from './templates/index'
 import supporters from './templates/supporters'
 import programming from './templates/programming'
 import tickets from './templates/tickets'
+import about from './templates/about'
 import { createRichText } from './presets'
 
 // Your hosting provider likely exposes this as an environment variable
@@ -36,7 +37,7 @@ export default defineConfig({
         label: 'Pages',
         path: 'cms/pages',
         format: 'mdx',
-        templates: [index, dips, past_events, road, faq, supporters, programming, tickets],
+        templates: [index, dips, past_events, road, faq, supporters, programming, tickets, about],
         ui: {
           router: ({ document }) => {
             const filename = document._sys.filename
@@ -56,6 +57,8 @@ export default defineConfig({
                 return '/programming'
               case 'tickets':
                 return '/tickets'
+              case 'about':
+                return '/about'
 
               default:
                 return filename
