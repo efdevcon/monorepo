@@ -162,6 +162,25 @@ const useNavigationData = () => {
             url: 'https://github.com/efdevcon/',
             type: 'link',
           },
+          {
+            title: 'Press',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Press and Media',
+            url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
+            type: 'link',
+          },
+          {
+            title: 'Press Kit',
+            url:
+              // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
+              process.env.NODE_ENV === 'development'
+                ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+                : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+            type: 'page',
+          },
         ],
       },
       {
@@ -297,6 +316,11 @@ const useNavigationData = () => {
         {
           title: 'Archive',
           url: 'https://archive.devcon.org/archive/',
+          type: 'link',
+        },
+        {
+          title: 'Press and Media',
+          url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
           type: 'link',
         },
         {
