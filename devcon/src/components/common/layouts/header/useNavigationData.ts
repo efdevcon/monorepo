@@ -112,7 +112,7 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'Supporters',
+            title: 'Supporters and Impact Teams',
             url: '/supporters',
             type: 'page',
           },
@@ -340,7 +340,7 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'Supporters',
+          title: 'Supporters and Impact Teams',
           url: '/supporters',
           type: 'page',
         },
