@@ -1,0 +1,21 @@
+{
+  "name": "discounts",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "clrfund": "bun run src/clrfund.ts",
+    "core": "bun run src/core.ts",
+    "dao": "bun run src/daos.ts",
+    "gitcoin": "bun run src/gitcoin.ts",
+    "github": "bun run src/github.ts",
+    "giveth": "bun run src/giveth.ts",
+    "pg": "bun run src/pg.ts",
+    "poap": "bun run src/poaps.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
