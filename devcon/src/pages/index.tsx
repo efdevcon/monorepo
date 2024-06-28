@@ -46,6 +46,7 @@ import ChevronUp from 'assets/icons/chevron-up.svg'
 import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
 import Petals from 'assets/icons/petals.svg'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
+import { useDraggableLink } from 'components/domain/devcon-week/schedule'
 
 const videos = [
   {
@@ -121,8 +122,8 @@ export default pageHOC(function Index(props: any) {
   const [video, setVideo] = React.useState(videos[0])
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
-
   const [cal, setCal] = React.useState<any>(null)
+  const draggableLinkAttributes = useDraggableLink()
 
   React.useEffect(() => {
     setCal(
@@ -159,41 +160,44 @@ export default pageHOC(function Index(props: any) {
         />
 
         <div className="section">
-          <div className="border border-solid border-neutral-100 shadow-lg mt-6 bg-white">
+          <div className="border border-solid border-neutral-100 shadow-lg mt-6 bg-[#f6edff] rounded">
             <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
               <div className="flex justify-between items-center no-wrap ">
                 <Petals className="icon grow-0 shrink-0 mx-8 text-3xl" style={{ '--color-icon': '#7958A5' }} />
                 <Link
+                  {...draggableLinkAttributes}
                   to="https://devconsea.clr.fund/#/projects"
                   className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
                 >
                   <motion.div
                     whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#ffffff] border-b-[3px] py-4 border-solid cursor-pointer"
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
                   >
                     <p className="text-lg bold">SEA quadratic funding round —</p>
                     <p className="text-sm">Make a big impact with a small donation </p>
                   </motion.div>
                 </Link>
                 <Link
+                  {...draggableLinkAttributes}
                   to="/tickets"
                   className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
                 >
                   <motion.div
                     whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#ffffff] border-b-[3px] py-4 border-solid cursor-pointer"
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
                   >
                     <p className="text-lg bold">Win your ticket to Devcon —</p>
                     <p className="text-sm">Top 20 bids win, but everyone has a chance with the raffle </p>
                   </motion.div>
                 </Link>
                 <Link
+                  {...draggableLinkAttributes}
                   to="/supporters"
                   className="grow shrink-0 mt-[2px] h-full flex justify-center flex-col cursor-pointer"
                 >
                   <motion.div
                     whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#ffffff] border-b-[3px] py-4 border-solid cursor-pointer"
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
                   >
                     <p className="text-lg bold">Be a Devcon Supporter —</p>
                     <p className="text-sm">
