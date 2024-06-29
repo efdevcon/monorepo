@@ -161,7 +161,8 @@
 
       .accordion-toggle {
         @include fonts-lg;
-        @include fonts-uppercase;
+        // @include fonts-uppercase;
+        font-weight: 600;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
@@ -187,7 +188,7 @@
           @include fonts-xs;
           @include fonts-bold;
           color: $colors-main-light;
-          padding-top: $gaps-gap-4;
+          padding-top: $gaps-gap-3;
 
           &:first-child {
             padding-top: 0px;
@@ -195,7 +196,8 @@
         }
 
         .category-items {
-          @include fonts-lg;
+          // @include fonts-lg;
+          font-weight: 600;
 
           &:last-child {
             >li {
@@ -209,8 +211,8 @@
 
             >a {
               display: block;
-              padding-top: $gaps-gap-4;
-              padding-bottom: $gaps-gap-4;
+              padding-top: $gaps-gap-3;
+              padding-bottom: $gaps-gap-3;
             }
           }
         }
