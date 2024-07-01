@@ -180,7 +180,7 @@ export const Navigation = (props: any) => {
                       </div>
                     )}
                     {i.links && i.links.length > 0 && (
-                      <ul className="text-sm bold">
+                      <ul className="text-sm font-medium">
                         {i.links?.map((c: LinkType, subIndex: number) => {
                           const subKey = `site-nav-2_${subIndex}`
 

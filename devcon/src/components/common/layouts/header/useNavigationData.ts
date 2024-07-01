@@ -184,15 +184,43 @@ const useNavigationData = () => {
         ],
       },
       {
+        title: 'Program',
+        url: '#',
+        type: 'links',
+        logo: LogoGetInvolved,
+        links: [
+          {
+            title: 'Programming',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Programming',
+            url: '/programming',
+            type: 'page',
+          },
+          {
+            title: 'Speakers',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Speaker Applications',
+            url: '/speaker-applications',
+            type: 'page',
+          },
+        ],
+      },
+      {
         title: 'Tickets',
         url: '/tickets',
         type: 'page',
       },
-      {
-        title: 'Program',
-        url: '/programming',
-        type: 'page',
-      },
+      // {
+      //   title: 'Program',
+      //   url: '/programming',
+      //   type: 'page',
+      // },
 
       // {
       //   title: intl('navigation_event'),
