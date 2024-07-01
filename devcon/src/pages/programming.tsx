@@ -146,8 +146,9 @@ export default pageHOC(function Programming(props: any) {
         </div>
       </div>
 
-      <div className="section">
+      <div className="section relative max-w-[100vw] overflow-hidden">
         <TrackList isThailand tracks={formattedTracks || props.tracks} title="Hover over cards to read more" />
+
         <div className="pb-4"></div>
       </div>
 
@@ -238,8 +239,6 @@ export default pageHOC(function Programming(props: any) {
 
 export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
-  // await GetPage('terms-of-service', context.locale)
-
   const content = await client.queries.pages({ relativePath: 'programming.mdx' })
 
   return {
@@ -255,10 +254,3 @@ export async function getStaticProps(context: any) {
     },
   }
 }
-
-/*
-  Color
-  Tracks
-  Menu Footer
-  Menu Header
-*/

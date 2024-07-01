@@ -112,6 +112,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Supporters & Impact Teams',
+            url: '/supporters',
+            type: 'page',
+          },
+          {
             title: 'DIPs',
             url: '/dips',
             type: 'page',
@@ -121,6 +126,7 @@ const useNavigationData = () => {
             url: 'https://esp.ethereum.foundation/devcon-grants',
             type: 'link',
           },
+
           // {
           //   title: intl('navigation_supporters'),
           //   url: '/supporters',
@@ -156,6 +162,53 @@ const useNavigationData = () => {
             url: 'https://github.com/efdevcon/',
             type: 'link',
           },
+          {
+            title: 'Press',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Press and Media',
+            url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
+            type: 'link',
+          },
+          {
+            title: 'Press Kit',
+            url:
+              // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
+              process.env.NODE_ENV === 'development'
+                ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+                : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+            type: 'page',
+          },
+        ],
+      },
+      {
+        title: 'Program',
+        url: '#',
+        type: 'links',
+        logo: LogoGetInvolved,
+        links: [
+          {
+            title: 'Programming',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Programming',
+            url: '/programming',
+            type: 'page',
+          },
+          {
+            title: 'Speakers',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'Speaker Applications',
+            url: '/speaker-applications',
+            type: 'page',
+          },
         ],
       },
       {
@@ -163,11 +216,11 @@ const useNavigationData = () => {
         url: '/tickets',
         type: 'page',
       },
-      {
-        title: 'Program',
-        url: '/programming',
-        type: 'page',
-      },
+      // {
+      //   title: 'Program',
+      //   url: '/programming',
+      //   type: 'page',
+      // },
 
       // {
       //   title: intl('navigation_event'),
@@ -230,11 +283,11 @@ const useNavigationData = () => {
       //   type: 'page',
       //   highlight: 'app',
       // },
-      {
-        title: 'Devconnect',
-        url: 'https://devconnect.org',
-        type: 'link',
-      },
+      // {
+      //   title: 'Devconnect',
+      //   url: 'https://devconnect.org',
+      //   type: 'link',
+      // },
       {
         title: intl('navigation_archive'),
         url: 'https://archive.devcon.org',
@@ -289,8 +342,13 @@ const useNavigationData = () => {
         //   type: 'page',
         // },
         {
-          title: 'Videos',
+          title: 'Archive',
           url: 'https://archive.devcon.org/archive/',
+          type: 'link',
+        },
+        {
+          title: 'Press and Media',
+          url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
           type: 'link',
         },
         {
@@ -307,6 +365,11 @@ const useNavigationData = () => {
         {
           title: 'Events',
           url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'Supporters',
+          url: '/supporters',
           type: 'page',
         },
         {

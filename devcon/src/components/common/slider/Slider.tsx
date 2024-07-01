@@ -119,7 +119,9 @@ export const Slider = (props: SliderProps) => {
     <div data-type="slider-container" className={`${props.containerClassName} ${css['container']}`} style={props.style}>
       {!props.onlySlider && (
         <div className={css['top-section']}>
-          <h2 className="bold">{props.title}</h2>
+          <h2 className="bold" data-type="slider-title">
+            {props.title}
+          </h2>
 
           <Arrows {...sliderState} />
 

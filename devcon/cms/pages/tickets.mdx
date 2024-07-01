@@ -1,64 +1,86 @@
 ---
 overview:
-  intro: "## **Overview**\n\n### Tickets to Devcon 7 will be distributed through three different ways this year:\L\n\n->\_Raffle-Auction Presale\n\n->\_General Admission sale waves (Start July 16)\n\n->\_Discounts - Self-claimed / Application based (Start July 16)\n\n<Buttons\n  Button={[\n    { text: \"Raffle Auction\", url: \"#raffle\", color: \"blue-1\" },\n    { text: \"Frequently Asked Questions\", url: \"#faq\", color: \"blue-1\" }\n  ]}\n/>\n"
+  intro: "## **Overview**\n\n### Tickets to Devcon 7 will be distributed through three distinct ways this year:\L\n\n1. ->\_**Raffle-Auction Presale** (June 18 - July 09) – **$299**\n\n->\_**Discounts - Self-claimed / Application-based** (Starts July 9)\n\n->\_**General Admission sale waves** (Starts July 16) – **$599**\n\n<Buttons\n  Button={[\n    { text: \"Frequently Asked Questions\", url: \"#faq\", color: \"blue-1\" }\n  ]}\n/>\n"
   card: |
-    **Raffle auction is live.**
+    **Raffle-auction is live.**
 
-    1. Discounted tickets claiming / applications open now.
-    2. General Admission Waves coming soon.
+    1. Discounted tickets open July 9.
+    2. General Admission Waves starting July 16.
   button:
-    link: 'https://devcon.org'
-    text: Raffle Auction
+    link: 'https://raffle.devcon.org/'
+    text: Raffle-Auction
 raffle_auction:
-  intro: |
-    ## **Raffle Auction**
+  intro: >
+    ## **Raffle-Auction**
 
-    <TwoColumns
-      left={<>
-        ### **200** tickets will be offered in the Raffle-Auction this year. The **highest 20 bids will win the Auction.** Those who bid the Minimum Bid have a chance at winning one of 180 Devcon tickets being distributed.
-        
-        <Buttons
-        Button={[
-        { text: "Participate in Raffle Presale", url: "#raffle", color: "blue-1" }
-        ]}
-        />
-      </>}
-      right={<>
-        Like we did for Devcon VI, we’ll again be featuring an on-chain Raffle-Auction as our first wave of tickets. We want to continue demonstrating the power of Ethereum to host provably fair and verifiable Raffles & Auctions, while increasing the methods we distribute tickets to the thousands that want to attend each year.
-        
-        A massive thanks to the Fairy & Archblock teams for dedicating their time to the success of this year’s iteration.
-      </>}
+
+    **204 tickets** will be offered in the Raffle-Auction this year. **The
+    highest 20 bids will win the Auction**. Those who enter with the Minimum Bid
+    or do not win in the auction will enter into the raffle and have a chance at
+    winning **one of 184 Devcon tickets being distributed**. In this sense, we
+    aim for the distribution outcome to be approximately 10% efficient and 90%
+    fair.
+
+
+    A big thanks to the
+    **[Fairy](https://fairyxyz.notion.site/Fairy-7f1b1725eff94829a9e50bd7c432aa8c)**
+    & **[Archblock](https://x.com/archblock_)** teams for dedicating their time
+    to the success of this year’s iteration.
+
+
+    <Buttons
+      Button={[
+        {
+          text: "Participate in Raffle-Auction",
+          url: "https://raffle.devcon.org/",
+          color: "blue-1"
+        }
+      ]}
     />
   participation_rules:
     snapshot:
       - left: Network
         right: Arbitrum
       - left: Minimum Bid
-        right: 0.19 ETH ($599 USD)
+        right: 0.08 ETH ($299 USD)
       - left: Raffle+Auction
         right: June 18 - July 09
-    text: "All proceeds from the Auction above the reserve price will be donated to public goods. If you bid above the reserve price but do not win in the auction, you will automatically be funneled into the Raffle for a ticket. \L\L\n\nIf you win the Raffle, you will be able to withdraw all funds above the Reserve price. If you do not win in either the Raffle or Auction, you will be able to withdraw all of your funds. \L\n\nLike last time, one lucky winner will receive a Golden Ticket to Devcon & will be able to withdraw all of their funds.\n"
+    text: >
+      All proceeds from the Auction above the reserve price will be used to help
+      people attend Devcon through funding programs like the **[EF Next Billion
+      Scholars program](https://blog.ethereum.org/2024/06/07/devcon7-scholars)**
+      and other Devcon initiatives. If you bid above the reserve price but do
+      not win in the auction, you will automatically be funneled into the Raffle
+      for a ticket. If you win the Raffle, you will be able to withdraw all
+      funds above the Reserve price. If you do not win in either the Raffle or
+      Auction, you will be able to withdraw all of your funds. Like last time,
+      one lucky winner will receive a free Golden Ticket to Devcon & will be
+      able to withdraw all of their funds.
   sybil_resistance: >
     ### **Sybil Resistance**
 
 
-    This year, we are working with Gitcoin Passport to add a secure
-    sybil-resistance mechanism to the Raffle-Auction, thus ensuring that users
-    are able to withdraw all of their funds if they do not win. You will need to
-    log into your Passport OR create one & validate your stamps in order to
-    participate in this year’s Raffle-Auction presale.
+    This year, we are using **[Gitcoin
+    Passport](https://support.passport.xyz/passport-knowledge-base)** to add a
+    secure sybil-resistance mechanism to the Raffle-Auction. You will need to
+    log into your Passport OR **[create one](https://passport.gitcoin.co/)** &
+    validate your stamps in order to participate in this year’s Raffle-Auction
+    ticket wave.
   specs: >
     ### **Specs**
 
 
-    The **Smart Contracts** for the Raffle-Auction can be viewed here
+    The **Smart Contracts** for the Raffle-Auction can be viewed[
+    here.](https://github.com/efdevcon/devcon-raffle)
 
 
     The contracts were audited by **Trail of Bits**. You can view the audit
-    report here
+    report
+    [here](https://github.com/efdevcon/devcon-raffle/blob/master/audits/Ethereum%20Foundation%20Devcon%20Auction-Raffle%20Summary%20Report.pdf).
 
 
-    The contract has been verified on **Sourcify**, available (here)\[LINK].
+    The contract has been verified on **Sourcify**, available
+    [here](https://tinyurl.com/yps8bdtw).
 other_methods_to_attend:
   steps_raffle:
     - title: Community Ticket Requests
@@ -86,38 +108,36 @@ faq:
       **Self-claimed**
 
 
-      This will consist of groups like Protocol Guild members, OSS Contributors,
-      Public Goods Project Owners, and more. All details will be posted when our
-      tickets launch on July 16.
+      *This will consist of groups like Protocol Guild members, OSS
+      Contributors, Public Goods Project Owners, and more. All details will be
+      posted when our tickets launch on July 16.*
 
 
       **Application-based**
 
 
-      This will include a Local Discount for SEA residents, Builder Discounts,
-      Academic Discounts, and Up-and-coming tickets for those under 18 who wish
-      to attend.
+      *This will include a Local Discount for SEA Builders, Builder Discounts,
+      Academic Discounts, and Youth tickets for those under 18 who wish to
+      attend.*
 
 
       **Devcon Scholarship Program**
 
 
-      [Apply for the Devcon Scholarship Program here
-      now](https://bidm7uhx.paperform.co/)! Applications close on July 7.
+      *[Apply for the Devcon Scholarship Program here
+      now](https://bidm7uhx.paperform.co/)! Applications close on July 7.*
 
 
       **Community Ticket Requests**
 
 
-      These will be available to leaders & organizers of various web2 & web3
+      *These will be available to leaders & organizers of various web2 & web3
       communities or meetups to apply for free or discounted tickets for their
-      groups.
-  - question: Can I purchase tickets with ETH or DAI?
+      groups.*
+  - question: Can I purchase tickets with crypto?
     answer: >
-      Yes — we will be accepting crypto payments for tickets this year on a
-      variety of networks. Thanks to Ryan @
-      [https://3cities.xyz/](https://3cities.xyz/) for his dedication to this
-      project.
+      Yes — we will be accepting crypto payments (at minimum ETH or DAI) for
+      tickets this year on a variety of networks.
   - question: What are the policies towards Refunds & Transfers?
     answer: >
       **Refunds**
@@ -138,7 +158,7 @@ faq:
       In our effort to prevent scalping and ensure equal opportunity for all
       interested community members to be able to purchase tickets, we will only
       allow ticket transfers on a case-by-case basis upon written request to
-      [support@devcon.org](mailto\:support@devcon.org). PLEASE DO NOT ATTEMPT TO
+      [tickets@devcon.org](mailto\:tickets@devcon.org). PLEASE DO NOT ATTEMPT TO
       BUY OR SELL A TICKET FROM AN EXTERNAL SOURCE — YOU RISK BEING SCAMMED.
   - question: Tickets are sold out - How can I attend?
     answer: >
@@ -147,7 +167,7 @@ faq:
       granted to those on the Waiting List in the order that they signed up. We
       strongly encourage anybody looking to purchase a ticket from a third party
       to do it through email & copy
-      [support@devcon.org](mailto\:support@devcon.org).
+      [tickets@devcon.org](mailto\:tickets@devcon.org).
 _template: tickets
 ---
 

@@ -27,11 +27,17 @@ import About1 from 'assets/images/carousel/about/about-1.jpg'
 import About2 from 'assets/images/carousel/about/about-2.jpg'
 import About3 from 'assets/images/carousel/about/about-3.jpg'
 import About4 from 'assets/images/carousel/about/about-4.jpg'
+import RichText from 'lib/components/tina-cms/RichText'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
+import { useTina } from 'tinacms/dist/react'
+import { client } from '../../tina/__generated__/client'
+import { PagesAbout, PagesQuery } from '../../tina/__generated__/types'
 
 export default pageHOC(function AboutPage(props: any) {
   const pageContext = usePageContext()
   const intl = useTranslations()
+  const { data } = useTina<PagesQuery>(props.cms)
+  const pages = data.pages as PagesAbout
 
   return (
     <Page theme={themes['about']}>
@@ -259,7 +265,11 @@ export default pageHOC(function AboutPage(props: any) {
           </div>
         </div> */}
 
-        <h2 className="spaced clear-top" id="get-involved">
+        {/* <div className="section"> */}
+        <div className="mt-8 mb-8">{pages?.ctas && <RichText content={pages.ctas} />}</div>
+        {/* </div> */}
+
+        {/* <h2 className="spaced clear-top" id="get-involved">
           {props.sections['share-ideas'].title}
         </h2>
 
@@ -272,7 +282,7 @@ export default pageHOC(function AboutPage(props: any) {
               </Button>
             </Link>
           </div>
-        </div>
+        </div> */}
 
         {/* <div id="faq">
           <FAQ
@@ -296,6 +306,7 @@ export async function getStaticProps(context: any) {
     context.locale
   )
   const faq = await GetFAQ(context.locale)
+  const content = await client.queries.pages({ relativePath: 'about.mdx' })
 
   return {
     props: {
@@ -304,6 +315,11 @@ export async function getStaticProps(context: any) {
       sections,
       videos: await GetVideos(),
       page,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
     },
   }
 }

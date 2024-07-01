@@ -7,6 +7,9 @@ import index from './templates/index'
 import supporters from './templates/supporters'
 import programming from './templates/programming'
 import tickets from './templates/tickets'
+import about from './templates/about'
+import { createRichText } from './presets'
+import speaker_applications from './templates/speaker_applications'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
@@ -35,7 +38,7 @@ export default defineConfig({
         label: 'Pages',
         path: 'cms/pages',
         format: 'mdx',
-        templates: [index, dips, past_events, road, faq, supporters, programming, tickets],
+        templates: [index, dips, past_events, road, faq, supporters, programming, tickets, about, speaker_applications],
         ui: {
           router: ({ document }) => {
             const filename = document._sys.filename
@@ -55,6 +58,12 @@ export default defineConfig({
                 return '/programming'
               case 'tickets':
                 return '/tickets'
+              case 'about':
+                return '/about'
+              case 'supporters':
+                return '/supporters'
+              case 'speaker_applications':
+                return '/speaker-applications'
 
               default:
                 return filename
@@ -62,6 +71,19 @@ export default defineConfig({
           },
         },
       },
+      // {
+      //   name: 'page_cross_links',
+      //   label: 'Page_cross_links',
+      //   path: 'cms/page_cross_links',
+      //   format: 'mdx',
+      //   templates: [
+      //     {
+      //       name: 'entry',
+      //       label: 'entry',
+      //       fields: [createRichText('body')],
+      //     },
+      //   ],
+      // },
     ],
   },
 })

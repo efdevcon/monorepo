@@ -24,7 +24,7 @@
 
       &.active {
         .number {
-          background: var(--theme-color, $colors-main);
+          background: #c9badd; // var(--theme-color, $colors-main);
         }
       }
 
@@ -82,12 +82,12 @@
         align-items: center;
       }
 
-      .body { 
-        display: none;  
+      .body {
+        display: none;
       }
     }
   }
-  
+
   .item {
     margin-top: 24px;
     display: flex;
@@ -96,22 +96,26 @@
     position: relative;
 
     .number {
-      display: none;
+      // display: none;
+
+      // @media (min-width: $breakpoints-md) {
+      flex-shrink: 0;
+      height: 2em;
+      width: 2em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 100px;
+      border: 3px solid var(--theme-color, $colors-main);
+      color: var(--theme-color, $colors-main);
+      margin-right: 16px;
+      padding-left: 1px;
+      // }
 
       @media (min-width: $breakpoints-md) {
-        flex-shrink: 0;
-        height: 2em;
-        width: 2em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 16px;
-        font-weight: 700;
-        border-radius: 100px;
-        border: 3px solid var(--theme-color, $colors-main);
-        color: var(--theme-color, $colors-main);
-        margin-right: 32px;
-        padding-left: 1px;
+        // margin-right: 32px;
       }
     }
 

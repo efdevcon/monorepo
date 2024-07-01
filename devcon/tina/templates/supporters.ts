@@ -5,12 +5,15 @@ const supporters: Template = {
   name: 'supporters',
   label: 'supporters',
   fields: [
+    createRichText('supporters'),
     {
-      label: 'placeholder_one',
-      name: 'placeholder_one',
+      label: 'supporters_card',
+      name: 'supporters_card',
       type: 'object',
-      fields: [createRichText('body')],
+      fields: [createRichText('card'), button('button')],
     },
+    createRichText('impact_forum'),
+    createRichText('programming_tickets'),
   ],
 }
 
