@@ -53,7 +53,7 @@ export default pageHOC(function Programming(props: any) {
   const steps = [
     speakers.who_can_apply,
     speakers.what_to_talk_about,
-    speakers.which_session_types,
+    speakers.which_session_types || {},
     speakers.application_timeline,
     speakers.review_process,
     speakers.decision,
@@ -61,7 +61,7 @@ export default pageHOC(function Programming(props: any) {
   ]
 
   // const faq = pages.faq
-  const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
+  // const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
 
   const formattedTracks = (() => {
     const tracks = programming.track_descriptions
@@ -272,10 +272,10 @@ export default pageHOC(function Programming(props: any) {
 
                   {index === 2 && (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mt-4">
-                      {speakers.session_types &&
-                        speakers.session_types.map(({ title, body }: any) => {
+                      {speakers.which_session_types?.session_types &&
+                        speakers.which_session_types.session_types.map(({ title, body }: any) => {
                           return (
-                            <div className="flex flex-col gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow">
+                            <div className="flex flex-col gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow" key={title}>
                               <p className="text-lg font-secondary bold">{title}</p>
                               <RichText content={body}></RichText>
                             </div>
