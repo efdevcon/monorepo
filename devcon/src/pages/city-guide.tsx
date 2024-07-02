@@ -8,7 +8,7 @@ import { GetPage } from 'services/page'
 import { usePageContext } from 'context/page-context'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
-import { PagesCityGuide, PagesQuery } from '../../tina/__generated__/types'
+import { /*PagesCityGuide,*/ PagesQuery } from '../../tina/__generated__/types'
 import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
 import CallToAction from 'components/common/card/CallToActionCard'
@@ -21,7 +21,7 @@ import css from './supporters.module.scss'
 export default pageHOC(function CityGuide(props: any) {
   // const pageContext = usePageContext()
   const { data } = useTina<PagesQuery>(props.cms)
-  const pages = data.pages as PagesCityGuide
+  const pages = data.pages as any // PagesCityGuide
 
   return (
     <Page theme={themes['teal']}>
