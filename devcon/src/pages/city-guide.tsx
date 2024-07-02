@@ -20,8 +20,8 @@ import css from './supporters.module.scss'
 
 export default pageHOC(function CityGuide(props: any) {
   // const pageContext = usePageContext()
-  const { data } = useTina<PagesQuery>(props.cms)
-  const pages = data.pages as any // PagesCityGuide
+  // const { data } = useTina<PagesQuery>(props.cms)
+  // const pages = data.pages as any // PagesCityGuide
 
   return (
     <Page theme={themes['teal']}>
@@ -88,17 +88,17 @@ export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
   // await GetPage('terms-of-service', context.locale)
 
-  const content = await client.queries.pages({ relativePath: 'city-guide.mdx' })
+  // const content = await client.queries.pages({ relativePath: 'city-guide.mdx' })
 
   return {
     props: {
       ...globalData,
       page: {},
-      cms: {
-        variables: content.variables,
-        data: content.data,
-        query: content.query,
-      },
+      // cms: {
+      //   variables: content.variables,
+      //   data: content.data,
+      //   query: content.query,
+      // },
     },
   }
 }
