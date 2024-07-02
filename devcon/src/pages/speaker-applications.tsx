@@ -258,7 +258,8 @@ export default pageHOC(function Programming(props: any) {
                       <div className="mt-4"></div>
                     </>
                   )}
-                  <RichText content={body}></RichText>
+                  {index !== 2 && <RichText content={body}></RichText>}
+
                   {index === 1 && (
                     <div>
                       <TrackList isThailand tracks={formattedTracks || props.tracks} title="Tracks" />
@@ -266,6 +267,20 @@ export default pageHOC(function Programming(props: any) {
                       {speakers.what_to_talk_about_second_part && (
                         <RichText content={speakers.what_to_talk_about_second_part.body}></RichText>
                       )}
+                    </div>
+                  )}
+
+                  {index === 2 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-4 mt-4">
+                      {speakers.session_types &&
+                        speakers.session_types.map(({ title, body }: any) => {
+                          return (
+                            <div className="flex flex-col gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow">
+                              <p className="text-lg font-secondary bold">{title}</p>
+                              <RichText content={body}></RichText>
+                            </div>
+                          )
+                        })}
                     </div>
                   )}
 

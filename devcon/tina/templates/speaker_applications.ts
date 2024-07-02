@@ -42,9 +42,10 @@ const speaker_applications: Template = {
       fields: [createRichText('body')],
     },
     {
-      label: 'which_session_types',
-      name: 'which_session_types',
+      label: 'session_types',
+      name: 'session_types',
       type: 'object',
+      list: true,
       fields: [{ label: 'title', name: 'title', type: 'string' }, createRichText('body')],
     },
     {
