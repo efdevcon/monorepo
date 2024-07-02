@@ -230,15 +230,15 @@ export default pageHOC(function Programming(props: any) {
                               <div className="flex justify-between w-full max-w-[700px] text-base">
                                 <div className="flex relative items-center">
                                   <div>Applications Open</div>
-                                  <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                                  {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
                                     live
-                                  </div>
+                                  </div> */}
                                 </div>
                                 <div className="bold">July 9th</div>
                               </div>
                             ),
                             indent: false,
-                            active: true,
+                            // active: true,
                             body: '',
                           },
                           {
@@ -272,7 +272,7 @@ export default pageHOC(function Programming(props: any) {
                   {index === 4 && (
                     <>
                       <div
-                        className="mt-3 bold cursor-pointer inline-flex select-none"
+                        className="mt-6 bold cursor-pointer inline-flex select-none"
                         onClick={() => setExpandReviewCriteria(!expandReviewCriteria)}
                       >
                         Review Criteria <span className={cn('ml-1', { 'rotate-180': expandReviewCriteria })}>▼</span>

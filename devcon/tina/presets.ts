@@ -44,6 +44,11 @@ const RichTextButtons = {
           label: 'color',
           type: 'string',
         },
+        {
+          label: 'disabled',
+          name: 'disabled',
+          type: 'boolean',
+        },
       ],
     },
   ],
@@ -101,6 +106,11 @@ export const button = (name: string, extra?: any) => {
         label: 'color',
         name: 'color',
         type: 'string',
+      },
+      {
+        label: 'disabled',
+        name: 'disabled',
+        type: 'boolean',
       },
     ],
   }

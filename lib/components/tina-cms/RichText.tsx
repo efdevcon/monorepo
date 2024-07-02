@@ -91,12 +91,12 @@ const Buttons = (data: any) => {
 
   return (
     <div className="flex gap-4" data-cms-element="button">
-      {data.Button.map(({ text, url, color }: any) => {
+      {data.Button.map(({ text, url, color, disabled }: any) => {
         if (!url || !text) return null;
 
         return (
           <Link href={url} key={text}>
-            <Button fat color={color || "purple-1"} fill>
+            <Button fat color={color || "purple-1"} fill disabled={disabled}>
               {text}
             </Button>
           </Link>

@@ -195,17 +195,12 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
-            title: 'Programming',
+            title: 'Overview',
             url: '/programming',
             type: 'page',
           },
           {
-            title: 'Speakers',
-            url: '#',
-            type: 'header',
-          },
-          {
-            title: 'Speaker Applications',
+            title: 'Apply to Speak',
             url: '/speaker-applications',
             type: 'page',
           },
@@ -324,6 +319,11 @@ const useNavigationData = () => {
         {
           title: 'Program',
           url: '/programming',
+          type: 'page',
+        },
+        {
+          title: 'Apply To Speak',
+          url: '/speaker-applications',
           type: 'page',
         },
         {
