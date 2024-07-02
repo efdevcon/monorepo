@@ -32,6 +32,8 @@ import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesAbout, PagesQuery } from '../../tina/__generated__/types'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import indexCss from './index.module.scss'
 
 export default pageHOC(function AboutPage(props: any) {
   const pageContext = usePageContext()
@@ -80,8 +82,8 @@ export default pageHOC(function AboutPage(props: any) {
         ]}
       />
 
-      <div className="section">
-        <div className={`two-columns clear-bottom`}>
+      <div className={`section ${css['about']}`}>
+        <div className={`two-columns relative pb-12`}>
           <div className={`left section-markdown ${css['intro-left']}`}>
             <h2 className="spaced" id="intro">
               {props.page.title}
@@ -128,9 +130,15 @@ export default pageHOC(function AboutPage(props: any) {
               <ArrowRight />
             </Link>
           </div>
+
+          <div className={`${indexCss['scrolling-text-background']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s">
+              <p className="bold">DEVCON&nbsp;</p>
+            </InfiniteScroller>
+          </div>
         </div>
 
-        <div className={`two-columns clear-bottom border-bottom margin-bottom border-top clear-top`}>
+        <div className={`two-columns relative clear-bottom border-bottom margin-bottom border-top clear-top`}>
           <div className={`left section-markdown`}>
             <h2 className="spaced" id="builders">
               {props.sections['devcon-for-builders'].title}
