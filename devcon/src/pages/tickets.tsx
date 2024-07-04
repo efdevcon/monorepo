@@ -26,6 +26,7 @@ import { Snapshot } from 'components/common/snapshot'
 import CalendarIcon from 'assets/icons/calendar.svg'
 import AuctionIcon from 'assets/icons/auction.svg'
 import SwirlIcon from 'assets/icons/swirl.svg'
+import { SelfClaimingDiscounts } from 'components/domain/discounts'
 
 export default pageHOC(function Tickets(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
@@ -157,6 +158,8 @@ export default pageHOC(function Tickets(props: any) {
           </div>
         </div>
       </div> */}
+
+      <SelfClaimingDiscounts />
 
       <div className="section mb-12 relative">
         <div className="anchor absolute -top-20" id="faq"></div>
