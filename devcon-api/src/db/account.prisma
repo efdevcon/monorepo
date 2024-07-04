@@ -34,3 +34,10 @@ model Account {
   createdAt DateTime @default(now())
   updatedAt DateTime?
 }
+
+model DiscountClaims {
+  id String @default(cuid()) @id
+  identifier String
+  voucher String
+  issued DateTime @default(now())
+}
