@@ -23,7 +23,7 @@ export function Snapshot(props: SnapshotProps) {
         {props.items.map((item: SnapshotItem) => {
           return (
             <li
-              data-type="snapshot-item"
+              data-type="snapshot-item text-base"
               className={css['list-item']}
               key={typeof item.title === 'string' ? item.title : item.id}
             >
