@@ -3,7 +3,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { PropsWithChildren } from 'react'
 import { WAGMI_CONFIG, WC_PROJECT_ID } from 'utils/wagmi'
-import { createWeb3Modal } from '@web3modal/wagmi'
+import { createWeb3Modal } from '@web3modal/wagmi/react'
 import { WagmiProvider } from 'wagmi'
 
 const queryClient = new QueryClient()

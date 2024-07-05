@@ -204,7 +204,7 @@ export function Verifier(props: Props) {
           )}
 
           {discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
-            <w3m-button balance={false} />
+            <w3m-button balance='hide' />
           )}
 
           {discount && discount.discount > 0 && discount.type === session?.type && (

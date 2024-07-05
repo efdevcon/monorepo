@@ -1,4 +1,5 @@
-import { defaultWagmiConfig } from '@web3modal/wagmi/react/config'
+
+import { defaultWagmiConfig } from '@web3modal/wagmi'
 import { cookieStorage, createStorage } from 'wagmi'
 import { mainnet } from 'wagmi/chains'
 

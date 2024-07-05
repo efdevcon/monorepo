@@ -21,6 +21,13 @@ if (!projectId) {
   throw new Error('NEXT_PUBLIC_WC_PROJECT_ID is not set')
 }
 
+const githubClientId = process.env.NEXTAUTH_GITHUB_CLIENT_ID ?? ''
+const githubClientSecret = process.env.NEXTAUTH_GITHUB_CLIENT_SECRET ?? ''
+
+if (!githubClientId || !githubClientSecret) {
+  throw new Error('GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET are not set')
+}
+
 export const authOptions: AuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     session: {
@@ -28,8 +35,8 @@ export const authOptions: AuthOptions = {
     },
     providers: [
         GithubProvider({
-            clientId: process.env.NEXTAUTH_GITHUB_CLIENT_ID,
-            clientSecret: process.env.NEXTAUTH_GITHUB_CLIENT_SECRET
+            clientId: githubClientId,
+            clientSecret: githubClientSecret
         }),
         CredentialsProvider({
             name: 'Ethereum',
