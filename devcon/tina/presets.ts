@@ -39,6 +39,10 @@ const RichTextButtons = {
               label: 'green',
               value: 'green-1',
             },
+            {
+              label: 'orange',
+              value: 'orange-1',
+            },
           ],
           name: 'color',
           label: 'color',
@@ -47,6 +51,11 @@ const RichTextButtons = {
         {
           label: 'disabled',
           name: 'disabled',
+          type: 'boolean',
+        },
+        {
+          label: 'fill',
+          name: 'fill',
           type: 'boolean',
         },
       ],

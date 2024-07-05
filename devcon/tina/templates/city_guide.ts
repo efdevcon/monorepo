@@ -5,15 +5,94 @@ const city_guide: Template = {
   name: 'city_guide',
   label: 'city_guide',
   fields: [
-    createRichText('overview'),
-    // {
-    //   label: 'city_guide_card',
-    //   name: 'city_guide_card',
-    //   type: 'object',
-    //   fields: [createRichText('card'), button('button')],
-    // },
-    // createRichText('impact_forum'),
-    // createRichText('programming_tickets'),
+    createRichText('intro_city_guide'),
+    {
+      label: 'intro_snapshot',
+      name: 'intro_snapshot',
+      type: 'object',
+      fields: [
+        createRichText('title'),
+        {
+          label: 'snapshot',
+          name: 'snapshot',
+          list: true,
+          type: 'object',
+          fields: [
+            { label: 'left', name: 'left', type: 'string' },
+            { label: 'right', name: 'right', type: 'string' },
+          ],
+        },
+      ],
+    },
+    createRichText('city_of_angels'),
+    createRichText('why_sea'),
+    createRichText('why_sea_second_part'),
+    createRichText('local_experiences'),
+    {
+      name: 'community_guides',
+      label: 'community_guides',
+      type: 'object',
+      fields: [
+        createRichText('text'),
+        {
+          name: 'community_guides',
+          label: 'community_guides',
+          type: 'object',
+          list: true,
+          fields: [
+            {
+              name: 'title',
+              label: 'title',
+              type: 'string',
+            },
+            {
+              name: 'author',
+              label: 'author',
+              type: 'string',
+            },
+            createRichText('card'),
+          ],
+        },
+      ],
+    },
+    {
+      name: 'areas',
+      label: 'areas',
+      list: true,
+      type: 'object',
+
+      fields: [
+        {
+          name: 'title',
+          label: 'title',
+          type: 'string',
+        },
+        createRichText('text'),
+        {
+          name: 'metro_distance',
+          label: 'metro_distance',
+          type: 'string',
+        },
+        {
+          name: 'metro_station',
+          label: 'metro_station',
+          type: 'string',
+        },
+        {
+          name: 'metro_url',
+          label: 'metro_url',
+          type: 'string',
+        },
+      ],
+    },
+    createRichText('getting_around'),
+    {
+      label: 'questions',
+      name: 'questions',
+      list: true,
+      type: 'object',
+      fields: [{ label: 'question', name: 'question', type: 'string' }, createRichText('answer')],
+    },
   ],
 }
 

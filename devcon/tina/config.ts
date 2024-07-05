@@ -8,6 +8,7 @@ import supporters from './templates/supporters'
 import programming from './templates/programming'
 import tickets from './templates/tickets'
 import about from './templates/about'
+import city_guide from './templates/city_guide'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
 
@@ -38,7 +39,19 @@ export default defineConfig({
         label: 'Pages',
         path: 'cms/pages',
         format: 'mdx',
-        templates: [index, dips, past_events, road, faq, supporters, programming, tickets, about, speaker_applications],
+        templates: [
+          index,
+          dips,
+          past_events,
+          road,
+          faq,
+          supporters,
+          programming,
+          tickets,
+          about,
+          speaker_applications,
+          city_guide,
+        ],
         ui: {
           router: ({ document }) => {
             const filename = document._sys.filename
@@ -64,6 +77,8 @@ export default defineConfig({
                 return '/supporters'
               case 'speaker_applications':
                 return '/speaker-applications'
+              case 'city_guide':
+                return '/city-guide'
 
               default:
                 return filename
