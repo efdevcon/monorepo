@@ -17,6 +17,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let id = req.query.id as string
     console.log(req.method, '/api/discounts/verify/[id]', id)
 
+    if (!id) {
+        return res.status(400).json({ message: 'Missing id' })
+    }
+
     const type = id.startsWith('0x') || id.endsWith('.eth') ? 'ethereum' : 'github'
     if (id.endsWith('.eth')) {
         const address = await client.getEnsAddress({
