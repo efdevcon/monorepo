@@ -1,7 +1,5 @@
 import * as THREE from 'three'
 import getGeometry from './lib/getGeometry'
-// import * as dat from "dat.gui";
-// let OrbitControls = require("three-orbit-controls")(THREE);
 import gsap from 'gsap'
 
 export default class Sketch {
