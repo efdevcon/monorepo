@@ -25,9 +25,9 @@
   }
 
   a {
-    @include fonts-generic-link;
+    // @include fonts-generic-link;
     @include colors-theme-color;
-    text-transform: uppercase;
+    // text-transform: uppercase;
   }
 
   span,
@@ -48,6 +48,8 @@
   > * {
     &:last-child {
       flex-shrink: 0;
+      margin-left: auto;
+      margin-right: 0;
     }
   }
   // &:hover,

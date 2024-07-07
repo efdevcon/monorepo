@@ -18,8 +18,10 @@ const city_guide: Template = {
           list: true,
           type: 'object',
           fields: [
-            { label: 'left', name: 'left', type: 'string' },
-            { label: 'right', name: 'right', type: 'string' },
+            createRichText('left'),
+            createRichText('right'),
+            // { label: 'left', name: 'left', type: 'string' },
+            // { label: 'right', name: 'right', type: 'string' },
           ],
         },
       ],
@@ -87,8 +89,8 @@ const city_guide: Template = {
     },
     createRichText('getting_around'),
     {
-      label: 'questions',
-      name: 'questions',
+      label: 'city_guide_faq',
+      name: 'city_guide_faq',
       list: true,
       type: 'object',
       fields: [{ label: 'question', name: 'question', type: 'string' }, createRichText('answer')],
