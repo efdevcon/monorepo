@@ -326,7 +326,7 @@ export default pageHOC(function CityGuide(props: any) {
         <div className="section" id="areas">
           <div className="py-8  border-top h2 bold">Areas to stay</div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4">
+          <div className="grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 pb-8">
             {cityGuide.areas &&
               cityGuide.areas.map(({ title, text, metro_distance, metro_station, metro_url }: any) => {
                 return (
@@ -352,11 +352,17 @@ export default pageHOC(function CityGuide(props: any) {
                   </div>
                 )
               })}
+
+            <div className={`${indexCss['scrolling-text-background']}`}>
+              <InfiniteScroller nDuplications={2} speed="120s" reverse>
+                <p className="bold">AROUND THE VENUE&nbsp;</p>
+              </InfiniteScroller>
+            </div>
           </div>
         </div>
 
         <div className="section" id="map">
-          <div className="py-8 mt-8 border-top">
+          <div className="py-8 border-top">
             <RichText content={cityGuide.getting_around} />
           </div>
         </div>
