@@ -167,7 +167,7 @@
     $random: random(30) + 16;
     $second: abs(($random / 1.2) - 150) + s;
     $delay: $i * -0.1s;
-    $size: $random + px;
+    $size: $random + 10 + px;
     $sizeM: $random / 2 + px;
     $abs: $random / 100;
     $g: abs($random / 100 * 100% - 100%);
@@ -219,7 +219,7 @@
     $posY: random() * 20% + 40%;
     $z: random(30);
     $random: random(100);
-    $size: ($random + 50) + px;
+    $size: ($random + 75) + px;
     $sizeM: $random / 2 + px;
     $second: ($z + 100) + s;
     $delay: ($x * random(10)) + s;

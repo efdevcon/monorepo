@@ -4,22 +4,16 @@ import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
-import { GetPage } from 'services/page'
-import { usePageContext } from 'context/page-context'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesCity_Guide, PagesQuery } from '../../tina/__generated__/types'
-// import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
-import CallToAction from 'components/common/card/CallToActionCard'
 import InfiniteScroller from 'lib/components/infinite-scroll'
-import SpeakersBackground from 'assets/images/pages/program.svg'
 import cn from 'classnames'
 import indexCss from './index.module.scss'
 import css from './city-guide.module.scss'
 import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 import { Snapshot } from 'components/common/snapshot'
-import { Carousel } from 'components/common/carousel'
 import IconClock from 'assets/icons/icon_clock.svg'
 import IconCurrency from 'assets/icons/icon_currency.svg'
 import IconGlobe from 'assets/icons/icon_globe.svg'
@@ -35,19 +29,21 @@ import CityGuide6 from 'assets/images/dc-7/city-guide-carousel/6.png'
 import CityGuide7 from 'assets/images/dc-7/city-guide-carousel/7.png'
 import CityGuide8 from 'assets/images/dc-7/city-guide-carousel/8.png'
 import Image from 'next/image'
-import ChevronLeft from 'assets/icons/arrow_left.svg'
-import ChevronRight from 'assets/icons/arrow_right.svg'
+import ChevronDown from 'assets/icons/chevron-down.svg'
+import ChevronUp from 'assets/icons/chevron-up.svg'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import AmazingThailand from 'assets/images/dc-7/amazing-thailand.png'
+import { motion } from 'framer-motion'
+import HitchhikerGuide from 'assets/images/dc-7/community-guides/hitchhiker.png'
 
 const Lanterns = () => {
   const lanternSrc = 'https://i.ibb.co/Mc0xHxZ/lantern.png'
   const cloudSrc = 'https://i.ibb.co/3sL48rr/cloud.png'
   const citySrc = 'https://i.ibb.co/wJ6pVKt/city.png'
 
-  const lanternImages = Array.from({ length: 30 }, (_, i) => (
+  const lanternImages = Array.from({ length: 20 }, (_, i) => (
     <img key={i} className={`${css['lantern']} ${css[`l${i + 1}`]}`} src={lanternSrc} alt={`Lantern ${i + 1}`} />
   ))
 
@@ -82,8 +78,9 @@ export default pageHOC(function CityGuide(props: any) {
   // const pageContext = usePageContext()
   const { data } = useTina<PagesQuery>(props.cms)
   const cityGuide = data.pages as PagesCity_Guide
-  const [canBack, setCanBack] = React.useState(false)
-  const [canNext, setCanNext] = React.useState(false)
+  const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
+  // const [canBack, setCanBack] = React.useState(false)
+  // const [canNext, setCanNext] = React.useState(false)
 
   return (
     <Page theme={themes['news']}>
@@ -93,12 +90,32 @@ export default pageHOC(function CityGuide(props: any) {
         path={[{ text: <span className="bold">Bangkok</span> }, { text: 'City Guide' }]}
         navigation={[
           {
-            title: 'Overview',
-            to: '#Overview',
+            title: 'Location',
+            to: '#location',
           },
           {
             title: 'Bangkok',
             to: '#bangkok',
+          },
+          {
+            title: 'Why SEA?',
+            to: '#why',
+          },
+          {
+            title: 'Local Experience',
+            to: '#local',
+          },
+          {
+            title: 'Areas to Stay',
+            to: '#areas',
+          },
+          {
+            title: 'Devcon Map',
+            to: '#map',
+          },
+          {
+            title: 'FAQ',
+            to: '#faq',
           },
           // {
           //   title: 'Supporters',
@@ -108,7 +125,7 @@ export default pageHOC(function CityGuide(props: any) {
       />
 
       <div className={css['city-guide']}>
-        <div className="section" id="overview">
+        <div className="section" id="location">
           <div className={cn('flex relative justify-between gap-8 border-bottom flex-col lg:flex-row pb-8')}>
             <div className={`${indexCss['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s" reverse>
@@ -149,8 +166,8 @@ export default pageHOC(function CityGuide(props: any) {
                     return {
                       id: index,
                       Icon: icon,
-                      left: left,
-                      right: right,
+                      left: <RichText content={left} />,
+                      right: <RichText content={right} />,
                     }
                   })}
                 />
@@ -159,7 +176,7 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
-        <div className={cn(css['orange-section'], 'overflow-hidden')}>
+        <div className={cn(css['orange-section'], 'overflow-hidden')} id="bangkok">
           <div className="section" id="overview">
             <div className="py-8">
               <RichText content={cityGuide.city_of_angels} />
@@ -193,7 +210,7 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
-        <div className="section" id="overview">
+        <div className="section" id="why">
           <div className="py-12 xl:py-24 relative">
             <div className={`${indexCss['scrolling-text-background']} ${indexCss['alternate']}`}>
               <InfiniteScroller nDuplications={2} speed="180s" reverse>
@@ -226,7 +243,7 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
-        <div className={cn('text-white relative', css['black-section'])}>
+        <div className={cn('text-white relative', css['black-section'])} id="local">
           <div className="section relative pt-16 overflow-hidden" id="overview">
             <div className="absolute top-0 left-0 bottom-0 right-0 z-1 opacity-60">
               <Lanterns />
@@ -237,8 +254,8 @@ export default pageHOC(function CityGuide(props: any) {
               <div className="flex flex-col items-center">
                 <div className="w-full xl:max-w-[630px]">
                   <div className="flex justify-between">
-                    <div className="h2 bold">Community Guides</div>
-                    <div>
+                    <div className="h2 bold mb-3">Community Guides</div>
+                    {/* <div>
                       <Button
                         disabled={!canBack}
                         circle
@@ -257,20 +274,20 @@ export default pageHOC(function CityGuide(props: any) {
                       >
                         <ChevronRight />
                       </Button>
-                    </div>
+                    </div> */}
                   </div>
 
-                  <div className="flex flex-col gap-1 z-10">
+                  <motion.div className="flex flex-col gap-1 z-10">
                     <div className="text-xl font-secondary">The Hitchhiker's Guide to Bangkok</div>
                     <div className="text-[#EA766E] hover:underline bold text-sm">Luke Cassady-Dorion</div>
 
-                    <div className="aspect-[16/7] max-w-[630px] my-2">
-                      <div className="relative h-full w-full rounded-xl overflow-hidden">
+                    <div className="aspect-[15/7] max-w-[630px] my-2">
+                      <div className="relative h-full w-full rounded-xl shadow-lg bg-black border-[1px] border-[#12161e] border-solid">
                         <Image
-                          src={OrangeBackground}
+                          src={HitchhikerGuide}
                           alt="Guide Image"
                           data-id="image"
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover rounded-xl"
                         />
                         <div className="absolute bottom-2 left-2 right-2 italic px-2 opacity-80">
                           The Hitchhiker's Guide to Bangkok - an insightful, comprehensive Bangkok guide with invaluable
@@ -282,13 +299,21 @@ export default pageHOC(function CityGuide(props: any) {
                     <Button fat color="orange-1" className="self-start mt-2">
                       Read Guide
                     </Button>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
             </div>
 
-            <div className="relative flex flex-col justify-start pt-32 mt-8 z-[2] pointer-events-none">
-              <Image src={AmazingThailand} alt="Amazing Thailand logo" className="max-w-[100px] object-contain mb-8" />
+            <div className="relative flex flex-col justify-start pt-24 mt-8 z-[2] pointer-events-none">
+              <Image src={AmazingThailand} alt="Amazing Thailand logo" className="max-w-[100px] object-contain mb-4" />
+              <Link
+                to="https://amazingthailand.com"
+                indicateExternal
+                className="text-lg bold uppercase mb-8 pointer-events-auto hover:underline"
+                style={{ '--color-icon': 'white' }}
+              >
+                Tourism Thailand Website
+              </Link>
               <div className={`${indexCss['scrolling-text-background']} ${css['looping-text']} select-none`}>
                 <InfiniteScroller nDuplications={3} speed="180s">
                   <p className={cn('bold')}>EXPERIENCES&nbsp;</p>
@@ -298,7 +323,7 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
-        <div className="section">
+        <div className="section" id="areas">
           <div className="py-8  border-top h2 bold">Areas to stay</div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4">
@@ -330,7 +355,7 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
-        <div className="section" id="overview">
+        <div className="section" id="map">
           <div className="py-8 mt-8 border-top">
             <RichText content={cityGuide.getting_around} />
           </div>
@@ -340,9 +365,41 @@ export default pageHOC(function CityGuide(props: any) {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6518.438920173003!2d100.54858786418681!3d13.725292303010333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a5c9887b3%3A0x230edac05ae63ab7!2sQueen%20Sirikit%20National%20Convention%20Center!5e0!3m2!1sen!2sdk!4v1720100815380!5m2!1sen!2sdk"
           width="100%"
           height="500px"
-          id="map"
           className="expand"
         ></iframe>
+
+        <div className="section mb-12 relative">
+          <div className="anchor absolute -top-20" id="faq"></div>
+          <div className="h2 bold mb-6 pt-8 border-top">Frequently Asked</div>
+          <div className="flex flex-col">
+            {cityGuide.city_guide_faq &&
+              cityGuide.city_guide_faq.map(({ question, answer }: any) => {
+                const open = question === openFAQ
+
+                return (
+                  <div key={question} className="w-full border-[#E2E3FF] bg-[#F8F9FE] rounded-xl shadow mb-4 ">
+                    <div
+                      className="w-full p-4 bold cursor-pointer select-none hover:opacity-70 flex justify-between items-center"
+                      onClick={() => setOpenFAQ(open ? null : question)}
+                    >
+                      {question}
+                      <div className="flex opacity-60">{open ? <ChevronUp /> : <ChevronDown />}</div>
+                    </div>
+
+                    {open && (
+                      <motion.div
+                        initial={{ y: '-20%', opacity: 0 }}
+                        animate={{ y: '0%', opacity: 100 }}
+                        className="w-full p-4 pt-2"
+                      >
+                        <RichText content={answer}></RichText>
+                      </motion.div>
+                    )}
+                  </div>
+                )
+              })}
+          </div>
+        </div>
       </div>
     </Page>
   )
