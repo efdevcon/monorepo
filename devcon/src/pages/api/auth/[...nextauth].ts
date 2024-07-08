@@ -100,7 +100,6 @@ export const authOptions: AuthOptions = {
 
                 if (response.status === 200) {
                     const user = await response.json()
-                    console.log('Retrieved user from GitHub', user)
                     if (user) { 
                         session.id = user.login
                         session.userId = user.id
