@@ -45,6 +45,7 @@ import Deva from './dc7/Deva.png'
 import Lyra from './dc7/Lyra.png'
 import Aria from './dc7/Aria.png'
 import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
+import { useSearchParams } from 'next/navigation'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -244,6 +245,7 @@ export const Ticket = (props: TicketProps) => {
 }
 
 export const Hero = (props: { ticketMode?: boolean }) => {
+  const searchParams = useSearchParams()
   // const router = useRouter()
   const intl = useTranslations()
   // const draggableLinkAttributes = useDraggableLink()
@@ -299,7 +301,8 @@ export const Hero = (props: { ticketMode?: boolean }) => {
     transformRightY.set(yDir)
   }, [x, y])
 
-  const ticketHolder = 'Lasse Jacobsen' || "Super Long Annoying Name That Won't fit"
+  const ticketHolder = searchParams.get('name') ?? ''
+  const ticketType = searchParams.get('type') ?? ''
 
   return (
     <>
@@ -335,7 +338,7 @@ export const Hero = (props: { ticketMode?: boolean }) => {
             <div className="text-3xl max-w-[100%] lg:max-w-[500px] text-center bold font-secondary">
               {ticketHolder}'s Ticket
             </div>
-            <Ticket name={ticketHolder} ticketType="Builder Ticket" />
+            <Ticket name={ticketHolder} ticketType={ticketType} />
             <div className="flex flex-col items-center justify-center text-lg">
               <div className="bold leading-5">Join me at Devcon SEA Nov 12 — 15</div>
               <div className="text-sm">QSNCC BANGKOK THAILAND</div>
