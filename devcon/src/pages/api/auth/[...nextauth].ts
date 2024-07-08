@@ -92,7 +92,6 @@ export const authOptions: AuthOptions = {
             session.type = token.sub.startsWith('0x') ? 'ethereum' : 'github'
 
             if (session.type === 'github') {
-                console.log('Fetching user from GitHub', token.sub)
                 const response = await fetch('https://api.github.com/user/' + token.sub, {
                     headers: {
                         Authorization: `token ${process.env.GITHUB_TOKEN}`
@@ -107,7 +106,8 @@ export const authOptions: AuthOptions = {
                         session.userId = user.id
                     }
                 } else {
-                    console.error('Failed to fetch user from GitHub', response)
+                    console.error('Unable to fetch Github user', response.status, response.statusText)
+                    console.log(response)
                 }
             }
 
