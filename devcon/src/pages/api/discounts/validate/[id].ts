@@ -10,7 +10,7 @@ import { normalize } from 'viem/ens'
 
 const client = createPublicClient({
     chain: mainnet,
-    transport: http(),
+    transport: http(`https://mainnet.infura.io/v3/${process.env.INFURA_KEY}`),
 })
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
