@@ -85,6 +85,7 @@ export const authOptions: AuthOptions = {
     callbacks: {
         async session({ session, token }) {
             if (!token.sub) {
+              console.log('Token does not have a sub', token)
               return session
             }
 
@@ -92,6 +93,7 @@ export const authOptions: AuthOptions = {
             session.type = token.sub.startsWith('0x') ? 'ethereum' : 'github'
 
             if (session.type === 'github') {
+                console.log('Fetching user from GitHub', token.sub)
                 const response = await fetch('https://api.github.com/user/' + token.sub, {
                     headers: {
                         Authorization: `token ${process.env.GITHUB_TOKEN}`
