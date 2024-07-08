@@ -78,6 +78,7 @@ export function Verifier(props: Props) {
     setInputValue('')
     setValue('')
     setDiscount(undefined)
+    setVoucher('')
   }
 
   async function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -125,7 +126,7 @@ export function Verifier(props: Props) {
     if (debouncedValue && isConnected && session?.type !== 'ethereum' && discount?.type === 'ethereum') {
       handleSiweSignIn()
     }
-  }, [debouncedValue, isConnected, session, discount])
+  }, [debouncedValue, isConnected, session?.type, discount?.type])
   
   async function validate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -181,13 +182,13 @@ export function Verifier(props: Props) {
         </div>
 
         <div className='z-10'>
-          {!discount && (
+          {!voucher && !discount && (
             <Button color='blue-1' fill fat>
               Validate
             </Button>
           )}
 
-          {discount && discount.discount === 0 && (
+          {!voucher && discount && discount.discount === 0 && (
             <button onClick={clear}>
               <Button color='black-1' fill fat>
                 Clear
@@ -195,7 +196,7 @@ export function Verifier(props: Props) {
             </button>
           )}
 
-          {discount && discount.discount > 0 && discount.type === 'github' && session?.type !== 'github' && (
+          {!voucher && discount && discount.discount > 0 && discount.type === 'github' && session?.type !== 'github' && (
             <button onClick={() => popupCenter("/signin", "Sign-in With Github")}>
               <Button color='green-1' fill fat>
                 Connect Github
@@ -203,16 +204,27 @@ export function Verifier(props: Props) {
             </button>
           )}
 
-          {discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
+          {!voucher && discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
             <w3m-button balance='hide' />
           )}
 
-          {discount && discount.discount > 0 && discount.type === session?.type && (
+          {!voucher && discount && discount.discount > 0 && discount.type === session?.type && (
             <button onClick={claim}>
               <Button color='green-1' fill fat>
                 Claim Discount
               </Button>
             </button>
+          )}
+
+          {voucher && (
+            <div className='flex flex-row items-center gap-2'>
+            <Link to={`https://tickets.devcon.org?voucher=${voucher}`} target='_blank'>
+              <Button color='green-1' fill fat>
+                Redeem Voucher
+              </Button>
+            </Link>
+            <span className='text-sm cursor-pointer' onClick={clear}>Reset</span>
+            </div>
           )}
         </div>
       </div>
@@ -225,13 +237,6 @@ export function Verifier(props: Props) {
           {discount.discount > 0 && (
             <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. </p>
           )}          
-        </div>
-      )}
-
-      {discount && voucher && (
-        <div className='mt-8'>
-          <p>Here is your unique discount code. Don't share this with others!</p>
-          <p> - <Link to={`https://devcon.org/discounts/${voucher}`}>{voucher}</Link></p>
         </div>
       )}
     </form>
