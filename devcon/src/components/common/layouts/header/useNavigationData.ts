@@ -319,13 +319,18 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
+          title: 'Program',
+          url: '/programming',
+          type: 'page',
+        },
+        {
           title: 'Tickets',
           url: '/tickets',
           type: 'page',
         },
         {
-          title: 'Program',
-          url: '/programming',
+          title: 'City Guide',
+          url: '/city-guide',
           type: 'page',
         },
         {
@@ -352,20 +357,6 @@ const useNavigationData = () => {
           title: 'Archive',
           url: 'https://archive.devcon.org/archive/',
           type: 'link',
-        },
-        {
-          title: 'Press and Media',
-          url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
-          type: 'link',
-        },
-        {
-          title: 'Press Kit',
-          url:
-            // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
-            process.env.NODE_ENV === 'development'
-              ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
-              : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
-          type: 'page',
         },
       ],
       right: [
@@ -403,6 +394,20 @@ const useNavigationData = () => {
           title: 'Devconnect',
           url: 'https://devconnect.org',
           type: 'link',
+        },
+        {
+          title: 'Press and Media',
+          url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
+          type: 'link',
+        },
+        {
+          title: 'Press Kit',
+          url:
+            // Fully qualified domains because intl middleware redirects fuck it up otherwise - easiest to handle it here
+            process.env.NODE_ENV === 'development'
+              ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
+              : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
+          type: 'page',
         },
       ],
       // rightBottom: [
