@@ -21,7 +21,7 @@ const Mobile = (props: any) => {
 
   return (
     <div className={css['mobile-navigation']}>
-      <ul className={css['accordion']}>
+      <ul className={`${css['accordion']} text-sm`}>
         {navigationData.site.map((i: LinkType, index: number) => {
           const children = i.links
           const hasChildren = children && children.length > 0
@@ -172,7 +172,7 @@ export const Navigation = (props: any) => {
                 <>
                   {i.title}
                   <IconArrowDown style={{ width: '10px', height: '5px', margin: '8px' }} />
-                  <div className={css['foldout']}>
+                  <div className={`${css['foldout']} rounded shadow-lg`}>
                     {i.logo && (
                       <div className={css['foldout-background']}>
                         <i.logo />
@@ -180,7 +180,7 @@ export const Navigation = (props: any) => {
                       </div>
                     )}
                     {i.links && i.links.length > 0 && (
-                      <ul>
+                      <ul className="text-sm font-medium">
                         {i.links?.map((c: LinkType, subIndex: number) => {
                           const subKey = `site-nav-2_${subIndex}`
 

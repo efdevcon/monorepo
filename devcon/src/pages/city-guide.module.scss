@@ -1,0 +1,246 @@
+@use 'assets/css/partials/index' as *;
+
+@keyframes cloud-move-left {
+  5% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes cloud-move-right {
+  5% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-100vw) rotateY(180deg);
+  }
+}
+
+@keyframes lantern-rise {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  30% {
+    transform: translate(20%, -40vh) rotate(10deg);
+  }
+
+  50% {
+    transform: translate(-30%, -90vh) rotate(-10deg);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(20%, -115vh) rotate(10deg);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translate(10%, -130vh) rotate(5deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0, -140vh) rotate(-10deg);
+  }
+}
+
+.city-guide {
+  --custom-fade-color: #ffded9;
+  --custom-text-color: rgb(146, 146, 146);
+
+  // :global {
+  //   div#block-yui_3_17_2_1_1685838379094_5882 > div {
+  //     overflow: hidden;
+  //   }
+
+  //   iframe[src*='maps/d'] {
+  //     margin-top: -70px;
+  //   }
+  // }
+}
+
+.orange-section {
+  position: relative;
+
+  &:before {
+    z-index: -10;
+    opacity: 0.5;
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: linear-gradient(180deg, #ffffff 27.08%, #ff2a00 100%);
+  }
+
+  @apply pb-8;
+
+  [data-id='image'] {
+    mask-image: radial-gradient(farthest-side at bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+
+    // mask-image: linear-gradient(
+    //   to right,
+    //   rgba(0, 0, 0, 0),
+    //   rgba(0, 0, 0, 1) 20%,
+    //   rgba(0, 0, 0, 1) 80%,
+    //   rgba(0, 0, 0, 0)
+    // );
+  }
+}
+
+.black-section {
+  $bg-light: #010101;
+  $bg-dark: #12161e;
+
+  [data-id='image'] {
+    mask-image: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.15));
+
+    // mask-image: linear-gradient(
+    //   to right,
+    //   rgba(0, 0, 0, 0),
+    //   rgba(0, 0, 0, 1) 20%,
+    //   rgba(0, 0, 0, 1) 80%,
+    //   rgba(0, 0, 0, 0)
+    // );
+  }
+
+  .looping-text {
+    &:before {
+      display: none;
+    }
+
+    p {
+      color: rgb(255, 77, 0);
+      mask-image: linear-gradient(to bottom, black 30%, transparent) !important;
+    }
+  }
+
+  // background: $bg-dark;
+  background: linear-gradient(180deg, $bg-dark 0%, $bg-light 100%);
+
+  .lantern-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    // background: $bg-dark;
+    // background: linear-gradient(180deg, $bg-dark 0%, $bg-light 100%);
+  }
+
+  section {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    // &.z-100 {
+    //   z-index: 100;
+    // }
+  }
+
+  // .land {
+  //   position: absolute;
+  //   right: 0;
+  //   bottom: -0.5rem;
+  //   left: 0;
+  //   z-index: 999;
+
+  //   img {
+  //     width: 101vw;
+  //   }
+  // }
+
+  .lantern {
+    position: absolute;
+    animation: lantern-rise infinite linear;
+  }
+
+  @for $i from 1 through 30 {
+    $posX: random() * 90%;
+    $posY: random() * 100% + 90%;
+    $random: random(30) + 16;
+    $second: abs(($random / 1.2) - 150) + s;
+    $delay: $i * -0.1s;
+    $size: $random + 10 + px;
+    $sizeM: $random / 2 + px;
+    $abs: $random / 100;
+    $g: abs($random / 100 * 100% - 100%);
+    .l#{$i} {
+      top: $posY;
+      left: $posX;
+      // z-index: $random;
+      max-width: $size;
+      filter: grayscale($g);
+      animation-duration: $second;
+      animation-delay: $delay;
+    }
+
+    .blur .l#{$i} {
+      @if $random % 2 == 0 and $random > 40 {
+        filter: blur(7px);
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      .l#{$i} {
+        max-width: $sizeM;
+      }
+    }
+  }
+
+  .blur {
+    height: 100%;
+    width: 100%;
+  }
+
+  .cloud-wrap {
+    .cloud {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .cloud:nth-of-type(odd) {
+      animation: cloud-move-left linear infinite;
+    }
+
+    .cloud:nth-of-type(even) {
+      transform: translateX(100vw) rotateY(180deg);
+      animation: cloud-move-right ease-in-out;
+    }
+  }
+
+  @for $x from 1 through 5 {
+    $posY: random() * 20% + 40%;
+    $z: random(30);
+    $random: random(100);
+    $size: ($random + 75) + px;
+    $sizeM: $random / 2 + px;
+    $second: ($z + 100) + s;
+    $delay: ($x * random(10)) + s;
+    .cloud-wrap .cloud.c#{$x} {
+      top: $posY;
+      // z-index: $z;
+      max-width: $size;
+      animation-duration: $second;
+      animation-delay: $delay;
+    }
+
+    @media screen and (max-width: 640px) {
+      .cloud-wrap .cloud.c#{$x} {
+        max-width: $sizeM;
+      }
+    }
+  }
+}
+
+.scrolling-images {
+  img {
+    box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.4);
+  }
+}

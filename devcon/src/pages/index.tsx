@@ -17,7 +17,7 @@ import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
 import themes from './themes.module.scss'
 import ImageNew from 'next/image'
-// import CircleBackground from 'assets/images/background-circles.png'
+import CircleBackground from 'assets/images/background-circles.png'
 // import TriangleBackground from 'assets/images/background-triangles.png'
 import { GetContentSections, GetTracks } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
@@ -44,6 +44,9 @@ import moment from 'moment'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
+import Petals from 'assets/icons/petals.svg'
+import SwipeToScroll from 'components/common/swipe-to-scroll'
+import { useDraggableLink } from 'components/domain/devcon-week/schedule'
 
 const videos = [
   {
@@ -119,8 +122,8 @@ export default pageHOC(function Index(props: any) {
   const [video, setVideo] = React.useState(videos[0])
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
-
   const [cal, setCal] = React.useState<any>(null)
+  const draggableLinkAttributes = useDraggableLink()
 
   React.useEffect(() => {
     setCal(
@@ -149,25 +152,79 @@ export default pageHOC(function Index(props: any) {
       <Header withStrip withHero />
       <Hero />
 
-      <div className="bg-white z-10 overflow-hidden w-full">
+      <div className="bg-white z-10 overflow-hidden w-full relative z<">
+        <ImageNew
+          src={CircleBackground}
+          alt="Circle background"
+          className="max-w-[700px] absolute right-[-100px] -top-[350px] rotate-180 -z-10 opacity-10"
+        />
+
         <div className="section">
-          <div className="flex flex-col justify-center lg:flex-row gap-8 border-bottom mt-8 mb-8 pb-8">
-            <div className="grow">
-              <TitleDevcon className="hidden lg:block" />
-              <div className="lg:mt-6">
-                <RichText content={pages.section1?.body}></RichText>
+          <div className="border border-solid border-neutral-100 shadow-lg mt-6 bg-[#f6edff] rounded">
+            <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+              <div className="flex justify-between items-center no-wrap ">
+                <Petals className="icon grow-0 shrink-0 mx-8 text-3xl" style={{ '--color-icon': '#7958A5' }} />
+                <Link
+                  {...draggableLinkAttributes}
+                  to="https://devconsea.clr.fund/#/projects"
+                  className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ borderColor: '#7958A5' }}
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
+                  >
+                    <p className="text-lg bold">SEA quadratic funding round —</p>
+                    <p className="text-sm">Make a big impact with a small donation </p>
+                  </motion.div>
+                </Link>
+                <Link
+                  {...draggableLinkAttributes}
+                  to="/tickets"
+                  className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ borderColor: '#7958A5' }}
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
+                  >
+                    <p className="text-lg bold">Win your ticket to Devcon —</p>
+                    <p className="text-sm">Top 20 bids win, but everyone has a chance with the raffle </p>
+                  </motion.div>
+                </Link>
+                <Link
+                  {...draggableLinkAttributes}
+                  to="/supporters"
+                  className="grow shrink-0 mt-[2px] h-full flex justify-center flex-col cursor-pointer"
+                >
+                  <motion.div
+                    whileHover={{ borderColor: '#7958A5' }}
+                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
+                  >
+                    <p className="text-lg bold">Be a Devcon Supporter —</p>
+                    <p className="text-sm">
+                      Help fund vital Ethereum projects and gain access to Devcon for your team{' '}
+                    </p>
+                  </motion.div>
+                </Link>
               </div>
+            </SwipeToScroll>
+          </div>
+          <div className="flex flex-col justify-center lg:flex-row gap-8 border-bottom mt-10 mb-8 pb-8">
+            <div className="grow">
+              {/* <TitleDevcon className="hidden lg:block" /> */}
+              {/* <div className="lg:mt-6"> */}
+              <RichText content={pages.section1?.body}></RichText>
+              {/* </div> */}
             </div>
-            <div className="flex w-full flex-col grow shrink-0 justify-center max-w-[420px] lg:grow-0">
-              <div className="flex justify-between w-full gap-8">
-                <ImageNew src={BangkokVenue} alt="Devcon 7 Bangkok VEnue" className="max-w-[162px]" />
+            <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
+              <div className="flex justify-between w-full gap-4">
+                <ImageNew src={BangkokVenue} alt="Devcon 7 Bangkok Venue" className="max-w-[162px]" />
                 <p className="text-lg font-secondary text-[#8B6BBB] bold">
                   QSNCC —<br className="hidden lg:inline-block" /> Queen Sirikit National{' '}
                   <br className="hidden lg:inline-block" />
                   Convention Center
                 </p>
               </div>
-              <p className="mt-4 mb-5">
+              <p className="mt-4 mb-3">
                 60 Queen Sirikit National Convention Center, Ratchadaphisek Road, Khlong Toei Sub-district, Khlong Toei
                 District, <b>Bangkok, Thailand</b>
               </p>
