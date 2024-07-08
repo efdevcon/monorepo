@@ -121,7 +121,7 @@ export default pageHOC(function Programming(props: any) {
             <CallToAction
               color="purple"
               title={'Speaker Applications'}
-              tag="Coming Soon"
+              tag="Apply Now"
               BackgroundSvg={SpeakersBackground}
               link={pages.overview?.button?.link}
               linkText={pages.overview?.button?.text}
