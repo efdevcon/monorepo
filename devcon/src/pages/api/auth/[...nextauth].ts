@@ -97,12 +97,16 @@ export const authOptions: AuthOptions = {
                         Authorization: `token ${process.env.GITHUB_TOKEN}`
                     }
                 })
+
                 if (response.status === 200) {
                     const user = await response.json()
                     if (user) { 
                         session.id = user.login
                         session.userId = user.id
                     }
+                } else {
+                    console.error('Unable to fetch Github user', response.status, response.statusText)
+                    console.log(response)
                 }
             }
 

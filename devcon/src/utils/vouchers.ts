@@ -7,6 +7,7 @@ const SECRET_KEY = process.env.NEXTAUTH_SECRET
 if (!SECRET_KEY) throw new Error('NEXTAUTH_SECRET is not set')
 
 export async function getVoucherCodes(groupType: 'core-devs' | 'dao-participants' | 'oss-contributors' | 'pg-projects' | 'past-attendees', index: number) {
+    console.log('Get voucher code', groupType, index)
     const key = new TextEncoder().encode(SECRET_KEY).slice(0, 32)
     const encryptedVoucherCodes = await readFile(process.cwd() + `/src/discounts/vouchers/${groupType}.txt.encrypted`, {
       encoding: 'utf-8',

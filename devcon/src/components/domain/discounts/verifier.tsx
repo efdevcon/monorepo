@@ -78,6 +78,7 @@ export function Verifier(props: Props) {
     setInputValue('')
     setValue('')
     setDiscount(undefined)
+    setVoucher('')
   }
 
   async function onInputChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -108,6 +109,7 @@ export function Verifier(props: Props) {
       const voucherBody = await voucherRes.json()
 
       if (voucherRes.status === 401) {
+        clear()
         return setError('Unauthorized')
       }
 
@@ -125,7 +127,7 @@ export function Verifier(props: Props) {
     if (debouncedValue && isConnected && session?.type !== 'ethereum' && discount?.type === 'ethereum') {
       handleSiweSignIn()
     }
-  }, [debouncedValue, isConnected, session, discount])
+  }, [debouncedValue, isConnected, session?.type, discount?.type])
   
   async function validate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -162,15 +164,15 @@ export function Verifier(props: Props) {
         <div className={`label bold ${css['tag']} ghost rounded-lg`}>Now live</div>
       </div>
 
-      <div className='flex flex-col justify-between md:flex-row'>
-        <div className='max-w-96'>
+      <div className='flex flex-col justify-between gap-4 lg:flex-row'>
+        <div className='w-full lg:w-2/5'>
           <strong>Enter wallet address or Github username.</strong>
           <p>Validate any single source of criteria to unlock discounted Devcon tickets.</p>
         </div>
 
-        <div>
+        <div className='w-full lg:w-2/5 z-10'>
           <input
-            className={`rounded-full w-96 p-2.5 px-5 border-solid border ${
+            className={`rounded-full w-full border-solid border p-2.5 px-5 ${
               discount ? discount?.discount > 0 ? 'border-green-300' : 'border-red-300' : 'border-slate-300'
             }`}
             type="text"
@@ -180,14 +182,14 @@ export function Verifier(props: Props) {
           />
         </div>
 
-        <div>
-          {!discount && (
+        <div className='z-10'>
+          {!voucher && !discount && (
             <Button color='blue-1' fill fat>
               Validate
             </Button>
           )}
 
-          {discount && discount.discount === 0 && (
+          {!voucher && discount && discount.discount === 0 && (
             <button onClick={clear}>
               <Button color='black-1' fill fat>
                 Clear
@@ -195,7 +197,7 @@ export function Verifier(props: Props) {
             </button>
           )}
 
-          {discount && discount.discount > 0 && discount.type === 'github' && session?.type !== 'github' && (
+          {!voucher && discount && discount.discount > 0 && discount.type === 'github' && session?.type !== 'github' && (
             <button onClick={() => popupCenter("/signin", "Sign-in With Github")}>
               <Button color='green-1' fill fat>
                 Connect Github
@@ -203,16 +205,25 @@ export function Verifier(props: Props) {
             </button>
           )}
 
-          {discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
+          {!voucher && discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
             <w3m-button balance='hide' />
           )}
 
-          {discount && discount.discount > 0 && discount.type === session?.type && (
+          {!voucher && discount && discount.discount > 0 && discount.type === session?.type && (
             <button onClick={claim}>
               <Button color='green-1' fill fat>
                 Claim Discount
               </Button>
             </button>
+          )}
+
+          {voucher && (
+            <div className='flex flex-row items-center gap-2'>
+              <Link className='font-medium text-[#1b6fae] hover:text-[#448dc3]' to={`https://ticketh.xyz/devcon/7/redeem?voucher=${voucher}`} target='_blank'>
+                  Redeem
+              </Link>
+              <span className='text-sm cursor-pointer' onClick={clear}>Reset</span>
+            </div>
           )}
         </div>
       </div>
@@ -223,15 +234,8 @@ export function Verifier(props: Props) {
             <p>Unfortunately, <b>{debouncedValue}</b> is not eligible for a discount. Please try another account or address.</p>
           )}
           {discount.discount > 0 && (
-            <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. Please continue to Claim Discount.</p>
+            <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. </p>
           )}          
-        </div>
-      )}
-
-      {discount && voucher && (
-        <div className='mt-8'>
-          <p>Here is your unique discount code. Don't share this with others!</p>
-          <p> - <Link to={`https://devcon.org/discounts/${voucher}`}>{voucher}</Link></p>
         </div>
       )}
     </form>
