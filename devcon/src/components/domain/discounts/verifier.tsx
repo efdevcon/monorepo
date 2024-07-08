@@ -219,12 +219,10 @@ export function Verifier(props: Props) {
 
           {voucher && (
             <div className='flex flex-row items-center gap-2'>
-            <Link to={`https://ticketh.xyz/devcon/7/redeem?voucher=${voucher}`} target='_blank'>
-              <Button color='green-1' fill fat>
-                Redeem Voucher
-              </Button>
-            </Link>
-            <span className='text-sm cursor-pointer' onClick={clear}>Reset</span>
+              <Link className='font-medium text-[#1b6fae] hover:text-[#448dc3]' to={`https://ticketh.xyz/devcon/7/redeem?voucher=${voucher}`} target='_blank'>
+                  Redeem
+              </Link>
+              <span className='text-sm cursor-pointer' onClick={clear}>Reset</span>
             </div>
           )}
         </div>
