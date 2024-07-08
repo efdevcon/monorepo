@@ -52,7 +52,16 @@ const city_guide: Template = {
               label: 'author',
               type: 'string',
             },
-            createRichText('card'),
+            {
+              name: 'card',
+              label: 'card',
+              type: 'string',
+            },
+            {
+              name: 'url',
+              label: 'url',
+              type: 'string',
+            },
           ],
         },
       ],

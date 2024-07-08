@@ -211,6 +211,13 @@ const useNavigationData = () => {
         url: '/tickets',
         type: 'page',
       },
+
+      {
+        title: 'City Guide',
+        url: '/city-guide',
+        type: 'page',
+      },
+
       // {
       //   title: 'Program',
       //   url: '/programming',

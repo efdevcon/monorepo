@@ -12,7 +12,7 @@ import InfiniteScroller from 'lib/components/infinite-scroll'
 import cn from 'classnames'
 import indexCss from './index.module.scss'
 import css from './city-guide.module.scss'
-import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
+import HeroBackground from 'assets/images/pages/hero-bgs/city-guide.png'
 import { Snapshot } from 'components/common/snapshot'
 import IconClock from 'assets/icons/icon_clock.svg'
 import IconCurrency from 'assets/icons/icon_currency.svg'
@@ -75,7 +75,6 @@ const Lanterns = () => {
 }
 
 export default pageHOC(function CityGuide(props: any) {
-  // const pageContext = usePageContext()
   const { data } = useTina<PagesQuery>(props.cms)
   const cityGuide = data.pages as PagesCity_Guide
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
@@ -113,13 +112,9 @@ export default pageHOC(function CityGuide(props: any) {
             title: 'Devcon Map',
             to: '#map',
           },
-          {
-            title: 'FAQ',
-            to: '#faq',
-          },
           // {
-          //   title: 'Supporters',
-          //   to: '#supporters',
+          //   title: 'FAQ',
+          //   to: '#faq',
           // },
         ]}
       />
@@ -192,7 +187,13 @@ export default pageHOC(function CityGuide(props: any) {
               (image: any, index) => {
                 return (
                   <div key={index} className={cn('aspect-video flex gap-8 mr-8 mb-8 mt-16', css['scrolling-images'])}>
-                    <Image src={image} alt={`City Image: 1`} className="object-cover h-full w-full rounded-xl" />
+                    <Image
+                      src={image}
+                      alt={`City Image: ${index}`}
+                      height={350}
+                      className="object-cover h-full w-full rounded-xl"
+                      priority
+                    />
                   </div>
                 )
               }
@@ -254,7 +255,7 @@ export default pageHOC(function CityGuide(props: any) {
               <div className="flex flex-col items-center">
                 <div className="w-full xl:max-w-[630px]">
                   <div className="flex justify-between">
-                    <div className="h2 bold mb-3">Community Guides</div>
+                    <RichText content={cityGuide.community_guides?.text} />
                     {/* <div>
                       <Button
                         disabled={!canBack}
@@ -278,27 +279,33 @@ export default pageHOC(function CityGuide(props: any) {
                   </div>
 
                   <motion.div className="flex flex-col gap-1 z-10">
-                    <div className="text-xl font-secondary">The Hitchhiker's Guide to Bangkok</div>
-                    <div className="text-[#EA766E] hover:underline bold text-sm">Luke Cassady-Dorion</div>
+                    {cityGuide.community_guides?.community_guides &&
+                      cityGuide.community_guides?.community_guides.map((guide, index) => (
+                        <React.Fragment key={guide?.title}>
+                          <div className="text-xl font-secondary">{guide?.title}</div>
+                          <div className="text-[#EA766E] bold text-sm">{guide?.author}</div>
 
-                    <div className="aspect-[15/7] max-w-[630px] my-2">
-                      <div className="relative h-full w-full rounded-xl shadow-lg bg-black border-[1px] border-[#12161e] border-solid">
-                        <Image
-                          src={HitchhikerGuide}
-                          alt="Guide Image"
-                          data-id="image"
-                          className="w-full h-full object-cover rounded-xl"
-                        />
-                        <div className="absolute bottom-2 left-2 right-2 italic px-2 opacity-80">
-                          The Hitchhiker's Guide to Bangkok - an insightful, comprehensive Bangkok guide with invaluable
-                          tips and recommendations, showcasing the author's extensive knowledge of the city.
-                        </div>
-                      </div>
-                    </div>
+                          <div className="aspect-[15/7] max-w-[630px] my-2">
+                            <div className="relative h-full w-full rounded-xl shadow-lg bg-black border-[1px] border-[#12161e] border-solid">
+                              <Image
+                                src={HitchhikerGuide}
+                                alt="Guide Image"
+                                data-id="image"
+                                className="w-full h-full object-cover rounded-xl"
+                              />
+                              <div className="absolute bottom-2 left-2 right-2 italic px-2 opacity-80">
+                                {guide?.card}
+                              </div>
+                            </div>
+                          </div>
 
-                    <Button fat color="orange-1" className="self-start mt-2">
-                      Read Guide
-                    </Button>
+                          <Link to={guide?.url}>
+                            <Button fat color="orange-1" className="self-start mt-2">
+                              Read Guide
+                            </Button>
+                          </Link>
+                        </React.Fragment>
+                      ))}
                   </motion.div>
                 </div>
               </div>
@@ -307,7 +314,7 @@ export default pageHOC(function CityGuide(props: any) {
             <div className="relative flex flex-col justify-start pt-24 mt-8 z-[2] pointer-events-none">
               <Image src={AmazingThailand} alt="Amazing Thailand logo" className="max-w-[100px] object-contain mb-4" />
               <Link
-                to="https://amazingthailand.com"
+                to="https://www.tourismthailand.org/Search-result/attraction?destination_id=219&sort_by=datetime_updated_desc&page=1&perpage=15&menu=attraction"
                 indicateExternal
                 className="text-lg bold uppercase mb-8 pointer-events-auto hover:underline"
                 style={{ '--color-icon': 'white' }}
@@ -368,14 +375,14 @@ export default pageHOC(function CityGuide(props: any) {
         </div>
 
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6518.438920173003!2d100.54858786418681!3d13.725292303010333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30e29f1a5c9887b3%3A0x230edac05ae63ab7!2sQueen%20Sirikit%20National%20Convention%20Center!5e0!3m2!1sen!2sdk!4v1720100815380!5m2!1sen!2sdk"
+          src="https://www.google.com/maps/d/embed?mid=1BHVWGTlFT6971Ws0yYCW7BfhAGh9w2M&ehbc=2E312F"
           width="100%"
           height="500px"
           className="expand"
         ></iframe>
 
-        <div className="section mb-12 relative">
-          <div className="anchor absolute -top-20" id="faq"></div>
+        {/* <div className="section mb-12 relative">
+          <div className="anchor absolute" id="faq"></div>
           <div className="h2 bold mb-6 pt-8 border-top">Frequently Asked</div>
           <div className="flex flex-col">
             {cityGuide.city_guide_faq &&
@@ -405,7 +412,7 @@ export default pageHOC(function CityGuide(props: any) {
                 )
               })}
           </div>
-        </div>
+        </div> */}
       </div>
     </Page>
   )
