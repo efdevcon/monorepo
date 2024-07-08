@@ -123,7 +123,35 @@ $logo-offset: 50px;
     height: 90vh;
   }
 
+  &.ticket-mode {
+    // transform: scale(0.5);
+    background: rgb(29, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    .devcon-7-overlay {
+      display: none !important;
+    }
+
+    .dc7-logo {
+      margin-top: 64px !important;
+    }
+
+    .backdrop {
+      opacity: 0.12;
+      background: black;
+    }
+
+    [data-type="scroll-indicator"] {
+      display: none;
+    }
+
+    .ticket {
+      z-index: 10;
+
+    }
+  }
 
   .shading {
     position: absolute;
