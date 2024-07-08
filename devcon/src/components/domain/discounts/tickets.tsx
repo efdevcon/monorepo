@@ -29,7 +29,7 @@ export function Ticket(props: TicketDiscount) {
         </ul>
       </div>
       <div className='flex flex-row justify-between items-center mt-4 z-10'>
-        <p className='h2 bold'>{props.discount}%</p>
+        <p className='h2 bold'>{props.discount}% Off</p>
         <p>
           <span className='text-sm cursor-pointer font-medium text-[#1b6fae] hover:text-[#448dc3]' onClick={() => setModalOpen(true)}>Learn more</span>
         </p>
