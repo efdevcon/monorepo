@@ -85,7 +85,6 @@ export const authOptions: AuthOptions = {
     callbacks: {
         async session({ session, token }) {
             if (!token.sub) {
-              console.log('Token does not have a sub', token)
               return session
             }
 
@@ -99,12 +98,16 @@ export const authOptions: AuthOptions = {
                         Authorization: `token ${process.env.GITHUB_TOKEN}`
                     }
                 })
+
                 if (response.status === 200) {
                     const user = await response.json()
+                    console.log('Retrieved user from GitHub', user)
                     if (user) { 
                         session.id = user.login
                         session.userId = user.id
                     }
+                } else {
+                    console.error('Failed to fetch user from GitHub', response)
                 }
             }
 
