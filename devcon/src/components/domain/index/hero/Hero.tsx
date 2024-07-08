@@ -235,7 +235,7 @@ export const Ticket = (props: TicketProps) => {
           src={Lyra}
           // src={Deva}
           // src={Aria}
-          alt="Devcon logo flowers"
+          alt={`Devcon Hero`}
           className="absolute h-[75%] lg:h-[80%] left-0 right-0 bottom-0 object-contain object-right-bottom w-full"
         />
       </div>

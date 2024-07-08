@@ -112,10 +112,10 @@ export default pageHOC(function CityGuide(props: any) {
             title: 'Devcon Map',
             to: '#map',
           },
-          // {
-          //   title: 'FAQ',
-          //   to: '#faq',
-          // },
+          {
+            title: 'FAQ',
+            to: '#faq',
+          },
         ]}
       />
 
@@ -229,7 +229,7 @@ export default pageHOC(function CityGuide(props: any) {
                     <iframe
                       width="100%"
                       height="100%"
-                      src={`https://www.youtube.com/embed/fXtGOaJBJ7o`}
+                      src={`https://www.youtube.com/embed/-1vv0b99ztk`}
                       className="rounded-xl shadow-lg overflow-hidden"
                       title="YouTube video player"
                       frameBorder="0"
@@ -283,7 +283,9 @@ export default pageHOC(function CityGuide(props: any) {
                       cityGuide.community_guides?.community_guides.map((guide, index) => (
                         <React.Fragment key={guide?.title}>
                           <div className="text-xl font-secondary">{guide?.title}</div>
-                          <div className="text-[#EA766E] bold text-sm">{guide?.author}</div>
+                          <div className="text-[#EA766E] bold text-sm hover:underline">
+                            <Link to="https://x.com/spaceagente">{guide?.author}</Link>
+                          </div>
 
                           <div className="aspect-[15/7] max-w-[630px] my-2">
                             <div className="relative h-full w-full rounded-xl shadow-lg bg-black border-[1px] border-[#12161e] border-solid">
@@ -381,7 +383,7 @@ export default pageHOC(function CityGuide(props: any) {
           className="expand"
         ></iframe>
 
-        {/* <div className="section mb-12 relative">
+        <div className="section mb-12 relative">
           <div className="anchor absolute" id="faq"></div>
           <div className="h2 bold mb-6 pt-8 border-top">Frequently Asked</div>
           <div className="flex flex-col">
@@ -412,7 +414,7 @@ export default pageHOC(function CityGuide(props: any) {
                 )
               })}
           </div>
-        </div> */}
+        </div>
       </div>
     </Page>
   )
