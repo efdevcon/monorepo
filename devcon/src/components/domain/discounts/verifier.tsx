@@ -162,15 +162,15 @@ export function Verifier(props: Props) {
         <div className={`label bold ${css['tag']} ghost rounded-lg`}>Now live</div>
       </div>
 
-      <div className='flex flex-col justify-between md:flex-row'>
-        <div className='max-w-96'>
+      <div className='flex flex-col justify-between gap-4 lg:flex-row'>
+        <div className='w-full lg:w-2/5'>
           <strong>Enter wallet address or Github username.</strong>
           <p>Validate any single source of criteria to unlock discounted Devcon tickets.</p>
         </div>
 
-        <div>
+        <div className='w-full lg:w-2/5 z-10'>
           <input
-            className={`rounded-full w-96 p-2.5 px-5 border-solid border ${
+            className={`rounded-full w-full border-solid border p-2.5 px-5 ${
               discount ? discount?.discount > 0 ? 'border-green-300' : 'border-red-300' : 'border-slate-300'
             }`}
             type="text"
@@ -180,7 +180,7 @@ export function Verifier(props: Props) {
           />
         </div>
 
-        <div>
+        <div className='z-10'>
           {!discount && (
             <Button color='blue-1' fill fat>
               Validate
@@ -223,7 +223,7 @@ export function Verifier(props: Props) {
             <p>Unfortunately, <b>{debouncedValue}</b> is not eligible for a discount. Please try another account or address.</p>
           )}
           {discount.discount > 0 && (
-            <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. Please continue to Claim Discount.</p>
+            <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. </p>
           )}          
         </div>
       )}
