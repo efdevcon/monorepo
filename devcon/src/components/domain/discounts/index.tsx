@@ -14,7 +14,7 @@ export function SelfClaimingDiscounts() {
         <div className="text-xl bold font-secondary mb-6 mt-8">Self-claimed</div>
         <p>We are offering Reserved or Discounted to a few groups, including</p>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mt-8'>
+        <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8'>
           {discounts.sort((a, b) => b.target - a.target).map((i: TicketDiscount) => {
             return <Ticket key={i.name} {...i} />
           })}

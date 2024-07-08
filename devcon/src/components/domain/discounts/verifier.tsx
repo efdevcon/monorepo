@@ -109,6 +109,7 @@ export function Verifier(props: Props) {
       const voucherBody = await voucherRes.json()
 
       if (voucherRes.status === 401) {
+        clear()
         return setError('Unauthorized')
       }
 
@@ -218,7 +219,7 @@ export function Verifier(props: Props) {
 
           {voucher && (
             <div className='flex flex-row items-center gap-2'>
-            <Link to={`https://tickets.devcon.org?voucher=${voucher}`} target='_blank'>
+            <Link to={`https://ticketh.xyz/devcon/7/redeem?voucher=${voucher}`} target='_blank'>
               <Button color='green-1' fill fat>
                 Redeem Voucher
               </Button>
