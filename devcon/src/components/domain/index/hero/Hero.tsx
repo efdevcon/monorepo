@@ -105,7 +105,7 @@ type TicketProps = {
 }
 
 export const Ticket = (props: TicketProps) => {
-  const heroes = [Aria, Cat, Deva, Doggo, Lyra];
+  const heroes = [Aria, Cat, Doggo, Deva, Lyra];
   const firstLetter = props.name[0].toUpperCase()
   const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0)
   const heroIndex = alphabetIndex % heroes.length
