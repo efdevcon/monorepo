@@ -314,15 +314,15 @@ export default pageHOC(function CityGuide(props: any) {
             </div>
 
             <div className="relative flex flex-col justify-start pt-24 mt-8 z-[2] pointer-events-none">
-              <Image src={AmazingThailand} alt="Amazing Thailand logo" className="max-w-[100px] object-contain mb-4" />
-              <Link
+              <Image src={AmazingThailand} alt="Amazing Thailand logo" className="max-w-[100px] object-contain mb-8" />
+              {/* <Link
                 to="https://www.tourismthailand.org/Search-result/attraction?destination_id=219&sort_by=datetime_updated_desc&page=1&perpage=15&menu=attraction"
                 indicateExternal
                 className="text-lg bold uppercase mb-8 pointer-events-auto hover:underline"
                 style={{ '--color-icon': 'white' }}
               >
                 Tourism Thailand Website
-              </Link>
+              </Link> */}
               <div className={`${indexCss['scrolling-text-background']} ${css['looping-text']} select-none`}>
                 <InfiniteScroller nDuplications={3} speed="180s">
                   <p className={cn('bold')}>EXPERIENCES&nbsp;</p>
