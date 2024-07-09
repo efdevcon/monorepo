@@ -1,11 +1,19 @@
 import React from 'react'
 import { GetPage } from 'services/page'
-import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
 import { Hero } from 'components/domain/index/hero'
 
 const Ticket = (props: any) => {
-  return <Hero ticketMode></Hero>
+  if (!props.params) return null
+
+  return <Hero name={props?.params?.name} ticketMode></Hero>
+}
+
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
 }
 
 export async function getStaticProps(context: any) {
@@ -15,6 +23,7 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       ...globalData,
+      params: context.params,
       page,
     },
   }

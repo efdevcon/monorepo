@@ -246,7 +246,7 @@ export const Ticket = (props: TicketProps) => {
   )
 }
 
-export const Hero = (props: { ticketMode?: boolean }) => {
+export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
   const searchParams = useSearchParams()
   // const router = useRouter()
   const intl = useTranslations()
@@ -303,7 +303,7 @@ export const Hero = (props: { ticketMode?: boolean }) => {
     transformRightY.set(yDir)
   }, [x, y])
 
-  const ticketHolder = searchParams.get('name') ?? 'Anon'
+  const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   const imageUrl = `https://discounts--devcon-social.netlify.app/api?name=${ticketHolder}`
 
