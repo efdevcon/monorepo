@@ -1,13 +1,8 @@
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 
-// Route segment config
 export const runtime = "edge";
-
-// Image metadata
-export const alt = "Devcon Ticket";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -19,7 +14,6 @@ export async function GET(req: NextRequest) {
   const alphabetIndex = firstLetter.charCodeAt(0) - 'A'.charCodeAt(0);
   const heroIndex = alphabetIndex % heroes.length;
   const selectedHero = heroes[heroIndex];
-  console.log('HERO SELECTION', firstLetter, alphabetIndex, heroIndex, selectedHero)
 
   return new ImageResponse(
     (
@@ -61,6 +55,10 @@ export async function GET(req: NextRequest) {
           </div>
         </div>
       </div>
-    )
+    ),
+    {
+      width: 1200,
+      height: 630,
+    }
   );
 }
