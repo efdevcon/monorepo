@@ -43,7 +43,8 @@ export default async function Image({ params }: { params: { name: string } }) {
 
             <div tw="flex flex-col justify-between mb-12">
               <span tw="text-[#36364C] text-7xl">{name}</span>
-              <span tw='text-[#5B5F84] text-2xl mt-4'>Attending Devcon:<br/>Ethereum developer conference</span>
+              <span tw='text-[#5B5F84] text-2xl mt-4'>Attending Devcon:</span>
+              <span tw='text-[#5B5F84] text-2xl mt-4'>Ethereum Developer Conference</span>
             </div>
 
             <span tw="text-2xl font-bold uppercase">Devcon.org</span>
