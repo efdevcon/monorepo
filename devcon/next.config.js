@@ -18,7 +18,7 @@ const nextConfig = {
       'blog.ethereum.org',
       'img.youtube.com',
       'www.gravatar.com',
-      'assets.tina.io'
+      'assets.tina.io',
     ],
   },
   i18n: {

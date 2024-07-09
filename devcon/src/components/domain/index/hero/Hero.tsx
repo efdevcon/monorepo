@@ -46,6 +46,7 @@ import Lyra from './dc7/Lyra.png'
 import Aria from './dc7/Aria.png'
 import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
 import { useSearchParams } from 'next/navigation'
+import Tilty from 'react-tilty'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -184,7 +185,7 @@ export const Ticket = (props: TicketProps) => {
   return (
     <div
       // TODO: Adjust aspect as needed for social sharing
-      className="flex justify-between items-evenly relative rounded-xl shadow-lg aspect-[16/8] w-[500px] max-w-full text-black border-[#F8F9FE] overflow-hidden shadow-xl"
+      className="flex justify-between items-evenly relative rounded-xl aspect-[16/8] w-[550px] max-w-full text-black border-[#F8F9FE] overflow-hidden shadow-xl"
       data-type="ticket"
     >
       <div
@@ -330,16 +331,33 @@ export const Hero = (props: { ticketMode?: boolean }) => {
           <div
             className={cn(
               css['ticket'],
-              'flex flex-col relative justify-center items-center gap-12 pointer-events-none px-4 max-w-full'
+              'flex flex-col relative justify-center items-center gap-12 px-4 max-w-full pointer-events-none'
             )}
           >
-            <Image src={DC7LogoIsolated} alt="DC7 Logo" className="w-[207px]" />
+            <div className="absolute -left-[20px] top-[10%] -z-10">
+              <Butterflies />
+            </div>
+            {/* <div className="absolute right-[20%] -bottom-[10%] -z-10">
+              <Butterflies2 />
+            </div> */}
 
-            <div className="text-3xl max-w-[100%] lg:max-w-[500px] text-center bold font-secondary">
+            <Link to="/">
+              <Image src={DC7LogoIsolated} alt="DC7 Logo" className="w-[207px] pointer-events-auto" />
+            </Link>
+
+            <div className="text-3xl max-w-[100%] lg:max-w-[500px] text-center bold font-secondary relative">
               {ticketHolder}'s Ticket
             </div>
-            <Ticket name={ticketHolder} ticketType={ticketType} />
-            <div className="flex flex-col items-center justify-center text-lg">
+
+            <Tilty
+              className="max-w-full relative pointer-events-auto"
+              style={{ transformStyle: 'preserve-3d' }}
+              speed={5000}
+            >
+              <Ticket name={ticketHolder} ticketType={ticketType} />
+            </Tilty>
+
+            <div className="flex flex-col items-center justify-center text-lg relative">
               <div className="bold leading-5">Join me at Devcon SEA Nov 12 — 15</div>
               <div className="text-sm">QSNCC BANGKOK THAILAND</div>
             </div>
@@ -432,12 +450,16 @@ export const Hero = (props: { ticketMode?: boolean }) => {
           </svg>
         </div>
 
-        <div className={css['left-rotated']}>
-          <p className={'text-uppercase'}>{intl('global_subtitle')}</p>
-        </div>
-        <div className={css['right-rotated']}>
-          <p className={'text-uppercase'}>Road TO SOUTH EAST ASIA 2024</p>
-        </div>
+        {!props.ticketMode && (
+          <>
+            <div className={css['left-rotated']}>
+              <p className={'text-uppercase'}>{intl('global_subtitle')}</p>
+            </div>
+            <div className={css['right-rotated']}>
+              <p className={'text-uppercase'}>Road TO SOUTH EAST ASIA 2024</p>
+            </div>
+          </>
+        )}
 
         {/* <div className={`${css['page-container']} section`}>
           <div className={css['page']}> */}
