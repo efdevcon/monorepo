@@ -312,7 +312,7 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Wave 02</div>
-                    <div className="bold"></div>
+                    <div className="bold">July 30</div>
                   </div>
                 ),
                 indent: false,
@@ -324,7 +324,7 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Wave 03</div>
-                    <div className="bold"></div>
+                    <div className="bold">August 13</div>
                   </div>
                 ),
                 indent: false,

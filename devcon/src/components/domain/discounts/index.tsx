@@ -30,7 +30,14 @@ export function SelfClaimingDiscounts() {
           .map((i: TicketDiscount) => {
             return <Ticket key={i.name} {...i} />
           })}
-        <Ticket name='Local Builders' description='Discount for SEA Residents, and Indian residents' body="Prove you're eligible for a Local SEA Builder discount with zkPassport for SEA Residents, and AnonAadhaar for Indian residents. Application approval required." target={0} discount={0} tags={['zkPassport', 'AnonAadhaar']} />
+        <Ticket
+          name="Local Builders"
+          description="Discount for SEA Residents, and Indian residents"
+          body="Prove you're eligible for a Local SEA Builder discount with zkPassport for SEA Residents, and AnonAadhaar for Indian residents. Application approval required."
+          target={0}
+          discount={0}
+          tags={['zkPassport', 'AnonAadhaar']}
+        />
       </div>
 
       <div className={`rounded-xl shadow mt-8 ${css['message-card']} ${css['blue']}`}>
@@ -41,7 +48,9 @@ export function SelfClaimingDiscounts() {
         <Verifier />
       </div>
 
-      <div className="text-xl bold font-secondary mb-6 mt-8" id="app-based">Application-based (Open indefinitely)</div>
+      <div className="text-xl bold font-secondary mb-6 mt-8" id="app-based">
+        Application-based (Open indefinitely)
+      </div>
       <ul className="list-inside list-decimal mb-12 flex flex-col gap-4 text-sm">
         <li>
           <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
@@ -118,7 +127,7 @@ export function SelfClaimingDiscounts() {
             indicateExternal
             className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
           >
-            Youth (under 18)
+            Youth (Under 18)
           </Link>{' '}
           ($20 USD)
           <p className="ml-5">
