@@ -311,6 +311,7 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
                   className="twitter-share-button" 
                   href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`} 
                   target='_blank'
+                  rel="noreferrer"
                   data-url={currentUrl}
                   data-size="large"
                   data-via="efdevcon"
@@ -319,7 +320,11 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
                     <IconTwitter />
                   </Button>
                 </a>
-                <a href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`} target='_blank'>
+                <a
+                  href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`} 
+                  target='_blank'
+                  rel='noreferrer'
+                  >
                   <Button className="font-bold pointer-events-auto" color="purple-1" fat fill>
                     <IconWarpcast />
                   </Button>

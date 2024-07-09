@@ -11,13 +11,6 @@ export const contentType = 'image/png'
 export default async function Image({ params }: { params: { name: string } }) {
   const name = params.name || "Anon";
   const url = process.env.SITE_URL || "http://localhost:3000";
-  
-  const poppinsRegular = await fetch(
-    new URL('../assets/fonts/Poppins-Regular.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer());
-  const poppinsSemiBold = await fetch(
-    new URL('../assets/fonts/Poppins-SemiBold.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer());
 
   const heroes = ["Aria.png", "Cat.png", "Doggo.png", "Deva.png", "Lyra.png"];
   const firstLetter = name[0].toUpperCase();
@@ -40,7 +33,7 @@ export default async function Image({ params }: { params: { name: string } }) {
             &nbsp;
           </div>
           <div tw="flex absolute bottom-0 right-0">
-            <img src={`${url}/dc7/${selectedHero}`} tw="w-96" />
+            <img src={`${url}/dc7/${selectedHero}`} tw="w-[22rem]" />
           </div>
           <div tw="flex absolute top-1/2 -left-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
           <div tw="flex absolute top-1/2 -right-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
@@ -50,7 +43,7 @@ export default async function Image({ params }: { params: { name: string } }) {
 
             <div tw="flex flex-col justify-between mb-12">
               <span tw="text-[#36364C] text-7xl">{name}</span>
-              <span tw='text-[#5B5F84] text-2xl mt-4'>Attending Devcon: Ethereum developer conference</span>
+              <span tw='text-[#5B5F84] text-2xl mt-4'>Attending Devcon:<br/>Ethereum developer conference</span>
             </div>
 
             <span tw="text-2xl font-bold uppercase">Devcon.org</span>
@@ -58,30 +51,16 @@ export default async function Image({ params }: { params: { name: string } }) {
 
           <div tw="flex flex-col">
             <div tw="flex flex-col text-2xl">
-              <span tw="font-bold uppercase text-[#5B5F84]" style={{ fontWeight: 600, fontFamily: '"poppinsSemiBold"' }}>
+              <span tw="font-bold uppercase text-[#5B5F84]">
                 Bangkok, Thailand
               </span>
               <span tw="">
-                <span tw="text-[#6B54AB] mr-2" style={{ fontWeight: 400, fontFamily: '"poppinsRegular"' }}>12 — 15</span>Nov, 2024
+                <span tw="text-[#6B54AB] mr-2">12 — 15</span>Nov, 2024
               </span>
             </div>
           </div>
         </div>
       </div>
-    ),{
-      fonts: [
-        {
-          name: 'poppinsRegular',
-          data: poppinsRegular,
-          style: 'normal',
-        },
-        {
-          name: 'poppinsSemiBold',
-          data: poppinsSemiBold,
-          style: 'normal',
-          weight: 600,
-        }
-      ],
-    },
+    )
   )
 }
