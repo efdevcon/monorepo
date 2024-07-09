@@ -27,6 +27,7 @@ import CalendarIcon from 'assets/icons/calendar.svg'
 import AuctionIcon from 'assets/icons/auction.svg'
 import SwirlIcon from 'assets/icons/swirl.svg'
 import { SelfClaimingDiscounts } from 'components/domain/discounts'
+import List from 'components/common/list'
 
 export default pageHOC(function Tickets(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
@@ -48,6 +49,14 @@ export default pageHOC(function Tickets(props: any) {
           {
             title: 'Raffle Auction',
             to: '#raffle',
+          },
+          {
+            title: 'Discounts',
+            to: '#discounts',
+          },
+          {
+            title: 'Timeline',
+            to: '#timeline',
           },
           {
             title: 'FAQ',
@@ -160,6 +169,168 @@ export default pageHOC(function Tickets(props: any) {
       </div> */}
 
       <SelfClaimingDiscounts />
+
+      <div className={cn('section', css['timeline'])}>
+        <div className="pt-8 border-top pb-8 relative">
+          <div className={`${indexCss['scrolling-text-background']} ${css['fade-color']} ${indexCss['alternate']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s" reverse>
+              <p className="bold">TICKET TIMELINE&nbsp;</p>
+            </InfiniteScroller>
+          </div>
+
+          <div className="h2 mb-6" id="timeline">
+            Timeline
+          </div>
+
+          <p className="text-lg mb-2 bold">Presale Raffle+Auction</p>
+
+          <List
+            connectedItems
+            items={[
+              {
+                id: '1',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div className="flex relative items-center">
+                      <div>Raffle+Auction Bidding Begins</div>
+                      {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                                    live
+                                  </div> */}
+                    </div>
+                    <div className="bold shrink-0">June 18</div>
+                  </div>
+                ),
+                indent: false,
+                active: true,
+                body: '',
+              },
+              {
+                id: '2',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Raffle+Auction Bidding Ends </div>
+
+                    <div className="bold shrink-0">
+                      {/* <div className="label blue rounded-lg !border-2 bold !text-xs ghost mr-2 !bg-white">live</div> */}
+                      July 9{' '}
+                    </div>
+                  </div>
+                ),
+                indent: false,
+                active: true,
+                body: '',
+              },
+              {
+                id: '3',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Raffle+Auction Claiming Begins</div>
+                    <div className="bold shrink-0">July 9</div>
+                  </div>
+                ),
+                indent: false,
+                active: true,
+                body: '',
+              },
+              {
+                id: '4',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Raffle+Auction Claiming Ends</div>
+                    <div className="bold shrink-0">July 31</div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+            ]}
+          />
+
+          <p className="text-lg my-2 bold">Discounted Tickets</p>
+
+          <List
+            connectedItems
+            items={[
+              {
+                id: '1',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div className="flex relative items-center">
+                      <div>Discount Ticket Applications open</div>
+                    </div>
+                    <div className="bold shrink-0">July 16</div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+              {
+                id: '2',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Discount Ticket Responses sent on rolling basis</div>
+                    <div className="bold shrink-0">Review</div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+            ]}
+          />
+
+          <p className="text-lg my-2 bold">General Ticketing Waves</p>
+
+          <List
+            connectedItems
+            items={[
+              {
+                id: '1',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div className="flex relative items-center">
+                      <div>Wave 01</div>
+                      {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                                    live
+                                  </div> */}
+                    </div>
+                    <div className="bold">July 16</div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+              {
+                id: '2',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Wave 02</div>
+                    <div className="bold"></div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+              {
+                id: '3',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div>Wave 03</div>
+                    <div className="bold"></div>
+                  </div>
+                ),
+                indent: false,
+                active: false,
+                body: '',
+              },
+            ]}
+          />
+        </div>
+      </div>
 
       <div className="section mb-12 relative">
         <div className="anchor absolute -top-20" id="faq"></div>
