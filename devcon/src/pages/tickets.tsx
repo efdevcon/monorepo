@@ -259,11 +259,11 @@ export default pageHOC(function Tickets(props: any) {
                     <div className="flex relative items-center">
                       <div>Discount Ticket Applications open</div>
                     </div>
-                    <div className="bold shrink-0">July 16</div>
+                    <div className="bold shrink-0">July 9</div>
                   </div>
                 ),
                 indent: false,
-                active: false,
+                active: true,
                 body: '',
               },
               {
@@ -282,6 +282,10 @@ export default pageHOC(function Tickets(props: any) {
           />
 
           <p className="text-lg my-2 bold">General Ticketing Waves</p>
+
+          <p className="my-4">
+            Our GA ticket sales begin on <b>July 16</b>, and each wave will launch at <b>16:00 UTC and 23:00 UTC</b>.
+          </p>
 
           <List
             connectedItems
