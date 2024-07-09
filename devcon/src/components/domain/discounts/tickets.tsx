@@ -14,9 +14,11 @@ export interface TicketDiscount {
 
 export function Ticket(props: TicketDiscount) {
   const [modalOpen, setModalOpen] = useState(false)
+  let className = 'flex flex-col relative p-4'
+  if (props.name === 'Local Builders') className += ' bg-[#eaf7ff]'
 
   return (
-    <div className="flex flex-col relative p-4">
+    <div className={className}>
       <div className={css['background-logo']}></div>
       <div className={css['border']}></div>
       <div className="h-full">
