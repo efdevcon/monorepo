@@ -42,7 +42,9 @@ import { Link } from 'components/common/link'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import TicketPrism from './dc7/ticket-prism.png'
 import Aria from './dc7/Aria.png'
+import Cat from './dc7/Cat.png'
 import Deva from './dc7/Deva.png'
+import Doggo from './dc7/Doggo.png'
 import Lyra from './dc7/Lyra.png'
 import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
 import { useSearchParams } from 'next/navigation'
@@ -103,7 +105,7 @@ type TicketProps = {
 }
 
 export const Ticket = (props: TicketProps) => {
-  const heroes = [Aria, Deva, Lyra];
+  const heroes = [Aria, Cat, Deva, Doggo, Lyra];
   const firstLetter = props.name[0].toUpperCase()
   const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0)
   const heroIndex = alphabetIndex % heroes.length

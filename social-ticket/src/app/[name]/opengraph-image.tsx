@@ -19,7 +19,7 @@ export default async function Image({ params }: { params: { name: string } }) {
     new URL('../assets/fonts/Poppins-SemiBold.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer());
 
-  const heroes = ["Aria.png", "Deva.png", "Lyra.png"];
+  const heroes = ["Aria.png", "Cat.png", "Deva.png", "Doggo.png", "Lyra.png"];
   const firstLetter = name[0].toUpperCase();
   const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0);
   const heroIndex = alphabetIndex % heroes.length;
