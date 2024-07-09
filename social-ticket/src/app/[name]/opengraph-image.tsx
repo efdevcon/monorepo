@@ -34,8 +34,8 @@ export default async function Image({ params }: { params: { name: string } }) {
             <img src={`${url}/dc7/prism.png`} tw="h-full" />
           </div>
           <div
-            tw="flex absolute top-8 right-100 h-full"
-            style={{ borderLeft: "2px dashed #cfd4eb" }}
+            tw="flex absolute mt-12 right-100 h-full"
+            style={{ borderLeft: "4px dashed #cfd4eb" }}
           >
             &nbsp;
           </div>
