@@ -107,9 +107,9 @@ type TicketProps = {
 }
 
 export const Ticket = (props: TicketProps) => {
-  const heroes = [Aria, Cat, Doggo, Deva, Lyra];
+  const heroes = [Aria, Cat, Doggo, Deva, Lyra]
   const firstLetter = props.name[0].toUpperCase()
-  const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0)
+  const alphabetIndex = firstLetter.charCodeAt(0) - 'A'.charCodeAt(0)
   const heroIndex = alphabetIndex % heroes.length
   const selectedHero = heroes[heroIndex >= 0 ? heroIndex : 0]
 
@@ -146,14 +146,16 @@ export const Ticket = (props: TicketProps) => {
         </div>
         <div className="flex flex-col justify-center grow">
           <div className="text-lg lg:text-2xl">{props.name}</div>
-          <span className='text-[#5B5F84] text-xs mt-4'>Attending Devcon: Ethereum developer conference</span>
+          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: Ethereum developer conference</span>
         </div>
         <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
       </div>
       <div className="flex flex-col relative w-[37%] shrink-0 h-full p-4 border-l-2 border-l-solid border-dashed border-[#D9D9D9]">
         <div className="flex flex-col justify-end items-end text-sm">
           <div className="leading-3 bold uppercase text-xs text-nowrap text-[#5B5F84]">Bangkok, Thailand</div>
-          <div className="text-sm text-nowrap"><span className='text-[#6B54AB]'>12 — 15</span> Nov, 2024</div>
+          <div className="text-sm text-nowrap">
+            <span className="text-[#6B54AB]">12 — 15</span> Nov, 2024
+          </div>
         </div>
       </div>
 
@@ -173,7 +175,7 @@ export const Ticket = (props: TicketProps) => {
   )
 }
 
-export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
+export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
   const searchParams = useSearchParams()
   // const router = useRouter()
   const intl = useTranslations()
@@ -233,13 +235,13 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   const imageUrl = `https://discounts--devcon-social.netlify.app/${ticketHolder}/opengraph-image`
-  const currentUrl = typeof window !== "undefined" ? window.location.href : ''
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
 
   return (
     <>
       <SEO
-        title='Join me'
-        separator='@'
+        title="Join me"
+        separator="@"
         description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
         imageUrl={imageUrl}
       />
@@ -268,7 +270,7 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
           <div
             className={cn(
               css['ticket'],
-              'flex flex-col relative justify-center items-center gap-12 px-4 max-w-full pointer-events-none'
+              'flex flex-col relative justify-center items-center gap-10 px-4 max-w-full pointer-events-none'
             )}
           >
             <div className="absolute -left-[20px] top-[10%] -z-10">
@@ -294,48 +296,55 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
               <Ticket name={ticketHolder} ticketType={ticketType} />
             </Tilty>
 
-            <div className="flex flex-col items-center justify-center text-lg relative">
-              <div className="bold leading-5">Join me at Devcon SEA Nov 12 — 15</div>
-              <div className="text-sm">QSNCC BANGKOK THAILAND</div>
-            </div>
             <Link to="/tickets">
-              <Button className="font-bold pointer-events-auto" color="orange-1" fat fill>
+              <Button className="bold font-secondary pointer-events-auto" color="purple-1" fat fill>
                 GET YOUR TICKET
               </Button>
             </Link>
 
-            <div className='flex flex-col items-center mb-4'>
-              <p className='text-sm mb-4'>Share on</p>
-              <div className='flex gap-2'>
-                <a 
-                  className="twitter-share-button" 
-                  href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`} 
-                  target='_blank'
-                  rel="noreferrer"
-                  data-url={currentUrl}
-                  data-size="large"
-                  data-via="efdevcon"
-                  >
-                  <Button className="font-bold pointer-events-auto" color="blue-1" fat fill>
-                    <IconTwitter />
-                  </Button>
-                </a>
-                <a
-                  href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`} 
-                  target='_blank'
-                  rel='noreferrer'
-                  >
-                  <Button className="font-bold pointer-events-auto" color="purple-1" fat fill>
-                    <IconWarpcast />
-                  </Button>
-                </a>
-              </div>
+            <div className="flex flex-col items-center justify-center text-lg relative">
+              <div className="bold leading-5">Join me at Devcon SEA Nov 12 — 15</div>
+              <div className="text-sm">QSNCC BANGKOK THAILAND</div>
             </div>
           </div>
         )}
 
-        {!props.ticketMode && (
-          <div className={css['devcon-7-overlay']}>
+        {props.ticketMode && (
+          <div className="flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
+            <p className="text-sm mb-2">Share On</p>
+            <div className="flex gap-4">
+              <a
+                // className="twitter-share-button"
+                className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+                style={{ '--color-icon': '#8c72ae' }}
+                href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`}
+                target="_blank"
+                rel="noreferrer"
+                data-url={currentUrl}
+                data-size="large"
+                data-via="efdevcon"
+              >
+                {/* <Button className="font-bold pointer-events-auto" color="purple-1" fat fill> */}
+                <IconTwitter />
+                {/* </Button> */}
+              </a>
+              <a
+                className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+                style={{ '--color-icon': '#8c72ae' }}
+                href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {/* <Button className="font-bold pointer-events-auto" color="purple-1" fat fill> */}
+                <IconWarpcast />
+                {/* </Button> */}
+              </a>
+            </div>
+          </div>
+        )}
+
+        <div className={css['devcon-7-overlay']}>
+          {!props.ticketMode && (
             <div className="section">
               <div className={css['flex']}>
                 <div className={css['left']}>
@@ -369,8 +378,8 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
 
         {/* {page.id === 'recap' ? (
           <div className={css['rays-container']}>
