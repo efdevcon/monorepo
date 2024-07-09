@@ -146,7 +146,7 @@ export const Ticket = (props: TicketProps) => {
         </div>
         <div className="flex flex-col justify-center grow">
           <div className="text-lg lg:text-2xl">{props.name}</div>
-          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: Ethereum developer conference</span>
+          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: Ethereum Developer Conference</span>
         </div>
         <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
       </div>
@@ -168,7 +168,9 @@ export const Ticket = (props: TicketProps) => {
         <Image
           src={selectedHero}
           alt={`Devcon Hero`}
-          className="absolute h-[75%] lg:h-[80%] left-0 right-0 bottom-0 object-contain object-right-bottom w-full"
+          className={`absolute h-[75%] lg:h-[80%] left-0 right-0 bottom-0 object-contain object-right-bottom w-full ${
+            heroIndex === 0 && ''
+          }`}
         />
       </div>
     </div>
@@ -315,7 +317,8 @@ export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
             <div className="flex gap-4">
               <a
                 // className="twitter-share-button"
-                className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+                className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
+                // @ts-ignore
                 style={{ '--color-icon': '#8c72ae' }}
                 href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`}
                 target="_blank"
@@ -330,6 +333,7 @@ export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
               </a>
               <a
                 className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+                // @ts-ignore
                 style={{ '--color-icon': '#8c72ae' }}
                 href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`}
                 target="_blank"
