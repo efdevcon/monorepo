@@ -193,13 +193,13 @@ export const Ticket = (props: TicketProps) => {
         style={{
           WebkitMask: 'radial-gradient(circle at left, transparent 20px, black 21px)',
         }}
-        className="absolute left-0 w-1/2 h-full bg-[#F8F9FE]"
+        className="absolute left-0 w-[52%] h-full bg-[#F8F9FE]"
       ></div>
       <div
         style={{
           WebkitMask: 'radial-gradient(circle at right, transparent 20px, black 21px)',
         }}
-        className="absolute right-0 w-1/2 h-full bg-[#F8F9FE]"
+        className="absolute right-0 w-[52%] h-full bg-[#F8F9FE]"
       ></div>
 
       <div
