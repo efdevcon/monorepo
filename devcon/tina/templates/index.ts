@@ -6,6 +6,29 @@ const index: Template = {
   label: 'index',
   fields: [
     {
+      label: 'index_ctas',
+      name: 'index_ctas',
+      type: 'object',
+      list: true,
+      fields: [
+        {
+          label: 'title',
+          name: 'title',
+          type: 'string',
+        },
+        {
+          label: 'text',
+          name: 'text',
+          type: 'string',
+        },
+        {
+          label: 'url',
+          name: 'url',
+          type: 'string',
+        },
+      ],
+    },
+    {
       label: 'section 1',
       name: 'section1',
       type: 'object',

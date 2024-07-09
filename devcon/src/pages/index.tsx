@@ -164,47 +164,27 @@ export default pageHOC(function Index(props: any) {
             <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
               <div className="flex justify-between items-center no-wrap ">
                 <Petals className="icon grow-0 shrink-0 mx-8 text-3xl" style={{ '--color-icon': '#7958A5' }} />
-                <Link
-                  {...draggableLinkAttributes}
-                  to="https://devconsea.clr.fund/#/projects"
-                  className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
-                >
-                  <motion.div
-                    whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
-                  >
-                    <p className="text-lg bold">SEA quadratic funding round —</p>
-                    <p className="text-sm">Make a big impact with a small donation </p>
-                  </motion.div>
-                </Link>
-                <Link
-                  {...draggableLinkAttributes}
-                  to="/tickets"
-                  className="grow shrink-0 mt-[2px] pr-8 h-full flex justify-center flex-col cursor-pointer"
-                >
-                  <motion.div
-                    whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
-                  >
-                    <p className="text-lg bold">Win your ticket to Devcon —</p>
-                    <p className="text-sm">Top 20 bids win, but everyone has a chance with the raffle </p>
-                  </motion.div>
-                </Link>
-                <Link
-                  {...draggableLinkAttributes}
-                  to="/supporters"
-                  className="grow shrink-0 mt-[2px] h-full flex justify-center flex-col cursor-pointer"
-                >
-                  <motion.div
-                    whileHover={{ borderColor: '#7958A5' }}
-                    className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
-                  >
-                    <p className="text-lg bold">Be a Devcon Supporter —</p>
-                    <p className="text-sm">
-                      Help fund vital Ethereum projects and gain access to Devcon for your team{' '}
-                    </p>
-                  </motion.div>
-                </Link>
+                {pages?.index_ctas &&
+                  pages?.index_ctas.map(({ url, title, text }: any) => {
+                    if (!url) return null
+
+                    return (
+                      <Link
+                        key={title}
+                        {...draggableLinkAttributes}
+                        to={url}
+                        className="grow shrink-0 mt-[2px] [&:not(:last-child)]:pr-8 h-full flex justify-center flex-col cursor-pointer"
+                      >
+                        <motion.div
+                          whileHover={{ borderColor: '#7958A5' }}
+                          className="border-[#f6edff] border-b-[3px] py-4 border-solid cursor-pointer"
+                        >
+                          <p className="text-lg bold">{title}</p>
+                          <p className="text-sm">{text}</p>
+                        </motion.div>
+                      </Link>
+                    )
+                  })}
               </div>
             </SwipeToScroll>
           </div>
