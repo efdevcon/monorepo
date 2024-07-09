@@ -303,15 +303,16 @@ export const Hero = (props: { ticketMode?: boolean }) => {
     transformRightY.set(yDir)
   }, [x, y])
 
-  const ticketHolder = searchParams.get('name') ?? ''
+  const ticketHolder = searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   const imageUrl = `https://discounts--devcon-social.netlify.app/api?name=${ticketHolder}`
 
   return (
     <>
       <SEO
-        title={`${ticketHolder}'s Ticket`}
-        description="Join me at Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
+        title='Join me'
+        separator='@'
+        description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
         imageUrl={imageUrl}
       />
 
