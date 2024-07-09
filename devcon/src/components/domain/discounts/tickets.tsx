@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import css from './tickets.module.scss'
 import { Modal, ModalContent } from 'lib/components/modal'
-import { Button } from 'lib/components/button'
+import { Link } from 'components/common/link'
 
 export interface TicketDiscount {
   name: string
@@ -31,14 +31,28 @@ export function Ticket(props: TicketDiscount) {
         </ul>
       </div>
       <div className="flex flex-row justify-between items-center mt-4 z-[2]">
-        <p className="h2 bold">{props.discount}% Off</p>
+        <p className="h2 bold">
+          {props.name === 'Local Builders' && (
+            <>$49 USD</>
+          )}
+          {props.name !== 'Local Builders' && (
+            <>{props.discount}% Off</>
+          )}
+        </p>
         <p>
-          <span
-            className="text-sm cursor-pointer font-medium text-[#1b6fae] hover:text-[#448dc3]"
-            onClick={() => setModalOpen(true)}
-          >
-            Learn more
-          </span>
+          {props.name === 'Local Builders' && (
+            <Link to="#app-based" className="text-sm cursor-pointer font-medium text-[#1b6fae] hover:text-[#448dc3]">
+              Learn more
+            </Link>
+          )}
+          {props.name !== 'Local Builders' && (
+            <span
+              className="text-sm cursor-pointer font-medium text-[#1b6fae] hover:text-[#448dc3]"
+              onClick={() => setModalOpen(true)}
+            >
+              Learn more
+            </span>
+          )}
         </p>
       </div>
 

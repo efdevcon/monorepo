@@ -30,6 +30,7 @@ export function SelfClaimingDiscounts() {
           .map((i: TicketDiscount) => {
             return <Ticket key={i.name} {...i} />
           })}
+        <Ticket name='Local Builders' description='Discount for SEA Residents, and Indian residents' body="Prove you're eligible for a Local SEA Builder discount with zkPassport for SEA Residents, and AnonAadhaar for Indian residents. Application approval required." target={0} discount={0} tags={['zkPassport', 'AnonAadhaar']} />
       </div>
 
       <div className={`rounded-xl shadow mt-8 ${css['message-card']} ${css['blue']}`}>
@@ -40,10 +41,10 @@ export function SelfClaimingDiscounts() {
         <Verifier />
       </div>
 
-      <div className="text-xl bold font-secondary mb-6 mt-8">Application-based (Open indefinitely)</div>
+      <div className="text-xl bold font-secondary mb-6 mt-8" id="app-based">Application-based (Open indefinitely)</div>
       <ul className="list-inside list-decimal mb-12 flex flex-col gap-4 text-sm">
         <li>
-          <span className="font-bold text-base">Local SEA Builders ($49)</span>
+          <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
           <p className="ml-5">
             For locals who are passionate about Ethereum & want to attend Devcon. Local residents can apply via
             zkPassport or AnonAadhaar below, OR via{' '}
@@ -87,7 +88,7 @@ export function SelfClaimingDiscounts() {
           >
             Builder
           </Link>{' '}
-          ($149)
+          ($299 USD)
           <p className="ml-5">
             For builders of all kinds who actively volunteer or contribute their time to the growth, research and
             development of Ethereum or the ecosystem. <i>ID submission required.</i>
@@ -101,7 +102,7 @@ export function SelfClaimingDiscounts() {
           >
             Academic (Students & Teachers)
           </Link>{' '}
-          ($299)
+          ($99 USD)
           <p className="ml-5">
             For students & educators who wish to learn more about Ethereum.{' '}
             <i>
@@ -119,7 +120,7 @@ export function SelfClaimingDiscounts() {
           >
             Youth (under 18)
           </Link>{' '}
-          ($20)
+          ($20 USD)
           <p className="ml-5">
             For those under 18 years of age who are passionate about Ethereum & want to attend Devcon.{' '}
             <i>ID submission required.</i>
