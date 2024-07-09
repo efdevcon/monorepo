@@ -174,7 +174,7 @@ export default pageHOC(function Programming(props: any) {
         </div>
       </div>
 
-      <div className="section" id="process">
+      <div className="section overflow-hidden" id="process">
         <div className="flex justify-between items-center">
           <p className="h2 bold">Process</p>
           <p className="uppercase text-xs opacity-70 bold">Scroll for more →</p>
