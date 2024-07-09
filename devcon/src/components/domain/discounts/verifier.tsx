@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react'
-import { getCsrfToken, signIn, signOut, useSession } from "next-auth/react"
+import { getCsrfToken, signIn, signOut, useSession } from 'next-auth/react'
 import { Button } from 'lib/components/button'
 import { useDebounceValue } from 'usehooks-ts'
 import { Link } from 'components/common/link'
@@ -15,7 +15,7 @@ interface DiscountsBody {
   id: string
   type: 'github' | 'ethereum'
   discount: number
-  discounts: { list: string, discount: number }[]
+  discounts: { list: string; discount: number }[]
 }
 
 export function Verifier(props: Props) {
@@ -31,15 +31,11 @@ export function Verifier(props: Props) {
   const popupCenter = async (url: string, title: string) => {
     const width = 375
     const height = 600
-    var left = (screen.width - width) / 2;
-    var top = (screen.height - height) / 2;
+    var left = (screen.width - width) / 2
+    var top = (screen.height - height) / 2
 
     if (session && session.type === 'ethereum') await signOut({ redirect: false })
-    const newWindow = window.open(
-      url,
-      title,
-      "width=" + width + ",height=" + height + ",left=" + left + ",top=" + top
-    )
+    const newWindow = window.open(url, title, 'width=' + width + ',height=' + height + ',left=' + left + ',top=' + top)
 
     newWindow?.focus()
   }
@@ -128,7 +124,7 @@ export function Verifier(props: Props) {
       handleSiweSignIn()
     }
   }, [debouncedValue, isConnected, session?.type, discount?.type])
-  
+
   async function validate(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
@@ -142,7 +138,7 @@ export function Verifier(props: Props) {
     setDiscount(body.data)
   }
 
-  async function claim() { 
+  async function claim() {
     if (!session?.id) return setError('Unauthorized')
 
     const response = await fetch(`/api/discounts/claim/${session?.id}`)
@@ -164,78 +160,95 @@ export function Verifier(props: Props) {
         <div className={`label bold ${css['tag']} ghost rounded-lg`}>Now live</div>
       </div>
 
-      <div className='flex flex-col justify-between gap-4 lg:flex-row'>
-        <div className='w-full lg:w-2/5'>
+      <div className="flex flex-col justify-between gap-4 lg:flex-row">
+        <div className="w-full lg:w-2/5">
           <strong>Enter wallet address or Github username.</strong>
           <p>Validate any single source of criteria to unlock discounted Devcon tickets.</p>
         </div>
 
-        <div className='w-full lg:w-2/5 z-10'>
+        <div className="w-full lg:w-2/5 z-[2]">
           <input
             className={`rounded-full w-full border-solid border p-2.5 px-5 ${
-              discount ? discount?.discount > 0 ? 'border-green-300' : 'border-red-300' : 'border-slate-300'
+              discount ? (discount?.discount > 0 ? 'border-green-300' : 'border-red-300') : 'border-slate-300'
             }`}
             type="text"
-            placeholder='Address or Github username'
+            placeholder="Address or Github username"
             value={inputValue}
             onChange={onInputChange}
           />
         </div>
 
-        <div className='z-10'>
+        <div className="z-[2]">
           {!voucher && !discount && (
-            <Button color='blue-1' fill fat>
+            <Button color="blue-1" fill fat>
               Validate
             </Button>
           )}
 
           {!voucher && discount && discount.discount === 0 && (
             <button onClick={clear}>
-              <Button color='black-1' fill fat>
+              <Button color="black-1" fill fat>
                 Clear
               </Button>
             </button>
           )}
 
-          {!voucher && discount && discount.discount > 0 && discount.type === 'github' && session?.type !== 'github' && (
-            <button onClick={() => popupCenter("/signin", "Sign-in With Github")}>
-              <Button color='green-1' fill fat>
-                Connect Github
-              </Button>
-            </button>
-          )}
+          {!voucher &&
+            discount &&
+            discount.discount > 0 &&
+            discount.type === 'github' &&
+            session?.type !== 'github' && (
+              <button onClick={() => popupCenter('/signin', 'Sign-in With Github')}>
+                <Button color="green-1" fill fat>
+                  Connect Github
+                </Button>
+              </button>
+            )}
 
-          {!voucher && discount && discount.discount > 0 && discount.type === 'ethereum' && session?.type !== 'ethereum' && (
-            <w3m-button balance='hide' />
-          )}
+          {!voucher &&
+            discount &&
+            discount.discount > 0 &&
+            discount.type === 'ethereum' &&
+            session?.type !== 'ethereum' && <w3m-button balance="hide" />}
 
           {!voucher && discount && discount.discount > 0 && discount.type === session?.type && (
             <button onClick={claim}>
-              <Button color='green-1' fill fat>
+              <Button color="green-1" fill fat>
                 Claim Discount
               </Button>
             </button>
           )}
 
           {voucher && (
-            <div className='flex flex-row items-center gap-2'>
-              <Link className='font-medium text-[#1b6fae] hover:text-[#448dc3]' to={`https://tickets.devcon.org/redeem?voucher=${voucher}`} target='_blank'>
-                  Redeem
+            <div className="flex flex-row items-center gap-2">
+              <Link
+                className="font-medium text-[#1b6fae] hover:text-[#448dc3]"
+                to={`https://tickets.devcon.org/redeem?voucher=${voucher}`}
+                target="_blank"
+              >
+                Redeem
               </Link>
-              <span className='text-sm cursor-pointer' onClick={clear}>Reset</span>
+              <span className="text-sm cursor-pointer" onClick={clear}>
+                Reset
+              </span>
             </div>
           )}
         </div>
       </div>
 
       {discount && (
-        <div className='mt-8'>
+        <div className="mt-8">
           {discount.discount === 0 && (
-            <p>Unfortunately, <b>{debouncedValue}</b> is not eligible for a discount. Please try another account or address.</p>
+            <p>
+              Unfortunately, <b>{debouncedValue}</b> is not eligible for a discount. Please try another account or
+              address.
+            </p>
           )}
           {discount.discount > 0 && (
-            <p>Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>. </p>
-          )}          
+            <p>
+              Congratulations! You are eligible to purchase Devcon tickets with a <b>{discount.discount}% Discount</b>.{' '}
+            </p>
+          )}
         </div>
       )}
     </form>
