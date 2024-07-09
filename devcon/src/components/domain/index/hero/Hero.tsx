@@ -41,9 +41,9 @@ import { Button } from 'lib/components/button'
 import { Link } from 'components/common/link'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import TicketPrism from './dc7/ticket-prism.png'
+import Aria from './dc7/Aria.png'
 import Deva from './dc7/Deva.png'
 import Lyra from './dc7/Lyra.png'
-import Aria from './dc7/Aria.png'
 import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
 import { useSearchParams } from 'next/navigation'
 import Tilty from 'react-tilty'
@@ -68,86 +68,6 @@ const useDraggableLink = () => {
     },
     draggable: false,
   }
-}
-
-const usePages = () => {
-  const intl = useTranslations()
-
-  return [
-    // {
-    //   id: 'update-2024',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: '2024 Update',
-    //   logo: LogoPassport,
-    //   imageAlt: 'Devcon logo',
-    //   button: {
-    //     text: 'Learn More',
-    //     url: '#update-2024', // https://archive.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'recap',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_recap_title'),
-    //   logo: LogoPassport,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_recap_relive'),
-    //     url: '#recap', // https://archive.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'passport',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_passport_title'), // 'Passport',
-    //   logo: LogoPassport,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_passport_cta'), //'Launch Devcon App',
-    //     url: 'https://app.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'bogota',
-    //   background: BackgroundBogota,
-    //   backgroundAlt: 'Deva',
-    //   titlePrefix: TitleBogota,
-    //   title: intl('hero_city_guide_title'),
-    //   logo: LogoBogota,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_city_guide_cta'),
-    //     url: '/bogota',
-    //   },
-    // },
-    // {
-    //   id: 'devcon-week',
-    //   background: BackgroundDevconWeek,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_devcon_week_title'),
-    //   logo: LogoGetInvolved,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_devcon_week_cta'),
-    //     url: '/devcon-week',
-    //   },
-    // },
-    // {
-    //   id: 'livestream',
-    //   background: BackgroundLive,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_live_title'),
-    //   logo: LogoVideo,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_live_cta'),
-    //     url: 'https://live.devcon.org',
-    //   },
-    // },
-  ]
 }
 
 const useCursorTracker = (ref: any) => {
@@ -183,6 +103,12 @@ type TicketProps = {
 }
 
 export const Ticket = (props: TicketProps) => {
+  const heroes = [Aria, Deva, Lyra];
+  const firstLetter = props.name[0].toUpperCase()
+  const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0)
+  const heroIndex = alphabetIndex % heroes.length
+  const selectedHero = heroes[heroIndex]
+
   return (
     <div
       // TODO: Adjust aspect as needed for social sharing
@@ -216,14 +142,14 @@ export const Ticket = (props: TicketProps) => {
         </div>
         <div className="flex flex-col justify-center grow">
           <div className="text-lg lg:text-2xl">{props.name}</div>
-          <div className="opacity-50 bold text-sm">{props.ticketType}</div>
+          <span className='text-[#5B5F84] text-xs mt-4'>Attending Devcon: Ethereum developer conference</span>
         </div>
         <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
       </div>
       <div className="flex flex-col relative w-[37%] shrink-0 h-full p-4 border-l-2 border-l-solid border-dashed border-[#D9D9D9]">
         <div className="flex flex-col justify-end items-end text-sm">
-          <div className="leading-3 bold uppercase text-xs text-nowrap">Bangkok, Thailand</div>
-          <div className="text-sm text-nowrap">12 — 15 Nov, 2024</div>
+          <div className="leading-3 bold uppercase text-xs text-nowrap text-[#5B5F84]">Bangkok, Thailand</div>
+          <div className="text-sm text-nowrap"><span className='text-[#6B54AB]'>12 — 15</span> Nov, 2024</div>
         </div>
       </div>
 
@@ -234,10 +160,7 @@ export const Ticket = (props: TicketProps) => {
         className="absolute h-full w-full"
       >
         <Image
-          // TODO: Determine which one to use and based on what criteria
-          src={Lyra}
-          // src={Deva}
-          // src={Aria}
+          src={selectedHero}
           alt={`Devcon Hero`}
           className="absolute h-[75%] lg:h-[80%] left-0 right-0 bottom-0 object-contain object-right-bottom w-full"
         />
