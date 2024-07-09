@@ -247,12 +247,14 @@ export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
 
   return (
     <>
-      <SEO
-        title="Join me"
-        separator="@"
-        description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
-        imageUrl={imageUrl}
-      />
+      {props.ticketMode && (
+        <SEO
+          title="Join me"
+          separator="@"
+          description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
+          imageUrl={imageUrl}
+        />
+      )}
 
       <div
         ref={heroEl}
