@@ -46,6 +46,7 @@ import Lyra from './dc7/Lyra.png'
 import Aria from './dc7/Aria.png'
 import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
 import { useSearchParams } from 'next/navigation'
+import { SEO } from 'components/domain/seo'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -306,6 +307,11 @@ export const Hero = (props: { ticketMode?: boolean }) => {
 
   return (
     <>
+      <SEO 
+        title={`${ticketHolder}'s Ticket | Devcon SEA`}
+        description='Join me at Devcon SEA Nov 12 — 15 in Bangkok, Thailand'
+        imageUrl={`https://discounts--devcon-social.netlify.app/api?name=${ticketHolder}`} />
+      
       <div
         ref={heroEl}
         data-jest="hero"
