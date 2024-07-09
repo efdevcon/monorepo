@@ -2,7 +2,6 @@ import React from 'react'
 import Head from 'next/head'
 // import { useTranslations } from 'next-intl'
 import { useRouter } from 'next/router'
-import { Twitter } from './Twitter'
 import { SITE_URL } from 'utils/constants'
 import { usePageContext } from 'context/page-context'
 // import { EventMetadata } from './EventMetadata'
@@ -67,15 +66,15 @@ export function SEO(props: SEOProps) {
         {/* title={title} titleTemplate={titleTemplate} htmlAttributes={{ lang: lang }}> */}
 
         {title && <title>{title}</title>}
-        <meta name="description" content={description} />
-        <meta name="image" content={image} />
+        <meta name="description" key='description' content={description} />
+        <meta name="image" key="image" content={image} />
 
-        {globalTitle !== title && <meta property="og:site_name" content={globalTitle} />}
-        <meta property="og:type" content={props.type ?? 'website'} />
-        {url && <meta property="og:url" content={url} />}
-        {title && <meta property="og:title" content={title} />}
-        {description && <meta property="og:description" content={description} />}
-        {image && <meta property="og:image" content={image} />}
+        {globalTitle !== title && <meta property="og:site_name" key="og:site_name" content={globalTitle} />}
+        <meta property="og:type" key="og:type" content={props.type ?? 'website'} />
+        {url && <meta property="og:url" key="og:url" content={url} />}
+        {title && <meta property="og:title" key="og:title" content={title} />}
+        {description && <meta property="og:description" key="og:description" content={description} />}
+        {image && <meta property="og:image" key="og:image" content={image} />}
         {canonical && <link rel="canonical" href={canonical} />}
         {props.author?.name && <link itemProp="name" href={props.author?.name} />}
         {props.author?.url && <link itemProp="url" href={props.author.url} />}
@@ -87,7 +86,13 @@ export function SEO(props: SEOProps) {
               {props.author?.url && <link itemProp="url" href={props.author.url} />}
             </span>
           ))}
-        <Twitter title={title} description={description} image={image} />
+
+        <meta name="twitter:site" key="twitter:site" content='@efdevcon' />
+        <meta name="twitter:creator" key="twitter:creator" content='@efdevcon' />
+        <meta name="twitter:card" key="twitter:card" content='summary_large_image' />
+        <meta name="twitter:title" key="twitter:title" content={title} />
+        <meta name="twitter:description" key="twitter:description" content={description} />
+        {image && <meta name="twitter:image" key="twitter:image" content={image} />}
       </Head>
       {/* <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} /> */}
     </>
