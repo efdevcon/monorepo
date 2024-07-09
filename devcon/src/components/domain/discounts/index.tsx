@@ -48,7 +48,8 @@ export function SelfClaimingDiscounts() {
         <Verifier />
       </div>
 
-      <div className="text-xl bold font-secondary mb-6 mt-8" id="app-based">
+      <div className="text-xl bold relative font-secondary mb-6 mt-8">
+        <div className="anchor absolute -top-20" id="application-based"></div>
         Application-based (Open indefinitely)
       </div>
       <ul className="list-inside list-decimal mb-12 flex flex-col gap-4 text-sm">

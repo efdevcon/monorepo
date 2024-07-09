@@ -55,6 +55,10 @@ export default pageHOC(function Tickets(props: any) {
             to: '#discounts',
           },
           {
+            title: 'Application Based',
+            to: '#application-based',
+          },
+          {
             title: 'Timeline',
             to: '#timeline',
           },
