@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import css from './hero.module.scss'
 // import Rays from './images/Rays'
 import { useTranslations } from 'next-intl'
@@ -178,6 +178,7 @@ export const Ticket = (props: TicketProps) => {
 }
 
 export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
+  const [currentUrl, setCurrentUrl] = useState('https://devcon.org/tickets/')
   const searchParams = useSearchParams()
   // const router = useRouter()
   const intl = useTranslations()
@@ -237,7 +238,12 @@ export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   const imageUrl = `https://discounts--devcon-social.netlify.app/${ticketHolder}/opengraph-image`
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : ''
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href)
+    }
+  }, [])
 
   return (
     <>
