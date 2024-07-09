@@ -50,6 +50,8 @@ import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
 import { useSearchParams } from 'next/navigation'
 import Tilty from 'react-tilty'
 import { SEO } from 'components/domain/seo'
+import IconTwitter from 'assets/icons/twitter.svg'
+import IconWarpcast from 'assets/icons/farcaster.svg'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -109,7 +111,7 @@ export const Ticket = (props: TicketProps) => {
   const firstLetter = props.name[0].toUpperCase()
   const alphabetIndex = firstLetter.charCodeAt(0) - "A".charCodeAt(0)
   const heroIndex = alphabetIndex % heroes.length
-  const selectedHero = heroes[heroIndex]
+  const selectedHero = heroes[heroIndex >= 0 ? heroIndex : 0]
 
   return (
     <div
@@ -231,6 +233,7 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   const imageUrl = `https://discounts--devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+  const currentUrl = typeof window !== "undefined" ? window.location.href : ''
 
   return (
     <>
@@ -296,10 +299,38 @@ export const Hero = (props: { ticketMode?: boolean, name?: string }) => {
               <div className="text-sm">QSNCC BANGKOK THAILAND</div>
             </div>
             <Link to="/tickets">
-              <Button className="font-bold pointer-events-auto" color="purple-1" fat fill>
+              <Button className="font-bold pointer-events-auto" color="orange-1" fat fill>
                 GET YOUR TICKET
               </Button>
             </Link>
+
+            <div className='flex flex-col items-center mb-4'>
+              <p className='text-sm mb-4'>Share on</p>
+              <div className='flex gap-2'>
+                <a 
+                  className="twitter-share-button" 
+                  href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`} 
+                  target='_blank'
+                  rel="noreferrer"
+                  data-url={currentUrl}
+                  data-size="large"
+                  data-via="efdevcon"
+                  >
+                  <Button className="font-bold pointer-events-auto" color="blue-1" fat fill>
+                    <IconTwitter />
+                  </Button>
+                </a>
+                <a
+                  href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`} 
+                  target='_blank'
+                  rel='noreferrer'
+                  >
+                  <Button className="font-bold pointer-events-auto" color="purple-1" fat fill>
+                    <IconWarpcast />
+                  </Button>
+                </a>
+              </div>
+            </div>
           </div>
         )}
 
