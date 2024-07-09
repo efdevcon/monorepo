@@ -13,7 +13,7 @@ export function SelfClaimingDiscounts() {
         <p>We're working to make Devcon 7 more accessible than ever before.</p>
         <p>We're proud to offer discounted tickets to community contributors through 1. self-claiming methods, and 2. our standard application-based process.</p>
 
-        <div className="text-xl bold font-secondary mb-6 mt-8">Self-claim (Open until August 13)</div>
+        <div className="text-xl bold font-secondary mb-6 mt-8">Self-claim (Open until August 31)</div>
         <p>Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount. Claiming open until September 15.</p>
 
         <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8'>
