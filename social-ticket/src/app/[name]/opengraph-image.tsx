@@ -30,8 +30,6 @@ export default async function Image({ params }: { params: { name: string } }) {
     (
       <div tw="flex justify-between bg-[#36364c] text-black  w-full h-full p-8">
         <div tw="flex flex-row justify-between rounded-3xl bg-[#f8f9fe] border-[#ff0000] shadow-xl w-full h-full p-12">
-          <div tw="flex absolute top-1/2 -left-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
-          <div tw="flex absolute top-1/2 -right-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
           <div tw="flex absolute left-1/2 top-0 bottom-0 right-0">
             <img src={`${url}/dc7/prism.png`} tw="h-full" />
           </div>
@@ -44,6 +42,8 @@ export default async function Image({ params }: { params: { name: string } }) {
           <div tw="flex absolute bottom-0 right-0">
             <img src={`${url}/dc7/${selectedHero}`} tw="w-96" />
           </div>
+          <div tw="flex absolute top-1/2 -left-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
+          <div tw="flex absolute top-1/2 -right-8 w-14 h-14 bg-[#36364c] rounded-full"></div>
 
           <div tw="flex flex-col justify-between w-1/2">
             <img src={`${url}/dc7/logo.png`} tw="w-60" />
