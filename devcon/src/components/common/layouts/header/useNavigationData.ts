@@ -153,6 +153,11 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
+            title: 'Apply To Speak',
+            url: '/speaker-applications',
+            type: 'page',
+          },
+          {
             title: intl('navigation_forum'),
             url: 'https://forum.devcon.org/',
             type: 'link',
