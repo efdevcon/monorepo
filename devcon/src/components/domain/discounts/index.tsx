@@ -49,7 +49,7 @@ export function SelfClaimingDiscounts() {
       </div>
 
       <div className="text-xl bold relative font-secondary mb-6 mt-8">
-        <div className="anchor absolute -top-20" id="application-based"></div>
+        <div className="anchor absolute -top-20" id="app-based"></div>
         Application-based (Open indefinitely)
       </div>
       <ul className="list-inside list-decimal mb-12 flex flex-col gap-4 text-sm">

@@ -237,7 +237,7 @@ export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
 
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
-  const imageUrl = `https://discounts--devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+  const imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
