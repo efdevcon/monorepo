@@ -47,20 +47,20 @@ export default pageHOC(function Tickets(props: any) {
             to: '#overview',
           },
           {
-            title: 'Raffle Auction',
-            to: '#raffle',
-          },
-          {
             title: 'Discounts',
             to: '#discounts',
           },
           {
             title: 'Application Based',
-            to: '#application-based',
+            to: '#app-based',
           },
           {
             title: 'Timeline',
             to: '#timeline',
+          },
+          {
+            title: 'Raffle Auction',
+            to: '#raffle',
           },
           {
             title: 'FAQ',
