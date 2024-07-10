@@ -70,13 +70,13 @@ export default pageHOC(function Tickets(props: any) {
       />
 
       <div className="section" id="overview">
-        <div className={cn('flex justify-between gap-8 flex-col lg:flex-row')}>
+        <div className={cn('flex justify-between gap-8 pb-8 flex-col lg:flex-row')}>
           <div className="grow">{pages?.overview?.intro && <RichText content={pages.overview.intro} />}</div>
           <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[750px]">
             <CallToAction
               color="blue"
-              title={'Tickets'}
-              tag="Raffle-Auction is live"
+              title={'Ticketing Status'}
+              tag="Discounts Available"
               BackgroundSvg={SpeakersBackground}
               link={pages.overview?.button?.link}
               linkText={pages.overview?.button?.text}
@@ -89,7 +89,7 @@ export default pageHOC(function Tickets(props: any) {
         </div>
       </div>
 
-      <div className="section" id="raffle">
+      {/* <div className="section" id="raffle">
         <div className="py-8 border-top border-bottom my-8">
           {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.intro} />}
         </div>
@@ -125,7 +125,7 @@ export default pageHOC(function Tickets(props: any) {
                 )}
               />
             </div>
-            {/* @ts-ignore */}
+
             {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.participation_rules.text} />}
           </div>
         </div>
@@ -140,7 +140,8 @@ export default pageHOC(function Tickets(props: any) {
             </InfiniteScroller>
           </div>
         </div>
-      </div>
+      </div> */}
+
       {/* 
       <div className="section">
         <div className="py-8 border-top">
@@ -337,6 +338,17 @@ export default pageHOC(function Tickets(props: any) {
               },
             ]}
           />
+        </div>
+      </div>
+
+      <div className="section" id="raffle">
+        <div className="pt-8 border-top mt-8 pb-6 relative">
+          {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.intro} />}
+          <div className={`${indexCss['scrolling-text-background']} ${css['fade-color']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s">
+              <p className="bold">RAFFLE-AUCTION&nbsp;</p>
+            </InfiniteScroller>
+          </div>
         </div>
       </div>
 

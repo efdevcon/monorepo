@@ -14,8 +14,8 @@ export function SelfClaimingDiscounts() {
       <div className="h2 bold mb-4 pt-8 border-top">Discounts</div>
       <p>We're working to make Devcon 7 more accessible than ever before.</p>
       <p>
-        We're proud to offer discounted tickets to community contributors through 1. self-claiming methods, and 2. our
-        standard application-based process.
+        We're proud to offer discounted tickets to community contributors through <b>1. self-claiming methods</b>, and{' '}
+        <b>2. our standard application-based process.</b>
       </p>
 
       <div className="text-xl bold font-secondary mb-4 mt-8">Self-claim (Open until August 31)</div>
