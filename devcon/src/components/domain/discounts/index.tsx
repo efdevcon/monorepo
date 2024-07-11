@@ -20,8 +20,7 @@ export function SelfClaimingDiscounts() {
 
       <div className="text-xl bold font-secondary mb-4 mt-8">Self-claim (Open until August 31)</div>
       <p>
-        Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount. Claiming
-        open until September 15.
+        Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount. Self-claiming remains open until August 31. You can redeem any claimed vouchers until September 15.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
