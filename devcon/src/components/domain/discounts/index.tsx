@@ -18,9 +18,20 @@ export function SelfClaimingDiscounts() {
         <b>2. our standard application-based process.</b>
       </p>
 
-      <div className="text-xl bold font-secondary mb-4 mt-8">Self-claim (Open until August 31)</div>
+      <div className="text-xl bold relative font-secondary mt-8">
+        <div className="anchor absolute -top-20" id="app-based"></div>
+        <div className={cn('flex flex-col')}>
+          <div className="flex items-center mb-4">
+            <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
+              <span>{1}</span>
+            </button>
+            <div>Self-claim (Open until August 31)</div>
+          </div>
+        </div>
+      </div>
       <p>
-        Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount. Self-claiming remains open until August 31. You can redeem any claimed vouchers until September 15.
+        Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount.
+        Self-claiming remains open until August 31. You can redeem any claimed vouchers until September 15.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
@@ -47,11 +58,18 @@ export function SelfClaimingDiscounts() {
         <Verifier />
       </div>
 
-      <div className="text-xl bold relative font-secondary mb-6 mt-8">
+      <div className="text-xl bold relative font-secondary mb-4 mt-8">
         <div className="anchor absolute -top-20" id="app-based"></div>
-        Application-based (Open indefinitely)
+        <div className={cn('flex flex-col')}>
+          <div className="flex items-center mb-4">
+            <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
+              <span>{2}</span>
+            </button>
+            <div> Application-based (Open indefinitely)</div>
+          </div>
+        </div>
       </div>
-      <ul className="list-inside list-decimal mb-12 flex flex-col gap-4 text-sm">
+      <ul className="list-inside list-decimal mb-8 flex flex-col gap-4 text-sm">
         <li>
           <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
           <p className="ml-5">
@@ -135,35 +153,20 @@ export function SelfClaimingDiscounts() {
             <i>ID submission required.</i>
           </p>
         </li>
-      </ul>
-
-      <div className="h2 bold font-secondary border-top pt-8 pb-8 border-bottom mb-8">Other Ways to Attend</div>
-
-      <div className={cn('flex flex-col')}>
-        <div className="flex items-center mb-4">
-          <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
-            <span>{1}</span>
-          </button>
+        <li>
           <Link
             to="https://forms.gle/5PZBFecCCuRsQqLu8"
             indicateExternal
-            className="bold h5 flex items-center justify-center text-[#1b6fae] hover:text-[#448dc3]"
+            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
           >
             Community Ticket Requests
-          </Link>
-        </div>
-        <p className="mb-8">
-          Leaders & organizers of various web2 & web3 communities or meetups can apply for free or discounted tickets
-          for their groups to attend.
-        </p>
-      </div>
-      {/* <Link to="https://forms.gle/5PZBFecCCuRsQqLu8" className="font-bold text-[#1b6fae] hover:text-[#448dc3]">
-        Community Ticket Requests
-      </Link>
-      <p className="mb-8">
-        Leaders & organizers of various web2 & web3 communities or meetups can apply for free or discounted tickets for
-        their groups to attend.
-      </p> */}
+          </Link>{' '}
+          <p className="ml-5">
+            Leaders & organizers of various web2 & web3 communities or meetups can apply for free or discounted tickets
+            for their groups to attend.
+          </p>
+        </li>
+      </ul>
     </div>
   )
 }
