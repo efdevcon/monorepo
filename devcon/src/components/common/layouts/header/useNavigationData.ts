@@ -112,6 +112,16 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Apply To Speak',
+            url: '/speaker-applications',
+            type: 'page',
+          },
+          {
+            title: 'Apply To Volunteer',
+            url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+            type: 'url',
+          },
+          {
             title: 'Supporters & Impact Teams',
             url: '/supporters',
             type: 'page',
@@ -147,26 +157,21 @@ const useNavigationData = () => {
           //   url: 'https://forms.gle/GnH3SyxSNnQCCn8TA',
           //   type: 'link',
           // },
-          {
-            title: intl('navigation_contribute'),
-            url: '#',
-            type: 'header',
-          },
-          {
-            title: 'Apply To Speak',
-            url: '/speaker-applications',
-            type: 'page',
-          },
-          {
-            title: intl('navigation_forum'),
-            url: 'https://forum.devcon.org/',
-            type: 'link',
-          },
-          {
-            title: 'Github',
-            url: 'https://github.com/efdevcon/',
-            type: 'link',
-          },
+          // {
+          //   title: intl('navigation_contribute'),
+          //   url: '#',
+          //   type: 'header',
+          // },
+          // {
+          //   title: intl('navigation_forum'),
+          //   url: 'https://forum.devcon.org/',
+          //   type: 'link',
+          // },
+          // {
+          //   title: 'Github',
+          //   url: 'https://github.com/efdevcon/',
+          //   type: 'link',
+          // },
           {
             title: 'Press',
             url: '#',
@@ -342,6 +347,11 @@ const useNavigationData = () => {
           title: 'Apply To Speak',
           url: '/speaker-applications',
           type: 'page',
+        },
+        {
+          title: 'Volunteer',
+          url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+          type: 'url',
         },
         {
           title: intl('navigation_blog'),
