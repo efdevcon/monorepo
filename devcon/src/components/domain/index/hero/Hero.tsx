@@ -146,7 +146,7 @@ export const Ticket = (props: TicketProps) => {
         </div>
         <div className="flex flex-col justify-center grow">
           <div className="text-lg lg:text-2xl">{props.name}</div>
-          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: the Schelling point for the Ethereum community</span>
+          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: the schelling point for the Ethereum community</span>
         </div>
         <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
       </div>
