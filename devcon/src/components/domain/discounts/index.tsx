@@ -19,7 +19,7 @@ export function SelfClaimingDiscounts() {
       </p>
 
       <div className="text-xl bold relative font-secondary mt-8">
-        <div className="anchor absolute -top-20" id="app-based"></div>
+        <div className="anchor absolute -top-20"></div>
         <div className={cn('flex flex-col')}>
           <div className="flex items-center mb-4">
             <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
