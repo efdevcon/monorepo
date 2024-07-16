@@ -12,11 +12,12 @@ const consensusClients = [
     'ChainSafe/lodestar',
     'prysmaticlabs/prysm',
     'Consensys/teku',
-    'status-im/nimbus-eth2'
+    'status-im/nimbus-eth2',
+    'grandinetech/grandine'
 ]
 
 const sinceDate = '2022-10-11T00:00:00Z'
-const excludedBots = ['dependabot[bot]', 'github-actions[bot]', 'tina-cloud-app[bot]']
+const excludedBots = ['dependabot[bot]', 'github-actions[bot]', 'tina-cloud-app[bot]', 'allcontributors[bot]', 'actions-user', 'core-repository-dispatch-app[bot]']
 const headers = { Authorization: `token ${process.env.GITHUB_TOKEN}` }
 
 fetchContributors().then(contributors => {
@@ -53,7 +54,8 @@ async function fetchOrganizationRepos(org: string) {
     let page = 1
 
     while (true) {
-        const response = await fetch(`https://api.github.com/orgs/${org}/repos?page=${page}&per_page=100`, { headers })
+        await new Promise((r) => setTimeout(r, 250))
+        const response = await fetch(`https://api.github.com/orgs/${org}/repos?page=${page}&type=public&per_page=100`, { headers })
         const data = await response.json()
         if (data.length === 0) break
 
@@ -70,10 +72,11 @@ async function countCommitsForRepos(repos, contributorCommits) {
         let page = 1
 
         while (true) {
+            await new Promise((r) => setTimeout(r, 250))
             const response = await fetch(`https://api.github.com/repos/${repo}/commits?since=${sinceDate}&page=${page}&per_page=100`, { headers })
             if (response.status !== 200) {
                 console.log('Unable to fetch commits for', repo, response.status, response.statusText)
-                return contributorCommits
+                break
             }
 
             const commits = await response.json()
