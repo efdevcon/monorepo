@@ -17,7 +17,7 @@ import NoteIcon from 'assets/icons/note.svg'
 import css from './tickets.module.scss'
 import List from 'components/common/list'
 import DevconLogo from 'assets/images/devcon-6-logo.png'
-import Image from "next/legacy/image"
+import Image from 'next/legacy/image'
 import { Link } from 'components/common/link'
 import moment from 'moment'
 import { GetTicketQuota } from 'services/tickets'

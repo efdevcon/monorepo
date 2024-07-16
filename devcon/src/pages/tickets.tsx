@@ -28,12 +28,82 @@ import AuctionIcon from 'assets/icons/auction.svg'
 import SwirlIcon from 'assets/icons/swirl.svg'
 import { SelfClaimingDiscounts } from 'components/domain/discounts'
 import List from 'components/common/list'
+import moment from 'moment'
+import { GetTicketQuota } from 'services/tickets'
+import { useTicketQuota } from 'hooks/useTicketQuota'
+
+const ticketWaves = [
+  moment.utc('2024-07-16 16:00:00'),
+  moment.utc('2024-07-16 23:00:00'),
+  moment.utc('2024-07-30 16:00:00'),
+  moment.utc('2024-07-30 23:00:00'),
+  moment.utc('2024-08-13 16:00:00'),
+  moment.utc('2024-08-13 23:00:00'),
+]
 
 export default pageHOC(function Tickets(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesTickets
   const faq = pages.faq
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
+  const [timeUntilNextWave, setTimeUntilNextWave] = React.useState<string | null>(null)
+  // For mocking real time dates
+  // const [currentDate, setCurrentDate] = React.useState<any>(moment.utc('2024-08-13 22:59:55'))
+  const currentDate = moment.utc()
+  const ticketQuota = useTicketQuota(props.ticketQuota)
+
+  let upcomingWave: any
+  const latestWave = ticketWaves
+    .slice()
+    .reverse()
+    .find((wave, index: any) => {
+      if (wave.isBefore(currentDate)) {
+        const unreversedIndex = ticketWaves.length - index
+        upcomingWave = ticketWaves[unreversedIndex]
+
+        return true
+      }
+
+      return false
+    })
+
+  if (!latestWave) {
+    upcomingWave = ticketWaves[0]
+  }
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      // Mock realtime update
+      // setCurrentDate(currentDate.add('1', 's'))
+      const currentDate = moment.utc()
+
+      let upcomingWaveAdjusted = upcomingWave || ticketWaves[ticketWaves.length - 1] // random faraway date fallback, just to keep the interval ticking
+
+      const remainingTime = upcomingWaveAdjusted.diff(currentDate, 'seconds')
+      const diffDays = Math.floor(remainingTime / (60 * 60 * 24))
+      const diffHours = Math.floor((remainingTime % (60 * 60 * 24)) / (60 * 60))
+      const diffMinutes = Math.floor((remainingTime % (60 * 60)) / 60)
+      const diffSeconds = remainingTime % 60
+
+      let time = `${diffHours}h ${diffMinutes}m ${diffSeconds}s`
+
+      if (diffDays > 1) {
+        time = `${diffDays}d ${diffHours}h ${diffMinutes}m ${diffSeconds}s`
+      }
+
+      setTimeUntilNextWave(time)
+    }, 1000)
+
+    return () => clearInterval(interval)
+  }, [upcomingWave])
+
+  let waveActive: any = ticketQuota && ticketQuota.available && latestWave
+
+  const minutesDifference = currentDate.diff(latestWave, 'seconds')
+  const waveReleasedWithin5Minutes = latestWave && minutesDifference < 5
+
+  // Update the waveActive flag
+  waveActive = waveReleasedWithin5Minutes || waveActive
 
   return (
     <Page theme={themes['light-blue']}>
@@ -76,14 +146,34 @@ export default pageHOC(function Tickets(props: any) {
             <CallToAction
               color="blue"
               title={'Ticketing Status'}
-              tag="Discounts Available"
+              tag={waveActive ? 'Ticket Wave Live' : 'Discounts Available'}
               BackgroundSvg={SpeakersBackground}
-              link={pages.overview?.button?.link}
-              linkText={pages.overview?.button?.text}
+              // link={pages.overview?.button?.link}
+              // linkText={pages.overview?.button?.text}
               // buttonDisabled
               meta=""
             >
-              {pages?.overview?.card && <RichText content={pages.overview.card} />}
+              {waveActive && pages?.overview?.card && <RichText content={pages.overview.card} />}
+              {!waveActive && (
+                <div>
+                  <p className="h4 font-secondary">
+                    {upcomingWave
+                      ? 'Next General Admission Ticket wave in'
+                      : 'There are no more planned General Admission ticket waves.'}
+                  </p>
+                  {upcomingWave && (
+                    <p className="h4 mt-1 font-secondary">
+                      <b>{timeUntilNextWave}</b>
+                    </p>
+                  )}
+                  <Link to="#timeline">
+                    <p className="mt-4 bold text-[var(--theme-color)]">→ See timeline for details</p>
+                  </Link>
+                  <Link to="#discounts">
+                    <p className="mt-4 bold text-[var(--theme-color)]">→ Check discount eligibility</p>
+                  </Link>
+                </div>
+              )}
             </CallToAction>
           </div>
         </div>
@@ -246,7 +336,7 @@ export default pageHOC(function Tickets(props: any) {
                   </div>
                 ),
                 indent: false,
-                active: false,
+                active: currentDate.isAfter(moment.utc('2024-07-31 00:00:00')),
                 body: '',
               },
             ]}
@@ -301,15 +391,15 @@ export default pageHOC(function Tickets(props: any) {
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div className="flex relative items-center">
                       <div>Wave 01</div>
-                      {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
-                                    live
-                                  </div> */}
+                      {waveActive && (latestWave === ticketWaves[0] || latestWave === ticketWaves[1]) && (
+                        <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                      )}
                     </div>
                     <div className="bold">July 16</div>
                   </div>
                 ),
                 indent: false,
-                active: false,
+                active: true,
                 body: '',
               },
               {
@@ -317,11 +407,14 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Wave 02</div>
+                    {waveActive && (latestWave === ticketWaves[2] || latestWave === ticketWaves[3]) && (
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                    )}
                     <div className="bold">July 30</div>
                   </div>
                 ),
                 indent: false,
-                active: false,
+                active: currentDate.isAfter(ticketWaves[2]),
                 body: '',
               },
               {
@@ -329,11 +422,14 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Wave 03</div>
+                    {waveActive && (latestWave === ticketWaves[4] || latestWave === ticketWaves[5]) && (
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                    )}
                     <div className="bold">August 13</div>
                   </div>
                 ),
                 indent: false,
-                active: false,
+                active: currentDate.isAfter(ticketWaves[4]),
                 body: '',
               },
             ]}
@@ -390,7 +486,7 @@ export default pageHOC(function Tickets(props: any) {
 export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
   // await GetPage('terms-of-service', context.locale)
-
+  const ticketQuota = await GetTicketQuota()
   const content = await client.queries.pages({ relativePath: 'tickets.mdx' })
 
   return {
@@ -404,10 +500,8 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
+      ticketQuota,
     },
+    revalidate: 3600,
   }
 }
-
-/*
-  OG image for each page
-*/

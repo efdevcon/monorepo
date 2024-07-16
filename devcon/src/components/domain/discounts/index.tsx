@@ -12,8 +12,8 @@ export function SelfClaimingDiscounts() {
     <div className="section  relative">
       <div className="anchor absolute -top-20" id="discounts"></div>
       <div className="h2 bold mb-4 pt-8 border-top">Discounts</div>
-      <p>We're working to make Devcon 7 more accessible than ever before.</p>
-      <p>
+      <p className="text-lg">We're working to make Devcon 7 more accessible than ever before.</p>
+      <p className="text-lg">
         We're proud to offer discounted tickets to community contributors through <b>1. self-claiming methods</b>, and{' '}
         <b>2. our standard application-based process.</b>
       </p>

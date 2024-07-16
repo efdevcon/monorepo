@@ -57,21 +57,23 @@ const CallToAction = (props: CallToActionProps) => {
 
       {props.children}
 
-      <div className={css['footer']}>
-        {props.buttonDisabled ? (
-          <Button disabled={props.buttonDisabled} color={buttonColor} className="" fill size="lg">
-            {props.linkText}
-          </Button>
-        ) : (
-          <Link to={props.link}>
+      {props.linkText && (
+        <div className={css['footer']}>
+          {props.buttonDisabled ? (
             <Button disabled={props.buttonDisabled} color={buttonColor} className="" fill size="lg">
               {props.linkText}
             </Button>
-          </Link>
-        )}
+          ) : (
+            <Link to={props.link}>
+              <Button disabled={props.buttonDisabled} color={buttonColor} className="" fill size="lg">
+                {props.linkText}
+              </Button>
+            </Link>
+          )}
 
-        <p className="bold font-sm">{props.meta}</p>
-      </div>
+          <p className="bold font-sm">{props.meta}</p>
+        </div>
+      )}
     </div>
   )
 }
