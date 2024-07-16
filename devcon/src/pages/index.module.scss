@@ -106,13 +106,13 @@
 .tilt-hover-image {
   img {
     object-fit: contain;
-    height: 100% !important;
-    width: auto !important;
+    // height: 100% !important;
+    // width: auto !important;
     transition: 0.5s ease;
     cursor: pointer;
 
     &:hover {
-      transform: perspective(1000px) scale(0.95) rotateX(1deg) rotateY(-4deg);
+      transform: scale(0.95) rotateX(1deg) rotateY(-4deg);
     }
   }
 }
