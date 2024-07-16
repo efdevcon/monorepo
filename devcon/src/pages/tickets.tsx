@@ -48,7 +48,7 @@ export default pageHOC(function Tickets(props: any) {
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
   const [timeUntilNextWave, setTimeUntilNextWave] = React.useState<string | null>(null)
   // For mocking real time dates
-  // const [currentDate, setCurrentDate] = React.useState<any>(moment.utc('2024-08-13 22:59:55'))
+  // const [currentDate, setCurrentDate] = React.useState<any>(moment.utc('2024-07-16 15:59:55'))
   const currentDate = moment.utc()
   const ticketQuota = useTicketQuota(props.ticketQuota)
 
@@ -77,7 +77,7 @@ export default pageHOC(function Tickets(props: any) {
       // setCurrentDate(currentDate.add('1', 's'))
       const currentDate = moment.utc()
 
-      let upcomingWaveAdjusted = upcomingWave || ticketWaves[ticketWaves.length - 1] // random faraway date fallback, just to keep the interval ticking
+      let upcomingWaveAdjusted = upcomingWave || ticketWaves[ticketWaves.length - 1] // random date fallback, just to keep the interval ticking
 
       const remainingTime = upcomingWaveAdjusted.diff(currentDate, 'seconds')
       const diffDays = Math.floor(remainingTime / (60 * 60 * 24))
@@ -99,7 +99,7 @@ export default pageHOC(function Tickets(props: any) {
 
   let waveActive: any = ticketQuota && ticketQuota.available && latestWave
 
-  const minutesDifference = currentDate.diff(latestWave, 'seconds')
+  const minutesDifference = currentDate.diff(latestWave, 'minutes')
   const waveReleasedWithin5Minutes = latestWave && minutesDifference < 5
 
   // Update the waveActive flag
