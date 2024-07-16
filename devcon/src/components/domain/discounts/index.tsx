@@ -73,18 +73,21 @@ export function SelfClaimingDiscounts() {
         <li>
           <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
           <p className="ml-5">
-            For locals who are passionate about Ethereum & want to attend Devcon. Local residents can apply via
-            zkPassport or AnonAadhaar below, OR via{' '}
-            <Link
-              indicateExternal
-              to="https://forms.gle/WWDCFybVVFSaxPee8"
-              className="text-[#1b6fae] hover:text-[#448dc3]"
-            >
-              our manual application
-            </Link>
-            . <i>ID submission required.</i>
+            For locals who are passionate about Ethereum & want to attend Devcon. Local residents can apply via 1 of 3
+            methods:
           </p>
           <ul className="list-inside list-disc mt-4 ml-8">
+            <li>
+              Our Manual Application —{' '}
+              <Link
+                indicateExternal
+                to="https://forms.gle/WWDCFybVVFSaxPee8"
+                className="text-[#1b6fae] hover:text-[#448dc3]"
+              >
+                application form
+              </Link>
+              : Submit your ID via our encrypted Secure-Drop portal. Same review process, same likelihood of acceptance.
+            </li>
             <li>
               SEA Residents —{' '}
               <Link indicateExternal to="https://devcon.zkpassport.id/" className="text-[#1b6fae] hover:text-[#448dc3]">
