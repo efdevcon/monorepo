@@ -19,12 +19,12 @@ export function useTicketQuota(quota: TicketQuota | undefined, interval: number 
 
   async function trySetQuota() {
     // 'Sold out' for testing purposes
-    setAvailability({
-      id: '5',
-      available_number: 0,
-      available: false,
-    })
-    return
+    // setAvailability({
+    //   id: '5',
+    //   available_number: 0,
+    //   available: false,
+    // })
+    // return
 
     try {
       const response = await fetch('/api/tickets/availability')
