@@ -148,8 +148,8 @@ export default pageHOC(function Tickets(props: any) {
               title={'Ticketing Status'}
               tag={waveActive ? 'Ticket Wave Live' : 'Discounts Available'}
               BackgroundSvg={SpeakersBackground}
-              // link={pages.overview?.button?.link}
-              // linkText={pages.overview?.button?.text}
+              // link="https://tickets.devcon.org"
+              // linkText="Buy Tickets"
               // buttonDisabled
               meta=""
             >
@@ -166,11 +166,20 @@ export default pageHOC(function Tickets(props: any) {
                       <b>{timeUntilNextWave}</b>
                     </p>
                   )}
+
+                  <Link to="https://tickets.devcon.org">
+                    <Button color="blue-1" className="mt-3" fat fill disabled>
+                      Wave 1 Sold Out
+                    </Button>
+                  </Link>
+
                   <Link to="#timeline">
                     <p className="mt-4 bold text-[var(--theme-color)]">→ See timeline for details</p>
                   </Link>
                   <Link to="#discounts">
-                    <p className="mt-4 bold text-[var(--theme-color)]">→ Check discount eligibility</p>
+                    <p className="mt-4 bold text-[var(--theme-color)]">
+                      → Check discount eligibility or apply for student/builder tickets
+                    </p>
                   </Link>
                 </div>
               )}
