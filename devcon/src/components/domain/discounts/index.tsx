@@ -120,8 +120,9 @@ export function SelfClaimingDiscounts() {
           </Link>{' '}
           ($299 USD)
           <p className="ml-5">
-            For builders of all kinds who actively volunteer or contribute their time to the growth, research and
-            development of Ethereum or the ecosystem. <i>ID submission required.</i>
+            For builders of all kinds (developers, designers, researchers, community organizers, artists, etc.) who
+            actively volunteer or contribute their time to the growth, research and development of Ethereum or the
+            ecosystem. <i>ID submission required.</i>
           </p>
         </li>
         <li>
