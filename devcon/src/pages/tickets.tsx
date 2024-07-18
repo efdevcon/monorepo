@@ -391,9 +391,11 @@ export default pageHOC(function Tickets(props: any) {
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div className="flex relative items-center">
                       <div>Wave 01</div>
-                      {waveActive && (latestWave === ticketWaves[0] || latestWave === ticketWaves[1]) && (
-                        <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
-                      )}
+                      {/* {waveActive && (latestWave === ticketWaves[0] || latestWave === ticketWaves[1]) && ( */}
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                        SOLD OUT
+                      </div>
+                      {/* )} */}
                     </div>
                     <div className="bold">July 16</div>
                   </div>
