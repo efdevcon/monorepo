@@ -209,7 +209,21 @@ export function Verifier(props: Props) {
             discount &&
             discount.discount > 0 &&
             discount.type === 'ethereum' &&
-            session?.type !== 'ethereum' && <w3m-button balance="hide" />}
+            session?.type !== 'ethereum' &&
+            !isConnected && <w3m-button balance="hide" />}
+
+          {!voucher &&
+            discount &&
+            discount.discount > 0 &&
+            discount.type === 'ethereum' &&
+            session?.type !== 'ethereum' && 
+            isConnected && (
+              <button onClick={handleSiweSignIn}>
+                <Button color="green-1" fill fat>
+                  Sign Message
+                </Button>
+              </button>
+            )}
 
           {!voucher && discount && discount.discount > 0 && discount.type === session?.type && (
             <button onClick={claim}>
