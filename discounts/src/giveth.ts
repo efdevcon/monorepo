@@ -11,7 +11,7 @@ fetchProjectOwners().then(projects => {
 });
 
 async function fetchProjectOwners(limit = 50, skip = 0, allProjects = []) {
-    console.log('Fetch verified Giveth projects')
+    console.log('Fetch verified Giveth projects', limit, skip);
     
     const endpoint = 'https://mainnet.serve.giveth.io/graphql';
     const targetDate = new Date(sinceDate).getTime();
