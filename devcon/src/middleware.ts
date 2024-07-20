@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 const PUBLIC_FILE = /\.(.*)$/
 
 export async function middleware(req: NextRequest) {
-  if (req.nextUrl.pathname.startsWith('/grants')) {
+  if (req.nextUrl.pathname.startsWith('/grants') || req.nextUrl.pathname.startsWith('/speak')) {
     return
   }
 
