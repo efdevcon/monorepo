@@ -1,13 +1,13 @@
 import fs from 'fs'
 
 const sinceDate = '2022-10-11T00:00:00Z'
-const qualityScore = 80
+const qualityScore = 10
 
 fetchProjectOwners().then(projects => {
     console.log('Filtered Projects:', projects.length);
     const uniqueAddresses = Array.from(new Set(projects.map(i => i.adminUser.walletAddress)))
 
-    fs.writeFileSync('outputs/pg-project-giveth.json', JSON.stringify(uniqueAddresses, null, 2));
+    fs.writeFileSync('outputs/pg-projects-giveth.json', JSON.stringify(uniqueAddresses, null, 2));
 });
 
 async function fetchProjectOwners(limit = 50, skip = 0, allProjects = []) {
