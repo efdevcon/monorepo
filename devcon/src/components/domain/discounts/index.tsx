@@ -138,7 +138,7 @@ export function SelfClaimingDiscounts() {
             For students & educators who wish to learn more about Ethereum.{' '}
             <i>
               Must be a current student with valid student ID or transcript, or justly employed by an Academic
-              Institution.
+              Institution. Locals may qualify for an extra $50 off.
             </i>{' '}
             <i>ID submission required.</i>
           </p>
@@ -166,8 +166,8 @@ export function SelfClaimingDiscounts() {
             Community Ticket Requests
           </Link>{' '}
           <p className="ml-5">
-            Leaders & organizers of various web2 & web3 communities or meetups can apply for free or discounted tickets
-            for their groups to attend.
+            Leaders & organizers of various non-profit web2 & web3 communities or meetups can apply for free or
+            discounted tickets for their groups to attend.
           </p>
         </li>
       </ul>
