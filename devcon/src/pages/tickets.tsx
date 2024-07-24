@@ -61,12 +61,12 @@ export default pageHOC(function Tickets(props: any) {
           <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[750px]">
             <CallToAction
               color="blue"
-              title={'Raffle-Auction'}
-              tag="Raffle-Auction Coming Soon"
+              title={'Tickets'}
+              tag="Raffle-Auction is live"
               BackgroundSvg={SpeakersBackground}
               link={pages.overview?.button?.link}
               linkText={pages.overview?.button?.text}
-              buttonDisabled
+              // buttonDisabled
               meta=""
             >
               {pages?.overview?.card && <RichText content={pages.overview.card} />}
@@ -118,8 +118,8 @@ export default pageHOC(function Tickets(props: any) {
         <div className="mt-10">
           {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.sybil_resistance} />}
         </div>
-        <div className="mt-8 relative ">
-          {/* {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.specs} />} */}
+        <div className="mt-8 relative border-top pt-8 pb-8">
+          {pages?.raffle_auction?.intro && <RichText content={pages.raffle_auction?.specs} />}
           <div className={`${indexCss['scrolling-text-background']} ${css['fade-color']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">RAFFLE AUCTION&nbsp;</p>
