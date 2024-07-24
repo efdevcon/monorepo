@@ -1,7 +1,35 @@
 import { client } from '../../../../devcon/tina/__generated__/client'
 import path from 'path'
 import fs from 'fs'
+import yaml from 'yaml'
 
+interface Chunk {
+  key: string
+  content: any
+}
+
+const splitMarkdownByKeys = (markdownContent: string): Chunk[] => {
+  // Parse the markdown content as multiple YAML documents
+  const documents = yaml.parseAllDocuments(markdownContent)
+
+  const chunks: Chunk[] = []
+  documents.forEach((doc) => {
+    const contentDict = doc.toJSON()
+    for (const key in contentDict) {
+      if (key === '_template') return
+
+      if (contentDict.hasOwnProperty(key)) {
+        const chunk: Chunk = {
+          key: key,
+          content: contentDict[key],
+        }
+        chunks.push(chunk)
+      }
+    }
+  })
+
+  return chunks
+}
 function cleanUpText(text: string): string {
   // Fix spacing around periods and braces that are incorrectly joined to words
   // text = text.replace(/([a-zA-Z])(\{link\|)/g, '$1 $2'); // Ensures space before "{link|"
@@ -15,14 +43,33 @@ function cleanUpText(text: string): string {
 const devconDir = path.resolve(__dirname, '../../../../devcon')
 const contentDir = path.resolve(__dirname, 'formatted-content')
 
-const writeFile = async (fileName: any) => {
+// const writeFile = async (fileName: any) => {
+//   const sourcePath = path.join(devconDir, 'cms/pages', fileName)
+//   const destinationPath = path.join(contentDir, fileName.split('.mdx')[0] + '.txt')
+
+//   try {
+//     const fileContent = fs.readFileSync(sourcePath, 'utf-8')
+//     fs.writeFileSync(destinationPath, fileContent, 'utf-8')
+//     console.log(`Content written to ${destinationPath}`)
+//   } catch (error) {
+//     console.error('Error reading or writing the file:', fileName, error)
+//   }
+// }
+
+const writeFile = async (fileName: string) => {
   const sourcePath = path.join(devconDir, 'cms/pages', fileName)
-  const destinationPath = path.join(contentDir, fileName.split('.mdx')[0] + '.txt')
+  const baseFileName = fileName.split('.mdx')[0]
 
   try {
     const fileContent = fs.readFileSync(sourcePath, 'utf-8')
-    fs.writeFileSync(destinationPath, fileContent, 'utf-8')
-    console.log(`Content written to ${destinationPath}`)
+    const chunks = splitMarkdownByKeys(fileContent)
+
+    // Write each chunk to a separate file
+    chunks.forEach((chunk) => {
+      const destinationPath = path.join(contentDir, `${baseFileName}.${chunk.key}.txt`)
+      fs.writeFileSync(destinationPath, yaml.stringify(chunk.content), 'utf-8')
+      console.log(`Content written to ${destinationPath}`)
+    })
   } catch (error) {
     console.error('Error reading or writing the file:', fileName, error)
   }

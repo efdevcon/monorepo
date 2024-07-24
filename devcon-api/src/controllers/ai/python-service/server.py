@@ -20,6 +20,8 @@ def process():
 
     answer = infer(query, content, messages)
 
+    print('hello')
+
     return jsonify(answer)
 
 

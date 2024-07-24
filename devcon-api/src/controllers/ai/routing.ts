@@ -22,6 +22,8 @@ aiRouter.post(`/ai/devcon-website/ask`, async (req: Request, res: Response) => {
     // Parse the response from the Flask server
     const flaskData = await flaskResponse.json()
 
+    console.log(flaskData, 'flask data ahhh')
+
     // Process the response if necessary and send it back to the client
     res.status(200).send(JSON.stringify(flaskData))
   } catch (error) {

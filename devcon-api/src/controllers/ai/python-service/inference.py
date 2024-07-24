@@ -1,38 +1,22 @@
 import os
+import json
 import requests
+from datetime import datetime
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+from huggingface_hub import InferenceClient
 from dotenv import dotenv_values
 
 config = dotenv_values("./.env")
+
+# meta-llama/Meta-Llama-3-8B-Instruct
 
 # Load the tokenizer
 tokenizer = AutoTokenizer.from_pretrained(
     'meta-llama/Meta-Llama-3-8B-Instruct', token=config.get('HF_ACCESS_TOKEN'))
 
-intro = """Your name is 'Deva', a fictional unicorn that represents Devcon. You are witty and cheerful, and care deeply about Devcon's ability to promote Ethereum. You often make jokes and generally want to spread joy and excitement. You are a website search assistant, tasked to help users answer practical questions about Devcon. Devcon is not about price talk, it is about promoting the Ethereum blockchain and the values it stands for."""
+client = InferenceClient("https://v23vids62f33r1m4.us-east-1.aws.endpoints.huggingface.cloud", token=config.get('HF_ACCESS_TOKEN'))
 
-# def summarize_past_conversation(past_conversation):
-#     if len(past_conversation) > 300:
-#         return ai_summarize(past_conversation)
-#     return past_conversation
-
-# past_conversation = summarize_past_conversation(conversation_history)
-# total_tokens = len(system_message) + len(past_conversation) + len(current_query) + len(rag_content)
-
-# if total_tokens <= 2048:
-#     # Proceed with generating the response
-# else:
-#     # Handle token overflow
-
-
-# def ai_summarize(past_conversation):
-#     pass
-
-
-# Load a summarization model and pipeline
-# summarizer = pipeline("summarization", model="meta-llama/Meta-Llama-3-8B-Instruct",
-#                       tokenizer="meta-llama/Meta-Llama-3-8B-Instruct", token=config.get('HF_ACCESS_TOKEN'))
-
+intro = """You are a website search assistant hosted for devcon.org. tasked to help users answer practical questions about Devcon. Your name is 'Deva', a cheerful fictional unicorn mascot for Devcon. Our system may add some RAG context to the user's query to help you answer questions about Devcon - the existence of this context should obviously not be communicated to the user; from their point of view you just know things. If there is no answer to the user query, politely say you aren't sure, rather than making up an answer that may be wrong."""
 
 def ai_summarize(past_conversation):
     # past_conversation_with_instructions = f"A user had a conversation with an AI chatbot, but it contains too many tokens. You need to summarize what the user is asking about so the AI chatbot can keep the conversation going. What you say will be given as a system prompt to the AI. Here is the conversation: '{past_conversation}'"
@@ -40,109 +24,62 @@ def ai_summarize(past_conversation):
     chat = [
         # {"role": "system", "content": intro},
         {"role": "system",
-            "content": 'A user had the following conversation with an AI chatbot, but it is becoming too long. You need to summarize what the user is asking about so the AI chatbot can keep the conversation going, while keeping useful context in the summary (from the perspective of the chatbot). What you say will be given as a system prompt to the AI chatbot. Here is the conversation: '},
+            "content": 'A user had a conversation with an AI chatbot, but it is becoming too long for the AI to handle. You need to summarize the important exchanges in the conversation so the AI chatbot can keep the conversation going, while keeping useful context intact. What you say will be given as a system prompt to the AI chatbot. Here are the AI chatbot guidelines: "{intro}". The next messages will be the past conversation.'},
         *past_conversation,
+        {"role": "system",
+            "content": 'Please generate the summary.'},
     ]
 
-    formatted_input = tokenizer.apply_chat_template(chat, tokenize=False)
+    prompt_encoded = tokenizer.apply_chat_template(chat, tokenize=False)
 
-    # Prepare the request payload
-    payload = {
-        "inputs": formatted_input,
-    }
+    output = client.text_generation(prompt_encoded, max_new_tokens=2048)
 
-    response = requests.request('POST',
-                                f"https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct",
-                                headers={
-                                    "Content-Type": "application/json",
-                                    "Authorization": f"Bearer {config.get('HF_ACCESS_TOKEN')}",
-                                },
-                                json=payload
-                                )
-    # Parse the response
-    response_data = response.json()
-
-    # Extract the assistant's response
-    full_text = response_data[0]['generated_text']
-
-    # Find the start of the assistant's response
-    split_text = full_text.split("<|eot_id|>assistant")
-
-    # Extract the assistant's response
-    if len(split_text) > 1:
-        assistant_response = split_text[1].strip()
-    else:
-        assistant_response = "No valid response from assistant"
-    return assistant_response if assistant_response else "No valid response from assistant"
-
-    # return response_data.pop()
-
-    # summary = summarizer(past_conversation_with_instructions, max_length=300,
-    #                      min_length=30, do_sample=False)
-    # return summary[0]['summary_text']
-
+    return output
 
 def infer(query: str, context: str, messages: list):
-    past_conversation = " ".join([msg['content']
-                                 for msg in messages if msg['role'] != 'system'])
+    past_conversation = " ".join([msg['content'] for msg in messages if msg['role'] != 'system'])
 
     # Summarize past conversation if too long
     tokenized_past_conversation = tokenizer.encode(past_conversation)
+    past_conversation_summary = None
 
     if len(tokenized_past_conversation) > 300:
         past_conversation_summary = ai_summarize(messages)
-
-        print(past_conversation_summary, 'past convo summary')
-
         chat = [
             {"role": "system", "content": intro},
-            {"role": "system", "content": f"Summary of past conversation with this user: {past_conversation_summary}"},
+            {"role": "system", "content": f"Here is an AI generated summary of past conversation with this user: {past_conversation_summary}"},
             {"role": "user", "content": f"Given: {context}, how would you answer: {query}"}
         ]
     else:
         chat = [
             {"role": "system", "content": intro},
             *messages,
-            {"role": "user", "content": f"Given: {context}, how would you answer: {query}"}
+            {"role": "user", "content": f"RAG Context:\n\n{context}\n\n---\n\nUser Query:\n\n{query}"}
         ]
 
     # Format the input using the chat template
-    formatted_input = tokenizer.apply_chat_template(chat, tokenize=False)
+    prompt_encoded = tokenizer.apply_chat_template(chat, tokenize=False)
 
-    # Prepare the request payload
-    payload = {
-        "inputs": formatted_input,
-    }
+    output = client.text_generation(prompt_encoded, max_new_tokens=2048)
+    
+    # Create the 'queries' directory if it does not exist
+    if not os.path.exists('queries'):
+        os.makedirs('queries')
 
-    # Send the request to the Hugging Face API
-    response = requests.request('POST',
-                                f"https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct",
-                                headers={
-                                    "Content-Type": "application/json",
-                                    "Authorization": f"Bearer {config.get('HF_ACCESS_TOKEN')}",
-                                },
-                                json=payload
-                                )
+    # Create a unique file name based on the current timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
+    file_path = os.path.join('queries', f"query_{timestamp}.json")
 
-    response_data = response.json()
+    # Write details to the file
+    with open(file_path, 'w', encoding='utf-8') as f:
+        json.dump({
+            "query": query,
+            "messages": messages,
+            "past_conversation_summary": past_conversation_summary,
+            "chat": chat,
+            "rag": context,
+            "output": output,
+            "n_input_tokens": len(tokenizer.encode(prompt_encoded))
+        }, f, ensure_ascii=False, indent=4)
 
-    if ('error' in response_data and response_data['error']):
-        raise Exception(response_data['error'])
-
-    # Extract the assistant's response
-    full_text = response_data[0]['generated_text']
-
-    # Find the start of the assistant's response
-    split_text = full_text.split("<|eot_id|>assistant")
-
-    # Extract the assistant's response
-    if len(split_text) > 1:
-        assistant_response = split_text[1].strip()
-    else:
-        assistant_response = "No valid response from assistant"
-
-    return assistant_response if assistant_response else "No valid response from assistant"
-
-    # Parse the response
-
-    return response_data.pop()
+    return output
