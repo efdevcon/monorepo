@@ -8,7 +8,8 @@ type ColorType =
   | "purple-1"
   | "green-1"
   | "blue-1"
-  | "teal-1";
+  | "teal-1"
+  | "orange-1";
 type SizeType = "sm" | "md" | "lg";
 
 type ButtonProps = {
@@ -94,6 +95,17 @@ export const colors = {
     ghost: {
       color: "#88c43f",
       hover: "#88c43f20",
+    },
+  },
+  "orange-1": {
+    fill: {
+      color: "#ffffff",
+      background: "#EA766E",
+      hover: "#D15F4C",
+    },
+    ghost: {
+      color: "#EA766E",
+      hover: "#EA766E20",
     },
   },
 } as {

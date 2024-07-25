@@ -1,10 +1,12 @@
 import React from 'react'
-import { NextIntlProvider } from 'next-intl'
+import { IntlProvider } from 'next-intl'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'assets/css/index.scss'
 import { SEO } from 'components/domain/seo'
 import { init } from '@socialgouv/matomo-next'
+import { SessionProvider } from 'next-auth/react'
+import { Web3ModalProvider } from 'context/web3modal'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -164,9 +166,13 @@ function App({ Component, pageProps }: any) {
     <>
       <SEO />
 
-      <NextIntlProvider messages={pageProps.messages}>
-        <Component {...pageProps} />
-      </NextIntlProvider>
+      <IntlProvider messages={pageProps.messages} locale="en">
+        <SessionProvider session={pageProps.session}>
+          <Web3ModalProvider>
+            <Component {...pageProps} />
+          </Web3ModalProvider>
+        </SessionProvider>
+      </IntlProvider>
 
       <DevaBot />
     </>

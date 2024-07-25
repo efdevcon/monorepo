@@ -27,15 +27,15 @@ export default pageHOC(function Supporters(props: any) {
     <Page theme={themes['teal']}>
       <PageHero
         heroBackground={HeroBackground}
-        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Supporters' }]}
+        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'Supporters & Impact Teams' }]}
         navigation={[
           {
             title: 'Supporters',
             to: '#supporters',
           },
           {
-            title: 'Impact Forum',
-            to: '#impact_forum',
+            title: 'Impact Teams',
+            to: '#impact',
           },
           // {
           //   title: 'Supporters',
@@ -64,7 +64,7 @@ export default pageHOC(function Supporters(props: any) {
         </div>
       </div>
 
-      <div className="section" id="impact_forum">
+      <div className="section" id="impact">
         <div className="flex border-top mt-8 pt-8 pb-16 relative">
           <div className="grow">{pages?.impact_forum && <RichText content={pages.impact_forum} />}</div>
           <div className={`${indexCss['scrolling-text-background']} ${css['scroller']}`}>

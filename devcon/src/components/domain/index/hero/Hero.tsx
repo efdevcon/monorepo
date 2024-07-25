@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import css from './hero.module.scss'
 // import Rays from './images/Rays'
 import { useTranslations } from 'next-intl'
@@ -36,6 +36,22 @@ import DC7Right from './images/dc-7/right.png'
 import DC7Backdrop from './images/dc-7/backdrop.png'
 import { Butterflies, Butterflies2 } from './dc7/particles'
 import { Fireflies } from './dc7/fireflies'
+import cn from 'classnames'
+import { Button } from 'lib/components/button'
+import { Link } from 'components/common/link'
+import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import TicketPrism from './dc7/ticket-prism.png'
+import Aria from './dc7/Aria.png'
+import Cat from './dc7/Cat.png'
+import Deva from './dc7/Deva.png'
+import Doggo from './dc7/Doggo.png'
+import Lyra from './dc7/Lyra.png'
+import DC7LogoIsolated from './dc7/dc7-logo-isolated.png'
+import { useSearchParams } from 'next/navigation'
+import Tilty from 'react-tilty'
+import { SEO } from 'components/domain/seo'
+import IconTwitter from 'assets/icons/twitter.svg'
+import IconWarpcast from 'assets/icons/farcaster.svg'
 
 const useDraggableLink = () => {
   const dragging = React.useRef(false)
@@ -56,86 +72,6 @@ const useDraggableLink = () => {
     },
     draggable: false,
   }
-}
-
-const usePages = () => {
-  const intl = useTranslations()
-
-  return [
-    // {
-    //   id: 'update-2024',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: '2024 Update',
-    //   logo: LogoPassport,
-    //   imageAlt: 'Devcon logo',
-    //   button: {
-    //     text: 'Learn More',
-    //     url: '#update-2024', // https://archive.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'recap',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_recap_title'),
-    //   logo: LogoPassport,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_recap_relive'),
-    //     url: '#recap', // https://archive.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'passport',
-    //   background: BackgroundPassport,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_passport_title'), // 'Passport',
-    //   logo: LogoPassport,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_passport_cta'), //'Launch Devcon App',
-    //     url: 'https://app.devcon.org',
-    //   },
-    // },
-    // {
-    //   id: 'bogota',
-    //   background: BackgroundBogota,
-    //   backgroundAlt: 'Deva',
-    //   titlePrefix: TitleBogota,
-    //   title: intl('hero_city_guide_title'),
-    //   logo: LogoBogota,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_city_guide_cta'),
-    //     url: '/bogota',
-    //   },
-    // },
-    // {
-    //   id: 'devcon-week',
-    //   background: BackgroundDevconWeek,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_devcon_week_title'),
-    //   logo: LogoGetInvolved,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_devcon_week_cta'),
-    //     url: '/devcon-week',
-    //   },
-    // },
-    // {
-    //   id: 'livestream',
-    //   background: BackgroundLive,
-    //   titlePrefix: TitleDevcon,
-    //   title: intl('hero_live_title'),
-    //   logo: LogoVideo,
-    //   imageAlt: 'LogoBogota',
-    //   button: {
-    //     text: intl('hero_live_cta'),
-    //     url: 'https://live.devcon.org',
-    //   },
-    // },
-  ]
 }
 
 const useCursorTracker = (ref: any) => {
@@ -165,7 +101,85 @@ const useCursorTracker = (ref: any) => {
   return delta
 }
 
-export const Hero = () => {
+type TicketProps = {
+  name: string
+  ticketType: string
+}
+
+export const Ticket = (props: TicketProps) => {
+  const heroes = [Aria, Cat, Doggo, Deva, Lyra]
+  const firstLetter = props.name[0].toUpperCase()
+  const alphabetIndex = firstLetter.charCodeAt(0) - 'A'.charCodeAt(0)
+  const heroIndex = alphabetIndex % heroes.length
+  const selectedHero = heroes[heroIndex >= 0 ? heroIndex : 0]
+
+  return (
+    <div
+      // TODO: Adjust aspect as needed for social sharing
+      className="flex justify-between items-evenly relative rounded-xl aspect-[16/8] w-[550px] max-w-full text-black border-[#F8F9FE] overflow-hidden shadow-xl"
+      data-type="ticket"
+    >
+      <div
+        style={{
+          WebkitMask: 'radial-gradient(circle at left, transparent 20px, black 21px)',
+        }}
+        className="absolute left-0 w-[52%] h-full bg-[#F8F9FE]"
+      ></div>
+      <div
+        style={{
+          WebkitMask: 'radial-gradient(circle at right, transparent 20px, black 21px)',
+        }}
+        className="absolute right-0 w-[52%] h-full bg-[#F8F9FE]"
+      ></div>
+
+      <div
+        style={{
+          WebkitMask: 'radial-gradient(circle at right, transparent 20px, black 21px)',
+        }}
+        className="absolute left-1/2 top-0 bottom-0 right-0"
+      >
+        <Image src={TicketPrism} alt="Devcon logo flowers" className="h-full object-cover object-left" />
+      </div>
+      <div className="flex flex-col justify-between p-4 relative max-w-[75%] lg:max-w-[50%] pl-8">
+        <div className="h-[20%]">
+          <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-full object-contain object-left" />
+        </div>
+        <div className="flex flex-col justify-center grow">
+          <div className="text-lg lg:text-2xl">{props.name}</div>
+          <span className="text-[#5B5F84] text-xs mt-4">Attending Devcon: the schelling point for the Ethereum community</span>
+        </div>
+        <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
+      </div>
+      <div className="flex flex-col relative w-[37%] shrink-0 h-full p-4 border-l-2 border-l-solid border-dashed border-[#D9D9D9]">
+        <div className="flex flex-col justify-end items-end text-sm">
+          <div className="leading-3 bold uppercase text-xs text-nowrap text-[#5B5F84]">Bangkok, Thailand</div>
+          <div className="text-sm text-nowrap">
+            <span className="text-[#6B54AB]">12 — 15</span> Nov, 2024
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{
+          WebkitMask: 'radial-gradient(circle at right, transparent 20px, black 21px)',
+        }}
+        className="absolute h-full w-full"
+      >
+        <Image
+          src={selectedHero}
+          alt={`Devcon Hero`}
+          className={`absolute h-[75%] lg:h-[80%] left-0 right-0 bottom-0 object-contain object-right-bottom w-full ${
+            heroIndex === 0 && ''
+          }`}
+        />
+      </div>
+    </div>
+  )
+}
+
+export const Hero = (props: { ticketMode?: boolean; name?: string }) => {
+  const [currentUrl, setCurrentUrl] = useState('https://devcon.org/tickets/')
+  const searchParams = useSearchParams()
   // const router = useRouter()
   const intl = useTranslations()
   // const draggableLinkAttributes = useDraggableLink()
@@ -221,9 +235,32 @@ export const Hero = () => {
     transformRightY.set(yDir)
   }, [x, y])
 
+  const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
+  const ticketType = searchParams.get('type') ?? ''
+  const imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setCurrentUrl(window.location.href)
+    }
+  }, [])
+
   return (
     <>
-      <div ref={heroEl} data-jest="hero" className={`${css['hero']} ${css['page.id']}`}>
+      {props.ticketMode && (
+        <SEO
+          title="Join me"
+          separator="@"
+          description="Get your ticket for Devcon SEA Nov 12 — 15 in Bangkok, Thailand"
+          imageUrl={imageUrl}
+        />
+      )}
+
+      <div
+        ref={heroEl}
+        data-jest="hero"
+        className={`${css['hero']} ${css['page.id']} ${props.ticketMode ? css['ticket-mode'] : ''}`}
+      >
         <motion.div className={css['devcon-7-background']} ref={backdropRef} /*style={{ y: -scroll }}*/>
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
             <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
@@ -239,39 +276,121 @@ export const Hero = () => {
           </motion.div>
         </motion.div>
 
+        {props.ticketMode && (
+          <div
+            className={cn(
+              css['ticket'],
+              'flex flex-col relative justify-center items-center gap-10 px-4 max-w-full pointer-events-none'
+            )}
+          >
+            <div className="absolute -left-[20px] top-[10%] -z-10">
+              <Butterflies />
+            </div>
+            {/* <div className="absolute right-[20%] -bottom-[10%] -z-10">
+              <Butterflies2 />
+            </div> */}
+
+            <Link to="/">
+              <Image src={DC7LogoIsolated} alt="DC7 Logo" className="w-[207px] pointer-events-auto" />
+            </Link>
+
+            <div className="text-3xl max-w-[100%] lg:max-w-[500px] text-center bold font-secondary relative">
+              {ticketHolder}'s Ticket
+            </div>
+
+            <Tilty
+              className="max-w-full relative pointer-events-auto"
+              style={{ transformStyle: 'preserve-3d' }}
+              speed={5000}
+            >
+              <Ticket name={ticketHolder} ticketType={ticketType} />
+            </Tilty>
+
+            <Link to="/tickets">
+              <Button className="bold font-secondary pointer-events-auto" color="purple-1" fat fill>
+                GET YOUR TICKET
+              </Button>
+            </Link>
+
+            <div className="flex flex-col items-center justify-center text-lg relative">
+              <div className="bold leading-5">Join me at Devcon SEA Nov 12 — 15</div>
+              <div className="text-sm">QSNCC BANGKOK THAILAND</div>
+            </div>
+          </div>
+        )}
+
+        {props.ticketMode && (
+          <div className="flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
+            <p className="text-sm mb-2">Share On</p>
+            <div className="flex gap-4">
+              <a
+                // className="twitter-share-button"
+                className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
+                // @ts-ignore
+                style={{ '--color-icon': '#8c72ae' }}
+                href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`}
+                target="_blank"
+                rel="noreferrer"
+                data-url={currentUrl}
+                data-size="large"
+                data-via="efdevcon"
+              >
+                {/* <Button className="font-bold pointer-events-auto" color="purple-1" fat fill> */}
+                <IconTwitter />
+                {/* </Button> */}
+              </a>
+              <a
+                className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+                // @ts-ignore
+                style={{ '--color-icon': '#8c72ae' }}
+                href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {/* <Button className="font-bold pointer-events-auto" color="purple-1" fat fill> */}
+                <IconWarpcast />
+                {/* </Button> */}
+              </a>
+            </div>
+          </div>
+        )}
+
         <div className={css['devcon-7-overlay']}>
-          <div className="section">
-            <div className={css['flex']}>
-              <div className={css['left']}>
-                <div className={`${css['dc7-logo']}`}>
-                  <Image src={DC7Logo} alt="Devcon 7 Logo" priority />
-                </div>
-                <div className="relative">
-                  <div className="absolute left-[45%] bottom-[0%] w-full h-full z-10 hidden lg:block">
-                    <Butterflies />
+          {!props.ticketMode && (
+            <div className="section">
+              <div className={css['flex']}>
+                <div className={css['left']}>
+                  <div className={`${css['dc7-logo']}`}>
+                    <Image src={DC7Logo} alt="Devcon 7 Logo" priority />
                   </div>
-                  <Image
-                    className={css['dc7-logo-text']}
-                    src={DC7OverlayLeft}
-                    alt="Devcon 7 logo with location"
-                    priority
-                  />
+                  <div className="relative">
+                    <div className="absolute left-[45%] bottom-[0%] w-full h-full z-10 hidden lg:block">
+                      <Butterflies />
+                    </div>
+                    <Image
+                      className={css['dc7-logo-text']}
+                      data-type="dc7-logo-left-text"
+                      src={DC7OverlayLeft}
+                      alt="Devcon 7 logo with location"
+                      priority
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className={css['right']}>
-                <div className={`${css['butterflies']} hidden lg:block`}>
-                  <Butterflies2 />
-                </div>
-                <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority />
-                {/* <Image
+                <div className={css['right']}>
+                  <div className={`${css['butterflies']} hidden lg:block`}>
+                    <Butterflies2 />
+                  </div>
+                  <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority />
+                  {/* <Image
                   className={`${css['dc7-logo-text']} ${css['mobile']}`}
                   src={DC7OverlayRightLeftAligned}
                   alt="Event location"
                   priority
                 /> */}
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* {page.id === 'recap' ? (
@@ -296,7 +415,10 @@ export const Hero = () => {
 
         {/* <div className={css['page-background']}></div> */}
 
-        <div className="absolute center w-full bottom-[32px] justify-center hidden xl:flex">
+        <div
+          className="absolute center w-full bottom-[32px] justify-center hidden xl:flex"
+          data-type="scroll-indicator"
+        >
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
             <g className="nc-icon-wrapper" fill="#B1ABFE">
               <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
@@ -314,12 +436,16 @@ export const Hero = () => {
           </svg>
         </div>
 
-        <div className={css['left-rotated']}>
-          <p className={'text-uppercase'}>{intl('global_subtitle')}</p>
-        </div>
-        <div className={css['right-rotated']}>
-          <p className={'text-uppercase'}>Road TO SOUTH EAST ASIA 2024</p>
-        </div>
+        {!props.ticketMode && (
+          <>
+            <div className={css['left-rotated']}>
+              <p className={'text-uppercase'}>{intl('global_subtitle')}</p>
+            </div>
+            <div className={css['right-rotated']}>
+              <p className={'text-uppercase'}>Road TO SOUTH EAST ASIA 2024</p>
+            </div>
+          </>
+        )}
 
         {/* <div className={`${css['page-container']} section`}>
           <div className={css['page']}> */}

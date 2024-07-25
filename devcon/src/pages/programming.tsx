@@ -121,7 +121,7 @@ export default pageHOC(function Programming(props: any) {
             <CallToAction
               color="purple"
               title={'Speaker Applications'}
-              tag="Coming Soon"
+              tag="Apply Now"
               BackgroundSvg={SpeakersBackground}
               link={pages.overview?.button?.link}
               linkText={pages.overview?.button?.text}
@@ -239,8 +239,6 @@ export default pageHOC(function Programming(props: any) {
 
 export async function getStaticProps(context: any) {
   const globalData = await getGlobalData(context)
-  // await GetPage('terms-of-service', context.locale)
-
   const content = await client.queries.pages({ relativePath: 'programming.mdx' })
 
   return {
@@ -256,10 +254,3 @@ export async function getStaticProps(context: any) {
     },
   }
 }
-
-/*
-  Color
-  Tracks
-  Menu Footer
-  Menu Header
-*/

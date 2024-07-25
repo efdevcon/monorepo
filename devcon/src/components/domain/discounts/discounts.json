@@ -1,0 +1,42 @@
+[
+    {
+        "name": "Core Devs",
+        "description": "Discount for Ethereum core developers",
+        "body": "This discount is for Ethereum core developers who either have a Merge pass or are part of the protocol guild",
+        "discount": 100,
+        "target": 300,
+        "tags": ["Merge Pass", "Protocol Guild"]
+    },
+    {
+        "name": "OSS Contributors",
+        "description": "Recent open-source contributions to Ethereum",
+        "body": "This discounted ticket is reserved for those who have made at least 2 contributions (since Devcon VI) to any repo under the `efdevcon` or `ethereum` organizations, or any execution/consensus clients.\n\nExecution clients:\n- NethermindEth/nethermind, paradigmxyz/reth, hyperledger/besu, ledgerwatch/erigon,- ethereum/go-ethereum\n\nConsensus clients:\n- sigp/lighthouse, ChainSafe/lodestar, prysmaticlabs/prysm, Consensys/teku, status-im/nimbus-eth2",
+        "discount": 50,
+        "target": 550,
+        "tags": ["efdevcon", "ethereum", "execution clients", "consensus clients"]
+    },
+    {
+        "name": "Public Goods Projects",
+        "description": "For those who fundraised for Public Goods projects",
+        "body": "This discounted ticket is reserved for those who have fundraised for Public Goods projects.\n\n- Clr.fund projects owners on the latest Arbitrum or Devcon Bogota rounds\n- Verified Giveth project owners who received at least 1 donation and shared 1 update since Devcon and a quality score of 10 or higher\n-Gitcoin Grants Round 20 project owners in Developer Tooling, DApps and Apps, Web3 Infrastructure\n- Octant project owners in round 1, 2 and 3",
+        "discount": 50,
+        "target": 600,
+        "tags": ["Clr.fund", "Giveth", "Gitcoin", "Octant"]
+    },
+    {
+        "name": "DAO Participants",
+        "description": "Active participation and governing of DAOs",
+        "body": "This ticket is reserved for those who have at least an 80% participation rate in a DAO that has 100+ members, has passed at least 3 proposals in the past year, on Mainnet, Optimism, Arbitrum, Base, or Polygon.\n\nProvided by Tally",
+        "discount": 25,
+        "target": 570,
+        "tags": ["Governor", "Tally"]
+    },
+    {
+        "name": "Past Attendees",
+        "description": "For those who collected the POAP at previous events",
+        "body": "This ticket is reserved for those who collected the Devconnect Amsterdam, Devcon VI in Bogotá or Devconnect Istanbul POAP. Thank you for engaging with our attendee activations!",
+        "discount": 10,
+        "target": 3200,
+        "tags": ["Devconnect AMS", "Devcon Bogota", "Devconnect IST"]
+    }
+]

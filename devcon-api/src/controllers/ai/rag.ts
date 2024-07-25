@@ -16,6 +16,7 @@ Settings.embedModel = new HuggingFaceEmbedding({
 const setupVectorStore = async () => {
   const reader = new SimpleDirectoryReader()
   const documents = await reader.loadData(path.resolve(__dirname, 'formatted-content'))
+
   const index = await VectorStoreIndex.fromDocuments(documents)
 
   retriever = index.asRetriever()

@@ -151,7 +151,7 @@ const Tracks = (props: Props) => {
 
             if (props.isThailand) {
               return (
-                <FlipCard key={track.id} className={className} to={archiveUrl}>
+                <FlipCard key={track.id} className={className}>
                   <div className="flex flex-col p-4 relative h-full select-none">
                     <div className={css['title']}>{track.title}</div>
 

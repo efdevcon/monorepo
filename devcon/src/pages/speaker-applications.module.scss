@@ -1,0 +1,55 @@
+@use 'assets/css/partials/index' as *;
+
+.round-button {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #8c72ae;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; /* Adjust font size as needed */
+  font-weight: bold; /* Optional: to make the number bold */
+  color: black; /* Optional: change the number color */
+  background-color: white; /* Optional: change background color */
+}
+
+.round-button span {
+  display: inline-block;
+  line-height: 1; /* Ensures vertical centering */
+}
+
+.fade-color {
+  --custom-fade-color: #b6b8ff;
+}
+
+.mask {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  height: 100%;
+  width: 64px;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(90deg, transparent 20%, white);
+  // -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+}
+
+.timeline-item {
+  --list-line-color: #8c72ae;
+
+  [data-type='slider-title'] {
+    font-family: var(--font-primary);
+    @apply text-base;
+    @apply font-bold;
+  }
+
+  [data-type='slider-container'] {
+    margin-top: 16px !important;
+  }
+
+  [data-cms-element='button'] {
+    padding-top: 0px !important;
+  }
+}
