@@ -1,0 +1,71 @@
+@use 'src/assets/css/partials/index' as *;
+
+.label {
+  @include fonts-primary;
+  @include fonts-xs;
+  display: inline-block;
+  padding: $gaps-gap-2;
+  padding-top: $gaps-gap-1;
+  padding-bottom: $gaps-gap-1;
+  touch-action: manipulation;
+  max-width: 100%;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  color: var(--theme-color, #{$colors-main});
+  border: 1px solid var(--theme-color, #{$colors-main});
+
+  &.scale {
+    @media (max-width: $breakpoints-lg) {
+      padding: 2px $gaps-gap-1;
+      @include fonts-xxs;
+    }
+  }
+
+  .ghost {
+    background: none;
+  }
+
+  &.neutral {
+    color: $colors-main;
+    border: none;
+    background: $colors-monochrome-5;
+  }
+
+  &.error {
+    color: $colors-state-error;
+    border: none;
+    background: $colors-state-error-light;
+  }
+
+  &.success {
+    color: $colors-state-success;
+    border: none;
+    background: $colors-state-success-light;
+  }
+
+  &.notification {
+    color: $colors-monochrome-1;
+    border: none;
+    background: $colors-state-error;
+  }
+
+  &.sm {
+    padding: 2px $gaps-gap-1;
+    @include fonts-xxs;
+  }
+
+  &.label-hover {
+    &.white {
+      &:hover {
+        @include colors-white-hover;
+      }
+    }
+
+    &.black {
+      &:hover {
+        @include colors-black-hover;
+      }
+    }
+  }
+}

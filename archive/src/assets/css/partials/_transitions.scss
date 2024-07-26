@@ -1,0 +1,6 @@
+$default-duration: 0.3s;
+$default-type: ease-in-out;
+
+@mixin ease-in-out {
+  transition: all $default-duration $default-type;
+}
