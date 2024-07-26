@@ -18,6 +18,8 @@ def process():
 
     content = get_website_content_for_query(query)
 
+    return jsonify(content)
+
     answer = infer(query, content, messages)
 
     print('hello')

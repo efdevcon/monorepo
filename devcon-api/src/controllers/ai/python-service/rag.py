@@ -33,7 +33,7 @@ splitter = SemanticSplitterNodeParser(
 )
 
 # also baseline splitter
-base_splitter = SentenceSplitter(chunk_size=512)
+base_splitter = SentenceSplitter(chunk_size=258)
 
 def save_nodes_to_json(nodes, output_dir="nodes_output"):
     # Create the output directory if it doesn't exist
@@ -49,8 +49,8 @@ def save_nodes_to_json(nodes, output_dir="nodes_output"):
 async def setup_vector_store():
     reader = SimpleDirectoryReader(input_dir="../formatted-content/")
     documents = reader.load_data()
-    nodes = splitter.get_nodes_from_documents(documents)
     # nodes = splitter.get_nodes_from_documents(documents)
+    nodes = splitter.get_nodes_from_documents(documents)
 
     save_nodes_to_json(nodes)
 
@@ -59,7 +59,7 @@ async def setup_vector_store():
     # index = VectorStoreIndex.from_documents(documents=documents)
 
     retriever = index.as_retriever()
-    retriever.similarity_top_k = 5
+    retriever.similarity_top_k = 10
     # retriever.similarity_threshold = 0.2 # confirm this works?
     return retriever
 
@@ -80,12 +80,22 @@ def get_website_content_for_query(query: str, max_tokens: int = 4096):
     total_tokens = 0
 
     for node in nodes:
-        node_text = node.get_text()
+        file_path = node.metadata.get('file_path')
+        node_text = ''
+
+        # Get parent file 
+        if file_path and os.path.exists(file_path):
+            with open(file_path, 'r', encoding='utf-8') as file:
+                node_text = file.read()
+        else:   
+            node_text = node.get_text()
+
         node_tokens = tokenizer.encode(node_text)
+
         if total_tokens + len(node_tokens) > max_tokens:
             break
 
-        text += node_text + '\n'
+        text += node_text + '\n\n'
         total_tokens += len(node_tokens)
 
     return text
