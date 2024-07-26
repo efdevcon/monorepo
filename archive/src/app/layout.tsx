@@ -52,8 +52,8 @@ export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="shortcut icon" href="/icons/favicon.ico" sizes="any" />
+        <link rel="icon" href="favicon.ico" sizes="any" />
+        <link rel="shortcut icon" href="favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" type="image/png" sizes="any" />
       </head>
       <body>
