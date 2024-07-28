@@ -49,6 +49,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'FAQ',
+            url: '/faq',
+            type: 'page',
+          },
+          {
             title: intl('navigation_updates'),
             url: '#',
             type: 'header',
@@ -343,6 +348,7 @@ const useNavigationData = () => {
           url: '/city-guide',
           type: 'page',
         },
+
         {
           title: 'Apply To Speak',
           url: '/speaker-applications',
@@ -352,6 +358,11 @@ const useNavigationData = () => {
           title: 'Volunteer',
           url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
           type: 'url',
+        },
+        {
+          title: 'FAQ',
+          url: '/faq',
+          type: 'page',
         },
         {
           title: intl('navigation_blog'),
