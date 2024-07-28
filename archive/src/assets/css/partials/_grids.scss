@@ -1,0 +1,13 @@
+@use 'gaps';
+
+@mixin grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: gaps.$gap-8;
+}
+
+@mixin grid-6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: gaps.$gap-4;
+}

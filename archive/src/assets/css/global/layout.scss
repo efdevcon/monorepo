@@ -1,0 +1,9 @@
+@use 'src/assets/css/partials/index' as *;
+
+.section {
+  @include layout-section;
+
+  .content {
+    @include layout-content;
+  }
+}

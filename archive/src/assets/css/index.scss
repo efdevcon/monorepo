@@ -1,0 +1,45 @@
+@use 'src/assets/css/partials/index' as *;
+@use 'global/general';
+@use 'global/buttons';
+@use 'global/labels';
+@use 'global/gaps';
+@use 'global/fonts';
+@use 'global/markdown';
+@use 'global/icons';
+@use 'global/layout';
+@use 'global/colors';
+@use 'vendor/react-slick.scss';
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+  min-height: 0;
+  min-width: 0;
+}
+
+html {
+  position: relative;
+  margin: 0 auto;
+  font-family: $fonts-primary;
+  color: $colors-main;
+
+  @include fonts-md;
+
+  @media (max-width: $breakpoints-lg) {
+    @include fonts-sm;
+  }
+
+  @media (max-width: $breakpoints-md) {
+    @include fonts-xs;
+  }
+}
+
+body {
+  position: relative;
+  overflow-x: hidden;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
