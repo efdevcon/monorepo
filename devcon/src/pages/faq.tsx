@@ -5,19 +5,13 @@ import themes from './themes.module.scss'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
 import { GetPage, GetTracks } from 'services/page'
-// import { usePageContext } from 'context/page-context'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
-// import { PagesProgramming, PagesQuery } from '../../tina/__generated__/types'
-// import SpeakersBackground from 'assets/images/pages/program.svg'
 import RichText from 'lib/components/tina-cms/RichText'
-import cn from 'classnames'
-// import css from './programming.module.scss'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import { motion } from 'framer-motion'
-// import cityGuide from './city-guide'
 
 const FAQ = (props: any) => {
   const [openFAQ, setOpenFAQ] = React.useState(null)
@@ -59,10 +53,10 @@ const FAQ = (props: any) => {
 }
 
 export default pageHOC(function Programming(props: any) {
-  const { data: general } = useTina<PagesQuery>(props.general) as any
-  const { data: cityGuide } = useTina<PagesQuery>(props.cityGuide) as any
-  const { data: programming } = useTina<PagesQuery>(props.programming) as any
-  const { data: tickets } = useTina<PagesQuery>(props.tickets) as any
+  const { data: general } = useTina<any>(props.general) as any
+  const { data: cityGuide } = useTina<any>(props.cityGuide) as any
+  const { data: programming } = useTina<any>(props.programming) as any
+  const { data: tickets } = useTina<any>(props.tickets) as any
 
   const faqs = [
     {
@@ -127,11 +121,6 @@ export async function getStaticProps(context: any) {
       programming,
       tickets,
       general,
-      //   cms: {
-      //     variables: content.variables,
-      //     data: content.data,
-      //     query: content.query,
-      //   },
       tracks: GetTracks(context.locale),
     },
   }
