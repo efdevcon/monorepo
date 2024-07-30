@@ -48,7 +48,7 @@ export default pageHOC(function Tickets(props: any) {
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
   const [timeUntilNextWave, setTimeUntilNextWave] = React.useState<string | null>(null)
   // For mocking real time dates
-  // const [currentDate, setCurrentDate] = React.useState<any>(moment.utc('2024-07-30 15:59:55'))
+  // const [currentDate, setCurrentDate] = React.useState<any>(moment.utc('2024-07-31 15:59:55'))
   const currentDate = moment.utc()
   const ticketQuota = useTicketQuota(props.ticketQuota)
 
@@ -169,8 +169,12 @@ export default pageHOC(function Tickets(props: any) {
 
                   <Link to="https://tickets.devcon.org">
                     <Button color="blue-1" className="mt-3" fat fill disabled>
-                      Wave {latestWave === ticketWaves[1] && '1'} {latestWave === ticketWaves[2] && '2'}{' '}
-                      {latestWave === ticketWaves[3] && '3'} Sold Out
+                      {latestWave === ticketWaves[1] && 'Next Wave - July 30'}
+                      {latestWave === ticketWaves[2] && 'Next wave - August 13'}
+                      {latestWave === ticketWaves[3] && 'All waves sold out'}
+
+                      {/* Wave {latestWave === ticketWaves[1] && '1'} {latestWave === ticketWaves[2] && '2'}{' '}
+                      {latestWave === ticketWaves[3] && '3'} Sold Out */}
                     </Button>
                   </Link>
 
