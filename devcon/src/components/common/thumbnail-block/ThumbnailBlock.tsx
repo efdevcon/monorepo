@@ -1,7 +1,7 @@
 import Image from 'next/legacy/image'
 import React from 'react'
 import css from './thumbnail-block.module.scss'
-import { getTrackImage, getTrackID } from 'components/domain/index/track-list/TrackList'
+import { getTrackImage } from 'components/domain/index/track-list/TrackList'
 import { Link } from 'components/common/link'
 
 type ThumbnailBlock = {
@@ -23,7 +23,7 @@ export const ThumbnailBlock = (props: ThumbnailBlock) => {
 
   if (props.thumbnailSubtext) className += ` ${css['with-subtext']}`
 
-  const trackID = getTrackID(props.track)
+  const trackID = props.track
 
   if (trackID) className += ` ${css[trackID]}`
 

@@ -115,6 +115,11 @@ export const DC6_TRACKS = [
   },
 ]
 
+export function getTrackImage(trackID: string, className: string) {
+  return DC6_TRACKS.find((track: any) => track.id === trackID)?.image
+}
+
+
 const Tracks = (props: Props) => {
   const sliderProps = useSlider(settings)
 
