@@ -56,36 +56,19 @@ export const videoResolver = {
 export const distinctVideoTagsResolver = {
   type: '[String]',
   resolve: (source: any, args: any, context: any) => {
-    const filter: any = {
-      fields: {
-        collection: {
-          eq: 'videos',
-        },
-      },
-    }
-
-    return context.nodeModel
-      .runQuery({
-        query: {
-          filter,
-        },
-        type: 'MarkdownRemark',
-      })
-      .then((videos: any) => {
-        const tags = {} as { [key: string]: boolean }
-
-        videos.forEach((video: any) => {
-          if (!video.frontmatter.tags) return
-
-          video.frontmatter.tags.forEach((tag: any) => {
-            if (tags[tag.trim()]) return
-
-            tags[tag.trim()] = true
-          })
-        })
-
-        return Object.keys(tags).sort()
-      })
+    return [
+      'Cryptoeconomics',
+      'Devcon',
+      'Developer Experience',
+      'Coordination',
+      'Core Protocol',
+      'Layer 2s',
+      'Real World Ethereum',
+      'Cypherpunk & Privacy',
+      'Security',
+      'Applied Cryptography',
+      'Usability'
+    ]
   },
   args: {},
 }
