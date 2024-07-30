@@ -213,34 +213,6 @@ export async function GetDevconEditions(lang: string = 'en'): Promise<Array<Devc
   )
 }
 
-export function GetTracks(lang: string = 'en'): Array<Track> {
-  if (lang !== 'es') lang = 'en'
-
-  const dir = join(process.cwd(), BASE_CONTENT_FOLDER, 'tracks', lang)
-
-  return fs
-    .readdirSync(dir)
-    .map(i => {
-      const content = fs.readFileSync(join(dir, i), 'utf8')
-      if (!content) {
-        console.log('File has no content..', i)
-        return undefined
-      }
-
-      const doc = matter(content)
-      return {
-        id: i.replace('.md', '').toLowerCase(),
-        slug: i.replace('.md', '').toLowerCase(),
-        lang: lang,
-        title: doc.data.title,
-        body: doc.content,
-        order: doc.data.order,
-      } as Track
-    })
-    .sort((a: any, b: any) => a.order - b.order)
-    .filter(i => !!i) as Array<Track>
-}
-
 export async function GetContentSection(slug: string, lang: string = 'en'): Promise<ContentSection | undefined> {
   if (lang !== 'es') lang = 'en'
 
