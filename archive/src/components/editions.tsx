@@ -2,8 +2,6 @@
 
 import { Event } from "@/types";
 import { useEffect, useRef, useState } from "react";
-import { HorizontalScroller } from "lib/components/horizontal-scroller";
-import { Button } from "lib/components/button";
 import { Link } from "./link";
 import Image from "next/image";
 import dayjs from "dayjs";
@@ -17,7 +15,7 @@ interface Props {
 export function Editions(props: Props) {
   let className = "container mx-auto border-t border-b border-gray-300 py-8";
   if (props.className) className += ` ${props.className}`;
-  const [eventIndex, setEventIndex] = useState(0);
+  const [eventIndex, setEventIndex] = useState(7);
   const event = props.events.reverse()[eventIndex];
 
   return (
@@ -25,7 +23,6 @@ export function Editions(props: Props) {
       <h2 className="text-2xl font-semibold mb-8">All Devcons</h2>
 
       <div className={css["container"]}>
-        <HorizontalScroller>
           <div className={css["numbers"]}>
             {props.events.reverse().map((i: Event) => {
               const selected = i.edition === event.edition;
@@ -59,7 +56,6 @@ export function Editions(props: Props) {
               );
             })}
           </div>
-        </HorizontalScroller>
 
         <div className={css["image-container"]}>
           <div className={`${css["aspect"]} ${css["square"]}`}>
@@ -144,10 +140,10 @@ export function Editions(props: Props) {
             <div className={css["buttons-container"]}>
               <div className={css["buttons"]}>
                 <Link href={`watch?event=${event.id}`} className="button">
-                  Watch +
+                  Watch
                 </Link>
                 <Link href={`playlists/${event.id}`} className="button">
-                  Playlist |
+                  Playlist
                 </Link>
               </div>
             </div>

@@ -4,8 +4,6 @@ import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
-import { GetPage, GetTracks } from 'services/page'
-import { usePageContext } from 'context/page-context'
 import HeroBackground from 'assets/images/pages/hero-bgs/programming.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -250,7 +248,6 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
-      tracks: GetTracks(context.locale),
     },
   }
 }

@@ -19,7 +19,7 @@ import themes from './themes.module.scss'
 import ImageNew from 'next/image'
 import CircleBackground from 'assets/images/background-circles.png'
 // import TriangleBackground from 'assets/images/background-triangles.png'
-import { GetContentSections, GetTracks } from 'services/page'
+import { GetContentSections } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -448,7 +448,7 @@ export default pageHOC(function Index(props: any) {
           </div>
 
           <div className="relative border-bottom pb-8">
-            <TrackList tracks={props.tracks} />
+            <TrackList title='Devcon 6 Playlists' />
 
             <Link to={pages.section5?.button_info?.link}>
               <Button fat color="purple-1" fill className="mt-8">
@@ -526,7 +526,6 @@ export async function getStaticProps(context: any) {
     ],
     context.locale
   )
-  const tracks = GetTracks(context.locale)
 
   const content = await client.queries.pages({ relativePath: 'index.mdx' })
   const faq = await client.queries.pages({ relativePath: 'faq.mdx' })
@@ -538,7 +537,6 @@ export async function getStaticProps(context: any) {
       news: await getNews(context.locale),
       blogs: await GetBlogs(),
       sections,
-      tracks,
       cms: {
         variables: content.variables,
         data: content.data,
