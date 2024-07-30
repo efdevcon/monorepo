@@ -20,7 +20,6 @@ import cn from 'classnames'
 interface Props {
   isThailand?: boolean
   title?: string
-  tracks: Track[]
 }
 
 const settings = {
@@ -33,100 +32,88 @@ const settings = {
   mobileFirst: true,
 }
 
-export const getTrackID = (trackName?: string) => {
-  let trackID
-
-  switch (trackName) {
-    case 'Layer 1 Protocol': {
-      trackID = 'layer-1'
-
-      break
-    }
-
-    case 'Layer 2s': {
-      trackID = 'layer-2s'
-
-      break
-    }
-
-    case 'Governance & Coordination': {
-      trackID = 'governance-coordination'
-
-      break
-    }
-
-    case 'Developer Infrastructure': {
-      trackID = 'developer-infrastructure'
-
-      break
-    }
-
-    case 'Staking & Validator Experience': {
-      trackID = 'staking-validator-experience'
-
-      break
-    }
-
-    case 'ZKPs: Privacy, Identity, Infrastructure, & More': {
-      trackID = 'zkps'
-
-      break
-    }
-
-    case 'Security': {
-      trackID = 'security'
-
-      break
-    }
-
-    case 'Opportunity & Global Impact': {
-      trackID = 'opportunity-global-impact'
-
-      break
-    }
-
-    case 'Cryptoeconomics': {
-      trackID = 'cryptoeconomics'
-
-      break
-    }
-
-    case 'UX & Design':
-      trackID = 'ux-design'
-
-      break
-  }
-
-  return trackID
-}
-
-export function getTrackImage(id?: string, className?: string) {
-  if (id === 'layer-1') return <Layer1 className={className} />
-  if (id === 'layer-2s') return <Layer2 className={className} />
-  if (id === 'developer-infrastructure') return <DeveloperInfra className={className} />
-  if (id === 'governance-coordination') return <Governance className={className} />
-  if (id === 'ux-design') return <UXDesign className={className} />
-  if (id === 'staking-validator-experience') return <Staking className={className} />
-  if (id === 'security') return <Security className={className} />
-  if (id === 'zkps') return <ZKPs className={className} />
-  if (id === 'opportunity-global-impact') return <GlobalImpact className={className} />
-  if (id === 'cryptoeconomics') return <Cryptoeconomics className={className} />
-
-  return null
-}
-
-const getArchiveSlug = (id?: string) => {
-  if (id === 'layer-1') return 'Layer%201%20Protocol'
-  if (id === 'layer-2s') return 'Layer%202s'
-  if (id === 'developer-infrastructure') return 'Developer%20Infrastructure'
-  if (id === 'governance-coordination') return 'Governance%20%26%20Coordination'
-  if (id === 'ux-design') return 'UX%20%26%20Design'
-  if (id === 'staking-validator-experience') return 'Staking%20%26%20Validator%20Experience'
-  if (id === 'security') return 'Security'
-  if (id === 'zkps') return 'ZKPs%3A%20Privacy%2C%20Identity%2C%20Infrastructure%2C%20%26%20More'
-  if (id === 'opportunity-global-impact') return 'Opportunity%20%26%20Global%20Impact'
-  if (id === 'cryptoeconomics') return 'Cryptoeconomics'
-}
+export const DC6_TRACKS = [
+  {
+    id: 'layer-1',
+    archiveSlug: 'Layer%201%20Protocol',
+    title: 'Layer 1 Protocol',
+    body: 'Ethereum Roadmap, core protocol upgrades and improvements, design decisions and tradeoffs, core protocol values and their importance.',
+    image: <Layer1 />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-layer-1-protocol/',
+  },
+  {
+    id: 'layer-2s',
+    archiveSlug: 'Layer%202s',
+    title: 'Layer 2s',
+    body: "Pushing Ethereum's boundaries: more throughput, a farther reach, and more functionality. What are ways to enable Ethereum to scale, handle transactions faster, and for building bridges with other technologies? Anything rollup-related, wallets and other L2-enabling technologies, applications that take advantage of them, etc.",
+    image: <Layer2 />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-layer-2s/',
+  },
+  {
+    id: 'developer-infrastructure',
+    archiveSlug: 'Developer%20Infrastructure',
+    title: 'Developer Infrastructure',
+    body: 'Tooling and other efforts to make it easier, more fun, and more appealing to build on Ethereum. Languages, libraries, frameworks, dev tooling, best practices, etc.',
+    image: <DeveloperInfra />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-developer-infrastructure/',
+  },
+  {
+    id: 'governance-coordination',
+    archiveSlug: 'Governance%20%26%20Coordination',
+    title: 'Governance & Coordination',
+    body: 'How can we empower people to coordinate, manage common resources and make positive-sum decisions together? DAOs, decentralized governance, etc.',
+    image: <Governance />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-governance-and-coordination/',
+  },
+  {
+    id: 'ux-design',
+    archiveSlug: 'UX%20%26%20Design',
+    title: 'UX & Design',
+    body: 'Let’s create a more intuitive, safe and delightful experience for users of Ethereum and its applications! Design, UI, product-market fit, marketing, etc.',
+    image: <UXDesign />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-ux-and-design/',
+  },
+  {
+    id: 'staking-validator-experience',
+    archiveSlug: 'Staking%20%26%20Validator%20Experience',
+    title: 'Staking & Validator Experience',
+    body: 'Home staking, distributed validator technology, pooling, decentralization improvements, protocol design, and everything in between.',
+    image: <Staking />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-staking-and-validator-experience/',
+  },
+  {
+    id: 'security',
+    archiveSlug: 'Security',    
+    title: 'Security',
+    body: 'Making Ethereum easy, safe, and more secure for end-users. DApp security, data privacy, identity, key management, etc.',
+    image: <Security />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-security/',
+  },
+  {
+    id: 'zkps',
+    archiveSlug: 'ZKPs%3A%20Privacy%2C%20Identity%2C%20Infrastructure%2C%20%26%20More',
+    title: 'ZKPs: Privacy, Identity, Infrastructure, & More',
+    body: 'The potential of zero knowledge cryptography and its applications to privacy, digital identity, decentralized systems, and more.',
+    image: <ZKPs />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-zkps-privacy-identity-infrastructure-and-more/'
+  },
+  {
+    id: 'opportunity-global-impact',
+    archiveSlug: 'Opportunity%20%26%20Global%20Impact',
+    title: 'Opportunity & Global Impact',
+    body: 'How can Ethereum change the world for the better? Public goods, sustainability, politics, P2P finance, impact of NFTs, micro-lending, financial systems, identity, emerging markets, environment, communication and censorship, access, etc.',
+    image: <GlobalImpact />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-opportunity-and-global-impact/'
+  },
+  {
+    id: 'cryptoeconomics',
+    archiveSlug: 'Cryptoeconomics',
+    title: 'Cryptoeconomics',
+    body: 'Research in MEV, game theory, mechanism design and tokenomics for protocols and applications.',
+    image: <Cryptoeconomics />,
+    url : 'https://archive.devcon.org/archive/playlists/devcon-6-cryptoeconomics/'
+  },
+]
 
 const Tracks = (props: Props) => {
   const sliderProps = useSlider(settings)
@@ -135,7 +122,7 @@ const Tracks = (props: Props) => {
     <div className={`${css['container']}`} id="tracks">
       <div className={css['tracks']}>
         <Slider sliderProps={sliderProps} title={props.title || 'Track Playlists'}>
-          {props.tracks.map((track: Track, i: number) => {
+          {DC6_TRACKS.map((track: any, i: number) => {
             let className = css['card']
 
             if (props.isThailand) {
@@ -143,11 +130,6 @@ const Tracks = (props: Props) => {
             } else {
               className += ` ${css[track.id]}`
             }
-
-            const archiveSlug = getArchiveSlug(track.id)
-            const archiveUrl = archiveSlug
-              ? `https://archive.devcon.org/archive/watch?order=desc&sort=edition&tags=${archiveSlug}`
-              : undefined
 
             if (props.isThailand) {
               return (
@@ -189,8 +171,8 @@ const Tracks = (props: Props) => {
             }
 
             return (
-              <FlipCard key={track.id} className={className} to={archiveUrl}>
-                <div className={css['image']}>{getTrackImage(track.id)}</div>
+              <FlipCard key={track.id} className={className} to={track.url}>
+                <div className={css['image']}>{track.image}</div>
                 <div className={css['details']}>
                   <div className={css['title']}>{track.title}</div>
                   <div className={css['text']}>{track.body}</div>
