@@ -19,6 +19,7 @@ import cn from 'classnames'
 
 interface Props {
   isThailand?: boolean
+  tracks?: Track[]
   title?: string
 }
 
@@ -122,12 +123,13 @@ export function getTrackImage(trackID: string, className: string) {
 
 const Tracks = (props: Props) => {
   const sliderProps = useSlider(settings)
+  const tracks = props.tracks || DC6_TRACKS
 
   return (
     <div className={`${css['container']}`} id="tracks">
       <div className={css['tracks']}>
         <Slider sliderProps={sliderProps} title={props.title || 'Track Playlists'}>
-          {DC6_TRACKS.map((track: any, i: number) => {
+          {tracks.map((track: any, i: number) => {
             let className = css['card']
 
             if (props.isThailand) {
