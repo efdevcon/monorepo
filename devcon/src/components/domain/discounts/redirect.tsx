@@ -3,7 +3,7 @@
 import { signIn, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 
-export function Loading() {
+export function SigninRedirect() {
   const { data: session, status } = useSession()
 
   useEffect(() => {

@@ -1,5 +1,5 @@
-import { Loading } from './loading'
+import { SigninRedirect } from "components/domain/discounts/redirect";
 
 export default function SignIn() {
-  return <Loading />
+  return <SigninRedirect />
 }
