@@ -244,7 +244,7 @@ export default pageHOC(function Programming(props: any) {
                             title: (
                               <div className="flex justify-between w-full max-w-[700px] text-base">
                                 <div>Applications Close</div>
-                                <div className="bold">July 30th</div>
+                                <div className="bold">August 4, 23:59 UTC</div>
                               </div>
                             ),
                             indent: false,
