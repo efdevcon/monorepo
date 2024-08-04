@@ -1,0 +1,40 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DB_CONNECTION_STRING")
+}
+
+model VerificationToken {
+  id         String   @id @default(cuid())
+  identifier String
+  nonce      Int
+  issued     DateTime @default(now())
+  expires    DateTime
+}
+
+model Account {
+  id                  String    @id @default(cuid())
+  username            String?
+  email               String?
+  activeAddress       String?
+  addresses           String[]
+  disabled            Boolean   @default(false)
+  favorite_speakers   String[]
+  interested_sessions String[]
+  attending_sessions  String[]
+  publicSchedule      Boolean   @default(false)
+  notifications       Boolean   @default(false)
+  appState_bogota     String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime?
+}
+
+model DiscountClaims {
+  id         String   @id
+  identifier String
+  voucher    String
+  issued     DateTime @default(now())
+}

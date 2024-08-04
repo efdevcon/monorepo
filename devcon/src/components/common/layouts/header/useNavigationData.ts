@@ -49,6 +49,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'FAQ',
+            url: '/faq',
+            type: 'page',
+          },
+          {
             title: intl('navigation_updates'),
             url: '#',
             type: 'header',
@@ -112,6 +117,21 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Devcon Week',
+            url: '/devcon-week',
+            type: 'page',
+          },
+          {
+            title: 'Apply To Speak',
+            url: '/speaker-applications',
+            type: 'page',
+          },
+          {
+            title: 'Apply To Volunteer',
+            url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+            type: 'url',
+          },
+          {
             title: 'Supporters & Impact Teams',
             url: '/supporters',
             type: 'page',
@@ -147,21 +167,21 @@ const useNavigationData = () => {
           //   url: 'https://forms.gle/GnH3SyxSNnQCCn8TA',
           //   type: 'link',
           // },
-          {
-            title: intl('navigation_contribute'),
-            url: '#',
-            type: 'header',
-          },
-          {
-            title: intl('navigation_forum'),
-            url: 'https://forum.devcon.org/',
-            type: 'link',
-          },
-          {
-            title: 'Github',
-            url: 'https://github.com/efdevcon/',
-            type: 'link',
-          },
+          // {
+          //   title: intl('navigation_contribute'),
+          //   url: '#',
+          //   type: 'header',
+          // },
+          // {
+          //   title: intl('navigation_forum'),
+          //   url: 'https://forum.devcon.org/',
+          //   type: 'link',
+          // },
+          // {
+          //   title: 'Github',
+          //   url: 'https://github.com/efdevcon/',
+          //   type: 'link',
+          // },
           {
             title: 'Press',
             url: '#',
@@ -333,9 +353,20 @@ const useNavigationData = () => {
           url: '/city-guide',
           type: 'page',
         },
+
         {
           title: 'Apply To Speak',
           url: '/speaker-applications',
+          type: 'page',
+        },
+        {
+          title: 'Volunteer',
+          url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+          type: 'url',
+        },
+        {
+          title: 'FAQ',
+          url: '/faq',
           type: 'page',
         },
         {
@@ -363,6 +394,11 @@ const useNavigationData = () => {
         {
           title: 'Events',
           url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'Devcon Week',
+          url: '/devcon-week',
           type: 'page',
         },
         {

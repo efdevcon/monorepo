@@ -4,8 +4,6 @@ import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
-import { GetPage, GetTracks } from 'services/page'
-import { usePageContext } from 'context/page-context'
 import HeroBackground from 'assets/images/pages/hero-bgs/programming.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -174,7 +172,7 @@ export default pageHOC(function Programming(props: any) {
         </div>
       </div>
 
-      <div className="section" id="process">
+      <div className="section overflow-hidden" id="process">
         <div className="flex justify-between items-center">
           <p className="h2 bold">Process</p>
           <p className="uppercase text-xs opacity-70 bold">Scroll for more →</p>
@@ -238,7 +236,7 @@ export default pageHOC(function Programming(props: any) {
                               </div>
                             ),
                             indent: false,
-                            // active: true,
+                            active: true,
                             body: '',
                           },
                           {
@@ -246,7 +244,7 @@ export default pageHOC(function Programming(props: any) {
                             title: (
                               <div className="flex justify-between w-full max-w-[700px] text-base">
                                 <div>Applications Close</div>
-                                <div className="bold">July 30th</div>
+                                <div className="bold">August 4, 23:59 UTC</div>
                               </div>
                             ),
                             indent: false,
@@ -429,7 +427,6 @@ export async function getStaticProps(context: any) {
       page: {},
       cmsSpeakers: cmsSpeakers,
       cmsProgramming: cmsProgramming,
-      tracks: GetTracks(context.locale),
     },
   }
 }

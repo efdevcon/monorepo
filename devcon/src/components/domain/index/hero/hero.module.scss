@@ -123,7 +123,34 @@ $logo-offset: 50px;
     height: 90vh;
   }
 
+  &.ticket-mode {
+    // transform: scale(0.5);
+    background: rgb(29, 29, 29);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    .devcon-7-overlay  {
+      display: none !important;
+    }
+
+    .dc7-logo {
+      margin-top: 64px !important;
+    }
+
+    .backdrop {
+      opacity: 0.12;
+      background: black;
+    }
+
+    [data-type='scroll-indicator'] {
+      display: none;
+    }
+
+    .ticket {
+      z-index: 10;
+    }
+  }
 
   .shading {
     position: absolute;
@@ -141,7 +168,7 @@ $logo-offset: 50px;
     justify-content: center;
     align-items: flex-end;
 
-    >* {
+    > * {
       // transform: scale(1.2);
       // display: block !important;
       // height: 100% !important;
@@ -159,7 +186,7 @@ $logo-offset: 50px;
     // transform: translateY(var(--translateY, 0px));
     // transform: translateY(25%);
 
-    >* {
+    > * {
       display: block !important;
 
       img {
@@ -264,7 +291,7 @@ $logo-offset: 50px;
       position: relative;
       width: 100%;
 
-      >div {
+      > div {
         position: absolute;
         left: 50%;
         bottom: 0px;
@@ -291,14 +318,13 @@ $logo-offset: 50px;
 }
 
 .parallax-container-2 {
-  >* {
+  > * {
     @media (hover: none) {
       transform: translateY(0px) !important;
     }
   }
 
-  animation: in-up 2.5s ease-out forwards,
-  sway 90s 2.5s linear infinite;
+  animation: in-up 2.5s ease-out forwards, sway 90s 2.5s linear infinite;
   position: absolute;
   width: 108%;
   left: -4%;
@@ -345,7 +371,7 @@ $logo-offset: 50px;
       bottom: 15%;
     }
 
-    >p {
+    > p {
       max-width: 350px;
       font-family: $fonts-secondary;
 
@@ -380,7 +406,7 @@ $logo-offset: 50px;
         font-size: 16px;
       }
 
-      >p {
+      > p {
         flex-grow: 1;
       }
 
@@ -401,14 +427,13 @@ $logo-offset: 50px;
   background: linear-gradient(180deg, #bce2e5 0%, rgba(196, 251, 255, 0) 58.1%);
 }
 
-.nc-loop-mouse-16-icon-f> :nth-child(2) {
+.nc-loop-mouse-16-icon-f > :nth-child(2) {
   --animation-duration: 1s;
   transform-origin: 50% 50%;
   animation: nc-loop-mouse-anim var(--animation-duration) infinite;
 }
 
 @keyframes nc-loop-mouse-anim {
-
   0%,
   100% {
     transform: translateY(0);
@@ -461,22 +486,22 @@ $logo-offset: 50px;
         bottom: 0px;
       }
     }
-      // @media (max-width: $breakpoints-md) {
-      //   .page {
-      //     justify-content: flex-end;
-      //   }
+    // @media (max-width: $breakpoints-md) {
+    //   .page {
+    //     justify-content: flex-end;
+    //   }
 
-      //   .content {
-      //     justify-content: flex-end;
-      //     align-items: center !important;
-      
-      //     > * {
-      //       &:not(.page-toggle, a) {
-      //         display: none;
-      //       }
-      //     }
-      //   }
-      // }
+    //   .content {
+    //     justify-content: flex-end;
+    //     align-items: center !important;
+
+    //     > * {
+    //       &:not(.page-toggle, a) {
+    //         display: none;
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   &.bogota {
@@ -566,7 +591,8 @@ $logo-offset: 50px;
   z-index: 2;
   pointer-events: none;
 
-  a, button {
+  a,
+  button {
     pointer-events: all;
   }
 
@@ -714,11 +740,11 @@ $logo-offset: 50px;
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
+    opacity: 0;
   }
 
   to {
-      opacity: 1;
+    opacity: 1;
   }
 }
 
@@ -775,13 +801,13 @@ $logo-offset: 50px;
     pointer-events: all;
     cursor: pointer;
 
-
     &:not(.active) {
       @include colors-black-ghost;
       opacity: 0.8;
     }
 
-    &.active, &:hover {
+    &.active,
+    &:hover {
       opacity: 1;
       @include colors-black;
       @include fonts-bold;
@@ -801,13 +827,11 @@ $logo-offset: 50px;
     //   border-color: $colors-track-red !important;
     // }
 
-
     &:first-child {
       margin-right: 4px;
     }
   }
 }
-
 
 .devcon-7-background {
   position: fixed;
@@ -837,10 +861,10 @@ $logo-offset: 50px;
 
     .backdrop {
       transform: scale(1) !important;
-      height: 100% !important; 
+      height: 100% !important;
       img {
         transform: scale(1) !important;
-        height: 100% !important; 
+        height: 100% !important;
         width: 100% !important;
       }
     }
@@ -850,11 +874,11 @@ $logo-offset: 50px;
     position: absolute;
     height: 100%;
     width: 100%;
-    
+
     img {
       transform: scale(1.15);
       position: absolute;
-      height: 120%;
+      height: 100%;
       width: auto;
       left: 0px;
       object-fit: cover;
@@ -897,7 +921,6 @@ $logo-offset: 50px;
       width: 100%;
       object-fit: cover;
     }
-
   }
 }
 
@@ -922,7 +945,7 @@ $logo-offset: 50px;
     pointer-events: none;
   }
 
-  // Add extra box shadow strength on bottom by layering 
+  // Add extra box shadow strength on bottom by layering
   &:after {
     z-index: 0;
     position: absolute;
@@ -942,7 +965,6 @@ $logo-offset: 50px;
       max-width: 25vw !important;
     }
   }
-
 
   @media (max-width: $breakpoints-lg) {
     &:before {
@@ -989,10 +1011,10 @@ $logo-offset: 50px;
     }
 
     .butterflies {
-        left: 60vw !important;
-        bottom: 60vh !important;
+      left: 60vw !important;
+      bottom: 60vh !important;
     }
-    
+
     .left {
       height: 100%;
     }
@@ -1096,4 +1118,3 @@ $logo-offset: 50px;
     }
   }
 }
-

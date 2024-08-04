@@ -1,0 +1,57 @@
+@use 'assets/css/partials/index' as *;
+
+.border {
+  position: absolute;
+  pointer-events: none;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  bottom: 0px;
+  border: 2px solid $colors-standard-border-color;
+}
+
+.mask {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: -19px;
+    top: 50%;
+    margin-top: -19px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
+    height: 38px;
+    width: 38px;
+    background: white;
+    border: 2px solid $colors-standard-border-color;
+    border-color: rgba(201, 200, 198, 0.3);
+    border-radius: 1000px;
+  }
+
+  &:after {
+    left: auto;
+    right: -19px;
+  }
+}
+
+.background-logo {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  opacity: 0.05;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: max(150px, 20%);
+  background-position: right;
+  background-image: url('../../../assets/images/pages/tickets.svg');
+}

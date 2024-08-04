@@ -45,12 +45,14 @@ export const Proposals = (props: ProposalsProps) => {
 
   // Pushing an extra column into the table to make room for a link back to the page
   const dipsWithLink = React.useMemo(() => {
-    return props.dips.map(dip => {
-      return {
-        ...dip,
-        link: dip.github,
-      }
-    })
+    return props.dips
+      .map(dip => {
+        return {
+          ...dip,
+          link: dip.github,
+        }
+      })
+      .filter(dip => dip.status.toLowerCase() === 'accepted')
   }, [props.dips])
 
   const [filteredDips, filterState] = useFilter({
@@ -122,23 +124,23 @@ export const Proposals = (props: ProposalsProps) => {
       intl: 'dips_status',
       key: 'status',
       className: css['status-column'],
-      sort: (item1: DIP, item2: DIP) => {
-        const a = item1.status
-        const b = item2.status
+      // sort: (item1: DIP, item2: DIP) => {
+      //   const a = item1.status
+      //   const b = item2.status
 
-        // Active first
-        if (a === 'Active') return 1
-        if (b === 'Active') return 1
+      //   // Active first
+      //   if (a === 'Active') return 1
+      //   if (b === 'Active') return 1
 
-        // Secondary sort by number when a === b
-        if (a === b) {
-          if (item1.number > item2.number) return 1
-          if (item1.number < item2.number) return -1
-        }
+      //   // Secondary sort by number when a === b
+      //   if (a === b) {
+      //     if (item1.number > item2.number) return 1
+      //     if (item1.number < item2.number) return -1
+      //   }
 
-        // Sort by status
-        return a.localeCompare(b)
-      },
+      //   // Sort by status
+      //   return a.localeCompare(b)
+      // },
       render: (item: DIP) => {
         let labelType = 'neutral'
 
@@ -156,10 +158,10 @@ export const Proposals = (props: ProposalsProps) => {
         }
 
         return (
-          <Label type={labelType}>
+          <Label type={labelType} className="shrink-0">
             <div className={css['label-content']}>
-              <span>&#8226;</span>
-              <p>{item.status.toUpperCase()}</p>
+              {/* <span>&#8226;</span> */}
+              <p className="shrink-0">{item.status.toUpperCase()}</p>
             </div>
           </Label>
         )
@@ -232,7 +234,7 @@ export const Proposals = (props: ProposalsProps) => {
         {/* <Filter {...filterState} /> */}
       </div>
 
-      <Table itemKey="number" items={filteredDips} columns={tableColumns} initialSort={3} />
+      <Table itemKey="number" items={filteredDips} columns={tableColumns} initialSort={0} />
       <div className="clear-bottom"></div>
     </section>
   )

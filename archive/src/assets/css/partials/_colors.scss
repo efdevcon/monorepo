@@ -1,0 +1,154 @@
+$main: #30354b;
+$main-light: #b5bbca;
+
+$track-light-blue: #0fadcf;
+$track-blue: #1b6fae;
+$track-teal: #00b3a4;
+$track-green: #88c43f;
+$track-yellow: #f5d222;
+$track-orange: #f69022;
+$track-red: #e55066;
+$track-purple: #7958a5;
+
+$track-light-blue-hover: #0889c0;
+$track-blue-hover: #264fb8;
+$track-teal-hover: #0c92a5;
+$track-green-hover: #40ad2e;
+$track-yellow-hover: #e0b417;
+$track-orange-hover: #eb6e28;
+$track-red-hover: #c93b3b;
+$track-purple-hover: #5742a9;
+
+$ef-green: #cae2d5;
+$ef-green-2: #e3f5eb; // _DS
+$ef-blue: #cdeaef;
+$ef-beige: #f8e2b8;
+$ef-cream: #fff3dd;
+$ef-pink: #f6e7e6;
+
+$system-success: #0b7602;
+$system-error: #cb2e44;
+$system-warning: #e16f1d;
+
+$monochrome-1: #ffffff;
+$monochrome-2: #f8f8f8;
+$monochrome-3: #f3f3f3;
+$monochrome-4: #eeeeee;
+$monochrome-5: #dddddd;
+$monochrome-6: #999999;
+$monochrome-7: #666666;
+$monochrome-8: #444444;
+$monochrome-9: #333333;
+$monochrome-10: #000000;
+
+// If some use case needs a color that could potentially change with time, create an independent variable for it -
+// this way we can easily swap out the colors without changing the underlying color palette:
+$state-success: $system-success;
+$state-success-light: $ef-green-2;
+$state-error: $system-error;
+$state-error-light: $ef-pink;
+$state-warning: $system-warning;
+$state-warning-light: $ef-cream;
+$state-info: $track-blue;
+$state-info-light: $ef-blue;
+$state-neutral: $monochrome-10;
+$state-neutral-light: $monochrome-1;
+
+$standard-border-color: $monochrome-5;
+
+// Label and button color mixins
+// WHITE
+@mixin white {
+  background: $monochrome-1;
+  color: $main;
+  --color-icon: #{$main};
+  --border-color: #{$monochrome-1};
+}
+@mixin white-ghost {
+  background: none;
+  color: $main;
+  --color-icon: #{$main};
+  --border-color: #{$main};
+}
+@mixin white-hover {
+  background: $monochrome-4;
+
+  // For use by Button component (animates colors when hovering)
+  --button-color: #{$main};
+  --button-color-background: #{$monochrome-1};
+  --button-color-background-hover: #{darken($monochrome-1, 12%)};
+
+  &.ghost {
+    @include white;
+  }
+}
+@mixin white-disabled {
+  background: $monochrome-1;
+  border-color: $monochrome-5;
+  --color-icon: #{$monochrome-5};
+  color: $monochrome-5;
+}
+
+// BLACK
+@mixin black {
+  background: $main;
+  --color-icon: #{$monochrome-1};
+  color: $monochrome-1;
+  --border-color: #{$main};
+}
+@mixin black-ghost {
+  background: none;
+  color: $main;
+  --color-icon: #{$main};
+  --border-color: #{$main};
+}
+@mixin black-hover {
+  background: lighten($main, 15%);
+
+  // For use by Button component (animates colors when hovering)
+  --button-color: #{$monochrome-1};
+  --button-color-background: #{$main};
+  --button-color-background-hover: #{lighten($main, 15%)};
+
+  &.ghost {
+    @include black;
+  }
+}
+@mixin black-disabled {
+  background: $monochrome-7;
+  --border-color: #{$monochrome-7};
+  --color-icon: #{$monochrome-1};
+  color: $monochrome-1;
+}
+
+// RED
+@mixin red {
+  background: $track-red;
+  --color-icon: #{$monochrome-1};
+  color: $monochrome-1;
+  --border-color: #{$track-red};
+}
+@mixin red-ghost {
+  background: none;
+  color: $track-red;
+  --color-icon: #{$track-red};
+  --border-color: #{#{$track-red}};
+}
+@mixin red-hover {
+  background: $track-red-hover;
+
+  // For use by Button component (animates colors when hovering)
+  --button-color: #{$monochrome-1};
+  --button-color-background: #{$track-red};
+  --button-color-background-hover: #{$track-red-hover};
+
+  &.ghost {
+    @include red;
+  }
+}
+@mixin red-disabled {
+  background: #ddcccf !important;
+  --border-color: #{#d6b1b6 !important};
+  --color-icon: #{$monochrome-1} !important;
+  color: $monochrome-1 !important;
+}

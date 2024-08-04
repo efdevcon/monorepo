@@ -14,6 +14,7 @@ export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
 sessionsRouter.get(`/sessions/:id`, GetSession)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
+sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
 export async function GetSessions(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
@@ -101,6 +102,20 @@ export async function GetSession(req: Request, res: Response) {
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   res.status(200).send({ status: 200, message: '', data })
+}
+
+export async function GetSessionRelated(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  const data = await client.relatedSession.findMany({
+    where: { sessionId: req.params.id },
+    orderBy: { similarity: 'desc' },
+    include: { related: true },
+    take: 10,
+  })
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+
+  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.related) })
 }
 
 export async function GetSessionImage(req: Request, res: Response) {

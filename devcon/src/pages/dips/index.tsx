@@ -9,10 +9,8 @@ import { Contribute } from 'components/domain/dips/overview/contribute'
 import { Proposals } from 'components/domain/dips/overview/proposals'
 import { getGlobalData } from 'services/global'
 import { GetPage } from 'services/page'
-import { Tags } from 'components/common/tags'
 import { GetContributors, GetDIPs } from 'services/dips'
 import HeroBackground from 'assets/images/pages/hero-bgs/get-involved.jpg'
-import { Tag } from 'types/DIP'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../../tina/__generated__/client'
 import { PagesDips, PagesQuery } from '../../../tina/__generated__/types'
@@ -63,8 +61,6 @@ export default pageHOC(function DIPsTemplate(props: any) {
       <div className="section">
         <Contribute dipDescription={pages.section1?.about} contributors={props.contributors} />
         <Proposals dips={props.dips} />
-
-        {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}
       </div>
     </Page>
   )

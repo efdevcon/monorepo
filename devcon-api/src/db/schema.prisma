@@ -68,9 +68,16 @@ model Session {
   slot_room Room? @relation(fields: [slot_roomId], references: [id])
   slot_roomId String?
   resources_slides String?
+
+  relatedSessions RelatedSession[] @relation(name: "Related")
 }
 
-// model Tag {
-//   name String @id
-//   sessions Session[]
-// }
+model RelatedSession {
+  id Int @id @default(autoincrement())
+  sessionId String
+
+  related Session @relation(name: "Related", fields: [relatedId], references: [id])
+  relatedId String
+
+  similarity Float
+}
