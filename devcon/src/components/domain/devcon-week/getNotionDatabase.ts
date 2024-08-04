@@ -53,14 +53,17 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
     case 'select':
       return property.select && property.select.name
 
-    case 'number': 
-      return property.number;
+    case 'number':
+      return property.number
 
     case 'files':
-      return property.files;
+      return property.files
 
     case 'url':
-      return property.url;
+      return property.url
+
+    case 'checkbox':
+      return property.checkbox
 
     default:
       return 'default value no handler for: ' + property.type
@@ -102,7 +105,11 @@ const formatResult = (language: 'en' | 'es') => (result: any) => {
   // Insert a default value for time of day when unspecified
   if (!properties['Time of Day']) properties['Time of Day'] = 'FULL DAY'
 
-  return properties
+  return {
+    ...properties,
+    ID: result.id,
+    ShortID: result.id.slice(0, 5) /* raw: result*/,
+  }
 }
 
 const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b42c8a00a62e775ce24af') => {
@@ -134,7 +141,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
             is_not_empty: true,
           },
         },
-      ]
+      ],
     }
 
     if (isColombiaBlockhainWeek) {
@@ -147,7 +154,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
     }
 
     if (isDevconWeek) {
-      sorts.push(        {
+      sorts.push({
         property: 'Priority (0=high,10=low)',
         direction: 'descending',
       })
@@ -164,8 +171,10 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
     const response = await notion.databases.query({
       database_id: databaseID,
       sorts,
-      filter
+      filter,
     })
+
+    console.log(response, 'response')
 
     data = response.results.map(formatResult(locale))
   } catch (error) {

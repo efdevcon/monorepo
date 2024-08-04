@@ -1,0 +1,15 @@
+.list {
+    text-decoration:  none;
+    list-style: none;
+
+    li {
+        text-decoration: none;
+        padding: 8px 0px;
+        // TODO: Border color should be more precise
+        border-bottom: 1px solid #3d3c3c;
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}

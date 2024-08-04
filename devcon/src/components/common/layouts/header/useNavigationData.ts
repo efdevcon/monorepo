@@ -117,6 +117,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Devcon Week',
+            url: '/devcon-week',
+            type: 'page',
+          },
+          {
             title: 'Apply To Speak',
             url: '/speaker-applications',
             type: 'page',
@@ -389,6 +394,11 @@ const useNavigationData = () => {
         {
           title: 'Events',
           url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'Devcon Week',
+          url: '/devcon-week',
           type: 'page',
         },
         {
