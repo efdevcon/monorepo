@@ -55,7 +55,7 @@ export default pageHOC(function DevconWeek(props: any) {
             </InfiniteScroller>
           </div>
           <div className="grow">
-            <RichText content={devconWeek.devcon_week.about} />{' '}
+            {devconWeek && devconWeek.devcon_week && <RichText content={devconWeek.devcon_week.about} />}
           </div>
           <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[550px]">
             {/* {cityGuide.intro_snapshot?.title && <RichText content={''} />} */}
