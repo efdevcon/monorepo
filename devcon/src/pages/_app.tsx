@@ -119,13 +119,6 @@ function App({ Component, pageProps }: any) {
     <>
       <SEO />
 
-<<<<<<< HEAD
-      <NextIntlProvider messages={pageProps.messages}>
-        <Component {...pageProps} />
-      </NextIntlProvider>
-
-      <DevaBot />
-=======
       <IntlProvider messages={pageProps.messages} locale="en">
         <SessionProvider session={pageProps.session}>
           <Web3ModalProvider>
@@ -133,7 +126,8 @@ function App({ Component, pageProps }: any) {
           </Web3ModalProvider>
         </SessionProvider>
       </IntlProvider>
->>>>>>> main
+
+      <DevaBot />
     </>
   )
 }
