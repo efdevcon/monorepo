@@ -27,7 +27,7 @@ export function Snapshot(props: SnapshotProps) {
               className={css['list-item']}
               key={typeof item.title === 'string' ? item.title : item.id}
             >
-              <item.Icon />
+              {item.Icon && <item.Icon />}
               <span className={css['label']}>{item.title}</span>
               <span>{item.left}</span>
               {typeof item.right === 'string' ? <span className="bold">{item.right}</span> : item.right}

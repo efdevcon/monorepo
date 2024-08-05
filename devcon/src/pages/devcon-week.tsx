@@ -19,8 +19,15 @@ import cn from 'classnames'
 import IconClock from 'assets/icons/icon_clock.svg'
 import indexCss from './index.module.scss'
 import HeroBackground from 'assets/images/pages/hero-bgs/city-guide.png'
+import EventBlocker from 'assets/images/dc-7/event-blocker.png'
+import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import DateText from 'assets/images/dc-7/date-text.png'
+import DC7Left from 'components/domain/index/hero/images/dc-7/left.png'
+import DC7Right from 'components/domain/index/hero/images/dc-7/right.png'
 import css from './devcon-week.module.scss'
 import { FAQ } from './faq'
+import { Link } from 'components/common/link'
+import { Button } from 'lib/components/button'
 
 const isAfterDate = (dateString: string) => {
   const date = moment.utc(dateString)
@@ -44,10 +51,18 @@ export default pageHOC(function DevconWeek(props: any) {
             title: 'Devcon Week',
             to: '#devcon-week',
           },
+          {
+            title: 'Schedule',
+            to: '#schedule',
+          },
+          {
+            title: 'FAQ',
+            to: '#faq',
+          },
         ]}
       />
 
-      <div className="section relative">
+      <div className="section relative" id="devcon-week">
         <div className={cn('flex relative justify-between gap-16 border-bottom flex-col lg:flex-row pb-8')}>
           <div className={`${indexCss['scrolling-text-background']} ${css['devcon-week']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
@@ -55,52 +70,47 @@ export default pageHOC(function DevconWeek(props: any) {
             </InfiniteScroller>
           </div>
           <div className="grow">
-            <RichText content={devconWeek.devcon_week.about} />{' '}
+            {devconWeek && devconWeek.devcon_week && <RichText content={devconWeek.devcon_week.about} />}
           </div>
-          <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[550px]">
+          <div className="flex flex-col flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[550px]">
             {/* {cityGuide.intro_snapshot?.title && <RichText content={''} />} */}
 
-            <div className="text-lg h2 bold mb-6">Road to Devcon Hackathons</div>
+            <div className="text-lg h2 bold mb-6">Upcoming Road to Devcon Events</div>
 
             {devconWeek.snapshot && (
               <Snapshot
-                // @ts-ignore
-                items={devconWeek.snapshot.map(({ left, right }: any, index: number) => {
-                  let icon
+                items={props.roadToDevconEvents.map((event: any) => {
+                  const start = moment(event.Date.endDate)
+                  const end = moment(event.Date.endDate)
+                  const icon = IconClock
 
-                  // TODO: Icon support in CMS
-                  // if (index === 0) {
-                  icon = IconClock
-                  // }
-                  // if (index === 1) {
-                  //   icon = IconCurrency
-                  // }
-                  // if (index === 2) {
-                  //   icon = IconGlobe
-                  // }
-
-                  // if (index === 3) {
-                  //   icon = IconSun
-                  // }
-
-                  // if (index === 4) {
-                  //   icon = IconWater
-                  // }
+                  let date = `${start.format('MMM D')}`
+                  if (!start.isSame(end, 'day')) {
+                    date = `${start.format('MMM D')} - ${end.format('MMM D')}`
+                  }
 
                   return {
-                    id: index,
+                    id: event.Name,
                     Icon: icon,
-                    left: <RichText content={left} />,
-                    right: <RichText content={right} />,
+                    left: (
+                      <Link to={event.Link} indicateExternal className="bold">
+                        {event.Name}
+                      </Link>
+                    ),
+                    right: date,
                   }
                 })}
               />
             )}
+
+            <Button color="orange-1" className="mt-4 self-end">
+              See All Road to Devcon Events
+            </Button>
           </div>
         </div>
       </div>
 
-      <div className="mb-6">
+      <div className="mb-6" id="schedule">
         <EventSchedule
           // @ts-ignore
           events={props.events}
@@ -110,12 +120,33 @@ export default pageHOC(function DevconWeek(props: any) {
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full overflow-hidden min-h-[250px]">
-                <Image
-                  src={HeroBackground}
+              <div className="relative w-full h-full overflow-hidden min-h-[225px] bg-[#f8f9ff]">
+                {/* <Image
+                  src={EventBlocker}
                   alt="Blocked Event Graphic"
                   className="absolute w-full h-full !object-center object-cover"
+                /> */}
+
+                <Image
+                  src={DC7Left}
+                  alt="Blocked Event Graphic"
+                  className="absolute left-0 h-full !object-left object-contain"
                 />
+
+                <Image
+                  src={DC7Right}
+                  alt="Blocked Event Graphic"
+                  className="absolute right-0 h-full !object-right object-contain"
+                />
+
+                <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
+                  <Image
+                    src={LogoFlowers}
+                    alt="Blocked Event Graphic"
+                    className="!object-center object-contain w-[30%]"
+                  />
+                  <Image src={DateText} alt="Blocked Event Graphic" className="!object-center object-contain w-[20%]" />
+                </div>
               </div>
             )
           }}
@@ -138,17 +169,36 @@ export default pageHOC(function DevconWeek(props: any) {
 })
 
 export async function getStaticProps(context: any) {
-  // const globalData = await getGlobalData(context)
-  // const page = await GetPage('/devcon-week', context.locale)
-  // const faq = await GetFAQ(context.locale)
-  // const sections = await GetContentSections(['post-devcon-events', 'local-tours'], context.locale)
   const globalData = await getGlobalData(context)
   const content = await client.queries.pages({ relativePath: 'devcon_week.mdx' })
-  // const notion = new Client({
-  //   auth: process.env.NOTION_SECRET,
-  // })
 
+  const RTDNotionID = '5199f81539da498f9e2137c3928f6e93'
   const events = await getNotionDatabase('en')
+
+  const RTDEvents = (await getNotionDatabase('en', RTDNotionID)) as any
+
+  const formattedEvents = RTDEvents.filter((event: any) => {
+    const end = moment(event.Date.endDate).add(1, 'days')
+    const now = moment()
+
+    return now.isBefore(end)
+  })
+    .sort((a: any, b: any) => {
+      return moment(a.Date.startDate).diff(moment(b.Date.startDate))
+    })
+    .map((event: any, index: number) => {
+      const end = moment(event.Date.endDate).add(1, 'days')
+      const now = moment()
+
+      const eventHasPassed = now.isAfter(end)
+
+      return {
+        ...event,
+        _key: event.Name + event.Location,
+        eventHasPassed,
+      }
+    })
+    .slice(0, 5)
 
   // https://www.notion.so/ef-events/517164deb17b42c8a00a62e775ce24af?v=543a6aae6cc940c7b27b05c7b40e15e2 devcon week
 
@@ -157,12 +207,9 @@ export async function getStaticProps(context: any) {
       ...globalData,
       page: {},
       events,
+      roadToDevconEvents: formattedEvents,
       content,
-      // ...globalData,
-      // sections,
-      // faq: faq.filter((faq: any) => faq.category.id === 'devcon-week'),
-      // scheduleData: await getNotionDatabase(context.locale || 'en'),
-      // page,
     },
+    revalidate: 3600,
   }
 }
