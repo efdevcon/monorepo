@@ -18,11 +18,10 @@ supporters: >
   contribution.
 supporters_card:
   card: |
-    Apply as a Supporter, and we will contact you with further details!
+    Supporter & Impact Team applications are closed!
   button:
-    link: >-
-      https://docs.google.com/forms/d/e/1FAIpQLSfEjtOo7VzwLLVsBPEcRJBN_NDy2fMXry1ngA7ZAdYzUbvPyw/viewform
-    text: Apply to Support
+    link: 'https://devcon.org/en/tickets/'
+    text: Get your Devcon ticket
 impact_forum: |
   <TwoColumns
     left={<>
@@ -37,7 +36,8 @@ impact_forum: |
       {
       text: "Apply as Impact Team",
       url: "https://docs.google.com/forms/d/e/1FAIpQLSfEjtOo7VzwLLVsBPEcRJBN_NDy2fMXry1ngA7ZAdYzUbvPyw/viewform",
-      color: "teal-1"
+      color: "teal-1",
+      disabled: true
       }
       ]}
       />
@@ -59,7 +59,7 @@ programming_tickets: |
     left={<>
       ## **Devcon Programming**
       
-      The Devcon programming tracks are live! Check out the Ethereum topics and themes you can expect at Devcon. From cypherpunk to developer experience, real-world Ethereum & more.
+      Check out the Ethereum topics and themes you can expect at Devcon. From cypherpunk to developer experience, real-world Ethereum & more.
       
       <Buttons
       Button={[
@@ -70,19 +70,18 @@ programming_tickets: |
     right={<>
       ## **Get your Devcon ticket**
       
-      Check if you're eligible for a builder or contributor discount or participate in the ticket sale waves.
-      
-      Wave 1: (SOLD OUT)\
-      Wave 2: (SOLD OUT)\
-      Wave 3: August 13
+      Builder and contributor tickets are always open. General tickets are sold in waves. Wave 2 is sold out, Wave 3 opens August 13, 16:00 UTC.
       
       <Buttons
       Button={[
-      { text: "Tickets", url: "https://devcon.org/en/tickets/", color: "teal-1" }
+      {
+      text: "Check if you're eligible for a discount",
+      url: "/tickets",
+      color: "teal-1"
+      }
       ]}
       />
     </>}
   />
 _template: supporters
 ---
-
