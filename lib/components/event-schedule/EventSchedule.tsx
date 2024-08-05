@@ -2092,8 +2092,6 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
     );
   }
 
-  console.log(events, "events formatted?");
-
   const scheduleHelpers = useScheduleData(events);
   const accordionRefs = React.useRef({} as { [key: string]: any });
 
