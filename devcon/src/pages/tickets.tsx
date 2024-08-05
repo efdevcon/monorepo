@@ -422,10 +422,16 @@ export default pageHOC(function Tickets(props: any) {
                 id: '2',
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
-                    <div>Wave 02</div>
-                    {waveActive && latestWave === ticketWaves[2] && (
-                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
-                    )}
+                    <div className="flex relative items-center">
+                      <div>Wave 02</div>
+                      {waveActive && latestWave === ticketWaves[2] && (
+                        <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                      )}
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                        SOLD OUT
+                      </div>
+                    </div>
+
                     <div className="bold">July 30</div>
                   </div>
                 ),
