@@ -168,7 +168,7 @@ export const Contribute = (props: ContributeProps) => {
           </div>
         </div>
 
-        <div className="mb-8 border-top pt-8">
+        <div className="mb-8 border-top pt-8" id="hubs">
           <RichText content={props.communityHubs} />
         </div>
       </section>

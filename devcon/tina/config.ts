@@ -9,6 +9,7 @@ import programming from './templates/programming'
 import tickets from './templates/tickets'
 import about from './templates/about'
 import city_guide from './templates/city_guide'
+import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
 
@@ -51,6 +52,7 @@ export default defineConfig({
           about,
           speaker_applications,
           city_guide,
+          sea_local,
         ],
         ui: {
           router: ({ document }) => {
@@ -79,6 +81,8 @@ export default defineConfig({
                 return '/speaker-applications'
               case 'city_guide':
                 return '/city-guide'
+              case 'sea_local':
+                return '/sea-local'
 
               default:
                 return filename
