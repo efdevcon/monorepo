@@ -59,7 +59,11 @@ export default pageHOC(function DIPsTemplate(props: any) {
       />
 
       <div className="section">
-        <Contribute dipDescription={pages.section1?.about} contributors={props.contributors} />
+        <Contribute
+          dipDescription={pages.section1?.about}
+          communityHubs={pages.community_hubs}
+          contributors={props.contributors}
+        />
         <Proposals dips={props.dips} />
 
         {/* <Tags items={pageContext?.current?.tags} viewOnly /> */}

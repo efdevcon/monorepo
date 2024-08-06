@@ -25,10 +25,12 @@
   scroll-snap-margin-top: 120px; // safari
 
   .container {
+    --custom-fade-color: #afdfc8de;
+    --custom-text-color: rgb(85, 147, 119);
     display: flex;
     flex-direction: row;
     // flex-wrap: wrap;
-    margin-bottom: $gaps-gap-10;
+    // margin-bottom: $gaps-gap-4;
 
     @media (max-width: $breakpoints-xl) {
       flex-direction: column;
@@ -53,9 +55,7 @@
       .dip-description {
         flex-shrink: 0;
 
-
         @media (max-width: $breakpoints-lg) {
-
           // flex-basis: 100%;
         }
       }
@@ -81,7 +81,7 @@
       // min-height: 500px;
 
       @media (max-width: $breakpoints-xl) {
-        margin-top: $gaps-gap-10;
+        margin-top: $gaps-gap-6;
         flex-basis: auto;
       }
 
@@ -91,11 +91,12 @@
         align-items: center;
 
         p {
-          margin-right: $gaps-gap-4;
+          margin-right: $gaps-gap-2;
+          opacity: 0.6;
         }
 
         svg {
-          font-size: $sizes-size-14;
+          font-size: $sizes-size-12;
         }
       }
     }
@@ -107,22 +108,7 @@
   width: 100%;
   overflow: hidden;
 
-  &:after {
-    content: '';
-    pointer-events: none;
-    left: 0;
-    top: 0;
-    right: 0;
-    height: 100%;
-    position: absolute;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0.1) 15%,
-      rgba(255, 255, 255, 0.1) 85%,
-      rgba(255, 255, 255, 1)
-    );
-  }
+  mask-image: linear-gradient(to right, transparent, black 17%, black 83%, transparent);
 
   .track {
     @media (hover: hover) {
@@ -152,10 +138,10 @@
 
     // TO FIX: When animation resets there's a quick flicker on safari
     &.animate {
-      animation: auto-scroll linear 50s infinite;
+      animation: auto-scroll linear 60s infinite;
 
       &.odd {
-        animation: auto-scroll-indent linear 50s infinite;
+        animation: auto-scroll-indent linear 60s infinite;
       }
     }
 
@@ -166,6 +152,14 @@
     //   animation: auto-scroll-reverse linear 120s infinite;
     //   transform: translateX(var(--track-width));
     // }
+
+    @media (max-width: 1600px) {
+      --thumbnails-per-view: 5;
+    }
+
+    @media (max-width: $breakpoints-xl) {
+      --thumbnails-per-view: 6;
+    }
 
     @media (max-width: $breakpoints-md) {
       --thumbnails-per-view: 5;

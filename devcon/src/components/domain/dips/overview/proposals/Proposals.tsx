@@ -229,7 +229,7 @@ export const Proposals = (props: ProposalsProps) => {
   return (
     <section id="proposals" className={css['container']}>
       <div className={css['top-container']}>
-        <p className="h2">{intl('dips_proposals')}</p>
+        <p className="h2">Accepted Proposals</p>
 
         {/* <Filter {...filterState} /> */}
       </div>
