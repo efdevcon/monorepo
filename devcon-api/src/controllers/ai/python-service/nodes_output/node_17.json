@@ -1,0 +1,58 @@
+{
+    "id_": "8877d600-94c2-4e3b-951b-9cc984d1c332",
+    "embedding": null,
+    "metadata": {
+        "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/tickets.txt",
+        "file_name": "tickets.txt",
+        "file_type": "text/plain",
+        "file_size": 6525,
+        "creation_date": "2024-07-20",
+        "last_modified_date": "2024-07-20"
+    },
+    "excluded_embed_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "excluded_llm_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "relationships": {
+        "1": {
+            "node_id": "ae9cecd5-c102-4d44-b636-099fb2e91da2",
+            "node_type": "4",
+            "metadata": {
+                "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/tickets.txt",
+                "file_name": "tickets.txt",
+                "file_type": "text/plain",
+                "file_size": 6525,
+                "creation_date": "2024-07-20",
+                "last_modified_date": "2024-07-20"
+            },
+            "hash": "01c7295ae83987fa4e6613289c579d650c5920f64115439c8015947e2c8beea6",
+            "class_name": "RelatedNodeInfo"
+        },
+        "3": {
+            "node_id": "24359b7e-d7fe-48ba-a8b3-59cd0898693a",
+            "node_type": "1",
+            "metadata": {},
+            "hash": "a654e58bffe264507f0f27df4ccca4f4edcf079ada100c2e093816c23c9c2ad8",
+            "class_name": "RelatedNodeInfo"
+        }
+    },
+    "text": "---\noverview:\n  intro: \"## **Overview**\\n\\n### Tickets to Devcon 7 will be distributed through three distinct ways this year:\\L\\n\\n1. ->\\_**Raffle-Auction Presale** (June 18 - July 09) – **$299**\\n\\n->\\_**Discounts - Self-claimed / Application-based** (Starts July 9)\\n\\n->\\_**General Admission sale waves** (Starts July 16) – **$599**\\n\\n<Buttons\\n  Button={[\\n    { text: \\\"Frequently Asked Questions\\\", url: \\\"#faq\\\", color: \\\"blue-1\\\" }\\n  ]}\\n/>\\n\"\n  card: |\n    **Raffle-auction coming soon.**\n\n    1. Discounted tickets open July 9.\n    2. General Admission Waves starting July 16.\n  button:\n    link: 'https://devcon.org'\n    text: Coming Soon\nraffle_auction:\n  intro: >\n    ## **Raffle-Auction**\n\n\n    **200 tickets** will be offered in the Raffle-Auction this year. **The\n    highest 20 bids will win the Auction**. Those who enter with the Minimum Bid\n    or do not win in the auction will enter into the raffle and have a chance at\n    winning **one of 180 Devcon tickets being distributed**. In this sense, we\n    aim for the distribution outcome to be approximately 10% efficient and 90%\n    fair.\n\n\n    A big thanks to the\n    **[Fairy](https://fairyxyz.notion.site/Fairy-7f1b1725eff94829a9e50bd7c432aa8c)**\n    & **[Archblock](https://x.com/archblock_)** teams for dedicating their time\n    to the success of this year’s iteration.\n  participation_rules:\n    snapshot:\n      - left: Network\n        right: Arbitrum\n      - left: Minimum Bid\n        right: 0.08 ETH ($299 USD)\n      - left: Raffle+Auction\n        right: June 18 - July 09\n    text: >\n      All proceeds from the Auction above the reserve price will be used to help\n      people attend Devcon through funding programs like the **[EF Next Billion\n      Scholars program](https://blog.ethereum.org/2024/06/07/devcon7-scholars)**\n      and other Devcon initiatives. If you bid above the reserve price but do\n      not win in the auction, you will automatically be funneled into the Raffle\n      for a ticket. If you win the Raffle, you will be able to withdraw all\n      funds above the Reserve price. If you do not win in either the Raffle or\n      Auction, you will be able to withdraw all of your funds. Like last time,\n      one lucky winner will receive a free Golden Ticket to Devcon & will be\n      able to withdraw all of their funds.\n  sybil_resistance: >\n    ### **Sybil Resistance**\n\n\n    This year, we are using **[Gitcoin\n    Passport](https://support.passport.xyz/passport-knowledge-base)** to add a\n    secure sybil-resistance mechanism to the Raffle-Auction. You will need to\n    log into your Passport OR **[create one](https://passport.gitcoin.co/)** &\n    validate your stamps in order to participate in this year’s Raffle-Auction\n    ticket wave.\n  specs: >\n    ### **Specs**\n\n\n    The **Smart Contracts** for the Raffle-Auction can be viewed here\n\n\n    The contracts were audited by **Trail of Bits**. You can view the audit\n    report here\n\n\n    The contract has been verified on **Sourcify**, available (here)\\[LINK].\nother_methods_to_attend:\n  steps_raffle:\n    - title: Community Ticket Requests\n      answer: >\n        Leaders & organizers of various web2 & web3 communities or meetups can\n        apply for free or discounted tickets for their groups to attend.\n    - title: DEVCON Scholarship Program\n      answer: |\n        Apply for a chance to receive a scholarship to attend Devcon 7.\nfaq:\n  - question: When will I get my ticket?\n    ",
+    "start_char_idx": 0,
+    "end_char_idx": 3445,
+    "text_template": "{metadata_str}\n\n{content}",
+    "metadata_template": "{key}: {value}",
+    "metadata_seperator": "\n",
+    "class_name": "TextNode"
+}

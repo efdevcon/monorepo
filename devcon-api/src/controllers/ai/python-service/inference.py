@@ -14,9 +14,22 @@ config = dotenv_values("./.env")
 tokenizer = AutoTokenizer.from_pretrained(
     'meta-llama/Meta-Llama-3-8B-Instruct', token=config.get('HF_ACCESS_TOKEN'))
 
-client = InferenceClient("https://v23vids62f33r1m4.us-east-1.aws.endpoints.huggingface.cloud", token=config.get('HF_ACCESS_TOKEN'))
+# client = InferenceClient(
+#     "https://v23vids62f33r1m4.us-east-1.aws.endpoints.huggingface.cloud", token=config.get('HF_ACCESS_TOKEN'))
 
-intro = """You are a website search assistant hosted for devcon.org. tasked to help users answer practical questions about Devcon. Your name is 'Deva', a cheerful fictional unicorn mascot for Devcon. Our system may add some RAG context to the user's query to help you answer questions about Devcon - the existence of this context should obviously not be communicated to the user; from their point of view you just know things. If there is no answer to the user query, politely say you aren't sure, rather than making up an answer that may be wrong."""
+client = InferenceClient(
+    "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct", token=config.get('HF_ACCESS_TOKEN'))
+
+
+def generate_intro():
+    # Get the current date
+    current_date = datetime.now().strftime("%Y-%m-%d")
+
+    # Generate the introduction text
+    intro = f"""You are a website search assistant for devcon.org, tasked to help users answer practical questions about Devcon. Your name is 'Deva', a cheerful fictional unicorn mascot for Devcon. Our system will add some RAG context to the user's query to help you answer questions about Devcon - the existence of this context should not be communicated to the user; from their point of view, you know all this stuff naturally. If there is no answer to the user query, politely say you aren't sure, rather than making up an answer that may be wrong. Today's date is: {current_date}"""
+
+    return intro
+
 
 def ai_summarize(past_conversation):
     # past_conversation_with_instructions = f"A user had a conversation with an AI chatbot, but it contains too many tokens. You need to summarize what the user is asking about so the AI chatbot can keep the conversation going. What you say will be given as a system prompt to the AI. Here is the conversation: '{past_conversation}'"
@@ -36,14 +49,16 @@ def ai_summarize(past_conversation):
 
     return output
 
-def infer(query: str, context: str, messages: list):
-    past_conversation = " ".join([msg['content'] for msg in messages if msg['role'] != 'system'])
 
-    # Summarize past conversation if too long
-    tokenized_past_conversation = tokenizer.encode(past_conversation)
-    past_conversation_summary = None
+def infer(query: str, context: str):  # , messages: list):
+    # past_conversation = " ".join([msg['content']
+    #                              for msg in messages if msg['role'] != 'system'])
 
-    if len(tokenized_past_conversation) > 300:
+    # # Summarize past conversation if too long
+    # tokenized_past_conversation = tokenizer.encode(past_conversation)
+    # past_conversation_summary = None
+
+    if False and len(tokenized_past_conversation) > 300:
         past_conversation_summary = ai_summarize(messages)
         chat = [
             {"role": "system", "content": intro},
@@ -52,16 +67,16 @@ def infer(query: str, context: str, messages: list):
         ]
     else:
         chat = [
-            {"role": "system", "content": intro},
-            *messages,
-            {"role": "user", "content": f"RAG Context:\n\n{context}\n\n---\n\nUser Query:\n\n{query}"}
+            {"role": "system", "content": generate_intro()},
+            # *messages,
+            {"role": "user", "content": f"A user asked: {query}\n\nHere is context which may contain the answer:\n\n{context}"}
         ]
 
     # Format the input using the chat template
     prompt_encoded = tokenizer.apply_chat_template(chat, tokenize=False)
 
     output = client.text_generation(prompt_encoded, max_new_tokens=2048)
-    
+
     # Create the 'queries' directory if it does not exist
     if not os.path.exists('queries'):
         os.makedirs('queries')
@@ -74,8 +89,8 @@ def infer(query: str, context: str, messages: list):
     with open(file_path, 'w', encoding='utf-8') as f:
         json.dump({
             "query": query,
-            "messages": messages,
-            "past_conversation_summary": past_conversation_summary,
+            # "messages": messages,
+            # "past_conversation_summary": past_conversation_summary,
             "chat": chat,
             "rag": context,
             "output": output,

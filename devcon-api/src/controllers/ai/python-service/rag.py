@@ -35,6 +35,7 @@ splitter = SemanticSplitterNodeParser(
 # also baseline splitter
 base_splitter = SentenceSplitter(chunk_size=258)
 
+
 def save_nodes_to_json(nodes, output_dir="nodes_output"):
     # Create the output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
@@ -46,20 +47,18 @@ def save_nodes_to_json(nodes, output_dir="nodes_output"):
         with open(file_path, "w", encoding="utf-8") as json_file:
             json.dump(node_dict, json_file, ensure_ascii=False, indent=4)
 
+
 async def setup_vector_store():
     reader = SimpleDirectoryReader(input_dir="../formatted-content/")
     documents = reader.load_data()
-    # nodes = splitter.get_nodes_from_documents(documents)
     nodes = splitter.get_nodes_from_documents(documents)
 
     save_nodes_to_json(nodes)
 
     index = VectorStoreIndex(nodes)
 
-    # index = VectorStoreIndex.from_documents(documents=documents)
-
     retriever = index.as_retriever()
-    retriever.similarity_top_k = 10
+    retriever.similarity_top_k = 5
     # retriever.similarity_threshold = 0.2 # confirm this works?
     return retriever
 
@@ -71,7 +70,7 @@ async def initialize_retriever():
     retriever = await setup_vector_store()
 
 
-def get_website_content_for_query(query: str, max_tokens: int = 4096):
+def get_website_content_for_query(query: str, max_tokens: int = 6000):
     if not retriever:
         return 'No context yet'
 
@@ -79,15 +78,24 @@ def get_website_content_for_query(query: str, max_tokens: int = 4096):
     text = ''
     total_tokens = 0
 
+    parent_files = {}
+
     for node in nodes:
         file_path = node.metadata.get('file_path')
         node_text = ''
 
-        # Get parent file 
+        if parent_files.get(file_path):
+            print('Content already included, skipping..')
+
+            continue
+
+        # Get parent file
         if file_path and os.path.exists(file_path):
+            parent_files[file_path] = True
+
             with open(file_path, 'r', encoding='utf-8') as file:
                 node_text = file.read()
-        else:   
+        else:
             node_text = node.get_text()
 
         node_tokens = tokenizer.encode(node_text)

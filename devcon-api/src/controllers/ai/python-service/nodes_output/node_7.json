@@ -1,0 +1,65 @@
+{
+    "id_": "5ea24a27-22db-485a-b481-35b774ea669f",
+    "embedding": null,
+    "metadata": {
+        "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/past_events.txt",
+        "file_name": "past_events.txt",
+        "file_type": "text/plain",
+        "file_size": 4739,
+        "creation_date": "2024-07-20",
+        "last_modified_date": "2024-07-20"
+    },
+    "excluded_embed_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "excluded_llm_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "relationships": {
+        "1": {
+            "node_id": "c9c866c6-5cab-47ff-aa62-547920cce089",
+            "node_type": "4",
+            "metadata": {
+                "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/past_events.txt",
+                "file_name": "past_events.txt",
+                "file_type": "text/plain",
+                "file_size": 4739,
+                "creation_date": "2024-07-20",
+                "last_modified_date": "2024-07-20"
+            },
+            "hash": "2f8e38686e26885601261605a3c6a17ac5899a16810d36d52d317ae3e4a6a59f",
+            "class_name": "RelatedNodeInfo"
+        },
+        "2": {
+            "node_id": "a2e14125-15c4-4855-b97a-d1aaf75db053",
+            "node_type": "1",
+            "metadata": {
+                "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/past_events.txt",
+                "file_name": "past_events.txt",
+                "file_type": "text/plain",
+                "file_size": 4739,
+                "creation_date": "2024-07-20",
+                "last_modified_date": "2024-07-20"
+            },
+            "hash": "ba73d01b017b8a50797e22d283d1f67d225570946ff8a8d4167b93a06d631533",
+            "class_name": "RelatedNodeInfo"
+        }
+    },
+    "text": "A great resource to learn about\n      the historical context and the early ethos of the project.\n    button: Watch\n    button_link: 'https://archive.devcon.org/archive/watch/?order=desc&sort=eventId'\n    image: /cms-assets/past-events/Berlin.png\n_template: past_events\n---\n\n",
+    "start_char_idx": 4446,
+    "end_char_idx": 4720,
+    "text_template": "{metadata_str}\n\n{content}",
+    "metadata_template": "{key}: {value}",
+    "metadata_seperator": "\n",
+    "class_name": "TextNode"
+}

@@ -1,0 +1,65 @@
+{
+    "id_": "16e8f3c0-4cd7-4b00-9338-67f002751014",
+    "embedding": null,
+    "metadata": {
+        "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/supporters.txt",
+        "file_name": "supporters.txt",
+        "file_type": "text/plain",
+        "file_size": 3067,
+        "creation_date": "2024-07-20",
+        "last_modified_date": "2024-07-20"
+    },
+    "excluded_embed_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "excluded_llm_metadata_keys": [
+        "file_name",
+        "file_type",
+        "file_size",
+        "creation_date",
+        "last_modified_date",
+        "last_accessed_date"
+    ],
+    "relationships": {
+        "1": {
+            "node_id": "9f7c15be-e450-4230-97ad-c37a93aed4e6",
+            "node_type": "4",
+            "metadata": {
+                "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/supporters.txt",
+                "file_name": "supporters.txt",
+                "file_type": "text/plain",
+                "file_size": 3067,
+                "creation_date": "2024-07-20",
+                "last_modified_date": "2024-07-20"
+            },
+            "hash": "ff96e5558fda0e7296c658cc73558fbdcee20739d58c2765fa3b1665ef6e5dab",
+            "class_name": "RelatedNodeInfo"
+        },
+        "2": {
+            "node_id": "42245f3e-212a-48e2-8e88-b94e99bbfca5",
+            "node_type": "1",
+            "metadata": {
+                "file_path": "/Users/lasse/Desktop/projects/ef/monorepo/devcon-api/src/controllers/ai/python-service/../formatted-content/supporters.txt",
+                "file_name": "supporters.txt",
+                "file_type": "text/plain",
+                "file_size": 3067,
+                "creation_date": "2024-07-20",
+                "last_modified_date": "2024-07-20"
+            },
+            "hash": "48892e4b21f1b117f2539b2d8ab2e5675142e3891bdf14be9ac466c4a693817c",
+            "class_name": "RelatedNodeInfo"
+        }
+    },
+    "text": "### You'll meet teams with a significant, positive influence on Ethereum and its community.\n      \n      <Buttons\n      Button={[\n      {\n      text: \"Apply for Impact Team\",\n      url: \"https://docs.google.com/forms/d/e/1FAIpQLSfEjtOo7VzwLLVsBPEcRJBN_NDy2fMXry1ngA7ZAdYzUbvPyw/viewform\",\n      color: \"teal-1\"\n      }\n      ]}\n      />\n    </>}\n    right={<>\n      **Impact Teams**\n      \n      The Devcon team will invite Impact Teams, who will get access to the spaces in the Impact Forum at no cost to interact with their peers, potential users, fellow builders, and other attendees. At many conferences, only teams with big budgets get representation. At Devcon, we don’t have sponsorships. We want teams making a big impact on Ethereum to be present instead.\n      \n      **Supporters**\n      \n      Selected Supporter teams will be invited to join the Impact Forum as well. We want to ensure that the Impact Forum is about genuine contributions, not about branding, bringing together groups of all sizes that significantly impact Ethereum's ecosystem, culture, and future.\n    </>}\n  />\nprogramming_tickets: |\n  <TwoColumns\n    left={<>\n      ## **Programming**\n      \n      This year, aligned teams will have the opportunity to contribute toward Ethereum-related public goods in a Devcon-specific effort to grow the Ethereum ecosystem, and further technologies that help us move forward together.\n      \n      <Buttons Button={[{ text: \"Program\", url: \"/programming\", color: \"teal-1\" }]} />\n    </>}\n    right={<>\n      ## **Ticketing**\n      \n      Devcon could not happen without a group of dedicated, passionate volunteers helping run the show! Join the volunteer team alongside 100+ other fun, dedicated, passionate members of the community to help put on the best Devcon yet! Fill out the form to apply.\n      \n      <Buttons Button={[{ text: \"Tickets\", url: \"/tickets\", color: \"teal-1\" }]} />\n    </>}\n  />\n_template: supporters\n---\n\n",
+    "start_char_idx": 1117,
+    "end_char_idx": 3065,
+    "text_template": "{metadata_str}\n\n{content}",
+    "metadata_template": "{key}: {value}",
+    "metadata_seperator": "\n",
+    "class_name": "TextNode"
+}
