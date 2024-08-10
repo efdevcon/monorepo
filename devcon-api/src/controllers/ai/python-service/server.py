@@ -18,7 +18,7 @@ loop.run_until_complete(initialize_retriever())
 def load_questions():
     with open('questions.json', 'r') as file:
         questions = json.load(file)
-    return questions[:20]  # Get the first 10 questions
+    return questions[:1]  # Get the first 10 questions
 
 
 @app.route('/rag-test', methods=['GET'])
@@ -26,18 +26,14 @@ def rag():
     questions = load_questions()
     responses = []  # To store answers for each question
 
-    # print(questions, 'questions')
+    # for question in questions:
+    #     content = get_website_content_for_query(question)
+    #     answer = infer(question, content)
+    #     responses.append({'question': question, 'answer': answer})
 
-    for question in questions:
-        content = get_website_content_for_query(question)
-        answer = infer(question, content)
-        responses.append({'question': question, 'answer': answer})
+    # return jsonify(responses)
 
-    return jsonify(responses)
-
-    questions = load_questions()
-
-    query = 'What are the Devcon tracks?'
+    query = 'Does Devcon have a mobile app?'
 
     content = get_website_content_for_query(query)
 
