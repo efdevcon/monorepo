@@ -25,19 +25,8 @@ export default pageHOC(function DIPsTemplate(props: any) {
     <Page theme={themes['teal']}>
       <PageHero
         heroBackground={HeroBackground}
-        path={[{ text: <span className="bold">Get Involved</span> }, { text: props.page.header }]}
-        // cta={[
-        //   {
-        //     title: intl('dips_review_dips'),
-        //     to: 'https://forum.devcon.org',
-        //     icon: <BulletList />,
-        //   },
-        //   {
-        //     title: intl('dips_create_proposal'),
-        //     to: 'https://forum.devcon.org',
-        //     icon: <Pencil />,
-        //   },
-        // ]}
+        title="DIPs & Community Hubs"
+        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'DIPs and Community Hubs' }]}
         navigation={[
           {
             title: intl('dips_forum').toUpperCase(),
@@ -52,14 +41,22 @@ export default pageHOC(function DIPsTemplate(props: any) {
             to: '#contribute',
           },
           {
-            title: 'DIPS',
+            title: 'Community Hubs',
+            to: '#hubs',
+          },
+          {
+            title: 'Accepted Proposals',
             to: '#proposals',
           },
         ]}
       />
 
       <div className="section">
-        <Contribute dipDescription={pages.section1?.about} contributors={props.contributors} />
+        <Contribute
+          dipDescription={pages.section1?.about}
+          communityHubs={pages.community_hubs}
+          contributors={props.contributors}
+        />
         <Proposals dips={props.dips} />
       </div>
     </Page>

@@ -122,8 +122,13 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'Apply To Speak',
-            url: '/speaker-applications',
+            title: 'DIPs & Community Hubs',
+            url: '/dips',
+            type: 'page',
+          },
+          {
+            title: 'Supporters & Impact Teams',
+            url: '/supporters',
             type: 'page',
           },
           {
@@ -132,21 +137,10 @@ const useNavigationData = () => {
             type: 'url',
           },
           {
-            title: 'Supporters & Impact Teams',
-            url: '/supporters',
-            type: 'page',
-          },
-          {
-            title: 'DIPs',
-            url: '/dips',
-            type: 'page',
-          },
-          {
             title: 'RTD Grants',
             url: 'https://esp.ethereum.foundation/devcon-grants',
             type: 'link',
           },
-
           // {
           //   title: intl('navigation_supporters'),
           //   url: '/supporters',
@@ -188,7 +182,7 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
-            title: 'Press and Media',
+            title: 'Press & Media',
             url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
             type: 'link',
           },
@@ -407,7 +401,7 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'DIPs',
+          title: 'DIPs & Community Hubs',
           url: '/dips',
           type: 'page',
         },
@@ -432,7 +426,7 @@ const useNavigationData = () => {
           type: 'link',
         },
         {
-          title: 'Press and Media',
+          title: 'Press & Media',
           url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
           type: 'link',
         },
