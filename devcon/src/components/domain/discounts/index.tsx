@@ -159,6 +159,19 @@ export function SelfClaimingDiscounts() {
         </li>
         <li>
           <Link
+            to="https://forms.gle/yKnLpNzkchjX8nqbA"
+            indicateExternal
+            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+          >
+            Volunteer
+          </Link>{' '}
+          <p className="ml-5">
+            Join the volunteer team alongside 200+ other fun, dedicated, passionate members of the community to help put
+            on the best Devcon yet.
+          </p>
+        </li>
+        <li>
+          <Link
             to="https://forms.gle/5PZBFecCCuRsQqLu8"
             indicateExternal
             className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
