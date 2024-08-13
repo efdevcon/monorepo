@@ -8,7 +8,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //   const { threadID } = req.query
 
   if (req.method === 'GET') {
-    return res.send('get request hello')
+    // const assistant = await api.createAssistant()
+
+    // console.log(assistant, 'assistant')
+
+    // return res.send(JSON.stringify(assistant))
+
+    return res.send('hello from server')
   } else if (req.method === 'POST') {
     const { message, threadID } = JSON.parse(req.body)
 

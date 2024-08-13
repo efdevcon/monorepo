@@ -150,13 +150,14 @@ export const api = (() => {
 
     // ASSISTANT API
     createAssistant: async () => {
+      console.log('creating assistant')
       // create assistant
       const assistant = await openai.beta.assistants.create({
         name: 'DevaBot',
         instructions: assistantInstructions,
         tools: [{ type: 'file_search' }],
         // model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o',
       })
 
       // Create vector store for website content
@@ -276,7 +277,7 @@ const run = async () => {
 
 // run()
 
-// api.createAssistant()
+api.createAssistant()
 // api.createThread()
 // api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', 'When is Devcon?!', 'thread_5U2NZ87hX3oGUkFwY1zBzfX2')
 

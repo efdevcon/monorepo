@@ -45,17 +45,17 @@ const DevaBot = () => {
       //   url += `?threadID=${threadID}`
       // }
 
-      const response = await (
-        await fetch('http://localhost:4000/ai/devcon-website/ask', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ query, threadID, messages }),
-        })
-      ).json()
+      // const response = await (
+      //   await fetch('http://localhost:4000/ai/devcon-website/ask', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({ query, threadID, messages }),
+      //   })
+      // ).json()
 
-      console.log(response, 'response')
+      // console.log(response, 'response')
 
       // const nextMessages = response.map((message: any) => {
       //   return {
@@ -67,35 +67,35 @@ const DevaBot = () => {
 
       // console.log(nextMessages, 'hello')
 
-      setMessages([
-        ...messages,
-        {
-          // id: query,
-          role: 'user',
-          content: query,
-        },
-        {
-          // id: Math.random(),
-          role: 'assistant',
-          content: response, // .generated_text.split('[/INST]').pop().trim(),
-        },
-        // ...nextMessages,
-      ])
+      // setMessages([
+      //   ...messages,
+      //   {
+      //     // id: query,
+      //     role: 'user',
+      //     content: query,
+      //   },
+      //   {
+      //     // id: Math.random(),
+      //     role: 'assistant',
+      //     content: response, // .generated_text.split('[/INST]').pop().trim(),
+      //   },
+      //   // ...nextMessages,
+      // ])
 
       // console.log(resultTest, 'hello from backend')
 
       // return
 
-      // const result = await (
-      //   await fetch(url, { method: 'POST', body: JSON.stringify({ message: query, threadID }) })
-      // ).json()
+      const result = await (
+        await fetch(url, { method: 'POST', body: JSON.stringify({ message: query, threadID }) })
+      ).json()
 
       // console.log(result, 'hello')
 
       // // add error case for run status not equal to whatever success string is from open ai
 
-      // setThreadID(result.threadID)
-      // setMessages(result.messages)
+      setThreadID(result.threadID)
+      setMessages(result.messages)
     } catch (e) {
       console.error(e, 'error')
 
@@ -119,6 +119,7 @@ const DevaBot = () => {
               messages.map((message: any, index: any) => {
                 return (
                   <div key={index} className="shrink-0">
+                    {message.text}
                     {message.content}
                   </div>
                 )
