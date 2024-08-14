@@ -48,6 +48,45 @@ async function createOpenAIEmbedding(text: any) {
 
 export const api = (() => {
   const _interface = {
+    prepareContent: async () => {
+      console.log('preparing content')
+
+      // await _interface.createEmbeddingsFromContent()
+
+      // Create vector store for website content
+      const vectorStore = await openai.beta.vectorStores.create({
+        name: 'Website Content: ' + new Date().toDateString(), // TODO: Use github commit id here
+      })
+
+      const contentDir = path.join(__dirname, 'content')
+      const files = fs.readdirSync(contentDir)
+
+      const fileStreams = files.map((file: string) => {
+        const filePath = path.join(contentDir, file)
+        return fs.createReadStream(filePath)
+      })
+
+      const prefilledContext = fs.createReadStream(path.join(__dirname, 'prefilled-context.txt'))
+
+      fileStreams.push(prefilledContext)
+
+      // Upload files to vector store
+      await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+
+      // TODO: add assistant id as .env variable?
+      // TODO: remove old vector stores (could be dangerous, so maybe not - maybe open ai has auto clean up)
+      await openai.beta.assistants.update('asst_KQBmgnzDccFLFXE88IE8dTwT', {
+        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
+      })
+
+      // list all vector stores, delete all that are not the latest vector store and are older than X days (to prevent issue with multiple deploys deleting each other)
+
+      // Prepare files EHHHH not done but maybe unnecessary
+    },
+    cleanStaleVectorStores: async () => {
+      // TODO list all vector stores
+      // TODO delete all files in each store older than X days (the newest vector store will already have been applied to the assistant at this point)
+    },
     createEmbeddingsFromContent: async () => {
       const contentDir = path.resolve(__dirname, 'content')
       const files = fs.readdirSync(contentDir)
@@ -209,12 +248,35 @@ export const api = (() => {
       if (run.status === 'completed') {
         const messages = await openai.beta.threads.messages.list(run.thread_id)
 
-        let formattedMessages = messages.data.reverse().map((message: any) => {
+        let formattedMessagesPromises = messages.data.reverse().map(async (message: any) => {
+          const content = message.content[0]
+
+          let references
+
+          if (content.text.annotations) {
+            const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
+              console.log(annotation, 'annotation')
+              if (annotation.type === 'file_citation') {
+                const file = await openai.files.retrieve(annotation.file_citation.file_id)
+                return {
+                  file,
+                  textReplace: annotation.text,
+                }
+              }
+            })
+
+            references = await Promise.all(fileAnnotationsPromises)
+          }
+
           return {
             id: message.id,
-            text: `${message.role} > ${message.content[0].text.value}`,
+            role: message.role,
+            text: `${content.text.value}`,
+            files: references || [],
           }
         })
+
+        const formattedMessages = await Promise.all(formattedMessagesPromises)
         // for (const message of messages.data.reverse()) {
         //   // @ts-ignore
         //   console.log(`${message.role} > ${message.content[0].text.value}`)
@@ -224,6 +286,7 @@ export const api = (() => {
           runID: run.id,
           status: run.status,
           threadID,
+          rawMessages: messages.data,
           messages: formattedMessages,
         }
       } else {
@@ -277,7 +340,8 @@ const run = async () => {
 
 // run()
 
-api.createAssistant()
+// api.createAssistant()
+api.prepareContent()
 // api.createThread()
 // api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', 'When is Devcon?!', 'thread_5U2NZ87hX3oGUkFwY1zBzfX2')
 

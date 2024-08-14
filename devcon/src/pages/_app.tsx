@@ -112,15 +112,26 @@ const DevaBot = () => {
     <>
       {visible && (
         <div className="fixed bottom-0 right-0 z-10 h-[75vh] w-[25vw] bg-slate-900 shadow-2xl p-4 text-white flex flex-col gap-4 items-start">
-          <div className="shrink-0">Deva Bot Demo Interface</div>
+          <div className="shrink-0">DevAI chatbox</div>
 
           <div className="overflow-auto flex flex-col grow w-full gap-4">
             {messages.length > 0 &&
               messages.map((message: any, index: any) => {
                 return (
-                  <div key={index} className="shrink-0">
+                  <div key={index} className="shrink-0 flex flex-col">
+                    <span className="text-sm opacity-50">
+                      {message.role === 'assistant' ? 'DevAI responded' : 'You asked'}
+                    </span>
                     {message.text}
                     {message.content}
+                    {message.files.length > 0 && (
+                      <div className="flex flex-col text-sm opacity-50">
+                        <p>References</p>
+                        {message.files.map(({ file }: any) => {
+                          return <div key={file.id}>{file.filename}</div>
+                        })}
+                      </div>
+                    )}
                   </div>
                 )
               })}

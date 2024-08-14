@@ -20,7 +20,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     console.log(message, threadID, 'msg thread id')
 
-    const result = await api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', message, threadID)
+    const result = await api.createMessage('asst_KQBmgnzDccFLFXE88IE8dTwT', message, threadID)
 
     return res.json(result)
   }
