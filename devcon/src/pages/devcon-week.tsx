@@ -55,10 +55,10 @@ export default pageHOC(function DevconWeek(props: any) {
             title: 'Schedule',
             to: '#schedule',
           },
-          {
-            title: 'FAQ',
-            to: '#faq',
-          },
+          // {
+          //   title: 'FAQ',
+          //   to: '#faq',
+          // },
         ]}
       />
 
@@ -89,23 +89,28 @@ export default pageHOC(function DevconWeek(props: any) {
                     date = `${start.format('MMM D')} - ${end.format('MMM D')}`
                   }
 
+                  console.log(event, 'event')
+
                   return {
                     id: event.Name,
                     Icon: icon,
-                    left: (
-                      <Link to={event.Link} indicateExternal className="bold">
+                    left: event.Link ? (
+                      <Link to={event.Link} indicateExternal className="bold ">
                         {event.Name}
                       </Link>
+                    ) : (
+                      <div className="bold">{event.Name}</div>
                     ),
                     right: date,
                   }
                 })}
               />
             )}
-
-            <Button color="orange-1" className="mt-4 self-end">
-              See All Road to Devcon Events
-            </Button>
+            <Link to="/road-to-devcon" className="self-end">
+              <Button color="orange-1" className="mt-4 self-end">
+                See All Road to Devcon Events
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -120,7 +125,7 @@ export default pageHOC(function DevconWeek(props: any) {
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full overflow-hidden min-h-[225px] bg-[#f8f9ff]">
+              <div className="relative w-full h-full overflow-hidden min-h-[300px] bg-[#f8f9ff]">
                 {/* <Image
                   src={EventBlocker}
                   alt="Blocked Event Graphic"
@@ -143,9 +148,13 @@ export default pageHOC(function DevconWeek(props: any) {
                   <Image
                     src={LogoFlowers}
                     alt="Blocked Event Graphic"
-                    className="!object-center object-contain w-[30%]"
+                    className="!object-center object-contain w-[30%] max-h-[125px]"
                   />
-                  <Image src={DateText} alt="Blocked Event Graphic" className="!object-center object-contain w-[20%]" />
+                  <Image
+                    src={DateText}
+                    alt="Blocked Event Graphic"
+                    className="!object-center object-contain w-[20%] max-h-[50px]"
+                  />
                 </div>
               </div>
             )
@@ -160,10 +169,10 @@ export default pageHOC(function DevconWeek(props: any) {
         </div> */}
       </div>
 
-      <div className="section relative">
+      {/* <div className="section relative">
         <div className="border-top mt-8 pt-8"></div>
         <FAQ title="Frequently Asked" anchor="#faq" faq={devconWeek.questions} />
-      </div>
+      </div> */}
     </Page>
   )
 })
@@ -173,7 +182,7 @@ export async function getStaticProps(context: any) {
   const content = await client.queries.pages({ relativePath: 'devcon_week.mdx' })
 
   const RTDNotionID = '5199f81539da498f9e2137c3928f6e93'
-  const events = await getNotionDatabase('en')
+  const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68')
 
   const RTDEvents = (await getNotionDatabase('en', RTDNotionID)) as any
 

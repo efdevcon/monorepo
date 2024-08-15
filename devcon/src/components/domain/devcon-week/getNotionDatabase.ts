@@ -120,7 +120,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
   // const databaseID = '8b177855e75b4964bb9f3622437f04f5' // Devconnect
   // const databaseID = '517164deb17b42c8a00a62e775ce24af' // Devcon week
 
-  const isDevconWeek = databaseID === '517164deb17b42c8a00a62e775ce24af'
+  const isDevconWeek = databaseID === '1c8de49be9594869a2e72406fde2af68'
   const isColombiaBlockhainWeek = databaseID === 'cc11ba1c0daa40359710c0958da7739c'
 
   let data = {}

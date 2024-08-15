@@ -214,6 +214,9 @@ const sortEvents = (a: any, b: any) => {
   if (aStartDay.isBefore(bStartDay)) {
     return -1;
   } else if (aStartDay.isSame(bStartDay)) {
+    if (a["Block Schedule"]) return -1;
+    if (b["Block Schedule"]) return 1;
+
     if (aTotalDays > bTotalDays) return -1;
     if (bTotalDays > aTotalDays) return 1;
 
@@ -388,7 +391,12 @@ const createPlacementTracker = () => {
 
   return {
     occupiedNodes,
-    placeItem: (currentRow: number, start: number, duration: number) => {
+    placeItem: (
+      currentRow: number,
+      start: number,
+      duration: number,
+      isBlocking: boolean
+    ) => {
       const canBePlaced =
         typeof occupiedNodes?.[currentRow]?.[start] === "undefined";
 
@@ -398,6 +406,23 @@ const createPlacementTracker = () => {
             ...occupiedNodes[currentRow],
             [i]: true,
           };
+
+          if (isBlocking) {
+            occupiedNodes[currentRow + 1] = {
+              ...occupiedNodes[currentRow + 1],
+              [i]: true,
+            };
+
+            occupiedNodes[currentRow + 2] = {
+              ...occupiedNodes[currentRow + 2],
+              [i]: true,
+            };
+
+            occupiedNodes[currentRow + 3] = {
+              ...occupiedNodes[currentRow + 3],
+              [i]: true,
+            };
+          }
         }
 
         return true;
@@ -765,6 +790,7 @@ const Timeline = (props: any) => {
       moment.utc(sortedEvents[0].Date.startDate),
       "days"
     );
+
     let subtractDays = 0;
     // We don't render empty days, so we have to account for that when placing items into our grid - we subtract the empty days prior to the current event, treating them as if they don't exist in the grid
     Array.from(Array(offsetFromFirstEventInSchedule)).forEach(
@@ -777,6 +803,9 @@ const Timeline = (props: any) => {
 
     let currentRow = 1; // css property grid-row starts at 1
 
+    // Block out schedule if event is blocking
+    const isBlockingEvent = event["Block Schedule"];
+
     /*
         1) Place at first available Y value in the start date column, filling in horizontally if multiple days
         2) If the column Y is already occupied (by another event extending into the day), increase column Y by 1, repeat until free space
@@ -787,10 +816,15 @@ const Timeline = (props: any) => {
       !placementTracker.placeItem(
         currentRow,
         offsetFromFirstDay - subtractDays,
-        totalDays
+        totalDays,
+        isBlockingEvent
       )
     ) {
-      currentRow++;
+      if (isBlockingEvent) {
+        currentRow += 4;
+      } else {
+        currentRow++;
+      }
     }
 
     const gridPlacement = {
@@ -799,13 +833,8 @@ const Timeline = (props: any) => {
       "--eventLength": totalDays,
     };
 
-    if (event["Block Schedule"]) console.log(event, "event blocked");
-
-    // Block out schedule if event is blocking
-    const isBlockingEvent = event["Block Schedule"];
-
     if (isBlockingEvent) {
-      gridPlacement.gridRow = `2 / span ${gridPlacement.gridRow + 1}`;
+      gridPlacement.gridRow = `2 / span ${currentRow + 3}`;
 
       return (
         <React.Fragment key={event.Name + offsetFromFirstDay}>
@@ -2071,8 +2100,6 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false);
   const { scheduleView, setScheduleView } = props;
   const favorites = useFavorites(props.events, props.edition);
-
-  // console.log(props.events, "events hello");
 
   let {
     events,
