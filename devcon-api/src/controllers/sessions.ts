@@ -7,12 +7,14 @@ import { templateStyles } from 'templates/styles'
 import { GetEventDay, GetTrackId, GetTrackImage } from 'utils/templates'
 import { PrismaClient } from '@prisma/client'
 import { API_DEFAULTS } from 'utils/config'
+import { CommitSession } from 'services/github'
 
 const client = new PrismaClient()
 
 export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
 sessionsRouter.get(`/sessions/:id`, GetSession)
+sessionsRouter.put(`/sessions/:id`, UpdateSession)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
 sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
@@ -102,6 +104,39 @@ export async function GetSession(req: Request, res: Response) {
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   res.status(200).send({ status: 200, message: '', data })
+}
+
+export async function UpdateSession(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  const updatedSession = req.body
+  if (!updatedSession) return res.status(400).send({ status: 400, message: 'Bad Request' })
+  if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Bad Request' })
+
+  const data = await client.session.findFirst({
+    where: {
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+    },
+  })
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+  
+  if (Object.keys(updatedSession).every(key => key in data)) {
+    return res.status(400).send({ status: 400, message: 'Invalid fields in update request' })
+  }
+  
+  try {
+    const updatedData = await client.session.update({
+      where: { id: req.params.id },
+      data: updatedSession,
+    })
+    
+    await CommitSession(updatedData, `[skip ci] PUT /sessions/${updatedData.id}`);
+
+    res.status(204).send()
+  } catch (error) {
+    console.error('Error updating session:', error)
+    res.status(500).send({ status: 500, message: 'Internal Server Error' })
+  }
 }
 
 export async function GetSessionRelated(req: Request, res: Response) {
