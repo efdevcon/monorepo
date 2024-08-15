@@ -12,6 +12,7 @@ const dips: Template = {
       type: 'object',
       fields: [createRichText('about', { required: true })],
     },
+    createRichText('community_hubs'),
   ],
 }
 

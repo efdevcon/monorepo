@@ -5,35 +5,33 @@
   overflow: hidden;
   width: 100%;
 
-
   .background-layer {
     .background-layer-theme-logo {
       display: none;
       // z-index: 1;
-        position: absolute;
-        top: 0px;
-        bottom: 0px;
-        right: 0px;
-        left: 0px;
-        background-repeat: no-repeat;
-        background-position: center right;
-        background-size: 50%;
-        background-image: var(--theme-logo);
-        z-index: -1;
-        // outline: 1px !important;
-        
-    
-        @media (max-width: $breakpoints-lg) {
-          mask-image: none;
-          opacity: 0.6;
-          background-size: 70%;
-        }
-    
-        @media (max-width: $breakpoints-sm) {
-          background-size: 90%;
-          left: 20%;
-          width: 100%;
-        }
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      background-repeat: no-repeat;
+      background-position: center right;
+      background-size: 50%;
+      background-image: var(--theme-logo);
+      z-index: -1;
+      // outline: 1px !important;
+
+      @media (max-width: $breakpoints-lg) {
+        mask-image: none;
+        opacity: 0.6;
+        background-size: 70%;
+      }
+
+      @media (max-width: $breakpoints-sm) {
+        background-size: 90%;
+        left: 20%;
+        width: 100%;
+      }
     }
 
     .background-layer-theme-gradient {
@@ -47,23 +45,23 @@
       // opacity: 0.8;
       // background-color: radial-gradient( 73.15% 179.46% at 90.19% 25.94%, #88c43f 0%, #50d100 0.01%, rgba(140, 255, 0, 0.4) 58.33%, rgba(136, 196, 63, 0) 100% );
       // mask-image: linear-gradient(from top to bottom, transparent, black);
-      // mask-image: linear-gradient(to top, 
-      // black 0%,  
+      // mask-image: linear-gradient(to top,
+      // black 0%,
       // transparent 100%);
     }
 
     .background-layer-theme {
-        position: absolute;
-        
-        top: 0px;
-        bottom: 0px;
-        right: 0px;
-        left: 0px;
-        // background: linear-gradient(to left, rgb(122, 255, 255), transparent)
-        background-color: var(--theme-gradient-background-color, #{$colors-monochrome-1});
-        background-image: var(--theme-gradient);
-        // background: rgb(212, 255, 212);
-        z-index: -2;
+      position: absolute;
+
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      left: 0px;
+      // background: linear-gradient(to left, rgb(122, 255, 255), transparent)
+      background-color: var(--theme-gradient-background-color, #{$colors-monochrome-1});
+      background-image: var(--theme-gradient);
+      // background: rgb(212, 255, 212);
+      z-index: -2;
     }
 
     .background-image {
@@ -75,35 +73,24 @@
       @media (max-width: $breakpoints-lg) {
         width: 100%;
         left: 0%;
-        mask-image: radial-gradient(
-          circle farthest-side,
-          rgba(0, 0, 0, 1) 50%, 
-          transparent 100%
-        );
+        mask-image: radial-gradient(circle farthest-side, rgba(0, 0, 0, 1) 50%, transparent 100%);
       }
 
-      mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 15%,
-        black 85%,
-        transparent
-    );
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 
       // mask-image: radial-gradient(
       //     ellipse 50% 90% at center,
-      //     rgba(0, 0, 0, 1) 80%, 
+      //     rgba(0, 0, 0, 1) 80%,
       //     transparent
       // );
 
       // mask-image: radial-gradient(
       //     circle farthest-side,
-      //   rgba(0, 0, 0, 1) 80%, 
+      //   rgba(0, 0, 0, 1) 80%,
       //     transparent 100%
       // );
     }
   }
-  
 
   @media (max-width: $breakpoints-lg) {
     // margin-bottom: $gaps-gap-6;
@@ -242,6 +229,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 24px;
     min-height: 250px;
 
     @media (max-width: $breakpoints-lg) {
@@ -313,7 +301,7 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
-  
+
   .page-navigation {
     position: relative;
     width: 100%;
@@ -324,7 +312,7 @@
     > * {
       padding-right: $gaps-gap-6;
       flex-shrink: 0;
-  
+
       &:first-child {
         margin-left: 0px;
       }

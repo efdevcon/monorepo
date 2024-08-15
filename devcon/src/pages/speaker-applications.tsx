@@ -248,7 +248,7 @@ export default pageHOC(function Programming(props: any) {
                               </div>
                             ),
                             indent: false,
-                            active: false,
+                            active: true,
                             body: '',
                           },
                         ]}

@@ -98,11 +98,11 @@ export default pageHOC(function Programming(props: any) {
       anchor: '#tickets',
       faq: tickets.pages.faq,
     },
-    {
-      title: 'Devcon Week',
-      anchor: '#devcon-week',
-      faq: devconWeek.pages.questions,
-    },
+    // {
+    //   title: 'Devcon Week',
+    //   anchor: '#devcon-week',
+    //   faq: devconWeek.pages.questions,
+    // },
     {
       title: 'City Guide',
       anchor: '#city-guide',

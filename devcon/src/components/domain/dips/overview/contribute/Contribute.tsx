@@ -9,10 +9,13 @@ import { chunkArray } from 'utils/chunk-array'
 import Image from 'next/legacy/image'
 import { usePageContext } from 'context/page-context'
 import RichText from 'lib/components/tina-cms/RichText'
+import InfiniteScroller from 'lib/components/infinite-scroll'
+import indexCss from 'pages/index.module.scss'
 
 type ContributeProps = {
   contributors: Array<Contributor>
   dipDescription?: any
+  communityHubs?: any
 }
 
 type ThumbnailProps = {
@@ -142,32 +145,33 @@ export const Contribute = (props: ContributeProps) => {
   const page = usePageContext()?.current
 
   return (
-    <section id="contribute" className={css['section']}>
-      <div className={css['container']}>
-        <div className={css['left-section']}>
-          <RichText content={props.dipDescription} />
-          {/* <div
-            dangerouslySetInnerHTML={{ __html: props.dipDescription }}
-            className={`${css['dip-description']} markdown`}
-          /> */}
-          <div className={css['links']}>
-            <Link to="https://forum.devcon.org" indicateExternal className="text-uppercase font-lg bold">
-              {intl('dips_visit_forum')}
-            </Link>
-            <Link to="https://github.com/efdevcon/DIPs" indicateExternal className="text-uppercase font-lg bold">
-              {intl('dips_create_proposal')}
-            </Link>
+    <>
+      <section id="contribute" className={css['section']}>
+        <div className={`${css['container']} relative pb-8`}>
+          <div className={css['left-section']}>
+            <RichText content={props.dipDescription} />
+          </div>
+
+          <div className={css['contributors']}>
+            <div className="my-2 md:my-4">
+              <AutoScroller contributors={props.contributors} />
+            </div>
+            <div className={css['info']}>
+              <p className="bold">*DIP Github Contributors</p> <Github />
+            </div>
+          </div>
+
+          <div className={`${indexCss['scrolling-text-background']}`}>
+            <InfiniteScroller nDuplications={2} speed="200s" reverse>
+              <p className="bold uppercase">Devcon Improvement Proposals&nbsp;</p>
+            </InfiniteScroller>
           </div>
         </div>
-        <div className={css['contributors']}>
-          <div className="my-4 md:my-12">
-            <AutoScroller contributors={props.contributors} />
-          </div>
-          <div className={css['info']}>
-            <p>* {intl('dips_contributors')}</p> <Github />
-          </div>
+
+        <div className="mb-8 border-top pt-8" id="hubs">
+          <RichText content={props.communityHubs} />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }
