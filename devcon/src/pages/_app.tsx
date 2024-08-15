@@ -7,6 +7,7 @@ import { SEO } from 'components/domain/seo'
 import { init } from '@socialgouv/matomo-next'
 import { SessionProvider } from 'next-auth/react'
 import { Web3ModalProvider } from 'context/web3modal'
+import { Link } from 'components/common/link'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -125,11 +126,26 @@ const DevaBot = () => {
                     {message.text}
                     {message.content}
                     {message.files.length > 0 && (
-                      <div className="flex flex-col text-sm opacity-50">
-                        <p>References</p>
-                        {message.files.map(({ file }: any) => {
-                          return <div key={file.id}>{file.filename}</div>
-                        })}
+                      <div className="flex flex-col text-sm opacity-50 ">
+                        <p className="mt-1">References</p>
+                        <div className="flex gap-2">
+                          {(() => {
+                            // Sometimes multiple references go to the same page - this prevents rendering the same one more than once
+                            const referencesTracker = {} as any
+
+                            return message.files.map(({ file, fileUrl }: any, index: number) => {
+                              if (referencesTracker[file.fileUrl]) return null
+
+                              referencesTracker[file.fileUrl] = true
+
+                              return (
+                                <Link to={fileUrl} key={index}>
+                                  https://devcon.org{fileUrl}
+                                </Link>
+                              )
+                            })
+                          })()}
+                        </div>
                       </div>
                     )}
                   </div>

@@ -12,6 +12,20 @@ import city_guide from './templates/city_guide'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
 
+export const filenameToUrl = {
+  index: '/',
+  dips: '/dips',
+  past_events: '/past-events',
+  road_to_devcon: '/road-to-devcon',
+  faq: '/',
+  programming: '/programming',
+  tickets: '/tickets',
+  about: '/about',
+  supporters: '/supporters',
+  speaker_applications: '/speaker-applications',
+  city_guide: '/city-guide',
+}
+
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
@@ -54,35 +68,21 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) => {
-            const filename = document._sys.filename
+            const filenameToUrl = {
+              index: '/',
+              dips: '/dips',
+              past_events: '/past-events',
+              road_to_devcon: '/road-to-devcon',
+              faq: '/',
+              programming: '/programming',
+              tickets: '/tickets',
+              about: '/about',
+              supporters: '/supporters',
+              speaker_applications: '/speaker-applications',
+              city_guide: '/city-guide',
+            } as { [key: string]: string }
 
-            switch (filename) {
-              case 'index':
-                return '/'
-              case 'dips':
-                return '/dips'
-              case 'past_events':
-                return '/past-events'
-              case 'road_to_devcon':
-                return '/road-to-devcon'
-              case 'faq':
-                return '/'
-              case 'programming':
-                return '/programming'
-              case 'tickets':
-                return '/tickets'
-              case 'about':
-                return '/about'
-              case 'supporters':
-                return '/supporters'
-              case 'speaker_applications':
-                return '/speaker-applications'
-              case 'city_guide':
-                return '/city-guide'
-
-              default:
-                return filename
-            }
+            return filenameToUrl[document._sys.filename] || document._sys.filename
           },
         },
       },

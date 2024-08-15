@@ -109,7 +109,7 @@ const processContent = async (fileName: any) => {
 }
 
 // Load all files from folder
-function loadAllFilesFromFolder(folderPath: any) {
+export function loadAllFilesFromFolder(folderPath: any) {
   try {
     const directoryPath = path.resolve(__dirname, folderPath)
     const files = fs.readdirSync(directoryPath).filter(Boolean)

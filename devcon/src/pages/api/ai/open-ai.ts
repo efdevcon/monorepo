@@ -4,6 +4,8 @@ import path from 'path'
 // import LoadContent from './load-content';
 require('dotenv').config()
 import { prompts, assistantInstructions } from './fine-tune'
+import { filenameToUrl } from '../../../../tina/config'
+import { loadAllFilesFromFolder, formatContent } from './format-content'
 
 // LoadContent();
 
@@ -53,13 +55,19 @@ export const api = (() => {
 
       // await _interface.createEmbeddingsFromContent()
 
+      const files = loadAllFilesFromFolder('../../../../../cms/pages')
+
+      const formattedFiles = files.map(formatContent) // (files);
+
+      console.log(formattedFiles, 'formatted files')
+
       // Create vector store for website content
       const vectorStore = await openai.beta.vectorStores.create({
-        name: 'Website Content: ' + new Date().toDateString(), // TODO: Use github commit id here
+        name: 'Website Content: ' + new Date().toISOString(), // TODO: Use github commit id here?
       })
 
       const contentDir = path.join(__dirname, 'content')
-      const files = fs.readdirSync(contentDir)
+      // const files = fs.readdirSync(contentDir)
 
       const fileStreams = files.map((file: string) => {
         const filePath = path.join(contentDir, file)
@@ -70,6 +78,8 @@ export const api = (() => {
 
       fileStreams.push(prefilledContext)
 
+      // Prepare files here - add category, add reference link
+
       // Upload files to vector store
       await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
 
@@ -78,10 +88,6 @@ export const api = (() => {
       await openai.beta.assistants.update('asst_KQBmgnzDccFLFXE88IE8dTwT', {
         tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
       })
-
-      // list all vector stores, delete all that are not the latest vector store and are older than X days (to prevent issue with multiple deploys deleting each other)
-
-      // Prepare files EHHHH not done but maybe unnecessary
     },
     cleanStaleVectorStores: async () => {
       // TODO list all vector stores
@@ -255,11 +261,15 @@ export const api = (() => {
 
           if (content.text.annotations) {
             const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
-              console.log(annotation, 'annotation')
               if (annotation.type === 'file_citation') {
                 const file = await openai.files.retrieve(annotation.file_citation.file_id)
+
+                // @ts-ignore
+                const fileUrl = filenameToUrl[file.filename.split('.txt')[0]]
+
                 return {
                   file,
+                  fileUrl: fileUrl,
                   textReplace: annotation.text,
                 }
               }
@@ -268,10 +278,18 @@ export const api = (() => {
             references = await Promise.all(fileAnnotationsPromises)
           }
 
+          let text = content.text.value
+
+          if (references) {
+            for (const reference of references) {
+              text = text.replace(reference.textReplace, ``)
+            }
+          }
+
           return {
             id: message.id,
             role: message.role,
-            text: `${content.text.value}`,
+            text,
             files: references || [],
           }
         })
