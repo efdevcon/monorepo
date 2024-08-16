@@ -89,8 +89,6 @@ export default pageHOC(function DevconWeek(props: any) {
                     date = `${start.format('MMM D')} - ${end.format('MMM D')}`
                   }
 
-                  console.log(event, 'event')
-
                   return {
                     id: event.Name,
                     Icon: icon,
@@ -125,7 +123,7 @@ export default pageHOC(function DevconWeek(props: any) {
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full overflow-hidden min-h-[300px] bg-[#f8f9ff]">
+              <div className="relative w-full h-full overflow-hidden min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-2 border-[#9667bc] shadow-lg">
                 {/* <Image
                   src={EventBlocker}
                   alt="Blocked Event Graphic"
