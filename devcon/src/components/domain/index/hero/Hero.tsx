@@ -155,7 +155,10 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
 
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
-  const imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+  let imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
+  if (props.speakerMode) {
+    imageUrl = `https://devcon-social.netlify.app/schedule/${props.talk?.id}/opengraph-image`
+  }
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
