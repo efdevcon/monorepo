@@ -169,7 +169,7 @@ export const SpeakerTicket = (props: SpeakerProps) => {
           </div>
         </div>
         <div className="flex flex-col justify-center grow h-40 max-w-72">
-          <div className="text-sm lg:text-lg">{props.title}</div>
+          <div className={titleClassName}>{props.title}</div>
         </div>
         <div className="shrink-0 w-full my-2 border-t-2 border-t-solid border-dashed border-[#D9D9D9]"></div>
         <div className="shrink-0 my-2 text-[#5B5F84] text-xs">{props.speakers.map(i => i.name).join(', ')}</div>
