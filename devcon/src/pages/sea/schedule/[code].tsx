@@ -27,6 +27,12 @@ export async function getStaticProps(context: any) {
   })
 
   const data = await res.json()
+  if (!data) {
+    return {
+      notFound: true
+    }
+  }
+
   let type = 'talk'
   if (data.submission_type_id === 36) type = 'lightning Talk'
   if (data.submission_type_id === 32) type = 'talk'
@@ -34,6 +40,7 @@ export async function getStaticProps(context: any) {
   if (data.submission_type_id === 33 || data.submission_type_id === 34 || data.submission_type_id === 40)
     type = 'workshop'
 
+  console.log('Schedule', context.params.code, data?.title, data?.state)
   if (APP_CONFIG.NODE_ENV === 'production' && (data.state !== 'accepted' && data.state !== 'confirmed')) {
     return {
       notFound: true
