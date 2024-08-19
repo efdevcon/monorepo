@@ -160,6 +160,15 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
     imageUrl = `https://devcon-social.netlify.app/schedule/${props.talk?.id}/opengraph-image`
   }
 
+  let twitterShare = `I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`
+  if (props.speakerMode) {
+    twitterShare = `I'm speaking at @EFdevcon! %0ASee you in Bangkok, November 12-15 %0A%0A${currentUrl}`
+  }
+  let warpcastShare = `I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`
+  if (props.speakerMode) {
+    warpcastShare = `I'm speaking at @devcon! %0ASee you in Bangkok, November 12-15 %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`
+  }
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setCurrentUrl(window.location.href)
@@ -286,7 +295,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
                 className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
                 // @ts-ignore
                 style={{ '--color-icon': '#8c72ae' }}
-                href={`https://x.com/intent/tweet?text=I just got my @EFdevcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}`}
+                href={`https://x.com/intent/tweet?text=${twitterShare}`}
                 target="_blank"
                 rel="noreferrer"
                 data-url={currentUrl}
@@ -299,7 +308,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
                 className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
                 // @ts-ignore
                 style={{ '--color-icon': '#8c72ae' }}
-                href={`https://warpcast.com/~/compose?text=I just got my @devcon ticket! %0ASee you in Bangkok, November 12-15  %0A%0AGet your ticket, too: %0A%0A${currentUrl}&channelKey=devcon&embeds[]=${currentUrl}`}
+                href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
                 target="_blank"
                 rel="noreferrer"
               >
