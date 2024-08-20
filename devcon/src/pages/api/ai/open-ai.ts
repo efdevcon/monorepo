@@ -5,7 +5,7 @@ import path from 'path'
 require('dotenv').config()
 import { prompts, assistantInstructions } from './fine-tune'
 import { filenameToUrl } from '../../../../tina/config'
-import { loadAllFilesFromFolder, formatContent } from './format-content'
+import { loadAndFormatCMS } from './format-content'
 
 // LoadContent();
 
@@ -55,19 +55,22 @@ export const api = (() => {
 
       // await _interface.createEmbeddingsFromContent()
 
-      const files = loadAllFilesFromFolder('../../../../../cms/pages')
+      // const files = loadAllFilesFromFolder('../../../../cms/pages')
 
-      const formattedFiles = files.map(formatContent) // (files);
+      // const formattedFiles = files.map(formatContent) // (files);
 
-      console.log(formattedFiles, 'formatted files')
+      await loadAndFormatCMS()
+
+      // console.log(formattedFiles, 'formatted files')
 
       // Create vector store for website content
       const vectorStore = await openai.beta.vectorStores.create({
         name: 'Website Content: ' + new Date().toISOString(), // TODO: Use github commit id here?
       })
 
-      const contentDir = path.join(__dirname, 'content')
-      // const files = fs.readdirSync(contentDir)
+      const contentDir = path.resolve(__dirname, 'formatted-content')
+
+      const files = fs.readdirSync(contentDir)
 
       const fileStreams = files.map((file: string) => {
         const filePath = path.join(contentDir, file)

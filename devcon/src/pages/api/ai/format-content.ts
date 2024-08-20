@@ -1,117 +1,191 @@
-import { client } from '../../../../tina/__generated__/client'
 import path from 'path'
-const fs = require('fs')
+import fs from 'fs'
+import yaml from 'yaml'
 
+interface Chunk {
+  key: string
+  content: any
+}
+
+const splitMarkdownByKeys = (markdownContent: string): Chunk[] => {
+  // Parse the markdown content as multiple YAML documents
+  const documents = yaml.parseAllDocuments(markdownContent)
+
+  const chunks: Chunk[] = []
+  documents.forEach(doc => {
+    const contentDict = doc.toJSON()
+    for (const key in contentDict) {
+      if (key === '_template') return
+
+      if (contentDict.hasOwnProperty(key)) {
+        const chunk: Chunk = {
+          key: key,
+          content: contentDict[key],
+        }
+        chunks.push(chunk)
+      }
+    }
+  })
+
+  return chunks
+}
 function cleanUpText(text: string): string {
   // Fix spacing around periods and braces that are incorrectly joined to words
   // text = text.replace(/([a-zA-Z])(\{link\|)/g, '$1 $2'); // Ensures space before "{link|"
   // text = text.replace(/(\})([a-zA-Z])/g, '$1 $2'); // Ensures space after "}"
   text = text.replace(/(\.)([A-Z])/g, '$1 $2') // Ensures space after periods before capital letters
-
+  //
   // Additional common cleanups can be added here
   return text
 }
 
-const processContent = async (fileName: any) => {
+const devconDir = path.resolve(__dirname, '../../../../')
+const contentDir = path.resolve(__dirname, 'formatted-content')
+
+// const writeFile = async (fileName: any) => {
+//   const sourcePath = path.join(devconDir, 'cms/pages', fileName)
+//   const destinationPath = path.join(contentDir, fileName.split('.mdx')[0] + '.txt')
+
+//   try {
+//     const fileContent = fs.readFileSync(sourcePath, 'utf-8')
+//     fs.writeFileSync(destinationPath, fileContent, 'utf-8')
+//     console.log(`Content written to ${destinationPath}`)
+//   } catch (error) {
+//     console.error('Error reading or writing the file:', fileName, error)
+//   }
+// }
+
+const writeFile = async (fileName: string) => {
+  const sourcePath = path.join(devconDir, 'cms/pages', fileName)
+  const baseFileName = fileName.split('.mdx')[0]
+
   try {
-    const cmsContent = await client.queries.pages({ relativePath: fileName })
-    const jsonData = cmsContent.data.pages as any
+    const fileContent = fs.readFileSync(sourcePath, 'utf-8')
 
-    // Write the raw data to files, easier to inspect/debug this way - adds no functionality/can be commented out as needed
-    fs.writeFileSync(
-      path.resolve(__dirname, 'tina-queries', fileName.split('.mdx')[0].concat('.json')),
-      JSON.stringify(jsonData)
-    )
+    fs.writeFileSync(path.join(contentDir, baseFileName + '.txt'), fileContent, 'utf-8')
 
-    // Function to recursively extract text
-    function extractText(node: any): string {
-      if (!node || typeof node !== 'object') return ''
-      let text = ''
+    return
 
-      if (node.type) {
-        switch (node.type) {
-          case 'text':
-            // Ignore the bold property and append the text directly.
-            text += node.text
-            break
-          case 'a':
-            const linkText = node.children ? node.children.map((child: any) => extractText(child)).join('') : ''
-            text += `{link|${linkText}|${node.url}}`
-            break
-          case 'h1':
-          case 'h2':
-          case 'h3':
-          case 'h4':
-          case 'h5':
-          case 'h6':
-            if (node.children) {
-              text += `${node.children.map((child: any) => extractText(child)).join('')}: `
-            }
-            break
-          case 'p':
-          case 'div':
-            if (node.children && Array.isArray(node.children)) {
-              text += node.children.map((child: any) => extractText(child)).join(' ')
-            }
-            break
-          default:
-            if (node.children && Array.isArray(node.children)) {
-              text += extractText(node.children)
-            }
-        }
-      } else {
-        // Handle objects possibly representing buttons or other link elements
-        if (node.link && node.text && typeof node.link === 'string' && typeof node.text === 'string') {
-          text += `{button|${node.text}|${node.link}}`
-        } else {
-          // Recursively process other properties
-          Object.keys(node).forEach(key => {
-            if (!['id', '__typename', '_sys', 'url', 'title', 'type', 'bold', 'link', 'text'].includes(key)) {
-              text += extractText(node[key])
-            }
-          })
-        }
-      }
-      return text
-    }
+    const chunks = splitMarkdownByKeys(fileContent)
 
-    // Ignored keys at the root level
-    const ignoredRootKeys = ['id', '__typename', '_sys']
+    // Write each chunk to a separate file
+    chunks.forEach(chunk => {
+      const destinationPath = path.join(contentDir, `${baseFileName}.${chunk.key}.txt`)
 
-    // Collecting content with headers for each section
-    let content = `Category: ${jsonData._sys.filename}\n\n`
-    Object.keys(jsonData).forEach(key => {
-      if (!ignoredRootKeys.includes(key)) {
-        content += `${key.toUpperCase()}\n`
-        content += extractText(jsonData[key]) + '\n\n'
-      }
+      // console.log(chunk, 'chunk')
+
+      // remark()
+      //   .use(mdx)
+      //   .use(strip)
+      //   .process(chunk.content, function(err: any, file:) {
+      //     if (err) throw err
+      //     // console.log(String(file))
+      //     fs.writeFileSync(destinationPath, String(file), 'utf-8')
+      //   })
+
+      fs.writeFileSync(
+        destinationPath,
+        `TOPIC: ${baseFileName}, KEYWORD: ${chunk.key}\n\n ${yaml.stringify(chunk.content)}`,
+        'utf-8'
+      )
+      console.log(`Content written to ${destinationPath}`)
     })
-
-    // Ensure the content directory exists
-    const contentDir = path.resolve(__dirname, 'content')
-    if (!fs.existsSync(contentDir)) {
-      fs.mkdirSync(contentDir)
-    }
-
-    // Writing the content to a file
-    const filename = path.join(contentDir, jsonData._sys.filename.replace(/\.[^/.]+$/, '') + '.txt')
-
-    content = cleanUpText(content)
-
-    fs.writeFileSync(filename, content.trim(), 'utf-8')
-    console.log(`Content written to ${filename}`)
-
-    // return filename; // Return the path where the file was written
   } catch (error) {
-    console.error('Error reading, parsing, or writing the file:', fileName, error)
-    return null
+    console.error('Error reading or writing the file:', fileName, error)
   }
 }
 
+// const processContent = async (fileName: any) => {
+//   try {
+//     const cmsContent = await client.queries.pages({ relativePath: fileName })
+//     const jsonData = cmsContent.data.pages as any
+
+//     // Write the raw data to files, easier to inspect/debug this way - adds no functionality/can be commented out as needed
+//     // fs.writeFileSync(path.resolve(__dirname, 'tina-queries', fileName.split('.mdx')[0].concat('.json')), JSON.stringify(jsonData))
+
+//     // Function to recursively extract text
+//     function extractText(node: any): string {
+//       if (!node || typeof node !== 'object') return ''
+//       let text = ''
+
+//       if (node.type) {
+//         switch (node.type) {
+//           case 'text':
+//             // Ignore the bold property and append the text directly.
+//             text += node.text
+//             break
+//           case 'a':
+//             const linkText = node.children ? node.children.map((child: any) => extractText(child)).join('') : ''
+//             text += `{link|${linkText}|${node.url}}`
+//             break
+//           case 'h1':
+//           case 'h2':
+//           case 'h3':
+//           case 'h4':
+//           case 'h5':
+//           case 'h6':
+//             if (node.children) {
+//               text += `${node.children.map((child: any) => extractText(child)).join('')}: `
+//             }
+//             break
+//           case 'p':
+//           case 'div':
+//             if (node.children && Array.isArray(node.children)) {
+//               text += node.children.map((child: any) => extractText(child)).join(' ')
+//             }
+//             break
+//           default:
+//             if (node.children && Array.isArray(node.children)) {
+//               text += extractText(node.children)
+//             }
+//         }
+//       } else {
+//         // Handle objects possibly representing buttons or other link elements
+//         if (node.link && node.text && typeof node.link === 'string' && typeof node.text === 'string') {
+//           text += `{button|${node.text}|${node.link}}`
+//         } else {
+//           // Recursively process other properties
+//           Object.keys(node).forEach((key) => {
+//             if (!['id', '__typename', '_sys', 'url', 'title', 'type', 'bold', 'link', 'text'].includes(key)) {
+//               text += extractText(node[key])
+//             }
+//           })
+//         }
+//       }
+//       return text
+//     }
+
+//     // Ignored keys at the root level
+//     const ignoredRootKeys = ['id', '__typename', '_sys']
+
+//     // Collecting content with headers for each section
+//     let content = `Category: ${jsonData._sys.filename}\n\n`
+//     Object.keys(jsonData).forEach((key) => {
+//       if (!ignoredRootKeys.includes(key)) {
+//         content += `${key.toUpperCase()}\n`
+//         content += extractText(jsonData[key]) + '\n\n'
+//       }
+//     })
+
+//     // Writing the content to a file
+//     const filename = path.join(contentDir, jsonData._sys.filename.replace(/\.[^/.]+$/, '') + '.txt')
+
+//     content = cleanUpText(content)
+
+//     fs.writeFileSync(filename, content.trim(), 'utf-8')
+//     console.log(`Content written to ${filename}`)
+
+//     // return filename; // Return the path where the file was written
+//   } catch (error) {
+//     console.error('Error reading, parsing, or writing the file:', fileName, error)
+//     return null
+//   }
+// }
+
 // Load all files from folder
-export function loadAllFilesFromFolder(folderPath: any) {
+function loadAllFilesFromFolder() {
   try {
-    const directoryPath = path.resolve(__dirname, folderPath)
+    const directoryPath = path.resolve(devconDir, 'cms/pages')
     const files = fs.readdirSync(directoryPath).filter(Boolean)
     return files
   } catch (error) {
@@ -120,8 +194,20 @@ export function loadAllFilesFromFolder(folderPath: any) {
   }
 }
 
-const contentFiles = loadAllFilesFromFolder('../../../../cms/pages')
+if (!fs.existsSync(contentDir)) {
+  fs.mkdirSync(contentDir)
+}
 
-contentFiles.forEach((fileName: any) => {
-  processContent(fileName)
-})
+export const loadAndFormatCMS = async () => {
+  const contentFiles = loadAllFilesFromFolder()
+
+  const writeFilesPromise = contentFiles.map((fileName: any) => {
+    return writeFile(fileName)
+  })
+
+  await Promise.all(writeFilesPromise)
+}
+
+// contentFiles.forEach((fileName: any) => {
+//   processContent(fileName)
+// })
