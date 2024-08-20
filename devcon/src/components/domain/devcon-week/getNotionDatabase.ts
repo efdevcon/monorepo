@@ -53,14 +53,17 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
     case 'select':
       return property.select && property.select.name
 
-    case 'number': 
-      return property.number;
+    case 'number':
+      return property.number
 
     case 'files':
-      return property.files;
+      return property.files
 
     case 'url':
-      return property.url;
+      return property.url
+
+    case 'checkbox':
+      return property.checkbox
 
     default:
       return 'default value no handler for: ' + property.type
@@ -102,7 +105,11 @@ const formatResult = (language: 'en' | 'es') => (result: any) => {
   // Insert a default value for time of day when unspecified
   if (!properties['Time of Day']) properties['Time of Day'] = 'FULL DAY'
 
-  return properties
+  return {
+    ...properties,
+    ID: result.id,
+    ShortID: result.id.slice(0, 5) /* raw: result*/,
+  }
 }
 
 const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b42c8a00a62e775ce24af') => {
@@ -113,7 +120,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
   // const databaseID = '8b177855e75b4964bb9f3622437f04f5' // Devconnect
   // const databaseID = '517164deb17b42c8a00a62e775ce24af' // Devcon week
 
-  const isDevconWeek = databaseID === '517164deb17b42c8a00a62e775ce24af'
+  const isDevconWeek = databaseID === '1c8de49be9594869a2e72406fde2af68'
   const isColombiaBlockhainWeek = databaseID === 'cc11ba1c0daa40359710c0958da7739c'
 
   let data = {}
@@ -134,7 +141,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
             is_not_empty: true,
           },
         },
-      ]
+      ],
     }
 
     if (isColombiaBlockhainWeek) {
@@ -147,7 +154,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
     }
 
     if (isDevconWeek) {
-      sorts.push(        {
+      sorts.push({
         property: 'Priority (0=high,10=low)',
         direction: 'descending',
       })
@@ -164,7 +171,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
     const response = await notion.databases.query({
       database_id: databaseID,
       sorts,
-      filter
+      filter,
     })
 
     data = response.results.map(formatResult(locale))

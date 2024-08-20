@@ -9,6 +9,7 @@ import programming from './templates/programming'
 import tickets from './templates/tickets'
 import about from './templates/about'
 import city_guide from './templates/city_guide'
+import devcon_week from './templates/devcon_week'
 import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
@@ -18,13 +19,14 @@ export const filenameToUrl = {
   dips: '/dips',
   past_events: '/past-events',
   road_to_devcon: '/road-to-devcon',
-  faq: '/',
+  faq: '/faq',
   programming: '/programming',
   tickets: '/tickets',
   about: '/about',
   supporters: '/supporters',
   speaker_applications: '/speaker-applications',
   city_guide: '/city-guide',
+  devcon_week: '/devcon-week',
   sea_local: '/sea-local',
 } as { [key: string]: string }
 
@@ -67,6 +69,7 @@ export default defineConfig({
           about,
           speaker_applications,
           city_guide,
+          devcon_week,
           sea_local,
         ],
         ui: {

@@ -431,7 +431,6 @@ export default pageHOC(function Tickets(props: any) {
                         SOLD OUT
                       </div>
                     </div>
-
                     <div className="bold">July 30</div>
                   </div>
                 ),

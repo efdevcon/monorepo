@@ -117,6 +117,11 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: 'Devcon Week',
+            url: '/devcon-week',
+            type: 'page',
+          },
+          {
             title: 'DIPs & Community Hubs',
             url: '/dips',
             type: 'page',
@@ -383,6 +388,11 @@ const useNavigationData = () => {
         {
           title: 'Events',
           url: '/road-to-devcon#events',
+          type: 'page',
+        },
+        {
+          title: 'Devcon Week',
+          url: '/devcon-week',
           type: 'page',
         },
         {

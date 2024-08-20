@@ -188,11 +188,44 @@ export default pageHOC(function Index(props: any) {
               </div>
             </SwipeToScroll>
           </div>
-          <div className="flex flex-col justify-center lg:flex-row gap-8 border-bottom mt-10 mb-8 pb-8">
+          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 mb-8 pb-8">
             <div className="grow">
               {/* <TitleDevcon className="hidden lg:block" /> */}
               {/* <div className="lg:mt-6"> */}
               <RichText content={pages.section1?.body}></RichText>
+
+              {cal && (
+                <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
+                  <ModalContent
+                    className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
+                    close={() => setCalendarModalOpen(false)}
+                  >
+                    <div className="relative">
+                      <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
+                      <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
+                    </div>
+                    <div className="p-4">
+                      <p className="font-bold">Add Devcon to your calendar!</p>
+
+                      <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
+
+                      <div className="flex mt-4 flex-row gap-4 items-center">
+                        <a {...cal.icsAttributes}>
+                          <Button fat color="purple-1">
+                            <span className="mr-2">Download (.ics)</span>
+                            <AddCalendarIcon className="icon" />
+                          </Button>
+                        </a>
+                        <Link to={cal.googleCalUrl} className="h-full">
+                          <Button fat color="purple-1" fill>
+                            Google Calendar
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </ModalContent>
+                </Modal>
+              )}
               {/* </div> */}
             </div>
             <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
@@ -204,7 +237,7 @@ export default pageHOC(function Index(props: any) {
                   Convention Center
                 </p>
               </div>
-              <p className="mt-4 mb-3">
+              <p className="mt-4 mb-3 text-xs">
                 60 Queen Sirikit National Convention Center, Ratchadaphisek Road, Khlong Toei Sub-district, Khlong Toei
                 District, <b>Bangkok, Thailand</b>
               </p>
@@ -215,12 +248,24 @@ export default pageHOC(function Index(props: any) {
               >
                 Venue Direction
               </Link>
-              {/* <div className="hidden lg:block border-bottom my-6"></div>
-              <div className="block lg:hidden my-2"></div> */}
+
+              <div className="flex gap-4 mt-4">
+                <div className="font-secondary">
+                  <p className="uppercase bold leading-tight lg:text-xl">BANGKOK, THAILAND</p>
+                  <p className="text-xl leading-tight">
+                    <span className="text-[#B1ABFE] bold">12—15</span> Nov, 2024
+                  </p>
+                </div>
+
+                <Button fat color="purple-1" onClick={() => setCalendarModalOpen(true)}>
+                  <span className="mr-2">Add to Calendar</span>
+                  <AddCalendarIcon className="icon" />
+                </Button>
+              </div>
             </div>
           </div>
 
-          <div className="relative flex flex-col lg:flex-row lg:items-center justify-center mb-8 pb-8 border-bottom gap-8 xl:gap-16">
+          {/* <div className="relative flex flex-col lg:flex-row lg:items-center justify-center mb-8 pb-8 border-bottom gap-8 xl:gap-16">
             <RichText content={pages.devcon_week?.body}></RichText>
             <div className="flex lg:justify-between items-center shrink-0 grow gap-8">
               <div className="font-secondary">
@@ -268,29 +313,39 @@ export default pageHOC(function Index(props: any) {
                 </Modal>
               )}
             </div>
-          </div>
+          </div> */}
 
-          <div className="relative flex flex-col items-start pb-20 border-bottom gap-8 xl:gap-6">
+          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8">
-              <div>
+            <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8">
+              <div className="flex flex-col h-full lg:mt-4">
                 <RichText content={pages.section2?.top}></RichText>
+                <div className="my-8 border-top"></div>
+                <RichText content={pages.section3?.body}></RichText>
               </div>
 
               <div className="flex flex-col items-center justify-center">
+                <div className="flex grow shrink-0 items-center justify-center self-center">
+                  <Link to={pages.section3?.graphic_url}>
+                    <div className={css['tilt-hover-image']}>
+                      <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
+                    </div>
+                  </Link>
+                </div>
+                {/*                 
                 <ImageNew
                   src={LogoFlowers}
                   alt="Devcon 7 Logo"
                   className="w-[85%] max-w-[250px] lg:w-auto lg:max-w-[315px]"
-                />
+                /> */}
 
-                <div className="mt-2 lg:mt-2 flex flex-col justify-center items-center w-full">
-                  <TitleDevcon className="md:block max-w-[124px] md:max-w-auto md:w-[124px]" />
+                <div className="flex flex-col justify-center items-center w-full">
+                  {/* <TitleDevcon className="md:block max-w-[124px] md:max-w-auto md:w-[124px]" /> */}
                   {/* <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p> */}
                   <div className="uppercase">
                     <TextMorph
@@ -326,9 +381,9 @@ export default pageHOC(function Index(props: any) {
             </Link> */}
           </div>
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <RoadToDevconGrants pages={pages} />
-          </div>
+          </div> */}
           {/* <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
             <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
               <InfiniteScroller nDuplications={2} reverse speed="150s">
@@ -354,7 +409,7 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
-          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 border-top pointer-events-none">
+          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>
             </div>
@@ -448,7 +503,7 @@ export default pageHOC(function Index(props: any) {
           </div>
 
           <div className="relative border-bottom pb-8">
-            <TrackList title='Devcon 6 Playlists' />
+            <TrackList title="Devcon 6 Playlists" />
 
             <Link to={pages.section5?.button_info?.link}>
               <Button fat color="purple-1" fill className="mt-8">
