@@ -19,6 +19,7 @@ const nextConfig = {
       'img.youtube.com',
       'www.gravatar.com',
       'assets.tina.io',
+      'cfp.ticketh.xyz'
     ],
   },
   i18n: {
