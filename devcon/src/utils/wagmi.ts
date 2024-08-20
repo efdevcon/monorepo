@@ -1,13 +1,13 @@
 
 import { defaultWagmiConfig } from '@web3modal/wagmi'
 import { cookieStorage, createStorage } from 'wagmi'
-import { mainnet } from 'wagmi/chains'
+import { arbitrum, base, mainnet, optimism, scroll, linea } from 'wagmi/chains'
 
 export const WC_PROJECT_ID = process.env.NEXT_PUBLIC_WC_PROJECT_ID ?? ''
 if (!WC_PROJECT_ID) throw new Error('WalletConnect Project ID is not defined')
 
 export const WAGMI_CONFIG = defaultWagmiConfig({
-  chains: [mainnet],
+  chains: [mainnet, optimism, arbitrum, base, scroll, linea],
   projectId: WC_PROJECT_ID,
   ssr: true,
   metadata: {

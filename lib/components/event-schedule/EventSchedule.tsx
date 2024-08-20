@@ -851,6 +851,9 @@ const Timeline = (props: any) => {
           className={(() => {
             let className = `${css["event"]} ${css[event["Stable ID"]]}`;
 
+            if (event.Empty === true)
+              className += ` opacity-0 pointer-events-none`;
+
             const isFavorited = props.favorites.favoriteEvents.some(
               (favoritedEvent: any) => event.ShortID === favoritedEvent
             );

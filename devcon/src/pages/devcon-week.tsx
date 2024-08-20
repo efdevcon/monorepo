@@ -28,6 +28,7 @@ import css from './devcon-week.module.scss'
 import { FAQ } from './faq'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
+import ExternalIndicator from 'assets/icons/external-link.svg'
 
 const isAfterDate = (dateString: string) => {
   const date = moment.utc(dateString)
@@ -39,6 +40,58 @@ const isAfterDate = (dateString: string) => {
 export default pageHOC(function DevconWeek(props: any) {
   const { data } = useTina<PagesQuery>(props.content)
   const devconWeek = data.pages as PagesDevcon_Week
+
+  // Fill in empty days with empty events (will be rendered with no opacity)
+  const eventsFullRange = (() => {
+    const events = props.events
+
+    // Helper function to create a new event for a given date
+    const createEvent = (date: any) => ({
+      Category: [],
+      Date: { startDate: date, endDate: date },
+      URL: '',
+      Length: ['1 Day'],
+      Language: null,
+      Difficulty: null,
+      Organizer: [],
+      Description: '',
+      Location: '',
+      Live: false,
+      'Stable ID': '',
+      'Block Schedule': false,
+      'Priority (0=high,10=low)': null,
+      Name: 'Empty Event',
+      Empty: true,
+      'Time of Day': 'FULL DAY',
+      ID: date.startDate, // Generate a unique ID if needed
+      ShortID: '', // Generate a short ID if needed
+    })
+
+    // Convert dates in the events array to a Set for easy lookup
+    const existingEventDates = new Set(events.map((event: any) => event.Date.startDate))
+
+    // Create an array to hold the full range of events
+    const fullRangeEvents = [...events]
+
+    // Define the date range using Moment.js
+    const startDate = moment('2024-11-10')
+    const endDate = moment('2024-11-17')
+
+    // Iterate over each day in the range
+    for (let d = startDate; d.isSameOrBefore(endDate); d.add(1, 'days')) {
+      const formattedDate = d.format('YYYY-MM-DD')
+
+      // If there's no event for this date, add a default event
+      if (!existingEventDates.has(formattedDate)) {
+        fullRangeEvents.push(createEvent(formattedDate))
+      }
+    }
+
+    fullRangeEvents.sort((a, b) => moment(a.Date.startDate).diff(moment(b.Date.startDate)))
+
+    // Return the full range of events
+    return fullRangeEvents
+  })()
 
   return (
     <Page theme={themes['news']}>
@@ -116,7 +169,7 @@ export default pageHOC(function DevconWeek(props: any) {
       <div className="mb-6" id="schedule">
         <EventSchedule
           // @ts-ignore
-          events={props.events}
+          events={eventsFullRange}
           buttonColor="orange-1"
           edition="devcon-week"
           calendarOptions={{ id: 'devcon.org' }}
@@ -153,6 +206,12 @@ export default pageHOC(function DevconWeek(props: any) {
                     alt="Blocked Event Graphic"
                     className="!object-center object-contain w-[20%] max-h-[50px]"
                   />
+
+                  <Link to="/">
+                    <Button color="purple-1" fill className="semi-bold shadow-xl">
+                      Devcon Main Event →
+                    </Button>
+                  </Link>
                 </div>
               </div>
             )
