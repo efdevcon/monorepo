@@ -288,7 +288,7 @@ export const Footer = () => {
       <TopSection />
 
       <div className={css['bottom-section']}>
-        <div className="section">
+        <div className="section bg-white">
           <div className={css['content']}>
             <div className={css['col-1']}>
               <Link external className={css['small-logo']} to={LINK_ETHEREUM_FOUNDATION}>

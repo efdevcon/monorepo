@@ -4,8 +4,6 @@ import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
-import { GetPage, GetTracks } from 'services/page'
-import { usePageContext } from 'context/page-context'
 import HeroBackground from 'assets/images/pages/hero-bgs/programming.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -121,10 +119,10 @@ export default pageHOC(function Programming(props: any) {
             <CallToAction
               color="purple"
               title={'Speaker Applications'}
-              tag="Apply Now"
+              tag="Applications Closed"
               BackgroundSvg={SpeakersBackground}
-              link={pages.overview?.button?.link}
-              linkText={pages.overview?.button?.text}
+              // link={pages.overview?.button?.link}
+              // linkText={pages.overview?.button?.text}
               meta=""
             >
               {pages?.overview?.speaker_applications && <RichText content={pages.overview.speaker_applications} />}
@@ -250,7 +248,6 @@ export async function getStaticProps(context: any) {
         data: content.data,
         query: content.query,
       },
-      tracks: GetTracks(context.locale),
     },
   }
 }

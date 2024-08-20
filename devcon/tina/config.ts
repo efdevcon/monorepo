@@ -9,6 +9,7 @@ import programming from './templates/programming'
 import tickets from './templates/tickets'
 import about from './templates/about'
 import city_guide from './templates/city_guide'
+import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
 
@@ -24,7 +25,8 @@ export const filenameToUrl = {
   supporters: '/supporters',
   speaker_applications: '/speaker-applications',
   city_guide: '/city-guide',
-}
+  sea_local: '/sea-local',
+} as { [key: string]: string }
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
@@ -65,23 +67,10 @@ export default defineConfig({
           about,
           speaker_applications,
           city_guide,
+          sea_local,
         ],
         ui: {
           router: ({ document }) => {
-            const filenameToUrl = {
-              index: '/',
-              dips: '/dips',
-              past_events: '/past-events',
-              road_to_devcon: '/road-to-devcon',
-              faq: '/',
-              programming: '/programming',
-              tickets: '/tickets',
-              about: '/about',
-              supporters: '/supporters',
-              speaker_applications: '/speaker-applications',
-              city_guide: '/city-guide',
-            } as { [key: string]: string }
-
             return filenameToUrl[document._sys.filename] || document._sys.filename
           },
         },

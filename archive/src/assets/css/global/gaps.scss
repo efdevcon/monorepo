@@ -1,0 +1,25 @@
+@use 'src/assets/css/partials/index' as *;
+
+// Generic spacing utility classes to help build more consistent spacing between content blocks
+$standard-spacing: $gaps-gap-8;
+$border: 1px solid $colors-monochrome-5;
+
+.margin {
+  &-top {
+    margin-top: $standard-spacing;
+  }
+
+  &-bottom {
+    margin-bottom: $standard-spacing;
+  }
+}
+
+.padding {
+  &-top {
+    padding-top: $standard-spacing;
+  }
+
+  &-bottom {
+    padding-bottom: $standard-spacing;
+  }
+}

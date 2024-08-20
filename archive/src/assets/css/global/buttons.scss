@@ -1,0 +1,117 @@
+@use 'src/assets/css/partials/index' as *;
+
+.button,
+button {
+  // Sometimes the button element can be useful for semantic reasons, add "plain" class to remove default styles
+  &:not(.plain) {
+    @include fonts-md;
+    // @include colors-white;
+    font-family: $fonts-primary;
+    --padding-top-bottom: #{$gaps-gap-2};
+    --padding-left-right: #{$gaps-gap-4};
+    padding: var(--padding-top-bottom) var(--padding-left-right);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    position: relative;
+
+    // Using pseudo element for borders so we can overlay an animating background without stripping the border away (which would also resize the button)
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      border-width: 2px;
+      border-color: var(--border-color);
+      border-style: solid;
+
+      &:hover {
+        display: none;
+      }
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
+    }
+
+    &.disabled,
+    &:disabled {
+      pointer-events: none;
+      cursor: auto;
+    }
+
+    &.squared {
+      width: 48px;
+      height: 48px;
+      padding: 0px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    // Sizes
+    &.sm {
+      @include fonts-xs;
+      --padding-top-bottom: 8px;
+      --padding-left-right: 15px;
+
+      &.squared {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    &.lg {
+      @include fonts-lg;
+      --padding-top-bottom: #{$gaps-gap-4};
+      --padding-left-right: #{$gaps-gap-5};
+
+      @media (max-width: $breakpoints-md) {
+        @include fonts-md;
+      }
+
+      &.squared {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    &.white {
+      &.hover,
+      &:hover {
+        @include colors-white-hover;
+      }
+
+      &:disabled {
+        @include colors-white-disabled;
+      }
+    }
+
+    &.black {
+      &.hover,
+      &:hover {
+        @include colors-black-hover;
+      }
+
+      &:disabled {
+        @include colors-black-disabled;
+      }
+    }
+
+    &.red {
+      &.hover,
+      &:hover {
+        @include colors-red-hover;
+      }
+
+      &:disabled {
+        @include colors-red-disabled;
+      }
+    }
+  }
+}
