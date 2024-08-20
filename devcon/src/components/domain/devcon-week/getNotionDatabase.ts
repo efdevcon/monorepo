@@ -174,8 +174,6 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
       filter,
     })
 
-    console.log(response, 'response')
-
     data = response.results.map(formatResult(locale))
   } catch (error) {
     if (false) {
