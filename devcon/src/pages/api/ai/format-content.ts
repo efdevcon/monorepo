@@ -194,11 +194,11 @@ function loadAllFilesFromFolder() {
   }
 }
 
-if (!fs.existsSync(contentDir)) {
-  fs.mkdirSync(contentDir)
-}
-
 export const loadAndFormatCMS = async () => {
+  if (!fs.existsSync(contentDir)) {
+    fs.mkdirSync(contentDir)
+  }
+
   const contentFiles = loadAllFilesFromFolder()
 
   const writeFilesPromise = contentFiles.map((fileName: any) => {
