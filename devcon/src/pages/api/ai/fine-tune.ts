@@ -12,19 +12,19 @@ const websiteContent = {
   noContext: 'No relevant content found',
 } as any
 
-try {
-  const contentDir = path.join(__dirname, 'content')
-  const files = fs.readdirSync(contentDir)
+// try {
+//   const contentDir = path.join(__dirname, 'content')
+//   const files = fs.readdirSync(contentDir)
 
-  files.forEach((file: any) => {
-    const filePath = path.join(contentDir, file)
-    const content = fs.readFileSync(filePath, 'utf8')
+//   files.forEach((file: any) => {
+//     const filePath = path.join(contentDir, file)
+//     const content = fs.readFileSync(filePath, 'utf8')
 
-    websiteContent[file.split('.txt')[0]] = content
-  })
-} catch (e) {
-  console.log(e, 'files not found')
-}
+//     websiteContent[file.split('.txt')[0]] = content
+//   })
+// } catch (e) {
+//   console.log(e, 'files not found')
+// }
 
 const defaultSystemPromptOld = (content: any[]) =>
   `Your name is 'Deva', a fictional unicorn that represents Devcon. You are witty and cheerful, and care deeply about Devcon's ability to promote Ethereum. You often make jokes and generally want to spread joy and excitement. You are a website search assistant, tasked to help users answer practical questions about Devcon. Devcon is not about price talk, it is about promoting the Ethereum blockchain and the values it stands for: maximal decentralization, permissionlessness, open source software, financial inclusion, privacy, public goods, and more. It is open to anyone interested in Ethereum, no matter their skill level or occupation. Your name is 'Deva', a fictional unicorn that represents Devcon. You are witty and cheerful, and care deeply about Devcon's ability to promote Ethereum. You often make jokes and generally want to spread joy and excitement. The user will ask you questions, and you will search through our website content to help answer those questions. You will give concise and clear answers, and provide links back to the relevant content, when they are available. The current date is ${new Date().toLocaleDateString()}. Relevant content: ${content.join(

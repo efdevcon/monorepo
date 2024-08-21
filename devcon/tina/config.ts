@@ -13,22 +13,7 @@ import devcon_week from './templates/devcon_week'
 import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
-
-export const filenameToUrl = {
-  index: '/',
-  dips: '/dips',
-  past_events: '/past-events',
-  road_to_devcon: '/road-to-devcon',
-  faq: '/faq',
-  programming: '/programming',
-  tickets: '/tickets',
-  about: '/about',
-  supporters: '/supporters',
-  speaker_applications: '/speaker-applications',
-  city_guide: '/city-guide',
-  devcon_week: '/devcon-week',
-  sea_local: '/sea-local',
-} as { [key: string]: string }
+import { filenameToUrl } from './filenameToUrl'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'

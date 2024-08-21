@@ -4,7 +4,7 @@ import path from 'path'
 // import LoadContent from './load-content';
 require('dotenv').config()
 import { prompts, assistantInstructions } from './fine-tune'
-import { filenameToUrl } from '../../../../tina/config'
+import { filenameToUrl } from '../../../../tina/filenameToUrl'
 import { loadAndFormatCMS } from './format-content'
 
 // LoadContent();
@@ -354,12 +354,6 @@ const main = async (query: string) => {
 // })
 
 // main('Where were the past Devcons held?')
-
-const run = async () => {
-  // await api.basicCompletionsAPI()
-}
-
-// run()
 
 export default api
 
