@@ -346,6 +346,9 @@
     },
     "/events/{id}/version": {
       "get": {
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -360,10 +363,11 @@
             "description": "OK"
           }
         }
-      }
-    },
-    "/events/{id}/new-version": {
-      "get": {
+      },
+      "put": {
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -573,8 +577,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "400": {
             "description": "Bad Request"
