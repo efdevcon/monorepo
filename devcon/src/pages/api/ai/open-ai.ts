@@ -4,6 +4,8 @@ import path from 'path'
 // import LoadContent from './load-content';
 require('dotenv').config()
 import { prompts, assistantInstructions } from './fine-tune'
+import { filenameToUrl } from '../../../../tina/config'
+import { loadAndFormatCMS } from './format-content'
 
 // LoadContent();
 
@@ -48,6 +50,52 @@ async function createOpenAIEmbedding(text: any) {
 
 export const api = (() => {
   const _interface = {
+    prepareContent: async () => {
+      console.log('preparing content')
+
+      // await _interface.createEmbeddingsFromContent()
+
+      // const files = loadAllFilesFromFolder('../../../../cms/pages')
+
+      // const formattedFiles = files.map(formatContent) // (files);
+
+      await loadAndFormatCMS()
+
+      // console.log(formattedFiles, 'formatted files')
+
+      // Create vector store for website content
+      const vectorStore = await openai.beta.vectorStores.create({
+        name: 'Website Content: ' + new Date().toISOString(), // TODO: Use github commit id here?
+      })
+
+      const contentDir = path.resolve(__dirname, 'formatted-content')
+
+      const files = fs.readdirSync(contentDir)
+
+      const fileStreams = files.map((file: string) => {
+        const filePath = path.join(contentDir, file)
+        return fs.createReadStream(filePath)
+      })
+
+      const prefilledContext = fs.createReadStream(path.join(__dirname, 'prefilled-context.txt'))
+
+      fileStreams.push(prefilledContext)
+
+      // Prepare files here - add category, add reference link
+
+      // Upload files to vector store
+      await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+
+      // TODO: add assistant id as .env variable?
+      // TODO: remove old vector stores (could be dangerous, so maybe not - maybe open ai has auto clean up)
+      await openai.beta.assistants.update('asst_KQBmgnzDccFLFXE88IE8dTwT', {
+        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
+      })
+    },
+    cleanStaleVectorStores: async () => {
+      // TODO list all vector stores
+      // TODO delete all files in each store older than X days (the newest vector store will already have been applied to the assistant at this point)
+    },
     createEmbeddingsFromContent: async () => {
       const contentDir = path.resolve(__dirname, 'content')
       const files = fs.readdirSync(contentDir)
@@ -150,13 +198,14 @@ export const api = (() => {
 
     // ASSISTANT API
     createAssistant: async () => {
+      console.log('creating assistant')
       // create assistant
       const assistant = await openai.beta.assistants.create({
         name: 'DevaBot',
         instructions: assistantInstructions,
         tools: [{ type: 'file_search' }],
         // model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4o',
       })
 
       // Create vector store for website content
@@ -208,12 +257,47 @@ export const api = (() => {
       if (run.status === 'completed') {
         const messages = await openai.beta.threads.messages.list(run.thread_id)
 
-        let formattedMessages = messages.data.reverse().map((message: any) => {
+        let formattedMessagesPromises = messages.data.reverse().map(async (message: any) => {
+          const content = message.content[0]
+
+          let references
+
+          if (content.text.annotations) {
+            const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
+              if (annotation.type === 'file_citation') {
+                const file = await openai.files.retrieve(annotation.file_citation.file_id)
+
+                // @ts-ignore
+                const fileUrl = filenameToUrl[file.filename.split('.txt')[0]]
+
+                return {
+                  file,
+                  fileUrl: fileUrl,
+                  textReplace: annotation.text,
+                }
+              }
+            })
+
+            references = await Promise.all(fileAnnotationsPromises)
+          }
+
+          let text = content.text.value
+
+          if (references) {
+            for (const reference of references) {
+              text = text.replace(reference.textReplace, ``)
+            }
+          }
+
           return {
             id: message.id,
-            text: `${message.role} > ${message.content[0].text.value}`,
+            role: message.role,
+            text,
+            files: references || [],
           }
         })
+
+        const formattedMessages = await Promise.all(formattedMessagesPromises)
         // for (const message of messages.data.reverse()) {
         //   // @ts-ignore
         //   console.log(`${message.role} > ${message.content[0].text.value}`)
@@ -223,6 +307,7 @@ export const api = (() => {
           runID: run.id,
           status: run.status,
           threadID,
+          rawMessages: messages.data,
           messages: formattedMessages,
         }
       } else {
@@ -277,6 +362,7 @@ const run = async () => {
 // run()
 
 // api.createAssistant()
+api.prepareContent()
 // api.createThread()
 // api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', 'When is Devcon?!', 'thread_5U2NZ87hX3oGUkFwY1zBzfX2')
 

@@ -14,6 +14,22 @@ import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
 
+export const filenameToUrl = {
+  index: '/',
+  dips: '/dips',
+  past_events: '/past-events',
+  road_to_devcon: '/road-to-devcon',
+  faq: '/faq',
+  programming: '/programming',
+  tickets: '/tickets',
+  about: '/about',
+  supporters: '/supporters',
+  speaker_applications: '/speaker-applications',
+  city_guide: '/city-guide',
+  devcon_week: '/devcon-week',
+  sea_local: '/sea-local',
+} as { [key: string]: string }
+
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
@@ -58,41 +74,7 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) => {
-            const filename = document._sys.filename
-
-            switch (filename) {
-              case 'index':
-                return '/'
-              case 'dips':
-                return '/dips'
-              case 'past_events':
-                return '/past-events'
-              case 'road_to_devcon':
-                return '/road-to-devcon'
-              case 'faq':
-                return '/'
-              case 'programming':
-                return '/programming'
-              case 'tickets':
-                return '/tickets'
-              case 'about':
-                return '/about'
-              case 'supporters':
-                return '/supporters'
-              case 'speaker_applications':
-                return '/speaker-applications'
-              case 'city_guide':
-                return '/city-guide'
-              case 'faq':
-                return '/faq'
-              case 'devcon_week':
-                return '/devcon-week'
-              case 'sea_local':
-                return '/sea-local'
-
-              default:
-                return filename
-            }
+            return filenameToUrl[document._sys.filename] || document._sys.filename
           },
         },
       },
