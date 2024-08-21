@@ -119,7 +119,7 @@ const DevaBot = () => {
               x: "100%",
             }}
             transition={{
-              duration: 0.4,
+              duration: 0.35,
             }}
           >
             <div className="flex flex-col gap-2">
@@ -208,8 +208,8 @@ const DevaBot = () => {
 
               <div className="flex gap-2 w-full m-2 shrink-0">
                 <Button
-                  className="grow-1 shrink-0"
-                  color="blue-1"
+                  className="grow-1 shrink-0 bold"
+                  color="purple-1"
                   fill
                   onClick={onSend}
                   disabled={executingQuery}
