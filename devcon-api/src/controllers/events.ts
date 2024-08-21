@@ -9,22 +9,23 @@ export const eventsRouter = Router()
 eventsRouter.get(`/events`, GetEvents)
 eventsRouter.get(`/events/:id`, GetEvent)
 eventsRouter.get(`/events/:id/version`, GetEventVersion)
-eventsRouter.get(`/events/:id/new-version`, ChangeVersion)
+eventsRouter.put(`/events/:id/version`, UpdateEventVersion)
 eventsRouter.get(`/events/:id/sessions`, GetEventSessions)
 eventsRouter.get(`/events/:id/speakers`, GetEventSpeakers)
 eventsRouter.get(`/events/:id/rooms`, GetRooms)
-
 
 let version = 1;
 // Since the event data sets are so large, it helps to have an endpoint we can ping to check updates to the underlying data - 
 // this helps the pwa react to updates and only redownload everything when its local data is out of date
 export async function GetEventVersion(req: Request, res: Response) {
+  // #swagger.tags = ['Events']
+
   // TODO: Version is currently mocked, need to update this dynamically as schedule/speakers change
   res.status(200).send({ status: 200, message: '', data: version })  
 }
 
-// Just for dev
-export async function ChangeVersion(req: Request, res: Response) {
+export async function UpdateEventVersion(req: Request, res: Response) {
+  // #swagger.tags = ['Events']
   version++;
 
   if (version > 5) version = 1;
