@@ -38,7 +38,7 @@ const ticketWaves = [
   moment.utc('2024-07-30 16:00:00'),
   moment.utc('2024-08-13 16:00:00'),
   moment.utc('2024-08-20 16:00:00'),
-  moment.utc('2024-09-4 16:00:00'),
+  moment.utc('2024-09-03 16:00:00'),
 ]
 
 export default pageHOC(function Tickets(props: any) {
@@ -488,7 +488,7 @@ export default pageHOC(function Tickets(props: any) {
                     {waveActive && latestWave === ticketWaves[5] && (
                       <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
                     )}
-                    <div className="bold">September 4</div>
+                    <div className="bold">September 3</div>
                   </div>
                 ),
                 indent: false,
