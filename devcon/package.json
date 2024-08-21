@@ -18,8 +18,8 @@
     "scripts:db-cleanup": "ts-node src/scripts/db-cleanup",
     "scripts:pretalx-import": "ts-node src/scripts/pretalx-import",
     "scripts:twitter-import": "ts-node src/scripts/twitter-import",
-    "ai": "ts-node src/pages/api/ai/open-ai",
-    "ai-content": "ts-node src/pages/api/ai/format-content",
+    "ai-content-sync": "ts-node src/pages/api/ai/sync-vector-store",
+    "ai-content-format": "ts-node src/pages/api/ai/format-content",
     "scripts:encrypt": "ts-node src/utils/vouchers"
   },
   "dependencies": {
