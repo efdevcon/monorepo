@@ -6,7 +6,10 @@ on:
       - dev
 
 jobs:
-  run-node-script:
+  build:
+    defaults:
+      run:
+        working-directory: ./devcon
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +22,7 @@ jobs:
           node-version: "18"
 
       - name: Install dependencies
-        run: npm install
+        run: yarn
 
       - name: Run script
-        run: npm run ai-content-sync
+        run: yarn ai-content-sync
