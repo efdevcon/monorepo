@@ -116,7 +116,7 @@ export default pageHOC(function DevconWeek(props: any) {
       />
 
       <div className="section relative" id="devcon-week">
-        <div className={cn('flex relative justify-between gap-16 flex-col lg:flex-row pb-8')}>
+        <div className={cn('flex relative justify-between gap-16 flex-col lg:flex-row pb-12')}>
           <div className={`${indexCss['scrolling-text-background']} ${css['devcon-week']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">DEVCON WEEK&nbsp;</p>
@@ -239,7 +239,7 @@ export async function getStaticProps(context: any) {
   const content = await client.queries.pages({ relativePath: 'devcon_week.mdx' })
 
   const RTDNotionID = '5199f81539da498f9e2137c3928f6e93'
-  const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68')
+  const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68', true)
 
   const RTDEvents = (await getNotionDatabase('en', RTDNotionID)) as any
 

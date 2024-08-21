@@ -32,8 +32,6 @@ function App({ Component, pageProps }: any) {
           </Web3ModalProvider>
         </SessionProvider>
       </IntlProvider>
-
-      <DevaBot />
     </>
   )
 }

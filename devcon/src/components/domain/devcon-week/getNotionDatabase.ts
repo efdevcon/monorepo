@@ -1,5 +1,65 @@
 import { Client } from '@notionhq/client'
 
+type FormattedNotionEvent = {
+  ID: any
+  'Stable ID'?: any
+  Name?: any
+  Organizer?: any[]
+  URL?: any
+  'Stream URL'?: any
+  Date?: any
+  Location?: any
+  Live?: any
+  Attend?: any
+  'Brief Description'?: any
+  'Time of Day'?: any
+  Category?: any
+  'General Size'?: any
+  Difficulty?: any
+  Domain: any
+  Priority: any
+  'Block Schedule': any
+}
+
+/*
+  Notion data normalization stuff below...
+*/
+const createKeyResolver =
+  (eventData: any) =>
+  (...candidateKeys: string[]) => {
+    const keyMatch = candidateKeys.find(key => {
+      return typeof eventData[key] !== 'undefined'
+    })
+
+    return keyMatch ? eventData[keyMatch] : undefined
+  }
+
+// The notion tables for each edition (istanbul, amsterdam, etc.) aren't the same - this normalizes the different column names by looking at multiple keys for each expected value
+const normalizeEvent = (eventData: any): FormattedNotionEvent => {
+  const keyResolver = createKeyResolver(eventData)
+
+  return {
+    ID: keyResolver('ID', 'id'),
+    'Stable ID': keyResolver('Stable ID', '[WEB] Stable ID'),
+    Name: keyResolver('Name'),
+    Organizer: keyResolver('Organizer', '[HOST] Organizer'),
+    URL: keyResolver('URL', '[HOST] Event Website URL'),
+    'Stream URL': keyResolver('Stream URL', '[WEB] Stream URL'),
+    Date: keyResolver('Date', '[HOST] Event Date'),
+    Live: keyResolver('Live', '[WEB] Live'),
+    Attend: keyResolver('Attend', '[HOST] Status'),
+    'Brief Description': keyResolver('Description', 'Brief Description', '[HOST] Description (280 chars, tweet size)'),
+    'Time of Day': keyResolver('Time of Day', '[HOST] Event Hours'),
+    Category: keyResolver('Category', '[HOST] Category'),
+    'General Size': keyResolver('Num. of Attendees', '[HOST] Num. of Attendees'),
+    Difficulty: keyResolver('Difficulty', '[HOST] Difficulty'),
+    Location: keyResolver('Location', '[HOST] Location'),
+    Domain: keyResolver('[INT] Domain'),
+    Priority: keyResolver('[WEB] Priority (sort)', 'Priority (sort)'),
+    'Block Schedule': keyResolver('Block Schedule'),
+  }
+}
+
 // Notion fetch/format below
 const notionDatabasePropertyResolver = (property: any, key: any) => {
   switch (property.type) {
@@ -22,13 +82,26 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
 
       const dechunked = property[property.type]
         ? property[property.type].reduce((acc: string, chunk: any) => {
+            let textToAppend
+
             if (chunk.href && property.type === 'rich_text' && key !== 'URL' && key !== 'Stream URL') {
-              acc += `<a href=${chunk.href} target="_blank" class="generic" rel="noopener noreferrer">${chunk.plain_text}</a>`
+              textToAppend = `<a href=${chunk.href} target="_blank" class="generic" rel="noopener noreferrer">${chunk.plain_text}</a>`
             } else {
-              acc += chunk.plain_text
+              textToAppend = chunk.plain_text
             }
 
-            return acc
+            if (chunk.annotations) {
+              let annotations = 'placeholder'
+
+              if (chunk.annotations.bold) annotations = `<b>${annotations}</b>`
+              if (chunk.annotations.italic) annotations = `<i>${annotations}</i>`
+              if (chunk.annotations.strikethrough) annotations = `<s>${annotations}</s>`
+              if (chunk.annotations.underline) annotations = `<u>${annotations}</u>`
+
+              textToAppend = annotations.replace('placeholder', textToAppend)
+            }
+
+            return acc + textToAppend
           }, '')
         : null
 
@@ -56,63 +129,59 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
     case 'number':
       return property.number
 
+    case 'checkbox':
+      return property.checkbox
+
     case 'files':
       return property.files
 
     case 'url':
       return property.url
 
-    case 'checkbox':
-      return property.checkbox
-
     default:
       return 'default value no handler for: ' + property.type
   }
 }
 
-const formatResult = (language: 'en' | 'es') => (result: any) => {
-  const properties = {} as { [key: string]: any }
+const formatResult =
+  (language: 'en' | 'es', shouldNormalize = false) =>
+  (result: any) => {
+    const properties = {} as { [key: string]: any }
 
-  // Format the raw notion data into something more workable
-  const allKeys = Object.keys(result.properties)
+    // Our schedules follow multiple formats, so we have to normalize before processing:
+    const normalizedNotionEventData = shouldNormalize ? normalizeEvent(result.properties) : result.properties
 
-  allKeys.forEach((key, index) => {
-    if (key.endsWith('_ES')) return
+    Object.entries(normalizedNotionEventData).forEach(([key, value]) => {
+      if (typeof value === 'undefined') return
 
-    // If the current locale is spanish and the key has a spanish equivalent key, use that key instead
-    const isSpanish = language === 'es'
-    const spanishKeyCandidate = `${key}_ES`
-    const spanishValue = result.properties[spanishKeyCandidate]
-    let parsedValue
+      const val = notionDatabasePropertyResolver(value, key)
 
-    if (isSpanish && spanishValue !== undefined) {
-      parsedValue = notionDatabasePropertyResolver(spanishValue, spanishKeyCandidate)
-    } else {
-      parsedValue = notionDatabasePropertyResolver(result.properties[key], key)
-    }
-
-    if (Array.isArray(parsedValue)) {
-      properties[key] = parsedValue
-    } else if (typeof parsedValue === 'object' && parsedValue !== null) {
-      properties[key] = {
-        ...parsedValue,
+      if (Array.isArray(val)) {
+        properties[key] = val
+      } else if (typeof val === 'object' && val !== null) {
+        properties[key] = {
+          ...val,
+        }
+      } else {
+        properties[key] = val
       }
-    } else {
-      properties[key] = parsedValue
+    })
+
+    // Insert a default value for time of day when unspecified
+    if (!properties['Time of Day']) properties['Time of Day'] = 'FULL DAY'
+
+    return {
+      ...properties,
+      ID: result.id,
+      ShortID: result.id.slice(0, 5) /* raw: result*/,
     }
-  })
-
-  // Insert a default value for time of day when unspecified
-  if (!properties['Time of Day']) properties['Time of Day'] = 'FULL DAY'
-
-  return {
-    ...properties,
-    ID: result.id,
-    ShortID: result.id.slice(0, 5) /* raw: result*/,
   }
-}
 
-const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b42c8a00a62e775ce24af') => {
+const getNotionDatabase = async (
+  locale: 'en' | 'es',
+  databaseID = '517164deb17b42c8a00a62e775ce24af',
+  shouldNormalize = false
+) => {
   const notion = new Client({
     auth: process.env.NOTION_SECRET,
   })
@@ -174,7 +243,7 @@ const getNotionDatabase = async (locale: 'en' | 'es', databaseID = '517164deb17b
       filter,
     })
 
-    data = response.results.map(formatResult(locale))
+    data = response.results.map(formatResult(locale, shouldNormalize))
   } catch (error) {
     if (false) {
       // Handle error codes here if necessary
