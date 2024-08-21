@@ -2184,7 +2184,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 
       <div className={`${css["schedule"]} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
-          <div className={css["top-bar-wrapper"]}>
+          <div className={css["top-bar-wrapper"]} data-type="schedule-top-bar">
             <SwipeToScroll
               noBounds
               // scrollIndicatorDirections={{ right: true, left: true }}

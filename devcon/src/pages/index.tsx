@@ -409,6 +409,24 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
+          <div className="relative flex flex-col items-start border-bottom gap-4 py-8">
+            <div className="h2">{pages.community_led_sessions?.title}</div>
+
+            <div className="border border-solid border-neutral-500 rounded-xl">
+              <p className="text-4xl">CLS</p>
+
+              <RichText content={pages.community_led_sessions?.body}></RichText>
+
+              <div className="h3">Featured Sessions</div>
+
+              <div>
+                {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
+                  return <div key={session.title}>({session.title})</div>
+                })}
+              </div>
+            </div>
+          </div>
+
           <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>

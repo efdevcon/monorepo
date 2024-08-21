@@ -116,7 +116,7 @@ export default pageHOC(function DevconWeek(props: any) {
       />
 
       <div className="section relative" id="devcon-week">
-        <div className={cn('flex relative justify-between gap-16 border-bottom flex-col lg:flex-row pb-8')}>
+        <div className={cn('flex relative justify-between gap-16 flex-col lg:flex-row pb-8')}>
           <div className={`${indexCss['scrolling-text-background']} ${css['devcon-week']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">DEVCON WEEK&nbsp;</p>
@@ -166,7 +166,7 @@ export default pageHOC(function DevconWeek(props: any) {
         </div>
       </div>
 
-      <div className="mb-6" id="schedule">
+      <div className={cn('mb-6', css['devcon-week'])} id="schedule">
         <EventSchedule
           // @ts-ignore
           events={eventsFullRange}
