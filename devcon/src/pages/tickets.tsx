@@ -172,7 +172,8 @@ export default pageHOC(function Tickets(props: any) {
                       {latestWave === ticketWaves[1] && 'Next Wave - July 30'}
                       {latestWave === ticketWaves[2] && 'Next wave - August 13'}
                       {latestWave === ticketWaves[3] && 'Next wave - August 20'}
-                      {latestWave === ticketWaves[4] && 'All waves sold out'}
+                      {latestWave === ticketWaves[4] && 'Next wave - September 3'}
+                      {latestWave === ticketWaves[5] && 'All waves sold out'}
 
                       {/* Wave {latestWave === ticketWaves[1] && '1'} {latestWave === ticketWaves[2] && '2'}{' '}
                       {latestWave === ticketWaves[3] && '3'} Sold Out */}
