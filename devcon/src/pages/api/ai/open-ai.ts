@@ -361,8 +361,10 @@ const run = async () => {
 
 // run()
 
+export default api
+
 // api.createAssistant()
-api.prepareContent()
+// api.prepareContent()
 // api.createThread()
 // api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', 'When is Devcon?!', 'thread_5U2NZ87hX3oGUkFwY1zBzfX2')
 
