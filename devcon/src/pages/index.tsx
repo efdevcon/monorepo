@@ -409,20 +409,26 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
-          <div className="relative flex flex-col items-start border-bottom gap-4 py-8">
-            <div className="h2">{pages.community_led_sessions?.title}</div>
+          <div className="relative flex flex-col items-start border-bottom gap-0 py-8">
+            <div className="h2 mb-4">{pages.community_led_sessions?.title}</div>
 
-            <div className="border border-solid border-neutral-500 rounded-xl">
-              <p className="text-4xl">CLS</p>
+            <div className="border border-solid border-neutral-200 rounded-2xl">
+              <p className="text-[128px] leading-[0.8em] bold text-[#EFEFFE] mt-4 mx-4 font-secondary">CLS</p>
 
-              <RichText content={pages.community_led_sessions?.body}></RichText>
+              <div className="flex flex-col">
+                <div className="m-6 mb-4 mt-3">
+                  <RichText content={pages.community_led_sessions?.body}></RichText>
+                </div>
 
-              <div className="h3">Featured Sessions</div>
+                <div className="border-t border-solid border-neutral-200">haha</div>
 
-              <div>
-                {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
-                  return <div key={session.title}>({session.title})</div>
-                })}
+                <div className="h3 mt-4">Featured Sessions</div>
+
+                <div>
+                  {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
+                    return <div key={session.title}>({session.title})</div>
+                  })}
+                </div>
               </div>
             </div>
           </div>
