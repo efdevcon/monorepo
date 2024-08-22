@@ -411,7 +411,9 @@ export default pageHOC(function Index(props: any) {
           </div> */}
 
           <div className="relative flex flex-col items-start border-bottom py-8">
-            <div className="h2 mb-7">{pages.community_led_sessions?.title}</div>
+            <div className="h2 mb-7" id="cls">
+              {pages.community_led_sessions?.title}
+            </div>
 
             <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
               <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
