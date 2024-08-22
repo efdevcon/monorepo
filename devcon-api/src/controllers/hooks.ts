@@ -12,6 +12,8 @@ export async function UpdateSchedule(req: Request, res: Response) {
   if (secret !== SERVER_CONFIG.WEBHOOK_SECRET) return res.status(403).send('Forbidden')
   if (!req.body) return res.status(400).send('No Body')
 
+  console.log('REQ.BODY', req.body)
+
   const body = JSON.parse(req.body)
   if (!body) return res.status(400).send('Invalid Body')
 
