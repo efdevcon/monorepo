@@ -41,6 +41,8 @@ export default pageHOC(function DevconWeek(props: any) {
   const { data } = useTina<PagesQuery>(props.content)
   const devconWeek = data.pages as PagesDevcon_Week
 
+  // console.log(props.events, 'events')
+
   // Fill in empty days with empty events (will be rendered with no opacity)
   const eventsFullRange = (() => {
     const events = props.events
@@ -240,6 +242,8 @@ export async function getStaticProps(context: any) {
 
   const RTDNotionID = '5199f81539da498f9e2137c3928f6e93'
   const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68', true)
+
+  // console.log(events.map(event => event['Brief Description']))
 
   const RTDEvents = (await getNotionDatabase('en', RTDNotionID)) as any
 
