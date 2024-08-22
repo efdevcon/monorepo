@@ -410,24 +410,26 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
-          <div className="relative flex flex-col items-start border-bottom gap-0 py-8">
+          <div className="relative flex flex-col items-start border-bottom py-8">
             <div className="h2 mb-7">{pages.community_led_sessions?.title}</div>
 
-            <div className="border border-solid border-neutral-200 rounded-2xl">
-              <p className="text-[100px] leading-[0.8em] bold text-[#EFEFFE] mt-4 mx-4 font-secondary">CLS</p>
+            <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
+              <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
 
               <div className="flex flex-col">
                 <div className="m-4 mb-4 mt-3">
                   <RichText content={pages.community_led_sessions?.body}></RichText>
                 </div>
 
-                <div className="border-t border-solid border-neutral-200"></div>
+                <div className="border-t border-solid border-[#E2E3FF]"></div>
 
-                <div className="text-lg bold mt-4 mx-4">Featured Sessions</div>
+                {/* <div className="text-lg bold mt-4 mx-4">Featured Sessions</div> */}
 
-                {pages.community_led_sessions?.sessions && (
-                  <CLSReel sessions={pages.community_led_sessions?.sessions} />
-                )}
+                <div className="mb-4 relative grow-0 mx-4">
+                  {pages.community_led_sessions?.sessions && (
+                    <CLSReel sessions={pages.community_led_sessions?.sessions} />
+                  )}
+                </div>
 
                 {/* <div className="m-4">
                   {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
