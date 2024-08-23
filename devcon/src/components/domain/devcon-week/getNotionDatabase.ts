@@ -77,7 +77,9 @@ const notionDatabasePropertyResolver = (property: any, key: any) => {
           }
         })
 
-        return locationInfo
+        if (locationInfo.url) {
+          return locationInfo
+        }
       }
 
       const dechunked = property[property.type]
