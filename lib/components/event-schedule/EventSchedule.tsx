@@ -821,7 +821,7 @@ const Timeline = (props: any) => {
       )
     ) {
       if (isBlockingEvent) {
-        currentRow += 4;
+        currentRow += 3;
       } else {
         currentRow++;
       }
@@ -834,7 +834,7 @@ const Timeline = (props: any) => {
     };
 
     if (isBlockingEvent) {
-      gridPlacement.gridRow = `2 / span ${currentRow + 3}`;
+      gridPlacement.gridRow = `2 / span ${currentRow + 2}`;
 
       return (
         <React.Fragment key={event.Name + offsetFromFirstDay}>
@@ -1380,7 +1380,7 @@ const ListEventDesktop = (props: any) => {
               </p>
             )}
 
-            {props.edition !== "istanbul" &&
+            {/* {props.edition !== "istanbul" &&
               props.event.Location &&
               props.event.Location.url && (
                 <Link
@@ -1390,7 +1390,7 @@ const ListEventDesktop = (props: any) => {
                 >
                   {props.event.Location.text}
                 </Link>
-              )}
+              )} */}
 
             {props.event["Brief Description"] && (
               <p
@@ -1493,7 +1493,7 @@ const ListEventMobile = (props: any) => {
           </div>
         </div>
 
-        {props.edition !== "istanbul" &&
+        {/* {props.edition !== "istanbul" &&
           props.event.Location &&
           props.event.Location.url && (
             <Link
@@ -1503,7 +1503,7 @@ const ListEventMobile = (props: any) => {
             >
               {props.event.Location.text}
             </Link>
-          )}
+          )} */}
 
         <div className={css["date"]}>
           <p className={`small-text uppercase ${css["time-of-day"]}`}>

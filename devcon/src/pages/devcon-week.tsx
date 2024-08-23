@@ -178,43 +178,48 @@ export default pageHOC(function DevconWeek(props: any) {
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full overflow-hidden min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-2 border-[#9667bc] shadow-lg">
-                {/* <Image
+              <div className="relative w-full h-full min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-b-[18px] border-2 border-[#9667bc] shadow-lg group">
+                <Link to="/">
+                  {/* <Image
                   src={EventBlocker}
                   alt="Blocked Event Graphic"
                   className="absolute w-full h-full !object-center object-cover"
                 /> */}
+                  <div className="absolute bottom-0 left-0 w-full z-10 text-black translate-y-[100%] text-[9px] flex items-center h-[18px] pl-2 bold group-hover:text-white">
+                    Devcon Main Event
+                  </div>
 
-                <Image
-                  src={DC7Left}
-                  alt="Blocked Event Graphic"
-                  className="absolute left-0 h-full !object-left object-contain"
-                />
-
-                <Image
-                  src={DC7Right}
-                  alt="Blocked Event Graphic"
-                  className="absolute right-0 h-full !object-right object-contain"
-                />
-
-                <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
                   <Image
-                    src={LogoFlowers}
+                    src={DC7Left}
                     alt="Blocked Event Graphic"
-                    className="!object-center object-contain w-[30%] max-h-[125px]"
-                  />
-                  <Image
-                    src={DateText}
-                    alt="Blocked Event Graphic"
-                    className="!object-center object-contain w-[20%] max-h-[50px]"
+                    className="absolute left-0 h-full !object-left object-contain"
                   />
 
-                  <Link to="/">
+                  <Image
+                    src={DC7Right}
+                    alt="Blocked Event Graphic"
+                    className="absolute right-0 h-full !object-right object-contain"
+                  />
+
+                  <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
+                    <Image
+                      src={LogoFlowers}
+                      alt="Blocked Event Graphic"
+                      className="!object-center object-contain w-[30%] max-h-[125px]"
+                    />
+                    <Image
+                      src={DateText}
+                      alt="Blocked Event Graphic"
+                      className="!object-center object-contain w-[20%] max-h-[50px]"
+                    />
+
+                    {/* <Link to="/"> */}
                     <Button color="purple-1" fill className="semi-bold shadow-xl">
                       Devcon Main Event →
                     </Button>
-                  </Link>
-                </div>
+                    {/* </Link> */}
+                  </div>
+                </Link>
               </div>
             )
           }}
