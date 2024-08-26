@@ -19,7 +19,6 @@ app.use(helmet())
 
 app.use((req, res, next) => {
   let data = ''
-  req.setEncoding('utf8')
   req.on('data', (chunk) => {
     data += chunk
   })
