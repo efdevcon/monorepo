@@ -10,16 +10,16 @@ export async function UpdateSchedule(req: Request, res: Response) {
 
   const secret = req.headers['X-Webhook-Secret']
   if (secret !== SERVER_CONFIG.WEBHOOK_SECRET) return res.status(403).send('Forbidden')
-  if (!req.body) return res.status(400).send('No Body')
 
-  console.log('REQ.BODY', req.body)
+  try {
+    const data = PretalxScheduleUpdate.parse(req.body)
 
-  const body = JSON.parse(req.body)
-  if (!body) return res.status(400).send('Invalid Body')
+    console.log('Pretalx Webhook plugin', data.event, data.user, data.schedule)
+    console.log('Changes', data.changes)
 
-  const data = PretalxScheduleUpdate.parse(body)
-  console.log('Pretalx Webhook plugin', data.event, data.user, data.schedule)
-  console.log('Changes', data.changes)
-
-  res.status(204).send()
+    res.status(204).send()
+  } catch (error) {
+    console.error('Error parsing Pretalx Webhook plugin', error)
+    res.status(400).send('Bad Request')
+  }
 }

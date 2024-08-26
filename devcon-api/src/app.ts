@@ -1,4 +1,4 @@
-import express, { json, urlencoded } from 'express'
+import express, { json, urlencoded, Response } from 'express'
 import path from 'path'
 import cors from 'cors'
 import helmet from 'helmet'
@@ -16,7 +16,32 @@ const app = express()
 
 // configure express app
 app.use(helmet())
-app.use(json())
+
+app.use((req, res, next) => {
+  let data = ''
+  req.setEncoding('utf8')
+  req.on('data', (chunk) => {
+    data += chunk
+  })
+  req.on('end', () => {
+    console.log('Raw request body:', data)
+    next()
+  })
+})
+
+app.use((req, res: Response, next) => {
+  json({
+    verify: (req, res: Response, buf) => {
+      try {
+        JSON.parse(buf.toString())
+      } catch (e) {
+        res.status(400).json({ error: 'Invalid JSON' })
+        throw new Error('Invalid JSON')
+      }
+    }
+  })(req, res, next)
+})
+
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
