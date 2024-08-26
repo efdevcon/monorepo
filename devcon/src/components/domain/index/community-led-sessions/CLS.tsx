@@ -6,6 +6,7 @@ import { Slider, useSlider } from 'components/common/slider'
 import HeroBackground from 'assets/images/pages/hero-bgs/city-guide.png'
 import Image from 'next/image'
 import RichText from 'lib/components/tina-cms/RichText'
+import { Link } from 'components/common/link'
 
 interface Props {
   sessions: Array<any>
@@ -43,7 +44,7 @@ export function CLSReel(props: Props) {
     <div className={`${css['cards']} w-full`}>
       <Slider sliderProps={sliderProps} title="Featured Sessions">
         {props.sessions.map((session: any, i: number) => {
-          let className = `${css['card']} !rounded-xl`
+          let className = `${css['card']} !rounded-xl !pt-0`
 
           if (i === props.sessions.length - 1) className += ` ${css['last']}`
 
@@ -54,14 +55,21 @@ export function CLSReel(props: Props) {
               key={session.slug}
               // title={session.title}
               // description={session.description}
-              imageUrl={session.imageUrl}
-              expandLink
-              linkUrl={session.permaLink} // Linking to session domain temporarily until session page is done (static-phase)
+              // imageUrl={session.imageUrl}
+              // expandLink
+              // linkUrl={session.permaLink} // Linking to session domain temporarily until session page is done (static-phase)
               // metadata={[moment(session.date).format('ll'), session.author]}
               allowDrag
             >
-              <Image src={HeroBackground} alt={`${session.title} graphic`} className="object-cover h-[175px] w-full" />
-              <div className="flex flex-col m-4 mb-0">
+              <Image
+                src={HeroBackground}
+                alt={`${session.title} graphic`}
+                className="object-cover h-[200px] w-full"
+                style={{
+                  maskImage: 'linear-gradient(to top, transparent 0%, black 40%)',
+                }}
+              />
+              <div className="flex flex-col m-4 mt-2.5 mb-0">
                 <div className="text-lg bold mb-2">{session.title}</div>
                 <RichText content={session.body} />
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px] mt-4"></div>
@@ -82,7 +90,9 @@ export function CLSReel(props: Props) {
                   </div>
                 </div>
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px]"></div>
-                <div className="bold mt-3 font-secondary">LEARN MORE</div>
+                <Link to={session.url || ''}>
+                  <div className="bold mt-3 font-secondary">LEARN MORE</div>
+                </Link>
               </div>
             </BasicCard>
           )
