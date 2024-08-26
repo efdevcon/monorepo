@@ -16,21 +16,12 @@ const app = express()
 
 // configure express app
 app.use(helmet())
-
-app.use((req, res, next) => {
-  let data = ''
-  req.on('data', (chunk) => {
-    data += chunk
-  })
-  req.on('end', () => {
-    console.log('Raw request body:', data)
-    next()
-  })
-})
-
 app.use((req, res: Response, next) => {
   json({
     verify: (req, res: Response, buf) => {
+      if (req.method === 'POST') {
+        console.log('Raw POST request body:', buf.toString())
+      }
       try {
         JSON.parse(buf.toString())
       } catch (e) {
