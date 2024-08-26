@@ -25,8 +25,11 @@ app.use((req, res: Response, next) => {
       try {
         JSON.parse(buf.toString())
       } catch (e) {
-        res.status(400).json({ error: 'Invalid JSON' })
-        throw new Error('Invalid JSON')
+        const error = e as Error;
+        console.error('JSON parsing error:', error.message)
+        console.error('Problematic JSON string:', buf.toString())
+        res.status(400).json({ error: 'Invalid JSON', details: error.message })
+        throw new Error('Invalid JSON: ' + error.message)
       }
     }
   })(req, res, next)
