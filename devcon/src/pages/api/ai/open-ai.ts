@@ -88,7 +88,7 @@ export const api = (() => {
 
       // TODO: add assistant id as .env variable?
       // TODO: remove old vector stores (could be dangerous, so maybe not - maybe open ai has auto clean up)
-      await openai.beta.assistants.update('asst_KQBmgnzDccFLFXE88IE8dTwT', {
+      await openai.beta.assistants.update('asst_qRdY4uERLeF5QDaMtjNib1kt', {
         tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
       })
     },
@@ -203,31 +203,41 @@ export const api = (() => {
       const assistant = await openai.beta.assistants.create({
         name: 'DevaBot',
         instructions: assistantInstructions,
-        tools: [{ type: 'file_search' }],
+        tools: [
+          { type: 'file_search' },
+          {
+            type: 'function',
+            function: {
+              name: 'getCurrentDate',
+              description:
+                'Get the current date to give answers that make sense from a temporal perspective. E.g. "when is Devcon?" can yield a different answer if the event is in the future or in the past.',
+            },
+          },
+        ],
         // model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
         model: 'gpt-4o',
       })
 
       // Create vector store for website content
-      const vectorStore = await openai.beta.vectorStores.create({
-        name: 'Website Content',
-      })
+      // const vectorStore = await openai.beta.vectorStores.create({
+      //   name: 'Website Content',
+      // })
 
-      const contentDir = path.join(__dirname, 'content')
-      const files = fs.readdirSync(contentDir)
+      // const contentDir = path.join(__dirname, 'content')
+      // const files = fs.readdirSync(contentDir)
 
-      const fileStreams = files.map((file: string) => {
-        const filePath = path.join(contentDir, file)
-        return fs.createReadStream(filePath)
-      })
+      // const fileStreams = files.map((file: string) => {
+      //   const filePath = path.join(contentDir, file)
+      //   return fs.createReadStream(filePath)
+      // })
 
       // Upload files to vector store
-      await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+      // await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
 
       // Update assistant to use our vector store
-      await openai.beta.assistants.update(assistant.id, {
-        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
-      })
+      // await openai.beta.assistants.update(assistant.id, {
+      //   tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
+      // })
 
       console.log(assistant, 'CREATED ASSISTANT AND UPLOADED WEBSITE CONTENT')
     },
@@ -238,7 +248,7 @@ export const api = (() => {
 
       return thread
     },
-    createMessage: async (assistantID: string, userMessage: string, threadID?: string) => {
+    createMessage: async (assistantID: string, userMessage: string, threadID: string) => {
       if (!threadID) {
         const thread = await _interface.createThread()
 
@@ -250,9 +260,33 @@ export const api = (() => {
         content: userMessage,
       })
 
-      const run = await openai.beta.threads.runs.createAndPoll(threadID, {
+      let run = await openai.beta.threads.runs.createAndPoll(threadID, {
         assistant_id: assistantID,
       })
+
+      // Assistant needs the result of a function call (in our case, the date):
+      if (run.status === 'requires_action') {
+        if (
+          run.required_action &&
+          run.required_action.submit_tool_outputs &&
+          run.required_action.submit_tool_outputs.tool_calls
+        ) {
+          // Loop through each tool in the required action section
+          const toolOutputs = run.required_action.submit_tool_outputs.tool_calls.map(tool => {
+            if (tool.function.name === 'getCurrentDate') {
+              return {
+                tool_call_id: tool.id,
+                output: new Date().toLocaleDateString(),
+              }
+            }
+          }) as any
+
+          // Back to polling the run for completed status
+          run = await openai.beta.threads.runs.submitToolOutputsAndPoll(threadID, run.id, { tool_outputs: toolOutputs })
+        } else {
+          throw 'No required action found'
+        }
+      }
 
       if (run.status === 'completed') {
         const messages = await openai.beta.threads.messages.list(run.thread_id)

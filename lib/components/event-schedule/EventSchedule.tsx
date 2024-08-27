@@ -2187,6 +2187,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
           <div className={css["top-bar-wrapper"]} data-type="schedule-top-bar">
             <SwipeToScroll
               noBounds
+              ref={props.scrollRef}
+
               // scrollIndicatorDirections={{ right: true, left: true }}
             >
               <div className={css["top-bar"]}>

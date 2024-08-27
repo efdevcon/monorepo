@@ -14,7 +14,7 @@ index_ctas:
     text: Community Hubs & DIPs
     url: 'https://devcon.org/en/dips/'
   - title: Get your Devcon ticket now!
-    text: "Check if you're eligible for a discount! "
+    text: 'Check if you''re eligible for a discount! '
     url: /tickets
   - title: Check out the programming
     text: 10 different tracks
@@ -32,6 +32,13 @@ section1:
     that one place. **Devcon Week will span the entire week of November 9-17**,
     with events before and after Devcon, organized by the local and global
     Ethereum community.
+
+
+    <Buttons
+      Button={[
+        { text: "Devcon Week Schedule", url: "/devcon-week", fill: false }
+      ]}
+    />
 section2:
   top: >
     ## **The Road to Devcon Southeast Asia**
@@ -70,7 +77,7 @@ section4:
     ## **Devcon VI Bogotá**
 
 
-    Devcon VI was held in Bogotá, Colombia, with a spirit resonating across
+    ### Devcon VI was held in Bogotá, Colombia, with a spirit resonating across
     South and Latin America.
 
 
@@ -100,5 +107,55 @@ devcon_week:
     with events before and after Devcon, organized by the local and global
     Ethereum community.
   title: ''
+community_led_sessions:
+  title: Community-Led Sessions
+  body: >
+    ### Community-led Sessions (CLS) are focused mini-events designed to make
+    Devcon truly special by bringing together diverse fields and fostering
+    interdisciplinary conversations. These sessions focus on topics that matter
+    not just to Ethereum but to society as a whole.
+
+
+    <TwoColumns
+      right={<>
+        **Interdisciplinary focus:** Explore the intersection of technology, society, AI, and more.
+        
+        **Accessible with your Devcon ticket:** Included in the main programming of Devcon.
+      </>}
+      left={<>
+        **Led by experts:** Curated by experts from the community, offering in-depth insights.
+        
+        **Format:** Half-day or full-day sessions in a dedicated room at the Devcon venue.
+      </>}
+    />
+  sessions:
+    - title: Test
+      body: >
+        ###### Community-led Sessions (CLS) are focused mini-events designed to
+        make Devcon truly special by bringing together diverse fields and
+        fostering interdisciplinary conversations. These sessions focus on
+        topics that matter not just to Ethereum but to society as a whole.
+      organizers: 'Weslaqeel, Mr Devcon, blalba, bla,blablab,b la'
+      when: 'Day 4 - 14, NOv 2024'
+      duration: FULL DAY
+    - title: aaaabccc
+      body: >
+        ###### Community-led Sessions (CLS) are focused mini-events designed to
+        make Devcon truly special by bringing together diverse fields and
+        fostering interdisciplinary conversations. These sessions focus on
+        topics that matter not just to Ethereum but to society as a whole.
+    - title: aaa
+      body: >
+        ###### Community-led Sessions (CLS) are focused mini-events designed to
+        make Devcon truly special by bringing together diverse fields and
+        fostering interdisciplinary conversations. These sessions focus on
+        topics that matter not just to Ethereum but to society as a whole.
+    - title: aaabbb
+      body: >
+        ###### Community-led Sessions (CLS) are focused mini-events designed to
+        make Devcon truly special by bringing together diverse fields and
+        fostering interdisciplinary conversations. These sessions focus on
+        topics that matter not just to Ethereum but to society as a whole.
 _template: index
 ---
+

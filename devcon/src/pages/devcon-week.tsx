@@ -95,6 +95,19 @@ export default pageHOC(function DevconWeek(props: any) {
     return fullRangeEvents
   })()
 
+  const scrollRef = React.useRef(null)
+  const elementRef = React.useRef(null)
+
+  React.useEffect(() => {
+    // console.log(scrollRef.current, elementRef.current, 'scroll/el')
+    // setTimeout(() => {
+    if (scrollRef.current && elementRef.current) {
+      console.log(elementRef.current, 'current element')
+      scrollRef.current.setScroll(elementRef.current)
+    }
+    // }, 1000)
+  }, [])
+
   return (
     <Page theme={themes['news']}>
       <PageHero
@@ -172,13 +185,17 @@ export default pageHOC(function DevconWeek(props: any) {
         <EventSchedule
           // @ts-ignore
           events={eventsFullRange}
+          scrollRef={scrollRef}
           buttonColor="orange-1"
           edition="devcon-week"
           calendarOptions={{ id: 'devcon.org' }}
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-b-[18px] border-2 border-[#9667bc] shadow-lg group">
+              <div
+                className="relative w-full h-full min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-b-[18px] border-2 border-[#9667bc] shadow-lg group"
+                ref={elementRef}
+              >
                 <Link to="/">
                   {/* <Image
                   src={EventBlocker}
