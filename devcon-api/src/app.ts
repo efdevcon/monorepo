@@ -16,25 +16,7 @@ const app = express()
 
 // configure express app
 app.use(helmet())
-app.use((req, res: Response, next) => {
-  json({
-    verify: (req, res: Response, buf) => {
-      if (req.method === 'POST') {
-        console.log('Raw POST request body:', buf.toString())
-      }
-      try {
-        JSON.parse(buf.toString())
-      } catch (e) {
-        const error = e as Error;
-        console.error('JSON parsing error:', error.message)
-        console.error('Problematic JSON string:', buf.toString())
-        res.status(400).json({ error: 'Invalid JSON', details: error.message })
-        throw new Error('Invalid JSON: ' + error.message)
-      }
-    }
-  })(req, res, next)
-})
-
+app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
