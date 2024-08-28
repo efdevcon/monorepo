@@ -81,6 +81,11 @@ const index: Template = {
           list: true,
           type: 'object',
           fields: [
+            {
+              label: 'image',
+              name: 'image',
+              type: 'image',
+            },
             { label: 'title', name: 'title', type: 'string' },
             createRichText('body'),
             { label: 'organizers', name: 'organizers', type: 'string' },

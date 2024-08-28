@@ -62,9 +62,11 @@ export function CLSReel(props: Props) {
               allowDrag
             >
               <Image
-                src={HeroBackground}
+                src={session.image || HeroBackground}
                 alt={`${session.title} graphic`}
-                className="object-cover h-[200px] w-full"
+                className="object-cover h-[200px] w-full object-top"
+                width={300}
+                height={200}
                 style={{
                   maskImage: 'linear-gradient(to top, transparent 0%, black 40%)',
                 }}
