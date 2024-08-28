@@ -5,6 +5,7 @@ const DevconWeek: Template = {
   name: 'devcon_week',
   label: 'devcon_week',
   fields: [
+    createRichText('alert'),
     {
       label: 'devcon_week',
       name: 'devcon_week',

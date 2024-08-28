@@ -4,21 +4,18 @@ import CloseIcon from "assets/icons/cross.svg";
 import AlertIcon from "../../assets/icons/alert.svg";
 
 type AlertProps = {
-  title: string;
+  title?: string;
   className?: string;
   children: React.ReactNode;
   color?: "orange" | "blue";
 };
 
 const Alert = (props: AlertProps) => {
-  // const [alertHidden, setAlertHidden] = React.useState(false)
   let className = css["alert"];
 
   className += ` ${css[props.color || "blue"]}`;
 
   if (props.className) className += ` ${props.className}`;
-
-  // if (alertHidden) return null
 
   const body = (
     <div className={className}>

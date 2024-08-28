@@ -1,8 +1,8 @@
 // const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: true || process.env.ANALYZE === 'true',
-});
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: true || process.env.ANALYZE === 'true',
+// });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

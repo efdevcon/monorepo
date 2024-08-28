@@ -28,6 +28,7 @@ import css from './devcon-week.module.scss'
 import { FAQ } from './faq'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
+import Alert from 'lib/components/alert'
 import ExternalIndicator from 'assets/icons/external-link.svg'
 
 const isAfterDate = (dateString: string) => {
@@ -130,6 +131,9 @@ export default pageHOC(function DevconWeek(props: any) {
       />
 
       <div className="section relative" id="devcon-week">
+        <Alert className="rounded-lg mb-6 font-bold !bg-[#ffede9] orange !normal-case">
+          {devconWeek && devconWeek.alert && <RichText content={devconWeek.alert} />}
+        </Alert>
         <div className={cn('flex relative justify-between gap-16 flex-col lg:flex-row pb-12')}>
           <div className={`${indexCss['scrolling-text-background']} ${css['devcon-week']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
@@ -137,7 +141,7 @@ export default pageHOC(function DevconWeek(props: any) {
             </InfiniteScroller>
           </div>
 
-          {/* <div
+          {/* <divx
             onClick={() => {
               scrollRef.current.setScroll(elementRef.current)
             }}

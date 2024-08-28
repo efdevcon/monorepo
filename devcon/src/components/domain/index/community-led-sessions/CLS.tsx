@@ -74,7 +74,7 @@ export function CLSReel(props: Props) {
                 <div className="grow">
                   <RichText content={session.body} />
                 </div>
-                <div className="border-solid border-t border-[#E2E3FF] border-w-[1px] mt-4"></div>
+                <div className="border-solid border-t border-[#E2E3FF] border-w-[1px]"></div>
                 <div className="flex flex-col gap-1 text-xs my-4 uppercase bold">
                   <div className="flex justify-between">
                     <span className="shrink-0 xl:basis-[100px] pr-1 bold text-uppercase text-slate-400 mb-3">
@@ -92,9 +92,11 @@ export function CLSReel(props: Props) {
                   </div>
                 </div>
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px]"></div>
-                <Link to={session.url || ''} className="bold pt-3 pb-3 font-secondary shrink-0">
-                  <div>LEARN MORE</div>
-                </Link>
+                {session.url && (
+                  <Link to={session.url || ''} className="bold pt-3 pb-3 font-secondary shrink-0">
+                    <div>LEARN MORE</div>
+                  </Link>
+                )}
               </div>
             </BasicCard>
           )
