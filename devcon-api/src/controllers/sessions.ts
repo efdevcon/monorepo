@@ -109,8 +109,8 @@ export async function GetSession(req: Request, res: Response) {
 export async function UpdateSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
   const updatedSession = req.body
-  if (!updatedSession) return res.status(400).send({ status: 400, message: 'Bad Request' })
-  if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Bad Request' })
+  if (!updatedSession) return res.status(400).send({ status: 400, message: 'No Body' })
+  if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Invalid Id' })
 
   const data = await client.session.findFirst({
     where: {
@@ -121,7 +121,7 @@ export async function UpdateSession(req: Request, res: Response) {
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
   
   if (Object.keys(updatedSession).every(key => key in data)) {
-    return res.status(400).send({ status: 400, message: 'Invalid fields in update request' })
+    return res.status(400).send({ status: 400, message: 'Invalid fields' })
   }
   
   try {

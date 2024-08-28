@@ -10,7 +10,6 @@ import { FAQ } from 'types/FAQ'
 import markdownUtils, { toHtml } from 'utils/markdown'
 import { ContentSection, ContentSections } from 'types/ContentSection'
 import { DevconEdition } from 'types/DevconEdition'
-import { Track } from 'types/Track'
 
 export async function GetPage(slug: string, lang: string = 'en'): Promise<Page | undefined> {
   if (lang !== 'es') lang = 'en'

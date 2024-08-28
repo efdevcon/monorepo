@@ -5,6 +5,7 @@ import { rssRouter } from 'controllers/rss'
 import { sessionsRouter } from 'controllers/sessions'
 import { speakersRouter } from 'controllers/speakers'
 import { aiRouter } from 'controllers/ai/routing'
+import { hooksRouter } from 'controllers/hooks'
 import { Router } from 'express'
 import { API_INFO } from 'utils/config'
 
@@ -23,3 +24,4 @@ router.use(rssRouter)
 router.use(sessionsRouter)
 router.use(speakersRouter)
 router.use(aiRouter)
+router.use(hooksRouter)
