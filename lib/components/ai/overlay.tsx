@@ -18,12 +18,6 @@ import {
 } from "./state"; // Adjust the import path
 
 const DevaBot = () => {
-  // const bla = atom({
-  //   key: 'bla',
-  //   default: 0,
-  // })
-  // const test = useRecoilState(bla)
-  return "what the fuck";
   const [visible, setVisible] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
   const [executingQuery, setExecutingQuery] =

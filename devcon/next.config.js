@@ -1,8 +1,8 @@
 // const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-//   enabled: true || process.env.ANALYZE === 'true',
-// });
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: true || process.env.ANALYZE === 'true',
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -37,16 +37,17 @@ const nextConfig = {
       plugins: [
         ...config.plugins,
         new webpack.DefinePlugin({
-          'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
+          'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId)
         }),
       ],
       resolve: {
         ...config.resolve,
-        // alias: {
-        //   ...config.resolve.alias,
-        //   react: path.resolve(__dirname, 'node_modules/react'),
-        //   'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-        // },
+        alias: {
+          ...config.resolve.alias,
+          react: path.resolve(__dirname, 'node_modules/react'),
+          'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+          'recoil': path.resolve(__dirname, 'node_modules/recoil'),
+        },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
       },
       module: {
@@ -250,6 +251,9 @@ const nextConfig = {
       },
     ]
   },
+  env: {
+    RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED: "false"
+  }
 }
 
 module.exports = nextConfig
