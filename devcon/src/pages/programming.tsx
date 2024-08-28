@@ -84,7 +84,7 @@ export default pageHOC(function Programming(props: any) {
         logo: trackLogo,
       }
     })
-  })()
+  })() || []
 
   return (
     <Page theme={themes['purple']}>
@@ -145,7 +145,7 @@ export default pageHOC(function Programming(props: any) {
       </div>
 
       <div className="section relative max-w-[100vw] overflow-hidden">
-        <TrackList isThailand tracks={formattedTracks || props.tracks} title="Hover over cards to read more" />
+        <TrackList tracks={formattedTracks} title="Hover over cards to read more" />
 
         <div className="pb-4"></div>
       </div>
