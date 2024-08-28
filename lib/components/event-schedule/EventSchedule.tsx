@@ -1029,7 +1029,7 @@ const Timeline = (props: any) => {
         );
       })()}
 
-      <SwipeToScroll noBounds>
+      <SwipeToScroll noBounds ref={props.scrollRef}>
         <div className={css["timeline"]}>
           {events}
 
@@ -2187,7 +2187,6 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
           <div className={css["top-bar-wrapper"]} data-type="schedule-top-bar">
             <SwipeToScroll
               noBounds
-              ref={props.scrollRef}
 
               // scrollIndicatorDirections={{ right: true, left: true }}
             >
@@ -2538,6 +2537,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
                   <div>
                     <Timeline
                       {...scheduleHelpers}
+                      scrollRef={props.scrollRef}
                       favorites={favorites}
                       edition={props.edition}
                       renderBlockingEvent={props.renderBlockingEvent}

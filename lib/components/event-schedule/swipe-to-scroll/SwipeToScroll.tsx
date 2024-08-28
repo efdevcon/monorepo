@@ -21,9 +21,6 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
   const [isNativeScroll, setIsNativeScroll] = React.useState(true);
   const [scrollIndicatorClass, setScrollIndicatorClass] = React.useState("");
   const lastX = React.useRef(0);
-  const maxScrollRef = React.useRef(0);
-
-  console.log(maxScroll, "max scroll ");
 
   // Whether or not to display a scroll indicator
   const syncScrollIndicators = React.useCallback(
@@ -112,10 +109,6 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
         const maxScroll = el.current.scrollWidth - width;
 
         setMaxScroll(maxScroll);
-
-        console.log("setting max scroll..", maxScroll);
-
-        maxScrollRef.current = maxScroll;
       }
     },
   });

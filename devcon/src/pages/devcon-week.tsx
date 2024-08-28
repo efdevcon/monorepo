@@ -99,13 +99,12 @@ export default pageHOC(function DevconWeek(props: any) {
   const elementRef = React.useRef(null)
 
   React.useEffect(() => {
-    // console.log(scrollRef.current, elementRef.current, 'scroll/el')
-    // setTimeout(() => {
-    if (scrollRef.current && elementRef.current) {
-      console.log(elementRef.current, 'current element')
+    setTimeout(() => {
+      // @ts-ignore
       scrollRef.current.setScroll(elementRef.current)
-    }
-    // }, 1000)
+    }, 500)
+
+    console.log(elementRef.current, 'element ref')
   }, [])
 
   return (
@@ -137,6 +136,14 @@ export default pageHOC(function DevconWeek(props: any) {
               <p className="bold">DEVCON WEEK&nbsp;</p>
             </InfiniteScroller>
           </div>
+
+          {/* <div
+            onClick={() => {
+              scrollRef.current.setScroll(elementRef.current)
+            }}
+          >
+            Scroll scroll scroll
+          </div> */}
           <div className="grow">
             {devconWeek && devconWeek.devcon_week && <RichText content={devconWeek.devcon_week.about} />}
           </div>

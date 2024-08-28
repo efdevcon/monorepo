@@ -7,7 +7,7 @@ import { SEO } from 'components/domain/seo'
 import { init } from '@socialgouv/matomo-next'
 import { SessionProvider } from 'next-auth/react'
 import { Web3ModalProvider } from 'context/web3modal'
-import DevaBot from 'lib/components/ai/overlay'
+import { RecoilRoot } from 'recoil'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -22,7 +22,7 @@ function App({ Component, pageProps }: any) {
   }, [])
 
   return (
-    <>
+    <RecoilRoot>
       <SEO />
 
       <IntlProvider messages={pageProps.messages} locale="en">
@@ -32,7 +32,7 @@ function App({ Component, pageProps }: any) {
           </Web3ModalProvider>
         </SessionProvider>
       </IntlProvider>
-    </>
+    </RecoilRoot>
   )
 }
 

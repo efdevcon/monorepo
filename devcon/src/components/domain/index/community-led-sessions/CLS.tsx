@@ -50,9 +50,9 @@ export function CLSReel(props: Props) {
 
           return (
             <BasicCard
+              key={session.title}
               className={className}
               slide={sliderProps[1].canSlide}
-              key={session.slug}
               // title={session.title}
               // description={session.description}
               // imageUrl={session.imageUrl}
@@ -69,9 +69,11 @@ export function CLSReel(props: Props) {
                   maskImage: 'linear-gradient(to top, transparent 0%, black 40%)',
                 }}
               />
-              <div className="flex flex-col m-4 mt-2.5 mb-0">
+              <div className="flex flex-col m-4 mt-2.5 mb-0 grow">
                 <div className="text-lg bold mb-2">{session.title}</div>
-                <RichText content={session.body} />
+                <div className="grow">
+                  <RichText content={session.body} />
+                </div>
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px] mt-4"></div>
                 <div className="flex flex-col gap-1 text-xs my-4 uppercase bold">
                   <div className="flex justify-between">
@@ -90,8 +92,8 @@ export function CLSReel(props: Props) {
                   </div>
                 </div>
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px]"></div>
-                <Link to={session.url || ''}>
-                  <div className="bold mt-3 font-secondary">LEARN MORE</div>
+                <Link to={session.url || ''} className="bold pt-3 pb-3 font-secondary shrink-0">
+                  <div>LEARN MORE</div>
                 </Link>
               </div>
             </BasicCard>

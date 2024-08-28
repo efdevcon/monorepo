@@ -86,6 +86,7 @@ const index: Template = {
             { label: 'organizers', name: 'organizers', type: 'string' },
             { label: 'when', name: 'when', type: 'string' },
             { label: 'duration', name: 'duration', type: 'string' },
+            { label: 'url', name: 'url', type: 'string' },
           ],
         },
       ],

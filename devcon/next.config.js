@@ -1,5 +1,8 @@
 // const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
+// const withBundleAnalyzer = require('@next/bundle-analyzer')({
+//   enabled: true || process.env.ANALYZE === 'true',
+// });
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -39,6 +42,11 @@ const nextConfig = {
       ],
       resolve: {
         ...config.resolve,
+        // alias: {
+        //   ...config.resolve.alias,
+        //   react: path.resolve(__dirname, 'node_modules/react'),
+        //   'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+        // },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
       },
       module: {
