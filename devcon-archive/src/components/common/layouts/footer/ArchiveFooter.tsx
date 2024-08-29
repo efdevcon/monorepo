@@ -43,7 +43,7 @@ export const ArchiveFooter = () => {
         },
         {
           title: 'Blog',
-          url: 'https://blog.ethereum.org/category/events/',
+          url: 'https://devcon.org/blogs/',
           type: 'link',
         },
       ],
