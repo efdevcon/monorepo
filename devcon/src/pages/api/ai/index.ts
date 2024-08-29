@@ -7,8 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   console.log(req.body, 'body')
   //   const { threadID } = req.query
 
-  return res.json('nice try')
-
   if (req.method === 'GET') {
     // const assistant = await api.createAssistant()
 
