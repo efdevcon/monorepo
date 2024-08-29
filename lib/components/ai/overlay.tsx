@@ -130,7 +130,13 @@ const DevaBot = () => {
                             ? "DevAI responded"
                             : "You asked"}
                         </span>
-                        <Markdown className="markdown">{message.text}</Markdown>
+                        <Markdown className="markdown">
+                          {
+                            message.text.split(
+                              "System: The current date is:"
+                            )[0]
+                          }
+                        </Markdown>
 
                         {message.files.length > 0 && (
                           <div className="flex flex-col text-sm opacity-50 ">

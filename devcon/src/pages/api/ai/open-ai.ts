@@ -50,7 +50,7 @@ async function createOpenAIEmbedding(text: any) {
 
 export const api = (() => {
   const _interface = {
-    prepareContent: async () => {
+    prepareContent: async (assistantID: string) => {
       console.log('preparing content')
 
       // await _interface.createEmbeddingsFromContent()
@@ -88,7 +88,7 @@ export const api = (() => {
 
       // TODO: add assistant id as .env variable?
       // TODO: remove old vector stores (could be dangerous, so maybe not - maybe open ai has auto clean up)
-      await openai.beta.assistants.update('asst_qRdY4uERLeF5QDaMtjNib1kt', {
+      await openai.beta.assistants.update(assistantID, {
         tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
       })
     },
@@ -205,18 +205,20 @@ export const api = (() => {
         instructions: assistantInstructions,
         tools: [
           { type: 'file_search' },
-          {
-            type: 'function',
-            function: {
-              name: 'getCurrentDate',
-              description:
-                'Get the current date to give answers that make sense from a temporal perspective. E.g. "when is Devcon?" can yield a different answer if the event is in the future or in the past.',
-            },
-          },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getCurrentDate',
+          //     description:
+          //       'Get the current date to give answers that make sense from a temporal perspective. E.g. "when is Devcon?" can yield a different answer if the event is in the future or in the past.',
+          //   },
+          // },
         ],
         // model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
-        model: 'gpt-4o',
+        model: 'gpt-4o-mini',
       })
+
+      api.prepareContent(assistant.id)
 
       // Create vector store for website content
       // const vectorStore = await openai.beta.vectorStores.create({
@@ -257,36 +259,37 @@ export const api = (() => {
 
       await openai.beta.threads.messages.create(threadID, {
         role: 'user',
-        content: userMessage,
+        content: `${userMessage}\nSystem: The current date is: ${new Date().toLocaleDateString()}.`,
       })
 
       let run = await openai.beta.threads.runs.createAndPoll(threadID, {
         assistant_id: assistantID,
       })
 
+      // TODO: This slows down the assistant too much
       // Assistant needs the result of a function call (in our case, the date):
-      if (run.status === 'requires_action') {
-        if (
-          run.required_action &&
-          run.required_action.submit_tool_outputs &&
-          run.required_action.submit_tool_outputs.tool_calls
-        ) {
-          // Loop through each tool in the required action section
-          const toolOutputs = run.required_action.submit_tool_outputs.tool_calls.map(tool => {
-            if (tool.function.name === 'getCurrentDate') {
-              return {
-                tool_call_id: tool.id,
-                output: new Date().toLocaleDateString(),
-              }
-            }
-          }) as any
+      // if (run.status === 'requires_action') {
+      //   if (
+      //     run.required_action &&
+      //     run.required_action.submit_tool_outputs &&
+      //     run.required_action.submit_tool_outputs.tool_calls
+      //   ) {
+      //     // Loop through each tool in the required action section
+      //     const toolOutputs = run.required_action.submit_tool_outputs.tool_calls.map(tool => {
+      //       if (tool.function.name === 'getCurrentDate') {
+      //         return {
+      //           tool_call_id: tool.id,
+      //           output: new Date().toLocaleDateString(),
+      //         }
+      //       }
+      //     }) as any
 
-          // Back to polling the run for completed status
-          run = await openai.beta.threads.runs.submitToolOutputsAndPoll(threadID, run.id, { tool_outputs: toolOutputs })
-        } else {
-          throw 'No required action found'
-        }
-      }
+      //     // Back to polling the run for completed status
+      //     run = await openai.beta.threads.runs.submitToolOutputsAndPoll(threadID, run.id, { tool_outputs: toolOutputs })
+      //   } else {
+      //     throw 'No required action found'
+      //   }
+      // }
 
       if (run.status === 'completed') {
         const messages = await openai.beta.threads.messages.list(run.thread_id)
@@ -345,7 +348,7 @@ export const api = (() => {
           messages: formattedMessages,
         }
       } else {
-        console.log(run.status)
+        console.error(run.status)
 
         return {
           runID: run.id,
@@ -392,7 +395,7 @@ const main = async (query: string) => {
 export default api
 
 // api.createAssistant()
-// api.prepareContent()
+// api.prepareContent('asst_nHAiR3J5e0XTdiqE0pfQ75ZB)
 // api.createThread()
 // api.createMessage('asst_sWNkGoBZViwje5VdkLU46oZV', 'When is Devcon?!', 'thread_5U2NZ87hX3oGUkFwY1zBzfX2')
 

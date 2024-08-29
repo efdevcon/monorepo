@@ -104,8 +104,6 @@ export default pageHOC(function DevconWeek(props: any) {
       // @ts-ignore
       scrollRef.current.setScroll(elementRef.current)
     }, 500)
-
-    console.log(elementRef.current, 'element ref')
   }, [])
 
   return (
