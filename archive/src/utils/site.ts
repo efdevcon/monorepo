@@ -10,5 +10,5 @@ export const SOCIAL_YOUTUBE = 'EthereumFoundation'
 
 export const DEVCON_URL = 'https://www.devcon.org/'
 export const FORUM_URL = 'https://forum.devcon.org/'
-export const BLOG_URL = 'https://blog.ethereum.org/category/devcon/'
+export const BLOG_URL = 'https://blog.ethereum.org/category/events/'
 export const FOUNDATION_URL = 'https://ethereum.foundation/'
