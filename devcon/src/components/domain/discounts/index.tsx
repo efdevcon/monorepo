@@ -25,13 +25,13 @@ export function SelfClaimingDiscounts() {
             <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
               <span>{1}</span>
             </button>
-            <div>Self-claim (Open until August 31)</div>
+            <div>Self-claim (Open until September 13)</div>
           </div>
         </div>
       </div>
       <p>
         Simply connect your wallet, sign a message proving that you own this wallet, and claim your discount.
-        Self-claiming remains open until August 31. You can redeem any claimed vouchers until September 15.
+        Self-claiming remains open until September 13. You can redeem any claimed vouchers until September 15.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
