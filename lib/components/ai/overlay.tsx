@@ -194,7 +194,7 @@ const DevaBot = () => {
               </div>
 
               <div className="shrink-0 relative w-full flex bg-slate-800 flex-col overflow-hidden">
-                <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full">
+                <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
                   <Image src={DevaHead} alt="Deva" className="object-cover" />
                 </div>
 
