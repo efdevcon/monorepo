@@ -24,6 +24,11 @@ model Account {
   addresses String[]
   disabled Boolean @default(false)
 
+  role String?
+  yearsOfExperience Int?
+  tracks String[]
+  tags String[]
+
   favorite_speakers String[]
   interested_sessions String[]
   attending_sessions String[]
