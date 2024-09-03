@@ -23,7 +23,7 @@
 
 # New configuration for rate limiting
 [[redirects]]
-  from = "/api/ai/*"
+  from = "/api/rate-limit-test/*"
   to = "/.netlify/functions/rate-limit-test/:splat"
   status = 200
   force = true
