@@ -187,7 +187,11 @@ const DevaBot = () => {
                 <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div>
               </div>
 
-              <div className="text-red-500 text-xs shrink-0">
+              <div
+                className={`text-red-500 text-xs shrink-0 ${
+                  messages.length > 0 ? "hidden" : ""
+                }`}
+              >
                 This is an experimental feature and the AI may rarely provide
                 answers that are not true - we take no responsibility for, or
                 endorse, anything the AI says.
@@ -213,7 +217,11 @@ const DevaBot = () => {
                   }}
                 ></textarea>
 
-                <div className="flex flex-wrap gap-2 p-2 shrink-0">
+                <div
+                  className={`flex flex-wrap gap-2 p-2 shrink-0 ${
+                    messages.length > 0 ? "hidden" : ""
+                  }`}
+                >
                   {[
                     "What is Devcon?",
                     "When is Devcon?",
