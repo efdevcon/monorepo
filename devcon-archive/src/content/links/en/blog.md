@@ -1,4 +1,4 @@
 ---
 title: Blog
-url: https://blog.ethereum.org/category/devcon/
+url: https://devcon.org/blogs/
 ---
