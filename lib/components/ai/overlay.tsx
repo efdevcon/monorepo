@@ -88,8 +88,6 @@ const DevaBot = () => {
     }
   }, [visible]);
 
-  console.log(error, "error");
-
   return (
     <>
       <AnimatePresence>
@@ -112,7 +110,7 @@ const DevaBot = () => {
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="fixed bottom-0 right-0 z-10 h-[100vh] w-[25vw] min-w-[325px] max-w-full bg-slate-900 shadow-xl p-4 text-white flex flex-col gap-2 items-start"
+              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[25vw] min-w-[325px] max-w-full bg-slate-900 shadow-xl p-4 pb-[env(safe-area-inset-bottom)] text-white flex flex-col gap-2 items-start"
               initial={{
                 x: "100%",
               }}
@@ -214,9 +212,14 @@ const DevaBot = () => {
                 </div>
 
                 <textarea
-                  className="relative text w-full h-full outline-none p-2 pb-4 text-sm bg-transparent z-2 no-scrollbar"
+                  className="relative text w-full h-full outline-none p-2 pb-4 bg-transparent z-2 no-scrollbar"
                   ref={textareaRef}
-                  style={{ resize: "none" }}
+                  style={{
+                    resize: "none",
+                    fontSize: "16px",
+                    WebkitTextSizeAdjust: "100%",
+                    WebkitTapHighlightColor: "transparent",
+                  }}
                   value={query}
                   placeholder="Ask DevAI about Devcon here!"
                   onChange={(e) => setQuery(e.target.value)}
