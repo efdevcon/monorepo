@@ -311,7 +311,7 @@ const DevaBot = () => {
         fill
         onClick={() => setVisible(!visible)}
       >
-        DevAI 🦄
+        <span className="hidden md:block">Questions? Ask</span> DevAI 🦄
       </Button>
     </>
   );
