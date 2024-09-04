@@ -30,6 +30,12 @@ const DevaBot = () => {
   const resetMessages = useResetRecoilState(messagesState);
   const resetThreadID = useResetRecoilState(threadIDState);
 
+  const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
+  }, []);
+
   React.useEffect(() => {
     setError("");
   }, [query]);
@@ -212,13 +218,17 @@ const DevaBot = () => {
                 </div>
 
                 <textarea
-                  className="relative text w-full h-full outline-none p-2 pb-4 bg-transparent z-2 no-scrollbar"
+                  className={`relative w-full h-full outline-none p-2 pb-4 bg-transparent z-2 no-scrollbar ${
+                    isTouchDevice ? "text-base" : "text-sm"
+                  }`}
                   ref={textareaRef}
                   style={{
                     resize: "none",
-                    fontSize: "16px",
-                    WebkitTextSizeAdjust: "100%",
-                    WebkitTapHighlightColor: "transparent",
+                    ...(isTouchDevice && {
+                      fontSize: "16px",
+                      WebkitTextSizeAdjust: "100%",
+                      WebkitTapHighlightColor: "transparent",
+                    }),
                   }}
                   value={query}
                   placeholder="Ask DevAI about Devcon here!"
