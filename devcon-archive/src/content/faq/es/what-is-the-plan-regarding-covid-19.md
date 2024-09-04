@@ -8,4 +8,4 @@ Nuestro equipo ha estado monitoreando activamente la situación del COVID-19, ta
 
 Mientras tanto, nuestra sede Agora Bogotá [ha calificado para la certificación Bureau Veritas SafeGuard](https://agora-bogota.com/es/protocolos-bioseguridad), lo que significa que han cumplido con un riguroso conjunto de criterios de bioseguridad operativa y en su espacio físico.
 
-A medida que la situación global continúe mejorando, nuestro equipo monitoreará activamente y proporcionará planes actualizados a través de nuestro [Blog de Devcon](https://blog.ethereum.org/category/devcon/), [@EFDevcon Twitter](https://twitter.com/EFDevcon) y [Devcon.org](https://devcon.org). ¡Mantente conectada para más!
+A medida que la situación global continúe mejorando, nuestro equipo monitoreará activamente y proporcionará planes actualizados a través de nuestro [Blog de Devcon](https://devcon.org/blogs/), [@EFDevcon Twitter](https://twitter.com/EFDevcon) y [Devcon.org](https://devcon.org). ¡Mantente conectada para más!

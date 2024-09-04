@@ -1,3 +1,5 @@
+import { Role, Tag, Track } from "utils/profile"
+
 declare module 'express-session' {
   interface SessionData {
     userId: string
@@ -21,6 +23,10 @@ export interface UserAccount {
 export interface AppState {
   createdAt: Date
   updatedAt: Date
+  role?: Role
+  yearsOfExperience?: number
+  tracks: Track[]
+  tags: Tag[]
   speakers: Array<string>
   sessions: Array<{
     id: string
