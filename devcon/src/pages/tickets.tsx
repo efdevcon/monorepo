@@ -491,6 +491,7 @@ export default pageHOC(function Tickets(props: any) {
                       {waveActive && latestWave === ticketWaves[5] && (
                         <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
                       )}
+
                       <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
                         SOLD OUT
                       </div>
@@ -511,9 +512,9 @@ export default pageHOC(function Tickets(props: any) {
                       {waveActive && latestWave === ticketWaves[6] && (
                         <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
                       )}
-                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                      {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
                         SOLD OUT
-                      </div>
+                      </div> */}
                     </div>
                     <div className="bold">September 17</div>
                   </div>
