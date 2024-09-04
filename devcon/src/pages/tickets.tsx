@@ -39,6 +39,7 @@ const ticketWaves = [
   moment.utc('2024-08-13 16:00:00'),
   moment.utc('2024-08-20 16:00:00'),
   moment.utc('2024-09-03 16:00:00'),
+  moment.utc('2024-09-17 16:00:00'),
 ]
 
 export default pageHOC(function Tickets(props: any) {
@@ -173,7 +174,8 @@ export default pageHOC(function Tickets(props: any) {
                       {latestWave === ticketWaves[2] && 'Next wave - August 13'}
                       {latestWave === ticketWaves[3] && 'Next wave - August 20'}
                       {latestWave === ticketWaves[4] && 'Next wave - September 3'}
-                      {latestWave === ticketWaves[5] && 'All waves sold out'}
+                      {latestWave === ticketWaves[5] && 'Next wave - September 17'}
+                      {latestWave === ticketWaves[6] && 'All waves sold out'}
 
                       {/* Wave {latestWave === ticketWaves[1] && '1'} {latestWave === ticketWaves[2] && '2'}{' '}
                       {latestWave === ticketWaves[3] && '3'} Sold Out */}
@@ -484,15 +486,40 @@ export default pageHOC(function Tickets(props: any) {
                 id: '5',
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
-                    <div>Wave 05</div>
-                    {waveActive && latestWave === ticketWaves[5] && (
-                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
-                    )}
+                    <div className="flex relative items-center">
+                      <div>Wave 05</div>
+                      {waveActive && latestWave === ticketWaves[5] && (
+                        <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                      )}
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                        SOLD OUT
+                      </div>
+                    </div>
                     <div className="bold">September 3</div>
                   </div>
                 ),
                 indent: false,
                 active: currentDate.isAfter(ticketWaves[5]),
+                body: '',
+              },
+              {
+                id: '6',
+                title: (
+                  <div className="flex justify-between w-full max-w-[600px] text-base">
+                    <div className="flex relative items-center">
+                      <div>Wave 06</div>
+                      {waveActive && latestWave === ticketWaves[6] && (
+                        <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
+                      )}
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                        SOLD OUT
+                      </div>
+                    </div>
+                    <div className="bold">September 17</div>
+                  </div>
+                ),
+                indent: false,
+                active: currentDate.isAfter(ticketWaves[6]),
                 body: '',
               },
             ]}
