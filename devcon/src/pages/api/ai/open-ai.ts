@@ -53,19 +53,11 @@ export const api = (() => {
     prepareContent: async (assistantID: string) => {
       console.log('preparing content')
 
-      // await _interface.createEmbeddingsFromContent()
-
-      // const files = loadAllFilesFromFolder('../../../../cms/pages')
-
-      // const formattedFiles = files.map(formatContent) // (files);
-
       await loadAndFormatCMS()
-
-      // console.log(formattedFiles, 'formatted files')
 
       // Create vector store for website content
       const vectorStore = await openai.beta.vectorStores.create({
-        name: 'Website Content: ' + new Date().toISOString(), // TODO: Use github commit id here?
+        name: 'Website Content: ' + new Date().toISOString(),
       })
 
       const contentDir = path.resolve(__dirname, 'formatted-content')
@@ -77,24 +69,51 @@ export const api = (() => {
         return fs.createReadStream(filePath)
       })
 
-      const prefilledContext = fs.createReadStream(path.join(__dirname, 'prefilled-context.txt'))
+      // const prefilledContext = fs.createReadStream(path.join(__dirname, 'prefilled-context.txt'))
 
-      fileStreams.push(prefilledContext)
+      // TODO / nice to have: add devcon week notion integration, RTD database
 
-      // Prepare files here - add category, add reference link
+      // fileStreams.push(prefilledContext)
 
       // Upload files to vector store
       await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
 
-      // TODO: add assistant id as .env variable?
-      // TODO: remove old vector stores (could be dangerous, so maybe not - maybe open ai has auto clean up)
+      // Update assistant to use our new vector store
       await openai.beta.assistants.update(assistantID, {
-        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } }, // This overrides the existing vector store on the assistant, so no clean up needed
+        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
       })
+
+      // Clean up old vector stores after creating a new one
+      await _interface.cleanStaleVectorStores()
     },
     cleanStaleVectorStores: async () => {
-      // TODO list all vector stores
-      // TODO delete all files in each store older than X days (the newest vector store will already have been applied to the assistant at this point)
+      console.log('cleaning stale vector stores')
+
+      try {
+        // List all vector stores
+        const vectorStores = await openai.beta.vectorStores.list()
+
+        // Sort vector stores by creation date, newest first
+        const sortedStores = vectorStores.data.sort(
+          (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+        )
+
+        // Keep the 5 most recent stores, just in case there's some async shenanigans with github actions (maybe commits close to each other end up deleting an applied vector store)
+        const storesToKeep = sortedStores.slice(0, 5)
+        const storesToDelete = sortedStores.slice(5)
+
+        // Delete old stores
+        for (const store of storesToDelete) {
+          await openai.beta.vectorStores.del(store.id)
+          console.log(`Deleted vector store: ${store.id}`)
+        }
+
+        // TODO: add file deletion too, deleting the vector store doesn't delete the files
+
+        console.log(`Cleaned up ${storesToDelete.length} old vector stores. Kept ${storesToKeep.length} most recent.`)
+      } catch (error) {
+        console.error('Error cleaning up vector stores:', error)
+      }
     },
     createEmbeddingsFromContent: async () => {
       const contentDir = path.resolve(__dirname, 'content')

@@ -56,6 +56,11 @@ export default defineConfig({
           city_guide,
           devcon_week,
           sea_local,
+          {
+            name: 'ai_context',
+            label: 'ai_context',
+            fields: [createRichText('ai_context')],
+          },
         ],
         ui: {
           router: ({ document }) => {

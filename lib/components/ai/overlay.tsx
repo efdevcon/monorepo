@@ -47,15 +47,24 @@ const DevaBot = () => {
     try {
       let url = "/api/ai";
 
-      const result = await (
-        await fetch(url, {
-          method: "POST",
-          body: JSON.stringify({ message: query, threadID }),
-        })
-      ).json();
+      const result = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify({ message: query, threadID }),
+      });
 
-      setThreadID(result.threadID);
-      setMessages(result.messages);
+      if (result.status === 429) {
+        setError(
+          "You've hit the rate limit (15 requests per hour). Please try again later."
+        );
+        setExecutingQuery(false);
+
+        return;
+      }
+
+      const data = await result.json();
+
+      setThreadID(data.threadID);
+      setMessages(data.messages);
     } catch (e: any) {
       console.error(e, "error");
       setError(e.message);
@@ -66,7 +75,7 @@ const DevaBot = () => {
 
   React.useEffect(() => {
     // reset the query when the executing query is false
-    if (!executingQuery) {
+    if (!executingQuery && !error) {
       setQuery("");
     }
   }, [executingQuery]);
@@ -78,6 +87,8 @@ const DevaBot = () => {
       document.body.style.overflow = "auto";
     }
   }, [visible]);
+
+  console.log(error, "error");
 
   return (
     <>
@@ -245,8 +256,8 @@ const DevaBot = () => {
 
                 <div
                   className={`flex absolute w-full h-full bg-gray-800 ${
-                    executingQuery
-                      ? "bg-opacity-80 pointer-events-auto"
+                    executingQuery || error
+                      ? "bg-opacity-90 pointer-events-auto"
                       : "bg-opacity-0 pointer-events-none"
                   } z-10 items-center justify-center`}
                 >
@@ -258,8 +269,8 @@ const DevaBot = () => {
                         </div>
                       </Loader>
                     )}
+                    {error && <div className="text-red-500 p-4">{error}</div>}
                   </div>
-                  {error && <div className="text-red-500">{error}</div>}
                 </div>
 
                 <div className="flex flex-col gap-1 w-full m-2 mt-0 shrink-0">
