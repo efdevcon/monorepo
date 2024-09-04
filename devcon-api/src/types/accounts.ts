@@ -8,21 +8,13 @@ declare module 'express-session' {
 }
 
 export interface UserAccount {
-  _id?: any
+  id: string
   username?: string
   email?: string
   activeAddress?: string
   addresses: Array<string>
   disabled: boolean
   pushSubscription: any
-  appState: AppState
-  createdAt: Date
-  updatedAt: Date
-}
-
-export interface AppState {
-  createdAt: Date
-  updatedAt: Date
   role?: Role
   yearsOfExperience?: number
   tracks: Track[]
@@ -35,4 +27,7 @@ export interface AppState {
     end: Date
   }>
   publicSchedule?: boolean
+  notifications?: boolean
+  createdAt: Date
+  updatedAt: Date
 }

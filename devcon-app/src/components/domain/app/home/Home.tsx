@@ -97,7 +97,7 @@ export const Home = (props: any) => {
       text: 'Sign out',
       value: 'Signout',
       onClick: () => {
-        accountContext.logout(accountContext.account?._id)
+        accountContext.logout(accountContext.account?.id)
         router.push('/login')
       },
     })
@@ -139,6 +139,9 @@ export const Home = (props: any) => {
               </button>
               <button className="label error plain" onClick={() => router.push('/settings/username')}>
                 MANAGE USERNAME
+              </button>
+              <button className="label error plain" onClick={() => router.push('/settings/profile')}>
+                MANAGE PROFILE
               </button>
               <button className="label error plain" onClick={() => router.push('/settings#delete')}>
                 DELETE ACCOUNT

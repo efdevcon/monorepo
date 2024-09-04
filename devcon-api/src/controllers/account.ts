@@ -27,7 +27,18 @@ async function GetAccount(req: Request, res: Response) {
     return res.status(200).send({ code: 401, message: 'userId session not found.' })
   }
 
-  const account = await client.account.findFirst({ where: { id: userId } })
+  const account = await client.account.findFirst({
+    where: { id: userId },
+    select: {
+      ...Object.fromEntries(
+        Object.keys(client.account.fields).map(key => [key, true])
+      ),
+      createdAt: false,
+      updatedAt: false,
+      disabled: false,
+      appState_bogota: false,
+    }
+  })
   if (account) {
     return res.status(200).send({ code: 200, message: '', data: account })
   }
@@ -38,7 +49,7 @@ async function GetAccount(req: Request, res: Response) {
 async function UpdateAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
-  const paramId = req.query.id as string
+  const paramId = req.params.id as string
   const userId = req.session.userId
   const account = req.body?.account as UserAccount
 
@@ -69,7 +80,7 @@ async function UpdateAccount(req: Request, res: Response) {
 async function DeleteAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
-  const paramId = req.query.id as string
+  const paramId = req.params.id as string
   const userId = req.session.userId
 
   if (!userId) {

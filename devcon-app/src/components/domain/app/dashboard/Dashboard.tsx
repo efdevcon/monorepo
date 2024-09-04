@@ -117,7 +117,7 @@ export const Dashboard = (props: any) => {
   const sliderProps = useSlider(sliderSettings)
 
   const upcomingSessions = (() => {
-    const bookmarkedSessions = account?.appState?.sessions
+    const bookmarkedSessions = account?.sessions
     const sessions: SessionType[] = props.sessions
     const nowPlusThreshold = now && now.clone().add(24, 'hours')
 

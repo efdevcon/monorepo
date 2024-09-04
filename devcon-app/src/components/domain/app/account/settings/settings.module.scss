@@ -39,10 +39,22 @@
   padding-top: $gaps-gap-4;
   padding-bottom: $gaps-gap-4;
 
-  .input {
-    margin-top: $gaps-gap-4;
+  .input, .select {
+    margin-top: $gaps-gap-2;
     margin-bottom: $gaps-gap-2;
   }
+
+  .select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $colors-standard-border-color;
+    border-radius: 4px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+    }
+  } 
 }
 
 .items { 

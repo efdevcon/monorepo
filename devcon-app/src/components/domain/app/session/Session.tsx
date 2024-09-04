@@ -61,8 +61,8 @@ export const Session = (props: SessionProps) => {
   const [relativeTime, setRelativeTime] = React.useState<any>(null)
   const isStandalone = useIsStandalone()
 
-  const interested = account?.appState?.sessions?.some(i => i.level === 'interested' && i.id === props.session.id)
-  const attending = account?.appState?.sessions?.some(i => i.level === 'attending' && i.id === props.session.id)
+  const interested = account?.sessions?.some(i => i.level === 'interested' && i.id === props.session.id)
+  const attending = account?.sessions?.some(i => i.level === 'attending' && i.id === props.session.id)
 
   const sessionUpcoming = now?.isBefore(start)
   const sessionEnded = now?.isAfter(end)

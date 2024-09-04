@@ -22,7 +22,7 @@ export default function UsernameSettings() {
 
   async function updateProfile() {
     if (accountContext && currentAccount) {
-      const updated = await accountContext.updateAccount(currentAccount._id, { ...currentAccount, username: username })
+      const updated = await accountContext.updateAccount(currentAccount.id, { ...currentAccount, username: username })
       if (updated) {
         setError('Profile successfully updated.')
       } else {
@@ -37,7 +37,7 @@ export default function UsernameSettings() {
         nested
         links={[
           {
-            title: 'Email',
+            title: 'Username',
           },
         ]}
       />
