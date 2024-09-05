@@ -69,11 +69,7 @@ export const api = (() => {
         return fs.createReadStream(filePath)
       })
 
-      // const prefilledContext = fs.createReadStream(path.join(__dirname, 'prefilled-context.txt'))
-
       // TODO / nice to have: add devcon week notion integration, RTD database
-
-      // fileStreams.push(prefilledContext)
 
       // Upload files to vector store
       await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })

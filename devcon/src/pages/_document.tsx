@@ -15,8 +15,6 @@ export default class AppDocument extends Document {
             rel="stylesheet"
           />
 
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-
           {/* {process.env.NODE_ENV === 'production' && (
             <script
               type="text/javascript"

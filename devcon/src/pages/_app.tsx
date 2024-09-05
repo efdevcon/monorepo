@@ -8,6 +8,7 @@ import { init } from '@socialgouv/matomo-next'
 import { SessionProvider } from 'next-auth/react'
 import { Web3ModalProvider } from 'context/web3modal'
 import { RecoilRoot } from 'recoil'
+import Head from 'next/head'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '8'
@@ -22,17 +23,22 @@ function App({ Component, pageProps }: any) {
   }, [])
 
   return (
-    <RecoilRoot>
-      <SEO />
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+      </Head>
+      <RecoilRoot>
+        <SEO />
 
-      <IntlProvider messages={pageProps.messages} locale="en">
-        <SessionProvider session={pageProps.session}>
-          <Web3ModalProvider>
-            <Component {...pageProps} />
-          </Web3ModalProvider>
-        </SessionProvider>
-      </IntlProvider>
-    </RecoilRoot>
+        <IntlProvider messages={pageProps.messages} locale="en">
+          <SessionProvider session={pageProps.session}>
+            <Web3ModalProvider>
+              <Component {...pageProps} />
+            </Web3ModalProvider>
+          </SessionProvider>
+        </IntlProvider>
+      </RecoilRoot>
+    </>
   )
 }
 
