@@ -20,11 +20,3 @@
   to = "https://speak.devcon.org/devcon7-sea/cfp"
   status = 302
   force = true
-
-# New configuration for rate limiting
-[[redirects]]
-  from = "/api/rate-limit-test/*"
-  to = "/.netlify/functions/rate-limit-test/:splat"
-  status = 200
-  force = true
-  headers = {X-Rate-Limit = "3", X-Rate-Limit-Period = "1h"}
