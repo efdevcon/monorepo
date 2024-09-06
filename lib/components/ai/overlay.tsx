@@ -45,38 +45,66 @@ const DevaBot = () => {
     resetMessages();
   };
 
+  const [streamingMessage, setStreamingMessage] = React.useState("");
+
   const onSend = async () => {
     if (executingQuery) return;
 
     setExecutingQuery(true);
+    setStreamingMessage("");
 
     try {
-      let url = "/api/ai";
-
-      const result = await fetch(url, {
+      const response = await fetch("/api/ai", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ message: query, threadID }),
       });
 
-      if (result.status === 429) {
-        setError(
-          "You've hit the rate limit (15 requests per hour). Please try again later."
-        );
-        setExecutingQuery(false);
+      const reader = response.body
+        .pipeThrough(new TextDecoderStream())
+        .getReader();
 
-        return;
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        console.log(value, "value");
+
+        const chunks = value.split("chunk_split");
+
+        for (const chunk of chunks) {
+          if (chunk.length === 0) continue;
+
+          const response = JSON.parse(chunk);
+
+          if (response.type === "thread.message.delta") {
+            setStreamingMessage((prev) => prev + response.content);
+          }
+
+          if (response.type === "done") {
+            setThreadID(response.threadID);
+            // setMessages((prevMessages) => [
+            //   ...prevMessages,
+            //   { role: "user", text: query },
+            //   {
+            //     role: "assistant",
+            //     text: response.content,
+            //     files: response.references || [],
+            //   },
+            // ]);
+            setMessages(response.messages);
+            setStreamingMessage("");
+            setExecutingQuery(false);
+          }
+        }
       }
-
-      const data = await result.json();
-
-      setThreadID(data.threadID);
-      setMessages(data.messages);
     } catch (e: any) {
       console.error(e, "error");
-      setError(e.message);
+      setError("Testing streaming responses, errors will occur.." + e.message);
+      setExecutingQuery(false);
     }
-
-    setExecutingQuery(false);
   };
 
   React.useEffect(() => {
@@ -198,6 +226,16 @@ const DevaBot = () => {
                         </div>
                       );
                     })}
+                  {streamingMessage && (
+                    <div className="shrink-0 flex flex-col">
+                      <span className="text-sm opacity-50">
+                        DevAI is responding
+                      </span>
+                      <Markdown className="markdown">
+                        {streamingMessage}
+                      </Markdown>
+                    </div>
+                  )}
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div>
               </div>

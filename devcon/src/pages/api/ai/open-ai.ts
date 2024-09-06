@@ -350,10 +350,6 @@ export const api = (() => {
         })
 
         const formattedMessages = await Promise.all(formattedMessagesPromises)
-        // for (const message of messages.data.reverse()) {
-        //   // @ts-ignore
-        //   console.log(`${message.role} > ${message.content[0].text.value}`)
-        // }
 
         return {
           runID: run.id,
@@ -369,6 +365,143 @@ export const api = (() => {
           runID: run.id,
           status: run.status,
         }
+      }
+    },
+    createMessageStream: async (assistantID: string, userMessage: string, threadID: string) => {
+      if (!threadID) {
+        const thread = await _interface.createThread()
+        threadID = thread.id
+      }
+
+      await openai.beta.threads.messages.create(threadID, {
+        role: 'user',
+        content: `${userMessage}\nSystem: The current date is: ${new Date().toLocaleDateString()}.`,
+      })
+
+      const run = openai.beta.threads.runs.stream(threadID, {
+        assistant_id: assistantID,
+      })
+
+      let fullMessage = ''
+      let runID = ''
+
+      return {
+        [Symbol.asyncIterator]: async function* () {
+          for await (const event of run) {
+            const eventType = event.event
+            const eventData = event.data
+
+            console.log(event, 'event data')
+
+            switch (eventType) {
+              case 'thread.created':
+              case 'thread.run.created':
+              case 'thread.run.queued':
+              case 'thread.run.in_progress':
+              case 'thread.run.requires_action':
+              case 'thread.run.completed':
+              case 'thread.run.failed':
+              case 'thread.run.cancelling':
+              case 'thread.run.cancelled':
+              case 'thread.run.expired':
+              case 'thread.run.step.created':
+              case 'thread.run.step.in_progress':
+              case 'thread.run.step.completed':
+              case 'thread.run.step.failed':
+              case 'thread.run.step.cancelled':
+              case 'thread.run.step.expired':
+              case 'thread.message.created':
+              case 'thread.message.in_progress':
+              case 'thread.message.completed':
+              case 'thread.message.incomplete':
+                yield { type: eventType, data: eventData }
+                break
+              case 'thread.message.delta':
+                if (eventData.delta.content && eventData.delta.content[0].type === 'text') {
+                  const text = eventData.delta.content[0].text.value
+                  fullMessage += text
+                  yield { type: eventType, content: text }
+                }
+                break
+              case 'thread.run.step.delta':
+                if (eventData.delta.step_details && eventData.delta.step_details.type === 'message_creation') {
+                  const content = eventData.delta.step_details.message_creation.content
+                  if (content && content[0].type === 'text') {
+                    const text = content[0].text.value
+                    fullMessage += text
+                    yield { type: eventType, content: text }
+                  }
+                }
+                break
+              case 'error':
+                yield { type: 'error', error: eventData }
+                break
+            }
+
+            if (eventType === 'thread.run.completed') {
+              runID = eventData.id
+            }
+          }
+
+          // After the stream is complete, fetch the final run and process annotations
+          if (runID) {
+            const completedRun = await openai.beta.threads.runs.retrieve(threadID, runID)
+            const messages = await openai.beta.threads.messages.list(threadID)
+
+            const formattedMessagesPromises = messages.data.reverse().map(async (message: any) => {
+              const content = message.content[0]
+
+              let references
+
+              if (content.text.annotations) {
+                const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
+                  if (annotation.type === 'file_citation') {
+                    const file = await openai.files.retrieve(annotation.file_citation.file_id)
+
+                    // @ts-ignore
+                    const fileUrl = filenameToUrl[file.filename.split('.txt')[0]]
+
+                    return {
+                      file,
+                      fileUrl: fileUrl,
+                      textReplace: annotation.text,
+                    }
+                  }
+                })
+
+                references = await Promise.all(fileAnnotationsPromises)
+              }
+
+              let text = content.text.value
+
+              if (references) {
+                for (const reference of references) {
+                  text = text.replace(reference.textReplace, ``)
+                }
+              }
+
+              return {
+                id: message.id,
+                role: message.role,
+                text,
+                files: references || [],
+              }
+            })
+
+            const formattedMessages = await Promise.all(formattedMessagesPromises)
+
+            yield {
+              type: 'done',
+              content: formattedMessages[0].text,
+              references: formattedMessages[0].files,
+              threadID,
+              runID,
+              status: completedRun.status,
+              rawMessages: messages.data,
+              messages: formattedMessages,
+            }
+          }
+        },
       }
     },
   }

@@ -46,13 +46,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     return res.send('hello from server')
   } else if (req.method === 'POST') {
-    const { message, threadID } = JSON.parse(req.body)
+    console.log(req.body, 'req.body')
+    const { message, threadID } = req.body
 
     console.log(message, threadID, 'msg thread id')
 
-    const result = await api.createMessage('asst_nirZMEbcECQHLSduSq73vmEB', message, threadID)
+    // Set headers for streaming
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+    })
 
-    return res.json(result)
+    // Create a stream for the AI response
+    const stream = await api.createMessageStream('asst_nirZMEbcECQHLSduSq73vmEB', message, threadID)
+
+    // Stream the response to the client
+    for await (const chunk of stream) {
+      res.write(JSON.stringify(chunk) + 'chunk_split')
+      // res.flush() // Ensure the data is sent immediately
+    }
+
+    // End the response
+    // res.write()
+    res.end()
+    return
   }
 
   return res.send('hello')
