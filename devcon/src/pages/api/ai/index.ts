@@ -21,8 +21,8 @@ const getRateLimiter = async () => {
       {
         storeClient: pool,
         tableName: 'rate_limit', // This table will be created automatically
-        points: 15,
-        duration: 3600,
+        points: 100,
+        duration: 3600 * 24,
       },
       () => {
         resolve(ratelimiter)

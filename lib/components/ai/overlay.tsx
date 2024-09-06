@@ -62,6 +62,10 @@ const DevaBot = () => {
         body: JSON.stringify({ message: query, threadID }),
       });
 
+      if (!response.body) {
+        throw new Error("No response body");
+      }
+
       const reader = response.body
         .pipeThrough(new TextDecoderStream())
         .getReader();
@@ -78,6 +82,12 @@ const DevaBot = () => {
           if (chunk.length === 0) continue;
 
           const response = JSON.parse(chunk);
+
+          if (response.error) {
+            setError(response.error);
+            setExecutingQuery(false);
+            return;
+          }
 
           if (response.type === "thread.message.delta") {
             setStreamingMessage((prev) => prev + response.content);
@@ -160,7 +170,7 @@ const DevaBot = () => {
             >
               <div className="flex flex-col gap-2 shrink-0">
                 <div className="flex justify-between w-full">
-                  <div className="shrink-0 bold">DevAI Chat</div>
+                  <div className="shrink-0 bold">DevAI 🦄 Chat</div>
                   <div
                     className="cursor-pointer p-4 pt-5 absolute right-0 top-0 flex justify-center items-center"
                     onClick={() => setVisible(false)}
@@ -250,7 +260,7 @@ const DevaBot = () => {
                 endorse, anything the AI says.
               </div>
 
-              <div className="shrink-0 relative w-full flex bg-slate-800 flex-col overflow-hidden">
+              <div className="shrink-0 relative w-full flex bg-slate-100 flex-col rounded overflow-hidden mb-2 text-black">
                 <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
                   <Image src={DevaHead} alt="Deva" className="object-cover" />
                 </div>
@@ -306,7 +316,7 @@ const DevaBot = () => {
                 </div>
 
                 <div
-                  className={`flex absolute w-full h-full bg-gray-800 ${
+                  className={`flex absolute w-full h-full bg-gray-400 ${
                     executingQuery || error
                       ? "bg-opacity-90 pointer-events-auto"
                       : "bg-opacity-0 pointer-events-none"
@@ -320,7 +330,18 @@ const DevaBot = () => {
                         </div>
                       </Loader>
                     )}
-                    {error && <div className="text-red-500 p-4">{error}</div>}
+                    {error && (
+                      <div className="text-red-500 p-4 flex flex-col gap-2">
+                        {error}
+                        <Button
+                          onClick={() => setError("")}
+                          color="purple-1"
+                          fill
+                        >
+                          OK
+                        </Button>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -363,7 +384,7 @@ const DevaBot = () => {
         onClick={() => setVisible(!visible)}
       >
         <span className="hidden md:block">Questions? Ask</span>
-        &nbsp;DevAI&nbsp;🦄
+        &nbsp;here&nbsp;🦄
       </Button>
     </>
   );

@@ -389,9 +389,7 @@ export const api = (() => {
         [Symbol.asyncIterator]: async function* () {
           for await (const event of run) {
             const eventType = event.event
-            const eventData = event.data
-
-            console.log(event, 'event data')
+            const eventData = event.data as any
 
             switch (eventType) {
               case 'thread.created':
