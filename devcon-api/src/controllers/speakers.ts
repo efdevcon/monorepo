@@ -23,8 +23,14 @@ export async function GetSpeakers(req: Request, res: Response) {
 
   // Note: filters are case sensitive
   if (req.query.event) {
-    args.where.eventId = {
-      in: [req.query.event].flat() as string[],
+    args.where = {
+      sessions: {
+        some: {
+          eventId: {
+            in: [req.query.event].flat() as string[]
+          }
+        }
+      }
     }
   }
 
