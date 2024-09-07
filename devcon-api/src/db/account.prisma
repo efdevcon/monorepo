@@ -23,7 +23,12 @@ model Account {
   activeAddress String?
   addresses String[]
   disabled Boolean @default(false)
-  
+
+  role String?
+  yearsOfExperience Int?
+  tracks String[]
+  tags String[]
+
   favorite_speakers String[]
   interested_sessions String[]
   attending_sessions String[]
@@ -40,4 +45,10 @@ model DiscountClaims {
   identifier String
   voucher String
   issued DateTime @default(now())
+}
+
+model rate_limit {
+  key    String  @id @db.VarChar(255)
+  points Int     @default(0)
+  expire BigInt?
 }
