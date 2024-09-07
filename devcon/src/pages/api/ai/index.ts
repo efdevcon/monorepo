@@ -63,7 +63,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Stream the response to the client
     for await (const chunk of stream) {
-      res.write(JSON.stringify(chunk) + 'chunk_split')
+      res.write(JSON.stringify(chunk))
       // res.flush() // Ensure the data is sent immediately
     }
 

@@ -70,45 +70,50 @@ const DevaBot = () => {
         .pipeThrough(new TextDecoderStream())
         .getReader();
 
+      let buffer = "";
+
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
         console.log(value, "value");
 
-        const chunks = value.split("chunk_split");
+        buffer += value;
 
-        for (const chunk of chunks) {
-          if (chunk.length === 0) continue;
+        let startIndex = 0;
+        while (startIndex < buffer.length) {
+          try {
+            const parseResult = JSON.parse(buffer.slice(startIndex));
+            const endIndex = startIndex + JSON.stringify(parseResult).length;
 
-          const response = JSON.parse(chunk);
+            // Process the parsed JSON object
+            if (parseResult.error) {
+              setError(parseResult.error);
+              setExecutingQuery(false);
+              return;
+            }
 
-          if (response.error) {
-            setError(response.error);
-            setExecutingQuery(false);
-            return;
-          }
+            if (parseResult.type === "thread.message.delta") {
+              setStreamingMessage((prev) => prev + parseResult.content);
+            }
 
-          if (response.type === "thread.message.delta") {
-            setStreamingMessage((prev) => prev + response.content);
-          }
+            if (parseResult.type === "done") {
+              setThreadID(parseResult.threadID);
+              setMessages(parseResult.messages);
+              setStreamingMessage("");
+              setExecutingQuery(false);
+            }
 
-          if (response.type === "done") {
-            setThreadID(response.threadID);
-            // setMessages((prevMessages) => [
-            //   ...prevMessages,
-            //   { role: "user", text: query },
-            //   {
-            //     role: "assistant",
-            //     text: response.content,
-            //     files: response.references || [],
-            //   },
-            // ]);
-            setMessages(response.messages);
-            setStreamingMessage("");
-            setExecutingQuery(false);
+            // Move to the next potential JSON object
+            startIndex = endIndex;
+          } catch (parseError) {
+            // If parsing fails, move to the next character and try again
+            startIndex++;
           }
         }
+
+        // Keep any remaining unparsed data in the buffer
+        buffer = buffer.slice(startIndex);
       }
     } catch (e: any) {
       console.error(e, "error");
@@ -383,8 +388,8 @@ const DevaBot = () => {
         fill
         onClick={() => setVisible(!visible)}
       >
-        <span className="hidden md:block">Questions? Ask</span>
-        &nbsp;here&nbsp;🦄
+        <span className="md:hidden block">Questions? 🦄</span>
+        <span className="hidden md:block">Questions? Ask here 🦄</span>
       </Button>
     </>
   );
