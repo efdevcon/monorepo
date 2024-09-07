@@ -179,7 +179,7 @@ const DevaBot = () => {
             >
               <div className="flex flex-col gap-2 shrink-0">
                 <div className="flex justify-between w-full">
-                  <div className="shrink-0 bold">DevAI 🦄 Chat</div>
+                  <div className="shrink-0 bold">Deva 🦄 Chat</div>
                   <div
                     className="cursor-pointer p-4 pt-5 absolute right-0 top-0 flex justify-center items-center"
                     onClick={() => setVisible(false)}
@@ -248,7 +248,7 @@ const DevaBot = () => {
                   {streamingMessage && (
                     <div className="shrink-0 flex flex-col">
                       <span className="text-sm opacity-50">
-                        DevAI is responding
+                        Deva is responding...
                       </span>
                       <Markdown className="markdown">
                         {streamingMessage}
@@ -264,9 +264,9 @@ const DevaBot = () => {
                   messages.length > 0 ? "hidden" : ""
                 }`}
               >
-                This is an experimental feature and the AI may rarely provide
+                This is an experimental feature and Deva may rarely provide
                 answers that are not true - we take no responsibility for, or
-                endorse, anything the AI says.
+                endorse, anything Deva says.
               </div>
 
               <div className="shrink-0 relative w-full flex bg-slate-100 flex-col rounded overflow-hidden mb-2 text-black">
@@ -335,7 +335,7 @@ const DevaBot = () => {
                     {executingQuery && (
                       <Loader className="">
                         <div className="text-xs opacity-70">
-                          DevAI is thinking...
+                          Deva is thinking...
                         </div>
                       </Loader>
                     )}
@@ -367,7 +367,7 @@ const DevaBot = () => {
                       onClick={onSend}
                       disabled={executingQuery}
                     >
-                      Ask DevAI
+                      Ask Deva
                     </Button>
 
                     <Button
