@@ -16,6 +16,7 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
+import { json } from "stream/consumers";
 
 const DevaBot = () => {
   const [visible, setVisible] = useRecoilState(visibleState);
@@ -70,50 +71,53 @@ const DevaBot = () => {
         .pipeThrough(new TextDecoderStream())
         .getReader();
 
-      let buffer = "";
-
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
         console.log(value, "value");
 
-        buffer += value;
+        // Sometimes the stream sends multiple JSON objects in a single string - this splits them, then repairs them
+        const jsonStrings = value.trim().split('"}{"');
 
-        let startIndex = 0;
-        while (startIndex < buffer.length) {
+        for (let i = 0; i < jsonStrings.length; i++) {
+          const jsonString = jsonStrings[i];
+
           try {
-            const parseResult = JSON.parse(buffer.slice(startIndex));
-            const endIndex = startIndex + JSON.stringify(parseResult).length;
+            let response;
+            let repairedString = jsonString;
 
-            // Process the parsed JSON object
-            if (parseResult.error) {
-              setError(parseResult.error);
+            if (i === 0 && jsonStrings.length > 1) {
+              repairedString = jsonString + '"}';
+            } else if (i > 0 && i < jsonStrings.length - 1) {
+              repairedString = '{"' + jsonString + '"}';
+            } else if (i > 0 && i === jsonStrings.length - 1) {
+              repairedString = '{"' + jsonString;
+            }
+
+            response = JSON.parse(repairedString);
+
+            if (response.error) {
+              setError(response.error);
               setExecutingQuery(false);
               return;
             }
 
-            if (parseResult.type === "thread.message.delta") {
-              setStreamingMessage((prev) => prev + parseResult.content);
+            if (response.type === "thread.message.delta") {
+              setStreamingMessage((prev) => prev + response.content);
             }
 
-            if (parseResult.type === "done") {
-              setThreadID(parseResult.threadID);
-              setMessages(parseResult.messages);
+            if (response.type === "done") {
+              setThreadID(response.threadID);
+              setMessages(response.messages);
               setStreamingMessage("");
               setExecutingQuery(false);
             }
-
-            // Move to the next potential JSON object
-            startIndex = endIndex;
           } catch (parseError) {
-            // If parsing fails, move to the next character and try again
-            startIndex++;
+            console.error("Error parsing JSON:", parseError);
+            // Optionally, you can set an error state here if needed
           }
         }
-
-        // Keep any remaining unparsed data in the buffer
-        buffer = buffer.slice(startIndex);
       }
     } catch (e: any) {
       console.error(e, "error");
