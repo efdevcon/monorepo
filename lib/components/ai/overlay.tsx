@@ -16,7 +16,6 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
-import { json } from "stream/consumers";
 
 const DevaBot = () => {
   const [visible, setVisible] = useRecoilState(visibleState);
