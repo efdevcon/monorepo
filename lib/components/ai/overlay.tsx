@@ -9,6 +9,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Loader from "lib/components/loader";
 import { useRecoilState, useResetRecoilState, atom } from "recoil";
 import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "lib/components/ui/popover";
+import {
   visibleState,
   queryState,
   executingQueryState,
@@ -263,9 +268,30 @@ const DevaBot = () => {
                   messages.length > 0 ? "hidden" : ""
                 }`}
               >
-                This is an experimental feature and Deva may rarely provide
-                answers that are not true - we take no responsibility for, or
-                endorse, anything Deva says.
+                This is an MVP and Deva may rarely provide answers that are not
+                true - we take no responsibility for, or endorse, anything Deva
+                says.
+                <Popover>
+                  <PopoverTrigger>
+                    <Button className="text-xs" size="sm">
+                      More Information
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent>
+                    <div className="text-xs">
+                      We currently use OpenAI due to the ease of use and mature
+                      APIs, but are actively working on an open source
+                      alternative. We welcome contributions to this effort on
+                      the{" "}
+                      <Link
+                        href="https://github.com/efdevcon/monorepo"
+                        className="generic"
+                      >
+                        Devcon repository.
+                      </Link>
+                    </div>
+                  </PopoverContent>
+                </Popover>
               </div>
 
               <div className="shrink-0 relative w-full flex bg-slate-100 flex-col rounded overflow-hidden mb-2 text-black">
