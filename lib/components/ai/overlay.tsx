@@ -21,6 +21,7 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
+import { InfoIcon } from "tinacms";
 
 const DevaBot = () => {
   const [visible, setVisible] = useRecoilState(visibleState);
@@ -51,12 +52,14 @@ const DevaBot = () => {
   };
 
   const [streamingMessage, setStreamingMessage] = React.useState("");
+  const [partialChunk, setPartialChunk] = React.useState("");
 
   const onSend = async () => {
     if (executingQuery) return;
 
     setExecutingQuery(true);
     setStreamingMessage("");
+    setPartialChunk("");
 
     try {
       const response = await fetch("/api/ai", {
@@ -75,57 +78,58 @@ const DevaBot = () => {
         .pipeThrough(new TextDecoderStream())
         .getReader();
 
+      let buffer = "";
+      const chunkDelimiter = "_chunk_end_";
+
+      const processChunk = (chunk: string) => {
+        try {
+          const response = JSON.parse(chunk);
+
+          if (response.error) {
+            setError(response.error);
+            setExecutingQuery(false);
+            return;
+          }
+
+          if (response.type === "thread.message.delta") {
+            setStreamingMessage((prev) => prev + response.content);
+          }
+
+          if (response.type === "done") {
+            setThreadID(response.threadID);
+            setMessages(response.messages);
+            setStreamingMessage("");
+            setExecutingQuery(false);
+          }
+        } catch (parseError) {
+          console.error("Error parsing chunk:", parseError);
+        }
+      };
+
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
 
         console.log(value, "value");
 
-        // Sometimes the stream sends multiple JSON objects in a single string - this splits them, then repairs them
-        const jsonStrings = value.trim().split('"}{"');
+        buffer += value;
 
-        for (let i = 0; i < jsonStrings.length; i++) {
-          const jsonString = jsonStrings[i];
+        let delimiterIndex;
 
-          try {
-            let response;
-            let repairedString = jsonString;
-
-            if (i === 0 && jsonStrings.length > 1) {
-              repairedString = jsonString + '"}';
-            } else if (i > 0 && i < jsonStrings.length - 1) {
-              repairedString = '{"' + jsonString + '"}';
-            } else if (i > 0 && i === jsonStrings.length - 1) {
-              repairedString = '{"' + jsonString;
-            }
-
-            response = JSON.parse(repairedString);
-
-            if (response.error) {
-              setError(response.error);
-              setExecutingQuery(false);
-              return;
-            }
-
-            if (response.type === "thread.message.delta") {
-              setStreamingMessage((prev) => prev + response.content);
-            }
-
-            if (response.type === "done") {
-              setThreadID(response.threadID);
-              setMessages(response.messages);
-              setStreamingMessage("");
-              setExecutingQuery(false);
-            }
-          } catch (parseError) {
-            console.error("Error parsing JSON:", parseError);
-            // Optionally, you can set an error state here if needed
-          }
+        while ((delimiterIndex = buffer.indexOf(chunkDelimiter)) !== -1) {
+          const chunk = buffer.slice(0, delimiterIndex);
+          processChunk(chunk);
+          buffer = buffer.slice(delimiterIndex + chunkDelimiter.length);
         }
+      }
+
+      // Process any remaining data in the buffer
+      if (buffer.length > 0) {
+        processChunk(buffer);
       }
     } catch (e: any) {
       console.error(e, "error");
-      setError("Testing streaming responses, errors will occur.." + e.message);
+      setError("An error occurred: " + e.message);
       setExecutingQuery(false);
     }
   };
@@ -270,13 +274,9 @@ const DevaBot = () => {
               >
                 This is an MVP and Deva may rarely provide answers that are not
                 true - we take no responsibility for, or endorse, anything Deva
-                says.
+                says{"  "}
                 <Popover>
-                  <PopoverTrigger>
-                    <Button className="text-xs" size="sm">
-                      More Information
-                    </Button>
-                  </PopoverTrigger>
+                  <PopoverTrigger>ℹ️</PopoverTrigger>
                   <PopoverContent>
                     <div className="text-xs">
                       We currently use OpenAI due to the ease of use and mature
@@ -294,7 +294,7 @@ const DevaBot = () => {
                 </Popover>
               </div>
 
-              <div className="shrink-0 relative w-full flex bg-slate-100 flex-col rounded overflow-hidden mb-2 text-black">
+              <div className="shrink-0 relative w-full flex bg-slate-800 flex-col rounded overflow-hidden mb-2">
                 <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
                   <Image src={DevaHead} alt="Deva" className="object-cover" />
                 </div>
@@ -350,7 +350,7 @@ const DevaBot = () => {
                 </div>
 
                 <div
-                  className={`flex absolute w-full h-full bg-gray-400 ${
+                  className={`flex absolute w-full h-full bg-slate-800 ${
                     executingQuery || error
                       ? "bg-opacity-90 pointer-events-auto"
                       : "bg-opacity-0 pointer-events-none"
