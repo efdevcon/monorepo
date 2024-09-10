@@ -43,6 +43,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(429).json({ error: 'Too Many Requests' })
   }
 
+  return res.status(200).json('not yet')
+
   if (req.method === 'GET') {
     return res.send('hello from server')
   } else if (req.method === 'POST') {
