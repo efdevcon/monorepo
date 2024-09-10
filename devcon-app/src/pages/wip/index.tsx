@@ -11,6 +11,8 @@ import LoginIcons from './dc-7-images/login-icons.png'
 import { Button } from 'lib/components/button'
 import InfoIcon from 'assets/icons/info-icon.svg'
 import InfoIcon2 from 'assets/icons/info-filled.svg'
+// import { Popover } from 'lib/components/ui/popover'
+import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'lib/components/ui/input-otp'
 import cn from 'classnames'
 
 const Login = () => {
@@ -46,15 +48,32 @@ const Login = () => {
         </div>
       </div>
       <div>
-        <p>
-          Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity through
-          our application if you choose to.
-        </p>
+        <InputOTP maxLength={8}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+            <InputOTPSlot index={6} />
+            <InputOTPSlot index={7} />
+          </InputOTPGroup>
+        </InputOTP>
+        <div>
+          <p>
+            Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
+            through our application if you choose to.
+          </p>
 
-        <div className="flex flex-row gap-2">
-          <p>Privacy Policy</p>
-          <p>Terms of Use</p>
-          <p>Cookie Policy</p>
+          <div className="flex flex-row gap-2">
+            <p>Privacy Policy</p>
+            <p>Terms of Use</p>
+            <p>Cookie Policy</p>
+          </div>
         </div>
       </div>
     </div>
