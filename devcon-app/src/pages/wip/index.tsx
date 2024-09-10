@@ -15,12 +15,38 @@ import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popov
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'lib/components/ui/input-otp'
 import { Separator } from 'lib/components/ui/separator'
 import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
+import DC7Logo from './dc-7-images/dc7-logo.png'
 import cn from 'classnames'
+
+const MobileLogin = () => {
+  return (
+    <div className="text-white flex justify-center items-end h-full max-w-[500px] self-center">
+      <div className="mb-8 flex flex-col gap-2 px-8">
+        <div>
+          <Image
+            src={LoginLogo}
+            alt="Login Logo"
+            className="w-[250px] max-w-[100%] invert"
+            style={{ filter: 'brightness(0) invert(1)' }}
+          />
+        </div>
+        <div className="text-2xl font-semibold">
+          Your personalized experience to Devcon SEA — Ethereum Developer Conference.
+        </div>
+        <div>
+          <Button fat fill className="w-full plain mt-2 bold text-lg" size="lg" color="purple-1">
+            Get Started
+          </Button>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const Login = () => {
   return (
     <div className="flex flex-col justify-between lg:justify-center h-full w-[400px] xl:w-[470px] max-w-full lg:max-w-[50vw] relative text-sm">
-      <Image src={LoginLogo} alt="Login Logo" className="w-[169px] max-w-[100%]" />
+      <Image src={LoginLogo} alt="Login Logo" className="w-[200px] max-w-[100%]" />
 
       <div>
         <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%] my-8" />
@@ -46,7 +72,7 @@ const Login = () => {
           </p>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-4">
           <p className="font-semibold">Email — Not interested in Web 3 Connection*</p>
           <div className="relative border border-[#E1E4EA] border-solid rounded-xl mt-2 overflow-hidden">
             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -117,12 +143,12 @@ const Login = () => {
           </InputOTPGroup>
         </InputOTP> */}
         <div>
-          <p className="opacity-80 mt-16 text-xs">
+          <p className="opacity-80 mt-12 text-xs">
             Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
             through our application if you choose to.
           </p>
 
-          <div className="flex flex-row gap-6 mt-8 text-xs text-[#8C72AE]">
+          <div className="flex flex-row gap-4 mt-2 text-xs text-[#8C72AE]">
             <p className="underline">Privacy Policy</p>
             <p className="underline">Terms of Use</p>
             <p className="underline">Cookie Policy</p>
@@ -144,23 +170,39 @@ const Index = (props: any) => {
   // }
 
   return (
-    // <AppLayout>
     <div>
       <SEO title="Passport Login" />
       <div className="flex flex-row lg:p-2 h-screen w-screen relative xl:justify-center xl:items-center">
-        <div className="shrink-0 lg:shrink  absolute h-full lg:relative left-0 right-0 bottom-0 top-0 px-8">
+        <div className="hidden lg:block shrink-0 lg:shrink relative  px-8">
           <Login />
         </div>
+        <div className="lg:hidden absolute h-full w-full left-0 right-0 bottom-0 top-0 z-10">
+          <MobileLogin />
+        </div>
         <div className="w-1/2 shrink-0 grow xl:grow-0 relative xl:ml-16">
-          <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
+          <div className="relative w-full h-full lg:rounded-2xl overflow-hidden">
+            <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
+            <Image
+              src={DC7Logo}
+              alt="Login Logo"
+              className="w-[169px] max-w-[100%] absolute bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden lg:block"
+            />
+            <div className="lg:hidden absolute bottom-0 left-0 right-0 h-full">
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-[#000000] to-transparent"
+                // style={{
+                //   clipPath: 'ellipse(100% 100% at 50% 100%)',
+                // }}
+              />
+            </div>
+          </div>
+
           <div className="w-[310px] h-[310px] absolute top-[44.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Spinner />
           </div>
-          {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">hello</div> */}
         </div>
       </div>
     </div>
-    /* </AppLayout> */
   )
 }
 
