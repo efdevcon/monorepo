@@ -19,7 +19,7 @@ import cn from 'classnames'
 
 const Login = () => {
   return (
-    <div className="flex flex-col justify-between lg:justify-center h-full w-[470px] lg:max-w-[50vw] mr-4 relative text-sm">
+    <div className="flex flex-col justify-between lg:justify-center h-full w-[400px] xl:w-[470px] max-w-full lg:max-w-[50vw] relative text-sm">
       <Image src={LoginLogo} alt="Login Logo" className="w-[169px] max-w-[100%]" />
 
       <div>
@@ -32,7 +32,11 @@ const Login = () => {
                 <InfoIcon className="-translate-y-[0px]" />
               </PopoverTrigger>
               <PopoverContent>
-                <div className="text-sm">Are you a super cool wallet-loginooooor, or a normie?</div>
+                <div className="text-sm">
+                  You take the email pill... the story ends, you wake up in your bed and believe whatever you want to
+                  believe. You take the Ethereum pill... you stay in Wonderland, and I show you how deep the rabbit hole
+                  goes.
+                </div>
               </PopoverContent>
             </Popover>
           </p>
@@ -81,7 +85,15 @@ const Login = () => {
         <div>
           <p className="font-semibold">Wallet — For Web 3 Experiences</p>
           <p className="text-sm opacity-80 mt-2">
-            <InfoIcon2 /> To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
+            <Popover>
+              <PopoverTrigger className="plain">
+                <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="text-sm">Based and Ethereum-pilled</div>
+              </PopoverContent>
+            </Popover>{' '}
+            To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
           </p>
           <Button fat fill className="w-full plain mt-4" color="purple-1">
             Continue With Ethereum
@@ -135,11 +147,11 @@ const Index = (props: any) => {
     // <AppLayout>
     <div>
       <SEO title="Passport Login" />
-      <div className="flex flex-row lg:p-2 h-screen w-screen relative justify-center items-center">
-        <div className="shrink-0 absolute h-full lg:relative left-0 right-0 bottom-0 top-0">
+      <div className="flex flex-row lg:p-2 h-screen w-screen relative xl:justify-center xl:items-center">
+        <div className="shrink-0 lg:shrink  absolute h-full lg:relative left-0 right-0 bottom-0 top-0 px-8">
           <Login />
         </div>
-        <div className="w-1/2 shrink-0 relative">
+        <div className="w-1/2 shrink-0 grow xl:grow-0 relative xl:ml-16">
           <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
           <div className="w-[310px] h-[310px] absolute top-[44.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Spinner />

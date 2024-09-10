@@ -58,7 +58,7 @@ export const colors = {
     fill: {
       color: "#000000",
       background: "#45454520",
-      hover: "#45454520",
+      hover: "#45454540",
     },
     ghost: {
       color: "#454545",
