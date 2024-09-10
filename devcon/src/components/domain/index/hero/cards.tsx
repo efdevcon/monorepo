@@ -161,7 +161,7 @@ export const SpeakerTicket = (props: SpeakerProps) => {
           <div>
             <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-12 object-contain object-left" />
           </div>
-          <div className="flex flex-col justify-end items-end text-sm">
+          <div className="flex flex-col justify-end items-end text-sm shrink-0">
             <div className="leading-3 bold uppercase text-xs text-nowrap text-[#5B5F84]">Bangkok, Thailand</div>
             <div className="text-sm text-nowrap">
               <span className="text-[#6B54AB]">12 — 15</span> Nov, 2024
