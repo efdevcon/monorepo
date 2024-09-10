@@ -234,7 +234,7 @@ const Index = (props: any) => {
   }, [])
 
   return (
-    <div className="text-base ">
+    <div className="text-base bg-white">
       <SEO title="Passport Login" />
       <div className="flex flex-row lg:p-2 w-screen overflow-hiddenrelative xl:justify-center xl:items-center h-[calc(var(--vh,1vh)*100)]">
         <div className="hidden lg:block shrink-0 lg:shrink relative  px-8">
