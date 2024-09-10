@@ -3,7 +3,6 @@ import { Center } from '@react-three/drei'
 import gsap from 'gsap'
 import React, { useRef, useEffect, useState } from 'react'
 import * as THREE from 'three'
-import { View } from '@react-three/drei'
 import { CustomMaterial } from './material'
 import { Canvas } from '@react-three/fiber'
 
@@ -66,24 +65,33 @@ export const Spinner = () => {
       >
         <Center ref={groupRef}>
           <mesh ref={ring1Ref}>
+            {/* eslint-disable-next-line */}
             <torusGeometry args={[2.1, 0.06]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
+          {/* eslint-disable-next-line */}
           <mesh ref={ring2Ref} rotation={[Math.PI / 2, 0, 0]}>
+            {/* eslint-disable-next-line */}
             <torusGeometry args={[1.8, 0.06]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
           <group scale={0.8}>
+            {/* eslint-disable-next-line */}
             <mesh position={[0, 0.8, 0]} rotation={[0, 0, 0]} ref={cone1Ref}>
+              {/* eslint-disable-next-line */}
               <coneGeometry args={[1, 1.41, 4]}></coneGeometry>
               <CustomMaterial></CustomMaterial>
             </mesh>
             <mesh
+              /* eslint-disable-next-line */
               position={[0, -0.8, 0]}
+              /* eslint-disable-next-line */
               rotation={[-Math.PI, 0, 0]}
               ref={cone2Ref}
+              /* eslint-disable-next-line */
               onAfterRender={() => setMounted(true)}
             >
+              {/* eslint-disable-next-line */}
               <coneGeometry args={[1, 1.41, 4]}></coneGeometry>
               <CustomMaterial></CustomMaterial>
             </mesh>
