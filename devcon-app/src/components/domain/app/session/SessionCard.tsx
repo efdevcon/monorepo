@@ -28,7 +28,7 @@ type CardProps = {
 export const SessionCard = (props: CardProps) => {
   const { account, setSessionBookmark } = useAccountContext()
   const { now } = useAppContext()
-  const bookmarkedSessions = account?.appState?.sessions
+  const bookmarkedSessions = account?.sessions
   const bookmarkedSession = bookmarkedSessions?.find(
     bookmark => bookmark.id === props.session.id && bookmark.level === 'attending'
   )

@@ -43,6 +43,10 @@ model Speaker {
   avatar String
   description String?
   twitter String?
+  farcaster String?
+  lens String?
+  ens String?
+  github String?
   events Event[]
   sessions Session[]
 }
@@ -55,6 +59,7 @@ model Session {
   track String
   type String
   expertise String
+  featured Boolean?
   tags String
   duration Int?
   language String?

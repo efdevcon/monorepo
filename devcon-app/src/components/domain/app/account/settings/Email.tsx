@@ -80,7 +80,7 @@ export default function EmailSettings() {
   const removeEmail = async () => {
     if (!accountContext.account) return
 
-    await accountContext.updateAccount(accountContext.account._id, { ...accountContext.account, email: undefined })
+    await accountContext.updateAccount(accountContext.account.id, { ...accountContext.account, email: undefined })
 
     setAreYouSure(false)
     setEmail('')

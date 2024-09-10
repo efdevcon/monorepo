@@ -63,7 +63,7 @@ export default function WalletSettings() {
   const removeWallet = async () => {
     if (!accountContext.account) return
 
-    await accountContext.updateAccount(accountContext.account._id, {
+    await accountContext.updateAccount(accountContext.account.id, {
       ...accountContext.account,
       addresses: accountContext.account.addresses.filter(i => i !== promptRemove),
     })

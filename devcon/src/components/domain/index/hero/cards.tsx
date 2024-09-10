@@ -135,7 +135,7 @@ export const SpeakerTicket = (props: SpeakerProps) => {
   if (!props) return null
 
   const trackImage = getTrackImage(props.track)
-  const titleClassName = props.title.length > 100 ? 'text-sm lg:text-lg' : 'text-lg lg:text-xl'
+  const titleClassName = props.title.length > 100 ? 'text-sm sm:text-base md:text-lg' : 'text-base sm:text-xl'
 
   return (
     <div
@@ -161,18 +161,18 @@ export const SpeakerTicket = (props: SpeakerProps) => {
           <div>
             <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-12 object-contain object-left" />
           </div>
-          <div className="flex flex-col justify-end items-end text-sm">
+          <div className="flex flex-col justify-end items-end text-sm shrink-0">
             <div className="leading-3 bold uppercase text-xs text-nowrap text-[#5B5F84]">Bangkok, Thailand</div>
             <div className="text-sm text-nowrap">
               <span className="text-[#6B54AB]">12 — 15</span> Nov, 2024
             </div>
           </div>
         </div>
-        <div className="flex flex-col justify-center grow h-40 max-w-72">
+        <div className="flex flex-col justify-center grow sm:h-40 max-w-72 mb-1">
           <div className={titleClassName}>{props.title}</div>
         </div>
-        <div className="shrink-0 w-full my-2 border-t-2 border-t-solid border-dashed border-[#D9D9D9]"></div>
-        <div className="shrink-0 my-2 text-[#5B5F84] text-xs">{props.speakers.map(i => i.name).join(', ')}</div>
+        <div className="shrink-0 w-3/5 sm:my-2 border-t-2 border-t-solid border-dashed border-[#D9D9D9]"></div>
+        <div className="shrink-0 mt-1 sm:my-2 text-[#5B5F84] text-xs">{props.speakers.map(i => i.name).join(', ')}</div>
         <div className="shrink-0 bold text-xs">{props.track}</div>
       </div>
     </div>

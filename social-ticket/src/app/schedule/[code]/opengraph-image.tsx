@@ -44,7 +44,10 @@ export default async function Image({ params }: { params: { code: string } }) {
   if (track === "Security") trackImage = "Security.png";
   if (track === "Layer 2") trackImage = "Layer2.png";
 
-  let titleSize = data.title.length > 100 ? "text-3xl" : "text-5xl";
+  let titleSize = "text-5xl";
+  if (data.title.length > 65) titleSize = "text-4xl";
+  if (data.title.length > 100) titleSize = "text-3xl";
+
   return new ImageResponse(
     (
       <div tw="flex justify-between bg-[#36364c] text-black w-full h-full overflow-hidden p-8">

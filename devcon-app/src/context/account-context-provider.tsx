@@ -41,6 +41,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     setSpeakerFavorite,
     setSessionBookmark,
     toggleScheduleSharing,
+    toggleNotifications,
     showLoginRequired,
     setShowLoginRequired,
   })
@@ -271,7 +272,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return
     }
 
-    let favorites = account.appState?.speakers ?? []
+    let favorites = account.speakers ?? []
 
     if (remove) {
       favorites = favorites.filter(i => i !== speakerId)
@@ -281,13 +282,10 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const newAccountState = {
       ...account,
-      appState: {
-        ...account.appState,
-        speakers: favorites,
-      },
+      speakers: favorites,
     }
 
-    const success = await updateAccount(account._id, newAccountState)
+    const success = await updateAccount(account.id, newAccountState)
 
     if (!success) return
 
@@ -309,7 +307,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return
     }
 
-    let sessions = account.appState?.sessions ?? []
+    let sessions = account.sessions ?? []
 
     if (remove) {
       sessions = sessions.filter(i => i.id !== session.id || level !== i.level)
@@ -327,13 +325,10 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const newAccountState = {
       ...account,
-      appState: {
-        ...account.appState,
-        sessions: sessions,
-      },
+      sessions: sessions,
     }
 
-    const success = await updateAccount(account._id, newAccountState)
+    const success = await updateAccount(account.id, newAccountState)
 
     if (!success) return
 
@@ -346,13 +341,27 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   async function toggleScheduleSharing(account: UserAccount) {
     const newAccountState = {
       ...account,
-      appState: {
-        ...account.appState,
-        publicSchedule: !account.appState.publicSchedule ? true : false,
-      },
+      publicSchedule: !account.publicSchedule ? true : false,
     }
 
-    const success = await updateAccount(account._id, newAccountState)
+    const success = await updateAccount(account.id, newAccountState)
+
+    if (!success) return
+
+    setContext({
+      ...context,
+      edit: true,
+      account: newAccountState,
+    })
+  }
+
+  async function toggleNotifications(account: UserAccount) {
+    const newAccountState = {
+      ...account,
+      notifications: !account.notifications ? true : false,
+    }
+
+    const success = await updateAccount(account.id, newAccountState)
 
     if (!success) return
 

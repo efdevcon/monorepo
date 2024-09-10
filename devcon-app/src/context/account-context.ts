@@ -23,6 +23,7 @@ export interface AccountContextType {
   setSpeakerFavorite: (speakerId: string, remove: boolean, account?: UserAccount) => void,
   setSessionBookmark: (session: Session, level: 'attending' | 'interested', account?: UserAccount, remove?: boolean) => void,
   toggleScheduleSharing: (account: UserAccount) => void,
+  toggleNotifications: (account: UserAccount) => void,
   showLoginRequired?: boolean
   setShowLoginRequired?: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -45,5 +46,6 @@ export const AccountContext = createContext<AccountContextType>({
   deleteAccount: async () => false,
   setSpeakerFavorite: () => {},
   setSessionBookmark: () => {},
-  toggleScheduleSharing: () => {}
+  toggleScheduleSharing: () => {},
+  toggleNotifications: () => {},
 })
