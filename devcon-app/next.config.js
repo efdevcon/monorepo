@@ -44,6 +44,12 @@ const nextConfig = {
       ],
       resolve: {
         ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          react: path.resolve(__dirname, 'node_modules/react'),
+          'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+          'recoil': path.resolve(__dirname, 'node_modules/recoil'),
+        },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
         fallback: {
           tls: false,

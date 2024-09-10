@@ -49,8 +49,8 @@ export const colors = {
       hover: "#2e2c2c",
     },
     ghost: {
-      color: "#88c43f",
-      hover: "#88c43f20",
+      color: "#454545",
+      hover: "#45454520",
     },
   },
   "purple-1": {

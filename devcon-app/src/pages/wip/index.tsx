@@ -13,6 +13,7 @@ import InfoIcon from 'assets/icons/info-icon.svg'
 import InfoIcon2 from 'assets/icons/info-filled.svg'
 // import { Popover } from 'lib/components/ui/popover'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'lib/components/ui/input-otp'
+import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
 import cn from 'classnames'
 
 const Login = () => {
@@ -100,6 +101,9 @@ const Index = (props: any) => {
         </div>
         <div className="w-1/2 shrink-0 relative">
           <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
+          <div className="w-[300px] h-[300px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <Spinner />
+          </div>
           {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">hello</div> */}
         </div>
       </div>
