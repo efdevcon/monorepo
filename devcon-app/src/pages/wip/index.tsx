@@ -11,45 +11,85 @@ import LoginIcons from './dc-7-images/login-icons.png'
 import { Button } from 'lib/components/button'
 import InfoIcon from 'assets/icons/info-icon.svg'
 import InfoIcon2 from 'assets/icons/info-filled.svg'
-// import { Popover } from 'lib/components/ui/popover'
+import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from 'lib/components/ui/input-otp'
+import { Separator } from 'lib/components/ui/separator'
 import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
 import cn from 'classnames'
 
 const Login = () => {
   return (
-    <div className="flex flex-col justify-between lg:justify-center h-full w-[470px] lg:max-w-[50vw] mr-4">
+    <div className="flex flex-col justify-between lg:justify-center h-full w-[470px] lg:max-w-[50vw] mr-4 relative text-sm">
       <Image src={LoginLogo} alt="Login Logo" className="w-[169px] max-w-[100%]" />
 
       <div>
-        <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%]" />
-        <p>
-          Choose your trust model. <InfoIcon />
-        </p>
-        <p>
-          If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account on
-          your behalf.
-        </p>
+        <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%] my-8" />
+        <div className="flex flex-col gap-2">
+          <p className="text-xl flex items-center gap-3">
+            Choose your trust model.{' '}
+            <Popover>
+              <PopoverTrigger className="plain">
+                <InfoIcon className="-translate-y-[0px]" />
+              </PopoverTrigger>
+              <PopoverContent>
+                <div className="text-sm">Are you a super cool wallet-loginooooor, or a normie?</div>
+              </PopoverContent>
+            </Popover>
+          </p>
+          <p className="text-sm opacity-80">
+            If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account on
+            your behalf.
+          </p>
+        </div>
 
-        <div>
-          <p>Email — Not interested in Web 3 Connection*</p>
-          <Button fat className="w-full plain" color="black-1">
+        <div className="mt-8">
+          <p className="font-semibold">Email — Not interested in Web 3 Connection*</p>
+          <div className="relative border border-[#E1E4EA] border-solid rounded-xl mt-2 overflow-hidden">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <input
+              type="email"
+              className="w-full pl-10 pr-3 py-2 border-none focus:outline-none focus:ring-0"
+              placeholder="roadto@devcon.org"
+            />
+          </div>
+          <Button fat fill className="w-full plain mt-4 border !border-[#E1E4EA] border-solid" color="grey-1">
             Continue With Email
           </Button>
         </div>
 
+        <div className="flex flex-row w-full items-center gap-4 my-4">
+          <Separator className="shrink" />
+          <span className="shrink-0 font-semibold text-sm">OR</span>
+          <Separator className="shrink" />
+        </div>
+
         <div>
-          <p>Wallet — For Web 3 Experiences</p>
-          <p>
+          <p className="font-semibold">Wallet — For Web 3 Experiences</p>
+          <p className="text-sm opacity-80 mt-2">
             <InfoIcon2 /> To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
           </p>
-          <Button fat fill className="w-full plain" color="black-1">
+          <Button fat fill className="w-full plain mt-4" color="purple-1">
             Continue With Ethereum
           </Button>
         </div>
       </div>
       <div>
-        <InputOTP maxLength={8}>
+        {/* <InputOTP maxLength={8}>
           <InputOTPGroup>
             <InputOTPSlot index={0} />
             <InputOTPSlot index={1} />
@@ -63,17 +103,17 @@ const Login = () => {
             <InputOTPSlot index={6} />
             <InputOTPSlot index={7} />
           </InputOTPGroup>
-        </InputOTP>
+        </InputOTP> */}
         <div>
-          <p>
+          <p className="opacity-80 mt-16 text-xs">
             Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
             through our application if you choose to.
           </p>
 
-          <div className="flex flex-row gap-2">
-            <p>Privacy Policy</p>
-            <p>Terms of Use</p>
-            <p>Cookie Policy</p>
+          <div className="flex flex-row gap-6 mt-8 text-xs text-[#8C72AE]">
+            <p className="underline">Privacy Policy</p>
+            <p className="underline">Terms of Use</p>
+            <p className="underline">Cookie Policy</p>
           </div>
         </div>
       </div>
@@ -101,7 +141,7 @@ const Index = (props: any) => {
         </div>
         <div className="w-1/2 shrink-0 relative">
           <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
-          <div className="w-[300px] h-[300px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-[310px] h-[310px] absolute top-[44.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Spinner />
           </div>
           {/* <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">hello</div> */}

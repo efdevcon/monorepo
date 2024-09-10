@@ -16,15 +16,8 @@ export const Spinner = () => {
 
   const [mounted, setMounted] = useState(false)
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setMounted(true)
-  //   }, 0)
-  // }, [])
-
   useGSAP(() => {
     if (mounted && ring1Ref.current && ring2Ref.current && cone1Ref.current && cone2Ref.current && groupRef.current) {
-      console.log('gsappin')
       gsap
         .timeline({
           repeat: -1,
@@ -73,11 +66,11 @@ export const Spinner = () => {
       >
         <Center ref={groupRef}>
           <mesh ref={ring1Ref}>
-            <torusGeometry args={[2.1, 0.08]}></torusGeometry>
+            <torusGeometry args={[2.1, 0.06]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
           <mesh ref={ring2Ref} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[1.8, 0.08]}></torusGeometry>
+            <torusGeometry args={[1.8, 0.06]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
           <group scale={0.8}>

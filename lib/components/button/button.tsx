@@ -8,6 +8,7 @@ type ColorType =
   | "purple-1"
   | "green-1"
   | "blue-1"
+  | "grey-1"
   | "teal-1"
   | "orange-1";
 type SizeType = "sm" | "md" | "lg";
@@ -47,6 +48,17 @@ export const colors = {
       color: "#ffffff",
       background: "#454545",
       hover: "#2e2c2c",
+    },
+    ghost: {
+      color: "#454545",
+      hover: "#45454520",
+    },
+  },
+  "grey-1": {
+    fill: {
+      color: "#000000",
+      background: "#45454520",
+      hover: "#45454520",
     },
     ghost: {
       color: "#454545",
