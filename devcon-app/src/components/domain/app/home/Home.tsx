@@ -97,6 +97,7 @@ export const Home = (props: any) => {
       text: 'Sign out',
       value: 'Signout',
       onClick: () => {
+        // @ts-ignore
         accountContext.logout(accountContext.account?.id)
         router.push('/login')
       },
@@ -158,6 +159,7 @@ export const Home = (props: any) => {
           <div className={css['connection-info']}>
             <div className={css['wallet']}>
               <div className={css['circle']}>
+                {/* eslint-disable-next-line */}
                 <img src={avatar.url} alt={avatar.name} />
               </div>
 

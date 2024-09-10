@@ -55,7 +55,7 @@ const MobileLogin = () => {
                   className="w-full plain mt-2 bold text-lg"
                   size="lg"
                   color="white-1"
-                  onClick={e => {
+                  onClick={(e: any) => {
                     e.stopPropagation()
                     setLoginOpen(true)
                   }}
