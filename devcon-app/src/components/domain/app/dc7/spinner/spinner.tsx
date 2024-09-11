@@ -27,7 +27,7 @@ export const Spinner = () => {
             z: `+=${Math.PI * 2}`,
             x: `+=${Math.PI * 2}`,
 
-            duration: 6,
+            duration: 8,
             ease: 'none',
           },
           0
@@ -39,7 +39,7 @@ export const Spinner = () => {
             x: `-=${Math.PI * 2}`,
 
             ease: 'none',
-            duration: 6,
+            duration: 8,
           },
           0
         )
@@ -47,7 +47,7 @@ export const Spinner = () => {
           groupRef.current.rotation,
           {
             y: Math.PI * 2,
-            duration: 6,
+            duration: 8,
             ease: 'none',
           },
           0
@@ -66,13 +66,13 @@ export const Spinner = () => {
         <Center ref={groupRef}>
           <mesh ref={ring1Ref}>
             {/* eslint-disable-next-line */}
-            <torusGeometry args={[2.1, 0.06]}></torusGeometry>
+            <torusGeometry args={[2.1, 0.09]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
           {/* eslint-disable-next-line */}
           <mesh ref={ring2Ref} rotation={[Math.PI / 2, 0, 0]}>
             {/* eslint-disable-next-line */}
-            <torusGeometry args={[1.8, 0.06]}></torusGeometry>
+            <torusGeometry args={[1.8, 0.09]}></torusGeometry>
             <CustomMaterial></CustomMaterial>
           </mesh>
           <group scale={0.8}>

@@ -45,7 +45,7 @@ const MobileLogin = () => {
                   style={{ filter: 'brightness(0) invert(1)' }}
                 />
               </div>
-              <div className="text-3xl font-semibold">
+              <div className="text-3xl font-semibold font-secondary">
                 Your personalized experience to Devcon SEA — Ethereum Developer Conference.
               </div>
               <div>
@@ -125,7 +125,7 @@ const TrustModels = () => {
                 </PopoverContent>
               </Popover>
             </p>
-            <p className="text-sm opacity-80">
+            <p className="text-sm text-[#939393]">
               If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account
               on your behalf.
             </p>
@@ -163,13 +163,13 @@ const TrustModels = () => {
 
           <div className="flex flex-row w-full items-center gap-4 my-4">
             <Separator className="shrink" />
-            <span className="shrink-0 font-semibold text-sm">OR</span>
+            <span className="shrink-0 text-sm text-[#939393]">OR</span>
             <Separator className="shrink" />
           </div>
 
           <div>
             <p className="font-semibold">Wallet — For Web 3 Experiences</p>
-            <p className="text-sm opacity-80 mt-2">
+            <p className="text-sm text-[#939393] mt-2">
               <Popover>
                 <PopoverTrigger className="plain">
                   <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
@@ -180,7 +180,7 @@ const TrustModels = () => {
               </Popover>{' '}
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
-            <Button fat fill className="w-full plain mt-4" color="purple-1">
+            <Button fat fill className="w-full plain mt-4" color="purple-2">
               Continue With Ethereum
             </Button>
           </div>
@@ -190,7 +190,9 @@ const TrustModels = () => {
       {isEmailVerification && (
         <div>
           <div className="text-xl">Enter Verification Code.</div>
-          <div className="text-sm opacity-80 my-2 mb-4">We&apos;ve sent a verification code to your email address.</div>
+          <div className="text-sm text-[#939393] my-2 mb-4">
+            We&apos;ve sent a verification code to your email address.
+          </div>
           <InputOTP maxLength={8}>
             <InputOTPGroup>
               <InputOTPSlot index={0} />
@@ -206,7 +208,7 @@ const TrustModels = () => {
               <InputOTPSlot index={7} />
             </InputOTPGroup>
           </InputOTP>
-          <Button fat fill className="w-full plain mt-4" color="purple-1">
+          <Button fat fill className="w-full plain mt-4" color="purple-2">
             Verify Your Email
           </Button>
           <div className="flex flex-row justify-between mt-8">
@@ -217,7 +219,7 @@ const TrustModels = () => {
       )}
 
       <div>
-        <p className="opacity-80 mt-12 text-xs">
+        <p className="text-[#939393] mt-12 text-xs">
           Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity through
           our application if you choose to.
         </p>
