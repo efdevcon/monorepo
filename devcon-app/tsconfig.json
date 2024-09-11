@@ -2,8 +2,8 @@
   "extends": "../base.tsconfig.json",
   "compilerOptions": {
     "baseUrl": "./src",
-    // "module": "esnext",
-    // "moduleResolution": "bundler",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "paths": {
       "lib/*": ["./../../lib/*"],
       "@/*": ["./../../lib/*"]
