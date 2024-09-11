@@ -5,7 +5,7 @@ import { SEO } from 'components/domain/seo'
 import { useSessionData, useSpeakerData } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
 import Image from 'next/image'
-import LoginBackdrop from './dc-7-images/login-backdrop.png'
+import LoginBackdrop from './dc-7-images/login-backdrop-2.png'
 import LoginLogo from './dc-7-images/login-logo.png'
 import LoginIcons from './dc-7-images/login-icons.png'
 import { Button } from 'lib/components/button'
@@ -245,7 +245,12 @@ const Index = (props: any) => {
         </div>
         <div className="w-1/2 shrink-0 grow xl:grow-0 relative xl:ml-16">
           <div className="relative w-full h-full lg:rounded-2xl overflow-hidden">
-            <Image src={LoginBackdrop} alt="Login Backdrop" className="object-cover h-full w-full lg:rounded-2xl" />
+            <Image
+              src={LoginBackdrop}
+              alt="Login Backdrop"
+              className="object-cover h-full w-full lg:rounded-2xl"
+              priority
+            />
             <Image
               src={DC7Logo}
               alt="Login Logo"
