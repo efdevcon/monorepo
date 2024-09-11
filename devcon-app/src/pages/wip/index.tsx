@@ -81,7 +81,7 @@ const MobileLogin = () => {
               bounce: 0.35,
             }}
             onClick={e => e.stopPropagation()}
-            className="absolute bottom-0 mx-8 bg-white max-w-[600px] min-w-[300px] self-center rounded-2xl p-8 px-4 z-20 mb-8"
+            className="absolute bottom-0 mx-8 bg-white max-w-[600px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
           >
             <TrustModels />
           </motion.div>
@@ -97,6 +97,7 @@ const TrustModels = () => {
   React.useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search)
     const otpParam = urlParams.get('otp')
+
     if (otpParam) {
       setIsEmailVerification(true)
     }
@@ -105,85 +106,113 @@ const TrustModels = () => {
   return (
     <div>
       <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%] my-8 hidden lg:block" />
-      <div className="flex flex-col gap-2">
-        <p className="text-xl flex items-center gap-3">
-          Choose your trust model.{' '}
-          <Popover>
-            <PopoverTrigger className="plain">
-              <InfoIcon className="-translate-y-[0px]" />
-            </PopoverTrigger>
-            <PopoverContent>
-              <div className="text-sm">
-                You take the email pill... the story ends, you wake up in your bed and believe whatever you want to
-                believe. You take the Ethereum pill... you stay in Wonderland, and I show you how deep the rabbit hole
-                goes.
-              </div>
-            </PopoverContent>
-          </Popover>
-        </p>
-        <p className="text-sm opacity-80">
-          If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account on
-          your behalf.
-        </p>
-      </div>
 
-      <div className="mt-4">
-        <p className="font-semibold">Email — Not interested in Web 3 Connection*</p>
-        <div className="relative border border-[#E1E4EA] border-solid rounded-xl mt-2 overflow-hidden">
-          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <svg
-              className="w-5 h-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              ></path>
-            </svg>
+      {!isEmailVerification && (
+        <>
+          <div className="flex flex-col gap-2">
+            <p className="text-xl flex items-center gap-3">
+              Choose your trust model.{' '}
+              <Popover>
+                <PopoverTrigger className="plain">
+                  <InfoIcon className="-translate-y-[0px]" />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <div className="text-sm">
+                    You take the email pill... the story ends, you wake up in your bed and believe whatever you want to
+                    believe. You take the Ethereum pill... you stay in Wonderland, and I show you how deep the rabbit
+                    hole goes.
+                  </div>
+                </PopoverContent>
+              </Popover>
+            </p>
+            <p className="text-sm opacity-80">
+              If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account
+              on your behalf.
+            </p>
           </div>
-          <input
-            type="email"
-            className="w-full pl-10 pr-3 py-2 border-none focus:outline-none focus:ring-0"
-            placeholder="roadto@devcon.org"
-          />
-        </div>
-        <Button fat fill className="w-full plain mt-4 border !border-[#E1E4EA] border-solid" color="grey-1">
-          Continue With Email
-        </Button>
-      </div>
 
-      <div className="flex flex-row w-full items-center gap-4 my-4">
-        <Separator className="shrink" />
-        <span className="shrink-0 font-semibold text-sm">OR</span>
-        <Separator className="shrink" />
-      </div>
+          <div className="mt-4">
+            <p className="font-semibold">Email — Not interested in Web 3 Connection*</p>
+            <div className="relative border border-[#E1E4EA] border-solid rounded-xl mt-2 overflow-hidden">
+              <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg
+                  className="w-5 h-5 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                type="email"
+                className="w-full pl-10 pr-3 py-2 border-none focus:outline-none focus:ring-0"
+                placeholder="roadto@devcon.org"
+              />
+            </div>
+            <Button fat fill className="w-full plain mt-4 border !border-[#E1E4EA] border-solid" color="grey-1">
+              Continue With Email
+            </Button>
+          </div>
 
-      <div>
-        <p className="font-semibold">Wallet — For Web 3 Experiences</p>
-        <p className="text-sm opacity-80 mt-2">
-          <Popover>
-            <PopoverTrigger className="plain">
-              <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
-            </PopoverTrigger>
-            <PopoverContent>
-              <div className="text-sm">Based and Ethereum-pilled</div>
-            </PopoverContent>
-          </Popover>{' '}
-          To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
-        </p>
-        <Button fat fill className="w-full plain mt-4" color="purple-1">
-          Continue With Ethereum
-        </Button>
-      </div>
+          <div className="flex flex-row w-full items-center gap-4 my-4">
+            <Separator className="shrink" />
+            <span className="shrink-0 font-semibold text-sm">OR</span>
+            <Separator className="shrink" />
+          </div>
+
+          <div>
+            <p className="font-semibold">Wallet — For Web 3 Experiences</p>
+            <p className="text-sm opacity-80 mt-2">
+              <Popover>
+                <PopoverTrigger className="plain">
+                  <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
+                </PopoverTrigger>
+                <PopoverContent>
+                  <div className="text-sm">Based and Ethereum-pilled</div>
+                </PopoverContent>
+              </Popover>{' '}
+              To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
+            </p>
+            <Button fat fill className="w-full plain mt-4" color="purple-1">
+              Continue With Ethereum
+            </Button>
+          </div>
+        </>
+      )}
 
       {isEmailVerification && (
         <div>
-          <p>Email Verification</p>
+          <div className="text-xl">Enter Verification Code.</div>
+          <div className="text-sm opacity-80 my-2 mb-4">We&apos;ve sent a verification code to your email address.</div>
+          <InputOTP maxLength={8}>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+              <InputOTPSlot index={3} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+              <InputOTPSlot index={6} />
+              <InputOTPSlot index={7} />
+            </InputOTPGroup>
+          </InputOTP>
+          <Button fat fill className="w-full plain mt-4" color="purple-1">
+            Verify Your Email
+          </Button>
+          <div className="flex flex-row justify-between mt-8">
+            <div className="text-sm text-underline cursor-pointer font-semibold">Resend Verification Code</div>
+            <div className="text-sm cursor-pointer">Help?</div>
+          </div>
         </div>
       )}
 
@@ -209,24 +238,6 @@ const Login = () => {
       <Image src={LoginLogo} alt="Login Logo" className="w-[200px] max-w-[100%]" />
 
       <TrustModels />
-
-      {/* <div> */}
-      {/* <InputOTP maxLength={8}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
-            <InputOTPSlot index={6} />
-            <InputOTPSlot index={7} />
-          </InputOTPGroup>
-        </InputOTP> */}
-      {/* </div> */}
     </div>
   )
 }
