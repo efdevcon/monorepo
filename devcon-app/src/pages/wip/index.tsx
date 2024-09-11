@@ -237,7 +237,7 @@ const TrustModels = () => {
 
 const Login = () => {
   return (
-    <div className="flex flex-col justify-between lg:justify-center h-full w-[400px] xl:w-[470px] max-w-full lg:max-w-[50vw] relative text-sm">
+    <div className="flex flex-col justify-between lg:justify-center h-full w-[400px] 2xl:w-[470px] max-w-full lg:max-w-[50vw] relative text-sm">
       <Image src={LoginLogo} alt="Login Logo" className="w-[200px] max-w-[100%]" />
 
       <TrustModels />
@@ -266,14 +266,14 @@ const Index = (props: any) => {
   return (
     <div className="text-base bg-white">
       <SEO title="Passport Login" />
-      <div className="flex flex-row lg:p-2 w-full relative xl:justify-center xl:items-center h-[calc(var(--vh,1vh)*100)]">
-        <div className="hidden lg:block shrink-0 lg:shrink relative px-8">
+      <div className="flex flex-row lg:p-2 w-full relative 2xl:justify-center 2xl:items-center h-[calc(var(--vh,1vh)*100)]">
+        <div className="hidden lg:block shrink-0 lg:shrink relative px-16">
           <Login />
         </div>
         <div className="lg:hidden absolute h-full w-full left-0 right-0 bottom-0 top-0 z-10 flex justify-center items-center">
           <MobileLogin />
         </div>
-        <div className="w-1/2 shrink-0 grow xl:grow-0 xl:max-w-[800px] relative xl:ml-16">
+        <div className="w-1/2 shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative 2xl:ml-16">
           <div className="relative w-full h-full lg:rounded-2xl overflow-hidden">
             <Image
               src={LoginBackdrop}
