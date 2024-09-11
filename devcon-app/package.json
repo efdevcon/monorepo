@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "cd ../lib && yarn && cd ../devcon-app && next build",
     "start": "next start",
     "lint": "next lint",
     "scripts:stats": "ts-node src/scripts/account-stats",
