@@ -105,7 +105,7 @@ const TrustModels = () => {
 
   return (
     <div>
-      <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%] my-8 hidden lg:block" />
+      <Image src={LoginIcons} alt="Login Icons" className="w-[100px] lg:w-[169px] max-w-[100%] mb-4 lg:my-8 lg:block" />
 
       {!isEmailVerification && (
         <>
@@ -131,7 +131,7 @@ const TrustModels = () => {
             </p>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-6">
             <p className="font-semibold">Email — Not interested in Web 3 Connection*</p>
             <div className="relative border border-[#E1E4EA] border-solid rounded-xl mt-2 overflow-hidden">
               <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -163,7 +163,7 @@ const TrustModels = () => {
 
           <div className="flex flex-row w-full items-center gap-4 my-4">
             <Separator className="shrink" />
-            <span className="shrink-0 text-sm text-[#939393]">OR</span>
+            <span className="shrink-0 text-xs text-[#939393]">OR</span>
             <Separator className="shrink" />
           </div>
 
@@ -211,9 +211,10 @@ const TrustModels = () => {
           <Button fat fill className="w-full plain mt-4" color="purple-2">
             Verify Your Email
           </Button>
-          <div className="flex flex-row justify-between mt-8">
+          <Separator className="mt-6 mb-4" />
+          <div className="flex flex-row justify-between items-center">
             <div className="text-sm text-underline cursor-pointer font-semibold">Resend Verification Code</div>
-            <div className="text-sm cursor-pointer">Help?</div>
+            <div className="text-xs cursor-pointer">Help?</div>
           </div>
         </div>
       )}
