@@ -92,6 +92,16 @@ const MobileLogin = () => {
 }
 
 const TrustModels = () => {
+  const [isEmailVerification, setIsEmailVerification] = React.useState(false)
+
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const otpParam = urlParams.get('otp')
+    if (otpParam) {
+      setIsEmailVerification(true)
+    }
+  }, [])
+
   return (
     <div>
       <Image src={LoginIcons} alt="Login Icons" className="w-[169px] max-w-[100%] my-8 hidden lg:block" />
@@ -171,6 +181,12 @@ const TrustModels = () => {
         </Button>
       </div>
 
+      {isEmailVerification && (
+        <div>
+          <p>Email Verification</p>
+        </div>
+      )}
+
       <div>
         <p className="opacity-80 mt-12 text-xs">
           Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity through
@@ -236,14 +252,14 @@ const Index = (props: any) => {
   return (
     <div className="text-base bg-white">
       <SEO title="Passport Login" />
-      <div className="flex flex-row lg:p-2 w-screen overflow-hiddenrelative xl:justify-center xl:items-center h-[calc(var(--vh,1vh)*100)]">
-        <div className="hidden lg:block shrink-0 lg:shrink relative  px-8">
+      <div className="flex flex-row lg:p-2 w-full relative xl:justify-center xl:items-center h-[calc(var(--vh,1vh)*100)]">
+        <div className="hidden lg:block shrink-0 lg:shrink relative px-8">
           <Login />
         </div>
         <div className="lg:hidden absolute h-full w-full left-0 right-0 bottom-0 top-0 z-10 flex justify-center items-center">
           <MobileLogin />
         </div>
-        <div className="w-1/2 shrink-0 grow xl:grow-0 relative xl:ml-16">
+        <div className="w-1/2 shrink-0 grow xl:grow-0 xl:max-w-[800px] relative xl:ml-16">
           <div className="relative w-full h-full lg:rounded-2xl overflow-hidden">
             <Image
               src={LoginBackdrop}
@@ -266,7 +282,7 @@ const Index = (props: any) => {
             </div>
           </div>
 
-          <div className="w-[310px] h-[310px] absolute top-[44.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="w-[310px] h-[310px] absolute top-[45.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Spinner />
           </div>
         </div>
