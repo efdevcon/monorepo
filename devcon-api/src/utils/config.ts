@@ -36,7 +36,7 @@ export const SERVER_CONFIG = {
 
   DB_CONNECTION_STRING: process.env.DB_CONNECTION_STRING || '',
   GITHUB_TOKEN: process.env.GITHUB_TOKEN,
-  AIRSTACK_API_KEY: process.env.AIRSTACK_API_KEY,
+  NEYNAR_API_KEY: process.env.NEYNAR_API_KEY,
 
   WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 

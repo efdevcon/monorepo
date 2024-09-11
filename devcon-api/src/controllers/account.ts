@@ -37,14 +37,12 @@ async function GetAccount(req: Request, res: Response) {
   const account = await client.account.findFirst({
     where: { id: userId },
     select: {
-      ...Object.fromEntries(
-        Object.keys(client.account.fields).map(key => [key, true])
-      ),
+      ...Object.fromEntries(Object.keys(client.account.fields).map((key) => [key, true])),
       createdAt: false,
       updatedAt: false,
       disabled: false,
       appState_bogota: false,
-    }
+    },
   })
   if (account) {
     return res.status(200).send({ code: 200, message: '', data: account })
@@ -410,7 +408,7 @@ async function Logout(req: Request, res: Response) {
 
 async function FollowedSpeakers(req: Request, res: Response) {
   // #swagger.tags = ['Account']
-  
+
   const userId = req.session?.userId
   if (!userId) {
     // return as HTTP 200 OK
@@ -427,11 +425,8 @@ async function FollowedSpeakers(req: Request, res: Response) {
 
   const speakers = await scheduleClient.speaker.findMany({
     where: {
-      OR: [
-        { id: { in: account.favorite_speakers } },
-        { sourceId: { in: account.favorite_speakers } }
-      ]
-    }
+      OR: [{ id: { in: account.favorite_speakers } }, { sourceId: { in: account.favorite_speakers } }],
+    },
   })
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
@@ -439,7 +434,7 @@ async function FollowedSpeakers(req: Request, res: Response) {
 
 async function RecommendedSpeakers(req: Request, res: Response) {
   // #swagger.tags = ['Account']
-  
+
   const userId = req.session?.userId
   if (!userId) {
     // return as HTTP 200 OK
@@ -453,9 +448,9 @@ async function RecommendedSpeakers(req: Request, res: Response) {
   if (!account) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
-  
-  const speakers = (await Promise.all(account.addresses.map(i => GetRecommendedSpeakers(i, true)))).flat()
-  
+
+  const speakers = (await Promise.all(account.addresses.map((i) => GetRecommendedSpeakers(i, true)))).flat()
+
   return res.status(200).send({ code: 200, message: '', data: speakers })
 }
 
@@ -479,16 +474,20 @@ async function FollowedSessions(req: Request, res: Response) {
   // TODO: Include event filter?
 
   const interestedSessions = await scheduleClient.session.findMany({
-    where: { sourceId: { in: account.interested_sessions } }    
+    where: { sourceId: { in: account.interested_sessions } },
   })
   const attendingSessions = await scheduleClient.session.findMany({
-    where: { sourceId: { in: account.attending_sessions } }
+    where: { sourceId: { in: account.attending_sessions } },
   })
 
-  return res.status(200).send({ code: 200, message: '', data: {
-    interested: interestedSessions,
-    attending: attendingSessions
-  } })
+  return res.status(200).send({
+    code: 200,
+    message: '',
+    data: {
+      interested: interestedSessions,
+      attending: attendingSessions,
+    },
+  })
 }
 
 async function RecommendedSessions(req: Request, res: Response) {
@@ -507,8 +506,8 @@ async function RecommendedSessions(req: Request, res: Response) {
   if (!account) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
-  
+
   const sessions = await GetRecommendedSessions(account.id, true)
-  
+
   return res.status(200).send({ code: 200, message: '', data: sessions })
 }
