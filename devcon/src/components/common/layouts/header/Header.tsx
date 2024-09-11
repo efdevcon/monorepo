@@ -7,7 +7,7 @@ import { Strip } from './strip'
 import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
-// import DevaBot from 'lib/components/ai/overlay'
+import DevaBot from 'lib/components/ai/overlay'
 import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
 
 type HeaderProps = {
@@ -58,7 +58,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
               <HeaderLogo />
             </Link>
 
-            {/* <DevaBot /> */}
+            <DevaBot />
 
             <Menu
               isApp={isApp}
