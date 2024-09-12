@@ -20,10 +20,10 @@ accountRouter.post(`/account/login/email`, LoginEmail)
 accountRouter.post(`/account/login/token`, LoginToken)
 accountRouter.post(`/account/login/web3`, LoginWeb3)
 accountRouter.post(`/account/logout`, Logout)
-accountRouter.post(`/account/speakers`, FollowedSpeakers)
-accountRouter.post(`/account/speakers/recommended`, RecommendedSpeakers)
-accountRouter.post(`/account/sessions`, FollowedSessions)
-accountRouter.post(`/account/sessions/recommended`, RecommendedSessions)
+accountRouter.get(`/account/speakers`, FollowedSpeakers)
+accountRouter.get(`/account/speakers/recommended`, RecommendedSpeakers)
+accountRouter.get(`/account/sessions`, FollowedSessions)
+accountRouter.get(`/account/sessions/recommended`, RecommendedSessions)
 
 async function GetAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
