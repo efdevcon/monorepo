@@ -449,7 +449,10 @@ async function RecommendedSpeakers(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
 
-  const speakers = (await Promise.all(account.addresses.map((i) => GetRecommendedSpeakers(i, true)))).flat()
+  const speakers =
+    account.addresses.length > 0
+      ? (await Promise.all(account.addresses.map((i) => GetRecommendedSpeakers(i, true)))).flat()
+      : await GetRecommendedSpeakers('', true)
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
 }
