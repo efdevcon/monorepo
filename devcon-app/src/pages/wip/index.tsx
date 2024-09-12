@@ -225,7 +225,7 @@ const TrustModels = () => {
           our application if you choose to.
         </p>
 
-        <div className="flex flex-row gap-4 mt-2 text-xs text-[#8C72AE]">
+        <div className="flex flex-row gap-4 mt-2 text-xs text-[#7D52F4]">
           <p className="underline">Privacy Policy</p>
           <p className="underline">Terms of Use</p>
           <p className="underline">Cookie Policy</p>
