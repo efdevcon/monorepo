@@ -17,6 +17,7 @@ import { Separator } from 'lib/components/ui/separator'
 import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
 import DC7Logo from './dc-7-images/dc7-logo.png'
 import cn from 'classnames'
+import css from './index.module.scss'
 
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect } from 'react'
@@ -36,7 +37,7 @@ const MobileLogin = () => {
             transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
             className="text-white flex justify-center items-end h-full max-w-[600px] self-center"
           >
-            <div className="mb-8 flex flex-col gap-8 px-8">
+            <div className="mb-8 flex flex-col gap-4 px-8">
               <div>
                 <Image
                   src={LoginLogo}
@@ -45,7 +46,7 @@ const MobileLogin = () => {
                   style={{ filter: 'brightness(0) invert(1)' }}
                 />
               </div>
-              <div className="text-3xl font-semibold font-secondary">
+              <div className="text-2xl font-secondary text-[#FFFFFF90]">
                 Your personalized experience to Devcon SEA — Ethereum Developer Conference.
               </div>
               <div>
@@ -273,31 +274,35 @@ const Index = (props: any) => {
         <div className="lg:hidden absolute h-full w-full left-0 right-0 bottom-0 top-0 z-10 flex justify-center items-center">
           <MobileLogin />
         </div>
-        <div className="w-1/2 shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative 2xl:ml-16">
-          <div className="relative w-full h-full lg:rounded-2xl overflow-hidden">
-            <Image
-              src={LoginBackdrop}
-              alt="Login Backdrop"
-              className="object-cover h-full w-full lg:rounded-2xl"
-              priority
-            />
-            <Image
-              src={DC7Logo}
-              alt="Login Logo"
-              className="w-[169px] max-w-[100%] absolute bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden lg:block"
-            />
-            <div className="lg:hidden absolute bottom-0 left-0 right-0 h-full">
-              <div
-                className="absolute inset-0 bg-gradient-to-t from-[#000000] to-transparent"
-                // style={{
-                //   clipPath: 'ellipse(100% 100% at 50% 100%)',
-                // }}
+        <div className="w-1/2 shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative 2xl:ml-16 flex justify-center">
+          <div className="relative w-full h-full lg:h-full z-[1] bg-[#3D00BF] lg:rounded-2xl">
+            <div className="relative w-full h-full lg:rounded-2xl overflow-hidden z-10">
+              <Image
+                src={LoginBackdrop}
+                alt="Login Backdrop"
+                className={cn(
+                  'object-cover h-full w-full lg:rounded-2xl -translate-y-[16vh] lg:translate-y-0',
+                  css['mask-image-fade-bottom']
+                )}
+                quality={100}
+                priority
+              />
+              <Image
+                src={DC7Logo}
+                alt="Login Logo"
+                className="w-[169px] max-w-[100%] absolute bottom-2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden lg:block"
               />
             </div>
-          </div>
 
-          <div className="w-[310px] h-[310px] absolute top-[45.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Spinner />
+            <div className="w-[250px] h-[250px] md:w-[310px] md:h-[310px] absolute top-[45.5%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+              <Spinner className="-translate-y-[15vh] lg:translate-y-0" />
+            </div>
+
+            <div className="lg:hidden absolute bottom-0 left-0 right-0 h-[40vh] overflow-hidden">
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-[#3D00BF] to-transparent" /> */}
+
+              <div className={`absolute ${css['bg-radial-gradient']}`} />
+            </div>
           </div>
         </div>
       </div>

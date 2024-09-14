@@ -6,7 +6,11 @@ import * as THREE from 'three'
 import { CustomMaterial } from './material'
 import { Canvas } from '@react-three/fiber'
 
-export const Spinner = () => {
+interface SpinnerProps {
+  className?: string
+}
+
+export const Spinner: React.FC<SpinnerProps> = ({ className }) => {
   const ring1Ref = useRef<THREE.Mesh>(null)
   const ring2Ref = useRef<THREE.Mesh>(null)
   const cone1Ref = useRef<THREE.Mesh>(null)
@@ -56,7 +60,7 @@ export const Spinner = () => {
   }, [mounted])
 
   return (
-    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+    <div className={className} style={{ width: '100%', height: '100%', position: 'relative' }}>
       <Canvas
         style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
         camera={{
