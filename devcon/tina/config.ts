@@ -13,7 +13,7 @@ import devcon_week from './templates/devcon_week'
 import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
-import { filenameToUrl } from './filenameToUrl'
+import { filenameToUrl } from 'lib/cms/filenameToUrl'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'

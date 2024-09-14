@@ -62,13 +62,18 @@ const DevaBot = () => {
     setPartialChunk("");
 
     try {
-      const response = await fetch("/api/ai", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: query, threadID }),
-      });
+      const response = await fetch(
+        process.env.NODE_ENV === "development"
+          ? "http://localhost:4000/devabot"
+          : "https://api.devcon.org/devabot",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: query, threadID }),
+        }
+      );
 
       if (!response.body) {
         throw new Error("No response body");
@@ -417,7 +422,7 @@ const DevaBot = () => {
         fill
         onClick={() => setVisible(!visible)}
       >
-        <span className="md:hidden block">Questions? 🦄</span>
+        <span className="md:hidden block">Questions?</span>
         <span className="hidden md:block">Questions? Ask here 🦄</span>
       </Button>
     </>
