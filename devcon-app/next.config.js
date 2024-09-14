@@ -140,6 +140,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: '/side-events',
+        destination: 'https://devcon.org/devcon-week',
+      },
+      {
         source: '/robots.txt',
         destination: '/api/robots',
       },
