@@ -5,7 +5,10 @@
     "resolveJsonModule": true,
     "isolatedModules": false,
     "outDir": "dist",
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "paths": {
+      "lib/*": ["./../../lib/*"]
+    }
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
