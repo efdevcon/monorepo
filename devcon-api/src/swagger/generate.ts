@@ -21,7 +21,7 @@ const doc = {
   schemes: SERVER_CONFIG.NODE_ENV === 'production' ? ['https'] : ['http'],
 }
 const outputFile = './definition.json'
-const endpointsFiles = ['../routes', '../controllers/*.ts', '../controllers/ai/open-ai/routing.ts']
+const endpointsFiles = ['../routes', '../controllers/*.ts']
 
 console.log('API Info', doc)
 swaggerAutogen(outputFile, endpointsFiles, doc)
