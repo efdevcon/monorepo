@@ -64,6 +64,11 @@ export default defineConfig({
         ],
         ui: {
           router: ({ document }) => {
+            // If no explicit filenameToUrl mapping, replace underscores with dashes - won't catch everything, but probably good enough
+            if (!filenameToUrl[document._sys.filename]) {
+              return document._sys.filename.replace(/_/g, '-')
+            }
+
             return filenameToUrl[document._sys.filename] || document._sys.filename
           },
         },
