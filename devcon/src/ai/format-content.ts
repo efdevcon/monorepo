@@ -39,7 +39,7 @@ function cleanUpText(text: string): string {
   return text
 }
 
-const devconDir = path.resolve(__dirname, '../../../../')
+const devconDir = path.resolve(__dirname, '../../')
 const contentDir = path.resolve(__dirname, 'formatted-content')
 
 // const writeFile = async (fileName: any) => {
