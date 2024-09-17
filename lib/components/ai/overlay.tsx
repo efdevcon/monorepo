@@ -71,6 +71,7 @@ const DevaBot = () => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "omit",
           body: JSON.stringify({ message: query, threadID }),
         }
       );
