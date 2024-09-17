@@ -32,17 +32,42 @@ export default async function Image({ params }: { params: { code: string } }) {
     type = "workshop";
 
   const track = data.track.en;
+  let cardTw = `flex flex-row relative justify-between rounded-3xl border-[#ff0000] shadow-xl w-full h-full p-12`;
   let trackImage = "RealWorldEthereum.png";
-  if (track === "Core Protocol") trackImage = "CoreProtocol.png";
-  if (track === "Cypherpunk & Privacy") trackImage = "Cypherpunk.png";
-  if (track === "Usability") trackImage = "Usability.png";
-  if (track === "Real World Ethereum") trackImage = "RealWorldEthereum.png";
-  if (track === "Applied Cryptography") trackImage = "AppliedCryptography.png";
-  if (track === "Cryptoeconomics") trackImage = "CryptoEconomics.png";
-  if (track === "Coordination") trackImage = "Coordination.png";
-  if (track === "Developer Experience") trackImage = "DeveloperExperience.png";
-  if (track === "Security") trackImage = "Security.png";
-  if (track === "Layer 2") trackImage = "Layer2.png";
+  if (track === "Core Protocol") {
+    trackImage = "CoreProtocol.png";
+    cardTw += " bg-[#F6F2FF]";
+  } else if (track === "Cypherpunk & Privacy") {
+    trackImage = "Cypherpunk.png";
+    cardTw += " bg-[#FFF4FF]";
+  } else if (track === "Usability") {
+    trackImage = "Usability.png";
+    cardTw += " bg-[#FFF4F4]";
+  } else if (track === "Real World Ethereum") {
+    trackImage = "RealWorldEthereum.png";
+    cardTw += " bg-[#FFEDDF]";
+  } else if (track === "Applied Cryptography") {
+    trackImage = "AppliedCryptography.png";
+    cardTw += " bg-[#FFFEF4]";
+  } else if (track === "Cryptoeconomics") {
+    trackImage = "CryptoEconomics.png";
+    cardTw += " bg-[#F9FFDF]";
+  } else if (track === "Coordination") {
+    trackImage = "Coordination.png";
+    cardTw += " bg-[#E9FFD7]";
+  } else if (track === "Developer Experience") {
+    trackImage = "DeveloperExperience.png";
+    cardTw += " bg-[#E8FDFF]";
+  } else if (track === "Security") {
+    trackImage = "Security.png";
+    cardTw += " bg-[#E4EEFF]";
+  } else if (track === "Layer 2") {
+    trackImage = "Layer2.png";
+    cardTw += " bg-[#F0F1FF]";
+  } else {
+    trackImage = "AppliedCryptography.png";
+    cardTw += " bg-[#f8f9fe]";
+  }
 
   let titleSize = "text-5xl";
   if (data.title.length > 65) titleSize = "text-4xl";
@@ -51,12 +76,12 @@ export default async function Image({ params }: { params: { code: string } }) {
   return new ImageResponse(
     (
       <div tw="flex justify-between bg-[#36364c] text-black w-full h-full overflow-hidden p-8">
-        <div tw="flex flex-row relative justify-between rounded-3xl bg-[#f8f9fe] border-[#ff0000] shadow-xl w-full h-full p-12">
+        <div tw={cardTw}>
           <div tw="flex absolute left-1/2 top-0 bottom-0 right-0">
-            <img src={`${url}/dc7/prism.png`} tw="h-full" />
+            <img src={`${url}/dc7/prism.png`} tw="h-full opacity-80" />
           </div>
-          <div tw="flex absolute bottom-4 right-4">
-            <img src={`${url}/programming/${trackImage}`} tw="h-[24rem]" />
+          <div tw="flex absolute bottom-0 right-0">
+            <img src={`${url}/programming/${trackImage}`} tw="h-[27rem]" />
           </div>
 
           <div tw="flex flex-col justify-between w-3/5">
