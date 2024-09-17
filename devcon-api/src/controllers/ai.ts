@@ -47,21 +47,27 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
 
   console.log(threadID, 'msg thread id')
 
-  // Set headers for streaming
-  res.writeHead(200, {
-    'Content-Type': 'text/event-stream',
-    'Cache-Control': 'no-cache, no-transform',
-    Connection: 'keep-alive',
-  })
+  try {
+    // Set headers for streaming
+    res.writeHead(200, {
+      'Content-Type': 'text/event-stream',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+    })
 
-  // Create a stream for the AI response
-  const stream = await api.createMessageStream('asst_nirZMEbcECQHLSduSq73vmEB', message, threadID)
+    // Create a stream for the AI response
+    const stream = await api.createMessageStream('asst_nirZMEbcECQHLSduSq73vmEB', message, threadID)
 
-  // Stream the response to the client
-  for await (const chunk of stream) {
-    res.write(JSON.stringify(chunk) + '_chunk_end_')
+    // Stream the response to the client
+    for await (const chunk of stream) {
+      res.write(JSON.stringify(chunk) + '_chunk_end_')
+    }
+
+    // End the response
+    res.end()
+  } catch (e) {
+    console.error(e, 'error')
+
+    res.status(500).json({ error: 'Internal Server Error' })
   }
-
-  // End the response
-  res.end()
 })
