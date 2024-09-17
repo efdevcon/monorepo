@@ -1,19 +1,23 @@
 import React, { useEffect } from 'react'
 import Image from 'next/image'
 import css from './pwa.module.scss'
-import { Modal } from 'components/common/modal'
 import IconPlus from 'assets/icons/plus.svg'
 import IconAppleShare from 'assets/icons/share-apple.svg'
-import imagePWA from 'assets/images/pwa_prompt.png'
+import imagePWA from 'assets/images/dc-7/pwa-prompt.png'
 import { Button } from 'components/common/button'
 import { pwaUtilities } from './pwa-utilities'
 import moment from 'moment'
+import { AnimatePresence, motion } from 'framer-motion'
+import DC7Logo from 'pages/wip/dc-7-images/login-logo.png'
+import { CircleIcon } from 'lib/components/circle-icon'
+import IconClose from 'assets/icons/cross.svg'
+import { Separator } from 'lib/components/ui/separator'
 
 const lastSeenKey = 'pwa_prompt_timestamp'
-const howOftenToPrompt = [8, 'hours'] // [30, 'seconds']
+const howOftenToPrompt = [7, 'days'] // [30, 'seconds']
 
 export const PWAPrompt = () => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(true)
 
   const promptIfNotLocked = React.useMemo(
     () => () => {
@@ -30,7 +34,10 @@ export const PWAPrompt = () => {
       }
 
       localStorage.setItem(lastSeenKey, moment.utc().toISOString())
-      setOpen(true)
+
+      setTimeout(() => {
+        setOpen(true)
+      }, 1000)
     },
     []
   )
@@ -76,69 +83,133 @@ export const PWAPrompt = () => {
   }, [])
 
   return (
-    <Modal open={open} close={() => setOpen(!open)} className={`no-scrollbar ${css['modal']}`}>
-      <Image alt="Devcon wizard" className={`${css['background']} object-cover h-full w-full`} src={imagePWA} />
-      <div className={css['content']}>
-        <div className={css['tag']}>
-          <p className="font-xs bold">DEVCON PASSPORT APP</p>
-        </div>
+    <div
+      className={`fixed top-0 left-0 w-full bottom-0 h-full flex justify-center items-end z-[40] ${
+        !open ? 'pointer-events-none' : ''
+      }`}
+      onClick={() => setOpen(false)}
+    >
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute top-0 left-0 w-full h-full backdrop-blur-md pointer-events-none"
+          ></motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            key="mobile-login"
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            exit={{ y: '100%', transition: { type: 'spring', duration: 0.8, bounce: 0 } }}
+            transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
+            className="flex justify-center items-end max-w-[500px] lg:h-full rounder-2xl lg:items-center relative pointer-events-none"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="bg-white text-black m-8 relative rounded-2xl shadow overflow-hidden lg:mb-0 pointer-events-auto">
+              <Image
+                alt="Devcon Scientist"
+                className={`${css['background']} object-contain object-center h-full w-full rounded-2xl`}
+                src={imagePWA}
+              />
+              <div className="relative">
+                <div className="flex items-start justify-between mb-[35vh] p-6 pt">
+                  <Image src={DC7Logo} alt="DC7 Logo" className="w-[170px] max-w-[100%] " />
 
-        <div className={css['info']}>
-          <p className={`${css['cta']} font-xl`}>
-            This website can be used as an <span className="bold">App!</span> Install by following the instructions
-            below.
-          </p>
+                  <CircleIcon
+                    onClick={() => setOpen(false)}
+                    // popoverContent={<div>I don&apos;t want to install this app.</div>}
+                  >
+                    <IconClose />
+                  </CircleIcon>
+                </div>
 
-          <div className={css['description']}>
-            {requiresManualInstall ? (
-              (() => {
-                if (requiresManualInstall === 'ios') {
-                  return (
-                    <p className="font-xs bold text-uppercase">
-                      IOS Instructions: Open this website in Safari, press{' '}
-                      <IconAppleShare style={{ fontSize: '2em', transform: 'translateY(3px) ' }} />, then &quot;Add to
-                      home screen&quot;
-                    </p>
-                  )
-                } else if (requiresManualInstall === 'samsung') {
-                  return (
-                    <p className="font-xs bold text-uppercase">
-                      Instructions: An &quot;Install&quot; icon will be shown on the top bar OR press &quot;Menu&quot;
-                      on the bottom bar then &quot;Add/install to home&quot;
-                    </p>
-                  )
-                }
+                <div className={`p-6 pt-20 text-white relative`}>
+                  <div className={`${css['gradient-radial']} absolute inset-0 z-0`}></div>
 
-                return (
-                  <p className="font-xs bold text-uppercase">
-                    Instructions: Press menu on the bottom/top bar then &quot;Add/install to home&quot;
-                  </p>
-                )
-              })()
-            ) : (
-              <>
-                <Button
-                  className="squared light-blue sm"
-                  onClick={() =>
-                    pwaUtilities.installPwa({
-                      togglePrompt: () => setOpen(false),
-                      deferredEvent,
-                      setDeferredEvent,
-                    })
-                  }
-                >
-                  <IconPlus />
-                </Button>
+                  <div className="font-secondary text-3xl lg:text-2xl relative z-10">
+                    <b>Devcon Passport</b> is a Progressive Web App! Install on your device.
+                  </div>
 
-                <p className="font-xs bold text-uppercase">
-                  Install on your device by clicking the button and accepting the prompt!
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </div>
-    </Modal>
+                  <Separator className="bg-white my-4 relative z-10" />
+
+                  <div className="flex justify-between items-center relative z-10">
+                    {requiresManualInstall ? (
+                      (() => {
+                        if (requiresManualInstall === 'ios') {
+                          return (
+                            <p className="font-xs bold text-uppercase">
+                              IOS Instructions: Open this website in Safari, press{' '}
+                              <IconAppleShare style={{ fontSize: '1.2em', fill: 'white' }} />, then &quot;Add to home
+                              screen&quot;
+                            </p>
+                          )
+                        } else if (requiresManualInstall === 'samsung') {
+                          return (
+                            <p className="font-xs bold text-uppercase">
+                              Instructions: An &quot;Install&quot; icon will be shown on the top bar OR press
+                              &quot;Menu&quot; on the bottom bar then &quot;Add/install to home&quot;
+                            </p>
+                          )
+                        }
+
+                        return (
+                          <p className="font-xs bold text-uppercase">
+                            Instructions: Press menu on the bottom/top bar then &quot;Add/install to home&quot;
+                          </p>
+                        )
+                      })()
+                    ) : (
+                      <>
+                        <div
+                          className="flex items-center font-secondary justify-center shrink-0 bg-white p-3 mr-4 rounded-full hover:scale-110 transition-all duration-500 cursor-pointer"
+                          onClick={() =>
+                            pwaUtilities.installPwa({
+                              togglePrompt: () => setOpen(false),
+                              deferredEvent,
+                              setDeferredEvent,
+                            })
+                          }
+                        >
+                          <CircleIcon className="bg-[#7D52F4]">
+                            <IconPlus style={{ fill: 'white' }} />
+                          </CircleIcon>
+                        </div>
+                        {/* <Button
+                          className="squared light-blue sm"
+                          onClick={() =>
+                            pwaUtilities.installPwa({
+                              togglePrompt: () => setOpen(false),
+                              deferredEvent,
+                              setDeferredEvent,
+                            })
+                          }
+                        >
+                          <IconPlus />
+                        </Button> */}
+
+                        <p className="font-xs bold text-uppercase">
+                          Install on your device by clicking the button and accepting the prompt!
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                <div className={css['info']}>
+                  <div className={css['description']}></div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }
 
