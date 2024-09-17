@@ -22,7 +22,7 @@ export const CircleIcon = (props: any) => {
     <div
       onClick={props.onClick}
       className={cn(
-        "cursor-pointer rounded-full bg-white h-[20px] w-[20px] flex items-center justify-center border border-solid border-[#E1E4EA] hover:border-neutral-400 transition-colors duration-500",
+        "cursor-pointer rounded-full bg-white h-[20px] w-[20px] flex items-center justify-center border border-solid border-[#E1E4EA] hover:border-neutral-400 hover:scale-110 transition-all duration-500",
         css["circle-icon"],
         "animate-border",
         props.className

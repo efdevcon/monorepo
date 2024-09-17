@@ -108,10 +108,10 @@ export const PWAPrompt = () => {
             animate={{ y: '0%' }}
             exit={{ y: '100%', transition: { type: 'spring', duration: 0.8, bounce: 0 } }}
             transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
-            className="flex justify-center items-end max-w-[500px] rounder-2xl"
+            className="flex justify-center items-end max-w-[500px] lg:h-full rounder-2xl lg:items-center relative pointer-events-none"
             onClick={e => e.stopPropagation()}
           >
-            <div className="bg-white text-black m-8 relative rounded-2xl shadow border border-solid border-[#bf34b4] overflow-hidden">
+            <div className="bg-white text-black m-8 relative rounded-2xl shadow overflow-hidden lg:mb-0 pointer-events-auto">
               <Image
                 alt="Devcon Scientist"
                 className={`${css['background']} object-contain object-center h-full w-full rounded-2xl`}

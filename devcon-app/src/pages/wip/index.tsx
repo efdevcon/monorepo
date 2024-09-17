@@ -18,7 +18,8 @@ import { Spinner } from 'components/domain/app/dc7/spinner/spinner'
 import DC7Logo from './dc-7-images/dc7-logo.png'
 import cn from 'classnames'
 import css from './index.module.scss'
-
+import { CircleIcon } from 'lib/components/circle-icon'
+import IconCross from 'assets/icons/cross.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect } from 'react'
 
@@ -82,9 +83,9 @@ const MobileLogin = () => {
               bounce: 0.35,
             }}
             onClick={e => e.stopPropagation()}
-            className="absolute bottom-0 mx-8 bg-white max-w-[600px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
+            className="absolute bottom-0 mx-8 bg-white max-w-[500px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
           >
-            <TrustModels />
+            <TrustModels setLoginOpen={setLoginOpen} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -92,7 +93,7 @@ const MobileLogin = () => {
   )
 }
 
-const TrustModels = () => {
+const TrustModels = (props: any) => {
   const [isEmailVerification, setIsEmailVerification] = React.useState(false)
 
   React.useEffect(() => {
@@ -106,7 +107,16 @@ const TrustModels = () => {
 
   return (
     <div>
-      <Image src={LoginIcons} alt="Login Icons" className="w-[100px] lg:w-[169px] max-w-[100%] mb-4 lg:my-8 lg:block" />
+      <div className="flex flex-row justify-between">
+        <Image
+          src={LoginIcons}
+          alt="Login Icons"
+          className="w-[100px] lg:w-[169px] max-w-[100%] mb-4 lg:my-8 lg:block"
+        />
+        <CircleIcon className="mt-1 mx-1" onClick={() => props.setLoginOpen(false)}>
+          <IconCross />
+        </CircleIcon>
+      </div>
 
       {!isEmailVerification && (
         <>
