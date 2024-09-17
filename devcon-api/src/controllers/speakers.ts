@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { PrismaClient } from '@prisma/client'
-import { API_DEFAULTS } from 'utils/config'
+import { API_DEFAULTS } from '@/utils/config'
 
 const client = new PrismaClient()
 
@@ -27,10 +27,10 @@ export async function GetSpeakers(req: Request, res: Response) {
       sessions: {
         some: {
           eventId: {
-            in: [req.query.event].flat() as string[]
-          }
-        }
-      }
+            in: [req.query.event].flat() as string[],
+          },
+        },
+      },
     }
   }
 

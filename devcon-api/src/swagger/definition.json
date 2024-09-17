@@ -496,37 +496,6 @@
         }
       }
     },
-    "/hooks/pretalx/schedule": {
-      "post": {
-        "tags": [
-          "Hooks"
-        ],
-        "description": "",
-        "parameters": [
-          {
-            "name": "X-Webhook-Secret",
-            "in": "header",
-            "type": "string"
-          },
-          {
-            "name": "x-webhook-secret",
-            "in": "header",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
     "/rss/podcast": {
       "get": {
         "tags": [
@@ -776,6 +745,69 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/devabot": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "x-forwarded-for",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "any"
+                },
+                "threadID": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "429": {
+            "description": "Too Many Requests"
+          }
+        }
+      }
+    },
+    "/hooks/pretalx/schedule": {
+      "post": {
+        "tags": [
+          "Hooks"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "X-Webhook-Secret",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "x-webhook-secret",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       }

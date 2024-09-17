@@ -4,12 +4,12 @@ import cors from 'cors'
 import helmet from 'helmet'
 import session, { SessionOptions } from 'express-session'
 import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from 'swagger/definition.json'
-import { errorHandler } from 'middleware/error'
-import { notFoundHandler } from 'middleware/notfound'
-import { logHandler } from 'middleware/log'
+import swaggerDocument from '@/swagger/definition.json'
+import { errorHandler } from '@/middleware/error'
+import { notFoundHandler } from '@/middleware/notfound'
+import { logHandler } from '@/middleware/log'
 import { router } from './routes'
-import { SERVER_CONFIG, SESSION_CONFIG } from 'utils/config'
+import { SERVER_CONFIG, SESSION_CONFIG } from '@/utils/config'
 import createMemoryStore from 'memorystore'
 
 const app = express()
@@ -22,11 +22,7 @@ app.use(logHandler)
 
 const corsConfig: cors.CorsOptions = {}
 if (SERVER_CONFIG.NODE_ENV === 'production') {
-  corsConfig.origin = [
-    'http://localhost:3000',
-    'https://www.devcon.org',
-    /\.devcon\.org$/,
-  ]
+  corsConfig.origin = ['http://localhost:3000', 'https://www.devcon.org', /\.devcon\.org$/]
   corsConfig.credentials = true
 }
 app.use(cors(corsConfig))

@@ -1,4 +1,4 @@
-import { GetData } from 'clients/filesystem'
+import { GetData } from '@/clients/filesystem'
 import dayjs from 'dayjs'
 
 export function GetEventDay(eventId: string, date: Date) {

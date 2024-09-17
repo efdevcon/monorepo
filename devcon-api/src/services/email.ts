@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer'
-import { SERVER_CONFIG } from 'utils/config'
+import { SERVER_CONFIG } from '@/utils/config'
 import emailTemplates from './email-templates.json'
 
 type EmailTemplates = 'default-email' | 'email-cta'

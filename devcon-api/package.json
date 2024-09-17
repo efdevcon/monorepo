@@ -10,8 +10,8 @@
     "url": "https://github.com/efdevcon/api"
   },
   "scripts": {
-    "build": "tsc",
-    "start": "NODE_PATH=./dist node ./dist/index",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "start": "NODE_PATH=./dist node ./dist/devcon-api/src/index",
     "seed:pretalx": "ts-node ./src/db/seed-pretalx.ts",
     "dev:generate": "yarn swagger:generate && yarn db:generate && nodemon ./src/index.ts",
     "dev": "nodemon ./src/index.ts",
@@ -125,7 +125,7 @@
     "swagger-autogen": "^2.22.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
-    "tsconfig-paths": "^4.1.2",
+    "tsc-alias": "^1.8.10",
     "typescript": "^4.9.5"
   }
 }

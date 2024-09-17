@@ -1,5 +1,5 @@
 import swaggerAutogen from 'swagger-autogen'
-import { API_INFO, SERVER_CONFIG } from 'utils/config'
+import { API_INFO, SERVER_CONFIG } from '@/utils/config'
 
 console.log(`Generate Swagger docs in ${SERVER_CONFIG.NODE_ENV} mode`)
 const doc = {

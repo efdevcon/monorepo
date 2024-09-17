@@ -1,5 +1,5 @@
-import { SERVER_CONFIG } from 'utils/config'
-import app from 'app'
+import { SERVER_CONFIG } from '@/utils/config'
+import app from '@/app'
 
 app.listen(SERVER_CONFIG.PORT, () => {
   console.log(`[SERVER]: Running in ${SERVER_CONFIG.NODE_ENV} mode`)

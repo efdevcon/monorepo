@@ -1,6 +1,6 @@
 import { PrismaClient as ScheduleClient } from '@prisma/client'
-import { PrismaClient as AccountClient } from 'db/clients/account'
-import { SERVER_CONFIG } from 'utils/config'
+import { PrismaClient as AccountClient } from '@/db/clients/account'
+import { SERVER_CONFIG } from '@/utils/config'
 
 interface LensFollower {
   id: string

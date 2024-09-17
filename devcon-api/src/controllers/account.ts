@@ -1,11 +1,11 @@
 import { Request, Response, Router } from 'express'
-import { API_INFO } from 'utils/config'
-import { PrismaClient } from 'db/clients/account'
+import { API_INFO } from '@/utils/config'
+import { PrismaClient } from '@/db/clients/account'
 import { PrismaClient as ScheduleClient } from '@prisma/client'
-import { UserAccount } from 'types/accounts'
-import { sendMail } from 'services/email'
-import { isValidSignature } from 'utils/web3'
-import { GetRecommendedSessions, GetRecommendedSpeakers } from 'clients/recommendation'
+import { UserAccount } from '@/types/accounts'
+import { sendMail } from '@/services/email'
+import { isValidSignature } from '@/utils/web3'
+import { GetRecommendedSessions, GetRecommendedSpeakers } from '@/clients/recommendation'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()

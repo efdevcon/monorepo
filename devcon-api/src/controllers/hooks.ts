@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
-import { PretalxScheduleUpdate } from 'types/schemas'
-import { SERVER_CONFIG } from 'utils/config'
+import { PretalxScheduleUpdate } from '@/types/schemas'
+import { SERVER_CONFIG } from '@/utils/config'
 
 export const hooksRouter = Router()
 hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)

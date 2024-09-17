@@ -1,4 +1,4 @@
-import { Role, Tag, Track } from "utils/profile"
+import { Role, Tag, Track } from '@/utils/profile'
 
 declare module 'express-session' {
   interface SessionData {
