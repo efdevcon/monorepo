@@ -85,7 +85,7 @@ const MobileLogin = () => {
             onClick={e => e.stopPropagation()}
             className="absolute bottom-0 mx-8 bg-white max-w-[500px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
           >
-            <TrustModels setLoginOpen={setLoginOpen} />
+            <TrustModels mobile setLoginOpen={setLoginOpen} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -113,9 +113,11 @@ const TrustModels = (props: any) => {
           alt="Login Icons"
           className="w-[100px] lg:w-[169px] max-w-[100%] mb-4 lg:my-8 lg:block"
         />
-        <CircleIcon className="mt-1 mx-1" onClick={() => props.setLoginOpen(false)}>
-          <IconCross />
-        </CircleIcon>
+        {props.mobile && (
+          <CircleIcon className="mt-1 mx-1" onClick={() => props.setLoginOpen(false)}>
+            <IconCross />
+          </CircleIcon>
+        )}
       </div>
 
       {!isEmailVerification && (

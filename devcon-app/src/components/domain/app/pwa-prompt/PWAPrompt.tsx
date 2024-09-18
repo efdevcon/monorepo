@@ -96,7 +96,7 @@ export const PWAPrompt = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-0 left-0 w-full h-full backdrop-blur-md pointer-events-none"
+            className="absolute top-0 left-0 w-full h-full backdrop-blur-xl pointer-events-none"
           ></motion.div>
         )}
       </AnimatePresence>
@@ -106,12 +106,12 @@ export const PWAPrompt = () => {
             key="mobile-login"
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
-            exit={{ y: '100%', transition: { type: 'spring', duration: 0.8, bounce: 0 } }}
-            transition={{ duration: 0.8, type: 'spring', bounce: 0.2 }}
+            exit={{ y: '100%', transition: { type: 'spring', duration: 1, bounce: 0 } }}
+            transition={{ duration: 1, type: 'spring', bounce: 0.2 }}
             className="flex justify-center items-end max-w-[500px] lg:h-full rounder-2xl lg:items-center relative pointer-events-none"
             onClick={e => e.stopPropagation()}
           >
-            <div className="bg-white text-black m-8 relative rounded-2xl shadow overflow-hidden lg:mb-0 pointer-events-auto">
+            <div className="bg-white text-black m-8 relative rounded-2xl shadow border-solid border-black border overflow-hidden lg:mb-0 pointer-events-auto">
               <Image
                 alt="Devcon Scientist"
                 className={`${css['background']} object-contain object-center h-full w-full rounded-2xl`}
