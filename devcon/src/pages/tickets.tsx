@@ -511,9 +511,9 @@ export default pageHOC(function Tickets(props: any) {
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div className="flex relative items-center">
                       <div>Wave 06</div>
-                      {waveActive && latestWave === ticketWaves[6] && (
+                      {/* {waveActive && latestWave === ticketWaves[6] && (
                         <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
-                      )}
+                      )} */}
                       <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
                         SOLD OUT
                       </div>
@@ -538,7 +538,7 @@ export default pageHOC(function Tickets(props: any) {
                         SOLD OUT
                       </div> */}
                     </div>
-                    <div className="bold">October 1st</div>
+                    <div className="bold">October 1</div>
                   </div>
                 ),
                 indent: false,
