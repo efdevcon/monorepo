@@ -4,7 +4,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 dotenv.config()
 import { prompts } from './fine-tune'
-import { filenameToUrl } from 'lib/cms/filenameToUrl'
+import { filenameToUrl } from '@lib/cms/filenameToUrl'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,

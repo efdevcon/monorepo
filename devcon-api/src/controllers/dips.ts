@@ -1,4 +1,4 @@
-import { GetContributors, GetDIPs } from 'clients/dips'
+import { GetContributors, GetDIPs } from '@/clients/dips'
 import { Request, Response, Router } from 'express'
 
 export const dipsRouter = Router()

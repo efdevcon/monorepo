@@ -1,7 +1,7 @@
 import { PrismaClient } from '@prisma/client'
-import { GetAudioData } from 'clients/filesystem'
+import { GetAudioData } from '@/clients/filesystem'
 import { Request, Response, Router } from 'express'
-import { API_DEFAULTS, API_INFO, DEVCON_INFO } from 'utils/config'
+import { API_DEFAULTS, API_INFO, DEVCON_INFO } from '@/utils/config'
 
 const client = new PrismaClient()
 

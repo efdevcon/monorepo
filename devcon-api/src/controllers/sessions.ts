@@ -2,12 +2,12 @@ import dayjs from 'dayjs'
 import { Request, Response, Router } from 'express'
 import Handlebars from 'handlebars'
 import puppeteer from 'puppeteer'
-import { ogImageTemplate } from 'templates/og'
-import { templateStyles } from 'templates/styles'
-import { GetEventDay, GetTrackId, GetTrackImage } from 'utils/templates'
+import { ogImageTemplate } from '@/templates/og'
+import { templateStyles } from '@/templates/styles'
+import { GetEventDay, GetTrackId, GetTrackImage } from '@/utils/templates'
 import { PrismaClient } from '@prisma/client'
-import { API_DEFAULTS } from 'utils/config'
-import { CommitSession } from 'services/github'
+import { API_DEFAULTS } from '@/utils/config'
+import { CommitSession } from '@/services/github'
 
 const client = new PrismaClient()
 
@@ -119,18 +119,18 @@ export async function UpdateSession(req: Request, res: Response) {
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
-  
-  if (Object.keys(updatedSession).every(key => key in data)) {
+
+  if (Object.keys(updatedSession).every((key) => key in data)) {
     return res.status(400).send({ status: 400, message: 'Invalid fields' })
   }
-  
+
   try {
     const updatedData = await client.session.update({
       where: { id: req.params.id },
       data: updatedSession,
     })
-    
-    await CommitSession(updatedData, `[skip ci] PUT /sessions/${updatedData.id}`);
+
+    await CommitSession(updatedData, `[skip ci] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {

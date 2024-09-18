@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client'
-import { GetRooms, GetSessions, GetSpeakers } from 'clients/pretalx'
-import { PRETALX_CONFIG } from 'utils/config'
+import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { PRETALX_CONFIG } from '@/utils/config'
 
 const client = new PrismaClient()
 
