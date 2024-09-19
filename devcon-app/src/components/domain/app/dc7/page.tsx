@@ -38,8 +38,8 @@ const Page = (props: PageProps) => {
   }, [])
 
   return (
-    <div className="p-4 flex items-center justify-center relative h-[calc(var(--vh,1vh)*100)] bg-white">
-      <div className="flex flex-col gap-4 justify-between w-4/5 max-w-[470px] h-[70%] max-h-[800px]">
+    <div className="p-2 flex items-center justify-center relative h-[calc(var(--vh,1vh)*100)] bg-white">
+      <div className="flex flex-col gap-4 justify-between w-full max-w-full lg:max-w-[470px] p-4 md:mx-8 md:mr-8 xl:mr-16 h-full lg:h-[70%] xl:max-h-[800px]">
         <div className="flex flex-col gap-6">
           <Image src={AppIcons} alt="App icons" className="w-[80px]" />
           <Breadcrumb>
@@ -86,7 +86,7 @@ const Page = (props: PageProps) => {
         </div>
         {props.children}
       </div>
-      <div className="w-1/2 shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative 2xl:ml-16 flex justify-center rounded-xl overflow-hidden aspect-square">
+      <div className="w-1/2 h-full 2xl:h-auto hidden lg:flex shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative justify-center rounded-xl overflow-hidden aspect-square">
         {props.rightContent}
       </div>
     </div>

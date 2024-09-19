@@ -20,7 +20,7 @@ import { Separator } from 'lib/components/ui/separator'
 import { SubscribePushNotification } from '../../../pwa-prompt/PWAPrompt'
 import App from 'next/app'
 import { motion } from 'framer-motion'
-import BellIcon from 'assets/icons/bell.svg'
+import BellIcon from 'assets/icons/bell-simple.svg'
 
 const filters = [
   {

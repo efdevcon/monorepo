@@ -145,8 +145,11 @@ export const PWAPrompt = () => {
                           return (
                             <p className="font-xs bold text-uppercase">
                               IOS Instructions: Open this website in Safari, press{' '}
-                              <IconAppleShare style={{ fontSize: '1.2em', fill: 'white' }} />, then &quot;Add to home
-                              screen&quot;
+                              <IconAppleShare
+                                className="relative inline-block transform -translate-y-[2px]"
+                                style={{ fontSize: '1.2em', fill: 'white' }}
+                              />
+                              , then &quot;Add to home screen&quot;
                             </p>
                           )
                         } else if (requiresManualInstall === 'samsung') {
@@ -176,8 +179,8 @@ export const PWAPrompt = () => {
                             })
                           }
                         >
-                          <CircleIcon className="bg-[#7D52F4]">
-                            <IconPlus style={{ fill: 'white' }} />
+                          <CircleIcon className="!bg-[#7D52F4]">
+                            <IconPlus style={{ '--color-icon': 'white' }} />
                           </CircleIcon>
                         </div>
                         {/* <Button
