@@ -7,17 +7,29 @@ type DotsSelectorProps = {
     onClick: () => void;
   }[];
   initialActiveIndex?: number;
+  activeIndex?: number;
+  onActiveIndexChange?: (index: number) => void;
 };
 
 export const DotsSelector = ({
   items,
   initialActiveIndex = 0,
+  activeIndex: controlledActiveIndex,
+  onActiveIndexChange,
 }: DotsSelectorProps) => {
-  const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
+  const [internalActiveIndex, setInternalActiveIndex] =
+    useState(initialActiveIndex);
+  const activeIndex =
+    controlledActiveIndex !== undefined
+      ? controlledActiveIndex
+      : internalActiveIndex;
   const buttonsRef = useRef<(HTMLButtonElement | null)[]>([]);
 
   const handleClick = (index: number) => {
-    setActiveIndex(index);
+    if (controlledActiveIndex === undefined) {
+      setInternalActiveIndex(index);
+    }
+    onActiveIndexChange?.(index);
     items[index].onClick();
   };
 
