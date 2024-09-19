@@ -41,65 +41,69 @@ const filters = [
   },
 ]
 
-export const NotificationCard = React.forwardRef((props: any, ref: any) => {
-  const { seenNotifications, setSeenNotifications } = useAppContext()
-  const [notificationSeen, setNotificationSeen] = useLocalStorage(
-    `notification-seen-${props.notification.id}`,
-    seenNotifications?.[props.notification.id]
-  )
+export const NotificationCard = () => {
+  return 'hello'
+}
 
-  const markAsSeen = () => {
-    setSeenNotifications((seenNotifications: any) => {
-      return {
-        ...seenNotifications,
-        [props.notification.id]: true,
-      }
-    })
+// export const NotificationCard = React.forwardRef((props: any, ref: any) => {
+//   const { seenNotifications, setSeenNotifications } = useAppContext()
+//   const [notificationSeen, setNotificationSeen] = useLocalStorage(
+//     `notification-seen-${props.notification.id}`,
+//     seenNotifications?.[props.notification.id]
+//   )
 
-    setNotificationSeen('yes')
-  }
+//   const markAsSeen = () => {
+//     setSeenNotifications((seenNotifications: any) => {
+//       return {
+//         ...seenNotifications,
+//         [props.notification.id]: true,
+//       }
+//     })
 
-  React.useImperativeHandle(ref, () => ({
-    notificationSeen,
-    markAsSeen,
-  }))
+//     setNotificationSeen('yes')
+//   }
 
-  let className = `!shadow-lg ${css['notification-block']}`
+//   React.useImperativeHandle(ref, () => ({
+//     notificationSeen,
+//     markAsSeen,
+//   }))
 
-  if (!notificationSeen) className += ` ${css['highlight']}`
+//   // let className = `!shadow-lg ${css['notification-block']}`
 
-  const notification = props.notification
-  const dateAsMoment = moment.utc(notification.date)
+//   // if (!notificationSeen) className += ` ${css['highlight']}`
 
-  return (
-    <ThumbnailBlock key={notification.id} className={className}>
-      <div className={css['top']}>
-        <div className={css['time']}>
-          <p>{dateAsMoment.format('MM/DD/YY')}</p>
-          <p>{dateAsMoment.format('HH:mm A')}</p>
-          {/* TODO: Why the fook doesn't this work? */}
-          {/* <p>{dateAsMoment.from(moment.utc())}</p> */}
-        </div>
+//   const notification = props.notification
+//   const dateAsMoment = moment.utc(notification.date)
 
-        {notificationSeen ? <IconCheck /> : <div className="label sm error bold">New</div>}
-      </div>
-      <div className={css['details']}>
-        {notification.label === 'Twitter' && (
-          <p className={`bold hover-underline ${css['title']}`}>
-            <Link to={notification.url}>{notification.title}</Link>
-          </p>
-        )}
-        {notification.label !== 'Twitter' && <p className={`bold ${css['title']}`}>{notification.title}</p>}
-        <p>{notification.body}</p>
-      </div>
-      {notification.label && (
-        <div className={css['labels']}>
-          <div className={`label sm bold ${notification.labelType}`}>{notification.label}</div>
-        </div>
-      )}
-    </ThumbnailBlock>
-  )
-})
+//   // return (
+//   //   <ThumbnailBlock key={notification.id} className={className}>
+//   //     <div className={css['top']}>
+//   //       <div className={css['time']}>
+//   //         <p>{dateAsMoment.format('MM/DD/YY')}</p>
+//   //         <p>{dateAsMoment.format('HH:mm A')}</p>
+//   //         {/* TODO: Why the fook doesn't this work? */}
+//   //         {/* <p>{dateAsMoment.from(moment.utc())}</p> */}
+//   //       </div>
+
+//   //       {notificationSeen ? <IconCheck /> : <div className="label sm error bold">New</div>}
+//   //     </div>
+//   //     <div className={css['details']}>
+//   //       {notification.label === 'Twitter' && (
+//   //         <p className={`bold hover-underline ${css['title']}`}>
+//   //           <Link to={notification.url}>{notification.title}</Link>
+//   //         </p>
+//   //       )}
+//   //       {notification.label !== 'Twitter' && <p className={`bold ${css['title']}`}>{notification.title}</p>}
+//   //       <p>{notification.body}</p>
+//   //     </div>
+//   //     {notification.label && (
+//   //       <div className={css['labels']}>
+//   //         <div className={`label sm bold ${notification.labelType}`}>{notification.label}</div>
+//   //       </div>
+//   //     )}
+//   //   </ThumbnailBlock>
+//   // )
+// })
 
 export const Notifications = (props: any) => {
   const pageContext = usePageContext()
@@ -184,59 +188,5 @@ export const Notifications = (props: any) => {
         </>
       )}
     </motion.div>
-  )
-
-  return (
-    <div className={css['container']}>
-      <div className={css['header']}>
-        <h2 className="font-lg-fixed">Notifications</h2>
-        {unseenNotifications && (
-          <Button
-            className="red sm"
-            onClick={() => {
-              Object.values(notificationRefs.current).forEach((notification: any) => notification.markAsSeen())
-            }}
-          >
-            Mark all as read
-          </Button>
-        )}
-      </div>
-
-      {/* <Basic
-        className={css['filter']}
-        value={basicFilter}
-        onChange={setBasicFilter}
-        options={[
-          {
-            text: 'All',
-            value: 'all',
-          },
-          {
-            text: 'New',
-            value: 'new',
-          },
-        ]}
-      /> */}
-
-      {pageContext?.appNotifications &&
-        pageContext?.appNotifications.map(notification => {
-          return (
-            <NotificationCard
-              key={notification.id}
-              notification={notification}
-              ref={(ref: any) => (notificationRefs.current[notification.id] = ref)}
-            />
-          )
-        })}
-
-      <h2 className="font-lg-fixed mt-8 mb-2">Push Notifications</h2>
-
-      {/* <SubscribePushNotification /> */}
-
-      <div className={css['background']}>
-        <AppLogo />
-        {/* <Image src={AppLogoColor} layout="fill" objectFit="contain" objectPosition="right" alt="Ether" /> */}
-      </div>
-    </div>
   )
 }
