@@ -124,7 +124,7 @@ const OnboardingPage = (props: any) => {
     >
       <div>
         {currentStep === 0 && <Notifications onSkip={() => setCurrentStep(1)} />}
-        {currentStep === 1 && <div>Content for Step 2</div>}
+        {currentStep === 1 && <Notifications onSkip={() => setCurrentStep(2)} />}
         {currentStep === 2 && <div>Content for Step 3</div>}
         {currentStep === 3 && <div>Content for Step 4</div>}
       </div>
