@@ -48,6 +48,7 @@ const BreadcrumbLink = React.forwardRef<
   const Comp = asChild ? Slot : "a";
 
   return (
+    // @ts-ignore
     <Comp
       ref={ref}
       className={cn(
@@ -56,7 +57,7 @@ const BreadcrumbLink = React.forwardRef<
       )}
       {...props}
     />
-  );
+  ) as React.ReactElement;
 });
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
