@@ -5,7 +5,9 @@ import { DotsSelector } from 'lib/components/dots-selector'
 import OnboardingNotifications from 'assets/images/dc-7/onboarding-notifications.png'
 import OnboardingZupass from 'assets/images/dc-7/onboarding-zupass.png'
 import Image from 'next/image'
+import ChevronRightIcon from 'assets/icons/chevron_right.svg'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from 'lib/components/button'
 
 const OnboardingPage = (props: any) => {
   const [currentStep, setCurrentStep] = useState(0)
@@ -128,13 +130,24 @@ const OnboardingPage = (props: any) => {
         {currentStep === 2 && <div>Content for Step 3</div>}
         {currentStep === 3 && <div>Content for Step 4</div>}
       </div>
-      <div className="flex mt-4">
+      <div className="flex justify-between items-center mt-4">
         <DotsSelector
           items={notificationSteps}
           initialActiveIndex={currentStep}
           activeIndex={currentStep}
           onActiveIndexChange={setCurrentStep}
         />
+
+        {/* <Button className="plain" color="purple-2" rounded fat fill>
+          <ChevronRightIcon className="text-xs" style={{ '--color-icon': '#7D52F4', fontSize: '10px' }} />
+        </Button> */}
+
+        <div
+          className="rounded-full bg-[#EFEBFF] text-[#7D52F4] flex items-center justify-center text-xs p-3 gap-2 cursor-pointer hover:scale-110 transition-all duration-500 border border-[#7D52F4 select-none"
+          onClick={() => setCurrentStep(currentStep === 3 ? 0 : currentStep + 1)}
+        >
+          <ChevronRightIcon className="text-xs" style={{ '--color-icon': '#7D52F4', fontSize: '12px' }} />
+        </div>
       </div>
     </Page>
   )
