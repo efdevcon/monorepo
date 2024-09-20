@@ -17,7 +17,7 @@ const lastSeenKey = 'pwa_prompt_timestamp'
 const howOftenToPrompt = [7, 'days'] // [30, 'seconds']
 
 export const PWAPrompt = () => {
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
 
   const promptIfNotLocked = React.useMemo(
     () => () => {
@@ -37,7 +37,7 @@ export const PWAPrompt = () => {
 
       setTimeout(() => {
         setOpen(true)
-      }, 1000)
+      }, 2000)
     },
     []
   )
@@ -52,35 +52,35 @@ export const PWAPrompt = () => {
     }
   }, [requiresManualInstall, promptIfNotLocked])
 
-  useEffect(() => {
-    // @ts-ignore
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
-      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-        // Check if the user is already subscribed
-        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
-          if (subscription) {
-            console.log('User is already subscribed:', subscription)
-          } else {
-            // User is not subscribed, proceed to subscribe
-            serviceWorkerRegistration.pushManager
-              .subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: process.env.VAPID_PUBLIC,
-              })
-              .then(function (subscription) {
-                console.log('User is subscribed:', subscription)
+  // useEffect(() => {
+  //   // @ts-ignore
+  //   if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+  //     navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+  //       // Check if the user is already subscribed
+  //       serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+  //         if (subscription) {
+  //           console.log('User is already subscribed:', subscription)
+  //         } else {
+  //           // User is not subscribed, proceed to subscribe
+  //           serviceWorkerRegistration.pushManager
+  //             .subscribe({
+  //               userVisibleOnly: true,
+  //               applicationServerKey: process.env.VAPID_PUBLIC,
+  //             })
+  //             .then(function (subscription) {
+  //               console.log('User is subscribed:', subscription)
 
-                // Send subscription to your server
-                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
-              })
-              .catch(function (err) {
-                console.log('Failed to subscribe the user: ', err)
-              })
-          }
-        })
-      })
-    }
-  }, [])
+  //               // Send subscription to your server
+  //               return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+  //             })
+  //             .catch(function (err) {
+  //               console.log('Failed to subscribe the user: ', err)
+  //             })
+  //         }
+  //       })
+  //     })
+  //   }
+  // }, [])
 
   return (
     <div

@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/breadcrumb'
 import Image from 'next/image'
 import AppIcons from 'pages/wip/dc-7-images/login-icons-colorless.png'
-import ProfileIcon from 'assets/icons/account.svg'
+import ProfileIcon from 'assets/icons/person.svg'
 
 type PageProps = {
   breadcrumbs: {
@@ -43,12 +43,12 @@ const Page = (props: PageProps) => {
         <div className="flex flex-col gap-6">
           <Image src={AppIcons} alt="App icons" className="w-[80px]" />
           <Breadcrumb>
-            <BreadcrumbList>
+            <BreadcrumbList className="text-xl lg:text-sm">
               {props.breadcrumbs.map((breadcrumb, index) => {
                 let label = breadcrumb.label as any
 
                 if (breadcrumb.href === '/profile') {
-                  label = <ProfileIcon />
+                  label = <ProfileIcon className="text-2xl lg:text-lg" />
                 }
 
                 return (

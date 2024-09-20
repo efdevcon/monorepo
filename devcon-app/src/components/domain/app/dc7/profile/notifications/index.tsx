@@ -21,6 +21,10 @@ import { SubscribePushNotification } from '../../../pwa-prompt/PWAPrompt'
 import App from 'next/app'
 import { motion } from 'framer-motion'
 import BellIcon from 'assets/icons/bell-simple.svg'
+import { pwaUtilities } from '../../../pwa-prompt/pwa-utilities'
+import { Toaster } from 'lib/components/ui/toaster'
+import { useToast } from 'lib/hooks/use-toast'
+import OnboardingNotifications from 'assets/images/dc-7/onboarding-notifications.png'
 
 const filters = [
   {
@@ -110,7 +114,9 @@ export const Notifications = (props: any) => {
   const notificationRefs = React.useRef<any>({})
   const { seenNotifications, setSeenNotifications } = useAppContext()
   const [pushNotificationsEnabled, setPushNotificationsEnabled] = React.useState(false)
-  // const [basicFilter, setBasicFilter] = React.useState('all')
+  const [toastMessage, setToastMessage] = React.useState('')
+  const { toast } = useToast()
+  const [isLoading, setIsLoading] = React.useState(false)
 
   const unseenNotifications =
     pageContext &&
@@ -132,34 +138,71 @@ export const Notifications = (props: any) => {
     visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   }
 
+  React.useEffect(() => {
+    const checkPushNotificationStatus = async () => {
+      const isSubscribed = await pwaUtilities.checkPushSubscription()
+      setPushNotificationsEnabled(isSubscribed)
+    }
+
+    checkPushNotificationStatus()
+  }, [])
+
+  const handleTogglePushNotifications = async () => {
+    setIsLoading(true)
+    const result = await pwaUtilities.togglePushSubscription()
+    if (result.success) {
+      toast({
+        title: result.message,
+        variant: 'default',
+        duration: 3000,
+        position: 'bottom-center',
+      })
+      setPushNotificationsEnabled(!pushNotificationsEnabled)
+    } else {
+      toast({
+        title: result.message,
+        variant: 'destructive',
+        duration: 3000,
+        position: 'bottom-center',
+      })
+    }
+    setIsLoading(false)
+  }
+
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <motion.div
-        className="flex items-center justify-center p-4 mb-12 rounded-full bg-[#EFEBFF] h-[64px] w-[64px]"
+        className="flex items-center justify-center p-4 mb-6 lg:mb-12 rounded-full bg-[#EFEBFF] h-[48px] w-[48px] lg:h-[64px] lg:w-[64px]"
         variants={itemVariants}
       >
-        <BellIcon style={{ fontSize: '24px', '--color-icon': '#7D52F4' }} />
+        <BellIcon style={{ '--color-icon': '#7D52F4' }} className="text-[20px] lg:text-[24px] icon" />
       </motion.div>
       <motion.div className="flex flex-col gap-2 mb-4" variants={itemVariants}>
         <motion.p className="font-xl semi-bold" variants={itemVariants}>
-          Turn on Push Notifications
+          {pushNotificationsEnabled ? 'Toggle Push Notifications' : 'Turn on Push Notifications'}
         </motion.p>
         <motion.p className="text-[#939393] text-sm" variants={itemVariants}>
           Keep up with all the updates, sessions, events, and experiences around Devcon SEA.
         </motion.p>
       </motion.div>
       <motion.div variants={itemVariants}>
+        <Image
+          src={OnboardingNotifications}
+          alt="Onboarding Notifications"
+          className="w-full object-cover min-h-[200px] max-h-[30vh] rounded-xl lg:hidden my-2"
+        />
+      </motion.div>
+      <motion.div variants={itemVariants}>
         {!pushNotificationsEnabled && (
           <Button
-            className="plain mt-8 w-full"
+            className="plain mt-2 lg:mt-8 w-full"
             color="purple-2"
             fat
             fill
-            onClick={() => {
-              setPushNotificationsEnabled(true)
-            }}
+            onClick={handleTogglePushNotifications}
+            disabled={isLoading}
           >
-            Turn on Notifications
+            {isLoading ? 'Turning on...' : 'Turn on Notifications'}
           </Button>
         )}
 
@@ -169,11 +212,10 @@ export const Notifications = (props: any) => {
             color="black-1"
             fat
             fill
-            onClick={() => {
-              setPushNotificationsEnabled(false)
-            }}
+            onClick={handleTogglePushNotifications}
+            disabled={isLoading}
           >
-            Turn off Notifications
+            {isLoading ? 'Turning off...' : 'Turn off Notifications'}
           </Button>
         )}
       </motion.div>
@@ -182,11 +224,17 @@ export const Notifications = (props: any) => {
         <>
           <Separator className="my-4" />
 
-          <motion.p className="text-sm semi-bold cursor-pointer" variants={itemVariants} onClick={props.onSkip}>
+          <motion.p
+            className="flex items-center justify-center lg:items-start text-sm semi-bold cursor-pointer w-full"
+            variants={itemVariants}
+            onClick={props.onSkip}
+          >
             Not right now
           </motion.p>
         </>
       )}
+
+      <Toaster />
     </motion.div>
   )
 }
