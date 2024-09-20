@@ -222,39 +222,39 @@ export const SubscribePushNotification = () => {
   const [dummyValue, setDummyValue] = React.useState('')
   const [pushSubscription, setPushSubscription] = React.useState<any>(null)
 
-  React.useEffect(() => {
-    // @ts-ignore
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
-      setPwaEnabled(true)
+  // React.useEffect(() => {
+  //   // @ts-ignore
+  //   if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+  //     setPwaEnabled(true)
 
-      navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
-        // Check if the user is already subscribed
-        serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
-          if (subscription) {
-            setPushSubscription(subscription)
+  //     navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
+  //       // Check if the user is already subscribed
+  //       serviceWorkerRegistration.pushManager.getSubscription().then(function (subscription) {
+  //         if (subscription) {
+  //           setPushSubscription(subscription)
 
-            console.log('saving subscription!')
-          } else {
-            // User is not subscribed, proceed to subscribe
-            serviceWorkerRegistration.pushManager
-              .subscribe({
-                userVisibleOnly: true,
-                applicationServerKey: process.env.VAPID_PUBLIC,
-              })
-              .then(function (subscription) {
-                console.log('User is subscribed:', subscription)
+  //           console.log('saving subscription!')
+  //         } else {
+  //           // User is not subscribed, proceed to subscribe
+  //           serviceWorkerRegistration.pushManager
+  //             .subscribe({
+  //               userVisibleOnly: true,
+  //               applicationServerKey: process.env.VAPID_PUBLIC,
+  //             })
+  //             .then(function (subscription) {
+  //               console.log('User is subscribed:', subscription)
 
-                // Send subscription to your server
-                return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
-              })
-              .catch(function (err) {
-                console.log('Failed to subscribe the user: ', err)
-              })
-          }
-        })
-      })
-    }
-  }, [])
+  //               // Send subscription to your server
+  //               return fetch('api/notifications', { method: 'POST', body: JSON.stringify(subscription) })
+  //             })
+  //             .catch(function (err) {
+  //               console.log('Failed to subscribe the user: ', err)
+  //             })
+  //         }
+  //       })
+  //     })
+  //   }
+  // }, [])
 
   console.log(pushSubscription, 'push subscription')
 

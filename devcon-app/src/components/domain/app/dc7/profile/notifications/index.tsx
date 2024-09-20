@@ -151,6 +151,7 @@ export const Notifications = (props: any) => {
     setIsLoading(true)
     const result = await pwaUtilities.togglePushSubscription()
     if (result.success) {
+      console.log('toast1')
       toast({
         title: result.message,
         variant: 'default',
@@ -159,6 +160,7 @@ export const Notifications = (props: any) => {
       })
       setPushNotificationsEnabled(!pushNotificationsEnabled)
     } else {
+      console.log('toast2')
       toast({
         title: result.message,
         variant: 'destructive',
