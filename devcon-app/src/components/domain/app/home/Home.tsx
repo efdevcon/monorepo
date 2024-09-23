@@ -97,7 +97,8 @@ export const Home = (props: any) => {
       text: 'Sign out',
       value: 'Signout',
       onClick: () => {
-        accountContext.logout(accountContext.account?._id)
+        // @ts-ignore
+        accountContext.logout(accountContext.account?.id)
         router.push('/login')
       },
     })
@@ -140,6 +141,9 @@ export const Home = (props: any) => {
               <button className="label error plain" onClick={() => router.push('/settings/username')}>
                 MANAGE USERNAME
               </button>
+              <button className="label error plain" onClick={() => router.push('/settings/profile')}>
+                MANAGE PROFILE
+              </button>
               <button className="label error plain" onClick={() => router.push('/settings#delete')}>
                 DELETE ACCOUNT
               </button>
@@ -155,6 +159,7 @@ export const Home = (props: any) => {
           <div className={css['connection-info']}>
             <div className={css['wallet']}>
               <div className={css['circle']}>
+                {/* eslint-disable-next-line */}
                 <img src={avatar.url} alt={avatar.name} />
               </div>
 

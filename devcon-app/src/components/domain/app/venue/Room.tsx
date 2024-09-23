@@ -52,7 +52,7 @@ export const Room = (props: Props) => {
   const sortedSessions = props.sessions.slice().sort((a, b) => {
     return moment.utc(a.start).isBefore(moment.utc(b.start)) ? -1 : 1
   })
-  const bookmarkedSessions = account?.appState?.sessions
+  const bookmarkedSessions = account?.sessions
   const upcomingSessions = sortedSessions
     .filter(i => sessionSearch(search, i))
     .filter(i => {

@@ -49,6 +49,6 @@ export interface DIP {
 
 export interface Contributor {
   name: string
-  url: string
-  avatarUrl: string
+  url?: string
+  avatarUrl: string | string
 }

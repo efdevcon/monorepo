@@ -102,12 +102,13 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
   const intl = useTranslations()
   // const draggableLinkAttributes = useDraggableLink()
   const heroEl = React.useRef(null)
-  // const pages = usePages()
+  // const pages = usePages()x
   // const [currentPage, setCurrentPage] = React.useState(0)
   // const [focusNextPage, setFocusNextPage] = React.useState(false)
   const backdropRef = React.useRef<any>(null)
   const { x, y } = useCursorTracker(backdropRef)
-  // const { scrollY } = useScroll()
+  const { scrollY } = useScroll()
+  const [isVisible, setIsVisible] = useState(true)
   // const scroll = useSpring(scrollY, { stiffness: 100000, damping: 40 })
 
   // const page = pages[currentPage]
@@ -153,6 +154,14 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
     transformRightY.set(yDir)
   }, [x, y])
 
+  useEffect(() => {
+    const unsubscribe = scrollY.onChange(latest => {
+      setIsVisible(latest <= window.innerHeight)
+    })
+
+    return () => unsubscribe()
+  }, [scrollY])
+
   const ticketHolder = props.name ?? searchParams.get('name') ?? 'Anon'
   const ticketType = searchParams.get('type') ?? ''
   let imageUrl = `https://devcon-social.netlify.app/${ticketHolder}/opengraph-image`
@@ -193,7 +202,13 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
           props.ticketMode || props.speakerMode ? css['ticket-mode'] : ''
         }`}
       >
-        <motion.div className={css['devcon-7-background']} ref={backdropRef} /*style={{ y: -scroll }}*/>
+        <motion.div
+          className={`${css['devcon-7-background']} ${!isVisible ? 'hidden' : ''}`}
+          ref={backdropRef}
+          // initial={{ opacity: 1 }}
+          // animate={{ opacity: isVisible ? 1 : 0 }}
+          // transition={{ duration: 0.3 }}
+        >
           <motion.div className={css['backdrop']} style={{ x: transformX, y: transformY }}>
             <Image src={DC7Backdrop} alt="Infinite Garden leading to Southeast Asia" priority />
             <div className="absolute bottom-0 w-full h-full">

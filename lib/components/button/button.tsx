@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import css from "./button.module.scss";
 
@@ -8,8 +7,11 @@ type ColorType =
   | "purple-1"
   | "green-1"
   | "blue-1"
+  | "grey-1"
   | "teal-1"
-  | "orange-1";
+  | "orange-1"
+  | "white-1"
+  | "purple-2"; // Add this new color type
 type SizeType = "sm" | "md" | "lg";
 
 type ButtonProps = {
@@ -49,8 +51,19 @@ export const colors = {
       hover: "#2e2c2c",
     },
     ghost: {
-      color: "#88c43f",
-      hover: "#88c43f20",
+      color: "#454545",
+      hover: "#45454520",
+    },
+  },
+  "grey-1": {
+    fill: {
+      color: "#000000",
+      background: "#45454520",
+      hover: "#45454540",
+    },
+    ghost: {
+      color: "#454545",
+      hover: "#45454520",
     },
   },
   "purple-1": {
@@ -106,6 +119,30 @@ export const colors = {
     ghost: {
       color: "#EA766E",
       hover: "#EA766E20",
+    },
+  },
+  "white-1": {
+    fill: {
+      color: "#000000",
+      background: "#ffffff",
+      hover: "#f0f0f0",
+      border: "#e0e0e0",
+    },
+    ghost: {
+      color: "#ffffff",
+      hover: "#ffffff20",
+      border: "#ffffff",
+    },
+  },
+  "purple-2": {
+    fill: {
+      color: "#ffffff",
+      background: "#7D52F4",
+      hover: "#6A3FD1",
+    },
+    ghost: {
+      color: "#7D52F4",
+      hover: "#7D52F420",
     },
   },
 } as {

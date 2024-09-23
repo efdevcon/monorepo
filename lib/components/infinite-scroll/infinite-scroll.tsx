@@ -9,6 +9,7 @@ type InfiniteScrollProps = {
   slow?: boolean;
   unpadded?: boolean;
   marqueeClassName?: string;
+  pauseOnHover?: boolean;
   children: any;
 };
 
@@ -18,6 +19,7 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
   if (props.reverse) className += ` ${css["reverse"]}`;
   if (props.slow) className += ` ${css["slow"]}`;
   if (props.unpadded) className += ` ${css["unpadded"]}`;
+  if (props.pauseOnHover) className += ` ${css["pause-on-hover"]}`;
   if (props.marqueeClassName) className += ` ${props.marqueeClassName}`;
 
   const nDuplications = props.nDuplications || 2;

@@ -106,7 +106,7 @@ export default pageHOC(function Programming(props: any) {
         logo: trackLogo,
       }
     })
-  })()
+  })() || []
 
   return (
     <Page theme={themes['purple']}>
@@ -260,7 +260,7 @@ export default pageHOC(function Programming(props: any) {
 
                   {index === 1 && (
                     <div>
-                      <TrackList isThailand tracks={formattedTracks || props.tracks} title="Tracks" />
+                      <TrackList tracks={formattedTracks} title="Tracks" />
                       <div className="mt-6"></div>
                       {speakers.what_to_talk_about_second_part && (
                         <RichText content={speakers.what_to_talk_about_second_part.body}></RichText>

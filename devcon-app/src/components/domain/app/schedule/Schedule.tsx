@@ -239,8 +239,8 @@ export const Schedule = (props: any) => {
   //   }
   // }, [search])
 
-  const bookmarkedSessions = account?.appState?.sessions ?? []
-  const favoritedSpeakers = account?.appState?.speakers ?? []
+  const bookmarkedSessions = account?.sessions ?? []
+  const favoritedSpeakers = account?.speakers ?? []
 
   // Format sessions (memoized)
   const formattedSessions = useFormatSessions(sessionsBeforeFormatting)

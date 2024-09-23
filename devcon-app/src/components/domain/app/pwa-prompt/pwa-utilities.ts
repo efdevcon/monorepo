@@ -15,21 +15,23 @@ export const pwaUtilities = {
   // Detect when browser marks the website as installable and show our custom prompt
   useDetectInstallable: ({ togglePrompt }: DetectInstallableArgs) => {
     const [deferredEvent, setDeferredEvent] = React.useState<Event | null>(null)
-    const [requiresManualInstall, setRequiresManualInstall] = React.useState<false | 'ios' | 'samsung'>(false);
+    const [requiresManualInstall, setRequiresManualInstall] = React.useState<false | 'ios' | 'samsung'>(false)
 
     // When app launches, determine if PWA prompt is possible in browser/OS combination, otherwise trigger the manual prompt with install instructions:
     React.useEffect(() => {
       // Don't prompt if already installed
       if (pwaUtilities.isStandalone()) {
         console.log('standalone preventing prompt')
-       
-        return; 
+
+        alert('pwa installed')
+
+        return
       }
 
       if (pwaUtilities.isIOS()) {
-        setRequiresManualInstall('ios');
+        setRequiresManualInstall('ios')
       } else if (pwaUtilities.isSamsungBrowser()) {
-        setRequiresManualInstall('samsung');
+        setRequiresManualInstall('samsung')
       }
     }, [])
 
@@ -79,35 +81,80 @@ export const pwaUtilities = {
     // Wait for the user to respond to the prompt
     const { outcome } = await deferredEvent.userChoice
     // Optionally, send analytics event with outcome of user choice
-    console.log('user prompt outcome:',  outcome);
+    console.log('user prompt outcome:', outcome)
     // We've used the prompt, and can't use it again, throw it away
     setDeferredEvent(null)
   },
 
+  // This is our best shot at detecting if we are in PWA mode - should work for all cases, but hard to know for sure - worth testing.
   isStandalone: () => {
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches;
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches
+    const isIOSStandalone = 'standalone' in window.navigator && (window.navigator as any).standalone === true
 
-    if (document.referrer.startsWith("android-app://")) {
-      return true; // Trusted web app
-    } else if (isStandalone) {
-      return true;
+    if (document.referrer.startsWith('android-app://')) {
+      return true //
+    } else if (isStandalone || isIOSStandalone) {
+      return true
     }
 
-    return false;
+    return false
   },
 
   isIOS: () => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
+    const userAgent = window.navigator.userAgent.toLowerCase()
 
-    return /iphone|ipad|ipod/.test( userAgent );
+    return /iphone|ipad|ipod/.test(userAgent)
   },
   isSamsungBrowser: () => {
-    return navigator.userAgent.match(
-      /SAMSUNG|Samsung|SGH-[I|N|T]|GT-[I|N]|SM-[A|N|P|T|Z]|SHV-E|SCH-[I|J|R|S]|SPH-L/i,
-    );
-  }
-}
+    return navigator.userAgent.match(/SAMSUNG|Samsung|SGH-[I|N|T]|GT-[I|N]|SM-[A|N|P|T|Z]|SHV-E|SCH-[I|J|R|S]|SPH-L/i)
+  },
 
+  togglePushSubscription: async (): Promise<{ success: boolean; message: string }> => {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+      return { success: false, message: 'Push notifications are not supported in this browser' }
+    }
+
+    try {
+      const registration = await navigator.serviceWorker.ready
+      const existingSubscription = await registration.pushManager.getSubscription()
+
+      if (existingSubscription) {
+        await existingSubscription.unsubscribe()
+        return { success: true, message: 'Push notifications unsubscribed successfully' }
+      } else {
+        const newSubscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: process.env.VAPID_PUBLIC,
+        })
+        console.log('Push notification subscribed:', newSubscription)
+        // Here you would typically send the subscription to your server
+        return { success: true, message: 'Push notifications enabled successfully' }
+      }
+    } catch (error) {
+      console.error('Error toggling push subscription:', error)
+      if (error instanceof DOMException && error.name === 'NotAllowedError') {
+        return { success: false, message: 'Please allow notifications in your browser settings.' }
+      }
+      return { success: false, message: 'An error occurred while managing push notifications' }
+    }
+  },
+
+  checkPushSubscription: async (): Promise<boolean> => {
+    if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+      console.log('Push notifications are not supported in this browser')
+      return false
+    }
+
+    try {
+      const registration = await navigator.serviceWorker.ready
+      const subscription = await registration.pushManager.getSubscription()
+      return !!subscription
+    } catch (error) {
+      console.error('Error checking push subscription:', error)
+      return false
+    }
+  },
+}
 
 // Chrome - auto
 // Safari - Press "Share" icon then "Add to home"

@@ -821,7 +821,7 @@ const Timeline = (props: any) => {
       )
     ) {
       if (isBlockingEvent) {
-        currentRow += 4;
+        currentRow += 3;
       } else {
         currentRow++;
       }
@@ -834,7 +834,7 @@ const Timeline = (props: any) => {
     };
 
     if (isBlockingEvent) {
-      gridPlacement.gridRow = `2 / span ${currentRow + 3}`;
+      gridPlacement.gridRow = `2 / span ${currentRow + 2}`;
 
       return (
         <React.Fragment key={event.Name + offsetFromFirstDay}>
@@ -1029,7 +1029,7 @@ const Timeline = (props: any) => {
         );
       })()}
 
-      <SwipeToScroll noBounds>
+      <SwipeToScroll noBounds ref={props.scrollRef}>
         <div className={css["timeline"]}>
           {events}
 
@@ -1380,7 +1380,7 @@ const ListEventDesktop = (props: any) => {
               </p>
             )}
 
-            {props.edition !== "istanbul" &&
+            {/* {props.edition !== "istanbul" &&
               props.event.Location &&
               props.event.Location.url && (
                 <Link
@@ -1390,7 +1390,7 @@ const ListEventDesktop = (props: any) => {
                 >
                   {props.event.Location.text}
                 </Link>
-              )}
+              )} */}
 
             {props.event["Brief Description"] && (
               <p
@@ -1493,7 +1493,7 @@ const ListEventMobile = (props: any) => {
           </div>
         </div>
 
-        {props.edition !== "istanbul" &&
+        {/* {props.edition !== "istanbul" &&
           props.event.Location &&
           props.event.Location.url && (
             <Link
@@ -1503,7 +1503,7 @@ const ListEventMobile = (props: any) => {
             >
               {props.event.Location.text}
             </Link>
-          )}
+          )} */}
 
         <div className={css["date"]}>
           <p className={`small-text uppercase ${css["time-of-day"]}`}>
@@ -2184,9 +2184,10 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 
       <div className={`${css["schedule"]} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
-          <div className={css["top-bar-wrapper"]}>
+          <div className={css["top-bar-wrapper"]} data-type="schedule-top-bar">
             <SwipeToScroll
               noBounds
+
               // scrollIndicatorDirections={{ right: true, left: true }}
             >
               <div className={css["top-bar"]}>
@@ -2536,6 +2537,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
                   <div>
                     <Timeline
                       {...scheduleHelpers}
+                      scrollRef={props.scrollRef}
                       favorites={favorites}
                       edition={props.edition}
                       renderBlockingEvent={props.renderBlockingEvent}
@@ -2617,314 +2619,5 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 });
 
 export default Schedule;
-
-// Notion fetch/format below
-const notionDatabasePropertyResolver = (property: any, key: any) => {
-  switch (property.type) {
-    case "text":
-    case "rich_text":
-    case "title":
-      // Extract url and url text from the Location column
-      if (key === "Location" && property[property.type]) {
-        let locationInfo = {} as any;
-
-        property[property.type].forEach((chunk: any) => {
-          if (chunk.href) {
-            locationInfo.url = chunk.href;
-            locationInfo.text = chunk.plain_text;
-          }
-        });
-
-        return locationInfo;
-      }
-
-      const dechunked = property[property.type]
-        ? property[property.type].reduce((acc: string, chunk: any) => {
-            let textToAppend;
-
-            if (
-              chunk.href &&
-              property.type === "rich_text" &&
-              key !== "URL" &&
-              key !== "Stream URL"
-            ) {
-              textToAppend = `<a href=${chunk.href} target="_blank" class="generic" rel="noopener noreferrer">${chunk.plain_text}</a>`;
-            } else {
-              textToAppend = chunk.plain_text;
-            }
-
-            if (chunk.annotations) {
-              let annotations = "placeholder";
-
-              if (chunk.annotations.bold) annotations = `<b>${annotations}</b>`;
-              if (chunk.annotations.italic)
-                annotations = `<i>${annotations}</i>`;
-              if (chunk.annotations.strikethrough)
-                annotations = `<s>${annotations}</s>`;
-              if (chunk.annotations.underline)
-                annotations = `<u>${annotations}</u>`;
-
-              textToAppend = annotations.replace("placeholder", textToAppend);
-            }
-
-            return acc + textToAppend;
-          }, "")
-        : null;
-
-      return `${dechunked}`;
-
-    case "date":
-      if (property.date) {
-        return {
-          startDate: property.date.start,
-          endDate: property.date.end || property.date.start,
-        };
-      }
-
-      return null;
-
-    case "multi_select":
-      if (property.multi_select) {
-        return property.multi_select.map((value: any) => value.name);
-      }
-
-      return null;
-    case "select":
-      return property.select && property.select.name;
-
-    case "number":
-      return property.number;
-
-    case "checkbox":
-      return property.checkbox;
-
-    default:
-      return "default value no handler for: " + property.type;
-  }
-};
-
-const formatResult = (result: any) => {
-  const properties = {} as { [key: string]: any };
-
-  // Our schedules follow multiple formats, so we have to normalize before processing:
-  const normalizedNotionEventData = normalizeEvent(result.properties);
-
-  // Format the raw notion data into something more workable
-  Object.entries(normalizedNotionEventData).forEach(([key, value]) => {
-    if (typeof value === "undefined") return;
-
-    const val = notionDatabasePropertyResolver(value, key);
-
-    if (Array.isArray(val)) {
-      properties[key] = val;
-    } else if (typeof val === "object" && val !== null) {
-      properties[key] = {
-        ...val,
-      };
-    } else {
-      properties[key] = val;
-    }
-  });
-
-  // Insert a default value for time of day when unspecified
-  if (!properties["Time of Day"]) properties["Time of Day"] = "All day";
-  // Prepend https to url if it's not an internal link (e.g. /cowork) and if https is not specified in case the event host forgot
-  if (properties["URL"]) {
-    const isInternal = properties["URL"].startsWith("/");
-    const noHttp = !properties["URL"].startsWith("http");
-
-    if (noHttp && !isInternal) {
-      properties["URL"] = `https://${properties["URL"]}`;
-    }
-  }
-
-  const isVirtualEvent =
-    properties.Category && properties.Category.includes("Virtual Event");
-
-  return {
-    ...properties,
-    isVirtualEvent,
-    ID: result.id,
-    ShortID: result.id.slice(0, 5) /* raw: result*/,
-  };
-};
-
-export async function getStaticProps(context: any) {
-  const notion = new Client({
-    auth: process.env.NOTION_SECRET,
-  });
-
-  let data = {};
-
-  const istanbulQuery = {
-    database_id: "949b9d7e7fc74986b7ce03580bd4c65b",
-    sorts: [
-      {
-        property: "[HOST] Event Date",
-        direction: "ascending",
-      },
-      {
-        property: "[WEB] Priority (sort)",
-        direction: "descending",
-      },
-    ],
-    filter: {
-      and: [
-        {
-          property: "[HOST] Event Date",
-          date: {
-            is_not_empty: true,
-          },
-        },
-        {
-          property: "[WEB] Live",
-          checkbox: {
-            equals: true,
-          },
-        },
-      ],
-    },
-  };
-
-  const amsterdamQuery = {
-    database_id: "8b177855e75b4964bb9f3622437f04f5",
-    sorts: [
-      {
-        property: "Date",
-        direction: "ascending",
-      },
-      {
-        property: "Priority (sort)",
-        direction: "descending",
-      },
-    ],
-    filter: {
-      and: [
-        {
-          property: "Date",
-          date: {
-            is_not_empty: true,
-          },
-        },
-        {
-          property: "Live",
-          checkbox: {
-            equals: true,
-          },
-        },
-      ],
-    },
-  };
-
-  let path = context.params.schedule;
-
-  if (path === "schedule") path = "istanbul";
-
-  const query = (() => {
-    if (path === "amsterdam") return amsterdamQuery;
-    if (path === "istanbul") return istanbulQuery;
-
-    throw "no database provided";
-  })();
-
-  try {
-    // Notion returns up to 100 results per request. We won't have that many events, but if we ever get close, add support for pagination at this step.
-    const response = await notion.databases.query(query as any);
-
-    data = response.results.map(formatResult);
-  } catch (error) {
-    if (false) {
-      // Handle error codes here if necessary
-    } else {
-      // Other error handling code
-      console.error(error);
-    }
-  }
-
-  return {
-    props: {
-      events: data,
-      edition: path,
-    },
-    revalidate: 1 * 60 * 30, // 30 minutes, in seconds
-  };
-}
-
-export const getStaticPaths = async () => {
-  return {
-    paths: [
-      { params: { schedule: "schedule" } },
-      { params: { schedule: "amsterdam" } },
-      { params: { schedule: "istanbul" } },
-    ],
-    fallback: false,
-  };
-};
-
-/*
-  Notion data normalization stuff below...
-*/
-const createKeyResolver =
-  (eventData: any) =>
-  (...candidateKeys: string[]) => {
-    const keyMatch = candidateKeys.find((key) => {
-      return typeof eventData[key] !== "undefined";
-    });
-
-    return keyMatch ? eventData[keyMatch] : undefined;
-  };
-
-// The notion tables for each edition (istanbul, amsterdam, etc.) aren't the same - this normalizes the different column names by looking at multiple keys for each expected value
-const normalizeEvent = (eventData: any): FormattedNotionEvent => {
-  const keyResolver = createKeyResolver(eventData);
-
-  return {
-    ID: keyResolver("ID", "id"),
-    "Stable ID": keyResolver("Stable ID", "[WEB] Stable ID"),
-    Name: keyResolver("Name"),
-    Organizer: keyResolver("Organizer", "[HOST] Organizer"),
-    URL: keyResolver("URL", "[HOST] Event Website URL"),
-    "Stream URL": keyResolver("Stream URL", "[WEB] Stream URL"),
-    Date: keyResolver("Date", "[HOST] Event Date"),
-    Live: keyResolver("Live", "[WEB] Live"),
-    Attend: keyResolver("Attend", "[HOST] Status"),
-    "Brief Description": keyResolver(
-      "Brief Description",
-      "[HOST] Description (280 chars, tweet size)"
-    ),
-    "Time of Day": keyResolver("Time of Day", "[HOST] Event Hours"),
-    Category: keyResolver("Category", "[HOST] Category"),
-    "General Size": keyResolver(
-      "Num. of Attendees",
-      "[HOST] Num. of Attendees"
-    ),
-    Difficulty: keyResolver("Difficulty", "[HOST] Difficulty"),
-    Location: keyResolver("Location", "[HOST] Location"),
-    Domain: keyResolver("[INT] Domain"),
-    Priority: keyResolver("[WEB] Priority (sort)", "Priority (sort)"),
-    "Block Schedule": keyResolver("Block Schedule"),
-  };
-};
-
-type FormattedNotionEvent = {
-  ID: any;
-  "Stable ID"?: any;
-  Name?: any;
-  Organizer?: any[];
-  URL?: any;
-  "Stream URL"?: any;
-  Date?: any;
-  Location?: any;
-  Live?: any;
-  Attend?: any;
-  "Brief Description"?: any;
-  "Time of Day"?: any;
-  Category?: any;
-  "General Size"?: any;
-  Difficulty?: any;
-  Domain: any;
-  Priority: any;
-  "Block Schedule": any;
-};
 
 type Edition = "istanbul" | "amsterdam";

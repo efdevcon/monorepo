@@ -64,6 +64,38 @@ const index: Template = {
       type: 'object',
       fields: [createRichText('body'), createRichText('title'), button('button_info')],
     },
+    {
+      label: 'Community Led Sessions',
+      name: 'community_led_sessions',
+      type: 'object',
+      fields: [
+        {
+          label: 'title',
+          name: 'title',
+          type: 'string',
+        },
+        createRichText('body'),
+        {
+          label: 'sessions',
+          name: 'sessions',
+          list: true,
+          type: 'object',
+          fields: [
+            {
+              label: 'image',
+              name: 'image',
+              type: 'image',
+            },
+            { label: 'title', name: 'title', type: 'string' },
+            createRichText('body'),
+            { label: 'organizers', name: 'organizers', type: 'string' },
+            { label: 'when', name: 'when', type: 'string' },
+            { label: 'duration', name: 'duration', type: 'string' },
+            { label: 'url', name: 'url', type: 'string' },
+          ],
+        },
+      ],
+    },
   ],
 }
 

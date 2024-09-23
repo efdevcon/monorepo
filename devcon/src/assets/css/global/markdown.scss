@@ -19,8 +19,12 @@
   ul,
   ol {
     // overflow: auto;
+    ::marker {
+      display: block;
+    }
+
     li {
-      margin-left: 1em;
+      margin-left: 1.2em;
     }
   }
 
@@ -60,6 +64,10 @@
       text-decoration: underline;
     }
     @include fonts-generic-link;
+  }
+
+  ol {
+    list-style: auto;
   }
 }
 

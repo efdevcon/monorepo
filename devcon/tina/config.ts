@@ -13,6 +13,7 @@ import devcon_week from './templates/devcon_week'
 import sea_local from './templates/sea_local'
 import { createRichText } from './presets'
 import speaker_applications from './templates/speaker_applications'
+import { filenameToUrl } from '../../lib/cms/filenameToUrl'
 
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
@@ -55,44 +56,20 @@ export default defineConfig({
           city_guide,
           devcon_week,
           sea_local,
+          {
+            name: 'ai_context',
+            label: 'ai_context',
+            fields: [createRichText('ai_context')],
+          },
         ],
         ui: {
           router: ({ document }) => {
-            const filename = document._sys.filename
-
-            switch (filename) {
-              case 'index':
-                return '/'
-              case 'dips':
-                return '/dips'
-              case 'past_events':
-                return '/past-events'
-              case 'road_to_devcon':
-                return '/road-to-devcon'
-              case 'faq':
-                return '/'
-              case 'programming':
-                return '/programming'
-              case 'tickets':
-                return '/tickets'
-              case 'about':
-                return '/about'
-              case 'supporters':
-                return '/supporters'
-              case 'speaker_applications':
-                return '/speaker-applications'
-              case 'city_guide':
-                return '/city-guide'
-              case 'faq':
-                return '/faq'
-              case 'devcon_week':
-                return '/devcon-week'
-              case 'sea_local':
-                return '/sea-local'
-
-              default:
-                return filename
+            // If no explicit filenameToUrl mapping, replace underscores with dashes - won't catch everything, but probably good enough
+            if (!filenameToUrl[document._sys.filename]) {
+              return document._sys.filename.replace(/_/g, '-')
             }
+
+            return filenameToUrl[document._sys.filename] || document._sys.filename
           },
         },
       },

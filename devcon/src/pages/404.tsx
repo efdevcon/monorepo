@@ -8,8 +8,16 @@ import { GetPage } from 'services/page'
 import { pageHOC } from 'context/pageHOC'
 import { getGlobalData } from 'services/global'
 import Page from 'components/common/layouts/page'
+// import { useRecoilState, useResetRecoilState, atom } from 'recoil'
+
+// const bla = atom({
+//   key: 'bla',
+//   default: 0,
+// })
 
 const FourOhFour = pageHOC(() => {
+  // const test = useRecoilState(bla)
+  // console.log(test, 'test')
   return (
     <Page theme={themes['no-page']}>
       {/* <PageHero

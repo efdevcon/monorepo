@@ -26,6 +26,8 @@ import css from './devcon-week.module.scss'
 import { FAQ } from './faq'
 import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
+import Alert from 'lib/components/alert'
+import ExternalIndicator from 'assets/icons/external-link.svg'
 
 const isAfterDate = (dateString: string) => {
   const date = moment.utc(dateString)
@@ -37,6 +39,8 @@ const isAfterDate = (dateString: string) => {
 export default pageHOC(function DevconWeek(props: any) {
   const { data } = useTina<PagesQuery>(props.content)
   const devconWeek = data.pages as PagesDevcon_Week
+
+  // console.log(props.events, 'events')
 
   // Fill in empty days with empty events (will be rendered with no opacity)
   const eventsFullRange = (() => {
@@ -90,6 +94,16 @@ export default pageHOC(function DevconWeek(props: any) {
     return fullRangeEvents
   })()
 
+  const scrollRef = React.useRef(null)
+  const elementRef = React.useRef(null)
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      // @ts-ignore
+      scrollRef.current.setScroll(elementRef.current)
+    }, 500)
+  }, [])
+
   return (
     <Page theme={themes['news']}>
       <PageHero
@@ -113,12 +127,23 @@ export default pageHOC(function DevconWeek(props: any) {
       />
 
       <div className="section relative" id="devcon-week">
-        <div className={cn('flex relative justify-between gap-16 border-bottom flex-col lg:flex-row pb-8')}>
+        <Alert className="rounded-lg mb-6 font-bold !bg-[#ffede9] orange !normal-case">
+          {devconWeek && devconWeek.alert && <RichText content={devconWeek.alert} />}
+        </Alert>
+        <div className={cn('flex relative justify-between gap-16 flex-col lg:flex-row pb-12')}>
           <div className={`${indexCss['scrolling-text-background']} ${css['devcon-week']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
               <p className="bold">DEVCON WEEK&nbsp;</p>
             </InfiniteScroller>
           </div>
+
+          {/* <divx
+            onClick={() => {
+              scrollRef.current.setScroll(elementRef.current)
+            }}
+          >
+            Scroll scroll scroll
+          </div> */}
           <div className="grow">
             {devconWeek && devconWeek.devcon_week && <RichText content={devconWeek.devcon_week.about} />}
           </div>
@@ -163,53 +188,62 @@ export default pageHOC(function DevconWeek(props: any) {
         </div>
       </div>
 
-      <div className="mb-6" id="schedule">
+      <div className={cn('mb-6', css['devcon-week'])} id="schedule">
         <EventSchedule
           // @ts-ignore
           events={eventsFullRange}
+          scrollRef={scrollRef}
           buttonColor="orange-1"
           edition="devcon-week"
           calendarOptions={{ id: 'devcon.org' }}
           sharingDisabled={true}
           renderBlockingEvent={() => {
             return (
-              <div className="relative w-full h-full overflow-hidden min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-2 border-[#9667bc] shadow-lg">
-                {/* <Image
+              <div
+                className="relative w-full h-full min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-b-[18px] border-2 border-[#9667bc] shadow-lg group"
+                ref={elementRef}
+              >
+                <Link to="/">
+                  {/* <Image
                   src={EventBlocker}
                   alt="Blocked Event Graphic"
                   className="absolute w-full h-full !object-center object-cover"
                 /> */}
+                  <div className="absolute bottom-0 left-0 w-full z-10 text-black translate-y-[100%] text-[9px] flex items-center h-[18px] pl-2 bold group-hover:text-white">
+                    Devcon Main Event
+                  </div>
 
-                <Image
-                  src={DC7Left}
-                  alt="Blocked Event Graphic"
-                  className="absolute left-0 h-full !object-left object-contain"
-                />
-
-                <Image
-                  src={DC7Right}
-                  alt="Blocked Event Graphic"
-                  className="absolute right-0 h-full !object-right object-contain"
-                />
-
-                <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
                   <Image
-                    src={LogoFlowers}
+                    src={DC7Left}
                     alt="Blocked Event Graphic"
-                    className="!object-center object-contain w-[30%] max-h-[125px]"
-                  />
-                  <Image
-                    src={DateText}
-                    alt="Blocked Event Graphic"
-                    className="!object-center object-contain w-[20%] max-h-[50px]"
+                    className="absolute left-0 h-full !object-left object-contain"
                   />
 
-                  <Link to="/">
+                  <Image
+                    src={DC7Right}
+                    alt="Blocked Event Graphic"
+                    className="absolute right-0 h-full !object-right object-contain"
+                  />
+
+                  <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
+                    <Image
+                      src={LogoFlowers}
+                      alt="Blocked Event Graphic"
+                      className="!object-center object-contain w-[30%] max-h-[125px]"
+                    />
+                    <Image
+                      src={DateText}
+                      alt="Blocked Event Graphic"
+                      className="!object-center object-contain w-[20%] max-h-[50px]"
+                    />
+
+                    {/* <Link to="/"> */}
                     <Button color="purple-1" fill className="semi-bold shadow-xl">
                       Devcon Main Event →
                     </Button>
-                  </Link>
-                </div>
+                    {/* </Link> */}
+                  </div>
+                </Link>
               </div>
             )
           }}
@@ -236,7 +270,9 @@ export async function getStaticProps(context: any) {
   const content = await client.queries.pages({ relativePath: 'devcon_week.mdx' })
 
   const RTDNotionID = '5199f81539da498f9e2137c3928f6e93'
-  const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68')
+  const events = await getNotionDatabase('en', '1c8de49be9594869a2e72406fde2af68', true)
+
+  // console.log(events.map(event => event['Brief Description']))
 
   const RTDEvents = (await getNotionDatabase('en', RTDNotionID)) as any
 

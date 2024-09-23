@@ -20,29 +20,31 @@ type ContributeProps = {
 
 type ThumbnailProps = {
   contributor: Contributor
+  large: Boolean
 }
 
-const Thumbnail = ({ contributor }: ThumbnailProps) => {
+const Thumbnail = ({ contributor, large }: ThumbnailProps) => {
   return (
     <Tooltip content={contributor.name}>
-      <img
+      {/* <img
         key={contributor.name}
         className={css['thumbnail']}
         alt={`Contributor: ${contributor.name}`}
         src={contributor.avatarUrl}
         width="100%"
         height="100%"
-      />
-      {/* <div className={css['thumbnail']}>
+      /> */}
+      <div className={css['thumbnail']}>
         <Image
           key={contributor.name}
           className={css['thumbnail']}
           alt={`Contributor: ${contributor.name}`}
           src={contributor.avatarUrl}
-          width="100%"
-          height="100%"
+          className={`object-cover rounded-full ${large ? 'h-[80px] w-[80px]' : 'h-[80px] w-[80px]'}`}
+          width={large ? 80 : 80}
+          height={large ? 80 : 80}
         />
-      </div> */}
+      </div>
     </Tooltip>
   )
 }
@@ -50,7 +52,7 @@ const Thumbnail = ({ contributor }: ThumbnailProps) => {
 /*
   TO FIX: on safari the animated tracks "flash" when they reset their animation (happens every 50 seconds so not that significant)
 */
-export const AutoScroller = (props: { contributors: Array<Contributor> }) => {
+export const AutoScroller = (props: { contributors: Array<Contributor>; large?: boolean }) => {
   const [containerSize, setContainerSize] = React.useState(0)
   const cleanupRef = React.useRef<any>()
 
@@ -127,11 +129,11 @@ export const AutoScroller = (props: { contributors: Array<Contributor> }) => {
         return (
           <div key={index} className={className}>
             {contributors.map(contributor => {
-              return <Thumbnail key={contributor.name} contributor={contributor} />
+              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large} />
             })}
             {/* Have to repeat some thumbnails to give the illusion of infinite loop */}
             {contributors.slice(0, maxThumbnailsInView).map(contributor => {
-              return <Thumbnail key={contributor.name} contributor={contributor} />
+              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large} />
             })}
           </div>
         )

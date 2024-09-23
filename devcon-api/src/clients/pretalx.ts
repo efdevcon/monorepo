@@ -1,6 +1,6 @@
-import { defaultSlugify } from 'utils/content'
-import { CreateBlockie } from 'utils/account'
-import { PRETALX_CONFIG } from 'utils/config'
+import { defaultSlugify } from '@/utils/content'
+import { CreateBlockie } from '@/utils/account'
+import { PRETALX_CONFIG } from '@/utils/config'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import Parser from 'rss-parser'
@@ -35,10 +35,13 @@ export async function GetRooms(eventName = PRETALX_CONFIG.PRETALX_EVENT_NAME) {
 }
 
 export async function GetSpeakers(eventName = PRETALX_CONFIG.PRETALX_EVENT_NAME) {
-  const speakersData = await exhaustResource(`/events/${eventName}/speakers`)
+  const speakersData = await exhaustResource(`/events/${eventName}/speakers?questions=all`)
   const speakers = speakersData.map((i: any) => {
     const twitter = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_TWITTER)?.answer
     const github = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_GITHUB)?.answer
+    const farcaster = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_FARCASTER)?.answer
+    const lens = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_LENS)?.answer
+    const ens = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_ENS)?.answer
 
     let speaker: any = {
       id: defaultSlugify(i.name),
@@ -48,8 +51,11 @@ export async function GetSpeakers(eventName = PRETALX_CONFIG.PRETALX_EVENT_NAME)
       description: i.biography ?? '',
     }
 
-    if (twitter) speaker.twitter = twitter
-    if (github) speaker.github = github
+    if (twitter) speaker.twitter = twitter.replace('https://twitter.com/', '').replace('https://x.com/', '').replace('@', '')
+    if (github) speaker.github = github.replace('https://github.com/', '').replace('@', '')
+    if (farcaster) speaker.farcaster = farcaster.replace('https://farcaster.xyz/u/', '').replace('https://warpcast.com/', '').replace('@', '')
+    if (lens) speaker.lens = lens.replace('https://lens.xyz/', '').replace('@', '')
+    if (ens) speaker.ens = ens
 
     return speaker
   })

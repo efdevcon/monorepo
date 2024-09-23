@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { BlogReel } from 'components/domain/blog-overview'
+import { CLSReel } from 'components/domain/index/community-led-sessions/CLS'
 import { pageHOC } from 'context/pageHOC'
 import { GetBlogs } from 'services/blogs'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
@@ -12,7 +13,7 @@ import { Hero } from 'components/domain/index/hero'
 import css from './index.module.scss'
 import TrackList from 'components/domain/index/track-list'
 import About from 'components/domain/index/about'
-import FeaturedSpeakers from 'components/domain/index/featured-speakers'
+// import FeaturedSpeakers from 'components/domain/index/featured-speakers'
 import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
 import themes from './themes.module.scss'
@@ -23,7 +24,7 @@ import { GetContentSections } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
-import { PagesQuery, PagesIndex, PagesFaq_General } from '../../tina/__generated__/types'
+import { PagesQuery, PagesIndex, PagesFaq_General, PagesProgramming } from '../../tina/__generated__/types'
 import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
@@ -47,6 +48,17 @@ import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
 import Petals from 'assets/icons/petals.svg'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 import { useDraggableLink } from 'components/domain/devcon-week/schedule'
+import FeaturedSpeakers from 'components/domain/index/featured-speakers-dc7'
+import CoreProtocol from 'assets/images/programming/CoreProtocol.png'
+import Cypherpunk from 'assets/images/programming/Cypherpunk.png'
+import Usability from 'assets/images/programming/Usability.png'
+import RealWorldEthereum from 'assets/images/programming/RealWorldEthereum.png'
+import AppliedCryptography from 'assets/images/programming/AppliedCryptography.png'
+import CryptoEconomics from 'assets/images/programming/CryptoEconomics.png'
+import Coordination from 'assets/images/programming/Coordination.png'
+import DeveloperExperience from 'assets/images/programming/DeveloperExperience.png'
+import Security from 'assets/images/programming/Security.png'
+import Layer2 from 'assets/images/programming/Layer2.png'
 
 const videos = [
   {
@@ -125,6 +137,69 @@ export default pageHOC(function Index(props: any) {
   const [cal, setCal] = React.useState<any>(null)
   const draggableLinkAttributes = useDraggableLink()
 
+  const { data: programmingData } = useTina<PagesQuery>(props.programming)
+  const programming = programmingData.pages as PagesProgramming
+
+  const formattedTracks =
+    (() => {
+      const tracks = programming.track_descriptions
+
+      return tracks?.map((track: any) => {
+        let trackLogo = CoreProtocol
+        let url = ''
+
+        if (track.id === 'core-protocol') {
+          trackLogo = CoreProtocol
+          url = 'https://archive.devcon.org/archive/watch?tags=Core Protocol'
+        }
+        if (track.id === 'cypherpunk') {
+          trackLogo = Cypherpunk
+          url = 'https://archive.devcon.org/archive/watch?tags=Cypherpunk'
+        }
+        if (track.id === 'usability') {
+          trackLogo = Usability
+          url = 'https://archive.devcon.org/archive/watch?tags=Usability'
+        }
+        if (track.id === 'real-world-ethereum') {
+          trackLogo = RealWorldEthereum
+          url = 'https://archive.devcon.org/archive/watch?tags=Real World Ethereum'
+        }
+        if (track.id === 'applied-cryptography') {
+          trackLogo = AppliedCryptography
+          url = 'https://archive.devcon.org/archive/watch?tags=Applied Cryptography'
+        }
+        if (track.id === 'crypto-economics') {
+          trackLogo = CryptoEconomics
+          url = 'https://archive.devcon.org/archive/watch?tags=Cryptoeconomics'
+        }
+        if (track.id === 'coordination') {
+          trackLogo = Coordination
+          url = 'https://archive.devcon.org/archive/watch?tags=Coordination'
+        }
+        if (track.id === 'developer-experience') {
+          trackLogo = DeveloperExperience
+          url = 'https://archive.devcon.org/archive/watch?tags=Developer Experience'
+        }
+        if (track.id === 'security') {
+          trackLogo = Security
+          url = 'https://archive.devcon.org/archive/watch?tags=Security'
+        }
+        if (track.id === 'layer-2s') {
+          trackLogo = Layer2
+          url = 'https://archive.devcon.org/archive/watch?tags=Layer 2s'
+        }
+
+        return {
+          id: track.id,
+          title: track.name,
+          body: track.description,
+          tags: track.tags,
+          logo: trackLogo,
+          url,
+        }
+      })
+    })() || []
+
   React.useEffect(() => {
     setCal(
       generateCalendarExport({
@@ -188,7 +263,7 @@ export default pageHOC(function Index(props: any) {
               </div>
             </SwipeToScroll>
           </div>
-          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 mb-8 pb-8">
+          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 pb-8">
             <div className="grow">
               {/* <TitleDevcon className="hidden lg:block" /> */}
               {/* <div className="lg:mt-6"> */}
@@ -314,8 +389,19 @@ export default pageHOC(function Index(props: any) {
               )}
             </div>
           </div> */}
+        </div>
 
-          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4">
+        <div className="section relative">
+          <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s">
+              <p className="bold">FEATURED SPEAKERS&nbsp;</p>
+            </InfiniteScroller>
+          </div>
+
+          <FeaturedSpeakers />
+        </div>
+        <div className="section">
+          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 border-top pt-6 mt-8">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
@@ -408,6 +494,38 @@ export default pageHOC(function Index(props: any) {
               </Link>
             </div>
           </div> */}
+
+          <div className="relative flex flex-col items-start border-bottom py-8">
+            <div className="h2 mb-7" id="cls">
+              {pages.community_led_sessions?.title}
+            </div>
+
+            <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
+              <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
+
+              <div className="flex flex-col">
+                <div className="m-4 mb-4 mt-3">
+                  <RichText content={pages.community_led_sessions?.body}></RichText>
+                </div>
+
+                <div className="border-t border-solid border-[#E2E3FF]"></div>
+
+                {/* <div className="text-lg bold mt-4 mx-4">Featured Sessions</div> */}
+
+                <div className="mb-4 relative grow-0 mx-4">
+                  {pages.community_led_sessions?.sessions && (
+                    <CLSReel sessions={pages.community_led_sessions?.sessions} />
+                  )}
+                </div>
+
+                {/* <div className="m-4">
+                  {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
+                    return <div key={session.title}>({session.title})</div>
+                  })}
+                </div> */}
+              </div>
+            </div>
+          </div>
 
           <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
@@ -503,7 +621,7 @@ export default pageHOC(function Index(props: any) {
           </div>
 
           <div className="relative border-bottom pb-8">
-            <TrackList title="Devcon 6 Playlists" />
+            <TrackList title="Devcon Tracks" tracks={formattedTracks} />
 
             <Link to={pages.section5?.button_info?.link}>
               <Button fat color="purple-1" fill className="mt-8">
@@ -584,6 +702,7 @@ export async function getStaticProps(context: any) {
 
   const content = await client.queries.pages({ relativePath: 'index.mdx' })
   const faq = await client.queries.pages({ relativePath: 'faq.mdx' })
+  const programming = await client.queries.pages({ relativePath: 'programming.mdx' })
 
   return {
     props: {
@@ -601,6 +720,11 @@ export async function getStaticProps(context: any) {
         variables: faq.variables,
         data: faq.data,
         query: faq.query,
+      },
+      programming: {
+        variables: programming.variables,
+        data: programming.data,
+        query: programming.query,
       },
     },
     revalidate: 1 * 60 * 30,

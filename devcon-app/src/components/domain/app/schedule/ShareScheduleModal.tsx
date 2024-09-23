@@ -25,7 +25,7 @@ export const ShareScheduleModal = () => {
 
   if (!accountContext.account) return <>Need to login first</>
 
-  const scheduleUri = `${origin}/schedule/u/${accountContext.account._id}/`
+  const scheduleUri = `${origin}/schedule/u/${accountContext.account.id}/`
 
   return (
     <>
@@ -36,7 +36,7 @@ export const ShareScheduleModal = () => {
           <p>Anyone with your link could view your schedule.</p>
           <div className={css['toggle']}>
             <Toggle
-              defaultChecked={accountContext.account?.appState?.publicSchedule}
+              defaultChecked={accountContext.account?.publicSchedule}
               onChange={toggleScheduleSharing}
             />
           </div>
@@ -47,10 +47,10 @@ export const ShareScheduleModal = () => {
             className={css['input']}
             value={scheduleUri}
             readOnly
-            disabled={!accountContext.account?.appState?.publicSchedule}
+            disabled={!accountContext.account?.publicSchedule}
           />
 
-          {!!accountContext.account?.appState?.publicSchedule && (
+          {!!accountContext.account?.publicSchedule && (
             <div className={css['icon']}>
               <Tooltip arrow={false} visible={clicked} content={<p>Copied</p>}>
                 <div style={{ cursor: 'pointer' }}>

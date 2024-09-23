@@ -25,12 +25,12 @@ export default function SettingsPage() {
   )
 
   const deleteAccount = async () => {
-    if (!accountContext.account?._id) {
+    if (!accountContext.account?.id) {
       setError('Unable to delete account.')
       return
     }
 
-    await accountContext.deleteAccount(accountContext.account?._id)
+    await accountContext.deleteAccount(accountContext.account?.id)
   }
 
   const toggleScheduleSharing = async () => {
@@ -39,8 +39,19 @@ export default function SettingsPage() {
     }
   }
 
+  const toggleNotifications = async () => {
+    if (accountContext.account) {
+      accountContext.toggleNotifications(accountContext.account)
+    }
+  }
+
   const disconnect = async () => {
-    accountContext.logout(accountContext.account?._id)
+    if (!accountContext.account?.id) {
+      setError('Unable to sign out.')
+      return
+    }
+
+    accountContext.logout(accountContext.account?.id)
     router.push('/login')
   }
 
@@ -99,6 +110,7 @@ export default function SettingsPage() {
                       <Link to="/settings/email">Manage Email</Link>
                       <Link to="/settings/wallets">Manage Wallets</Link>
                       <Link to="/settings/username">Manage Username</Link>
+                      <Link to="/settings/profile">Manage Profile</Link>
                     </LinkList>
                   </div>
                 </CollapsedSectionContent>
@@ -127,18 +139,49 @@ export default function SettingsPage() {
                     <p>Public schedule</p>
                     <div className={css['toggle']}>
                       <Toggle
-                        defaultChecked={accountContext.account?.appState?.publicSchedule}
+                        defaultChecked={accountContext.account?.publicSchedule}
                         onChange={toggleScheduleSharing}
                       />
                     </div>
                   </div>
-                  {accountContext.account?._id && accountContext.account?.appState?.publicSchedule && (
+                  {accountContext.account?.id && accountContext.account?.publicSchedule && (
                     <div className={css['links']}>
                       <LinkList>
-                        <Link to={`/schedule/u/${accountContext.account._id}/`}>Personal schedule link</Link>
+                        <Link to={`/schedule/u/${accountContext.account.id}/`}>Personal schedule link</Link>
                       </LinkList>
                     </div>
                   )}
+                </CollapsedSectionContent>
+              </CollapsedSection>
+
+              <CollapsedSection
+                open={openTabs['notifications']}
+                setOpen={() => {
+                  const isOpen = openTabs['notifications']
+
+                  const nextOpenState = {
+                    ...openTabs,
+                    ['notifications']: true,
+                  }
+
+                  if (isOpen) {
+                    delete nextOpenState['notifications']
+                  }
+
+                  setOpenTabs(nextOpenState)
+                }}
+              >
+                <CollapsedSectionHeader title="Notifications" />
+                <CollapsedSectionContent>
+                  <div className={css['share']}>
+                    <p>Notifications</p>
+                    <div className={css['toggle']}>
+                      <Toggle
+                        defaultChecked={accountContext.account?.notifications}
+                        onChange={toggleNotifications}
+                      />
+                    </div>
+                  </div>
                 </CollapsedSectionContent>
               </CollapsedSection>
 

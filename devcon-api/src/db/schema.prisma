@@ -23,6 +23,7 @@ model Event {
   venue_website String
   venue_directions String
   rooms Room[]
+  version String
 }
 
 model Room {
@@ -42,6 +43,10 @@ model Speaker {
   avatar String
   description String?
   twitter String?
+  farcaster String?
+  lens String?
+  ens String?
+  github String?
   events Event[]
   sessions Session[]
 }
@@ -54,6 +59,7 @@ model Session {
   track String
   type String
   expertise String
+  featured Boolean?
   tags String
   duration Int?
   language String?

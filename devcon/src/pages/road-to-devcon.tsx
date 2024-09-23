@@ -850,7 +850,7 @@ export async function getStaticProps(context: any) {
     props: {
       ...globalData,
       page: DEFAULT_APP_PAGE,
-      events: await getNotionDatabase('en', notionID),
+      events: await getNotionDatabase('en', notionID, false),
       cms: {
         variables: content.variables,
         data: content.data,

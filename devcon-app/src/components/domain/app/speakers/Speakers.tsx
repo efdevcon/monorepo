@@ -72,7 +72,7 @@ type CardProps = {
 export const SpeakerCard = ({ speaker }: CardProps) => {
   const { account, setSpeakerFavorite } = useAccountContext()
   const isStandalone = useIsStandalone()
-  const isSpeakerFavorited = account?.appState?.speakers?.some(i => i === speaker.id)
+  const isSpeakerFavorited = account?.speakers?.some(i => i === speaker.id)
 
   const iconProps = {
     className: `${css['favorite']} icon ${isSpeakerFavorited ? css['favorited'] : ''}`,
@@ -303,7 +303,7 @@ export const Speakers = (props: any) => {
   //   () => new FuzzySearch(props.speakers, ['name', 'tracks.name', 'description', 'company']),
   //   [props.speakers]
   // )
-  const favoritedSpeakers = account?.appState?.speakers
+  const favoritedSpeakers = account?.speakers
 
   const speakers = props.speakers.filter((speaker: Speaker) => {
     // Filter by interested

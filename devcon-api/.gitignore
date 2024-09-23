@@ -44,3 +44,14 @@ next-env.d.ts
 
 # ignore mongoexport old db file
 db.json
+
+# generated content for rag implementation
+**/formatted-content 
+
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+# **/python-service/queries
+# **/python-service/nodes_output
