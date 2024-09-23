@@ -13,7 +13,7 @@ import { Hero } from 'components/domain/index/hero'
 import css from './index.module.scss'
 import TrackList from 'components/domain/index/track-list'
 import About from 'components/domain/index/about'
-import FeaturedSpeakers from 'components/domain/index/featured-speakers'
+// import FeaturedSpeakers from 'components/domain/index/featured-speakers'
 import CallsToAction from 'components/domain/index/ctas'
 import Image from 'next/legacy/image'
 import themes from './themes.module.scss'
@@ -48,7 +48,7 @@ import DC7OverlayRight from './images/dc-7/overlay-right-dc7.png'
 import Petals from 'assets/icons/petals.svg'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
 import { useDraggableLink } from 'components/domain/devcon-week/schedule'
-
+import FeaturedSpeakers from 'components/domain/index/featured-speakers-dc7'
 import CoreProtocol from 'assets/images/programming/CoreProtocol.png'
 import Cypherpunk from 'assets/images/programming/Cypherpunk.png'
 import Usability from 'assets/images/programming/Usability.png'
@@ -263,7 +263,7 @@ export default pageHOC(function Index(props: any) {
               </div>
             </SwipeToScroll>
           </div>
-          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 mb-8 pb-8">
+          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 pb-8">
             <div className="grow">
               {/* <TitleDevcon className="hidden lg:block" /> */}
               {/* <div className="lg:mt-6"> */}
@@ -389,8 +389,19 @@ export default pageHOC(function Index(props: any) {
               )}
             </div>
           </div> */}
+        </div>
 
-          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4">
+        <div className="section relative">
+          <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
+            <InfiniteScroller nDuplications={2} speed="120s">
+              <p className="bold">FEATURED SPEAKERS&nbsp;</p>
+            </InfiniteScroller>
+          </div>
+
+          <FeaturedSpeakers />
+        </div>
+        <div className="section">
+          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 border-top pt-6 mt-8">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>

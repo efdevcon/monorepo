@@ -1,0 +1,39 @@
+.scrollerContainer {
+  overflow: hidden;
+  white-space: nowrap;
+
+  mask-image: linear-gradient(to right, transparent, black 17%, black 83%, transparent);
+
+  @media (min-width: 500px) {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+}
+
+// .scrollerContent {
+//   display: flex;
+//   animation: scroll 20s linear infinite;
+
+//   &:hover {
+//     animation-play-state: paused; // Pause the animation when this class is applied
+//   }
+// }
+
+.contributorItem {
+  cursor: pointer;
+  transition: transform 0.3s ease; // Add transition for smooth scaling
+  &:hover {
+    transform: scale(1.05); // Use transform to scale
+  }
+  flex: 0 0 auto; /* Each item takes up 50% of the container width */
+  padding: 0.5rem;
+  margin: 0 0.5rem;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

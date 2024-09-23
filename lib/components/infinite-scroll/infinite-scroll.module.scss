@@ -11,6 +11,12 @@
   animation: marquee var(--animation-speed) linear infinite;
   --animation-speed: var(--override-speed, 30s);
 
+  &.pause-on-hover {
+    &:hover {
+      animation-play-state: paused;
+    }
+  }
+
   &.slow {
     --animation-speed: 80s;
   }
