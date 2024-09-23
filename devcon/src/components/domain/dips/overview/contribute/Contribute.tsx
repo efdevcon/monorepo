@@ -37,7 +37,7 @@ const Thumbnail = ({ contributor, large }: ThumbnailProps) => {
       <div className={css['thumbnail']}>
         <Image
           key={contributor.name}
-          className={css['thumbnail']}
+          // className={css['thumbnail']}
           alt={`Contributor: ${contributor.name}`}
           src={contributor.avatarUrl}
           className={`object-cover rounded-full ${large ? 'h-[80px] w-[80px]' : 'h-[80px] w-[80px]'}`}
