@@ -40,9 +40,8 @@ const Thumbnail = ({ contributor, large }: ThumbnailProps) => {
           // className={css['thumbnail']}
           alt={`Contributor: ${contributor.name}`}
           src={contributor.avatarUrl}
-          className={`object-cover rounded-full ${large ? 'h-[80px] w-[80px]' : 'h-[80px] w-[80px]'}`}
-          width={large ? 80 : 80}
-          height={large ? 80 : 80}
+          width={large ? 100 : 100}
+          height={large ? 100 : 100}
         />
       </div>
     </Tooltip>
@@ -129,11 +128,11 @@ export const AutoScroller = (props: { contributors: Array<Contributor>; large?: 
         return (
           <div key={index} className={className}>
             {contributors.map(contributor => {
-              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large} />
+              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large || false} />
             })}
             {/* Have to repeat some thumbnails to give the illusion of infinite loop */}
             {contributors.slice(0, maxThumbnailsInView).map(contributor => {
-              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large} />
+              return <Thumbnail key={contributor.name} contributor={contributor} large={props.large || false} />
             })}
           </div>
         )
