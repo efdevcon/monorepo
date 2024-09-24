@@ -143,13 +143,23 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
 
         const clampedScrollLeft = Math.max(0, Math.min(scrollLeft, maxScroll));
 
-        scrollContainer.style.transform = `translateX(-${clampedScrollLeft}px)`;
+        if (isNativeScroll) {
+          // Use native scrolling for devices without a cursor
+          scrollContainer.scrollTo({
+            left: clampedScrollLeft, // elementRect.left - 16,
+            behavior: "smooth",
+          });
+        } else {
+          // Use translateX for devices with a cursor
+          scrollContainer.style.transform = `translateX(-${clampedScrollLeft}px)`;
+        }
+
         lastX.current = clampedScrollLeft;
 
         syncScrollIndicators(scrollContainer);
       }
     },
-    [maxScroll, syncScrollIndicators]
+    [maxScroll, syncScrollIndicators, isNativeScroll]
   );
 
   // Store the latest `setScroll` in the ref

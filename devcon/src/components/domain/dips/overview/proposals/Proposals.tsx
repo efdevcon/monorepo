@@ -52,7 +52,7 @@ export const Proposals = (props: ProposalsProps) => {
           link: dip.github,
         }
       })
-      .filter(dip => dip.status.toLowerCase() === 'accepted')
+      .filter(dip => dip.status && dip.status.toLowerCase() === 'accepted')
   }, [props.dips])
 
   const [filteredDips, filterState] = useFilter({
