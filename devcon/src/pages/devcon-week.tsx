@@ -191,11 +191,11 @@ export default pageHOC(function DevconWeek(props: any) {
       </div>
 
       <div className={cn('mb-6', css['devcon-week'])} id="schedule">
-        <div className="section mt-6">
+        {/* <div className="section mt-6">
           <Alert className="rounded-lg mb-6 font-bold !bg-[#ffede9] orange !normal-case">
             {devconWeek && devconWeek.alert && <RichText content={devconWeek.alert} />}
           </Alert>
-        </div>
+        </div> */}
 
         <EventSchedule
           // @ts-ignore
