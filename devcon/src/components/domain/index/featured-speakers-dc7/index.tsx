@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useMemo } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import VitalikImage from './speaker-images/vitalik.png'
 import AnnBrodyImage from './speaker-images/Ann-Brody.png'
@@ -23,12 +23,22 @@ import SreeramKannanImage from './speaker-images/Sreeram-Kannan.png'
 import TimBeikoImage from './speaker-images/Tim-Beiko.png'
 import TrentVanEppsImage from './speaker-images/Trent-Van-Epps.png'
 import ZacWilliamsonImage from './speaker-images/Zac-Williamson.png'
+import B1 from './butterflies/B1.png'
+import B2 from './butterflies/B2.png'
+import B3 from './butterflies/B3.png'
+import B4 from './butterflies/B4.png'
+import B5 from './butterflies/B5.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import { motion, useSpring, useTransform, useInView } from 'framer-motion'
 import { useHover } from 'react-use-gesture'
 import styles from './index.module.scss'
 import { Tooltip } from 'components/common/tooltip'
 // import { AutoScroller } from 'components/domain/dips/overview/contribute/Contribute' // Import the AutoScroller
+
+const truncateText = (text: string, maxLength: number) => {
+  if (text.length <= maxLength) return text
+  return text.slice(0, maxLength - 3) + '...'
+}
 
 const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatarUrl: StaticImageData }) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -81,6 +91,16 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
     }
   }
 
+  const randomButterfly = useMemo(() => {
+    const butterflies = [B1, B2, B3, B4, B5]
+    return butterflies[Math.floor(Math.random() * butterflies.length)]
+  }, [isHovered])
+
+  const randomCorner = useMemo(() => {
+    const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right']
+    return corners[Math.floor(Math.random() * corners.length)]
+  }, [isHovered])
+
   return (
     <div
       ref={containerRef}
@@ -118,7 +138,25 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         className="absolute pointer-events-none z-10"
       >
-        <Image src={avatarUrl} alt={name} width={250} height={250} className="object-cover rounded-lg shadow-lg" />
+        <div className="relative">
+          <Image src={avatarUrl} alt={name} width={250} height={250} className="object-cover rounded-lg shadow-lg" />
+          <Image
+            src={randomButterfly}
+            alt="Butterfly"
+            width={80}
+            height={80}
+            className={`absolute ${
+              randomCorner === 'top-left'
+                ? '-top-4 -left-4'
+                : randomCorner === 'top-right'
+                ? '-top-4 -right-4'
+                : randomCorner === 'bottom-left'
+                ? '-bottom-4 -left-4'
+                : '-bottom-4 -right-4'
+            } 
+            transform ${randomCorner.includes('right') ? 'scale-x-[-1]' : ''}`}
+          />
+        </div>
       </motion.div>
     </div>
   )
@@ -145,7 +183,7 @@ const HighlightedSpeakers = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: -50 },
+    hidden: { opacity: 0, y: 0 },
     show: {
       opacity: 1,
       y: 0,
@@ -180,28 +218,63 @@ const HighlightedSpeakers = () => {
   )
 }
 
-const AutoScroller = ({ contributors }: { contributors: { name: string; avatarUrl: StaticImageData }[] }) => {
+const AutoScroller = ({
+  contributors,
+  reverse,
+}: {
+  contributors: { name: string; role: string; avatarUrl: StaticImageData }[]
+  reverse: boolean
+}) => {
   const duplicatedContributors = [...contributors, ...contributors] // Duplicate the contributors
+  const butterflies = [B1, B2, B3, B5]
+
+  const getButterflyPosition = (butterfly: StaticImageData) => {
+    if (butterfly === B2 || butterfly === B5) {
+      return '-left-2'
+    }
+    return '-right-2'
+  }
 
   return (
     <div className={styles.scrollerContainer}>
-      <InfiniteScroller speed="80s" pauseOnHover={true}>
-        {duplicatedContributors.map((contributor, index) => (
-          <Tooltip key={index} content={contributor.name}>
-            <div key={index} className={styles.contributorItem}>
-              <div className="flex items-center">
-                <Image
-                  src={contributor.avatarUrl}
-                  alt={contributor.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full w-[80px] h-[80px] mr-3 object-cover"
-                />
-                <p className="text-[#706ABD] text-lg">{contributor.name}</p>
+      <InfiniteScroller speed="200s" pauseOnHover={true} reverse={reverse}>
+        {duplicatedContributors.map((contributor, index) => {
+          const randomButterfly = butterflies[Math.floor(Math.random() * butterflies.length)]
+
+          return (
+            <Tooltip key={index} content={`${contributor.name} - ${contributor.role}`}>
+              <div
+                key={index}
+                className="inline-block mx-4 hover:scale-105 transition-all duration-300 cursor-pointer py-2 group"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative">
+                    <Image
+                      src={contributor.avatarUrl}
+                      alt={contributor.name}
+                      width={80}
+                      height={80}
+                      className="rounded-full w-20 h-20 mb-2 object-cover"
+                    />
+                    <Image
+                      src={randomButterfly}
+                      alt="Butterfly"
+                      width={40}
+                      height={40}
+                      className={`absolute -top-2 ${getButterflyPosition(
+                        randomButterfly
+                      )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                    />
+                  </div>
+                  <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
+                  <div className="h-10">
+                    <p className="text-[#706ABD] text-sm mt-1">{truncateText(contributor.role, 30)}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          </Tooltip>
-        ))}
+            </Tooltip>
+          )
+        })}
       </InfiniteScroller>
     </div>
   )
@@ -209,25 +282,33 @@ const AutoScroller = ({ contributors }: { contributors: { name: string; avatarUr
 
 const FeaturedSpeakers = () => {
   const contributors = [
-    { name: 'Ann Brody', avatarUrl: AnnBrodyImage },
-    { name: 'Austin Griffith', avatarUrl: AustinGriffithImage },
-    { name: 'Bartek Kiepuszewski', avatarUrl: BartekKiepuszewskiImage },
-    { name: 'Gubsheep', avatarUrl: GubsheepImage },
-    { name: 'Hudson Jameson', avatarUrl: HudsonJamesonImage },
-    { name: 'Jay Baxter', avatarUrl: JayBaxterImage },
-    { name: 'Juan Bennet', avatarUrl: JuanBennetImage },
-    { name: 'Kevin Owocki', avatarUrl: KevinOwockiImage },
-    { name: 'Lefteris Karapetsas', avatarUrl: LefterisKarapetsasImage },
-    { name: 'Nick Johnson', avatarUrl: NickJohnsonImage },
-    { name: 'Pooja Ranjan', avatarUrl: PoojaRanjanImage },
-    { name: 'Loi Luu', avatarUrl: LoiLuuImage },
-    { name: 'Matthew Tan', avatarUrl: MatthewTanImage },
-    { name: 'Preston Van Loon', avatarUrl: PrestonVanLoonImage },
-    { name: 'Shayne Coplan', avatarUrl: ShayneCoplanImage },
-    { name: 'Sreeram Kannan', avatarUrl: SreeramKannanImage },
-    { name: 'Tim Beiko', avatarUrl: TimBeikoImage },
-    { name: 'Trent Van Epps', avatarUrl: TrentVanEppsImage },
-    { name: 'Zac Williamson', avatarUrl: ZacWilliamsonImage },
+    { name: 'Ann Brody', role: 'DAO Researcher', avatarUrl: AnnBrodyImage },
+    { name: 'Austin Griffith', role: '🧙‍♂️ Builder on Ethereum', avatarUrl: AustinGriffithImage },
+    { name: 'Bartek Kiepuszewski', role: 'L2BEAT Founder', avatarUrl: BartekKiepuszewskiImage },
+    { name: 'Gubsheep', role: 'Co-founder of 0xPARC and creator of the Dark Forest game', avatarUrl: GubsheepImage },
+    { name: 'Hudson Jameson', role: 'Polygon', avatarUrl: HudsonJamesonImage },
+    { name: 'Juan Bennet', role: 'Protocol Labs, IPFS and Filecoin Founder', avatarUrl: JuanBennetImage },
+    { name: 'Kevin Owocki', role: 'Founder @Gitcoin', avatarUrl: KevinOwockiImage },
+    { name: 'Lefteris Karapetsas', role: 'Founder of Rotki', avatarUrl: LefterisKarapetsasImage },
+    { name: 'Nick Johnson', role: 'Founder of ENS', avatarUrl: NickJohnsonImage },
+    {
+      name: 'Jay Baxter',
+      role: '@CommunityNotes Founding ML Lead / Sr. Staff ML Eng @X. Built BayesDB @MIT',
+      avatarUrl: JayBaxterImage,
+    },
+    { name: 'Pooja Ranjan', role: 'Ethereum Cat Herders', avatarUrl: PoojaRanjanImage },
+    { name: 'Loi Luu', role: 'Co-founder of Kyber Network', avatarUrl: LoiLuuImage },
+    { name: 'Matthew Tan', role: 'Founder of Etherscan', avatarUrl: MatthewTanImage },
+    {
+      name: 'Preston Van Loon',
+      role: 'Ethereum Core Developer on the Prysm team at Offchain Labs.',
+      avatarUrl: PrestonVanLoonImage,
+    },
+    { name: 'Shayne Coplan', role: 'CEO @Polymarket', avatarUrl: ShayneCoplanImage },
+    { name: 'Sreeram Kannan', role: 'Founder of EigenLayer Protocol', avatarUrl: SreeramKannanImage },
+    { name: 'Tim Beiko', role: 'Protocol Support', avatarUrl: TimBeikoImage },
+    { name: 'Trent Van Epps', role: 'Political Organizer @ Protocol Guild', avatarUrl: TrentVanEppsImage },
+    { name: 'Zac Williamson', role: 'CEO & Co-Founder Aztec Network', avatarUrl: ZacWilliamsonImage },
   ]
 
   const half = Math.ceil(contributors.length / 2)
@@ -238,10 +319,10 @@ const FeaturedSpeakers = () => {
     <div className="mt-8" id="featured-speakers">
       <h2 className="font-secondary mb-6">Devcon SEA Programming</h2>
       <HighlightedSpeakers />
-      <div className="flex flex-col my-6 mt-8">
-        <AutoScroller contributors={firstHalf} /> {/* First row of contributors */}
-        <div className="my-1" />
-        <AutoScroller contributors={secondHalf} /> {/* Second row of contributors */}
+      <div className="flex flex-col mt-8">
+        <AutoScroller contributors={firstHalf} reverse /> {/* First row of contributors */}
+        <div className="my-2" />
+        <AutoScroller contributors={secondHalf} reverse={false} /> {/* Second row of contributors */}
       </div>
     </div>
   )
