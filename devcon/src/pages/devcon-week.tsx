@@ -191,6 +191,12 @@ export default pageHOC(function DevconWeek(props: any) {
       </div>
 
       <div className={cn('mb-6', css['devcon-week'])} id="schedule">
+        {/* <div className="section mt-6">
+          <Alert className="rounded-lg mb-6 font-bold !bg-[#ffede9] orange !normal-case">
+            {devconWeek && devconWeek.alert && <RichText content={devconWeek.alert} />}
+          </Alert>
+        </div> */}
+
         <EventSchedule
           // @ts-ignore
           events={eventsFullRange}
@@ -227,7 +233,7 @@ export default pageHOC(function DevconWeek(props: any) {
                     className="absolute right-0 h-full !object-right object-contain"
                   />
 
-                  <div className="absolute w-full h-full flex flex-col gap-4 items-center justify-center align-center">
+                  <div className="absolute w-full h-full flex flex-col gap-3 items-center justify-center align-center">
                     <Image
                       src={LogoFlowers}
                       alt="Blocked Event Graphic"
@@ -243,6 +249,8 @@ export default pageHOC(function DevconWeek(props: any) {
                     <Button color="purple-1" fill className="semi-bold shadow-xl">
                       Devcon Main Event →
                     </Button>
+
+                    <p className="text-xs font-bold">Agenda Coming Soon</p>
                     {/* </Link> */}
                   </div>
                 </Link>
