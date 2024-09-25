@@ -230,31 +230,33 @@ const Contributor = React.memo(
 
     return (
       <Popover open={isHovered}>
-        <PopoverTrigger onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-          <div className="inline-block mx-4 hover:scale-105 transition-all duration-300 cursor-pointer py-2 pt-3 group">
-            <div className="flex flex-col items-center text-center">
-              <div className="relative">
-                <Image
-                  src={contributor.avatarUrl}
-                  alt={contributor.name}
-                  width={80}
-                  height={80}
-                  className="rounded-full w-20 h-20 mb-2 object-cover"
-                />
-                <Image
-                  src={randomButterfly}
-                  alt="Butterfly"
-                  width={40}
-                  height={40}
-                  className={`absolute -top-2 ${getButterflyPosition(
-                    randomButterfly
-                  )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                />
-              </div>
-              <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
-              <div className="h-10">
-                <p className="text-[#706ABD] text-sm mt-1">{truncateText(contributor.role, 30)}</p>
-              </div>
+        <PopoverTrigger
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          className="mx-4 group cursor-pointer py-2 pt-3 outline-none border-none"
+        >
+          <div className="flex flex-col items-center text-center">
+            <div className="relative">
+              <Image
+                src={contributor.avatarUrl}
+                alt={contributor.name}
+                width={80}
+                height={80}
+                className="rounded-full w-20 h-20 mb-2 object-cover"
+              />
+              <Image
+                src={randomButterfly}
+                alt="Butterfly"
+                width={40}
+                height={40}
+                className={`absolute -top-2 ${getButterflyPosition(
+                  randomButterfly
+                )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+              />
+            </div>
+            <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
+            <div className="">
+              <p className="text-[#706ABD] text-sm">{truncateText(contributor.role, 25)}</p>
             </div>
           </div>
         </PopoverTrigger>
@@ -327,7 +329,7 @@ const FeaturedSpeakers = () => {
   const secondHalf = contributors.slice(half)
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 mb-4">
       <h2 className="font-secondary mb-6">Featured Speakers</h2>
       <HighlightedSpeakers />
       <div className="flex flex-col mt-8">
