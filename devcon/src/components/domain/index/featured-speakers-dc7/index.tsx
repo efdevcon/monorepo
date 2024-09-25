@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react'
+import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import Image, { StaticImageData } from 'next/image'
 import VitalikImage from './speaker-images/vitalik.png'
 import AnnBrodyImage from './speaker-images/Ann-Brody.png'
@@ -91,11 +91,23 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
     return corners[Math.floor(Math.random() * corners.length)]
   }, [isHovered])
 
+  const handleHoverStart = useCallback(() => {
+    setIsHovered(true)
+  }, [])
+
+  const handleHoverEnd = useCallback(() => {
+    setIsHovered(false)
+  }, [])
+
   return (
     <div
       ref={containerRef}
       className="group hover:bg-indigo-100 hover:bg-opacity-60 transition-all duration-500 cursor-pointer w-full relative flex items-center rounded-lg"
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleHoverStart}
+      onMouseLeave={handleHoverEnd}
+      onTouchStart={handleHoverStart}
+      onTouchEnd={handleHoverEnd}
     >
       <div className="absolute inset-0 z-10" {...bind()} />
       <div className="flex-1 p-3 flex justify-between items-center">
@@ -108,7 +120,7 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
         />
 
         <div className="flex flex-col lg:flex-row justify-between grow lg:items-center">
-          <h3 className="text-[#706ABD] text-xl lg:text-4xl transition-all duration-300 ease-in-out transform lg:group-hover:scale-105 lg:group-hover:translate-x-[10px]">
+          <h3 className="text-[#706ABD] font-semibold lg:font-normal text-xl lg:text-4xl transition-all duration-300 ease-in-out transform lg:group-hover:scale-105 lg:group-hover:translate-x-[10px]">
             {name}
           </h3>
           <p className="text-[#706ABD] text-base lg:text-xl lg:text-right">{role}</p>
@@ -194,8 +206,16 @@ const HighlightedSpeakers = ({
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        duration: 0.8,
+        staggerChildren: 0.15,
+        duration: 0.4,
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      // opacity: 0,
+      transition: {
+        staggerChildren: 0.15,
+        duration: 0.4,
         ease: 'easeInOut',
       },
     },
@@ -221,32 +241,42 @@ const HighlightedSpeakers = ({
     },
   }
 
+  // console.log('currentSpeakers', currentSpeakers)
+  // console.log('speakers', speakers)
+
   return (
-    <motion.div
+    <div
       ref={ref}
       className="w-full my-2"
-      initial="hidden"
-      animate="show"
-      variants={containerVariants}
+      // initial="hidden"
+      // animate="show"
+      // variants={containerVariants}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false)
         controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
       }}
+      onTouchStart={() => setIsHovered(true)}
+      onTouchEnd={() => {
+        setIsHovered(false)
+        controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+      }}
     >
       <AnimatePresence mode="wait">
-        {currentSpeakers.map((speaker, index) => (
-          <motion.div
-            key={`${speaker.name}-${speakers.indexOf(speaker)}`}
-            variants={itemVariants}
-            initial="hidden"
-            animate="show"
-            exit="exit"
-          >
-            <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} />
-            {index < currentSpeakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}
-          </motion.div>
-        ))}
+        <motion.div
+          key={currentSpeakers.map(speaker => speaker.name).join(',')}
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+          exit="exit"
+        >
+          {currentSpeakers.map((speaker, index) => (
+            <motion.div key={`${speaker.name}`} variants={itemVariants}>
+              <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} />
+              {index < currentSpeakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}
+            </motion.div>
+          ))}
+        </motion.div>
       </AnimatePresence>
       <div className="flex justify-center items-center w-[100px] bg-gray-100 mx-auto transform translate-y-2">
         <motion.div
@@ -255,7 +285,7 @@ const HighlightedSpeakers = ({
           animate={controls}
         />
       </div>
-    </motion.div>
+    </div>
   )
 }
 
