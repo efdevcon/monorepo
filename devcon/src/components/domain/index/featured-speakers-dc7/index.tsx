@@ -193,9 +193,13 @@ const HighlightedSpeakers = ({
   useEffect(() => {
     if (isInView && !isHovered) {
       const rotateInterval = setInterval(() => {
-        setCurrentIndex(prevIndex => (prevIndex + 4) % speakers.length)
-        controls.set({ scaleX: 0 })
-        controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+        try {
+          setCurrentIndex(prevIndex => (prevIndex + 4) % speakers.length)
+          controls.set({ scaleX: 0 })
+          controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+        } catch (error) {
+          console.error('Error in rotateInterval:', error)
+        }
       }, 6000)
 
       controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
