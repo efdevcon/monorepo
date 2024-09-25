@@ -44,10 +44,15 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
   const [isHovered, setIsHovered] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const [tiltAngle, setTiltAngle] = useState(0)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const x = useSpring(0, { stiffness: 300, damping: 30 })
   const y = useSpring(0, { stiffness: 300, damping: 30 })
-  const rotate = useTransform([x, y], () => (isHovered ? tiltAngle : 0))
+  // const rotate = useTransform([x, y], () => (isHovered ? tiltAngle : 0))
 
   const bind = useHover(({ hovering }) => {
     setIsHovered(hovering)
@@ -141,23 +146,33 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
         className="absolute pointer-events-none z-10"
       >
         <div className="relative">
-          <Image src={avatarUrl} alt={name} width={250} height={250} className="object-cover rounded-lg shadow-lg" />
-          <Image
-            src={randomButterfly}
-            alt="Butterfly"
-            width={80}
-            height={80}
-            className={`absolute ${
-              randomCorner === 'top-left'
-                ? '-top-4 -left-4'
-                : randomCorner === 'top-right'
-                ? '-top-4 -right-4'
-                : randomCorner === 'bottom-left'
-                ? '-bottom-4 -left-4'
-                : '-bottom-4 -right-4'
-            } 
+          {mounted && (
+            <>
+              <Image
+                src={avatarUrl}
+                alt={name}
+                width={250}
+                height={250}
+                className="object-cover rounded-lg shadow-lg"
+              />
+              <Image
+                src={randomButterfly}
+                alt="Butterfly"
+                width={80}
+                height={80}
+                className={`absolute ${
+                  randomCorner === 'top-left'
+                    ? '-top-4 -left-4'
+                    : randomCorner === 'top-right'
+                    ? '-top-4 -right-4'
+                    : randomCorner === 'bottom-left'
+                    ? '-bottom-4 -left-4'
+                    : '-bottom-4 -right-4'
+                } 
             transform ${randomCorner.includes('right') ? 'scale-x-[-1]' : ''}`}
-          />
+              />
+            </>
+          )}
         </div>
       </motion.div>
     </div>
@@ -298,6 +313,11 @@ const SpeakerSmall = React.memo(
     butterflies: StaticImageData[]
   }) => {
     const [isHovered, setIsHovered] = useState(false)
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+      setMounted(true)
+    }, [])
 
     const randomButterfly = useMemo(() => {
       return butterflies[Math.floor(Math.random() * butterflies.length)]
@@ -326,15 +346,19 @@ const SpeakerSmall = React.memo(
                 height={80}
                 className="rounded-full w-20 h-20 mb-2 object-cover"
               />
-              <Image
-                src={randomButterfly}
-                alt="Butterfly"
-                width={40}
-                height={40}
-                className={`absolute -top-2 ${getButterflyPosition(
-                  randomButterfly
-                )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-              />
+              {mounted && (
+                <>
+                  <Image
+                    src={randomButterfly}
+                    alt="Butterfly"
+                    width={40}
+                    height={40}
+                    className={`absolute -top-2 ${getButterflyPosition(
+                      randomButterfly
+                    )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                  />
+                </>
+              )}
             </div>
             <p className="text-[#706ABD] text-lg font-semibold">{speaker.name}</p>
             <div className="">
