@@ -29,7 +29,7 @@ import B3 from './butterflies/b3.png'
 import B4 from './butterflies/b4.png'
 import B5 from './butterflies/b5.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
-import { motion, useSpring, useTransform, useInView } from 'framer-motion'
+import { motion, useSpring, useTransform, useInView, AnimatePresence, useAnimation } from 'framer-motion'
 import { useHover } from 'react-use-gesture'
 import styles from './index.module.scss'
 import { Tooltip } from 'components/common/tooltip'
@@ -152,13 +152,42 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
   )
 }
 
-const HighlightedSpeakers = () => {
-  const speakers = [
-    { name: 'Aya Mayaguchi', role: 'Director @ Ethereum Foundation', avatarUrl: AyaMiyaguchiImage },
-    { name: 'Vitalik Buterin', role: 'Co-founder @ Ethereum', avatarUrl: VitalikImage },
-    { name: 'Roger Dingledine', role: 'Co-founder @ Tor Project', avatarUrl: RogerDingledineImage },
-    { name: 'Hart Montgomery', role: 'CTO @ Linux Foundation', avatarUrl: HartMontgomeryImage },
-  ]
+const HighlightedSpeakers = ({
+  speakers,
+}: {
+  speakers: Array<{ name: string; role: string; avatarUrl: StaticImageData }>
+}) => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+  const controls = useAnimation()
+
+  useEffect(() => {
+    if (isInView && !isHovered) {
+      const rotateInterval = setInterval(() => {
+        setCurrentIndex(prevIndex => (prevIndex + 4) % speakers.length)
+        controls.set({ scaleX: 0 })
+        controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+      }, 6000)
+
+      controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+
+      return () => clearInterval(rotateInterval)
+    } else if (isHovered) {
+      controls.stop()
+      controls.set({ scaleX: 0 })
+    }
+  }, [isInView, speakers, controls, isHovered])
+
+  const currentSpeakers = useMemo(() => {
+    const endIndex = currentIndex + 4
+    if (endIndex <= speakers.length) {
+      return speakers.slice(currentIndex, endIndex)
+    } else {
+      return [...speakers.slice(currentIndex), ...speakers.slice(0, endIndex - speakers.length)]
+    }
+  }, [currentIndex, speakers])
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -173,10 +202,18 @@ const HighlightedSpeakers = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 0 },
+    hidden: { opacity: 0, x: -12 },
     show: {
       opacity: 1,
-      y: 0,
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeInOut',
+      },
+    },
+    exit: {
+      opacity: 0,
+      x: 12,
       transition: {
         duration: 0.8,
         ease: 'easeInOut',
@@ -184,35 +221,50 @@ const HighlightedSpeakers = () => {
     },
   }
 
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
-
   return (
     <motion.div
       ref={ref}
       className="w-full my-2"
       initial="hidden"
-      animate={isInView ? 'show' : 'hidden'}
+      animate="show"
       variants={containerVariants}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false)
+        controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+      }}
     >
-      {speakers.map((speaker, index) => (
-        <React.Fragment key={index}>
-          <motion.div variants={itemVariants}>
+      <AnimatePresence mode="wait">
+        {currentSpeakers.map((speaker, index) => (
+          <motion.div
+            key={`${speaker.name}-${speakers.indexOf(speaker)}`}
+            variants={itemVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+          >
             <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} />
+            {index < currentSpeakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}
           </motion.div>
-          {index < speakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}{' '}
-        </React.Fragment>
-      ))}
+        ))}
+      </AnimatePresence>
+      <div className="flex justify-center items-center w-[100px] bg-gray-100 mx-auto transform translate-y-2">
+        <motion.div
+          className="h-[2px] w-[100px] bg-indigo-400 origin-center"
+          initial={{ scaleX: 0 }}
+          animate={controls}
+        />
+      </div>
     </motion.div>
   )
 }
 
-const Contributor = React.memo(
+const SpeakerSmall = React.memo(
   ({
-    contributor,
+    speaker,
     butterflies,
   }: {
-    contributor: { name: string; role: string; avatarUrl: StaticImageData }
+    speaker: { name: string; role: string; avatarUrl: StaticImageData }
     butterflies: StaticImageData[]
   }) => {
     const [isHovered, setIsHovered] = useState(false)
@@ -238,8 +290,8 @@ const Contributor = React.memo(
           <div className="flex flex-col items-center text-center">
             <div className="relative">
               <Image
-                src={contributor.avatarUrl}
-                alt={contributor.name}
+                src={speaker.avatarUrl}
+                alt={speaker.name}
                 width={80}
                 height={80}
                 className="rounded-full w-20 h-20 mb-2 object-cover"
@@ -254,9 +306,9 @@ const Contributor = React.memo(
                 )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
               />
             </div>
-            <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
+            <p className="text-[#706ABD] text-lg font-semibold">{speaker.name}</p>
             <div className="">
-              <p className="text-[#706ABD] text-sm">{truncateText(contributor.role, 25)}</p>
+              <p className="text-[#706ABD] text-sm">{truncateText(speaker.role, 25)}</p>
             </div>
           </div>
         </PopoverTrigger>
@@ -265,7 +317,7 @@ const Contributor = React.memo(
           sideOffset={10}
           className="bg-purple-600 p-3 rounded-2xl w-auto max-w-[250px] text-xs text-white px-4 pointer-events-none"
         >
-          <p>{`${contributor.name} - ${contributor.role}`}</p>
+          <p>{`${speaker.name} - ${speaker.role}`}</p>
         </PopoverContent>
       </Popover>
     )
@@ -273,20 +325,20 @@ const Contributor = React.memo(
 )
 
 const AutoScroller = ({
-  contributors,
+  speakers,
   reverse,
 }: {
-  contributors: { name: string; role: string; avatarUrl: StaticImageData }[]
+  speakers: { name: string; role: string; avatarUrl: StaticImageData }[]
   reverse: boolean
 }) => {
-  const duplicatedContributors = [...contributors, ...contributors]
+  // const duplicatedContributors = [...speakers, ...speakers]
   const butterflies = [B1, B2, B3, B5]
 
   return (
     <div className={styles.scrollerContainer}>
-      <InfiniteScroller speed="200s" pauseOnHover={true} reverse={reverse}>
-        {duplicatedContributors.map((contributor, index) => (
-          <Contributor key={index} contributor={contributor} butterflies={butterflies} />
+      <InfiniteScroller speed="180s" pauseOnHover={true} reverse={reverse}>
+        {speakers.map((speaker, index) => (
+          <SpeakerSmall key={index} speaker={speaker} butterflies={butterflies} />
         ))}
       </InfiniteScroller>
     </div>
@@ -294,48 +346,74 @@ const AutoScroller = ({
 }
 
 const FeaturedSpeakers = () => {
-  const contributors = [
-    { name: 'Ann Brody', role: 'DAO Researcher', avatarUrl: AnnBrodyImage },
-    { name: 'Austin Griffith', role: '🧙‍♂️ Builder on Ethereum', avatarUrl: AustinGriffithImage },
-    { name: 'Bartek Kiepuszewski', role: 'L2BEAT Founder', avatarUrl: BartekKiepuszewskiImage },
-    { name: 'Gubsheep', role: 'Co-founder of 0xPARC and creator of the Dark Forest game', avatarUrl: GubsheepImage },
-    { name: 'Hudson Jameson', role: 'Polygon', avatarUrl: HudsonJamesonImage },
-    { name: 'Juan Bennet', role: 'Protocol Labs, IPFS and Filecoin Founder', avatarUrl: JuanBennetImage },
-    { name: 'Kevin Owocki', role: 'Founder @Gitcoin', avatarUrl: KevinOwockiImage },
-    { name: 'Lefteris Karapetsas', role: 'Founder of Rotki', avatarUrl: LefterisKarapetsasImage },
-    { name: 'Nick Johnson', role: 'Founder of ENS', avatarUrl: NickJohnsonImage },
-    {
-      name: 'Jay Baxter',
-      role: '@CommunityNotes Founding ML Lead / Sr. Staff ML Eng @X. Built BayesDB @MIT',
-      avatarUrl: JayBaxterImage,
-    },
-    { name: 'Pooja Ranjan', role: 'Ethereum Cat Herders', avatarUrl: PoojaRanjanImage },
-    { name: 'Loi Luu', role: 'Co-founder of Kyber Network', avatarUrl: LoiLuuImage },
-    { name: 'Matthew Tan', role: 'Founder of Etherscan', avatarUrl: MatthewTanImage },
-    {
-      name: 'Preston Van Loon',
-      role: 'Ethereum Core Developer on the Prysm team at Offchain Labs.',
-      avatarUrl: PrestonVanLoonImage,
-    },
-    { name: 'Shayne Coplan', role: 'CEO @Polymarket', avatarUrl: ShayneCoplanImage },
-    { name: 'Sreeram Kannan', role: 'Founder of EigenLayer Protocol', avatarUrl: SreeramKannanImage },
-    { name: 'Tim Beiko', role: 'Protocol Support', avatarUrl: TimBeikoImage },
-    { name: 'Trent Van Epps', role: 'Political Organizer @ Protocol Guild', avatarUrl: TrentVanEppsImage },
-    { name: 'Zac Williamson', role: 'CEO & Co-Founder Aztec Network', avatarUrl: ZacWilliamsonImage },
-  ]
+  const [mounted, setMounted] = useState(false)
 
-  const half = Math.ceil(contributors.length / 2)
-  const firstHalf = contributors.slice(0, half)
-  const secondHalf = contributors.slice(half)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const speakers = useMemo(() => {
+    const initialSpeakers = [
+      { name: 'Aya Mayaguchi', role: 'Director @ Ethereum Foundation', avatarUrl: AyaMiyaguchiImage },
+      { name: 'Vitalik Buterin', role: 'Co-founder @ Ethereum', avatarUrl: VitalikImage },
+      { name: 'Roger Dingledine', role: 'Co-founder @ Tor Project', avatarUrl: RogerDingledineImage },
+      { name: 'Hart Montgomery', role: 'CTO @ Linux Foundation', avatarUrl: HartMontgomeryImage },
+    ]
+
+    const remainingSpeakers = [
+      { name: 'Tim Beiko', role: 'Protocol Support', avatarUrl: TimBeikoImage },
+      { name: 'Hudson Jameson', role: 'Polygon', avatarUrl: HudsonJamesonImage },
+      { name: 'Nick Johnson', role: 'Founder of ENS', avatarUrl: NickJohnsonImage },
+      { name: 'Austin Griffith', role: '🧙‍♂️ Builder on Ethereum', avatarUrl: AustinGriffithImage },
+      { name: 'Sreeram Kannan', role: 'Founder of EigenLayer Protocol', avatarUrl: SreeramKannanImage },
+      { name: 'Juan Bennet', role: 'Protocol Labs, IPFS and Filecoin Founder', avatarUrl: JuanBennetImage },
+      { name: 'Kevin Owocki', role: 'Founder @Gitcoin', avatarUrl: KevinOwockiImage },
+      { name: 'Lefteris Karapetsas', role: 'Founder of Rotki', avatarUrl: LefterisKarapetsasImage },
+      { name: 'Trent Van Epps', role: 'Political Organizer @ Protocol Guild', avatarUrl: TrentVanEppsImage },
+      { name: 'Shayne Coplan', role: 'CEO @Polymarket', avatarUrl: ShayneCoplanImage },
+      { name: 'Gubsheep', role: 'Co-founder of 0xPARC and creator of the Dark Forest game', avatarUrl: GubsheepImage },
+      { name: 'Bartek Kiepuszewski', role: 'L2BEAT Founder', avatarUrl: BartekKiepuszewskiImage },
+      { name: 'Ann Brody', role: 'DAO Researcher', avatarUrl: AnnBrodyImage },
+      {
+        name: 'Jay Baxter',
+        role: '@CommunityNotes Founding ML Lead / Sr. Staff ML Eng @X. Built BayesDB @MIT',
+        avatarUrl: JayBaxterImage,
+      },
+      { name: 'Pooja Ranjan', role: 'Ethereum Cat Herders', avatarUrl: PoojaRanjanImage },
+      { name: 'Loi Luu', role: 'Co-founder of Kyber Network', avatarUrl: LoiLuuImage },
+      { name: 'Matthew Tan', role: 'Founder of Etherscan', avatarUrl: MatthewTanImage },
+      {
+        name: 'Preston Van Loon',
+        role: 'Ethereum Core Developer on the Prysm team at Offchain Labs.',
+        avatarUrl: PrestonVanLoonImage,
+      },
+      { name: 'Zac Williamson', role: 'CEO & Co-Founder Aztec Network', avatarUrl: ZacWilliamsonImage },
+    ]
+
+    // Deterministic shuffle for the initial 4 speakers (to avoid hydration error), after component mounts, we shuffle the remaining speakers
+    if (!mounted) return initialSpeakers.concat(remainingSpeakers)
+
+    // Shuffle the remaining speakers
+    for (let i = remainingSpeakers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[remainingSpeakers[i], remainingSpeakers[j]] = [remainingSpeakers[j], remainingSpeakers[i]]
+    }
+
+    return [...initialSpeakers, ...remainingSpeakers]
+  }, [mounted])
+
+  const half = Math.ceil(speakers.length / 2)
+  const firstHalf = speakers.slice(0, half)
+  const secondHalf = speakers.slice(half)
 
   return (
     <div className="mt-8 mb-4">
       <h2 className="font-secondary mb-6">Featured Speakers</h2>
-      <HighlightedSpeakers />
+      <HighlightedSpeakers speakers={speakers} />
       <div className="flex flex-col mt-8">
-        <AutoScroller contributors={firstHalf} reverse />
+        <AutoScroller speakers={firstHalf} reverse />
         <div className="my-2" />
-        <AutoScroller contributors={secondHalf} reverse={false} />
+        <AutoScroller speakers={secondHalf} reverse={false} />
       </div>
     </div>
   )
