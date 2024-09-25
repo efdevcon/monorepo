@@ -391,17 +391,8 @@ export default pageHOC(function Index(props: any) {
           </div> */}
         </div>
 
-        <div className="section relative">
-          <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
-            <InfiniteScroller nDuplications={2} speed="120s">
-              <p className="bold">FEATURED SPEAKERS&nbsp;</p>
-            </InfiniteScroller>
-          </div>
-
-          <FeaturedSpeakers />
-        </div>
         <div className="section">
-          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 border-top pt-6 mt-8">
+          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 mt-8">
             <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
@@ -465,6 +456,16 @@ export default pageHOC(function Index(props: any) {
                 {pages.section2?.button_info?.text}
               </Button>
             </Link> */}
+          </div>
+
+          <div className="relative pb-4 border-bottom" id="featured-speakers">
+            <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
+              <InfiniteScroller nDuplications={2} speed="140s" reverse>
+                <p className="bold">FEATURED SPEAKERS&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+
+            <FeaturedSpeakers />
           </div>
 
           {/* <div className="mb-4">

@@ -316,8 +316,8 @@ const FeaturedSpeakers = () => {
   const secondHalf = contributors.slice(half)
 
   return (
-    <div className="mt-8" id="featured-speakers">
-      <h2 className="font-secondary mb-6">Devcon SEA Programming</h2>
+    <div className="mt-8">
+      <h2 className="font-secondary mb-6">Featured Speakers</h2>
       <HighlightedSpeakers />
       <div className="flex flex-col mt-8">
         <AutoScroller contributors={firstHalf} reverse /> {/* First row of contributors */}
