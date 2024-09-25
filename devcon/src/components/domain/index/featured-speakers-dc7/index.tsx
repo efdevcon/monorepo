@@ -33,7 +33,7 @@ import { motion, useSpring, useTransform, useInView } from 'framer-motion'
 import { useHover } from 'react-use-gesture'
 import styles from './index.module.scss'
 import { Tooltip } from 'components/common/tooltip'
-// import { AutoScroller } from 'components/domain/dips/overview/contribute/Contribute' // Import the AutoScroller
+import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
 
 const truncateText = (text: string, maxLength: number) => {
   if (text.length <= maxLength) return text
@@ -51,11 +51,6 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
 
   const bind = useHover(({ hovering }) => {
     setIsHovered(hovering)
-    // if (hovering) {
-    //   // Generate a random angle between 5 and 15 degrees, then randomly negate it
-    //   const randomAngle = (Math.random() * 10 + 5) * (Math.random() < 0.5 ? -1 : 1)
-    //   setTiltAngle(randomAngle)
-    // }
   })
 
   const handleMouseMove = (event: React.MouseEvent) => {
@@ -65,25 +60,20 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
       const mouseX = event.clientX - rect.left - 150
       const mouseY = event.clientY - rect.top - 150
 
-      // Calculate the speed of the mouse movement
       const deltaX = mouseX - x.get()
       const deltaY = mouseY - y.get()
       const speed = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
 
-      // Introduce a threshold to reduce jiggling on small movements
       const speedThreshold = 5
       if (speed > speedThreshold) {
-        // Adjust the tilt angle based on the direction and speed
         const maxTilt = 15
         const minTilt = 5
         const newTiltAngle = Math.min(maxTilt, Math.max(minTilt, speed / 10))
 
-        // Determine the tilt direction based on the movement direction
         const tiltDirection = deltaX > 0 ? 1 : -1
         setTiltAngle(newTiltAngle * tiltDirection)
       }
 
-      // Update the spring values only if the mouse has moved
       if (deltaX !== 0 || deltaY !== 0) {
         x.set(mouseX)
         y.set(mouseY)
@@ -211,12 +201,74 @@ const HighlightedSpeakers = () => {
             <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} />
           </motion.div>
           {index < speakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}{' '}
-          {/* Add a border between speakers */}
         </React.Fragment>
       ))}
     </motion.div>
   )
 }
+
+const Contributor = React.memo(
+  ({
+    contributor,
+    butterflies,
+  }: {
+    contributor: { name: string; role: string; avatarUrl: StaticImageData }
+    butterflies: StaticImageData[]
+  }) => {
+    const [isHovered, setIsHovered] = useState(false)
+
+    const randomButterfly = useMemo(() => {
+      return butterflies[Math.floor(Math.random() * butterflies.length)]
+    }, [butterflies])
+
+    const getButterflyPosition = (butterfly: StaticImageData) => {
+      if (butterfly === B2 || butterfly === B5) {
+        return '-left-2'
+      }
+      return '-right-2'
+    }
+
+    return (
+      <Popover open={isHovered}>
+        <PopoverTrigger onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+          <div className="inline-block mx-4 hover:scale-105 transition-all duration-300 cursor-pointer py-2 pt-3 group">
+            <div className="flex flex-col items-center text-center">
+              <div className="relative">
+                <Image
+                  src={contributor.avatarUrl}
+                  alt={contributor.name}
+                  width={80}
+                  height={80}
+                  className="rounded-full w-20 h-20 mb-2 object-cover"
+                />
+                <Image
+                  src={randomButterfly}
+                  alt="Butterfly"
+                  width={40}
+                  height={40}
+                  className={`absolute -top-2 ${getButterflyPosition(
+                    randomButterfly
+                  )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+                />
+              </div>
+              <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
+              <div className="h-10">
+                <p className="text-[#706ABD] text-sm mt-1">{truncateText(contributor.role, 30)}</p>
+              </div>
+            </div>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent
+          side="top"
+          sideOffset={10}
+          className="bg-purple-600 p-3 rounded-2xl w-auto max-w-[250px] text-xs text-white px-4 pointer-events-none"
+        >
+          <p>{`${contributor.name} - ${contributor.role}`}</p>
+        </PopoverContent>
+      </Popover>
+    )
+  }
+)
 
 const AutoScroller = ({
   contributors,
@@ -225,56 +277,15 @@ const AutoScroller = ({
   contributors: { name: string; role: string; avatarUrl: StaticImageData }[]
   reverse: boolean
 }) => {
-  const duplicatedContributors = [...contributors, ...contributors] // Duplicate the contributors
+  const duplicatedContributors = [...contributors, ...contributors]
   const butterflies = [B1, B2, B3, B5]
-
-  const getButterflyPosition = (butterfly: StaticImageData) => {
-    if (butterfly === B2 || butterfly === B5) {
-      return '-left-2'
-    }
-    return '-right-2'
-  }
 
   return (
     <div className={styles.scrollerContainer}>
       <InfiniteScroller speed="200s" pauseOnHover={true} reverse={reverse}>
-        {duplicatedContributors.map((contributor, index) => {
-          const randomButterfly = butterflies[Math.floor(Math.random() * butterflies.length)]
-
-          return (
-            <Tooltip key={index} content={`${contributor.name} - ${contributor.role}`}>
-              <div
-                key={index}
-                className="inline-block mx-4 hover:scale-105 transition-all duration-300 cursor-pointer py-2 group"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <div className="relative">
-                    <Image
-                      src={contributor.avatarUrl}
-                      alt={contributor.name}
-                      width={80}
-                      height={80}
-                      className="rounded-full w-20 h-20 mb-2 object-cover"
-                    />
-                    <Image
-                      src={randomButterfly}
-                      alt="Butterfly"
-                      width={40}
-                      height={40}
-                      className={`absolute -top-2 ${getButterflyPosition(
-                        randomButterfly
-                      )} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
-                    />
-                  </div>
-                  <p className="text-[#706ABD] text-lg font-semibold">{contributor.name}</p>
-                  <div className="h-10">
-                    <p className="text-[#706ABD] text-sm mt-1">{truncateText(contributor.role, 30)}</p>
-                  </div>
-                </div>
-              </div>
-            </Tooltip>
-          )
-        })}
+        {duplicatedContributors.map((contributor, index) => (
+          <Contributor key={index} contributor={contributor} butterflies={butterflies} />
+        ))}
       </InfiniteScroller>
     </div>
   )
@@ -320,9 +331,9 @@ const FeaturedSpeakers = () => {
       <h2 className="font-secondary mb-6">Featured Speakers</h2>
       <HighlightedSpeakers />
       <div className="flex flex-col mt-8">
-        <AutoScroller contributors={firstHalf} reverse /> {/* First row of contributors */}
+        <AutoScroller contributors={firstHalf} reverse />
         <div className="my-2" />
-        <AutoScroller contributors={secondHalf} reverse={false} /> {/* Second row of contributors */}
+        <AutoScroller contributors={secondHalf} reverse={false} />
       </div>
     </div>
   )
