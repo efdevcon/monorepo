@@ -12,12 +12,3 @@ export default pageHOC((props: any) => {
     </AppLayout>
   )
 })
-
-// export async function getStaticProps(context: any) {
-//   return {
-//     props: {
-//       ...(await getGlobalData(context.locale, true)),
-//       page: DEFAULT_APP_PAGE,
-//     },
-//   }
-// }

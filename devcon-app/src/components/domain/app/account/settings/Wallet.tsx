@@ -6,12 +6,13 @@ import AccountFooter from '../AccountFooter'
 import NotFound from './NotFound'
 import IconCross from 'assets/icons/cross.svg'
 import { Button } from 'components/common/button'
-import { getSiweMessage } from 'utils/web3'
 import { Link } from 'components/common/link'
 import { useActiveAddress } from 'hooks/useActiveAddress'
 import { Tooltip } from 'components/common/tooltip'
 import { useRouter } from 'next/router'
 import { AppNav } from 'components/domain/app/navigation'
+import { useAccount, useSignMessage } from 'wagmi'
+import { createSiweMessage } from 'viem/siwe'
 
 export default function WalletSettings() {
   const router = useRouter()
@@ -20,41 +21,35 @@ export default function WalletSettings() {
   const [error, setError] = useState('')
   const [promptRemove, setPromptRemove] = useState('')
   const [tooltipVisible, setTooltipVisible] = useState(false)
+  const { address } = useAccount()
+  const { signMessageAsync } = useSignMessage()
 
-  if (!accountContext.account) {
+  if (!address || !accountContext.account) {
     return null
   }
 
   const canDelete = accountContext.account?.addresses?.length > 0 && !!accountContext.account.email
 
   const addWallet = async () => {
-    const provider = await accountContext.connectWeb3()
-    if (!provider) {
-      setError('Unable to connect to Web3 provider')
-      return
-    }
-
-    const signer = provider.getSigner()
-    const address = await signer.getAddress()
     const token = await accountContext.getToken(address.toLowerCase(), false)
     if (!token) {
       setError('Unable to create verification token')
       return
     }
 
-    const message = getSiweMessage(address, token)
-    const signedMessage = await accountContext.signMessage(message, provider)
-    if (!signedMessage) {
-      setError('Unable to sign message')
-      return
-    }
+    const message = createSiweMessage({
+      address: address,
+      chainId: 1,
+      domain: 'app.devcon.org',
+      nonce: token.nonce.toString(),
+      statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
+      uri: 'https://app.devcon.org/',
+      version: '1',
+    })
 
-    const userAccount = await accountContext.loginWeb3(
-      signedMessage.address.toLowerCase(),
-      token.nonce,
-      signedMessage.message,
-      signedMessage.signature
-    )
+    const signature = await signMessageAsync({ message })
+    const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
+
     if (!userAccount) {
       setError('Unable to login with web3')
     }
@@ -86,7 +81,7 @@ export default function WalletSettings() {
         <div>
           <div className="section">
             <div className="content">
-              <div className={css['alert']}>{error && <Alert title='Info' type="info" message={error} />}</div>
+              <div className={css['alert']}>{error && <Alert title="Info" type="info" message={error} />}</div>
 
               <div className={css['form']}>
                 <p className={`${css['title']} title`}>Manage Wallets</p>

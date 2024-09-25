@@ -1,11 +1,7 @@
 import React, { ReactNode, useEffect, useState } from 'react'
-import { utils, providers } from 'ethers'
 import { UserAccount } from 'types/UserAccount'
 import { AccountContext, AccountContextType } from './account-context'
-import { getWeb3Modal } from 'utils/web3'
-import { SignedMessage } from 'types/SignedMessage'
 import { useRouter } from 'next/router'
-import { Web3Provider } from '@ethersproject/providers'
 import { VerificationToken } from 'types/VerificationToken'
 import { Session } from 'types/Session'
 import { Modal } from 'components/common/modal'
@@ -15,21 +11,20 @@ import AppLogoColor from 'assets/images/app-logo-color.png'
 import Image from 'next/image'
 import css from 'components/domain/app/login-modal.module.scss'
 import { APP_CONFIG } from 'utils/config'
+import { useAppKit } from '@reown/appkit/react'
 
 interface AccountContextProviderProps {
   children: ReactNode
 }
 
 export const AccountContextProvider = ({ children }: AccountContextProviderProps) => {
+  const { close } = useAppKit()
   const router = useRouter()
   const [showLoginRequired, setShowLoginRequired] = useState(false)
   const [context, setContext] = useState<AccountContextType>({
     edit: false,
     loading: true,
-    provider: undefined,
     account: undefined,
-    connectWeb3,
-    signMessage,
     getToken,
     loginWeb3,
     loginEmail,
@@ -57,60 +52,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     asyncEffect()
   }, [])
-
-  async function connectWeb3(): Promise<providers.Web3Provider | undefined> {
-    try {
-      const web3Modal = getWeb3Modal()
-      if (!web3Modal) {
-        console.error('Unable to initialize web3Modal')
-        return
-      }
-
-      web3Modal.clearCachedProvider()
-      const web3 = await web3Modal.connect()
-      const provider = new providers.Web3Provider(web3)
-      // setContext({ ...context, provider: provider })
-      return provider
-    } catch (e) {
-      console.log('Unable to connect to web3')
-      console.error(e)
-    }
-  }
-
-  async function signMessage(message: string, provider?: Web3Provider): Promise<SignedMessage | undefined> {
-    let web3Provider = provider ?? context.provider
-    if (!web3Provider) {
-      web3Provider = await connectWeb3()
-    }
-    if (!web3Provider) {
-      console.error('Unable to initialize Web3Provider')
-      return
-    }
-
-    try {
-      const signer = web3Provider.getSigner()
-      const address = await signer.getAddress()
-      let signature = ''
-
-      if ((web3Provider.provider as any).wc) {
-        signature = await web3Provider.send('personal_sign', [
-          utils.hexlify(utils.toUtf8Bytes(message)),
-          address.toLowerCase(),
-        ])
-      } else {
-        signature = await signer.signMessage(message)
-      }
-
-      return {
-        address,
-        message,
-        signature,
-      } as SignedMessage
-    } catch (e) {
-      console.log('Unable to sign message')
-      console.error(e)
-    }
-  }
 
   async function getToken(identifier: string, update: boolean): Promise<VerificationToken | undefined> {
     const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/token`, {
@@ -192,9 +133,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
   }
 
   async function logout(): Promise<boolean> {
-    // if (!context.web3Modal) return false // isSSR
-
-    // context.web3Modal.clearCachedProvider()
     const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/logout`, {
       method: 'POST',
       credentials: 'include',
@@ -202,7 +140,8 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     })
 
     if (response.status === 200) {
-      setContext({ ...context, provider: undefined, account: undefined, loading: true })
+      close()
+      setContext({ ...context, account: undefined, loading: true })
       router.push('/login')
       return true
     }
@@ -256,7 +195,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     })
 
     if (response.status === 200) {
-      setContext({ ...context, provider: undefined, account: undefined, loading: true })
+      setContext({ ...context, account: undefined, loading: true })
       router.push('/login')
       return true
     }
