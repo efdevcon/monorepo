@@ -401,9 +401,22 @@ const AutoScroller = ({
 
 const FeaturedSpeakers = () => {
   const [mounted, setMounted] = useState(false)
+  const [key, setKey] = useState(0)
 
   useEffect(() => {
     setMounted(true)
+
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        setKey(prevKey => prevKey + 1)
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
   }, [])
 
   const speakers = useMemo(() => {
@@ -463,7 +476,7 @@ const FeaturedSpeakers = () => {
   return (
     <div className="mt-8 mb-4">
       <h2 className="font-secondary mb-6">Featured Speakers</h2>
-      <HighlightedSpeakers speakers={speakers} />
+      <HighlightedSpeakers key={key} speakers={speakers} />
       <div className="flex flex-col mt-8">
         <AutoScroller speakers={firstHalf} reverse />
         <div className="my-2" />
