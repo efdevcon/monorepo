@@ -14,6 +14,7 @@ import KevinOwockiImage from './speaker-images/Kevin-Owocki.png'
 import LefterisKarapetsasImage from './speaker-images/Lefteris-Karapetsas.png'
 import NickJohnsonImage from './speaker-images/Nick-Johnson.png'
 import PoojaRanjanImage from './speaker-images/Pooja-Ranjan.png'
+import BrunoImage from './speaker-images/bruno-macaes.png'
 import LoiLuuImage from './speaker-images/Loi-Luu.png'
 import MatthewTanImage from './speaker-images/Matthew-Tan.png'
 import PrestonVanLoonImage from './speaker-images/Preston-Van-Loon.png'
@@ -428,10 +429,15 @@ const FeaturedSpeakers = () => {
       { name: 'Aya Mayaguchi', role: 'Director @ Ethereum Foundation', avatarUrl: AyaMiyaguchiImage },
       { name: 'Vitalik Buterin', role: 'Co-founder @ Ethereum', avatarUrl: VitalikImage },
       { name: 'Roger Dingledine', role: 'Co-founder @ Tor Project', avatarUrl: RogerDingledineImage },
-      { name: 'Hart Montgomery', role: 'CTO @ Linux Foundation', avatarUrl: HartMontgomeryImage },
+      {
+        name: 'Bruno Macaes',
+        role: 'Political Scientist, Author, and former Secretary of State',
+        avatarUrl: BrunoImage,
+      },
     ]
 
     const remainingSpeakers = [
+      { name: 'Hart Montgomery', role: 'CTO @ Linux Foundation', avatarUrl: HartMontgomeryImage },
       { name: 'Tim Beiko', role: 'Protocol Support', avatarUrl: TimBeikoImage },
       { name: 'Hudson Jameson', role: 'Polygon', avatarUrl: HudsonJamesonImage },
       { name: 'Nick Johnson', role: 'Founder of ENS', avatarUrl: NickJohnsonImage },
