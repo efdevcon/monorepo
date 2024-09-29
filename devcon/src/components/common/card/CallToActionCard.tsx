@@ -6,7 +6,7 @@ import cn from 'classnames'
 
 type CallToActionProps = {
   title: string
-  tag?: string
+  tag?: string | React.ReactNode
   children: any
   color?: 'orange' | 'purple' | 'blue' | 'teal'
   BackgroundSvg: any
