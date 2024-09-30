@@ -399,7 +399,7 @@ const AutoScroller = ({
   speakers,
   reverse,
 }: {
-  speakers: { name: string; role: string; avatarUrl: StaticImageData }[]
+  speakers: { name: string; role: string; avatarUrl: StaticImageData; link: string }[]
   reverse: boolean
 }) => {
   // const duplicatedContributors = [...speakers, ...speakers]
