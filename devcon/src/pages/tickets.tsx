@@ -148,7 +148,7 @@ export default pageHOC(function Tickets(props: any) {
             <CallToAction
               color="blue"
               title={'Ticketing Status'}
-              tag={waveActive ? 'Ticket Wave Live' : 'Discounts Available'}
+              tag={waveActive ? 'Ticket Wave Live' : <Link to="#discounts">Discounts Available</Link>}
               BackgroundSvg={SpeakersBackground}
               // link="https://tickets.devcon.org"
               // linkText="Buy Tickets"
