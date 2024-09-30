@@ -52,3 +52,12 @@ model rate_limit {
   points Int     @default(0)
   expire BigInt?
 }
+
+model PushSubscription {
+  id        String   @id @default(uuid())
+  endpoint  String   @unique
+  auth      String
+  p256dh    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

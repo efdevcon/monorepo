@@ -14,7 +14,7 @@ import KevinOwockiImage from './speaker-images/Kevin-Owocki.png'
 import LefterisKarapetsasImage from './speaker-images/Lefteris-Karapetsas.png'
 import NickJohnsonImage from './speaker-images/Nick-Johnson.png'
 import PoojaRanjanImage from './speaker-images/Pooja-Ranjan.png'
-import BrunoImage from './speaker-images/bruno-macaes.png'
+import BrunoImage from './speaker-images/Bruno-Macaes.jpg'
 import LoiLuuImage from './speaker-images/Loi-Luu.png'
 import MatthewTanImage from './speaker-images/Matthew-Tan.png'
 import PrestonVanLoonImage from './speaker-images/Preston-Van-Loon.png'
@@ -35,13 +35,24 @@ import { useHover } from 'react-use-gesture'
 import styles from './index.module.scss'
 import { Tooltip } from 'components/common/tooltip'
 import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
+import { Link } from 'components/common/link'
 
 const truncateText = (text: string, maxLength: number) => {
   if (text.length <= maxLength) return text
   return text.slice(0, maxLength - 3) + '...'
 }
 
-const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatarUrl: StaticImageData }) => {
+const Speaker = ({
+  name,
+  role,
+  avatarUrl,
+  link,
+}: {
+  name: string
+  role: string
+  avatarUrl: StaticImageData
+  link: string
+}) => {
   const [isHovered, setIsHovered] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const [tiltAngle, setTiltAngle] = useState(0)
@@ -106,7 +117,8 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
   }, [])
 
   return (
-    <div
+    <Link
+      to={link || ''}
       ref={containerRef}
       className="group hover:bg-indigo-100 hover:bg-opacity-60 transition-all duration-500 cursor-pointer w-full relative flex items-center rounded-lg"
       onMouseMove={handleMouseMove}
@@ -176,14 +188,14 @@ const Speaker = ({ name, role, avatarUrl }: { name: string; role: string; avatar
           )}
         </div>
       </motion.div>
-    </div>
+    </Link>
   )
 }
 
 const HighlightedSpeakers = ({
   speakers,
 }: {
-  speakers: Array<{ name: string; role: string; avatarUrl: StaticImageData }>
+  speakers: Array<{ name: string; role: string; avatarUrl: StaticImageData; link: string }>
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
@@ -292,7 +304,7 @@ const HighlightedSpeakers = ({
         >
           {currentSpeakers.map((speaker, index) => (
             <motion.div key={`${speaker.name}`} variants={itemVariants}>
-              <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} />
+              <Speaker name={speaker.name} role={speaker.role} avatarUrl={speaker.avatarUrl} link={speaker.link} />
               {index < currentSpeakers.length - 1 && <div className="border-b border-indigo-100 border-solid" />}
             </motion.div>
           ))}
@@ -314,7 +326,7 @@ const SpeakerSmall = React.memo(
     speaker,
     butterflies,
   }: {
-    speaker: { name: string; role: string; avatarUrl: StaticImageData }
+    speaker: { name: string; role: string; avatarUrl: StaticImageData; link: string }
     butterflies: StaticImageData[]
   }) => {
     const [isHovered, setIsHovered] = useState(false)
@@ -342,7 +354,7 @@ const SpeakerSmall = React.memo(
           onMouseLeave={() => setIsHovered(false)}
           className="mx-4 group cursor-pointer py-2 pt-3 outline-none border-none"
         >
-          <div className="flex flex-col items-center text-center">
+          <Link to={speaker.link || ''} className="flex flex-col items-center text-center">
             <div className="relative">
               <Image
                 src={speaker.avatarUrl}
@@ -369,12 +381,12 @@ const SpeakerSmall = React.memo(
             <div className="">
               <p className="text-[#706ABD] text-sm">{truncateText(speaker.role, 25)}</p>
             </div>
-          </div>
+          </Link>
         </PopoverTrigger>
         <PopoverContent
           side="top"
           sideOffset={10}
-          className="bg-purple-600 p-3 rounded-2xl w-auto max-w-[250px] text-xs text-white px-4 pointer-events-none"
+          className="bg-[#8c72ae] p-3 rounded-2xl w-auto max-w-[250px] text-xs text-white px-4 pointer-events-none"
         >
           <p>{`${speaker.name} - ${speaker.role}`}</p>
         </PopoverContent>
@@ -426,45 +438,148 @@ const FeaturedSpeakers = () => {
 
   const speakers = useMemo(() => {
     const initialSpeakers = [
-      { name: 'Aya Mayaguchi', role: 'Director @ Ethereum Foundation', avatarUrl: AyaMiyaguchiImage },
-      { name: 'Vitalik Buterin', role: 'Co-founder @ Ethereum', avatarUrl: VitalikImage },
-      { name: 'Roger Dingledine', role: 'Co-founder @ Tor Project', avatarUrl: RogerDingledineImage },
+      {
+        name: 'Aya Mayaguchi',
+        role: 'Director @ Ethereum Foundation',
+        avatarUrl: AyaMiyaguchiImage,
+        link: 'https://x.com/AyaMiyagotchi',
+      },
+      {
+        name: 'Vitalik Buterin',
+        role: 'Co-founder @ Ethereum',
+        avatarUrl: VitalikImage,
+        link: 'https://x.com/VitalikButerin',
+      },
+      {
+        name: 'Roger Dingledine',
+        role: 'Co-founder @ Tor Project',
+        avatarUrl: RogerDingledineImage,
+        link: 'https://x.com/RogerDingledine',
+      },
       {
         name: 'Bruno Macaes',
         role: 'Political Scientist, Author, and former Secretary of State',
         avatarUrl: BrunoImage,
+        link: 'https://x.com/MacaesBruno',
       },
     ]
 
     const remainingSpeakers = [
-      { name: 'Hart Montgomery', role: 'CTO @ Linux Foundation', avatarUrl: HartMontgomeryImage },
-      { name: 'Tim Beiko', role: 'Protocol Support', avatarUrl: TimBeikoImage },
-      { name: 'Hudson Jameson', role: 'Polygon', avatarUrl: HudsonJamesonImage },
-      { name: 'Nick Johnson', role: 'Founder of ENS', avatarUrl: NickJohnsonImage },
-      { name: 'Austin Griffith', role: '🧙‍♂️ Builder on Ethereum', avatarUrl: AustinGriffithImage },
-      { name: 'Sreeram Kannan', role: 'Founder of EigenLayer Protocol', avatarUrl: SreeramKannanImage },
-      { name: 'Juan Bennet', role: 'Protocol Labs, IPFS and Filecoin Founder', avatarUrl: JuanBennetImage },
-      { name: 'Kevin Owocki', role: 'Founder @Gitcoin', avatarUrl: KevinOwockiImage },
-      { name: 'Lefteris Karapetsas', role: 'Founder of Rotki', avatarUrl: LefterisKarapetsasImage },
-      { name: 'Trent Van Epps', role: 'Political Organizer @ Protocol Guild', avatarUrl: TrentVanEppsImage },
-      { name: 'Shayne Coplan', role: 'CEO @Polymarket', avatarUrl: ShayneCoplanImage },
-      { name: 'Gubsheep', role: 'Co-founder of 0xPARC and creator of the Dark Forest game', avatarUrl: GubsheepImage },
-      { name: 'Bartek Kiepuszewski', role: 'L2BEAT Founder', avatarUrl: BartekKiepuszewskiImage },
-      { name: 'Ann Brody', role: 'DAO Researcher', avatarUrl: AnnBrodyImage },
+      {
+        name: 'Hart Montgomery',
+        role: 'CTO @ Linux Foundation',
+        avatarUrl: HartMontgomeryImage,
+        link: 'https://www.linkedin.com/in/hartmontgomery/',
+      },
+      {
+        name: 'Tim Beiko',
+        role: 'Protocol Support',
+        avatarUrl: TimBeikoImage,
+        link: 'https://x.com/TimBeiko',
+      },
+      {
+        name: 'Hudson Jameson',
+        role: 'Polygon',
+        avatarUrl: HudsonJamesonImage,
+        link: 'https://x.com/hudsonjameson',
+      },
+      {
+        name: 'Nick Johnson',
+        role: 'Founder of ENS',
+        avatarUrl: NickJohnsonImage,
+        link: 'https://x.com/nicksdjohnson',
+      },
+      {
+        name: 'Austin Griffith',
+        role: '🧙‍♂️ Builder on Ethereum',
+        avatarUrl: AustinGriffithImage,
+        link: 'https://x.com/austingriffith',
+      },
+      {
+        name: 'Sreeram Kannan',
+        role: 'Founder of EigenLayer Protocol',
+        avatarUrl: SreeramKannanImage,
+        link: 'https://x.com/sreeramkannan',
+      },
+      {
+        name: 'Juan Bennet',
+        role: 'Protocol Labs, IPFS and Filecoin Founder',
+        avatarUrl: JuanBennetImage,
+        link: 'https://x.com/juanbenet',
+      },
+      {
+        name: 'Kevin Owocki',
+        role: 'Founder @Gitcoin',
+        avatarUrl: KevinOwockiImage,
+        link: 'https://x.com/owocki',
+      },
+      {
+        name: 'Lefteris Karapetsas',
+        role: 'Founder of Rotki',
+        avatarUrl: LefterisKarapetsasImage,
+        link: 'https://x.com/LefterisJP',
+      },
+      {
+        name: 'Trent Van Epps',
+        role: 'Political Organizer @ Protocol Guild',
+        avatarUrl: TrentVanEppsImage,
+        link: 'https://x.com/trent_vanepps',
+      },
+      {
+        name: 'Shayne Coplan',
+        role: 'CEO @Polymarket',
+        avatarUrl: ShayneCoplanImage,
+        link: 'https://x.com/shayne_coplan',
+      },
+      {
+        name: 'Gubsheep',
+        role: 'Co-founder of 0xPARC and creator of the Dark Forest game',
+        avatarUrl: GubsheepImage,
+        link: 'https://x.com/gubsheep',
+      },
+      {
+        name: 'Bartek Kiepuszewski',
+        role: 'L2BEAT Founder',
+        avatarUrl: BartekKiepuszewskiImage,
+        link: 'https://x.com/bkiepuszewski',
+      },
+      { name: 'Ann Brody', role: 'DAO Researcher', avatarUrl: AnnBrodyImage, link: 'https://x.com/annbrody7' },
       {
         name: 'Jay Baxter',
         role: '@CommunityNotes Founding ML Lead / Sr. Staff ML Eng @X. Built BayesDB @MIT',
         avatarUrl: JayBaxterImage,
+        link: 'https://x.com/_jaybaxter_',
       },
-      { name: 'Pooja Ranjan', role: 'Ethereum Cat Herders', avatarUrl: PoojaRanjanImage },
-      { name: 'Loi Luu', role: 'Co-founder of Kyber Network', avatarUrl: LoiLuuImage },
-      { name: 'Matthew Tan', role: 'Founder of Etherscan', avatarUrl: MatthewTanImage },
+      {
+        name: 'Pooja Ranjan',
+        role: 'Ethereum Cat Herders',
+        avatarUrl: PoojaRanjanImage,
+        link: 'https://x.com/poojaranjan19',
+      },
+      {
+        name: 'Loi Luu',
+        role: 'Co-founder of Kyber Network',
+        avatarUrl: LoiLuuImage,
+        link: 'https://x.com/loi_luu',
+      },
+      {
+        name: 'Matthew Tan',
+        role: 'Founder of Etherscan',
+        avatarUrl: MatthewTanImage,
+        link: 'https://x.com/mtbitcoin',
+      },
       {
         name: 'Preston Van Loon',
         role: 'Ethereum Core Developer on the Prysm team at Offchain Labs.',
         avatarUrl: PrestonVanLoonImage,
+        link: 'https://x.com/preston_vanloon',
       },
-      { name: 'Zac Williamson', role: 'CEO & Co-Founder Aztec Network', avatarUrl: ZacWilliamsonImage },
+      {
+        name: 'Zac Williamson',
+        role: 'CEO & Co-Founder Aztec Network',
+        avatarUrl: ZacWilliamsonImage,
+        link: 'https://x.com/Zac_Aztec',
+      },
     ]
 
     // Deterministic shuffle for the initial 4 speakers (to avoid hydration error), after component mounts, we shuffle the remaining speakers

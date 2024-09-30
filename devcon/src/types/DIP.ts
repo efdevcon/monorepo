@@ -38,6 +38,7 @@ export interface DIP {
   themes: Array<Theme>
   tags: Array<Tag>
   authors: Array<string>
+  instances: Array<string>
   resources: string
   discussion: string
   created: number
