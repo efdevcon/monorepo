@@ -8,13 +8,14 @@ import { GetEventDay, GetTrackId, GetTrackImage } from '@/utils/templates'
 import { PrismaClient } from '@prisma/client'
 import { API_DEFAULTS } from '@/utils/config'
 import { CommitSession } from '@/services/github'
+import { apikeyHandler } from '@/middleware/apikey'
 
 const client = new PrismaClient()
 
 export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
 sessionsRouter.get(`/sessions/:id`, GetSession)
-sessionsRouter.put(`/sessions/:id`, UpdateSession)
+sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
 sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
