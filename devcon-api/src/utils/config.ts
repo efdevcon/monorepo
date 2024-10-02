@@ -40,6 +40,8 @@ export const SERVER_CONFIG = {
 
   WEBHOOK_SECRET: process.env.WEBHOOK_SECRET,
 
+  API_KEYS: process.env.API_KEYS ? process.env.API_KEYS.split(',') : [],
+
   SMTP_DEFAULT_FROM_NAME: process.env.SMTP_DEFAULT_FROM_NAME || DEVCON_INFO.title,
   SMTP_DEFAULT_FROM: process.env.SMTP_DEFAULT_FROM || API_INFO.email,
   SMTP_SERVICE: process.env.SMTP_SERVICE,
