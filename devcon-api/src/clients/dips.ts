@@ -82,6 +82,7 @@ export async function GetDIPs(): Promise<Array<DIP>> {
       const nextDip = currentIndex < dipNumbers.length ? `/dips/dip-${dipNumbers[currentIndex + 1]}` : `/dips/`
 
       const doc = matter(formattedMarkdown)
+
       return {
         number: doc.data.DIP,
         title: doc.data.Title,
@@ -89,6 +90,7 @@ export async function GetDIPs(): Promise<Array<DIP>> {
         status: doc.data.Status,
         github: doc.data['Github URL'],
         themes: doc.data.Themes ? doc.data.Themes.split(',') : [],
+        instances: Array.isArray(doc.data.Instances) ? doc.data.Instances : doc.data.Instances ? [doc.data.Instances] : [],
         tags: doc.data.Tags ? doc.data.Tags.split(',') : [],
         authors: doc.data.Authors ? doc.data.Authors.split(',') : [],
         resources: doc.data['Resources Required'] ?? '',

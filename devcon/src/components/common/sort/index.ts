@@ -1,1 +1,1 @@
-export { Sort, SortButton, useSort, SortVariation } from './Sort'
+export { Sort, SortButton, useSort, SortVariation, presetSortingMethods } from './Sort'

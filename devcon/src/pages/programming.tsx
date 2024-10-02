@@ -21,7 +21,7 @@ import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
-
+import FeaturedSpeakers from 'components/domain/index/featured-speakers-dc7'
 import CoreProtocol from 'assets/images/programming/CoreProtocol.png'
 import Cypherpunk from 'assets/images/programming/Cypherpunk.png'
 import Usability from 'assets/images/programming/Usability.png'
@@ -39,52 +39,53 @@ export default pageHOC(function Programming(props: any) {
   const faq = pages.faq
   const [openFAQ, setOpenFAQ] = React.useState<string | null>(null)
 
-  const formattedTracks = (() => {
-    const tracks = pages.track_descriptions
+  const formattedTracks =
+    (() => {
+      const tracks = pages.track_descriptions
 
-    return tracks?.map((track: any) => {
-      let trackLogo = CoreProtocol
+      return tracks?.map((track: any) => {
+        let trackLogo = CoreProtocol
 
-      if (track.id === 'core-protocol') {
-        trackLogo = CoreProtocol
-      }
-      if (track.id === 'cypherpunk') {
-        trackLogo = Cypherpunk
-      }
-      if (track.id === 'usability') {
-        trackLogo = Usability
-      }
-      if (track.id === 'real-world-ethereum') {
-        trackLogo = RealWorldEthereum
-      }
-      if (track.id === 'applied-cryptography') {
-        trackLogo = AppliedCryptography
-      }
-      if (track.id === 'crypto-economics') {
-        trackLogo = CryptoEconomics
-      }
-      if (track.id === 'coordination') {
-        trackLogo = Coordination
-      }
-      if (track.id === 'developer-experience') {
-        trackLogo = DeveloperExperience
-      }
-      if (track.id === 'security') {
-        trackLogo = Security
-      }
-      if (track.id === 'layer-2s') {
-        trackLogo = Layer2
-      }
+        if (track.id === 'core-protocol') {
+          trackLogo = CoreProtocol
+        }
+        if (track.id === 'cypherpunk') {
+          trackLogo = Cypherpunk
+        }
+        if (track.id === 'usability') {
+          trackLogo = Usability
+        }
+        if (track.id === 'real-world-ethereum') {
+          trackLogo = RealWorldEthereum
+        }
+        if (track.id === 'applied-cryptography') {
+          trackLogo = AppliedCryptography
+        }
+        if (track.id === 'crypto-economics') {
+          trackLogo = CryptoEconomics
+        }
+        if (track.id === 'coordination') {
+          trackLogo = Coordination
+        }
+        if (track.id === 'developer-experience') {
+          trackLogo = DeveloperExperience
+        }
+        if (track.id === 'security') {
+          trackLogo = Security
+        }
+        if (track.id === 'layer-2s') {
+          trackLogo = Layer2
+        }
 
-      return {
-        id: track.id,
-        title: track.name,
-        body: track.description,
-        tags: track.tags,
-        logo: trackLogo,
-      }
-    })
-  })() || []
+        return {
+          id: track.id,
+          title: track.name,
+          body: track.description,
+          tags: track.tags,
+          logo: trackLogo,
+        }
+      })
+    })() || []
 
   return (
     <Page theme={themes['purple']}>
@@ -148,6 +149,10 @@ export default pageHOC(function Programming(props: any) {
         <TrackList tracks={formattedTracks} title="Hover over cards to read more" />
 
         <div className="pb-4"></div>
+      </div>
+
+      <div className="section">
+        <FeaturedSpeakers />
       </div>
 
       <div className="section mt-8" id="rfp">

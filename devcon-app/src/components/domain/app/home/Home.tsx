@@ -1,19 +1,17 @@
 import React from 'react'
-import { SliderStickyNotes } from 'components/common/slider/SliderVariations'
 import { Link } from 'components/common/link'
 import { DropdownVariationDots } from 'components/common/dropdown/Dropdown'
 import { useRouter } from 'next/router'
 import css from './home.module.scss'
-import { useAccountContext } from 'context/account-context'
-import { useActiveAddress } from 'hooks/useActiveAddress'
-import { useAvatar } from 'hooks/useAvatar'
 import { AppNav } from 'components/domain/app/navigation'
 import { useMediaQuery } from 'hooks/useMediaQuery'
-import { TruncateMiddle } from 'utils/formatting'
 import { Dashboard } from 'components/domain/app/dashboard'
 import AppPhones from 'assets/images/app-phones.png'
 import AppLogoColor from 'assets/images/app-logo-color.png'
 import Image from 'next/image'
+import { useAccountContext } from 'context/account-context'
+import { TruncateMiddle } from 'utils/formatting'
+import { useAvatar } from 'hooks/useAvatar'
 
 type PageIntroduction = {
   background: any
@@ -64,11 +62,8 @@ export const Home = (props: any) => {
   const router = useRouter()
   const maxWidthTruncate = useMediaQuery(640) // breakpoint-sm
   const accountContext = useAccountContext()
-  const activeAddress = useActiveAddress()
   const avatar = useAvatar()
   const loggedIn = !!accountContext.account
-
-  console.log(loggedIn, 'logged in')
 
   const accountContextOptions = [
     {
@@ -155,7 +150,7 @@ export const Home = (props: any) => {
           </div>
         )}
 
-        {loggedIn && !!activeAddress && (
+        {loggedIn && !!accountContext.account?.activeAddress && (
           <div className={css['connection-info']}>
             <div className={css['wallet']}>
               <div className={css['circle']}>

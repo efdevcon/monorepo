@@ -36,6 +36,7 @@ export interface DIP {
   github: string
   themes: Array<Theme>
   tags: Array<Tag>
+  instances: Array<string>
   authors: Array<string>
   resources: string
   discussion: string

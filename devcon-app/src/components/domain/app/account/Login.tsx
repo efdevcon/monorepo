@@ -2,24 +2,23 @@ import React, { useEffect, useState } from 'react'
 import IconSwirl from 'assets/icons/swirl.svg'
 import css from './login.module.scss'
 import pwaIcon from './pwa-icon.png'
-import footerRoad from './footer-road.png'
-import { Link } from 'components/common/link'
 import { InputForm } from 'components/common/input-form'
 import { Button } from 'components/common/button'
-import IconHelp from 'assets/icons/icon-help.svg'
-import { Tooltip } from 'components/common/tooltip'
 import { isEmail } from 'utils/validators'
 import { useAccountContext } from 'context/account-context'
 import { Alert } from 'components/common/alert'
-import { getSiweMessage } from 'utils/web3'
 import AccountFooter from './AccountFooter'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { AppNav } from 'components/domain/app/navigation'
-// import { InfoIcon } from 'components/common/info-icon'
-// import Info from 'pages/info'
+import { useAccount, useSignMessage } from 'wagmi'
+import { createSiweMessage } from 'viem/siwe'
+import { useAppKit } from '@reown/appkit/react'
 
 export default function LoginPage() {
+  const { open, close } = useAppKit()
+  const { address } = useAccount()
+  const { signMessageAsync } = useSignMessage()
   const router = useRouter()
   const [tooltipVisible, setTooltipVisible] = useState(false)
   const accountContext = useAccountContext()
@@ -27,6 +26,7 @@ export default function LoginPage() {
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [nonce, setNonce] = useState('')
+  const [loginWeb3, setLoginWeb3] = useState(false)
   const loggedIn = !!accountContext.account
 
   useEffect(() => {
@@ -49,45 +49,52 @@ export default function LoginPage() {
     if (router.query.token) LoginWithToken()
   }, [router.query.token])
 
+  useEffect(() => {
+    async function LoginWithWallet() {
+      if (!address) {
+        setError('No address.')
+        return
+      }
+
+      const token = await accountContext.getToken(address.toLowerCase(), false)
+      if (!token) {
+        setError('Unable to create verification token')
+        return
+      }
+
+      const message = createSiweMessage({
+        address: address,
+        chainId: 1,
+        domain: 'app.devcon.org',
+        nonce: token.nonce.toString(),
+        statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
+        uri: 'https://app.devcon.org/',
+        version: '1',
+      })
+
+      const signature = await signMessageAsync({ message })
+      const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
+      if (userAccount) {
+        router.push('/')
+      }
+      if (!userAccount) {
+        setError('Unable to login with web3')
+      }
+    }
+
+    if (address && loginWeb3) LoginWithWallet()
+  }, [address, loginWeb3])
+
   if (loggedIn) {
     return null
   }
 
   const connectWeb3AndLogin = async () => {
-    const provider = await accountContext.connectWeb3()
-    if (!provider) {
-      setError('Unable to connect to Web3 provider')
-      return
+    if (!address) {
+      await open()
     }
 
-    const signer = provider.getSigner()
-    const address = await signer.getAddress()
-    const token = await accountContext.getToken(address.toLowerCase(), false)
-    if (!token) {
-      setError('Unable to create verification token')
-      return
-    }
-
-    const message = getSiweMessage(address, token)
-    setError('Sign the message in your wallet to prove you have access.')
-    const signedMessage = await accountContext.signMessage(message, provider)
-    if (!signedMessage) {
-      setError('Unable to sign message')
-      return
-    }
-
-    const userAccount = await accountContext.loginWeb3(
-      signedMessage.address.toLowerCase(),
-      token.nonce,
-      signedMessage.message,
-      signedMessage.signature
-    )
-    if (userAccount) {
-      router.push('/')
-    }
-    if (!userAccount) {
-      setError('Unable to login with web3')
-    }
+    setLoginWeb3(true)
   }
 
   const connectEmail = async () => {

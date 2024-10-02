@@ -9,6 +9,9 @@ import 'assets/css/index.scss'
 import { HistoryTracker } from 'components/domain/app/history-tracker'
 import { SEO } from 'components/domain/seo'
 import { ScheduleState } from 'components/domain/app/schedule/Schedule'
+import { Web3Provider } from 'context/web3'
+import { AppContext } from 'context/app-context'
+import { AccountContextProvider } from 'context/account-context-provider'
 
 const Banner = () => {
   const [isVisible, setIsVisible] = useState(true)
@@ -33,6 +36,8 @@ function App({ Component, pageProps }: AppProps) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -40,6 +45,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="manifest" href="/manifest.json" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="shortcut icon" href="/favicon.ico" />
+
         <SEO />
       </Head>
 
@@ -47,10 +53,15 @@ function App({ Component, pageProps }: AppProps) {
         <Banner />
         <PWAPrompt />
         <HistoryTracker>
-          <ScheduleState {...pageProps}>
-            <Component {...pageProps} />
-            {/* <ComponentWithSchedule {...pageProps} /> */}
-          </ScheduleState>
+          <AppContext>
+            <Web3Provider>
+              <AccountContextProvider>
+                <ScheduleState {...pageProps}>
+                  <Component {...pageProps} />
+                </ScheduleState>
+              </AccountContextProvider>
+            </Web3Provider>
+          </AppContext>
         </HistoryTracker>
       </NextIntlProvider>
     </>

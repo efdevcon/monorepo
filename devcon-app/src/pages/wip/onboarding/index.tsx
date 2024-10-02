@@ -1,4 +1,5 @@
 import { Notifications } from 'components/domain/app/dc7/profile/notifications'
+import { Zupass } from 'components/domain/app/dc7/profile/zupass'
 import React, { useState } from 'react'
 import Page from 'components/domain/app/dc7/page'
 import { DotsSelector } from 'lib/components/dots-selector'
@@ -126,7 +127,7 @@ const OnboardingPage = (props: any) => {
     >
       <div>
         {currentStep === 0 && <Notifications onSkip={() => setCurrentStep(1)} />}
-        {currentStep === 1 && <Notifications onSkip={() => setCurrentStep(2)} />}
+        {currentStep === 1 && <Zupass onSkip={() => setCurrentStep(2)} />}
         {currentStep === 2 && <div>Content for Step 3</div>}
         {currentStep === 3 && <div>Content for Step 4</div>}
       </div>

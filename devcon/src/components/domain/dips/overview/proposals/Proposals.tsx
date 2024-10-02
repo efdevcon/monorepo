@@ -4,7 +4,7 @@ import { Label } from 'components/common/label'
 import { Link } from 'components/common/link'
 import { leftPad } from 'utils/left-pad'
 import { Table, TableColumn } from 'components/common/table/Table'
-import { SortVariation } from 'components/common/sort'
+import { SortVariation, presetSortingMethods } from 'components/common/sort'
 import { DIP } from 'types/DIP'
 import GithubIcon from 'assets/icons/github.svg'
 import TooltipIcon from 'assets/icons/tooltip.svg'
@@ -90,7 +90,7 @@ export const Proposals = (props: ProposalsProps) => {
       title: '#',
       key: 'number',
       className: css['index-column'],
-      sort: SortVariation.basic,
+      sort: SortVariation.basicReverse,
       render: (item: DIP) => {
         return (
           <p className={`${css['index']} h3`}>
@@ -118,6 +118,19 @@ export const Proposals = (props: ProposalsProps) => {
         if (item.summary) {
           return <div dangerouslySetInnerHTML={{ __html: item.summary ?? '' }} className="markdown" />
         }
+      },
+    },
+    {
+      intl: 'dips_instances',
+      key: 'Edition',
+      className: '!basis-[115px] !grow-0 !hidden lg:!flex', // css['name-column'],
+      // sort: SortVariation.basic,
+      render: (item: DIP) => {
+        if (item.instances) {
+          return <div>{item.instances.join(', ')}</div>
+        }
+
+        return null
       },
     },
     {

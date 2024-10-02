@@ -66,6 +66,7 @@ const city_guide: Template = {
         },
       ],
     },
+    createRichText('hotel_discounts'),
     {
       name: 'areas',
       label: 'areas',

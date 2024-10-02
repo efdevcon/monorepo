@@ -6,6 +6,7 @@ import { sessionsRouter } from '@/controllers/sessions'
 import { speakersRouter } from '@/controllers/speakers'
 import { aiRouter } from '@/controllers/ai'
 import { hooksRouter } from '@/controllers/hooks'
+import { pushNotificationRouter } from '@/controllers/push-notifications'
 import { Router } from 'express'
 import { API_INFO } from '@/utils/config'
 
@@ -25,3 +26,4 @@ router.use(sessionsRouter)
 router.use(speakersRouter)
 router.use(aiRouter)
 router.use(hooksRouter)
+router.use(pushNotificationRouter)

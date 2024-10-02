@@ -333,9 +333,11 @@ export default pageHOC(function CityGuide(props: any) {
         </div>
 
         <div className="section" id="areas">
-          <div className="py-8  border-top h2 bold">Areas to stay</div>
+          <div className="py-8 pb-4 border-top h2 bold">Areas to stay</div>
 
-          <div className="grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 pb-8">
+          <RichText content={cityGuide.hotel_discounts} />
+
+          <div className="grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 py-8 pt-4">
             {cityGuide.areas &&
               cityGuide.areas.map(({ title, text, metro_distance, metro_station, metro_url }: any) => {
                 return (

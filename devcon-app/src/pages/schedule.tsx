@@ -12,6 +12,7 @@ import { GetRelatedSessions } from './schedule/[id]'
 import { useSessionData } from 'services/event-data'
 import { PageContext } from '../context/page-context'
 import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
+import Link from 'next/link'
 
 export default pageHOC((props: any) => {
   const sessions = useSessionData()
@@ -29,6 +30,8 @@ export default pageHOC((props: any) => {
     <PageContext.Provider value={context}>
       <AppLayout>
         <SEO title="Schedule" />
+
+        {/* <Link href="/wip/onboarding">Onboarding Shortcut</Link> */}
 
         {sessions ? (
           (() => {

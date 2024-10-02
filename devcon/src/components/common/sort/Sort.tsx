@@ -39,6 +39,7 @@ export enum SortVariation {
   number = 'number',
   date = 'date',
   basic = 'basic',
+  basicReverse = 'basicReverse',
 }
 
 type SortState = {
@@ -66,6 +67,8 @@ export const presetSortingMethods: any = {
     return dateA === dateB ? 0 : dateA > dateB ? 1 : -1
   },
   basic: (fieldKey: string) => (a: any, b: any) => a[fieldKey] === b[fieldKey] ? 0 : a[fieldKey] > b[fieldKey] ? 1 : -1,
+  basicReverse: (fieldKey: string) => (a: any, b: any) =>
+    a[fieldKey] === b[fieldKey] ? 0 : a[fieldKey] < b[fieldKey] ? 1 : -1,
 }
 
 // useSort contains reusable sorting logic to provide rendering flexiblity (e.g. archive sorting is very different from table sorting)
