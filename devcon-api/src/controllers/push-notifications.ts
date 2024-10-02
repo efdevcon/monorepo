@@ -15,6 +15,11 @@ pushNotificationRouter.post('/send-notification', sendPushNotification)
 async function subscribeToPushNotifications(req: Request, res: Response) {
   const userId = req.session.userId
 
+  // Temporary block, we'll add auth later
+  if (process.env.NODE_ENV !== 'development') {
+    return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
+  }
+
   if (!userId && process.env.NODE_ENV !== 'development') {
     return res.status(403).send({ code: 403, message: 'Login required.' })
   }
@@ -42,6 +47,11 @@ async function subscribeToPushNotifications(req: Request, res: Response) {
 
 async function unsubscribeFromPushNotifications(req: Request, res: Response) {
   const userId = req.session.userId
+
+  // Temporary block, we'll add auth later
+  if (process.env.NODE_ENV !== 'development') {
+    return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
+  }
 
   if (!userId && process.env.NODE_ENV !== 'development') {
     return res.status(403).send({ code: 403, message: 'Login required.' })

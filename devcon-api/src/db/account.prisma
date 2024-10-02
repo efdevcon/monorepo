@@ -55,6 +55,7 @@ model rate_limit {
 
 model PushSubscription {
   id        String   @id @default(uuid())
+  userId    String
   endpoint  String   @unique
   auth      String
   p256dh    String
