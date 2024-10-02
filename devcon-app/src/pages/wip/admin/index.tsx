@@ -36,7 +36,7 @@ const AdminPushNotification = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       <h1>Send Push Notification</h1>
       <form onSubmit={handleSendNotification}>
         <div>
