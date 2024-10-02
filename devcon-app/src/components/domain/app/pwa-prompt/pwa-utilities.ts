@@ -23,8 +23,6 @@ export const pwaUtilities = {
       if (pwaUtilities.isStandalone()) {
         console.log('standalone preventing prompt')
 
-        alert('pwa installed')
-
         return
       }
 
@@ -121,13 +119,25 @@ export const pwaUtilities = {
       if (existingSubscription) {
         await existingSubscription.unsubscribe()
         // Call backend to remove subscription
-        await fetch('/api/push-notifications/subscriptions', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ endpoint: existingSubscription.endpoint }),
-        })
+        const response = await fetch(
+          `${
+            process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'
+          }/push-subscriptions`,
+          {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ endpoint: existingSubscription.endpoint }),
+          }
+        )
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          return { success: false, message: data.message }
+        }
+
         return { success: true, message: 'Push notifications unsubscribed successfully' }
       } else {
         const newSubscription = await registration.pushManager.subscribe({
@@ -135,17 +145,28 @@ export const pwaUtilities = {
           applicationServerKey: process.env.VAPID_PUBLIC,
         })
         console.log('Push notification subscribed:', newSubscription)
+
+        console.log('newSubscription', JSON.stringify(newSubscription))
         // Call backend to save subscription
-        await fetch('/api/push-notifications/subscriptions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            endpoint: newSubscription.endpoint,
-            keys: newSubscription.keys,
-          }),
-        })
+        const response = await fetch(
+          `${
+            process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'
+          }/push-subscriptions`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newSubscription),
+          }
+        )
+
+        const data = await response.json()
+
+        if (!response.ok) {
+          return { success: false, message: data.message }
+        }
+
         return { success: true, message: 'Push notifications enabled successfully' }
       }
     } catch (error) {
