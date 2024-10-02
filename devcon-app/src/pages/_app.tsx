@@ -9,6 +9,9 @@ import 'assets/css/index.scss'
 import { HistoryTracker } from 'components/domain/app/history-tracker'
 import { SEO } from 'components/domain/seo'
 import { ScheduleState } from 'components/domain/app/schedule/Schedule'
+import { Web3Provider } from 'context/web3'
+import { AppContext } from 'context/app-context'
+import { AccountContextProvider } from 'context/account-context-provider'
 
 const Banner = () => {
   const [isVisible, setIsVisible] = useState(true)
@@ -47,10 +50,15 @@ function App({ Component, pageProps }: AppProps) {
         <Banner />
         <PWAPrompt />
         <HistoryTracker>
-          <ScheduleState {...pageProps}>
-            <Component {...pageProps} />
-            {/* <ComponentWithSchedule {...pageProps} /> */}
-          </ScheduleState>
+          <AppContext>
+            <Web3Provider>
+              <AccountContextProvider>
+                <ScheduleState {...pageProps}>
+                  <Component {...pageProps} />
+                </ScheduleState>
+              </AccountContextProvider>
+            </Web3Provider>
+          </AppContext>
         </HistoryTracker>
       </NextIntlProvider>
     </>

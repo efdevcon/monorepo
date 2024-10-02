@@ -22,9 +22,25 @@ import { CircleIcon } from 'lib/components/circle-icon'
 import IconCross from 'assets/icons/cross.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect } from 'react'
+import { WalletLoginButton } from './onboarding/login/wallet'
+import { useAccountContext } from 'context/account-context'
+import { useRouter } from 'next/router'
 
 const MobileLogin = () => {
+  const accountContext = useAccountContext()
+  const router = useRouter()
+  const loggedIn = !!accountContext.account
   const [loginOpen, setLoginOpen] = React.useState(false)
+
+  useEffect(() => {
+    if (loggedIn) {
+      router.push('/' + location?.search)
+    }
+  }, [router, loggedIn])
+
+  if (loggedIn) {
+    return null
+  }
 
   return (
     <div className="flex flex-col justify-between h-full w-full" onClick={() => setLoginOpen(false)}>
@@ -193,9 +209,7 @@ const TrustModels = (props: any) => {
               </Popover>{' '}
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
-            <Button fat fill className="w-full plain mt-4" color="purple-2">
-              Continue With Ethereum
-            </Button>
+            <WalletLoginButton />
           </div>
         </>
       )}
