@@ -153,7 +153,7 @@ export default pageHOC(function Experiences(props: any) {
                   }`}
                   key={title}
                 >
-                  <div className="relative z-10">
+                  <div className="relative z-[1]">
                     <p className="text-lg font-secondary bold mb-4">{title}</p>
                     <RichText content={description}></RichText>
                   </div>
