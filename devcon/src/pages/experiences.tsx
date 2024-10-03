@@ -21,8 +21,9 @@ import HackerBasement8 from 'assets/images/hacker-basement/hacker-basement-8.png
 import HackerBasement from 'assets/images/hacker-basement/background.png'
 import HackerBasementTag from 'assets/images/hacker-basement-tag.png'
 import Entertainment from 'assets/images/dc-7/entertainment.png'
+import SpacesBackground from 'assets/images/dc-7/spaces-background.png'
 import indexCss from './index.module.scss'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import { CLSSection } from './index'
 import classNames from 'classnames'
 import Image from 'next/image'
@@ -94,7 +95,7 @@ export default pageHOC(function Experiences(props: any) {
 
           <div
             className={classNames(
-              'grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 py-8 pt-4 mt-4',
+              'grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 py-8 pt-4 mt-4',
               { [css.expand]: !expanded }
             )}
           >
@@ -103,23 +104,11 @@ export default pageHOC(function Experiences(props: any) {
                 return (
                   <div className="flex flex-col justify-between gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow" key={title}>
                     <div>
-                      <p className="text-lg font-secondary bold">{title}</p>
+                      <p className="text-xl font-secondary bold underline mb-2">{title}</p>
                       <RichText content={description}></RichText>
                     </div>
-                    <div className="border-top pt-4 mt-8 text-xs text-[#FF9988] bold uppercase">
-                      {location}
-                      {/* <div className="mb-2">
-                        <span className="uppercase bold text-neutral-500">Distance to venue:</span> {metro_distance}
-                        &nbsp;KM
-                      </div>
-                      <Link
-                        indicateExternal
-                        style={{ '--color-icon': '#FF9988' }}
-                        className="hover:underline"
-                        to={metro_url}
-                      >
-                        {metro_station}
-                      </Link> */}
+                    <div className="border-top pt-4 mt-2 text-xs text-[#646a6b] bold uppercase">
+                      Location: {location}
                     </div>
                   </div>
                 )
@@ -127,8 +116,8 @@ export default pageHOC(function Experiences(props: any) {
           </div>
 
           <div className="flex justify-center">
-            <Button onClick={() => setExpanded(!expanded)} className="text/xl">
-              {expanded ? 'Show less' : 'Show more'}
+            <Button onClick={() => setExpanded(!expanded)} className="mt-2" color="black-1" fill>
+              {expanded ? 'Show Less' : 'Show All Hubs'}
             </Button>
           </div>
           <div className={`${indexCss['scrolling-text-background']} ${css['experiences']}`}>
@@ -145,26 +134,28 @@ export default pageHOC(function Experiences(props: any) {
           body={pagesCLS.community_led_sessions?.body}
           sessions={pagesCLS.community_led_sessions?.sessions}
         />
-        {/* <RichText content={pagesCLS.community_hubs}></RichText> */}
       </div>
 
       <div className="section">
         <h2 className="clear-top mb-6" id="spaces">
           Spaces
         </h2>
-        <div className="grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 mb-8 ">
+        <div className="grid relative grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-8 ">
           {pages.spaces &&
             pages.spaces.map(({ title, description }: any, index: number) => {
               return (
                 <div
-                  className={`flex flex-col justify-between gap-2 p-6 rounded-xl shadow border border-solid border-[#E2E3FF] ${
-                    index % 3 === 0 ? 'bg-[#F9FFDF]' : index % 3 === 1 ? 'bg-[#FFFEF4]' : 'bg-[#FFEDDF]'
+                  className={`relative overflow-hidden  flex flex-col justify-between gap-2 p-8 pb-24 rounded-xl shadow border border-solid border-[#D0D1FF] ${
+                    index % 3 === 0 ? 'bg-[#F0FFB0]' : index % 3 === 1 ? 'bg-[#FFF8D0]' : 'bg-[#FFD0A0]'
                   }`}
                   key={title}
                 >
-                  <div>
+                  <div className="relative z-10">
                     <p className="text-lg font-secondary bold mb-4">{title}</p>
                     <RichText content={description}></RichText>
+                  </div>
+                  <div className="absolute bottom-0 left-0 w-full h-full rounded-xl overflow-hidden">
+                    <Image src={SpacesBackground} alt="Spaces background" className="w-full h-full object-cover" />
                   </div>
                 </div>
               )
@@ -172,8 +163,6 @@ export default pageHOC(function Experiences(props: any) {
         </div>
       </div>
 
-      {/* <div className="section py-8"> */}
-      {/* <RichText content={pages.hacker_cave}></RichText> */}
       <section className={`${css['hacker-basement']} expand`}>
         <div className={css['background']}>
           <Image src={HackerBasement} alt="Hacker basement" />
