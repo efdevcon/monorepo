@@ -1,6 +1,6 @@
 import { Home } from 'components/domain/app/home'
 import { AppLayout } from 'components/domain/app/Layout'
-import React from 'react'
+import React, { useState } from 'react'
 import { SEO } from 'components/domain/seo'
 import { useSessionData, useSpeakerData } from 'services/event-data'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
@@ -25,6 +25,7 @@ import { useEffect } from 'react'
 import { WalletLoginButton } from './onboarding/login/wallet'
 import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
+import { isEmail } from 'utils/validators'
 
 const MobileLogin = () => {
   const accountContext = useAccountContext()
@@ -110,16 +111,68 @@ const MobileLogin = () => {
 }
 
 const TrustModels = (props: any) => {
-  const [isEmailVerification, setIsEmailVerification] = React.useState(false)
+  const accountContext = useAccountContext()
+  const router = useRouter()
+  const [emailSent, setEmailSent] = useState(false)
+  const [error, setError] = useState('')
+  const [email, setEmail] = useState('')
+  const [nonce, setNonce] = useState('')
 
-  React.useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search)
-    const otpParam = urlParams.get('otp')
-
-    if (otpParam) {
-      setIsEmailVerification(true)
+  useEffect(() => {
+    async function LoginWithToken() {
+      const userAccount = await accountContext.loginToken(Number(router.query.token))
+      if (userAccount) {
+        router.push({ pathname: '/', query: {} })
+      }
+      if (!userAccount) {
+        setError('Unable to verify your email address.')
+      }
     }
-  }, [])
+
+    if (router.query.token) LoginWithToken()
+  }, [router.query.token])
+
+  const connectEmail = async () => {
+    if (!isEmail(email)) {
+      setError('Please provide a valid email address.')
+      return
+    } else {
+      setError('')
+    }
+
+    setEmailSent(true)
+    const token = await accountContext.getToken(email, false)
+    if (!token) {
+      setEmailSent(false)
+      setError('Unable to create verification token')
+    }
+  }
+
+  const verifyEmail = async () => {
+    const nonceNr = Number(nonce)
+    if (isNaN(nonceNr)) {
+      setError('Please provide a valid verification code.')
+      return
+    }
+
+    const userAccount = await accountContext.loginEmail(email, nonceNr)
+    if (userAccount) {
+      router.push('/')
+    }
+    if (!userAccount) {
+      setError('Unable to verify your email address.')
+    }
+  }
+
+  const resendVerificationEmail = async () => {
+    const token = await accountContext.getToken(email, false)
+    if (token) {
+      setEmailSent(true)
+    } else {
+      setEmailSent(false)
+      setError('Unable to create verification token')
+    }
+  }
 
   return (
     <div>
@@ -136,7 +189,7 @@ const TrustModels = (props: any) => {
         )}
       </div>
 
-      {!isEmailVerification && (
+      {!emailSent && (
         <>
           <div className="flex flex-col gap-2">
             <p className="text-xl flex items-center gap-3">
@@ -183,9 +236,18 @@ const TrustModels = (props: any) => {
                 type="email"
                 className="w-full pl-10 pr-3 py-2 border-none focus:outline-none focus:ring-0"
                 placeholder="roadto@devcon.org"
+                defaultValue={email}
+                onChange={e => setEmail(e.target.value)}
+                onSubmit={connectEmail}
               />
             </div>
-            <Button fat fill className="w-full plain mt-4 border !border-[#E1E4EA] border-solid" color="grey-1">
+            <Button
+              fat
+              fill
+              className="w-full plain mt-4 border !border-[#E1E4EA] border-solid"
+              color="grey-1"
+              onClick={connectEmail}
+            >
               Continue With Email
             </Button>
           </div>
@@ -214,13 +276,13 @@ const TrustModels = (props: any) => {
         </>
       )}
 
-      {isEmailVerification && (
+      {emailSent && (
         <div>
           <div className="text-xl">Enter Verification Code.</div>
           <div className="text-sm text-[#939393] my-2 mb-4">
             We&apos;ve sent a verification code to your email address.
           </div>
-          <InputOTP maxLength={8}>
+          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)}>
             <InputOTPGroup>
               <InputOTPSlot index={0} />
               <InputOTPSlot index={1} />
@@ -235,12 +297,14 @@ const TrustModels = (props: any) => {
               <InputOTPSlot index={7} />
             </InputOTPGroup>
           </InputOTP>
-          <Button fat fill className="w-full plain mt-4" color="purple-2">
+          <Button fat fill className="w-full plain mt-4" color="purple-2" onClick={verifyEmail}>
             Verify Your Email
           </Button>
           <Separator className="mt-6 mb-4" />
           <div className="flex flex-row justify-between items-center">
-            <div className="text-sm text-underline cursor-pointer font-semibold">Resend Verification Code</div>
+            <div className="text-sm text-underline cursor-pointer font-semibold" onClick={resendVerificationEmail}>
+              Resend Verification Code
+            </div>
             <div className="text-xs cursor-pointer">Help?</div>
           </div>
         </div>
