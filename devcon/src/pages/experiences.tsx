@@ -19,7 +19,7 @@ import HackerBasement6 from 'assets/images/hacker-basement/hacker-basement-6.png
 import HackerBasement7 from 'assets/images/hacker-basement/hacker-basement-7.png'
 import HackerBasement8 from 'assets/images/hacker-basement/hacker-basement-8.png'
 import HackerBasement from 'assets/images/hacker-basement/background.png'
-import HackerBasementTag from 'assets/images/hacker-basement-tag.png'
+import HackerBasementTag from 'assets/images/hacker-cave.png'
 import Entertainment from 'assets/images/dc-7/entertainment.png'
 import SpacesBackground from 'assets/images/dc-7/spaces-background.png'
 import indexCss from './index.module.scss'
@@ -73,11 +73,14 @@ export default pageHOC(function Experiences(props: any) {
         ]}
       />
       <div className="section">
-        <div className="flex justify-between mb-8 border-bottom pb-8 relative" id="experiences">
-          <div className="w-1/2">
+        <div
+          className="flex flex-col gap-8 md:flex-row justify-between mb-8 border-bottom pb-8 relative"
+          id="experiences"
+        >
+          <div className="w-full md:w-1/2">
             <RichText content={pages.intro}></RichText>
           </div>
-          <div className="flex justify-center w-1/2">
+          <div className="flex justify-center w-full md:w-1/2">
             <Image src={Entertainment} alt="Entertainment" className="max-w-[300px] object-contain" />
           </div>
 
@@ -107,9 +110,9 @@ export default pageHOC(function Experiences(props: any) {
                       <p className="text-xl font-secondary bold underline mb-2">{title}</p>
                       <RichText content={description}></RichText>
                     </div>
-                    <div className="border-top pt-4 mt-2 text-xs text-[#646a6b] bold uppercase">
+                    {/* <div className="border-top pt-4 mt-2 text-xs text-[#646a6b] bold uppercase">
                       Location: {location}
-                    </div>
+                    </div> */}
                   </div>
                 )
               })}
