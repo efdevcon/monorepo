@@ -53,7 +53,7 @@ const OnboardingPage = (props: any) => {
         },
         {
           label: 'Onboarding',
-          href: '/wip/onboarding',
+          href: '/login/onboarding',
         },
         {
           label: (() => {
@@ -70,7 +70,6 @@ const OnboardingPage = (props: any) => {
                 return ''
             }
           })(),
-          // href: '/wip/onboarding',
         },
       ]}
       rightContent={

@@ -31,8 +31,6 @@ export default pageHOC((props: any) => {
       <AppLayout>
         <SEO title="Schedule" />
 
-        {/* <Link href="/wip/onboarding">Onboarding Shortcut</Link> */}
-
         {sessions ? (
           (() => {
             const sessionID = query.session
