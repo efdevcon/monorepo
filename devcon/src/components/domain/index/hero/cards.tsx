@@ -137,14 +137,51 @@ export const SpeakerTicket = (props: SpeakerProps) => {
   const trackImage = getTrackImage(props.track)
   const titleClassName = props.title.length > 100 ? 'text-sm sm:text-base md:text-lg' : 'text-base sm:text-xl'
 
+  let leftCardClassName = 'absolute left-0 w-[52%] h-full'
+  let rightCardClassName = 'absolute right-0 w-[52%] h-full'
+  if (props.track === 'Core Protocol') {
+    leftCardClassName += ' bg-[#F6F2FF]'
+    rightCardClassName += ' bg-[#F6F2FF]'
+  } else if (props.track === 'Cypherpunk & Privacy') {
+    leftCardClassName += ' bg-[#FFF4FF]'
+    rightCardClassName += ' bg-[#FFF4FF]'
+  } else if (props.track === 'Usability') {
+    leftCardClassName += ' bg-[#FFF4F4]'
+    rightCardClassName += ' bg-[#FFF4F4]'
+  } else if (props.track === 'Real World Ethereum') {
+    leftCardClassName += ' bg-[#FFEDDF]'
+    rightCardClassName += ' bg-[#FFEDDF]'
+  } else if (props.track === 'Applied Cryptography') {
+    leftCardClassName += ' bg-[#FFFEF4]'
+    rightCardClassName += ' bg-[#FFFEF4]'
+  } else if (props.track === 'Cryptoeconomics') {
+    leftCardClassName += ' bg-[#F9FFDF]'
+    rightCardClassName += ' bg-[#F9FFDF]'
+  } else if (props.track === 'Coordination') {
+    leftCardClassName += ' bg-[#E9FFD7]'
+    rightCardClassName += ' bg-[#E9FFD7]'
+  } else if (props.track === 'Developer Experience') {
+    leftCardClassName += ' bg-[#E8FDFF]'
+    rightCardClassName += ' bg-[#E8FDFF]'
+  } else if (props.track === 'Security') {
+    leftCardClassName += ' bg-[#E4EEFF]'
+    rightCardClassName += ' bg-[#E4EEFF]'
+  } else if (props.track === 'Layer 2') {
+    leftCardClassName += ' bg-[#F0F1FF]'
+    rightCardClassName += ' bg-[#F0F1FF]'
+  } else {
+    leftCardClassName += ' bg-[#f8f9fe]'
+    rightCardClassName += ' bg-[#f8f9fe]'
+  }
+
   return (
     <div
       // TODO: Adjust aspect as needed for social sharing
       className="flex justify-between items-evenly relative rounded-xl aspect-[16/8] w-[550px] max-w-full text-black border-[#F8F9FE] overflow-hidden shadow-xl"
       data-type="ticket"
     >
-      <div className="absolute left-0 w-[52%] h-full bg-[#F8F9FE]"></div>
-      <div className="absolute right-0 w-[52%] h-full bg-[#F8F9FE]"></div>
+      <div className={leftCardClassName}></div>
+      <div className={rightCardClassName}></div>
       <div className="absolute left-1/2 top-0 bottom-0 right-0">
         <Image src={TicketPrism} alt="Devcon logo flowers" className="h-full object-cover object-left" />
       </div>
