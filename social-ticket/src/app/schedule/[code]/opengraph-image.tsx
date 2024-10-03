@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 // Image metadata
-export const alt = "Devcon Tickets";
+export const alt = "Devcon Schedule";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -20,16 +20,18 @@ export default async function Image({ params }: { params: { code: string } }) {
   );
 
   const data = await res.json();
-  let type = "talk";
-  if (data.submission_type_id === 36) type = "lightning talk";
-  if (data.submission_type_id === 32) type = "talk";
-  if (data.submission_type_id === 41) type = "panel";
+  let type = "Talk";
+  // if (data.submission_type_id === 51) type = "spotlight";
+  if (data.submission_type_id === 38) type = "Music";
+  if (data.submission_type_id === 36) type = "Lightning talk";
+  if (data.submission_type_id === 32) type = "Talk";
+  if (data.submission_type_id === 41) type = "Panel";
   if (
     data.submission_type_id === 33 ||
     data.submission_type_id === 34 ||
     data.submission_type_id === 40
   )
-    type = "workshop";
+    type = "Workshop";
 
   const track = data.track.en;
   let cardTw = `flex flex-row relative justify-between rounded-3xl border-[#ff0000] shadow-xl w-full h-full p-12`;
@@ -75,7 +77,7 @@ export default async function Image({ params }: { params: { code: string } }) {
 
   return new ImageResponse(
     (
-      <div tw="flex justify-between bg-[#36364c] text-black w-full h-full overflow-hidden p-8">
+      <div tw="flex justify-between bg-[#36364c] text-black w-full h-full overflow-hidden p-4">
         <div tw={cardTw}>
           <div tw="flex absolute left-1/2 top-0 bottom-0 right-0">
             <img src={`${url}/dc7/prism.png`} tw="h-full opacity-80" />
@@ -102,7 +104,11 @@ export default async function Image({ params }: { params: { code: string } }) {
               <span tw="text-[#5B5F84] text-2xl mb-2">
                 {data.speakers.map((i: any) => i.name).join(", ")}
               </span>
-              <span tw="text-2xl font-bold">{track}</span>
+              <div tw="flex flex-row">
+                <span tw="text-2xl font-bold">{type}</span>
+                <span tw="text-[#6B54AB] text-2xl mx-4">•</span>
+                <span tw="text-2xl font-bold">{track}</span>
+              </div>
             </div>
           </div>
 
