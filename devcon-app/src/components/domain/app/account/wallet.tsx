@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { Button } from 'lib/components/button'
 import { useAppKit } from '@reown/appkit/react'
