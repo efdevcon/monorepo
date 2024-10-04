@@ -13,7 +13,7 @@ pushNotificationRouter.delete('/push-subscriptions', unsubscribeFromPushNotifica
 pushNotificationRouter.post('/send-notification', sendPushNotification)
 
 async function subscribeToPushNotifications(req: Request, res: Response) {
-  const userId = req.session.userId
+  const userId = req.session.userId as string
 
   // Temporary block, we'll add auth later
   if (process.env.NODE_ENV !== 'development') {
@@ -34,6 +34,7 @@ async function subscribeToPushNotifications(req: Request, res: Response) {
     await prisma.pushSubscription.create({
       data: {
         endpoint,
+        userId,
         auth: keys.auth,
         p256dh: keys.p256dh,
       },
