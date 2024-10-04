@@ -171,10 +171,10 @@ export const Proposals = (props: ProposalsProps) => {
         }
 
         return (
-          <Label type={labelType} className="shrink-0">
+          <Label type={labelType} className={`!rounded-lg shrink-0`}>
             <div className={css['label-content']}>
               {/* <span>&#8226;</span> */}
-              <p className="shrink-0">{item.status.toUpperCase()}</p>
+              <p className="shrink-0 text-xs">{item.status.toUpperCase()}</p>
             </div>
           </Label>
         )
@@ -208,7 +208,7 @@ export const Proposals = (props: ProposalsProps) => {
       render: (item: DIP) => {
         return item.tags
           ? item.tags.map(tag => (
-              <Label key={tag} type="neutral" className={css['tag']}>
+              <Label key={tag} type="neutral" className={`${css['tag']} !rounded-lg`}>
                 <p className="font-xs bold text-uppercase">{tag}</p>
               </Label>
             ))

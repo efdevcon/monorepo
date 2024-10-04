@@ -98,6 +98,36 @@ const videos = [
   },
 ]
 
+interface CLSSectionProps {
+  title: any
+  body: any
+  sessions: any
+}
+
+export const CLSSection: React.FC<CLSSectionProps> = ({ title, body, sessions }) => {
+  return (
+    <div className="relative flex flex-col items-start">
+      <div className="h2 mb-7" id="cls">
+        {title}
+      </div>
+
+      <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
+        <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
+
+        <div className="flex flex-col">
+          <div className="m-4 mb-4 mt-3">
+            <RichText content={body}></RichText>
+          </div>
+
+          <div className="border-t border-solid border-[#E2E3FF]"></div>
+
+          <div className="mb-4 relative grow-0 mx-4">{sessions && <CLSReel sessions={sessions} />}</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const RoadToDevconGrants = ({ pages, down }: any) => {
   return (
     <div className="flex-col md:flex-row flex relative pt-12 gap-8 items-center" data-type="rtd-container">
@@ -496,7 +526,15 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
-          <div className="relative flex flex-col items-start border-bottom py-8">
+          <div className="pt-8">
+            <CLSSection
+              title={pages.community_led_sessions?.title}
+              body={pages.community_led_sessions?.body}
+              sessions={pages.community_led_sessions?.sessions}
+            />
+          </div>
+
+          {/* <div className="relative flex flex-col items-start border-bottom py-8">
             <div className="h2 mb-7" id="cls">
               {pages.community_led_sessions?.title}
             </div>
@@ -511,7 +549,6 @@ export default pageHOC(function Index(props: any) {
 
                 <div className="border-t border-solid border-[#E2E3FF]"></div>
 
-                {/* <div className="text-lg bold mt-4 mx-4">Featured Sessions</div> */}
 
                 <div className="mb-4 relative grow-0 mx-4">
                   {pages.community_led_sessions?.sessions && (
@@ -519,14 +556,9 @@ export default pageHOC(function Index(props: any) {
                   )}
                 </div>
 
-                {/* <div className="m-4">
-                  {pages.community_led_sessions?.sessions?.map((session: any, index: number) => {
-                    return <div key={session.title}>({session.title})</div>
-                  })}
-                </div> */}
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
