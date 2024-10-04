@@ -59,8 +59,11 @@ model Session {
   track String
   type String
   expertise String
+  audience String?
   featured Boolean?
+  doNotRecord Boolean?
   tags String
+  keywords String?
   duration Int?
   language String?
   sources_youtubeId String?

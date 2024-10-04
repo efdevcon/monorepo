@@ -1,14 +1,14 @@
 import { PrismaClient } from '@prisma/client'
-import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { GetRooms, GetSessions, GetSpeakers, GetSubmissions } from '@/clients/pretalx'
 import { PRETALX_CONFIG } from '@/utils/config'
 
 const client = new PrismaClient()
 
-async function main() {
+export async function seedPretalx() {
   console.log('Seeding Pretalx Event Schedule into Sqlite..')
 
   // Rooms
-  console.log('Importing Rooms..')
+  console.log('Fetching Rooms..')
   const rooms = await GetRooms()
   for (const item of rooms) {
     await client.room.upsert({
@@ -36,29 +36,30 @@ async function main() {
   }
 
   // Speakers
-  console.log('Importing Speakers..')
+  console.log('Fetching Speakers..')
   const speakers = await GetSpeakers()
-  for (const item of speakers) {
-    await client.speaker.upsert({
-      where: { id: item.id },
-      update: item,
-      create: item,
-    })
-  }
-  console.log('Speakers imported', speakers.length)
+  console.log('Speakers found', speakers.length)
+  const acceptedSpeakers = []
 
   // Sessions
-  const sessions = await GetSessions()
+  console.log('Fetching Sessions..')
+  const sessions = await GetSubmissions()
   for (const item of sessions) {
+    const eventId = item.eventId
+    delete item.eventId
     const slot_roomId = item.slot_roomId
     delete item.slot_roomId
 
     const sessionSpeakers = speakers.filter((i: any) => item.speakers.includes(i.sourceId))
+    acceptedSpeakers.push(...sessionSpeakers)
     let data: any = {
       ...item,
+      featured: item.featured ?? false,
+      doNotRecord: item.doNotRecord ?? false,
       tags: item.tags.join(','),
+      keywords: item.keywords.join(','),
       event: {
-        connect: { id: PRETALX_CONFIG.PRETALX_EVENT_NAME },
+        connect: { id: eventId },
       },
       speakers: {
         connect: sessionSpeakers.map((i: any) => ({ id: i.id })),
@@ -78,13 +79,15 @@ async function main() {
     })
   }
   console.log('Sessions imported', sessions.length)
-}
 
-main()
-  .then(async () => {
-    console.log('All done!')
-  })
-  .catch(async (e) => {
-    console.error(e)
-    process.exit(1)
-  })
+  // Speakers
+  console.log('Importing Speakers..')
+  for (const item of acceptedSpeakers) {
+    await client.speaker.upsert({
+      where: { id: item.id },
+      update: item,
+      create: item,
+    })
+  }
+  console.log('Accepted Speakers imported', acceptedSpeakers.length)
+}
