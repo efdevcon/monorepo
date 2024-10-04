@@ -117,11 +117,6 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'Devcon Week',
-            url: '/devcon-week',
-            type: 'page',
-          },
-          {
             title: 'DIPs & Community Hubs',
             url: '/dips',
             type: 'page',
@@ -221,14 +216,36 @@ const useNavigationData = () => {
         ],
       },
       {
+        title: 'Event',
+        url: '#',
+        type: 'links',
+        logo: LogoGetInvolved,
+        links: [
+          {
+            title: 'Event',
+            url: '#',
+            type: 'header',
+          },
+          {
+            title: 'City Guide',
+            url: '/city-guide',
+            type: 'page',
+          },
+          {
+            title: 'Devcon Week',
+            url: '/devcon-week',
+            type: 'page',
+          },
+          {
+            title: 'Experiences',
+            url: '/experiences',
+            type: 'page',
+          },
+        ],
+      },
+      {
         title: 'Tickets',
         url: '/tickets',
-        type: 'page',
-      },
-
-      {
-        title: 'City Guide',
-        url: '/city-guide',
         type: 'page',
       },
 
@@ -347,12 +364,17 @@ const useNavigationData = () => {
           url: '/city-guide',
           type: 'page',
         },
-
         {
-          title: 'Apply To Speak',
-          url: '/speaker-applications',
+          title: 'Experiences',
+          url: '/experiences',
           type: 'page',
         },
+
+        // {
+        //   title: 'Apply To Speak',
+        //   url: '/speaker-applications',
+        //   type: 'page',
+        // },
         {
           title: 'Volunteer',
           url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
