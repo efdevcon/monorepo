@@ -62,3 +62,13 @@ model PushSubscription {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Notification {
+  id        String   @id @default(uuid())
+  sent      Boolean  @default(false)
+  title     String
+  message   String
+  sendAt DateTime
+  createdBy String
+  createdAt DateTime @default(now())
+}
