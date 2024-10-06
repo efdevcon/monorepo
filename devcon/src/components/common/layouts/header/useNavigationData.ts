@@ -117,7 +117,7 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'DIPs & Community Hubs',
+            title: 'DIPs',
             url: '/dips',
             type: 'page',
           },
