@@ -885,7 +885,7 @@
         }
       }
     },
-    "/send-notification": {
+    "/notifications": {
       "post": {
         "description": "",
         "parameters": [
@@ -898,11 +898,56 @@
                 "title": {
                   "example": "any"
                 },
-                "body": {
+                "message": {
+                  "example": "any"
+                },
+                "sendAt": {
                   "example": "any"
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/notifications/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -922,6 +967,13 @@
       }
     },
     "{{where{endpoint}}": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "{{where{id}}": {
       "delete": {
         "description": "",
         "parameters": [],

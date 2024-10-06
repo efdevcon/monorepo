@@ -71,4 +71,6 @@ model Notification {
   sendAt DateTime
   createdBy String
   createdAt DateTime @default(now())
+  sentSuccessfullyCount Int @default(0)
+  failedToSendCount Int @default(0)
 }
