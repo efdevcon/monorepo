@@ -155,7 +155,7 @@ export default pageHOC(function Programming(props: any) {
         <FeaturedSpeakers />
       </div>
 
-      <div className="section mt-8" id="rfp">
+      {/* <div className="section mt-8" id="rfp">
         <div className={cn('flex flex-col justify-between gap-4 pb-8 pt-8 border-top border-bottom relative')}>
           <div className={`${indexCss['scrolling-text-background']} ${indexCss['alternate']} ${css['fade-color']}`}>
             <InfiniteScroller nDuplications={2} speed="120s" reverse>
@@ -193,11 +193,11 @@ export default pageHOC(function Programming(props: any) {
             </Button>
           </Link>
         </div>
-      </div>
+      </div> */}
 
       <div className="section relative">
         <div className="anchor absolute -top-20" id="faq"></div>
-        <div className="mt-8 h2 bold mb-6">Frequently Asked</div>
+        <div className="mt-8 h2 pt-8 border-top bold mb-6">Frequently Asked</div>
         <div className="flex flex-col">
           {faq?.map(({ question, answer }: any) => {
             const open = question === openFAQ
