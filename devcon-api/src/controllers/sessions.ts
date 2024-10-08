@@ -109,6 +109,8 @@ export async function GetSession(req: Request, res: Response) {
 
 export async function UpdateSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
+  // #swagger.parameters['body'] = { in: 'body', schema: { id: 'new-title', sourceId: 'PRE123', eventId: 'devcon-6', title: 'New Title', description: 'New Description', track: 'Devcon', type: 'Talk', expertise: 'Intermediate', speakers: ['123', '456'], tags: ['tag1', 'tag2'], keywords: ['keyword1', 'keyword2'], resources_slides: 'https://devcon.org/resources/new-title.pdf', slot_start: 1665495000000, slot_end: 1665498600000, slot_roomId: 'workshop-3', sources_ipfsHash: 'QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG', sources_youtubeId: 'TRoO5fD7TI4', sources_swarmHash: 'e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850', duration: 3065, language: 'en' } }
+
   const updatedSession = req.body
   if (!updatedSession) return res.status(400).send({ status: 400, message: 'No Body' })
   if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Invalid Id' })
