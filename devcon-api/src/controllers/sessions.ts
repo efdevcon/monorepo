@@ -150,7 +150,7 @@ export async function UpdateSession(req: Request, res: Response) {
         slot_start: updatedData.slot_start ? dayjs(updatedData.slot_start).valueOf() : null,
         slot_end: updatedData.slot_end ? dayjs(updatedData.slot_end).valueOf() : null,
       },
-      `[skip ci] PUT /sessions/${updatedData.id}`
+      `[skip deploy] PUT /sessions/${updatedData.id}`
     )
 
     res.status(204).send()
