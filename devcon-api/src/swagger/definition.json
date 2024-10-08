@@ -606,6 +606,13 @@
             "type": "string"
           },
           {
+            "name": "apiKey",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "API key for authentication"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
