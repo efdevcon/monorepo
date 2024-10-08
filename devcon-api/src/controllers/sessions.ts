@@ -113,7 +113,9 @@ export async function UpdateSession(req: Request, res: Response) {
 
   const updatedSession = req.body
   if (!updatedSession) return res.status(400).send({ status: 400, message: 'No Body' })
-  if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Invalid Id' })
+  if (req.params.id !== updatedSession.id || req.params.id !== updatedSession.sourceId) {
+    return res.status(400).send({ status: 400, message: 'Invalid Id' })
+  }
 
   const data = await client.session.findFirst({
     where: {
