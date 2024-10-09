@@ -71,12 +71,13 @@ async function unsubscribeFromPushNotifications(req: Request, res: Response) {
     await prisma.pushSubscription.delete({
       where: { endpoint },
     })
-
-    res.status(200).send({ status: 200, message: 'Unsubscription successful', data: null })
   } catch (error) {
     console.error('Error unsubscribing from push notifications:', error)
-    res.status(500).send({ status: 500, message: 'Internal server error', data: null })
+    // res.status(500).send({ status: 500, message: 'Internal server error', data: null })
   }
+
+  // Always return
+  res.status(200).send({ status: 200, message: 'Unsubscription successful', data: null })
 }
 
 // async function sendPushNotification(req: Request, res: Response) {

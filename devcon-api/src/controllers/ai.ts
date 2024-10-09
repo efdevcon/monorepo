@@ -43,12 +43,17 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
   }
 
   const { message, threadID } = req.body
+  const { recommendations } = req.query
 
   console.log(threadID, 'msg thread id')
 
   try {
     // Create a stream for the AI response
-    const stream = await api.createMessageStream('asst_nirZMEbcECQHLSduSq73vmEB', message, threadID)
+    const stream = await api.createMessageStream(
+      recommendations ? 'asst_g3NthBrU0XEd2RCRUFZJZHo4' : 'asst_nirZMEbcECQHLSduSq73vmEB',
+      message,
+      threadID
+    )
 
     // Set headers for streaming
     res.writeHead(200, {
@@ -70,3 +75,22 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal Server Error' })
   }
 })
+
+aiRouter.post('/devabot/recommendations', async (req: Request, res: Response) => {
+  const { message } = req.body
+
+  try {
+    const recommendations = await api.recommendations.getScheduleRecommendations('asst_PRn8YEfa54OGfroaVFhvLWlv', message)
+
+    res.json(recommendations)
+  } catch (e: any) {
+    console.error(e, 'error')
+    if (e.error) {
+      res.status(500).json({ error: e.error })
+    } else {
+      res.status(500).json({ error: 'Internal Server Error' })
+    }
+  }
+})
+
+// Every 5 minutes, update programming data - if version is different than the one uploaded to openai, update the vector store

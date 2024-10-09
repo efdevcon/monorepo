@@ -20,20 +20,12 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
-// const corsConfig: cors.CorsOptions = {}
-if (SERVER_CONFIG.NODE_ENV === 'production') {
-  // corsConfig.origin = ['http://localhost:3000', 'https://www.devcon.org', /\.devcon\.org$/]
-  // corsConfig.credentials = true
-  app.use(
-    cors({
-      origin: true,
-      credentials: true,
-    })
-  )
-} else {
-  app.use(cors())
-}
-// app.use(cors(corsConfig))
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
 
 const store = createMemoryStore(session)
 const sessionConfig: SessionOptions = {

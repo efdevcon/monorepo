@@ -5,6 +5,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 import { prompts } from './fine-tune'
 import { filenameToUrl } from '@lib/cms/filenameToUrl'
+import { zodResponseFormat } from 'openai/helpers/zod'
+import { z } from 'zod'
+import { PrismaClient } from '@prisma/client'
+import { FileLike } from 'openai/uploads'
+
+const client = new PrismaClient()
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -386,6 +392,100 @@ export const api = (() => {
         },
       }
     },
+    recommendations: {
+      createScheduleAssistant: async () => {
+        // const Recommendations = z.object({
+        //   talk_ids: z.array(z.string()),
+        // })
+
+        const recommendationAssistant = await openai.beta.assistants.create({
+          instructions:
+            'You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Every time you recommend a talk, provide a quote from the talk that best represents the talk and how it relates to the user query. Try to recommend talks that are in the future. The current date will be provided to you with the user query, to help you discern what is in the future and what is not.', // You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Return a list of session IDs in JSON format. You ONLY return JSON, and you ONLY return the session IDs, in the form of a JSON array named "session_ids". The current date will be provided to you, only recommend talks that are in the future.',
+          name: `recommendation_assistant`,
+          tools: [{ type: 'file_search' }],
+          // response_format: zodResponseFormat(Recommendations, 'json_object'),
+          model: 'gpt-4o-mini',
+        })
+
+        return recommendationAssistant
+      },
+      syncScheduleAssistant: async (assistantID: string, scheduleVersion: string) => {
+        const vectorStore = await openai.beta.vectorStores.create({
+          name: `pretalx_schedule_${scheduleVersion}`,
+        })
+
+        const sessions = await client.session.findMany({ where: { eventId: 'devcon-6' } })
+
+        // Create FileLike objects for each session
+        const sessionFiles: FileLike[] = sessions.map((session: any) => {
+          const sessionBlob = new Blob([JSON.stringify(session)], { type: 'application/json' })
+
+          const asFile = new File([sessionBlob], `session_${session.id}.json`)
+
+          return asFile
+          // return {
+          //   ...sessionBlob,
+          //   name: `session_${session.id}.json`, // Use a unique name for each session
+          //   lastModified: Date.now(),
+          // }
+        })
+
+        // Upload all sessions in a single batch
+        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: sessionFiles })
+
+        // Update assistant to use our new vector store
+        await openai.beta.assistants.update(assistantID, {
+          tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
+        })
+
+        console.log('Assistant updated with new vector store')
+      },
+      getScheduleRecommendations: async (assistantID: string, userQuery: string) => {
+        const thread = await openai.beta.threads.create()
+
+        await openai.beta.threads.messages.create(thread.id, {
+          role: 'user',
+          content: `A user asks: ${userQuery}\n. Please find some relevant talks and return their IDs. System: The current date is: ${new Date().toLocaleDateString()}.`,
+        })
+
+        const run = await openai.beta.threads.runs.createAndPoll(thread.id, {
+          assistant_id: assistantID,
+        })
+
+        if (run.status === 'completed') {
+          const messages = await openai.beta.threads.messages.list(run.thread_id)
+
+          // @ts-ignore
+          const assistantResponse = messages.data[0].content[0].text.value
+
+          console.log(messages, 'annotations')
+
+          // return assistantResponse
+
+          // Step 2: Validate and structure using the Completions API with zod
+          const Recommendations = z.object({
+            session_ids: z.array(z.string()),
+          })
+
+          console.log(assistantResponse, 'assistantResponse')
+
+          const completion = await openai.chat.completions.create({
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'user', content: `Extract session IDs from the following text, and return them as JSON:\n\n${assistantResponse}\n` }],
+            response_format: zodResponseFormat(Recommendations, 'recommendations'),
+            max_tokens: 400,
+            temperature: 0,
+          })
+
+          return completion.choices[0].message.content
+
+          // structured_weather = completion.choices[0].message.parsed
+          // print(structured_weather)
+        } else {
+          throw { error: 'Failed to get recommendations' }
+        }
+      },
+    },
   }
 
   return _interface
@@ -421,6 +521,18 @@ const main = async (query: string) => {
 // })
 
 // main('Where were the past Devcons held?')
+
+;(async () => {
+  // const assistant = await api.recommendations.createScheduleAssistant()
+  // console.log(assistant)
+  // await api.recommendations.syncScheduleAssistant('asst_g3NthBrU0XEd2RCRUFZJZHo4', 'devcon-6')
+  // New asst_g3NthBrU0XEd2RCRUFZJZHo4
+  // asst_PRn8YEfa54OGfroaVFhvLWlv <-- RIGID version
+  // const recommendations = await api.recommendations.getScheduleRecommendations('asst_g3NthBrU0XEd2RCRUFZJZHo4', 'I want cypherpunk talks')
+  // console.log(recommendations)
+  // https://community.openai.com/t/structured-outputs-dont-currently-work-with-file-search-tool-in-assistants-api/900538/8
+  // asst_UI1tprLOxpCmCJuoFB5FxSRb
+})()
 
 export default api
 
