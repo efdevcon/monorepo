@@ -378,6 +378,12 @@ export default pageHOC(function CityGuide(props: any) {
           </div>
         </div>
 
+        <div className="section" id="transit">
+          <div className="py-8 border-top">
+            <RichText content={cityGuide.transit} />
+          </div>
+        </div>
+
         <iframe
           src="https://www.google.com/maps/d/embed?mid=1BHVWGTlFT6971Ws0yYCW7BfhAGh9w2M&ehbc=2E312F"
           width="100%"
