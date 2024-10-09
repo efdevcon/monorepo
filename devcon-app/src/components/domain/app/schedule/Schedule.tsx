@@ -15,6 +15,8 @@ import { ShareScheduleModal } from './ShareScheduleModal'
 import IconAdded from 'assets/icons/person-added.svg'
 import IconAdded2 from 'assets/icons/person-added-2.svg'
 import { DownloadScheduleModal } from './DownloadScheduleModal'
+// import DevaBot from 'lib/components/ai/overlay'
+// import { RecoilRoot } from 'recoil'
 
 type Timeslot = {
   time: number
@@ -451,6 +453,10 @@ export const Schedule = (props: any) => {
           </p>
         )}
       </div>
+
+      {/* <RecoilRoot>
+        <DevaBot recommendationMode sessions={formattedSessions} />
+      </RecoilRoot> */}
 
       {!personalAgenda && (
         <div className={filterCss['filter']}>
