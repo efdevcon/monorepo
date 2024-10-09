@@ -21,9 +21,14 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
-import { InfoIcon } from "tinacms";
 
-const DevaBot = () => {
+const DevaBot = ({
+  recommendationMode,
+  sessions,
+}: {
+  recommendationMode: boolean;
+  sessions?: any;
+}) => {
   const [visible, setVisible] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
   const [executingQuery, setExecutingQuery] =
@@ -62,19 +67,21 @@ const DevaBot = () => {
     setPartialChunk("");
 
     try {
-      const response = await fetch(
+      let url =
         process.env.NODE_ENV === "development"
           ? "http://localhost:4000/devabot"
-          : "https://api.devcon.org/devabot",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ message: query, threadID }),
-        }
-      );
+          : "https://api.devcon.org/devabot";
+      if (recommendationMode) {
+        url += "?recommendations=true";
+      }
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ message: query, threadID }),
+      });
 
       if (!response.body) {
         throw new Error("No response body");
@@ -116,7 +123,7 @@ const DevaBot = () => {
         const { value, done } = await reader.read();
         if (done) break;
 
-        console.log(value, "value");
+        // console.log(value, "value");
 
         buffer += value;
 
@@ -228,18 +235,34 @@ const DevaBot = () => {
                           {message.files.length > 0 && (
                             <div className="flex flex-col text-sm opacity-50 ">
                               <p className="mt-1">References</p>
-                              <div className="flex gap-2">
+                              <div className="flex gap-2 flex-wrap">
                                 {(() => {
                                   const referencesTracker = {} as any;
 
                                   return message.files.map(
                                     ({ file, fileUrl }: any, index: number) => {
-                                      if (referencesTracker[file.fileUrl])
-                                        return null;
+                                      if (recommendationMode) {
+                                        const sessionId = file.filename
+                                          .split("session_")[1]
+                                          .split(".json")[0];
 
-                                      referencesTracker[file.fileUrl] = true;
+                                        if (!sessionId) return null;
+
+                                        const session = sessions.find(
+                                          (session: any) =>
+                                            session.id === sessionId
+                                        );
+
+                                        return (
+                                          <div key={index}>{session.title}</div>
+                                        );
+                                      }
 
                                       if (fileUrl) {
+                                        if (referencesTracker[file.fileUrl])
+                                          return null;
+
+                                        referencesTracker[file.fileUrl] = true;
                                         return (
                                           <Link href={fileUrl} key={index}>
                                             https://devcon.org{fileUrl}
