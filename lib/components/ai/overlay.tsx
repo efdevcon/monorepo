@@ -26,7 +26,7 @@ const DevaBot = ({
   recommendationMode,
   sessions,
 }: {
-  recommendationMode: boolean;
+  recommendationMode?: boolean;
   sessions?: any;
 }) => {
   const [visible, setVisible] = useRecoilState(visibleState);
