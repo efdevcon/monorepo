@@ -43,8 +43,9 @@ export async function seedPretalx() {
 
   // Sessions
   console.log('Fetching Sessions..')
-  const sessions = await GetSubmissions()
-  for (const item of sessions) {
+  const submissions = await GetSubmissions()
+  const submissionsToAdd = []
+  for (const item of submissions) {
     const eventId = item.eventId
     delete item.eventId
     const slot_roomId = item.slot_roomId
@@ -52,6 +53,7 @@ export async function seedPretalx() {
 
     const sessionSpeakers = speakers.filter((i: any) => item.speakers.includes(i.sourceId))
     acceptedSpeakers.push(...sessionSpeakers)
+
     let data: any = {
       ...item,
       featured: item.featured ?? false,
@@ -72,13 +74,8 @@ export async function seedPretalx() {
       }
     }
 
-    await client.session.upsert({
-      where: { id: item.id },
-      update: data,
-      create: data,
-    })
+    submissionsToAdd.push(data)
   }
-  console.log('Sessions imported', sessions.length)
 
   // Speakers
   console.log('Importing Speakers..')
@@ -90,4 +87,18 @@ export async function seedPretalx() {
     })
   }
   console.log('Accepted Speakers imported', acceptedSpeakers.length)
+
+  for (const item of submissionsToAdd) {
+    try {
+      await client.session.upsert({
+        where: { id: item.id },
+        update: item,
+        create: item,
+      })
+    } catch (e) {
+      console.log('Unable to add session', item.id)
+      console.error(e)
+    }
+  }
+  console.log('Sessions imported', submissionsToAdd.length)
 }

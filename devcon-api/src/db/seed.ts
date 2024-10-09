@@ -3,6 +3,7 @@ import { GetData, GetSpeakerData } from '@/clients/filesystem'
 import { PrismaClient } from '@prisma/client'
 import words from 'natural/lib/natural/util'
 import dayjs from 'dayjs'
+import { seedPretalx } from './pretalx'
 
 const client = new PrismaClient()
 const stopwords = [
@@ -378,6 +379,10 @@ async function main() {
   await client.relatedSession.createMany({
     data: relatedSessions,
   })
+
+  // Seed Pretalx Data
+  console.log('- Seed Pretalx Data')
+  await seedPretalx()
 }
 
 function computeCosineSimilarity(vector1: number[], vector2: number[]): number {

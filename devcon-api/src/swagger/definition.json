@@ -606,13 +606,115 @@
             "type": "string"
           },
           {
+            "name": "apiKey",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "API key for authentication"
+          },
+          {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
                 "id": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "new-title"
+                },
+                "sourceId": {
+                  "type": "string",
+                  "example": "PRE123"
+                },
+                "eventId": {
+                  "type": "string",
+                  "example": "devcon-6"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "New Title"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "New Description"
+                },
+                "track": {
+                  "type": "string",
+                  "example": "Devcon"
+                },
+                "type": {
+                  "type": "string",
+                  "example": "Talk"
+                },
+                "expertise": {
+                  "type": "string",
+                  "example": "Intermediate"
+                },
+                "speakers": {
+                  "type": "array",
+                  "example": [
+                    "123",
+                    "456"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "tags": {
+                  "type": "array",
+                  "example": [
+                    "tag1",
+                    "tag2"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "keywords": {
+                  "type": "array",
+                  "example": [
+                    "keyword1",
+                    "keyword2"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "resources_slides": {
+                  "type": "string",
+                  "example": "https://devcon.org/resources/new-title.pdf"
+                },
+                "slot_start": {
+                  "type": "number",
+                  "example": 1665495000000
+                },
+                "slot_end": {
+                  "type": "number",
+                  "example": 1665498600000
+                },
+                "slot_roomId": {
+                  "type": "string",
+                  "example": "workshop-3"
+                },
+                "sources_ipfsHash": {
+                  "type": "string",
+                  "example": "QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG"
+                },
+                "sources_youtubeId": {
+                  "type": "string",
+                  "example": "TRoO5fD7TI4"
+                },
+                "sources_swarmHash": {
+                  "type": "string",
+                  "example": "e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850"
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 3065
+                },
+                "language": {
+                  "type": "string",
+                  "example": "en"
                 }
               }
             }
