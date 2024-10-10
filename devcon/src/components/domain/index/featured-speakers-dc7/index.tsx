@@ -502,7 +502,7 @@ const FeaturedSpeakers = () => {
         link: 'https://x.com/sreeramkannan',
       },
       {
-        name: 'Juan Bennet',
+        name: 'Juan Benet',
         role: 'Protocol Labs, IPFS and Filecoin Founder',
         avatarUrl: JuanBennetImage,
         link: 'https://x.com/juanbenet',
