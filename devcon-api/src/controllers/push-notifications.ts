@@ -1,6 +1,10 @@
-import { Request, Response, Router } from 'express'
+import { Request, Response, Router, NextFunction } from 'express'
 import { PrismaClient } from '@/db/clients/account'
 import webpush from 'web-push'
+
+interface CustomRequest extends Request {
+  isAdmin?: boolean
+}
 
 webpush.setVapidDetails('mailto:devcon-website@ethereum.org', process.env.VAPID_PUBLIC as string, process.env.VAPID_PRIVATE as string)
 
@@ -8,22 +12,29 @@ const prisma = new PrismaClient()
 
 export const pushNotificationRouter = Router()
 
+const whitelist = ['cm233cak10002lxqfrjktv79a']
+
+const isAdmin = (req: CustomRequest, res: Response, next: NextFunction) => {
+  const userId = req.session.userId as string
+
+  if (whitelist.includes(userId)) {
+    req.isAdmin = true
+  }
+
+  next()
+}
+
 pushNotificationRouter.post('/push-subscriptions', subscribeToPushNotifications)
 pushNotificationRouter.delete('/push-subscriptions', unsubscribeFromPushNotifications)
-pushNotificationRouter.post('/notifications', addPushNotifications)
-pushNotificationRouter.delete('/notifications/:id', deletePushNotifications)
-pushNotificationRouter.get('/notifications', getNotifications)
-// pushNotificationRouter.post('/notifications/send', sendPushNotification)
+// KEEP IN MIND "ISADMIN" IS NOT AUTHENTICATION - IT ONLY WRITES "isAdmin" TO THE REQUEST OBJECT - HANDLE PERMISSIONS IN THE ROUTE HANDLER
+pushNotificationRouter.post('/notifications', isAdmin, addPushNotifications)
+pushNotificationRouter.delete('/notifications/:id', isAdmin, deletePushNotifications)
+pushNotificationRouter.get('/notifications', isAdmin, getNotifications)
 
 async function subscribeToPushNotifications(req: Request, res: Response) {
   const userId = req.session.userId as string
 
-  // Temporary block, we'll add auth later
-  if (process.env.NODE_ENV !== 'development') {
-    return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-  }
-
-  if (!userId && process.env.NODE_ENV !== 'development') {
+  if (!userId) {
     return res.status(403).send({ code: 403, message: 'Login required.' })
   }
 
@@ -37,7 +48,7 @@ async function subscribeToPushNotifications(req: Request, res: Response) {
     await prisma.pushSubscription.create({
       data: {
         endpoint,
-        userId: userId || 'dev_mock_user',
+        userId: userId,
         auth: keys.auth,
         p256dh: keys.p256dh,
       },
@@ -50,14 +61,9 @@ async function subscribeToPushNotifications(req: Request, res: Response) {
 }
 
 async function unsubscribeFromPushNotifications(req: Request, res: Response) {
-  const userId = req.session.userId
+  const userId = req.session.userId as string
 
-  // Temporary block, we'll add auth later
-  if (process.env.NODE_ENV !== 'development') {
-    return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-  }
-
-  if (!userId && process.env.NODE_ENV !== 'development') {
+  if (!userId) {
     return res.status(403).send({ code: 403, message: 'Login required.' })
   }
 
@@ -69,74 +75,24 @@ async function unsubscribeFromPushNotifications(req: Request, res: Response) {
 
   try {
     await prisma.pushSubscription.delete({
-      where: { endpoint },
+      where: {
+        endpoint: endpoint,
+        userId: userId,
+      },
     })
   } catch (error) {
     console.error('Error unsubscribing from push notifications:', error)
-    // res.status(500).send({ status: 500, message: 'Internal server error', data: null })
   }
 
   // Always return
   res.status(200).send({ status: 200, message: 'Unsubscription successful', data: null })
 }
 
-// async function sendPushNotification(req: Request, res: Response) {
-//   const { title, body } = req.body
-
-//   // Temporary block, we'll add auth later
-//   if (process.env.NODE_ENV !== 'development') {
-//     return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-//   }
-
-//   if (!title || !body) {
-//     return res.status(400).send({ status: 400, message: 'Title and body are required', data: null })
-//   }
-
-//   try {
-//     const subscriptions = await prisma.pushSubscription.findMany()
-
-//     const results = await Promise.allSettled(
-//       subscriptions.map(async (subscription) => {
-//         const pushSubscription = {
-//           endpoint: subscription.endpoint,
-//           keys: {
-//             auth: subscription.auth,
-//             p256dh: subscription.p256dh,
-//           },
-//         }
-
-//         const payload = JSON.stringify({ title, body })
-
-//         return webpush.sendNotification(pushSubscription, payload)
-//       })
-//     )
-
-//     const successfulNotifications = results.filter((result) => result.status === 'fulfilled').length
-//     const failedNotifications = results.filter((result) => result.status === 'rejected').length
-
-//     console.log(`Sent ${successfulNotifications} push notifications successfully, ${failedNotifications} failed`)
-
-//     res.status(200).send({
-//       status: 200,
-//       message: 'Notifications sent',
-//       data: { successfulNotifications, failedNotifications },
-//     })
-//   } catch (error) {
-//     console.error('Error sending push notifications:', error)
-//     res.status(500).send({ status: 500, message: 'Internal server error', data: null })
-//   }
-// }
-
-async function addPushNotifications(req: Request, res: Response) {
+async function addPushNotifications(req: CustomRequest, res: Response) {
   const userId = req.session.userId as string
 
-  // Temporary block, we'll add auth later
-  if (process.env.NODE_ENV !== 'development') {
+  if (!req.isAdmin) {
     return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-  }
-
-  if (!userId && process.env.NODE_ENV !== 'development') {
-    return res.status(403).send({ code: 403, message: 'Login required.' })
   }
 
   const { title, message, sendAt } = req.body
@@ -161,16 +117,9 @@ async function addPushNotifications(req: Request, res: Response) {
   }
 }
 
-async function deletePushNotifications(req: Request, res: Response) {
-  const userId = req.session.userId as string
-
-  // Temporary block, we'll add auth later
-  if (process.env.NODE_ENV !== 'development') {
+async function deletePushNotifications(req: CustomRequest, res: Response) {
+  if (!req.isAdmin) {
     return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-  }
-
-  if (!userId && process.env.NODE_ENV !== 'development') {
-    return res.status(403).send({ code: 403, message: 'Login required.' })
   }
 
   const { id } = req.params
@@ -190,22 +139,29 @@ async function deletePushNotifications(req: Request, res: Response) {
   }
 }
 
-async function getNotifications(req: Request, res: Response) {
+async function getNotifications(req: CustomRequest, res: Response) {
   const userId = req.session.userId as string
 
-  // Temporary block, we'll add auth later
-  if (process.env.NODE_ENV !== 'development') {
-    return res.status(403).send({ status: 403, message: 'Not allowed', data: null })
-  }
-
-  if (!userId && process.env.NODE_ENV !== 'development') {
+  if (!userId) {
     return res.status(403).send({ code: 403, message: 'Login required.' })
   }
 
   try {
-    const notifications = await prisma.notification.findMany({
+    const search = {
       orderBy: { sendAt: 'desc' },
-    })
+    } as any
+
+    // Admins can see all notifications
+    if (!req.isAdmin) {
+      search.where = {
+        sendAt: {
+          lte: new Date(), // Only fetch notifications with sendAt in the past or present
+        },
+      }
+    }
+
+    const notifications = await prisma.notification.findMany(search)
+
     res.status(200).send({ status: 200, message: 'Notifications retrieved', data: notifications })
   } catch (error) {
     console.error('Error retrieving notifications:', error)
@@ -214,7 +170,7 @@ async function getNotifications(req: Request, res: Response) {
 }
 
 async function sendScheduledNotifications() {
-  console.log('Sending scheduled notifications')
+  console.log('Sending scheduled notifications...')
 
   try {
     const notifications = await prisma.$transaction(async (tx) => {
@@ -273,7 +229,11 @@ async function sendScheduledNotifications() {
   } catch (error) {
     console.error('Error sending scheduled notifications:', error)
   }
+
+  console.log('Scheduled notifications (if any) sent on:', new Date().toISOString())
 }
+
+sendScheduledNotifications()
 
 // Set up the function to run every 5 minutes
 setInterval(sendScheduledNotifications, 5 * 60 * 1000)
