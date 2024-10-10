@@ -6,12 +6,17 @@ interface Notification {
   title: string
   message: string
   sendAt: string
+  sent?: boolean
 }
 
 const AdminPushNotification = () => {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
-  const [sendAt, setSendAt] = useState('')
+  const [sendAt, setSendAt] = useState(() => {
+    const now = new Date()
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset())
+    return now.toISOString().slice(0, 16)
+  })
   const [response, setResponse] = useState('')
   const [notifications, setNotifications] = useState<Notification[]>([])
   // const [editingId, setEditingId] = useState<string | null>(null)
@@ -23,7 +28,8 @@ const AdminPushNotification = () => {
   const fetchNotifications = async () => {
     try {
       const response = await fetch(
-        `${process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'}/notifications`
+        `${process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'}/notifications`,
+        { credentials: 'include' }
       )
       if (response.ok) {
         const data = await response.json()
@@ -42,6 +48,7 @@ const AdminPushNotification = () => {
       const response = await fetch(
         `${process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'}/notifications`,
         {
+          credentials: 'include',
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -71,6 +78,7 @@ const AdminPushNotification = () => {
           process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'
         }/notifications/${id}`,
         {
+          credentials: 'include',
           method: 'DELETE',
         }
       )
@@ -166,8 +174,19 @@ const AdminPushNotification = () => {
               <p>
                 <strong>Send At:</strong> {new Date(notification.sendAt).toLocaleString()}
               </p>
+              <p>
+                <strong>Sent:</strong>{' '}
+                <span className={notification.sent ? 'text-green-500 font-bold' : 'text-red-500 font-bold'}>
+                  {notification.sent ? 'Yes' : 'No'}
+                </span>
+              </p>
               <div className="mt-2">
-                <Button onClick={() => handleDeleteNotification(notification.id)} color="orange-1" className="plain">
+                <Button
+                  onClick={() => handleDeleteNotification(notification.id)}
+                  color="orange-1"
+                  className="plain"
+                  fill
+                >
                   Delete
                 </Button>
               </div>

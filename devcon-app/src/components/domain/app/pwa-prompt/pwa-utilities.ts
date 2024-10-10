@@ -125,6 +125,7 @@ export const pwaUtilities = {
           }/push-subscriptions`,
           {
             method: 'DELETE',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -154,6 +155,7 @@ export const pwaUtilities = {
           }/push-subscriptions`,
           {
             method: 'POST',
+            credentials: 'include',
             headers: {
               'Content-Type': 'application/json',
             },

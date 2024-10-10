@@ -1,5 +1,6 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { Notifications } from 'components/domain/app/notifications'
+// import { Notifications } from 'components/domain/app/notifications'
+import { Notifications } from 'components/domain/app/dc7/profile/notifications'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
 // import { GetSessions, GetSpeakers } from 'services/programming'

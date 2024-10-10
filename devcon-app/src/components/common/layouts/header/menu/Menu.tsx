@@ -15,9 +15,11 @@ import BackIcon from 'assets/icons/subdirectory-left.svg'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import { LanguageToggle } from 'components/common/layouts/header/strip/language-toggle'
 import { TippyProps } from '@tippyjs/react'
-import { Notifications } from 'components/domain/app/notifications'
+// import { Notifications } from 'components/domain/app/notifications'
+import { Notifications, NotificationsList } from 'components/domain/app/dc7/profile/notifications'
 import { useAppContext } from 'context/app-context'
 import { useAccountContext } from 'context/account-context'
+import { Button } from 'lib/components/button'
 
 type ButtonProps = {
   buttons: {
@@ -110,25 +112,27 @@ export const Menu = (props: any) => {
         icon: <AccountIcon />,
         url: accountContext.account ? '/settings' : '/login',
       },
-      {
-        key: 'notifications',
-        tooltip: {
-          content: 'Notifications',
-        },
-        icon: (
-          <div className={css['app-notifications']}>
-            {props.foldoutOpen ? (
-              <IconCross style={{ width: '0.8em' }} />
-            ) : (
-              <>
-                <BellIcon style={props.foldoutOpen ? { opacity: 0.7 } : {}} />
-                {countUnreadNotifications > 0 && <div className={css['counter']}>{countUnreadNotifications}</div>}
-              </>
-            )}
-          </div>
-        ),
-        onClick: () => props.setFoldoutOpen(!props.foldoutOpen),
-      },
+      accountContext.account
+        ? {
+            key: 'notifications',
+            tooltip: {
+              content: 'Notifications',
+            },
+            icon: (
+              <div className={css['app-notifications']}>
+                {props.foldoutOpen ? (
+                  <IconCross style={{ width: '0.8em' }} />
+                ) : (
+                  <>
+                    <BellIcon style={props.foldoutOpen ? { opacity: 0.7 } : {}} />
+                    {countUnreadNotifications > 0 && <div className={css['counter']}>{countUnreadNotifications}</div>}
+                  </>
+                )}
+              </div>
+            ),
+            onClick: () => props.setFoldoutOpen(!props.foldoutOpen),
+          }
+        : null,
 
       // {
       //   key: 'back-button',
@@ -138,7 +142,7 @@ export const Menu = (props: any) => {
       //   icon: <BackIcon style={{ fontSize: '1.2em', transform: 'translateX(-2px)' }} />,
       //   url: '/',
       // },
-    ]
+    ].filter(Boolean) as any
   }
 
   let className = css['menu']
@@ -175,7 +179,14 @@ export const Menu = (props: any) => {
 
       {/* Mobile */}
       <Foldout isApp foldoutOpen={props.foldoutOpen} setFoldoutOpen={props.setFoldoutOpen}>
-        <Notifications />
+        {accountContext.account?.id && ['cm233cak10002lxqfrjktv79a'].includes(accountContext.account?.id) && (
+          <Button className="plain mb-4" color="black-1" fill onClick={() => router.push('/login/admin')}>
+            Admin Notification Dashboard
+          </Button>
+        )}
+        <NotificationsList />
+
+        <Notifications standalone />
       </Foldout>
     </div>
   )
