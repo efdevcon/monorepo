@@ -4,10 +4,16 @@ import Link from "next/link";
 import DevaHead from "./deva.png";
 import { Button } from "lib/components/button";
 import CloseIcon from "../../assets/icons/cross.svg";
+import AppIcon from "../../assets/icons/app-icons.svg";
+import AppIconOne from "../../assets/icons/app-icons-1.svg";
+import ChevronRight from "../../assets/icons/chevron_right.svg";
 import Markdown from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
 import Loader from "lib/components/loader";
 import { useRecoilState, useResetRecoilState, atom } from "recoil";
+import { CircleIcon } from "lib/components/circle-icon";
+import { FancyLoader } from "lib/components/loader/loader";
+import { Separator } from "lib/components/ui/separator";
 import {
   Popover,
   PopoverTrigger,
@@ -21,8 +27,9 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
+import { Close } from "@radix-ui/react-toast";
 
-const Trigger = () => {
+const Trigger = ({ className }: { className?: string }) => {
   return (
     <svg
       width="81"
@@ -30,6 +37,7 @@ const Trigger = () => {
       viewBox="0 0 81 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      className={className}
     >
       <path
         d="M0.497656 14.2H5.51366C11.4417 14.2 15.0897 17.392 15.0897 22.6C15.0897 27.808 11.4417 31 5.51366 31H0.497656V14.2ZM4.33766 27.64H5.51366C8.96966 27.64 11.0817 25.72 11.0817 22.6C11.0817 19.48 8.96966 17.56 5.51366 17.56H4.33766V27.64ZM22.7595 17.56V20.68H29.4075V24.04H22.7595V27.64H30.3675V31H18.9195V14.2H30.3675V17.56H22.7595ZM38.653 31L32.533 14.2H36.853L40.837 26.488L44.773 14.2H49.093L42.973 31H38.653ZM65.892 28.192H55.356L53.916 31H49.62L58.284 14.2H62.796L71.724 31H67.38L65.892 28.192ZM64.14 24.856L60.588 18.232L57.084 24.856H64.14Z"
@@ -58,7 +66,7 @@ const DevaBot = ({
   const [error, setError] = useRecoilState(errorState);
   const [threadID, setThreadID] = useRecoilState(threadIDState);
   const [messages, setMessages] = useRecoilState(messagesState);
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+  const textareaRef = React.useRef<HTMLInputElement>(null);
 
   const resetMessages = useResetRecoilState(messagesState);
   const resetThreadID = useResetRecoilState(threadIDState);
@@ -206,7 +214,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[25vw] min-w-[325px] max-w-full bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)]  flex flex-col gap-2 items-start"
+              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)]  flex flex-col gap-2 items-start"
               initial={{
                 x: "100%",
               }}
@@ -220,17 +228,15 @@ const DevaBot = ({
                 duration: 0.35,
               }}
             >
-              <div className="flex flex-col gap-2 shrink-0">
+              <div className="flex flex-col gap-2 shrink-0 w-full">
                 <div className="flex justify-between w-full">
-                  <div className="shrink-0 bold">Deva 🦄 Chat</div>
-                  <div
-                    className="cursor-pointer p-4 pt-5 absolute right-0 top-0 flex justify-center items-center"
-                    onClick={() => setVisible(false)}
-                    // @ts-ignore
-                    style={{ "--color-icon": "white", fontSize: "12px" }}
-                  >
-                    <CloseIcon />
+                  <div className="shrink-0 bold">
+                    <Trigger className="w-[70px]" />
                   </div>
+
+                  <CircleIcon onClick={() => setVisible(false)}>
+                    <CloseIcon />
+                  </CircleIcon>
                 </div>
               </div>
 
@@ -314,11 +320,39 @@ const DevaBot = ({
                       </Markdown>
                     </div>
                   )}
+
+                  {(streamingMessage ||
+                    (messages && messages.length === 0)) && (
+                    <div className="mt-2">
+                      <div className="flex flex-col gap-1 p-4 bg-[#F0F2FF] rounded-lg">
+                        <p className="font-bold text-sm">
+                          Experimental Feature
+                        </p>
+                        <p className="text-xs">
+                          This is an MVP and Deva may sometimes provide answers
+                          that are not true - we take no responsibility for, or
+                          endorse, anything Deva says beyond Event information.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 {/* <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div> */}
               </div>
 
-              <div
+              {(streamingMessage || (messages && messages.length === 0)) && (
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-8">
+                  <div className="icon">
+                    <FancyLoader loading={true} />
+                    {/* <AppIcon style={{ fontSize: "50px" }} /> */}
+                  </div>
+                  <p className="font-semibold w-[250px]">
+                    Ask me anything related to Devcon SEA.
+                  </p>
+                </div>
+              )}
+
+              {/* <div
                 className={`text-red-500 text-xs shrink-0 ${
                   messages.length > 0 ? "hidden" : ""
                 }`}
@@ -343,9 +377,9 @@ const DevaBot = ({
                     </div>
                   </PopoverContent>
                 </Popover>
-              </div>
+              </div> */}
 
-              <div className="shrink-0 relative w-full flex flex-col rounded overflow-hidden mb-2">
+              {/* <div className="shrink-0 relative w-full flex flex-col rounded overflow-hidden mb-2">
                 <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
                   <Image src={DevaHead} alt="Deva" className="object-cover" />
                 </div>
@@ -458,6 +492,78 @@ const DevaBot = ({
                       Clear Chat
                     </Button>
                   </div>
+                </div> */}
+              <div className="flex">
+                <div
+                  className={`flex flex-wrap gap-2 py-2 shrink-0 ${
+                    messages.length > 0 ? "hidden" : ""
+                  }`}
+                >
+                  {[
+                    "What is Devcon?",
+                    "When is Devcon?",
+                    "How can I participate?",
+                    "Why Bangkok?",
+                    "Can I apply to speak?",
+                    "Can I volunteer?",
+                  ].map((suggestion, index) => (
+                    <Button
+                      key={index}
+                      className="bg-teal-500 text-white px-2 py-1 rounded text-xs plain"
+                      onClick={() => {
+                        setQuery(suggestion);
+                        textareaRef.current?.focus();
+                      }}
+                    >
+                      {suggestion}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+
+              <Separator />
+
+              <div className="shrink-0 flex items-center justify-center gap-1 my-3 mt-1.5 w-full">
+                <div className="icon mr-1">
+                  <AppIconOne />
+                </div>
+                <div className="grow relative">
+                  <input
+                    className="w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] rounded-full placeholder-[#747474] focus:outline-none"
+                    ref={textareaRef}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" && !e.shiftKey && !executingQuery) {
+                        e.preventDefault();
+                        onSend();
+                      }
+                    }}
+                    type="text"
+                    placeholder="Ask me anything..."
+                  />
+                  <div
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all duration-150 cursor-pointer"
+                    onClick={() => {
+                      setQuery("");
+                      textareaRef.current?.focus();
+                    }}
+                  >
+                    <CloseIcon style={{ fontSize: "10px", fill: "#646E83" }} />
+                  </div>
+                </div>
+
+                <div>
+                  <CircleIcon
+                    className="mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]"
+                    onClick={onSend}
+                    disabled={executingQuery}
+                  >
+                    <ChevronRight
+                      className="text-lg"
+                      style={{ fontSize: "12px" }}
+                    />
+                  </CircleIcon>
                 </div>
               </div>
             </motion.div>
