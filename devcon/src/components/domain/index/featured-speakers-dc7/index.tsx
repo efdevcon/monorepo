@@ -14,7 +14,7 @@ import KevinOwockiImage from './speaker-images/Kevin-Owocki.png'
 import LefterisKarapetsasImage from './speaker-images/Lefteris-Karapetsas.png'
 import NickJohnsonImage from './speaker-images/Nick-Johnson.png'
 import PoojaRanjanImage from './speaker-images/Pooja-Ranjan.png'
-import BrunoImage from './speaker-images/bruno-macaes.jpg'
+import BrunoImage from './speaker-images/bruno.png'
 import LoiLuuImage from './speaker-images/Loi-Luu.png'
 import MatthewTanImage from './speaker-images/Matthew-Tan.png'
 import PrestonVanLoonImage from './speaker-images/Preston-Van-Loon.png'
@@ -467,7 +467,7 @@ const FeaturedSpeakers = () => {
     const remainingSpeakers = [
       {
         name: 'Hart Montgomery',
-        role: 'CTO @ Linux Foundation',
+        role: 'CTO of Linux Foundation Decentralized Trust',
         avatarUrl: HartMontgomeryImage,
         link: 'https://www.linkedin.com/in/hartmontgomery/',
       },
