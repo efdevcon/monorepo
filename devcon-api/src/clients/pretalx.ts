@@ -39,33 +39,34 @@ export async function GetRooms() {
   })
 }
 
-export async function GetSpeakers(params: Partial<RequestParams>) {
+export async function GetSpeakers(params: Partial<RequestParams> = {}) {
   const speakersData = await exhaustResource(`speakers?questions=all`)
   return speakersData.map((i: any) => mapSpeaker(i, params))
 }
 
-export async function GetSubmissions(params: Partial<RequestParams>) {
+export async function GetSubmissions(params: Partial<RequestParams> = {}) {
   const submissions = await exhaustResource(`submissions?questions=all`)
   return submissions.filter((i: any) => i.state === (params.state ?? 'confirmed')).map((i: any) => mapSession(i, params))
 }
 
-export async function GetSessions(params: Partial<RequestParams>) {
+export async function GetSessions(params: Partial<RequestParams> = {}) {
   const talks = await exhaustResource(`talks?questions=all`)
   return talks.map((i: any) => mapSession(i, params))
 }
 
-export async function GetSession(id: string, params: Partial<RequestParams>) {
+export async function GetSession(id: string, params: Partial<RequestParams> = {}) {
   const data = await get(`submissions/${id}?questions=all`)
   return mapSession(data, params)
 }
 
-export async function GetSpeaker(id: string, params: Partial<RequestParams>) {
+export async function GetSpeaker(id: string, params: Partial<RequestParams> = {}) {
   const data = await get(`speakers/${id}?questions=all`)
   return mapSpeaker(data, params)
 }
 
 async function exhaustResource(slug: string, limit = PRETALX_CONFIG.DEFAULT_LIMIT, offset = 0, results = [] as any): Promise<any> {
   return get(`${slug}${slug.includes('?') ? '&' : '?'}limit=${limit}&offset=${offset}`).then((data: any) => {
+    return data.results
     results.push(data.results)
     if (data.next) {
       console.log('GET', slug, 'TOTAL COUNT', data.count)
