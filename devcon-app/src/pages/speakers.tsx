@@ -16,6 +16,7 @@ import { DEFAULT_APP_PAGE } from 'utils/constants'
 import { SpeakerDetails } from 'components/domain/app/speakers'
 import { SEO } from 'components/domain/seo'
 import { useSpeakersWithSessions } from 'services/event-data'
+import { FancyLoader } from 'lib/components/loader/loader'
 
 export default pageHOC((props: any) => {
   const speakers = useSpeakersWithSessions()
@@ -44,8 +45,8 @@ export default pageHOC((props: any) => {
           )
         })()}
 
-      <div className={`${speakers ? 'loaded' : ''} loader`}>
-        <div className="indicator"></div>
+      <div className="fixed top-0 h-full w-full flex justify-center items-center opacity-100 z-5 pointer-events-none">
+        <FancyLoader loading={!speakers} />
       </div>
     </AppLayout>
   )

@@ -52,7 +52,6 @@ export const NotificationCard = (props: any) => {
 export const NotificationsList = (props: any) => {
   const [notifications, setNotifications] = React.useState<any>([])
 
-  // fetch notifications
   useEffect(() => {
     const fetchNotifications = async () => {
       const response = await fetch(`${APP_CONFIG.API_BASE_URL}/notifications`, {
@@ -65,8 +64,6 @@ export const NotificationsList = (props: any) => {
 
     fetchNotifications()
   }, [])
-
-  console.log(notifications, 'notifs')
 
   return (
     <div className="flex flex-col gap-4 mb-6">

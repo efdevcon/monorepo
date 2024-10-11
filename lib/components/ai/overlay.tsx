@@ -22,6 +22,28 @@ import {
   messagesState,
 } from "./state"; // Adjust the import path
 
+const Trigger = () => {
+  return (
+    <svg
+      width="81"
+      height="32"
+      viewBox="0 0 81 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M0.497656 14.2H5.51366C11.4417 14.2 15.0897 17.392 15.0897 22.6C15.0897 27.808 11.4417 31 5.51366 31H0.497656V14.2ZM4.33766 27.64H5.51366C8.96966 27.64 11.0817 25.72 11.0817 22.6C11.0817 19.48 8.96966 17.56 5.51366 17.56H4.33766V27.64ZM22.7595 17.56V20.68H29.4075V24.04H22.7595V27.64H30.3675V31H18.9195V14.2H30.3675V17.56H22.7595ZM38.653 31L32.533 14.2H36.853L40.837 26.488L44.773 14.2H49.093L42.973 31H38.653ZM65.892 28.192H55.356L53.916 31H49.62L58.284 14.2H62.796L71.724 31H67.38L65.892 28.192ZM64.14 24.856L60.588 18.232L57.084 24.856H64.14Z"
+        fill="black"
+      />
+      <path d="M74.4195 31V14.2H78.4995V31H74.4195Z" fill="#7D52F4" />
+      <path
+        d="M8.33469 7.596H3.06669L2.34669 9H0.198688L4.53069 0.599999H6.78669L11.2507 9H9.07869L8.33469 7.596ZM7.45869 5.928L5.68269 2.616L3.93069 5.928H7.45869ZM17.1973 3.972C20.0653 4.236 21.5413 4.488 21.5413 6.684C21.5413 8.232 20.5213 9.216 17.4853 9.216H16.2853C13.0093 9.216 12.0732 8.28 12.0613 6.144H14.2093C14.1733 7.092 14.5573 7.56 16.8253 7.56H17.0653C19.0213 7.56 19.4413 7.38 19.4413 6.684C19.4413 5.88 18.2893 5.772 16.3093 5.58C14.0653 5.364 12.2533 4.872 12.2533 2.928C12.2533 1.248 13.2253 0.383999 16.3093 0.383999H17.5093C20.1493 0.383999 21.3733 1.512 21.3853 3.444H19.2373V3.468C19.2373 2.46 18.6853 2.04 16.9693 2.04H16.7293C14.7013 2.04 14.3413 2.232 14.3413 2.868C14.3413 3.6 15.5773 3.816 17.1973 3.972ZM21.3853 3.444V3.468V3.444ZM14.2093 6.108V6.144V6.108ZM12.0613 6.144V6.12V6.144ZM23.5203 9V0.599999H25.5603V3.804H28.9923L31.3083 0.599999H33.6963L30.7803 4.608L33.7083 9H31.2843L28.9563 5.544L25.5603 5.532V9H23.5203Z"
+        fill="black"
+      />
+    </svg>
+  );
+};
+
 const DevaBot = ({
   recommendationMode,
   sessions,
@@ -184,7 +206,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[25vw] min-w-[325px] max-w-full bg-slate-900 shadow-xl p-4 pb-[env(safe-area-inset-bottom)] text-white flex flex-col gap-2 items-start"
+              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[25vw] min-w-[325px] max-w-full bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)]  flex flex-col gap-2 items-start"
               initial={{
                 x: "100%",
               }}
@@ -293,7 +315,7 @@ const DevaBot = ({
                     </div>
                   )}
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div>
+                {/* <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div> */}
               </div>
 
               <div
@@ -323,7 +345,7 @@ const DevaBot = ({
                 </Popover>
               </div>
 
-              <div className="shrink-0 relative w-full flex bg-slate-800 flex-col rounded overflow-hidden mb-2">
+              <div className="shrink-0 relative w-full flex flex-col rounded overflow-hidden mb-2">
                 <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
                   <Image src={DevaHead} alt="Deva" className="object-cover" />
                 </div>
@@ -367,7 +389,7 @@ const DevaBot = ({
                   ].map((suggestion, index) => (
                     <Button
                       key={index}
-                      className="bg-teal-500 text-white px-2 py-1 rounded text-xs"
+                      className="bg-teal-500 text-white px-2 py-1 rounded text-xs plain"
                       onClick={() => {
                         setQuery(suggestion);
                         textareaRef.current?.focus();
@@ -397,6 +419,7 @@ const DevaBot = ({
                       <div className="text-red-500 p-4 flex flex-col gap-2">
                         {error}
                         <Button
+                          className="plain"
                           onClick={() => setError("")}
                           color="purple-1"
                           fill
@@ -416,6 +439,7 @@ const DevaBot = ({
                   )}
                   <div className="flex gap-2">
                     <Button
+                      className="plain"
                       color="teal-1"
                       fill
                       onClick={onSend}
@@ -425,6 +449,7 @@ const DevaBot = ({
                     </Button>
 
                     <Button
+                      className="plain"
                       color="black-1"
                       fill
                       disabled={executingQuery}
@@ -440,7 +465,15 @@ const DevaBot = ({
         )}
       </AnimatePresence>
 
-      <Button
+      <div
+        onClick={() => setVisible(!visible)}
+        className="section cursor-pointer"
+      >
+        <Trigger />
+      </div>
+
+      {/* <Button
+        className="plain"
         className="bold"
         color="blue-1"
         fill
@@ -448,7 +481,7 @@ const DevaBot = ({
       >
         <span className="md:hidden block">Questions?</span>
         <span className="hidden md:block">Questions? Ask here 🦄</span>
-      </Button>
+      </Button> */}
     </>
   );
 };

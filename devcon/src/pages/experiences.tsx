@@ -170,7 +170,7 @@ export default pageHOC(function Experiences(props: any) {
         <div className={css['background']}>
           <Image src={HackerBasement} alt="Hacker basement" />
         </div>
-        <div id="hacker-basement">
+        <div id="hacker-cave">
           <div className="section">
             <h2 className="clear-top clear-bottom">Hacker Cave</h2>
           </div>

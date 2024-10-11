@@ -12,7 +12,7 @@ import { GetRelatedSessions } from './schedule/[id]'
 import { useSessionData } from 'services/event-data'
 import { PageContext } from '../context/page-context'
 import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
-import Link from 'next/link'
+import { FancyLoader } from 'lib/components/loader/loader'
 
 export default pageHOC((props: any) => {
   const sessions = useSessionData()
@@ -58,8 +58,8 @@ export default pageHOC((props: any) => {
           <></>
         )}
 
-        <div className={`${sessions ? 'loaded' : ''} loader`}>
-          <div className="indicator"></div>
+        <div className="fixed top-0 h-full w-full flex justify-center items-center opacity-100 z-5 pointer-events-none">
+          <FancyLoader loading={!sessions} />
         </div>
       </AppLayout>
     </PageContext.Provider>
