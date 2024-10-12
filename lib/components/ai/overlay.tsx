@@ -14,6 +14,8 @@ import { useRecoilState, useResetRecoilState, atom } from "recoil";
 import { CircleIcon } from "lib/components/circle-icon";
 import { FancyLoader } from "lib/components/loader/loader";
 import { Separator } from "lib/components/ui/separator";
+import { useDraggableLink } from "lib/components/link/Link";
+import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import {
   Popover,
   PopoverTrigger,
@@ -67,6 +69,7 @@ const DevaBot = ({
   const [threadID, setThreadID] = useRecoilState(threadIDState);
   const [messages, setMessages] = useRecoilState(messagesState);
   const textareaRef = React.useRef<HTMLInputElement>(null);
+  const draggable = useDraggableLink();
 
   const resetMessages = useResetRecoilState(messagesState);
   const resetThreadID = useResetRecoilState(threadIDState);
@@ -87,14 +90,14 @@ const DevaBot = ({
   };
 
   const [streamingMessage, setStreamingMessage] = React.useState("");
-  const [partialChunk, setPartialChunk] = React.useState("");
+  // const [partialChunk, setPartialChunk] = React.useState("");
 
   const onSend = async () => {
     if (executingQuery) return;
 
     setExecutingQuery(true);
     setStreamingMessage("");
-    setPartialChunk("");
+    // setPartialChunk("");
 
     try {
       let url =
@@ -214,7 +217,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)]  flex flex-col gap-2 items-start"
+              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)] flex flex-col gap-0 items-start overflow-hidden"
               initial={{
                 x: "100%",
               }}
@@ -228,7 +231,7 @@ const DevaBot = ({
                 duration: 0.35,
               }}
             >
-              <div className="flex flex-col gap-2 shrink-0 w-full">
+              <div className="flex flex-col gap-2 shrink-0 w-full mb-2">
                 <div className="flex justify-between w-full">
                   <div className="shrink-0 bold">
                     <Trigger className="w-[70px]" />
@@ -335,35 +338,46 @@ const DevaBot = ({
                     </div>
                   )}
 
-                  {!streamingMessage && messages && messages.length === 0 && (
-                    <div className="mt-2">
-                      <div className="flex flex-col gap-1 p-4 bg-[#F0F2FF] rounded-lg">
-                        <p className="font-bold text-sm">
-                          Experimental Feature
-                        </p>
-                        <p className="text-xs">
-                          This is an MVP and Deva may sometimes provide answers
-                          that are not true - we take no responsibility for, or
-                          endorse, anything Deva says beyond Event information.
-                        </p>
+                  {!executingQuery &&
+                    !streamingMessage &&
+                    messages &&
+                    messages.length === 0 && (
+                      <div className="mt-2">
+                        <div className="flex flex-col gap-1 p-4 bg-[#F0F2FF] rounded-lg">
+                          <p className="font-bold text-sm">
+                            Experimental Feature
+                          </p>
+                          <p className="text-xs">
+                            This is an MVP and Deva may sometimes provide
+                            answers that are not true - we take no
+                            responsibility for, or endorse, anything Deva says
+                            beyond Event information.
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
                 </div>
-                {/* <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div> */}
+                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+
+                <div className="absolute right-0 bottom-2">
+                  <FancyLoader loading={executingQuery} size={60} />
+                </div>
               </div>
 
-              {!streamingMessage && messages && messages.length === 0 && (
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-8">
-                  <div className="icon">
-                    <FancyLoader loading={true} />
-                    {/* <AppIcon style={{ fontSize: "50px" }} /> */}
+              {!executingQuery &&
+                !streamingMessage &&
+                messages &&
+                messages.length === 0 && (
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-8">
+                    <div className="icon">
+                      <FancyLoader loading={true} dontAnimate />
+                      {/* <AppIcon style={{ fontSize: "50px" }} /> */}
+                    </div>
+                    <p className="font-semibold w-[250px]">
+                      Ask me anything related to Devcon SEA.
+                    </p>
                   </div>
-                  <p className="font-semibold w-[250px]">
-                    Ask me anything related to Devcon SEA.
-                  </p>
-                </div>
-              )}
+                )}
 
               {/* <div
                 className={`text-red-500 text-xs shrink-0 ${
@@ -506,43 +520,66 @@ const DevaBot = ({
                     </Button>
                   </div>
                 </div> */}
-              <div className="flex">
-                <div
-                  className={`flex flex-wrap gap-2 py-2 shrink-0 ${
-                    messages.length > 0 ? "hidden" : ""
-                  }`}
-                >
-                  {[
-                    "What is Devcon?",
-                    "When is Devcon?",
-                    "How can I participate?",
-                    "Why Bangkok?",
-                    "Can I apply to speak?",
-                    "Can I volunteer?",
-                  ].map((suggestion, index) => (
-                    <Button
-                      key={index}
-                      className="bg-teal-500 text-white px-2 py-1 rounded text-xs plain"
-                      onClick={() => {
-                        setQuery(suggestion);
-                        textareaRef.current?.focus();
-                      }}
+              <div
+                className={cn({
+                  hidden: executingQuery || messages.length > 0,
+                })}
+              >
+                <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+                  <div className="flex">
+                    <div
+                      className={`flex flex-wrap gap-2 py-2 shrink-0 ${
+                        messages.length > 0 ? "hidden" : ""
+                      }`}
                     >
-                      {suggestion}
-                    </Button>
-                  ))}
-                </div>
+                      {[
+                        "What should I do at Devcon?",
+                        "What is Devcon?",
+                        "When is Devcon?",
+                        "How can I participate?",
+                        "Why Bangkok?",
+                        "Can I apply to speak?",
+                        "Can I volunteer?",
+                      ].map((suggestion, index, array) => (
+                        <Button
+                          key={index}
+                          {...draggable}
+                          className={`!text-black px-2 !py-1.5 !px-3 rounded text-xs plain border-none shadow bg-gray-100 ${
+                            index === array.length - 1 ? "mr-4" : ""
+                          }`}
+                          fat
+                          onClick={() => {
+                            setQuery(suggestion);
+                            textareaRef.current?.focus();
+                          }}
+                        >
+                          {suggestion}
+                        </Button>
+                      ))}
+                    </div>
+                  </div>
+                </SwipeToScroll>
               </div>
 
-              <Separator />
+              <Separator className="mb-2" />
 
-              <div className="shrink-0 flex items-center justify-center gap-1 my-3 mt-1.5 w-full">
+              <div
+                className={cn(
+                  "shrink-0 flex items-center justify-center gap-1 my-3 mt-1.5 w-full relative",
+                  { "mt-0": executingQuery || messages.length > 0 }
+                )}
+              >
                 <div className="icon mr-1">
                   <AppIconOne />
                 </div>
-                <div className="grow relative">
+                <div className={cn("grow relative")}>
                   <input
-                    className="w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] rounded-full placeholder-[#747474] focus:outline-none"
+                    className={cn(
+                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] rounded-full placeholder-[#747474] focus:outline-none",
+                      {
+                        "opacity-50": executingQuery,
+                      }
+                    )}
                     ref={textareaRef}
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -556,7 +593,12 @@ const DevaBot = ({
                     placeholder="Ask me anything..."
                   />
                   <div
-                    className="absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all duration-150 cursor-pointer"
+                    className={cn(
+                      "absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all duration-150 cursor-pointer",
+                      {
+                        "opacity-50": executingQuery,
+                      }
+                    )}
                     onClick={() => {
                       setQuery("");
                       textareaRef.current?.focus();
@@ -568,7 +610,12 @@ const DevaBot = ({
 
                 <div>
                   <CircleIcon
-                    className="mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]"
+                    className={cn(
+                      "mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]",
+                      {
+                        "opacity-50": executingQuery,
+                      }
+                    )}
                     onClick={onSend}
                     disabled={executingQuery}
                   >

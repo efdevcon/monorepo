@@ -33,9 +33,11 @@ const sequence = [
 const Icons = ({
   dontAnimate = false,
   loading = false,
+  size = 100,
 }: {
   dontAnimate?: boolean;
   loading?: boolean;
+  size?: number;
 }) => {
   const [sequenceIndex, setSequenceIndex] = useState(0);
   const [shouldShow, setShouldShow] = useState(false);
@@ -73,11 +75,14 @@ const Icons = ({
     );
 
   return (
-    <div className="flex items-center justify-center w-[100px] relative">
+    <div
+      className="flex items-center justify-center relative"
+      style={{ width: `${size}px`, height: `${size * 0.27}px` }}
+    >
       <div className={iconClass(0)}>
         <svg
-          width="25"
-          height="23"
+          width={size * 0.25}
+          height={size * 0.23}
           viewBox="0 0 25 23"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -90,8 +95,8 @@ const Icons = ({
       </div>
       <div className={iconClass(1)}>
         <svg
-          width="26"
-          height="27"
+          width={size * 0.26}
+          height={size * 0.27}
           viewBox="0 0 26 27"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -104,8 +109,8 @@ const Icons = ({
       </div>
       <div className={iconClass(2)}>
         <svg
-          width="24"
-          height="23"
+          width={size * 0.24}
+          height={size * 0.23}
           viewBox="0 0 24 23"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -124,13 +129,17 @@ const Icons = ({
 export const FancyLoader = ({
   dontAnimate = false,
   loading = false,
+  className,
+  size = 100,
 }: {
   dontAnimate?: boolean;
   loading?: boolean;
+  className?: string;
+  size?: number;
 }) => {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <Icons dontAnimate={dontAnimate} loading={loading} />
+    <div className={cn("flex flex-col items-center gap-2", className)}>
+      <Icons dontAnimate={dontAnimate} loading={loading} size={size} />
     </div>
   );
 };
