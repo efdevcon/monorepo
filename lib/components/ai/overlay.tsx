@@ -27,7 +27,7 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
-import { Close } from "@radix-ui/react-toast";
+import cn from "classnames";
 
 const Trigger = ({ className }: { className?: string }) => {
   return (
@@ -245,14 +245,28 @@ const DevaBot = ({
                   {messages &&
                     messages.length > 0 &&
                     messages.map((message: any, index: any) => {
+                      const isAssistantReply = message.role === "assistant";
+
                       return (
                         <div key={index} className="shrink-0 flex flex-col">
-                          <span className="text-sm opacity-50">
+                          {/* <span
+                            className={cn("text-sm opacity-50", {
+                              "text-left self-start": isAssistantReply,
+                              "text-right self-end": !isAssistantReply,
+                            })}
+                          >
                             {message.role === "assistant"
                               ? "DevAI responded"
                               : "You asked"}
-                          </span>
-                          <Markdown className="markdown">
+                          </span> */}
+                          <Markdown
+                            className={cn("markdown p-3 py-2 w-auto", {
+                              "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
+                                isAssistantReply,
+                              "ml-4 bg-[#7D52F4] text-white rounded-tl-xl rounded-tr-xl rounded-bl-xl self-end":
+                                !isAssistantReply,
+                            })}
+                          >
                             {
                               message.text.split(
                                 "System: The current date is:"
@@ -321,8 +335,7 @@ const DevaBot = ({
                     </div>
                   )}
 
-                  {(streamingMessage ||
-                    (messages && messages.length === 0)) && (
+                  {!streamingMessage && messages && messages.length === 0 && (
                     <div className="mt-2">
                       <div className="flex flex-col gap-1 p-4 bg-[#F0F2FF] rounded-lg">
                         <p className="font-bold text-sm">
@@ -340,7 +353,7 @@ const DevaBot = ({
                 {/* <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-slate-900 to-transparent pointer-events-none"></div> */}
               </div>
 
-              {(streamingMessage || (messages && messages.length === 0)) && (
+              {!streamingMessage && messages && messages.length === 0 && (
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-8">
                   <div className="icon">
                     <FancyLoader loading={true} />
