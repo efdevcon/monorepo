@@ -40,12 +40,12 @@ const Icons = ({
   size?: number;
 }) => {
   const [sequenceIndex, setSequenceIndex] = useState(0);
-  const [shouldShow, setShouldShow] = useState(false);
+  const [shouldShow, setShouldShow] = useState(dontAnimate);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShouldShow(true);
-    }, 300);
+    }, 400);
 
     return () => clearTimeout(timer);
   }, []);
@@ -64,9 +64,9 @@ const Icons = ({
     cn(
       "absolute transition-all duration-[150] px-0.5 flex items-center justify-center scale-[0.85]",
       {
-        "translate-x-[100%]": sequence[sequenceIndex][index] === 1,
+        "-translate-x-[100%]": sequence[sequenceIndex][index] === 1,
         "-translate-x-[0px]": sequence[sequenceIndex][index] === 2,
-        "-translate-x-[100%]": sequence[sequenceIndex][index] === 3,
+        "translate-x-[100%]": sequence[sequenceIndex][index] === 3,
       },
       {
         "opacity-0 !duration-1000": !shouldShow || !loading,

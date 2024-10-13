@@ -15,6 +15,7 @@ import { CircleIcon } from "lib/components/circle-icon";
 import { FancyLoader } from "lib/components/loader/loader";
 import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/components/link/Link";
+import InfoIcon from "../../assets/icons/info-fill.svg";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import {
   Popover,
@@ -191,7 +192,7 @@ const DevaBot = ({
     if (visible) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = "";
     }
   }, [visible]);
 
@@ -200,7 +201,7 @@ const DevaBot = ({
       <AnimatePresence>
         {visible && (
           <motion.div
-            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000]"
+            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden"
             onClick={() => setVisible(false)}
             initial={{
               background: "#00000000",
@@ -217,7 +218,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute bottom-0 top-0 right-0 z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)] flex flex-col gap-0 items-start overflow-hidden"
+              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)] flex flex-col gap-0 items-start overflow-hidden"
               initial={{
                 x: "100%",
               }}
@@ -338,24 +339,46 @@ const DevaBot = ({
                     </div>
                   )}
 
-                  {!executingQuery &&
-                    !streamingMessage &&
-                    messages &&
-                    messages.length === 0 && (
-                      <div className="mt-2">
-                        <div className="flex flex-col gap-1 p-4 bg-[#F0F2FF] rounded-lg">
-                          <p className="font-bold text-sm">
-                            Experimental Feature
-                          </p>
-                          <p className="text-xs">
-                            This is an MVP and Deva may sometimes provide
-                            answers that are not true - we take no
-                            responsibility for, or endorse, anything Deva says
-                            beyond Event information.
-                          </p>
-                        </div>
-                      </div>
-                    )}
+                  <AnimatePresence>
+                    {!executingQuery &&
+                      !streamingMessage &&
+                      messages &&
+                      messages.length === 0 && (
+                        <motion.div
+                          className="mt-2 lg:mt-4"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <div className="flex flex-row gap-3 p-4 bg-[#F0F2FF] rounded-xl">
+                            <InfoIcon
+                              className="shrink-0 mt-[3px] icon"
+                              style={
+                                {
+                                  "--icon-color": "#7D52F4",
+                                  "--color-icon": "#7D52F4",
+                                  fontSize: "18px",
+                                  fill: "#7D52F4",
+                                } as any
+                              }
+                            />
+
+                            <div className="flex flex-col gap-1">
+                              <p className="font-bold text-base">
+                                Experimental Feature
+                              </p>
+                              <p className="text-sm text-[#6B6186]">
+                                This is an MVP and Deva may sometimes provide
+                                answers that are not true - we take no
+                                responsibility for, or endorse, anything Deva
+                                says beyond Event information.
+                              </p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                  </AnimatePresence>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 
@@ -364,20 +387,28 @@ const DevaBot = ({
                 </div>
               </div>
 
-              {!executingQuery &&
-                !streamingMessage &&
-                messages &&
-                messages.length === 0 && (
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-8">
-                    <div className="icon">
-                      <FancyLoader loading={true} dontAnimate />
-                      {/* <AppIcon style={{ fontSize: "50px" }} /> */}
-                    </div>
-                    <p className="font-semibold w-[250px]">
-                      Ask me anything related to Devcon SEA.
-                    </p>
-                  </div>
-                )}
+              <AnimatePresence>
+                {!executingQuery &&
+                  !streamingMessage &&
+                  messages &&
+                  messages.length === 0 && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.5 }}
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4"
+                    >
+                      <div className="icon">
+                        <FancyLoader loading={true} dontAnimate />
+                        {/* <AppIcon style={{ fontSize: "50px" }} /> */}
+                      </div>
+                      <p className="font-semibold w-[250px]">
+                        Ask me anything related to Devcon SEA.
+                      </p>
+                    </motion.div>
+                  )}
+              </AnimatePresence>
 
               {/* <div
                 className={`text-red-500 text-xs shrink-0 ${
@@ -544,7 +575,7 @@ const DevaBot = ({
                         <Button
                           key={index}
                           {...draggable}
-                          className={`!text-black px-2 !py-1.5 !px-3 rounded text-xs plain border-none shadow bg-gray-100 ${
+                          className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
                             index === array.length - 1 ? "mr-4" : ""
                           }`}
                           fat
@@ -575,7 +606,7 @@ const DevaBot = ({
                 <div className={cn("grow relative")}>
                   <input
                     className={cn(
-                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] rounded-full placeholder-[#747474] focus:outline-none",
+                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] rounded-full placeholder-[#747474] focus:outline-none",
                       {
                         "opacity-50": executingQuery,
                       }
@@ -594,7 +625,7 @@ const DevaBot = ({
                   />
                   <div
                     className={cn(
-                      "absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all duration-150 cursor-pointer",
+                      "absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all pb-[2px] cursor-pointer",
                       {
                         "opacity-50": executingQuery,
                       }
