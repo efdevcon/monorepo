@@ -94,7 +94,7 @@ const DevaBot = ({
   // const [partialChunk, setPartialChunk] = React.useState("");
 
   const onSend = async () => {
-    if (executingQuery) return;
+    if (executingQuery || query.length === 0) return;
 
     setExecutingQuery(true);
     setStreamingMessage("");
@@ -557,7 +557,7 @@ const DevaBot = ({
                 })}
               >
                 <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-                  <div className="flex">
+                  <div className="flex mb-3">
                     <div
                       className={`flex flex-wrap gap-2 py-2 shrink-0 ${
                         messages.length > 0 ? "hidden" : ""
@@ -592,11 +592,11 @@ const DevaBot = ({
                 </SwipeToScroll>
               </div>
 
-              <Separator className="mb-2" />
+              <Separator className="mb-3" />
 
               <div
                 className={cn(
-                  "shrink-0 flex items-center justify-center gap-1 my-3 mt-1.5 w-full relative",
+                  "shrink-0 flex items-center justify-center gap-1 mb-4 mt-1.5 w-full relative",
                   { "mt-0": executingQuery || messages.length > 0 }
                 )}
               >
@@ -606,14 +606,19 @@ const DevaBot = ({
                 <div className={cn("grow relative")}>
                   <input
                     className={cn(
-                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] rounded-full placeholder-[#747474] focus:outline-none",
+                      // text-16 = avoid zoom on iphone jesus christ
+                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
                       {
                         "opacity-50": executingQuery,
                       }
                     )}
                     ref={textareaRef}
                     value={query}
-                    onChange={(e) => setQuery(e.target.value)}
+                    onChange={(e) => {
+                      if (!executingQuery) {
+                        setQuery(e.target.value);
+                      }
+                    }}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" && !e.shiftKey && !executingQuery) {
                         e.preventDefault();
@@ -644,15 +649,19 @@ const DevaBot = ({
                     className={cn(
                       "mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]",
                       {
-                        "opacity-50": executingQuery,
+                        // "opacity-50": executingQuery,
+                        "!bg-[#7D52F4]": query.length > 0,
                       }
                     )}
                     onClick={onSend}
-                    disabled={executingQuery}
+                    disabled={executingQuery || query.length === 0}
                   >
                     <ChevronRight
-                      className="text-lg"
-                      style={{ fontSize: "12px" }}
+                      className="text-lg icon transition-all duration-500"
+                      style={{
+                        fontSize: "12px",
+                        fill: query.length > 0 ? "white" : "#646E83",
+                      }}
                     />
                   </CircleIcon>
                 </div>
