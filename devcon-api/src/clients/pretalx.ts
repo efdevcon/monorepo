@@ -27,7 +27,7 @@ export async function GetLastcheduleUpdate() {
 }
 
 export async function GetRooms() {
-  const rooms = await exhaustResource('/rooms')
+  const rooms = await exhaustResource('rooms')
   return rooms.map((i: any) => {
     return {
       id: i.name?.en ? defaultSlugify(i.name?.en) : String(i.id),
@@ -66,7 +66,6 @@ export async function GetSpeaker(id: string, params: Partial<RequestParams> = {}
 
 async function exhaustResource(slug: string, limit = PRETALX_CONFIG.DEFAULT_LIMIT, offset = 0, results = [] as any): Promise<any> {
   return get(`${slug}${slug.includes('?') ? '&' : '?'}limit=${limit}&offset=${offset}`).then((data: any) => {
-    return data.results
     results.push(data.results)
     if (data.next) {
       console.log('GET', slug, 'TOTAL COUNT', data.count)
