@@ -23,13 +23,13 @@ export async function GetRecommendedSpeakers(id: string, includeFeatured?: boole
   const speakers = await scheduleClient.speaker.findMany({
     where: {
       AND: [
-        // {
-        //   sessions: {
-        //     some: {
-        //       eventId: 'devcon-7',
-        //     },
-        //   },
-        // },
+        {
+          sessions: {
+            some: {
+              eventId: 'devcon-7',
+            },
+          },
+        },
         {
           OR: [
             { lens: { in: lens.filter((i) => i.handle).map((i) => i.handle) } },
