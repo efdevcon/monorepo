@@ -9,7 +9,7 @@ import { APP_CONFIG } from 'utils/config'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
-const eventName = 'devcon-6' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
+const eventName = 'devcon-7' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
 const websiteQuestionId = 29
 const twitterQuestionId = 44
 const githubQuestionId = 43
@@ -298,7 +298,10 @@ async function get(slug: string) {
     return cache.get(slug)
   }
 
-  const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
+  // https://api.devcon.org/events/devcon-7/sessions?size=1000&version=1.0.0
+
+  // const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
+  const response = await fetch(`${'https://api.devcon.org'}${slug}`).then(resp => resp.json())
 
   let data = response
 

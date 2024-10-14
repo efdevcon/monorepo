@@ -455,7 +455,7 @@ export const Schedule = (props: any) => {
       </div>
 
       <RecoilRoot>
-        <DevaBot recommendationMode sessions={formattedSessions} />
+        <DevaBot sessions={formattedSessions} />
       </RecoilRoot>
 
       {!personalAgenda && (

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
+import Link from "lib/components/link";
 import DevaHead from "./deva.png";
 import { Button } from "lib/components/button";
 import CloseIcon from "../../assets/icons/cross.svg";
@@ -263,7 +264,7 @@ const DevaBot = ({
                               ? "DevAI responded"
                               : "You asked"}
                           </span> */}
-                          <Markdown
+                          <div
                             className={cn("markdown p-3 py-2 w-auto", {
                               "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
                                 isAssistantReply,
@@ -271,60 +272,106 @@ const DevaBot = ({
                                 !isAssistantReply,
                             })}
                           >
-                            {
-                              message.text.split(
-                                "System: The current date is:"
-                              )[0]
-                            }
-                          </Markdown>
+                            <Markdown className={cn("markdown")}>
+                              {
+                                message.text.split(
+                                  "System: The current date is:"
+                                )[0]
+                              }
+                            </Markdown>
 
-                          {message.files.length > 0 && (
-                            <div className="flex flex-col text-sm opacity-50 ">
-                              <p className="mt-1">References</p>
-                              <div className="flex gap-2 flex-wrap">
-                                {(() => {
-                                  const referencesTracker = {} as any;
+                            {message.files.length > 0 && (
+                              <div className="flex flex-col text-sm">
+                                <p className="mt-1 mb-2 font-bold">
+                                  References
+                                </p>
+                                <div className="flex gap-2 flex-wrap">
+                                  {(() => {
+                                    const referencesTracker = {} as any;
 
-                                  return message.files.map(
-                                    ({ file, fileUrl }: any, index: number) => {
-                                      if (recommendationMode) {
-                                        const sessionId = file.filename
-                                          .split("session_")[1]
-                                          .split(".json")[0];
+                                    return message.files.map(
+                                      (
+                                        { file, fileUrl }: any,
+                                        index: number
+                                      ) => {
+                                        // Show if AI-context was the source of the answer, but don't show it in production (meaningless to end user)
+                                        if (
+                                          process.env.NODE_ENV !==
+                                            "development" &&
+                                          file.filename === "ai_context.txt"
+                                        )
+                                          return (
+                                            <React.Fragment
+                                              key={index}
+                                            ></React.Fragment>
+                                          );
 
-                                        if (!sessionId) return null;
+                                        const sessionId =
+                                          file &&
+                                          file.filename &&
+                                          file.filename.startsWith(
+                                            "session_"
+                                          ) &&
+                                          file.filename.endsWith(".json") &&
+                                          file.filename
+                                            .split("session_")[1]
+                                            .split(".json")[0];
 
-                                        const session = sessions.find(
-                                          (session: any) =>
-                                            session.id === sessionId
-                                        );
+                                        if (sessionId) {
+                                          const session = sessions.find(
+                                            (session: any) =>
+                                              session.id === sessionId
+                                          );
 
-                                        return (
-                                          <div key={index}>{session.title}</div>
-                                        );
+                                          if (session) {
+                                            return (
+                                              <Link
+                                                href={`/sessions/${session.id}`}
+                                                className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
+                                                key={index}
+                                              >
+                                                <p className="">
+                                                  {session.title}
+                                                </p>
+                                                <p>{session.type}</p>
+                                                <p className="opacity-70">
+                                                  {session.speakers
+                                                    .map(
+                                                      (speaker: any) =>
+                                                        speaker.name
+                                                    )
+                                                    .join(", ")}
+                                                </p>
+                                              </Link>
+                                            );
+                                          }
+                                        }
+
+                                        if (fileUrl) {
+                                          if (referencesTracker[file.fileUrl])
+                                            return null;
+
+                                          referencesTracker[file.fileUrl] =
+                                            true;
+                                          return (
+                                            <Link href={fileUrl} key={index}>
+                                              https://devcon.org{fileUrl}
+                                            </Link>
+                                          );
+                                        } else {
+                                          return (
+                                            <div key={index}>
+                                              {file.filename}
+                                            </div>
+                                          );
+                                        }
                                       }
-
-                                      if (fileUrl) {
-                                        if (referencesTracker[file.fileUrl])
-                                          return null;
-
-                                        referencesTracker[file.fileUrl] = true;
-                                        return (
-                                          <Link href={fileUrl} key={index}>
-                                            https://devcon.org{fileUrl}
-                                          </Link>
-                                        );
-                                      } else {
-                                        return (
-                                          <div key={index}>{file.filename}</div>
-                                        );
-                                      }
-                                    }
-                                  );
-                                })()}
+                                    );
+                                  })()}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </div>
                         </div>
                       );
                     })}
