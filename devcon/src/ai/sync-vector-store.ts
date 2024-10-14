@@ -1,3 +1,3 @@
 import api from './open-ai'
 
-api.prepareContent('asst_nirZMEbcECQHLSduSq73vmEB')
+api.prepareContent(process.env.OPEN_AI_ASSISTANT_ID as string)

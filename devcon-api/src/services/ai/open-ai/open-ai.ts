@@ -400,7 +400,7 @@ export const api = (() => {
 
         const recommendationAssistant = await openai.beta.assistants.create({
           instructions:
-            'You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Every time you recommend a talk, provide a quote from the talk that best represents the talk and how it relates to the user query. Try to recommend talks that are in the future. The current date will be provided to you with the user query, to help you discern what is in the future and what is not.', // You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Return a list of session IDs in JSON format. You ONLY return JSON, and you ONLY return the session IDs, in the form of a JSON array named "session_ids". The current date will be provided to you, only recommend talks that are in the future.',
+            'You are a recommendation assistant for Devcon, the premier Ethereum Conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Every time you recommend a talk, reference the talk in the annotations. Try to recommend talks that are in the future. The current date will be provided to you with the user query, to help you discern what is in the future and what is not.', // You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Return a list of session IDs in JSON format. You ONLY return JSON, and you ONLY return the session IDs, in the form of a JSON array named "session_ids". The current date will be provided to you, only recommend talks that are in the future.',
           name: `recommendation_assistant`,
           tools: [{ type: 'file_search' }],
           // response_format: zodResponseFormat(Recommendations, 'json_object'),
@@ -410,14 +410,57 @@ export const api = (() => {
         return recommendationAssistant
       },
       syncScheduleAssistant: async (assistantID: string, scheduleVersion: string) => {
-        const vectorStore = await openai.beta.vectorStores.create({
-          name: `pretalx_schedule_${scheduleVersion}`,
+        console.log('syncing schedule assistant')
+
+        // const vectorStore = await openai.beta.vectorStores.create({
+        //   name: `pretalx_schedule_${scheduleVersion}`,
+        // })
+
+        const vectorStoreName = `github_${process.env.GITHUB_SHA}`
+
+        const vectorStores = await openai.beta.vectorStores.list()
+
+        const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
+
+        if (!vectorStore) {
+          console.error(`Vector store not found ${vectorStoreName}`)
+
+          return
+          // throw { error: `Vector store not found ${vectorStoreName}` }
+        }
+
+        const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
+
+        const sessions = await sessionsResponse.json()
+
+        const formattedSessions = sessions.data.items.map((session: any) => {
+          return {
+            id: session.id,
+            title: session.title,
+            description: session.description,
+            track: session.track,
+            type: session.type,
+            expertise: session.expertise,
+            tags: session.tags,
+            keywords: session.keywords,
+            speakers: session.speakers.map((speaker: any) => {
+              return {
+                id: speaker.name,
+                description: speaker.description,
+                name: speaker.name,
+              }
+            }),
+          }
         })
 
-        const sessions = await client.session.findMany({ where: { eventId: 'devcon-6' } })
+        console.log(formattedSessions.length, 'formattedSessions')
+
+        // return
+
+        // const sessions = await client.session.findMany({ where: { eventId: scheduleVersion } })
 
         // Create FileLike objects for each session
-        const sessionFiles: FileLike[] = sessions.map((session: any) => {
+        const sessionFiles: FileLike[] = formattedSessions.map((session: any) => {
           const sessionBlob = new Blob([JSON.stringify(session)], { type: 'application/json' })
 
           const asFile = new File([sessionBlob], `session_${session.id}.json`)
@@ -431,7 +474,9 @@ export const api = (() => {
         })
 
         // Upload all sessions in a single batch
-        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: sessionFiles })
+        const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: sessionFiles })
+
+        console.log(response, 'response')
 
         // Update assistant to use our new vector store
         await openai.beta.assistants.update(assistantID, {
@@ -525,7 +570,7 @@ const main = async (query: string) => {
 ;(async () => {
   // const assistant = await api.recommendations.createScheduleAssistant()
   // console.log(assistant)
-  // await api.recommendations.syncScheduleAssistant('asst_g3NthBrU0XEd2RCRUFZJZHo4', 'devcon-6')
+  // await api.recommendations.syncScheduleAssistant('asst_g3NthBrU0XEd2RCRUFZJZHo4', 'devcon-7')
   // New asst_g3NthBrU0XEd2RCRUFZJZHo4
   // asst_PRn8YEfa54OGfroaVFhvLWlv <-- RIGID version
   // const recommendations = await api.recommendations.getScheduleRecommendations('asst_g3NthBrU0XEd2RCRUFZJZHo4', 'I want cypherpunk talks')

@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  sync-website:
     defaults:
       run:
         working-directory: ./devcon
@@ -28,6 +28,38 @@ jobs:
         run: |
           touch .env
           echo OPEN_AI_KEY='${{ secrets.OPEN_AI_KEY }}' >> .env
+          echo OPEN_AI_ASSISTANT_ID='asst_fUtZhDjL35nZBBog2bJTKNoy' >> .env
+          echo GITHUB_SHA='${{ github.sha }}' >> .env
 
       - name: Run script
         run: yarn ai-content-sync
+
+  sync-schedule:
+    # Running after the website content is synced because that job is also responsible for creating the vector store which this job will use
+    needs: sync-website
+    defaults:
+      run:
+        working-directory: ./devcon-api
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo OPEN_AI_KEY='${{ secrets.OPEN_AI_KEY }}' >> .env
+          echo OPEN_AI_ASSISTANT_ID='asst_fUtZhDjL35nZBBog2bJTKNoy' >> .env
+          echo GITHUB_SHA='${{ github.sha }}' >> .env
+
+      - name: Run script
+        run: yarn ai-schedule-sync
