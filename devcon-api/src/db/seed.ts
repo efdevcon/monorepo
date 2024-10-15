@@ -3,7 +3,6 @@ import { GetData, GetSpeakerData } from '@/clients/filesystem'
 import { PrismaClient } from '@prisma/client'
 import words from 'natural/lib/natural/util'
 import dayjs from 'dayjs'
-import { seedPretalx } from './pretalx'
 
 const client = new PrismaClient()
 const stopwords = [
@@ -295,7 +294,8 @@ async function main() {
 
     let data: any = {
       ...item,
-      tags: item.tags.join(','),
+      tags: item.tags?.join(',') || '',
+      keywords: item.keywords?.join(',') || '',
       slot_start: item.slot_start ? dayjs(item.slot_start).toISOString() : null,
       slot_end: item.slot_end ? dayjs(item.slot_end).toISOString() : null,
       event: {
@@ -379,10 +379,6 @@ async function main() {
   await client.relatedSession.createMany({
     data: relatedSessions,
   })
-
-  // Seed Pretalx Data
-  console.log('- Seed Pretalx Data')
-  await seedPretalx()
 }
 
 function computeCosineSimilarity(vector1: number[], vector2: number[]): number {
