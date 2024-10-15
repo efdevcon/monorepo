@@ -52,7 +52,7 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: yarn
+        run: yarn --ignore-scripts
 
       - name: Create env file
         run: |
