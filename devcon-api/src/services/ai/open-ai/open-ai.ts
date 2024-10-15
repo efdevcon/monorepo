@@ -7,10 +7,10 @@ import { prompts } from './fine-tune'
 import { filenameToUrl } from '@lib/cms/filenameToUrl'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
-import { PrismaClient } from '@prisma/client'
+// import { PrismaClient } from '@prisma/client'
 import { FileLike } from 'openai/uploads'
 
-const client = new PrismaClient()
+// const client = new PrismaClient()
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
