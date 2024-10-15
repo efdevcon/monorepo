@@ -17,6 +17,8 @@ jobs:
         with:
           node-version: "20"
       - run: yarn install
+        env:
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
       - run: yarn sync:pretalx
         env:
           PRETALX_API_KEY: ${{ secrets.PRETALX_API_KEY }}
