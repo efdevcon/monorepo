@@ -1,0 +1,31 @@
+{
+  "id": "rethinking-ethereums-account-model",
+  "sourceId": "GEEQXS",
+  "title": "Rethinking Ethereum’s account model",
+  "description": "Account centric models are inherently faster.\r\n\r\nEthereum operates on a global account based model. This means a global lock occurs any time someone needs to touch a piece of global state, such as an ERC20.\r\n\r\nAn account centric model, instead, creates a new deterministic address or state for each account. This means calls into transfers on ERC20s and dexes can be made in parallel, accelerating speed drastically. It also is more secure.\r\n\r\nIt’s a forgotten mechanism to scale ETH.",
+  "track": "Core Protocol",
+  "type": "Lightning Talk",
+  "expertise": "Expert",
+  "audience": "Engineering",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [
+    "Account",
+    "Models"
+  ],
+  "tags": [
+    "Core Protocol",
+    "Layer 1",
+    "Ethereum Roadmap",
+    "model",
+    "account",
+    "Core Protocol",
+    "Ethereum Roadmap",
+    "Layer 1"
+  ],
+  "language": "en",
+  "speakers": [
+    "will-villanueva"
+  ],
+  "eventId": "devcon-7"
+}

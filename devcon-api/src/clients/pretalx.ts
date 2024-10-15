@@ -114,7 +114,7 @@ function mapSession(i: any, params: Partial<RequestParams>) {
     keywords: keywords,
     tags: [...i.tags, ...predefinedTags] ?? [],
     language: 'en',
-    speakers: params.inclContacts ? i.speakers.map((i: any) => mapSpeaker(i, params)) : i.speakers.map((i: any) => i.code),
+    speakers: params.inclContacts ? i.speakers.map((i: any) => mapSpeaker(i, params)) : i.speakers.map((i: any) => defaultSlugify(i.name)),
     eventId: `devcon-${PRETALX_CONFIG.PRETALX_EVENT_ID}`,
   }
 

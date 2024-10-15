@@ -39,3 +39,23 @@ export async function CommitSession(session: any, commitMessage: string = '') {
     throw error
   }
 }
+
+export async function TriggerWorkflow(workflowId: string, ref: string = 'main') {
+  const response = await fetch(`https://api.github.com/repos/efdevcon/monorepo/actions/workflows/${workflowId}/dispatches`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      Authorization: `token ${SERVER_CONFIG.GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      ref: ref,
+    }),
+  })
+
+  if (!response.ok) {
+    console.error('Error triggering workflow:', response.status, response.statusText)
+  }
+
+  return response.ok
+}

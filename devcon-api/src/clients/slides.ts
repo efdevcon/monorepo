@@ -3,18 +3,19 @@ import { CONFIG } from '@/utils/config'
 import fs from 'fs'
 import { GoogleApis } from 'googleapis'
 
-const PRESENTATION_SCOPES = ['https://www.googleapis.com/auth/presentations']
-const DRIVE_SCOPES = ['https://www.googleapis.com/auth/drive']
+const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
 const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
 const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
 const TEMPLATE_ID = '1fw7CLNMXMat3wrBGUZweTtbRkGoxV5rPvP-m6Kus3KQ'
+const sendEmail = false
+const emailMessage = ''
 
 let client: GoogleApis | null = null
 
 export async function CreateFolders(folders: string[]) {
   console.log('Create folders', folders)
   if (!client) {
-    client = await AuthenticateServiceAccount(DRIVE_SCOPES)
+    client = await AuthenticateServiceAccount(SCOPES)
   }
   const drive = client.drive('v3')
 
@@ -48,7 +49,7 @@ export async function CreateFolders(folders: string[]) {
 
 export async function CreatePresentationFromTemplate(title: string, id: string, emails: string[]) {
   if (!client) {
-    client = await AuthenticateServiceAccount([...PRESENTATION_SCOPES, ...DRIVE_SCOPES])
+    client = await AuthenticateServiceAccount(SCOPES)
   }
   const drive = client.drive('v3')
 
@@ -72,7 +73,7 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
       fileId: TEMPLATE_ID,
       supportsAllDrives: true,
       requestBody: {
-        name: `[${id}] ${title}`,
+        name: `${title} [${id}]`,
         parents: [FOLDER_ID],
       },
     })
@@ -88,8 +89,13 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
       await drive.permissions.create({
         fileId: presentationId,
         supportsAllDrives: true,
-        requestBody: { type: 'user', role: 'writer', emailAddress: email },
-        sendNotificationEmail: false,
+        requestBody: {
+          type: 'user',
+          role: 'writer',
+          emailAddress: email,
+        },
+        sendNotificationEmail: sendEmail,
+        emailMessage: sendEmail && emailMessage ? emailMessage : undefined,
       })
     }
 

@@ -19,7 +19,7 @@
     "lint": "eslint --fix",
     "prettier": "prettier './src' --write",
     "slides": "ts-node ./src/scripts/slides.ts",
-    "seed:pretalx": "ts-node ./src/scripts/seed-pretalx.ts",
+    "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
     "db:generate": "prisma db push --force-reset --accept-data-loss && prisma db seed && yarn db:generate:account",
     "db:generate:account": "prisma db push --schema src/db/account.prisma && yarn copy:account",
     "copy:account": "mkdir -p dist/db && cp src/db/clients dist/db/clients -r",
