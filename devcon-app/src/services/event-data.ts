@@ -300,8 +300,8 @@ async function get(slug: string) {
 
   // https://api.devcon.org/events/devcon-7/sessions?size=1000&version=1.0.0
 
-  // const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
-  const response = await fetch(`${'https://api.devcon.org'}${slug}`).then(resp => resp.json())
+  const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
+  // const response = await fetch(`${'https://api.devcon.org'}${slug}`).then(resp => resp.json())
 
   let data = response
 

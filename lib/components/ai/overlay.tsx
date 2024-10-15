@@ -77,6 +77,7 @@ const DevaBot = ({
   const resetThreadID = useResetRecoilState(threadIDState);
 
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
+  const [streamingMessage, setStreamingMessage] = React.useState("");
 
   React.useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
@@ -86,13 +87,63 @@ const DevaBot = ({
     setError("");
   }, [query]);
 
+  const messagesEndRef = React.useRef<HTMLDivElement>(null);
+  const messagesContainerRef = React.useRef<HTMLDivElement>(null);
+  const [isAtBottom, setIsAtBottom] = React.useState(true);
+
+  const checkIfAtBottom = () => {
+    const container = messagesContainerRef.current;
+    if (container) {
+      const isAtBottom =
+        container.scrollHeight - container.scrollTop <=
+        container.clientHeight + 50;
+      setIsAtBottom(isAtBottom);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (isAtBottom && messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  React.useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (executingQuery && isAtBottom) {
+      intervalId = setInterval(scrollToBottom, 300);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [executingQuery, isAtBottom]);
+
+  React.useEffect(() => {
+    if (isAtBottom) {
+      scrollToBottom();
+    }
+  }, [messages, isAtBottom]);
+
+  React.useEffect(() => {
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.addEventListener("scroll", checkIfAtBottom);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", checkIfAtBottom);
+      }
+    };
+  }, []);
+
   const reset = () => {
     resetThreadID();
     resetMessages();
   };
-
-  const [streamingMessage, setStreamingMessage] = React.useState("");
-  // const [partialChunk, setPartialChunk] = React.useState("");
 
   const onSend = async () => {
     if (executingQuery || query.length === 0) return;
@@ -246,7 +297,11 @@ const DevaBot = ({
               </div>
 
               <div className="relative flex flex-col grow w-full gap-4 no-scrollbar">
-                <div className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10">
+                <div
+                  className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10"
+                  ref={messagesContainerRef}
+                  onScroll={checkIfAtBottom}
+                >
                   {messages &&
                     messages.length > 0 &&
                     messages.map((message: any, index: any) => {
@@ -311,6 +366,7 @@ const DevaBot = ({
                                         const session = sessions.find(
                                           (s: any) => s.id === sessionId
                                         );
+
                                         if (session) {
                                           sessionReferences.push(
                                             <Link
@@ -392,6 +448,8 @@ const DevaBot = ({
                       </Markdown>
                     </div>
                   )}
+
+                  <div ref={messagesEndRef} />
 
                   <AnimatePresence>
                     {!executingQuery &&
