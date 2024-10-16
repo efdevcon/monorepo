@@ -64,7 +64,7 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
     })
 
     if (exists.data.files && exists.data.files.length > 0) {
-      console.log('Presentation already exists', title)
+      console.log('Presentation already exists', id, title)
       return exists.data.files[0].id
     }
 
@@ -80,7 +80,7 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
 
     const presentationId = presentation.data.id
     if (!presentationId) {
-      console.error('Error create presentation from template', TEMPLATE_ID)
+      console.error('Error create presentation from template', TEMPLATE_ID, id, title)
       return
     }
 
@@ -102,7 +102,7 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
     console.log('Presentation created', `https://docs.google.com/presentation/d/${presentationId}`)
     return presentationId
   } catch (e) {
-    console.log('Error create presentation from template', TEMPLATE_ID)
+    console.log('Error create presentation from template', TEMPLATE_ID, id, title)
     console.error(e)
   }
 }

@@ -1,11 +1,13 @@
 import { GetData } from '@/clients/filesystem'
 import { GetRooms, GetSpeakers, GetSubmissions } from '@/clients/pretalx'
+import { CreatePresentationFromTemplate } from '@/clients/slides'
 import fs from 'fs'
 
 async function main() {
   console.log('Syncing Pretalx...')
   await syncRooms()
   await syncSessions()
+  // await createPresentations()
 }
 
 async function syncRooms() {
@@ -68,6 +70,26 @@ async function syncSessions() {
 
   console.log('Synced Pretalx Schedule')
   console.log('')
+}
+
+async function createPresentations() {
+  const sessionsFs = GetData('sessions/devcon-7')
+  const sessions = await GetSubmissions({ inclContacts: true })
+  console.log('# of Submissions', sessions.length)
+
+  for (const sessionFs of sessionsFs) {
+    if (!sessionFs.resources_presentation) {
+      const session = sessions.find((s: any) => s.id === sessionFs.id)
+
+      if (session) {
+        const speakerEmails = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
+
+        await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+      } else {
+        console.log(`Session ${sessionFs.id} not found in Pretalx data`)
+      }
+    }
+  }
 }
 
 main()
