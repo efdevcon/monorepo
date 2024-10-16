@@ -19,7 +19,7 @@ import LoiLuuImage from './speaker-images/Loi-Luu.png'
 import MatthewTanImage from './speaker-images/Matthew-Tan.png'
 import PrestonVanLoonImage from './speaker-images/Preston-Van-Loon.png'
 import RogerDingledineImage from './speaker-images/Roger-Dingledine.png'
-import ShayneCoplanImage from './speaker-images/Shayne-Coplan.png'
+// import ShayneCoplanImage from './speaker-images/Shayne-Coplan.png'
 import SreeramKannanImage from './speaker-images/Sreeram-Kannan.png'
 import TimBeikoImage from './speaker-images/Tim-Beiko.png'
 import TrentVanEppsImage from './speaker-images/Trent-Van-Epps.png'
@@ -525,12 +525,12 @@ const FeaturedSpeakers = () => {
         avatarUrl: TrentVanEppsImage,
         link: 'https://x.com/trent_vanepps',
       },
-      {
-        name: 'Shayne Coplan',
-        role: 'CEO @Polymarket',
-        avatarUrl: ShayneCoplanImage,
-        link: 'https://x.com/shayne_coplan',
-      },
+      // {
+      //   name: 'Shayne Coplan',
+      //   role: 'CEO @Polymarket',
+      //   avatarUrl: ShayneCoplanImage,
+      //   link: 'https://x.com/shayne_coplan',
+      // },
       {
         name: 'Gubsheep',
         role: 'Co-founder of 0xPARC and creator of the Dark Forest game',

@@ -232,13 +232,13 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'Devcon Week',
-            url: '/devcon-week',
+            title: 'Experiences',
+            url: '/experiences',
             type: 'page',
           },
           {
-            title: 'Experiences',
-            url: '/experiences',
+            title: 'Devcon Week',
+            url: '/devcon-week',
             type: 'page',
           },
         ],
