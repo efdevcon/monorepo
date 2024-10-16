@@ -18,6 +18,7 @@
     "test:coverage": "NODE_ENV=test jest --coverage --detectOpenHandles --no-cache",
     "lint": "eslint --fix",
     "prettier": "prettier './src' --write",
+    "migrate": "ts-node ./src/scripts/migrate.ts",
     "slides": "ts-node ./src/scripts/slides.ts",
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
     "db:generate": "prisma db push --force-reset --accept-data-loss && prisma db seed && yarn db:generate:account",
