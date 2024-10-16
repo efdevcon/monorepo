@@ -76,7 +76,7 @@ _self.addEventListener('push', event => {
     console.error('Error parsing push event data:', e)
   }
 
-  const title = data.title ? `Devcon SEA Passport - ${data.title}` : 'Devcon SEA Passport'
+  const title = data.title ? data.title : 'Devcon SEA Passport'
   const options = {
     body: data.body || 'You have a new notification',
     icon: '/android-chrome-192x192.png',
@@ -122,3 +122,27 @@ _self.addEventListener('notificationclick', event => {
     )
   }
 })
+
+// TODO: this breaks things
+// self.addEventListener('fetch', event => {
+//   event.respondWith(
+//     caches.match(event.request).then(cachedResponse => {
+//       if (cachedResponse) {
+//         return cachedResponse
+//       }
+//       return fetch(event.request).then(response => {
+//         // Check if the response is a 404
+//         if (response.status === 404) {
+//           // Handle 404 response, e.g., return a custom 404 page or ignore caching
+//           return caches.match('/404') || Response.error()
+//         }
+//         // Cache the response if it's not a 404
+//         const responseClone = response.clone()
+//         caches.open('dynamic-cache').then(cache => {
+//           cache.put(event.request, responseClone)
+//         })
+//         return response
+//       })
+//     })
+//   )
+// })

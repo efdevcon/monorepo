@@ -126,6 +126,27 @@ const defaultRules = [
       },
     },
   },
+  // Caching 404 isn't working atm - need to figure out a fix eventually
+  // {
+  //   urlPattern: ({ url }) => {
+  //     const isSameOrigin = self.origin === url.origin;
+  //     return isSameOrigin; // Apply this rule to all same-origin requests
+  //   },
+  //   handler: 'NetworkFirst',
+  //   options: {
+  //     cacheName: 'page-cache',
+  //     plugins: [
+  //       {
+  //         cacheWillUpdate: async ({ request, response, event, state }) => {
+  //           if (response && response.status === 404) {
+  //             return caches.match('/404');
+  //           }
+  //           return response;
+  //         },
+  //       },
+  //     ],
+  //   },
+  // },
   {
     urlPattern: ({ url }) => {
       const isSameOrigin = self.origin === url.origin
@@ -187,15 +208,15 @@ const defaultRules = [
 const customRules = [
   {
     urlPattern: ({ url }) => {
-      const { origin, pathname } = url;
+      const { origin, pathname } = url
 
-      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org');
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
 
       if (isApi && pathname.includes('/version')) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     },
     handler: 'NetworkFirst', // Network first for version name always; this is what we use to detect if we have to perform requests to speakers/sessions (which are massive datasets with aggressive client side caches)
     options: {
@@ -209,15 +230,15 @@ const customRules = [
   // Always use cache for large data sets like speakers and sessions - the cache will be broken by appending a new version to the url on the client side
   {
     urlPattern: ({ url }) => {
-      const { origin, pathname } = url;
+      const { origin, pathname } = url
 
-      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org');
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
 
       if (isApi && pathname.includes('/sessions')) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     },
     handler: 'CacheFirst',
     options: {
@@ -232,17 +253,17 @@ const customRules = [
           // e.g.: https://api.devcon.org/sessions?version=1 is cached, request to https://api.devcon.org/sessions?version=2 fails -
           // handlerDidError makes sure it returns the "version 1" cache anyway, which is not the default behaviour (it matches on the slug by default, which differs here)
           handlerDidError: async ({ event, request, state }) => {
-            console.log('Edge case met on sessions fetch: pulling whatever is in cache.');
+            console.log('Edge case met on sessions fetch: pulling whatever is in cache.')
             // Open the specific cache
-            const cache = await caches.open('devcon-api-sessions');
+            const cache = await caches.open('devcon-api-sessions')
             // Attempt to find any response in this cache
-            const keys = await cache.keys();
-            let response = null;
+            const keys = await cache.keys()
+            let response = null
             for (const key of keys) {
-              response = await cache.match(key);
-              if (response) break;
+              response = await cache.match(key)
+              if (response) break
             }
-            return response || Response.error(); // Return the found cached response or an error
+            return response || Response.error() // Return the found cached response or an error
           },
         },
       ],
@@ -251,15 +272,15 @@ const customRules = [
   // Always use cache for large data sets like speakers and sessions - the cache will be broken by appending a new version to the url on the client side
   {
     urlPattern: ({ url }) => {
-      const { origin, pathname } = url;
+      const { origin, pathname } = url
 
-      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org');
+      const isApi = origin.includes('localhost:4000') || origin.includes('api.devcon.org')
 
       if (isApi && pathname.includes('/speakers')) {
-        return true;
+        return true
       }
 
-      return false;
+      return false
     },
     handler: 'CacheFirst',
     options: {
@@ -274,17 +295,17 @@ const customRules = [
           // e.g.: https://api.devcon.org/speakers?version=1 is cached, request to https://api.devcon.org/speakers?version=2 fails -
           // handlerDidError makes sure it returns the "version 1" cache anyway, which is not the default behaviour (it matches on the slug by default, which differs here)
           handlerDidError: async ({ event, request, state }) => {
-            console.log('Edge case met on speakers fetch: pulling whatever is in cache.');
+            console.log('Edge case met on speakers fetch: pulling whatever is in cache.')
             // Open the specific cache
-            const cache = await caches.open('devcon-api-speakers');
+            const cache = await caches.open('devcon-api-speakers')
             // Attempt to find any response in this cache
-            const keys = await cache.keys();
-            let response = null;
+            const keys = await cache.keys()
+            let response = null
             for (const key of keys) {
-              response = await cache.match(key);
-              if (response) break;
+              response = await cache.match(key)
+              if (response) break
             }
-            return response || Response.error(); // Return the found cached response or an error
+            return response || Response.error() // Return the found cached response or an error
           },
         },
       ],

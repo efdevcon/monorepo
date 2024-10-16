@@ -26,11 +26,11 @@ const pages = [
     precacheHtml: true,
     // precacheJson: true,
   },
-  // {
-  //   route: '/404',
-  //   precacheHtml: true,
-  //   // precacheJson: true,
-  // },
+  {
+    route: '/404',
+    precacheHtml: true,
+    // precacheJson: true,
+  },
   // {
   //   route: '/info',
   //   precacheHtml: true,

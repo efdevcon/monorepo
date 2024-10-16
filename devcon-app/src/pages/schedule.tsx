@@ -13,6 +13,8 @@ import { useSessionData } from 'services/event-data'
 import { PageContext } from '../context/page-context'
 import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
 import { FancyLoader } from 'lib/components/loader/loader'
+import DevaBot from 'lib/components/ai/overlay'
+import { RecoilRoot } from 'recoil'
 
 export default pageHOC((props: any) => {
   const sessions = useSessionData()
@@ -25,6 +27,12 @@ export default pageHOC((props: any) => {
     appNotifications: [],
     current: DEFAULT_APP_PAGE,
   }
+
+  // return (
+  //   <RecoilRoot>
+  //     <DevaBot sessions={[]} />
+  //   </RecoilRoot>
+  // )
 
   return (
     <PageContext.Provider value={context}>

@@ -25,14 +25,15 @@ export function SEO(props: SEOProps) {
   const pageContext = usePageContext()
   const separator = props.separator ?? '—'
 
-  let title = 'Devcon Bogotá App'
+  let title = 'Devcon SEA'
+
   if (pageContext?.current?.title && pageContext?.current?.title !== title) {
     title = `${pageContext?.current.title} ${separator} ${title}`
   } else if (props.title) {
     title = `${props.title} ${separator} ${title}`
   }
 
-  const globalTitle = 'Devcon Bogotá App'
+  const globalTitle = 'Devcon SEA'
   const globalDescription = 'Customize your Devcon experience.'
   const globalImage = 'https://app.devcon.org/assets/images/og-graph.png'
   const canonical = props.canonicalUrl || ''
@@ -56,37 +57,36 @@ export function SEO(props: SEOProps) {
     image = props.imageUrl
   }
 
-  const siteUrl = SITE_URL
+  // const siteUrl = SITE_URL
   // const url = `${siteUrl.replace(/\/$/, '')}${router?.asPath}`
 
   return (
     <>
-      <Head>
-        {/* title={title} titleTemplate={titleTemplate} htmlAttributes={{ lang: lang }}> */}
+      {/* title={title} titleTemplate={titleTemplate} htmlAttributes={{ lang: lang }}> */}
 
-        {title && <title>{title}</title>}
-        <meta name="description" content={description} />
-        <meta name="image" content={image} />
+      {title && <title>{title}</title>}
+      <meta name="description" content={description} />
+      <meta name="image" content={image} />
 
-        {globalTitle !== title && <meta property="og:site_name" content={globalTitle} />}
-        <meta property="og:type" content={props.type ?? 'website'} />
-        {/* {url && <meta property="og:url" content={url} />} */}
-        {title && <meta property="og:title" content={title} />}
-        {description && <meta property="og:description" content={description} />}
-        {image && <meta property="og:image" content={image} />}
-        {canonical && <link rel="canonical" href={canonical} />}
-        {props.author?.name && <link itemProp="name" href={props.author?.name} />}
-        {props.author?.url && <link itemProp="url" href={props.author.url} />}
+      {globalTitle !== title && <meta property="og:site_name" content={globalTitle} />}
+      <meta property="og:type" content={props.type ?? 'website'} />
+      {/* {url && <meta property="og:url" content={url} />} */}
+      {title && <meta property="og:title" content={title} />}
+      {description && <meta property="og:description" content={description} />}
+      {image && <meta property="og:image" content={image} />}
+      {canonical && <link rel="canonical" href={canonical} />}
+      {props.author?.name && <link itemProp="name" href={props.author?.name} />}
+      {props.author?.url && <link itemProp="url" href={props.author.url} />}
 
-        {props.author?.name ||
-          (props.author?.url && (
-            <span itemProp="author" itemScope itemType="http://schema.org/Person">
-              {props.author?.name && <link itemProp="name" href={props.author?.name} />}
-              {props.author?.url && <link itemProp="url" href={props.author.url} />}
-            </span>
-          ))}
-        <Twitter title={title} description={description} image={image} />
-      </Head>
+      {props.author?.name ||
+        (props.author?.url && (
+          <span itemProp="author" itemScope itemType="http://schema.org/Person">
+            {props.author?.name && <link itemProp="name" href={props.author?.name} />}
+            {props.author?.url && <link itemProp="url" href={props.author.url} />}
+          </span>
+        ))}
+      <Twitter title={title} description={description} image={image} />
+
       <PWA />
       <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} />
     </>
