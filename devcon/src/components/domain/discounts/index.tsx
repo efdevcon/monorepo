@@ -95,7 +95,7 @@ export function SelfClaimingDiscounts() {
               : Use your Passport & Zero-Knowledge proofs to prove SEA residency, which can help qualify you for a Local
               Builder Discount.
             </li>
-            <li>
+            {/* <li>
               Indian Residents —{' '}
               <Link
                 indicateExternal
@@ -106,7 +106,7 @@ export function SelfClaimingDiscounts() {
               </Link>
               : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you for
               Local Builder Discount.
-            </li>
+            </li> */}
           </ul>
         </li>
         <li>
