@@ -12,7 +12,7 @@ import JayBaxterImage from './speaker-images/Jay-Baxter.png'
 import JuanBennetImage from './speaker-images/Juan-Bennet.png'
 import KevinOwockiImage from './speaker-images/Kevin-Owocki.png'
 import LefterisKarapetsasImage from './speaker-images/Lefteris-Karapetsas.png'
-import NickJohnsonImage from './speaker-images/Nick-Johnson.png'
+// import NickJohnsonImage from './speaker-images/Nick-Johnson.png'
 import PoojaRanjanImage from './speaker-images/Pooja-Ranjan.png'
 import BrunoImage from './speaker-images/bruno.png'
 import LoiLuuImage from './speaker-images/Loi-Luu.png'
@@ -483,12 +483,12 @@ const FeaturedSpeakers = () => {
         avatarUrl: HudsonJamesonImage,
         link: 'https://x.com/hudsonjameson',
       },
-      {
-        name: 'Nick Johnson',
-        role: 'Founder of ENS',
-        avatarUrl: NickJohnsonImage,
-        link: 'https://x.com/nicksdjohnson',
-      },
+      // {
+      //   name: 'Nick Johnson',
+      //   role: 'Founder of ENS',
+      //   avatarUrl: NickJohnsonImage,
+      //   link: 'https://x.com/nicksdjohnson',
+      // },
       {
         name: 'Austin Griffith',
         role: '🧙‍♂️ Builder on Ethereum',
