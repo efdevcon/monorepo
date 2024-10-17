@@ -22,7 +22,7 @@ interface Params extends ParsedUrlQuery {
 
 export default pageHOC(({ sessions, ...props }: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle={props.floor} breadcrumbs={[{ label: props.floor }]}>
       <SEO title={props.floor} />
       <Floor floor={props.floor} rooms={props.rooms} />
     </AppLayout>
