@@ -9,7 +9,7 @@ import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Email Settings" breadcrumbs={[{ label: 'Email Settings' }]}>
       <PrivatePage>
         <EmailSettings {...props} />
       </PrivatePage>

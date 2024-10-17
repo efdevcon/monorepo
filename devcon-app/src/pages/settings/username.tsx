@@ -8,7 +8,7 @@ import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Username Settings" breadcrumbs={[{ label: 'Username Settings' }]}>
       <PrivatePage>
         <UsernameSettings {...props} />
       </PrivatePage>

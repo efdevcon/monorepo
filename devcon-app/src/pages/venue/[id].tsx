@@ -8,7 +8,7 @@ import { SEO } from 'components/domain/seo'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle={props.room.name} breadcrumbs={[{ label: props.room.name }]}>
       <SEO title={props.room.name} />
       <Room {...props} />
     </AppLayout>

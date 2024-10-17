@@ -36,7 +36,7 @@ export default pageHOC((props: any) => {
 
   return (
     <PageContext.Provider value={context}>
-      <AppLayout>
+      <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
         <SEO title="Schedule" />
 
         {sessions ? (

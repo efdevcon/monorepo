@@ -24,7 +24,7 @@ export default pageHOC(({ sessions, ...props }: any) => {
 
   if (room) {
     return (
-      <AppLayout>
+      <AppLayout pageTitle={room.name} breadcrumbs={[{ label: room.name }]}>
         <Room room={room} sessions={sessionsByRoom} event={props.event} />
       </AppLayout>
     )
@@ -32,14 +32,14 @@ export default pageHOC(({ sessions, ...props }: any) => {
 
   if (floor) {
     return (
-      <AppLayout>
+      <AppLayout pageTitle={floor} breadcrumbs={[{ label: floor }]}>
         <Floor floor={floor} rooms={roomsByFloor} />
       </AppLayout>
     )
   }
 
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Agora Convention Center" breadcrumbs={[{ label: 'Agora Convention Center' }]}>
       <>
         <SEO title="Agora Convention Center" />
         <Venue {...props} />

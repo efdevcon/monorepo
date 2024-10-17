@@ -9,7 +9,7 @@ import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 const Offline = pageHOC(() => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Offline" breadcrumbs={[{ label: 'Offline' }]}>
       <>
         <AppNav
           nested

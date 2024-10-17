@@ -361,7 +361,7 @@ export const Speakers = (props: any) => {
 
   return (
     <>
-      <AppNav
+      {/* <AppNav
         nested
         links={[
           {
@@ -384,7 +384,7 @@ export const Speakers = (props: any) => {
             return <IconAdded2 {...starProps} className="icon" style={{ ...starProps.style, opacity: 0.8 }} />
           }
         }}
-      />
+      /> */}
 
       <div className={filterCss['filter']}>
         <div className="section">

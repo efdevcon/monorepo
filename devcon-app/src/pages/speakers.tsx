@@ -23,7 +23,7 @@ export default pageHOC((props: any) => {
   const { query } = useRouter()
 
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'Speakers' }]}>
       <SEO title="Speakers" />
 
       {speakers &&

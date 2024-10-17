@@ -17,7 +17,7 @@ import { RecommendedSpeakers } from 'components/domain/app/speakers/recommended'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Recommended" breadcrumbs={[{ label: 'Recommended' }]}>
       <RecommendedSpeakers />
     </AppLayout>
   )

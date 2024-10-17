@@ -12,7 +12,7 @@ import { SEO } from 'components/domain/seo'
 export default pageHOC((props: any) => {
   if (!props.userSchedule) {
     return (
-      <AppLayout>
+      <AppLayout pageTitle="Sorry Agenda Not found" breadcrumbs={[{ label: 'Sorry Agenda Not found' }]}>
         <NoResults text="Sorry Agenda Not found" subtext="Please try another link or go back to the schedule." />
       </AppLayout>
     )
@@ -20,14 +20,17 @@ export default pageHOC((props: any) => {
 
   if (!props.userSchedule.publicSchedule) {
     return (
-      <AppLayout>
+      <AppLayout pageTitle="Agenda is not public" breadcrumbs={[{ label: 'Agenda is not public' }]}>
         <NoResults text="Agenda is not public" subtext="Please try another link or go back to the schedule." />
       </AppLayout>
     )
   }
 
   return (
-    <AppLayout>
+    <AppLayout
+      pageTitle={`${props.userSchedule.username}'s schedule`}
+      breadcrumbs={[{ label: `${props.userSchedule.username}'s schedule` }]}
+    >
       <SEO
         title={`${props.userSchedule.username}'s schedule`}
         description="Sign up for the Devcon Passport App to customize, plan and share your own Devcon Bogotá Experience."
@@ -39,7 +42,6 @@ export default pageHOC((props: any) => {
 })
 
 export async function getServerSideProps(context: any) {
-
   return {
     props: {
       page: DEFAULT_APP_PAGE,

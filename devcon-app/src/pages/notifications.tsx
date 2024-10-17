@@ -9,7 +9,7 @@ import React from 'react'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle="Notifications" breadcrumbs={[{ label: 'Notifications' }]}>
       <Notifications {...props} />
     </AppLayout>
   )

@@ -185,12 +185,12 @@ const navItems = [
   },
   {
     icon: FolderIcon,
-    href: '/something',
+    href: '/schedule',
     size: 18,
   },
   {
     icon: TicketIcon,
-    href: '/tickets',
+    href: '/ticket',
     size: 18,
   },
   {
@@ -231,13 +231,19 @@ const Navigation = () => {
           })}
         </div>
 
-        <div className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50">
+        <Link
+          href="/schedule"
+          className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+        >
           <CalendarFillIcon style={{ fontSize: 20 }} />
-        </div>
+        </Link>
 
-        <div className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50">
+        <Link
+          href="/schedule"
+          className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+        >
           <AppIcons style={{ fontSize: 40 }} />
-        </div>
+        </Link>
       </div>
     </div>
   )
@@ -266,7 +272,7 @@ export const AppLayout = (
 
         <div className="section pt-5">
           <div className="flex flex-col lg:flex-row gap-8 relative">
-            <div data-type="page-content" className="lg:order-2 grow relative min-h-screen">
+            <div data-type="page-content" className="lg:order-2 grow relative">
               {props.children}
             </div>
             <Navigation />

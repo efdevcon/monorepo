@@ -9,8 +9,8 @@ import { SEO } from 'components/domain/seo'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
-      <SEO title='Community Curated Side Events' />
+    <AppLayout pageTitle="Side Events" breadcrumbs={[{ label: 'Side Events' }]}>
+      <SEO title="Community Curated Side Events" />
       <SideEvents {...props} />
     </AppLayout>
   )

@@ -49,7 +49,7 @@ export function GetRelatedSessions(id: string, sessions: SessionType[]): Array<S
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout>
+    <AppLayout pageTitle={props.session.title} breadcrumbs={[{ label: props.session.title }]}>
       <>
         <SEO
           title={props.session.title}

@@ -357,7 +357,7 @@ export const Schedule = (props: any) => {
 
   return (
     <>
-      <AppNav
+      {/* <AppNav
         nested
         links={[
           {
@@ -398,61 +398,61 @@ export const Schedule = (props: any) => {
             </>
           )
         }}
-      />
+      /> */}
 
-      <div className="section">
-        <div className="expand-right">
-          <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-            <div className={css['basic-filter-container']}>
-              <Basic
-                value={basicFilter}
-                onChange={setBasicFilter}
-                options={
-                  personalAgenda
-                    ? [
-                        {
-                          text: 'Personalized Schedule',
-                          value: 'personal',
-                        },
-                      ]
-                    : [
-                        {
-                          text: 'All',
-                          value: 'all',
-                        },
-                        {
-                          text: 'Upcoming',
-                          value: 'upcoming',
-                        },
-                        {
-                          text: 'Attending',
-                          value: 'attending',
-                        },
-                        {
-                          text: 'Live',
-                          value: 'live',
-                        },
-                        {
-                          text: 'Interested',
-                          value: 'interested',
-                        },
-                        {
-                          text: 'Past',
-                          value: 'past',
-                        },
-                      ]
-                }
-              />
-            </div>
-          </SwipeToScroll>
-        </div>
-
-        {personalAgenda && (
-          <p>
-            You&apos;re watching the schedule of <b>{userSchedule.username}</b>
-          </p>
-        )}
+      {/* <div className="section"> */}
+      <div className="expand-right">
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className={css['basic-filter-container']}>
+            <Basic
+              value={basicFilter}
+              onChange={setBasicFilter}
+              options={
+                personalAgenda
+                  ? [
+                      {
+                        text: 'Personalized Schedule',
+                        value: 'personal',
+                      },
+                    ]
+                  : [
+                      {
+                        text: 'All',
+                        value: 'all',
+                      },
+                      {
+                        text: 'Upcoming',
+                        value: 'upcoming',
+                      },
+                      {
+                        text: 'Attending',
+                        value: 'attending',
+                      },
+                      {
+                        text: 'Live',
+                        value: 'live',
+                      },
+                      {
+                        text: 'Interested',
+                        value: 'interested',
+                      },
+                      {
+                        text: 'Past',
+                        value: 'past',
+                      },
+                    ]
+              }
+            />
+          </div>
+        </SwipeToScroll>
       </div>
+
+      {personalAgenda && (
+        <p>
+          You&apos;re watching the schedule of <b>{userSchedule.username}</b>
+        </p>
+      )}
+      {/* </div> */}
 
       <RecoilRoot>
         <DevaBot sessions={formattedSessions} />
