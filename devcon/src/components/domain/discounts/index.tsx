@@ -95,18 +95,21 @@ export function SelfClaimingDiscounts() {
               : Use your Passport & Zero-Knowledge proofs to prove SEA residency, which can help qualify you for a Local
               Builder Discount.
             </li>
-            {/* <li>
-              Indian Residents —{' '}
-              <Link
-                indicateExternal
-                to="https://devcon7.anon-aadhaar.pse.dev/"
-                className="text-[#1b6fae] hover:text-[#448dc3]"
-              >
-                AnonAahdhaar
-              </Link>
-              : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you for
-              Local Builder Discount.
-            </li> */}
+            <li>
+              <s>
+                Indian Residents —{' '}
+                <Link
+                  indicateExternal
+                  to="https://devcon7.anon-aadhaar.pse.dev/"
+                  className="text-[#1b6fae] hover:text-[#448dc3]"
+                >
+                  AnonAahdhaar
+                </Link>
+                : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you
+                for Local Builder Discount.
+              </s>
+              &nbsp;No longer available.
+            </li>
           </ul>
         </li>
         <li>
