@@ -61,7 +61,7 @@ export function SEO(props: SEOProps) {
   // const url = `${siteUrl.replace(/\/$/, '')}${router?.asPath}`
 
   return (
-    <>
+    <Head>
       {/* title={title} titleTemplate={titleTemplate} htmlAttributes={{ lang: lang }}> */}
 
       {title && <title>{title}</title>}
@@ -89,6 +89,6 @@ export function SEO(props: SEOProps) {
 
       <PWA />
       <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} />
-    </>
+    </Head>
   )
 }

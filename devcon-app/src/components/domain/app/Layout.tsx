@@ -207,11 +207,11 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'self-start w-full flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-4 left-0',
-        'lg:order-1 lg:justify-start lg:w-[60px] lg:flex-col lg:bottom-4 lg:left-auto lg:relative lg:items-center'
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-4 left-0 grow-0 w-full',
+        'lg:order-1 lg:justify-start lg:w-[0px] lg:flex-col lg:bottom-4 lg:left-auto lg:relative lg:items-center'
       )}
     >
-      <div className="sticky top-[80px] flex gap-4 flex-row lg:flex-col items-center">
+      <div className="sticky top-[80px] flex gap-4 flex-row lg:flex-col items-center lg:-translate-x-[50%] lg:w-[60px]">
         <div className="flex lg:flex-col gap-4 rounded-full h-[50px] lg:h-auto lg:w-[60px] justify-center items-center lg:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems.map((item, index) => {
             const isActive = pathname === item.href
@@ -271,8 +271,8 @@ export const AppLayout = (
         <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} />
 
         <div className="section pt-5">
-          <div className="flex flex-col lg:flex-row gap-8 relative">
-            <div data-type="page-content" className="lg:order-2 grow relative">
+          <div className="flex flex-col lg:flex-row gap-0 relative">
+            <div data-type="page-content" className="lg:order-2 grow relative px-4">
               {props.children}
             </div>
             <Navigation />
