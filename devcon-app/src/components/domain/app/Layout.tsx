@@ -27,6 +27,9 @@ import ThreeDotsIcon from 'assets/icons/three-dots.svg'
 import UserIcon from 'assets/icons/user.svg'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
+import DevaBot from 'lib/components/ai/overlay'
+import { RecoilRoot } from 'recoil'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -68,7 +71,7 @@ const LocationInformation = ({ className }: { className: string }) => {
         minute: '2-digit',
         hour12: true,
       }).format(now)
-      setCurrentTime(bangkokTime + ', Bangkok (GMT-7)')
+      setCurrentTime(bangkokTime + ' Bangkok (GMT-7)')
     }
 
     updateCountdown() // Initial call
@@ -88,8 +91,8 @@ const LocationInformation = ({ className }: { className: string }) => {
         <Image src={SunCloudy} alt="sun-cloudy" width={24} height={24} />
         <div className="text-lg font-semibold">32°C</div>
       </div>
-      <div className="text-[#99A0AE] font-semibold text-[13px]">{currentTime}</div>
-      <div className="text-[#99A0AE] font-semibold text-[13px]">{countdown}</div>
+      <div className="text-[#6a6e76] text-[13px]">{currentTime}</div>
+      <div className="text-[#6a6e76] text-[13px] hidden xl:block">{countdown}</div>
     </div>
   )
 }
@@ -111,8 +114,8 @@ const Header = (props: HeaderProps) => {
           <div className="flex gap-6 items-center grow shrink-0">
             <div className="text-xl font-semibold">{props.pageTitle}</div>
 
-            <Breadcrumb className="hidden lg:flex">
-              <BreadcrumbList className="text-xl lg:text-sm">
+            <Breadcrumb className="hidden sm:flex">
+              <BreadcrumbList className="lg:text-sm">
                 {props.breadcrumbs.map((breadcrumb, index) => {
                   let label = breadcrumb.label as any
 
@@ -149,7 +152,7 @@ const Header = (props: HeaderProps) => {
             </Breadcrumb>
           </div>
           <div className="flex items-center justify-center gap-6 shrink-0">
-            <LocationInformation className="hidden lg:flex items-center justify-center gap-6" />
+            <LocationInformation className="hidden sm:flex items-center justify-center gap-6" />
 
             <div className="flex items-center justify-center gap-4 ml-4 user-select-none">
               <Link href="/login">
@@ -173,6 +176,7 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
       </div>
+      <LocationInformation className="flex sm:hidden items-center justify-center px-5 gap-6 border-top py-2" />
     </>
   )
 }
@@ -180,71 +184,136 @@ const Header = (props: HeaderProps) => {
 const navItems = [
   {
     icon: TilesIcon,
+    label: 'Dashboard',
     href: '/',
     size: 16,
   },
   {
     icon: FolderIcon,
-    href: '/schedule',
+    label: 'Profile',
+    href: '/profile',
     size: 18,
   },
   {
     icon: TicketIcon,
-    href: '/ticket',
+    label: 'Venue',
+    href: '/venue',
     size: 18,
   },
   {
-    label: '',
+    label: 'Speakers',
     icon: SpeakerIcon,
     href: '/speakers',
     size: 18,
   },
 ]
 
+const useWindowWidth = () => {
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return windowWidth
+}
+
 const Navigation = () => {
   const pathname = usePathname()
+  const [openPopover, setOpenPopover] = useState<string | null>(null)
+  const windowWidth = useWindowWidth()
+  const isSmallScreen = windowWidth < 1280
+  const [devaBotVisible, setDevaBotVisible] = useState(false)
 
   return (
     <div
       className={cn(
         'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-4 left-0 grow-0 w-full',
-        'lg:order-1 lg:justify-start lg:w-[0px] lg:flex-col lg:bottom-4 lg:left-auto lg:relative lg:items-center'
+        'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
       )}
     >
-      <div className="sticky top-[80px] flex gap-4 flex-row lg:flex-col items-center lg:-translate-x-[50%] lg:w-[60px]">
-        <div className="flex lg:flex-col gap-4 rounded-full h-[50px] lg:h-auto lg:w-[60px] justify-center items-center lg:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
+      <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px]">
+        <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems.map((item, index) => {
             const isActive = pathname === item.href
 
             return (
-              <Link
+              <Popover
                 key={index}
-                href={item.href}
-                className={cn(
-                  'flex shrink-0 items-center lg:w-[40px] lg:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#EFEBFF] transition-all duration-300',
-                  isActive && 'bg-[#EFEBFF] fill-[#633CFF]'
-                )}
+                open={openPopover === item.label}
+                onOpenChange={open => setOpenPopover(open ? item.label : null)}
               >
-                <item.icon style={isActive ? { fill: '#633CFF', fontSize: item.size } : { fontSize: item.size }} />
-              </Link>
+                <PopoverTrigger className="plain outline-none">
+                  <Link
+                    href={item.href}
+                    onMouseEnter={() => setOpenPopover(item.label)}
+                    onMouseLeave={() => setOpenPopover(null)}
+                    className={cn(
+                      'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#EFEBFF] transition-all duration-300',
+                      isActive && 'bg-[#EFEBFF] fill-[#633CFF]'
+                    )}
+                  >
+                    <item.icon style={isActive ? { fill: '#633CFF', fontSize: item.size } : { fontSize: item.size }} />
+                  </Link>
+                </PopoverTrigger>
+
+                <PopoverContent
+                  className="w-auto p-1 text-sm px-2"
+                  side={isSmallScreen ? 'top' : 'left'}
+                  sideOffset={isSmallScreen ? 15 : 20}
+                >
+                  <div>{item.label}</div>
+                  {/* <PopoverArrow style={{ fill: 'white' }} /> */}
+                </PopoverContent>
+              </Popover>
             )
           })}
         </div>
 
-        <Link
-          href="/schedule"
-          className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
-        >
-          <CalendarFillIcon style={{ fontSize: 20 }} />
-        </Link>
+        <Popover open={openPopover === '/schedule'} onOpenChange={open => setOpenPopover(open ? '/schedule' : null)}>
+          <PopoverTrigger className="plain outline-none">
+            <Link
+              href="/schedule"
+              onMouseEnter={() => setOpenPopover('/schedule')}
+              onMouseLeave={() => setOpenPopover(null)}
+              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+            >
+              <CalendarFillIcon style={{ fontSize: 20 }} />
+            </Link>
+          </PopoverTrigger>
 
-        <Link
-          href="/schedule"
-          className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center lg:w-[60px] lg:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
-        >
-          <AppIcons style={{ fontSize: 40 }} />
-        </Link>
+          <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
+            <div>Schedule</div>
+            {/* <PopoverArrow className="shadow-lg" style={{ fill: 'white' }} /> */}
+          </PopoverContent>
+        </Popover>
+
+        <Popover open={openPopover === '/more'} onOpenChange={open => setOpenPopover(open ? '/more' : null)}>
+          <PopoverTrigger className="plain outline-none" onClick={() => setDevaBotVisible(true)}>
+            <div
+              // href="/more"
+              onMouseEnter={() => setOpenPopover('/more')}
+              onMouseLeave={() => setOpenPopover(null)}
+              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+            >
+              <AppIcons style={{ fontSize: 40 }} />
+            </div>
+          </PopoverTrigger>
+
+          <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
+            <div>Ask Deva</div>
+            {/* <PopoverArrow style={{ fill: 'white' }} /> */}
+          </PopoverContent>
+        </Popover>
       </div>
+
+      <RecoilRoot>
+        <DevaBot sessions={[]} onToggle={() => setDevaBotVisible(!devaBotVisible)} toggled={devaBotVisible} />
+      </RecoilRoot>
     </div>
   )
 }
@@ -271,8 +340,8 @@ export const AppLayout = (
         <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} />
 
         <div className="section pt-5">
-          <div className="flex flex-col lg:flex-row gap-0 relative">
-            <div data-type="page-content" className="lg:order-2 grow relative px-4">
+          <div className="flex flex-col xl:flex-row gap-0 relative">
+            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24">
               {props.children}
             </div>
             <Navigation />

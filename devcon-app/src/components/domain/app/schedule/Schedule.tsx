@@ -454,10 +454,6 @@ export const Schedule = (props: any) => {
       )}
       {/* </div> */}
 
-      <RecoilRoot>
-        <DevaBot sessions={formattedSessions} />
-      </RecoilRoot>
-
       {!personalAgenda && (
         <div className={filterCss['filter']}>
           <div className="section">

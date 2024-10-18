@@ -59,11 +59,15 @@ const Trigger = ({ className }: { className?: string }) => {
 const DevaBot = ({
   recommendationMode,
   sessions,
+  onToggle,
+  toggled,
 }: {
   recommendationMode?: boolean;
   sessions?: any;
+  toggled: boolean;
+  onToggle: (visible: boolean) => void;
 }) => {
-  const [visible, setVisible] = useRecoilState(visibleState);
+  // const [visible, onToggled] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
   const [executingQuery, setExecutingQuery] =
     useRecoilState(executingQueryState);
@@ -86,6 +90,12 @@ const DevaBot = ({
   React.useEffect(() => {
     setError("");
   }, [query]);
+
+  // React.useEffect(() => {
+  //   if (typeof toggled === "boolean") {
+  //     onToggle(toggled);
+  //   }
+  // }, [toggled]);
 
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const messagesContainerRef = React.useRef<HTMLDivElement>(null);
@@ -241,20 +251,20 @@ const DevaBot = ({
   }, [executingQuery]);
 
   React.useEffect(() => {
-    if (visible) {
+    if (toggled) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
-  }, [visible]);
+  }, [toggled]);
 
   return (
     <>
       <AnimatePresence>
-        {visible && (
+        {toggled && (
           <motion.div
             className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden"
-            onClick={() => setVisible(false)}
+            onClick={() => onToggle(false)}
             initial={{
               background: "#00000000",
             }}
@@ -290,7 +300,7 @@ const DevaBot = ({
                     <Trigger className="w-[70px]" />
                   </div>
 
-                  <CircleIcon onClick={() => setVisible(false)}>
+                  <CircleIcon onClick={() => onToggle(false)}>
                     <CloseIcon />
                   </CircleIcon>
                 </div>
@@ -783,19 +793,21 @@ const DevaBot = ({
         )}
       </AnimatePresence>
 
-      <div
-        onClick={() => setVisible(!visible)}
-        className="section cursor-pointer"
-      >
-        <Trigger />
-      </div>
+      {/* {!onToggle && (
+        <div
+          onClick={() => onToggle(true)}
+          className="section cursor-pointer"
+        >
+          <Trigger />
+        </div>
+      )} */}
 
       {/* <Button
         className="plain"
         className="bold"
         color="blue-1"
         fill
-        onClick={() => setVisible(!visible)}
+        onClick={() => onToggled(!visible)}
       >
         <span className="md:hidden block">Questions?</span>
         <span className="hidden md:block">Questions? Ask here 🦄</span>
