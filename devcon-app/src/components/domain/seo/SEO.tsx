@@ -85,9 +85,10 @@ export function SEO(props: SEOProps) {
             {props.author?.url && <link itemProp="url" href={props.author.url} />}
           </span>
         ))}
+
       <Twitter title={title} description={description} image={image} />
 
-      <PWA />
+      {/* <PWA /> */}
       <EventMetadata title={globalTitle} description={globalDescription} image={globalImage} />
     </Head>
   )

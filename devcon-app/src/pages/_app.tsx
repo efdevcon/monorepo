@@ -54,6 +54,18 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
         <link rel="shortcut icon" href="/favicon.ico" />
 
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="application-name" content="Devcon Passport" />
+        <meta name="apple-mobile-web-app-title" content="Devcon Passport" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta name="msapplication-TileColor" content="#2B5797" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="theme-color" content="#000000" />
+
         <SEO />
       </Head>
 
@@ -64,11 +76,12 @@ function App({ Component, pageProps }: AppProps) {
             <Web3Provider>
               <AccountContextProvider>
                 {!sessions && (
-                  <div className="h-screen w-screen flex items-center justify-center">
+                  <div className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2">
                     <FancyLoader loading={!sessions} />
-                    <p>Please wait while we load the event data...</p>
+                    <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
                   </div>
                 )}
+
                 {/* <ScheduleState {...pageProps}> */}
                 {sessions && <Component {...pageProps} />}
                 {/* <Component {...pageProps} /> */}

@@ -20,9 +20,11 @@ export default pageHOC((props: any) => {
 export async function getStaticPaths() {
   const speakers = await fetchSpeakers()
 
-  const paths = speakers.map(i => {
-    return { params: { id: i.id } }
-  })
+  const paths =
+    [] ||
+    speakers.map(i => {
+      return { params: { id: i.id } }
+    })
 
   return {
     paths,

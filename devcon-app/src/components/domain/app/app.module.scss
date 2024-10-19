@@ -18,6 +18,7 @@
   &:before {
     content: '';
     display: block;
+    z-index: -1;
     position: fixed;
     top: 0;
     left: 0;
@@ -78,6 +79,12 @@
     // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+  }
+
+  :global(.bottom-glass) {
+    mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+    background: rgba(221, 221, 221, 0.381);
+    backdrop-filter: blur(4px);
   }
 }
 

@@ -4,7 +4,7 @@ import Head from 'next/head'
 // https://www.npmjs.com/package/next-pwa
 export function PWA() {
   return (
-    <Head>
+    <>
       <meta name="apple-mobile-web-app-capable" content="yes" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -16,6 +16,6 @@ export function PWA() {
       <meta name="msapplication-TileColor" content="#2B5797" />
       <meta name="msapplication-tap-highlight" content="no" />
       <meta name="theme-color" content="#000000" />
-    </Head>
+    </>
   )
 }

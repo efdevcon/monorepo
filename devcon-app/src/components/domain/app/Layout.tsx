@@ -233,10 +233,11 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-4 left-0 grow-0 w-full',
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-6 left-0 grow-0 w-full z-10',
         'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
       )}
     >
+      <div className="flex xl:hidden absolute left-0 -bottom-6 h-[112px] w-full bottom-glass"></div>
       <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px]">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems.map((item, index) => {
@@ -248,7 +249,7 @@ const Navigation = () => {
                 open={openPopover === item.label}
                 onOpenChange={open => setOpenPopover(open ? item.label : null)}
               >
-                <PopoverTrigger className="plain outline-none">
+                <PopoverTrigger className="plain outline-none cursor-pointer">
                   <Link
                     href={item.href}
                     onMouseEnter={() => setOpenPopover(item.label)}

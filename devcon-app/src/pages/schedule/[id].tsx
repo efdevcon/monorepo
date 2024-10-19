@@ -64,9 +64,11 @@ export default pageHOC((props: any) => {
 
 export async function getStaticPaths() {
   const sessions = await fetchSessions()
-  const paths = sessions.map(i => {
-    return { params: { id: i.id } }
-  })
+  const paths =
+    [] ||
+    sessions.map(i => {
+      return { params: { id: i.id } }
+    })
 
   return {
     paths,

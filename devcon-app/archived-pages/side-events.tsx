@@ -8,6 +8,7 @@ import getNotionDatabase from 'components/domain/devcon-week/getNotionDatabase'
 import { SEO } from 'components/domain/seo'
 
 export default pageHOC((props: any) => {
+  return null
   return (
     <AppLayout pageTitle="Side Events" breadcrumbs={[{ label: 'Side Events' }]}>
       <SEO title="Community Curated Side Events" />
