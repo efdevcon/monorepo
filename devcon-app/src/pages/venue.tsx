@@ -39,9 +39,9 @@ export default pageHOC(({ sessions, ...props }: any) => {
   }
 
   return (
-    <AppLayout pageTitle="Agora Convention Center" breadcrumbs={[{ label: 'Agora Convention Center' }]}>
+    <AppLayout pageTitle="QSNCC" breadcrumbs={[{ label: 'QSNCC' }]}>
       <>
-        <SEO title="Agora Convention Center" />
+        <SEO title="Venue Information" />
         <Venue {...props} />
       </>
     </AppLayout>

@@ -12,26 +12,27 @@ import { ScheduleState } from 'components/domain/app/schedule/Schedule'
 import { Web3Provider } from 'context/web3'
 import { AppContext } from 'context/app-context'
 import { AccountContextProvider } from 'context/account-context-provider'
+import DevaBot from 'lib/components/ai/overlay'
+import { RecoilRoot, atom, useRecoilState } from 'recoil'
+import { useSessionData } from 'services/event-data'
 
-const Banner = () => {
-  const [isVisible, setIsVisible] = useState(true)
+export const devaBotVisibleAtom = atom({
+  key: 'devaBotVisible',
+  default: false,
+})
 
-  // Only render in production mode
-  if (process.env.NODE_ENV !== 'production' || !isVisible) return null
-
-  return (
-    <div className="bg-red-100 border-b border-red-200 py-2 fixed top-0 w-full z-50 section shadow-lg">
-      <div className="flex justify-between items-center gap-2">
-        <p className="text-red-700">This app is from Devcon 6 in Bogota and contains outdated information.</p>
-        <button onClick={() => setIsVisible(false)} className="text-red-700 hover:text-red-900 shrink-0 !text-sm">
-          UNDERSTOOD ✕
-        </button>
-      </div>
-    </div>
+const withRecoil = (Component: React.ComponentType<AppProps>) => {
+  return (props: AppProps) => (
+    <RecoilRoot>
+      <Component {...props} />
+    </RecoilRoot>
   )
 }
 
 function App({ Component, pageProps }: AppProps) {
+  const [devaBotVisible, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const sessions = useSessionData()
+
   return (
     <>
       <Head>
@@ -48,22 +49,23 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <NextIntlProvider locale="en" messages={pageProps.messages}>
-        <Banner />
         <PWAPrompt />
         <HistoryTracker>
           <AppContext>
             <Web3Provider>
               <AccountContextProvider>
-                <ScheduleState {...pageProps}>
-                  <Component {...pageProps} />
-                </ScheduleState>
+                {/* <ScheduleState {...pageProps}> */}
+                <Component {...pageProps} />
+                {/* </ScheduleState> */}
               </AccountContextProvider>
             </Web3Provider>
           </AppContext>
         </HistoryTracker>
       </NextIntlProvider>
+
+      <DevaBot sessions={sessions} onToggle={() => setDevaBotVisible(!devaBotVisible)} toggled={devaBotVisible} />
     </>
   )
 }
 
-export default App
+export default withRecoil(App)

@@ -29,7 +29,8 @@ import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import DevaBot from 'lib/components/ai/overlay'
-import { RecoilRoot } from 'recoil'
+import { useRecoilState } from 'recoil'
+import { devaBotVisibleAtom } from 'pages/_app'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -227,7 +228,7 @@ const Navigation = () => {
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const windowWidth = useWindowWidth()
   const isSmallScreen = windowWidth < 1280
-  const [devaBotVisible, setDevaBotVisible] = useState(false)
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
 
   return (
     <div
@@ -310,10 +311,6 @@ const Navigation = () => {
           </PopoverContent>
         </Popover>
       </div>
-
-      <RecoilRoot>
-        <DevaBot sessions={[]} onToggle={() => setDevaBotVisible(!devaBotVisible)} toggled={devaBotVisible} />
-      </RecoilRoot>
     </div>
   )
 }
@@ -341,7 +338,7 @@ export const AppLayout = (
 
         <div className="section pt-5">
           <div className="flex flex-col xl:flex-row gap-0 relative">
-            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24">
+            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh]">
               {props.children}
             </div>
             <Navigation />
