@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'assets/css/index.scss'
 import { HistoryTracker } from 'components/domain/app/history-tracker'
+import { Session as SessionType } from 'types/Session'
 import { SEO } from 'components/domain/seo'
 import { ScheduleState } from 'components/domain/app/schedule/Schedule'
 import { Web3Provider } from 'context/web3'
@@ -15,10 +16,16 @@ import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
 import { RecoilRoot, atom, useRecoilState } from 'recoil'
 import { useSessionData } from 'services/event-data'
+import { FancyLoader } from 'lib/components/loader/loader'
 
 export const devaBotVisibleAtom = atom({
   key: 'devaBotVisible',
   default: false,
+})
+
+export const sessionsAtom = atom<SessionType[]>({
+  key: 'sessions',
+  default: [],
 })
 
 const withRecoil = (Component: React.ComponentType<AppProps>) => {
@@ -32,6 +39,8 @@ const withRecoil = (Component: React.ComponentType<AppProps>) => {
 function App({ Component, pageProps }: AppProps) {
   const [devaBotVisible, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const sessions = useSessionData()
+
+  console.log(sessions)
 
   return (
     <>
@@ -54,8 +63,15 @@ function App({ Component, pageProps }: AppProps) {
           <AppContext>
             <Web3Provider>
               <AccountContextProvider>
+                {!sessions && (
+                  <div className="h-screen w-screen flex items-center justify-center">
+                    <FancyLoader loading={!sessions} />
+                    <p>Please wait while we load the event data...</p>
+                  </div>
+                )}
                 {/* <ScheduleState {...pageProps}> */}
-                <Component {...pageProps} />
+                {sessions && <Component {...pageProps} />}
+                {/* <Component {...pageProps} /> */}
                 {/* </ScheduleState> */}
               </AccountContextProvider>
             </Web3Provider>

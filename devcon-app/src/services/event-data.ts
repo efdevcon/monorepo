@@ -6,6 +6,8 @@ import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
 import { APP_CONFIG } from 'utils/config'
+import { useRecoilState, RecoilState } from 'recoil'
+import { sessionsAtom } from 'pages/_app'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
@@ -38,7 +40,8 @@ export const fuseOptions = {
 }
 
 export const useSessionData = (): SessionType[] | null => {
-  const [sessions, setSessions] = useState<SessionType[] | null>(null)
+  // const [sessions, setSessions] = useState<SessionType[] | null>(null)
+  const [sessions, setSessions] = useRecoilState(sessionsAtom)
   const version = useEventVersion()
 
   useEffect(() => {
