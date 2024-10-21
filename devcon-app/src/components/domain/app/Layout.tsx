@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState, useEffect } from 'react'
+import React, { PropsWithChildren, useState, useEffect, useRef, RefObject } from 'react'
 // import { BottomNav } from 'components/domain/app/navigation'
 import css from './app.module.scss'
 // import { Header } from 'components/common/layouts/header'
@@ -29,8 +29,9 @@ import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import DevaBot from 'lib/components/ai/overlay'
-import { useRecoilState } from 'recoil'
-import { devaBotVisibleAtom } from 'pages/_app'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { devaBotVisibleAtom, notificationsAtom, notificationsCountSelector, useSeenNotifications } from 'pages/_app'
+import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -98,22 +99,26 @@ const LocationInformation = ({ className }: { className: string }) => {
   )
 }
 
-const Header = (props: HeaderProps) => {
-  const { scrollY } = useScroll()
+const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElement> }) => {
+  const { scrollY } = useScroll({
+    container: props.layoutContainerRef,
+  })
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
+  const textColor = useTransform(scrollY, [0, 50], ['#ffffff', '#000000'])
+  // const iconColor = useTransform(scrollY, [0, 50], ['#ffffff', '#000000'])
 
   return (
     <>
-      <div className="section z-10 sticky top-0">
+      <motion.div className="section z-[12] sticky top-0 inset-padding-top" style={{ color: textColor }}>
         <div className="flex justify-between items-center min-h-[56px] w-full gap-8">
           <motion.div className="absolute inset-0 bg-white h-full glass z-[-1]" style={{ opacity }}></motion.div>
 
           <div className="lg:w-[60px] flex w-[20px] justify-center items-center text-xl shrink-0">
-            <AppIcon />
+            <AppIcon style={{ fontSize: 20, '--icon-color': textColor }} />
           </div>
 
           <div className="flex gap-6 items-center grow shrink-0">
-            <div className="text-xl font-semibold">{props.pageTitle}</div>
+            <div className="text-2xl">{props.pageTitle}</div>
 
             <Breadcrumb className="hidden sm:flex">
               <BreadcrumbList className="lg:text-sm">
@@ -176,8 +181,8 @@ const Header = (props: HeaderProps) => {
             </div>
           </div>
         </div>
-      </div>
-      <LocationInformation className="flex sm:hidden items-center justify-center px-5 gap-6 border-top py-2" />
+      </motion.div>
+      <LocationInformation className="flex sm:hidden items-center justify-center px-5 gap-6 border-top py-2 bg-white z-[11] relative" />
     </>
   )
 }
@@ -190,9 +195,9 @@ const navItems = [
     size: 16,
   },
   {
-    icon: FolderIcon,
-    label: 'Profile',
-    href: '/profile',
+    icon: UserIcon,
+    label: 'Account',
+    href: '/account',
     size: 18,
   },
   {
@@ -229,16 +234,18 @@ const Navigation = () => {
   const windowWidth = useWindowWidth()
   const isSmallScreen = windowWidth < 1280
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  // const notificationsCount = useRecoilValue(notificationsCountSelector)
+  const { notificationsCount } = useSeenNotifications()
 
   return (
     <div
       className={cn(
-        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-6 left-0 grow-0 w-full z-10',
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-6 left-0 grow-0 w-full z-10 pointer-events-none inset-padding-bottom',
         'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
       )}
     >
       <div className="flex xl:hidden absolute left-0 -bottom-6 h-[112px] w-full bottom-glass"></div>
-      <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px]">
+      <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px] pointer-events-auto">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems.map((item, index) => {
             const isActive = pathname === item.href
@@ -300,11 +307,19 @@ const Navigation = () => {
               // href="/more"
               onMouseEnter={() => setOpenPopover('/more')}
               onMouseLeave={() => setOpenPopover(null)}
-              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#784DEF1A] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA]"
             >
               <AppIcons style={{ fontSize: 40 }} />
+
+              {notificationsCount > 0 && (
+                <div className="absolute -top-[1px] -right-[1.5px] bg-[#7D52F4] text-white rounded-full w-5 h-5 md:w-[1.1rem] md:h-[1.1rem] lg:-top-0.5 lg:-right-0.5 flex items-center justify-center text-xs lg:text-[12px]">
+                  {notificationsCount}
+                </div>
+              )}
             </div>
           </PopoverTrigger>
+
+          {/* #7D52F4 */}
 
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
             <div>Ask Deva</div>
@@ -317,16 +332,23 @@ const Navigation = () => {
 }
 
 export const AppLayout = (
-  props: { pageTitle: string; breadcrumbs: { label: string; href?: string; icon?: any }[] } & PropsWithChildren
+  props: {
+    showLogin?: boolean
+    pageTitle: string
+    breadcrumbs: { label: string; href?: string; icon?: any }[]
+  } & PropsWithChildren
 ) => {
   const headerHeight = useGetElementHeight('header')
   const upperNavHeight = useGetElementHeight('inline-nav')
   const lowerNavHeight = useGetElementHeight('bottom-nav')
+  const layoutContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <>
       <div
+        id="layout-container"
         className={css['app']}
+        ref={layoutContainerRef}
         style={
           {
             '--header-height': `${headerHeight}px`,
@@ -335,11 +357,21 @@ export const AppLayout = (
           } as any
         }
       >
-        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} />
+        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} layoutContainerRef={layoutContainerRef} />
 
-        <div className="section pt-5">
+        <Image
+          src={LoginBackdrop}
+          alt="Login Backdrop"
+          className={cn(
+            'object-cover absolute inset-0 h-full w-full -translate-y-[16vh] lg:translate-y-0 pointer-events-none z-[1] blur-lg'
+          )}
+          quality={100}
+          priority
+        />
+
+        <div className="section pt-5 bg-white relative z-10 page-background">
           <div className="flex flex-col xl:flex-row gap-0 relative">
-            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh]">
+            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh] shrink-0">
               {props.children}
             </div>
             <Navigation />

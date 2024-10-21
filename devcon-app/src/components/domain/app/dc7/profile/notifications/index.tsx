@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Button } from 'lib/components/button'
 import { Separator } from 'lib/components/ui/separator'
@@ -12,7 +12,8 @@ import cn from 'classnames'
 import { APP_CONFIG } from 'utils/config'
 
 export const NotificationCard = (props: any) => {
-  const { notification } = props
+  const { notification, seen } = props
+  const [isNew, _] = useState(!seen)
 
   const getTimeAgo = (sendAt: string) => {
     const now = new Date()
@@ -32,19 +33,24 @@ export const NotificationCard = (props: any) => {
 
     const pastDiffInSeconds = Math.abs(diffInSeconds)
     if (pastDiffInSeconds < 60) return `${pastDiffInSeconds} seconds ago`
-    if (pastDiffInSeconds < 3600) return `${Math.floor(pastDiffInSeconds / 60)} minutes ago`
-    if (pastDiffInSeconds < 86400) return `${Math.floor(pastDiffInSeconds / 3600)} hours ago`
-    if (pastDiffInSeconds < 2592000) return `${Math.floor(pastDiffInSeconds / 86400)} days ago`
+    if (pastDiffInSeconds < 3600) return `${Math.floor(pastDiffInSeconds / 60)}m ago`
+    if (pastDiffInSeconds < 86400) return `${Math.floor(pastDiffInSeconds / 3600)}h ago`
+    if (pastDiffInSeconds < 2592000) return `${Math.floor(pastDiffInSeconds / 86400)}d ago`
     if (pastDiffInSeconds < 31536000) return `${Math.floor(pastDiffInSeconds / 2592000)} months ago`
 
     return `${Math.floor(pastDiffInSeconds / 31536000)} years ago`
   }
 
   return (
-    <div>
-      <p className="font-lg semi-bold">{notification.title}</p>
-      <p className="text-sm text-[#939393]">{notification.message}</p>
-      <p className="text-xs text-[#939393] mt-1">{getTimeAgo(notification.sendAt)}</p>
+    <div className="flex gap-1 border border-solid border-gray-200 shadow rounded-lg p-2 w-full">
+      <div className="flex flex-col gap-1">
+        <p className="text-sm semi-bold">{notification.title}</p>
+        <p className="text-xs text-[#717784]">{notification.message}</p>
+      </div>
+      <div className="flex flex-col gap-1 shrink-0 items-end">
+        <p className="text-xs text-[#717784] shrink-0">{getTimeAgo(notification.sendAt)}</p>
+        {isNew && <div className="text-[#7D52F4] h-[12px] flex items-center justify-center text-lg">●</div>}
+      </div>
     </div>
   )
 }

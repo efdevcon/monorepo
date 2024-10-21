@@ -27,7 +27,7 @@ import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
 
-const MobileLogin = () => {
+const MobileLogin = (props: any) => {
   const accountContext = useAccountContext()
   const router = useRouter()
   const loggedIn = !!accountContext.account
@@ -81,6 +81,10 @@ const MobileLogin = () => {
                 >
                   Get Started
                 </Button>
+
+                <p className="text-sm mt-4 py-2 text-underline text-center cursor-pointer" onClick={props.skipLogin}>
+                  Skip to Dashboard
+                </p>
               </div>
             </div>
           </motion.div>
@@ -102,7 +106,7 @@ const MobileLogin = () => {
             onClick={e => e.stopPropagation()}
             className="absolute bottom-0 mx-8 bg-white max-w-[500px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
           >
-            <TrustModels mobile setLoginOpen={setLoginOpen} />
+            <TrustModels mobile setLoginOpen={setLoginOpen} skipLogin={props.skipLogin} />
           </motion.div>
         )}
       </AnimatePresence>
@@ -272,6 +276,13 @@ const TrustModels = (props: any) => {
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
             <WalletLoginButton />
+
+            <p
+              className="text-sm mt-4  text-underline text-center cursor-pointer font-semibold"
+              onClick={props.skipLogin}
+            >
+              Skip to Dashboard
+            </p>
           </div>
         </>
       )}
@@ -326,17 +337,18 @@ const TrustModels = (props: any) => {
   )
 }
 
-const Login = () => {
+const Login = (props: any) => {
   return (
     <div className="flex flex-col justify-between lg:justify-center h-full w-[400px] 2xl:w-[470px] max-w-full lg:max-w-[50vw] relative text-sm">
       <Image src={LoginLogo} alt="Login Logo" className="w-[200px] max-w-[100%]" />
 
-      <TrustModels />
+      <TrustModels {...props} />
     </div>
   )
 }
 
 const Index = (props: any) => {
+  const router = useRouter()
   // Safari/iOS is just terrible...
   useEffect(() => {
     const setVhAndBackground = () => {
@@ -354,15 +366,26 @@ const Index = (props: any) => {
     }
   }, [])
 
+  // Only redirect to login the first time the user visits the site
+  useEffect(() => {
+    localStorage.setItem('skipLogin', 'true')
+  }, [])
+
+  const skipLogin = () => {
+    localStorage.setItem('skipLogin', 'true')
+
+    router.push('/')
+  }
+
   return (
     <div className="text-base bg-white">
-      <SEO title="Passport Login" />
+      {/* <SEO title="Passport Login" /> */}
       <div className="flex flex-row lg:p-2 w-full relative 2xl:justify-center 2xl:items-center h-[calc(var(--vh,1vh)*100)]">
         <div className="hidden lg:block shrink-0 lg:shrink relative px-16">
-          <Login />
+          <Login skipLogin={skipLogin} />
         </div>
         <div className="lg:hidden absolute h-full w-full left-0 right-0 bottom-0 top-0 z-10 flex justify-center items-center">
-          <MobileLogin />
+          <MobileLogin skipLogin={skipLogin} />
         </div>
         <div className="w-1/2 shrink-0 grow 2xl:grow-0 2xl:max-w-[800px] relative 2xl:ml-16 flex justify-center">
           <div className="relative w-full h-full lg:h-full z-[1] bg-[#3D00BF] lg:rounded-2xl">
