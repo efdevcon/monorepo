@@ -239,7 +239,7 @@ function App({ Component, pageProps }: AppProps) {
               <>
                 {groupedNotifications.map(([date, notificationsForDay]: any) => (
                   <div key={date} className="w-full">
-                    <h3 className="text-sm font-semibold text-gray-500 my-2">{date}</h3>
+                    <p className="font-semibold my-2">{date}</p>
                     {notificationsForDay.map((notification: any) => (
                       <NotificationCard
                         key={notification.id}

@@ -14,6 +14,23 @@
   // padding-bottom: 120px; // Adjusting for fixed bottom nav overlaying content, and adding a bit of white space to indicate bottom was reached
   @include fonts-sm-fixed;
 
+  :global(.mask-sideways) {
+    // mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  }
+
+  :global(.mask-top) {
+    // mask-image: linear-gradient(to top, transparent 0%, black 30%);
+  }
+
+  :global(.header-gradient) {
+    @media (min-width: 1000px) {
+      background: linear-gradient(to right, transparent, #5b1acb, #1e00ff98, #633cff, #1e00ffab, transparent);
+    }
+    @media (max-width: 999px) {
+      background: linear-gradient(to right, #7a3aff, #633cff, #1a00e09d);
+    }
+  }
+
   :global(.page-background) {
     position: relative;
     &:before {
@@ -85,7 +102,7 @@
   }
 
   :global(.bottom-glass) {
-    mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
+    // mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
     background: rgba(221, 221, 221, 0.381);
     backdrop-filter: blur(4px);
   }

@@ -302,7 +302,7 @@ const DevaBot = ({
       <AnimatePresence>
         {toggled && (
           <motion.div
-            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden"
+            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden "
             onClick={() => onToggle(false)}
             initial={{
               background: "#00000000",
@@ -319,7 +319,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 pb-[env(safe-area-inset-bottom)] flex flex-col gap-0 items-start overflow-hidden"
+              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 inset-padding-bottom inset-padding-top flex flex-col gap-0 items-start overflow-hidden"
               initial={{
                 x: "100%",
               }}
@@ -354,7 +354,7 @@ const DevaBot = ({
               </div>
 
               {notifications && (
-                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 shrink-0 mb-4">
+                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 shrink-0 mb-2">
                   <div
                     className={cn(
                       "flex justify-center items-center w-[175px] rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
@@ -398,7 +398,8 @@ const DevaBot = ({
                     />
                     <div className="text-sm">Notifications</div>
 
-                    {notificationsCount && notificationsCount > 0 && (
+                    {/* @ts-ignore */}
+                    {notificationsCount > 0 && (
                       <div className="bg-[#7D52F4] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs lg:text-[12px] scale-90">
                         {notificationsCount}
                       </div>
@@ -408,7 +409,7 @@ const DevaBot = ({
               )}
 
               {activeTab === 1 && notifications && renderNotifications && (
-                <div className="w-full mt-2">{renderNotifications()}</div>
+                <div className="w-full">{renderNotifications()}</div>
               )}
 
               {activeTab === 0 && (
@@ -656,12 +657,12 @@ const DevaBot = ({
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
-                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4 select-none"
+                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4"
                         >
                           <Image
                             src={AIImage}
                             alt="Deva AI"
-                            className="w-[150px]"
+                            className="w-[150px] select-none"
                             quality={100}
                           />
 

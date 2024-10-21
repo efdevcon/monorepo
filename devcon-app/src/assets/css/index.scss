@@ -57,11 +57,20 @@ body {
   // bottom: 0;
   // touch-action: none;
 
-  :global(.inset-padding-bottom) {
-    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
-  }
+  // :global(.inset-padding-bottom) {
+  //   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+  // }
 
-  :global(.inset-padding-top) {
-    padding-top: calc(env(safe-area-inset-top, 0px) + 1rem);
-  }
+  // :global(.inset-padding-top) {
+  //   padding-top: env(safe-area-inset-top, 0px);
+  //   // padding-top: env(safe-area-inset-top, 0px);
+  // }
+}
+
+.inset-padding-top {
+  padding-top: calc(env(safe-area-inset-top, 5px) - 5px);
+}
+
+.inset-padding-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom, 20px) - 20px);
 }

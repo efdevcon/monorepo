@@ -42,7 +42,7 @@ export const NotificationCard = (props: any) => {
   }
 
   return (
-    <div className="flex gap-1 border border-solid border-gray-200 shadow rounded-lg p-2 w-full">
+    <div className="flex justify-between gap-1 border border-solid border-gray-200 shadow rounded-lg p-2 w-full">
       <div className="flex flex-col gap-1">
         <p className="text-sm semi-bold">{notification.title}</p>
         <p className="text-xs text-[#717784]">{notification.message}</p>
