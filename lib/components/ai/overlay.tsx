@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 // import Link from "next/link";
 import Link from "lib/components/link";
@@ -18,6 +18,11 @@ import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/components/link/Link";
 import InfoIcon from "../../assets/icons/info-fill.svg";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
+import LoginLogo from "./login-logo.png";
+import BellHollow from "lib/assets/icons/bell-hollow.svg";
+import SquareSparkles from "lib/assets/icons/square-sparkle.svg";
+import AIImage from "./ai-generate.png";
+import ScrollDownIcon from "lib/assets/icons/scroll-down.svg";
 import {
   Popover,
   PopoverTrigger,
@@ -36,20 +41,42 @@ import cn from "classnames";
 const Trigger = ({ className }: { className?: string }) => {
   return (
     <svg
-      width="81"
-      height="32"
-      viewBox="0 0 81 32"
+      width="42"
+      height="18"
+      viewBox="0 0 42 18"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
     >
       <path
-        d="M0.497656 14.2H5.51366C11.4417 14.2 15.0897 17.392 15.0897 22.6C15.0897 27.808 11.4417 31 5.51366 31H0.497656V14.2ZM4.33766 27.64H5.51366C8.96966 27.64 11.0817 25.72 11.0817 22.6C11.0817 19.48 8.96966 17.56 5.51366 17.56H4.33766V27.64ZM22.7595 17.56V20.68H29.4075V24.04H22.7595V27.64H30.3675V31H18.9195V14.2H30.3675V17.56H22.7595ZM38.653 31L32.533 14.2H36.853L40.837 26.488L44.773 14.2H49.093L42.973 31H38.653ZM65.892 28.192H55.356L53.916 31H49.62L58.284 14.2H62.796L71.724 31H67.38L65.892 28.192ZM64.14 24.856L60.588 18.232L57.084 24.856H64.14Z"
+        d="M16.418 6.40037V0.693848H17.8039V2.87048H20.1354L21.7088 0.693848H23.3311L21.3501 3.41667L23.3392 6.40037H21.6925L20.1109 4.05254L17.8039 4.04439V6.40037H16.418Z"
         fill="black"
       />
-      <path d="M74.4195 31V14.2H78.4995V31H74.4195Z" fill="#7D52F4" />
       <path
-        d="M8.33469 7.596H3.06669L2.34669 9H0.198688L4.53069 0.599999H6.78669L11.2507 9H9.07869L8.33469 7.596ZM7.45869 5.928L5.68269 2.616L3.93069 5.928H7.45869ZM17.1973 3.972C20.0653 4.236 21.5413 4.488 21.5413 6.684C21.5413 8.232 20.5213 9.216 17.4853 9.216H16.2853C13.0093 9.216 12.0732 8.28 12.0613 6.144H14.2093C14.1733 7.092 14.5573 7.56 16.8253 7.56H17.0653C19.0213 7.56 19.4413 7.38 19.4413 6.684C19.4413 5.88 18.2893 5.772 16.3093 5.58C14.0653 5.364 12.2533 4.872 12.2533 2.928C12.2533 1.248 13.2253 0.383999 16.3093 0.383999H17.5093C20.1493 0.383999 21.3733 1.512 21.3853 3.444H19.2373V3.468C19.2373 2.46 18.6853 2.04 16.9693 2.04H16.7293C14.7013 2.04 14.3413 2.232 14.3413 2.868C14.3413 3.6 15.5773 3.816 17.1973 3.972ZM21.3853 3.444V3.468V3.444ZM14.2093 6.108V6.144V6.108ZM12.0613 6.144V6.12V6.144ZM23.5203 9V0.599999H25.5603V3.804H28.9923L31.3083 0.599999H33.6963L30.7803 4.608L33.7083 9H31.2843L28.9563 5.544L25.5603 5.532V9H23.5203Z"
+        d="M12.122 2.98438C14.0704 3.16372 15.0731 3.33492 15.0731 4.82677C15.0731 5.8784 14.3801 6.54688 12.3176 6.54688H11.5024C9.27684 6.54688 8.64096 5.911 8.63281 4.45992H10.0921C10.0676 5.10394 10.3285 5.42187 11.8693 5.42187H12.0323C13.3611 5.42187 13.6464 5.29959 13.6464 4.82677C13.6464 4.28057 12.8638 4.2072 11.5187 4.07677C9.99424 3.93003 8.76325 3.59579 8.76325 2.27514C8.76325 1.13383 9.42358 0.546875 11.5187 0.546875H12.3339C14.1274 0.546875 14.959 1.31318 14.9671 2.62568H13.5079V2.64198C13.5079 1.9572 13.1329 1.67187 11.9671 1.67187H11.804C10.4263 1.67187 10.1817 1.80231 10.1817 2.23437C10.1817 2.73166 11.0214 2.8784 12.122 2.98438ZM14.9671 2.62568V2.64198V2.62568ZM10.0921 4.43546V4.45992V4.43546ZM8.63281 4.45992V4.44361V4.45992Z"
+        fill="black"
+      />
+      <path
+        d="M6.10144 5.44656H2.52261L2.03347 6.40037H0.574219L3.51718 0.693848H5.0498L8.08244 6.40037H6.60688L6.10144 5.44656ZM5.50633 4.31341L4.2998 2.06341L3.10957 4.31341H5.50633Z"
+        fill="black"
+      />
+      <path
+        d="M39.7627 17.4531V8.54688H41.9256V17.4531H39.7627Z"
+        fill="#7D52F4"
+      />
+      <path
+        d="M35.2416 15.9645H29.6562L28.8928 17.4531H26.6154L31.2084 8.54688H33.6004L38.3334 17.4531H36.0305L35.2416 15.9645ZM34.3129 14.1959L32.4298 10.6844L30.5723 14.1959H34.3129Z"
+        fill="black"
+      />
+      <path
+        d="M20.8009 17.4531L17.5565 8.54688H19.8466L21.9587 15.0611L24.0453 8.54688H26.3354L23.091 17.4531H20.8009Z"
+        fill="black"
+      />
+      <path
+        d="M12.3755 10.3281V11.9821H15.8999V13.7634H12.3755V15.6718H16.4088V17.4531H10.3398V8.54688H16.4088V10.3281H12.3755Z"
+        fill="black"
+      />
+      <path
+        d="M0.574219 8.54688H3.23335C6.37597 8.54688 8.30988 10.2391 8.30988 13C8.30988 15.7609 6.37597 17.4531 3.23335 17.4531H0.574219V8.54688ZM2.60992 15.6718H3.23335C5.06549 15.6718 6.18512 14.654 6.18512 13C6.18512 11.346 5.06549 10.3281 3.23335 10.3281H2.60992V15.6718Z"
         fill="black"
       />
     </svg>
@@ -61,11 +88,19 @@ const DevaBot = ({
   sessions,
   onToggle,
   toggled,
+  notifications,
+  notificationsCount,
+  renderNotifications,
+  markNotificationsAsRead,
 }: {
   recommendationMode?: boolean;
   sessions?: any;
   toggled: boolean;
   onToggle: (visible: boolean) => void;
+  notifications?: any[];
+  notificationsCount?: number;
+  renderNotifications?: () => React.ReactNode;
+  markNotificationsAsRead?: () => void;
 }) => {
   // const [visible, onToggled] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
@@ -76,10 +111,12 @@ const DevaBot = ({
   const [messages, setMessages] = useRecoilState(messagesState);
   const textareaRef = React.useRef<HTMLInputElement>(null);
   const draggable = useDraggableLink();
+  // const messagesScrollRef = React.useRef<HTMLDivElement>(null);
 
   const resetMessages = useResetRecoilState(messagesState);
   const resetThreadID = useResetRecoilState(threadIDState);
 
+  const [activeTab, setActiveTab] = React.useState(0);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
   const [streamingMessage, setStreamingMessage] = React.useState("");
 
@@ -111,8 +148,10 @@ const DevaBot = ({
     }
   };
 
-  const scrollToBottom = () => {
-    if (isAtBottom && messagesEndRef.current) {
+  const scrollToBottom = (force?: boolean) => {
+    if (!messagesEndRef.current) return;
+
+    if (isAtBottom || force) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
@@ -297,29 +336,97 @@ const DevaBot = ({
               <div className="flex flex-col gap-2 shrink-0 w-full mb-2">
                 <div className="flex justify-between w-full">
                   <div className="shrink-0 bold">
-                    <Trigger className="w-[70px]" />
+                    <Image
+                      src={LoginLogo}
+                      alt="Devcon Passport Graphic"
+                      className="object-cover w-[180px]"
+                    />
+                    {/* <Trigger className="w-[70px]" /> */}
                   </div>
 
-                  <CircleIcon onClick={() => onToggle(false)}>
-                    <CloseIcon />
-                  </CircleIcon>
+                  <div
+                    className="flex items-center justify-center w-[28px] h-[28px] rounded-full bg-[#222530] select-none cursor-pointer hover:scale-110 transition-all duration-300"
+                    onClick={() => onToggle(false)}
+                  >
+                    <CloseIcon style={{ fill: "#fff", fontSize: "12px" }} />
+                  </div>
                 </div>
               </div>
 
-              <div className="relative flex flex-col grow w-full gap-4 no-scrollbar">
-                <div
-                  className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10"
-                  ref={messagesContainerRef}
-                  onScroll={checkIfAtBottom}
-                >
-                  {messages &&
-                    messages.length > 0 &&
-                    messages.map((message: any, index: any) => {
-                      const isAssistantReply = message.role === "assistant";
+              {notifications && (
+                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 shrink-0 mb-4">
+                  <div
+                    className={cn(
+                      "flex justify-center items-center w-[175px] rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
+                      {
+                        "bg-white shadow-md text-[#7D52F4]": activeTab === 0,
+                      }
+                    )}
+                    onClick={() => setActiveTab(0)}
+                  >
+                    <SquareSparkles
+                      className="transition-all duration-300"
+                      style={
+                        activeTab === 0
+                          ? { fill: "#7D52F4", fontSize: "18px" }
+                          : { fill: "#A897FF", fontSize: "18px" }
+                      }
+                    />
+                    <Trigger className="w-[50px]" />
+                  </div>
+                  <div
+                    className={cn(
+                      "flex justify-center items-center w-[175px] rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
+                      {
+                        "bg-white shadow-md text-[#7D52F4]": activeTab === 1,
+                      }
+                    )}
+                    onClick={() => {
+                      setActiveTab(1);
+                      setTimeout(() => {
+                        markNotificationsAsRead && markNotificationsAsRead();
+                      }, 500);
+                    }}
+                  >
+                    <BellHollow
+                      className="transition-all duration-300"
+                      style={
+                        activeTab === 1
+                          ? { fill: "#7D52F4" }
+                          : { fill: "#A897FF" }
+                      }
+                    />
+                    <div className="text-sm">Notifications</div>
 
-                      return (
-                        <div key={index} className="shrink-0 flex flex-col">
-                          {/* <span
+                    {notificationsCount && notificationsCount > 0 && (
+                      <div className="bg-[#7D52F4] text-white rounded-full w-5 h-5 flex items-center justify-center text-xs lg:text-[12px] scale-90">
+                        {notificationsCount}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 1 && notifications && renderNotifications && (
+                <div className="w-full mt-2">{renderNotifications()}</div>
+              )}
+
+              {activeTab === 0 && (
+                <>
+                  <div className="relative flex flex-col grow w-full gap-4 no-scrollbar">
+                    <div
+                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-sm"
+                      ref={messagesContainerRef}
+                      onScroll={checkIfAtBottom}
+                    >
+                      {messages &&
+                        messages.length > 0 &&
+                        messages.map((message: any, index: any) => {
+                          const isAssistantReply = message.role === "assistant";
+
+                          return (
+                            <div key={index} className="shrink-0 flex flex-col">
+                              {/* <span
                             className={cn("text-sm opacity-50", {
                               "text-left self-start": isAssistantReply,
                               "text-right self-end": !isAssistantReply,
@@ -329,137 +436,215 @@ const DevaBot = ({
                               ? "DevAI responded"
                               : "You asked"}
                           </span> */}
-                          <div
-                            className={cn("markdown p-3 py-2 w-auto", {
-                              "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
-                                isAssistantReply,
-                              "ml-4 bg-[#7D52F4] text-white rounded-tl-xl rounded-tr-xl rounded-bl-xl self-end":
-                                !isAssistantReply,
-                            })}
-                          >
-                            <Markdown className={cn("markdown")}>
-                              {
-                                message.text.split(
-                                  "System: The current date is:"
-                                )[0]
-                              }
-                            </Markdown>
+                              <div
+                                className={cn("markdown p-3 py-2 w-auto", {
+                                  "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
+                                    isAssistantReply,
+                                  "ml-4 bg-[#7D52F4] text-white rounded-tl-xl rounded-tr-xl rounded-bl-xl self-end":
+                                    !isAssistantReply,
+                                })}
+                              >
+                                <Markdown className={cn("markdown")}>
+                                  {
+                                    message.text.split(
+                                      "System: The current date is:"
+                                    )[0]
+                                  }
+                                </Markdown>
 
-                            {message.files.length > 0 && (
-                              <div className="flex flex-col text-sm">
-                                {(() => {
-                                  const referencesTracker = {} as any;
-                                  const otherReferences = [] as any;
-                                  const sessionReferences = [] as any;
+                                {message.files.length > 0 && (
+                                  <div className="flex flex-col text-sm">
+                                    {(() => {
+                                      const referencesTracker = {} as any;
+                                      const otherReferences = [] as any;
+                                      const sessionReferences = [] as any;
 
-                                  message.files.forEach(
-                                    ({ file, fileUrl }: any, index: number) => {
-                                      // Skip AI context in production
-                                      if (
-                                        process.env.NODE_ENV !==
-                                          "development" &&
-                                        file.filename === "ai_context.txt"
-                                      ) {
-                                        return;
-                                      }
+                                      message.files.forEach(
+                                        (
+                                          { file, fileUrl }: any,
+                                          index: number
+                                        ) => {
+                                          // Skip AI context in production
+                                          if (
+                                            process.env.NODE_ENV !==
+                                              "development" &&
+                                            file.filename === "ai_context.txt"
+                                          ) {
+                                            return;
+                                          }
 
-                                      const sessionId =
-                                        file?.filename?.startsWith(
-                                          "session_"
-                                        ) &&
-                                        file.filename.endsWith(".json") &&
-                                        file.filename
-                                          .split("session_")[1]
-                                          .split(".json")[0];
+                                          const sessionId =
+                                            file?.filename?.startsWith(
+                                              "session_"
+                                            ) &&
+                                            file.filename.endsWith(".json") &&
+                                            file.filename
+                                              .split("session_")[1]
+                                              .split(".json")[0];
 
-                                      if (sessionId) {
-                                        const session = sessions.find(
-                                          (s: any) => s.id === sessionId
-                                        );
+                                          if (sessionId) {
+                                            const session = sessions.find(
+                                              (s: any) => s.id === sessionId
+                                            );
 
-                                        if (session) {
-                                          sessionReferences.push(
-                                            <Link
-                                              href={`/sessions/${session.id}`}
-                                              className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
-                                              key={index}
-                                            >
-                                              <p className="">
-                                                {session.title}
-                                              </p>
-                                              <p>{session.type}</p>
-                                              <p className="opacity-70">
-                                                {session.speakers
-                                                  .map(
-                                                    (speaker: any) =>
-                                                      speaker.name
-                                                  )
-                                                  .join(", ")}
-                                              </p>
-                                            </Link>
-                                          );
+                                            if (session) {
+                                              sessionReferences.push(
+                                                <Link
+                                                  href={`/sessions/${session.id}`}
+                                                  className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
+                                                  key={index}
+                                                >
+                                                  <p className="">
+                                                    {session.title}
+                                                  </p>
+                                                  <p>{session.type}</p>
+                                                  <p className="opacity-70">
+                                                    {session.speakers
+                                                      .map(
+                                                        (speaker: any) =>
+                                                          speaker.name
+                                                      )
+                                                      .join(", ")}
+                                                  </p>
+                                                </Link>
+                                              );
+                                            }
+                                          } else if (fileUrl) {
+                                            if (
+                                              !referencesTracker[file.fileUrl]
+                                            ) {
+                                              referencesTracker[file.fileUrl] =
+                                                true;
+                                              otherReferences.push(
+                                                <Link
+                                                  href={fileUrl}
+                                                  key={index}
+                                                >
+                                                  https://devcon.org{fileUrl}
+                                                </Link>
+                                              );
+                                            }
+                                          } else {
+                                            otherReferences.push(
+                                              <div key={index}>
+                                                {file.filename}
+                                              </div>
+                                            );
+                                          }
                                         }
-                                      } else if (fileUrl) {
-                                        if (!referencesTracker[file.fileUrl]) {
-                                          referencesTracker[file.fileUrl] =
-                                            true;
-                                          otherReferences.push(
-                                            <Link href={fileUrl} key={index}>
-                                              https://devcon.org{fileUrl}
-                                            </Link>
-                                          );
-                                        }
-                                      } else {
-                                        otherReferences.push(
-                                          <div key={index}>{file.filename}</div>
-                                        );
-                                      }
-                                    }
-                                  );
+                                      );
 
-                                  return (
-                                    <>
-                                      {otherReferences.length > 0 && (
-                                        <div className="flex flex-col gap-1">
-                                          <p className="mt-1 font-bold">
-                                            References
-                                          </p>
-                                          <div className="flex gap-2 flex-wrap">
-                                            {otherReferences}
-                                          </div>
-                                        </div>
-                                      )}
-                                      {sessionReferences.length > 0 && (
-                                        <div className="flex flex-col gap-2 mt-2">
-                                          <p className="mt-1 font-bold">
-                                            Related Sessions
-                                          </p>
-                                          <div className="flex gap-2 flex-wrap">
-                                            {sessionReferences}
-                                          </div>
-                                        </div>
-                                      )}
-                                    </>
-                                  );
-                                })()}
+                                      return (
+                                        <>
+                                          {otherReferences.length > 0 && (
+                                            <div className="flex flex-col gap-1">
+                                              <p className="mt-1 font-bold">
+                                                References
+                                              </p>
+                                              <div className="flex gap-2 flex-wrap">
+                                                {otherReferences}
+                                              </div>
+                                            </div>
+                                          )}
+                                          {sessionReferences.length > 0 && (
+                                            <div className="flex flex-col gap-2 mt-2">
+                                              <p className="mt-1 font-bold">
+                                                Related Sessions
+                                              </p>
+                                              <div className="flex gap-2 flex-wrap">
+                                                {sessionReferences}
+                                              </div>
+                                            </div>
+                                          )}
+                                        </>
+                                      );
+                                    })()}
+                                  </div>
+                                )}
                               </div>
-                            )}
-                          </div>
+                            </div>
+                          );
+                        })}
+                      {streamingMessage && (
+                        <div className="shrink-0 flex flex-col">
+                          <span className="text-sm opacity-50">
+                            Deva is responding...
+                          </span>
+                          <Markdown className="markdown">
+                            {streamingMessage}
+                          </Markdown>
                         </div>
-                      );
-                    })}
-                  {streamingMessage && (
-                    <div className="shrink-0 flex flex-col">
-                      <span className="text-sm opacity-50">
-                        Deva is responding...
-                      </span>
-                      <Markdown className="markdown">
-                        {streamingMessage}
-                      </Markdown>
-                    </div>
-                  )}
+                      )}
 
-                  <div ref={messagesEndRef} />
+                      <div ref={messagesEndRef} />
+
+                      <AnimatePresence>
+                        {!executingQuery &&
+                          !streamingMessage &&
+                          messages &&
+                          messages.length === 0 && (
+                            <motion.div
+                              className="mt-2 lg:mt-0"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.5 }}
+                            >
+                              <div className="flex flex-row gap-3 p-4 bg-[#F0F2FF] rounded-xl select-none">
+                                <InfoIcon
+                                  className="shrink-0 mt-[3px] icon"
+                                  style={
+                                    {
+                                      "--icon-color": "#7D52F4",
+                                      "--color-icon": "#7D52F4",
+                                      fontSize: "18px",
+                                      fill: "#7D52F4",
+                                    } as any
+                                  }
+                                />
+
+                                <div className="flex flex-col gap-1">
+                                  <p className="font-bold text-base">
+                                    Experimental Feature
+                                  </p>
+                                  <p className="text-sm text-[#6B6186]">
+                                    This is an MVP and Deva may sometimes
+                                    provide answers that are not true - we take
+                                    no responsibility for, or endorse, anything
+                                    Deva says beyond Event information.
+                                  </p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          )}
+                      </AnimatePresence>
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+
+                    {!isAtBottom && (
+                      <AnimatePresence>
+                        <motion.div
+                          className="absolute right-0 left-0 bottom-2 flex justify-center items-center select-none"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <CircleIcon
+                            className="bg-[#F0F2FF] w-[30px] h-[30px]"
+                            onClick={() => scrollToBottom(true)}
+                          >
+                            <ScrollDownIcon style={{ fontSize: "18px" }} />
+                          </CircleIcon>
+                        </motion.div>
+                      </AnimatePresence>
+                    )}
+
+                    <div className="absolute right-0 bottom-2">
+                      <FancyLoader loading={executingQuery} size={60} />
+                    </div>
+                  </div>
 
                   <AnimatePresence>
                     {!executingQuery &&
@@ -467,72 +652,27 @@ const DevaBot = ({
                       messages &&
                       messages.length === 0 && (
                         <motion.div
-                          className="mt-2 lg:mt-4"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
+                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4 select-none"
                         >
-                          <div className="flex flex-row gap-3 p-4 bg-[#F0F2FF] rounded-xl">
-                            <InfoIcon
-                              className="shrink-0 mt-[3px] icon"
-                              style={
-                                {
-                                  "--icon-color": "#7D52F4",
-                                  "--color-icon": "#7D52F4",
-                                  fontSize: "18px",
-                                  fill: "#7D52F4",
-                                } as any
-                              }
-                            />
+                          <Image
+                            src={AIImage}
+                            alt="Deva AI"
+                            className="w-[150px]"
+                            quality={100}
+                          />
 
-                            <div className="flex flex-col gap-1">
-                              <p className="font-bold text-base">
-                                Experimental Feature
-                              </p>
-                              <p className="text-sm text-[#6B6186]">
-                                This is an MVP and Deva may sometimes provide
-                                answers that are not true - we take no
-                                responsibility for, or endorse, anything Deva
-                                says beyond Event information.
-                              </p>
-                            </div>
-                          </div>
+                          <p className="font-semibold w-[250px]">
+                            Ask me anything related to Devcon SEA.
+                          </p>
                         </motion.div>
                       )}
                   </AnimatePresence>
-                </div>
-                <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 
-                <div className="absolute right-0 bottom-2">
-                  <FancyLoader loading={executingQuery} size={60} />
-                </div>
-              </div>
-
-              <AnimatePresence>
-                {!executingQuery &&
-                  !streamingMessage &&
-                  messages &&
-                  messages.length === 0 && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5 }}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4"
-                    >
-                      <div className="icon">
-                        <FancyLoader loading={true} dontAnimate />
-                        {/* <AppIcon style={{ fontSize: "50px" }} /> */}
-                      </div>
-                      <p className="font-semibold w-[250px]">
-                        Ask me anything related to Devcon SEA.
-                      </p>
-                    </motion.div>
-                  )}
-              </AnimatePresence>
-
-              {/* <div
+                  {/* <div
                 className={`text-red-500 text-xs shrink-0 ${
                   messages.length > 0 ? "hidden" : ""
                 }`}
@@ -559,235 +699,130 @@ const DevaBot = ({
                 </Popover>
               </div> */}
 
-              {/* <div className="shrink-0 relative w-full flex flex-col rounded overflow-hidden mb-2">
-                <div className="absolute flex items-center opacity-0 w-5/6 right-0 translate-x-[60%] translate-y-[22%] bottom-0 h-full pointer-events-none">
-                  <Image src={DevaHead} alt="Deva" className="object-cover" />
-                </div>
-
-                <textarea
-                  className={`relative w-full h-full outline-none p-2 pb-4 bg-transparent z-2 no-scrollbar ${
-                    isTouchDevice ? "text-base" : "text-sm"
-                  }`}
-                  ref={textareaRef}
-                  style={{
-                    resize: "none",
-                    ...(isTouchDevice && {
-                      fontSize: "16px",
-                      WebkitTextSizeAdjust: "100%",
-                      WebkitTapHighlightColor: "transparent",
-                    }),
-                  }}
-                  value={query}
-                  placeholder="Ask DevAI about Devcon here!"
-                  onChange={(e) => setQuery(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter" && !e.shiftKey && !executingQuery) {
-                      e.preventDefault();
-                      onSend();
-                    }
-                  }}
-                ></textarea>
-
-                <div
-                  className={`flex flex-wrap gap-2 p-2 shrink-0 ${
-                    messages.length > 0 ? "hidden" : ""
-                  }`}
-                >
-                  {[
-                    "What is Devcon?",
-                    "When is Devcon?",
-                    "How can I participate?",
-                    "Why Bangkok?",
-                    "Can I apply to speak?",
-                    "Can I volunteer?",
-                  ].map((suggestion, index) => (
-                    <Button
-                      key={index}
-                      className="bg-teal-500 text-white px-2 py-1 rounded text-xs plain"
-                      onClick={() => {
-                        setQuery(suggestion);
-                        textareaRef.current?.focus();
-                      }}
-                    >
-                      {suggestion}
-                    </Button>
-                  ))}
-                </div>
-
-                <div
-                  className={`flex absolute w-full h-full bg-slate-800 ${
-                    executingQuery || error
-                      ? "bg-opacity-90 pointer-events-auto"
-                      : "bg-opacity-0 pointer-events-none"
-                  } z-10 items-center justify-center`}
-                >
-                  <div className="flex flex-col items-center justify-center w-full">
-                    {executingQuery && (
-                      <Loader className="">
-                        <div className="text-xs opacity-70">
-                          Deva is thinking...
-                        </div>
-                      </Loader>
-                    )}
-                    {error && (
-                      <div className="text-red-500 p-4 flex flex-col gap-2">
-                        {error}
-                        <Button
-                          className="plain"
-                          onClick={() => setError("")}
-                          color="purple-1"
-                          fill
-                        >
-                          OK
-                        </Button>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-1 w-full m-2 mt-0 shrink-0">
-                  {!("ontouchstart" in window) && (
-                    <p className="text-xs opacity-30">
-                      Enter to submit. Shift+Enter for newline.
-                    </p>
-                  )}
-                  <div className="flex gap-2">
-                    <Button
-                      className="plain"
-                      color="teal-1"
-                      fill
-                      onClick={onSend}
-                      disabled={executingQuery}
-                    >
-                      Ask Deva
-                    </Button>
-
-                    <Button
-                      className="plain"
-                      color="black-1"
-                      fill
-                      disabled={executingQuery}
-                      onClick={reset}
-                    >
-                      Clear Chat
-                    </Button>
-                  </div>
-                </div> */}
-              <div
-                className={cn({
-                  hidden: executingQuery || messages.length > 0,
-                })}
-              >
-                <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-                  <div className="flex mb-3">
-                    <div
-                      className={`flex flex-wrap gap-2 py-2 shrink-0 ${
-                        messages.length > 0 ? "hidden" : ""
-                      }`}
-                    >
-                      {[
-                        "What should I do at Devcon?",
-                        "What is Devcon?",
-                        "When is Devcon?",
-                        "How can I participate?",
-                        "Why Bangkok?",
-                        "Can I apply to speak?",
-                        "Can I volunteer?",
-                      ].map((suggestion, index, array) => (
-                        <Button
-                          key={index}
-                          {...draggable}
-                          className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
-                            index === array.length - 1 ? "mr-4" : ""
+                  <div
+                    className={cn({
+                      hidden: executingQuery || messages.length > 0,
+                    })}
+                  >
+                    <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+                      <div className="flex mb-3">
+                        <div
+                          className={`flex flex-wrap gap-2 py-2 shrink-0 ${
+                            messages.length > 0 ? "hidden" : ""
                           }`}
-                          fat
-                          onClick={() => {
-                            setQuery(suggestion);
-                            textareaRef.current?.focus();
-                          }}
                         >
-                          {suggestion}
-                        </Button>
-                      ))}
-                    </div>
+                          {[
+                            "What should I do at Devcon?",
+                            "What is Devcon?",
+                            "When is Devcon?",
+                            "How can I participate?",
+                            "Why Bangkok?",
+                            "Can I apply to speak?",
+                            "Can I volunteer?",
+                          ].map((suggestion, index, array) => (
+                            <Button
+                              key={index}
+                              {...draggable}
+                              className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
+                                index === array.length - 1 ? "mr-4" : ""
+                              }`}
+                              fat
+                              onClick={() => {
+                                setQuery(suggestion);
+                                textareaRef.current?.focus();
+                              }}
+                            >
+                              {suggestion}
+                            </Button>
+                          ))}
+                        </div>
+                      </div>
+                    </SwipeToScroll>
                   </div>
-                </SwipeToScroll>
-              </div>
 
-              <Separator className="mb-3" />
+                  <Separator className="mb-3" />
 
-              <div
-                className={cn(
-                  "shrink-0 flex items-center justify-center gap-1 mb-4 mt-1.5 w-full relative",
-                  { "mt-0": executingQuery || messages.length > 0 }
-                )}
-              >
-                <div className="icon mr-1">
-                  <AppIconOne />
-                </div>
-                <div className={cn("grow relative")}>
-                  <input
-                    className={cn(
-                      // text-16 = avoid zoom on iphone jesus christ
-                      "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
-                      {
-                        "opacity-50": executingQuery,
-                      }
-                    )}
-                    ref={textareaRef}
-                    value={query}
-                    onChange={(e) => {
-                      if (!executingQuery) {
-                        setQuery(e.target.value);
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey && !executingQuery) {
-                        e.preventDefault();
-                        onSend();
-                      }
-                    }}
-                    type="text"
-                    placeholder="Ask me anything..."
-                  />
                   <div
                     className={cn(
-                      "absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all pb-[2px] cursor-pointer",
-                      {
-                        "opacity-50": executingQuery,
-                      }
+                      "shrink-0 flex items-center justify-center gap-1 mb-4 mt-1.5 w-full relative",
+                      { "mt-0": executingQuery || messages.length > 0 }
                     )}
-                    onClick={() => {
-                      setQuery("");
-                      textareaRef.current?.focus();
-                    }}
                   >
-                    <CloseIcon style={{ fontSize: "10px", fill: "#646E83" }} />
-                  </div>
-                </div>
+                    <div className="icon mr-1">
+                      <AppIconOne />
+                    </div>
+                    <div className={cn("grow relative")}>
+                      <input
+                        className={cn(
+                          // text-16 = avoid zoom on iphone jesus christ
+                          "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
+                          {
+                            "opacity-50": executingQuery,
+                          }
+                        )}
+                        ref={textareaRef}
+                        value={query}
+                        onChange={(e) => {
+                          if (!executingQuery) {
+                            setQuery(e.target.value);
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (
+                            e.key === "Enter" &&
+                            !e.shiftKey &&
+                            !executingQuery
+                          ) {
+                            e.preventDefault();
+                            onSend();
+                          }
+                        }}
+                        type="text"
+                        placeholder="Ask me anything..."
+                      />
+                      <div
+                        className={cn(
+                          "absolute right-4 top-1/2 transform -translate-y-1/2 focus:outline-none hover:scale-110 transition-all pb-[2px] cursor-pointer",
+                          {
+                            "opacity-50": executingQuery,
+                            "opacity-0": query.length === 0,
+                          }
+                        )}
+                        onClick={() => {
+                          setQuery("");
+                          textareaRef.current?.focus();
+                        }}
+                      >
+                        <CloseIcon
+                          style={{ fontSize: "10px", fill: "#646E83" }}
+                        />
+                      </div>
+                    </div>
 
-                <div>
-                  <CircleIcon
-                    className={cn(
-                      "mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]",
-                      {
-                        // "opacity-50": executingQuery,
-                        "!bg-[#7D52F4]": query.length > 0,
-                      }
-                    )}
-                    onClick={onSend}
-                    disabled={executingQuery || query.length === 0}
-                  >
-                    <ChevronRight
-                      className="text-lg icon transition-all duration-500"
-                      style={{
-                        fontSize: "12px",
-                        fill: query.length > 0 ? "white" : "#646E83",
-                      }}
-                    />
-                  </CircleIcon>
-                </div>
-              </div>
+                    <div>
+                      <CircleIcon
+                        className={cn(
+                          "mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]",
+                          {
+                            // "opacity-50": executingQuery,
+                            "!bg-[#7D52F4]": query.length > 0,
+                          }
+                        )}
+                        onClick={onSend}
+                        disabled={executingQuery || query.length === 0}
+                      >
+                        <ChevronRight
+                          className="text-lg icon transition-all duration-500"
+                          style={{
+                            fontSize: "12px",
+                            fill: query.length > 0 ? "white" : "#646E83",
+                          }}
+                        />
+                      </CircleIcon>
+                    </div>
+                  </div>
+                </>
+              )}
             </motion.div>
           </motion.div>
         )}
