@@ -267,6 +267,12 @@ export default pageHOC(function DevconWeek(props: any) {
         </div> */}
       </div>
 
+      <div className="section relative">
+        <div className="flex mb-8 justify-center item-center text-sm font-semibold">
+          All events listed here are organized independently by the broader ethereum communtiy
+        </div>
+      </div>
+
       {/* <div className="section relative">
         <div className="border-top mt-8 pt-8"></div>
         <FAQ title="Frequently Asked" anchor="#faq" faq={devconWeek.questions} />
