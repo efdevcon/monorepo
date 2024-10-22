@@ -32,6 +32,20 @@
     );
   }
 
+  [data-type='header'] {
+    @media (max-width: 767px) {
+      background: linear-gradient(to right, #7a3aff, #633cff, #b04cd4) !important;
+    }
+  }
+
+  [data-type='header'],
+  :global(.header-color) {
+    @media (max-width: 767px) {
+      --color-icon: #fff !important;
+      color: #fff !important;
+    }
+  }
+
   :global(.header-gradient) {
     // @media (min-width: 1000px) {
     //   background: linear-gradient(to right, transparent, #5b1acb, #1e00ff98, #633cff, #1e00ffab, transparent);
@@ -39,7 +53,8 @@
     @media (max-width: 999px) {
       // mask-image: linear-gradient(to bottom, black 20%, rgba(0, 0, 0, 0.561) 100%);
 
-      background: linear-gradient(to bottom, #7a3aff, #633cff, #bc52f1);
+      background: linear-gradient(to right, #7a3aff, #633cff, #bc52f1) !important;
+      // background: linear-gradient(to bottom, #000000, #00000000) !important;
     }
   }
 

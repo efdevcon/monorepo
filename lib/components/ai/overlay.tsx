@@ -190,6 +190,9 @@ const DevaBot = ({
   }, []);
 
   const reset = () => {
+    setExecutingQuery(false);
+    setStreamingMessage("");
+    setError("");
     resetThreadID();
     resetMessages();
   };
@@ -338,6 +341,23 @@ const DevaBot = ({
                 duration: 0.35,
               }}
             >
+              {error && (
+                <div className="text-red-500 absolute inset-0 z-[100] bg-opacity-80 bg-white flex flex-col items-center justify-center">
+                  <p className="text-lg font-bold px-8 text-center">
+                    Deva crashed for an unknown reason! We are so sorry! Please
+                    try again.
+                  </p>
+                  <Button
+                    onClick={reset}
+                    color="black-1"
+                    className="mt-4 plain"
+                    fill
+                  >
+                    Start Over
+                  </Button>
+                </div>
+              )}
+
               <div className="flex flex-col gap-2 shrink-0 w-full mb-2">
                 <div className="flex justify-between w-full">
                   <div className="shrink-0 bold">
@@ -359,10 +379,10 @@ const DevaBot = ({
               </div>
 
               {notifications && (
-                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 shrink-0 mb-2">
+                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 max-w-[350px] shrink-0 mb-2 w-full self-center">
                   <div
                     className={cn(
-                      "flex justify-center items-center w-[175px] rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
+                      "flex justify-center items-center self-center grow rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
                       {
                         "bg-white shadow-md text-[#7D52F4]": activeTab === 0,
                       }
@@ -432,16 +452,6 @@ const DevaBot = ({
 
                           return (
                             <div key={index} className="shrink-0 flex flex-col">
-                              {/* <span
-                            className={cn("text-sm opacity-50", {
-                              "text-left self-start": isAssistantReply,
-                              "text-right self-end": !isAssistantReply,
-                            })}
-                          >
-                            {message.role === "assistant"
-                              ? "DevAI responded"
-                              : "You asked"}
-                          </span> */}
                               <div
                                 className={cn("markdown p-3 py-2 w-auto", {
                                   "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":

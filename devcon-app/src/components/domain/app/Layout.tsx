@@ -60,7 +60,7 @@ const LocationInformation = ({ className, textColor }: { className: string; text
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
         // const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-        setCountdown(`T-${days}d ${hours}h ${minutes}m`) //  ${seconds}s`)
+        setCountdown(`T-${days} Days`) // ${hours}h ${minutes}m`) //  ${seconds}s`)
       } else {
         setCountdown('Event started!')
       }
@@ -94,12 +94,22 @@ const LocationInformation = ({ className, textColor }: { className: string; text
         <Image src={SunCloudy} alt="sun-cloudy" width={24} height={24} />
         <div className="text-lg font-semibold">32°C</div>
       </div>
-      <motion.div className="text-[#6a6e76] text-[13px]" style={{ color: textColor || '#6a6e76' }}>
-        {currentTime}
-      </motion.div>
-      <motion.div className="text-[#6a6e76] text-[13px] hidden xl:block" style={{ color: textColor || '#6a6e76' }}>
-        {countdown}
-      </motion.div>
+      <div className="flex gap-4 text-sm">
+        <div>{currentTime}</div>
+        <div>{countdown}</div>
+        {/* <motion.div
+          className="text-[#000000] text-[13px] font-semibold header-color"
+          style={{ color: textColor || '#000000' }}
+        >
+          {currentTime}
+        </motion.div>
+        <motion.div
+          className="text-[#000000] text-[13px] font-semibold header-color"
+          style={{ color: textColor || '#000000' }}
+        >
+          {countdown}
+        </motion.div> */}
+      </div>
     </div>
   )
 }
@@ -107,7 +117,7 @@ const LocationInformation = ({ className, textColor }: { className: string; text
 const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElement> }) => {
   const { scrollY } = useScroll({
     layoutEffect: false,
-    // container: props.layoutContainerRef,
+    container: props.layoutContainerRef,
   })
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
   const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
@@ -115,29 +125,29 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
 
   return (
     <>
-      <div
+      {/* <div
         className="fixed top-0 w-screen left-0 header-gradient z-[100]"
         style={{ height: 'calc(0px + max(0px, env(safe-area-inset-top)))' }}
-      ></div>
+      ></div> */}
       <motion.div
         className="section z-[12] sticky top-0"
+        data-type="header"
         style={{
           color: textColor,
           // @ts-ignore
           '--color-icon': textColor,
           paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
-          // top: 'calc(0px + max(0px, env(safe-area-inset-top)))',
         }}
       >
         <div className="flex justify-between items-center min-h-[56px] w-full gap-8 lg:gap-4">
           <motion.div
-            className="absolute inset-0 bg-white self-center left-0 w-screen h-full glass z-[-1]"
+            className="absolute hidden md:block inset-0 !bg-white self-center left-0 w-screen h-full glass z-[-1]"
             style={{ opacity }}
           ></motion.div>
-          {/* <motion.div
-            className="absolute inset-0 h-full z-[-1] header-gradient"
-            style={{ opacity: opacityOut }}
-          ></motion.div> */}
+          <motion.div
+            className="absolute md:hidden inset-0 header-gradient self-center shadow-lgleft-0 w-screen h-full z-[-1]"
+            style={{ opacity }}
+          ></motion.div>
           <div className="lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
             <AppIcon style={{ fontSize: 20 }} />
           </div>
@@ -183,7 +193,7 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
             </Breadcrumb>
           </div>
           <div className="flex items-center justify-center gap-6 shrink-0">
-            <LocationInformation textColor={textColor} className="hidden sm:flex items-center justify-center gap-6" />
+            <LocationInformation textColor={textColor} className="hidden md:flex items-center justify-center gap-6" />
 
             <div className="flex items-center justify-center gap-4 ml-4 user-select-none">
               {/* <Link href="/login">
@@ -209,7 +219,7 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
       </motion.div>
       <LocationInformation
         // textColor={textColor}
-        className="flex sm:hidden items-center justify-center px-5 gap-6 py-2 z-[11] relative"
+        className="flex md:hidden items-center justify-between px-5 gap-6 py-2 z-[11] relative"
       />
     </>
   )
