@@ -121,6 +121,23 @@ const DevaBot = ({
   const [activeTab, setActiveTab] = React.useState(0);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
   const [streamingMessage, setStreamingMessage] = React.useState("");
+  const [isSmallScreen, setIsSmallScreen] = React.useState(false);
+
+  // Add this useEffect hook to check screen size
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 500);
+    };
+
+    // Check on mount
+    checkScreenSize();
+
+    // Add event listener for resize
+    window.addEventListener("resize", checkScreenSize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   React.useEffect(() => {
     setIsTouchDevice("ontouchstart" in window || navigator.maxTouchPoints > 0);
@@ -295,28 +312,48 @@ const DevaBot = ({
   const scrollPositionRef = React.useRef(0);
   const scrollLock = React.useRef(false);
 
+  const [isIOS, setIsIOS] = React.useState(false);
+
+  React.useEffect(() => {
+    // Check if the device is iOS
+    const checkIsIOS = () => {
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      return /iphone|ipad|ipod/.test(userAgent);
+    };
+    setIsIOS(checkIsIOS());
+  }, []);
+
   React.useEffect(() => {
     if (toggled) {
       scrollPositionRef.current = window.scrollY;
       scrollLock.current = true;
 
-      // IOS needs this demonic hack to work... (this effectively hides a visual bug while also disabling scroll on backgground)
-      setTimeout(() => {
-        if (!scrollLock.current) return;
-        document.documentElement.style.overflow = "hidden";
-        document.documentElement.style.height = "100vh";
+      if (isIOS) {
+        // IOS needs this demonic hack to work... (this effectively hides a visual bug while also disabling scroll on background)
+        setTimeout(() => {
+          if (!scrollLock.current) return;
+          document.documentElement.style.overflow = "hidden";
+          document.documentElement.style.height = "100vh";
+          document.body.style.overflow = "hidden";
+          document.body.style.height = "100vh";
+        }, 250);
+      } else {
+        // For non-iOS devices, use a simpler approach
         document.body.style.overflow = "hidden";
-        document.body.style.height = "100vh";
-      }, 250);
+      }
     } else {
       scrollLock.current = false;
-      document.documentElement.style.overflow = "";
-      document.documentElement.style.height = "";
-      document.body.style.overflow = "";
-      document.body.style.height = "";
+      if (isIOS) {
+        document.documentElement.style.overflow = "";
+        document.documentElement.style.height = "";
+        document.body.style.overflow = "";
+        document.body.style.height = "";
+      } else {
+        document.body.style.overflow = "";
+      }
       window.scrollTo(0, scrollPositionRef.current);
     }
-  }, [toggled]);
+  }, [toggled, isIOS]);
 
   // useEffect(() => {
   //   if (toggled) {
@@ -360,20 +397,20 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 h-full z-10 h-[100dvh] w-[500px] md:w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl flex flex-col gap-0 items-start overflow-hidden rounded-tl-[var(--safe-area-corner-radius)] rounded-tr-[var(--safe-area-corner-radius)]"
+              className="absolute right-0 h-full z-10 h-[100vh] w-[500px] md:w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl flex flex-col gap-0 items-start overflow-hidden rounded-tl-[var(--safe-area-corner-radius)] rounded-tr-[var(--safe-area-corner-radius)]"
               style={{
                 paddingTop: "calc(0px + max(16px, env(safe-area-inset-top)))",
                 paddingBottom:
                   "calc(0px + max(16px, env(safe-area-inset-bottom)))",
               }}
               initial={{
-                y: "100%",
+                [isSmallScreen ? "y" : "x"]: "100%",
               }}
               animate={{
-                y: "0%",
+                [isSmallScreen ? "y" : "x"]: "0%",
               }}
               exit={{
-                y: "100%",
+                [isSmallScreen ? "y" : "x"]: "100%",
               }}
               transition={{
                 duration: 0.35,
