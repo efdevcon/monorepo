@@ -79,17 +79,17 @@ _self.addEventListener('push', event => {
   const title = data.title ? data.title : 'Devcon SEA Passport'
   const options = {
     body: data.body || 'You have a new notification',
-    icon: '/android-chrome-192x192.png',
+    icon: '/icon-256x256.png',
     // badge: '/icons/badge.png', // Small icon for notification badge
-    badge: '/assets/images/twitter-banner.jpeg', // Small icon for notification badge
+    badge: '/icon-256x256.png', // Small icon for notification badge
     // image: data.image || '/images/notification-image.png', // Large image to display in the notification
     // tag: 'devcon-notification', // Tag to identify the notification - this will cause the notification to replace the previous one with the same tag
     data: { url: data.url || '/' }, // Custom data to associate with the notification
     actions: [
       {
         action: 'open_url',
-        title: 'Open',
-        icon: '/favicon-32x32.png',
+        title: 'Open Devcon Passport',
+        // icon: '/favicon-32x32.png',
       },
     ],
     // requireInteraction: true, // Notification will remain active until the user interacts with it
