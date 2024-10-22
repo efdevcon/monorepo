@@ -106,6 +106,7 @@ const LocationInformation = ({ className, textColor }: { className: string; text
 
 const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElement> }) => {
   const { scrollY } = useScroll({
+    layoutEffect: false,
     // container: props.layoutContainerRef,
   })
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
