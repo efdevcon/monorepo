@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 // import Link from "next/link";
 import Link from "lib/components/link";
@@ -292,20 +292,58 @@ const DevaBot = ({
     }
   }, [executingQuery]);
 
+  const scrollPositionRef = React.useRef(0);
+  const scrollLock = React.useRef(false);
+
   React.useEffect(() => {
     if (toggled) {
-      document.body.style.overflow = "hidden";
+      scrollPositionRef.current = window.scrollY;
+      scrollLock.current = true;
+
+      // IOS needs this demonic hack to work... (this effectively hides a visual bug while also disabling scroll on backgground)
+      setTimeout(() => {
+        if (!scrollLock.current) return;
+        document.documentElement.style.overflow = "hidden";
+        document.documentElement.style.height = "100vh";
+        document.body.style.overflow = "hidden";
+        document.body.style.height = "100vh";
+      }, 250);
     } else {
+      scrollLock.current = false;
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
       document.body.style.overflow = "";
+      document.body.style.height = "";
+      window.scrollTo(0, scrollPositionRef.current);
     }
   }, [toggled]);
+
+  // useEffect(() => {
+  //   if (toggled) {
+  //     // Store the current scroll position
+  //     scrollPositionRef.current = window.pageYOffset;
+
+  //     // Apply styles to prevent scrolling
+  //     document.body.style.position = "fixed";
+  //     document.body.style.top = `-${scrollPositionRef.current}px`;
+  //     document.body.style.width = "100%";
+
+  //     return () => {
+  //       // Remove the styles and restore scroll position
+  //       document.body.style.position = "";
+  //       document.body.style.top = "";
+  //       document.body.style.width = "";
+  //       window.scrollTo(0, scrollPositionRef.current);
+  //     };
+  //   }
+  // }, [toggled]);
 
   return (
     <>
       <AnimatePresence>
         {toggled && (
           <motion.div
-            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden "
+            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden"
             onClick={() => onToggle(false)}
             initial={{
               background: "#00000000",
@@ -322,30 +360,29 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 flex flex-col gap-0 items-start overflow-hidden"
+              className="absolute right-0 h-full z-10 h-[100dvh] w-[500px] md:w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl flex flex-col gap-0 items-start overflow-hidden rounded-tl-[var(--safe-area-corner-radius)] rounded-tr-[var(--safe-area-corner-radius)]"
               style={{
                 paddingTop: "calc(0px + max(16px, env(safe-area-inset-top)))",
                 paddingBottom:
                   "calc(0px + max(16px, env(safe-area-inset-bottom)))",
               }}
               initial={{
-                x: "100%",
+                y: "100%",
               }}
               animate={{
-                x: "0%",
+                y: "0%",
               }}
               exit={{
-                x: "100%",
+                y: "100%",
               }}
               transition={{
                 duration: 0.35,
               }}
             >
               {error && (
-                <div className="text-red-500 absolute inset-0 z-[100] bg-opacity-80 bg-white flex flex-col items-center justify-center">
+                <div className="text-red-500 absolute inset-0 z-[100] bg-opacity-90 bg-white flex flex-col items-center justify-center">
                   <p className="text-lg font-bold px-8 text-center">
-                    Deva crashed for an unknown reason! We are so sorry! Please
-                    try again.
+                    Deva crashed for an unknown reason! Please try again.
                   </p>
                   <Button
                     onClick={reset}
@@ -358,7 +395,7 @@ const DevaBot = ({
                 </div>
               )}
 
-              <div className="flex flex-col gap-2 shrink-0 w-full mb-2">
+              <div className="flex flex-col gap-2 shrink-0 w-full mb-2 px-4">
                 <div className="flex justify-between w-full">
                   <div className="shrink-0 bold">
                     <Image
@@ -379,7 +416,7 @@ const DevaBot = ({
               </div>
 
               {notifications && (
-                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 max-w-[350px] shrink-0 mb-2 w-full self-center">
+                <div className="flex justify-evenly gap-2 bg-[#EFEBFF] rounded-lg p-1 mt-4 max-w-[350px] shrink-0 mb-2 w-full self-center px-4">
                   <div
                     className={cn(
                       "flex justify-center items-center self-center grow rounded-md gap-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-1 transition-all duration-300 select-none",
@@ -434,12 +471,12 @@ const DevaBot = ({
               )}
 
               {activeTab === 1 && notifications && renderNotifications && (
-                <div className="w-full">{renderNotifications()}</div>
+                <div className="w-full px-4">{renderNotifications()}</div>
               )}
 
               {activeTab === 0 && (
                 <>
-                  <div className="relative flex flex-col grow w-full gap-4 no-scrollbar">
+                  <div className="relative flex flex-col grow w-full gap-4 no-scrollbar px-4">
                     <div
                       className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-base"
                       ref={messagesContainerRef}
@@ -657,7 +694,7 @@ const DevaBot = ({
                       </AnimatePresence>
                     )}
 
-                    <div className="absolute right-0 bottom-2">
+                    <div className="absolute right-0 bottom-2 pr-4">
                       <FancyLoader loading={executingQuery} size={60} />
                     </div>
                   </div>
@@ -716,7 +753,7 @@ const DevaBot = ({
               </div> */}
 
                   <div
-                    className={cn({
+                    className={cn("", {
                       hidden: executingQuery || messages.length > 0,
                     })}
                   >
@@ -740,8 +777,8 @@ const DevaBot = ({
                               key={index}
                               {...draggable}
                               className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
-                                index === array.length - 1 ? "mr-4" : ""
-                              }`}
+                                index === array.length - 1 ? "" : ""
+                              } ${index === 0 ? "ml-4" : ""}`}
                               fat
                               onClick={() => {
                                 setQuery(suggestion);
@@ -756,11 +793,11 @@ const DevaBot = ({
                     </SwipeToScroll>
                   </div>
 
-                  <Separator className="mb-3" />
+                  <Separator className="mb-3 w-full" />
 
                   <div
                     className={cn(
-                      "shrink-0 flex items-center justify-center gap-1 mb-0 mt-1.5 w-full relative",
+                      "shrink-0 flex items-center justify-center gap-1 mb-0 mt-1.5 w-full relative px-4 pr-2",
                       { "mt-0": executingQuery || messages.length > 0 }
                     )}
                   >
