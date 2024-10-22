@@ -132,6 +132,11 @@ const useNavigationData = () => {
             type: 'url',
           },
           {
+            title: 'Apply to Speak',
+            url: '/speaker-applications',
+            type: 'page',
+          },
+          {
             title: 'RTD Grants',
             url: 'https://esp.ethereum.foundation/devcon-grants',
             type: 'link',
@@ -193,29 +198,6 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: 'Program',
-        url: '#',
-        type: 'links',
-        logo: LogoGetInvolved,
-        links: [
-          {
-            title: 'Programming',
-            url: '#',
-            type: 'header',
-          },
-          {
-            title: 'Overview',
-            url: '/programming',
-            type: 'page',
-          },
-          {
-            title: 'Apply to Speak',
-            url: '/speaker-applications',
-            type: 'page',
-          },
-        ],
-      },
-      {
         title: 'Event',
         url: '#',
         type: 'links',
@@ -225,6 +207,11 @@ const useNavigationData = () => {
             title: 'Event',
             url: '#',
             type: 'header',
+          },
+          {
+            title: 'Program Overview',
+            url: '/programming',
+            type: 'page',
           },
           {
             title: 'City Guide',
