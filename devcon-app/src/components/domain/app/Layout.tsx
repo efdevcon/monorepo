@@ -33,6 +33,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { devaBotVisibleAtom, notificationsAtom, notificationsCountSelector, useSeenNotifications } from 'pages/_app'
 import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 import { AccountContext, useAccountContext } from 'context/account-context'
+import { useIsScrolled } from 'hooks/useIsScrolled'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -114,13 +115,14 @@ const LocationInformation = ({ className, textColor }: { className: string; text
   )
 }
 
-const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElement> }) => {
+const Header = (props: HeaderProps) => {
   const { scrollY } = useScroll({
     layoutEffect: false,
-    container: props.layoutContainerRef,
+    //   container: props.layoutContainerRef,
   })
+  // const isScrolled = useIsScrolled()
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
-  const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
+  // const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
   const textColor = useTransform(scrollY, [0, 50], ['#000000', '#000000'])
 
   return (
@@ -145,7 +147,7 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
             style={{ opacity }}
           ></motion.div>
           <motion.div
-            className="absolute md:hidden inset-0 header-gradient self-center shadow-lgleft-0 w-screen h-full z-[-1]"
+            className="absolute md:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
             style={{ opacity }}
           ></motion.div>
           <div className="lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
@@ -193,7 +195,7 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
             </Breadcrumb>
           </div>
           <div className="flex items-center justify-center gap-6 shrink-0">
-            <LocationInformation textColor={textColor} className="hidden md:flex items-center justify-center gap-6" />
+            <LocationInformation className="hidden md:flex items-center justify-center gap-6" />
 
             <div className="flex items-center justify-center gap-4 ml-4 user-select-none">
               {/* <Link href="/login">
@@ -273,7 +275,6 @@ const Navigation = () => {
   const windowWidth = useWindowWidth()
   const isSmallScreen = windowWidth < 1280
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  // const notificationsCount = useRecoilValue(notificationsCountSelector)
   const { notificationsCount } = useSeenNotifications()
 
   return (
@@ -321,7 +322,6 @@ const Navigation = () => {
                   sideOffset={isSmallScreen ? 15 : 20}
                 >
                   <div>{item.label}</div>
-                  {/* <PopoverArrow style={{ fill: 'white' }} /> */}
                 </PopoverContent>
               </Popover>
             )
@@ -342,14 +342,12 @@ const Navigation = () => {
 
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
             <div>Schedule</div>
-            {/* <PopoverArrow className="shadow-lg" style={{ fill: 'white' }} /> */}
           </PopoverContent>
         </Popover>
 
         <Popover open={openPopover === '/more'} onOpenChange={open => setOpenPopover(open ? '/more' : null)}>
           <PopoverTrigger className="plain outline-none" onClick={() => setDevaBotVisible(true)}>
             <div
-              // href="/more"
               onMouseEnter={() => setOpenPopover('/more')}
               onMouseLeave={() => setOpenPopover(null)}
               className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#784DEF1A] bg-opacity-20 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA]"
@@ -364,10 +362,8 @@ const Navigation = () => {
             </div>
           </PopoverTrigger>
 
-          {/* #7D52F4 */}
-
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
-            <div>App</div>
+            <div>{accountContext.account ? 'App' : 'AI Chat'}</div>
             {/* <PopoverArrow style={{ fill: 'white' }} /> */}
           </PopoverContent>
         </Popover>
@@ -383,7 +379,7 @@ export const AppLayout = (
     breadcrumbs: { label: string; href?: string; icon?: any }[]
   } & PropsWithChildren
 ) => {
-  // const headerHeight = useGetElementHeight('header')
+  const headerHeight = useGetElementHeight('header')
   // const upperNavHeight = useGetElementHeight('inline-nav')
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
   const layoutContainerRef = useRef<HTMLDivElement>(null)
@@ -393,8 +389,7 @@ export const AppLayout = (
       <div
         id="layout-container"
         className={css['app']}
-        ref={layoutContainerRef}
-        // style={
+        // ref={layoutContainerRef}
         //   {
         //     '--header-height': `${headerHeight}px`,
         //     '--app-nav-upper-height': `${upperNavHeight || 49}px`,
@@ -402,7 +397,7 @@ export const AppLayout = (
         //   } as any
         // }
       >
-        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} layoutContainerRef={layoutContainerRef} />
+        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} />
 
         {/* <Image
           src={LoginBackdrop}
@@ -418,7 +413,7 @@ export const AppLayout = (
           <div className="flex flex-col xl:flex-row gap-0 relative">
             <div
               data-type="page-content"
-              className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh] shrink-0"
+              className="xl:order-2 grow relative px-4 shrink-0"
               style={{ paddingBottom: 'calc(80px + max(24px, env(safe-area-inset-bottom)))' }}
             >
               {props.children}

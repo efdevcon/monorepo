@@ -5,14 +5,15 @@
 }
 
 .app {
-  height: 100vh;
+  // height: 100vh;
+  // height: max-content;
   width: 100vw;
   position: relative;
-  overflow-x: hidden;
-  overflow-y: auto;
-  min-height: 100vh;
+  // overflow-x: hidden;
+  // overflow-y: auto;
+  // min-height: 100vh;
   // padding-bottom: 120px; // Adjusting for fixed bottom nav overlaying content, and adding a bit of white space to indicate bottom was reached
-  @include fonts-sm-fixed;
+  // @include fonts-sm-fixed;
 
   &:before {
     content: '';

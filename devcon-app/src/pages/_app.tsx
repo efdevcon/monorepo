@@ -167,7 +167,10 @@ function App({ Component, pageProps }: AppProps) {
           <AppContext>
             <Web3Provider>
               {!sessions && (
-                <div className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2">
+                <div
+                  data-type="loader"
+                  className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
+                >
                   <FancyLoader loading={!sessions} />
                   <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
                 </div>
