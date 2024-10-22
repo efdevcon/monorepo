@@ -23,6 +23,8 @@ import BellHollow from "lib/assets/icons/bell-hollow.svg";
 import SquareSparkles from "lib/assets/icons/square-sparkle.svg";
 import AIImage from "./ai-generate.png";
 import ScrollDownIcon from "lib/assets/icons/scroll-down.svg";
+import SendIcon from "lib/assets/icons/send.svg";
+import SquaresIcon from "lib/assets/icons/squares.svg";
 import {
   Popover,
   PopoverTrigger,
@@ -171,10 +173,8 @@ const DevaBot = ({
   }, [executingQuery, isAtBottom]);
 
   React.useEffect(() => {
-    if (isAtBottom) {
-      scrollToBottom();
-    }
-  }, [messages, isAtBottom]);
+    scrollToBottom();
+  }, [messages]);
 
   React.useEffect(() => {
     const container = messagesContainerRef.current;
@@ -421,7 +421,7 @@ const DevaBot = ({
                 <>
                   <div className="relative flex flex-col grow w-full gap-4 no-scrollbar">
                     <div
-                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-sm"
+                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-base"
                       ref={messagesContainerRef}
                       onScroll={checkIfAtBottom}
                     >
@@ -817,7 +817,8 @@ const DevaBot = ({
                         onClick={onSend}
                         disabled={executingQuery || query.length === 0}
                       >
-                        <ChevronRight
+                        {executingQuery}
+                        <SendIcon
                           className="text-lg icon transition-all duration-500"
                           style={{
                             fontSize: "12px",
