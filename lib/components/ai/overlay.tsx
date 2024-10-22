@@ -319,7 +319,12 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 inset-padding-bottom inset-padding-top flex flex-col gap-0 items-start overflow-hidden"
+              className="absolute right-0 h-full z-10 h-[100dvh] w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl p-4 flex flex-col gap-0 items-start overflow-hidden"
+              style={{
+                paddingTop: "calc(0px + max(16px, env(safe-area-inset-top)))",
+                paddingBottom:
+                  "calc(0px + max(16px, env(safe-area-inset-bottom)))",
+              }}
               initial={{
                 x: "100%",
               }}
@@ -745,7 +750,7 @@ const DevaBot = ({
 
                   <div
                     className={cn(
-                      "shrink-0 flex items-center justify-center gap-1 mb-4 mt-1.5 w-full relative",
+                      "shrink-0 flex items-center justify-center gap-1 mb-0 mt-1.5 w-full relative",
                       { "mt-0": executingQuery || messages.length > 0 }
                     )}
                   >
@@ -756,7 +761,7 @@ const DevaBot = ({
                       <input
                         className={cn(
                           // text-16 = avoid zoom on iphone jesus christ
-                          "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-[16px] lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
+                          "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-base lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
                           {
                             "opacity-50": executingQuery,
                           }

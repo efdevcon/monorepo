@@ -110,24 +110,33 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
   })
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
   const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
-  const textColor = useTransform(scrollY, [0, 50], ['#ffffff', '#000000'])
+  const textColor = useTransform(scrollY, [0, 50], ['#000000', '#000000'])
 
   return (
     <>
+      <div
+        className="fixed top-0 w-screen left-0 header-gradient z-[100]"
+        style={{ height: 'calc(0px + max(0px, env(safe-area-inset-top)))' }}
+      ></div>
       <motion.div
-        className="section z-[12] sticky top-0 inset-padding-top "
-        // @ts-ignore
-        style={{ color: textColor, '--color-icon': textColor }}
+        className="section z-[12] sticky top-0"
+        style={{
+          color: textColor,
+          // @ts-ignore
+          '--color-icon': textColor,
+          paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
+          // top: 'calc(0px + max(0px, env(safe-area-inset-top)))',
+        }}
       >
-        <div className="flex justify-between items-center min-h-[56px] w-full gap-8 lg:gap-4 ">
+        <div className="flex justify-between items-center min-h-[56px] w-full gap-8 lg:gap-4">
           <motion.div
-            className="absolute inset-0 bg-white h-full glass z-[-1] mask-sideways"
+            className="absolute inset-0 bg-white self-center left-0 w-screen h-full glass z-[-1]"
             style={{ opacity }}
           ></motion.div>
-          <motion.div
+          {/* <motion.div
             className="absolute inset-0 h-full z-[-1] header-gradient"
             style={{ opacity: opacityOut }}
-          ></motion.div>
+          ></motion.div> */}
           <div className="lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
             <AppIcon style={{ fontSize: 20 }} />
           </div>
@@ -199,7 +208,7 @@ const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElem
       </motion.div>
       <LocationInformation
         // textColor={textColor}
-        className="flex sm:hidden items-center justify-center px-5 gap-6 border-top py-2 bg-white z-[11] relative"
+        className="flex sm:hidden items-center justify-center px-5 gap-6 py-2 z-[11] relative"
       />
     </>
   )
@@ -259,11 +268,17 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-6 left-0 grow-0 w-full z-10 pointer-events-none inset-padding-bottom',
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-10 pointer-events-none',
         'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
       )}
+      style={{
+        paddingBottom: 'calc(0px + max(16px, env(safe-area-inset-bottom)))',
+      }}
     >
-      <div className="flex xl:hidden absolute left-0 -bottom-6 h-[112px] w-full bottom-glass"></div>
+      <div
+        className="flex md:hidden absolute left-0 bottom-0 w-full bottom-glass"
+        style={{ height: 'calc(72px + max(16px, env(safe-area-inset-bottom)))' }}
+      ></div>
       <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px] pointer-events-auto">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems(!!accountContext.account).map((item, index) => {
@@ -390,7 +405,11 @@ export const AppLayout = (
 
         <div className="section pt-5 relative z-10 page-background">
           <div className="flex flex-col xl:flex-row gap-0 relative">
-            <div data-type="page-content" className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh] shrink-0">
+            <div
+              data-type="page-content"
+              className="xl:order-2 grow relative px-4 pb-24 min-h-[50vh] shrink-0"
+              style={{ paddingBottom: 'calc(80px + max(24px, env(safe-area-inset-bottom)))' }}
+            >
               {props.children}
             </div>
             <Navigation />

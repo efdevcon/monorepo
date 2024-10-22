@@ -68,7 +68,7 @@ body {
 }
 
 .inset-padding-top {
-  padding-top: calc(env(safe-area-inset-top, 5px) - 5px);
+  padding-top: calc(16px + max(0px, env(safe-area-inset-top)));
 }
 
 .inset-padding-bottom {

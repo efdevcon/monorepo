@@ -118,7 +118,7 @@ function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     fetchNotifications()
-  }, [])
+  }, [accountContext.account])
 
   const fetchNotifications = async () => {
     try {

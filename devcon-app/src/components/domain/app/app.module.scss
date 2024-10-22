@@ -14,43 +14,55 @@
   // padding-bottom: 120px; // Adjusting for fixed bottom nav overlaying content, and adding a bit of white space to indicate bottom was reached
   @include fonts-sm-fixed;
 
-  :global(.mask-sideways) {
-    // mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-  }
-
-  :global(.mask-top) {
-    // mask-image: linear-gradient(to top, transparent 0%, black 30%);
+  &:before {
+    content: '';
+    display: block;
+    z-index: -1;
+    position: fixed;
+    pointer-events: none;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background: linear-gradient(
+      180deg,
+      rgba(250, 249, 255, 0.56) 3.15%,
+      rgba(237, 233, 255, 0.811) 33.62%,
+      rgba(250, 249, 255, 0.39) 100%
+    );
   }
 
   :global(.header-gradient) {
-    @media (min-width: 1000px) {
-      background: linear-gradient(to right, transparent, #5b1acb, #1e00ff98, #633cff, #1e00ffab, transparent);
-    }
+    // @media (min-width: 1000px) {
+    //   background: linear-gradient(to right, transparent, #5b1acb, #1e00ff98, #633cff, #1e00ffab, transparent);
+    // }
     @media (max-width: 999px) {
-      background: linear-gradient(to right, #7a3aff, #633cff, #1a00e09d);
+      // mask-image: linear-gradient(to bottom, black 20%, rgba(0, 0, 0, 0.561) 100%);
+
+      background: linear-gradient(to bottom, #7a3aff, #633cff, #bc52f1);
     }
   }
 
-  :global(.page-background) {
-    position: relative;
-    &:before {
-      content: '';
-      display: block;
-      z-index: -1;
-      position: absolute;
-      pointer-events: none;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 100vw;
-      background: linear-gradient(
-        180deg,
-        rgba(250, 249, 255, 0.56) 3.15%,
-        rgba(237, 233, 255, 0.811) 33.62%,
-        rgba(250, 249, 255, 0.39) 100%
-      );
-    }
-  }
+  // :global(.page-background) {
+  //   position: relative;
+  //   &:before {
+  //     content: '';
+  //     display: block;
+  //     z-index: -1;
+  //     position: absolute;
+  //     pointer-events: none;
+  //     top: 0;
+  //     left: 0;
+  //     height: 100%;
+  //     width: 100vw;
+  //     background: linear-gradient(
+  //       180deg,
+  //       rgba(250, 249, 255, 0.56) 3.15%,
+  //       rgba(237, 233, 255, 0.811) 33.62%,
+  //       rgba(250, 249, 255, 0.39) 100%
+  //     );
+  //   }
+  // }
 
   > h3,
   > button,
@@ -87,7 +99,7 @@
 
   :global(.glass) {
     /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.68);
+    background: rgba(255, 255, 255, 0.465);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
@@ -95,16 +107,16 @@
   }
 
   :global(.glass-buttons) {
-    // background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.2);
     // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
 
   :global(.bottom-glass) {
-    // mask-image: linear-gradient(to bottom, transparent 0%, black 30%);
-    background: rgba(221, 221, 221, 0.381);
-    backdrop-filter: blur(4px);
+    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.908) 15%);
+    // background: rgba(221, 221, 221, 0.257);
+    backdrop-filter: blur(6px);
   }
 }
 
