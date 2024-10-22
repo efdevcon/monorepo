@@ -106,7 +106,7 @@ const LocationInformation = ({ className, textColor }: { className: string; text
 
 const Header = (props: HeaderProps & { layoutContainerRef: RefObject<HTMLDivElement> }) => {
   const { scrollY } = useScroll({
-    container: props.layoutContainerRef,
+    // container: props.layoutContainerRef,
   })
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
   const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
@@ -372,9 +372,9 @@ export const AppLayout = (
     breadcrumbs: { label: string; href?: string; icon?: any }[]
   } & PropsWithChildren
 ) => {
-  const headerHeight = useGetElementHeight('header')
-  const upperNavHeight = useGetElementHeight('inline-nav')
-  const lowerNavHeight = useGetElementHeight('bottom-nav')
+  // const headerHeight = useGetElementHeight('header')
+  // const upperNavHeight = useGetElementHeight('inline-nav')
+  // const lowerNavHeight = useGetElementHeight('bottom-nav')
   const layoutContainerRef = useRef<HTMLDivElement>(null)
 
   return (
@@ -383,13 +383,13 @@ export const AppLayout = (
         id="layout-container"
         className={css['app']}
         ref={layoutContainerRef}
-        style={
-          {
-            '--header-height': `${headerHeight}px`,
-            '--app-nav-upper-height': `${upperNavHeight || 49}px`,
-            '--app-nav-lower-height': `${lowerNavHeight}px`,
-          } as any
-        }
+        // style={
+        //   {
+        //     '--header-height': `${headerHeight}px`,
+        //     '--app-nav-upper-height': `${upperNavHeight || 49}px`,
+        //     '--app-nav-lower-height': `${lowerNavHeight}px`,
+        //   } as any
+        // }
       >
         <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} layoutContainerRef={layoutContainerRef} />
 

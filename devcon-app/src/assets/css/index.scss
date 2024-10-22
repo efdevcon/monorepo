@@ -66,11 +66,3 @@ body {
   //   // padding-top: env(safe-area-inset-top, 0px);
   // }
 }
-
-.inset-padding-top {
-  padding-top: calc(16px + max(0px, env(safe-area-inset-top)));
-}
-
-.inset-padding-bottom {
-  padding-bottom: calc(env(safe-area-inset-bottom, 20px) - 20px);
-}
