@@ -19,7 +19,7 @@ import { NotificationCard } from 'components/domain/app/dc7/profile/notification
 import { useAccountContext } from 'context/account-context'
 
 // Short on time so just doing global state here.. extract later
-export const devaBotVisibleAtom = atom({
+export const devaBotVisibleAtom = atom<boolean | string>({
   key: 'devaBotVisible',
   default: false,
 })
@@ -199,7 +199,8 @@ function App({ Component, pageProps }: AppProps) {
         <DevaBot
           sessions={sessions}
           onToggle={() => setDevaBotVisible(!devaBotVisible)}
-          toggled={devaBotVisible}
+          defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
+          toggled={!!devaBotVisible}
           notifications={accountContext.account ? notifications : undefined}
           notificationsCount={notificationsCount}
           markNotificationsAsRead={markAllAsRead}

@@ -89,6 +89,7 @@ const DevaBot = ({
   recommendationMode,
   sessions,
   onToggle,
+  defaultPrompt,
   toggled,
   notifications,
   notificationsCount,
@@ -103,6 +104,7 @@ const DevaBot = ({
   notificationsCount?: number;
   renderNotifications?: () => React.ReactNode;
   markNotificationsAsRead?: () => void;
+  defaultPrompt?: string;
 }) => {
   // const [visible, onToggled] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
@@ -122,6 +124,13 @@ const DevaBot = ({
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
   const [streamingMessage, setStreamingMessage] = React.useState("");
   const [isSmallScreen, setIsSmallScreen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (defaultPrompt) {
+      setQuery(defaultPrompt);
+      onSend(defaultPrompt);
+    }
+  }, [defaultPrompt]);
 
   // Add this useEffect hook to check screen size
   React.useEffect(() => {
@@ -214,8 +223,10 @@ const DevaBot = ({
     resetMessages();
   };
 
-  const onSend = async () => {
-    if (executingQuery || query.length === 0) return;
+  const onSend = async (overrideQuery?: string) => {
+    const queryToSend = overrideQuery || query;
+
+    if (executingQuery || queryToSend.length === 0) return;
 
     setExecutingQuery(true);
     setStreamingMessage("");
@@ -235,7 +246,7 @@ const DevaBot = ({
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify({ message: query, threadID }),
+        body: JSON.stringify({ message: queryToSend, threadID }),
       });
 
       if (!response.body) {
@@ -515,7 +526,7 @@ const DevaBot = ({
                 <>
                   <div className="relative flex flex-col grow w-full gap-4 no-scrollbar px-4">
                     <div
-                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-base"
+                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-sm"
                       ref={messagesContainerRef}
                       onScroll={checkIfAtBottom}
                     >

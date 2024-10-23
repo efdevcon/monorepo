@@ -291,7 +291,7 @@ const Navigation = () => {
         className="flex md:hidden absolute left-0 bottom-0 w-full bottom-glass"
         style={{ height: 'calc(72px + max(16px, env(safe-area-inset-bottom)))' }}
       ></div>
-      <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[50%] xl:w-[60px] pointer-events-auto">
+      <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[calc(50%)] xl:w-[60px] pointer-events-auto mr-16">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems(!!accountContext.account).map((item, index) => {
             const isActive = pathname === item.href
@@ -410,10 +410,10 @@ export const AppLayout = (
         /> */}
 
         <div className="section pt-5 relative z-10 page-background">
-          <div className="flex flex-col xl:flex-row gap-0 relative">
+          <div className="flex flex-col xl:flex-row gap-0 relative max-w-full">
             <div
               data-type="page-content"
-              className="xl:order-2 grow relative px-4 shrink-0"
+              className="xl:order-2 grow relative shrink-0 max-w-full"
               style={{ paddingBottom: 'calc(80px + max(24px, env(safe-area-inset-bottom)))' }}
             >
               {props.children}
