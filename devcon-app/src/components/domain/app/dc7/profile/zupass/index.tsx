@@ -8,10 +8,10 @@ import ZupassIcon from 'assets/icons/zupass.svg'
 import OnboardingZupass from 'assets/images/dc-7/onboarding-zupass.png'
 import { Toaster } from 'lib/components/ui/toaster'
 import { useToast } from 'lib/hooks/use-toast'
+import { useZupass } from 'context/zupass'
 
 export const Zupass = (props: any) => {
-  //   const pageContext = usePageContext()
-  //   const { toast } = useToast()
+  const { loading, error, publicKey, Connect, GetTicket } = useZupass()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -56,14 +56,8 @@ export const Zupass = (props: any) => {
         />
       </motion.div>
       <motion.div variants={itemVariants}>
-        <Button
-          className="plain mt-2 lg:mt-8 w-full"
-          color="purple-2"
-          fat
-          fill
-          // disabled={isLoading}
-        >
-          Connect Zupass
+        <Button className="plain mt-2 lg:mt-8 w-full" color="purple-2" fat fill onClick={Connect} disabled={publicKey}>
+          {publicKey ? 'Already connected' : 'Connect Zupass'}
         </Button>
       </motion.div>
 
@@ -76,7 +70,7 @@ export const Zupass = (props: any) => {
             variants={itemVariants}
             onClick={props.onSkip}
           >
-            Not right now
+            {publicKey ? 'Continue' : 'Not right now'}
           </motion.p>
         </>
       )}

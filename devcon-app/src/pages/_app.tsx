@@ -17,6 +17,7 @@ import { useSessionData } from 'services/event-data'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { useAccountContext } from 'context/account-context'
+import { ZupassProvider } from 'context/zupass'
 
 // Short on time so just doing global state here.. extract later
 export const devaBotVisibleAtom = atom<boolean | string>({
@@ -166,19 +167,20 @@ function App({ Component, pageProps }: AppProps) {
         <HistoryTracker>
           <AppContext>
             <Web3Provider>
-              {!sessions && (
-                <div
-                  data-type="loader"
-                  className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
-                >
-                  <FancyLoader loading={!sessions} />
-                  <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
-                </div>
-              )}
+              <ZupassProvider>
+                {!sessions && (
+                  <div
+                    data-type="loader"
+                    className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
+                  >
+                    <FancyLoader loading={!sessions} />
+                    <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
+                  </div>
+                )}
 
-              <Component {...pageProps} />
+                <Component {...pageProps} />
 
-              {/* <AnimatePresence>
+                {/* <AnimatePresence>
                 {sessions && revealApp && (
                   <motion.div
                     className="absolute inset-0 z-10"
@@ -190,6 +192,7 @@ function App({ Component, pageProps }: AppProps) {
                     <Component {...pageProps} />
                   </motion.div>
                 )} */}
+              </ZupassProvider>
             </Web3Provider>
           </AppContext>
         </HistoryTracker>

@@ -12,6 +12,7 @@ const runtimeCache = require('./runtime-cache')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@parcnet-js/podspec', '@pcd/pod'],
   staticPageGenerationTimeout: 300,
   images: {
     domains: [
