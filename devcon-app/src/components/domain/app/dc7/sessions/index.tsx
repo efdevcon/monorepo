@@ -35,7 +35,7 @@ export const SessionCard = ({
   expertise,
 }: SessionType) => {
   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
-  const speakerNames = speakers.map(speaker => speaker.name).join(', ')
+  const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
   const { account, setSessionBookmark } = useAccountContext()
   const { now } = useAppContext()
   const bookmarkedSessions = account?.sessions
@@ -49,8 +49,6 @@ export const SessionCard = ({
   const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
   const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
   const relativeTime = start?.from(now)
-
-  console.log(start, end, 'startTimeAsMoment')
 
   let trackLogo
 
@@ -92,7 +90,7 @@ export const SessionCard = ({
   //   console.log(id, 'id hello')
 
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="flex flex-col bg-white rounded-lg shadow-md w-full overflow-hidden">
       <div className="flex justify-between">
         <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
           <div

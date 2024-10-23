@@ -287,6 +287,8 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
 
+  if (!speaker) return null
+
   return (
     <div data-type="speaker-view" className={cn(cardClass, 'flex flex-col gap-3 p-4 self-start w-full')}>
       <div className="relative rounded-full w-full h-full">
@@ -346,16 +348,21 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
 }
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
+  const [selectedSpeaker, setSelectedSpeaker] = useState<SpeakerType | null>(null)
+
   if (!speakers) return null
 
   return (
     <div data-type="speaker-layout" className="flex flex-row gap-3 w-full max-w-full relative">
       <div className="basis-[60%] grow">
-        <SpeakerList speakers={speakers} />
+        <SpeakerList speakers={speakers} setSelectedSpeaker={setSelectedSpeaker} />
       </div>
-      <div className="basis-[40%] min-w-[393px] sticky top-[72px] self-start">
-        <SpeakerView speaker={speakers[2]} />
-      </div>
+
+      {selectedSpeaker && (
+        <div className="basis-[40%] min-w-[393px] sticky top-[72px] self-start">
+          <SpeakerView speaker={selectedSpeaker} />
+        </div>
+      )}
     </div>
   )
 }

@@ -18,7 +18,7 @@ import { FancyLoader } from 'lib/components/loader/loader'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { useAccountContext } from 'context/account-context'
 import { ZupassProvider } from 'context/zupass'
-
+import { SessionCard } from 'components/domain/app/dc7/sessions'
 // Short on time so just doing global state here.. extract later
 export const devaBotVisibleAtom = atom<boolean | string>({
   key: 'devaBotVisible',
@@ -207,6 +207,7 @@ function App({ Component, pageProps }: AppProps) {
           notifications={accountContext.account ? notifications : undefined}
           notificationsCount={notificationsCount}
           markNotificationsAsRead={markAllAsRead}
+          SessionComponent={SessionCard}
           renderNotifications={() => {
             const groupNotificationsByDay = (notifications: any[]) => {
               const grouped = notifications.reduce((acc, notification) => {

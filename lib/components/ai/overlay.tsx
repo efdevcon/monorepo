@@ -95,6 +95,7 @@ const DevaBot = ({
   notificationsCount,
   renderNotifications,
   markNotificationsAsRead,
+  SessionComponent,
 }: {
   recommendationMode?: boolean;
   sessions?: any;
@@ -105,6 +106,7 @@ const DevaBot = ({
   renderNotifications?: () => React.ReactNode;
   markNotificationsAsRead?: () => void;
   defaultPrompt?: string;
+  SessionComponent?: React.ReactNode | React.ElementType;
 }) => {
   // const [visible, onToggled] = useRecoilState(visibleState);
   const [query, setQuery] = useRecoilState(queryState);
@@ -526,7 +528,7 @@ const DevaBot = ({
                 <>
                   <div className="relative flex flex-col grow w-full gap-4 no-scrollbar px-4">
                     <div
-                      className="relative overflow-auto flex flex-col grow w-full gap-4 no-scrollbar pb-10 mt-4 text-sm"
+                      className="relative overflow-auto flex flex-col grow w-full gap-2 no-scrollbar pb-10 mt-4 text-sm"
                       ref={messagesContainerRef}
                       onScroll={checkIfAtBottom}
                     >
@@ -539,9 +541,9 @@ const DevaBot = ({
                             <div key={index} className="shrink-0 flex flex-col">
                               <div
                                 className={cn("markdown p-3 py-2 w-auto", {
-                                  "mr-4 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
+                                  "mr-2 bg-[#F0F2FF] rounded-tl-xl rounded-tr-xl rounded-br-xl text-left self-start":
                                     isAssistantReply,
-                                  "ml-4 bg-[#7D52F4] text-white rounded-tl-xl rounded-tr-xl rounded-bl-xl self-end":
+                                  "ml-2 bg-[#7D52F4] text-white rounded-tl-xl rounded-tr-xl rounded-bl-xl self-end":
                                     !isAssistantReply,
                                 })}
                               >
@@ -587,27 +589,39 @@ const DevaBot = ({
                                             const session = sessions.find(
                                               (s: any) => s.id === sessionId
                                             );
-
                                             if (session) {
+                                              console.log(
+                                                session,
+                                                "SessionComponent"
+                                              );
+
                                               sessionReferences.push(
-                                                <Link
-                                                  href={`/sessions/${session.id}`}
-                                                  className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
-                                                  key={index}
-                                                >
-                                                  <p className="">
-                                                    {session.title}
-                                                  </p>
-                                                  <p>{session.type}</p>
-                                                  <p className="opacity-70">
-                                                    {session.speakers
-                                                      .map(
-                                                        (speaker: any) =>
-                                                          speaker.name
-                                                      )
-                                                      .join(", ")}
-                                                  </p>
-                                                </Link>
+                                                SessionComponent ? (
+                                                  // @ts-ignore
+                                                  <SessionComponent
+                                                    {...session}
+                                                    key={index}
+                                                  />
+                                                ) : (
+                                                  <Link
+                                                    href={`/sessions/${session.id}`}
+                                                    className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
+                                                    key={index}
+                                                  >
+                                                    <p className="">
+                                                      {session.title}
+                                                    </p>
+                                                    <p>{session.type}</p>
+                                                    <p className="opacity-70">
+                                                      {session.speakers
+                                                        .map(
+                                                          (speaker: any) =>
+                                                            speaker.name
+                                                        )
+                                                        .join(", ")}
+                                                    </p>
+                                                  </Link>
+                                                )
                                               );
                                             }
                                           } else if (fileUrl) {
