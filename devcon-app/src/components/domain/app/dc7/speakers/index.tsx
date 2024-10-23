@@ -24,6 +24,8 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 
   if (!speakers) return { filteredSpeakers: [], filters: { text, setText, type, setType } }
 
+  const noFiltersActive = text === '' && type === 'All'
+
   return {
     filteredSpeakers: speakers.filter(
       speaker =>
@@ -36,6 +38,7 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
       type,
       setType,
     },
+    noFiltersActive,
   }
 }
 
@@ -79,6 +82,8 @@ export const SpeakerFilter = ({
     setType: (type: string) => void
   }
 }) => {
+  const draggableLink = useDraggableLink()
+
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
       <div className="flex flex-row gap-3 justify-between w-full p-4 pb-2">
@@ -119,7 +124,14 @@ export const SpeakerFilter = ({
                 'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
                 filters.type === 'All' ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
               )}
-              onClick={() => filters.setType('All')}
+              {...draggableLink}
+              onClick={e => {
+                const result = draggableLink.onClick(e)
+
+                if (!result) return
+
+                filters.setType('All')
+              }}
             >
               All
             </div>
@@ -189,6 +201,12 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer',
                   index === 0 ? 'ml-4' : ''
                 )}
+                {...draggableLink}
+                onClick={e => {
+                  const result = draggableLink.onClick(e)
+
+                  if (!result) return
+                }}
               >
                 <div className="relative rounded-full w-[80px] h-[80px]">
                   <Image
@@ -225,7 +243,10 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
       <div className="flex flex-col gap-3 px-4 font-semibold">Speakers</div>
 
-      <div className={cn('sticky top-[56px] z-[10]', isSticky ? css['sticky-glass'] : 'opacity-100')} ref={stickyRef}>
+      <div
+        className={cn('sticky top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
+        ref={stickyRef}
+      >
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row flex-nowrap gap-3 p-4 py-3 w-full">
             {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter, index, array) => (
@@ -239,7 +260,6 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                 {...draggableLink}
                 onClick={e => {
                   const result = draggableLink.onClick(e)
-                  console.log(result, 'hello')
 
                   if (!result) return
 
