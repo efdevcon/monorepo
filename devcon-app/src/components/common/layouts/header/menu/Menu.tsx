@@ -99,6 +99,7 @@ export const Menu = (props: any) => {
 
   if (props.isApp) {
     const notifications = context?.appNotifications
+    // @ts-ignore
     const seenNotifications = appContext.seenNotifications
 
     const countUnreadNotifications = notifications ? notifications.length - Object.values(seenNotifications).length : 0

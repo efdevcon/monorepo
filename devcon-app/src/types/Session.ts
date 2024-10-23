@@ -12,6 +12,8 @@ export interface Session {
   slot_end: number
   start: number
   end: number
+  startTime: string
+  endTime: string
   startTimeAsMoment?: Moment
   endTimeAsMoment?: Moment
   day?: string

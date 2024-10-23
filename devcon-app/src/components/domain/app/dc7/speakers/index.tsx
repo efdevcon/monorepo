@@ -299,7 +299,7 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
           height={393}
           className="rounded-2xl w-full h-full mb-2 aspect-video object-cover"
         />
-        <div className={cn('absolute inset-0 rounded-2xl', css['speaker-gradient-2'])} />
+        <div className={cn('absolute inset-0 rounded-bl-2xl rounded-br-2xl', css['speaker-gradient-2'])} />
         <div className="absolute left-4 font-semibold bottom-2 text-2xl text-white">{speaker?.name}</div>
         <div className="absolute right-6 bottom-4 text-lg flex flex-row gap-4">
           <HeartIcon
