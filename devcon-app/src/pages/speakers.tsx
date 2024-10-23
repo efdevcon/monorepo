@@ -1,7 +1,7 @@
 import { AppLayout } from 'components/domain/app/Layout'
 // import { Speakers } from 'components/domain/app/speakers'
 import { pageHOC } from 'context/pageHOC'
-import React, { useState, useEffect }1½ from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import {
