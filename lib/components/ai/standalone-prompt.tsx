@@ -11,7 +11,7 @@ export const StandalonePrompt = (props: {
     <div
       onClick={props.onClick}
       className={cn(
-        "px-4 py-2 border rounded-xl rounded-bl-none bg-white border-solid border-[#E1E4EA] flex gap-2 text-xs flex justify center items-center flex-nowrap text-[#99A0AE] cursor-pointer",
+        "px-4 py-2 border rounded-xl rounded-bl-none bg-white border-solid border-[#E1E4EA] flex gap-2 text-xs flex justify center items-center flex-nowrap text-[#99A0AE] cursor-pointer hover:text-black transition-colors duration-300",
         props.className
       )}
     >

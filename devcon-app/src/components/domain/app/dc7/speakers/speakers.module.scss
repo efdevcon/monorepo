@@ -1,5 +1,5 @@
 .speaker-gradient {
-  mask-image: linear-gradient(to bottom, transparent 60%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 55%, black 100%);
   background: #765ae4;
 
   &:before {
@@ -11,4 +11,20 @@
     bottom: 0;
     background: #765ae4;
   }
+}
+
+.speaker-gradient-2 {
+  //   mask-image: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 80%);
+  //   background: #5533dd;
+
+  position: absolute;
+  top: 60%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, #765ae4 0%, #4f37b1a0 55%, transparent 100%);
+}
+
+.sticky-glass {
+  backdrop-filter: blur(10px);
 }
