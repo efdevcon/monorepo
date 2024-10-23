@@ -12,14 +12,30 @@ import { Web3Provider } from 'context/web3'
 import { AppContext } from 'context/app-context'
 import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
-import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector } from 'recoil'
+import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector, DefaultValue } from 'recoil'
 import { useSessionData } from 'services/event-data'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { useAccountContext } from 'context/account-context'
 import { ZupassProvider } from 'context/zupass'
 import { SessionCard } from 'components/domain/app/dc7/sessions'
+import { Speaker as SpeakerType } from 'types/Speaker'
+
 // Short on time so just doing global state here.. extract later
+export const selectedSpeakerAtom = atom<SpeakerType | null>({
+  key: 'selectedSpeaker',
+  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSpeaker') || 'null') : null,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
+        }
+      })
+    },
+  ],
+})
+
 export const devaBotVisibleAtom = atom<boolean | string>({
   key: 'devaBotVisible',
   default: false,

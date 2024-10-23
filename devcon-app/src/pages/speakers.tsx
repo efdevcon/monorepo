@@ -1,7 +1,7 @@
 import { AppLayout } from 'components/domain/app/Layout'
 // import { Speakers } from 'components/domain/app/speakers'
 import { pageHOC } from 'context/pageHOC'
-import React from 'react'
+import React, { useState, useEffect }1½ from 'react'
 import { useRouter } from 'next/router'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import {
@@ -20,19 +20,27 @@ import { SEO } from 'components/domain/seo'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { SpeakerLayout, SpeakerList, SpeakerView } from 'components/domain/app/dc7/speakers/index'
 import AppIcon from 'assets/icons/speakers.svg'
+import { useRecoilState } from 'recoil'
+import { selectedSpeakerAtom } from 'pages/_app'
 
 export default pageHOC((props: any) => {
   const speakers = useSpeakerData()
-  // const { query } = useRouter()
+  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
+  const [path, setPath] = useState([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
+
+  React.useEffect(() => {
+    if (selectedSpeaker) {
+      setPath([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }, { label: selectedSpeaker.name }])
+    } else {
+      setPath([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
+    }
+  }, [selectedSpeaker])
 
   return (
-    <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'icon', icon: AppIcon }, { label: 'Overview' }]}>
+    <AppLayout pageTitle="Speakers" breadcrumbs={path}>
       <SEO title="Speakers" />
 
       <SpeakerLayout speakers={speakers} />
-      {/* <SpeakerList {...props} speakers={speakers} />
-        <SpeakerView {...props} speakers={speakers} />
-      </SpeakerLayout> */}
 
       {/* {speakers &&
         (() => {

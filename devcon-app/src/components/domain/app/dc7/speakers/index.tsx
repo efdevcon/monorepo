@@ -15,6 +15,9 @@ import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
 import { SessionCard } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
+import { selectedSpeakerAtom } from 'pages/_app'
+import { useSetRecoilState } from 'recoil'
+import { useRouter } from 'next/router'
 
 const cardClass = 'flex flex-col border border-solid border-[#E4E6EB] rounded-3xl relative'
 
@@ -43,8 +46,26 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 }
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const router = useRouter()
+
   return (
-    <div className="flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer">
+    <Link
+      className={cn(
+        'flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
+        selectedSpeaker?.id === speaker.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+      )}
+      to={'/speakers'}
+      onClick={(e: any) => {
+        if (router.pathname === '/speakers') e.preventDefault()
+
+        if (selectedSpeaker?.id === speaker.id) {
+          setSelectedSpeaker(null)
+        } else {
+          setSelectedSpeaker(speaker)
+        }
+      }}
+    >
       <div className="relative flex flex-row items-center gap-4">
         <Image
           // @ts-ignore
@@ -68,7 +89,7 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
       <div className="flex items-center justify-center mx-2">
         <HeartIcon className="icon" />
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -159,6 +180,7 @@ export const SpeakerFilter = ({
 }
 
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const { filteredSpeakers, filters } = useSpeakerFilter(speakers)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedLetter, setSelectedLetter] = useState('A')
@@ -198,7 +220,8 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
               <div
                 key={speaker.id}
                 className={cn(
-                  'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer',
+                  'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
+                  selectedSpeaker?.id === speaker.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
                   index === 0 ? 'ml-4' : ''
                 )}
                 {...draggableLink}
@@ -206,6 +229,12 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   const result = draggableLink.onClick(e)
 
                   if (!result) return
+
+                  if (selectedSpeaker?.id === speaker.id) {
+                    setSelectedSpeaker(null)
+                  } else {
+                    setSelectedSpeaker(speaker)
+                  }
                 }}
               >
                 <div className="relative rounded-full w-[80px] h-[80px]">
@@ -299,10 +328,10 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
           alt={speaker?.name}
           width={393}
           height={393}
-          className="rounded-2xl w-full h-full mb-2 aspect-video object-cover"
+          className="rounded-2xl w-full h-full aspect-video object-cover"
         />
         <div className={cn('absolute inset-0 rounded-bl-2xl rounded-br-2xl', css['speaker-gradient-2'])} />
-        <div className="absolute left-4 font-semibold bottom-2 text-2xl text-white">{speaker?.name}</div>
+        <div className="absolute left-5 font-medium bottom-2.5 text-xl text-white max-w-[70%]">{speaker?.name}</div>
         <div className="absolute right-6 bottom-4 text-lg flex flex-row gap-4">
           <HeartIcon
             className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
@@ -348,14 +377,14 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
 }
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
-  const [selectedSpeaker, setSelectedSpeaker] = useState<SpeakerType | null>(null)
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
 
   if (!speakers) return null
 
   return (
     <div data-type="speaker-layout" className="flex flex-row gap-3 w-full max-w-full relative">
       <div className="basis-[60%] grow">
-        <SpeakerList speakers={speakers} setSelectedSpeaker={setSelectedSpeaker} />
+        <SpeakerList speakers={speakers} />
       </div>
 
       {selectedSpeaker && (
