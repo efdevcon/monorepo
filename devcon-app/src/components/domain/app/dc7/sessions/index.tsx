@@ -55,7 +55,7 @@ export const SessionCard = ({
   if (track === 'Core Protocol') {
     trackLogo = CoreProtocol
   }
-  if (track === 'Cypherpunk') {
+  if (track === 'Cypherpunk & Privacy') {
     trackLogo = Cypherpunk
   }
   if (track === 'Usability') {
@@ -83,26 +83,26 @@ export const SessionCard = ({
     trackLogo = Layer2
   }
 
-  console.log(trackLogo, 'trackLogo')
-
-  console.log(track, 'trackLogo')
-
-  //   console.log(id, 'id hello')
-
   return (
     <div className="flex flex-col bg-white rounded-lg shadow-md w-full overflow-hidden">
-      <div className="flex justify-between">
+      <div className="flex justify-between h-[100px]">
         <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
           <div
             className={cn(
-              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-10 h-[52px] line-clamp-3',
+              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-10 h-[52px] line-clamp-3 break-words',
               css['expertise-gradient']
             )}
           >
             {track}
           </div>
           {trackLogo && (
-            <Image src={trackLogo} alt={track} className="w-full h-[80%] object-contain transform translate-x-1/4 " />
+            <Image
+              src={trackLogo}
+              alt={track}
+              height={100}
+              width={100}
+              className="w-full h-[90%] object-contain transform translate-x-1/4 -translate-y-1/6"
+            />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
@@ -124,7 +124,7 @@ export const SessionCard = ({
             )}
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
-              <IconClock />
+              <IconClock className="icon flex shrink-0" />
               <p className="text-xs text-gray-600">
                 {(() => {
                   const startTime = start
@@ -136,7 +136,7 @@ export const SessionCard = ({
             </div>
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
-              <IconSpeaker />
+              <IconSpeaker className="icon shrink-0" />
               <p className="text-xs text-gray-600 truncate">{speakerNames}</p>
             </div>
           </div>

@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 export default (props: any) => {
   const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const router = useRouter()
-  console.log(props, 'props ay')
 
   useEffect(() => {
     if (props.speaker) {

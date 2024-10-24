@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import cn from 'classnames'
 import { Separator } from 'lib/components/ui/separator'
 import { Speaker as SpeakerType } from 'types/Speaker'
@@ -19,7 +19,7 @@ import { selectedSpeakerAtom } from 'pages/_app'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
-import { motion } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
 import { Button } from 'lib/components/button'
 
@@ -28,22 +28,29 @@ const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] r
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
   const [text, setText] = useState('')
   const [type, setType] = useState('All')
+  const [selectedLetter, setSelectedLetter] = useState('')
 
-  if (!speakers) return { filteredSpeakers: [], filters: { text, setText, type, setType } }
+  const filteredSpeakers = useMemo(() => {
+    if (!speakers) return []
+    return speakers.filter(
+      speaker =>
+        speaker.name.toLowerCase().includes(text.toLowerCase()) &&
+        (type === 'All' || speaker.sessions?.some(session => session.type === type)) &&
+        (selectedLetter === '' || speaker.name[0].toUpperCase() === selectedLetter)
+    )
+  }, [speakers, text, type, selectedLetter])
 
   const noFiltersActive = text === '' && type === 'All'
 
   return {
-    filteredSpeakers: speakers.filter(
-      speaker =>
-        speaker.name.toLowerCase().includes(text.toLowerCase()) &&
-        (type === 'All' || speaker.sessions?.some(session => session.type === type))
-    ),
+    filteredSpeakers,
     filters: {
       text,
       setText,
       type,
       setType,
+      selectedLetter,
+      setSelectedLetter,
     },
     noFiltersActive,
   }
@@ -183,17 +190,36 @@ export const SpeakerFilter = ({
   )
 }
 
+const SPEAKERS_PER_PAGE = 30
+
+// const LoadMoreTrigger = ({ onLoadMore }: { onLoadMore: () => void }) => {
+//   const loadMoreRef = useRef(null)
+//   const isInView = useInView(loadMoreRef, { once: true })
+//   const consumedRef = useRef(false)
+
+//   useEffect(() => {
+//     if (isInView && !consumedRef.current) {
+//       onLoadMore()
+//       consumedRef.current = true
+//     }
+//   }, [isInView])
+
+//   return <div ref={loadMoreRef} className={cn('h-10 bg-yellow-500')} />
+// }
+
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const { filteredSpeakers, filters } = useSpeakerFilter(speakers)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [selectedLetter, setSelectedLetter] = useState('A')
+  // const [selectedLetter, setSelectedLetter] = useState('')
   const draggableLink = useDraggableLink()
 
   console.log(speakers?.slice(0, 10))
 
   const [isSticky, setIsSticky] = useState(false)
   const stickyRef = useRef<HTMLDivElement>(null)
+  const [visibleSpeakers, setVisibleSpeakers] = useState<SpeakerType[]>([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -211,6 +237,29 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
+        setPage(prevPage => prevPage + 1)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    setPage(1)
+  }, [filteredSpeakers])
+
+  useEffect(() => {
+    setVisibleSpeakers(filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE))
+  }, [page, filteredSpeakers])
+
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>
       <SpeakerFilter filters={filters} />
@@ -220,7 +269,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
-            {filteredSpeakers.slice(0, 10).map((speaker, index) => (
+            {visibleSpeakers.slice(0, 10).map((speaker, index) => (
               <div
                 key={speaker.id}
                 className={cn(
@@ -287,7 +336,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                 key={letter}
                 className={cn(
                   'shrink-0 cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] w-[26px] h-[26px] text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
-                  letter === selectedLetter ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  letter === filters.selectedLetter ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
                   index === array.length - 1 ? 'mr-4' : '' // Add right margin to the last item
                 )}
                 {...draggableLink}
@@ -296,7 +345,15 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
                   if (!result) return
 
-                  setSelectedLetter(letter)
+                  const container = document.querySelector('[data-type="speaker-list"]')
+
+                  if (container) {
+                    container.scrollIntoView({ behavior: 'smooth' })
+                  }
+
+                  setTimeout(() => {
+                    filters.setSelectedLetter(filters.selectedLetter === letter ? '' : letter)
+                  }, 100)
                 }}
               >
                 {letter}
@@ -306,13 +363,22 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         </SwipeToScroll>
       </div>
 
-      <div className="flex flex-col gap-3 mb-4 lg:px-4">
-        {filteredSpeakers.map(speaker => {
-          if (speaker.name[0] !== selectedLetter) return null
-
-          return <SpeakerCard key={speaker.id} speaker={speaker} />
+      <motion.div className="flex flex-col gap-3 mb-4 lg:px-4">
+        {visibleSpeakers.map((speaker, index) => {
+          return (
+            <motion.div
+              key={speaker.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              // transition={{ duration: 0.3, delay: index * 0.05 }}
+            >
+              <SpeakerCard speaker={speaker} />
+            </motion.div>
+          )
         })}
-      </div>
+
+        {/* {visibleSpeakers.length < filteredSpeakers.length && <LoadMoreTrigger onLoadMore={loadMoreHandler} />} */}
+      </motion.div>
     </div>
   )
 }
