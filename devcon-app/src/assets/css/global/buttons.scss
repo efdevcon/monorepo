@@ -1,7 +1,7 @@
 @use 'assets/css/partials/index' as *;
 
 .button,
-button {
+buttonz {
   // Sometimes the button element can be useful for semantic reasons, add "plain" class to remove default styles
   cursor: pointer;
   touch-action: manipulation;
@@ -80,7 +80,7 @@ button {
     &.lg {
       @include fonts-lg;
       --padding-top-bottom: 12px;
-      --padding-left-right: 20px;;
+      --padding-left-right: 20px;
 
       @media (max-width: $breakpoints-md) {
         @include fonts-md;

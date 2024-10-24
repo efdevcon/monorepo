@@ -16,10 +16,14 @@ import { Link } from 'components/common/link'
 import { SessionCard } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
-import { useSetRecoilState } from 'recoil'
+import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { useRouter } from 'next/router'
+import { Toaster } from 'lib/components/ui/toaster'
+import { motion } from 'framer-motion'
+import { useToast } from 'lib/hooks/use-toast'
+import { Button } from 'lib/components/button'
 
-const cardClass = 'flex flex-col border border-solid border-[#E4E6EB] rounded-3xl relative'
+const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
   const [text, setText] = useState('')
@@ -315,12 +319,36 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
 export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const { toast } = useToast()
 
   if (!speaker) return null
 
+  const copyShareLink = () => {
+    const shareUrl = `${window.location.origin}/speakers/${speaker.id}`
+    navigator.clipboard
+      .writeText(shareUrl)
+      .then(() => {
+        toast({
+          title: 'Speaker link copied to clipboard!',
+          duration: 3000,
+        })
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err)
+        toast({
+          title: 'Failed to copy link',
+          description: 'Please try again',
+          duration: 3000,
+        })
+      })
+  }
+
   return (
-    <div data-type="speaker-view" className={cn(cardClass, 'flex flex-col gap-3 p-4 self-start w-full')}>
-      <div className="relative rounded-full w-full h-full">
+    <div data-type="speaker-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
+      {/* <Button color="black-1" fill className="self-center text-sm sticky top-[76px] z-10">
+        Back to Overview
+      </Button> */}
+      <div className="relative rounded-full w-full h-full flex items-end">
         <Image
           // @ts-ignore
           src={speaker?.avatar}
@@ -330,31 +358,51 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
           height={393}
           className="rounded-2xl w-full h-full aspect-video object-cover"
         />
-        <div className={cn('absolute inset-0 rounded-bl-2xl rounded-br-2xl', css['speaker-gradient-2'])} />
-        <div className="absolute left-5 font-medium bottom-2.5 text-xl text-white max-w-[70%]">{speaker?.name}</div>
-        <div className="absolute right-6 bottom-4 text-lg flex flex-row gap-4">
-          <HeartIcon
-            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-            style={{ '--color-icon': 'white' }}
-          />
-          {speaker?.twitter && (
-            <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
-              <TwitterIcon
-                className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-                style={{ '--color-icon': 'white' }}
-              />
-            </Link>
+        <div
+          className={cn(
+            'absolute rounded-2xl flex justify-between items-end p-3 pt-7 self-end left-0 right-0',
+            css['speaker-gradient-2']
           )}
+        >
+          {/* <div className={cn('absolute inset-0 rounded-bl-2xl rounded-br-2xl z-[10]', css['speaker-gradient-2'])} /> */}
+          <div className="font-medium z-10 text-lg translate-y-[3px] text-white max-w-[70%]">{speaker?.name}</div>
+          <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
+            <HeartIcon
+              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+              style={{ '--color-icon': 'white' }}
+            />
+
+            <ShareIcon
+              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+              style={{ '--color-icon': 'white' }}
+              onClick={copyShareLink}
+            />
+
+            {speaker?.twitter && (
+              <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
+                <TwitterIcon
+                  className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+                  style={{ '--color-icon': 'white' }}
+                />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
       <div className="flex flex-col gap-3  font-semibold">Profile</div>
       <div className="text-sm text-[#717784]">{speaker?.description}</div>
-      {speaker?.twitter && (
-        <Link className="flex items-center gap-2 self-start" to={`https://twitter.com/${speaker.twitter}`}>
-          <TwitterIcon className="icon" style={{ '--color-icon': '#7D52F4' }} />
-          <div>@{speaker.twitter}</div>
+      {/* {speaker?.twitter && (
+        <Link
+          className="flex items-center justify-center gap-1 self-start"
+          to={`https://twitter.com/${speaker.twitter}`}
+        >
+          <TwitterIcon
+            className="icon flex justify-center items-center"
+            style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
+          />
+          <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
         </Link>
-      )}
+      )} */}
 
       <div className="border-top border-bottom py-4">
         <StandalonePrompt
@@ -377,21 +425,31 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
 }
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
 
   if (!speakers) return null
 
   return (
-    <div data-type="speaker-layout" className="flex flex-row gap-3 w-full max-w-full relative">
-      <div className="basis-[60%] grow">
+    <motion.div
+      data-type="speaker-layout"
+      className={cn('flex flex-row lg:gap-3 relative')}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={cn('basis-[60%] grow', selectedSpeaker ? 'hidden lg:block' : '')}>
         <SpeakerList speakers={speakers} />
       </div>
 
       {selectedSpeaker && (
-        <div className="basis-[40%] min-w-[393px] sticky top-[72px] self-start">
+        <div
+          className={cn('basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] sticky top-[72px] lg:self-start')}
+        >
           <SpeakerView speaker={selectedSpeaker} />
         </div>
       )}
-    </div>
+
+      <Toaster />
+    </motion.div>
   )
 }

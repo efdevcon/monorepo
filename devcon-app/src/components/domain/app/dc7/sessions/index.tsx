@@ -95,7 +95,7 @@ export const SessionCard = ({
         <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
           <div
             className={cn(
-              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-10 h-[52px]',
+              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-10 h-[52px] line-clamp-3',
               css['expertise-gradient']
             )}
           >

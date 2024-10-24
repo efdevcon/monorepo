@@ -25,6 +25,7 @@ import Image from 'next/image'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import ThreeDotsIcon from 'assets/icons/three-dots.svg'
 import UserIcon from 'assets/icons/user.svg'
+// import SpeakerIcon from 'assets/icons/speaker.svg'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
@@ -34,12 +35,14 @@ import { devaBotVisibleAtom, notificationsAtom, notificationsCountSelector, useS
 import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 import { AccountContext, useAccountContext } from 'context/account-context'
 import { useIsScrolled } from 'hooks/useIsScrolled'
+import { selectedSpeakerAtom } from 'pages/_app'
 
 type HeaderProps = {
   breadcrumbs: {
     label: string
     href?: string
     icon?: any
+    onClick?: () => void
   }[]
   pageTitle: string
 }
@@ -132,7 +135,7 @@ const Header = (props: HeaderProps) => {
         style={{ height: 'calc(0px + max(0px, env(safe-area-inset-top)))' }}
       ></div> */}
       <motion.div
-        className="section z-[12] sticky top-0"
+        className="section z-[12] sticky top-0 max-w-[100vw]"
         data-type="header"
         style={{
           color: textColor,
@@ -143,21 +146,30 @@ const Header = (props: HeaderProps) => {
       >
         <div className="flex justify-between items-center min-h-[56px] w-full gap-8 lg:gap-4">
           <motion.div
-            className="absolute hidden md:block inset-0 !bg-white self-center left-0 w-screen h-full glass z-[-1]"
+            className="absolute hidden md:block inset-0  self-center left-0 w-screen h-full glass z-[-1]"
             style={{ opacity }}
           ></motion.div>
           <motion.div
             className="absolute md:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
             style={{ opacity }}
           ></motion.div>
-          <div className="lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
+          <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
             <AppIcon style={{ fontSize: 20 }} />
           </div>
 
-          <div className="flex gap-6 items-center grow shrink-0">
-            <div className="text-2xl">{props.pageTitle}</div>
+          <div className="flex gap-6 items-center grow">
+            {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
-            <Breadcrumb className="hidden sm:flex">
+            <div className="flex items-center gap-4">
+              <SpeakerIcon style={{ fontSize: 20 }} />
+              <div className="text-2xl">{props.pageTitle}</div>
+              {props.breadcrumbs &&
+                props.breadcrumbs.map((breadcrumb, index) => {
+                  return <div key={index}>{breadcrumb.label}</div>
+                })}
+            </div>
+
+            {/* <Breadcrumb className="flex">
               <BreadcrumbList className="lg:text-sm">
                 {props.breadcrumbs.map((breadcrumb, index) => {
                   let label = breadcrumb.label as any
@@ -179,9 +191,11 @@ const Header = (props: HeaderProps) => {
                           </BreadcrumbLink>
                         ) : (
                           <span
-                            className={
-                              index === props.breadcrumbs.length - 1 ? 'flex items-center' : 'flex items-center'
-                            }
+                            onClick={breadcrumb.onClick}
+                            className={cn(
+                              index === props.breadcrumbs.length - 1 ? 'flex items-center' : 'flex items-center',
+                              breadcrumb.onClick && 'cursor-pointer'
+                            )}
                           >
                             {label}
                           </span>
@@ -192,7 +206,7 @@ const Header = (props: HeaderProps) => {
                   )
                 })}
               </BreadcrumbList>
-            </Breadcrumb>
+            </Breadcrumb> */}
           </div>
           <div className="flex items-center justify-center gap-6 shrink-0">
             <LocationInformation className="hidden md:flex items-center justify-center gap-6" />
@@ -219,10 +233,10 @@ const Header = (props: HeaderProps) => {
           </div>
         </div>
       </motion.div>
-      <LocationInformation
+      {/* <LocationInformation
         // textColor={textColor}
         className="flex md:hidden items-center justify-between px-5 gap-6 py-2 z-[11] relative"
-      />
+      /> */}
     </>
   )
 }
@@ -276,6 +290,7 @@ const Navigation = () => {
   const isSmallScreen = windowWidth < 1280
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const { notificationsCount } = useSeenNotifications()
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
 
   return (
     <div
@@ -307,6 +322,12 @@ const Navigation = () => {
                     href={item.href}
                     onMouseEnter={() => setOpenPopover(item.label)}
                     onMouseLeave={() => setOpenPopover(null)}
+                    onClick={() => {
+                      // Reset selected speaker if clicking on speakers from speakers page
+                      if (item.label === 'Speakers' && pathname === '/speakers') {
+                        setSelectedSpeaker(null)
+                      }
+                    }}
                     className={cn(
                       'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#EFEBFF] transition-all duration-300',
                       isActive && 'bg-[#EFEBFF] fill-[#7D52F4]'
@@ -376,13 +397,13 @@ export const AppLayout = (
   props: {
     showLogin?: boolean
     pageTitle: string
-    breadcrumbs: { label: string; href?: string; icon?: any }[]
+    breadcrumbs: { label: string; href?: string; icon?: any; onClick?: () => void }[]
   } & PropsWithChildren
 ) => {
-  const headerHeight = useGetElementHeight('header')
+  // const headerHeight = useGetElementHeight('header')
   // const upperNavHeight = useGetElementHeight('inline-nav')
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
-  const layoutContainerRef = useRef<HTMLDivElement>(null)
+  // const layoutContainerRef = useRef<HTMLDivElement>(null)
 
   return (
     <>

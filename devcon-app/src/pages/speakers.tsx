@@ -25,12 +25,17 @@ import { selectedSpeakerAtom } from 'pages/_app'
 
 export default pageHOC((props: any) => {
   const speakers = useSpeakerData()
-  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const [path, setPath] = useState([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
 
   React.useEffect(() => {
     if (selectedSpeaker) {
-      setPath([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }, { label: selectedSpeaker.name }])
+      setPath([
+        // { label: 'icon', icon: AppIcon },
+        { label: 'Speakers' },
+        { label: 'Overview', onClick: () => setSelectedSpeaker(null) },
+        { label: selectedSpeaker.name },
+      ])
     } else {
       setPath([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
     }
@@ -38,7 +43,7 @@ export default pageHOC((props: any) => {
 
   return (
     <AppLayout pageTitle="Speakers" breadcrumbs={path}>
-      <SEO title="Speakers" />
+      <SEO title={selectedSpeaker?.name || 'Speakers'} />
 
       <SpeakerLayout speakers={speakers} />
 

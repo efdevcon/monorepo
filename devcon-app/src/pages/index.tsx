@@ -30,7 +30,7 @@ const Index = (props: any) => {
   }, [])
 
   return (
-    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'icon', icon: AppIcon }, { label: 'Overview' }]}>
+    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'icon', icon: AppIcon }, { label: 'Dashboard' }]}>
       <SEO title="Dashboard" />
 
       {sessions ? <Dashboard {...props} sessions={sessions} /> : <></>}

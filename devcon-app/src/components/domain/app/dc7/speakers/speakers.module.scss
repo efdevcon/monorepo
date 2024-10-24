@@ -17,12 +17,21 @@
   //   mask-image: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 80%);
   //   background: #5533dd;
 
-  position: absolute;
-  top: 60%;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to top, #765ae4 0%, #4f37b1a0 55%, transparent 100%);
+  //   position: absolute;
+  //   height: 50px;
+  overflow: hidden;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, #765ae4 0%, transparent 100%); // #765ae42d 100%);
+    //   backdrop-filter: blur(3px);
+  }
 }
 
 .sticky-glass {
