@@ -35,7 +35,7 @@ export function SEO(props: SEOProps) {
 
   const globalTitle = 'Devcon SEA'
   const globalDescription = 'Customize your Devcon experience.'
-  const globalImage = 'https://app.devcon.org/assets/images/og-graph.png'
+  const globalImage = 'https://app.devcon.org/og-sea.png'
   const canonical = props.canonicalUrl || ''
 
   let description = globalDescription
