@@ -36,6 +36,20 @@ export const selectedSpeakerAtom = atom<SpeakerType | null>({
   ],
 })
 
+export const selectedSessionAtom = atom<SessionType | null>({
+  key: 'selectedSession',
+  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSession') || 'null') : null,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('selectedSession', JSON.stringify(newValue))
+        }
+      })
+    },
+  ],
+})
+
 export const devaBotVisibleAtom = atom<boolean | string>({
   key: 'devaBotVisible',
   default: false,

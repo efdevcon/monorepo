@@ -192,26 +192,10 @@ export const SpeakerFilter = ({
 
 const SPEAKERS_PER_PAGE = 30
 
-// const LoadMoreTrigger = ({ onLoadMore }: { onLoadMore: () => void }) => {
-//   const loadMoreRef = useRef(null)
-//   const isInView = useInView(loadMoreRef, { once: true })
-//   const consumedRef = useRef(false)
-
-//   useEffect(() => {
-//     if (isInView && !consumedRef.current) {
-//       onLoadMore()
-//       consumedRef.current = true
-//     }
-//   }, [isInView])
-
-//   return <div ref={loadMoreRef} className={cn('h-10 bg-yellow-500')} />
-// }
-
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const { filteredSpeakers, filters } = useSpeakerFilter(speakers)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  // const [selectedLetter, setSelectedLetter] = useState('')
   const draggableLink = useDraggableLink()
 
   console.log(speakers?.slice(0, 10))

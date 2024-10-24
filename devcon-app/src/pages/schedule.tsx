@@ -13,64 +13,57 @@ import { useSessionData } from 'services/event-data'
 import { PageContext } from '../context/page-context'
 import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
 import { FancyLoader } from 'lib/components/loader/loader'
-import DevaBot from 'lib/components/ai/overlay'
-import { RecoilRoot } from 'recoil'
+import { SessionLayout } from 'components/domain/app/dc7/sessions'
 
 export default pageHOC((props: any) => {
   const sessions = useSessionData()
-  const scheduleContext = useScheduleContext()
-  const { query } = useRouter()
+  // const scheduleContext = useScheduleContext()
+  // const { query } = useRouter()
   // const speakers = useSpeakerData()
-  const context = {
-    navigation: props.navigationData,
-    notification: props.notification,
-    appNotifications: [],
-    current: DEFAULT_APP_PAGE,
-  }
-
-  // return (
-  //   <RecoilRoot>
-  //     <DevaBot sessions={[]} />
-  //   </RecoilRoot>
-  // )
+  // const context = {
+  //   navigation: props.navigationData,
+  //   notification: props.notification,
+  //   appNotifications: [],
+  //   current: DEFAULT_APP_PAGE,
+  // }
 
   return (
-    <PageContext.Provider value={context}>
-      <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
-        <SEO title="Schedule" />
+    <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
+      <SEO title="Schedule" />
 
-        {sessions ? (
-          (() => {
-            const sessionID = query.session
-            const session = sessions.find((session: SessionType) => session.id === sessionID)
-            const related = session ? GetRelatedSessions(String(sessionID), sessions) : []
+      <SessionLayout sessions={sessions} />
 
-            return session ? (
-              <>
-                <SEO
-                  title={session.title}
-                  description={session.description}
-                  imageUrl={`${API_URL}sessions/${session.id}/image`}
-                />
-                <Session session={session} relatedSessions={related} />
-              </>
-            ) : (
-              <>
-                <ScheduleState sessions={props.sessions}>
-                  <Schedule sessions={sessions} {...props} />
-                </ScheduleState>
-              </>
-            )
-          })()
-        ) : (
-          <></>
-        )}
+      {/* {sessions ? (
+        (() => {
+          const sessionID = query.session
+          const session = sessions.find((session: SessionType) => session.id === sessionID)
+          const related = session ? GetRelatedSessions(String(sessionID), sessions) : []
 
-        <div className="fixed top-0 h-full w-full flex justify-center items-center opacity-100 z-5 pointer-events-none">
-          <FancyLoader loading={!sessions} />
-        </div>
-      </AppLayout>
-    </PageContext.Provider>
+          return session ? (
+            <>
+              <SEO
+                title={session.title}
+                description={session.description}
+                imageUrl={`${API_URL}sessions/${session.id}/image`}
+              />
+              <Session session={session} relatedSessions={related} />
+            </>
+          ) : (
+            <>
+              <ScheduleState sessions={props.sessions}>
+                <Schedule sessions={sessions} {...props} />
+              </ScheduleState>
+            </>
+          )
+        })()
+      ) : (
+        <></>
+      )} */}
+
+      <div className="fixed inset-0 h-full w-full flex justify-center items-center z-5 pointer-events-none">
+        <FancyLoader loading={!sessions} />
+      </div>
+    </AppLayout>
   )
 })
 
@@ -78,10 +71,10 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       event: await fetchEvent(),
-      tracks: await fetchTracks(),
-      rooms: await fetchRooms(),
-      expertiseLevels: await fetchExpertiseLevels(),
-      sessionTypes: await fetchSessionTypes(),
+      // tracks: await fetchTracks(),
+      // rooms: await fetchRooms(),
+      // expertiseLevels: await fetchExpertiseLevels(),
+      // sessionTypes: await fetchSessionTypes(),
     },
   }
 }

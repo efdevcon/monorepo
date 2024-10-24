@@ -19,6 +19,15 @@ import IconSpeaker from 'assets/icons/speaker.svg'
 import IconClock from 'assets/icons/icon_clock.svg'
 import Image from 'next/image'
 import css from './sessions.module.scss'
+import { useRecoilState } from 'recoil'
+import { selectedSessionAtom } from 'pages/_app'
+import ShareIcon from 'assets/icons/arrow-curved.svg'
+import { useRouter } from 'next/router'
+import { Toaster } from 'lib/components/ui/toaster'
+import { motion } from 'framer-motion'
+import { useToast } from 'lib/hooks/use-toast'
+
+const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
 export const SessionCard = ({
   id,
@@ -148,6 +157,44 @@ export const SessionCard = ({
         </div>
       </div>
     </div>
+  )
+}
+
+export const SessionList = ({ sessions }: { sessions: SessionType[] | null }) => {
+  return <div>SessionList</div>
+}
+
+export const SessionView = ({ session }: { session: SessionType }) => {
+  return <div>SessionView</div>
+}
+
+export const SessionLayout = ({ sessions }: { sessions: SessionType[] | null }) => {
+  const [selectedSession, _] = useRecoilState(selectedSessionAtom)
+
+  if (!sessions) return null
+
+  return (
+    <motion.div
+      data-type="speaker-layout"
+      className={cn('flex flex-row lg:gap-3 relative')}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <div className={cn('basis-[60%] grow', selectedSession ? 'hidden lg:block' : '')}>
+        <SessionList sessions={sessions} />
+      </div>
+
+      {selectedSession && (
+        <div
+          className={cn('basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] sticky top-[72px] lg:self-start')}
+        >
+          <SessionView session={selectedSession} />
+        </div>
+      )}
+
+      <Toaster />
+    </motion.div>
   )
 }
 
