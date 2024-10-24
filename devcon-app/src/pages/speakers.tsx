@@ -33,6 +33,7 @@ export default pageHOC((props: any) => {
       setPath([
         // { label: 'icon', icon: AppIcon },
         { label: 'Speakers' },
+        // @ts-ignore
         { label: 'Overview', onClick: () => setSelectedSpeaker(null) },
         { label: selectedSpeaker.name },
       ])
