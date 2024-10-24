@@ -111,7 +111,7 @@ export const SpeakerFilter = ({
 
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
-      <div className="flex flex-row gap-3 justify-between w-full p-4 pb-2">
+      <div className="flex flex-row gap-3 justify-between w-full lg:px-4 py-4 pb-2">
         <div data-type="speaker-filter-search" className="relative">
           <input
             type="text"
@@ -139,11 +139,11 @@ export const SpeakerFilter = ({
         </div>
       </div>
 
-      <div className="mx-4 border-bottom h-[1px]" />
+      <div className="lg:mx-4 border-bottom h-[1px]" />
 
       <div className="flex flex-row gap-3 items-center text-xs overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3 flex-nowrap p-1 px-4">
+          <div className="flex flex-row gap-3 flex-nowrap p-1 lg:px-4">
             <div
               className={cn(
                 'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
@@ -178,7 +178,7 @@ export const SpeakerFilter = ({
         </SwipeToScroll>
       </div>
 
-      <div className="mx-4 mb-4 border-bottom h-[1px]" />
+      <div className="lg:mx-4 mb-4 border-bottom h-[1px]" />
     </div>
   )
 }
@@ -215,7 +215,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
     <div data-type="speaker-list" className={cn(cardClass)}>
       <SpeakerFilter filters={filters} />
 
-      <div className="flex flex-col gap-3 pb-4 px-4 font-semibold">Featured Speakers</div>
+      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Speakers</div>
 
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
@@ -226,7 +226,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                 className={cn(
                   'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
                   selectedSpeaker?.id === speaker.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-                  index === 0 ? 'ml-4' : ''
+                  index === 0 ? 'lg:ml-4' : ''
                 )}
                 {...draggableLink}
                 onClick={e => {
@@ -259,7 +259,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         </SwipeToScroll>
       </div>
 
-      <div data-type="speaker-prompts" className="flex gap-3 m-4 border-bottom mx-4 pb-4">
+      <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom lg:mx-4 pb-4">
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible('Help me decide which keynotes to attend speaking about')}
@@ -274,14 +274,14 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 px-4 font-semibold">Speakers</div>
+      <div className="flex flex-col gap-3 lg:px-4 font-semibold">Speakers</div>
 
       <div
-        className={cn('sticky top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
+        className={cn('sticky top-[55px] lg:top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
         ref={stickyRef}
       >
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row flex-nowrap gap-3 p-4 py-3 w-full">
+          <div className="flex flex-row flex-nowrap gap-3 lg:p-4 py-3 w-full">
             {Array.from('ABCDEFGHIJKLMNOPQRSTUVWXYZ').map((letter, index, array) => (
               <div
                 key={letter}
@@ -306,7 +306,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         </SwipeToScroll>
       </div>
 
-      <div className="flex flex-col gap-3 mb-4 px-4">
+      <div className="flex flex-col gap-3 mb-4 lg:px-4">
         {filteredSpeakers.map(speaker => {
           if (speaker.name[0] !== selectedLetter) return null
 

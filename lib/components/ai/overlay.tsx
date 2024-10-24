@@ -726,7 +726,8 @@ const DevaBot = ({
                                     This is an MVP and Deva may sometimes
                                     provide answers that are not true - we take
                                     no responsibility for, or endorse, anything
-                                    Deva says beyond Event information.
+                                    Deva says beyond Event information. All chat
+                                    data will be deleted after Devcon.
                                   </p>
                                 </div>
                               </div>
