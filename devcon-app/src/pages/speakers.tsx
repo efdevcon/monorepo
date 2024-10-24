@@ -31,14 +31,14 @@ export default pageHOC((props: any) => {
   React.useEffect(() => {
     if (selectedSpeaker) {
       setPath([
-        // { label: 'icon', icon: AppIcon },
-        { label: 'Speakers' },
+        // { label: 'icon', icon: AppIcon, render: () => <AppIcon className="icon flex items-center" /> },
+        // { label: 'Speakers' },
         // @ts-ignore
-        { label: 'Overview', onClick: () => setSelectedSpeaker(null) },
+        { label: 'Speakers', onClick: () => setSelectedSpeaker(null) },
         { label: selectedSpeaker.name },
       ])
     } else {
-      setPath([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
+      setPath([{ label: 'Speakers' }])
     }
   }, [selectedSpeaker])
 

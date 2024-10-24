@@ -118,7 +118,7 @@ export const SpeakerFilter = ({
 
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
-      <div className="flex flex-row gap-3 justify-between w-full lg:px-4 py-4 pb-2">
+      <div className="flex flex-row gap-3 justify-between w-full lg:px-4 lg:pt-4 pb-2">
         <div data-type="speaker-filter-search" className="relative">
           <input
             type="text"

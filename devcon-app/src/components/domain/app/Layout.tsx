@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, useState, useEffect, useRef, RefObject } from 'react'
+import React, { PropsWithChildren, useState, useEffect, useRef, RefObject, ReactNode } from 'react'
 // import { BottomNav } from 'components/domain/app/navigation'
 import css from './app.module.scss'
 // import { Header } from 'components/common/layouts/header'
@@ -18,7 +18,7 @@ import TicketIcon from 'assets/icons/ticket-2.svg'
 import FolderIcon from 'assets/icons/folder.svg'
 import TilesIcon from 'assets/icons/app-tiles.svg'
 import cn from 'classnames'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import AppIcons from 'assets/icons/app-icons.svg'
 import SunCloudy from 'assets/images/dc-7/sun-cloudy.png'
 import Image from 'next/image'
@@ -31,15 +31,24 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import DevaBot from 'lib/components/ai/overlay'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { devaBotVisibleAtom, notificationsAtom, notificationsCountSelector, useSeenNotifications } from 'pages/_app'
+import ChevronRightIcon from 'assets/icons/chevron_right.svg'
+import {
+  devaBotVisibleAtom,
+  notificationsAtom,
+  notificationsCountSelector,
+  sessionIdAtom,
+  useSeenNotifications,
+} from 'pages/_app'
 import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 import { AccountContext, useAccountContext } from 'context/account-context'
 import { useIsScrolled } from 'hooks/useIsScrolled'
+import ArrowBackIcon from 'assets/icons/arrow-curved.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
 
 type HeaderProps = {
   breadcrumbs: {
     label: string
+    render: () => React.ReactNode
     href?: string
     icon?: any
     onClick?: () => void
@@ -118,12 +127,61 @@ const LocationInformation = ({ className, textColor }: { className: string; text
   )
 }
 
+const BackButton = () => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [sessionId, setSessionId] = useRecoilState(sessionIdAtom)
+
+  useEffect(() => {
+    if (history.state.key && !sessionId) {
+      setSessionId(history.state.key)
+
+      return
+    }
+  }, [sessionId, setSessionId])
+
+  console.log(typeof window !== 'undefined' ? history.state.key : null, 'STATE HISTORY')
+  console.log(sessionId, 'SESSION ID')
+
+  const canBack = typeof window !== 'undefined' && history.state?.key !== sessionId
+
+  const handleBackClick = () => {
+    if (canBack) {
+      router.back()
+    } else {
+      router.push('/')
+    }
+  }
+
+  if (!sessionId) return null
+
+  return (
+    <div
+      className={cn(
+        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 transition-all duration-300',
+        canBack && 'hover:scale-110'
+      )}
+    >
+      {canBack ? (
+        <button onClick={handleBackClick} className="flex items-center cursor-pointer select-none">
+          <ArrowBackIcon
+            style={{
+              fontSize: 20,
+              transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
+            }}
+          />
+        </button>
+      ) : (
+        <AppIcon style={{ fontSize: 20 }} />
+      )}
+    </div>
+  )
+}
+
 const Header = (props: HeaderProps) => {
   const { scrollY } = useScroll({
     layoutEffect: false,
-    //   container: props.layoutContainerRef,
   })
-  // const isScrolled = useIsScrolled()
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
   // const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
   const textColor = useTransform(scrollY, [0, 50], ['#000000', '#000000'])
@@ -144,7 +202,7 @@ const Header = (props: HeaderProps) => {
           paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
         }}
       >
-        <div className="flex justify-between items-center min-h-[56px] w-full gap-8 lg:gap-4">
+        <div className="flex justify-between items-center min-h-[56px] w-full gap-4 lg:gap-4">
           <motion.div
             className="absolute hidden md:block inset-0  self-center left-0 w-screen h-full glass z-[-1]"
             style={{ opacity }}
@@ -153,20 +211,35 @@ const Header = (props: HeaderProps) => {
             className="absolute md:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
             style={{ opacity }}
           ></motion.div>
-          <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
+          <BackButton />
+          {/* <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
             <AppIcon style={{ fontSize: 20 }} />
-          </div>
+          </div> */}
 
-          <div className="flex gap-6 items-center grow">
+          <div className="flex gap-6 items-center grow line-clamp-1">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
-            <div className="flex items-center gap-4">
-              <SpeakerIcon style={{ fontSize: 20 }} />
-              <div className="text-2xl">{props.pageTitle}</div>
-              {props.breadcrumbs &&
-                props.breadcrumbs.map((breadcrumb, index) => {
-                  return <div key={index}>{breadcrumb.label}</div>
-                })}
+            <div className="flex items-center gap-1.5 text-sm overflow-hidden">
+              {/* <SpeakerIcon style={{ fontSize: 20 }} /> */}
+              {/* <div className="text-2xl">{props.pageTitle}</div> */}
+              {props.breadcrumbs.map((breadcrumb, index) => (
+                <React.Fragment key={breadcrumb.label}>
+                  <div
+                    className={cn(
+                      'font-semibold shrink-0 line-clamp-1',
+                      index === props.breadcrumbs.length - 1 ? 'text-ellipsis overflow-hidden whitespace-nowrap' : ''
+                    )}
+                    style={{
+                      textOverflow: 'ellipsis',
+                    }}
+                  >
+                    {breadcrumb.render ? breadcrumb.render() : breadcrumb.label}
+                  </div>
+                  {index < props.breadcrumbs.length - 1 && (
+                    <ChevronRightIcon className="shrink-0 icon" style={{ fontSize: 8 }} />
+                  )}
+                </React.Fragment>
+              ))}
             </div>
 
             {/* <Breadcrumb className="flex">
@@ -209,9 +282,9 @@ const Header = (props: HeaderProps) => {
             </Breadcrumb> */}
           </div>
           <div className="flex items-center justify-center gap-6 shrink-0">
-            <LocationInformation className="hidden md:flex items-center justify-center gap-6" />
+            <LocationInformation className="hidden sm:flex items-center justify-center gap-6" />
 
-            <div className="flex items-center justify-center gap-4 ml-4 user-select-none">
+            <div className="flex hidden items-center justify-center gap-4 ml-4 user-select-none">
               {/* <Link href="/login">
                 <BellIcon
                   className="cursor-pointer hover:scale-110 transition-transform duration-300 icon !flex items-center justify-center"
@@ -254,12 +327,12 @@ const navItems = (isLoggedIn: boolean) => [
     href: isLoggedIn ? '/account' : '/login',
     size: 18,
   },
-  {
-    icon: TicketIcon,
-    label: 'Venue',
-    href: '/venue',
-    size: 18,
-  },
+  // {
+  //   icon: TicketIcon,
+  //   label: 'Venue',
+  //   href: '/venue',
+  //   size: 18,
+  // },
   {
     label: 'Speakers',
     icon: SpeakerIcon,
@@ -397,7 +470,7 @@ export const AppLayout = (
   props: {
     showLogin?: boolean
     pageTitle: string
-    breadcrumbs: { label: string; href?: string; icon?: any; onClick?: () => void }[]
+    breadcrumbs: { label: string; href?: string; icon?: any; onClick?: () => void; render?: () => ReactNode }[]
   } & PropsWithChildren
 ) => {
   // const headerHeight = useGetElementHeight('header')
