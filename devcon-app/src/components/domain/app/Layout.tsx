@@ -369,7 +369,7 @@ const Navigation = () => {
     <div
       className={cn(
         'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-10 pointer-events-none',
-        'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
+        'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:left-auto xl:relative xl:items-center'
       )}
       style={{
         paddingBottom: 'calc(0px + max(16px, env(safe-area-inset-bottom)))',
@@ -428,9 +428,14 @@ const Navigation = () => {
               href="/schedule"
               onMouseEnter={() => setOpenPopover('/schedule')}
               onMouseLeave={() => setOpenPopover(null)}
-              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+              className={cn(
+                'shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50',
+                pathname === '/schedule' && '!bg-[#EFEBFF] !fill-[#7D52F4]'
+              )}
             >
-              <CalendarFillIcon style={{ fontSize: 20 }} />
+              <CalendarFillIcon
+                style={{ fontSize: 20, '--color-icon': pathname === '/schedule' ? '#7D52F4' : '#000000' }}
+              />
             </Link>
           </PopoverTrigger>
 
@@ -470,7 +475,7 @@ export const AppLayout = (
   props: {
     showLogin?: boolean
     pageTitle: string
-    breadcrumbs: { label: string; href?: string; icon?: any; onClick?: () => void; render?: () => ReactNode }[]
+    breadcrumbs: HeaderProps['breadcrumbs']
   } & PropsWithChildren
 ) => {
   // const headerHeight = useGetElementHeight('header')
