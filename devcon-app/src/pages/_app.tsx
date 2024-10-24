@@ -20,6 +20,7 @@ import { useAccountContext } from 'context/account-context'
 import { ZupassProvider } from 'context/zupass'
 import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
+import { useRouter } from 'next/router'
 
 // Short on time so just doing global state here.. extract later
 export const selectedSpeakerAtom = atom<SpeakerType | null>({
@@ -137,6 +138,16 @@ function App({ Component, pageProps }: AppProps) {
   const [notifications, setNotifications] = useRecoilState(notificationsAtom)
   const accountContext = useAccountContext()
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
+  const router = useRouter()
+
+  useEffect(() => {
+    // Read skipLogin from localStorage on mount
+    const storedSkipLogin = localStorage.getItem('skipLogin')
+
+    if (storedSkipLogin !== 'true' && !accountContext.account) {
+      router.replace('/login')
+    }
+  }, [])
 
   useEffect(() => {
     fetchNotifications()

@@ -16,21 +16,12 @@ import Head from 'next/head'
 
 const Index = (props: any) => {
   const sessions = useRecoilValue(sessionsAtom)
-  const accountContext = useAccountContext()
-  const router = useRouter()
+  // const accountContext = useAccountContext()
+  // const router = useRouter()
   // const [skipLogin, setSkipLogin] = useState(false)
 
-  useEffect(() => {
-    // Read skipLogin from localStorage on mount
-    const storedSkipLogin = localStorage.getItem('skipLogin')
-
-    if (storedSkipLogin !== 'true' && !accountContext.account) {
-      router.replace('/login')
-    }
-  }, [])
-
   return (
-    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'icon', icon: AppIcon }, { label: 'Dashboard' }]}>
+    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]}>
       <SEO title="Dashboard" />
 
       {sessions ? <Dashboard {...props} sessions={sessions} /> : <></>}
