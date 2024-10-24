@@ -41,6 +41,11 @@ export const devaBotVisibleAtom = atom<boolean | string>({
   default: false,
 })
 
+export const sessionIdAtom = atom<string | null>({
+  key: 'sessionId',
+  default: null,
+})
+
 export const sessionsAtom = atom<SessionType[]>({
   key: 'sessions',
   default: [],

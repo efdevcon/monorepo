@@ -18,7 +18,7 @@ import TicketIcon from 'assets/icons/ticket-2.svg'
 import FolderIcon from 'assets/icons/folder.svg'
 import TilesIcon from 'assets/icons/app-tiles.svg'
 import cn from 'classnames'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import AppIcons from 'assets/icons/app-icons.svg'
 import SunCloudy from 'assets/images/dc-7/sun-cloudy.png'
 import Image from 'next/image'
@@ -31,10 +31,17 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import DevaBot from 'lib/components/ai/overlay'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { devaBotVisibleAtom, notificationsAtom, notificationsCountSelector, useSeenNotifications } from 'pages/_app'
+import {
+  devaBotVisibleAtom,
+  notificationsAtom,
+  notificationsCountSelector,
+  sessionIdAtom,
+  useSeenNotifications,
+} from 'pages/_app'
 import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 import { AccountContext, useAccountContext } from 'context/account-context'
 import { useIsScrolled } from 'hooks/useIsScrolled'
+import ArrowBackIcon from 'assets/icons/arrow-curved.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
 
 type HeaderProps = {
@@ -118,12 +125,56 @@ const LocationInformation = ({ className, textColor }: { className: string; text
   )
 }
 
+const BackButton = () => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [sessionId, setSessionId] = useRecoilState(sessionIdAtom)
+
+  useEffect(() => {
+    if (history.state.key && !sessionId) {
+      setSessionId(history.state.key)
+
+      return
+    }
+  }, [sessionId, setSessionId])
+
+  console.log(typeof window !== 'undefined' ? history.state.key : null, 'STATE HISTORY')
+  console.log(sessionId, 'SESSION ID')
+
+  const canBack = typeof window !== 'undefined' && history.state?.key !== sessionId
+
+  const handleBackClick = () => {
+    if (canBack) {
+      router.back()
+    } else {
+      router.push('/')
+    }
+  }
+
+  if (!sessionId) return null
+
+  return (
+    <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
+      {canBack ? (
+        <button onClick={handleBackClick} className="flex items-center">
+          <ArrowBackIcon
+            style={{
+              fontSize: 20,
+              transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
+            }}
+          />
+        </button>
+      ) : (
+        <AppIcon style={{ fontSize: 20 }} />
+      )}
+    </div>
+  )
+}
+
 const Header = (props: HeaderProps) => {
   const { scrollY } = useScroll({
     layoutEffect: false,
-    //   container: props.layoutContainerRef,
   })
-  // const isScrolled = useIsScrolled()
   const opacity = useTransform(scrollY, [0, 50], [0, 1])
   // const opacityOut = useTransform(scrollY, [0, 50], [1, 0])
   const textColor = useTransform(scrollY, [0, 50], ['#000000', '#000000'])
@@ -153,9 +204,10 @@ const Header = (props: HeaderProps) => {
             className="absolute md:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
             style={{ opacity }}
           ></motion.div>
-          <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
+          <BackButton />
+          {/* <div className="md:hidden lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0">
             <AppIcon style={{ fontSize: 20 }} />
-          </div>
+          </div> */}
 
           <div className="flex gap-6 items-center grow">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
@@ -254,12 +306,12 @@ const navItems = (isLoggedIn: boolean) => [
     href: isLoggedIn ? '/account' : '/login',
     size: 18,
   },
-  {
-    icon: TicketIcon,
-    label: 'Venue',
-    href: '/venue',
-    size: 18,
-  },
+  // {
+  //   icon: TicketIcon,
+  //   label: 'Venue',
+  //   href: '/venue',
+  //   size: 18,
+  // },
   {
     label: 'Speakers',
     icon: SpeakerIcon,
