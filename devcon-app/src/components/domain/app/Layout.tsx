@@ -48,7 +48,7 @@ import { selectedSpeakerAtom } from 'pages/_app'
 type HeaderProps = {
   breadcrumbs: {
     label: string
-    render: () => React.ReactNode
+    render?: () => React.ReactNode
     href?: string
     icon?: any
     onClick?: () => void

@@ -27,6 +27,8 @@ export default pageHOC((props: any) => {
   //   current: DEFAULT_APP_PAGE,
   // }
 
+  console.log(sessions, 'sessions?')
+
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
       <SEO title="Schedule" />

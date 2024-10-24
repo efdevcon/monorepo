@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef, useState, useMemo } from 'react'
 import { Session as SessionType } from 'types/Session'
 import moment from 'moment'
 import { useAccountContext } from 'context/account-context'
@@ -21,13 +21,60 @@ import Image from 'next/image'
 import css from './sessions.module.scss'
 import { useRecoilState } from 'recoil'
 import { selectedSessionAtom } from 'pages/_app'
+import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
+import { useDraggableLink } from 'lib/hooks/useDraggableLink'
+import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
+import { devaBotVisibleAtom } from 'pages/_app'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 import { motion } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+
+const useSessionFilter = (sessions: SessionType[]) => {
+  const [text, setText] = useState('')
+  const [type, setType] = useState('All')
+  const [selectedDay, setSelectedDay] = useState('')
+
+  return {
+    filteredSessions: sessions,
+    filters: {
+      text,
+      setText,
+      type,
+      setType,
+      selectedDay,
+      setSelectedDay,
+    },
+  }
+
+  //   const filteredSessions = useMemo(() => {
+  //     if (!sessions) return []
+  //     return sessions.filter(
+  //       session =>
+  //         session.title.toLowerCase().includes(text.toLowerCase()) &&
+  //         (type === 'All' || session.type === type) &&
+  //         (selectedLetter === '' || session.title[0].toUpperCase() === selectedLetter)
+  //     )
+  //   }, [sessions, text, type, selectedLetter])
+
+  //   const noFiltersActive = text === '' && type === 'All'
+
+  //   return {
+  //     filteredSessions,
+  //     filters: {
+  //       text,
+  //       setText,
+  //       type,
+  //       setType,
+  //       selectedLetter,
+  //       setSelectedLetter,
+  //     },
+  //     noFiltersActive,
+  //   }
+}
 
 export const SessionCard = ({
   id,
@@ -98,7 +145,7 @@ export const SessionCard = ({
         <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
           <div
             className={cn(
-              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-10 h-[52px] line-clamp-3 break-words',
+              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-[1] h-[52px] line-clamp-3 break-words',
               css['expertise-gradient']
             )}
           >
@@ -160,8 +207,172 @@ export const SessionCard = ({
   )
 }
 
-export const SessionList = ({ sessions }: { sessions: SessionType[] | null }) => {
-  return <div>SessionList</div>
+export const SessionFilter = (props: any) => {
+  return <div>SessionFilter</div>
+}
+
+const SESSIONS_PER_PAGE = 25
+
+export const SessionList = ({ sessions }: { sessions: SessionType[] }) => {
+  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const { filteredSessions, filters } = useSessionFilter(sessions)
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const draggableLink = useDraggableLink()
+
+  const [isSticky, setIsSticky] = useState(false)
+  const stickyRef = useRef<HTMLDivElement>(null)
+  const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
+  const [page, setPage] = useState(1)
+
+  useEffect(() => {
+    const stickyElement = stickyRef.current
+    if (!stickyElement) return
+
+    const handleScroll = () => {
+      const stickyTop = stickyElement.getBoundingClientRect().top
+      setIsSticky(stickyTop <= 72) // 72px is the top position when sticky
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Check initial state
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
+        setPage(prevPage => prevPage + 1)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  useEffect(() => {
+    setPage(1)
+  }, [filteredSessions])
+
+  useEffect(() => {
+    setVisibleSessions(filteredSessions.slice(0, page * SESSIONS_PER_PAGE))
+  }, [page, filteredSessions])
+
+  return (
+    <div data-type="session-list" className={cn(cardClass)}>
+      <SessionFilter filters={filters} />
+
+      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Sessions</div>
+
+      <div className="overflow-hidden">
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className="flex flex-row gap-3">
+            {visibleSessions.slice(0, 10).map((session, index) => (
+              <div
+                key={session.id}
+                className={cn(
+                  'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
+                  selectedSession?.id === session.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  index === 0 ? 'lg:ml-4' : ''
+                )}
+                {...draggableLink}
+                onClick={e => {
+                  const result = draggableLink.onClick(e)
+
+                  if (!result) return
+
+                  if (selectedSession?.id === session.id) {
+                    setSelectedSession(null)
+                  } else {
+                    setSelectedSession(session)
+                  }
+                }}
+              >
+                <div className="relative rounded-full w-[80px] h-[80px]">
+                  <Image
+                    src={session.image || '/default-session-image.png'}
+                    alt={session.title}
+                    width={80}
+                    height={80}
+                    className="rounded-full w-full h-full mb-2 object-cover"
+                  />
+                  <div className={cn('absolute inset-0 rounded-full', css['session-gradient'])} />
+                </div>
+                <p className="text-xs font-medium text-center line-clamp-2">{session.title}</p>
+              </div>
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
+
+      <div data-type="session-prompts" className="flex gap-3 my-4 border-bottom lg:mx-4 pb-4">
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about')}>
+          <div className="truncate">Help me find sessions about</div>
+        </StandalonePrompt>
+        <StandalonePrompt
+          className="w-full"
+          onClick={() => setDevaBotVisible('Recommend sessions based on my interests')}
+        >
+          <div className="truncate">Recommend sessions based on my interests</div>
+        </StandalonePrompt>
+      </div>
+
+      <div className="flex flex-col gap-3 lg:px-4 font-semibold">All Sessions</div>
+
+      <div
+        className={cn('sticky top-[55px] lg:top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
+        ref={stickyRef}
+      >
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className="flex flex-row flex-nowrap gap-3 lg:p-4 py-3 w-full">
+            {['All', 'Today', 'Tomorrow', ...Array.from('MTWHF')].map((day, index, array) => (
+              <div
+                key={day}
+                className={cn(
+                  'shrink-0 cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
+                  day === filters.selectedDay ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  index === array.length - 1 ? 'mr-4' : ''
+                )}
+                {...draggableLink}
+                onClick={e => {
+                  const result = draggableLink.onClick(e)
+
+                  if (!result) return
+
+                  const container = document.querySelector('[data-type="session-list"]')
+
+                  if (container) {
+                    container.scrollIntoView({ behavior: 'smooth' })
+                  }
+
+                  setTimeout(() => {
+                    filters.setSelectedDay(filters.selectedDay === day ? '' : day)
+                  }, 100)
+                }}
+              >
+                {day}
+              </div>
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
+
+      <motion.div className="flex flex-col gap-3 mb-4 lg:px-4">
+        {visibleSessions.map((session, index) => {
+          return (
+            <motion.div key={session.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <SessionCard {...session} />
+            </motion.div>
+          )
+        })}
+      </motion.div>
+    </div>
+  )
 }
 
 export const SessionView = ({ session }: { session: SessionType }) => {
