@@ -321,6 +321,16 @@ export const Footer = () => {
               <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
                 {intl('terms_of_service')}
               </Link>
+              <Link
+                className="bold font-xs text-uppercase hover-underline"
+                to={
+                  process.env.NODE_ENV === 'development'
+                    ? 'http://localhost:3000/Attendee-Solicitation-Guidelines-Oct-18.pdf'
+                    : 'https://devcon.org/Attendee-Solicitation-Guidelines-Oct-18.pdf'
+                }
+              >
+                Attendee Solicitation Guidelines
+              </Link>
             </div>
           </div>
         </div>

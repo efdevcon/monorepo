@@ -390,7 +390,7 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Discount Ticket Responses sent on rolling basis</div>
-                    <div className="bold shrink-0">Review</div>
+                    <div className="bold shrink-0">Close October 29</div>
                   </div>
                 ),
                 indent: false,
