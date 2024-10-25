@@ -103,12 +103,12 @@ const getTrackColor = (track: string) => {
     case 'Layer 2':
       return 'bg-[#F0F1FF]'
     default:
-      return 'bg-[#CCCCCC]' // Light Gray (default color)
+      return 'bg-[white]' // Light Gray (default color)
   }
 }
 
 const getTrackLogo = (track: string) => {
-  let trackLogo
+  let trackLogo = CoreProtocol
 
   if (track === 'Core Protocol') {
     trackLogo = CoreProtocol
@@ -148,7 +148,7 @@ const ExpertiseTag = ({ expertise, className }: { expertise: string; className?:
   return (
     <div
       className={cn(
-        'text-[10px] text-black rounded-full bg-[#b3a1fd] px-2 py-0.5 font-semibold',
+        'text-[10px] text-black rounded-full bg-[#b3a1fd] px-2 py-0.5 font-semibold border border-solid border-[transparent]',
         getExpertiseColor(expertise),
         css['glass-tag'],
         className
@@ -176,6 +176,7 @@ const TrackTag = ({ track, className }: { track: string; className?: string }) =
 
 export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
   const { id, title, speakers, track, date, startTime, endTime, expertise, description } = session
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
@@ -193,6 +194,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
   const relativeTime = start?.from(now)
   const router = useRouter()
+  const draggableLink = useDraggableLink()
 
   const [favorited, setFavorited] = useState(false)
 
@@ -206,7 +208,12 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         className
       )}
       to={'/schedule'}
+      {...draggableLink}
       onClick={(e: any) => {
+        const result = draggableLink.onClick(e)
+
+        if (!result) return
+
         if (router.pathname === '/schedule') e.preventDefault()
 
         if (selectedSession?.id === id) {
@@ -214,6 +221,8 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         } else {
           setSelectedSession(session)
         }
+
+        setDevaBotVisible(false)
       }}
     >
       <div className="flex justify-between min-h-[100px]">
@@ -225,11 +234,11 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         >
           <div
             className={cn(
-              'absolute top-0 w-full self-start text-xs text-white font-semibold p-2 z-[1] h-[52px] line-clamp-3 break-words',
-              css['expertise-gradient']
+              'absolute top-0 flex w-full self-start text-xs text-white font-semibold p-2 z-[1] line-clamp-3 break-words',
+              css['session-gradient-1']
             )}
           >
-            {track}
+            <div className="text-white z-[2]">{track}</div>
           </div>
           {trackLogo && (
             <Image
@@ -576,14 +585,19 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
 
   return (
     <div data-type="session-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
-      <div className={cn('relative rounded-2xl w-full h-full flex items-end', getTrackColor(session.track))}>
+      <div
+        className={cn(
+          'relative rounded-2xl w-full h-full flex items-end overflow-hidden',
+          getTrackColor(session.track)
+        )}
+      >
         <Image
           // @ts-ignore
           src={trackLogo}
           alt={session.track}
           //   width={393}
           //   height={393}
-          className="rounded-2xl w-[120%] h-[120%] aspect-video object-contain object-right "
+          className="rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right "
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">
           <TrackTag track={session.track} className="self-start" />
@@ -601,7 +615,7 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
             <p className="text-lg">{session.title}</p>
           </div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
-            <HeartIcon
+            <CalendarIcon
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
               style={{ '--color-icon': 'white' }}
             />

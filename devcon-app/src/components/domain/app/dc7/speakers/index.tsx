@@ -58,6 +58,7 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   // TODO: Add favorited to user account
   const [favorited, setFavorited] = useState(false)
   const router = useRouter()
@@ -77,6 +78,8 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
         } else {
           setSelectedSpeaker(speaker)
         }
+
+        setDevaBotVisible(false)
       }}
     >
       <div className="relative flex flex-row items-center gap-4">

@@ -7,6 +7,24 @@
   backdrop-filter: blur(10px);
 }
 
+.session-gradient-1 {
+  overflow: hidden;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  padding-bottom: 20px;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, #765ae4 0%, transparent 100%); // #765ae42d 100%);
+    // backdrop-filter: blur(2px);
+  }
+}
+
 .session-gradient-2 {
   //   mask-image: linear-gradient(to top, rgb(0, 0, 0) 0%, transparent 80%);
   //   background: #5533dd;
@@ -16,6 +34,7 @@
   overflow: hidden;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+  // padding-top: 48px;
   &:before {
     content: '';
     position: absolute;
@@ -24,14 +43,14 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(to top, #765ae4 0%, transparent 100%); // #765ae42d 100%);
-    //   backdrop-filter: blur(3px);
+    // backdrop-filter: blur(3px);
   }
 }
 
 .glass-tag {
   /* From https://css.glass */
   // background: rgba(255, 255, 255, 0.465);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   // border: 1px solid rgba(255, 255, 255, 0.3);
