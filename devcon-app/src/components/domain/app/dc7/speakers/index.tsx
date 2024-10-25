@@ -58,6 +58,8 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  // TODO: Add favorited to user account
+  const [favorited, setFavorited] = useState(false)
   const router = useRouter()
 
   return (
@@ -99,8 +101,19 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
         </div>
       </div>
 
-      <div className="flex items-center justify-center mx-2">
-        <HeartIcon className="icon" />
+      <div
+        className={cn(
+          'flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300',
+          favorited ? 'text-[#ac9fdf]' : ''
+        )}
+        onClick={e => {
+          e.stopPropagation()
+          e.preventDefault()
+
+          setFavorited(!favorited)
+        }}
+      >
+        <HeartIcon className="icon" style={{ '--color-icon': favorited ? 'red' : '#99A0AE' }} />
       </div>
     </Link>
   )
@@ -400,7 +413,7 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
       {/* <Button color="black-1" fill className="self-center text-sm sticky top-[76px] z-10">
         Back to Overview
       </Button> */}
-      <div className="relative rounded-full w-full h-full flex items-end">
+      <div className="relative rounded-2xl w-full h-full flex items-end bg-purple-200">
         <Image
           // @ts-ignore
           src={speaker?.avatar}
@@ -408,7 +421,10 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
           alt={speaker?.name}
           width={393}
           height={393}
-          className="rounded-2xl w-full h-full aspect-video object-cover"
+          className={cn(
+            'rounded-2xl w-full h-full aspect-video',
+            speaker.avatar?.startsWith('data') ? 'object-contain object-center' : 'object-cover'
+          )}
         />
         <div
           className={cn(

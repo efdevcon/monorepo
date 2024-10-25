@@ -72,6 +72,41 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   }
 }
 
+const getExpertiseColor = (expertise: string) => {
+  if (expertise === 'Beginner') return 'bg-[#7dffa050]'
+  if (expertise === 'Intermediate') return 'bg-[#baacff50]'
+  if (expertise === 'Expert') return 'bg-[#faa8a850]'
+
+  return 'bg-[#765ae450]'
+}
+
+const getTrackColor = (track: string) => {
+  switch (track) {
+    case 'Core Protocol':
+      return 'bg-[#F6F2FF]'
+    case 'Cypherpunk & Privacy':
+      return 'bg-[#FFF4FF]'
+    case 'Usability':
+      return 'bg-[#FFF4F4]'
+    case 'Real World Ethereum':
+      return 'bg-[#FFEDDF]'
+    case 'Applied Cryptography':
+      return 'bg-[#FFFEF4]'
+    case 'Cryptoeconomics':
+      return 'bg-[#F9FFDF]'
+    case 'Coordination':
+      return 'bg-[#E9FFD7]'
+    case 'Developer Experience':
+      return 'bg-[#E8FDFF]'
+    case 'Security':
+      return 'bg-[#E4EEFF]'
+    case 'Layer 2':
+      return 'bg-[#F0F1FF]'
+    default:
+      return 'bg-[#CCCCCC]' // Light Gray (default color)
+  }
+}
+
 const getTrackLogo = (track: string) => {
   let trackLogo
 
@@ -109,8 +144,38 @@ const getTrackLogo = (track: string) => {
   return trackLogo
 }
 
+const ExpertiseTag = ({ expertise, className }: { expertise: string; className?: string }) => {
+  return (
+    <div
+      className={cn(
+        'text-[10px] text-black rounded-full bg-[#b3a1fd] px-2 py-0.5 font-semibold',
+        getExpertiseColor(expertise),
+        css['glass-tag'],
+        className
+      )}
+    >
+      {expertise}
+    </div>
+  )
+}
+
+const TrackTag = ({ track, className }: { track: string; className?: string }) => {
+  return (
+    <div
+      className={cn(
+        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA]',
+        getTrackColor(track),
+        css['glass-tag'],
+        className
+      )}
+    >
+      {track}
+    </div>
+  )
+}
+
 export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
-  const { id, title, speakers, track, date, startTime, endTime, expertise } = session
+  const { id, title, speakers, track, date, startTime, endTime, expertise, description } = session
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
@@ -129,12 +194,14 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   const relativeTime = start?.from(now)
   const router = useRouter()
 
+  const [favorited, setFavorited] = useState(false)
+
   const trackLogo = getTrackLogo(track)
 
   return (
     <Link
       className={cn(
-        'flex flex-col bg-white rounded-lg shadow-md w-full overflow-hidden hover:border-[#ac9fdf] border border-solid border-[transparent] transition-all duration-300',
+        'flex flex-col bg-white rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300',
         selectedSession?.id === id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
         className
       )}
@@ -149,11 +216,16 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         }
       }}
     >
-      <div className="flex justify-between h-[100px]">
-        <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
+      <div className="flex justify-between min-h-[100px]">
+        <div
+          className={cn(
+            'basis-[100px] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
+            getTrackColor(track)
+          )}
+        >
           <div
             className={cn(
-              'absolute top-0 w-full text-xs text-white font-semibold p-2 z-[1] h-[52px] line-clamp-3 break-words',
+              'absolute top-0 w-full self-start text-xs text-white font-semibold p-2 z-[1] h-[52px] line-clamp-3 break-words',
               css['expertise-gradient']
             )}
           >
@@ -163,16 +235,14 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             <Image
               src={trackLogo}
               alt={track}
-              height={100}
-              width={100}
+              height={150}
+              width={150}
               className="w-full h-[90%] object-contain transform translate-x-1/4 -translate-y-1/6"
             />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
-            <div className="text-[10px] text-black rounded-full bg-[#b3a1fd] px-2 py-0.5 font-semibold">
-              {expertise}
-            </div>
+            <ExpertiseTag expertise={expertise || ''} />
           </div>
         </div>
         <div className="flex flex-col justify-between grow p-2 pl-3">
@@ -181,7 +251,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             {/* <p className="text-xs text-gray-600 mt-1 truncate">{track}</p> */}
           </div>
           <div>
-            {/* <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p> */}
+            <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p>
             {sessionIsLive && <div className="label rounded red bold mb-1 sm">Happening now!</div>}
             {isSoon && (
               <div className="label rounded text-gray-500 !border-gray-400 bold sm mb-1">Starts {relativeTime}</div>
@@ -206,8 +276,16 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
           </div>
         </div>
 
-        <div className="shrink-0 flex  justify-center p-3 pl-1 cursor-pointer">
-          <CalendarIcon className="icon" style={{ '--color-icon': '#99A0AE' }} />
+        <div
+          className="shrink-0 flex  justify-center p-3 pl-1 cursor-pointer"
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+
+            setFavorited(!favorited)
+          }}
+        >
+          <CalendarIcon className="icon" style={{ '--color-icon': favorited ? 'red' : '#99A0AE' }} />
           {/* <p className="text-sm font-semibold text-gray-800 truncate">{date}</p> */}
         </div>
       </div>
@@ -366,7 +444,7 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
               <SessionCard
                 session={session}
                 key={session.id}
-                className={cn('w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
+                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
               />
               //   <div>
               //     className={cn(
@@ -498,7 +576,7 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
 
   return (
     <div data-type="session-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
-      <div className="relative rounded-2xl w-full h-full flex items-end bg-purple-200">
+      <div className={cn('relative rounded-2xl w-full h-full flex items-end', getTrackColor(session.track))}>
         <Image
           // @ts-ignore
           src={trackLogo}
@@ -507,13 +585,21 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
           //   height={393}
           className="rounded-2xl w-[120%] h-[120%] aspect-video object-contain object-right "
         />
+        <div className="absolute inset-0 flex items-start gap-2 p-2">
+          <TrackTag track={session.track} className="self-start" />
+          <ExpertiseTag expertise={session.expertise || ''} className="self-start" />
+        </div>
+
         <div
           className={cn(
             'absolute rounded-2xl flex justify-between items-end p-3 pt-7 self-end left-0 right-0',
             css['session-gradient-2']
           )}
         >
-          <div className="font-medium z-10 text-lg translate-y-[3px] text-white max-w-[70%]">{session.title}</div>
+          <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] text-white max-w-[70%]">
+            {/* <TrackTag track={session.track} className="self-start" /> */}
+            <p className="text-lg">{session.title}</p>
+          </div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
             <HeartIcon
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
@@ -545,8 +631,11 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
       </div>
 
       <div className="border-top border-bottom py-4">
-        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible(`Tell me more about "${session.title}"`)}>
-          <div className="truncate">Tell me more about "{session.title}"</div>
+        <StandalonePrompt
+          className="w-full"
+          onClick={() => setDevaBotVisible(`Tell me about similar sessions to "${session.title}"`)}
+        >
+          <div className="truncate">Tell me about similar sessions</div>
         </StandalonePrompt>
       </div>
 
