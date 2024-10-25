@@ -23,11 +23,13 @@ model Account {
   activeAddress String?
   addresses String[]
   disabled Boolean @default(false)
+  onboarded Boolean @default(false)
 
-  role String?
-  yearsOfExperience Int?
+  since Int?
+  roles String[]
   tracks String[]
   tags String[]
+  reason String?
 
   favorite_speakers String[]
   interested_sessions String[]
@@ -38,13 +40,6 @@ model Account {
 
   createdAt DateTime @default(now())
   updatedAt DateTime?
-}
-
-model DiscountClaims {
-  id String @default(cuid()) @id
-  identifier String
-  voucher String
-  issued DateTime @default(now())
 }
 
 model rate_limit {
