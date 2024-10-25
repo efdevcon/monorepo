@@ -32,10 +32,13 @@ import FilterIcon from 'assets/icons/filter-tract.svg'
 import HeartIcon from 'assets/icons/heart.svg'
 import MagnifierIcon from 'assets/icons/magnifier.svg'
 import { Separator } from 'lib/components/ui/separator'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
 import { Link } from 'components/common/link'
 import { SpeakerCard } from '../speakers'
+import { CircleIcon } from 'lib/components/circle-icon'
+import ScrollDownIcon from 'lib/assets/icons/scroll-down.svg'
+import CityGuide from 'assets/images/dc-7/city-guide.png'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
@@ -108,7 +111,7 @@ const getTrackColor = (track: string) => {
 }
 
 const getTrackLogo = (track: string) => {
-  let trackLogo = CoreProtocol
+  let trackLogo = CityGuide
 
   if (track === 'Core Protocol') {
     trackLogo = CoreProtocol
@@ -148,10 +151,10 @@ const ExpertiseTag = ({ expertise, className }: { expertise: string; className?:
   return (
     <div
       className={cn(
-        'text-[10px] text-black rounded-full bg-[#b3a1fd] px-2 py-0.5 font-semibold border border-solid border-[transparent]',
+        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[transparent]',
         getExpertiseColor(expertise),
-        css['glass-tag'],
-        className
+        className,
+        css['glass-tag']
       )}
     >
       {expertise}
@@ -240,7 +243,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
           >
             <div className="text-white z-[2]">{track}</div>
           </div>
-          {trackLogo && (
+          {trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
               alt={track}
@@ -388,6 +391,55 @@ export const SessionFilter = ({
   )
 }
 
+export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsScrolled(true)
+      } else {
+        setIsScrolled(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  return (
+    <AnimatePresence>
+      {visible && isScrolled && (
+        <motion.div
+          className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <CircleIcon
+            className="bg-[#F0F2FF] w-[30px] h-[30px]"
+            onClick={() => {
+              const container =
+                document.querySelector('[data-type="session-list"]') ||
+                document.querySelector('[data-type="speaker-list"]')
+
+              if (container) {
+                container.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+          >
+            <ScrollDownIcon style={{ fontSize: '18px', transform: 'rotateX(180deg)' }} />
+          </CircleIcon>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
+
 const SESSIONS_PER_PAGE = 25
 
 export const SessionList = ({ sessions, event }: { sessions: SessionType[]; event: any }) => {
@@ -440,6 +492,40 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
     setVisibleSessions(filteredSessions.slice(0, page * SESSIONS_PER_PAGE))
   }, [page, filteredSessions])
 
+  const groupedSessions = useMemo(() => {
+    return visibleSessions.reduce((acc, session) => {
+      const date = moment(session.date).format('MMM D')
+      if (!acc[date]) {
+        acc[date] = []
+      }
+      acc[date].push(session)
+      return acc
+    }, {} as Record<string, SessionType[]>)
+  }, [visibleSessions])
+
+  const generateDayOptions = (startTime: string, endTime: string) => {
+    const start = moment(startTime)
+    const end = moment(endTime)
+    const days = ['All']
+    const today = moment().startOf('day')
+
+    for (let m = moment(start); m.isSameOrBefore(end); m.add(1, 'days')) {
+      if (m.isSame(today, 'day')) {
+        days.push('Today')
+      } else {
+        days.push(m.format('MMM D'))
+      }
+    }
+
+    return days
+  }
+
+  console.log(event, 'event')
+
+  const dayOptions = useMemo(() => generateDayOptions(event.startDate, event.endDate), [event])
+
+  console.log(dayOptions, 'dayOptions')
+
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filters={filters} />
@@ -455,37 +541,6 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
                 key={session.id}
                 className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
               />
-              //   <div>
-              //     className={cn(
-              //       'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-              //       selectedSession?.id === session.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-              //       index === 0 ? 'lg:ml-4' : ''
-              //     )}
-              //     {...draggableLink}
-              //     onClick={e => {
-              //       const result = draggableLink.onClick(e)
-
-              //       if (!result) return
-
-              //       if (selectedSession?.id === session.id) {
-              //         setSelectedSession(null)
-              //       } else {
-              //         setSelectedSession(session)
-              //       }
-              //     }}
-              //   >
-              //     <div className="relative rounded-full w-[80px] h-[80px]">
-              //       <Image
-              //         src={session.image || '/default-session-image.png'}
-              //         alt={session.title}
-              //         width={80}
-              //         height={80}
-              //         className="rounded-full w-full h-full mb-2 object-cover"
-              //       />
-              //       <div className={cn('absolute inset-0 rounded-full', css['session-gradient'])} />
-              //     </div>
-              //     <p className="text-xs font-medium text-center line-clamp-2">{session.title}</p>
-              //   </div>
             ))}
           </div>
         </SwipeToScroll>
@@ -510,14 +565,15 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
         ref={stickyRef}
       >
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row flex-nowrap gap-3 lg:p-4 py-3 w-full">
-            {['All', 'Today', 'Tomorrow', ...Array.from('MTWHF')].map((day, index, array) => (
+          <div className="flex flex-row flex-nowrap gap-2 lg:p-3 py-3 w-full">
+            {dayOptions.map((day, index, array) => (
               <div
                 key={day}
                 className={cn(
                   'shrink-0 cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
                   day === filters.selectedDay ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-                  index === array.length - 1 ? 'mr-4' : ''
+                  index === array.length - 1 ? 'mr-4' : '',
+                  day === 'Today' ? '!text-blue-800 font-semibold' : ''
                 )}
                 {...draggableLink}
                 onClick={e => {
@@ -543,14 +599,21 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
         </SwipeToScroll>
       </div>
 
-      <motion.div className="flex flex-col gap-3 mb-4 lg:px-4">
-        {visibleSessions.map((session, index) => {
-          return (
-            <motion.div key={session.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <SessionCard session={session} />
+      <motion.div className="flex flex-col gap-3 mb-4 lg:px-4 relative">
+        {Object.entries(groupedSessions).map(([date, dateSessions]) => (
+          <React.Fragment key={date}>
+            <motion.div className="font-semibold" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              {date}
             </motion.div>
-          )
-        })}
+            {dateSessions.map(session => (
+              <motion.div key={session.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                <SessionCard session={session} />
+              </motion.div>
+            ))}
+          </React.Fragment>
+        ))}
+
+        <ScrollUpComponent visible={visibleSessions.length > 20} />
       </motion.div>
     </div>
   )
@@ -587,7 +650,7 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
     <div data-type="session-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
       <div
         className={cn(
-          'relative rounded-2xl w-full h-full flex items-end overflow-hidden',
+          'relative rounded-2xl w-full h-full flex items-end overflow-hidden border border-solid border-[#cdbaff] lg:border-none',
           getTrackColor(session.track)
         )}
       >
@@ -632,15 +695,15 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
-          <IconClock className="icon flex shrink-0" style={{ '--color-icon': '#717784' }} />
-          <span className="text-sm text-[#717784]">
+          <IconClock className="icon flex shrink-0" style={{ '--color-icon': 'black' }} />
+          <span className="text-sm text-[black]">
             {moment(session.date).format('MMM Do')} — {moment(session.startTime).format('HH:mm A')} -{' '}
             {moment(session.endTime).format('HH:mm A')}
           </span>
         </div>
         <div className="flex items-center gap-2">
-          <IconSpeaker className="icon shrink-0" style={{ '--color-icon': '#717784' }} />
-          <span className="text-sm text-[#717784]">{session.speakers?.map(speaker => speaker.name).join(', ')}</span>
+          <IconSpeaker className="icon shrink-0" style={{ '--color-icon': 'black' }} />
+          <span className="text-sm text-[black]">{session.speakers?.map(speaker => speaker.name).join(', ')}</span>
         </div>
       </div>
 
@@ -683,7 +746,9 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
 
       {selectedSession && (
         <div
-          className={cn('basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] sticky top-[72px] lg:self-start')}
+          className={cn(
+            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:max-h-[calc(100vh-72px)] lg:overflow-auto lg:self-start no-scrollbar'
+          )}
         >
           <SessionView session={selectedSession} event={event} />
         </div>

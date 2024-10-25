@@ -22,6 +22,7 @@ import { Toaster } from 'lib/components/ui/toaster'
 import { motion, useInView } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
 import { Button } from 'lib/components/button'
+import { ScrollUpComponent } from '../sessions'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
@@ -381,6 +382,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
         {/* {visibleSpeakers.length < filteredSpeakers.length && <LoadMoreTrigger onLoadMore={loadMoreHandler} />} */}
       </motion.div>
+      <ScrollUpComponent visible={visibleSpeakers.length > 20} />
     </div>
   )
 }
@@ -514,7 +516,9 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
 
       {selectedSpeaker && (
         <div
-          className={cn('basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] sticky top-[72px] lg:self-start')}
+          className={cn(
+            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:max-h-[calc(100vh-72px)] lg:overflow-auto lg:self-start'
+          )}
         >
           <SpeakerView speaker={selectedSpeaker} />
         </div>
