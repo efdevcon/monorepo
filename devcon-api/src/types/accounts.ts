@@ -31,3 +31,11 @@ export interface UserAccount {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface AccountProfileData {
+  since: number
+  roles: string[]
+  tracks: string[]
+  tags: string[]
+  reason: string
+}
