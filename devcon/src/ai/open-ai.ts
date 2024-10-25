@@ -8,7 +8,8 @@ const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 })
 
-const assistantInstructions = `You are 'Deva', a witty and cheerful unicorn representing Devcon. Users will ask you practical or historical questions about Devcon, and you will do your best to answer based on our website content, which will be made available to you through the file_search tool. When the answer doesn't exist, it is better to say you don't know than to make up an answer. Be brief in your responses, but let your personality shine through. The current date will be appended to the user's messages, which may be useful when a user asks "when is Devcon", "can I apply to speak", or similar temporal questions.`
+// const assistantInstructions = `You are 'Deva', a witty and cheerful unicorn representing Devcon. Users will ask you practical or historical questions about Devcon, and you will do your best to answer based on our website content (.txt files) and event schedule (.json files), which will be made available to you through the file_search tool. When using the file_search tool, reference the source files in the annotations. When the answer doesn't exist, it is better to say you don't know than to make up an answer. Be brief in your responses, but let your personality shine through. The current date will be appended to the user's messages, which may be useful when a user asks "when is Devcon", "what should I attend next?", "can I apply to speak", or similar temporal questions.`
+const assistantInstructions = `You are 'Deva', a witty and cheerful unicorn representing Devcon. Users will ask you practical or historical questions about Devcon, and you will do your best to answer based on our website content (.txt files) and event schedule (.json files), which will be made available to you through the file_search tool. When using the file_search tool, reference the source files in the annotations. When the answer doesn't exist, it is better to say you don't know than to make up an answer. Be brief in your responses, but let your personality shine through. The current date will be appended to the user's messages, which may be useful when a user asks "when is Devcon", "what should I attend next?", "can I apply to speak", or similar temporal questions.`
 
 export const api = (() => {
   const _interface = {
@@ -20,7 +21,8 @@ export const api = (() => {
 
       // Create vector store for website content
       const vectorStore = await openai.beta.vectorStores.create({
-        name: 'Website Content: ' + new Date().toISOString(),
+        // name: 'Website Content: ' + new Date().toISOString(),
+        name: `github_${process.env.GITHUB_SHA}`,
       })
 
       const contentDir = path.resolve(__dirname, 'formatted-content')
@@ -36,12 +38,12 @@ export const api = (() => {
       await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
 
       // Update assistant to use our new vector store
-      await openai.beta.assistants.update(assistantID, {
-        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
-      })
+      // await openai.beta.assistants.update(assistantID, {
+      //   tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
+      // })
 
       // Clean up old vector stores after creating a new one
-      await _interface.cleanStaleVectorStores()
+      // await _interface.cleanStaleVectorStores()
     },
     // ASSISTANT API
     createAssistant: async () => {

@@ -117,7 +117,7 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: 'DIPs & Community Hubs',
+            title: 'DIPs',
             url: '/dips',
             type: 'page',
           },
@@ -130,6 +130,11 @@ const useNavigationData = () => {
             title: 'Apply To Volunteer',
             url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
             type: 'url',
+          },
+          {
+            title: 'Apply to Speak',
+            url: '/speaker-applications',
+            type: 'page',
           },
           {
             title: 'RTD Grants',
@@ -193,29 +198,6 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: 'Program',
-        url: '#',
-        type: 'links',
-        logo: LogoGetInvolved,
-        links: [
-          {
-            title: 'Programming',
-            url: '#',
-            type: 'header',
-          },
-          {
-            title: 'Overview',
-            url: '/programming',
-            type: 'page',
-          },
-          {
-            title: 'Apply to Speak',
-            url: '/speaker-applications',
-            type: 'page',
-          },
-        ],
-      },
-      {
         title: 'Event',
         url: '#',
         type: 'links',
@@ -227,18 +209,23 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
+            title: 'Program Overview',
+            url: '/programming',
+            type: 'page',
+          },
+          {
             title: 'City Guide',
             url: '/city-guide',
             type: 'page',
           },
           {
-            title: 'Devcon Week',
-            url: '/devcon-week',
+            title: 'Experiences',
+            url: '/experiences',
             type: 'page',
           },
           {
-            title: 'Experiences',
-            url: '/experiences',
+            title: 'Devcon Week',
+            url: '/devcon-week',
             type: 'page',
           },
         ],
@@ -460,6 +447,11 @@ const useNavigationData = () => {
               ? 'http://localhost:3000/Devcon__Devconnect_Presskit.pdf'
               : 'https://devcon.org/Devcon__Devconnect_Presskit.pdf',
           type: 'page',
+        },
+        {
+          title: 'Swarm Mirror',
+          url: 'https://devcon.swarm.eth.limo/',
+          type: 'link',
         },
       ],
       // rightBottom: [

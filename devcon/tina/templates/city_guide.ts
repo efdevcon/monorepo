@@ -98,6 +98,7 @@ const city_guide: Template = {
       ],
     },
     createRichText('getting_around'),
+    createRichText('transit'),
     {
       label: 'city_guide_faq',
       name: 'city_guide_faq',

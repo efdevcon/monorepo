@@ -30,6 +30,10 @@ export const API_DEFAULTS = {
   githubDataUrl: 'https://raw.githubusercontent.com/efdevcon/api/dev/data',
 }
 
+export const CONFIG = {
+  DATA_FOLDER: join(process.cwd(), 'data'),
+}
+
 export const SERVER_CONFIG = {
   NODE_ENV: process.env.RENDER ? 'production' : process.env.NODE_ENV || 'development',
   PORT: process.env.PORT || 4000,
@@ -54,17 +58,20 @@ export const PRETALX_CONFIG = {
 
   PRETALX_BASE_URI: 'https://speak.devcon.org/api', // 'https://speak.devcon.org/api' // https://speak.ticketh.xyz/api
   PRETALX_EVENT_NAME: 'devcon7-sea', // 'devcon-vi-2022' // 'pwa-data'
+  PRETALX_EVENT_ID: 7,
 
   PRETALX_QUESTIONS_GITHUB: 61,
   PRETALX_QUESTIONS_TWITTER: 62,
+  PRETALX_QUESTIONS_WEBSITE: 63,
   PRETALX_QUESTIONS_FARCASTER: 78,
   PRETALX_QUESTIONS_LENS: 79,
   PRETALX_QUESTIONS_ENS: 75,
+  PRETALX_QUESTIONS_TELEGRAM: 103,
 
   PRETALX_QUESTIONS_EXPERTISE: 71,
   PRETALX_QUESTIONS_AUDIENCE: 72,
   PRETALX_QUESTIONS_TAGS: 76,
-  PRETALX_QUESTIONS_KEYWORDS: 76,
+  PRETALX_QUESTIONS_KEYWORDS: 73,
 
   DEFAULT_LIMIT: 100,
 }

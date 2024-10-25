@@ -59,20 +59,29 @@ model Session {
   track String
   type String
   expertise String
+  audience String?
   featured Boolean?
+  doNotRecord Boolean?
   tags String
+  keywords String?
   duration Int?
   language String?
+
+  sources_swarmHash String?
   sources_youtubeId String?
   sources_ipfsHash String?
-  sources_swarmHash String?
+  sources_livepeerId String?
+
   speakers Speaker[]
   event Event @relation(fields: [eventId], references: [id])
   eventId String
+
   slot_start DateTime?
   slot_end DateTime?
   slot_room Room? @relation(fields: [slot_roomId], references: [id])
   slot_roomId String?
+
+  resources_presentation String?
   resources_slides String?
 
   relatedSessions RelatedSession[] @relation(name: "Related")

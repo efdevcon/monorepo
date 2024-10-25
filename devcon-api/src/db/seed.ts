@@ -294,7 +294,8 @@ async function main() {
 
     let data: any = {
       ...item,
-      tags: item.tags.join(','),
+      tags: item.tags?.join(',') || '',
+      keywords: item.keywords?.join(',') || '',
       slot_start: item.slot_start ? dayjs(item.slot_start).toISOString() : null,
       slot_end: item.slot_end ? dayjs(item.slot_end).toISOString() : null,
       event: {
