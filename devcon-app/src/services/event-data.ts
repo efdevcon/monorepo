@@ -7,7 +7,7 @@ import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
 import { APP_CONFIG } from 'utils/config'
 import { useRecoilState } from 'recoil'
-import { sessionsAtom, eventAtom, speakersAtom } from 'pages/_app'
+import { sessionsAtom, speakersAtom } from 'pages/_app'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
