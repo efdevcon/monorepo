@@ -28,12 +28,13 @@ export default pageHOC((props: any) => {
   // }
 
   console.log(sessions, 'sessions?')
+  console.log(props.event, 'event?')
 
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
       <SEO title="Schedule" />
 
-      <SessionLayout sessions={sessions} />
+      <SessionLayout sessions={sessions} event={props.event} />
 
       {/* {sessions ? (
         (() => {

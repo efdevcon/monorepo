@@ -61,9 +61,14 @@ export const sessionIdAtom = atom<string | null>({
   default: null,
 })
 
-export const sessionsAtom = atom<SessionType[]>({
+export const speakersAtom = atom<SpeakerType[] | null>({
+  key: 'speakers',
+  default: null,
+})
+
+export const sessionsAtom = atom<SessionType[] | null>({
   key: 'sessions',
-  default: [],
+  default: null,
 })
 
 export const notificationsAtom = atom<any[]>({
@@ -214,7 +219,7 @@ function App({ Component, pageProps }: AppProps) {
           <AppContext>
             <Web3Provider>
               <ZupassProvider>
-                {!sessions && (
+                {/* {!sessions && (
                   <div
                     data-type="loader"
                     className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
@@ -222,7 +227,7 @@ function App({ Component, pageProps }: AppProps) {
                     <FancyLoader loading={!sessions} />
                     <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
                   </div>
-                )}
+                )} */}
 
                 <Component {...pageProps} />
 

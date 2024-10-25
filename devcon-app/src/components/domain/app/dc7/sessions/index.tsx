@@ -28,18 +28,39 @@ import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { devaBotVisibleAtom } from 'pages/_app'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
+import FilterIcon from 'assets/icons/filter-tract.svg'
+import HeartIcon from 'assets/icons/heart.svg'
+import MagnifierIcon from 'assets/icons/magnifier.svg'
+import { Separator } from 'lib/components/ui/separator'
 import { motion } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
+import { Link } from 'components/common/link'
+import { SpeakerCard } from '../speakers'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
-const useSessionFilter = (sessions: SessionType[]) => {
+const useSessionFilter = (sessions: SessionType[], event: any) => {
   const [text, setText] = useState('')
   const [type, setType] = useState('All')
   const [selectedDay, setSelectedDay] = useState('')
 
+  const filteredSessions = useMemo(() => {
+    if (!sessions) return []
+    return sessions.filter(session => {
+      const matchesText = session.title.toLowerCase().includes(text.toLowerCase())
+      const matchesType = type === 'All' || session.type === type
+      const matchesDay =
+        selectedDay === '' ||
+        (selectedDay === 'Today' && moment(session.date).isSame(moment(), 'day')) ||
+        (selectedDay === 'Tomorrow' && moment(session.date).isSame(moment().add(1, 'day'), 'day')) ||
+        moment(session.date).format('dddd')[0].toUpperCase() === selectedDay
+
+      return matchesText && matchesType && matchesDay
+    })
+  }, [sessions, text, type, selectedDay])
+
   return {
-    filteredSessions: sessions,
+    filteredSessions,
     filters: {
       text,
       setText,
@@ -49,63 +70,9 @@ const useSessionFilter = (sessions: SessionType[]) => {
       setSelectedDay,
     },
   }
-
-  //   const filteredSessions = useMemo(() => {
-  //     if (!sessions) return []
-  //     return sessions.filter(
-  //       session =>
-  //         session.title.toLowerCase().includes(text.toLowerCase()) &&
-  //         (type === 'All' || session.type === type) &&
-  //         (selectedLetter === '' || session.title[0].toUpperCase() === selectedLetter)
-  //     )
-  //   }, [sessions, text, type, selectedLetter])
-
-  //   const noFiltersActive = text === '' && type === 'All'
-
-  //   return {
-  //     filteredSessions,
-  //     filters: {
-  //       text,
-  //       setText,
-  //       type,
-  //       setType,
-  //       selectedLetter,
-  //       setSelectedLetter,
-  //     },
-  //     noFiltersActive,
-  //   }
 }
 
-export const SessionCard = ({
-  id,
-  title,
-  speakers,
-  track,
-  date,
-  startTime,
-  endTime,
-  startTimeAsMoment,
-  endTimeAsMoment,
-  image,
-  description,
-  expertise,
-}: SessionType) => {
-  const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
-  const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
-  const { account, setSessionBookmark } = useAccountContext()
-  const { now } = useAppContext()
-  const bookmarkedSessions = account?.sessions
-  const bookmarkedSession = bookmarkedSessions?.find(bookmark => bookmark.id === id && bookmark.level === 'attending')
-  const sessionIsBookmarked = !!bookmarkedSession
-  const start = moment.utc(startTime)
-  const end = moment.utc(endTime)
-  const sessionHasPassed = now?.isAfter(end)
-  const sessionIsUpcoming = now?.isBefore(start)
-  const sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
-  const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
-  const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
-  const relativeTime = start?.from(now)
-
+const getTrackLogo = (track: string) => {
   let trackLogo
 
   if (track === 'Core Protocol') {
@@ -139,8 +106,49 @@ export const SessionCard = ({
     trackLogo = Layer2
   }
 
+  return trackLogo
+}
+
+export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
+  const { id, title, speakers, track, date, startTime, endTime, expertise } = session
+  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
+  const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
+  const { account, setSessionBookmark } = useAccountContext()
+  const { now } = useAppContext()
+  const bookmarkedSessions = account?.sessions
+  const bookmarkedSession = bookmarkedSessions?.find(bookmark => bookmark.id === id && bookmark.level === 'attending')
+  const sessionIsBookmarked = !!bookmarkedSession
+  const start = moment.utc(startTime)
+  const end = moment.utc(endTime)
+  const sessionHasPassed = now?.isAfter(end)
+  const sessionIsUpcoming = now?.isBefore(start)
+  const sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
+  const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
+  const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
+  const relativeTime = start?.from(now)
+  const router = useRouter()
+
+  const trackLogo = getTrackLogo(track)
+
   return (
-    <div className="flex flex-col bg-white rounded-lg shadow-md w-full overflow-hidden">
+    <Link
+      className={cn(
+        'flex flex-col bg-white rounded-lg shadow-md w-full overflow-hidden hover:border-[#ac9fdf] border border-solid border-[transparent] transition-all duration-300',
+        selectedSession?.id === id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+        className
+      )}
+      to={'/schedule'}
+      onClick={(e: any) => {
+        if (router.pathname === '/schedule') e.preventDefault()
+
+        if (selectedSession?.id === id) {
+          setSelectedSession(null)
+        } else {
+          setSelectedSession(session)
+        }
+      }}
+    >
       <div className="flex justify-between h-[100px]">
         <div className="basis-[100px] shrink-0 bg-purple-200 flex items-center justify-center relative overflow-hidden">
           <div
@@ -203,19 +211,101 @@ export const SessionCard = ({
           {/* <p className="text-sm font-semibold text-gray-800 truncate">{date}</p> */}
         </div>
       </div>
+    </Link>
+  )
+}
+
+export const SessionFilter = ({
+  filters,
+}: {
+  filters: {
+    text: string
+    setText: (text: string) => void
+    type: string
+    setType: (type: string) => void
+  }
+}) => {
+  const draggableLink = useDraggableLink()
+
+  return (
+    <div data-type="session-filter" className="flex flex-col gap-3">
+      <div className="flex flex-row gap-3 justify-between w-full lg:px-4 lg:pt-4 pb-2">
+        <div data-type="session-filter-search" className="relative">
+          <input
+            type="text"
+            value={filters.text}
+            onChange={e => filters.setText(e.target.value)}
+            placeholder="Find a session"
+            className="w-full py-2 px-4 pl-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
+          />
+
+          <MagnifierIcon
+            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#99A0AE] icon"
+            style={{ '--color-icon': '#99A0AE' }}
+          />
+        </div>
+
+        <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
+          <FilterIcon
+            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+            style={{ '--color-icon': '#99A0AE' }}
+          />
+          <HeartIcon
+            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+            style={{ '--color-icon': '#99A0AE' }}
+          />
+        </div>
+      </div>
+
+      <div className="lg:mx-4 border-bottom h-[1px]" />
+
+      <div className="flex flex-row gap-3 items-center text-xs overflow-hidden">
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className="flex flex-row gap-3 flex-nowrap p-1 lg:px-4">
+            <div
+              className={cn(
+                'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
+                filters.type === 'All' ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+              )}
+              {...draggableLink}
+              onClick={e => {
+                const result = draggableLink.onClick(e)
+
+                if (!result) return
+
+                filters.setType('All')
+              }}
+            >
+              All
+            </div>
+            <Separator orientation="vertical" className="h-6" />
+
+            {['Keynote', 'Talk', 'Workshop', 'Panel', 'Lightning', 'CLS'].map(type => (
+              <div
+                key={type}
+                className={cn(
+                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#EFEBFF] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+                  filters.type === type ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                )}
+                onClick={() => filters.setType(type)}
+              >
+                {type}
+              </div>
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
+
+      <div className="lg:mx-4 mb-4 border-bottom h-[1px]" />
     </div>
   )
 }
 
-export const SessionFilter = (props: any) => {
-  return <div>SessionFilter</div>
-}
-
 const SESSIONS_PER_PAGE = 25
 
-export const SessionList = ({ sessions }: { sessions: SessionType[] }) => {
+export const SessionList = ({ sessions, event }: { sessions: SessionType[]; event: any }) => {
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  const { filteredSessions, filters } = useSessionFilter(sessions)
+  const { filteredSessions, filters } = useSessionFilter(sessions, event)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const draggableLink = useDraggableLink()
 
@@ -267,44 +357,48 @@ export const SessionList = ({ sessions }: { sessions: SessionType[] }) => {
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filters={filters} />
 
-      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Sessions</div>
+      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Personalized Suggestions</div>
 
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
             {visibleSessions.slice(0, 10).map((session, index) => (
-              <div
+              <SessionCard
+                session={session}
                 key={session.id}
-                className={cn(
-                  'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-                  selectedSession?.id === session.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-                  index === 0 ? 'lg:ml-4' : ''
-                )}
-                {...draggableLink}
-                onClick={e => {
-                  const result = draggableLink.onClick(e)
+                className={cn('w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
+              />
+              //   <div>
+              //     className={cn(
+              //       'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
+              //       selectedSession?.id === session.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+              //       index === 0 ? 'lg:ml-4' : ''
+              //     )}
+              //     {...draggableLink}
+              //     onClick={e => {
+              //       const result = draggableLink.onClick(e)
 
-                  if (!result) return
+              //       if (!result) return
 
-                  if (selectedSession?.id === session.id) {
-                    setSelectedSession(null)
-                  } else {
-                    setSelectedSession(session)
-                  }
-                }}
-              >
-                <div className="relative rounded-full w-[80px] h-[80px]">
-                  <Image
-                    src={session.image || '/default-session-image.png'}
-                    alt={session.title}
-                    width={80}
-                    height={80}
-                    className="rounded-full w-full h-full mb-2 object-cover"
-                  />
-                  <div className={cn('absolute inset-0 rounded-full', css['session-gradient'])} />
-                </div>
-                <p className="text-xs font-medium text-center line-clamp-2">{session.title}</p>
-              </div>
+              //       if (selectedSession?.id === session.id) {
+              //         setSelectedSession(null)
+              //       } else {
+              //         setSelectedSession(session)
+              //       }
+              //     }}
+              //   >
+              //     <div className="relative rounded-full w-[80px] h-[80px]">
+              //       <Image
+              //         src={session.image || '/default-session-image.png'}
+              //         alt={session.title}
+              //         width={80}
+              //         height={80}
+              //         className="rounded-full w-full h-full mb-2 object-cover"
+              //       />
+              //       <div className={cn('absolute inset-0 rounded-full', css['session-gradient'])} />
+              //     </div>
+              //     <p className="text-xs font-medium text-center line-clamp-2">{session.title}</p>
+              //   </div>
             ))}
           </div>
         </SwipeToScroll>
@@ -366,7 +460,7 @@ export const SessionList = ({ sessions }: { sessions: SessionType[] }) => {
         {visibleSessions.map((session, index) => {
           return (
             <motion.div key={session.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-              <SessionCard {...session} />
+              <SessionCard session={session} />
             </motion.div>
           )
         })}
@@ -375,14 +469,102 @@ export const SessionList = ({ sessions }: { sessions: SessionType[] }) => {
   )
 }
 
-export const SessionView = ({ session }: { session: SessionType }) => {
-  return <div>SessionView</div>
+export const SessionView = ({ session, event }: { session: SessionType; event: any }) => {
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const { toast } = useToast()
+  const trackLogo = getTrackLogo(session.track)
+
+  if (!session) return null
+
+  const copyShareLink = () => {
+    const shareUrl = `${window.location.origin}/sessions/${session.id}`
+    navigator.clipboard
+      .writeText(shareUrl)
+      .then(() => {
+        toast({
+          title: 'Session link copied to clipboard!',
+          duration: 3000,
+        })
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err)
+        toast({
+          title: 'Failed to copy link',
+          description: 'Please try again',
+          duration: 3000,
+        })
+      })
+  }
+
+  return (
+    <div data-type="session-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
+      <div className="relative rounded-2xl w-full h-full flex items-end bg-purple-200">
+        <Image
+          // @ts-ignore
+          src={trackLogo}
+          alt={session.track}
+          //   width={393}
+          //   height={393}
+          className="rounded-2xl w-[120%] h-[120%] aspect-video object-contain object-right "
+        />
+        <div
+          className={cn(
+            'absolute rounded-2xl flex justify-between items-end p-3 pt-7 self-end left-0 right-0',
+            css['session-gradient-2']
+          )}
+        >
+          <div className="font-medium z-10 text-lg translate-y-[3px] text-white max-w-[70%]">{session.title}</div>
+          <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
+            <HeartIcon
+              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+              style={{ '--color-icon': 'white' }}
+            />
+            <ShareIcon
+              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+              style={{ '--color-icon': 'white' }}
+              onClick={copyShareLink}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-3 font-semibold">Session Details</div>
+      <div className="text-sm text-[#717784]">{session.description}</div>
+
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <IconClock className="icon flex shrink-0" style={{ '--color-icon': '#717784' }} />
+          <span className="text-sm text-[#717784]">
+            {moment(session.date).format('MMM Do')} — {moment(session.startTime).format('HH:mm A')} -{' '}
+            {moment(session.endTime).format('HH:mm A')}
+          </span>
+        </div>
+        <div className="flex items-center gap-2">
+          <IconSpeaker className="icon shrink-0" style={{ '--color-icon': '#717784' }} />
+          <span className="text-sm text-[#717784]">{session.speakers?.map(speaker => speaker.name).join(', ')}</span>
+        </div>
+      </div>
+
+      <div className="border-top border-bottom py-4">
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible(`Tell me more about "${session.title}"`)}>
+          <div className="truncate">Tell me more about "{session.title}"</div>
+        </StandalonePrompt>
+      </div>
+
+      <div className="flex flex-col gap-3 font-semibold">Speakers</div>
+
+      <div className="flex flex-col gap-3">
+        {session.speakers?.map(speaker => (
+          <SpeakerCard speaker={speaker} key={speaker.id} />
+        ))}
+      </div>
+    </div>
+  )
 }
 
-export const SessionLayout = ({ sessions }: { sessions: SessionType[] | null }) => {
+export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | null; event: any }) => {
   const [selectedSession, _] = useRecoilState(selectedSessionAtom)
 
-  if (!sessions) return null
+  if (!sessions || sessions.length === 0) return null
 
   return (
     <motion.div
@@ -393,22 +575,18 @@ export const SessionLayout = ({ sessions }: { sessions: SessionType[] | null }) 
       transition={{ duration: 1 }}
     >
       <div className={cn('basis-[60%] grow', selectedSession ? 'hidden lg:block' : '')}>
-        <SessionList sessions={sessions} />
+        <SessionList sessions={sessions} event={event} />
       </div>
 
       {selectedSession && (
         <div
           className={cn('basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] sticky top-[72px] lg:self-start')}
         >
-          <SessionView session={selectedSession} />
+          <SessionView session={selectedSession} event={event} />
         </div>
       )}
 
       <Toaster />
     </motion.div>
   )
-}
-
-export const Sessions = () => {
-  return <div>Sessions</div>
 }

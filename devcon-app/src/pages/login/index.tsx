@@ -26,6 +26,7 @@ import { WalletLoginButton } from 'components/domain/app/account/wallet'
 import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
+import { Link } from 'components/common/link'
 
 const MobileLogin = (props: any) => {
   const accountContext = useAccountContext()
@@ -265,14 +266,14 @@ const TrustModels = (props: any) => {
           <div>
             <p className="font-semibold">Wallet — For Web 3 Experiences</p>
             <p className="text-sm text-[#939393] mt-2">
-              <Popover>
+              {/* <Popover>
                 <PopoverTrigger className="plain">
                   <InfoIcon2 className="translate-y-[2px] text-[#8C72AE]" style={{ '--color-icon': '#8C72AE' }} />
                 </PopoverTrigger>
                 <PopoverContent>
-                  <div className="text-sm">Based and Ethereum-pilled</div>
+                  <div className="text-sm"></div>
                 </PopoverContent>
-              </Popover>{' '}
+              </Popover>{' '} */}
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
             <WalletLoginButton />
@@ -328,9 +329,15 @@ const TrustModels = (props: any) => {
         </p>
 
         <div className="flex flex-row gap-4 mt-2 text-xs text-[#7D52F4]">
-          <p className="underline">Privacy Policy</p>
-          <p className="underline">Terms of Use</p>
-          <p className="underline">Cookie Policy</p>
+          <Link to="https://ethereum.org/en/privacy-policy">
+            <p className="underline">Privacy Policy</p>
+          </Link>
+          <Link to="https://ethereum.org/en/terms-of-use/">
+            <p className="underline">Terms of Use</p>
+          </Link>
+          <Link to="https://ethereum.org/en/cookie-policy/">
+            <p className="underline">Cookie Policy</p>
+          </Link>
         </div>
       </div>
     </div>

@@ -88,7 +88,9 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
         />
         <div className="flex flex-col">
           <div className="text-sm font-medium">{speaker.name}</div>
-          <div className="text-xs text-[#717784]">{speaker.sessions?.length} sessions</div>
+          {speaker.sessions && speaker.sessions?.length > 0 && (
+            <div className="text-xs text-[#717784]">{speaker.sessions?.length} sessions</div>
+          )}
           {speaker?.twitter && (
             <Link className="flex items-center gap-2 self-start text-xs" to={`https://twitter.com/${speaker.twitter}`}>
               <div>@{speaker.twitter}</div>
@@ -467,7 +469,7 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
 
       <div className="flex flex-col gap-3">
         {speaker?.sessions?.map(session => (
-          <SessionCard key={session.id} {...session} />
+          <SessionCard key={session.id} session={session} />
         ))}
       </div>
     </div>
