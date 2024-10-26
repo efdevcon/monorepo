@@ -107,7 +107,7 @@ export const Popup = ({
                 Back to Overview
               </Button>
             </div>
-            <div className="max-w-[500px] min-w-[300px] w-screen  max-h-[calc(90vh)] overflow-auto px-4 pb-24 p-4 lg:pb-4 no-scrollbar">
+            <div className="max-w-[500px] min-w-[300px] w-screen  max-h-[80vh] overflow-auto px-4 p-4 pb-24 lg:pb-4 no-scrollbar">
               {children}
             </div>
           </motion.div>

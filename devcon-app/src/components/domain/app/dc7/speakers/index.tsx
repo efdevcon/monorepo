@@ -517,12 +517,12 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
   if (!speakers) return null
 
   return (
-    <motion.div
+    <div
       data-type="speaker-layout"
       className={cn('flex flex-row lg:gap-3 relative')}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ duration: 1 }}
     >
       <div className={cn('basis-[60%] grow', selectedSpeaker ? 'hiddenz lg:blockz' : '')}>
         <SpeakerList speakers={speakers} />
@@ -545,6 +545,6 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
           <SpeakerView speaker={selectedSpeaker} />
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
