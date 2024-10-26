@@ -40,6 +40,17 @@ import ScrollDownIcon from 'lib/assets/icons/scroll-down.svg'
 import CityGuide from 'assets/images/dc-7/city-guide.png'
 import { useRecoilValue } from 'recoil'
 import { Popup } from 'lib/components/pop-up'
+import LivestreamIcon from 'assets/icons/livestream.svg'
+import IconStar from 'assets/icons/star.svg'
+import IconStarFill from 'assets/icons/star-fill.svg'
+import IconCalendarAdd from 'assets/icons/schedule-plus.svg'
+import IconMarker from 'assets/icons/icon_marker.svg'
+import IconPeople from 'assets/icons/icon_people.svg'
+import IconAdded from 'assets/icons/calendar-added.svg'
+import IconAdd from 'assets/icons/calendar-add.svg'
+import IconCalendar from 'assets/icons/calendar.svg'
+import PinIcon from 'assets/icons/pin.svg'
+import AddToCalendar from 'components/domain/index/add-to-calendar/AddToCalendar'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
@@ -291,7 +302,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         </div>
 
         <div
-          className="shrink-0 flex  justify-center p-3 pl-1 cursor-pointer"
+          className="shrink-0 flex self-start justify-center items-start p-3 pl-1 cursor-pointer"
           onClick={e => {
             e.stopPropagation()
             e.preventDefault()
@@ -655,7 +666,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       className={cn(
         cardClass,
         'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
-        !standalone && 'lg:max-h-[calc(100vh-72px)] lg:overflow-auto'
+        !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
       <div
@@ -702,8 +713,10 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 font-semibold shrink-0">Session Details</div>
-      <div className="text-sm text-[#717784] shrink-0">{session.description}</div>
+      <div className="flex flex-col gap-1 shrink-0">
+        <div className="flex flex-col font-semibold">Description</div>
+        <div className="text-sm text-[#535353] shrink-0">{session.description}</div>
+      </div>
 
       <div className="flex flex-col gap-2 shrink-0">
         <div className="flex items-center gap-2">
@@ -713,13 +726,49 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             {moment(session.endTime).format('HH:mm A')}
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <IconSpeaker className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">{session.speakers?.map(speaker => speaker.name).join(', ')}</span>
-        </div>
+        </div> */}
       </div>
 
-      <div className="border-top border-bottom py-4 shrink-0">
+      <div
+        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+        style={{ '--color-icon': '#7D52F4' }}
+      >
+        <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
+          <div className="text-lg "> {true ? <HeartIcon /> : <HeartIcon />}</div>
+          <p>Mark as interesting</p>
+        </div>
+        <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
+          <div className="text-lg"> {false ? <IconAdded /> : <CalendarIcon />}</div>
+          <p>Attend Session</p>
+        </div>
+
+        <AddToCalendar
+          event={{
+            id: session.id,
+            title: `${session.title}${session.room ? ` / Room: ${session.room.name}` : ''}`,
+            description: session.description,
+            location: 'Queen Sirikit National Convention Center',
+            startDate: moment.utc(session.start),
+            endDate: moment.utc(session.end),
+          }}
+        >
+          <div className="flex flex-col items-center gap-1 cursor-pointer">
+            <div className="text-lg cursor-pointer">
+              <IconCalendar />
+            </div>
+            <p>Export to Calendar</p>
+          </div>
+        </AddToCalendar>
+
+        {/* <Link to={standalone ? `/venue?room=${session.room?.id}` : `/venue/${session.room?.id}`}>
+          <p>Room Details</p> <PinIcon />
+        </Link> */}
+      </div>
+
+      <div className="border-bottom pb-4 shrink-0">
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible(`Tell me about similar sessions to "${session.title}"`)}
@@ -734,6 +783,18 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         {session.speakers?.map(speaker => (
           <SpeakerCard speaker={speaker} key={speaker.id} />
         ))}
+      </div>
+
+      <div className="flex justify-between items-center shrink-0 border-top pt-4 pb-0 mt-2">
+        <div className="flex flex-col gap-3 font-semibold shrink-0">Livestream</div>
+        <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
+          <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
+          <div className="text-red font-semibold">Live</div>
+        </div>
+      </div>
+
+      <div className="aspect shrink-0">
+        <div className="w-full h-full bg-[#784DEF1A] rounded-2xl"></div>
       </div>
     </div>
   )

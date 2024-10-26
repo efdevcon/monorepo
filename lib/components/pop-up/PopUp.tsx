@@ -25,44 +25,44 @@ export const Popup = ({
     setIsIOS(checkIsIOS());
   }, []);
 
-  React.useEffect(() => {
-    if (open) {
-      scrollPositionRef.current = window.scrollY;
-      scrollLock.current = true;
+  //   React.useEffect(() => {
+  //     if (open) {
+  //       scrollPositionRef.current = window.scrollY;
+  //       scrollLock.current = true;
 
-      if (isIOS) {
-        // IOS needs this demonic hack to work... (this effectively hides a visual bug while also disabling scroll on background)
-        setTimeout(() => {
-          if (!scrollLock.current) return;
-          document.documentElement.style.overflow = "hidden";
-          document.documentElement.style.height = "100vh";
-          document.body.style.overflow = "hidden";
-          document.body.style.height = "100vh";
-        }, 300);
-      } else {
-        // For non-iOS devices, use a simpler approach
-        document.body.style.overflow = "hidden";
-      }
-    } else {
-      scrollLock.current = false;
-      if (isIOS) {
-        document.documentElement.style.overflow = "";
-        document.documentElement.style.height = "";
-        document.body.style.overflow = "";
-        document.body.style.height = "";
-      } else {
-        document.body.style.overflow = "";
-      }
-      window.scrollTo(0, scrollPositionRef.current);
-    }
+  //       if (isIOS) {
+  //         // IOS needs this demonic hack to work... (this effectively hides a visual bug while also disabling scroll on background)
+  //         setTimeout(() => {
+  //           if (!scrollLock.current) return;
+  //           document.documentElement.style.overflow = "hidden";
+  //           document.documentElement.style.height = "100vh";
+  //           document.body.style.overflow = "hidden";
+  //           document.body.style.height = "100vh";
+  //         }, 300);
+  //       } else {
+  //         // For non-iOS devices, use a simpler approach
+  //         document.body.style.overflow = "hidden";
+  //       }
+  //     } else {
+  //       scrollLock.current = false;
+  //       if (isIOS) {
+  //         document.documentElement.style.overflow = "";
+  //         document.documentElement.style.height = "";
+  //         document.body.style.overflow = "";
+  //         document.body.style.height = "";
+  //       } else {
+  //         document.body.style.overflow = "";
+  //       }
+  //       window.scrollTo(0, scrollPositionRef.current);
+  //     }
 
-    return () => {
-      document.documentElement.style.overflow = "";
-      document.documentElement.style.height = "";
-      document.body.style.overflow = "";
-      document.body.style.height = "";
-    };
-  }, [open, isIOS]);
+  //     return () => {
+  //       document.documentElement.style.overflow = "";
+  //       document.documentElement.style.height = "";
+  //       document.body.style.overflow = "";
+  //       document.body.style.height = "";
+  //     };
+  //   }, [open, isIOS]);
 
   return (
     <AnimatePresence>

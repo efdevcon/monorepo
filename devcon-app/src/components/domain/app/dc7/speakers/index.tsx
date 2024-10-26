@@ -422,7 +422,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       className={cn(
         cardClass,
         'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
-        !standalone && 'lg:max-h-[calc(100vh-72px)] lg:overflow-auto'
+        !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
       {/* <Button color="black-1" fill className="self-center text-sm sticky top-[76px] z-10">

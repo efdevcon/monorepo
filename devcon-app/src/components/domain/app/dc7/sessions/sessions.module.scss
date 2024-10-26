@@ -55,3 +55,41 @@
   -webkit-backdrop-filter: blur(8px);
   // border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.actions {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1px;
+  // background: $colors-standard-border-color;
+  // border: 1px solid $colors-standard-border-color;
+  max-width: 600px;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: none;
+  }
+
+  > * {
+    // height: 52px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    // background: $colors-monochrome-1;
+    padding: 8px;
+    cursor: pointer;
+    // --color-icon: #{$colors-monochrome-5};
+
+    > p {
+      font-size: 13px;
+      // @include fonts-bold;
+      // color: $colors-monochrome-8;
+      // align-self: flex-end;
+    }
+
+    > svg {
+      font-size: 20px;
+    }
+  }
+}
