@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG } from '@/utils/config'
+import { TriggerWorkflow } from '@/services/github'
 
 export const hooksRouter = Router()
 hooksRouter.post(`/hooks/pretalx/schedule`, UpdateSchedule)
@@ -16,6 +17,8 @@ export async function UpdateSchedule(req: Request, res: Response) {
 
     console.log('Pretalx Webhook plugin', data.event, data.user, data.schedule)
     console.log('Changes', data.changes)
+
+    await TriggerWorkflow('sync-pretalx.yml')
 
     res.status(204).send()
   } catch (error) {

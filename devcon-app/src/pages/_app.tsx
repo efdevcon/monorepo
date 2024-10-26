@@ -21,20 +21,61 @@ import { ZupassProvider } from 'context/zupass'
 import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import { useRouter } from 'next/router'
+import { Toaster } from 'lib/components/ui/toaster'
 
 // Short on time so just doing global state here.. extract later
 export const selectedSpeakerAtom = atom<SpeakerType | null>({
   key: 'selectedSpeaker',
   default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSpeaker') || 'null') : null,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
-        }
-      })
-    },
-  ],
+  // effects: [
+  //   ({ onSet }) => {
+  //     onSet(newValue => {
+  //       if (typeof window !== 'undefined') {
+  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
+  //       }
+  //     })
+  //   },
+  // ],
+})
+
+// This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
+export const selectedSpeakerSelector = selector({
+  key: 'selectedSpeakerSelector',
+  get: ({ get }) => {
+    const selectedSpeakerPotentiallyPartial = get(selectedSpeakerAtom)
+    const allSpeakers = get(speakersAtom)
+
+    if (!selectedSpeakerPotentiallyPartial) return null
+
+    return allSpeakers?.find(speaker => speaker.id === selectedSpeakerPotentiallyPartial?.id) || null
+  },
+})
+
+export const selectedSessionAtom = atom<SessionType | null>({
+  key: 'selectedSession',
+  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSession') || 'null') : null,
+  // effects: [
+  //   ({ onSet }) => {
+  //     onSet(newValue => {
+  //       if (typeof window !== 'undefined') {
+  //         localStorage.setItem('selectedSession', JSON.stringify(newValue))
+  //       }
+  //     })
+  //   },
+  // ],
+})
+
+// This selector is used to get the full session object from the selectedSessionAtom - useful for /sessions pages where the full object is needed - this can be impartial if the session was linked from a speaker (where the sessions don't recursively have the speaker objects)
+export const selectedSessionSelector = selector({
+  key: 'selectedSessionSelector',
+  get: ({ get }) => {
+    const selectedSessionPotentiallyPartial = get(selectedSessionAtom)
+    const allSessions = get(sessionsAtom)
+
+    if (!selectedSessionPotentiallyPartial) return null
+
+    return allSessions?.find(session => session.id === selectedSessionPotentiallyPartial?.id) || null
+  },
 })
 
 export const devaBotVisibleAtom = atom<boolean | string>({
@@ -47,9 +88,14 @@ export const sessionIdAtom = atom<string | null>({
   default: null,
 })
 
-export const sessionsAtom = atom<SessionType[]>({
+export const speakersAtom = atom<SpeakerType[] | null>({
+  key: 'speakers',
+  default: null,
+})
+
+export const sessionsAtom = atom<SessionType[] | null>({
   key: 'sessions',
-  default: [],
+  default: null,
 })
 
 export const notificationsAtom = atom<any[]>({
@@ -200,7 +246,7 @@ function App({ Component, pageProps }: AppProps) {
           <AppContext>
             <Web3Provider>
               <ZupassProvider>
-                {!sessions && (
+                {/* {!sessions && (
                   <div
                     data-type="loader"
                     className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
@@ -208,7 +254,7 @@ function App({ Component, pageProps }: AppProps) {
                     <FancyLoader loading={!sessions} />
                     <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
                   </div>
-                )}
+                )} */}
 
                 <Component {...pageProps} />
 
@@ -229,6 +275,8 @@ function App({ Component, pageProps }: AppProps) {
           </AppContext>
         </HistoryTracker>
       </NextIntlProvider>
+
+      <Toaster />
 
       {sessions && (
         <DevaBot

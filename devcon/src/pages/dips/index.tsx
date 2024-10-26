@@ -25,8 +25,8 @@ export default pageHOC(function DIPsTemplate(props: any) {
     <Page theme={themes['teal']}>
       <PageHero
         heroBackground={HeroBackground}
-        title="DIPs & Community Hubs"
-        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'DIPs and Community Hubs' }]}
+        title="DIPs"
+        path={[{ text: <span className="bold">Get Involved</span> }, { text: 'DIPs' }]}
         navigation={[
           {
             title: intl('dips_forum').toUpperCase(),
@@ -39,10 +39,6 @@ export default pageHOC(function DIPsTemplate(props: any) {
           {
             title: intl('dips_contribute').toUpperCase(),
             to: '#contribute',
-          },
-          {
-            title: 'Community Hubs',
-            to: '#hubs',
           },
           {
             title: 'Accepted Proposals',

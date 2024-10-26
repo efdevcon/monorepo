@@ -16,6 +16,7 @@ export const sessionsRouter = Router()
 sessionsRouter.get(`/sessions`, GetSessions)
 sessionsRouter.get(`/sessions/:id`, GetSession)
 sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
+sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
 sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
@@ -81,6 +82,9 @@ export async function GetSessions(req: Request, res: Response) {
       in: [req.query.tags].flat() as string[],
     }
   }
+  if (req.query.room) {
+    args.where.slot_roomId = req.query.room as string
+  }
 
   const data = await client.$transaction([client.session.count({ where: args.where }), client.session.findMany(args)])
   res.status(200).send({
@@ -109,9 +113,14 @@ export async function GetSession(req: Request, res: Response) {
 
 export async function UpdateSession(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
-  const updatedSession = req.body
-  if (!updatedSession) return res.status(400).send({ status: 400, message: 'No Body' })
-  if (req.params.id !== updatedSession.id) return res.status(400).send({ status: 400, message: 'Invalid Id' })
+  // #swagger.parameters['apiKey'] = { in: 'query', required: true, type: 'string', description: 'API key for authentication' }
+  // #swagger.parameters['body'] = { in: 'body', schema: { id: 'new-title', sourceId: 'PRE123', eventId: 'devcon-6', title: 'New Title', description: 'New Description', track: 'Devcon', type: 'Talk', expertise: 'Intermediate', speakers: ['123', '456'], tags: ['tag1', 'tag2'], keywords: ['keyword1', 'keyword2'], resources_slides: 'https://devcon.org/resources/new-title.pdf', slot_start: 1665495000000, slot_end: 1665498600000, slot_roomId: 'workshop-3', sources_ipfsHash: 'QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG', sources_youtubeId: 'TRoO5fD7TI4', sources_swarmHash: 'e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850', duration: 3065, language: 'en' } }
+
+  const body = req.body
+  if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
+  if (req.params.id !== body.id && req.params.id !== body.sourceId) {
+    return res.status(400).send({ status: 400, message: 'Invalid Id' })
+  }
 
   const data = await client.session.findFirst({
     where: {
@@ -120,18 +129,83 @@ export async function UpdateSession(req: Request, res: Response) {
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
-
-  if (Object.keys(updatedSession).every((key) => key in data)) {
+  if (Object.keys(body).some((key) => !(key in data))) {
     return res.status(400).send({ status: 400, message: 'Invalid fields' })
   }
 
   try {
     const updatedData = await client.session.update({
-      where: { id: req.params.id },
-      data: updatedSession,
+      where: { id: data.id },
+      include: {
+        speakers: true,
+      },
+      data: {
+        ...data,
+        ...body,
+      },
     })
 
-    await CommitSession(updatedData, `[skip ci] PUT /sessions/${updatedData.id}`)
+    await CommitSession(
+      {
+        ...updatedData,
+        tags: updatedData.tags?.split(',') || [],
+        keywords: updatedData.keywords?.split(',') || [],
+        speakers: updatedData.speakers.map((speaker) => speaker.id),
+        slot_start: updatedData.slot_start ? dayjs(updatedData.slot_start).valueOf() : null,
+        slot_end: updatedData.slot_end ? dayjs(updatedData.slot_end).valueOf() : null,
+      },
+      `[skip deploy] PUT /sessions/${updatedData.id}`
+    )
+
+    res.status(204).send()
+  } catch (error) {
+    console.error('Error updating session:', error)
+    res.status(500).send({ status: 500, message: 'Internal Server Error' })
+  }
+}
+
+export async function UpdateSessionSources(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  // #swagger.parameters['apiKey'] = { in: 'query', required: true, type: 'string', description: 'API key for authentication' }
+  // #swagger.parameters['body'] = { in: 'body', schema: { sources_ipfsHash: 'QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG', sources_youtubeId: 'TRoO5fD7TI4', sources_swarmHash: 'e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850', sources_livepeerId: 'LPO5ID', duration: 3065 } }
+
+  const body = req.body
+  if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
+  if (req.params.id !== body.id && req.params.id !== body.sourceId) {
+    return res.status(400).send({ status: 400, message: 'Invalid Id' })
+  }
+
+  const data = await client.session.findFirst({
+    where: {
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+    },
+  })
+
+  const allowedFields = ['sources_ipfsHash', 'sources_youtubeId', 'sources_swarmHash', 'sources_livepeerId', 'duration']
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+  if (Object.keys(body).some((key) => !(key in allowedFields))) {
+    return res.status(400).send({ status: 400, message: 'Invalid fields' })
+  }
+
+  let newSessionData = {
+    ...data,
+  }
+  if (body.sources_ipfsHash) newSessionData.sources_ipfsHash = body.sources_ipfsHash
+  if (body.sources_youtubeId) newSessionData.sources_youtubeId = body.sources_youtubeId
+  if (body.sources_swarmHash) newSessionData.sources_swarmHash = body.sources_swarmHash
+  if (body.sources_livepeerId) newSessionData.sources_livepeerId = body.sources_livepeerId
+  if (body.duration) newSessionData.duration = body.duration
+
+  try {
+    const updatedData = await client.session.update({
+      where: { id: data.id },
+      include: {
+        speakers: true,
+      },
+      data: newSessionData,
+    })
+
+    await CommitSession(newSessionData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {
@@ -145,13 +219,13 @@ export async function GetSessionRelated(req: Request, res: Response) {
   const data = await client.relatedSession.findMany({
     where: { sessionId: req.params.id },
     orderBy: { similarity: 'desc' },
-    include: { related: true },
+    include: { other: true },
     take: 10,
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.related) })
+  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.other) })
 }
 
 export async function GetSessionImage(req: Request, res: Response) {

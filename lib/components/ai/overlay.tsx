@@ -600,7 +600,7 @@ const DevaBot = ({
                                                 SessionComponent ? (
                                                   // @ts-ignore
                                                   <SessionComponent
-                                                    {...session}
+                                                    session={session}
                                                     key={index}
                                                   />
                                                 ) : (

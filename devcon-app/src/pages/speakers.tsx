@@ -25,26 +25,26 @@ import { selectedSpeakerAtom } from 'pages/_app'
 
 export default pageHOC((props: any) => {
   const speakers = useSpeakerData()
-  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  const [path, setPath] = useState([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
+  // const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  // const [path, setPath] = useState([{ label: 'icon', icon: AppIcon }, { label: 'Overview' }])
 
-  React.useEffect(() => {
-    if (selectedSpeaker) {
-      setPath([
-        // { label: 'icon', icon: AppIcon, render: () => <AppIcon className="icon flex items-center" /> },
-        // { label: 'Speakers' },
-        // @ts-ignore
-        { label: 'Speakers', onClick: () => setSelectedSpeaker(null) },
-        { label: selectedSpeaker.name },
-      ])
-    } else {
-      setPath([{ label: 'Speakers' }])
-    }
-  }, [selectedSpeaker])
+  // React.useEffect(() => {
+  //   if (selectedSpeaker) {
+  //     setPath([
+  //       // { label: 'icon', icon: AppIcon, render: () => <AppIcon className="icon flex items-center" /> },
+  //       // { label: 'Speakers' },
+  //       // @ts-ignore
+  //       { label: 'Speakers', onClick: () => setSelectedSpeaker(null) },
+  //       // { label: selectedSpeaker.name },
+  //     ])
+  //   } else {
+  //     setPath([{ label: 'Speakers' }])
+  //   }
+  // }, [selectedSpeaker])
 
   return (
-    <AppLayout pageTitle="Speakers" breadcrumbs={path}>
-      <SEO title={selectedSpeaker?.name || 'Speakers'} />
+    <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'Speakers' }]}>
+      <SEO title={'Speakers'} />
 
       <SpeakerLayout speakers={speakers} />
 
@@ -67,7 +67,7 @@ export default pageHOC((props: any) => {
           )
         })()} */}
 
-      <div className="fixed inset-0 h-full w-full flex justify-center items-center z-5 pointer-events-none">
+      <div className="fixed inset-0 h-[101vh] w-full flex justify-center items-center z-5 pointer-events-none">
         <FancyLoader loading={!speakers} />
       </div>
     </AppLayout>

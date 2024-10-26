@@ -6,8 +6,8 @@ import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
 import { APP_CONFIG } from 'utils/config'
-import { useRecoilState, RecoilState } from 'recoil'
-import { sessionsAtom } from 'pages/_app'
+import { useRecoilState } from 'recoil'
+import { sessionsAtom, speakersAtom } from 'pages/_app'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
@@ -54,7 +54,7 @@ export const useSessionData = (): SessionType[] | null => {
 }
 
 export const useSpeakerData = (): Speaker[] | null => {
-  const [speakers, setSpeakers] = useState<Speaker[] | null>(null)
+  const [speakers, setSpeakers] = useRecoilState(speakersAtom)
   const version = useEventVersion()
 
   useEffect(() => {

@@ -156,7 +156,8 @@ export default pageHOC(function Tickets(props: any) {
               // buttonDisabled
               meta=""
             >
-              {waveActive && pages?.overview?.card && <RichText content={pages.overview.card} />}
+              {/* {waveActive && pages?.overview?.card && <RichText content={pages.overview.card} />} */}
+
               {!waveActive && (
                 <div>
                   <p className="h4 font-secondary">
@@ -170,7 +171,7 @@ export default pageHOC(function Tickets(props: any) {
                     </p>
                   )}
 
-                  <Link to="https://tickets.devcon.org">
+                  {/* <Link to="https://tickets.devcon.org">
                     <Button color="blue-1" className="mt-3" fat fill disabled>
                       {latestWave === ticketWaves[1] && 'Next Wave - July 30'}
                       {latestWave === ticketWaves[2] && 'Next wave - August 13'}
@@ -180,12 +181,13 @@ export default pageHOC(function Tickets(props: any) {
                       {latestWave === ticketWaves[6] && 'Next wave - October 1'}
                       {latestWave === ticketWaves[7] && 'Next wave - October 15'}
                       {latestWave === ticketWaves[8] && 'All waves sold out'}
-
-                      {/* Wave {latestWave === ticketWaves[1] && '1'} {latestWave === ticketWaves[2] && '2'}{' '}
-                      {latestWave === ticketWaves[3] && '3'} Sold Out */}
+                    </Button>
+                  </Link> */}
+                  <Link to="https://tickets.devcon.org">
+                    <Button className="mt-3" color="blue-1" fat fill>
+                      Join the Waitlist
                     </Button>
                   </Link>
-
                   <Link to="#timeline">
                     <p className="mt-4 bold text-[var(--theme-color)]">→ See timeline for details</p>
                   </Link>
@@ -388,7 +390,7 @@ export default pageHOC(function Tickets(props: any) {
                 title: (
                   <div className="flex justify-between w-full max-w-[600px] text-base">
                     <div>Discount Ticket Responses sent on rolling basis</div>
-                    <div className="bold shrink-0">Review</div>
+                    <div className="bold shrink-0">Close October 29</div>
                   </div>
                 ),
                 indent: false,
@@ -556,9 +558,9 @@ export default pageHOC(function Tickets(props: any) {
                       {waveActive && latestWave === ticketWaves[8] && (
                         <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">live</div>
                       )}
-                      {/* <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
+                      <div className="label purple rounded-lg !border-2 bold !text-xs ghost ml-2 !bg-white">
                         SOLD OUT
-                      </div> */}
+                      </div>
                     </div>
                     <div className="bold">October 15</div>
                   </div>
@@ -570,6 +572,12 @@ export default pageHOC(function Tickets(props: any) {
             ]}
           />
         </div>
+
+        <Link to="https://tickets.devcon.org">
+          <Button className="self-start" color="blue-1" fat fill>
+            Join the Waitlist
+          </Button>
+        </Link>
       </div>
 
       <div className="section" id="raffle">

@@ -194,7 +194,7 @@ const getNotionDatabase = async (
   const isDevconWeek = databaseID === '1c8de49be9594869a2e72406fde2af68'
   const isColombiaBlockhainWeek = databaseID === 'cc11ba1c0daa40359710c0958da7739c'
 
-  let data = {}
+  let data: any[] = []
 
   try {
     const sorts: any = [
@@ -238,14 +238,22 @@ const getNotionDatabase = async (
       })
     }
 
-    // Notion returns up to 100 results per request. We won't have that many events, but if we ever get close, add support for pagination at this step.
-    const response = await notion.databases.query({
-      database_id: databaseID,
-      sorts,
-      filter,
-    })
+    let hasMore = true
+    let startCursor: string | undefined = undefined
 
-    data = response.results.map(formatResult(locale, shouldNormalize))
+    while (hasMore) {
+      const response = await notion.databases.query({
+        database_id: databaseID,
+        sorts,
+        filter,
+        start_cursor: startCursor,
+        page_size: 100, // Maximum allowed by Notion API
+      })
+
+      data = [...data, ...response.results.map(formatResult(locale, shouldNormalize))]
+      hasMore = response.has_more
+      startCursor = response.next_cursor ?? undefined
+    }
   } catch (error) {
     if (false) {
       // Handle error codes here if necessary

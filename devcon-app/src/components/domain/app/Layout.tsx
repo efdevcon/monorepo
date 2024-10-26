@@ -36,6 +36,7 @@ import {
   devaBotVisibleAtom,
   notificationsAtom,
   notificationsCountSelector,
+  selectedSessionAtom,
   sessionIdAtom,
   useSeenNotifications,
 } from 'pages/_app'
@@ -48,7 +49,7 @@ import { selectedSpeakerAtom } from 'pages/_app'
 type HeaderProps = {
   breadcrumbs: {
     label: string
-    render: () => React.ReactNode
+    render?: () => React.ReactNode
     href?: string
     icon?: any
     onClick?: () => void
@@ -103,11 +104,11 @@ const LocationInformation = ({ className, textColor }: { className: string; text
 
   return (
     <div className={className}>
-      <div className="flex items-center justify-center gap-2">
+      {/* <div className="flex items-center justify-center gap-2">
         <Image src={SunCloudy} alt="sun-cloudy" width={24} height={24} />
         <div className="text-lg font-semibold">32°C</div>
-      </div>
-      <div className="flex gap-4 text-sm">
+      </div> */}
+      <div className="flex gap-4 text-sm font-semibold">
         <div>{currentTime}</div>
         <div>{countdown}</div>
         {/* <motion.div
@@ -193,7 +194,7 @@ const Header = (props: HeaderProps) => {
         style={{ height: 'calc(0px + max(0px, env(safe-area-inset-top)))' }}
       ></div> */}
       <motion.div
-        className="section z-[12] sticky top-0 max-w-[100vw]"
+        className={cn('section z-[12] sticky top-0 max-w-[100vw]')}
         data-type="header"
         style={{
           color: textColor,
@@ -219,7 +220,7 @@ const Header = (props: HeaderProps) => {
           <div className="flex gap-6 items-center grow line-clamp-1">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
-            <div className="flex items-center gap-1.5 text-sm overflow-hidden">
+            <div className="flex items-center gap-1.5 text-sm lg:text-base overflow-hidden">
               {/* <SpeakerIcon style={{ fontSize: 20 }} /> */}
               {/* <div className="text-2xl">{props.pageTitle}</div> */}
               {props.breadcrumbs.map((breadcrumb, index) => (
@@ -339,6 +340,12 @@ const navItems = (isLoggedIn: boolean) => [
     href: '/speakers',
     size: 18,
   },
+  {
+    label: 'Schedule',
+    icon: CalendarFillIcon,
+    href: '/schedule',
+    size: 18,
+  },
 ]
 
 const useWindowWidth = () => {
@@ -368,8 +375,8 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-10 pointer-events-none',
-        'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:bottom-4 xl:left-auto xl:relative xl:items-center'
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-[14] pointer-events-none',
+        'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:left-auto xl:relative xl:items-center'
       )}
       style={{
         paddingBottom: 'calc(0px + max(16px, env(safe-area-inset-bottom)))',
@@ -402,11 +409,13 @@ const Navigation = () => {
                       }
                     }}
                     className={cn(
-                      'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#EFEBFF] transition-all duration-300',
-                      isActive && 'bg-[#EFEBFF] fill-[#7D52F4]'
+                      'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
+                      isActive && 'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
                     )}
                   >
-                    <item.icon style={isActive ? { fill: '#7D52F4', fontSize: item.size } : { fontSize: item.size }} />
+                    <item.icon
+                      style={isActive ? { fill: 'rgb(68 68 68)', fontSize: item.size } : { fontSize: item.size }}
+                    />
                   </Link>
                 </PopoverTrigger>
 
@@ -422,22 +431,27 @@ const Navigation = () => {
           })}
         </div>
 
-        <Popover open={openPopover === '/schedule'} onOpenChange={open => setOpenPopover(open ? '/schedule' : null)}>
+        {/* <Popover open={openPopover === '/schedule'} onOpenChange={open => setOpenPopover(open ? '/schedule' : null)}>
           <PopoverTrigger className="plain outline-none">
             <Link
               href="/schedule"
               onMouseEnter={() => setOpenPopover('/schedule')}
               onMouseLeave={() => setOpenPopover(null)}
-              className="shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50"
+              className={cn(
+                'shadow glass-buttons cursor-pointer flex flex-col gap-4 rounded-full justify-center items-center xl:w-[60px] xl:h-[60px] w-[50px] h-[50px] bg-[#E1E4EA73] bg-opacity-50 transition-all duration-300 hover:bg-[#EFEBFF] border border-solid border-[#E1E4EA] border-opacity-50',
+                pathname === '/schedule' && '!bg-[#3a3a3a] bg-opacity-80'
+              )}
             >
-              <CalendarFillIcon style={{ fontSize: 20 }} />
+              <CalendarFillIcon
+                style={{ fontSize: 20, '--color-icon': pathname === '/schedule' ? 'white' : '#000000' }}
+              />
             </Link>
           </PopoverTrigger>
 
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
             <div>Schedule</div>
           </PopoverContent>
-        </Popover>
+        </Popover> */}
 
         <Popover open={openPopover === '/more'} onOpenChange={open => setOpenPopover(open ? '/more' : null)}>
           <PopoverTrigger className="plain outline-none" onClick={() => setDevaBotVisible(true)}>
@@ -470,13 +484,21 @@ export const AppLayout = (
   props: {
     showLogin?: boolean
     pageTitle: string
-    breadcrumbs: { label: string; href?: string; icon?: any; onClick?: () => void; render?: () => ReactNode }[]
+    breadcrumbs: HeaderProps['breadcrumbs']
   } & PropsWithChildren
 ) => {
   // const headerHeight = useGetElementHeight('header')
   // const upperNavHeight = useGetElementHeight('inline-nav')
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
   // const layoutContainerRef = useRef<HTMLDivElement>(null)
+
+  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
+  const [selectedSession, __] = useRecoilState(selectedSessionAtom)
+  const pathname = usePathname()
+
+  const deprioritizeHeader =
+    (pathname.includes('/speakers') && selectedSpeaker !== null) ||
+    (pathname.includes('/schedule') && !selectedSession !== null)
 
   return (
     <>
@@ -503,7 +525,7 @@ export const AppLayout = (
           priority
         /> */}
 
-        <div className="section pt-5 relative z-10 page-background">
+        <div className={cn('section pt-5 relative z-10 page-background', deprioritizeHeader && 'z-auto')}>
           <div className="flex flex-col xl:flex-row gap-0 relative max-w-full">
             <div
               data-type="page-content"

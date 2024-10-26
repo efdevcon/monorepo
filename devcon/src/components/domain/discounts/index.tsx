@@ -96,16 +96,19 @@ export function SelfClaimingDiscounts() {
               Builder Discount.
             </li>
             <li>
-              Indian Residents —{' '}
-              <Link
-                indicateExternal
-                to="https://devcon7.anon-aadhaar.pse.dev/"
-                className="text-[#1b6fae] hover:text-[#448dc3]"
-              >
-                AnonAahdhaar
-              </Link>
-              : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you for
-              Local Builder Discount.
+              <s>
+                Indian Residents —{' '}
+                <Link
+                  indicateExternal
+                  to="https://devcon7.anon-aadhaar.pse.dev/"
+                  className="text-[#1b6fae] hover:text-[#448dc3]"
+                >
+                  AnonAahdhaar
+                </Link>
+                : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you
+                for Local Builder Discount.
+              </s>
+              &nbsp;<b>No longer available.</b>
             </li>
           </ul>
         </li>
@@ -170,17 +173,20 @@ export function SelfClaimingDiscounts() {
           </p>
         </li>
         <li>
-          <Link
-            to="https://forms.gle/5PZBFecCCuRsQqLu8"
-            indicateExternal
-            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
-          >
-            Community Ticket Requests
-          </Link>{' '}
-          <p className="ml-5">
-            Leaders & organizers of various non-profit web2 & web3 communities or meetups can apply for free or
-            discounted tickets for their groups to attend.
-          </p>
+          <s>
+            <Link
+              to="https://forms.gle/5PZBFecCCuRsQqLu8"
+              indicateExternal
+              className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+            >
+              Community Ticket Requests
+            </Link>{' '}
+            <p className="ml-5">
+              Leaders & organizers of various non-profit web2 & web3 communities or meetups can apply for free or
+              discounted tickets for their groups to attend.
+            </p>
+          </s>
+          &nbsp;<b>No longer available.</b>
         </li>
       </ul>
     </div>
