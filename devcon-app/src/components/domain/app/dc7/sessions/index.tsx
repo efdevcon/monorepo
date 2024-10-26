@@ -25,9 +25,8 @@ import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
-import { devaBotVisibleAtom } from 'pages/_app'
-import { useRouter } from 'next/router'
-import { Toaster } from 'lib/components/ui/toaster'
+import { devaBotVisibleAtom, selectedSessionSelector } from 'pages/_app'
+import { usePathname } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
 import HeartIcon from 'assets/icons/heart.svg'
 import MagnifierIcon from 'assets/icons/magnifier.svg'
@@ -39,6 +38,8 @@ import { SpeakerCard } from '../speakers'
 import { CircleIcon } from 'lib/components/circle-icon'
 import ScrollDownIcon from 'lib/assets/icons/scroll-down.svg'
 import CityGuide from 'assets/images/dc-7/city-guide.png'
+import { useRecoilValue } from 'recoil'
+import { Popup } from 'lib/components/pop-up'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
@@ -196,8 +197,9 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
   const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
   const relativeTime = start?.from(now)
-  const router = useRouter()
+  //   const router = useRouter()
   const draggableLink = useDraggableLink()
+  const pathname = usePathname()
 
   const [favorited, setFavorited] = useState(false)
 
@@ -207,7 +209,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
     <Link
       className={cn(
         'flex flex-col bg-white rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300',
-        selectedSession?.id === id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+        selectedSession?.id === id && pathname === '/schedule' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
         className
       )}
       to={'/schedule'}
@@ -217,9 +219,9 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
 
         if (!result) return
 
-        if (router.pathname === '/schedule') e.preventDefault()
+        if (pathname === '/schedule') e.preventDefault()
 
-        if (selectedSession?.id === id) {
+        if (selectedSession?.id === id && pathname === '/schedule') {
           setSelectedSession(null)
         } else {
           setSelectedSession(session)
@@ -414,14 +416,14 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
     <AnimatePresence>
       {visible && isScrolled && (
         <motion.div
-          className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4"
+          className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4 pointer-events-none"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
           <CircleIcon
-            className="bg-[#F0F2FF] w-[30px] h-[30px]"
+            className="bg-[#F0F2FF] w-[30px] h-[30px] pointer-events-auto"
             onClick={() => {
               const container =
                 document.querySelector('[data-type="session-list"]') ||
@@ -619,38 +621,46 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
   )
 }
 
-export const SessionView = ({ session, event }: { session: SessionType; event: any }) => {
+export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const { toast } = useToast()
-  const trackLogo = getTrackLogo(session.track)
+  //   const { toast } = useToast()
 
   if (!session) return null
 
-  const copyShareLink = () => {
-    const shareUrl = `${window.location.origin}/sessions/${session.id}`
-    navigator.clipboard
-      .writeText(shareUrl)
-      .then(() => {
-        toast({
-          title: 'Session link copied to clipboard!',
-          duration: 3000,
-        })
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err)
-        toast({
-          title: 'Failed to copy link',
-          description: 'Please try again',
-          duration: 3000,
-        })
-      })
-  }
+  const trackLogo = getTrackLogo(session.track)
+
+  //   const copyShareLink = () => {
+  //     const shareUrl = `${window.location.origin}/sessions/${session.id}`
+  //     navigator.clipboard
+  //       .writeText(shareUrl)
+  //       .then(() => {
+  //         toast({
+  //           title: 'Session link copied to clipboard!',
+  //           duration: 3000,
+  //         })
+  //       })
+  //       .catch(err => {
+  //         console.error('Failed to copy: ', err)
+  //         toast({
+  //           title: 'Failed to copy link',
+  //           description: 'Please try again',
+  //           duration: 3000,
+  //         })
+  //       })
+  //   }
 
   return (
-    <div data-type="session-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
+    <div
+      data-type="session-view"
+      className={cn(
+        cardClass,
+        'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
+        !standalone && 'lg:max-h-[calc(100vh-72px)] lg:overflow-auto'
+      )}
+    >
       <div
         className={cn(
-          'relative rounded-2xl w-full h-full flex items-end overflow-hidden border border-solid border-[#cdbaff] lg:border-none',
+          'relative rounded-2xl w-full h-full flex items-end overflow-hidden border border-solid border-[#cdbaff] lg:border-[#E1E4EA] shrink-0',
           getTrackColor(session.track)
         )}
       >
@@ -682,18 +692,20 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
               style={{ '--color-icon': 'white' }}
             />
-            <ShareIcon
-              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': 'white' }}
-              onClick={copyShareLink}
-            />
+            <Link className="flex justify-center items-center" to={`/schedule/${session.id}`}>
+              <ShareIcon
+                className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+                style={{ '--color-icon': 'white' }}
+                //   onClick={copyShareLink}
+              />
+            </Link>
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3 font-semibold">Session Details</div>
-      <div className="text-sm text-[#717784]">{session.description}</div>
+      <div className="flex flex-col gap-3 font-semibold shrink-0">Session Details</div>
+      <div className="text-sm text-[#717784] shrink-0">{session.description}</div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 shrink-0">
         <div className="flex items-center gap-2">
           <IconClock className="icon flex shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
@@ -707,7 +719,7 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
         </div>
       </div>
 
-      <div className="border-top border-bottom py-4">
+      <div className="border-top border-bottom py-4 shrink-0">
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible(`Tell me about similar sessions to "${session.title}"`)}
@@ -716,9 +728,9 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 font-semibold">Speakers</div>
+      <div className="flex flex-col gap-3 font-semibold shrink-0">Speakers</div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 shrink-0">
         {session.speakers?.map(speaker => (
           <SpeakerCard speaker={speaker} key={speaker.id} />
         ))}
@@ -728,7 +740,8 @@ export const SessionView = ({ session, event }: { session: SessionType; event: a
 }
 
 export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | null; event: any }) => {
-  const [selectedSession, _] = useRecoilState(selectedSessionAtom)
+  const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const selectedSession = useRecoilValue(selectedSessionSelector)
 
   if (!sessions || sessions.length === 0) return null
 
@@ -740,21 +753,39 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className={cn('basis-[60%] grow', selectedSession ? 'hidden lg:block' : '')}>
+      <div className={cn('basis-[60%] grow')}>
+        {' '}
+        {/*, selectedSession ? 'hidden lg:block' : '')}>*/}
         <SessionList sessions={sessions} event={event} />
       </div>
 
-      {selectedSession && (
+      {/* {selectedSession && (
         <div
           className={cn(
-            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:max-h-[calc(100vh-72px)] lg:overflow-auto lg:self-start no-scrollbar'
+            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start no-scrollbar'
           )}
         >
-          <SessionView session={selectedSession} event={event} />
+          <SessionView session={selectedSession} />
+        </div>
+      )} */}
+
+      <div className="block lg:hidden">
+        <Popup open={!!selectedSession} setOpen={() => setSelectedSession(null)}>
+          <div
+            className={cn(
+              'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start'
+            )}
+          >
+            <SessionView session={selectedSession} />
+          </div>
+        </Popup>
+      </div>
+
+      {selectedSession && (
+        <div className={cn('basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block')}>
+          <SessionView session={selectedSession} />
         </div>
       )}
-
-      <Toaster />
     </motion.div>
   )
 }

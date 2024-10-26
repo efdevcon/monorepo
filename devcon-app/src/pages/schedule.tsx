@@ -63,7 +63,7 @@ export default pageHOC((props: any) => {
         <></>
       )} */}
 
-      <div className="fixed inset-0 h-full w-full flex justify-center items-center z-5 pointer-events-none">
+      <div className="fixed inset-0 h-[101vh] w-full flex justify-center items-center z-5 pointer-events-none">
         <FancyLoader loading={!sessions} />
       </div>
     </AppLayout>

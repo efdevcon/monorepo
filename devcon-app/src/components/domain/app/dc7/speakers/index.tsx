@@ -9,20 +9,20 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import Image from 'next/image'
 import css from './speakers.module.scss'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
-import { useRecoilState } from 'recoil'
-import { devaBotVisibleAtom } from 'pages/_app'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { devaBotVisibleAtom, selectedSpeakerSelector } from 'pages/_app'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
 import { SessionCard } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
-import { useRouter } from 'next/router'
-import { Toaster } from 'lib/components/ui/toaster'
+import { usePathname } from 'next/navigation'
 import { motion, useInView } from 'framer-motion'
 import { useToast } from 'lib/hooks/use-toast'
 import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
+import { Popup } from 'lib/components/pop-up'
 
 const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
@@ -62,19 +62,21 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   // TODO: Add favorited to user account
   const [favorited, setFavorited] = useState(false)
-  const router = useRouter()
+  // const router = useRouter()
+  const pathname = usePathname()
 
   return (
     <Link
       className={cn(
         'flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-        selectedSpeaker?.id === speaker.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+        selectedSpeaker?.id === speaker.id && pathname === '/speakers' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
       )}
       to={'/speakers'}
       onClick={(e: any) => {
-        if (router.pathname === '/speakers') e.preventDefault()
+        if (pathname === '/speakers') e.preventDefault()
 
-        if (selectedSpeaker?.id === speaker.id) {
+        // Only null if we are on the speakers page (otherwise we want to keep the speaker selected)
+        if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
           setSelectedSpeaker(null)
         } else {
           setSelectedSpeaker(speaker)
@@ -216,6 +218,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   const { filteredSpeakers, filters } = useSpeakerFilter(speakers)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const draggableLink = useDraggableLink()
+  const pathname = usePathname()
 
   console.log(speakers?.slice(0, 10))
 
@@ -286,7 +289,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
                   if (!result) return
 
-                  if (selectedSpeaker?.id === speaker.id) {
+                  if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
                     setSelectedSpeaker(null)
                   } else {
                     setSelectedSpeaker(speaker)
@@ -387,7 +390,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   )
 }
 
-export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
+export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const { toast } = useToast()
 
@@ -414,11 +417,18 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
   }
 
   return (
-    <div data-type="speaker-view" className={cn(cardClass, 'flex flex-col gap-3 lg:p-4 self-start w-full')}>
+    <div
+      data-type="speaker-view"
+      className={cn(
+        cardClass,
+        'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
+        !standalone && 'lg:max-h-[calc(100vh-72px)] lg:overflow-auto'
+      )}
+    >
       {/* <Button color="black-1" fill className="self-center text-sm sticky top-[76px] z-10">
         Back to Overview
       </Button> */}
-      <div className="relative rounded-2xl w-full h-full flex items-end bg-purple-200">
+      <div className="relative rounded-2xl w-full h-full flex items-end bg-purple-200 border border-solid border-[#cdbaff] lg:border-[#E1E4EA] shrink-0">
         <Image
           // @ts-ignore
           src={speaker?.avatar}
@@ -445,11 +455,13 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
               style={{ '--color-icon': 'white' }}
             />
 
-            <ShareIcon
-              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': 'white' }}
-              onClick={copyShareLink}
-            />
+            <Link className="flex justify-center items-center" to={`/speakers/${speaker.id}`}>
+              <ShareIcon
+                className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+                style={{ '--color-icon': 'white' }}
+                // onClick={copyShareLink}
+              />
+            </Link>
 
             {speaker?.twitter && (
               <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
@@ -462,8 +474,8 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col gap-3  font-semibold">Profile</div>
-      <div className="text-sm text-[#717784]">{speaker?.description}</div>
+      <div className="flex flex-col gap-3  font-semibold shrink-0">Profile</div>
+      <div className="text-sm text-[#717784] shrink-0">{speaker?.description}</div>
       {/* {speaker?.twitter && (
         <Link
           className="flex items-center justify-center gap-1 self-start"
@@ -477,7 +489,7 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
         </Link>
       )} */}
 
-      <div className="border-top border-bottom py-4">
+      <div className="border-top border-bottom py-4 shrink-0">
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible(`Tell me what I should ask ${speaker?.name} about`)}
@@ -486,9 +498,9 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 font-semibold">Sessions</div>
+      <div className="flex flex-col gap-3 font-semibold shrink-0">Sessions</div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 shrink-0">
         {speaker?.sessions?.map(session => (
           <SessionCard key={session.id} session={session} />
         ))}
@@ -498,7 +510,9 @@ export const SpeakerView = ({ speaker }: { speaker: SpeakerType | null }) => {
 }
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
-  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
+  const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  // Important to use the selector here to get the full speaker object
+  const selectedSpeaker = useRecoilValue(selectedSpeakerSelector)
 
   if (!speakers) return null
 
@@ -510,21 +524,27 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <div className={cn('basis-[60%] grow', selectedSpeaker ? 'hidden lg:block' : '')}>
+      <div className={cn('basis-[60%] grow', selectedSpeaker ? 'hiddenz lg:blockz' : '')}>
         <SpeakerList speakers={speakers} />
       </div>
 
+      <div className="block lg:hidden">
+        <Popup open={!!selectedSpeaker} setOpen={() => setSelectedSpeaker(null)}>
+          <div
+            className={cn(
+              'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start'
+            )}
+          >
+            <SpeakerView speaker={selectedSpeaker} />
+          </div>
+        </Popup>
+      </div>
+
       {selectedSpeaker && (
-        <div
-          className={cn(
-            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:max-h-[calc(100vh-72px)] lg:overflow-auto lg:self-start'
-          )}
-        >
+        <div className={cn('basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block')}>
           <SpeakerView speaker={selectedSpeaker} />
         </div>
       )}
-
-      <Toaster />
     </motion.div>
   )
 }

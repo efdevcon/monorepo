@@ -8,17 +8,17 @@ import { selectedSpeakerAtom } from 'pages/_app'
 import { useRouter } from 'next/router'
 
 export default (props: any) => {
-  const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  const router = useRouter()
+  //   const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  //   const router = useRouter()
 
-  useEffect(() => {
-    if (props.speaker) {
-      setSelectedSpeaker(props.speaker)
+  //   useEffect(() => {
+  //     if (props.speaker) {
+  //       setSelectedSpeaker(props.speaker)
 
-      // redirect to /speakers
-      router.replace('/speakers')
-    }
-  }, [props.speaker])
+  //       // redirect to /speakers
+  //       //   router.replace('/speakers')
+  //     }
+  //   }, [props.speaker])
 
   // TODO: how the hell is this undefined, then gets defined immediately after?
   if (!props.speaker) return null
@@ -27,9 +27,9 @@ export default (props: any) => {
     <>
       <SEO title={props.speaker.name} description={props.speaker.description} separator="@" />
       <AppLayout pageTitle={props.speaker.name} breadcrumbs={[{ label: props.speaker.name }]}>
-        <div className="h-[1px] overflow-hidden opacity-0">
-          <SpeakerView speaker={props.speaker} />
-        </div>
+        {/* <div className="h-[1px] overflow-hidden opacity-0"> */}
+        <SpeakerView speaker={props.speaker} standalone />
+        {/* </div> */}
       </AppLayout>
     </>
   )

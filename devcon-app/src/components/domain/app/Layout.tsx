@@ -36,6 +36,7 @@ import {
   devaBotVisibleAtom,
   notificationsAtom,
   notificationsCountSelector,
+  selectedSessionAtom,
   sessionIdAtom,
   useSeenNotifications,
 } from 'pages/_app'
@@ -103,11 +104,11 @@ const LocationInformation = ({ className, textColor }: { className: string; text
 
   return (
     <div className={className}>
-      <div className="flex items-center justify-center gap-2">
+      {/* <div className="flex items-center justify-center gap-2">
         <Image src={SunCloudy} alt="sun-cloudy" width={24} height={24} />
         <div className="text-lg font-semibold">32°C</div>
-      </div>
-      <div className="flex gap-4 text-sm">
+      </div> */}
+      <div className="flex gap-4 text-sm font-semibold">
         <div>{currentTime}</div>
         <div>{countdown}</div>
         {/* <motion.div
@@ -193,7 +194,7 @@ const Header = (props: HeaderProps) => {
         style={{ height: 'calc(0px + max(0px, env(safe-area-inset-top)))' }}
       ></div> */}
       <motion.div
-        className="section z-[12] sticky top-0 max-w-[100vw]"
+        className={cn('section z-[12] sticky top-0 max-w-[100vw]')}
         data-type="header"
         style={{
           color: textColor,
@@ -219,7 +220,7 @@ const Header = (props: HeaderProps) => {
           <div className="flex gap-6 items-center grow line-clamp-1">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
-            <div className="flex items-center gap-1.5 text-sm overflow-hidden">
+            <div className="flex items-center gap-1.5 text-sm lg:text-base overflow-hidden">
               {/* <SpeakerIcon style={{ fontSize: 20 }} /> */}
               {/* <div className="text-2xl">{props.pageTitle}</div> */}
               {props.breadcrumbs.map((breadcrumb, index) => (
@@ -374,7 +375,7 @@ const Navigation = () => {
   return (
     <div
       className={cn(
-        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-10 pointer-events-none',
+        'self-start flex items-end justify-center shrink-0 gap-4 user-select-none h-full fixed bottom-0 left-0 grow-0 w-full z-[14] pointer-events-none',
         'xl:order-1 xl:justify-start xl:w-[0px] xl:flex-col xl:left-auto xl:relative xl:items-center'
       )}
       style={{
@@ -491,6 +492,14 @@ export const AppLayout = (
   // const lowerNavHeight = useGetElementHeight('bottom-nav')
   // const layoutContainerRef = useRef<HTMLDivElement>(null)
 
+  const [selectedSpeaker, _] = useRecoilState(selectedSpeakerAtom)
+  const [selectedSession, __] = useRecoilState(selectedSessionAtom)
+  const pathname = usePathname()
+
+  const deprioritizeHeader =
+    (pathname.includes('/speakers') && selectedSpeaker !== null) ||
+    (pathname.includes('/schedule') && !selectedSession !== null)
+
   return (
     <>
       <div
@@ -516,7 +525,7 @@ export const AppLayout = (
           priority
         /> */}
 
-        <div className="section pt-5 relative z-10 page-background">
+        <div className={cn('section pt-5 relative z-10 page-background', deprioritizeHeader && 'z-auto')}>
           <div className="flex flex-col xl:flex-row gap-0 relative max-w-full">
             <div
               data-type="page-content"
