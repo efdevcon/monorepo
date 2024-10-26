@@ -242,6 +242,7 @@ const DevaBot = ({
       if (recommendationMode) {
         url += "?recommendations=true";
       }
+
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -924,7 +925,9 @@ const DevaBot = ({
                             "!bg-[#7D52F4]": query.length > 0,
                           }
                         )}
-                        onClick={onSend}
+                        onClick={() => {
+                          onSend();
+                        }}
                         disabled={executingQuery || query.length === 0}
                       >
                         {executingQuery}
