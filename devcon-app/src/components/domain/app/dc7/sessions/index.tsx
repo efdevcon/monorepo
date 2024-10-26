@@ -32,7 +32,6 @@ import HeartIcon from 'assets/icons/heart.svg'
 import MagnifierIcon from 'assets/icons/magnifier.svg'
 import { Separator } from 'lib/components/ui/separator'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useToast } from 'lib/hooks/use-toast'
 import { Link } from 'components/common/link'
 import { SpeakerCard } from '../speakers'
 import { CircleIcon } from 'lib/components/circle-icon'
@@ -51,8 +50,11 @@ import IconAdd from 'assets/icons/calendar-add.svg'
 import IconCalendar from 'assets/icons/calendar.svg'
 import PinIcon from 'assets/icons/pin.svg'
 import AddToCalendar from 'components/domain/index/add-to-calendar/AddToCalendar'
+import VideoIcon from 'assets/icons/video-play.svg'
+import PenIcon from 'assets/icons/pen.svg'
+import QuestionsIcon from 'assets/icons/questions.svg'
 
-const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
   const [text, setText] = useState('')
@@ -632,6 +634,56 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
   )
 }
 
+export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+  return (
+    <div className={cn('flex flex-col shrink-0 gap-3', className)}>
+      <div className={cn('flex justify-between items-center')}>
+        <div className="flex flex-col gap-3 font-semibold">Livestream</div>
+        <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
+          <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
+          <div className="text-red font-semibold">Live</div>
+        </div>
+      </div>
+
+      <div className="aspect">
+        <div className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]">
+          <VideoIcon
+            className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
+            style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+          />
+        </div>
+      </div>
+
+      <div
+        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+        // @ts-ignore
+        style={{ '--color-icon': '#7D52F4' }}
+      >
+        <div className="flex flex-col items-center justify-center cursor-pointer">
+          <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
+            <PenIcon />
+          </div>
+          <p>Take Collaborative Notes</p>
+          <p className="text-[10px] text-[#717784]">Powered by Fileverse</p>
+        </div>
+        <div className="flex flex-col items-center justify-center cursor-pointer">
+          <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
+            <QuestionsIcon />
+          </div>
+          <p>Ask Speaker Questions</p>
+          <p className="text-[10px] text-[#717784]">Powered by Meerkat</p>
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <Link to="https://devcon.org/dips" className="text-xs text-[#7D52F4] text-underline" indicateExternal>
+          Learn more about Devcon Improvement Proposals
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   //   const { toast } = useToast()
@@ -734,14 +786,20 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
       <div
         className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+        // @ts-ignore
         style={{ '--color-icon': '#7D52F4' }}
       >
         <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
-          <div className="text-lg "> {true ? <HeartIcon /> : <HeartIcon />}</div>
+          <div className="text-lg hover:scale-110 transition-transform duration-300">
+            {' '}
+            {true ? <HeartIcon /> : <HeartIcon />}
+          </div>
           <p>Mark as interesting</p>
         </div>
         <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
-          <div className="text-lg"> {false ? <IconAdded /> : <CalendarIcon />}</div>
+          <div className="text-lg hover:scale-110 transition-transform duration-300">
+            {false ? <IconAdded /> : <CalendarIcon />}
+          </div>
           <p>Attend Session</p>
         </div>
 
@@ -756,7 +814,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           }}
         >
           <div className="flex flex-col items-center gap-1 cursor-pointer">
-            <div className="text-lg cursor-pointer">
+            <div className="text-lg hover:scale-110 transition-transform duration-300">
               <IconCalendar />
             </div>
             <p>Export to Calendar</p>
@@ -785,17 +843,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         ))}
       </div>
 
-      <div className="flex justify-between items-center shrink-0 border-top pt-4 pb-0 mt-2">
-        <div className="flex flex-col gap-3 font-semibold shrink-0">Livestream</div>
-        <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
-          <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
-          <div className="text-red font-semibold">Live</div>
-        </div>
-      </div>
-
-      <div className="aspect shrink-0">
-        <div className="w-full h-full bg-[#784DEF1A] rounded-2xl"></div>
-      </div>
+      <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
     </div>
   )
 }
