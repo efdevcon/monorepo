@@ -16,11 +16,15 @@
   },
   "host": "localhost:4000",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/": {
       "get": {
-        "tags": ["Default"],
+        "tags": [
+          "Default"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -32,7 +36,9 @@
     },
     "/account": {
       "get": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -45,9 +51,41 @@
         }
       }
     },
+    "/account/import/{id}": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/account/{id}": {
       "put": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -73,7 +111,9 @@
         }
       },
       "delete": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -98,7 +138,9 @@
     },
     "/account/token": {
       "post": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -130,7 +172,9 @@
     },
     "/account/login/email": {
       "post": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -164,7 +208,9 @@
     },
     "/account/login/token": {
       "post": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -195,7 +241,9 @@
     },
     "/account/login/web3": {
       "post": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [
           {
@@ -235,7 +283,9 @@
     },
     "/account/logout": {
       "post": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -250,7 +300,9 @@
     },
     "/account/speakers": {
       "get": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -265,7 +317,9 @@
     },
     "/account/speakers/recommended": {
       "get": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -280,7 +334,9 @@
     },
     "/account/sessions": {
       "get": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -295,7 +351,9 @@
     },
     "/account/sessions/recommended": {
       "get": {
-        "tags": ["Account"],
+        "tags": [
+          "Account"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -310,7 +368,9 @@
     },
     "/dips": {
       "get": {
-        "tags": ["DIPs"],
+        "tags": [
+          "DIPs"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -322,7 +382,9 @@
     },
     "/dips/contributors": {
       "get": {
-        "tags": ["DIPs"],
+        "tags": [
+          "DIPs"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -334,7 +396,9 @@
     },
     "/events": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -346,7 +410,9 @@
     },
     "/events/{id}": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -368,7 +434,9 @@
     },
     "/events/{id}/version": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -390,7 +458,9 @@
     },
     "/events/{id}/sessions": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -411,7 +481,9 @@
     },
     "/events/{id}/speakers": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -432,7 +504,9 @@
     },
     "/events/{id}/rooms": {
       "get": {
-        "tags": ["Events"],
+        "tags": [
+          "Events"
+        ],
         "description": "",
         "parameters": [
           {
@@ -454,7 +528,9 @@
     },
     "/rss/podcast": {
       "get": {
-        "tags": ["RSS"],
+        "tags": [
+          "RSS"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
@@ -466,7 +542,9 @@
     },
     "/sessions": {
       "get": {
-        "tags": ["Sessions"],
+        "tags": [
+          "Sessions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -529,7 +607,9 @@
     },
     "/sessions/{id}": {
       "get": {
-        "tags": ["Sessions"],
+        "tags": [
+          "Sessions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -549,7 +629,9 @@
         }
       },
       "put": {
-        "tags": ["Sessions"],
+        "tags": [
+          "Sessions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -605,21 +687,30 @@
                 },
                 "speakers": {
                   "type": "array",
-                  "example": ["123", "456"],
+                  "example": [
+                    "123",
+                    "456"
+                  ],
                   "items": {
                     "type": "string"
                   }
                 },
                 "tags": {
                   "type": "array",
-                  "example": ["tag1", "tag2"],
+                  "example": [
+                    "tag1",
+                    "tag2"
+                  ],
                   "items": {
                     "type": "string"
                   }
                 },
                 "keywords": {
                   "type": "array",
-                  "example": ["keyword1", "keyword2"],
+                  "example": [
+                    "keyword1",
+                    "keyword2"
+                  ],
                   "items": {
                     "type": "string"
                   }
@@ -683,11 +774,84 @@
         }
       }
     },
+    "/sessions/sources/{id}": {
+      "put": {
+        "tags": [
+          "Sessions"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "API key for authentication"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sources_ipfsHash": {
+                  "type": "string",
+                  "example": "QmTwmiv4u44XLBhbm5BmowKv91HfivDLvpSYaXUt1vmRRG"
+                },
+                "sources_youtubeId": {
+                  "type": "string",
+                  "example": "TRoO5fD7TI4"
+                },
+                "sources_swarmHash": {
+                  "type": "string",
+                  "example": "e8caa4dd5a1d7a7c8edb7e71933031f29f7feadcea2d2ce017d30c0dceb97850"
+                },
+                "sources_livepeerId": {
+                  "type": "string",
+                  "example": "LPO5ID"
+                },
+                "duration": {
+                  "type": "number",
+                  "example": 3065
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/sessions/{id}/image": {
       "get": {
-        "tags": ["Sessions"],
+        "tags": [
+          "Sessions"
+        ],
         "description": "",
-        "produces": ["image/png"],
+        "produces": [
+          "image/png"
+        ],
         "parameters": [
           {
             "name": "id",
@@ -708,7 +872,9 @@
     },
     "/sessions/{id}/related": {
       "get": {
-        "tags": ["Sessions"],
+        "tags": [
+          "Sessions"
+        ],
         "description": "",
         "parameters": [
           {
@@ -730,7 +896,9 @@
     },
     "/speakers": {
       "get": {
-        "tags": ["Speakers"],
+        "tags": [
+          "Speakers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -768,7 +936,9 @@
     },
     "/speakers/{id}": {
       "get": {
-        "tags": ["Speakers"],
+        "tags": [
+          "Speakers"
+        ],
         "description": "",
         "parameters": [
           {
@@ -823,9 +993,38 @@
         }
       }
     },
+    "/devabot/recommendations": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/hooks/pretalx/schedule": {
       "post": {
-        "tags": ["Hooks"],
+        "tags": [
+          "Hooks"
+        ],
         "description": "",
         "parameters": [
           {
@@ -912,14 +1111,11 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
     },
-    "/send-notification": {
+    "/notifications": {
       "post": {
         "description": "",
         "parameters": [
@@ -932,11 +1128,56 @@
                 "title": {
                   "example": "any"
                 },
-                "body": {
+                "message": {
+                  "example": "any"
+                },
+                "sendAt": {
                   "example": "any"
                 }
               }
             }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/notifications/{id}": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -955,7 +1196,14 @@
         }
       }
     },
-    "{{where{endpoint}}": {
+    "{{where{endpoint:endpoint}": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "{{where{id}}": {
       "delete": {
         "description": "",
         "parameters": [],

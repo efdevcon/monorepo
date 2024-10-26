@@ -241,7 +241,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         setDevaBotVisible(false)
       }}
     >
-      <div className="flex justify-between min-h-[100px]">
+      <div className="flex justify-between min-h-[100px] h-full">
         <div
           className={cn(
             'basis-[100px] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
@@ -807,12 +807,12 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
   if (!sessions || sessions.length === 0) return null
 
   return (
-    <motion.div
+    <div
       data-type="speaker-layout"
       className={cn('flex flex-row lg:gap-3 relative')}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      // initial={{ opacity: 0 }}
+      // animate={{ opacity: 1 }}
+      // transition={{ duration: 1 }}
     >
       <div className={cn('basis-[60%] grow')}>
         {' '}
@@ -847,6 +847,6 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
           <SessionView session={selectedSession} />
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }
