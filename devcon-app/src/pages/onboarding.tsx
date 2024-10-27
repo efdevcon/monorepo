@@ -5,10 +5,15 @@ import Page from 'components/domain/app/dc7/page'
 import { DotsSelector } from 'lib/components/dots-selector'
 import OnboardingNotifications from 'assets/images/dc-7/onboarding-notifications.png'
 import OnboardingZupass from 'assets/images/dc-7/onboarding-zupass.png'
+import OnboardingSchedule from 'assets/images/dc-7/onboarding-schedule.png'
+import OnboardingPersonalization from 'assets/images/dc-7/onboarding-personalization.png'
 import Image from 'next/image'
 import ChevronRightIcon from 'assets/icons/chevron_right.svg'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from 'lib/components/button'
+import { Schedule } from 'components/domain/app/dc7/profile/schedule'
+import { Personalization } from 'components/domain/app/dc7/profile/personalization'
+import router from 'next/router'
 
 const OnboardingPage = (props: any) => {
   const [currentStep, setCurrentStep] = useState(0)
@@ -63,8 +68,10 @@ const OnboardingPage = (props: any) => {
               case 1:
                 return 'Zupass'
               case 2:
-                return 'Preferences'
+                return 'Schedule'
               case 3:
+                return 'Personalization'
+              case 4:
                 return 'Enjoy the app!'
               default:
                 return ''
@@ -103,12 +110,20 @@ const OnboardingPage = (props: any) => {
                 case 2:
                   return (
                     <Image
-                      src={OnboardingNotifications}
-                      alt="Preferences Illustration"
+                      src={OnboardingSchedule}
+                      alt="Schedule Illustration"
                       className="w-full h-full object-cover object-center"
                     />
                   )
                 case 3:
+                  return (
+                    <Image
+                      src={OnboardingPersonalization}
+                      alt="Personalization Illustration"
+                      className="w-full h-full object-cover object-center"
+                    />
+                  )
+                case 4:
                   return (
                     <Image
                       src={OnboardingZupass}
@@ -127,8 +142,8 @@ const OnboardingPage = (props: any) => {
       <div>
         {currentStep === 0 && <Notifications onSkip={() => setCurrentStep(1)} />}
         {currentStep === 1 && <Zupass onSkip={() => setCurrentStep(2)} />}
-        {currentStep === 2 && <div>Content for Step 3</div>}
-        {currentStep === 3 && <div>Content for Step 4</div>}
+        {currentStep === 2 && <Schedule onSkip={() => setCurrentStep(3)} />}
+        {currentStep === 3 && <Personalization onSkip={() => router.push('/settings/profile')} />}
       </div>
       <div className="flex justify-between items-center mt-4">
         <DotsSelector
