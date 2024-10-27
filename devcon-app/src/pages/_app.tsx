@@ -125,9 +125,14 @@ export const speakerFilterOpenAtom = atom<boolean>({
   default: false,
 })
 
-export const speakerFilterAtom = atom({
+export const initialSpeakerFilterState = {
+  ...initialFilterState,
+  letter: '',
+}
+
+export const speakerFilterAtom = atom<any>({
   key: 'speakerFilter',
-  default: initialFilterState,
+  default: initialSpeakerFilterState,
   effects: [
     ({ onSet }) => {
       onSet(newValue => {

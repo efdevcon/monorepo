@@ -9,8 +9,14 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import Image from 'next/image'
 import css from './speakers.module.scss'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { devaBotVisibleAtom, selectedSpeakerSelector } from 'pages/_app'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import {
+  devaBotVisibleAtom,
+  favoritedSpeakersAtom,
+  selectedSpeakerSelector,
+  sessionsAtom,
+  speakerFilterAtom,
+} from 'pages/_app'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
 import { SessionCard } from 'components/domain/app/dc7/sessions/index'
@@ -18,50 +24,139 @@ import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { usePathname } from 'next/navigation'
-import { motion, useInView } from 'framer-motion'
-import { useToast } from 'lib/hooks/use-toast'
-import { Button } from 'lib/components/button'
+import { motion } from 'framer-motion'
+// import { useToast } from 'lib/hooks/use-toast'
+// import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
 import { Popup } from 'lib/components/pop-up'
+// import { SessionFilterAdvanced } from '../sessions'
 
 export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
+// const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
+
+//   const filterOptions = useMemo(() => {
+//     return {
+//       type: [...new Set(sessions.map(session => session.type))],
+//       day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
+//       expertise: [...new Set(sessions.map(session => session.expertise))],
+//       track: [...new Set(sessions.map(session => session.track))],
+//       room: [...new Set(sessions.map(session => session.room))],
+//       other: ['Attending', 'Upcoming', 'Interested In', 'Past'],
+//     }
+//   }, [sessions])
+
+//   const filteredSessions = useMemo(() => {
+//     return sessions.filter((session: any) => {
+//       const matchesText =
+//         session.title.toLowerCase().includes(text.toLowerCase()) ||
+//         session.description.toLowerCase().includes(text.toLowerCase()) ||
+//         session.speakers?.some((speaker: any) => speaker.name.toLowerCase().includes(text.toLowerCase())) ||
+//         session.expertise.toLowerCase().includes(text.toLowerCase()) ||
+//         session.type.toLowerCase().includes(text.toLowerCase()) ||
+//         session.track.toLowerCase().includes(text.toLowerCase())
+
+//       const isAttending = attendingSessions[session.id]
+//       const isInterested = interestedSessions[session.id]
+
+//       const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
+//       const matchesDay = Object.keys(day).length === 0 || moment(session.date).format('MMM D') === day
+//       const matchesExpertise = Object.keys(expertise).length === 0 || sessionFilter.expertise[session.expertise]
+//       const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track]
+//       const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.room]
+
+//       const matchesAttending = sessionFilter.other['Attending'] && isAttending
+//       const matchesInterested = sessionFilter.other['Interested In'] && isInterested
+//       //   let matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment(session.endTime))
+//       //   let matchesUpcoming = sessionFilter.other['Upcoming'] && now?.isBefore(moment(session.startTime))
+
+//       const matchesOther = matchesAttending || matchesInterested || Object.keys(other).length === 0
+
+//       return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
+//     })
+//   }, [sessions, sessionFilter, attendingSessions, interestedSessions])
+
+//   return {
+//     filteredSessions,
+//     filterOptions,
+//   }
+// }
+
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
-  const [text, setText] = useState('')
-  const [type, setType] = useState('All')
-  const [selectedLetter, setSelectedLetter] = useState('')
+  const sessions = useRecoilValue(sessionsAtom)
+  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const favoritedSpeakers = useRecoilValue(favoritedSpeakersAtom)
+
+  const filterOptions = useMemo(() => {
+    return {
+      type: [...new Set(speakers?.flatMap(speaker => speaker.sessions?.map(session => session.type)))],
+      letter: [
+        'A',
+        'B',
+        'C',
+        'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+      ],
+      // expertise: [...new Set(sessions?.map(session => session.expertise))],
+      // track: [...new Set(sessions?.map(session => session.track))],
+      // room: [...new Set(sessions?.map(session => session.room))],
+      // favorited: [...new Set(speakers?.map(speaker => speaker.favorited))]
+    }
+  }, [sessions])
 
   const filteredSpeakers = useMemo(() => {
     if (!speakers) return []
-    return speakers.filter(
-      speaker =>
-        speaker.name.toLowerCase().includes(text.toLowerCase()) &&
-        (type === 'All' || speaker.sessions?.some(session => session.type === type)) &&
-        (selectedLetter === '' || speaker.name[0].toUpperCase() === selectedLetter)
-    )
-  }, [speakers, text, type, selectedLetter])
 
-  const noFiltersActive = text === '' && type === 'All'
+    return speakers.filter(speaker => {
+      const isFavorited = favoritedSpeakers[speaker.id]
+
+      const matchesText = speaker.name.toLowerCase().includes(speakerFilter.text.toLowerCase())
+      const matchesLetter = speakerFilter.letter === '' || speaker.name[0].toUpperCase() === speakerFilter.letter
+      const matchesType =
+        Object.keys(speakerFilter.type).length === 0 ||
+        speaker.sessions?.some((session: any) => speakerFilter.type[session.type])
+
+      if (speakerFilter.favorited) {
+        return matchesText && matchesType && matchesLetter && isFavorited
+      }
+
+      return matchesText && matchesType && matchesLetter
+    })
+  }, [speakers, speakerFilter])
 
   return {
     filteredSpeakers,
-    filters: {
-      text,
-      setText,
-      type,
-      setType,
-      selectedLetter,
-      setSelectedLetter,
-    },
-    noFiltersActive,
+    filterOptions,
   }
 }
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [favoritedSpeakers, setFavoritedSpeakers] = useRecoilState(favoritedSpeakersAtom)
   // TODO: Add favorited to user account
-  const [favorited, setFavorited] = useState(false)
+  // const [favorited, setFavorited] = useState(false)
   // const router = useRouter()
   const pathname = usePathname()
 
@@ -110,32 +205,38 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
       <div
         className={cn(
           'flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300',
-          favorited ? 'text-[#ac9fdf]' : ''
+          favoritedSpeakers[speaker.id] ? 'text-[#ac9fdf]' : ''
         )}
         onClick={e => {
           e.stopPropagation()
           e.preventDefault()
 
-          setFavorited(!favorited)
+          setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.id]: !favoritedSpeakers[speaker.id] })
         }}
       >
-        <HeartIcon className="icon" style={{ '--color-icon': favorited ? 'red' : '#99A0AE' }} />
+        <HeartIcon className="icon" style={{ '--color-icon': favoritedSpeakers[speaker.id] ? '#7d52f4' : '#99A0AE' }} />
       </div>
     </Link>
   )
 }
 
-export const SpeakerFilter = ({
-  filters,
-}: {
-  filters: {
-    text: string
-    setText: (text: string) => void
-    type: string
-    setType: (type: string) => void
-  }
-}) => {
+export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
+  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
   const draggableLink = useDraggableLink()
+
+  const updateTypeFilter = (type: string) => {
+    const toggled = speakerFilter.type[type]
+
+    const nextFilter = { ...speakerFilter, type: { ...speakerFilter.type, [type]: true } }
+
+    if (!toggled) {
+      setSpeakerFilter(nextFilter)
+    } else {
+      delete nextFilter.type[type]
+
+      setSpeakerFilter(nextFilter)
+    }
+  }
 
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
@@ -143,8 +244,8 @@ export const SpeakerFilter = ({
         <div data-type="speaker-filter-search" className="relative">
           <input
             type="text"
-            value={filters.text}
-            onChange={e => filters.setText(e.target.value)}
+            value={speakerFilter.text}
+            onChange={e => setSpeakerFilter({ ...speakerFilter, text: e.target.value })}
             placeholder="Find a speaker"
             className="w-full py-2 px-4 pl-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
           />
@@ -156,13 +257,14 @@ export const SpeakerFilter = ({
         </div>
 
         <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
-          <FilterIcon
+          {/* <FilterIcon
             className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
             style={{ '--color-icon': '#99A0AE' }}
-          />
+          /> */}
           <HeartIcon
             className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-            style={{ '--color-icon': '#99A0AE' }}
+            style={{ '--color-icon': speakerFilter.favorited ? '#7d52f4' : '#99A0AE' }}
+            onClick={() => setSpeakerFilter({ ...speakerFilter, favorited: !speakerFilter.favorited })}
           />
         </div>
       </div>
@@ -175,7 +277,7 @@ export const SpeakerFilter = ({
             <div
               className={cn(
                 'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
-                filters.type === 'All' ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                Object.keys(speakerFilter.type).length === 0 ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
               )}
               {...draggableLink}
               onClick={e => {
@@ -183,21 +285,21 @@ export const SpeakerFilter = ({
 
                 if (!result) return
 
-                filters.setType('All')
+                setSpeakerFilter({ ...speakerFilter, type: {} })
               }}
             >
               All
             </div>
             <Separator orientation="vertical" className="h-6" />
 
-            {['Keynote', 'Talk', 'Workshop', 'Panel', 'Lightning', 'CLS'].map(type => (
+            {filterOptions.type.map((type: string) => (
               <div
                 key={type}
                 className={cn(
                   'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#EFEBFF] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
-                  filters.type === type ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                  speakerFilter.type[type] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
                 )}
-                onClick={() => filters.setType(type)}
+                onClick={() => updateTypeFilter(type)}
               >
                 {type}
               </div>
@@ -215,7 +317,8 @@ const SPEAKERS_PER_PAGE = 30
 
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  const { filteredSpeakers, filters } = useSpeakerFilter(speakers)
+  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
+  const { filteredSpeakers, filterOptions } = useSpeakerFilter(speakers)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const draggableLink = useDraggableLink()
   const pathname = usePathname()
@@ -268,7 +371,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>
-      <SpeakerFilter filters={filters} />
+      <SpeakerFilter filterOptions={filterOptions} />
 
       <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Speakers</div>
 
@@ -342,7 +445,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                 key={letter}
                 className={cn(
                   'shrink-0 cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] w-[26px] h-[26px] text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
-                  letter === filters.selectedLetter ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  letter === speakerFilter.letter ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
                   index === array.length - 1 ? 'mr-4' : '' // Add right margin to the last item
                 )}
                 {...draggableLink}
@@ -358,7 +461,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   }
 
                   setTimeout(() => {
-                    filters.setSelectedLetter(filters.selectedLetter === letter ? '' : letter)
+                    setSpeakerFilter({ ...speakerFilter, letter: speakerFilter.letter === letter ? '' : letter })
                   }, 100)
                 }}
               >
@@ -413,6 +516,7 @@ export const SpeakerSessions = ({
 
 export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [favoritedSpeakers, setFavoritedSpeakers] = useRecoilState(favoritedSpeakersAtom)
 
   if (!speaker) return null
 
@@ -451,8 +555,11 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
           <div className="font-medium z-10 text-lg translate-y-[3px] text-white max-w-[70%]">{speaker?.name}</div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
             <HeartIcon
+              onClick={() =>
+                setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.id]: !favoritedSpeakers[speaker.id] })
+              }
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': 'white' }}
+              style={{ '--color-icon': favoritedSpeakers[speaker.id] ? 'red' : 'white' }}
             />
 
             {!standalone && (
@@ -507,6 +614,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
 
 export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) => {
   const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const [speakerFilterOpen, setSpeakerFilterOpen] = useState(false)
   // Important to use the selector here to get the full speaker object
   const selectedSpeaker = useRecoilValue(selectedSpeakerSelector)
 
@@ -541,6 +649,23 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
           <SpeakerView speaker={selectedSpeaker} />
         </div>
       )}
+
+      {/* {sessionFilterOpen && (
+        <div
+          className={cn(
+            'basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block',
+            cardClass
+          )}
+        >
+          <SessionFilterAdvanced filterOptions={filterOptions} />
+        </div>
+      )}
+
+      <div className={cn('block lg:hidden')}>
+        <Popup open={sessionFilterOpen} setOpen={() => setSessionFilterOpen(false)}>
+          <SessionFilterAdvanced filterOptions={filterOptions} />
+        </Popup>
+      </div> */}
     </div>
   )
 }

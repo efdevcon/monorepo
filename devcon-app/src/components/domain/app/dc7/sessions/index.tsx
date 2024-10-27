@@ -89,7 +89,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       expertise: [...new Set(sessions.map(session => session.expertise))],
       track: [...new Set(sessions.map(session => session.track))],
       room: [...new Set(sessions.map(session => session.room))],
-      other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
+      other: ['Attending', 'Upcoming', 'Interested In', 'Past'],
     }
   }, [sessions])
 
@@ -97,7 +97,11 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     return sessions.filter((session: any) => {
       const matchesText =
         session.title.toLowerCase().includes(text.toLowerCase()) ||
-        session.description.toLowerCase().includes(text.toLowerCase())
+        session.description.toLowerCase().includes(text.toLowerCase()) ||
+        session.speakers?.some((speaker: any) => speaker.name.toLowerCase().includes(text.toLowerCase())) ||
+        session.expertise.toLowerCase().includes(text.toLowerCase()) ||
+        session.type.toLowerCase().includes(text.toLowerCase()) ||
+        session.track.toLowerCase().includes(text.toLowerCase())
 
       const isAttending = attendingSessions[session.id]
       const isInterested = interestedSessions[session.id]
@@ -546,8 +550,8 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                 onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
                 className="icon cursor-pointer hover:scale-110 transition-all duration-300"
                 style={{
-                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : '#99A0AE',
-                  fontSize: '20px',
+                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
+                  fontSize: '24px',
                 }}
               />
             </PopoverTrigger>
