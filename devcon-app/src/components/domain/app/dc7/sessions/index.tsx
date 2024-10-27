@@ -20,12 +20,20 @@ import IconClock from 'assets/icons/icon_clock.svg'
 import Image from 'next/image'
 import css from './sessions.module.scss'
 import { useRecoilState } from 'recoil'
-import { selectedSessionAtom } from 'pages/_app'
+import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
-import { devaBotVisibleAtom, selectedSessionSelector } from 'pages/_app'
+import {
+  devaBotVisibleAtom,
+  selectedSessionAtom,
+  selectedSessionSelector,
+  sessionFilterAtom,
+  sessionFilterOpenAtom,
+  attendingSessionsAtom,
+  interestedSessionsAtom,
+} from 'pages/_app'
 import { usePathname } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
 import HeartIcon from 'assets/icons/heart.svg'
@@ -53,39 +61,67 @@ import AddToCalendar from 'components/domain/index/add-to-calendar/AddToCalendar
 import VideoIcon from 'assets/icons/video-play.svg'
 import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
+import { Button } from 'lib/components/button'
 
 export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+export const tagClass = (active: boolean, className?: string) =>
+  cn(
+    'shrink-0 select-none cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
+    active ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+    className
+  )
+
+export const matchSessionFilter = (session: SessionType, filter: string) => {
+  return session.title.toLowerCase().includes(filter.toLowerCase())
+}
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
-  const [text, setText] = useState('')
-  const [type, setType] = useState('All')
-  const [selectedDay, setSelectedDay] = useState('')
+  const [sessionFilter, _] = useRecoilState(sessionFilterAtom)
+  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
+  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
+
+  const { text, type, day, expertise, track, room, other } = sessionFilter
+
+  const filterOptions = useMemo(() => {
+    return {
+      type: [...new Set(sessions.map(session => session.type))],
+      day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
+      expertise: [...new Set(sessions.map(session => session.expertise))],
+      track: [...new Set(sessions.map(session => session.track))],
+      room: [...new Set(sessions.map(session => session.room))],
+      other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
+    }
+  }, [sessions])
 
   const filteredSessions = useMemo(() => {
-    if (!sessions) return []
-    return sessions.filter(session => {
-      const matchesText = session.title.toLowerCase().includes(text.toLowerCase())
-      const matchesType = type === 'All' || session.type === type
-      const matchesDay =
-        selectedDay === '' ||
-        (selectedDay === 'Today' && moment(session.date).isSame(moment(), 'day')) ||
-        (selectedDay === 'Tomorrow' && moment(session.date).isSame(moment().add(1, 'day'), 'day')) ||
-        moment(session.date).format('dddd')[0].toUpperCase() === selectedDay
+    return sessions.filter((session: any) => {
+      const matchesText =
+        session.title.toLowerCase().includes(text.toLowerCase()) ||
+        session.description.toLowerCase().includes(text.toLowerCase())
 
-      return matchesText && matchesType && matchesDay
+      const isAttending = attendingSessions[session.id]
+      const isInterested = interestedSessions[session.id]
+
+      const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
+      const matchesDay = Object.keys(day).length === 0 || moment(session.date).format('MMM D') === day
+      const matchesExpertise = Object.keys(expertise).length === 0 || sessionFilter.expertise[session.expertise]
+      const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track]
+      const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.room]
+
+      const matchesAttending = sessionFilter.other['Attending'] && isAttending
+      const matchesInterested = sessionFilter.other['Interested In'] && isInterested
+      //   let matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment(session.endTime))
+      //   let matchesUpcoming = sessionFilter.other['Upcoming'] && now?.isBefore(moment(session.startTime))
+
+      const matchesOther = matchesAttending || matchesInterested || Object.keys(other).length === 0
+
+      return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
     })
-  }, [sessions, text, type, selectedDay])
+  }, [sessions, sessionFilter, attendingSessions, interestedSessions])
 
   return {
     filteredSessions,
-    filters: {
-      text,
-      setText,
-      type,
-      setType,
-      selectedDay,
-      setSelectedDay,
-    },
+    filterOptions,
   }
 }
 
@@ -213,8 +249,8 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   //   const router = useRouter()
   const draggableLink = useDraggableLink()
   const pathname = usePathname()
-
-  const [favorited, setFavorited] = useState(false)
+  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
+  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
 
   const trackLogo = getTrackLogo(track)
 
@@ -304,33 +340,141 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         </div>
 
         <div
-          className="shrink-0 flex self-start justify-center items-start p-3 pl-1 cursor-pointer"
+          className="shrink-0 flex self-start justify-center items-start p-3 pl-1 cursor-pointer hover:scale-110 transition-all duration-300"
           onClick={e => {
             e.stopPropagation()
             e.preventDefault()
 
-            setFavorited(!favorited)
+            setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
           }}
         >
-          <CalendarIcon className="icon" style={{ '--color-icon': favorited ? 'red' : '#99A0AE' }} />
-          {/* <p className="text-sm font-semibold text-gray-800 truncate">{date}</p> */}
+          {attendingSessions[session.id] ? (
+            <IconAdded style={{ '--color-icon': '#7d52f4' }} />
+          ) : (
+            <CalendarIcon style={{ '--color-icon': '#99A0AE' }} />
+          )}
         </div>
       </div>
     </Link>
   )
 }
 
-export const SessionFilter = ({
-  filters,
-}: {
-  filters: {
-    text: string
-    setText: (text: string) => void
-    type: string
-    setType: (type: string) => void
+export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+
+  const toggleFilter = (category: string, value: string) => {
+    const isSelected = sessionFilter[category][value]
+    const nextFilter = { ...sessionFilter, [category]: { ...sessionFilter[category], [value]: !isSelected } }
+
+    if (isSelected) {
+      delete nextFilter[category][value]
+    }
+
+    setSessionFilter(nextFilter)
   }
-}) => {
+
+  return (
+    <div className="flex flex-col gap-4 p-4">
+      <div>
+        <div className="flex flex-col gap-3 pb-4 font-semibold">Session Type</div>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.type.map((type: string) => (
+            <div key={type} className={tagClass(sessionFilter.type[type])} onClick={() => toggleFilter('type', type)}>
+              {type}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="flex flex-col gap-3 pb-4 font-semibold">Tracks</div>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.track.map((track: string) => (
+            <div
+              key={track}
+              className={tagClass(sessionFilter.track[track])}
+              onClick={() => toggleFilter('track', track)}
+            >
+              {track}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <div className="flex flex-col gap-3 pb-4 font-semibold">Expertise</div>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.expertise.map((expertise: string) => (
+            <div
+              key={expertise}
+              className={tagClass(sessionFilter.expertise[expertise])}
+              onClick={() => toggleFilter('expertise', expertise)}
+            >
+              {expertise}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* <div>
+        <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Rooms</div>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.room.map((room: string) => (
+            <div key={room} className={tagClass(sessionFilter.room[room])} onClick={() => toggleFilter('room', room)}>
+              {room}
+            </div>
+          ))}
+        </div>
+      </div> */}
+
+      <Button
+        className="mt-2 flex self-center items-center gap-2 text-sm"
+        fill
+        size="sm"
+        color="purple-2"
+        onClick={() => {
+          const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+          setSessionFilter({
+            ...sessionFilter,
+            ...advancedFilterKeys.reduce((acc, key) => {
+              acc[key] = {}
+              return acc
+            }, {} as any),
+          })
+
+          setSessionFilterOpen(false)
+        }}
+      >
+        <FilterIcon className="icon" style={{ fontSize: '16px' }} />
+        Reset Filter
+      </Button>
+    </div>
+  )
+}
+
+export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   const draggableLink = useDraggableLink()
+  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [openPopover, setOpenPopover] = useState<string | null>(null)
+
+  const updateOtherFilter = (other: string) => {
+    const toggled = sessionFilter.other[other]
+
+    const nextFilter = { ...sessionFilter, other: { ...sessionFilter.other, [other]: true } }
+
+    if (!toggled) {
+      setSessionFilter(nextFilter)
+    } else {
+      delete nextFilter.other[other]
+
+      setSessionFilter(nextFilter)
+    }
+  }
+
+  const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+  const advancedFilterApplied = advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
 
   return (
     <div data-type="session-filter" className="flex flex-col gap-3">
@@ -338,8 +482,8 @@ export const SessionFilter = ({
         <div data-type="session-filter-search" className="relative">
           <input
             type="text"
-            value={filters.text}
-            onChange={e => filters.setText(e.target.value)}
+            value={sessionFilter.text}
+            onChange={e => setSessionFilter({ ...sessionFilter, text: e.target.value })}
             placeholder="Find a session"
             className="w-full py-2 px-4 pl-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
           />
@@ -350,15 +494,58 @@ export const SessionFilter = ({
           />
         </div>
 
-        <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
-          <FilterIcon
-            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-            style={{ '--color-icon': '#99A0AE' }}
-          />
-          <HeartIcon
-            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-            style={{ '--color-icon': '#99A0AE' }}
-          />
+        <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl">
+          <div className="text-xs font-semibold line-clamp-1">
+            {(() => {
+              const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
+                const filterAsKeys = Object.keys(filter)
+
+                if (filterAsKeys.length === 0) return
+                if (filterAsKeys.length === 1) return filterAsKeys[0]
+
+                return `${key} (${filterAsKeys.length})`
+              }
+
+              return (
+                [
+                  computeFilterShorthand(sessionFilter.track, 'Tracks'),
+                  computeFilterShorthand(sessionFilter.type, 'Session Type'),
+                  computeFilterShorthand(sessionFilter.expertise, 'Expertise'),
+                  computeFilterShorthand(sessionFilter.room, 'Rooms'),
+                ]
+                  .filter(val => !!val)
+                  .join(', ') || ''
+              )
+            })()}
+          </div>
+
+          <Popover
+            open={openPopover === 'Advanced Filters'}
+            onOpenChange={open => setOpenPopover(open ? 'Advanced Filters' : null)}
+          >
+            <PopoverTrigger className="flex justify-center items-center outline-none text-lg shrink-0">
+              <FilterIcon
+                onMouseEnter={() => setOpenPopover('Advanced Filters')}
+                onMouseLeave={() => setOpenPopover(null)}
+                onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
+                className="icon cursor-pointer hover:scale-110 transition-all duration-300"
+                style={{
+                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : '#99A0AE',
+                  fontSize: '20px',
+                }}
+              />
+            </PopoverTrigger>
+
+            <PopoverContent className="w-auto p-1 text-sm px-2 pointer-events-none" side={'top'} sideOffset={10}>
+              <div>Advanced Filters</div>
+            </PopoverContent>
+          </Popover>
+
+          {/* <HeartIcon
+            onClick={() => setSessionFilter({ ...sessionFilter, favorited: !sessionFilter.favorited })}
+            className="icon cursor-pointer hover:scale-110 transition-all duration-300"
+            style={{ '--color-icon': sessionFilter.favorited ? '#7d52f4' : '#99A0AE' }}
+          /> */}
         </div>
       </div>
 
@@ -370,7 +557,7 @@ export const SessionFilter = ({
             <div
               className={cn(
                 'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
-                filters.type === 'All' ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                Object.keys(sessionFilter.other).length === 0 ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
               )}
               {...draggableLink}
               onClick={e => {
@@ -378,23 +565,31 @@ export const SessionFilter = ({
 
                 if (!result) return
 
-                filters.setType('All')
+                setSessionFilter({ ...sessionFilter, other: {} })
               }}
             >
               All
             </div>
             <Separator orientation="vertical" className="h-6" />
 
-            {['Keynote', 'Talk', 'Workshop', 'Panel', 'Lightning', 'CLS'].map(type => (
+            {filterOptions.other.map((other: string) => (
               <div
-                key={type}
+                key={other}
                 className={cn(
                   'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#EFEBFF] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
-                  filters.type === type ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                  sessionFilter.other[other] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
                 )}
-                onClick={() => filters.setType(type)}
+                onClick={() => {
+                  updateOtherFilter(other)
+                }}
               >
-                {type}
+                {other}
+                {other === 'Attending' && (
+                  <IconAdded className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                )}
+                {other === 'Interested In' && (
+                  <HeartIcon className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                )}
               </div>
             ))}
           </div>
@@ -457,16 +652,26 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
 
 const SESSIONS_PER_PAGE = 25
 
-export const SessionList = ({ sessions, event }: { sessions: SessionType[]; event: any }) => {
-  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  const { filteredSessions, filters } = useSessionFilter(sessions, event)
+export const SessionList = ({
+  event,
+  filteredSessions,
+  filterOptions,
+}: {
+  sessions: SessionType[]
+  event: any
+  filteredSessions: SessionType[]
+  filterOptions: any
+}) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const draggableLink = useDraggableLink()
 
   const [isSticky, setIsSticky] = useState(false)
   const stickyRef = useRef<HTMLDivElement>(null)
   const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState(1)
+
+  console.log(sessionFilter, 'session filter')
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -537,13 +742,13 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
 
   console.log(event, 'event')
 
-  const dayOptions = useMemo(() => generateDayOptions(event.startDate, event.endDate), [event])
+  //   const dayOptions = useMemo(() => generateDayOptions(event.startDate, event.endDate), [event])
 
-  console.log(dayOptions, 'dayOptions')
+  //   console.log(dayOptions, 'dayOptions')
 
   return (
     <div data-type="session-list" className={cn(cardClass)}>
-      <SessionFilter filters={filters} />
+      <SessionFilter filterOptions={filterOptions} />
 
       <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Personalized Suggestions</div>
 
@@ -573,7 +778,7 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 lg:px-4 font-semibold">All Sessions</div>
+      <div className="flex flex-col gap-3 lg:px-4 font-semibold">Sessions</div>
 
       <div
         className={cn('sticky top-[55px] lg:top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
@@ -581,12 +786,14 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
       >
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row flex-nowrap gap-2 lg:p-3 py-3 w-full">
-            {dayOptions.map((day, index, array) => (
+            {filterOptions.day.map((day: string, index: number, array: string[]) => (
               <div
                 key={day}
                 className={cn(
                   'shrink-0 cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
-                  day === filters.selectedDay ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  (Object.keys(sessionFilter.day).length === 0 && day === 'All') || sessionFilter.day[day]
+                    ? 'border-[#ac9fdf] !bg-[#EFEBFF]'
+                    : '',
                   index === array.length - 1 ? 'mr-4' : '',
                   day === 'Today' ? '!text-blue-800 font-semibold' : ''
                 )}
@@ -603,7 +810,21 @@ export const SessionList = ({ sessions, event }: { sessions: SessionType[]; even
                   }
 
                   setTimeout(() => {
-                    filters.setSelectedDay(filters.selectedDay === day ? '' : day)
+                    if (day === 'All') {
+                      setSessionFilter({ ...sessionFilter, day: {} })
+                    } else {
+                      const active = sessionFilter.day[day]
+
+                      const nextFilter = { ...sessionFilter.day }
+
+                      if (active) {
+                        delete nextFilter[day]
+                        setSessionFilter({ ...sessionFilter, day: nextFilter })
+                      } else {
+                        nextFilter[day] = true
+                        setSessionFilter({ ...sessionFilter, day: nextFilter })
+                      }
+                    }
                   }, 100)
                 }}
               >
@@ -686,6 +907,9 @@ export const Livestream = ({ session, className }: { session: SessionType; class
 
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
+  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
+  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   //   const { toast } = useToast()
 
   if (!session) return null
@@ -742,26 +966,59 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
         <div
           className={cn(
-            'absolute rounded-2xl flex justify-between items-end p-3 pt-7 self-end left-0 right-0',
+            'absolute rounded-2xl flex justify-between items-end p-3 pb-1 pt-7 self-end left-0 right-0',
             css['session-gradient-2']
           )}
         >
-          <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] text-white max-w-[70%]">
+          <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] pb-1 text-white max-w-[70%]">
             {/* <TrackTag track={session.track} className="self-start" /> */}
             <p className="text-lg">{session.title}</p>
           </div>
-          <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
-            <CalendarIcon
-              className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': 'white' }}
-            />
-            <Link className="flex justify-center items-center" to={`/schedule/${session.id}`}>
-              <ShareIcon
-                className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-                style={{ '--color-icon': 'white' }}
-                //   onClick={copyShareLink}
-              />
-            </Link>
+          <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
+            <div
+              className="shrink-0 flex self-start justify-center items-start p-2  cursor-pointer hover:scale-110 transition-all duration-300 select-none"
+              onClick={e => {
+                e.stopPropagation()
+                e.preventDefault()
+
+                setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
+              }}
+            >
+              {attendingSessions[session.id] ? (
+                <IconAdded style={{ '--color-icon': 'white' }} />
+              ) : (
+                <CalendarIcon style={{ '--color-icon': 'white' }} />
+              )}
+            </div>
+
+            <div
+              className="shrink-0 flex self-start justify-center items-start p-2  cursor-pointer hover:scale-110 transition-all duration-300 select-none"
+              onClick={e => {
+                e.stopPropagation()
+                e.preventDefault()
+
+                setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+              }}
+            >
+              {interestedSessions[session.id] ? (
+                <HeartIcon style={{ '--color-icon': 'red' }} />
+              ) : (
+                <HeartIcon style={{ '--color-icon': 'white' }} />
+              )}
+            </div>
+
+            {!standalone && (
+              <Link
+                className="flex justify-center items-center select-none shrink-0 p-2"
+                to={`/schedule/${session.id}`}
+              >
+                <ShareIcon
+                  className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+                  style={{ '--color-icon': 'white' }}
+                  //   onClick={copyShareLink}
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -778,32 +1035,39 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             {moment(session.endTime).format('HH:mm A')}
           </span>
         </div>
+        <div className="flex items-center gap-2">
+          <IconSpeaker className="icon shrink-0" style={{ '--color-icon': 'black' }} />
+          <span className="text-sm text-[black]">{session.type}</span>
+        </div>
         {/* <div className="flex items-center gap-2">
           <IconSpeaker className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">{session.speakers?.map(speaker => speaker.name).join(', ')}</span>
         </div> */}
       </div>
 
-      <div
-        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
-        // @ts-ignore
-        style={{ '--color-icon': '#7D52F4' }}
-      >
-        <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
+      <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white">
+        <div
+          className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
+          onClick={() => setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })}
+        >
           <div className="text-lg hover:scale-110 transition-transform duration-300">
-            {' '}
-            {true ? <HeartIcon /> : <HeartIcon />}
-          </div>
-          <p>Mark as interesting</p>
-        </div>
-        <div className="flex flex-col items-center justify-center gap-1 cursor-pointer">
-          <div className="text-lg hover:scale-110 transition-transform duration-300">
-            {false ? <IconAdded /> : <CalendarIcon />}
+            {attendingSessions[session.id] ? <IconAdded style={{ '--color-icon': '#7d52f4' }} /> : <CalendarIcon />}
           </div>
           <p>Attend Session</p>
         </div>
+        <div
+          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          onClick={() =>
+            setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+          }
+        >
+          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+            {interestedSessions[session.id] ? <HeartIcon style={{ '--color-icon': '#7d52f4' }} /> : <HeartIcon />}
+          </div>
+          <p>Mark as interesting</p>
+        </div>
 
-        <AddToCalendar
+        {/* <AddToCalendar
           event={{
             id: session.id,
             title: `${session.title}${session.room ? ` / Room: ${session.room.name}` : ''}`,
@@ -819,7 +1083,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             </div>
             <p>Export to Calendar</p>
           </div>
-        </AddToCalendar>
+        </AddToCalendar> */}
 
         {/* <Link to={standalone ? `/venue?room=${session.room?.id}` : `/venue/${session.room?.id}`}>
           <p>Room Details</p> <PinIcon />
@@ -851,6 +1115,20 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | null; event: any }) => {
   const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
   const selectedSession = useRecoilValue(selectedSessionSelector)
+  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+  const { filteredSessions, filterOptions } = useSessionFilter(sessions || [], event)
+
+  useEffect(() => {
+    if (sessionFilterOpen) {
+      setSelectedSession(null)
+    }
+  }, [sessionFilterOpen])
+
+  useEffect(() => {
+    if (selectedSession) {
+      setSessionFilterOpen(false)
+    }
+  }, [selectedSession])
 
   if (!sessions || sessions.length === 0) return null
 
@@ -863,9 +1141,12 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
       // transition={{ duration: 1 }}
     >
       <div className={cn('basis-[60%] grow')}>
-        {' '}
-        {/*, selectedSession ? 'hidden lg:block' : '')}>*/}
-        <SessionList sessions={sessions} event={event} />
+        <SessionList
+          sessions={sessions}
+          event={event}
+          filteredSessions={filteredSessions}
+          filterOptions={filterOptions}
+        />
       </div>
 
       {/* {selectedSession && (
@@ -878,7 +1159,7 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
         </div>
       )} */}
 
-      <div className="block lg:hidden">
+      {/* <div className="block lg:hidden">
         <Popup open={!!selectedSession} setOpen={() => setSelectedSession(null)}>
           <div
             className={cn(
@@ -888,9 +1169,26 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
             <SessionView session={selectedSession} />
           </div>
         </Popup>
+      </div> */}
+
+      {sessionFilterOpen && (
+        <div
+          className={cn(
+            'basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block',
+            cardClass
+          )}
+        >
+          <SessionFilterAdvanced filterOptions={filterOptions} />
+        </div>
+      )}
+
+      <div className={cn('block lg:hidden')}>
+        <Popup open={sessionFilterOpen} setOpen={() => setSessionFilterOpen(false)}>
+          <SessionFilterAdvanced filterOptions={filterOptions} />
+        </Popup>
       </div>
 
-      {selectedSession && (
+      {selectedSession && !sessionFilterOpen && (
         <div className={cn('basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block')}>
           <SessionView session={selectedSession} />
         </div>

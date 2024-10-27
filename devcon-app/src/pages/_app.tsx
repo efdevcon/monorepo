@@ -23,75 +23,6 @@ import { Speaker as SpeakerType } from 'types/Speaker'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 
-// TODO - persist to user in the "effects handler"
-export const favoritedSessionsAtom = atom<SessionType[] | null>({
-  key: 'favoritedSessions',
-  default: null,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const favoritedSpeakersAtom = atom<SpeakerType[] | null>({
-  key: 'favoritedSpeakers',
-  default: null,
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-export const sessionFilterAtom = atom<string | null>({
-  key: 'sessionFilter',
-  default: null,
-  // effects: [
-  //   ({ onSet }) => {
-  //     onSet(newValue => {
-  //       if (typeof window !== 'undefined') {
-  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
-  //       }
-  //     })
-  //   },
-  // ],
-})
-
-export const speakerFilterAtom = atom<string | null>({
-  key: 'speakerFilter',
-  default: null,
-  // effects: [
-  //   ({ onSet }) => {
-  //     onSet(newValue => {
-  //       if (typeof window !== 'undefined') {
-  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
-  //       }
-  //     })
-  //   },
-  // ],
-})
-
-// Short on time so just doing global state here.. extract later
-export const selectedSpeakerAtom = atom<SpeakerType | null>({
-  key: 'selectedSpeaker',
-  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSpeaker') || 'null') : null,
-  // effects: [
-  //   ({ onSet }) => {
-  //     onSet(newValue => {
-  //       if (typeof window !== 'undefined') {
-  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
-  //       }
-  //     })
-  //   },
-  // ],
-})
-
 // This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
 export const selectedSpeakerSelector = selector({
   key: 'selectedSpeakerSelector',
@@ -108,11 +39,115 @@ export const selectedSpeakerSelector = selector({
 export const selectedSessionAtom = atom<SessionType | null>({
   key: 'selectedSession',
   default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSession') || 'null') : null,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('selectedSession', JSON.stringify(newValue))
+        }
+      })
+    },
+  ],
+})
+
+// TODO - persist to user in the "effects handler"
+export const attendingSessionsAtom = atom<any>({
+  key: 'attendingSessions',
+  default: {},
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        console.log('persist to user here, not implemented')
+      })
+    },
+  ],
+})
+
+// TODO - persist to user in the "effects handler"
+export const interestedSessionsAtom = atom<any>({
+  key: 'interestedSessions',
+  default: {},
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        console.log('persist to user here, not implemented')
+      })
+    },
+  ],
+})
+
+// TODO - persist to user in the "effects handler"
+export const favoritedSpeakersAtom = atom<any>({
+  key: 'favoritedSpeakers',
+  default: {},
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        console.log('persist to user here, not implemented')
+      })
+    },
+  ],
+})
+
+export const sessionFilterOpenAtom = atom<boolean>({
+  key: 'sessionFilterOpen',
+  default: false,
+})
+
+export const initialFilterState = {
+  text: '',
+  attending: false,
+  favorited: false,
+  type: {},
+  track: {},
+  expertise: {},
+  day: {},
+  room: {},
+  other: {},
+}
+
+export const sessionFilterAtom = atom<any>({
+  key: 'sessionFilter',
+  default: initialFilterState,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('sessionFilter', JSON.stringify(newValue))
+        }
+      })
+    },
+  ],
+})
+
+export const speakerFilterOpenAtom = atom<boolean>({
+  key: 'speakerFilterOpen',
+  default: false,
+})
+
+export const speakerFilterAtom = atom({
+  key: 'speakerFilter',
+  default: initialFilterState,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('speakerFilter', JSON.stringify(newValue))
+        }
+      })
+    },
+  ],
+})
+
+// Short on time so just doing global state here.. extract later
+export const selectedSpeakerAtom = atom<SpeakerType | null>({
+  key: 'selectedSpeaker',
+  default: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('selectedSpeaker') || 'null') : null,
   // effects: [
   //   ({ onSet }) => {
   //     onSet(newValue => {
   //       if (typeof window !== 'undefined') {
-  //         localStorage.setItem('selectedSession', JSON.stringify(newValue))
+  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
   //       }
   //     })
   //   },
