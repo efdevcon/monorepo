@@ -339,20 +339,37 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
           </div>
         </div>
 
-        <div
-          className="shrink-0 flex self-start justify-center items-start p-3 pl-1 cursor-pointer hover:scale-110 transition-all duration-300"
-          onClick={e => {
-            e.stopPropagation()
-            e.preventDefault()
+        <div className="flex flex-col shrink-0">
+          <div
+            className="shrink-0 flex self-start justify-center items-start p-3 pb-1.5  pl-1 cursor-pointer hover:scale-110 transition-all duration-300"
+            onClick={e => {
+              e.stopPropagation()
+              e.preventDefault()
 
-            setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
-          }}
-        >
-          {attendingSessions[session.id] ? (
-            <IconAdded style={{ '--color-icon': '#7d52f4' }} />
-          ) : (
-            <CalendarIcon style={{ '--color-icon': '#99A0AE' }} />
-          )}
+              setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
+            }}
+          >
+            {attendingSessions[session.id] ? (
+              <IconAdded style={{ '--color-icon': '#7d52f4' }} />
+            ) : (
+              <CalendarIcon style={{ '--color-icon': '#99A0AE' }} />
+            )}
+          </div>
+          <div
+            className="shrink-0 flex self-start justify-center items-start p-3 pt-1.5 pl-1 cursor-pointer hover:scale-110 transition-all duration-300"
+            onClick={e => {
+              e.stopPropagation()
+              e.preventDefault()
+
+              setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+            }}
+          >
+            {interestedSessions[session.id] ? (
+              <HeartIcon style={{ '--color-icon': '#7d52f4' }} />
+            ) : (
+              <HeartIcon style={{ '--color-icon': '#99A0AE' }} />
+            )}
+          </div>
         </div>
       </div>
     </Link>
@@ -431,8 +448,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       <Button
         className="mt-2 flex self-center items-center gap-2 text-sm"
         fill
-        size="sm"
-        color="purple-2"
+        color="black-1"
         onClick={() => {
           const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
           setSessionFilter({
@@ -446,7 +462,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           setSessionFilterOpen(false)
         }}
       >
-        <FilterIcon className="icon" style={{ fontSize: '16px' }} />
+        <FilterIcon className="icon" style={{ fontSize: '12px' }} />
         Reset Filter
       </Button>
     </div>

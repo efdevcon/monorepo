@@ -389,7 +389,15 @@ const Navigation = () => {
       <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[calc(50%)] xl:w-[60px] pointer-events-auto xl:mr-16">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
           {navItems(!!accountContext.account).map((item, index) => {
-            const isActive = pathname === item.href
+            let isActive = pathname === item.href
+
+            if (item.label === 'Schedule' && pathname.includes('/schedule')) {
+              isActive = true
+            }
+
+            if (item.label === 'Speakers' && pathname.includes('/speakers')) {
+              isActive = true
+            }
 
             return (
               <Popover
