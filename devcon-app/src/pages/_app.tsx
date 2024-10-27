@@ -23,6 +23,60 @@ import { Speaker as SpeakerType } from 'types/Speaker'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 
+// TODO - persist to user in the "effects handler"
+export const favoritedSessionsAtom = atom<SessionType[] | null>({
+  key: 'favoritedSessions',
+  default: null,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        console.log('persist to user here, not implemented')
+      })
+    },
+  ],
+})
+
+// TODO - persist to user in the "effects handler"
+export const favoritedSpeakersAtom = atom<SpeakerType[] | null>({
+  key: 'favoritedSpeakers',
+  default: null,
+  effects: [
+    ({ onSet }) => {
+      onSet(newValue => {
+        console.log('persist to user here, not implemented')
+      })
+    },
+  ],
+})
+
+export const sessionFilterAtom = atom<string | null>({
+  key: 'sessionFilter',
+  default: null,
+  // effects: [
+  //   ({ onSet }) => {
+  //     onSet(newValue => {
+  //       if (typeof window !== 'undefined') {
+  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
+  //       }
+  //     })
+  //   },
+  // ],
+})
+
+export const speakerFilterAtom = atom<string | null>({
+  key: 'speakerFilter',
+  default: null,
+  // effects: [
+  //   ({ onSet }) => {
+  //     onSet(newValue => {
+  //       if (typeof window !== 'undefined') {
+  //         localStorage.setItem('selectedSpeaker', JSON.stringify(newValue))
+  //       }
+  //     })
+  //   },
+  // ],
+})
+
 // Short on time so just doing global state here.. extract later
 export const selectedSpeakerAtom = atom<SpeakerType | null>({
   key: 'selectedSpeaker',

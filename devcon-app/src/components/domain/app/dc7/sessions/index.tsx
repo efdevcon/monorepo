@@ -225,7 +225,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         selectedSession?.id === id && pathname === '/schedule' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
         className
       )}
-      to={'/schedule'}
+      to={`/schedule/${id}`}
       {...draggableLink}
       onClick={(e: any) => {
         const result = draggableLink.onClick(e)

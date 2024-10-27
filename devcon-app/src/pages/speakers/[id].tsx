@@ -1,11 +1,12 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { SpeakerView } from 'components/domain/app/dc7/speakers/index'
+import { SpeakerView, SpeakerSessions, cardClass } from 'components/domain/app/dc7/speakers/index'
 import React, { useEffect } from 'react'
 import { fetchSessionsBySpeaker, fetchSpeaker, fetchSpeakers } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import { useRecoilState } from 'recoil'
 import { selectedSpeakerAtom } from 'pages/_app'
 import { useRouter } from 'next/router'
+import cn from 'classnames'
 
 export default (props: any) => {
   //   const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
@@ -27,10 +28,19 @@ export default (props: any) => {
     <>
       <SEO title={props.speaker.name} description={props.speaker.description} separator="@" />
       <AppLayout pageTitle={props.speaker.name} breadcrumbs={[{ label: props.speaker.name }]}>
-        {/* <div className="h-[1px] overflow-hidden opacity-0"> */}
-        <SpeakerView speaker={props.speaker} standalone />
-        {/* </div> */}
+        <div data-type="speaker-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+          <div className={cn('basis-[40%] grow')}>
+            <SpeakerView speaker={props.speaker} standalone />
+          </div>
+
+          <div className={cn('basis-[60%] hidden lg:block')}>
+            <SpeakerSessions speaker={props.speaker} standalone className={cn(cardClass, 'p-4')} />
+          </div>
+        </div>
       </AppLayout>
+      {/* <AppLayout pageTitle={props.speaker.name} breadcrumbs={[{ label: props.speaker.name }]}>
+        <SpeakerView speaker={props.speaker} standalone />
+      </AppLayout> */}
     </>
   )
 }

@@ -24,7 +24,7 @@ import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
 import { Popup } from 'lib/components/pop-up'
 
-const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
 
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
   const [text, setText] = useState('')
@@ -71,7 +71,7 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
         'flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
         selectedSpeaker?.id === speaker.id && pathname === '/speakers' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
       )}
-      to={'/speakers'}
+      to={`/speakers/${speaker.id}`}
       onClick={(e: any) => {
         if (pathname === '/speakers') e.preventDefault()
 
@@ -390,31 +390,31 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   )
 }
 
+export const SpeakerSessions = ({
+  speaker,
+  standalone,
+  className,
+}: {
+  speaker: SpeakerType | null
+  standalone?: boolean
+  className?: string
+}) => {
+  return (
+    <div className={cn(className)}>
+      <div className="flex flex-col gap-3 font-semibold shrink-0 mb-3">Sessions</div>
+      <div className="flex flex-col gap-3 shrink-0">
+        {speaker?.sessions?.map(session => (
+          <SessionCard key={session.id} session={session} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const { toast } = useToast()
 
   if (!speaker) return null
-
-  const copyShareLink = () => {
-    const shareUrl = `${window.location.origin}/speakers/${speaker.id}`
-    navigator.clipboard
-      .writeText(shareUrl)
-      .then(() => {
-        toast({
-          title: 'Speaker link copied to clipboard!',
-          duration: 3000,
-        })
-      })
-      .catch(err => {
-        console.error('Failed to copy: ', err)
-        toast({
-          title: 'Failed to copy link',
-          description: 'Please try again',
-          duration: 3000,
-        })
-      })
-  }
 
   return (
     <div
@@ -455,13 +455,15 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
               style={{ '--color-icon': 'white' }}
             />
 
-            <Link className="flex justify-center items-center" to={`/speakers/${speaker.id}`}>
-              <ShareIcon
-                className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-                style={{ '--color-icon': 'white' }}
-                // onClick={copyShareLink}
-              />
-            </Link>
+            {!standalone && (
+              <Link className="flex justify-center items-center" to={`/speakers/${speaker.id}`}>
+                <ShareIcon
+                  className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+                  style={{ '--color-icon': 'white' }}
+                  // onClick={copyShareLink}
+                />
+              </Link>
+            )}
 
             {speaker?.twitter && (
               <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
@@ -489,7 +491,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
         </Link>
       )} */}
 
-      <div className="border-top border-bottom py-4 shrink-0">
+      <div className={cn('border-top pt-4 shrink-0', !standalone && 'pb-4 border-bottom')}>
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible(`Tell me what I should ask ${speaker?.name} about`)}
@@ -498,13 +500,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 font-semibold shrink-0">Sessions</div>
-
-      <div className="flex flex-col gap-3 shrink-0">
-        {speaker?.sessions?.map(session => (
-          <SessionCard key={session.id} session={session} />
-        ))}
-      </div>
+      <SpeakerSessions speaker={speaker} className={cn(standalone && '!border-none shrink-0 lg:hidden')} />
     </div>
   )
 }

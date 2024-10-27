@@ -9,8 +9,8 @@ import { useRouter } from 'next/router'
 import cn from 'classnames'
 
 export default (props: any) => {
-  const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  const router = useRouter()
+  // const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  // const router = useRouter()
 
   //   useEffect(() => {
   //     if (props.session) {
