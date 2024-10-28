@@ -27,12 +27,6 @@ export default function WalletSettings() {
   const [loginWeb3, setLoginWeb3] = useState(false)
   const { signMessageAsync } = useSignMessage()
 
-  if (!accountContext.account) {
-    return <></>
-  }
-
-  const canDelete = accountContext.account?.addresses?.length > 0 && !!accountContext.account.email
-
   const addWallet = async () => {
     if (!address) {
       await open()
@@ -87,6 +81,12 @@ export default function WalletSettings() {
 
     setPromptRemove('')
   }
+
+  if (!accountContext.account) {
+    return <></>
+  }
+
+  const canDelete = accountContext.account?.addresses?.length > 0 && !!accountContext.account.email
 
   return (
     <>
