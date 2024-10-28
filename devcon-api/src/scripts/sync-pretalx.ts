@@ -7,7 +7,7 @@ async function main() {
   console.log('Syncing Pretalx...')
   await syncRooms()
   await syncSessions()
-  // await createPresentations()
+  await createPresentations()
 }
 
 async function syncRooms() {
