@@ -479,7 +479,7 @@ const Navigation = () => {
           </PopoverTrigger>
 
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
-            <div>{accountContext.account ? 'App' : 'AI Chat'}</div>
+            <div>{true ? 'App' : 'AI Chat'}</div>
             {/* <PopoverArrow style={{ fill: 'white' }} /> */}
           </PopoverContent>
         </Popover>
