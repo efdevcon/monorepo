@@ -80,16 +80,17 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   const [sessionFilter, _] = useRecoilState(sessionFilterAtom)
   const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
   const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
+  const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
 
   const filterOptions = useMemo(() => {
     return {
-      type: [...new Set(sessions.map(session => session.type))],
+      type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
       day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
-      expertise: [...new Set(sessions.map(session => session.expertise))],
-      track: [...new Set(sessions.map(session => session.track))],
-      room: [...new Set(sessions.map(session => session.room))],
+      expertise: [...new Set(sessions.map(session => session.expertise))].filter(Boolean),
+      track: [...new Set(sessions.map(session => session.track))].filter(Boolean),
+      room: [...new Set(sessions.map(session => session.room))].filter(Boolean),
       other: ['Attending', 'Upcoming', 'Interested In', 'Past'],
     }
   }, [sessions])
@@ -108,17 +109,21 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       const isInterested = interestedSessions[session.id]
 
       const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
-      const matchesDay = Object.keys(day).length === 0 || moment(session.date).format('MMM D') === day
+      const matchesDay =
+        Object.keys(day).length === 0 ||
+        sessionFilter.day[moment.utc(session.slot_start).add(7, 'hours').format('MMM D')]
       const matchesExpertise = Object.keys(expertise).length === 0 || sessionFilter.expertise[session.expertise]
       const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track]
       const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.room]
 
       const matchesAttending = sessionFilter.other['Attending'] && isAttending
       const matchesInterested = sessionFilter.other['Interested In'] && isInterested
-      //   let matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment(session.endTime))
-      //   let matchesUpcoming = sessionFilter.other['Upcoming'] && now?.isBefore(moment(session.startTime))
+      const matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment.utc(session.slot_end).add(7, 'hours'))
+      const matchesUpcoming =
+        sessionFilter.other['Upcoming'] && now?.isBefore(moment.utc(session.slot_start).add(7, 'hours'))
 
-      const matchesOther = matchesAttending || matchesInterested || Object.keys(other).length === 0
+      const matchesOther =
+        matchesAttending || matchesInterested || matchesUpcoming || matchesPast || Object.keys(other).length === 0
 
       return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
     })
@@ -233,23 +238,23 @@ const TrackTag = ({ track, className }: { track: string; className?: string }) =
 }
 
 export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
-  const { id, title, speakers, track, date, startTime, endTime, expertise, description } = session
+  const { id, title, speakers, track, slot_start, slot_end, expertise, description } = session
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
+  //   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
-  const { account, setSessionBookmark } = useAccountContext()
+  const { account } = useAccountContext()
   const { now } = useAppContext()
   const bookmarkedSessions = account?.sessions
   const bookmarkedSession = bookmarkedSessions?.find(bookmark => bookmark.id === id && bookmark.level === 'attending')
   const sessionIsBookmarked = !!bookmarkedSession
-  const start = moment.utc(startTime)
-  const end = moment.utc(endTime)
+  const start = moment.utc(slot_start).add(7, 'hours')
+  const end = moment.utc(slot_end).add(7, 'hours')
   const sessionHasPassed = now?.isAfter(end)
   const sessionIsUpcoming = now?.isBefore(start)
   const sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
   const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
-  const isSoon = moment.utc(start).isAfter(now) && moment.utc(start).isBefore(nowPlusSoonThreshold)
+  const isSoon = start.isAfter(now) && start.isBefore(nowPlusSoonThreshold)
   const relativeTime = start?.from(now)
   //   const router = useRouter()
   const draggableLink = useDraggableLink()
@@ -297,7 +302,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               css['session-gradient-1']
             )}
           >
-            <div className="text-white z-[2]">{track}</div>
+            <div className="text-white z-[2] line-clamp-4">{track}</div>
           </div>
           {trackLogo !== CityGuide && (
             <Image
@@ -309,25 +314,29 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             />
           )}
 
+          {trackLogo === CityGuide && (
+            <Image src={trackLogo} alt={track} height={150} width={150} className="w-full h-full object-cover" />
+          )}
+
           <div className="absolute bottom-1 w-full left-1 flex">
-            <ExpertiseTag expertise={expertise || ''} />
+            <ExpertiseTag expertise={expertise || 'All Welcome'} />
           </div>
         </div>
         <div className="flex flex-col justify-between grow p-2 pl-3">
           <div>
             <p className="text-sm font-medium text-gray-800 line-clamp-2">{title}</p>
             {/* <p className="text-xs text-gray-600 mt-1 truncate">{track}</p> */}
+            <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p>
           </div>
           <div>
-            <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p>
-            {sessionIsLive && <div className="label rounded red bold mb-1 sm">Happening now!</div>}
+            {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
             {isSoon && (
               <div className="label rounded text-gray-500 !border-gray-400 bold sm mb-1">Starts {relativeTime}</div>
             )}
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <IconClock className="icon flex shrink-0" />
-              <p className="text-xs text-gray-600">
+              <p className="text-xs shrink-0 text-gray-600">
                 {(() => {
                   const startTime = start
                   const endTime = end
@@ -337,10 +346,12 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               </p>
             </div>
 
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <IconSpeaker className="icon shrink-0" />
-              <p className="text-xs text-gray-600 truncate">{speakerNames}</p>
-            </div>
+            {speakerNames && speakerNames.length > 0 && (
+              <div className="flex items-center gap-2 text-xs text-gray-500">
+                <IconSpeaker className="icon shrink-0" />
+                <p className="text-xs text-gray-600 truncate">{speakerNames}</p>
+              </div>
+            )}
           </div>
         </div>
 
@@ -402,7 +413,11 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         <div className="flex flex-col gap-3 pb-4 font-semibold">Session Type</div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.type.map((type: string) => (
-            <div key={type} className={tagClass(sessionFilter.type[type])} onClick={() => toggleFilter('type', type)}>
+            <div
+              key={type}
+              className={tagClass(sessionFilter.type[type]) + ' !shrink'}
+              onClick={() => toggleFilter('type', type)}
+            >
               {type}
             </div>
           ))}
@@ -415,7 +430,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           {filterOptions.track.map((track: string) => (
             <div
               key={track}
-              className={tagClass(sessionFilter.track[track])}
+              className={tagClass(sessionFilter.track[track]) + ' !shrink'}
               onClick={() => toggleFilter('track', track)}
             >
               {track}
@@ -430,7 +445,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           {filterOptions.expertise.map((expertise: string) => (
             <div
               key={expertise}
-              className={tagClass(sessionFilter.expertise[expertise])}
+              className={tagClass(sessionFilter.expertise[expertise]) + ' !shrink'}
               onClick={() => toggleFilter('expertise', expertise)}
             >
               {expertise}
@@ -766,7 +781,7 @@ export const SessionList = ({
 
   const groupedSessions = useMemo(() => {
     return visibleSessions.reduce((acc, session) => {
-      const date = moment(session.date).format('MMM D')
+      const date = moment(session.slot_start).format('MMM D')
       if (!acc[date]) {
         acc[date] = []
       }
@@ -775,24 +790,26 @@ export const SessionList = ({
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
 
-  const generateDayOptions = (startTime: string, endTime: string) => {
-    const start = moment(startTime)
-    const end = moment(endTime)
-    const days = ['All']
-    const today = moment().startOf('day')
+  console.log(groupedSessions, 'groupedSessions')
 
-    for (let m = moment(start); m.isSameOrBefore(end); m.add(1, 'days')) {
-      if (m.isSame(today, 'day')) {
-        days.push('Today')
-      } else {
-        days.push(m.format('MMM D'))
-      }
-    }
+  //   const generateDayOptions = (startTime: string, endTime: string) => {
+  //     const start = moment(startTime)
+  //     const end = moment(endTime)
+  //     const days = ['All']
+  //     const today = moment().startOf('day')
 
-    return days
-  }
+  //     for (let m = moment(start); m.isSameOrBefore(end); m.add(1, 'days')) {
+  //       if (m.isSame(today, 'day')) {
+  //         days.push('Today')
+  //       } else {
+  //         days.push(m.format('MMM D'))
+  //       }
+  //     }
 
-  console.log(event, 'event')
+  //     return days
+  //   }
+
+  //   console.log(event, 'event')
 
   //   const dayOptions = useMemo(() => generateDayOptions(event.startDate, event.endDate), [event])
 
@@ -871,14 +888,14 @@ export const SessionList = ({
                     } else {
                       const active = sessionFilter.day[day]
 
-                      const nextFilter = { ...sessionFilter.day }
+                      //   const nextFilter = { ...sessionFilter.day }
 
                       if (active) {
-                        delete nextFilter[day]
-                        setSessionFilter({ ...sessionFilter, day: nextFilter })
+                        // delete nextFilter[day]
+                        setSessionFilter({ ...sessionFilter, day: {} })
                       } else {
-                        nextFilter[day] = true
-                        setSessionFilter({ ...sessionFilter, day: nextFilter })
+                        // nextFilter[day] = true
+                        setSessionFilter({ ...sessionFilter, day: { [day]: true } })
                       }
                     }
                   }, 100)
@@ -969,6 +986,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   //   const { toast } = useToast()
 
   if (!session) return null
+
+  console.log(session, 'session')
 
   const trackLogo = getTrackLogo(session.track)
 
@@ -1087,8 +1106,9 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div className="flex items-center gap-2">
           <IconClock className="icon flex shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
-            {moment(session.date).format('MMM Do')} — {moment(session.startTime).format('HH:mm A')} -{' '}
-            {moment(session.endTime).format('HH:mm A')}
+            {moment.utc(session.slot_start).add(7, 'hours').format('MMM Do')} —{' '}
+            {moment.utc(session.slot_start).add(7, 'hours').format('HH:mm A')} -{' '}
+            {moment.utc(session.slot_end).add(7, 'hours').format('HH:mm A')}
           </span>
         </div>
         <div className="flex items-center gap-2">
@@ -1146,7 +1166,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </Link> */}
       </div>
 
-      <div className="border-bottom pb-4 shrink-0">
+      <div className="shrink-0">
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible(`Tell me about similar sessions to "${session.title}"`)}
@@ -1155,13 +1175,17 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 font-semibold shrink-0">Speakers</div>
+      {session.speakers && session.speakers.length > 0 && (
+        <>
+          <div className="flex flex-col gap-3 font-semibold border-top pt-3 mt-1 shrink-0">Speakers</div>
 
-      <div className="flex flex-col gap-3 shrink-0">
-        {session.speakers?.map(speaker => (
-          <SpeakerCard speaker={speaker} key={speaker.id} />
-        ))}
-      </div>
+          <div className="flex flex-col gap-3 shrink-0">
+            {session.speakers?.map(speaker => (
+              <SpeakerCard speaker={speaker} key={speaker.id} />
+            ))}
+          </div>
+        </>
+      )}
 
       <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
     </div>

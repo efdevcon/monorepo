@@ -411,7 +411,7 @@ const DevaBot = ({
           >
             <motion.div
               onClick={(e) => e.stopPropagation()}
-              className="absolute right-0 h-full z-10 h-[100vh] w-[500px] md:w-[390px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl flex flex-col gap-0 items-start overflow-hidden rounded-tl-[var(--safe-area-corner-radius)] rounded-tr-[var(--safe-area-corner-radius)]"
+              className="absolute right-0 h-full z-10 h-[100vh] w-[500px] md:w-[400px] max-w-full lg:max-w-auto bg-[#FDFDFF] shadow-xl flex flex-col gap-0 items-start overflow-hidden rounded-tl-[var(--safe-area-corner-radius)] rounded-tr-[var(--safe-area-corner-radius)]"
               style={{
                 paddingTop: "calc(0px + max(16px, env(safe-area-inset-top)))",
                 paddingBottom:
@@ -591,11 +591,6 @@ const DevaBot = ({
                                               (s: any) => s.id === sessionId
                                             );
                                             if (session) {
-                                              console.log(
-                                                session,
-                                                "SessionComponent"
-                                              );
-
                                               sessionReferences.push(
                                                 SessionComponent ? (
                                                   // @ts-ignore

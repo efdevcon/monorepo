@@ -20,20 +20,20 @@ export const AppContext = (props: AppContextProps) => {
 
   // Sync current time periodically to keep time related functionality up to date
   useEffect(() => {
-    const mockedTime = moment.utc('2024-10-23T19:00:00Z').utcOffset(7)
+    // const mockedTime = moment.utc('2024-10-23T19:00:00Z').utcOffset(7)
     // const mockedTime = moment.utc('2024-11-12T08:00:00Z') // First day devcon
     // const mockedTime = moment.utc('2024-11-13T08:00:00Z') // Second day devcon
     // const mockedTime = moment.utc('2024-11-14T08:00:00Z') // Third day devcon
     // const mockedTime = moment.utc('2024-11-15T08:00:00Z') // Fourth day devcon
-    setCurrentTime(mockedTime)
+    // setCurrentTime(mockedTime)
 
-    // const clear = setInterval(() => {
-    //   setCurrentTime(moment.utc().add(7, 'hours'))
-    // }, 1000 * 60)
+    const clear = setInterval(() => {
+      setCurrentTime(moment.utc().add(7, 'hours'))
+    }, 1000 * 60)
 
-    // setCurrentTime(moment.utc().add(7, 'hours'))
+    setCurrentTime(moment.utc().add(7, 'hours'))
 
-    // return () => clearInterval(clear)
+    return () => clearInterval(clear)
   }, [])
 
   return <Context.Provider value={{ now: currentTime }}>{props.children}</Context.Provider>

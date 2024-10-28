@@ -153,19 +153,21 @@ export const fetchEventVersion = async (): Promise<string> => {
 }
 
 export const fetchSessions = async (version?: string): Promise<SessionType[]> => {
-  const sessions = await get(`/events/${eventName}/sessions?size=1000&version=${version}`)
+  const sessions = await get(`/events/${eventName}/sessions?sort=slot_start&size=1000&version=${version}`)
 
-  return sessions.map((session: SessionType) => {
-    const startTS = moment.utc(session.slot_start).subtract(5, 'hours')
-    const endTS = moment.utc(session.slot_end).subtract(5, 'hours')
+  return sessions
+    .map((session: SessionType) => {
+      const startTS = moment.utc(session.slot_start).add(7, 'hours')
+      const endTS = moment.utc(session.slot_end).add(7, 'hours')
 
-    return {
-      ...session,
-      start: startTS.valueOf(),
-      end: endTS.valueOf(),
-      duration: startTS.diff(endTS, 'minutes'),
-    }
-  })
+      return {
+        ...session,
+        // start: startTS.valueOf(),
+        // end: endTS.valueOf(),
+        duration: startTS.diff(endTS, 'minutes'),
+      }
+    })
+    .reverse()
 }
 
 export const fetchSpeakers = async (version?: string): Promise<Speaker[]> => {

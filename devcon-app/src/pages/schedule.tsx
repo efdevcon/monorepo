@@ -14,9 +14,12 @@ import { PageContext } from '../context/page-context'
 import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { SessionLayout } from 'components/domain/app/dc7/sessions'
+import cn from 'classnames'
+import { sessionsAtom } from './_app'
+import { useRecoilValue } from 'recoil'
 
 export default pageHOC((props: any) => {
-  const sessions = useSessionData()
+  const sessions = useRecoilValue(sessionsAtom)
   // const scheduleContext = useScheduleContext()
   // const { query } = useRouter()
   // const speakers = useSpeakerData()
@@ -63,9 +66,15 @@ export default pageHOC((props: any) => {
         <></>
       )} */}
 
-      <div className="fixed inset-0 h-[101vh] w-full flex justify-center items-center z-5 pointer-events-none">
+      {/* <div
+        className={cn(
+          'fixed top-0 left-0 h-full w-full justify-center items-center opacity-90 bg-white z-5 pointer-events-none flex flex-col gap-2 transition-opacity duration-500',
+          sessions && 'opacity-0'
+        )}
+      >
         <FancyLoader loading={!sessions} />
-      </div>
+        Fetching schedule data...
+      </div> */}
     </AppLayout>
   )
 })
