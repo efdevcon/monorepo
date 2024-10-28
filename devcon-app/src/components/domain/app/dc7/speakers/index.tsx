@@ -31,7 +31,8 @@ import { ScrollUpComponent } from '../sessions'
 import { Popup } from 'lib/components/pop-up'
 // import { SessionFilterAdvanced } from '../sessions'
 
-export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+export const cardClass =
+  'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
 
 // const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 

@@ -63,7 +63,8 @@ import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
 
-export const cardClass = 'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative'
+export const cardClass =
+  'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
 export const tagClass = (active: boolean, className?: string) =>
   cn(
     'shrink-0 select-none cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
@@ -670,6 +671,32 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
   )
 }
 
+// TODO: use recommendation engine to generate personalized suggestions
+export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] }) => {
+  // @ts-ignore
+  const featuredSessions = sessions.filter(s => s.featured)
+
+  return (
+    <>
+      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Schedule Highlights</div>
+
+      <div className="overflow-hidden">
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className="flex flex-row gap-3">
+            {featuredSessions.map((session, index) => (
+              <SessionCard
+                session={session}
+                key={session.id}
+                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
+              />
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
+    </>
+  )
+}
+
 const SESSIONS_PER_PAGE = 25
 
 export const SessionList = ({
@@ -766,16 +793,20 @@ export const SessionList = ({
 
   //   console.log(dayOptions, 'dayOptions')
 
+  //   console.log(visibleSessions, 'visibleSessions')
+
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
 
-      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Personalized Suggestions</div>
+      <PersonalizedSuggestions sessions={filteredSessions} />
+      {/* 
+      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Sessions</div>
 
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
-            {visibleSessions.slice(0, 10).map((session, index) => (
+            {featuredSessions.map((session, index) => (
               <SessionCard
                 session={session}
                 key={session.id}
@@ -784,7 +815,7 @@ export const SessionList = ({
             ))}
           </div>
         </SwipeToScroll>
-      </div>
+      </div> */}
 
       <div data-type="session-prompts" className="flex gap-3 my-4 border-bottom lg:mx-4 pb-4">
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about')}>
