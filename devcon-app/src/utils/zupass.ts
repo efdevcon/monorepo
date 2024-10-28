@@ -4,7 +4,7 @@ import { DEFAULT_APP_PAGE } from './constants'
 export const ZUPASS_URL = process.env.NEXT_PUBLIC_ZUPASS_URL ?? 'https://zupass.org'
 
 export const ZAPP: Zapp = {
-  name: `${DEFAULT_APP_PAGE.title} Zapp`,
+  name: `${DEFAULT_APP_PAGE.title}`,
   permissions: {
     READ_PUBLIC_IDENTIFIERS: {},
     REQUEST_PROOF: { collections: ['Devcon SEA'] },

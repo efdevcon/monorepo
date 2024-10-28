@@ -12,6 +12,7 @@ import Image from 'next/image'
 import css from 'components/domain/app/login-modal.module.scss'
 import { APP_CONFIG } from 'utils/config'
 import { useAppKit } from '@reown/appkit/react'
+import { POD } from '@pcd/pod'
 
 interface AccountContextProviderProps {
   children: ReactNode
@@ -32,6 +33,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     logout,
     getAccount,
     updateAccount,
+    updateZupassProfile,
     deleteAccount,
     setSpeakerFavorite,
     setSessionBookmark,
@@ -181,6 +183,28 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     if (response.status === 200) {
       setContext({ ...context, account: account })
+      return true
+    }
+
+    // else: set error/message
+    return false
+  }
+
+  async function updateZupassProfile(pod: POD): Promise<boolean> {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/zupass/import`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pod: pod.toJSON() }),
+    }).catch(e => {
+      alert('An error occurred. You may be offline, try again later.')
+    })
+
+    if (!response) return false
+
+    if (response.status === 200) {
+      const { data } = await response.json()
+      setContext({ ...context, account: data })
       return true
     }
 

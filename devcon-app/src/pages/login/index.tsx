@@ -35,8 +35,11 @@ const MobileLogin = (props: any) => {
   const [loginOpen, setLoginOpen] = React.useState(false)
 
   useEffect(() => {
-    if (loggedIn) {
-      router.push('/' + location?.search)
+    if (loggedIn && accountContext.account?.onboarded) {
+      router.push('/')
+    }
+    if (loggedIn && !accountContext.account?.onboarded) {
+      router.push('/onboarding')
     }
   }, [router, loggedIn])
 
@@ -127,7 +130,7 @@ const TrustModels = (props: any) => {
     async function LoginWithToken() {
       const userAccount = await accountContext.loginToken(Number(router.query.token))
       if (userAccount && userAccount.onboarded) {
-        router.push({ pathname: '/', query: {} })
+        router.push('/')
       }
       if (userAccount && !userAccount.onboarded) {
         router.push('/onboarding')

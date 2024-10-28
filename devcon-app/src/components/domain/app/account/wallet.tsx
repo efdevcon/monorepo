@@ -44,8 +44,13 @@ export function WalletLoginButton() {
 
       const signature = await signMessageAsync({ message })
       const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
-      if (userAccount) {
+      if (userAccount && userAccount.onboarded) {
         router.push('/')
+        return
+      }
+      if (userAccount && !userAccount.onboarded) {
+        router.push('/onboarding')
+        return
       }
       if (!userAccount) {
         setError('Unable to login with web3')

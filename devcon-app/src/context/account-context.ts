@@ -2,6 +2,7 @@ import { createContext, useContext } from 'react'
 import { UserAccount } from 'types/UserAccount'
 import { Session } from 'types/Session'
 import { VerificationToken } from 'types/VerificationToken'
+import { POD } from '@pcd/pod'
 
 export interface AccountContextType {
   edit: boolean
@@ -14,6 +15,7 @@ export interface AccountContextType {
   logout: (id: string) => Promise<boolean>
   getAccount: () => Promise<UserAccount | undefined>
   updateAccount: (id: string, account: UserAccount) => Promise<boolean>
+  updateZupassProfile: (pod: POD) => Promise<boolean>
   deleteAccount: (id: string) => Promise<boolean>
   setSpeakerFavorite: (speakerId: string, remove: boolean, account?: UserAccount) => void
   setSessionBookmark: (
@@ -40,6 +42,7 @@ export const AccountContext = createContext<AccountContextType>({
   logout: async () => false,
   getAccount: async () => undefined,
   updateAccount: async () => false,
+  updateZupassProfile: async () => false,
   deleteAccount: async () => false,
   setSpeakerFavorite: () => {},
   setSessionBookmark: () => {},

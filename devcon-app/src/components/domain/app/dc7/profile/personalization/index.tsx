@@ -4,15 +4,17 @@ import { Separator } from 'lib/components/ui/separator'
 import { motion } from 'framer-motion'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import { Toaster } from 'lib/components/ui/toaster'
-import { useToast } from 'lib/hooks/use-toast'
 import OnboardingPersonalization from 'assets/images/dc-7/onboarding-personalization.png'
 import cn from 'classnames'
 import { useZupass } from 'context/zupass'
-import { Button } from 'lib/components/button'
+import { useAccountContext } from 'context/account-context'
 
 // This is the "personalization" onboarding step
 export const Personalization = (props: any) => {
   const zupass = useZupass()
+  const { account } = useAccountContext()
+  const hasProfile = account?.roles && account?.since && account?.tracks
+  const showProfile = zupass.publicKey || hasProfile
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -51,18 +53,37 @@ export const Personalization = (props: any) => {
           Get personalized content recommendations! Tell us a bit about your interests, and we'll suggest talks,
           workshops and sessions tailored just for you to enhance your Devcon experience.
         </motion.p>
-        {zupass.publicKey && (
+        {showProfile && (
           <>
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
               You've previously told us:
             </motion.p>
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
-              You're a [developer], and [engineer] with a [beginner] level knowledge interested in [track] and [track].
+              {account?.roles && (
+                <>
+                  You're a{' '}
+                  {account?.roles.length === 1
+                    ? account.roles[0]
+                    : `${account.roles.slice(0, -1).join(', ')} and ${account.roles.slice(-1)}`}
+                </>
+              )}
+              {account?.since && <> with {new Date().getFullYear() - account?.since} years of experience, </>}
+              {account?.tracks && (
+                <>
+                  interested in{' '}
+                  {account?.tracks?.length
+                    ? account.tracks.length === 1
+                      ? account.tracks[0]
+                      : `${account.tracks.slice(0, -1).join(', ')} and ${account.tracks.slice(-1)}`
+                    : ''}
+                </>
+              )}
+              .
             </motion.p>
           </>
         )}
 
-        {!zupass.publicKey && (
+        {!showProfile && (
           <>
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
               We don't have any information about you yet. Connect your Zupass for more personalized recommendations.

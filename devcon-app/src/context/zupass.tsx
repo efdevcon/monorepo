@@ -1,15 +1,17 @@
 'use client'
 
 import { ZAPP, ZUPASS_URL } from '../utils/zupass'
-import { connect } from '@parcnet-js/app-connector'
+import { connect, ParcnetAPI } from '@parcnet-js/app-connector'
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react'
 import { pod } from '@parcnet-js/podspec'
+import { POD } from '@pcd/pod'
+import { useAccountContext } from './account-context'
 
 interface ZupassContext {
   loading: boolean
   error?: string
   publicKey: string
-  Connect: () => void
+  Connect: (onboard: boolean) => void
   GetTicket: () => void
   GetPods: () => void
 }
@@ -18,7 +20,7 @@ const defaultZupassContext: ZupassContext = {
   loading: false,
   error: '',
   publicKey: '',
-  Connect: () => {},
+  Connect: (onboard: boolean) => {},
   GetTicket: () => {},
   GetPods: () => {},
 }
@@ -35,6 +37,7 @@ export const useZupass = () => {
 }
 
 export function ZupassProvider(props: PropsWithChildren) {
+  const accountContext = useAccountContext()
   const ref = useRef<HTMLDivElement>(null)
   const [context, setContext] = useState<ZupassContext>({
     loading: false,
@@ -45,15 +48,23 @@ export function ZupassProvider(props: PropsWithChildren) {
     GetPods,
   })
 
-  async function Connect() {
+  async function Connect(onboard: boolean) {
     setContext(prevContext => ({ ...prevContext, loading: true }))
 
-    console.log('Connecting to Zupass...', ZUPASS_URL)
+    console.log('Connecting to Zupass...', ZUPASS_URL, onboard)
     try {
       const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
       const publicKey = await zupass.identity.getPublicKey()
-      localStorage.setItem('zupassPublicKey', publicKey)
 
+      if (onboard) {
+        const ticket = await getTicket(zupass)
+        if (ticket) {
+          const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
+          await accountContext.updateZupassProfile(pod)
+        }
+      }
+
+      localStorage.setItem('zupassPublicKey', publicKey)
       setContext(prevContext => ({ ...prevContext, loading: false, error: '', publicKey }))
     } catch (error) {
       console.error('Error connecting to Zupass', error)
@@ -65,18 +76,7 @@ export function ZupassProvider(props: PropsWithChildren) {
     console.log('Getting Devcon ticket')
 
     const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
-    const query = pod({
-      entries: {
-        eventId: {
-          type: 'string',
-          isMemberOf: [{ type: 'string', value: '5074edf5-f079-4099-b036-22223c0c6995' }],
-        },
-      },
-    })
-
-    const pods = await zupass.pod.collection('Devcon SEA').query(query)
-    const ticket = pods.find(pod => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0))
-    return ticket
+    return getTicket(zupass)
   }
 
   async function GetPods() {
@@ -95,6 +95,20 @@ export function ZupassProvider(props: PropsWithChildren) {
     const pods = await zupass.pod.collection('Devcon SEA').query(query)
     const addons = pods.filter(pod => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1))
     return addons
+  }
+
+  async function getTicket(zupass: ParcnetAPI) {
+    const query = pod({
+      entries: {
+        eventId: {
+          type: 'string',
+          isMemberOf: [{ type: 'string', value: '5074edf5-f079-4099-b036-22223c0c6995' }],
+        },
+      },
+    })
+
+    const pods = await zupass.pod.collection('Devcon SEA').query(query)
+    return pods.find(pod => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0))
   }
 
   useEffect(() => {

@@ -8,7 +8,7 @@ export interface UserAccount {
   onboarded: boolean
   pushSubscription: any
   roles: string[]
-  yearsOfExperience?: number
+  since?: number
   tracks: string[]
   tags: string[]
   speakers: Array<string>

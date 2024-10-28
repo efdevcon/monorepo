@@ -10,12 +10,13 @@ import OnboardingPersonalization from 'assets/images/dc-7/onboarding-personaliza
 import Image from 'next/image'
 import ChevronRightIcon from 'assets/icons/chevron_right.svg'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Button } from 'lib/components/button'
 import { Schedule } from 'components/domain/app/dc7/profile/schedule'
 import { Personalization } from 'components/domain/app/dc7/profile/personalization'
+import { useAccountContext } from 'context/account-context'
 import router from 'next/router'
 
 const OnboardingPage = (props: any) => {
+  const accountContext = useAccountContext()
   const [currentStep, setCurrentStep] = useState(0)
 
   const notificationSteps = [
@@ -48,6 +49,18 @@ const OnboardingPage = (props: any) => {
       },
     },
   ]
+
+  async function nextStep() {
+    if (currentStep === 3) {
+      console.log('Complete onboarding flow')
+      if (accountContext.account) {
+        await accountContext.updateAccount(accountContext.account.id, { ...accountContext.account, onboarded: true })
+      }
+      router.push('/account')
+    } else {
+      setCurrentStep(currentStep + 1)
+    }
+  }
 
   return (
     <Page
@@ -140,10 +153,10 @@ const OnboardingPage = (props: any) => {
       }
     >
       <div>
-        {currentStep === 0 && <Notifications onSkip={() => setCurrentStep(1)} />}
-        {currentStep === 1 && <Zupass onSkip={() => setCurrentStep(2)} />}
-        {currentStep === 2 && <Schedule onSkip={() => setCurrentStep(3)} />}
-        {currentStep === 3 && <Personalization onSkip={() => router.push('/account')} />}
+        {currentStep === 0 && <Notifications onSkip={nextStep} />}
+        {currentStep === 1 && <Zupass onSkip={nextStep} />}
+        {currentStep === 2 && <Schedule onSkip={nextStep} />}
+        {currentStep === 3 && <Personalization onSkip={nextStep} />}
       </div>
       <div className="flex justify-between items-center mt-4">
         <DotsSelector
@@ -159,7 +172,7 @@ const OnboardingPage = (props: any) => {
 
         <div
           className="rounded-full bg-[#EFEBFF] text-[#7D52F4] flex items-center justify-center text-xs p-3 gap-2 cursor-pointer hover:scale-110 transition-all duration-500 border border-[#7D52F4 select-none"
-          onClick={() => setCurrentStep(currentStep === 3 ? 0 : currentStep + 1)}
+          onClick={nextStep}
         >
           <ChevronRightIcon className="text-xs" style={{ '--color-icon': '#7D52F4', fontSize: '12px' }} />
         </div>
