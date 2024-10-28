@@ -26,21 +26,21 @@ const pages = [
     precacheHtml: true,
     // precacheJson: true,
   },
-  {
-    route: '/404',
-    precacheHtml: true,
-    // precacheJson: true,
-  },
+  // {
+  //   route: '/404',
+  //   precacheHtml: true,
+  //   // precacheJson: true,
+  // },
   // {
   //   route: '/info',
   //   precacheHtml: true,
   //   precacheJson: true,
   // },
-  {
-    route: '/venue',
-    precacheHtml: true,
-    // precacheJson: true,
-  },
+  // {
+  //   route: '/venue',
+  //   precacheHtml: true,
+  //   // precacheJson: true,
+  // },
   // {
   //   route: '/schedule',
   //   precacheHtml: false,
