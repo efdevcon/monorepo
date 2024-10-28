@@ -42,6 +42,14 @@ model Account {
   updatedAt DateTime?
 }
 
+model Session {
+  sid    String   @id @db.VarChar
+  sess   Json
+  expire DateTime @db.Timestamp(6)
+
+  @@index([expire], name: "IDX_session_expire")
+}
+
 model rate_limit {
   key    String  @id @db.VarChar(255)
   points Int     @default(0)
