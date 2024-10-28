@@ -35,10 +35,7 @@ export const ShareScheduleModal = () => {
         <div className={css['setting']}>
           <p>Anyone with your link could view your schedule.</p>
           <div className={css['toggle']}>
-            <Toggle
-              defaultChecked={accountContext.account?.publicSchedule}
-              onChange={toggleScheduleSharing}
-            />
+            <Toggle defaultChecked={accountContext.account?.publicSchedule} onChange={toggleScheduleSharing} />
           </div>
         </div>
         <div className={css['link']}>
@@ -74,7 +71,7 @@ export const ShareScheduleModal = () => {
         </div>
 
         <p>
-          Go to <Link to="/settings#account">settings</Link> if you want to configure your account and profile.
+          Go to <Link to="/account#schedule">settings</Link> if you want to configure your account and profile.
         </p>
       </Modal>
 

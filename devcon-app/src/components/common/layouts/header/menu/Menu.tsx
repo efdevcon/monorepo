@@ -111,7 +111,7 @@ export const Menu = (props: any) => {
           content: 'Account',
         },
         icon: <AccountIcon />,
-        url: accountContext.account ? '/settings' : '/login',
+        url: accountContext.account ? '/account' : '/login',
       },
       accountContext.account
         ? {

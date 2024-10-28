@@ -126,8 +126,11 @@ const TrustModels = (props: any) => {
   useEffect(() => {
     async function LoginWithToken() {
       const userAccount = await accountContext.loginToken(Number(router.query.token))
-      if (userAccount) {
+      if (userAccount && userAccount.onboarded) {
         router.push({ pathname: '/', query: {} })
+      }
+      if (userAccount && !userAccount.onboarded) {
+        router.push('/onboarding')
       }
       if (!userAccount) {
         setError('Unable to verify your email address.')
@@ -161,8 +164,11 @@ const TrustModels = (props: any) => {
     }
 
     const userAccount = await accountContext.loginEmail(email, nonceNr)
-    if (userAccount) {
+    if (userAccount && userAccount.onboarded) {
       router.push('/')
+    }
+    if (userAccount && !userAccount.onboarded) {
+      router.push('/onboarding')
     }
     if (!userAccount) {
       setError('Unable to verify your email address.')

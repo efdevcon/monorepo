@@ -70,3 +70,13 @@ body {
   //   // padding-top: env(safe-area-inset-top, 0px);
   // }
 }
+
+.custom.react-toggle {
+  // transform: scale(0.8);
+}
+.custom.react-toggle--checked .react-toggle-track {
+  background-color: #7D52F4 !important;
+}
+.custom.react-toggle--checked .react-toggle-thumb {
+  border-color: #7D52F4 !important;
+}

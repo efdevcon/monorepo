@@ -58,7 +58,7 @@ const OnboardingPage = (props: any) => {
         },
         {
           label: 'Onboarding',
-          href: '/login/onboarding',
+          href: '/onboarding',
         },
         {
           label: (() => {
@@ -143,7 +143,7 @@ const OnboardingPage = (props: any) => {
         {currentStep === 0 && <Notifications onSkip={() => setCurrentStep(1)} />}
         {currentStep === 1 && <Zupass onSkip={() => setCurrentStep(2)} />}
         {currentStep === 2 && <Schedule onSkip={() => setCurrentStep(3)} />}
-        {currentStep === 3 && <Personalization onSkip={() => router.push('/settings/profile')} />}
+        {currentStep === 3 && <Personalization onSkip={() => router.push('/account')} />}
       </div>
       <div className="flex justify-between items-center mt-4">
         <DotsSelector

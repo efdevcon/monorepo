@@ -18,7 +18,7 @@
 
 .title { 
   padding-bottom: $gaps-gap-2;
-  border-bottom: 1px solid $colors-standard-border-color;
+  border-bottom: 1px solid #E4E6EB;
 }
 
 .wallet-not-found { 
@@ -36,12 +36,11 @@
 .form {
   display: flex;
   flex-direction: column;
-  padding-top: $gaps-gap-4;
   padding-bottom: $gaps-gap-4;
 
   .input, .select {
-    margin-top: $gaps-gap-2;
-    margin-bottom: $gaps-gap-2;
+    margin-top: $gaps-gap-4;
+    margin-bottom: $gaps-gap-4;
   }
 
   .select {
@@ -93,5 +92,4 @@
 .resend {
   cursor: pointer;
   text-decoration: underline;
-  padding: $gaps-gap-2 0;
 }
