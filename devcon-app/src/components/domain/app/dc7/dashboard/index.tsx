@@ -164,8 +164,11 @@ export const Dashboard = () => {
 
       <div className="flex gap-3 pb-4 mx-4 font-semibold border-top py-4">Featured</div>
 
-      <div className="lg:overflow-hidden mb-6">
-        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+      <div
+        className="lg:overflow-hidden mb-6"
+        // style={{ maskImage: 'linear-gradient(to right, black 95%, transparent)' }}
+      >
+        <SwipeToScroll /*scrollIndicatorDirections={{ right: true }}*/>
           {/* @ts-ignore */}
           <div className="flex no-wrap gap-2 ml-4" data-type="featured-swiper" style={{ '--color-icon': 'white' }}>
             <div
@@ -224,7 +227,7 @@ export const Dashboard = () => {
               <div className="text-xs">Find your way around Bangkok with our city guide.</div>
             </Link>
 
-            <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] pr-4')}>
+            <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}>
               <p className="text-white text-lg font-semibold">Food & Beverage</p>
               <FoodIcon style={{ fontSize: '28px' }} />
               <div>View event menu items and dietary information.</div>

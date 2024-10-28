@@ -789,6 +789,17 @@ const DevaBot = ({
                       )}
                   </AnimatePresence>
 
+                  {messages.length > 0 && !executingQuery && (
+                    <div className="flex justify-center w-full mb-2 shrink-0">
+                      <div
+                        onClick={reset}
+                        className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
+                      >
+                        <p>Start New Conversation</p>
+                      </div>
+                    </div>
+                  )}
+
                   {/* <div
                 className={`text-red-500 text-xs shrink-0 ${
                   messages.length > 0 ? "hidden" : ""

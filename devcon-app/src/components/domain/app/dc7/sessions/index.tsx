@@ -516,7 +516,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         </div>
 
         <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl">
-          <div className="text-xs font-semibold line-clamp-1">
+          <div className="text-xs font-semibold line-clamp-2">
             {(() => {
               const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
                 const filterAsKeys = Object.keys(filter)
@@ -544,12 +544,17 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
             open={openPopover === 'Advanced Filters'}
             onOpenChange={open => setOpenPopover(open ? 'Advanced Filters' : null)}
           >
-            <PopoverTrigger className="flex justify-center items-center outline-none text-lg shrink-0">
+            <PopoverTrigger
+              className="flex justify-center items-center outline-none text-lg shrink-0 lg:px-2 pr-0"
+              onMouseEnter={() => setOpenPopover('Advanced Filters')}
+              onMouseLeave={() => setOpenPopover(null)}
+              onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
+            >
               <FilterIcon
-                onMouseEnter={() => setOpenPopover('Advanced Filters')}
-                onMouseLeave={() => setOpenPopover(null)}
-                onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
-                className="icon cursor-pointer hover:scale-110 transition-all duration-300"
+                // onMouseEnter={() => setOpenPopover('Advanced Filters')}
+                // onMouseLeave={() => setOpenPopover(null)}
+                // onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
+                className="icon cursor-pointer hover:scale-110 transition-all duration-300 "
                 style={{
                   '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
                   fontSize: '24px',
@@ -558,7 +563,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
             </PopoverTrigger>
 
             <PopoverContent className="w-auto p-1 text-sm px-2 pointer-events-none" side={'top'} sideOffset={10}>
-              <div>Advanced Filters</div>
+              <div>More Filters</div>
             </PopoverContent>
           </Popover>
 
