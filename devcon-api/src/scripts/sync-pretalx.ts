@@ -1,5 +1,5 @@
 import { GetData } from '@/clients/filesystem'
-import { GetRooms, GetSpeakers, GetSubmissions } from '@/clients/pretalx'
+import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { CreatePresentationFromTemplate } from '@/clients/slides'
 import fs from 'fs'
 
@@ -42,7 +42,7 @@ async function syncSessions() {
   if (!fs.existsSync(`./data/sessions/devcon-7`)) {
     fs.mkdirSync(`./data/sessions/devcon-7`)
   }
-  const sessions = await GetSubmissions()
+  const sessions = await GetSessions()
   const sessionsFs = GetData('sessions/devcon-7')
   console.log('Sessions Pretalx', sessions.length, 'Sessions fs', sessionsFs.length)
 
@@ -74,7 +74,7 @@ async function syncSessions() {
 
 async function createPresentations() {
   const sessionsFs = GetData('sessions/devcon-7')
-  const sessions = await GetSubmissions({ inclContacts: true })
+  const sessions = await GetSessions({ inclContacts: true })
   console.log('# of Submissions', sessions.length)
 
   for (const sessionFs of sessionsFs) {
