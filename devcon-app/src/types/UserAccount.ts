@@ -7,7 +7,7 @@ export interface UserAccount {
   disabled: boolean
   onboarded: boolean
   pushSubscription: any
-  role?: string
+  roles: string[]
   yearsOfExperience?: number
   tracks: string[]
   tags: string[]
