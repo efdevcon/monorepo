@@ -7,8 +7,8 @@ const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.go
 const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
 const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
 const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
-const sendEmail = false
-const emailMessage = ''
+const sendEmail = true
+const emailMessage = 'Your Devcon 7 presentation'
 
 let client: GoogleApis | null = null
 
