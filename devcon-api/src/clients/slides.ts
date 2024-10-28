@@ -6,9 +6,9 @@ import { GoogleApis } from 'googleapis'
 const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
 const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
 const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
-const TEMPLATE_ID = '1fw7CLNMXMat3wrBGUZweTtbRkGoxV5rPvP-m6Kus3KQ'
-const sendEmail = false
-const emailMessage = ''
+const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
+const sendEmail = true
+const emailMessage = 'Your Devcon 7 presentation'
 
 let client: GoogleApis | null = null
 

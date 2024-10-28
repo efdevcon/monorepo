@@ -84,7 +84,13 @@ async function createPresentations() {
       if (session) {
         const speakerEmails = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
 
-        await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+        const id = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+        if (id) {
+          fs.writeFileSync(
+            `./data/sessions/devcon-7/${sessionFs.id}.json`,
+            JSON.stringify({ ...sessionFs, resources_presentation: `https://docs.google.com/presentation/d/${id}` }, null, 2)
+          )
+        }
       } else {
         console.log(`Session ${sessionFs.id} not found in Pretalx data`)
       }
