@@ -7,6 +7,13 @@ declare module 'express-session' {
   }
 }
 
+// simplified interface of a ticket POD
+export interface TicketPod {
+  entries: Record<string, any>
+  signature: string
+  signerPublicKey: string
+}
+
 export interface UserAccount {
   id: string
   username?: string
@@ -36,6 +43,6 @@ export interface AccountProfileData {
   since: number
   roles: string[]
   tracks: string[]
-  tags: string[]
+  tags?: string[]
   reason: string
 }

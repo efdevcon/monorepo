@@ -2,10 +2,14 @@ import { Request, Response, Router } from 'express'
 import { API_INFO } from '@/utils/config'
 import { PrismaClient } from '@/db/clients/account'
 import { PrismaClient as ScheduleClient } from '@prisma/client'
-import { UserAccount } from '@/types/accounts'
+import { AccountProfileData, UserAccount } from '@/types/accounts'
 import { sendMail } from '@/services/email'
 import { isValidSignature } from '@/utils/web3'
 import { GetRecommendedSessions, GetRecommendedSpeakers } from '@/clients/recommendation'
+import { RemapPretixRoles } from '@/clients/pretix'
+import { decryptFile } from '@/utils/encrypt'
+import { parseCSV } from '@/utils/files'
+import { ValidateTicketPod } from '@/utils/zupass'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
@@ -14,6 +18,7 @@ const scheduleClient = new ScheduleClient()
 export const accountRouter = Router()
 accountRouter.get(`/account`, GetAccount)
 accountRouter.put(`/account/:id`, UpdateAccount)
+accountRouter.put(`/account/zupass/import`, UpdateAccountImport)
 accountRouter.delete(`/account/:id`, DeleteAccount)
 accountRouter.post(`/account/token`, Token)
 accountRouter.post(`/account/login/email`, LoginEmail)
@@ -49,6 +54,39 @@ async function GetAccount(req: Request, res: Response) {
   }
 
   res.status(500).send({ code: 500, message: 'Unable to get user account.' })
+}
+
+async function UpdateAccountImport(req: Request, res: Response) {
+  // #swagger.tags = ['Account']
+
+  const userId = req.session.userId
+  if (!userId) {
+    // return as HTTP 200 OK
+    return res.status(401).send({ message: 'userId session not found.' })
+  }
+
+  const pod = req.body?.pod
+  if (!pod) {
+    return res.status(400).send({ message: 'Ticket POD not provided.' })
+  }
+
+  const valid = ValidateTicketPod(pod)
+  if (!valid) {
+    return res.status(400).send({ message: 'Ticket POD is not valid.' })
+  }
+
+  const attendeeEmail = pod.entries.attendeeEmail
+  if (!attendeeEmail) {
+    return res.status(400).send({ message: 'Attendee email not found.' })
+  }
+
+  const profileData = await parseProfileData(attendeeEmail)
+  if (!profileData) {
+    return res.status(400).send({ message: 'Profile data not found.' })
+  }
+
+  const updated = await client.account.update({ where: { id: userId }, data: profileData })
+  return res.status(200).send({ code: 200, data: updated })
 }
 
 async function UpdateAccount(req: Request, res: Response) {
@@ -207,6 +245,12 @@ async function LoginEmail(req: Request, res: Response) {
     }
 
     userAccount = { ...userAccount, email: address }
+    if (!userAccount.onboarded) {
+      const profile = await parseProfileData(address)
+      if (profile) {
+        userAccount = { ...userAccount, ...profile }
+      }
+    }
     const updated = await client.account.update({ where: { id: userId }, data: userAccount })
     if (updated) {
       // SUCCESS - No need to update session, userId remains the same
@@ -219,14 +263,25 @@ async function LoginEmail(req: Request, res: Response) {
   // else; create new user account based on email address
   let userAccount = await client.account.findFirst({ where: { email: address } })
   if (userAccount) {
+    if (!userAccount.onboarded) {
+      const profile = await parseProfileData(address)
+      if (profile) {
+        userAccount = await client.account.update({ where: { id: userAccount.id }, data: profile })
+      }
+    }
+
     req.session.userId = userAccount.id
     req.session.save()
-
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
 
   if (!userAccount) {
-    userAccount = await client.account.create({ data: { email: address } })
+    const profile = await parseProfileData(address)
+    if (profile) {
+      userAccount = await client.account.create({ data: { email: address, ...profile } })
+    } else {
+      userAccount = await client.account.create({ data: { email: address } })
+    }
 
     if (userAccount) {
       req.session.userId = userAccount.id
@@ -513,4 +568,29 @@ async function RecommendedSessions(req: Request, res: Response) {
   const sessions = await GetRecommendedSessions(account.id, true)
 
   return res.status(200).send({ code: 200, message: '', data: sessions })
+}
+
+async function parseProfileData(attendeeEmail: string) {
+  const data = await decryptFile(`data/accounts/pretix.encrypted`)
+  const results = await parseCSV(data)
+
+  const account = results.find((row) => Object.values(row)[0] === attendeeEmail)
+  if (!account) {
+    return undefined
+  }
+
+  const years = Object.entries(account)[1][1]
+  const tracks = Object.entries(account)
+    .filter(([track, interest]) => interest === 'Yes')
+    .map(([track]) => track)
+  const roles = RemapPretixRoles(Object.entries(account)[12][1] as string)
+  const reason = Object.entries(account)[13][1] as string
+  const profileData: AccountProfileData = {
+    since: years === "I'm new to the space!" ? 2024 : 2024 - Number(years),
+    roles: roles,
+    tracks: tracks,
+    reason: reason,
+  }
+
+  return profileData
 }
