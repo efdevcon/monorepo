@@ -534,7 +534,7 @@ export const AppLayout = (
         /> */}
 
         <div className={cn('section pt-5 relative z-10 page-background', deprioritizeHeader && 'z-auto')}>
-          <div className="flex flex-col xl:flex-row gap-0 relative max-w-full">
+          <div className="flex flex-col xl:flex-row gap-0 relative max-w-full !col-start-1 !col-end-4 lg:!col-start-2 lg:!col-end-3">
             <div
               data-type="page-content"
               className="xl:order-2 grow relative shrink-0 max-w-full"

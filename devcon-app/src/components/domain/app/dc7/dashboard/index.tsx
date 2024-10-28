@@ -99,7 +99,7 @@ const LoggedIn = () => {
   const { account } = useAccountContext()
 
   return (
-    <div className="lg:px-4 flex justify-between items-center">
+    <div className="px-4 flex justify-between items-center">
       <div className="flex flex-col gap-0">
         <div className="font-semibold text-lg">ยินดีต้อนรับ (yin-dee ton-rap)</div>
         <div className="text-lg font-semibold">{account?.username ? `Hello, ${account?.username}` : 'Welcome!'} 👋</div>
@@ -115,7 +115,7 @@ const Notifications = () => {
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
 
   return (
-    <div className="lg:px-4 flex flex-col lg:flex-row gap-2 mb-4 ">
+    <div className="px-4 flex flex-col lg:flex-row gap-2 mb-4 ">
       {notifications.map(n => (
         <NotificationCard key={n.id} notification={n} seen={seenNotifications.has(n.id)} />
       ))}
@@ -134,11 +134,11 @@ export const Dashboard = () => {
   const loggedIn = accountContext.account
 
   return (
-    <div className={cn(cardClass, 'lg:py-4')}>
+    <div className={cn(cardClass, 'lg:py-4 col-start-1 col-end-4')}>
       {loggedIn ? (
         <LoggedIn />
       ) : (
-        <div className="flex justify-between md:items-center gap-6 flex-col md:flex-row lg:px-4 relative">
+        <div className="flex justify-between md:items-center gap-6 flex-col md:flex-row px-4 relative">
           <NotLoggedIn />
           <div className="flex flex-col gap-2 my-2 md:w-[50%] w-full md:order-2 order-1 shrink-0">
             <Image src={PassportLogoBlack} alt="Passport Logo" className="object-contain w-[200px] filter-invert" />
@@ -158,15 +158,16 @@ export const Dashboard = () => {
         </div>
       )}
 
-      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
+      <div className="flex gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
+
       <Notifications />
 
-      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4">Featured</div>
+      <div className="flex gap-3 pb-4 mx-4 font-semibold border-top py-4">Featured</div>
 
       <div className="lg:overflow-hidden mb-6">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           {/* @ts-ignore */}
-          <div className="flex no-wrap gap-2 lg:ml-4" data-type="featured-swiper" style={{ '--color-icon': 'white' }}>
+          <div className="flex no-wrap gap-2 ml-4" data-type="featured-swiper" style={{ '--color-icon': 'white' }}>
             <div
               {...draggableLink}
               onClick={(e: any) => {
@@ -232,7 +233,7 @@ export const Dashboard = () => {
         </SwipeToScroll>
       </div>
 
-      <div className="pb-4 lg:mx-4 border-top"></div>
+      <div className="pb-4 mx-4 border-top"></div>
 
       <PersonalizedSuggestions sessions={sessions || []} />
     </div>

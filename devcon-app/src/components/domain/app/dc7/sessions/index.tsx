@@ -499,7 +499,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
 
   return (
     <div data-type="session-filter" className="flex flex-col gap-3">
-      <div className="flex flex-row gap-3 justify-between w-full lg:px-4 lg:pt-4 pb-2">
+      <div className="flex flex-row gap-3 justify-between w-full px-4 lg:pt-4 pb-2">
         <div data-type="session-filter-search" className="relative">
           <input
             type="text"
@@ -570,11 +570,11 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         </div>
       </div>
 
-      <div className="lg:mx-4 border-bottom h-[1px]" />
+      <div className="mx-4 border-bottom h-[1px]" />
 
       <div className="flex flex-row gap-3 items-center text-xs overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3 flex-nowrap p-1 lg:px-4">
+          <div className="flex flex-row gap-3 flex-nowrap p-1 px-4">
             <div
               className={cn(
                 'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
@@ -617,7 +617,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         </SwipeToScroll>
       </div>
 
-      <div className="lg:mx-4 mb-4 border-bottom h-[1px]" />
+      <div className="mx-4 mb-4 border-bottom h-[1px]" />
     </div>
   )
 }
@@ -678,7 +678,7 @@ export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] 
 
   return (
     <>
-      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Schedule Highlights</div>
+      <div className="flex flex-col gap-3 pb-4 px-4 font-semibold">Schedule Highlights</div>
 
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
@@ -687,7 +687,7 @@ export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] 
               <SessionCard
                 session={session}
                 key={session.id}
-                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
+                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'ml-4' : '')}
               />
             ))}
           </div>
@@ -817,7 +817,7 @@ export const SessionList = ({
         </SwipeToScroll>
       </div> */}
 
-      <div data-type="session-prompts" className="flex gap-3 my-4 border-bottom lg:mx-4 pb-4">
+      <div data-type="session-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about')}>
           <div className="truncate">Help me find sessions about</div>
         </StandalonePrompt>
@@ -829,14 +829,14 @@ export const SessionList = ({
         </StandalonePrompt>
       </div>
 
-      <div className="flex flex-col gap-3 lg:px-4 font-semibold">Sessions</div>
+      <div className="flex flex-col gap-3 px-4 font-semibold">Sessions</div>
 
       <div
         className={cn('sticky top-[55px] lg:top-[56px] z-[10] overflow-hidden', isSticky ? css['sticky-glass'] : '')}
         ref={stickyRef}
       >
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row flex-nowrap gap-2 lg:p-3 py-3 w-full">
+          <div className="flex flex-row flex-nowrap gap-2 p-3 py-3 w-full">
             {filterOptions.day.map((day: string, index: number, array: string[]) => (
               <div
                 key={day}
@@ -886,7 +886,7 @@ export const SessionList = ({
         </SwipeToScroll>
       </div>
 
-      <motion.div className="flex flex-col gap-3 mb-4 lg:px-4 relative">
+      <motion.div className="flex flex-col gap-3 mb-4 px-4 relative">
         {Object.entries(groupedSessions).map(([date, dateSessions]) => (
           <React.Fragment key={date}>
             <motion.div className="font-semibold" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
@@ -911,13 +911,13 @@ export const Livestream = ({ session, className }: { session: SessionType; class
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
       <div className={cn('flex justify-between items-center')}>
         <div className="flex flex-col gap-3 font-semibold">Livestream</div>
-        <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
+        {/* <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
           <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
           <div className="text-red font-semibold">Live</div>
-        </div>
+        </div> */}
       </div>
 
-      <div className="aspect">
+      <div className="aspect select-none">
         <div className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]">
           <VideoIcon
             className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
@@ -992,7 +992,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       data-type="session-view"
       className={cn(
         cardClass,
-        'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
+        'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
         !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >

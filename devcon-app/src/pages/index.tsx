@@ -13,6 +13,7 @@ import Login from 'pages/login'
 import { sessionsAtom } from './_app'
 import { useRecoilValue } from 'recoil'
 import Head from 'next/head'
+import { cn } from 'lib/shadcn/lib/utils'
 
 const Index = (props: any) => {
   const sessions = useRecoilValue(sessionsAtom)
@@ -35,8 +36,14 @@ const Index = (props: any) => {
 
       <Dashboard {...props} sessions={sessions} />
 
-      <div className="fixed top-0 h-full w-full flex justify-center items-center opacity-100 z-5 pointer-events-none">
+      <div
+        className={cn(
+          'fixed top-0 left-0 h-full w-full justify-center items-center opacity-90 bg-white z-5 pointer-events-none flex flex-col gap-2 transition-opacity duration-500',
+          sessions && 'opacity-0'
+        )}
+      >
         <FancyLoader loading={!sessions} />
+        Fetching schedule data...
       </div>
     </AppLayout>
   )
