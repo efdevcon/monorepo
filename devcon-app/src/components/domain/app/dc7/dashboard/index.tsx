@@ -102,7 +102,7 @@ const LoggedIn = () => {
     <div className="lg:px-4 flex justify-between items-center">
       <div className="flex flex-col gap-0">
         <div className="font-semibold text-lg">ยินดีต้อนรับ (yin-dee ton-rap)</div>
-        <div className="text-lg font-semibold">Hello, {account?.username || 'Anon'}</div>
+        <div className="text-lg font-semibold">{account?.username ? `Hello, ${account?.username}` : 'Welcome!'} 👋</div>
       </div>
 
       <LoggedInCard />
@@ -158,10 +158,10 @@ export const Dashboard = () => {
         </div>
       )}
 
-      {/* <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
-      <Notifications /> */}
+      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
+      <Notifications />
 
-      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Featured</div>
+      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4">Featured</div>
 
       <div className="lg:overflow-hidden mb-6">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
