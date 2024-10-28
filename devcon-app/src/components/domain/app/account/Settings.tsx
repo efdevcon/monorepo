@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import css from './login.module.scss'
 import { Link, LinkList } from 'components/common/link'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import { useAccountContext } from 'context/account-context'
-import { Alert } from 'components/common/alert'
+import Alert from 'lib/components/alert'
 import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
 import AccountFooter from './AccountFooter'
 import { useAvatar } from 'hooks/useAvatar'
 import { isEmail } from 'utils/validators'
 import { TruncateMiddle } from 'utils/formatting'
 import { useRouter } from 'next/router'
-import { AppNav } from 'components/domain/app/navigation'
 import Toggle from 'react-toggle'
 import { EMAIL_DEVCON } from 'utils/constants'
+import { cn } from 'lib/shadcn/lib/utils'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -57,29 +57,28 @@ export default function SettingsPage() {
 
   return (
     <>
-      <AppNav
-        links={[
-          {
-            title: 'Settings',
-          },
-        ]}
-      />
-      <div className={css['container']}>
-        <div>
-          <div className="section">
-            <div className="content">
-              <div className={css['alert']}>{error && <Alert title='Info' type="info" message={error} />}</div>
+      <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+        <div className={cn('basis-[60%] grow')}>
+          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
+            <div className="flex flex-col gap-3 pb-4 lg:px-4 mt-4">
+              <div className={css['alert']}>
+                {error && (
+                  <Alert title="Error" color="orange">
+                    {error}
+                  </Alert>
+                )}
+              </div>
 
-              <div className={css['profile']}>
+              <div className={cn(css['profile'], 'border-b border-solid border-[#E4E6EB]')}>
                 <div className={css['avatar']}>
                   <img src={avatar.url} alt={avatar.name} />
                 </div>
-                <p className={`${css['name']} title`}>
+                <p className={`${css['name']} text-xl font-semibold`}>
                   {accountContext.account?.username
                     ? accountContext.account?.username
                     : isEmail(avatar.name)
-                      ? avatar.name
-                      : TruncateMiddle(avatar.name, 8)}
+                    ? avatar.name
+                    : TruncateMiddle(avatar.name, 8)}
                 </p>
                 <span className={css['signout']} role="button" onClick={disconnect}>
                   Sign out
@@ -105,12 +104,12 @@ export default function SettingsPage() {
               >
                 <CollapsedSectionHeader title="Account" />
                 <CollapsedSectionContent>
-                  <div className={css['links']}>
-                    <LinkList>
-                      <Link to="/settings/email">Manage Email</Link>
-                      <Link to="/settings/wallets">Manage Wallets</Link>
-                      <Link to="/settings/username">Manage Username</Link>
-                      <Link to="/settings/profile">Manage Profile</Link>
+                  <div>
+                    <LinkList noIndicator>
+                      <Link to="/account/email">Manage Email</Link>
+                      <Link to="/account/wallets">Manage Wallets</Link>
+                      <Link to="/account/username">Manage Username</Link>
+                      <Link to="/account/profile">Manage Profile</Link>
                     </LinkList>
                   </div>
                 </CollapsedSectionContent>
@@ -136,9 +135,14 @@ export default function SettingsPage() {
                 <CollapsedSectionHeader title="Schedule" />
                 <CollapsedSectionContent>
                   <div className={css['share']}>
-                    <p>Public schedule</p>
+                    <div className="flex flex-col gap-2">
+                      <p className="font-bold">Personal schedule</p>
+                      <p>Share your personal schedule with your colleagues and friends.</p>
+                    </div>
                     <div className={css['toggle']}>
                       <Toggle
+                        className={'custom'}
+                        icons={false}
                         defaultChecked={accountContext.account?.publicSchedule}
                         onChange={toggleScheduleSharing}
                       />
@@ -174,9 +178,14 @@ export default function SettingsPage() {
                 <CollapsedSectionHeader title="Notifications" />
                 <CollapsedSectionContent>
                   <div className={css['share']}>
-                    <p>Notifications</p>
+                    <div className="flex flex-col gap-2">
+                      <p className="font-bold">Event updates</p>
+                      <p>Stay informed about the latest news, updates, and announcements related to Devcon SEA.</p>
+                    </div>
                     <div className={css['toggle']}>
                       <Toggle
+                        className={'custom'}
+                        icons={false}
                         defaultChecked={accountContext.account?.notifications}
                         onChange={toggleNotifications}
                       />
@@ -206,7 +215,7 @@ export default function SettingsPage() {
                 <CollapsedSectionContent>
                   <div className={css['links']}>
                     <LinkList>
-                      <Link to="/info#faq">FAQ</Link>
+                      {/* <Link to="/info#faq">FAQ</Link> */}
                       <Link to={`mailto:${EMAIL_DEVCON}`}>Support</Link>
                     </LinkList>
                   </div>
@@ -233,19 +242,22 @@ export default function SettingsPage() {
                 <CollapsedSectionHeader title="Delete Account" />
                 <CollapsedSectionContent>
                   <div className={css['wallet']}>
-                    <p>Once you delete your Devcon account, there is no going back. Tread lightly.</p>
+                    <p className="mb-4">Once you delete your Devcon account, there is no going back. Tread lightly.</p>
                     {!areYouSure && (
-                      <Button className={`red ${css['button']}`} onClick={() => setAreYouSure(true)}>
-                        Delete Devcon account
-                      </Button>
+                      <>
+                        <Button className="plain" color="purple-2" fill onClick={() => setAreYouSure(true)}>
+                          Delete Devcon account
+                        </Button>
+                      </>
                     )}
 
                     {areYouSure && (
                       <>
-                        <Button className={`black ${css['button']}`} onClick={() => setAreYouSure(false)}>
+                        <Button className="plain" color="black-1" fill onClick={() => setAreYouSure(false)}>
                           No, keep my account
-                        </Button>&nbsp;
-                        <Button className={`red ${css['button']}`} onClick={deleteAccount}>
+                        </Button>
+                        &nbsp;
+                        <Button className="plain" color="purple-2" fill onClick={deleteAccount}>
                           Yes, delete my account
                         </Button>
                       </>
@@ -253,11 +265,11 @@ export default function SettingsPage() {
                   </div>
                 </CollapsedSectionContent>
               </CollapsedSection>
+
+              <AccountFooter />
             </div>
           </div>
         </div>
-
-        <AccountFooter />
       </div>
     </>
   )

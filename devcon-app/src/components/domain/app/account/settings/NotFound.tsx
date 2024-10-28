@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function NotFound(props: Props) {
-  let className = css['container']
+  let className = `${css['container']} rounded-xl`
   if (props.className) className += ` ${props.className}`
 
   const emailTitle = 'No Email Found'
@@ -21,7 +21,7 @@ export default function NotFound(props: Props) {
 
   return (
     <div className={className}>
-      <div className={css['image']}>
+      <div className={`${css['image']} px-8 py-4 rounded-tl-xl rounded-bl-xl`}>
         <NotFoundIcon />
       </div>
       <div className={css['content']}>

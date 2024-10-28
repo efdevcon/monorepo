@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import css from './settings.module.scss'
 import { useAccountContext } from 'context/account-context'
-import { Alert } from 'components/common/alert'
+import Alert from 'lib/components/alert'
 import AccountFooter from '../AccountFooter'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import { InputForm } from 'components/common/input-form'
 import { isEmail } from 'utils/validators'
 import NotFound from './NotFound'
 import { useRouter } from 'next/router'
-import { AppNav } from '../../navigation'
+import { cn } from 'lib/shadcn/lib/utils'
 
 export default function EmailSettings() {
   const router = useRouter()
@@ -18,7 +18,6 @@ export default function EmailSettings() {
   const [error, setError] = useState('')
   const [emailSent, setEmailSent] = useState(false)
   const [nonce, setNonce] = useState('')
-  const [areYouSure, setAreYouSure] = useState(false)
 
   useEffect(() => {
     async function UpdateWithToken() {
@@ -26,7 +25,7 @@ export default function EmailSettings() {
       if (userAccount) {
         setEmail(userAccount.email ?? '')
         setError('Email address updated.')
-        router.push('/')
+        router.push('/account')
       }
       if (!userAccount) {
         setError('Unable to verify your email address.')
@@ -36,14 +35,9 @@ export default function EmailSettings() {
     if (router.query.token) UpdateWithToken()
   }, [router.query.token])
 
-
   if (!accountContext.account) {
     return <></>
   }
-
-  const canDelete = accountContext.account?.addresses?.length > 0 && !!accountContext.account.email
-  const buttonText = accountContext.account.email ? 'Update Email' : 'Add Email'
-
 
   const connectEmail = async () => {
     if (!isEmail(email)) {
@@ -70,20 +64,11 @@ export default function EmailSettings() {
 
     const userAccount = await accountContext.loginEmail(email, nonceNr)
     if (userAccount) {
-      router.push('/')
+      router.push('/account')
     }
     if (!userAccount) {
       setError('Unable to verify your email address.')
     }
-  }
-
-  const removeEmail = async () => {
-    if (!accountContext.account) return
-
-    await accountContext.updateAccount(accountContext.account.id, { ...accountContext.account, email: undefined })
-
-    setAreYouSure(false)
-    setEmail('')
   }
 
   const resendVerificationEmail = async () => {
@@ -97,23 +82,20 @@ export default function EmailSettings() {
 
   return (
     <>
-      <AppNav
-        nested
-        links={[
-          {
-            title: 'Email',
-          },
-        ]}
-      />
-
-      <div className={css['container']}>
-        <div>
-          <div className="section">
-            <div className="content">
-              <div className={css['alert']}>{error && <Alert title='Info' type="info" message={error} />}</div>
+      <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+        <div className={cn('basis-[60%] grow')}>
+          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
+            <div className="flex flex-col gap-3 pb-4 lg:px-4">
+              <div className={css['alert']}>
+                {error && (
+                  <Alert title="Error" color="orange">
+                    {error}
+                  </Alert>
+                )}
+              </div>
 
               <div className={css['form']}>
-                <p className={`${css['title']} title`}>Manage Email</p>
+                <p className={`${css['title']} text-lg font-bold`}>Manage Email</p>
 
                 {!accountContext.account.email && (
                   <div className={css['not-found']}>
@@ -133,17 +115,20 @@ export default function EmailSettings() {
                       onChange={value => setNonce(value)}
                       onSubmit={verifyEmail}
                     />
-                    <Button className={`red`} onClick={verifyEmail}>
-                      Verify your email
-                    </Button>
-                    <span className={css['resend']} role="button" onClick={resendVerificationEmail}>
-                      Re-send verification code
-                    </span>
+                    <div className="flex flex-row gap-4 items-center">
+                      <Button color="purple-2" fill onClick={verifyEmail}>
+                        Verify your email
+                      </Button>
+                      <span className={`${css['resend']} text-sm`} role="button" onClick={resendVerificationEmail}>
+                        Re-send verification code
+                      </span>
+                    </div>
                   </>
                 )}
 
                 {!emailSent && (
                   <>
+                    <p className={css['content']}>Add or update the associated email address of your Devcon account.</p>
                     <InputForm
                       className={css['input']}
                       placeholder="Email"
@@ -152,37 +137,19 @@ export default function EmailSettings() {
                       onSubmit={connectEmail}
                     />
 
-                    {!areYouSure && (
-                      <Button className={`black`} onClick={connectEmail}>
-                        {buttonText}
+                    <div className="flex flex-row gap-4">
+                      <Button color="purple-2" fill onClick={connectEmail}>
+                        {accountContext.account.email ? 'Update Email' : 'Add Email'}
                       </Button>
-                    )}
-                  </>
-                )}
-
-                {!areYouSure && !emailSent && canDelete && (
-                  <Button className={`red ${css['button']}`} onClick={() => setAreYouSure(true)}>
-                    Delete Email
-                  </Button>
-                )}
-
-                {areYouSure && (
-                  <>
-                    <p>Are you sure you want to remove your associated email address?</p>
-                    <Button className={`black ${css['button']}`} onClick={() => setAreYouSure(false)}>
-                      No, keep my email
-                    </Button>
-                    <Button className={`red ${css['button']}`} onClick={removeEmail}>
-                      Yes, delete my email
-                    </Button>
+                    </div>
                   </>
                 )}
               </div>
+
+              <AccountFooter />
             </div>
           </div>
         </div>
-
-        <AccountFooter />
       </div>
     </>
   )

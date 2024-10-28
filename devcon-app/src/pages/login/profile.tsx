@@ -1,5 +1,5 @@
 import { PrivatePage } from 'components/domain/app/account/PrivatePage'
-import SettingsPage from 'components/domain/app/account/Settings'
+import ProfileSettings from 'components/domain/app/account/settings/Profile'
 import { AppLayout } from 'components/domain/app/Layout'
 import { pageHOC } from 'context/pageHOC'
 import React from 'react'
@@ -8,9 +8,9 @@ import { DEFAULT_APP_PAGE } from 'utils/constants'
 
 export default pageHOC((props: any) => {
   return (
-    <AppLayout pageTitle="Settings" breadcrumbs={[{ label: 'Settings' }]}>
+    <AppLayout pageTitle="Profile Settings" breadcrumbs={[{ label: 'Profile Settings' }]}>
       <PrivatePage>
-        <SettingsPage {...props} />
+        <ProfileSettings {...props} />
       </PrivatePage>
     </AppLayout>
   )

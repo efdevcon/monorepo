@@ -9,7 +9,6 @@ interface ZupassContext {
   loading: boolean
   error?: string
   publicKey: string
-  commitment: bigint
   Connect: () => void
   GetTicket: () => void
   GetPods: () => void
@@ -19,7 +18,6 @@ const defaultZupassContext: ZupassContext = {
   loading: false,
   error: '',
   publicKey: '',
-  commitment: BigInt(0),
   Connect: () => {},
   GetTicket: () => {},
   GetPods: () => {},
@@ -42,7 +40,6 @@ export function ZupassProvider(props: PropsWithChildren) {
     loading: false,
     error: '',
     publicKey: '',
-    commitment: BigInt(0),
     Connect,
     GetTicket,
     GetPods,
@@ -79,7 +76,6 @@ export function ZupassProvider(props: PropsWithChildren) {
 
     const pods = await zupass.pod.collection('Devcon SEA').query(query)
     const ticket = pods.find(pod => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0))
-
     return ticket
   }
 

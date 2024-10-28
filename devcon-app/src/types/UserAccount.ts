@@ -5,8 +5,9 @@ export interface UserAccount {
   activeAddress?: string
   addresses: Array<string>
   disabled: boolean
-  pushSubscription: any,
-  role?: string
+  onboarded: boolean
+  pushSubscription: any
+  roles: string[]
   yearsOfExperience?: number
   tracks: string[]
   tags: string[]

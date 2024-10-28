@@ -110,7 +110,6 @@
   display: flex;
   align-items: center;
   padding-bottom: $gaps-gap-4;
-  border-bottom: 1px solid $colors-standard-border-color;
 
   @media (max-width: $breakpoints-sm) {
     align-items: center;
@@ -186,11 +185,8 @@
       @include fonts-bold;
       margin-right: 16px;
       text-decoration: underline;
+      color: #693EE0;
     }
-  }
-
-  .img {
-    flex-shrink: 0;
   }
 }
 
@@ -214,4 +210,8 @@
   .toggle {
     margin-right: 4px;
   }
+}
+
+.custom.react-toggle--checked .react-toggle-track {
+  background-color: #ab199f !important;
 }
