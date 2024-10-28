@@ -378,7 +378,7 @@ function App({ Component, pageProps }: AppProps) {
           onToggle={() => setDevaBotVisible(!devaBotVisible)}
           defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
           toggled={!!devaBotVisible}
-          notifications={accountContext.account ? notifications : undefined}
+          notifications={notifications || undefined}
           notificationsCount={notificationsCount}
           markNotificationsAsRead={markAllAsRead}
           SessionComponent={SessionCard}

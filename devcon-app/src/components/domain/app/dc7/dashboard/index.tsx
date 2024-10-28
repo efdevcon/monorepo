@@ -3,9 +3,11 @@ import Image from 'next/image'
 import { useAccountContext } from 'context/account-context'
 import cn from 'classnames'
 import { Button } from 'lib/components/button'
-import Portal from 'assets/images/dc-7/portal2.png'
+// import Portal from 'assets/images/dc-7/portal.png'
+import Portal from 'pages/login/dc-7-images/login-backdrop-2.png'
 import PhonePreview from 'assets/images/dc-7/phone-preview.png'
 import PassportLogo from 'assets/images/dc-7/passport-logo.png'
+import PassportLogoBlack from 'assets/images/dc-7/passport-logo-black.png'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { SessionCard, PersonalizedSuggestions, tagClass } from 'components/domain/app/dc7/sessions'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -26,13 +28,18 @@ export const cardClass =
 
 const NotLoggedIn = () => {
   return (
-    <div className="lg:px-4">
-      <div className="w-[361px] flex flex-col relative overflow-hidden rounded-2xl border border-solid border-[#E4E6EB] bg-white">
+    <div className="shrink max-w-full h-full rounded-2xl shadow-lg md:order-1">
+      <div className="flex flex-col relative overflow-hidden rounded-2xl border border-solid border-[#b664ed] bg-white">
         <div className="aspect-[4/2] relative">
           <Image src={Portal} alt="Portal" className="h-full w-full object-cover" quality={100} />
-          <Image src={PassportLogo} alt="Passport Logo" className="absolute bottom-2 left-2 w-[60%]" />
+          <Image src={PassportLogo} alt="Passport Logo" className="absolute bottom-2 left-2 w-[40%]" />
+          <Image
+            src={PhonePreview}
+            alt="Phone"
+            className="absolute bottom-0 right-0 h-[90%] w-full object-contain object-right"
+          />
         </div>
-        <div className="flex flex-col gap-2">
+        {/* <div className="flex flex-col gap-2">
           <div className="flex">
             <p className="w-[100%] shrink-0 grow-0 text-sm text-[black] p-4 pb-1 pt-3">
               Login to personalize your schedule, track your favorite speakers, share schedule, and more.
@@ -42,15 +49,15 @@ const NotLoggedIn = () => {
             Connect
           </Button>
 
-          {/* <div className="absolute right-0 bottom-0 w-[25%]relative flex justify-center items-end">
+          <div className="absolute right-0 bottom-0 w-[25%]relative flex justify-center items-end">
             <Image
               src={PhonePreview}
               alt="Phone"
               className="absolute right-0 w-full bottom-0 object-cover"
               width={100}
             />
-          </div> */}
-        </div>
+          </div>
+        </div> */}
       </div>
     </div>
   )
@@ -131,17 +138,32 @@ export const Dashboard = () => {
       {loggedIn ? (
         <LoggedIn />
       ) : (
-        <div className="flex justify-between gap-4 lg:px-4">
-          <div className="">
-            Connect to personalize your schedule, track your favorite speakers, share schedule, and more.
-          </div>
+        <div className="flex justify-between md:items-center gap-6 flex-col md:flex-row lg:px-4 relative">
           <NotLoggedIn />
+          <div className="flex flex-col gap-2 my-2 md:w-[50%] w-full md:order-2 order-1 shrink-0">
+            <Image src={PassportLogoBlack} alt="Passport Logo" className="object-contain w-[200px] filter-invert" />
+            <div className="text-xl font-semibold mt-2">
+              Connect to personalize your schedule, track your favorite speakers, share schedule, and more.
+            </div>
+            <div className="text-sm text-[#474747]">
+              Devcon Passport App is designed to be utilized on a mobile device. Please install as a PWA on your device
+              for the best experience.
+            </div>
+            <Link to="/login" className="mt-2 max-w-[250px] relative">
+              <Button color="purple-2" className="w-full" fat fill>
+                Connect
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
 
-      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4 ">Featured</div>
+      {/* <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
+      <Notifications /> */}
 
-      <div className="lg:overflow-hidden">
+      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Featured</div>
+
+      <div className="lg:overflow-hidden mb-6">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           {/* @ts-ignore */}
           <div className="flex no-wrap gap-2 lg:ml-4" data-type="featured-swiper" style={{ '--color-icon': 'white' }}>
@@ -158,7 +180,7 @@ export const Dashboard = () => {
               <p className="text-white font-semibold">AI Assistant</p>
               <SquareSparkles
                 className="group-hover:scale-110 transition-transform duration-300 icon"
-                style={{ fontSize: '24px' }}
+                style={{ fontSize: '28px' }}
               />
               <div className="text-xs">Unlock the power of prompts, ask Deva any questions related to Devcon.</div>
             </div>
@@ -170,7 +192,7 @@ export const Dashboard = () => {
               <p className="text-white font-semibold">Personalization</p>
               <UserProfileIcon
                 className="group-hover:scale-110 transition-transform duration-300 icon"
-                style={{ fontSize: '24px' }}
+                style={{ fontSize: '28px' }}
               />
               <div className="text-xs">Customize your Devcon experience by editing your preferences.</div>
             </Link>
@@ -183,7 +205,7 @@ export const Dashboard = () => {
               <p className="text-white font-semibold">Experiences</p>
               <VideoIcon
                 className="group-hover:scale-110 transition-transform duration-300 icon"
-                style={{ fontSize: '24px' }}
+                style={{ fontSize: '28px' }}
               />
               <div className="text-xs">Looking for a little fun? Check out amazing unique experiences at devcon.</div>
             </Link>
@@ -191,32 +213,24 @@ export const Dashboard = () => {
             <Link
               {...draggableLink}
               to="https://devcon.org/city-guide"
-              className={cn(featuredClass, 'mr-4 bg-gradient-to-br from-[#FF8864] via-[#E55066] to-[#f2782c]')}
+              className={cn(featuredClass, 'bg-gradient-to-br from-[#FF8864] via-[#E55066] to-[#f2782c]')}
             >
               <p className="text-white  font-semibold">City Guide</p>
               <CityGuideIcon
                 className="group-hover:scale-110 transition-transform duration-300 icon"
-                style={{ fontSize: '24px' }}
+                style={{ fontSize: '28px' }}
               />
               <div className="text-xs">Find your way around Bangkok with our city guide.</div>
             </Link>
 
-            {/* <div
-              className={cn(
-                featuredClass,
-                'bg-[radial-gradient(49.87%_66.23%_at_50.13%_50.16%,#6C6A77_0%,#9EA4BA_73%,#A8AEC7_90%,#CAD1E2_100%)]'
-              )}
-            >
+            <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] pr-4')}>
               <p className="text-white text-lg font-semibold">Food & Beverage</p>
-              <CityGuideIcon style={{ fontSize: '28px' }} />
+              <FoodIcon style={{ fontSize: '28px' }} />
               <div>View event menu items and dietary information.</div>
-            </div> */}
+            </div>
           </div>
         </SwipeToScroll>
       </div>
-
-      <div className="flex gap-3 pb-4 lg:mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
-      <Notifications />
 
       <div className="pb-4 lg:mx-4 border-top"></div>
 

@@ -170,7 +170,7 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
 
 export const fetchSpeakers = async (version?: string): Promise<Speaker[]> => {
   const sessions = await fetchSessions(version)
-  const speakersData = await get(`/speakers?size=1100&version=${version}`) // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
+  const speakersData = await get(`/speakers?event=${eventName}&size=1100&version=${version}`) // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
   const speakers = speakersData.map((i: any) => {
     const speakerSessions = sessions.filter((session: SessionType) =>
       session.speakers.some(speaker => i.id === speaker.id)
