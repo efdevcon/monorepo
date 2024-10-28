@@ -22,6 +22,7 @@ import { Link } from 'components/common/link'
 import { SessionCard } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
+import { useWindowWidth } from '../../Layout'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -160,6 +161,8 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
   // const [favorited, setFavorited] = useState(false)
   // const router = useRouter()
   const pathname = usePathname()
+  const windowWidth = useWindowWidth()
+  const isLargeScreen = windowWidth > 1024
 
   return (
     <Link
@@ -169,13 +172,15 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
       )}
       to={`/speakers/${speaker.id}`}
       onClick={(e: any) => {
-        if (pathname === '/speakers') e.preventDefault()
+        if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
 
         // Only null if we are on the speakers page (otherwise we want to keep the speaker selected)
-        if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
-          setSelectedSpeaker(null)
-        } else {
-          setSelectedSpeaker(speaker)
+        if (isLargeScreen) {
+          if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
+            setSelectedSpeaker(null)
+          } else {
+            setSelectedSpeaker(speaker)
+          }
         }
 
         setDevaBotVisible(false)
@@ -323,8 +328,8 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const draggableLink = useDraggableLink()
   const pathname = usePathname()
-
-  console.log(speakers?.slice(0, 10))
+  const windowWidth = useWindowWidth()
+  const isLargeScreen = windowWidth > 1024
 
   const [isSticky, setIsSticky] = useState(false)
   const stickyRef = useRef<HTMLDivElement>(null)
@@ -380,7 +385,8 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
             {visibleSpeakers.slice(0, 10).map((speaker, index) => (
-              <div
+              <Link
+                to={`/speakers/${speaker.id}`}
                 key={speaker.id}
                 className={cn(
                   'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
@@ -388,16 +394,22 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   index === 0 ? 'ml-4' : ''
                 )}
                 {...draggableLink}
-                onClick={e => {
+                onClick={(e: any) => {
                   const result = draggableLink.onClick(e)
 
                   if (!result) return
 
-                  if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
-                    setSelectedSpeaker(null)
-                  } else {
-                    setSelectedSpeaker(speaker)
+                  if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
+
+                  if (isLargeScreen) {
+                    if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
+                      setSelectedSpeaker(null)
+                    } else {
+                      setSelectedSpeaker(speaker)
+                    }
                   }
+
+                  setDevaBotVisible(false)
                 }}
               >
                 <div className="relative rounded-full w-[80px] h-[80px]">
@@ -412,7 +424,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   <div className={cn('absolute inset-0 rounded-full', css['speaker-gradient'])} />
                 </div>
                 <p className="text-xs font-medium">{speaker.name}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </SwipeToScroll>
@@ -526,7 +538,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       data-type="speaker-view"
       className={cn(
         cardClass,
-        'flex flex-col gap-3 lg:p-4 self-start w-full no-scrollbar',
+        'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
         !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
@@ -633,7 +645,7 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
         <SpeakerList speakers={speakers} />
       </div>
 
-      <div className="block lg:hidden">
+      {/* <div className="block lg:hidden">
         <Popup open={!!selectedSpeaker} setOpen={() => setSelectedSpeaker(null)}>
           <div
             className={cn(
@@ -643,7 +655,7 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
             <SpeakerView speaker={selectedSpeaker} />
           </div>
         </Popup>
-      </div>
+      </div> */}
 
       {selectedSpeaker && (
         <div className={cn('basis-[40%] min-w-[393px] max-w-[100%] sticky top-[72px] self-start hidden lg:block')}>

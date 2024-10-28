@@ -25,6 +25,7 @@ import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
+import { useWindowWidth } from '../../Layout'
 import {
   devaBotVisibleAtom,
   selectedSessionAtom,
@@ -261,6 +262,8 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   const pathname = usePathname()
   const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
   const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
+  const windowWidth = useWindowWidth()
+  const isLargeScreen = windowWidth > 1024
 
   const trackLogo = getTrackLogo(track)
 
@@ -278,12 +281,14 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
 
         if (!result) return
 
-        if (pathname === '/schedule') e.preventDefault()
+        if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
 
-        if (selectedSession?.id === id && pathname === '/schedule') {
-          setSelectedSession(null)
-        } else {
-          setSelectedSession(session)
+        if (isLargeScreen) {
+          if (selectedSession?.id === id && pathname === '/schedule') {
+            setSelectedSession(null)
+          } else {
+            setSelectedSession(session)
+          }
         }
 
         setDevaBotVisible(false)
