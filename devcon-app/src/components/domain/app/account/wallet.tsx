@@ -79,8 +79,21 @@ export function WalletLoginButton({ onError }: Props) {
   }
 
   return (
-    <Button fat fill className="w-full plain mt-4" color="purple-2" onClick={connectWeb3AndLogin}>
-      Continue With Ethereum
-    </Button>
+    <>
+      <Button
+        fat
+        fill
+        className="w-full plain mt-4"
+        color="purple-2"
+        onClick={(e: any) => {
+          e.preventDefault()
+          setTimeout(() => {
+            connectWeb3AndLogin()
+          }, 0)
+        }}
+      >
+        Continue With Ethereum
+      </Button>
+    </>
   )
 }
