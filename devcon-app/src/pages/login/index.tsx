@@ -166,10 +166,6 @@ const TrustModels = (props: any) => {
       setError('Please provide a valid verification code.')
       return
     }
-    if (nonce.length !== 8) {
-      setError('Please provide a valid verification code.')
-      return
-    }
 
     const userAccount = await accountContext.loginEmail(email, nonceNr)
     if (userAccount && userAccount.onboarded) {
@@ -310,15 +306,10 @@ const TrustModels = (props: any) => {
       {emailSent && (
         <div>
           <div className="text-xl">Enter Verification Code.</div>
-          {error && (
-            <p>
-              <Alert title="">{error}</Alert>
-            </p>
-          )}
           <div className="text-sm text-[#939393] my-2 mb-4">
             We&apos;ve sent a verification code to your email address.
           </div>
-          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)} onSubmit={verifyEmail}>
+          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)}>
             <InputOTPGroup>
               <InputOTPSlot index={0} />
               <InputOTPSlot index={1} />

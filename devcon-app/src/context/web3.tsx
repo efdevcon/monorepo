@@ -22,11 +22,7 @@ createAppKit({
     icons: ['https://avatars.githubusercontent.com/u/40744488'],
   },
   features: {
-    swaps: false,
-    onramp: false,
     analytics: true,
-    history: true,
-    socials: ['x', 'farcaster', 'github'],
   },
 })
 
