@@ -630,6 +630,8 @@ const DevaBot = ({
                                                 <Link
                                                   href={`https://devcon.org${fileUrl}`}
                                                   key={index}
+                                                  target="_blank"
+                                                  rel="noopener noreferrer"
                                                 >
                                                   https://devcon.org{fileUrl}
                                                 </Link>
