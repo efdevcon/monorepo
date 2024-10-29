@@ -693,6 +693,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         >
           {filterOptions.day.map((day: string, index: number, array: string[]) => (
             <div
+              key={day}
               className={cn(
                 'cursor-pointer font-semibold flex px-2 py-3 justify-center items-center text-[#525866] border-solid border-b-[transparent] border-b-[2px] transition-all duration-300',
                 (Object.keys(sessionFilter.day).length === 0 && day === 'All') || sessionFilter.day[day]
