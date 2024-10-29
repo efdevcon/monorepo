@@ -54,9 +54,10 @@ export async function getStaticPaths() {
       return { params: { id: i.id } }
     })
 
+  console.log('Create Speaker paths', paths.length)
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
