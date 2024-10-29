@@ -8,7 +8,7 @@ type CallToActionProps = {
   tag?: string
   children: any
   color?: 'orange' | 'purple' | 'blue'
-  BackgroundSvg: React.ElementType
+  BackgroundSvg: React.ElementType | any
   link: any
   linkText: string
   meta: string
