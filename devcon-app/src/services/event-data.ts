@@ -284,9 +284,11 @@ export const fetchRooms = async (): Promise<Array<Room>> => {
   })
 }
 
-export const fetchFloors = async (): Promise<Array<string>> => {
+export const fetchFloors = async (): Promise<Array<Room>> => {
   const rooms = await fetchRooms()
-  return [...new Set(rooms.map(i => i.info).filter(Boolean))]
+
+  return rooms || []
+  // return [...new Set(rooms.map(i => i.info).filter(Boolean))]
 }
 
 export const fetchSpeaker = async (id: string): Promise<Speaker | undefined> => {

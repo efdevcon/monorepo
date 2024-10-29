@@ -7,6 +7,7 @@ export interface Session {
   sourceId: string
   speakers: Speaker[]
   title: string
+  slot_roomId?: string
   track: string
   duration: number
   featured: boolean

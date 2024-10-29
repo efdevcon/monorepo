@@ -1,31 +1,21 @@
 import React, { PropsWithChildren, useState, useEffect, useRef, RefObject, ReactNode } from 'react'
-// import { BottomNav } from 'components/domain/app/navigation'
 import css from './app.module.scss'
-// import { Header } from 'components/common/layouts/header'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb'
 import useGetElementHeight from 'hooks/useGetElementHeight'
 import AppIcon from 'assets/icons/app-icons-1.svg'
-import SpeakerIcon from 'assets/icons/speaker.svg'
-import CalendarFillIcon from 'assets/icons/calendar-fill.svg'
-import TicketIcon from 'assets/icons/ticket-2.svg'
-import FolderIcon from 'assets/icons/folder.svg'
-import TilesIcon from 'assets/icons/app-tiles.svg'
+import TilesIcon from 'assets/icons/dc-7/tiles.svg'
+import TilesFillIcon from 'assets/icons/dc-7/tiles-fill.svg'
+import SpeakerIcon from 'assets/icons/dc-7/speaker.svg'
+import SpeakerFillIcon from 'assets/icons/dc-7/speaker-fill.svg'
+import ScheduleIcon from 'assets/icons/dc-7/schedule.svg'
+import ScheduleFillIcon from 'assets/icons/dc-7/schedule-fill.svg'
+// import CalendarFillIcon from 'assets/icons/calendar-fill.svg'
+// import TilesIcon from 'assets/icons/app-tiles.svg'
 import cn from 'classnames'
 import { usePathname, useRouter } from 'next/navigation'
 import AppIcons from 'assets/icons/app-icons.svg'
-import SunCloudy from 'assets/images/dc-7/sun-cloudy.png'
-import Image from 'next/image'
-import BellIcon from 'assets/icons/bell-simple.svg'
 import ThreeDotsIcon from 'assets/icons/three-dots.svg'
-import UserIcon from 'assets/icons/user.svg'
-// import SpeakerIcon from 'assets/icons/speaker.svg'
+import UserIcon from 'assets/icons/dc-7/account.svg'
+import UserFillIcon from 'assets/icons/dc-7/account-fill.svg'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
@@ -43,7 +33,7 @@ import {
 import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
 import { AccountContext, useAccountContext } from 'context/account-context'
 import { useIsScrolled } from 'hooks/useIsScrolled'
-import ArrowBackIcon from 'assets/icons/arrow-curved.svg'
+import ArrowBackIcon from 'assets/icons/arrow_left.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
 
 type HeaderProps = {
@@ -168,7 +158,7 @@ const BackButton = () => {
           <ArrowBackIcon
             style={{
               fontSize: 20,
-              transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
+              // transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
             }}
           />
         </button>
@@ -315,18 +305,18 @@ const Header = (props: HeaderProps) => {
   )
 }
 
-const navItems = (isLoggedIn: boolean) => [
+const navItems = (isLoggedIn: boolean, pathname: string) => [
   {
-    icon: TilesIcon,
+    icon: pathname === '/' ? TilesFillIcon : TilesIcon,
     label: 'Dashboard',
     href: '/',
-    size: 16,
+    size: 17,
   },
   {
-    icon: UserIcon,
+    icon: pathname === '/account' ? UserFillIcon : UserIcon,
     label: isLoggedIn ? 'Account' : 'Log In',
     href: isLoggedIn ? '/account' : '/login',
-    size: 18,
+    size: 22,
   },
   // {
   //   icon: TicketIcon,
@@ -336,13 +326,13 @@ const navItems = (isLoggedIn: boolean) => [
   // },
   {
     label: 'Speakers',
-    icon: SpeakerIcon,
+    icon: pathname === '/speakers' ? SpeakerFillIcon : SpeakerIcon,
     href: '/speakers',
     size: 18,
   },
   {
     label: 'Schedule',
-    icon: CalendarFillIcon,
+    icon: pathname === '/schedule' ? ScheduleFillIcon : ScheduleIcon,
     href: '/schedule',
     size: 18,
   },
@@ -388,7 +378,7 @@ const Navigation = () => {
       ></div>
       <div className="sticky top-[80px] flex gap-4 flex-row xl:flex-col items-center xl:-translate-x-[calc(50%)] xl:w-[60px] pointer-events-auto xl:mr-16">
         <div className="flex xl:flex-col gap-4 rounded-full h-[50px] xl:h-auto xl:w-[60px] justify-center items-center xl:py-2 px-2 glass-buttons border border-solid border-[#E1E4EA] border-opacity-50 shadow">
-          {navItems(!!accountContext.account).map((item, index) => {
+          {navItems(!!accountContext.account, pathname).map((item, index) => {
             let isActive = pathname === item.href
 
             if (item.label === 'Schedule' && pathname.includes('/schedule')) {
@@ -421,9 +411,7 @@ const Navigation = () => {
                       isActive && 'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
                     )}
                   >
-                    <item.icon
-                      style={isActive ? { fill: 'rgb(68 68 68)', fontSize: item.size } : { fontSize: item.size }}
-                    />
+                    <item.icon style={isActive ? { fill: '#7D52F4', fontSize: item.size } : { fontSize: item.size }} />
                   </Link>
                 </PopoverTrigger>
 

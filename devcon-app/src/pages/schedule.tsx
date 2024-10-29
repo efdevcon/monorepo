@@ -20,6 +20,7 @@ import { useRecoilValue } from 'recoil'
 
 export default pageHOC((props: any) => {
   const sessions = useRecoilValue(sessionsAtom)
+
   // const scheduleContext = useScheduleContext()
   // const { query } = useRouter()
   // const speakers = useSpeakerData()
@@ -32,6 +33,8 @@ export default pageHOC((props: any) => {
 
   // console.log(sessions, 'sessions?')
   // console.log(props.event, 'event?')
+
+  console.log(props.rooms)
 
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
@@ -83,8 +86,8 @@ export async function getStaticProps(context: any) {
   return {
     props: {
       event: await fetchEvent(),
+      rooms: await fetchRooms(),
       // tracks: await fetchTracks(),
-      // rooms: await fetchRooms(),
       // expertiseLevels: await fetchExpertiseLevels(),
       // sessionTypes: await fetchSessionTypes(),
     },

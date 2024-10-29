@@ -192,6 +192,11 @@ export const sessionsAtom = atom<SessionType[] | null>({
   default: null,
 })
 
+export const roomsAtom = atom<any[] | null>({
+  key: 'rooms',
+  default: null,
+})
+
 export const notificationsAtom = atom<any[]>({
   key: 'notifications',
   default: [],
@@ -276,6 +281,7 @@ function App({ Component, pageProps }: AppProps) {
   const [devaBotVisible, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const sessions = useSessionData()
   const [notifications, setNotifications] = useRecoilState(notificationsAtom)
+  const [rooms, setRooms] = useRecoilState(roomsAtom)
   const accountContext = useAccountContext()
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
   const router = useRouter()
@@ -288,6 +294,12 @@ function App({ Component, pageProps }: AppProps) {
       router.replace('/login')
     }
   }, [])
+
+  useEffect(() => {
+    if (pageProps.rooms) {
+      setRooms(pageProps.rooms)
+    }
+  }, [pageProps])
 
   useEffect(() => {
     fetchNotifications()
