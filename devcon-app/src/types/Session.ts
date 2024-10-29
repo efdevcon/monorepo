@@ -4,10 +4,12 @@ import { Moment } from 'moment'
 
 export interface Session {
   id: string
+  sourceId: string
   speakers: Speaker[]
   title: string
   track: string
   duration: number
+  featured: boolean
   slot_start: number
   slot_end: number
   start: number

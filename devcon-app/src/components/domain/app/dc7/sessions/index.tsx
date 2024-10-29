@@ -106,8 +106,8 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         session.type.toLowerCase().includes(text.toLowerCase()) ||
         session.track.toLowerCase().includes(text.toLowerCase())
 
-      const isAttending = attendingSessions[session.id]
-      const isInterested = interestedSessions[session.id]
+      const isAttending = attendingSessions[session.sourceId]
+      const isInterested = interestedSessions[session.sourceId]
 
       const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
       const matchesDay =
@@ -239,7 +239,7 @@ const TrackTag = ({ track, className }: { track: string; className?: string }) =
 }
 
 export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
-  const { id, title, speakers, track, slot_start, slot_end, expertise, description } = session
+  const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   //   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
@@ -271,10 +271,10 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
     <Link
       className={cn(
         'flex flex-col bg-white rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300',
-        selectedSession?.id === id && pathname === '/schedule' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+        selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
         className
       )}
-      to={`/schedule/${id}`}
+      to={`/schedule/${sourceId}`}
       {...draggableLink}
       onClick={(e: any) => {
         const result = draggableLink.onClick(e)
@@ -284,7 +284,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
         if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
 
         if (isLargeScreen) {
-          if (selectedSession?.id === id && pathname === '/schedule') {
+          if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
             setSelectedSession(null)
           } else {
             setSelectedSession(session)
@@ -367,10 +367,10 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               e.stopPropagation()
               e.preventDefault()
 
-              setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
+              setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
             }}
           >
-            {attendingSessions[session.id] ? (
+            {attendingSessions[session.sourceId] ? (
               <IconAdded style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <CalendarIcon style={{ '--color-icon': '#99A0AE' }} />
@@ -382,10 +382,13 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               e.stopPropagation()
               e.preventDefault()
 
-              setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+              setInterestedSessions({
+                ...interestedSessions,
+                [session.sourceId]: !interestedSessions[session.sourceId],
+              })
             }}
           >
-            {interestedSessions[session.id] ? (
+            {interestedSessions[session.sourceId] ? (
               <HeartIcon style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <HeartIcon style={{ '--color-icon': '#99A0AE' }} />
@@ -699,7 +702,7 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
 // TODO: use recommendation engine to generate personalized suggestions
 export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] }) => {
   // @ts-ignore
-  const featuredSessions = sessions.filter(s => s.featured)
+  const featuredSessions = sessions.filter(s => s.featured).sort(() => Math.random() - 0.5)
 
   return (
     <>
@@ -711,7 +714,7 @@ export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] 
             {featuredSessions.map((session, index) => (
               <SessionCard
                 session={session}
-                key={session.id}
+                key={session.sourceId}
                 className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'ml-4' : '')}
               />
             ))}
@@ -920,7 +923,7 @@ export const SessionList = ({
               {date}
             </motion.div>
             {dateSessions.map(session => (
-              <motion.div key={session.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <motion.div key={session.sourceId} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                 <SessionCard session={session} />
               </motion.div>
             ))}
@@ -988,11 +991,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
   const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  //   const { toast } = useToast()
 
   if (!session) return null
-
-  console.log(session, 'session')
 
   const trackLogo = getTrackLogo(session.track)
 
@@ -1061,10 +1061,10 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
                 e.stopPropagation()
                 e.preventDefault()
 
-                setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })
+                setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
               }}
             >
-              {attendingSessions[session.id] ? (
+              {attendingSessions[session.sourceId] ? (
                 <IconAdded style={{ '--color-icon': 'white' }} />
               ) : (
                 <CalendarIcon style={{ '--color-icon': 'white' }} />
@@ -1077,10 +1077,13 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
                 e.stopPropagation()
                 e.preventDefault()
 
-                setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+                setInterestedSessions({
+                  ...interestedSessions,
+                  [session.sourceId]: !interestedSessions[session.sourceId],
+                })
               }}
             >
-              {interestedSessions[session.id] ? (
+              {interestedSessions[session.sourceId] ? (
                 <HeartIcon style={{ '--color-icon': 'red' }} />
               ) : (
                 <HeartIcon style={{ '--color-icon': 'white' }} />
@@ -1090,7 +1093,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             {!standalone && (
               <Link
                 className="flex justify-center items-center select-none shrink-0 p-2"
-                to={`/schedule/${session.id}`}
+                to={`/schedule/${session.sourceId}`}
               >
                 <ShareIcon
                   className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
@@ -1129,21 +1132,27 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white">
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
-          onClick={() => setAttendingSessions({ ...attendingSessions, [session.id]: !attendingSessions[session.id] })}
+          onClick={() =>
+            setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
+          }
         >
           <div className="text-lg hover:scale-110 transition-transform duration-300">
-            {attendingSessions[session.id] ? <IconAdded style={{ '--color-icon': '#7d52f4' }} /> : <CalendarIcon />}
+            {attendingSessions[session.sourceId] ? (
+              <IconAdded style={{ '--color-icon': '#7d52f4' }} />
+            ) : (
+              <CalendarIcon />
+            )}
           </div>
           <p>Attend Session</p>
         </div>
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
           onClick={() =>
-            setInterestedSessions({ ...interestedSessions, [session.id]: !interestedSessions[session.id] })
+            setInterestedSessions({ ...interestedSessions, [session.sourceId]: !interestedSessions[session.sourceId] })
           }
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
-            {interestedSessions[session.id] ? <HeartIcon style={{ '--color-icon': '#7d52f4' }} /> : <HeartIcon />}
+            {interestedSessions[session.sourceId] ? <HeartIcon style={{ '--color-icon': '#7d52f4' }} /> : <HeartIcon />}
           </div>
           <p>Mark as interesting</p>
         </div>

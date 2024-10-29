@@ -21,7 +21,6 @@ export default (props: any) => {
   //     }
   //   }, [props.session])
 
-  // TODO: how the hell is this undefined, then gets defined immediately after?
   if (!props.session) return null
 
   return (
@@ -44,13 +43,10 @@ export default (props: any) => {
 
 export async function getStaticPaths() {
   const sessions = await fetchSessions()
-  const paths =
-    [] ||
-    sessions.map(i => {
-      return { params: { id: i.id } }
-    })
+  const paths = sessions.map(i => {
+    return { params: { id: i.sourceId } }
+  })
 
-  console.log('Create Session paths', paths.length)
   return {
     paths,
     fallback: 'blocking',
@@ -59,8 +55,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const sessions = await fetchSessions()
-  const session = sessions.find(i => i.id === context.params.id)
-
+  const session = sessions.find(i => i.sourceId === context.params.id)
   if (!session) {
     return {
       props: null,
@@ -68,11 +63,8 @@ export async function getStaticProps(context: any) {
     }
   }
 
-  // const related = session ? GetRelatedSessions(String(session.id), sessions) : []
-
   return {
     props: {
-      // relatedSessions: related,
       session,
     },
   }

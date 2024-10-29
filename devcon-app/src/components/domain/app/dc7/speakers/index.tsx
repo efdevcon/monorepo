@@ -131,7 +131,7 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
     if (!speakers) return []
 
     return speakers.filter(speaker => {
-      const isFavorited = favoritedSpeakers[speaker.id]
+      const isFavorited = favoritedSpeakers[speaker.sourceId]
 
       const matchesText = speaker.name.toLowerCase().includes(speakerFilter.text.toLowerCase())
       const matchesLetter = speakerFilter.letter === '' || speaker.name[0].toUpperCase() === speakerFilter.letter
@@ -168,15 +168,17 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
     <Link
       className={cn(
         'flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-        selectedSpeaker?.id === speaker.id && pathname === '/speakers' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+        selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers'
+          ? 'border-[#ac9fdf] !bg-[#EFEBFF]'
+          : ''
       )}
-      to={`/speakers/${speaker.id}`}
+      to={`/speakers/${speaker.sourceId}`}
       onClick={(e: any) => {
         if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
 
         // Only null if we are on the speakers page (otherwise we want to keep the speaker selected)
         if (isLargeScreen) {
-          if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
+          if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
             setSelectedSpeaker(null)
           } else {
             setSelectedSpeaker(speaker)
@@ -211,16 +213,19 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
       <div
         className={cn(
           'flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300',
-          favoritedSpeakers[speaker.id] ? 'text-[#ac9fdf]' : ''
+          favoritedSpeakers[speaker.sourceId] ? 'text-[#ac9fdf]' : ''
         )}
         onClick={e => {
           e.stopPropagation()
           e.preventDefault()
 
-          setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.id]: !favoritedSpeakers[speaker.id] })
+          setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.sourceId]: !favoritedSpeakers[speaker.sourceId] })
         }}
       >
-        <HeartIcon className="icon" style={{ '--color-icon': favoritedSpeakers[speaker.id] ? '#7d52f4' : '#99A0AE' }} />
+        <HeartIcon
+          className="icon"
+          style={{ '--color-icon': favoritedSpeakers[speaker.sourceId] ? '#7d52f4' : '#99A0AE' }}
+        />
       </div>
     </Link>
   )
@@ -386,11 +391,11 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
           <div className="flex flex-row gap-3">
             {visibleSpeakers.slice(0, 10).map((speaker, index) => (
               <Link
-                to={`/speakers/${speaker.id}`}
-                key={speaker.id}
+                to={`/speakers/${speaker.sourceId}`}
+                key={speaker.sourceId}
                 className={cn(
                   'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-                  selectedSpeaker?.id === speaker.id ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+                  selectedSpeaker?.sourceId === speaker.sourceId ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
                   index === 0 ? 'ml-4' : ''
                 )}
                 {...draggableLink}
@@ -402,7 +407,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
                   if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
 
                   if (isLargeScreen) {
-                    if (selectedSpeaker?.id === speaker.id && pathname === '/speakers') {
+                    if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
                       setSelectedSpeaker(null)
                     } else {
                       setSelectedSpeaker(speaker)
@@ -489,7 +494,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
         {visibleSpeakers.map((speaker, index) => {
           return (
             <motion.div
-              key={speaker.id}
+              key={speaker.sourceId}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               // transition={{ duration: 0.3, delay: index * 0.05 }}
@@ -520,7 +525,7 @@ export const SpeakerSessions = ({
       <div className="flex flex-col gap-3 font-semibold shrink-0 mb-3">Sessions</div>
       <div className="flex flex-col gap-3 shrink-0">
         {speaker?.sessions?.map(session => (
-          <SessionCard key={session.id} session={session} />
+          <SessionCard key={session.sourceId} session={session} />
         ))}
       </div>
     </div>
@@ -569,14 +574,14 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
           <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
             <HeartIcon
               onClick={() =>
-                setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.id]: !favoritedSpeakers[speaker.id] })
+                setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.sourceId]: !favoritedSpeakers[speaker.sourceId] })
               }
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': favoritedSpeakers[speaker.id] ? 'red' : 'white' }}
+              style={{ '--color-icon': favoritedSpeakers[speaker.sourceId] ? 'red' : 'white' }}
             />
 
             {!standalone && (
-              <Link className="flex justify-center items-center" to={`/speakers/${speaker.id}`}>
+              <Link className="flex justify-center items-center" to={`/speakers/${speaker.sourceId}`}>
                 <ShareIcon
                   className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
                   style={{ '--color-icon': 'white' }}

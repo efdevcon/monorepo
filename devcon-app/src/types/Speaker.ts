@@ -1,9 +1,10 @@
-import { Session } from "./Session"
+import { Session } from './Session'
 
 export interface Speaker {
-  id: string,
-  name: string,
-  role?: string,
+  id: string
+  sourceId: string
+  name: string
+  role?: string
   company?: string
   website?: string
   twitter?: string

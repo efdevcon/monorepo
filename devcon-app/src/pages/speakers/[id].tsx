@@ -21,7 +21,6 @@ export default (props: any) => {
   //     }
   //   }, [props.speaker])
 
-  // TODO: how the hell is this undefined, then gets defined immediately after?
   if (!props.speaker) return null
 
   return (
@@ -47,14 +46,10 @@ export default (props: any) => {
 
 export async function getStaticPaths() {
   const speakers = await fetchSpeakers()
+  const paths = speakers.map(i => {
+    return { params: { id: i.sourceId } }
+  })
 
-  const paths =
-    [] ||
-    speakers.map(i => {
-      return { params: { id: i.id } }
-    })
-
-  console.log('Create Speaker paths', paths.length)
   return {
     paths,
     fallback: 'blocking',
@@ -63,7 +58,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const speaker = await fetchSpeaker(context.params.id)
-
   if (!speaker) {
     return {
       props: null,
