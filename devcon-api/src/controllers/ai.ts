@@ -48,7 +48,7 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
 
   try {
     // Create a stream for the AI response
-    const stream = await api.createMessageStream('asst_fUtZhDjL35nZBBog2bJTKNoy', message, threadID)
+    const stream = await api.createMessageStream('asst_B3UJxQ8V53rmVWxaqu3Iraif', message, threadID)
 
     // Set headers for streaming
     res.writeHead(200, {
