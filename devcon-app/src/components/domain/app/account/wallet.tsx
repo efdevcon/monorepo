@@ -8,7 +8,11 @@ import { useAccountContext } from 'context/account-context'
 import { createSiweMessage } from 'viem/siwe'
 import { useRouter } from 'next/router'
 
-export function WalletLoginButton() {
+interface Props {
+  onError?: (error: string) => void
+}
+
+export function WalletLoginButton({ onError }: Props) {
   const { address } = useAccount()
   const { open } = useAppKit()
   const { signMessageAsync } = useSignMessage()
@@ -16,19 +20,18 @@ export function WalletLoginButton() {
   const router = useRouter()
   const loggedIn = !!accountContext.account
 
-  const [loginWeb3, setLoginWeb3] = useState(false)
-  const [error, setError] = useState('')
+  const [loginWeb3, setLoginWeb3] = useState(0)
 
   useEffect(() => {
     async function LoginWithWallet() {
-      if (!address) {
-        setError('No address.')
+      if (!address || loginWeb3 === 0) {
+        onError?.('No address connected')
         return
       }
 
       const token = await accountContext.getToken(address.toLowerCase(), false)
       if (!token) {
-        setError('Unable to create verification token')
+        onError?.('Unable to create verification token')
         return
       }
 
@@ -42,22 +45,26 @@ export function WalletLoginButton() {
         version: '1',
       })
 
-      const signature = await signMessageAsync({ message })
-      const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
-      if (userAccount && userAccount.onboarded) {
-        router.push('/')
-        return
-      }
-      if (userAccount && !userAccount.onboarded) {
-        router.push('/onboarding')
-        return
-      }
-      if (!userAccount) {
-        setError('Unable to login with web3')
+      try {
+        const signature = await signMessageAsync({ message })
+        const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
+        if (userAccount && userAccount.onboarded) {
+          router.push('/')
+          return
+        }
+        if (userAccount && !userAccount.onboarded) {
+          router.push('/onboarding')
+          return
+        }
+        if (!userAccount) {
+          onError?.('Unable to verify signature')
+        }
+      } catch (error) {
+        onError?.('Unable to login')
       }
     }
 
-    if (address && loginWeb3) LoginWithWallet()
+    if (address && loginWeb3 > 0) LoginWithWallet()
   }, [address, loginWeb3])
 
   if (loggedIn) {
@@ -68,8 +75,7 @@ export function WalletLoginButton() {
     if (!address) {
       await open()
     }
-
-    setLoginWeb3(true)
+    setLoginWeb3(Date.now())
   }
 
   return (

@@ -3,7 +3,7 @@ import css from './snapshot.module.scss'
 
 type SnapshotItem = {
   id?: string | number
-  Icon: React.ElementType
+  Icon: React.ElementType | any
   title: string | React.ReactElement
   left?: string
   right: string | React.ReactElement

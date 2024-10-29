@@ -27,6 +27,7 @@ import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
 import { Link } from 'components/common/link'
+import Alert from 'lib/components/alert'
 
 const MobileLogin = (props: any) => {
   const accountContext = useAccountContext()
@@ -165,6 +166,10 @@ const TrustModels = (props: any) => {
       setError('Please provide a valid verification code.')
       return
     }
+    if (nonce.length !== 8) {
+      setError('Please provide a valid verification code.')
+      return
+    }
 
     const userAccount = await accountContext.loginEmail(email, nonceNr)
     if (userAccount && userAccount.onboarded) {
@@ -221,6 +226,11 @@ const TrustModels = (props: any) => {
                 </PopoverContent>
               </Popover>
             </p>
+            {error && (
+              <p>
+                <Alert title="">{error}</Alert>
+              </p>
+            )}
             <p className="text-sm text-[#939393]">
               If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account
               on your behalf.
@@ -285,7 +295,7 @@ const TrustModels = (props: any) => {
               </Popover>{' '} */}
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
-            <WalletLoginButton />
+            <WalletLoginButton onError={setError} />
           </div>
 
           <p
@@ -300,10 +310,15 @@ const TrustModels = (props: any) => {
       {emailSent && (
         <div>
           <div className="text-xl">Enter Verification Code.</div>
+          {error && (
+            <p>
+              <Alert title="">{error}</Alert>
+            </p>
+          )}
           <div className="text-sm text-[#939393] my-2 mb-4">
             We&apos;ve sent a verification code to your email address.
           </div>
-          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)}>
+          <InputOTP maxLength={8} value={nonce} onChange={value => setNonce(value)} onSubmit={verifyEmail}>
             <InputOTPGroup>
               <InputOTPSlot index={0} />
               <InputOTPSlot index={1} />
