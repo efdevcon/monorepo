@@ -551,7 +551,7 @@ const DevaBot = ({
                                 <Markdown className={cn("markdown")}>
                                   {
                                     message.text.split(
-                                      "System: The current date is:"
+                                      "System: The current date and time is:"
                                     )[0]
                                   }
                                 </Markdown>
