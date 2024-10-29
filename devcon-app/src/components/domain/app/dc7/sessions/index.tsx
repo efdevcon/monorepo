@@ -239,12 +239,12 @@ const TrackTag = ({ track, className }: { track: string; className?: string }) =
 }
 
 export const SessionCard = ({ session, className }: { session: SessionType; className?: string }) => {
+  const { account, setSessionBookmark } = useAccountContext()
   const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   //   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
-  const { account } = useAccountContext()
   const { now } = useAppContext()
   const bookmarkedSessions = account?.sessions
   const bookmarkedSession = bookmarkedSessions?.find(bookmark => bookmark.id === id && bookmark.level === 'attending')
@@ -260,8 +260,6 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   //   const router = useRouter()
   const draggableLink = useDraggableLink()
   const pathname = usePathname()
-  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
-  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
 
@@ -367,10 +365,15 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               e.stopPropagation()
               e.preventDefault()
 
-              setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
+              setSessionBookmark(
+                session,
+                'attending',
+                account,
+                account?.attending_sessions?.includes(session.sourceId) ?? false
+              )
             }}
           >
-            {attendingSessions[session.sourceId] ? (
+            {account?.attending_sessions?.includes(session.sourceId) ? (
               <IconAdded style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <CalendarIcon style={{ '--color-icon': '#99A0AE' }} />
@@ -382,13 +385,15 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
               e.stopPropagation()
               e.preventDefault()
 
-              setInterestedSessions({
-                ...interestedSessions,
-                [session.sourceId]: !interestedSessions[session.sourceId],
-              })
+              setSessionBookmark(
+                session,
+                'interested',
+                account,
+                account?.interested_sessions?.includes(session.sourceId) ?? false
+              )
             }}
           >
-            {interestedSessions[session.sourceId] ? (
+            {account?.interested_sessions?.includes(session.sourceId) ? (
               <HeartIcon style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <HeartIcon style={{ '--color-icon': '#99A0AE' }} />
@@ -702,7 +707,7 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
 // TODO: use recommendation engine to generate personalized suggestions
 export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] }) => {
   // @ts-ignore
-  const featuredSessions = sessions.filter(s => s.featured).sort(() => Math.random() - 0.5)
+  const featuredSessions = useMemo(() => sessions.filter(s => s.featured).sort(() => Math.random() - 0.5), [sessions])
 
   return (
     <>
@@ -987,9 +992,8 @@ export const Livestream = ({ session, className }: { session: SessionType; class
 }
 
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
+  const { account, setSessionBookmark } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
-  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
 
   if (!session) return null
@@ -1061,10 +1065,15 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
                 e.stopPropagation()
                 e.preventDefault()
 
-                setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
+                setSessionBookmark(
+                  session,
+                  'attending',
+                  account,
+                  account?.attending_sessions?.includes(session.sourceId) ?? false
+                )
               }}
             >
-              {attendingSessions[session.sourceId] ? (
+              {account?.attending_sessions?.includes(session.sourceId) ? (
                 <IconAdded style={{ '--color-icon': 'white' }} />
               ) : (
                 <CalendarIcon style={{ '--color-icon': 'white' }} />
@@ -1077,13 +1086,15 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
                 e.stopPropagation()
                 e.preventDefault()
 
-                setInterestedSessions({
-                  ...interestedSessions,
-                  [session.sourceId]: !interestedSessions[session.sourceId],
-                })
+                setSessionBookmark(
+                  session,
+                  'interested',
+                  account,
+                  account?.interested_sessions?.includes(session.sourceId) ?? false
+                )
               }}
             >
-              {interestedSessions[session.sourceId] ? (
+              {account?.interested_sessions?.includes(session.sourceId) ? (
                 <HeartIcon style={{ '--color-icon': 'red' }} />
               ) : (
                 <HeartIcon style={{ '--color-icon': 'white' }} />
@@ -1133,11 +1144,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
           onClick={() =>
-            setAttendingSessions({ ...attendingSessions, [session.sourceId]: !attendingSessions[session.sourceId] })
+            setSessionBookmark(
+              session,
+              'attending',
+              account,
+              account?.attending_sessions?.includes(session.sourceId) ?? false
+            )
           }
         >
           <div className="text-lg hover:scale-110 transition-transform duration-300">
-            {attendingSessions[session.sourceId] ? (
+            {account?.attending_sessions?.includes(session.sourceId) ? (
               <IconAdded style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <CalendarIcon />
@@ -1148,11 +1164,20 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
           onClick={() =>
-            setInterestedSessions({ ...interestedSessions, [session.sourceId]: !interestedSessions[session.sourceId] })
+            setSessionBookmark(
+              session,
+              'interested',
+              account,
+              account?.interested_sessions?.includes(session.sourceId) ?? false
+            )
           }
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
-            {interestedSessions[session.sourceId] ? <HeartIcon style={{ '--color-icon': '#7d52f4' }} /> : <HeartIcon />}
+            {account?.interested_sessions?.includes(session.sourceId) ? (
+              <HeartIcon style={{ '--color-icon': '#7d52f4' }} />
+            ) : (
+              <HeartIcon />
+            )}
           </div>
           <p>Mark as interesting</p>
         </div>

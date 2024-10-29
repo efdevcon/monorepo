@@ -30,6 +30,8 @@ import { motion } from 'framer-motion'
 // import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
 import { Popup } from 'lib/components/pop-up'
+import { useAccountContext } from 'context/account-context'
+import moment from 'moment'
 // import { SessionFilterAdvanced } from '../sessions'
 
 export const cardClass =
@@ -154,12 +156,9 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
 }
 
 export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
+  const { account, setSpeakerFavorite } = useAccountContext()
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [favoritedSpeakers, setFavoritedSpeakers] = useRecoilState(favoritedSpeakersAtom)
-  // TODO: Add favorited to user account
-  // const [favorited, setFavorited] = useState(false)
-  // const router = useRouter()
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
@@ -213,18 +212,18 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
       <div
         className={cn(
           'flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300',
-          favoritedSpeakers[speaker.sourceId] ? 'text-[#ac9fdf]' : ''
+          account?.favorite_speakers?.includes(speaker.id) ? 'text-[#ac9fdf]' : ''
         )}
         onClick={e => {
           e.stopPropagation()
           e.preventDefault()
 
-          setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.sourceId]: !favoritedSpeakers[speaker.sourceId] })
+          setSpeakerFavorite(speaker.id, account?.favorite_speakers?.includes(speaker.id) ?? false, account)
         }}
       >
         <HeartIcon
           className="icon"
-          style={{ '--color-icon': favoritedSpeakers[speaker.sourceId] ? '#7d52f4' : '#99A0AE' }}
+          style={{ '--color-icon': account?.favorite_speakers?.includes(speaker.id) ? '#7d52f4' : '#99A0AE' }}
         />
       </div>
     </Link>
@@ -340,6 +339,13 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   const stickyRef = useRef<HTMLDivElement>(null)
   const [visibleSpeakers, setVisibleSpeakers] = useState<SpeakerType[]>([])
   const [page, setPage] = useState(1)
+  const featuredSpeakers = useMemo(
+    () =>
+      speakers?.filter(speaker =>
+        speaker.sessions?.some(session => session.featured && moment(session.slot_start).isAfter(moment()))
+      ) ?? filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE).sort(() => Math.random() - 0.5),
+    [speakers, filteredSpeakers, page]
+  )
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -389,7 +395,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
-            {visibleSpeakers.slice(0, 10).map((speaker, index) => (
+            {featuredSpeakers.map((speaker, index) => (
               <Link
                 to={`/speakers/${speaker.sourceId}`}
                 key={speaker.sourceId}
@@ -533,8 +539,8 @@ export const SpeakerSessions = ({
 }
 
 export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
+  const { account, setSpeakerFavorite } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [favoritedSpeakers, setFavoritedSpeakers] = useRecoilState(favoritedSpeakersAtom)
 
   if (!speaker) return null
 
@@ -574,10 +580,10 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
           <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
             <HeartIcon
               onClick={() =>
-                setFavoritedSpeakers({ ...favoritedSpeakers, [speaker.sourceId]: !favoritedSpeakers[speaker.sourceId] })
+                setSpeakerFavorite(speaker.id, account?.favorite_speakers?.includes(speaker.id) ?? false, account)
               }
               className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
-              style={{ '--color-icon': favoritedSpeakers[speaker.sourceId] ? 'red' : 'white' }}
+              style={{ '--color-icon': account?.favorite_speakers?.includes(speaker.id) ? 'red' : 'white' }}
             />
 
             {!standalone && (
