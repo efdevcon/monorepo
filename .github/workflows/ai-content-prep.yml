@@ -58,7 +58,7 @@ jobs:
         run: |
           touch .env
           echo OPEN_AI_KEY='${{ secrets.OPEN_AI_KEY }}' >> .env
-          echo OPEN_AI_ASSISTANT_ID='asst_fUtZhDjL35nZBBog2bJTKNoy' >> .env
+          echo OPEN_AI_ASSISTANT_ID='asst_B3UJxQ8V53rmVWxaqu3Iraif' >> .env
           echo GITHUB_SHA='${{ github.sha }}' >> .env
 
       - name: Run script

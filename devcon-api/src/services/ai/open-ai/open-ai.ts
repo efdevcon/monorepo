@@ -164,7 +164,14 @@ export const api = (() => {
 
       await openai.beta.threads.messages.create(threadID, {
         role: 'user',
-        content: `${userMessage}\nSystem: The current date is: ${new Date().toLocaleDateString()}.`,
+        content: `${userMessage}\nSystem: The current date and time is: ${new Date().toLocaleString('en-US', {
+          timeZone: 'Asia/Bangkok',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        })}.`,
       })
 
       const run = await openai.beta.threads.runs.createAndPoll(threadID, {
@@ -265,7 +272,14 @@ export const api = (() => {
 
       await openai.beta.threads.messages.create(threadID, {
         role: 'user',
-        content: `${userMessage}\nSystem: The current date is: ${new Date().toLocaleDateString()}.`,
+        content: `${userMessage}\nSystem: The current date and time is: ${new Date().toLocaleString('en-US', {
+          timeZone: 'Asia/Bangkok',
+          month: 'long',
+          day: 'numeric',
+          hour: 'numeric',
+          minute: 'numeric',
+          hour12: true,
+        })}.`,
       })
 
       const run = openai.beta.threads.runs.stream(threadID, {
@@ -426,7 +440,6 @@ export const api = (() => {
           console.error(`Vector store not found ${vectorStoreName}`)
 
           return
-          // throw { error: `Vector store not found ${vectorStoreName}` }
         }
 
         const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
@@ -434,12 +447,42 @@ export const api = (() => {
         const sessions = await sessionsResponse.json()
 
         const formattedSessions = sessions.data.items.map((session: any) => {
+          const bangkokStart = new Date(session.slot_start).toLocaleString('en-US', {
+            timeZone: 'Asia/Bangkok',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })
+          const bangkokEnd = new Date(session.slot_end).toLocaleString('en-US', {
+            timeZone: 'Asia/Bangkok',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+          })
+
+          // Calculate duration in minutes
+          const startTime = new Date(session.slot_start)
+          const endTime = new Date(session.slot_end)
+          const durationMinutes = Math.round((endTime.getTime() - startTime.getTime()) / (1000 * 60))
+
+          // Calculate day label
+          const startDate = new Date(session.slot_start)
+          const dayNumber = startDate.getDate()
+          const dayLabel = dayNumber === 12 ? 'Day 1' : dayNumber === 13 ? 'Day 2' : dayNumber === 14 ? 'Day 3' : dayNumber === 15 ? 'Day 4' : ''
+
           return {
             id: session.id,
             title: session.title,
             description: session.description,
             track: session.track,
             type: session.type,
+            start: `${dayLabel} - ${bangkokStart}`,
+            end: `${dayLabel} - ${bangkokEnd}`,
+            duration: `${durationMinutes} minutes`,
             expertise: session.expertise,
             tags: session.tags,
             keywords: session.keywords,
@@ -453,7 +496,7 @@ export const api = (() => {
           }
         })
 
-        console.log(formattedSessions.length, 'formattedSessions')
+        console.log(formattedSessions.length, 'formattedSessions amount')
 
         // return
 
