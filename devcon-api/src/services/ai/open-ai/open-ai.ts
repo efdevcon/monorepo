@@ -516,10 +516,19 @@ export const api = (() => {
           // }
         })
 
-        // Upload all sessions in a single batch
-        const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: sessionFiles })
+        // Split files into batches of 50
+        const batchSize = 100
+        const batches = []
+        for (let i = 0; i < sessionFiles.length; i += batchSize) {
+          batches.push(sessionFiles.slice(i, i + batchSize))
+        }
 
-        console.log(response, 'response')
+        // Upload each batch sequentially
+        for (const batch of batches) {
+          const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
+          console.log(`Uploaded batch of ${batch.length} files`)
+          console.log(response, 'response')
+        }
 
         // Update assistant to use our new vector store
         await openai.beta.assistants.update(assistantID, {
