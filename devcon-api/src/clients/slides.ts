@@ -6,9 +6,9 @@ import { GoogleApis } from 'googleapis'
 const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
 const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
 const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
-const TEMPLATE_ID = '1fw7CLNMXMat3wrBGUZweTtbRkGoxV5rPvP-m6Kus3KQ'
-const sendEmail = false
-const emailMessage = ''
+const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
+const skipPermissions = false
+const emailMessage = 'Your Devcon 7 presentation'
 
 let client: GoogleApis | null = null
 
@@ -84,22 +84,45 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
       return
     }
 
-    console.log('Setting permissions...')
-    for (const email of emails) {
-      await drive.permissions.create({
-        fileId: presentationId,
-        supportsAllDrives: true,
-        requestBody: {
-          type: 'user',
-          role: 'writer',
-          emailAddress: email,
-        },
-        sendNotificationEmail: sendEmail,
-        emailMessage: sendEmail && emailMessage ? emailMessage : undefined,
-      })
+    console.log('Presentation created', `https://docs.google.com/presentation/d/${presentationId}`)
+    if (skipPermissions) {
+      console.log('Skip permissions. Grant manually:', emails.join(', '))
+    } else {
+      for (const email of emails) {
+        try {
+          // No notification email
+          await drive.permissions.create({
+            fileId: presentationId,
+            supportsAllDrives: true,
+            requestBody: {
+              type: 'user',
+              role: 'writer',
+              emailAddress: email,
+            },
+            sendNotificationEmail: false,
+          })
+        } catch (e) {
+          try {
+            // Rate-limited
+            await drive.permissions.create({
+              fileId: presentationId,
+              supportsAllDrives: true,
+              requestBody: {
+                type: 'user',
+                role: 'writer',
+                emailAddress: email,
+              },
+              sendNotificationEmail: true,
+              emailMessage: emailMessage,
+            })
+          } catch (e) {
+            console.log('Error setting permissions. Grant manually:', emails.join(', '))
+          }
+        }
+      }
     }
 
-    console.log('Presentation created', `https://docs.google.com/presentation/d/${presentationId}`)
+    console.log()
     return presentationId
   } catch (e) {
     console.log('Error create presentation from template', TEMPLATE_ID, id, title)

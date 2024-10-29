@@ -1,5 +1,5 @@
 import { GetData } from '@/clients/filesystem'
-import { GetRooms, GetSpeakers, GetSubmissions } from '@/clients/pretalx'
+import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { CreatePresentationFromTemplate } from '@/clients/slides'
 import fs from 'fs'
 
@@ -7,7 +7,7 @@ async function main() {
   console.log('Syncing Pretalx...')
   await syncRooms()
   await syncSessions()
-  // await createPresentations()
+  await createPresentations()
 }
 
 async function syncRooms() {
@@ -31,6 +31,15 @@ async function syncRooms() {
     fs.writeFileSync(`./data/rooms/devcon-7/${room.id}.json`, JSON.stringify(room, null, 2))
   }
 
+  // Update event data
+  const event = GetData('events').find((e: any) => e.id === 'devcon-7')
+  delete event.id
+  const eventVersion = await GetLastcheduleUpdate()
+  fs.writeFileSync(
+    `./data/events/devcon-7.json`,
+    JSON.stringify({ ...event, rooms: rooms.map((r: any) => r.id), version: eventVersion.toString() }, null, 2)
+  )
+
   console.log('Synced Pretalx Rooms')
   console.log('')
 }
@@ -42,7 +51,7 @@ async function syncSessions() {
   if (!fs.existsSync(`./data/sessions/devcon-7`)) {
     fs.mkdirSync(`./data/sessions/devcon-7`)
   }
-  const sessions = await GetSubmissions()
+  const sessions = await GetSessions()
   const sessionsFs = GetData('sessions/devcon-7')
   console.log('Sessions Pretalx', sessions.length, 'Sessions fs', sessionsFs.length)
 
@@ -74,7 +83,7 @@ async function syncSessions() {
 
 async function createPresentations() {
   const sessionsFs = GetData('sessions/devcon-7')
-  const sessions = await GetSubmissions({ inclContacts: true })
+  const sessions = await GetSessions({ inclContacts: true })
   console.log('# of Submissions', sessions.length)
 
   for (const sessionFs of sessionsFs) {
@@ -84,7 +93,13 @@ async function createPresentations() {
       if (session) {
         const speakerEmails = session.speakers.map((speaker: any) => speaker.email).filter(Boolean)
 
-        await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+        const id = await CreatePresentationFromTemplate(session.title, session.sourceId, speakerEmails)
+        if (id) {
+          fs.writeFileSync(
+            `./data/sessions/devcon-7/${sessionFs.id}.json`,
+            JSON.stringify({ ...sessionFs, resources_presentation: `https://docs.google.com/presentation/d/${id}` }, null, 2)
+          )
+        }
       } else {
         console.log(`Session ${sessionFs.id} not found in Pretalx data`)
       }
@@ -95,6 +110,7 @@ async function createPresentations() {
 main()
   .then(async () => {
     console.log('All done!')
+    process.exit(0)
   })
   .catch(async (e) => {
     console.error(e)
