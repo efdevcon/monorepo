@@ -130,7 +130,7 @@ const DevaBot = ({
   React.useEffect(() => {
     if (defaultPrompt) {
       setQuery(defaultPrompt);
-      onSend(defaultPrompt);
+      // onSend(defaultPrompt);
     }
   }, [defaultPrompt]);
 
@@ -600,7 +600,7 @@ const DevaBot = ({
                                                   />
                                                 ) : (
                                                   <Link
-                                                    href={`/sessions/${session.id}`}
+                                                    href={`/sessions/${session.sourceId}`}
                                                     className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
                                                     key={index}
                                                   >
@@ -628,7 +628,7 @@ const DevaBot = ({
                                                 true;
                                               otherReferences.push(
                                                 <Link
-                                                  href={fileUrl}
+                                                  href={`https://devcon.org${fileUrl}`}
                                                   key={index}
                                                 >
                                                   https://devcon.org{fileUrl}
@@ -834,30 +834,24 @@ const DevaBot = ({
                             messages.length > 0 ? "hidden" : ""
                           }`}
                         >
-                          {[
-                            "What should I do at Devcon?",
-                            "What is Devcon?",
-                            "When is Devcon?",
-                            "How can I participate?",
-                            "Why Bangkok?",
-                            "Can I apply to speak?",
-                            "Can I volunteer?",
-                          ].map((suggestion, index, array) => (
-                            <Button
-                              key={index}
-                              {...draggable}
-                              className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
-                                index === array.length - 1 ? "" : ""
-                              } ${index === 0 ? "ml-4" : ""}`}
-                              fat
-                              onClick={() => {
-                                setQuery(suggestion);
-                                textareaRef.current?.focus();
-                              }}
-                            >
-                              {suggestion}
-                            </Button>
-                          ))}
+                          {["What should I do at Devcon?", "Why Bangkok?"].map(
+                            (suggestion, index, array) => (
+                              <Button
+                                key={index}
+                                {...draggable}
+                                className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
+                                  index === array.length - 1 ? "" : ""
+                                } ${index === 0 ? "ml-4" : ""}`}
+                                fat
+                                onClick={() => {
+                                  setQuery(suggestion);
+                                  textareaRef.current?.focus();
+                                }}
+                              >
+                                {suggestion}
+                              </Button>
+                            )
+                          )}
                         </div>
                       </div>
                     </SwipeToScroll>
@@ -871,9 +865,9 @@ const DevaBot = ({
                       { "mt-0": executingQuery || messages.length > 0 }
                     )}
                   >
-                    <div className="icon mr-1">
+                    {/* <div className="icon mr-1">
                       <AppIconOne />
-                    </div>
+                    </div> */}
                     <div className={cn("grow relative")}>
                       <input
                         className={cn(

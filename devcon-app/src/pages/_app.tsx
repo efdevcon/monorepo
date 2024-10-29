@@ -1,18 +1,16 @@
 import type { AppProps } from 'next/app'
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { NextIntlProvider } from 'next-intl'
 import Head from 'next/head'
 import { PWAPrompt } from 'components/domain/app/pwa-prompt'
 import 'assets/css/index.scss'
-import { HistoryTracker } from 'components/domain/app/history-tracker'
 import { Session as SessionType } from 'types/Session'
 import { SEO } from 'components/domain/seo'
-import { ScheduleState } from 'components/domain/app/schedule/Schedule'
 import { Web3Provider } from 'context/web3'
 import { AppContext } from 'context/app-context'
 import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
-import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector, DefaultValue } from 'recoil'
+import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector } from 'recoil'
 import { useSessionData } from 'services/event-data'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
@@ -348,11 +346,10 @@ function App({ Component, pageProps }: AppProps) {
 
       <NextIntlProvider locale="en" messages={pageProps.messages}>
         <PWAPrompt />
-        <HistoryTracker>
-          <AppContext>
-            <Web3Provider>
-              <ZupassProvider>
-                {/* {!sessions && (
+        <AppContext>
+          <Web3Provider>
+            <ZupassProvider>
+              {/* {!sessions && (
                   <div
                     data-type="loader"
                     className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
@@ -362,9 +359,74 @@ function App({ Component, pageProps }: AppProps) {
                   </div>
                 )} */}
 
-                <Component {...pageProps} />
+              <Component {...pageProps} />
 
-                {/* <AnimatePresence>
+              {sessions && (
+                <DevaBot
+                  sessions={sessions}
+                  onToggle={() => setDevaBotVisible(!devaBotVisible)}
+                  defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
+                  toggled={!!devaBotVisible}
+                  notifications={notifications || undefined}
+                  notificationsCount={notificationsCount}
+                  markNotificationsAsRead={markAllAsRead}
+                  SessionComponent={SessionCard}
+                  renderNotifications={() => {
+                    const groupNotificationsByDay = (notifications: any[]) => {
+                      const grouped = notifications.reduce((acc, notification) => {
+                        const date = new Date(notification.sendAt)
+                        const today = new Date()
+                        const yesterday = new Date(today)
+                        yesterday.setDate(yesterday.getDate() - 1)
+
+                        let key
+                        if (date.toDateString() === today.toDateString()) {
+                          key = 'Today'
+                        } else if (date.toDateString() === yesterday.toDateString()) {
+                          key = 'Yesterday'
+                        } else {
+                          key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+                        }
+
+                        if (!acc[key]) {
+                          acc[key] = []
+                        }
+                        acc[key].push(notification)
+                        return acc
+                      }, {})
+
+                      return Object.entries(grouped).sort(([a], [b]) => {
+                        if (a === 'Today') return -1
+                        if (b === 'Today') return 1
+                        if (a === 'Yesterday') return -1
+                        if (b === 'Yesterday') return 1
+                        return new Date(b).getTime() - new Date(a).getTime()
+                      })
+                    }
+
+                    const groupedNotifications = groupNotificationsByDay(notifications)
+
+                    return (
+                      <>
+                        {groupedNotifications.map(([date, notificationsForDay]: any) => (
+                          <div key={date} className="w-full">
+                            <p className="font-semibold my-2">{date}</p>
+                            {notificationsForDay.map((notification: any) => (
+                              <NotificationCard
+                                key={notification.id}
+                                notification={notification}
+                                seen={seenNotifications.has(notification.id)}
+                              />
+                            ))}
+                          </div>
+                        ))}
+                      </>
+                    )
+                  }}
+                />
+              )}
+
+              {/* <AnimatePresence>
                 {sessions && revealApp && (
                   <motion.div
                     className="absolute inset-0 z-10"
@@ -376,78 +438,12 @@ function App({ Component, pageProps }: AppProps) {
                     <Component {...pageProps} />
                   </motion.div>
                 )} */}
-              </ZupassProvider>
-            </Web3Provider>
-          </AppContext>
-        </HistoryTracker>
+            </ZupassProvider>
+          </Web3Provider>
+        </AppContext>
       </NextIntlProvider>
 
       <Toaster />
-
-      {sessions && (
-        <DevaBot
-          sessions={sessions}
-          onToggle={() => setDevaBotVisible(!devaBotVisible)}
-          defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
-          toggled={!!devaBotVisible}
-          notifications={notifications || undefined}
-          notificationsCount={notificationsCount}
-          markNotificationsAsRead={markAllAsRead}
-          SessionComponent={SessionCard}
-          renderNotifications={() => {
-            const groupNotificationsByDay = (notifications: any[]) => {
-              const grouped = notifications.reduce((acc, notification) => {
-                const date = new Date(notification.sendAt)
-                const today = new Date()
-                const yesterday = new Date(today)
-                yesterday.setDate(yesterday.getDate() - 1)
-
-                let key
-                if (date.toDateString() === today.toDateString()) {
-                  key = 'Today'
-                } else if (date.toDateString() === yesterday.toDateString()) {
-                  key = 'Yesterday'
-                } else {
-                  key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-                }
-
-                if (!acc[key]) {
-                  acc[key] = []
-                }
-                acc[key].push(notification)
-                return acc
-              }, {})
-
-              return Object.entries(grouped).sort(([a], [b]) => {
-                if (a === 'Today') return -1
-                if (b === 'Today') return 1
-                if (a === 'Yesterday') return -1
-                if (b === 'Yesterday') return 1
-                return new Date(b).getTime() - new Date(a).getTime()
-              })
-            }
-
-            const groupedNotifications = groupNotificationsByDay(notifications)
-
-            return (
-              <>
-                {groupedNotifications.map(([date, notificationsForDay]: any) => (
-                  <div key={date} className="w-full">
-                    <p className="font-semibold my-2">{date}</p>
-                    {notificationsForDay.map((notification: any) => (
-                      <NotificationCard
-                        key={notification.id}
-                        notification={notification}
-                        seen={seenNotifications.has(notification.id)}
-                      />
-                    ))}
-                  </div>
-                ))}
-              </>
-            )
-          }}
-        />
-      )}
     </>
   )
 }

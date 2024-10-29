@@ -328,7 +328,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
           </div>
         </div>
         <div className="flex flex-col justify-between grow p-2 pl-3">
-          <div>
+          <div className="mb-2">
             <p className="text-sm font-medium text-gray-800 line-clamp-2">{title}</p>
             {/* <p className="text-xs text-gray-600 mt-1 truncate">{track}</p> */}
             {/* <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p> */}
@@ -361,7 +361,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             {speakerNames && speakerNames.length > 0 && (
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <IconSpeaker className="icon shrink-0" />
-                <p className="text-xs text-gray-600 truncate">{speakerNames}</p>
+                <p className="text-xs text-gray-600 line-clamp-1">{speakerNames}</p>
               </div>
             )}
           </div>
@@ -880,8 +880,6 @@ export const SessionList = ({
   const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState(1)
 
-  console.log(sessionFilter, 'session filter')
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
@@ -915,56 +913,15 @@ export const SessionList = ({
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
 
-  //   const generateDayOptions = (startTime: string, endTime: string) => {
-  //     const start = moment(startTime)
-  //     const end = moment(endTime)
-  //     const days = ['All']
-  //     const today = moment().startOf('day')
-
-  //     for (let m = moment(start); m.isSameOrBefore(end); m.add(1, 'days')) {
-  //       if (m.isSame(today, 'day')) {
-  //         days.push('Today')
-  //       } else {
-  //         days.push(m.format('MMM D'))
-  //       }
-  //     }
-
-  //     return days
-  //   }
-
-  //   console.log(event, 'event')
-
-  //   const dayOptions = useMemo(() => generateDayOptions(event.startDate, event.endDate), [event])
-
-  //   console.log(dayOptions, 'dayOptions')
-
-  //   console.log(visibleSessions, 'visibleSessions')
-
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
 
       <PersonalizedSuggestions sessions={filteredSessions} />
-      {/* 
-      <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Featured Sessions</div>
-
-      <div className="overflow-hidden">
-        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3">
-            {featuredSessions.map((session, index) => (
-              <SessionCard
-                session={session}
-                key={session.id}
-                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'lg:ml-4' : '')}
-              />
-            ))}
-          </div>
-        </SwipeToScroll>
-      </div> */}
 
       <div data-type="session-prompts" className="flex gap-3 mt-4 mb-3 border-bottom mx-4 pb-4">
-        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about')}>
-          <div className="truncate">Help me find sessions about</div>
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about ')}>
+          <div className="truncate">Help me find sessions about...</div>
         </StandalonePrompt>
         <StandalonePrompt
           className="w-full"
@@ -974,7 +931,7 @@ export const SessionList = ({
         </StandalonePrompt>
       </div>
 
-      {/* <div className="flex flex-col gap-3 px-4 font-semibold">Sessions</div> */}
+      <div className="flex flex-col gap-3 px-4 font-semibold mb-2">Sessions</div>
 
       {/* <div className="flex flex-col gap-3 mb-4 px-4 relative"> */}
       {Object.entries(groupedSessions).map(([date, dateSessions]) => (
