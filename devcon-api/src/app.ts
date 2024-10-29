@@ -41,7 +41,7 @@ const sessionConfig: SessionOptions = {
 
 if (SERVER_CONFIG.NODE_ENV === 'production') {
   app.set('trust proxy', 1) // for secure cookies and when using HTTPS: https://expressjs.com/en/guide/behind-proxies.html
-  sessionConfig.cookie = { ...sessionConfig.cookie, secure: true }
+  sessionConfig.cookie = { ...sessionConfig.cookie, secure: true, sameSite: 'none' }
 }
 app.use(session(sessionConfig))
 
