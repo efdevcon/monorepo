@@ -71,21 +71,19 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
   }
 })
 
-aiRouter.post('/devabot/recommendations', async (req: Request, res: Response) => {
-  const { message } = req.body
+// aiRouter.post('/devabot/recommendations', async (req: Request, res: Response) => {
+//   const { message } = req.body
 
-  try {
-    const recommendations = await api.recommendations.getScheduleRecommendations('asst_PRn8YEfa54OGfroaVFhvLWlv', message)
+//   try {
+//     const recommendations = await api.recommendations.getScheduleRecommendations('asst_PRn8YEfa54OGfroaVFhvLWlv', message)
 
-    res.json(recommendations)
-  } catch (e: any) {
-    console.error(e, 'error')
-    if (e.error) {
-      res.status(500).json({ error: e.error })
-    } else {
-      res.status(500).json({ error: 'Internal Server Error' })
-    }
-  }
-})
-
-// Every 5 minutes, update programming data - if version is different than the one uploaded to openai, update the vector store
+//     res.json(recommendations)
+//   } catch (e: any) {
+//     console.error(e, 'error')
+//     if (e.error) {
+//       res.status(500).json({ error: e.error })
+//     } else {
+//       res.status(500).json({ error: 'Internal Server Error' })
+//     }
+//   }
+// })
