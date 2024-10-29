@@ -115,6 +115,7 @@ async function Token(req: any, res: Response) {
 
   const identifier = req.body?.identifier as string
   const update = Boolean(req.body?.update)
+  console.log('Request token nonce for', identifier)
   if (!identifier) {
     return res.status(400).send({ code: 400, message: 'Identifier not provided.' })
   }
@@ -155,6 +156,7 @@ async function Token(req: any, res: Response) {
       data.nonce = -1 // only share nonce via email
     }
 
+    console.log('Save tokenId to session', identifier, data?.id)
     req.session.tokenId = data?.id
     req.session.save()
 
@@ -168,6 +170,7 @@ async function Token(req: any, res: Response) {
 async function LoginEmail(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
+  console.log('Request login email for', req.body.address, 'SESSION:', req.session)
   const id = req.session.tokenId
   if (!id) {
     return res.status(400).send({ code: 400, message: 'No session token.' })

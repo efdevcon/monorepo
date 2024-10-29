@@ -31,17 +31,21 @@ const store = createMemoryStore(session)
 const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
-  cookie: {},
+  cookie: {
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+    httpOnly: true,
+    sameSite: 'none',
+    secure: SERVER_CONFIG.NODE_ENV === 'production',
+  },
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: new store({
     checkPeriod: 86400000, // prune expired entries every 24h
   }),
 }
 
 if (SERVER_CONFIG.NODE_ENV === 'production') {
-  app.set('trust proxy', 1) // for secure cookies and when using HTTPS: https://expressjs.com/en/guide/behind-proxies.html
-  sessionConfig.cookie = { ...sessionConfig.cookie, secure: true, sameSite: 'none' }
+  app.set('trust proxy', 1)
 }
 app.use(session(sessionConfig))
 

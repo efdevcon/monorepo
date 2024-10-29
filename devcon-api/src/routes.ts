@@ -18,6 +18,15 @@ router.get('/', (req, res) => {
   res.status(200).send({ status: 200, message: '', data: API_INFO })
 })
 
+router.get('/cookies', (req, res) => {
+  res.json({
+    sessionId: req.sessionID,
+    hasSession: !!req.session,
+    cookies: req.cookies,
+    timestamp: new Date().toISOString(),
+  })
+})
+
 router.use(accountRouter)
 router.use(dipsRouter)
 router.use(eventsRouter)
