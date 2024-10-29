@@ -679,7 +679,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
 
       <div
         className={cn(
-          'sticky top-[55px] lg:top-[56px] z-[10] border-top border-bottomtransition-all duration-300',
+          'sticky top-[55px] lg:top-[56px] z-[10] border-top border-bottom transition-all duration-300',
           isSticky ? `${css['sticky-glass']}` : 'bg-[#f5f2ff]'
         )}
         ref={stickyRef}
@@ -979,11 +979,7 @@ export const SessionList = ({
       {/* <div className="flex flex-col gap-3 mb-4 px-4 relative"> */}
       {Object.entries(groupedSessions).map(([date, dateSessions]) => (
         <div className="relative flex flex-col" key={date}>
-          <div
-            className={cn('font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start', css['sticky-glass'])}
-          >
-            {date}
-          </div>
+          <div className={cn('font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start')}>{date}</div>
           {dateSessions.map(session => (
             <div key={session.sourceId} className="mx-4 mb-3">
               <SessionCard session={session} />
