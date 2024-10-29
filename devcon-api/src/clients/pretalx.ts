@@ -179,13 +179,13 @@ function sanitizeProfileField(value: string) {
   if (value.includes(';')) value = value.split(';')[0]
 
   value = value.replace(/['"]+/g, '').trim().toLowerCase()
-  value = value.replace('@', '')
-  value = value.replace('.lens', '')
   value = value.replace('https://github.com/', '')
   value = value.replace('https:/gist.github.com/', '')
+  value = value.replace('github.com/', '')
   value = value.replace('https://twitter.com/', '')
-  value = value.replace('twitter.com/', '')
   value = value.replace('https://x.com/', '')
+  value = value.replace('https://www.x.com/', '')
+  value = value.replace('twitter.com/', '')
   value = value.replace('x.com/', '')
   value = value.replace('https://farcaster.xyz/u/', '')
   value = value.replace('https://warpcast.com/', '')
@@ -194,6 +194,13 @@ function sanitizeProfileField(value: string) {
   value = value.replace('https://app.ens.domains/', '')
   value = value.replace('https://ens.domains/', '')
   value = value.replace('https://t.me/', '')
+  value = value.replace('https://www.t.me/', '')
+  value = value.replace('t.me/', '')
+  value = value.replace('.lens', '')
+  value = value.replace('?s=21', '')
+  value = value.replace('?lang=en', '')
+  value = value.replace('@', '')
+  value = value.replace('/', '')
 
   return value
 }
