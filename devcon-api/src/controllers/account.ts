@@ -176,7 +176,7 @@ async function Token(req: any, res: Response) {
     if (isEmail) {
       const cta = update ? 'Confirm email' : 'Login using magic link'
       const magiclink = update
-        ? `${req.headers.origin || API_INFO.website}/settings/email?token=${nonce}`
+        ? `${req.headers.origin || API_INFO.website}/account/email?token=${nonce}`
         : `${req.headers.origin || API_INFO.website}/login?token=${nonce}`
 
       await sendMail(identifier, 'email-cta', `${nonce} is your Devcon verification code`, {

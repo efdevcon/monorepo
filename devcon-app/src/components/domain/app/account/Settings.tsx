@@ -60,7 +60,7 @@ export default function SettingsPage() {
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
         <div className={cn('basis-[60%] grow')}>
           <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
-            <div className="flex flex-col gap-3 pb-4 lg:px-4 mt-4">
+            <div className="flex flex-col gap-3 pb-4 px-4 mt-4">
               <div className={css['alert']}>
                 {error && (
                   <Alert title="Error" color="orange">
