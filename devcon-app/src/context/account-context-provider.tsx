@@ -273,12 +273,12 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     let sessions = account.sessions ?? []
 
     if (remove) {
-      sessions = sessions.filter(i => i.id !== session.id || level !== i.level)
+      sessions = sessions.filter(i => i.id !== session.sourceId || level !== i.level)
     } else {
       sessions = [
         ...sessions,
         {
-          id: session.id,
+          id: session.sourceId,
           level: level,
           start: new Date(session.start),
           end: new Date(session.end),

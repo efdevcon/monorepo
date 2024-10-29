@@ -168,7 +168,7 @@ export const selectedSessionSelector = selector({
 
     if (!selectedSessionPotentiallyPartial) return null
 
-    return allSessions?.find(session => session.id === selectedSessionPotentiallyPartial?.id) || null
+    return allSessions?.find(session => session.sourceId === selectedSessionPotentiallyPartial?.sourceId) || null
   },
 })
 
