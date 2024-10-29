@@ -27,6 +27,7 @@ import { useAccountContext } from 'context/account-context'
 import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
 import { Link } from 'components/common/link'
+import Alert from 'lib/components/alert'
 
 const MobileLogin = (props: any) => {
   const accountContext = useAccountContext()
@@ -221,6 +222,11 @@ const TrustModels = (props: any) => {
                 </PopoverContent>
               </Popover>
             </p>
+            {error && (
+              <p>
+                <Alert title="">{error}</Alert>
+              </p>
+            )}
             <p className="text-sm text-[#939393]">
               If this is the first time you&apos;re logging in, Devcon Passport will automatically create a new account
               on your behalf.
@@ -285,7 +291,7 @@ const TrustModels = (props: any) => {
               </Popover>{' '} */}
               To get the full utility out of the Devcon Passport it is recommended to connect your wallet.
             </p>
-            <WalletLoginButton />
+            <WalletLoginButton onError={setError} />
           </div>
 
           <p
