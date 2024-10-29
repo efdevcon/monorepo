@@ -306,7 +306,7 @@ export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
               <div
                 key={type}
                 className={cn(
-                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#EFEBFF] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
                   speakerFilter.type[type] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
                 )}
                 onClick={() => updateTypeFilter(type)}

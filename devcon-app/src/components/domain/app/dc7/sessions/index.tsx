@@ -656,7 +656,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
             <div
               key={other}
               className={cn(
-                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#EFEBFF] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
                 sessionFilter.other[other] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
               )}
               onClick={() => {
@@ -679,8 +679,8 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
 
       <div
         className={cn(
-          'sticky top-[55px] lg:top-[56px] z-[10] border-top border-bottom overflow-hidden transition-all duration-300',
-          isSticky ? css['sticky-glass'] : 'bg-[#f5f2ff]'
+          'sticky top-[55px] lg:top-[56px] z-[10] border-top border-bottomtransition-all duration-300',
+          isSticky ? `${css['sticky-glass']}` : 'bg-[#f5f2ff]'
         )}
         ref={stickyRef}
       >
@@ -905,16 +905,14 @@ export const SessionList = ({
 
   const groupedSessions = useMemo(() => {
     return visibleSessions.reduce((acc, session) => {
-      const date = moment(session.slot_start).format('MMM D')
-      if (!acc[date]) {
-        acc[date] = []
+      const dateTime = moment.utc(session.slot_start).add(7, 'hours').format('MMM D — h:mm A')
+      if (!acc[dateTime]) {
+        acc[dateTime] = []
       }
-      acc[date].push(session)
+      acc[dateTime].push(session)
       return acc
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
-
-  console.log(groupedSessions, 'groupedSessions')
 
   //   const generateDayOptions = (startTime: string, endTime: string) => {
   //     const start = moment(startTime)
@@ -963,7 +961,7 @@ export const SessionList = ({
         </SwipeToScroll>
       </div> */}
 
-      <div data-type="session-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
+      <div data-type="session-prompts" className="flex gap-3 mt-4 mb-3 border-bottom mx-4 pb-4">
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about')}>
           <div className="truncate">Help me find sessions about</div>
         </StandalonePrompt>
@@ -979,14 +977,18 @@ export const SessionList = ({
 
       {/* <div className="flex flex-col gap-3 mb-4 px-4 relative"> */}
       {Object.entries(groupedSessions).map(([date, dateSessions]) => (
-        <React.Fragment key={date}>
-          <div className="font-semibold mx-4 mb-2">{date}</div>
+        <div className="relative flex flex-col" key={date}>
+          <div
+            className={cn('font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start', css['sticky-glass'])}
+          >
+            {date}
+          </div>
           {dateSessions.map(session => (
             <div key={session.sourceId} className="mx-4 mb-3">
               <SessionCard session={session} />
             </div>
           ))}
-        </React.Fragment>
+        </div>
       ))}
 
       <ScrollUpComponent visible={visibleSessions.length > 20} />
