@@ -157,7 +157,7 @@ const BackButton = () => {
         <button onClick={handleBackClick} className="flex items-center cursor-pointer select-none">
           <ArrowBackIcon
             style={{
-              fontSize: 20,
+              fontSize: 16,
               // transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
             }}
           />
