@@ -1,5 +1,5 @@
 import { GetData } from '@/clients/filesystem'
-import { GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
+import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
 import { CreatePresentationFromTemplate } from '@/clients/slides'
 import fs from 'fs'
 
@@ -30,6 +30,15 @@ async function syncRooms() {
   for (const room of rooms) {
     fs.writeFileSync(`./data/rooms/devcon-7/${room.id}.json`, JSON.stringify(room, null, 2))
   }
+
+  // Update event data
+  const event = GetData('events').find((e: any) => e.id === 'devcon-7')
+  delete event.id
+  const eventVersion = await GetLastcheduleUpdate()
+  fs.writeFileSync(
+    `./data/events/devcon-7.json`,
+    JSON.stringify({ ...event, rooms: rooms.map((r: any) => r.id), version: eventVersion.toString() }, null, 2)
+  )
 
   console.log('Synced Pretalx Rooms')
   console.log('')
@@ -101,6 +110,7 @@ async function createPresentations() {
 main()
   .then(async () => {
     console.log('All done!')
+    process.exit(0)
   })
   .catch(async (e) => {
     console.error(e)

@@ -23,6 +23,7 @@ export async function GetLastcheduleUpdate() {
     return lastUpdate.valueOf()
   } catch (e) {
     console.log('Unable to fetch schedule update. Make sure the event name is correct and made public.')
+    return 0
   }
 }
 

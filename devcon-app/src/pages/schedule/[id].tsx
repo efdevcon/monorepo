@@ -50,9 +50,10 @@ export async function getStaticPaths() {
       return { params: { id: i.id } }
     })
 
+  console.log('Create Session paths', paths.length)
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
