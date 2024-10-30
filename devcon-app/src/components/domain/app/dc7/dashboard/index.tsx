@@ -66,7 +66,15 @@ const NotLoggedIn = () => {
   )
 }
 
-export const LoggedInCard = ({ dashboard, className }: { dashboard?: boolean; className?: string }) => {
+export const LoggedInCard = ({
+  dashboard,
+  className,
+  children,
+}: {
+  dashboard?: boolean
+  className?: string
+  children?: any
+}) => {
   const avatar = useAvatar()
   const { account } = useAccountContext()
 
@@ -102,7 +110,7 @@ export const LoggedInCard = ({ dashboard, className }: { dashboard?: boolean; cl
           </div>
         </div>
 
-        {dashboard && <ChevronRight className="text-xs icon mx-4" style={{ '--color-icon': '#7d52f4' }} />}
+        {dashboard ? <ChevronRight className="text-xs icon mx-4" style={{ '--color-icon': '#7d52f4' }} /> : children}
       </div>
     </Link>
   )
@@ -195,7 +203,7 @@ export const Dashboard = () => {
       </div>
 
       <div
-        className="lg:overflow-hidden mb-6"
+        className="overflow-hidden mb-6"
         // style={{ maskImage: 'linear-gradient(to right, black 95%, transparent)' }}
       >
         <SwipeToScroll /*scrollIndicatorDirections={{ right: true }}*/>

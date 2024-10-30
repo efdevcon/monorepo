@@ -14,6 +14,11 @@ import Toggle from 'react-toggle'
 import { EMAIL_DEVCON } from 'utils/constants'
 import { cn } from 'lib/shadcn/lib/utils'
 import { LoggedInCard } from 'components/domain/app/dc7/dashboard'
+import { Notifications } from 'components/domain/app/dc7/profile/notifications'
+// import ProfileSettings from 'components/domain/app/account/settings/Profile'
+// import EmailSettings from 'components/domain/app/account/settings/Email'
+// import WalletSettings from 'components/domain/app/account/settings/Wallet'
+// import UsernameSettings from 'components/domain/app/account/settings/Username'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -61,7 +66,7 @@ export default function SettingsPage() {
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
         <div className={cn('basis-[60%] grow')}>
           <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
-            <div className="flex flex-col gap-3 py-4 px-4">
+            <div className="flex flex-col gap-3 pb-4 lg:pt-4 px-4 text-sm">
               {error && (
                 <div className={css['alert']}>
                   <Alert title="Error" color="orange">
@@ -70,11 +75,20 @@ export default function SettingsPage() {
                 </div>
               )}
 
-              <div className={cn(css['profile'], 'border-b border-solid border-[#E4E6EB]')}>
-                {/* <div className={css['avatar']}>
+              {/* <div className={cn(css['profile']')}> */}
+              {/* <div className={css['avatar']}>
                   <img src={avatar.url} alt={avatar.name} />
                 </div> */}
-                <LoggedInCard />
+              <div className="flex">
+                <LoggedInCard className="lg:self-start w-full pointer-events-none cursor-default">
+                  <span
+                    className="font-semibold text-[#1a1a1a] pointer-events-auto cursor-pointer pr-2"
+                    role="button"
+                    onClick={disconnect}
+                  >
+                    Sign out
+                  </span>
+                </LoggedInCard>
                 {/* <p className={`${css['name']} text-xl font-semibold`}>
                   {accountContext.account?.username
                     ? accountContext.account?.username
@@ -82,12 +96,19 @@ export default function SettingsPage() {
                     ? avatar.name
                     : TruncateMiddle(avatar.name, 8)}
                 </p> */}
-                <span className={css['signout']} role="button" onClick={disconnect}>
+                {/* <span className={css['signout']} role="button" onClick={disconnect}>
                   Sign out
-                </span>
+                </span> */}
               </div>
+              {/* </div> */}
+
+              {/* <ProfileSettings />
+              <EmailSettings />
+              <WalletSettings />
+              <UsernameSettings /> */}
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['account']}
                 setOpen={() => {
                   const isOpen = openTabs['account']
@@ -104,9 +125,9 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Account" />
+                <CollapsedSectionHeader title="Account" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div>
+                  <div className="px-4 pb-2">
                     <LinkList noIndicator>
                       <Link to="/account/email">Manage Email</Link>
                       <Link to="/account/wallets">Manage Wallets</Link>
@@ -118,6 +139,7 @@ export default function SettingsPage() {
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['schedule']}
                 setOpen={() => {
                   const isOpen = openTabs['schedule']
@@ -134,24 +156,26 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Schedule" />
+                <CollapsedSectionHeader title="Schedule" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['share']}>
-                    <div className="flex flex-col gap-2">
+                  <div className="px-4 pb-4">
+                    <div className="mb-0">
                       <p className="font-bold">Personal schedule</p>
-                      <p>Share your personal schedule with your colleagues and friends.</p>
                     </div>
-                    <div className={css['toggle']}>
-                      <Toggle
-                        className={'custom'}
-                        icons={false}
-                        defaultChecked={accountContext.account?.publicSchedule}
-                        onChange={toggleScheduleSharing}
-                      />
+                    <div className="flex justify-between items-center gap-4">
+                      <p>Share your personal schedule with your colleagues and friends.</p>
+                      <div className={css['toggle']}>
+                        <Toggle
+                          className={'custom'}
+                          icons={false}
+                          defaultChecked={accountContext.account?.publicSchedule}
+                          onChange={toggleScheduleSharing}
+                        />
+                      </div>
                     </div>
                   </div>
                   {accountContext.account?.id && accountContext.account?.publicSchedule && (
-                    <div className={css['links']}>
+                    <div className="px-4 pb-2">
                       <LinkList>
                         <Link to={`/schedule/u/${accountContext.account.id}/`}>Personal schedule link</Link>
                       </LinkList>
@@ -161,6 +185,7 @@ export default function SettingsPage() {
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['notifications']}
                 setOpen={() => {
                   const isOpen = openTabs['notifications']
@@ -177,26 +202,32 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Notifications" />
+                <CollapsedSectionHeader title="Push Notifications" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['share']}>
+                  <div className="px-4 pb-4">
+                    <Notifications standalone />
+                  </div>
+                  {/* <div className="px-4 pb-4">
                     <div className="flex flex-col gap-2">
                       <p className="font-bold">Event updates</p>
+                    </div>
+                    <div className="flex justify-between items-center gap-4">
                       <p>Stay informed about the latest news, updates, and announcements related to Devcon SEA.</p>
+                      <div className={css['toggle']}>
+                        <Toggle
+                          className={'custom'}
+                          icons={false}
+                          defaultChecked={accountContext.account?.notifications}
+                          onChange={toggleNotifications}
+                        />
+                      </div>
                     </div>
-                    <div className={css['toggle']}>
-                      <Toggle
-                        className={'custom'}
-                        icons={false}
-                        defaultChecked={accountContext.account?.notifications}
-                        onChange={toggleNotifications}
-                      />
-                    </div>
-                  </div>
+                  </div> */}
                 </CollapsedSectionContent>
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['application']}
                 setOpen={() => {
                   const isOpen = openTabs['application']
@@ -213,9 +244,9 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Application" />
+                <CollapsedSectionHeader title="Application" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['links']}>
+                  <div className="px-4 pb-2">
                     <LinkList>
                       {/* <Link to="/info#faq">FAQ</Link> */}
                       <Link to={`mailto:${EMAIL_DEVCON}`}>Support</Link>
@@ -225,6 +256,7 @@ export default function SettingsPage() {
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['delete']}
                 setOpen={() => {
                   const isOpen = openTabs['delete']
@@ -241,10 +273,10 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Delete Account" />
+                <CollapsedSectionHeader title="Delete Account" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['wallet']}>
-                    <p className="mb-4">Once you delete your Devcon account, there is no going back. Tread lightly.</p>
+                  <div className="px-4 pb-2 flex flex-col items-start gap-4 pb-4">
+                    <p>Once you delete your Devcon account, there is no going back. Tread lightly.</p>
                     {!areYouSure && (
                       <>
                         <Button className="plain" color="purple-2" fill onClick={() => setAreYouSure(true)}>
@@ -269,12 +301,12 @@ export default function SettingsPage() {
               </CollapsedSection>
 
               <div>
-                <p className="text-[#585858] mb-1 mt-5 flex justify-center text-xs">
+                <p className="text-[#585858] mt-5 flex justify-center text-xs">
                   Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
                   through our application if you choose to.
                 </p>
 
-                <div className="flex justify-center gap-4 mt-2 text-xs text-[#7D52F4]">
+                <div className="flex justify-center gap-4 mb-2 mt-1 text-xs text-[#7D52F4]">
                   <Link to="https://ethereum.org/en/privacy-policy">
                     <p className="underline">Privacy Policy</p>
                   </Link>
