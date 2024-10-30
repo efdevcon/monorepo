@@ -254,19 +254,32 @@ export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
       <div className="flex flex-row gap-3 justify-between w-full px-4 lg:pt-4 pb-2">
-        <div data-type="speaker-filter-search" className="relative">
+        <div data-type="speaker-filter-search" className="relative w-full lg:w-[350px]">
           <input
             type="text"
             value={speakerFilter.text}
             onChange={e => setSpeakerFilter({ ...speakerFilter, text: e.target.value })}
             placeholder="Find a speaker"
-            className="w-full py-2 px-4 pl-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
+            className="w-full relative py-2 px-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
           />
 
-          <MagnifierIcon
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#99A0AE] icon"
-            style={{ '--color-icon': '#99A0AE' }}
-          />
+          <div
+            className="absolute left-4 top-0 bottom-0 h-[34px] lg:h-full cursor-pointer hover:opacity-70 transition-opacity flex items-center justify-center"
+            onClick={() => setSpeakerFilter({ ...speakerFilter, text: '' })}
+          >
+            <MagnifierIcon className="text-[#99A0AE] icon" style={{ '--color-icon': '#99A0AE' }} />
+          </div>
+
+          {speakerFilter.text && (
+            <div
+              className="absolute right-4 top-0 h-[34px] lg:h-full cursor-pointer hover:opacity-70 transition-opacity flex items-center justify-center"
+              onClick={() => setSpeakerFilter({ ...speakerFilter, text: '' })}
+            >
+              <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L13 13M1 13L13 1" stroke="#99A0AE" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+          )}
         </div>
 
         <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
