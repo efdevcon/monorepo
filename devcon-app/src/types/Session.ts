@@ -13,6 +13,7 @@ export interface Session {
   featured: boolean
   slot_start: number
   slot_end: number
+  slot_room?: Room
   start: number
   end: number
   startTime: string
