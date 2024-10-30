@@ -376,13 +376,13 @@ export function vectorizeSession(session: Session, dictionary: VectorDictionary)
 
 export function vectorizeUser(user: Account, dic: VectorDictionary = dictionary): number[] {
   const vector = [
-    ...dictionary.tracks.map((track) => (user.tracks.includes(track) ? 1 : 0)),
-    ...dictionary.speakers.map((speaker) => (user.favorite_speakers.includes(speaker) ? 1 : 0)),
-    ...dictionary.tags.map((tag) => (user.tags.includes(tag) ? 1 : 0)),
+    ...dictionary.tracks.map((track: any) => (user.tracks.includes(track) ? 1 : 0)),
+    ...dictionary.speakers.map((speaker: any) => (user.favorite_speakers.includes(speaker) ? 1 : 0)),
+    ...dictionary.tags.map((tag: any) => (user.tags.includes(tag) ? 1 : 0)),
     // @ts-ignore
-    ...dictionary.expertise.map((exp) => (getExpertiseLevel(user?.since).includes(exp) ? 1 : 0)),
+    ...dictionary.expertise.map((exp: any) => (getExpertiseLevel(user?.since).includes(exp) ? 1 : 0)),
     // @ts-ignore
-    ...dictionary.audiences.map((aud) => (user.roles.includes(aud) ? 1 : 0)),
+    ...dictionary.audiences.map((aud: any) => (user.roles.includes(aud) ? 1 : 0)),
   ]
 
   return getVectorWeight(vector, dictionary)
