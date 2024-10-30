@@ -23,6 +23,7 @@ import AIImage from 'lib/components/ai/ai-generate.png'
 import { useDraggableLink } from 'lib/components/link/Link'
 import CalendarIcon from 'assets/icons/calendar.svg'
 import { Link } from 'components/common/link'
+import { TruncateMiddle } from 'utils/formatting'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -66,33 +67,41 @@ const NotLoggedIn = () => {
 
 const LoggedInCard = () => {
   const avatar = useAvatar()
-  return (
-    <div
-      className={cn(
-        'flex items-center justify-between gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300'
-      )}
-    >
-      <div className="relative flex flex-row items-center gap-4">
-        <Image
-          // @ts-ignore
-          src={avatar.url}
-          alt={avatar.name}
-          width={48}
-          height={48}
-          className="rounded-full w-[48px] h-[48px] object-cover"
-        />
-      </div>
+  const { account } = useAccountContext()
 
+  return (
+    <Link to="/account">
       <div
-        className={cn('flex items-center justify-center p-2 hover:scale-110 transition-transform duration-300')}
-        onClick={e => {
-          e.stopPropagation()
-          e.preventDefault()
-        }}
+        className={cn(
+          'flex items-center justify-start items-center rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300 gap-4 sm:gap-2 mt-2 sm:mt-0'
+        )}
       >
-        Connected
+        <div className="relative flex flex-row items-center gap-4">
+          <Image
+            // @ts-ignore
+            src={avatar.url}
+            alt={avatar.name}
+            width={48}
+            height={48}
+            className="rounded-full w-[48px] h-[48px] object-cover"
+          />
+        </div>
+
+        <div
+          className={cn('flex flex-col p-2 w-60 hover:scale-110 transition-transform duration-300')}
+          onClick={e => {
+            e.stopPropagation()
+            e.preventDefault()
+          }}
+        >
+          <p className="text-xs font-semibold">Ethereum</p>
+          <div className="text-sm text-[#717784] mb-2">
+            {account?.addresses[0] ? TruncateMiddle(account?.addresses[0], 8) : account?.email}
+          </div>
+          <p className="text-xs text-[#7d52f4] font-semibold">Connected</p>
+        </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
@@ -100,7 +109,7 @@ const LoggedIn = () => {
   const { account } = useAccountContext()
 
   return (
-    <div className="px-4 flex justify-between items-center">
+    <div className="px-4 flex justify-between flex-col sm:flex-row">
       <div className="flex flex-col gap-0">
         <div className="font-semibold text-lg">ยินดีต้อนรับ (yin-dee ton-rap)</div>
         <div className="text-lg font-semibold">{account?.username ? `Hello, ${account?.username}` : 'Welcome!'} 👋</div>

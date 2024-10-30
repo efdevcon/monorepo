@@ -56,7 +56,12 @@ const OnboardingPage = (props: any) => {
       if (accountContext.account) {
         await accountContext.updateAccount(accountContext.account.id, { ...accountContext.account, onboarded: true })
       }
-      router.push('/account')
+
+      if (accountContext.account?.roles && accountContext.account?.since && accountContext.account?.tracks) {
+        router.push('/')
+      } else {
+        router.push('/account/profile')
+      }
     } else {
       setCurrentStep(currentStep + 1)
     }

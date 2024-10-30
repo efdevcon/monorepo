@@ -5,16 +5,13 @@ import { motion } from 'framer-motion'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import { Toaster } from 'lib/components/ui/toaster'
 import OnboardingPersonalization from 'assets/images/dc-7/onboarding-personalization.png'
-import cn from 'classnames'
-import { useZupass } from 'context/zupass'
 import { useAccountContext } from 'context/account-context'
+import cn from 'classnames'
 
 // This is the "personalization" onboarding step
 export const Personalization = (props: any) => {
-  const zupass = useZupass()
   const { account } = useAccountContext()
   const hasProfile = account?.roles && account?.since && account?.tracks
-  const showProfile = zupass.publicKey || hasProfile
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -53,7 +50,7 @@ export const Personalization = (props: any) => {
           Get personalized content recommendations! Tell us a bit about your interests, and we'll suggest talks,
           workshops and sessions tailored just for you to enhance your Devcon experience.
         </motion.p>
-        {showProfile && (
+        {hasProfile && (
           <>
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
               You've previously told us:
@@ -61,7 +58,7 @@ export const Personalization = (props: any) => {
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
               {account?.roles && (
                 <>
-                  You're a{' '}
+                  Your role is {account?.roles.length === 1 ? account.roles[0] : ''}
                   {account?.roles.length === 1
                     ? account.roles[0]
                     : `${account.roles.slice(0, -1).join(', ')} and ${account.roles.slice(-1)}`}
@@ -83,10 +80,11 @@ export const Personalization = (props: any) => {
           </>
         )}
 
-        {!showProfile && (
+        {!hasProfile && (
           <>
             <motion.p className="text-[#7D52F4] text-sm" variants={itemVariants}>
-              We don't have any information about you yet. Connect your Zupass for more personalized recommendations.
+              We don't have any information about you yet. Connect your Zupass if you have a Devcon ticket or edit your
+              personalized settings for more personalized recommendations
             </motion.p>
           </>
         )}
