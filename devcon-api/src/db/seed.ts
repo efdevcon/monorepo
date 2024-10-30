@@ -1,6 +1,6 @@
-import { GetData, GetSpeakerData } from '@/clients/filesystem'
+import { GetData, GetSpeakerData } from '../clients/filesystem'
 import { PrismaClient } from '@prisma/client'
-import { vectorizeSessions } from '@/clients/recommendation'
+import { vectorizeSessions } from '../clients/recommendation'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
