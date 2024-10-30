@@ -104,6 +104,9 @@ export async function GetSession(req: Request, res: Response) {
     where: {
       OR: [{ id: req.params.id }, { sourceId: req.params.id }],
     },
+    include: {
+      speakers: true,
+    },
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
@@ -145,17 +148,7 @@ export async function UpdateSession(req: Request, res: Response) {
       },
     })
 
-    await CommitSession(
-      {
-        ...updatedData,
-        tags: updatedData.tags?.split(',') || [],
-        keywords: updatedData.keywords?.split(',') || [],
-        speakers: updatedData.speakers.map((speaker) => speaker.id),
-        slot_start: updatedData.slot_start ? dayjs(updatedData.slot_start).valueOf() : null,
-        slot_end: updatedData.slot_end ? dayjs(updatedData.slot_end).valueOf() : null,
-      },
-      `[skip deploy] PUT /sessions/${updatedData.id}`
-    )
+    await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {

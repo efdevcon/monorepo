@@ -1,4 +1,5 @@
 import { SERVER_CONFIG } from '@/utils/config'
+import dayjs from 'dayjs'
 
 export async function CommitSession(session: any, commitMessage: string = '') {
   try {
@@ -66,6 +67,8 @@ function SessionToJson(session: any) {
     keywords: session.keywords?.split(',') || null,
     tags: session.tags?.split(',') || null,
     speakers: session.speakers.map((speaker: any) => speaker.id),
+    slot_start: session.slot_start ? dayjs(session.slot_start).valueOf() : null,
+    slot_end: session.slot_end ? dayjs(session.slot_end).valueOf() : null,
   }
 
   return JSON.stringify(filesystemSession, null, 2)
