@@ -23,9 +23,6 @@ export default (props: any) => {
 
   if (!props.session) return null
 
-  // TODO: Temporary test launch
-  return <>We will be back soon!</>
-
   return (
     <>
       <SEO title={props.session.title} description={props.session.description} separator="@" />
@@ -45,13 +42,13 @@ export default (props: any) => {
 }
 
 export async function getStaticPaths() {
-  // const sessions = await fetchSessions()
-  // const paths = sessions.map(i => {
-  // return { params: { id: i.sourceId } }
-  // })
+  const sessions = await fetchSessions()
+  const paths = sessions.map(i => {
+    return { params: { id: i.sourceId } }
+  })
 
   return {
-    paths: [], // TODO: Temporary test launch
+    paths,
     fallback: 'blocking',
   }
 }

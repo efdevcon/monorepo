@@ -35,12 +35,12 @@ export default pageHOC((props: any) => {
   // console.log(props.event, 'event?')
   // console.log(props.rooms)
 
-  // TODO: Temporary test launch
-  return <>We will be back soon!</>
-
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>
-      <SEO title="Schedule" />
+      <SEO
+        title="Schedule"
+        imageUrl={`https://devcon-social.netlify.app/schedule/${props.event.sourceId}/opengraph-image`}
+      />
 
       <SessionLayout sessions={sessions} event={props.event} />
 

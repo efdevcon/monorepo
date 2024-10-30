@@ -23,9 +23,6 @@ export default (props: any) => {
 
   if (!props.speaker) return null
 
-  // TODO: Temporary test launch
-  return <>We will be back soon!</>
-
   return (
     <>
       <SEO title={props.speaker.name} description={props.speaker.description} separator="@" />
@@ -48,13 +45,13 @@ export default (props: any) => {
 }
 
 export async function getStaticPaths() {
-  // const speakers = await fetchSpeakers()
-  // const paths = speakers.map(i => {
-  // return { params: { id: i.sourceId } }
-  // })
+  const speakers = await fetchSpeakers()
+  const paths = speakers.map(i => {
+    return { params: { id: i.sourceId } }
+  })
 
   return {
-    paths: [], // TODO: Temporary test launch
+    paths,
     fallback: 'blocking',
   }
 }
