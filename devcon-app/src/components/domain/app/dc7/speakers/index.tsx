@@ -458,17 +458,14 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       </div>
 
       <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
-        <StandalonePrompt
-          className="w-full"
-          onClick={() => setDevaBotVisible('Help me decide which keynotes to attend speaking about')}
-        >
-          <div className="truncate">Help me decide which keynotes to attend speaking about</div>
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend speakers who know about ')}>
+          <div className="truncate">Recommend speakers who know about...</div>
         </StandalonePrompt>
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible('Help me find a speaker that is similar to')}
         >
-          <div className="truncate">Help me find a speaker that is similar to</div>
+          <div className="truncate">Help me find a speaker that is similar to...</div>
         </StandalonePrompt>
       </div>
 

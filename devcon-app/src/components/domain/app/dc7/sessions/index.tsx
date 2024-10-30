@@ -1029,11 +1029,8 @@ export const SessionList = ({
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about ')}>
           <div className="truncate">Help me find sessions about...</div>
         </StandalonePrompt>
-        <StandalonePrompt
-          className="w-full"
-          onClick={() => setDevaBotVisible('Recommend sessions based on my interests')}
-        >
-          <div className="truncate">Recommend sessions based on my interests</div>
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend sessions related to ZKP')}>
+          <div className="truncate">Recommend sessions related to ZKP</div>
         </StandalonePrompt>
       </div>
 
