@@ -30,6 +30,9 @@ const Index = (props: any) => {
     }
   }, [])
 
+  // TODO: Temporary test launch
+  return <></>
+
   return (
     <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]}>
       <SEO title="Dashboard" />

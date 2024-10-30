@@ -42,6 +42,9 @@ export default pageHOC((props: any) => {
   //   }
   // }, [selectedSpeaker])
 
+  // TODO: Temporary test launch
+  return <></>
+
   return (
     <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'Speakers' }]}>
       <SEO title={'Speakers'} />
