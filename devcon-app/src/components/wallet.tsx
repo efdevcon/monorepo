@@ -5,7 +5,6 @@ import { useAppKit } from '@reown/appkit/react'
 
 export function TestWalletConnections() {
   const { open } = useAppKit()
-
   return (
     <>
       <p>

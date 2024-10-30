@@ -97,3 +97,5 @@ export function WalletLoginButton({ onError }: Props) {
     </>
   )
 }
+
+export default WalletLoginButton

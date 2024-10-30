@@ -64,39 +64,48 @@ export function SelfClaimingDiscounts() {
             <button className={cn(ticketCss['round-button'], 'mr-3 shrink-0')}>
               <span>{2}</span>
             </button>
-            <div> Application-based (Open indefinitely)</div>
+            <div> Application-based (CLOSED)</div>
           </div>
         </div>
       </div>
       <ul className="list-inside list-decimal mb-8 flex flex-col gap-4 text-sm">
         <li>
-          <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
-          <p className="ml-5">
-            For locals who are passionate about Ethereum & want to attend Devcon. Local residents can apply via 1 of 3
-            methods:
-          </p>
-          <ul className="list-inside list-disc mt-4 ml-8">
-            <li>
-              Our Manual Application —{' '}
-              <Link
-                indicateExternal
-                to="https://forms.gle/WWDCFybVVFSaxPee8"
-                className="text-[#1b6fae] hover:text-[#448dc3]"
-              >
-                application form
-              </Link>
-              : Submit your ID via our encrypted Secure-Drop portal. Same review process, same likelihood of acceptance.
-            </li>
-            <li>
-              SEA Residents —{' '}
-              <Link indicateExternal to="https://devcon.zkpassport.id/" className="text-[#1b6fae] hover:text-[#448dc3]">
-                zkPassport
-              </Link>
-              : Use your Passport & Zero-Knowledge proofs to prove SEA residency, which can help qualify you for a Local
-              Builder Discount.
-            </li>
-            <li>
-              <s>
+          <s>
+            <span className="font-bold text-base">Local SEA Builders ($49 USD)</span>
+          </s>
+          <s>
+            <p className="ml-5">
+              For locals who are passionate about Ethereum & want to attend Devcon. Local residents can apply via 1 of 3
+              methods:
+            </p>
+          </s>
+          <s>
+            <ul className="list-inside list-disc mt-4 ml-8">
+              <li>
+                Our Manual Application —{' '}
+                <Link
+                  indicateExternal
+                  to="https://forms.gle/WWDCFybVVFSaxPee8"
+                  className="text-[#1b6fae] hover:text-[#448dc3]"
+                >
+                  application form
+                </Link>
+                : Submit your ID via our encrypted Secure-Drop portal. Same review process, same likelihood of
+                acceptance.
+              </li>
+              <li>
+                SEA Residents —{' '}
+                <Link
+                  indicateExternal
+                  to="https://devcon.zkpassport.id/"
+                  className="text-[#1b6fae] hover:text-[#448dc3]"
+                >
+                  zkPassport
+                </Link>
+                : Use your Passport & Zero-Knowledge proofs to prove SEA residency, which can help qualify you for a
+                Local Builder Discount.
+              </li>
+              <li>
                 Indian Residents —{' '}
                 <Link
                   indicateExternal
@@ -107,69 +116,84 @@ export function SelfClaimingDiscounts() {
                 </Link>
                 : Use your Aadhaar card & Zero-Knowledge Proofs to prove Indian residency, which can help qualify you
                 for Local Builder Discount.
-              </s>
-              &nbsp;<b>No longer available.</b>
-            </li>
-          </ul>
+              </li>
+            </ul>
+          </s>
         </li>
         <li>
-          <Link
-            to="https://forms.gle/bRdrSrfq7EPVQXMY7"
-            indicateExternal
-            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
-          >
-            Builder
-          </Link>{' '}
-          ($299 USD)
+          <s>
+            <Link
+              to="https://forms.gle/bRdrSrfq7EPVQXMY7"
+              indicateExternal
+              className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+            >
+              Builder
+            </Link>{' '}
+            ($299 USD)
+          </s>
           <p className="ml-5">
-            For builders of all kinds (developers, designers, researchers, community organizers, artists, etc.) who
-            actively volunteer or contribute their time to the growth, research and development of Ethereum or the
-            ecosystem. <i>ID submission required.</i>
+            <s>
+              For builders of all kinds (developers, designers, researchers, community organizers, artists, etc.) who
+              actively volunteer or contribute their time to the growth, research and development of Ethereum or the
+              ecosystem. <i>ID submission required.</i>
+            </s>
           </p>
         </li>
         <li>
-          <Link
-            to="https://forms.gle/qhAuAQFeTBTe8U9f9"
-            indicateExternal
-            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
-          >
-            Academic (Students & Teachers)
-          </Link>{' '}
-          ($99 USD)
+          <s>
+            <Link
+              to="https://forms.gle/qhAuAQFeTBTe8U9f9"
+              indicateExternal
+              className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+            >
+              Academic (Students & Teachers)
+            </Link>{' '}
+            ($99 USD)
+          </s>
           <p className="ml-5">
-            For students & educators who wish to learn more about Ethereum.{' '}
-            <i>
-              Must be a current student with valid student ID or transcript, or justly employed by an Academic
-              Institution. Locals may qualify for an extra $50 off.
-            </i>{' '}
-            <i>ID submission required.</i>
+            <s>
+              For students & educators who wish to learn more about Ethereum.{' '}
+              <i>
+                Must be a current student with valid student ID or transcript, or justly employed by an Academic
+                Institution. Locals may qualify for an extra $50 off.
+              </i>{' '}
+              <i>ID submission required.</i>
+            </s>
           </p>
         </li>
         <li>
-          <Link
-            to="https://forms.gle/CZ9cuwMMGB5N1XuC8"
-            indicateExternal
-            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
-          >
-            Youth (Under 18)
-          </Link>{' '}
-          ($20 USD)
+          <s>
+            <Link
+              to="https://forms.gle/CZ9cuwMMGB5N1XuC8"
+              indicateExternal
+              className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+            >
+              Youth (Under 18)
+            </Link>{' '}
+            ($20 USD)
+          </s>
           <p className="ml-5">
-            For those under 18 years of age who are passionate about Ethereum & want to attend Devcon.{' '}
-            <i>ID submission required.</i>
+            <s>
+              For those under 18 years of age who are passionate about Ethereum & want to attend Devcon.{' '}
+              <i>ID submission required.</i>
+            </s>
           </p>
         </li>
         <li>
-          <Link
-            to="https://forms.gle/yKnLpNzkchjX8nqbA"
-            indicateExternal
-            className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
-          >
-            Volunteer
-          </Link>{' '}
+          <s>
+            <Link
+              to="https://forms.gle/yKnLpNzkchjX8nqbA"
+              indicateExternal
+              className="font-bold text-base text-[#1b6fae] hover:text-[#448dc3]"
+            >
+              Volunteer
+            </Link>{' '}
+          </s>
           <p className="ml-5">
-            Join the volunteer team alongside 200+ other fun, dedicated, passionate members of the community to help put
-            on the best Devcon yet.
+            <s>
+              Join the volunteer team alongside 200+ other fun, dedicated, passionate members of the community to help
+              put on the best Devcon yet.
+            </s>
           </p>
         </li>
         <li>
@@ -181,12 +205,13 @@ export function SelfClaimingDiscounts() {
             >
               Community Ticket Requests
             </Link>{' '}
-            <p className="ml-5">
+          </s>
+          <p className="ml-5">
+            <s>
               Leaders & organizers of various non-profit web2 & web3 communities or meetups can apply for free or
               discounted tickets for their groups to attend.
-            </p>
-          </s>
-          &nbsp;<b>No longer available.</b>
+            </s>
+          </p>
         </li>
       </ul>
     </div>

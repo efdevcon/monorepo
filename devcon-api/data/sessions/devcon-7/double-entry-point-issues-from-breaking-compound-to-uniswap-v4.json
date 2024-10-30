@@ -1,7 +1,7 @@
 {
-  "id": "how-we-broke-uniswapv4",
+  "id": "double-entry-point-issues-from-breaking-compound-to-uniswap-v4",
   "sourceId": "N9ZSQW",
-  "title": "How we broke UniswapV4",
+  "title": "Double entry point issues - From breaking Compound to Uniswap v4",
   "description": "A short explanation of a critical-severity vulnerability we found in the Uniswap V4 core contracts that would have caused a ~$15M loss in Uniswap's pools. The goal is to explain the risks of double entry points, from the $30M+ TUSD issue in Compound to the Uniswap V4-specific case where protocols use native tokens and operate on chains where the native token has a corresponding ERC-20 token, and how to prevent them.",
   "track": "Security",
   "type": "Lightning Talk",

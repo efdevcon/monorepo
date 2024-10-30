@@ -101,6 +101,10 @@ function mapSession(i: any, params: Partial<RequestParams>) {
   const audience = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_AUDIENCE)?.answer as string
   const keywords = arrayify(i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_KEYWORDS)?.answer)
 
+  let tags: string[] = []
+  if (i.tags) tags = [...i.tags]
+  if (predefinedTags) tags = [...tags, ...predefinedTags]
+
   let session: any = {
     id: defaultSlugify(i.title),
     sourceId: i.code,
@@ -113,15 +117,15 @@ function mapSession(i: any, params: Partial<RequestParams>) {
     featured: i.is_featured ?? false,
     doNotRecord: i.do_not_record ?? false,
     keywords: keywords,
-    tags: [...i.tags, ...predefinedTags] ?? [],
+    tags: tags,
     language: 'en',
     speakers: params.inclContacts ? i.speakers.map((i: any) => mapSpeaker(i, params)) : i.speakers.map((i: any) => defaultSlugify(i.name)),
     eventId: `devcon-${PRETALX_CONFIG.PRETALX_EVENT_ID}`,
   }
 
   if (i.slot) {
-    session.slot_start = dayjs.utc(i.slot.start).toDate()
-    session.slot_end = dayjs.utc(i.slot.end).toDate()
+    session.slot_start = dayjs.utc(i.slot.start).valueOf()
+    session.slot_end = dayjs.utc(i.slot.end).valueOf()
     session.slot_roomId = i.slot?.room ? defaultSlugify(i.slot.room.en) : null
   }
 
