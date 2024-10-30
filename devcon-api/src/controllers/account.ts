@@ -506,7 +506,7 @@ async function RecommendedSpeakers(req: Request, res: Response) {
 
   const speakers =
     account.addresses.length > 0
-      ? (await Promise.all(account.addresses.map((i) => GetRecommendedSpeakers(i, true)))).flat()
+      ? (await Promise.all(account.addresses.map((i: string) => GetRecommendedSpeakers(i, true)))).flat()
       : await GetRecommendedSpeakers('', true)
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
