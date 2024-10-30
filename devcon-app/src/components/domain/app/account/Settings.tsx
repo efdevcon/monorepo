@@ -13,6 +13,7 @@ import { useRouter } from 'next/router'
 import Toggle from 'react-toggle'
 import { EMAIL_DEVCON } from 'utils/constants'
 import { cn } from 'lib/shadcn/lib/utils'
+import { LoggedInCard } from 'components/domain/app/dc7/dashboard'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -60,26 +61,27 @@ export default function SettingsPage() {
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
         <div className={cn('basis-[60%] grow')}>
           <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
-            <div className="flex flex-col gap-3 pb-4 px-4 mt-4">
-              <div className={css['alert']}>
-                {error && (
+            <div className="flex flex-col gap-3 py-4 px-4">
+              {error && (
+                <div className={css['alert']}>
                   <Alert title="Error" color="orange">
                     {error}
                   </Alert>
-                )}
-              </div>
+                </div>
+              )}
 
               <div className={cn(css['profile'], 'border-b border-solid border-[#E4E6EB]')}>
-                <div className={css['avatar']}>
+                {/* <div className={css['avatar']}>
                   <img src={avatar.url} alt={avatar.name} />
-                </div>
-                <p className={`${css['name']} text-xl font-semibold`}>
+                </div> */}
+                <LoggedInCard />
+                {/* <p className={`${css['name']} text-xl font-semibold`}>
                   {accountContext.account?.username
                     ? accountContext.account?.username
                     : isEmail(avatar.name)
                     ? avatar.name
                     : TruncateMiddle(avatar.name, 8)}
-                </p>
+                </p> */}
                 <span className={css['signout']} role="button" onClick={disconnect}>
                   Sign out
                 </span>
@@ -266,7 +268,24 @@ export default function SettingsPage() {
                 </CollapsedSectionContent>
               </CollapsedSection>
 
-              <AccountFooter />
+              <div>
+                <p className="text-[#585858] mb-1 mt-5 flex justify-center text-xs">
+                  Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
+                  through our application if you choose to.
+                </p>
+
+                <div className="flex justify-center gap-4 mt-2 text-xs text-[#7D52F4]">
+                  <Link to="https://ethereum.org/en/privacy-policy">
+                    <p className="underline">Privacy Policy</p>
+                  </Link>
+                  <Link to="https://ethereum.org/en/terms-of-use/">
+                    <p className="underline">Terms of Use</p>
+                  </Link>
+                  <Link to="https://ethereum.org/en/cookie-policy/">
+                    <p className="underline">Cookie Policy</p>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

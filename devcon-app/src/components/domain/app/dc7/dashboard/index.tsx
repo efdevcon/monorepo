@@ -24,6 +24,7 @@ import { useDraggableLink } from 'lib/components/link/Link'
 import CalendarIcon from 'assets/icons/calendar.svg'
 import { Link } from 'components/common/link'
 import { TruncateMiddle } from 'utils/formatting'
+import ChevronRight from 'assets/icons/chevron_right.svg'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -65,18 +66,18 @@ const NotLoggedIn = () => {
   )
 }
 
-const LoggedInCard = () => {
+export const LoggedInCard = ({ dashboard, className }: { dashboard?: boolean; className?: string }) => {
   const avatar = useAvatar()
   const { account } = useAccountContext()
 
   return (
-    <Link to="/account">
+    <Link to="/account" className={className}>
       <div
         className={cn(
-          'flex items-center justify-start items-center rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300 gap-4 sm:gap-2 mt-2 sm:mt-0'
+          'flex items-center justify-between rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 px-4 shrink-0 cursor-pointer hover:border-[#d1c7f7] gap-4 sm:gap-2 transition-all duration-300'
         )}
       >
-        <div className="relative flex flex-row items-center gap-4">
+        <div className="relative flex flex-row items-center gap-1">
           <Image
             // @ts-ignore
             src={avatar.url}
@@ -85,21 +86,23 @@ const LoggedInCard = () => {
             height={48}
             className="rounded-full w-[48px] h-[48px] object-cover"
           />
+
+          <div
+            className={cn('flex flex-col p-2')}
+            onClick={e => {
+              e.stopPropagation()
+              e.preventDefault()
+            }}
+          >
+            <p className="text-xs font-semibold">Ethereum</p>
+            <div className="text-sm text-[#717784] mb-0">
+              {account?.addresses[0] ? TruncateMiddle(account?.addresses[0], 8) : account?.email}
+            </div>
+            <p className="text-xs text-[#7d52f4] font-semibold">Connected</p>
+          </div>
         </div>
 
-        <div
-          className={cn('flex flex-col p-2 w-60 hover:scale-110 transition-transform duration-300')}
-          onClick={e => {
-            e.stopPropagation()
-            e.preventDefault()
-          }}
-        >
-          <p className="text-xs font-semibold">Ethereum</p>
-          <div className="text-sm text-[#717784] mb-2">
-            {account?.addresses[0] ? TruncateMiddle(account?.addresses[0], 8) : account?.email}
-          </div>
-          <p className="text-xs text-[#7d52f4] font-semibold">Connected</p>
-        </div>
+        {dashboard && <ChevronRight className="text-xs icon mx-4" style={{ '--color-icon': '#7d52f4' }} />}
       </div>
     </Link>
   )
@@ -109,13 +112,20 @@ const LoggedIn = () => {
   const { account } = useAccountContext()
 
   return (
-    <div className="px-4 flex justify-between flex-col sm:flex-row">
-      <div className="flex flex-col gap-0">
-        <div className="font-semibold text-lg">ยินดีต้อนรับ (yin-dee ton-rap)</div>
-        <div className="text-lg font-semibold">{account?.username ? `Hello, ${account?.username}` : 'Welcome!'} 👋</div>
+    <div className="px-4 flex flex-col lg:flex-row justify-between lg:items-center sm:flex-row gap-4">
+      <div>
+        <div className="font-semibold text-xl">
+          ยินดีต้อนรับ <span className="text-[#7d52f4] italic">(yin-dee ton-rap)</span>
+        </div>
+        <div className="text-lg font-semibold">
+          {account?.username ? `Welcome, ${account?.username}!` : 'Welcome!'} 👋
+        </div>
+        <p className="text-xs text-[#505050] mt-1">
+          Thank you for connecting to the Devcon Passport - have a wonderful Devcon.
+        </p>
       </div>
 
-      <LoggedInCard />
+      <LoggedInCard dashboard className="lg:min-w-[350px] lg:max-w-[50%]" />
     </div>
   )
 }
