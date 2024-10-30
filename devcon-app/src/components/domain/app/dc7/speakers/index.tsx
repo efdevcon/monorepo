@@ -197,17 +197,13 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
           className="rounded-full w-[48px] h-[48px] object-cover"
         />
         <div className="flex flex-col">
-          <div className="text-sm font-medium">{speaker.name}</div>
+          <div className="text-sm font-semibold">{speaker.name}</div>
           {speaker.sessions && speaker.sessions?.length > 0 && (
             <div className="text-xs text-[#717784]">{speaker.sessions?.length} sessions</div>
           )}
           {speaker?.twitter && (
             <div
-              onClick={e => {
-                e.stopPropagation()
-                e.preventDefault()
-                window.open(`https://twitter.com/${speaker.twitter}`, '_blank')
-              }}
+              onClick={e => window.open(`https://twitter.com/${speaker.twitter}`, '_blank')}
               className="flex items-center gap-2 self-start text-xs"
             >
               <div>@{speaker.twitter}</div>

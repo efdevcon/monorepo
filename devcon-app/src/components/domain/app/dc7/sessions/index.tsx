@@ -66,12 +66,18 @@ import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
 
+export const tagClassTwo = (active?: boolean, className?: string) =>
+  cn(
+    'shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[black] hover:border-[black] font-semibold hover:text-black transition-all duration-300',
+    active ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+    className
+  )
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
 export const tagClass = (active: boolean, className?: string) =>
   cn(
     'shrink-0 select-none cursor-pointer rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300',
-    active ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : '',
+    active ? ' border-[#ac9fdf] bg-[#EFEBFF]' : '',
     className
   )
 
@@ -91,10 +97,16 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     return {
       type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
       day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
-      expertise: ['Beginner', 'Intermediate', 'Expert', ...new Set(sessions.map(session => session.expertise))].filter(
-        Boolean
-      ),
-      track: [...new Set(sessions.map(session => session.track))].filter(Boolean),
+      expertise: [
+        ...new Set(
+          ['Beginner', 'Intermediate', 'Expert']
+            .concat(...sessions.map((session: any) => session.expertise))
+            .filter(Boolean)
+        ),
+      ],
+      track: [...new Set(sessions.map(session => session.track))]
+        .filter(Boolean)
+        .filter(track => !track.startsWith('[CLS]')),
       room: [...new Set(sessions.map(session => session.room))].filter(Boolean),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
@@ -151,25 +163,25 @@ const getExpertiseColor = (expertise: string) => {
 const getTrackColor = (track: string) => {
   switch (track) {
     case 'Core Protocol':
-      return 'bg-[#F6F2FF]'
+      return '!bg-[#F6F2FF]'
     case 'Cypherpunk & Privacy':
-      return 'bg-[#FFF4FF]'
+      return '!bg-[#FFF4FF]'
     case 'Usability':
-      return 'bg-[#FFF4F4]'
+      return '!bg-[#FFF4F4]'
     case 'Real World Ethereum':
-      return 'bg-[#FFEDDF]'
+      return '!bg-[#FFEDDF]'
     case 'Applied Cryptography':
-      return 'bg-[#FFFEF4]'
+      return '!bg-[#FFFEF4]'
     case 'Cryptoeconomics':
-      return 'bg-[#F9FFDF]'
+      return '!bg-[#F9FFDF]'
     case 'Coordination':
-      return 'bg-[#E9FFD7]'
+      return '!bg-[#E9FFD7]'
     case 'Developer Experience':
-      return 'bg-[#E8FDFF]'
+      return '!bg-[#E8FDFF]'
     case 'Security':
-      return 'bg-[#E4EEFF]'
+      return '!bg-[#E4EEFF]'
     case 'Layer 2':
-      return 'bg-[#F0F1FF]'
+      return '!bg-[#F0F1FF]'
     default:
       return 'bg-[white]' // Light Gray (default color)
   }
@@ -227,16 +239,19 @@ const ExpertiseTag = ({ expertise, className }: { expertise: string; className?:
   )
 }
 
-const TrackTag = ({ track, className }: { track: string; className?: string }) => {
+const TrackTag = ({ track, className, applyColor = true, ...rest }: any) => {
+  if (!track) return null
+
   return (
     <div
       className={cn(
-        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA]',
-        getTrackColor(track),
-        css['glass-tag'],
+        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA] flex gap-2 items-center',
+        applyColor ? getTrackColor(track) : '',
         className
       )}
+      {...rest}
     >
+      <Image src={getTrackLogo(track)} alt={track} height={15} width={15} />
       {track}
     </div>
   )
@@ -354,7 +369,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             </div>
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
-              <IconClock className="icon flex shrink-0" />
+              <IconVenue className="icon flex shrink-0" />
               <p className="text-xs shrink-0 text-gray-600">
                 {session.type} - {session.slot_roomId}
               </p>
@@ -439,7 +454,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           {filterOptions.type.map((type: string) => (
             <div
               key={type}
-              className={tagClass(sessionFilter.type[type]) + ' !shrink'}
+              className={tagClass(sessionFilter.type[type]) + ' !text-black font-semibold !shrink'}
               onClick={() => toggleFilter('type', type)}
             >
               {type}
@@ -452,13 +467,16 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         <div className="flex flex-col gap-3 pb-4 font-semibold">Tracks</div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.track.map((track: string) => (
-            <div
+            <TrackTag
               key={track}
+              track={track}
+              applyColor={sessionFilter.track[track]}
+              //   className="!shrink"
               className={tagClass(sessionFilter.track[track]) + ' !shrink'}
               onClick={() => toggleFilter('track', track)}
             >
               {track}
-            </div>
+            </TrackTag>
           ))}
         </div>
       </div>
@@ -469,7 +487,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           {filterOptions.expertise.map((expertise: string) => (
             <div
               key={expertise}
-              className={tagClass(sessionFilter.expertise[expertise]) + ' !shrink'}
+              className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
               onClick={() => toggleFilter('expertise', expertise)}
             >
               {expertise}
@@ -489,7 +507,29 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div> */}
 
-      <Button
+      <Separator className="my-1" />
+
+      <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center">
+        <div
+          onClick={() => {
+            const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+            setSessionFilter({
+              ...sessionFilter,
+              ...advancedFilterKeys.reduce((acc, key) => {
+                acc[key] = {}
+                return acc
+              }, {} as any),
+            })
+
+            setSessionFilterOpen(false)
+          }}
+          className={tagClassTwo(false, ' !text-[black] font-semibold')}
+        >
+          Reset Filter
+        </div>
+      </div>
+
+      {/* <Button
         className="mt-2 flex self-center items-center gap-2 text-sm"
         fill
         color="black-1"
@@ -508,7 +548,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       >
         <FilterIcon className="icon" style={{ fontSize: '12px' }} />
         Reset Filter
-      </Button>
+      </Button> */}
     </div>
   )
 }
@@ -1022,7 +1062,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const { account, setSessionBookmark } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  //   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
 
   if (!session) return null
 
@@ -1129,7 +1169,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
               )}
             </div>
 
-            {!standalone && (
+            {/* {!standalone && (
               <Link
                 className="flex justify-center items-center select-none shrink-0 p-2"
                 to={`/schedule/${session.sourceId}`}
@@ -1140,7 +1180,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
                   //   onClick={copyShareLink}
                 />
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>
@@ -1259,6 +1299,18 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       )}
 
       <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
+
+      {!standalone && (
+        <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
+          <Link
+            to={`/schedule/${session.sourceId}`}
+            className={tagClassTwo(false, 'text-[black] font-semibold')}
+            indicateExternal
+          >
+            Go to Session Page
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
@@ -1333,7 +1385,7 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
         </div>
       )}
 
-      <div className={cn('block lg:hidden')}>
+      <div className={cn('block lg:hidden z-[20]')}>
         <Popup open={sessionFilterOpen} setOpen={() => setSessionFilterOpen(false)}>
           <SessionFilterAdvanced filterOptions={filterOptions} />
         </Popup>
