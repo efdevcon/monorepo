@@ -71,3 +71,5 @@ export function WalletLoginButton() {
     </Button>
   )
 }
+
+export default WalletLoginButton
