@@ -171,18 +171,15 @@ export async function UpdateSessionSources(req: Request, res: Response) {
 
   const body = req.body
   if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
-  if (req.params.id !== body.id && req.params.id !== body.sourceId) {
-    return res.status(400).send({ status: 400, message: 'Invalid Id' })
-  }
 
   const data = await client.session.findFirst({
     where: {
       OR: [{ id: req.params.id }, { sourceId: req.params.id }],
     },
   })
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   const allowedFields = ['sources_ipfsHash', 'sources_youtubeId', 'sources_swarmHash', 'sources_livepeerId', 'duration']
-  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
   if (Object.keys(body).some((key) => !(key in allowedFields))) {
     return res.status(400).send({ status: 400, message: 'Invalid fields' })
   }
