@@ -371,7 +371,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <IconVenue className="icon flex shrink-0" />
               <p className="text-xs shrink-0 text-gray-600">
-                {session.type} - {session.slot_roomId}
+                {session.type} - {session.slot_room?.name ?? session.slot_roomId}
               </p>
             </div>
 
@@ -1250,7 +1250,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div className="flex items-center gap-2">
           <IconVenue className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
-            {session.type} - {session.slot_roomId}
+            {session.type} - {session.slot_room?.name ?? session.slot_roomId}
           </span>
         </div>
 
