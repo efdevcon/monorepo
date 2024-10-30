@@ -1172,7 +1172,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         >
           <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] pb-1 text-white max-w-[70%]">
             {/* <TrackTag track={session.track} className="self-start" /> */}
-            <p className="text-lg leading-6">{session.title}</p>
+            <p className="text-lg leading-6 pb-1">{session.title}</p>
           </div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
             <div

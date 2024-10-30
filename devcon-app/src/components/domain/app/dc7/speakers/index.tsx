@@ -19,7 +19,7 @@ import {
 } from 'pages/_app'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
-import { SessionCard } from 'components/domain/app/dc7/sessions/index'
+import { SessionCard, tagClassTwo } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
 import { useWindowWidth } from '../../Layout'
@@ -589,7 +589,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
               style={{ '--color-icon': account?.favorite_speakers?.includes(speaker.id) ? 'red' : 'white' }}
             />
 
-            {!standalone && (
+            {/* {!standalone && (
               <Link className="flex justify-center items-center" to={`/speakers/${speaker.sourceId}`}>
                 <ShareIcon
                   className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
@@ -597,7 +597,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
                   // onClick={copyShareLink}
                 />
               </Link>
-            )}
+            )} */}
 
             {speaker?.twitter && (
               <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
@@ -635,6 +635,18 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       </div>
 
       <SpeakerSessions speaker={speaker} className={cn(standalone && '!border-none shrink-0 lg:hidden')} />
+
+      {!standalone && (
+        <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
+          <Link
+            to={`/speakers/${speaker.sourceId}`}
+            className={tagClassTwo(false, 'text-[black] font-semibold')}
+            indicateExternal
+          >
+            Go to Speaker Page
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
