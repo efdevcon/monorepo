@@ -10,13 +10,7 @@ import Image from 'next/image'
 import css from './speakers.module.scss'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import {
-  devaBotVisibleAtom,
-  favoritedSpeakersAtom,
-  selectedSpeakerSelector,
-  sessionsAtom,
-  speakerFilterAtom,
-} from 'pages/_app'
+import { devaBotVisibleAtom, selectedSpeakerSelector, sessionsAtom, speakerFilterAtom } from 'pages/_app'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
 import { SessionCard, tagClassTwo } from 'components/domain/app/dc7/sessions/index'
@@ -87,9 +81,9 @@ export const cardClass =
 // }
 
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
+  const { account } = useAccountContext()
   const sessions = useRecoilValue(sessionsAtom)
   const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
-  const favoritedSpeakers = useRecoilValue(favoritedSpeakersAtom)
 
   const filterOptions = useMemo(() => {
     return {
@@ -133,7 +127,7 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
     if (!speakers) return []
 
     return speakers.filter(speaker => {
-      const isFavorited = favoritedSpeakers[speaker.sourceId]
+      const isFavorited = account?.favorite_speakers?.includes(speaker.id)
 
       const matchesText = speaker.name.toLowerCase().includes(speakerFilter.text.toLowerCase())
       const matchesLetter = speakerFilter.letter === '' || speaker.name[0].toUpperCase() === speakerFilter.letter
