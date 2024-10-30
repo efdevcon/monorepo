@@ -52,7 +52,6 @@ export const Room = (props: Props) => {
   const sortedSessions = props.sessions.slice().sort((a, b) => {
     return moment.utc(a.start).isBefore(moment.utc(b.start)) ? -1 : 1
   })
-  const bookmarkedSessions = account?.sessions
   const upcomingSessions = sortedSessions
     .filter(i => sessionSearch(search, i))
     .filter(i => {
@@ -68,7 +67,7 @@ export const Room = (props: Props) => {
     })
   const attendingSessions = sortedSessions
     .filter(i => sessionSearch(search, i))
-    .filter(i => bookmarkedSessions?.find(bookmark => bookmark.id === i.id))
+    .filter(i => account?.interested_sessions?.find(bookmark => bookmark === i.sourceId))
   const pastSessions = sortedSessions.filter(i => sessionSearch(search, i)).filter(i => !moment.utc(i.end).isAfter(now))
 
   const start = moment(props.event.startDate)

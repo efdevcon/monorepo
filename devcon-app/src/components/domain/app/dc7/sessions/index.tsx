@@ -33,8 +33,6 @@ import {
   selectedSessionSelector,
   sessionFilterAtom,
   sessionFilterOpenAtom,
-  attendingSessionsAtom,
-  interestedSessionsAtom,
 } from 'pages/_app'
 import { usePathname } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
@@ -86,9 +84,8 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 }
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
+  const { account } = useAccountContext()
   const [sessionFilter, _] = useRecoilState(sessionFilterAtom)
-  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
-  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
@@ -122,8 +119,8 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         session.type.toLowerCase().includes(text.toLowerCase()) ||
         session.track.toLowerCase().includes(text.toLowerCase())
 
-      const isAttending = attendingSessions[session.sourceId]
-      const isInterested = interestedSessions[session.sourceId]
+      const isAttending = account?.attending_sessions?.includes(session.sourceId)
+      const isInterested = account?.interested_sessions?.includes(session.sourceId)
 
       const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
       const matchesDay =
@@ -144,7 +141,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
       return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
     })
-  }, [sessions, sessionFilter, attendingSessions, interestedSessions])
+  }, [sessions, sessionFilter])
 
   return {
     filteredSessions,

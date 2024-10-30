@@ -48,45 +48,6 @@ export const selectedSessionAtom = atom<SessionType | null>({
   ],
 })
 
-// TODO - persist to user in the "effects handler"
-export const attendingSessionsAtom = atom<any>({
-  key: 'attendingSessions',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const interestedSessionsAtom = atom<any>({
-  key: 'interestedSessions',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const favoritedSpeakersAtom = atom<any>({
-  key: 'favoritedSpeakers',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
 export const sessionFilterOpenAtom = atom<boolean>({
   key: 'sessionFilterOpen',
   default: false,
