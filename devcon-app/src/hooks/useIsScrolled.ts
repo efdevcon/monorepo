@@ -18,16 +18,17 @@ export const useIsScrolled = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  console.log()
+
   return isScrolled
 }
-
 
 export const useScrollY = () => {
   const [y, setY] = useState(false)
 
   useIsomorphicLayoutEffect(() => {
     const handleScroll = () => {
-      setY(window.scrollY > 0);
+      setY(window.scrollY > 0)
     }
 
     window.addEventListener('scroll', handleScroll)
@@ -35,7 +36,7 @@ export const useScrollY = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  return y;
+  return y
 }
 
 export const useDidScrollDown = () => {
@@ -66,5 +67,5 @@ export const useDidScrollDown = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [didScrollDown])
 
-  return didScrollDown;
+  return didScrollDown
 }

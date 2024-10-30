@@ -76,20 +76,20 @@ _self.addEventListener('push', event => {
     console.error('Error parsing push event data:', e)
   }
 
-  const title = data.title ? `Devcon SEA Passport - ${data.title}` : 'Devcon SEA Passport'
+  const title = data.title ? data.title : 'Devcon SEA Passport'
   const options = {
     body: data.body || 'You have a new notification',
-    icon: '/android-chrome-192x192.png',
+    icon: '/icon-256x256.png',
     // badge: '/icons/badge.png', // Small icon for notification badge
-    badge: '/assets/images/twitter-banner.jpeg', // Small icon for notification badge
+    badge: '/icon-256x256.png', // Small icon for notification badge
     // image: data.image || '/images/notification-image.png', // Large image to display in the notification
     // tag: 'devcon-notification', // Tag to identify the notification - this will cause the notification to replace the previous one with the same tag
     data: { url: data.url || '/' }, // Custom data to associate with the notification
     actions: [
       {
         action: 'open_url',
-        title: 'Open',
-        icon: '/favicon-32x32.png',
+        title: 'Open Devcon Passport',
+        // icon: '/favicon-32x32.png',
       },
     ],
     // requireInteraction: true, // Notification will remain active until the user interacts with it
@@ -122,3 +122,27 @@ _self.addEventListener('notificationclick', event => {
     )
   }
 })
+
+// TODO: this breaks things
+// self.addEventListener('fetch', event => {
+//   event.respondWith(
+//     caches.match(event.request).then(cachedResponse => {
+//       if (cachedResponse) {
+//         return cachedResponse
+//       }
+//       return fetch(event.request).then(response => {
+//         // Check if the response is a 404
+//         if (response.status === 404) {
+//           // Handle 404 response, e.g., return a custom 404 page or ignore caching
+//           return caches.match('/404') || Response.error()
+//         }
+//         // Cache the response if it's not a 404
+//         const responseClone = response.clone()
+//         caches.open('dynamic-cache').then(cache => {
+//           cache.put(event.request, responseClone)
+//         })
+//         return response
+//       })
+//     })
+//   )
+// })

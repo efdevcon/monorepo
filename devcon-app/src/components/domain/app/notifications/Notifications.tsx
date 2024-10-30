@@ -38,6 +38,7 @@ const filters = [
 ]
 
 export const NotificationCard = React.forwardRef((props: any, ref: any) => {
+  // @ts-ignore
   const { seenNotifications, setSeenNotifications } = useAppContext()
   const [notificationSeen, setNotificationSeen] = useLocalStorage(
     `notification-seen-${props.notification.id}`,
@@ -100,6 +101,7 @@ export const NotificationCard = React.forwardRef((props: any, ref: any) => {
 export const Notifications = (props: any) => {
   const pageContext = usePageContext()
   const notificationRefs = React.useRef<any>({})
+  // @ts-ignore
   const { seenNotifications, setSeenNotifications } = useAppContext()
   // const [basicFilter, setBasicFilter] = React.useState('all')
 

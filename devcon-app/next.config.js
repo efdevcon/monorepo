@@ -12,6 +12,7 @@ const runtimeCache = require('./runtime-cache')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@parcnet-js/podspec', '@pcd/pod'],
   staticPageGenerationTimeout: 300,
   images: {
     domains: [
@@ -48,7 +49,7 @@ const nextConfig = {
           ...config.resolve.alias,
           react: path.resolve(__dirname, 'node_modules/react'),
           'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-          'recoil': path.resolve(__dirname, 'node_modules/recoil'),
+          recoil: path.resolve(__dirname, 'node_modules/recoil'),
         },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
         fallback: {

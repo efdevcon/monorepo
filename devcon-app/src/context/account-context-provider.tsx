@@ -12,6 +12,8 @@ import Image from 'next/image'
 import css from 'components/domain/app/login-modal.module.scss'
 import { APP_CONFIG } from 'utils/config'
 import { useAppKit } from '@reown/appkit/react'
+import { POD } from '@pcd/pod'
+import { Button } from 'lib/components/button'
 
 interface AccountContextProviderProps {
   children: ReactNode
@@ -32,6 +34,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     logout,
     getAccount,
     updateAccount,
+    updateZupassProfile,
     deleteAccount,
     setSpeakerFavorite,
     setSessionBookmark,
@@ -188,6 +191,28 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     return false
   }
 
+  async function updateZupassProfile(pod: POD): Promise<boolean> {
+    const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/zupass/import`, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pod: pod.toJSON() }),
+    }).catch(e => {
+      alert('An error occurred. You may be offline, try again later.')
+    })
+
+    if (!response) return false
+
+    if (response.status === 200) {
+      const { data } = await response.json()
+      setContext({ ...context, account: data })
+      return true
+    }
+
+    // else: set error/message
+    return false
+  }
+
   async function deleteAccount(id: string): Promise<boolean> {
     const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/${id}`, {
       method: 'DELETE',
@@ -211,7 +236,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return
     }
 
-    let favorites = account.speakers ?? []
+    let favorites = account.favorite_speakers ?? []
 
     if (remove) {
       favorites = favorites.filter(i => i !== speakerId)
@@ -221,7 +246,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const newAccountState = {
       ...account,
-      speakers: favorites,
+      favorite_speakers: favorites,
     }
 
     const success = await updateAccount(account.id, newAccountState)
@@ -246,25 +271,26 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       return
     }
 
-    let sessions = account.sessions ?? []
-
-    if (remove) {
-      sessions = sessions.filter(i => i.id !== session.id || level !== i.level)
+    let sessions: string[] = []
+    if (level === 'attending') {
+      sessions = account.attending_sessions ?? []
     } else {
-      sessions = [
-        ...sessions,
-        {
-          id: session.id,
-          level: level,
-          start: new Date(session.start),
-          end: new Date(session.end),
-        },
-      ]
+      sessions = account.interested_sessions ?? []
     }
 
-    const newAccountState = {
+    if (remove) {
+      sessions = sessions.filter(i => i !== session.sourceId)
+    } else {
+      sessions = [...sessions, session.sourceId]
+    }
+
+    let newAccountState = {
       ...account,
-      sessions: sessions,
+    }
+    if (level === 'attending') {
+      newAccountState.attending_sessions = sessions
+    } else {
+      newAccountState.interested_sessions = sessions
     }
 
     const success = await updateAccount(account.id, newAccountState)
@@ -321,16 +347,14 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
             <div>
               <div className={css['background']}>
                 <HeaderLogo />
-
-                <Image src={AppLogoColor} alt="App logo" />
               </div>
               <p className="bold clear-bottom-less clear-top-less">
                 You need to be logged in to personalize (and share) your schedule, track your favorite speakers, and
                 more.
               </p>
-              <Link to="/login" className="button red">
+              <Button color="purple-2" fill onClick={() => router.push('/login')}>
                 Login
-              </Link>
+              </Button>
             </div>
           </Modal>
         )}

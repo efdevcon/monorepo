@@ -15,6 +15,8 @@ import { ShareScheduleModal } from './ShareScheduleModal'
 import IconAdded from 'assets/icons/person-added.svg'
 import IconAdded2 from 'assets/icons/person-added-2.svg'
 import { DownloadScheduleModal } from './DownloadScheduleModal'
+import DevaBot from 'lib/components/ai/overlay'
+import { RecoilRoot } from 'recoil'
 
 type Timeslot = {
   time: number
@@ -355,7 +357,7 @@ export const Schedule = (props: any) => {
 
   return (
     <>
-      <AppNav
+      {/* <AppNav
         nested
         links={[
           {
@@ -396,61 +398,61 @@ export const Schedule = (props: any) => {
             </>
           )
         }}
-      />
+      /> */}
 
-      <div className="section">
-        <div className="expand-right">
-          <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-            <div className={css['basic-filter-container']}>
-              <Basic
-                value={basicFilter}
-                onChange={setBasicFilter}
-                options={
-                  personalAgenda
-                    ? [
-                        {
-                          text: 'Personalized Schedule',
-                          value: 'personal',
-                        },
-                      ]
-                    : [
-                        {
-                          text: 'All',
-                          value: 'all',
-                        },
-                        {
-                          text: 'Upcoming',
-                          value: 'upcoming',
-                        },
-                        {
-                          text: 'Attending',
-                          value: 'attending',
-                        },
-                        {
-                          text: 'Live',
-                          value: 'live',
-                        },
-                        {
-                          text: 'Interested',
-                          value: 'interested',
-                        },
-                        {
-                          text: 'Past',
-                          value: 'past',
-                        },
-                      ]
-                }
-              />
-            </div>
-          </SwipeToScroll>
-        </div>
-
-        {personalAgenda && (
-          <p>
-            You&apos;re watching the schedule of <b>{userSchedule.username}</b>
-          </p>
-        )}
+      {/* <div className="section"> */}
+      <div className="expand-right">
+        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+          <div className={css['basic-filter-container']}>
+            <Basic
+              value={basicFilter}
+              onChange={setBasicFilter}
+              options={
+                personalAgenda
+                  ? [
+                      {
+                        text: 'Personalized Schedule',
+                        value: 'personal',
+                      },
+                    ]
+                  : [
+                      {
+                        text: 'All',
+                        value: 'all',
+                      },
+                      {
+                        text: 'Upcoming',
+                        value: 'upcoming',
+                      },
+                      {
+                        text: 'Attending',
+                        value: 'attending',
+                      },
+                      {
+                        text: 'Live',
+                        value: 'live',
+                      },
+                      {
+                        text: 'Interested',
+                        value: 'interested',
+                      },
+                      {
+                        text: 'Past',
+                        value: 'past',
+                      },
+                    ]
+              }
+            />
+          </div>
+        </SwipeToScroll>
       </div>
+
+      {personalAgenda && (
+        <p>
+          You&apos;re watching the schedule of <b>{userSchedule.username}</b>
+        </p>
+      )}
+      {/* </div> */}
 
       {!personalAgenda && (
         <div className={filterCss['filter']}>

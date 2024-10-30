@@ -1,83 +1,61 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { Session } from 'components/domain/app/session'
-import { pageHOC } from 'context/pageHOC'
-import React from 'react'
-import { fetchSessions, useSessionData } from 'services/event-data'
-import { API_URL, DEFAULT_APP_PAGE, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
-import { getGlobalData } from 'services/global'
-import { Session as SessionType } from 'types/Session'
+import { SessionView, Livestream, cardClass } from 'components/domain/app/dc7/sessions/index'
+import React, { useEffect } from 'react'
+import { fetchSessions } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import Fuse from 'fuse.js'
+import { useRecoilState } from 'recoil'
+import { selectedSessionAtom } from 'pages/_app'
+import { useRouter } from 'next/router'
+import cn from 'classnames'
 
-const options = {
-  includeScore: true,
-  useExtendedSearch: true,
-  shouldSort: true,
-  ignoreLocation: true,
-  keys: [
-    {
-      name: 'speakers.name',
-      weight: 1,
-    },
-    {
-      name: 'track',
-      weight: 0.5,
-    },
-    {
-      name: 'tags',
-      weight: 0.2,
-    },
-  ],
-}
+export default (props: any) => {
+  // const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  // const router = useRouter()
 
-export function GetRelatedSessions(id: string, sessions: SessionType[]): Array<SessionType> {
-  const session = sessions.find(i => i.id === id)
-  if (!session) return []
+  //   useEffect(() => {
+  //     if (props.session) {
+  //       setSelectedSession(props.session)
 
-  const fuse = new Fuse(sessions, options)
-  const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
-    ?.split(',')
-    ?.map(i => `"${i}"`)
-    .join(' | ')}`
-  const result = fuse.search(query)
+  //       // redirect to /speakers
+  //       router.replace('/speakers')
+  //     }
+  //   }, [props.session])
 
-  return result
-    .map(i => i.item)
-    .filter(i => i.id !== id)
-    .slice(0, 5)
-}
+  if (!props.session) return null
 
-export default pageHOC((props: any) => {
   return (
-    <AppLayout>
-      <>
-        <SEO
-          title={props.session.title}
-          description={props.session.description}
-          imageUrl={`${API_URL}sessions/${props.session.id}/image`}
-        />
-        <Session {...props} />
-      </>
-    </AppLayout>
+    <>
+      <SEO title={props.session.title} description={props.session.description} separator="@" />
+      <AppLayout pageTitle={props.session.title} breadcrumbs={[{ label: props.session.title }]}>
+        <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+          <div className={cn('basis-[50%] grow')}>
+            <SessionView session={props.session} standalone />
+          </div>
+
+          <div className={cn('basis-[50%] hidden lg:block')}>
+            <Livestream session={props.session} className={cn(cardClass, 'p-4')} />
+          </div>
+        </div>
+      </AppLayout>
+    </>
   )
-})
+}
 
 export async function getStaticPaths() {
   const sessions = await fetchSessions()
   const paths = sessions.map(i => {
-    return { params: { id: i.id } }
+    return { params: { id: i.sourceId } }
   })
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
 export async function getStaticProps(context: any) {
   const sessions = await fetchSessions()
-  const session = sessions.find(i => i.id === context.params.id)
-
+  const session = sessions.find(i => i.sourceId === context.params.id)
   if (!session) {
     return {
       props: null,
@@ -85,11 +63,8 @@ export async function getStaticProps(context: any) {
     }
   }
 
-  const related = session ? GetRelatedSessions(String(session.id), sessions) : []
-
   return {
     props: {
-      relatedSessions: related,
       session,
     },
   }

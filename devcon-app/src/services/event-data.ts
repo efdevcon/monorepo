@@ -1,15 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { Session as SessionType } from 'types/Session'
-import { Speaker } from 'types/Speaker';
+import { Speaker } from 'types/Speaker'
 import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
 import Fuse from 'fuse.js'
 import { APP_CONFIG } from 'utils/config'
+import { useRecoilState } from 'recoil'
+import { sessionsAtom, speakersAtom } from 'pages/_app'
 
 const cache = new Map()
 const baseUrl = APP_CONFIG.API_BASE_URL
-const eventName = 'devcon-6' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
+const eventName = 'devcon-7' // 'devcon-vi-2022' // 'devcon-vi-2022' // 'pwa-data'
 const websiteQuestionId = 29
 const twitterQuestionId = 44
 const githubQuestionId = 43
@@ -38,33 +40,34 @@ export const fuseOptions = {
 }
 
 export const useSessionData = (): SessionType[] | null => {
-    const [sessions, setSessions] = useState<SessionType[] | null>(null)
-    const version = useEventVersion();
-  
-    useEffect(() => {
-      if (version) {
-        fetchSessions(version).then(setSessions)
-      }
-    }, [version])
-  
-    return sessions;
+  // const [sessions, setSessions] = useState<SessionType[] | null>(null)
+  const [sessions, setSessions] = useRecoilState(sessionsAtom)
+  const version = useEventVersion()
+
+  useEffect(() => {
+    if (version) {
+      fetchSessions(version).then(setSessions)
+    }
+  }, [version])
+
+  return sessions
 }
 
 export const useSpeakerData = (): Speaker[] | null => {
-    const [speakers, setSpeakers] = useState<Speaker[] | null>(null)
-    const version = useEventVersion();
-  
-    useEffect(() => {
-      if (version) {
-        fetchSpeakers(version).then(setSpeakers)
-      }
-    }, [version])
+  const [speakers, setSpeakers] = useRecoilState(speakersAtom)
+  const version = useEventVersion()
 
-    return speakers;
-} 
-  
+  useEffect(() => {
+    if (version) {
+      fetchSpeakers(version).then(setSpeakers)
+    }
+  }, [version])
+
+  return speakers
+}
+
 export const useEventVersion = () => {
-  const [version, setVersion] = useState<string | null>(null);
+  const [version, setVersion] = useState<string | null>(null)
 
   useEffect(() => {
     // Whenever version changes or the service worker installs for the first time, we want to repopulate the cache immediately
@@ -73,23 +76,23 @@ export const useEventVersion = () => {
 
       if (version) {
         // This will use the http cache if multiple requests are sent in close succession, so it's not wasteful
-        fetchSessions(version);
-        fetchSpeakers(version);
+        fetchSessions(version)
+        fetchSpeakers(version)
       }
-    };
+    }
 
-    fillEventCache();
+    fillEventCache()
 
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.addEventListener('controllerchange', fillEventCache);
+      navigator.serviceWorker.addEventListener('controllerchange', fillEventCache)
     }
 
     return () => {
-        // Remove the service worker update listener if it was added
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker.removeEventListener('controllerchange', fillEventCache);
-        }
-    };
+      // Remove the service worker update listener if it was added
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.removeEventListener('controllerchange', fillEventCache)
+      }
+    }
   }, [version])
 
   useEffect(() => {
@@ -99,20 +102,20 @@ export const useEventVersion = () => {
       fetchEventVersion().then(setVersion)
     }
 
-    window.addEventListener("focus", onWindowFocus);
+    window.addEventListener('focus', onWindowFocus)
 
     return () => {
-        window.removeEventListener("focus", onWindowFocus);
-    };
+      window.removeEventListener('focus', onWindowFocus)
+    }
   }, [])
 
-  return version;
+  return version
 }
 
 export const useSpeakersWithSessions = () => {
-  const [speakersWithSessions, setSpeakersWithSessions] = useState<any>(null);
-  const sessions = useSessionData();
-  const speakers = useSpeakerData();
+  const [speakersWithSessions, setSpeakersWithSessions] = useState<any>(null)
+  const sessions = useSessionData()
+  const speakers = useSpeakerData()
 
   useEffect(() => {
     if (sessions && speakers) {
@@ -127,7 +130,7 @@ export const useSpeakersWithSessions = () => {
           }
         })
       })
-    
+
       const speakersWithSessions = speakers.map(speaker => {
         return {
           ...speaker,
@@ -135,67 +138,71 @@ export const useSpeakersWithSessions = () => {
         }
       })
 
-      setSpeakersWithSessions(speakersWithSessions);
+      setSpeakersWithSessions(speakersWithSessions)
     }
-  }, [sessions, speakers]);
+  }, [sessions, speakers])
 
-  return speakersWithSessions;
+  return speakersWithSessions
 }
 
 // Ssimple endpoint we can ping to see if event data updated - we append this to requests to speakers and sessions to break their caches
 export const fetchEventVersion = async (): Promise<string> => {
-  const version = await get(`/events/${eventName}/version`);
+  const version = await get(`/events/${eventName}/version`)
 
-  return version;
+  return version
 }
 
 export const fetchSessions = async (version?: string): Promise<SessionType[]> => {
-    const sessions = await get(`/events/${eventName}/sessions?size=1000&version=${version}`)
+  const sessions = await get(`/events/${eventName}/sessions?sort=slot_start&size=1000&version=${version}`)
 
-    return sessions.map((session: SessionType) => {
-        const startTS = moment.utc(session.slot_start).subtract(5, 'hours')
-        const endTS = moment.utc(session.slot_end).subtract(5, 'hours')
+  return sessions
+    .map((session: SessionType) => {
+      const startTS = moment.utc(session.slot_start).add(7, 'hours')
+      const endTS = moment.utc(session.slot_end).add(7, 'hours')
 
-        return {
-            ...session,
-            start: startTS.valueOf(),
-            end: endTS.valueOf(),
-            duration: startTS.diff(endTS, 'minutes')
-        }
+      return {
+        ...session,
+        // start: startTS.valueOf(),
+        // end: endTS.valueOf(),
+        duration: startTS.diff(endTS, 'minutes'),
+      }
     })
+    .reverse()
 }
 
 export const fetchSpeakers = async (version?: string): Promise<Speaker[]> => {
-    const sessions = await fetchSessions(version)
-    const speakersData = await get(`/speakers?size=1100&version=${version}`); // await get(`/events/${eventName}/speakers`) // TODO: This needs to be filtered down to match the speakers at Devcon 7
-    const speakers = speakersData.map((i: any) => {
-      const speakerSessions = sessions.filter((session: SessionType) => session.speakers.some((speaker) => i.id === speaker.id))
-      const organization = i.answers?.filter((i: any) => i.question.id === organizationQuestionId).reverse()[0]?.answer
-      const role = i.answers?.filter((i: any) => i.question.id === roleQuestionId).reverse()[0]?.answer
-      const website = i.answers?.filter((i: any) => i.question.id === websiteQuestionId).reverse()[0]?.answer
-      const twitter = i.answers?.filter((i: any) => i.question.id === twitterQuestionId).reverse()[0]?.answer
-      const github = i.answers?.filter((i: any) => i.question.id === githubQuestionId).reverse()[0]?.answer
+  const sessions = await fetchSessions(version)
+  const speakersData = await get(`/speakers?event=${eventName}&size=1100&version=${version}`)
+  const speakers = speakersData.map((i: any) => {
+    const speakerSessions = sessions.filter((session: SessionType) =>
+      session.speakers.some(speaker => i.id === speaker.id)
+    )
+    const organization = i.answers?.filter((i: any) => i.question.id === organizationQuestionId).reverse()[0]?.answer
+    const role = i.answers?.filter((i: any) => i.question.id === roleQuestionId).reverse()[0]?.answer
+    const website = i.answers?.filter((i: any) => i.question.id === websiteQuestionId).reverse()[0]?.answer
+    const twitter = i.answers?.filter((i: any) => i.question.id === twitterQuestionId).reverse()[0]?.answer
+    const github = i.answers?.filter((i: any) => i.question.id === githubQuestionId).reverse()[0]?.answer
 
-      const speaker: any = {
-        ...i,
-        tracks: [...new Set(speakerSessions.map(i => i.track))],
-        eventDays: [...new Set(speakerSessions.map(i => moment.utc(i.start).startOf('day').valueOf()))],
-        sessions: speakerSessions
-      }
-  
-      if (role) speaker.role = role
-      if (organization) speaker.company = organization
-      if (website) speaker.website = website
-      if (twitter) speaker.twitter = twitter
-      if (github) speaker.github = github
-  
-      return speaker
-    })
-  
-    return speakers
+    const speaker: any = {
+      ...i,
+      tracks: [...new Set(speakerSessions.map(i => i.track))],
+      eventDays: [...new Set(speakerSessions.map(i => moment.utc(i.start).startOf('day').valueOf()))],
+      sessions: speakerSessions,
+    }
+
+    if (role) speaker.role = role
+    if (organization) speaker.company = organization
+    if (website) speaker.website = website
+    if (twitter) speaker.twitter = twitter
+    if (github) speaker.github = github
+
+    return speaker
+  })
+
+  return speakers
 }
 
-export const fetchEvent = async (): Promise<any>  =>  {
+export const fetchEvent = async (): Promise<any> => {
   const event = await get(`/events/${eventName}`)
 
   return event
@@ -203,108 +210,113 @@ export const fetchEvent = async (): Promise<any>  =>  {
 
 export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionType>> => {
   // no endpoint exists, so fetches and filters all sessions recursively
-  return (await fetchSessions()).filter(i => i.speakers.some(x => x.id === id));
-};
+  return (await fetchSessions()).filter(i => i.speakers.some(x => x.id === id))
+}
 
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
   // no endpoint exists, so fetches and filters all sessions recursively
-  return (await fetchSessions()).filter(i => i.room?.id === id);
-};
+  return (await fetchSessions()).filter(i => i.room?.id === id)
+}
 
 export const getRelatedSessions = async (id: string, sessions: Array<SessionType>): Promise<Array<SessionType>> => {
-  const data = sessions.length > 0 ? sessions : await fetchSessions();
-  const session = data.find(i => i.id === id);
-  if (!session) return [];
+  const data = sessions.length > 0 ? sessions : await fetchSessions()
+  const session = data.find(i => i.id === id)
+  if (!session) return []
 
   const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
     ?.split(',')
     ?.map(i => `"${i}"`)
-    .join(' | ')}`;
+    .join(' | ')}`
 
-  const fuse = new Fuse(data, fuseOptions);
-  const result = fuse.search(query);
+  const fuse = new Fuse(data, fuseOptions)
+  const result = fuse.search(query)
 
   return result
     .map(i => i.item)
     .filter(i => i.id !== id)
-    .slice(0, 5);
-};
+    .slice(0, 5)
+}
 
 export const fetchExpertiseLevels = async (): Promise<Array<string>> => {
   return Array.from(
     (await fetchSessions()).reduce((acc: Set<string>, session: SessionType) => {
       if (session.expertise) {
-        acc.add(session.expertise);
+        acc.add(session.expertise)
       }
 
-      return acc;
+      return acc
     }, new Set<string>())
-  );
-};
+  )
+}
 
 export const fetchSessionTypes = async (): Promise<Array<string>> => {
   return Array.from(
     (await fetchSessions()).reduce((acc: Set<string>, session: SessionType) => {
       if (session.type) {
-        acc.add(session.type);
+        acc.add(session.type)
       }
 
-      return acc;
+      return acc
     }, new Set<string>())
-  );
-};
+  )
+}
 
 export const fetchTracks = async (): Promise<Array<string>> => {
   // no endpoint exists, so fetches and filters all sessions recursively
-  const tracks = (await fetchSessions()).map(i => i.track);
-  return [...new Set(tracks)].sort();
-};
+  const tracks = (await fetchSessions()).map(i => i.track)
+  return [...new Set(tracks)].sort()
+}
 
 export const fetchEventDays = async (): Promise<Array<number>> => {
   // no endpoint exists, so fetches and filters all sessions recursively
-  const days = (await fetchSessions()).map(i => moment.utc(i.start).startOf('day').valueOf());
-  return [...new Set(days)].sort();
-};
+  const days = (await fetchSessions()).map(i => moment.utc(i.start).startOf('day').valueOf())
+  return [...new Set(days)].sort()
+}
 
 export const fetchRooms = async (): Promise<Array<Room>> => {
-  const rooms = await get(`/events/${eventName}/rooms`);
+  const rooms = await get(`/events/${eventName}/rooms`)
 
   return rooms.map((room: Room) => {
     return {
       ...room,
-      id: room.name ? defaultSlugify(room.name) : String(room.id)
+      id: room.name ? defaultSlugify(room.name) : String(room.id),
     }
-  });
-};
+  })
+}
 
-export const fetchFloors = async (): Promise<Array<string>> => {
-  const rooms = await fetchRooms();
-  return [...new Set(rooms.map(i => i.info).filter(Boolean))];
-};
+export const fetchFloors = async (): Promise<Array<Room>> => {
+  const rooms = await fetchRooms()
+
+  return rooms || []
+  // return [...new Set(rooms.map(i => i.info).filter(Boolean))]
+}
 
 export const fetchSpeaker = async (id: string): Promise<Speaker | undefined> => {
-  const speaker = await get(`/speakers/${id}`);
+  const speaker = await get(`/speakers/${id}`)
 
-  if (!speaker || speaker.detail === 'Not found.') return undefined;
+  if (!speaker || speaker.detail === 'Not found.') return undefined
 
-  return speaker;
-};
+  return speaker
+}
 
 async function get(slug: string) {
-    // Never cache version
-    if (cache.has(slug) && !slug.endsWith('/version'))  {
-      return cache.get(slug)
-    }
-  
-    const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
-  
-    let data = response
-  
-    // Extract nested items when using api.devcon.org
-    if (response.data) data = response.data
-    if (response.data.items) data = response.data.items
-  
-    cache.set(slug, data)
-
-    return data
+  // Never cache version
+  if (cache.has(slug) && !slug.endsWith('/version')) {
+    return cache.get(slug)
   }
+
+  // https://api.devcon.org/events/devcon-7/sessions?size=1000&version=1.0.0
+
+  const response = await fetch(`${baseUrl}${slug}`).then(resp => resp.json())
+  // const response = await fetch(`${'https://api.devcon.org'}${slug}`).then(resp => resp.json())
+
+  let data = response
+
+  // Extract nested items when using api.devcon.org
+  if (response.data) data = response.data
+  if (response.data.items) data = response.data.items
+
+  cache.set(slug, data)
+
+  return data
+}

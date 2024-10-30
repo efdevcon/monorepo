@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: minmax(64px, 1fr) minmax(auto, 1100px) minmax(64px, 1fr);
 
-  @media (max-width: $breakpoints-md) {
+  @media (max-width: $breakpoints-lg) {
     grid-template-columns: minmax(16px, 1fr) minmax(auto, 1100px) minmax(16px, 1fr);
   }
 
@@ -17,22 +17,21 @@
     }
   }
 
-  >* {
+  > * {
     grid-column: 2 / 3;
   }
 
-  >.expand {
+  > .expand {
     grid-column: 1 / 4;
   }
-  
-  >.expand-right {
+
+  > .expand-right {
     grid-column: 2 / 4;
   }
 
-  >.expand-left {
+  > .expand-left {
     grid-column: 1 / 3;
   }
-
 
   &.no-overflow {
     overflow: hidden;
@@ -46,7 +45,7 @@
   @media (max-width: $breakpoints-lg) {
     flex-direction: column;
 
-    >* {
+    > * {
       flex-basis: auto !important;
 
       &:first-child {
@@ -75,8 +74,8 @@
     }
   }
 
-  >* {
-    flex-basis: calc(50% - 24px); // effectively 16px margin 
+  > * {
+    flex-basis: calc(50% - 24px); // effectively 16px margin
     flex-grow: 0;
   }
 }

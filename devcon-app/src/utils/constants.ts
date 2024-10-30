@@ -18,11 +18,11 @@ export const DEFAULT_MAX_CACHE_AGE = 604800
 export const DEFAULT_REVALIDATE_PERIOD = 3600
 
 export const DEFAULT_APP_PAGE = {
-    title: 'Devcon Bogotá App',
-    description: 'Customize your Devcon experience.',
-    template: 'index',
-    tags: [],
-    lang: 'en',
-    id: 'index',
-    slug: 'index'
+  title: 'Devcon SEA',
+  description: 'Customize your Devcon experience.',
+  template: 'index',
+  tags: [],
+  lang: 'en',
+  id: 'index',
+  slug: 'index',
 }

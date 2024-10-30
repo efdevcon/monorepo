@@ -361,7 +361,7 @@ export const Speakers = (props: any) => {
 
   return (
     <>
-      <AppNav
+      {/* <AppNav
         nested
         links={[
           {
@@ -384,10 +384,10 @@ export const Speakers = (props: any) => {
             return <IconAdded2 {...starProps} className="icon" style={{ ...starProps.style, opacity: 0.8 }} />
           }
         }}
-      />
+      /> */}
 
       <div className={filterCss['filter']}>
-        <div className="section">
+        <div className="section2">
           <Search placeholder="Find a speaker" value={search} onChange={setSearch} timeout={300} />
 
           <div className={`${filterCss['foldout']} ${css['foldout-overrides']}`}>
@@ -586,7 +586,7 @@ export const Speakers = (props: any) => {
         </div>
       </div>
 
-      <div className="section">
+      <div className="section2">
         {noResults ? (
           <NoResults />
         ) : (

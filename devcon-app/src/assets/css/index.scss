@@ -37,46 +37,47 @@ html {
     font-size: 14px;
   }
 
-  @media (max-width: $breakpoints-md) {
-    font-size: 12px;
-  }
+  // @media (max-width: $breakpoints-md) {
+  //   font-size: 12px;
+  // }
 }
 
 body {
   position: relative;
   overflow-x: hidden;
+  overflow-y: auto;
+  // Small elements dont break the layout with min-height 100vh, but maybe should move it further down the tree if it causes other issues
+  min-height: 100vh;
+  background: white;
   margin: 0 auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: none;
-  @include fonts-md; 
+  // @include fonts-md;
+
+  // position: fixed;
+  // left: 0;
+  // top: 0;
+  // right: 0;
+  // bottom: 0;
+  // touch-action: none;
+
+  // :global(.inset-padding-bottom) {
+  //   padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 1rem);
+  // }
+
+  // :global(.inset-padding-top) {
+  //   padding-top: env(safe-area-inset-top, 0px);
+  //   // padding-top: env(safe-area-inset-top, 0px);
+  // }
 }
 
-.section-markdown {
-  // padding: 0px 0;
-
-  h2 {
-    // @include fonts-spaced;
-  }
-
-  h3 {
-    // @include fonts-spaced;
-    @include fonts-highlighted;
-    margin-top: 16px; // $standard-spacing / 2;
-  }
-
-  hr {
-    // margin: 32px 0; // $standard-spacing:
-    border-bottom: 1px solid $colors-monochrome-5;
-  }
-
-  p {
-    &:first-child {
-      @include fonts-highlighted-title;
-    }
-  }
-
-  // a {
-  //   text-decoration: underline;
-  // }
+.custom.react-toggle {
+  // transform: scale(0.8);
+}
+.custom.react-toggle--checked .react-toggle-track {
+  background-color: #7d52f4 !important;
+}
+.custom.react-toggle--checked .react-toggle-thumb {
+  border-color: #7d52f4 !important;
 }

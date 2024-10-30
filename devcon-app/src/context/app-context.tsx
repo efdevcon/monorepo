@@ -1,36 +1,32 @@
-import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import moment, { Moment } from 'moment'
-import { Notification } from 'types/Notification'
-import { usePageContext } from 'context/page-context'
 
 type AppContextProps = {
   children?: any
-  notifications?: Notification[]
 }
 
 type AppContext = {
   now: null | Moment
-  seenNotifications: {
-    [key: string]: boolean
-  }
-  setSeenNotifications: Dispatch<SetStateAction<any>>
 }
 
-const Context = createContext<AppContext>({ now: null, seenNotifications: {}, setSeenNotifications: () => undefined })
+const Context = createContext<AppContext>({ now: null })
 
 export const useAppContext = () => {
   return useContext(Context)
 }
 
-const isBrowser = typeof window !== 'undefined'
-
 export const AppContext = (props: AppContextProps) => {
   const [currentTime, setCurrentTime] = useState<Moment | null>(null)
-  const pageContext = usePageContext()
-  const [seenNotifications, setSeenNotifications] = useState({})
 
   // Sync current time periodically to keep time related functionality up to date
   useEffect(() => {
+    // const mockedTime = moment.utc('2024-10-23T19:00:00Z').utcOffset(7)
+    // const mockedTime = moment.utc('2024-11-12T08:00:00Z') // First day devcon
+    // const mockedTime = moment.utc('2024-11-13T08:00:00Z') // Second day devcon
+    // const mockedTime = moment.utc('2024-11-14T08:00:00Z') // Third day devcon
+    // const mockedTime = moment.utc('2024-11-15T08:00:00Z') // Fourth day devcon
+    // setCurrentTime(mockedTime)
+
     const clear = setInterval(() => {
       setCurrentTime(moment.utc().add(7, 'hours'))
     }, 1000 * 60)
@@ -40,30 +36,5 @@ export const AppContext = (props: AppContextProps) => {
     return () => clearInterval(clear)
   }, [])
 
-  useEffect(() => {
-    if (!pageContext?.appNotifications) return
-
-    const seenNotifications = {} as any
-
-    if (!isBrowser) return
-    pageContext.appNotifications?.forEach(notification => {
-      try {
-        const seen = window.localStorage.getItem(`notification-seen-${notification.id}`)
-
-        if (seen) {
-          seenNotifications[notification.id] = true
-        }
-      } catch (error) {
-        console.log(error)
-      }
-    })
-
-    setSeenNotifications(seenNotifications)
-  }, [pageContext?.appNotifications])
-
-  return (
-    <Context.Provider value={{ now: currentTime, seenNotifications, setSeenNotifications }}>
-      {props.children}
-    </Context.Provider>
-  )
+  return <Context.Provider value={{ now: currentTime }}>{props.children}</Context.Provider>
 }

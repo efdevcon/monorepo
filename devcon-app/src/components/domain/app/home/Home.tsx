@@ -70,7 +70,7 @@ export const Home = (props: any) => {
       text: 'Settings',
       value: 'Settings',
       onClick: () => {
-        router.push('/settings')
+        router.push('/account')
       },
     },
   ]
@@ -124,22 +124,22 @@ export const Home = (props: any) => {
               </h2>
             </div>
             <div className={css['profile-actions']}>
-              <button className="label error plain" onClick={() => router.push('/settings')}>
+              <button className="label error plain" onClick={() => router.push('/account')}>
                 SETTINGS
               </button>
-              <button className="label error plain" onClick={() => router.push('/settings/wallets')}>
+              <button className="label error plain" onClick={() => router.push('/account/wallets')}>
                 MANAGE WALLETS
               </button>
-              <button className="label error plain" onClick={() => router.push('/settings/email')}>
+              <button className="label error plain" onClick={() => router.push('/account/email')}>
                 MANAGE EMAILS
               </button>
-              <button className="label error plain" onClick={() => router.push('/settings/username')}>
+              <button className="label error plain" onClick={() => router.push('/account/username')}>
                 MANAGE USERNAME
               </button>
-              <button className="label error plain" onClick={() => router.push('/settings/profile')}>
+              <button className="label error plain" onClick={() => router.push('/account/profile')}>
                 MANAGE PROFILE
               </button>
-              <button className="label error plain" onClick={() => router.push('/settings#delete')}>
+              <button className="label error plain" onClick={() => router.push('/account#delete')}>
                 DELETE ACCOUNT
               </button>
             </div>
