@@ -10,8 +10,7 @@
     "url": "https://github.com/efdevcon/api"
   },
   "scripts": {
-    "tsc": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "build": "tsup",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "start": "NODE_PATH=./dist node ./dist/devcon-api/src/index",
     "dev:generate": "yarn swagger:generate && yarn db:generate && nodemon ./src/index.ts",
     "dev": "nodemon ./src/index.ts",
