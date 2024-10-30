@@ -190,7 +190,7 @@ export async function UpdateSessionSources(req: Request, res: Response) {
       data: newSessionData,
     })
 
-    await CommitSession(newSessionData, `[skip deploy] PUT /sessions/${updatedData.id}`)
+    await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {
@@ -204,13 +204,13 @@ export async function GetSessionRelated(req: Request, res: Response) {
   const data = await client.relatedSession.findMany({
     where: { sessionId: req.params.id },
     orderBy: { similarity: 'desc' },
-    include: { related: true },
+    include: { other: true },
     take: 10,
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.related) })
+  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.other) })
 }
 
 export async function GetSessionImage(req: Request, res: Response) {

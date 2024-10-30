@@ -140,11 +140,11 @@ async function deletePushNotifications(req: CustomRequest, res: Response) {
 }
 
 async function getNotifications(req: CustomRequest, res: Response) {
-  const userId = req.session.userId as string
+  // const userId = req.session.userId as string
 
-  if (!userId) {
-    return res.status(403).send({ code: 403, message: 'Login required.' })
-  }
+  // if (!userId) {
+  //   return res.status(403).send({ code: 403, message: 'Login required.' })
+  // }
 
   try {
     const search = {

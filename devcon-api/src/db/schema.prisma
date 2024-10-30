@@ -85,14 +85,27 @@ model Session {
   resources_slides String?
 
   relatedSessions RelatedSession[] @relation(name: "Related")
+  recommendedSessions RecommendedSession[] @relation(name: "Recommended")
 }
 
 model RelatedSession {
   id Int @id @default(autoincrement())
   sessionId String
+  vector Bytes?
 
-  related Session @relation(name: "Related", fields: [relatedId], references: [id])
-  relatedId String
+  other Session @relation(name: "Related", fields: [otherId], references: [id])
+  otherId String
 
+  similarity Float
+}
+
+model RecommendedSession {
+  id Int @id @default(autoincrement())
+  sessionId String
+  vector Bytes?
+
+  other Session @relation(name: "Recommended", fields: [otherId], references: [id])
+  otherId String
+  
   similarity Float
 }

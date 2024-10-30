@@ -10,7 +10,8 @@ import { notFoundHandler } from '@/middleware/notfound'
 import { logHandler } from '@/middleware/log'
 import { router } from './routes'
 import { SERVER_CONFIG, SESSION_CONFIG } from '@/utils/config'
-import createMemoryStore from 'memorystore'
+import pgSession from 'connect-pg-simple'
+import { getDbPool } from './utils/db'
 
 const app = express()
 
@@ -27,7 +28,7 @@ app.use(
   })
 )
 
-const store = createMemoryStore(session)
+const pgSessionStore = pgSession(session)
 const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
@@ -39,8 +40,9 @@ const sessionConfig: SessionOptions = {
   },
   resave: false,
   saveUninitialized: false,
-  store: new store({
-    checkPeriod: 86400000, // prune expired entries every 24h
+  store: new pgSessionStore({
+    pool: getDbPool(),
+    tableName: 'Session',
   }),
 }
 
