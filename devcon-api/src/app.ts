@@ -23,24 +23,25 @@ app.use(logHandler)
 
 const ALLOWED_ORIGINS = [
   'https://api.devcon.org',
+  'https://app.devcon.org',
+  'https://archive.devcon.org',
   'https://devcon.org',
   'https://dev--devcon-app.netlify.app',
-  'http://localhost:3000', // Local development
+  'http://localhost:3000',
 ]
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, etc)
       if (!origin) {
-        console.log('No origin')
+        // Allow requests with no origin (like mobile apps, curl, etc)
         return callback(null, true)
       }
 
       if (ALLOWED_ORIGINS.indexOf(origin) !== -1 || SERVER_CONFIG.NODE_ENV !== 'production') {
         callback(null, true)
       } else {
-        console.warn('Blocked by CORS:', origin)
+        console.warn('BLOCKED by CORS:', origin)
         callback(null, true) // Still allow it for now
       }
     },
@@ -60,10 +61,7 @@ const sessionConfig: SessionOptions = {
     sameSite: 'none',
     secure: SERVER_CONFIG.NODE_ENV === 'production',
     path: '/',
-    domain:
-      SERVER_CONFIG.NODE_ENV === 'production'
-        ? 'devcon.org' // Main domain
-        : undefined,
+    domain: SERVER_CONFIG.NODE_ENV === 'production' ? '.devcon.org' : undefined,
   },
   resave: false,
   saveUninitialized: false,
