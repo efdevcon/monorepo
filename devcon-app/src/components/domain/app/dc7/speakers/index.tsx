@@ -202,9 +202,16 @@ export const SpeakerCard = ({ speaker }: { speaker: SpeakerType }) => {
             <div className="text-xs text-[#717784]">{speaker.sessions?.length} sessions</div>
           )}
           {speaker?.twitter && (
-            <Link className="flex items-center gap-2 self-start text-xs" to={`https://twitter.com/${speaker.twitter}`}>
+            <div
+              onClick={e => {
+                e.stopPropagation()
+                e.preventDefault()
+                window.open(`https://twitter.com/${speaker.twitter}`, '_blank')
+              }}
+              className="flex items-center gap-2 self-start text-xs"
+            >
               <div>@{speaker.twitter}</div>
-            </Link>
+            </div>
           )}
         </div>
       </div>

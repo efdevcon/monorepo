@@ -42,13 +42,13 @@ export const NotificationCard = (props: any) => {
   }
 
   return (
-    <div className="flex justify-between gap-1 border border-solid border-gray-200 rounded-lg p-2 w-full bg-white mb-2">
-      <div className="flex flex-col gap-1">
-        <p className="text-sm semi-bold">{notification.title}</p>
-        <p className="text-xs text-[#717784]">{notification.message}</p>
+    <div className="flex justify-between gap-0 border border-solid border-gray-200 rounded-lg p-2 w-full bg-white mb-2 relative">
+      <div className="flex flex-col gap-2">
+        <p className="text-sm semi-bold pr-10">{notification.title}</p>
+        <p className="text-sm text-[#717784]">{notification.message}</p>
       </div>
-      <div className="flex flex-col gap-1 shrink-0 items-end">
-        <p className="text-xs text-[#717784] shrink-0">{getTimeAgo(notification.sendAt)}</p>
+      <div className="flex flex-col gap-1 shrink-0 items-end absolute right-2 top-2">
+        <p className="text-xs text-[#7D52F4] shrink-0 font-semibold">{getTimeAgo(notification.sendAt)}</p>
         {isNew && <div className="text-[#7D52F4] h-[12px] flex items-center justify-center text-lg">●</div>}
       </div>
     </div>

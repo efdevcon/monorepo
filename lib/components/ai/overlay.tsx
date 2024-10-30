@@ -90,6 +90,7 @@ const DevaBot = ({
   sessions,
   onToggle,
   defaultPrompt,
+  setDefaultPrompt,
   toggled,
   notifications,
   notificationsCount,
@@ -106,6 +107,7 @@ const DevaBot = ({
   renderNotifications?: () => React.ReactNode;
   markNotificationsAsRead?: () => void;
   defaultPrompt?: string;
+  setDefaultPrompt?: (prompt: string) => void;
   SessionComponent?: React.ReactNode | React.ElementType;
 }) => {
   // const [visible, onToggled] = useRecoilState(visibleState);
@@ -129,8 +131,12 @@ const DevaBot = ({
 
   React.useEffect(() => {
     if (defaultPrompt) {
-      setQuery(defaultPrompt);
-      // onSend(defaultPrompt);
+      if (defaultPrompt === "tab:notifications") {
+        setActiveTab(1);
+        setDefaultPrompt && setDefaultPrompt("");
+      } else {
+        setQuery(defaultPrompt);
+      }
     }
   }, [defaultPrompt]);
 
@@ -529,7 +535,7 @@ const DevaBot = ({
                 <>
                   <div className="relative flex flex-col grow w-full gap-4 no-scrollbar px-4">
                     <div
-                      className="relative overflow-auto flex flex-col grow w-full gap-2 no-scrollbar pb-10 mt-4 text-sm"
+                      className="relative overflow-auto flex flex-col grow w-full gap-2 no-scrollbar pb-10 mt-4 text-base lg:text-sm"
                       ref={messagesContainerRef}
                       onScroll={checkIfAtBottom}
                     >

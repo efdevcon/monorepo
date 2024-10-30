@@ -210,15 +210,15 @@ const Header = (props: HeaderProps) => {
           <div className="flex gap-6 items-center grow line-clamp-1">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
-            <div className="flex items-center gap-1.5 text-sm lg:text-base overflow-hidden">
+            <div className="flex items-center gap-1.5 text-lg lg:text-base overflow-hidden">
               {/* <SpeakerIcon style={{ fontSize: 20 }} /> */}
               {/* <div className="text-2xl">{props.pageTitle}</div> */}
               {props.breadcrumbs.map((breadcrumb, index) => (
                 <React.Fragment key={breadcrumb.label}>
                   <div
                     className={cn(
-                      'font-semibold shrink-0 line-clamp-1',
-                      index === props.breadcrumbs.length - 1 ? 'text-ellipsis overflow-hidden whitespace-nowrap' : ''
+                      'font-semibold shrink-0',
+                      index === props.breadcrumbs.length - 1 ? 'line-clamp-1' : ''
                     )}
                     style={{
                       textOverflow: 'ellipsis',

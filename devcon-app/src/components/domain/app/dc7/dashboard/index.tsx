@@ -21,6 +21,7 @@ import { useAvatar } from 'hooks/useAvatar'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import AIImage from 'lib/components/ai/ai-generate.png'
 import { useDraggableLink } from 'lib/components/link/Link'
+import CalendarIcon from 'assets/icons/calendar.svg'
 import { Link } from 'components/common/link'
 
 export const cardClass =
@@ -32,7 +33,7 @@ const NotLoggedIn = () => {
       <div className="flex flex-col relative overflow-hidden rounded-2xl border border-solid border-[#b664ed] bg-white">
         <div className="aspect-[4/2] relative">
           <Image src={Portal} alt="Portal" className="h-full w-full object-cover" quality={100} />
-          <Image src={PassportLogo} alt="Passport Logo" className="absolute bottom-2 left-2 w-[40%]" />
+          {/* <Image src={PassportLogo} alt="Passport Logo" className="absolute bottom-2 left-2 w-[40%]" /> */}
           <Image
             src={PhonePreview}
             alt="Phone"
@@ -149,7 +150,7 @@ export const Dashboard = () => {
               Devcon Passport App is designed to be utilized on a mobile device. Please install as a PWA on your device
               for the best experience.
             </div>
-            <Link to="/login" className="mt-2 max-w-[250px] relative">
+            <Link to="/login" className="mt-2 sm:max-w-[250px] w-full relative">
               <Button color="purple-2" className="w-full" fat fill>
                 Connect
               </Button>
@@ -158,11 +159,21 @@ export const Dashboard = () => {
         </div>
       )}
 
-      <div className="flex gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Notifications</div>
+      <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">
+        Notifications
+        <div
+          onClick={() => setDevaBotVisible('tab:notifications')}
+          className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
+        >
+          <p>Go to Notifications</p>
+        </div>
+      </div>
 
       <Notifications />
 
-      <div className="flex gap-3 pb-4 mx-4 font-semibold border-top py-4">Featured</div>
+      <div className="flex gap-3 pb-4 mx-4 justify-between font-semibold border-top py-4">
+        <div>Featured</div>
+      </div>
 
       <div
         className="lg:overflow-hidden mb-6"
@@ -181,7 +192,7 @@ export const Dashboard = () => {
               className={cn(featuredClass, 'bg-gradient-to-br from-[#CA6FFF] via-[#5267F8] to-[#ac56fd]')}
             >
               {/* <Image src={AIImage} alt="Square Sparkles" /> */}
-              <p className="text-white font-semibold">AI Assistant</p>
+              <p className="text-white font-semibold">Ask Deva</p>
               <SquareSparkles
                 className="group-hover:scale-110 transition-transform duration-300 icon"
                 style={{ fontSize: '28px' }}
@@ -227,18 +238,33 @@ export const Dashboard = () => {
               <div className="text-xs">Find your way around Bangkok with our city guide.</div>
             </Link>
 
-            <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}>
-              <p className="text-white text-lg font-semibold">Food & Beverage</p>
+            <Link
+              {...draggableLink}
+              to="https://devcon.org/devcon-week"
+              className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}
+            >
+              <p className="text-white  font-semibold">Devcon Week</p>
+              <CalendarIcon
+                className="group-hover:scale-110 transition-transform duration-300 icon"
+                style={{ fontSize: '28px' }}
+              />
+              <div className="text-xs">
+                Devcon may be only 4 days long. But there is a week full of Ethereum Events.
+              </div>
+            </Link>
+
+            {/* <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}>
+              <p className="text-white font-semibold">Food & Beverage</p>
               <FoodIcon style={{ fontSize: '28px' }} />
               <div>View event menu items and dietary information.</div>
-            </div>
+            </div> */}
           </div>
         </SwipeToScroll>
       </div>
 
       <div className="pb-4 mx-4 border-top"></div>
 
-      <PersonalizedSuggestions sessions={sessions || []} />
+      <PersonalizedSuggestions sessions={sessions || []} standalone />
     </div>
   )
 }

@@ -91,7 +91,9 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     return {
       type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
       day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
-      expertise: [...new Set(sessions.map(session => session.expertise))].filter(Boolean),
+      expertise: ['Beginner', 'Intermediate', 'Expert', ...new Set(sessions.map(session => session.expertise))].filter(
+        Boolean
+      ),
       track: [...new Set(sessions.map(session => session.track))].filter(Boolean),
       room: [...new Set(sessions.map(session => session.room))].filter(Boolean),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
@@ -838,13 +840,29 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
 }
 
 // TODO: use recommendation engine to generate personalized suggestions
-export const PersonalizedSuggestions = ({ sessions }: { sessions: SessionType[] }) => {
+export const PersonalizedSuggestions = ({
+  sessions,
+  standalone,
+}: {
+  sessions: SessionType[]
+  standalone?: boolean
+}) => {
   // @ts-ignore
   const featuredSessions = useMemo(() => sessions.filter(s => s.featured).sort(() => Math.random() - 0.5), [sessions])
 
   return (
     <>
-      <div className="flex flex-col gap-3 pb-4 px-4 font-semibold">Schedule Highlights</div>
+      <div className="flex justify-between gap-3 pb-4 px-4 font-semibold">
+        Schedule Highlights{' '}
+        {standalone && (
+          <Link
+            to="/schedule"
+            className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
+          >
+            <p>Go to Schedule</p>
+          </Link>
+        )}
+      </div>
 
       <div className="overflow-hidden">
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
@@ -953,7 +971,7 @@ export const SessionList = ({
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
   return (
-    <div className={cn('flex flex-col shrink-0 gap-3', className)}>
+    <div className={cn('flex flex-col shrink-0 gap-3 opacity-40 pointer-events-none', className)}>
       <div className={cn('flex justify-between items-center')}>
         <div className="flex flex-col gap-3 font-semibold">Livestream</div>
         {/* <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
@@ -1060,13 +1078,13 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
         <div
           className={cn(
-            'absolute rounded-2xl flex justify-between items-end p-3 pb-1 pt-7 self-end left-0 right-0',
+            'absolute rounded-2xl flex justify-between items-end p-3 pb-1 pt-5 self-end left-0 right-0',
             css['session-gradient-2']
           )}
         >
           <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] pb-1 text-white max-w-[70%]">
             {/* <TrackTag track={session.track} className="self-start" /> */}
-            <p className="text-lg">{session.title}</p>
+            <p className="text-lg leading-6">{session.title}</p>
           </div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
             <div
