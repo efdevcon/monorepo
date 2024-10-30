@@ -120,8 +120,8 @@ function mapSession(i: any, params: Partial<RequestParams>) {
   }
 
   if (i.slot) {
-    session.slot_start = dayjs.utc(i.slot.start).toDate()
-    session.slot_end = dayjs.utc(i.slot.end).toDate()
+    session.slot_start = dayjs.utc(i.slot.start).valueOf()
+    session.slot_end = dayjs.utc(i.slot.end).valueOf()
     session.slot_roomId = i.slot?.room ? defaultSlugify(i.slot.room.en) : null
   }
 
