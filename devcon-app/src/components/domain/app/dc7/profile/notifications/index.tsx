@@ -10,15 +10,16 @@ import { useToast } from 'lib/hooks/use-toast'
 import OnboardingNotifications from 'assets/images/dc-7/onboarding-notifications.png'
 import cn from 'classnames'
 import { APP_CONFIG } from 'utils/config'
+import moment from 'moment'
 
 export const NotificationCard = (props: any) => {
   const { notification, seen } = props
   const [isNew, _] = useState(!seen)
 
   const getTimeAgo = (sendAt: string) => {
-    const now = new Date()
-    const sentDate = new Date(sendAt)
-    const diffInSeconds = Math.floor((sentDate.getTime() - now.getTime()) / 1000)
+    const now = moment.utc()
+    const sentDate = moment.utc(sendAt)
+    const diffInSeconds = Math.floor(sentDate.diff(now, 'seconds'))
 
     if (diffInSeconds > 0) {
       if (diffInSeconds < 60) return `Sending in ${diffInSeconds} seconds (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
