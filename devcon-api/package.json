@@ -21,7 +21,8 @@
     "migrate": "ts-node ./src/scripts/migrate.ts",
     "slides": "ts-node ./src/scripts/slides.ts",
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
-    "db:generate": "prisma db push --force-reset --accept-data-loss && prisma db seed && yarn db:generate:account",
+    "db:generate": "prisma db push --force-reset --accept-data-loss && yarn db:seed && yarn db:generate:account",
+    "db:seed": "tsx ./src/db/seed",
     "db:generate:account": "prisma db push --schema src/db/account.prisma && yarn copy:account",
     "copy:account": "mkdir -p dist/db && cp src/db/clients dist/db/clients -r",
     "db:seed:account": "prisma db push --force-reset --accept-data-loss --schema src/db/account.prisma && ts-node src/db/account-seed",
@@ -139,6 +140,7 @@
     "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.10",
     "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
     "typescript": "4"
   }
 }
