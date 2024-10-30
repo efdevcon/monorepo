@@ -1,6 +1,4 @@
 import React from 'react'
-import jsonp from 'jsonp'
-import { validate } from 'email-validator'
 import { useFormField } from 'hooks/useFormField'
 import { useTranslations } from 'next-intl'
 import css from './newsletter.module.scss'
@@ -17,7 +15,8 @@ interface Props {
   id?: string
 }
 
-const MC_ENDPOINT = 'https://ethereum.us7.list-manage.com/subscribe/post-json?u=bfdb1ffb0f71e3a27b9d96aed&amp;id=013a6fa362'
+const MC_ENDPOINT =
+  'https://ethereum.us7.list-manage.com/subscribe/post-json?u=bfdb1ffb0f71e3a27b9d96aed&amp;id=013a6fa362'
 
 export const Newsletter = (props: Props) => {
   const intl = useTranslations()
@@ -29,7 +28,10 @@ export const Newsletter = (props: Props) => {
   }
 
   return (
-    <form action="https://login.sendpulse.com/forms/simple/u/eyJ1c2VyX2lkIjo4MjUxNTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjEwNDI3MSwibGFuZyI6ImVuIn0=" method="post">
+    <form
+      action="https://login.sendpulse.com/forms/simple/u/eyJ1c2VyX2lkIjo4MjUxNTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjEwNDI3MSwibGFuZyI6ImVuIn0="
+      method="post"
+    >
       <div>
         <p className="semi-bold">{intl('newsletter_title')}</p>
         <div>
@@ -44,7 +46,7 @@ export const Newsletter = (props: Props) => {
                 <input
                   className={css['input']}
                   type="email"
-                  name='email'
+                  name="email"
                   id={props.id ?? 'newsletter_email'}
                   placeholder={intl('newsletter_enter')}
                   {...emailField}
