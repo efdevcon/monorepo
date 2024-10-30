@@ -21,10 +21,32 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
+const ALLOWED_ORIGINS = [
+  'https://api.devcon.org',
+  'https://devcon.org',
+  'https://dev--devcon-app.netlify.app',
+  'http://localhost:3000', // Local development
+]
+
 app.use(
   cors({
-    origin: true,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps, curl, etc)
+      if (!origin) {
+        console.log('No origin')
+        return callback(null, true)
+      }
+
+      if (ALLOWED_ORIGINS.indexOf(origin) !== -1 || SERVER_CONFIG.NODE_ENV !== 'production') {
+        callback(null, true)
+      } else {
+        console.warn('Blocked by CORS:', origin)
+        callback(null, true) // Still allow it for now
+      }
+    },
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
   })
 )
 
@@ -33,10 +55,15 @@ const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
   cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days in milliseconds
+    maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     sameSite: 'none',
     secure: SERVER_CONFIG.NODE_ENV === 'production',
+    path: '/',
+    domain:
+      SERVER_CONFIG.NODE_ENV === 'production'
+        ? 'devcon.org' // Main domain
+        : undefined,
   },
   resave: false,
   saveUninitialized: false,
@@ -44,6 +71,7 @@ const sessionConfig: SessionOptions = {
     pool: getDbPool(),
     tableName: 'Session',
   }),
+  proxy: true,
 }
 
 if (SERVER_CONFIG.NODE_ENV === 'production') {
