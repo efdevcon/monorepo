@@ -64,9 +64,9 @@ export async function TriggerWorkflow(workflowId: string, ref: string = 'main') 
 function SessionToJson(session: any) {
   const filesystemSession = {
     ...session,
-    keywords: session.keywords?.split(',') || null,
-    tags: session.tags?.split(',') || null,
-    speakers: session.speakers.map((speaker: any) => speaker.id),
+    keywords: session.keywords?.split(',') || [],
+    tags: session.tags?.split(',') || [],
+    speakers: session.speakers?.map((speaker: any) => speaker.id) || [],
     slot_start: session.slot_start ? dayjs(session.slot_start).valueOf() : null,
     slot_end: session.slot_end ? dayjs(session.slot_end).valueOf() : null,
   }
