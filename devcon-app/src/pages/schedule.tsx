@@ -36,7 +36,7 @@ export default pageHOC((props: any) => {
   // console.log(props.rooms)
 
   // TODO: Temporary test launch
-  return <></>
+  return <>We will be back soon!</>
 
   return (
     <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]}>

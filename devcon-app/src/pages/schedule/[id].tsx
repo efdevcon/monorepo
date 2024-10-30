@@ -24,7 +24,7 @@ export default (props: any) => {
   if (!props.session) return null
 
   // TODO: Temporary test launch
-  return <></>
+  return <>We will be back soon!</>
 
   return (
     <>

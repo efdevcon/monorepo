@@ -43,7 +43,7 @@ export default pageHOC((props: any) => {
   // }, [selectedSpeaker])
 
   // TODO: Temporary test launch
-  return <></>
+  return <>We will be back soon!</>
 
   return (
     <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'Speakers' }]}>
