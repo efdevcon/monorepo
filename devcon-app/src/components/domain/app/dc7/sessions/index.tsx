@@ -245,8 +245,8 @@ const TrackTag = ({ track, className, applyColor = true, ...rest }: any) => {
   return (
     <div
       className={cn(
-        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA] flex gap-2 items-center',
-        applyColor ? getTrackColor(track) : '',
+        'text-[10px] rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA] flex gap-2 items-center',
+        applyColor ? `${getTrackColor(track)} text-black` : '',
         className
       )}
       {...rest}
@@ -431,6 +431,13 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   )
 }
 
+const filterTagClass = (selected: boolean) => {
+  return cn(
+    'flex shrink-0 text-xs items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+    selected && '!bg-[#EFEBFF] !fill-[#7D52F4] border border-solid border-[#cdbaff]'
+  )
+}
+
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
@@ -449,12 +456,25 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   return (
     <div className="flex flex-col gap-4 p-4">
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Session Type</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          <div>Type</div>
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                type: {},
+              })
+            }}
+            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.type.map((type: string) => (
             <div
               key={type}
-              className={tagClass(sessionFilter.type[type]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.type[type]), '!shrink')}
               onClick={() => toggleFilter('type', type)}
             >
               {type}
@@ -464,15 +484,29 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       </div>
 
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Tracks</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          <div>Tracks</div>
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                track: {},
+              })
+            }}
+            className={tagClassTwo(false, ' font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.track.map((track: string) => (
             <TrackTag
               key={track}
               track={track}
-              applyColor={sessionFilter.track[track]}
+              applyColor={sessionFilter.track[track] || false}
               //   className="!shrink"
-              className={tagClass(sessionFilter.track[track]) + ' !shrink'}
+              //   className={tagClass(sessionFilter.track[track]) + ' !shrink'}
+              className={cn(tagClass(sessionFilter.track[track]), '!shrink')}
               onClick={() => toggleFilter('track', track)}
             >
               {track}
@@ -482,12 +516,26 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       </div>
 
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Expertise</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          Expertise
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                expertise: {},
+              })
+            }}
+            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.expertise.map((expertise: string) => (
             <div
               key={expertise}
-              className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
+              //   className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.expertise[expertise]), '!shrink')}
               onClick={() => toggleFilter('expertise', expertise)}
             >
               {expertise}
@@ -525,7 +573,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           }}
           className={tagClassTwo(false, ' !text-[black] font-semibold')}
         >
-          Reset Filter
+          Reset All
         </div>
       </div>
 

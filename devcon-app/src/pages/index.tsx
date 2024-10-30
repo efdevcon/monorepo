@@ -36,15 +36,15 @@ const Index = (props: any) => {
 
       <Dashboard {...props} sessions={sessions} />
 
-      <div
+      {/* <div
         className={cn(
           'fixed top-0 left-0 h-full w-full justify-center items-center opacity-90 bg-white z-5 pointer-events-none flex flex-col gap-2 transition-opacity duration-500',
           sessions && 'opacity-0'
         )}
-      >
-        <FancyLoader loading={!sessions} />
-        Fetching schedule data...
-      </div>
+      > */}
+      {/* <FancyLoader loading={!sessions} /> */}
+      {/* Fetching schedule data...
+      </div> */}
     </AppLayout>
   )
 }
