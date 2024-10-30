@@ -38,11 +38,11 @@ app.use(
         return callback(null, true)
       }
 
-      if (ALLOWED_ORIGINS.indexOf(origin) !== -1 || SERVER_CONFIG.NODE_ENV !== 'production') {
+      if (ALLOWED_ORIGINS.includes(origin) || SERVER_CONFIG.NODE_ENV !== 'production') {
         callback(null, true)
       } else {
         console.warn('BLOCKED by CORS:', origin)
-        callback(null, true) // Still allow it for now
+        callback(new Error(`Origin ${origin} not allowed by CORS`))
       }
     },
     credentials: true,
@@ -55,14 +55,7 @@ const pgSessionStore = pgSession(session)
 const sessionConfig: SessionOptions = {
   name: SESSION_CONFIG.cookieName,
   secret: SESSION_CONFIG.password,
-  cookie: {
-    maxAge: 30 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    sameSite: 'none',
-    secure: SERVER_CONFIG.NODE_ENV === 'production',
-    path: '/',
-    domain: SERVER_CONFIG.NODE_ENV === 'production' ? '.devcon.org' : undefined,
-  },
+  cookie: {},
   resave: false,
   saveUninitialized: false,
   store: new pgSessionStore({
@@ -73,6 +66,14 @@ const sessionConfig: SessionOptions = {
 }
 
 if (SERVER_CONFIG.NODE_ENV === 'production') {
+  sessionConfig.cookie = {
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    httpOnly: true,
+    sameSite: 'none',
+    secure: true,
+    path: '/',
+    domain: '.devcon.org',
+  }
   app.set('trust proxy', 1)
 }
 app.use(session(sessionConfig))
