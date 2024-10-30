@@ -25,8 +25,8 @@ createAppKit({
     swaps: false,
     onramp: false,
     analytics: true,
-    history: true,
-    socials: ['x', 'farcaster', 'github'],
+    history: false,
+    socials: [],
   },
 })
 
