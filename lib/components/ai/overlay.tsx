@@ -848,7 +848,7 @@ const DevaBot = ({
                             messages.length > 0 ? "hidden" : ""
                           }`}
                         >
-                          {["What should I do at Devcon?", "Why Bangkok?"].map(
+                          {["What should I do at Devcon?", "Why SEA?"].map(
                             (suggestion, index, array) => (
                               <Button
                                 key={index}
