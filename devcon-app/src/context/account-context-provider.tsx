@@ -47,8 +47,6 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
         await getAccount()
       } catch (e) {
         console.log(e, 'Account fetch failed')
-      } finally {
-        setContext({ ...context, loading: false })
       }
     }
 
