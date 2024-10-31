@@ -42,7 +42,8 @@ app.use(
         callback(null, true)
       } else {
         console.warn('BLOCKED by CORS:', origin)
-        return callback(null, true) // allow for now. Need to define proper list of origins
+        // callback(null, true) // allow for now. Need to define proper list of origins
+        callback(new Error(`Origin ${origin} not allowed by CORS`))
       }
     },
     credentials: true,
