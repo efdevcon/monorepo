@@ -23,12 +23,14 @@ export default (props: any) => {
 
   if (!props.session) return null
 
-  // TODO: Temporary test launch
-  return <>We will be back soon!</>
-
   return (
     <>
-      <SEO title={props.session.title} description={props.session.description} separator="@" />
+      <SEO
+        title={props.session.title}
+        description={props.session.description}
+        separator="@"
+        imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image`}
+      />
       <AppLayout pageTitle={props.session.title} breadcrumbs={[{ label: props.session.title }]}>
         <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>
           <div className={cn('basis-[50%] grow')}>
@@ -45,13 +47,13 @@ export default (props: any) => {
 }
 
 export async function getStaticPaths() {
-  // const sessions = await fetchSessions()
-  // const paths = sessions.map(i => {
-  // return { params: { id: i.sourceId } }
-  // })
+  const sessions = await fetchSessions()
+  const paths = sessions.map(i => {
+    return { params: { id: i.sourceId } }
+  })
 
   return {
-    paths: [], // TODO: Temporary test launch
+    paths,
     fallback: 'blocking',
   }
 }

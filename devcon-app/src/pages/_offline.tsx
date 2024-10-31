@@ -1,13 +1,9 @@
 import React from 'react'
-import { pageHOC } from 'context/pageHOC'
-import { GetPage } from 'services/page'
-import { getGlobalData } from 'services/global'
 import { AppLayout } from 'components/domain/app/Layout'
 import { Link } from 'components/common/link'
 import { AppNav } from 'components/domain/app/navigation'
-import { DEFAULT_APP_PAGE } from 'utils/constants'
 
-const Offline = pageHOC(() => {
+const Offline = () => {
   return (
     <AppLayout pageTitle="Offline" breadcrumbs={[{ label: 'Offline' }]}>
       <>
@@ -31,16 +27,11 @@ const Offline = pageHOC(() => {
       </>
     </AppLayout>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
-  const globalData = await getGlobalData(context, true)
-
   return {
-    props: {
-      ...globalData,
-      page: DEFAULT_APP_PAGE,
-    },
+    props: {},
   }
 }
 

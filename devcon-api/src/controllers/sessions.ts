@@ -31,6 +31,7 @@ export async function GetSessions(req: Request, res: Response) {
     where: {},
     include: {
       speakers: true,
+      slot_room: true,
     },
   }
   if (req.query.from) args.skip = parseInt(req.query.from as string)
@@ -106,6 +107,7 @@ export async function GetSession(req: Request, res: Response) {
     },
     include: {
       speakers: true,
+      slot_room: true,
     },
   })
 

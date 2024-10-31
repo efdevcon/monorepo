@@ -1,12 +1,9 @@
 import React from 'react'
 import Image404 from 'assets/images/404.png'
 import Image from 'next/image'
-// import { GetPage } from 'services/page'
 import { AppLayout } from 'components/domain/app/Layout'
-import { pageHOC } from 'context/pageHOC'
-// import { getGlobalData } from 'services/global'
 
-const FourOhFour = pageHOC(() => {
+const FourOhFour = () => {
   return (
     <AppLayout pageTitle="Not Found" breadcrumbs={[]}>
       <div className="flex flex-col justify-center items-center h-full mt-8">
@@ -15,18 +12,6 @@ const FourOhFour = pageHOC(() => {
       </div>
     </AppLayout>
   )
-})
-
-// export async function getStaticProps(context: any) {
-//   const globalData = await getGlobalData(context)
-//   const page = await GetPage('/404')
-
-//   return {
-//     props: {
-//       ...globalData,
-//       page,
-//     },
-//   }
-// }
+}
 
 export default FourOhFour

@@ -10,16 +10,10 @@ import Image from 'next/image'
 import css from './speakers.module.scss'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
-import {
-  devaBotVisibleAtom,
-  favoritedSpeakersAtom,
-  selectedSpeakerSelector,
-  sessionsAtom,
-  speakerFilterAtom,
-} from 'pages/_app'
+import { devaBotVisibleAtom, selectedSpeakerSelector, sessionsAtom, speakerFilterAtom } from 'pages/_app'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import { Link } from 'components/common/link'
-import { SessionCard } from 'components/domain/app/dc7/sessions/index'
+import { SessionCard, tagClassTwo } from 'components/domain/app/dc7/sessions/index'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import { selectedSpeakerAtom } from 'pages/_app'
 import { useWindowWidth } from '../../Layout'
@@ -87,9 +81,9 @@ export const cardClass =
 // }
 
 const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
+  const { account } = useAccountContext()
   const sessions = useRecoilValue(sessionsAtom)
   const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
-  const favoritedSpeakers = useRecoilValue(favoritedSpeakersAtom)
 
   const filterOptions = useMemo(() => {
     return {
@@ -133,7 +127,7 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
     if (!speakers) return []
 
     return speakers.filter(speaker => {
-      const isFavorited = favoritedSpeakers[speaker.sourceId]
+      const isFavorited = account?.favorite_speakers?.includes(speaker.id)
 
       const matchesText = speaker.name.toLowerCase().includes(speakerFilter.text.toLowerCase())
       const matchesLetter = speakerFilter.letter === '' || speaker.name[0].toUpperCase() === speakerFilter.letter
@@ -254,19 +248,32 @@ export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
   return (
     <div data-type="speaker-filter" className="flex flex-col gap-3">
       <div className="flex flex-row gap-3 justify-between w-full px-4 lg:pt-4 pb-2">
-        <div data-type="speaker-filter-search" className="relative">
+        <div data-type="speaker-filter-search" className="relative w-full lg:w-[350px]">
           <input
             type="text"
             value={speakerFilter.text}
             onChange={e => setSpeakerFilter({ ...speakerFilter, text: e.target.value })}
             placeholder="Find a speaker"
-            className="w-full py-2 px-4 pl-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
+            className="w-full relative py-2 px-10 bg-white rounded-full border text-sm border-solid border-[#E1E4EA] focus:outline-none"
           />
 
-          <MagnifierIcon
-            className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#99A0AE] icon"
-            style={{ '--color-icon': '#99A0AE' }}
-          />
+          <div
+            className="absolute left-4 top-0 bottom-0 h-[34px] lg:h-full cursor-pointer hover:opacity-70 transition-opacity flex items-center justify-center"
+            onClick={() => setSpeakerFilter({ ...speakerFilter, text: '' })}
+          >
+            <MagnifierIcon className="text-[#99A0AE] icon" style={{ '--color-icon': '#99A0AE' }} />
+          </div>
+
+          {speakerFilter.text && (
+            <div
+              className="absolute right-4 top-0 h-[34px] lg:h-full cursor-pointer hover:opacity-70 transition-opacity flex items-center justify-center"
+              onClick={() => setSpeakerFilter({ ...speakerFilter, text: '' })}
+            >
+              <svg width="10" height="10" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L13 13M1 13L13 1" stroke="#99A0AE" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </div>
+          )}
         </div>
 
         <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
@@ -445,17 +452,14 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       </div>
 
       <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
-        <StandalonePrompt
-          className="w-full"
-          onClick={() => setDevaBotVisible('Help me decide which keynotes to attend speaking about')}
-        >
-          <div className="truncate">Help me decide which keynotes to attend speaking about</div>
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend speakers who know about ')}>
+          <div className="truncate">Recommend speakers who know about...</div>
         </StandalonePrompt>
         <StandalonePrompt
           className="w-full"
           onClick={() => setDevaBotVisible('Help me find a speaker that is similar to')}
         >
-          <div className="truncate">Help me find a speaker that is similar to</div>
+          <div className="truncate">Help me find a speaker that is similar to...</div>
         </StandalonePrompt>
       </div>
 
@@ -589,7 +593,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
               style={{ '--color-icon': account?.favorite_speakers?.includes(speaker.id) ? 'red' : 'white' }}
             />
 
-            {!standalone && (
+            {/* {!standalone && (
               <Link className="flex justify-center items-center" to={`/speakers/${speaker.sourceId}`}>
                 <ShareIcon
                   className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
@@ -597,7 +601,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
                   // onClick={copyShareLink}
                 />
               </Link>
-            )}
+            )} */}
 
             {speaker?.twitter && (
               <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
@@ -635,6 +639,18 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       </div>
 
       <SpeakerSessions speaker={speaker} className={cn(standalone && '!border-none shrink-0 lg:hidden')} />
+
+      {!standalone && (
+        <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
+          <Link
+            to={`/speakers/${speaker.sourceId}`}
+            className={tagClassTwo(false, 'text-[black] font-semibold')}
+            indicateExternal
+          >
+            Go to Speaker Page
+          </Link>
+        </div>
+      )}
     </div>
   )
 }

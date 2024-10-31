@@ -4,7 +4,6 @@ import { Session as SessionType } from 'types/Session'
 import { Speaker } from 'types/Speaker'
 import { Room } from 'types/Room'
 import { defaultSlugify } from 'utils/formatting'
-import Fuse from 'fuse.js'
 import { APP_CONFIG } from 'utils/config'
 import { useRecoilState } from 'recoil'
 import { sessionsAtom, speakersAtom } from 'pages/_app'
@@ -17,27 +16,6 @@ const twitterQuestionId = 44
 const githubQuestionId = 43
 const organizationQuestionId = 23 // not used
 const roleQuestionId = 24 // not used
-
-export const fuseOptions = {
-  includeScore: true,
-  useExtendedSearch: true,
-  shouldSort: true,
-  ignoreLocation: true,
-  keys: [
-    {
-      name: 'speakers.name',
-      weight: 1,
-    },
-    {
-      name: 'track',
-      weight: 0.5,
-    },
-    {
-      name: 'tags',
-      weight: 0.2,
-    },
-  ],
-}
 
 export const useSessionData = (): SessionType[] | null => {
   // const [sessions, setSessions] = useState<SessionType[] | null>(null)
@@ -153,7 +131,8 @@ export const fetchEventVersion = async (): Promise<string> => {
 }
 
 export const fetchSessions = async (version?: string): Promise<SessionType[]> => {
-  const sessions = await get(`/events/${eventName}/sessions?sort=slot_start&size=1000&version=${version}`)
+  // const sessions = await get(`/events/${eventName}/sessions?sort=slot_start&size=1000&version=${version}`)
+  const sessions = await get(`/sessions?sort=slot_start&order=asc&event=${eventName}&size=1000&version=${version}`)
 
   return sessions
     .map((session: SessionType) => {
@@ -167,7 +146,15 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
         duration: startTS.diff(endTS, 'minutes'),
       }
     })
-    .reverse()
+    .sort((a: SessionType, b: SessionType) => {
+      // First sort by start time
+      const startDiff = moment.utc(a.slot_start).diff(moment.utc(b.slot_start))
+      // If start times are equal, sort by end time
+      if (startDiff === 0) {
+        return moment.utc(a.slot_end).diff(moment.utc(b.slot_end))
+      }
+      return startDiff
+    })
 }
 
 export const fetchSpeakers = async (version?: string): Promise<Speaker[]> => {
@@ -216,25 +203,6 @@ export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionT
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
   // no endpoint exists, so fetches and filters all sessions recursively
   return (await fetchSessions()).filter(i => i.room?.id === id)
-}
-
-export const getRelatedSessions = async (id: string, sessions: Array<SessionType>): Promise<Array<SessionType>> => {
-  const data = sessions.length > 0 ? sessions : await fetchSessions()
-  const session = data.find(i => i.id === id)
-  if (!session) return []
-
-  const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
-    ?.split(',')
-    ?.map(i => `"${i}"`)
-    .join(' | ')}`
-
-  const fuse = new Fuse(data, fuseOptions)
-  const result = fuse.search(query)
-
-  return result
-    .map(i => i.item)
-    .filter(i => i.id !== id)
-    .slice(0, 5)
 }
 
 export const fetchExpertiseLevels = async (): Promise<Array<string>> => {

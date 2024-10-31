@@ -33,8 +33,6 @@ import {
   selectedSessionSelector,
   sessionFilterAtom,
   sessionFilterOpenAtom,
-  attendingSessionsAtom,
-  interestedSessionsAtom,
 } from 'pages/_app'
 import { usePathname } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
@@ -86,9 +84,8 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 }
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
+  const { account } = useAccountContext()
   const [sessionFilter, _] = useRecoilState(sessionFilterAtom)
-  const [attendingSessions, setAttendingSessions] = useRecoilState(attendingSessionsAtom)
-  const [interestedSessions, setInterestedSessions] = useRecoilState(interestedSessionsAtom)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
@@ -122,8 +119,8 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         session.type.toLowerCase().includes(text.toLowerCase()) ||
         session.track.toLowerCase().includes(text.toLowerCase())
 
-      const isAttending = attendingSessions[session.sourceId]
-      const isInterested = interestedSessions[session.sourceId]
+      const isAttending = account?.attending_sessions?.includes(session.sourceId)
+      const isInterested = account?.interested_sessions?.includes(session.sourceId)
 
       const matchesType = Object.keys(type).length === 0 || sessionFilter.type[session.type]
       const matchesDay =
@@ -144,7 +141,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
       return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
     })
-  }, [sessions, sessionFilter, attendingSessions, interestedSessions])
+  }, [sessions, sessionFilter])
 
   return {
     filteredSessions,
@@ -245,8 +242,8 @@ const TrackTag = ({ track, className, applyColor = true, ...rest }: any) => {
   return (
     <div
       className={cn(
-        'text-[10px] text-black rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA] flex gap-2 items-center',
-        applyColor ? getTrackColor(track) : '',
+        'text-[10px] rounded-full px-2 py-0.5 font-semibold border border-solid border-[#E1E4EA] flex gap-2 items-center',
+        applyColor ? `${getTrackColor(track)} text-black` : '',
         className
       )}
       {...rest}
@@ -371,7 +368,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <IconVenue className="icon flex shrink-0" />
               <p className="text-xs shrink-0 text-gray-600">
-                {session.type} - {session.slot_roomId}
+                {session.type} - {session.slot_room?.name ?? session.slot_roomId}
               </p>
             </div>
 
@@ -431,6 +428,13 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
   )
 }
 
+const filterTagClass = (selected: boolean) => {
+  return cn(
+    'flex shrink-0 text-xs items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+    selected && '!bg-[#EFEBFF] !fill-[#7D52F4] border border-solid border-[#cdbaff]'
+  )
+}
+
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
@@ -449,12 +453,25 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   return (
     <div className="flex flex-col gap-4 p-4">
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Session Type</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          <div>Type</div>
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                type: {},
+              })
+            }}
+            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.type.map((type: string) => (
             <div
               key={type}
-              className={tagClass(sessionFilter.type[type]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.type[type]), '!shrink')}
               onClick={() => toggleFilter('type', type)}
             >
               {type}
@@ -464,15 +481,29 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       </div>
 
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Tracks</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          <div>Tracks</div>
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                track: {},
+              })
+            }}
+            className={tagClassTwo(false, ' font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.track.map((track: string) => (
             <TrackTag
               key={track}
               track={track}
-              applyColor={sessionFilter.track[track]}
+              applyColor={sessionFilter.track[track] || false}
               //   className="!shrink"
-              className={tagClass(sessionFilter.track[track]) + ' !shrink'}
+              //   className={tagClass(sessionFilter.track[track]) + ' !shrink'}
+              className={cn(tagClass(sessionFilter.track[track]), '!shrink')}
               onClick={() => toggleFilter('track', track)}
             >
               {track}
@@ -482,12 +513,26 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
       </div>
 
       <div>
-        <div className="flex flex-col gap-3 pb-4 font-semibold">Expertise</div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          Expertise
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                expertise: {},
+              })
+            }}
+            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.expertise.map((expertise: string) => (
             <div
               key={expertise}
-              className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
+              //   className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.expertise[expertise]), '!shrink')}
               onClick={() => toggleFilter('expertise', expertise)}
             >
               {expertise}
@@ -525,7 +570,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
           }}
           className={tagClassTwo(false, ' !text-[black] font-semibold')}
         >
-          Reset Filter
+          Reset All
         </div>
       </div>
 
@@ -981,11 +1026,8 @@ export const SessionList = ({
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about ')}>
           <div className="truncate">Help me find sessions about...</div>
         </StandalonePrompt>
-        <StandalonePrompt
-          className="w-full"
-          onClick={() => setDevaBotVisible('Recommend sessions based on my interests')}
-        >
-          <div className="truncate">Recommend sessions based on my interests</div>
+        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend sessions related to ZKP')}>
+          <div className="truncate">Recommend sessions related to ZKP</div>
         </StandalonePrompt>
       </div>
 
@@ -1124,7 +1166,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         >
           <div className="font-medium z-10 flex flex-col gap-2 translate-y-[3px] pb-1 text-white max-w-[70%]">
             {/* <TrackTag track={session.track} className="self-start" /> */}
-            <p className="text-lg leading-6">{session.title}</p>
+            <p className="text-lg leading-6 pb-1">{session.title}</p>
           </div>
           <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
             <div
@@ -1202,7 +1244,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div className="flex items-center gap-2">
           <IconVenue className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
-            {session.type} - {session.slot_roomId}
+            {session.type} - {session.slot_room?.name ?? session.slot_roomId}
           </span>
         </div>
 

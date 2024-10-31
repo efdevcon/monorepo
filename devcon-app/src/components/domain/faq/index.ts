@@ -1,1 +1,0 @@
-export { FAQ } from './FAQ'

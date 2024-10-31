@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'lib/components/button'
-
+import moment from 'moment'
 interface Notification {
   id: string
   title: string
@@ -12,17 +12,16 @@ interface Notification {
 const AdminPushNotification = () => {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
-  const [sendAt, setSendAt] = useState(() => {
-    const now = new Date()
-    now.setMinutes(now.getMinutes() - now.getTimezoneOffset())
-    return now.toISOString().slice(0, 16)
-  })
+  const [sendAt, setSendAt] = useState<string | undefined>(undefined)
   const [response, setResponse] = useState('')
   const [notifications, setNotifications] = useState<Notification[]>([])
   // const [editingId, setEditingId] = useState<string | null>(null)
 
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
     fetchNotifications()
+    setMounted(true)
   }, [])
 
   const fetchNotifications = async () => {
@@ -39,8 +38,6 @@ const AdminPushNotification = () => {
       console.error('Error fetching notifications:', error)
     }
   }
-
-  console.log('notifications', notifications)
 
   const handleCreateNotification = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -99,7 +96,7 @@ const AdminPushNotification = () => {
   const resetForm = () => {
     setTitle('')
     setMessage('')
-    setSendAt('')
+    setSendAt(undefined)
     // setEditingId(null)
   }
 
@@ -134,14 +131,16 @@ const AdminPushNotification = () => {
           />
         </div>
         <div className="flex flex-col">
-          Send At:
-          <input
-            type="datetime-local"
-            className="border border-gray-300 border-solid rounded-md p-2"
-            value={sendAt}
-            onChange={e => setSendAt(e.target.value)}
-            required
-          />
+          Send At (UTC):
+          {mounted && (
+            <input
+              type="datetime-local"
+              className="border border-gray-300 border-solid rounded-md p-2"
+              value={sendAt ? moment.utc(sendAt).format('YYYY-MM-DDTHH:mm') : ''}
+              onChange={e => setSendAt(moment.utc(e.target.value).format('YYYY-MM-DDTHH:mm:ss[Z]'))}
+              required
+            />
+          )}
         </div>
         <Button type="submit" color="black-1" fill className="plain">
           {'Create'} Notification
@@ -158,9 +157,8 @@ const AdminPushNotification = () => {
         <h3>Notifications (ordered by send date)</h3>
         <p>
           Note that these notifications are sent to users with push notifications enabled, but are also visible in the
-          notifications tab in the app for all other users. If you want to send a notification immediately, simply put
-          the sending date anytime in the past. Notifications are sent every 5 minutes. Notifications cannot be edited -
-          delete and create a new one if you want to make changes.
+          notifications tab in the app for all other users. Notifications are sent every 5 minutes. Notifications cannot
+          be edited - delete and create a new one if you want to make changes.
         </p>
         {notifications &&
           notifications.map(notification => (
@@ -172,7 +170,8 @@ const AdminPushNotification = () => {
                 <strong>Message:</strong> {notification.message}
               </p>
               <p>
-                <strong>Send At:</strong> {new Date(notification.sendAt).toLocaleString()}
+                <strong>Send At:</strong> {new Date(notification.sendAt).toLocaleString('en-US', { timeZone: 'UTC' })}{' '}
+                UTC
               </p>
               <p>
                 <strong>Sent:</strong>{' '}

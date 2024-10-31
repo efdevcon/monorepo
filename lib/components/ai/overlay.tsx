@@ -135,6 +135,7 @@ const DevaBot = ({
         setActiveTab(1);
         setDefaultPrompt && setDefaultPrompt("");
       } else {
+        setActiveTab(0);
         setQuery(defaultPrompt);
       }
     }
@@ -596,7 +597,12 @@ const DevaBot = ({
                                             const session = sessions.find(
                                               (s: any) => s.id === sessionId
                                             );
-                                            if (session) {
+                                            if (
+                                              session &&
+                                              !referencesTracker[sessionId]
+                                            ) {
+                                              referencesTracker[sessionId] =
+                                                true;
                                               sessionReferences.push(
                                                 SessionComponent ? (
                                                   // @ts-ignore

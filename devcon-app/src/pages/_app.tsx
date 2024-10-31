@@ -1,6 +1,5 @@
 import type { AppProps } from 'next/app'
 import React, { useEffect, useCallback } from 'react'
-import { NextIntlProvider } from 'next-intl'
 import Head from 'next/head'
 import { PWAPrompt } from 'components/domain/app/pwa-prompt'
 import 'assets/css/index.scss'
@@ -12,7 +11,6 @@ import { AccountContextProvider } from 'context/account-context-provider'
 import DevaBot from 'lib/components/ai/overlay'
 import { RecoilRoot, atom, useRecoilState, useRecoilValue, selector } from 'recoil'
 import { useSessionData } from 'services/event-data'
-import { FancyLoader } from 'lib/components/loader/loader'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
 import { useAccountContext } from 'context/account-context'
 import { ZupassProvider } from 'context/zupass'
@@ -43,45 +41,6 @@ export const selectedSessionAtom = atom<SessionType | null>({
         if (typeof window !== 'undefined') {
           localStorage.setItem('selectedSession', JSON.stringify(newValue))
         }
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const attendingSessionsAtom = atom<any>({
-  key: 'attendingSessions',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const interestedSessionsAtom = atom<any>({
-  key: 'interestedSessions',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
-      })
-    },
-  ],
-})
-
-// TODO - persist to user in the "effects handler"
-export const favoritedSpeakersAtom = atom<any>({
-  key: 'favoritedSpeakers',
-  default: {},
-  effects: [
-    ({ onSet }) => {
-      onSet(newValue => {
-        console.log('persist to user here, not implemented')
       })
     },
   ],
@@ -344,106 +303,81 @@ function App({ Component, pageProps }: AppProps) {
         <SEO />
       </Head>
 
-      <NextIntlProvider locale="en" messages={pageProps.messages}>
-        <PWAPrompt />
-        <AppContext>
-          <Web3Provider>
-            <ZupassProvider>
-              {/* {!sessions && (
-                  <div
-                    data-type="loader"
-                    className="h-screen w-screen flex items-center justify-center flex-col fixed top-0 left-0 gap-2"
-                  >
-                    <FancyLoader loading={!sessions} />
-                    <p className="text-sm text-gray-500">Please wait while we prepare your Devcon Passport...</p>
-                  </div>
-                )} */}
+      <AppContext>
+        <Web3Provider>
+          <ZupassProvider>
+            <PWAPrompt />
 
-              <Component {...pageProps} />
+            <Component {...pageProps} />
 
-              {sessions && (
-                <DevaBot
-                  sessions={sessions}
-                  onToggle={() => setDevaBotVisible(!devaBotVisible)}
-                  defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
-                  setDefaultPrompt={() => setDevaBotVisible(true)}
-                  toggled={!!devaBotVisible}
-                  notifications={notifications || undefined}
-                  notificationsCount={notificationsCount}
-                  markNotificationsAsRead={markAllAsRead}
-                  SessionComponent={SessionCard}
-                  renderNotifications={() => {
-                    const groupNotificationsByDay = (notifications: any[]) => {
-                      const grouped = notifications.reduce((acc, notification) => {
-                        const date = new Date(notification.sendAt)
-                        const today = new Date()
-                        const yesterday = new Date(today)
-                        yesterday.setDate(yesterday.getDate() - 1)
+            {sessions && (
+              <DevaBot
+                sessions={sessions}
+                onToggle={() => setDevaBotVisible(!devaBotVisible)}
+                defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
+                setDefaultPrompt={() => setDevaBotVisible(true)}
+                toggled={!!devaBotVisible}
+                notifications={notifications || undefined}
+                notificationsCount={notificationsCount}
+                markNotificationsAsRead={markAllAsRead}
+                SessionComponent={SessionCard}
+                renderNotifications={() => {
+                  const groupNotificationsByDay = (notifications: any[]) => {
+                    const grouped = notifications.reduce((acc, notification) => {
+                      const date = new Date(notification.sendAt)
+                      const today = new Date()
+                      const yesterday = new Date(today)
+                      yesterday.setDate(yesterday.getDate() - 1)
 
-                        let key
-                        if (date.toDateString() === today.toDateString()) {
-                          key = 'Today'
-                        } else if (date.toDateString() === yesterday.toDateString()) {
-                          key = 'Yesterday'
-                        } else {
-                          key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-                        }
+                      let key
+                      if (date.toDateString() === today.toDateString()) {
+                        key = 'Today'
+                      } else if (date.toDateString() === yesterday.toDateString()) {
+                        key = 'Yesterday'
+                      } else {
+                        key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
+                      }
 
-                        if (!acc[key]) {
-                          acc[key] = []
-                        }
-                        acc[key].push(notification)
-                        return acc
-                      }, {})
+                      if (!acc[key]) {
+                        acc[key] = []
+                      }
+                      acc[key].push(notification)
+                      return acc
+                    }, {})
 
-                      return Object.entries(grouped).sort(([a], [b]) => {
-                        if (a === 'Today') return -1
-                        if (b === 'Today') return 1
-                        if (a === 'Yesterday') return -1
-                        if (b === 'Yesterday') return 1
-                        return new Date(b).getTime() - new Date(a).getTime()
-                      })
-                    }
+                    return Object.entries(grouped).sort(([a], [b]) => {
+                      if (a === 'Today') return -1
+                      if (b === 'Today') return 1
+                      if (a === 'Yesterday') return -1
+                      if (b === 'Yesterday') return 1
+                      return new Date(b).getTime() - new Date(a).getTime()
+                    })
+                  }
 
-                    const groupedNotifications = groupNotificationsByDay(notifications)
+                  const groupedNotifications = groupNotificationsByDay(notifications)
 
-                    return (
-                      <>
-                        {groupedNotifications.map(([date, notificationsForDay]: any) => (
-                          <div key={date} className="w-full">
-                            <p className="font-semibold my-2">{date}</p>
-                            {notificationsForDay.map((notification: any) => (
-                              <NotificationCard
-                                key={notification.id}
-                                notification={notification}
-                                seen={seenNotifications.has(notification.id)}
-                              />
-                            ))}
-                          </div>
-                        ))}
-                      </>
-                    )
-                  }}
-                />
-              )}
-
-              {/* <AnimatePresence>
-                {sessions && revealApp && (
-                  <motion.div
-                    className="absolute inset-0 z-10"
-                    initial={{ y: '100%' }}
-                    animate={{ y: 0 }}
-                    exit={{ y: '100%' }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                  >
-                    <Component {...pageProps} />
-                  </motion.div>
-                )} */}
-            </ZupassProvider>
-          </Web3Provider>
-        </AppContext>
-      </NextIntlProvider>
-
+                  return (
+                    <>
+                      {groupedNotifications.map(([date, notificationsForDay]: any) => (
+                        <div key={date} className="w-full">
+                          <p className="font-semibold my-2">{date}</p>
+                          {notificationsForDay.map((notification: any) => (
+                            <NotificationCard
+                              key={notification.id}
+                              notification={notification}
+                              seen={seenNotifications.has(notification.id)}
+                            />
+                          ))}
+                        </div>
+                      ))}
+                    </>
+                  )
+                }}
+              />
+            )}
+          </ZupassProvider>
+        </Web3Provider>
+      </AppContext>
       <Toaster />
     </>
   )

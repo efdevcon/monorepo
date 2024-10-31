@@ -217,6 +217,7 @@ async function LoginEmail(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'Invalid input.' })
   }
 
+  address = address.toLowerCase()
   let data = await client.verificationToken.findFirst({
     where: { identifier: address, nonce: nonce, expires: { gt: new Date() } },
   })
@@ -571,10 +572,11 @@ async function RecommendedSessions(req: Request, res: Response) {
 }
 
 async function parseProfileData(attendeeEmail: string) {
+  const normalizedEmail = attendeeEmail.toLowerCase()
   const data = await decryptFile(`data/accounts/pretix.encrypted`)
   const results = await parseCSV(data)
 
-  const account = results.find((row) => Object.values(row)[0] === attendeeEmail)
+  const account = results.find((row) => (Object.values(row)[0] as string)?.toLowerCase() === normalizedEmail)
   if (!account) {
     return undefined
   }

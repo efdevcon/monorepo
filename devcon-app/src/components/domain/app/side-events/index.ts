@@ -1,1 +1,0 @@
-export { SideEvents } from './SideEvents';

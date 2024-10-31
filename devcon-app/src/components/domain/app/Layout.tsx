@@ -35,6 +35,7 @@ import { AccountContext, useAccountContext } from 'context/account-context'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import ArrowBackIcon from 'assets/icons/arrow_left.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
+import account from 'pages/account'
 
 type HeaderProps = {
   breadcrumbs: {
@@ -467,7 +468,7 @@ const Navigation = () => {
           </PopoverTrigger>
 
           <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
-            <div>{true ? 'App' : 'AI Chat'}</div>
+            <div>{accountContext.account ? 'Ask Deva + Notifications' : 'Ask Deva'}</div>
             {/* <PopoverArrow style={{ fill: 'white' }} /> */}
           </PopoverContent>
         </Popover>

@@ -1,1 +1,0 @@
-export { Schedule } from './Schedule'
