@@ -1,26 +1,11 @@
 import { AppLayout } from 'components/domain/app/Layout'
 import { SpeakerView, SpeakerSessions, cardClass } from 'components/domain/app/dc7/speakers/index'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { fetchSessionsBySpeaker, fetchSpeaker, fetchSpeakers } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import { useRecoilState } from 'recoil'
-import { selectedSpeakerAtom } from 'pages/_app'
-import { useRouter } from 'next/router'
 import cn from 'classnames'
 
 export default (props: any) => {
-  //   const [_, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
-  //   const router = useRouter()
-
-  //   useEffect(() => {
-  //     if (props.speaker) {
-  //       setSelectedSpeaker(props.speaker)
-
-  //       // redirect to /speakers
-  //       //   router.replace('/speakers')
-  //     }
-  //   }, [props.speaker])
-
   if (!props.speaker) return null
 
   return (
@@ -37,9 +22,6 @@ export default (props: any) => {
           </div>
         </div>
       </AppLayout>
-      {/* <AppLayout pageTitle={props.speaker.name} breadcrumbs={[{ label: props.speaker.name }]}>
-        <SpeakerView speaker={props.speaker} standalone />
-      </AppLayout> */}
     </>
   )
 }

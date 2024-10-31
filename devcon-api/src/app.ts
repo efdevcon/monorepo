@@ -73,6 +73,7 @@ if (SERVER_CONFIG.NODE_ENV === 'production') {
     secure: true,
     path: '/',
     domain: '.devcon.org',
+    partitioned: true,
   }
 
   sessionConfig.proxy = true
