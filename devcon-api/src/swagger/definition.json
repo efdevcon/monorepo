@@ -972,6 +972,35 @@
         }
       }
     },
+    "/speakers/{id}/sessions": {
+      "get": {
+        "tags": [
+          "Speakers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/devabot": {
       "post": {
         "description": "",
