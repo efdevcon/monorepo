@@ -314,6 +314,18 @@ const navItems = (isLoggedIn: boolean, pathname: string) => [
     size: 17,
   },
   {
+    label: 'Schedule',
+    icon: pathname === '/schedule' ? ScheduleFillIcon : ScheduleIcon,
+    href: '/schedule',
+    size: 18,
+  },
+  {
+    label: 'Speakers',
+    icon: pathname === '/speakers' ? SpeakerFillIcon : SpeakerIcon,
+    href: '/speakers',
+    size: 18,
+  },
+  {
     icon: pathname === '/account' ? UserFillIcon : UserIcon,
     label: isLoggedIn ? 'Account' : 'Log In',
     href: isLoggedIn ? '/account' : '/login',
@@ -325,18 +337,6 @@ const navItems = (isLoggedIn: boolean, pathname: string) => [
   //   href: '/venue',
   //   size: 18,
   // },
-  {
-    label: 'Speakers',
-    icon: pathname === '/speakers' ? SpeakerFillIcon : SpeakerIcon,
-    href: '/speakers',
-    size: 18,
-  },
-  {
-    label: 'Schedule',
-    icon: pathname === '/schedule' ? ScheduleFillIcon : ScheduleIcon,
-    href: '/schedule',
-    size: 18,
-  },
 ]
 
 export const useWindowWidth = () => {
