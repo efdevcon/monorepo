@@ -25,6 +25,7 @@ import CalendarIcon from 'assets/icons/calendar.svg'
 import { Link } from 'components/common/link'
 import { TruncateMiddle } from 'utils/formatting'
 import ChevronRight from 'assets/icons/chevron_right.svg'
+import { FancyLoader } from 'lib/components/loader/loader'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -159,13 +160,19 @@ export const Dashboard = () => {
   const sessions = useRecoilValue(sessionsAtom)
   const draggableLink = useDraggableLink()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const loggedIn = accountContext.account
+  const { account, loading } = accountContext
 
   return (
     <div className={cn(cardClass, 'lg:py-4 col-start-1 col-end-4')}>
-      {loggedIn ? (
-        <LoggedIn />
-      ) : (
+      {loading && !account && (
+        <>
+          <div className="flex justify-center items-center h-full">
+            <FancyLoader loading={loading} size={60} />
+          </div>
+        </>
+      )}
+      {!loading && account && <LoggedIn />}
+      {!loading && !account && (
         <div className="flex justify-between md:items-center gap-6 flex-col md:flex-row px-4 relative">
           <NotLoggedIn />
           <div className="flex flex-col gap-2 my-2 md:w-[50%] w-full md:order-2 order-1 shrink-0">
@@ -185,7 +192,6 @@ export const Dashboard = () => {
           </div>
         </div>
       )}
-
       <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">
         Notifications
         <div
@@ -195,13 +201,10 @@ export const Dashboard = () => {
           <p>Go to Notifications</p>
         </div>
       </div>
-
       <Notifications />
-
       <div className="flex gap-3 pb-4 mx-4 justify-between font-semibold border-top py-4">
         <div>Featured</div>
       </div>
-
       <div
         className="overflow-hidden mb-6"
         // style={{ maskImage: 'linear-gradient(to right, black 95%, transparent)' }}
@@ -288,9 +291,7 @@ export const Dashboard = () => {
           </div>
         </SwipeToScroll>
       </div>
-
       <div className="pb-4 mx-4 border-top"></div>
-
       <PersonalizedSuggestions sessions={sessions || []} standalone />
     </div>
   )

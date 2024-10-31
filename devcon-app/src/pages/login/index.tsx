@@ -103,7 +103,7 @@ const MobileLogin = (props: any) => {
               type: 'spring',
               bounce: 0.35,
             }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e: any) => e.stopPropagation()}
             className="absolute bottom-0 mx-8 bg-white max-w-[500px] min-w-[300px] self-center rounded-2xl p-4 px-4 z-20 mb-8"
           >
             <TrustModels mobile setLoginOpen={setLoginOpen} skipLogin={props.skipLogin} />
@@ -121,6 +121,8 @@ const TrustModels = (props: any) => {
   const [error, setError] = useState('')
   const [email, setEmail] = useState('')
   const [nonce, setNonce] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [resendCooldown, setResendCooldown] = useState(0)
 
   useEffect(() => {
     async function LoginWithToken() {
@@ -140,22 +142,32 @@ const TrustModels = (props: any) => {
   }, [router.query.token])
 
   const connectEmail = async () => {
-    if (!isEmail(email)) {
-      setError('Please provide a valid email address.')
-      return
-    } else {
-      setError('')
-    }
+    if (loading) return
 
-    setEmailSent(true)
-    const token = await accountContext.getToken(email, false)
-    if (!token) {
-      setEmailSent(false)
-      setError('Unable to create verification token')
+    try {
+      setLoading(true)
+      if (!isEmail(email)) {
+        setError('Please provide a valid email address.')
+        return
+      } else {
+        setError('')
+      }
+
+      setEmailSent(true)
+      const token = await accountContext.getToken(email, false)
+      if (!token) {
+        setEmailSent(false)
+        setError('Unable to create verification token')
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
   const verifyEmail = async () => {
+    if (loading) return
+    setLoading(true)
+
     const nonceNr = Number(nonce)
     if (isNaN(nonceNr)) {
       setError('Please provide a valid verification code.')
@@ -166,25 +178,46 @@ const TrustModels = (props: any) => {
       return
     }
 
-    const userAccount = await accountContext.loginEmail(email, nonceNr)
-    if (userAccount && userAccount.onboarded) {
-      router.push('/')
-    }
-    if (userAccount && !userAccount.onboarded) {
-      router.push('/onboarding')
-    }
-    if (!userAccount) {
+    try {
+      const userAccount = await accountContext.loginEmail(email, nonceNr)
+      if (userAccount && userAccount.onboarded) {
+        router.push('/')
+      }
+      if (userAccount && !userAccount.onboarded) {
+        router.push('/onboarding')
+      }
+      if (!userAccount) {
+        setError('Unable to verify your email address.')
+      }
+    } catch (e) {
       setError('Unable to verify your email address.')
+    } finally {
+      setLoading(false)
     }
   }
 
   const resendVerificationEmail = async () => {
-    const token = await accountContext.getToken(email, false)
-    if (token) {
-      setEmailSent(true)
-    } else {
-      setEmailSent(false)
-      setError('Unable to create verification token')
+    if (resendCooldown > 0) return
+
+    try {
+      setResendCooldown(30)
+      const token = await accountContext.getToken(email, false)
+      if (token) {
+        setEmailSent(true)
+      } else {
+        setEmailSent(false)
+        setError('Unable to create verification token')
+      }
+    } finally {
+      const interval = setInterval(() => {
+        setResendCooldown(prev => {
+          if (prev <= 1) {
+            clearInterval(interval)
+            return 0
+          }
+          return prev - 1
+        })
+      }, 1000)
     }
   }
 
@@ -263,11 +296,12 @@ const TrustModels = (props: any) => {
             <Button
               fat
               fill
+              disabled={loading}
               className="w-full plain mt-4 border !border-[#E1E4EA] border-solid"
               color="grey-1"
               onClick={connectEmail}
             >
-              Continue With Email
+              {loading ? 'Sending Email...' : 'Continue With Email'}
             </Button>
           </div>
 
@@ -328,13 +362,18 @@ const TrustModels = (props: any) => {
               <InputOTPSlot index={7} />
             </InputOTPGroup>
           </InputOTP>
-          <Button fat fill className="w-full plain mt-4" color="purple-2" onClick={verifyEmail}>
-            Verify Your Email
+          <Button fat fill disabled={loading} className="w-full plain mt-4" color="purple-2" onClick={verifyEmail}>
+            {loading ? 'Verifying Email...' : 'Verify Your Email'}
           </Button>
           <Separator className="mt-6 mb-4" />
           <div className="flex flex-row justify-between items-center">
-            <div className="text-sm text-underline cursor-pointer font-semibold" onClick={resendVerificationEmail}>
-              Resend Verification Code
+            <div
+              className={`text-sm ${
+                resendCooldown > 0 ? 'text-gray-400' : 'text-underline cursor-pointer font-semibold'
+              }`}
+              onClick={resendVerificationEmail}
+            >
+              {resendCooldown > 0 ? `Resend in ${resendCooldown}s` : 'Resend Verification Code'}
             </div>
             <div className="text-xs cursor-pointer">Help?</div>
           </div>
