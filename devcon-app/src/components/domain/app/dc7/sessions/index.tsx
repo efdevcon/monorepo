@@ -1349,7 +1349,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             className={tagClassTwo(false, 'text-[black] font-semibold')}
             indicateExternal
           >
-            Go to Session Page
+            Expand Session Page
           </Link>
         </div>
       )}
