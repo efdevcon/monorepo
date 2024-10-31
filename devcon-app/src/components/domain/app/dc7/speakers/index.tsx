@@ -573,7 +573,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
           height={393}
           className={cn(
             'rounded-2xl w-full h-full aspect-video',
-            speaker.avatar?.startsWith('data') ? 'object-contain object-center' : 'object-cover'
+            speaker.avatar?.startsWith('data') ? 'object-contain object-center' : 'object-cover object-[50%_40%]'
           )}
         />
         <div
