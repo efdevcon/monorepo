@@ -42,7 +42,7 @@ app.use(
         callback(null, true)
       } else {
         console.warn('BLOCKED by CORS:', origin)
-        callback(new Error(`Origin ${origin} not allowed by CORS`))
+        return callback(null, true) // allow for now. Need to define proper list of origins
       }
     },
     credentials: true,
