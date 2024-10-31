@@ -196,11 +196,14 @@ export const fetchEvent = async (): Promise<any> => {
 }
 
 export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionType>> => {
-  return await get(`/speakers/${id}/sessions?event=${eventName}`)
+  // return await get(`/speakers/${id}/sessions?event=${eventName}`)
+  // no endpoint exists, so fetches and filters all sessions recursively
+  return (await fetchSessions()).filter(i => i.speakers.some(x => x.id === id))
 }
 
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
-  return await get(`/sessions?room=${id}&event=${eventName}`)
+  // return await get(`/sessions?room=${id}&event=${eventName}`)
+  return (await fetchSessions()).filter(i => i.room?.id === id)
 }
 
 export const fetchExpertiseLevels = async (): Promise<Array<string>> => {
