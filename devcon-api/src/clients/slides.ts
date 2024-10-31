@@ -7,8 +7,9 @@ const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.go
 const DRIVE_ID = '0AJsI-Zeg-2IbUk9PVA'
 const FOLDER_ID = '1IXkffNcDyycQe5Cxrc9Dtirgw1WitV1j'
 const TEMPLATE_ID = '1pDxePJwWHpzIxIjl3OZVnkS9N_tBQKRfg57PeEkTqeU'
-const skipPermissions = false
 const emailMessage = 'Your Devcon 7 presentation'
+const skipPermissions = false // ONLY SET TRUE FOR LOCAL TESTING (DO NOT COMMIT)
+const sendEmails = false
 
 let client: GoogleApis | null = null
 
@@ -64,7 +65,7 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
     })
 
     if (exists.data.files && exists.data.files.length > 0) {
-      console.log('Presentation already exists', id, title)
+      // console.log('Presentation already exists', id, title)
       return exists.data.files[0].id
     }
 
@@ -104,19 +105,21 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
         } catch (e) {
           try {
             // Rate-limited
-            await drive.permissions.create({
-              fileId: presentationId,
-              supportsAllDrives: true,
-              requestBody: {
-                type: 'user',
-                role: 'writer',
-                emailAddress: email,
-              },
-              sendNotificationEmail: true,
-              emailMessage: emailMessage,
-            })
+            if (sendEmails) {
+              await drive.permissions.create({
+                fileId: presentationId,
+                supportsAllDrives: true,
+                requestBody: {
+                  type: 'user',
+                  role: 'writer',
+                  emailAddress: email,
+                },
+                sendNotificationEmail: true,
+                emailMessage: emailMessage,
+              })
+            }
           } catch (e) {
-            console.log('Error setting permissions. Grant manually:', emails.join(', '))
+            console.log('Error setting permissions. Grant manually')
           }
         }
       }
