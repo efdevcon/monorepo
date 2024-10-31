@@ -16,6 +16,7 @@ export function WalletLoginButton({ onError }: Props) {
   const { address } = useAccount()
   const { open } = useAppKit()
   const { signMessageAsync } = useSignMessage()
+  const [state, setState] = useState('')
   const accountContext = useAccountContext()
   const router = useRouter()
   const loggedIn = !!accountContext.account
@@ -29,25 +30,40 @@ export function WalletLoginButton({ onError }: Props) {
         return
       }
 
-      const token = await accountContext.getToken(address.toLowerCase(), false)
-      if (!token) {
-        onError?.('Unable to create verification token')
-        return
-      }
-
-      const message = createSiweMessage({
-        address: address,
-        chainId: 1,
-        domain: 'app.devcon.org',
-        nonce: token.nonce.toString(),
-        statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
-        uri: 'https://app.devcon.org/',
-        version: '1',
-      })
+      let nonce = 0
+      let message = ''
+      let signature = ''
+      onError?.('')
 
       try {
-        const signature = await signMessageAsync({ message })
-        const userAccount = await accountContext.loginWeb3(address.toLowerCase(), token.nonce, message, signature)
+        setState('Sign Message')
+        const token = await accountContext.getToken(address.toLowerCase(), false)
+        if (!token) {
+          onError?.('Unable to create verification token')
+          return
+        }
+
+        nonce = token.nonce
+        message = createSiweMessage({
+          address: address,
+          chainId: 1,
+          domain: 'app.devcon.org',
+          nonce: nonce.toString(),
+          statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
+          uri: 'https://app.devcon.org/',
+          version: '1',
+        })
+        signature = await signMessageAsync({ message })
+      } catch (error) {
+        onError?.('Unable to sign message')
+        return
+      } finally {
+        setState('')
+      }
+
+      try {
+        setState('Connecting...')
+        const userAccount = await accountContext.loginWeb3(address.toLowerCase(), nonce, message, signature)
         if (userAccount && userAccount.onboarded) {
           router.push('/')
           return
@@ -61,6 +77,8 @@ export function WalletLoginButton({ onError }: Props) {
         }
       } catch (error) {
         onError?.('Unable to login')
+      } finally {
+        setState('')
       }
     }
 
@@ -85,6 +103,7 @@ export function WalletLoginButton({ onError }: Props) {
         fill
         className="w-full plain mt-4"
         color="purple-2"
+        disabled={state !== ''}
         onClick={(e: any) => {
           e.preventDefault()
           setTimeout(() => {
@@ -92,7 +111,7 @@ export function WalletLoginButton({ onError }: Props) {
           }, 0)
         }}
       >
-        Continue With Ethereum
+        {state || 'Continue With Ethereum'}
       </Button>
     </>
   )

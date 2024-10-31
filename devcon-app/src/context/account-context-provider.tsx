@@ -47,6 +47,8 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
         await getAccount()
       } catch (e) {
         console.log(e, 'Account fetch failed')
+      } finally {
+        setContext({ ...context, loading: false })
       }
     }
 
@@ -90,7 +92,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const body = await response.json()
     if (response.status === 200) {
-      setContext({ ...context, account: body.data })
+      setContext({ ...context, account: body.data, loading: false })
       return body.data
     }
 
@@ -110,7 +112,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const body = await response.json()
     if (response.status === 200) {
-      setContext({ ...context, account: body.data })
+      setContext({ ...context, account: body.data, loading: false })
       return body.data
     }
   }
@@ -127,7 +129,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     const body = await response.json()
     if (response.status === 200) {
-      setContext({ ...context, account: body.data })
+      setContext({ ...context, account: body.data, loading: false })
       return body.data
     }
   }
@@ -180,7 +182,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     if (!response) return false
 
     if (response.status === 200) {
-      setContext({ ...context, account: account })
+      setContext({ ...context, account: account, loading: false })
       return true
     }
 
@@ -202,7 +204,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     if (response.status === 200) {
       const { data } = await response.json()
-      setContext({ ...context, account: data })
+      setContext({ ...context, account: data, loading: false })
       return true
     }
 
@@ -349,7 +351,14 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
                 You need to be logged in to personalize (and share) your schedule, track your favorite speakers, and
                 more.
               </p>
-              <Button color="purple-2" fill onClick={() => router.push('/login')}>
+              <Button
+                color="purple-2"
+                fill
+                onClick={() => {
+                  setShowLoginRequired(false)
+                  router.push('/login')
+                }}
+              >
                 Login
               </Button>
             </div>

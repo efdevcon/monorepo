@@ -15,6 +15,12 @@ const nextConfig = {
   transpilePackages: ['@parcnet-js/podspec', '@pcd/pod'],
   staticPageGenerationTimeout: 300,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
     domains: [
       'speak.devcon.org',
       'storage.googleapis.com',
