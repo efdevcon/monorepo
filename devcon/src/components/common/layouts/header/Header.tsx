@@ -7,7 +7,7 @@ import { Strip } from './strip'
 import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
-import DevaBot from 'lib/components/ai/overlay'
+// import DevaBot from 'lib/components/ai/overlay'
 import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
 
 type HeaderProps = {
@@ -26,7 +26,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
   useOnOutsideClick(ref, () => setSearchOpen(false))
 
   // Add this line to check for the query parameter
-  const showDevaBot = router.query.showDevaBot === 'true'
+  // const showDevaBot = router.query.showDevaBot === 'true'
 
   // Prevent page scroll when menu is open
   useEffect(() => {
@@ -59,7 +59,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
               <HeaderLogo />
             </Link>
 
-            {showDevaBot && <DevaBot />}
+            {/* {showDevaBot && <DevaBot />} */}
 
             <Menu
               isApp={isApp}

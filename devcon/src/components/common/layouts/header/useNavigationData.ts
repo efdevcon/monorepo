@@ -312,7 +312,13 @@ const useNavigationData = () => {
         title: intl('navigation_archive'),
         url: 'https://archive.devcon.org',
         type: 'page',
-        highlight: 'archive',
+        // highlight: 'archive',
+      },
+      {
+        title: 'Devcon App',
+        url: 'https://app.devcon.org',
+        type: 'page',
+        highlight: 'app',
       },
     ],
     footer: {
@@ -410,7 +416,7 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'DIPs & Community Hubs',
+          title: 'DIPs',
           url: '/dips',
           type: 'page',
         },
