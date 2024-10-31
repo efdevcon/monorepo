@@ -647,7 +647,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
             className={tagClassTwo(false, 'text-[black] font-semibold')}
             indicateExternal
           >
-            Go to Speaker Page
+            Expand Speaker Page
           </Link>
         </div>
       )}

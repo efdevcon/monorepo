@@ -417,7 +417,7 @@ const Navigation = () => {
                 </PopoverTrigger>
 
                 <PopoverContent
-                  className="w-auto p-1 text-sm px-2"
+                  className="w-auto p-1 text-sm px-2 hidden sm:block"
                   side={isSmallScreen ? 'top' : 'left'}
                   sideOffset={isSmallScreen ? 15 : 20}
                 >
@@ -467,8 +467,12 @@ const Navigation = () => {
             </div>
           </PopoverTrigger>
 
-          <PopoverContent className="w-auto p-1 text-sm px-2" side={isSmallScreen ? 'top' : 'left'} sideOffset={10}>
-            <div>{accountContext.account ? 'Ask Deva + Notifications' : 'Ask Deva'}</div>
+          <PopoverContent
+            className="w-auto p-1 text-sm px-2 hidden lg:block"
+            side={isSmallScreen ? 'top' : 'left'}
+            sideOffset={10}
+          >
+            <div>Guide</div>
             {/* <PopoverArrow style={{ fill: 'white' }} /> */}
           </PopoverContent>
         </Popover>

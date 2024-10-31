@@ -18,6 +18,7 @@ import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
 import { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
+import { usePathname } from 'next/navigation'
 
 // This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
 export const selectedSpeakerSelector = selector({
@@ -241,16 +242,17 @@ function App({ Component, pageProps }: AppProps) {
   const [rooms, setRooms] = useRecoilState(roomsAtom)
   const accountContext = useAccountContext()
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
-  const router = useRouter()
+  // const router = useRouter()
+  // const pathname = usePathname()
 
-  useEffect(() => {
-    // Read skipLogin from localStorage on mount
-    const storedSkipLogin = localStorage.getItem('skipLogin')
+  // useEffect(() => {
+  //   // Read skipLogin from localStorage on mount
+  //   const storedSkipLogin = localStorage.getItem('skipLogin')
 
-    if (storedSkipLogin !== 'true' && !accountContext.account) {
-      router.replace('/login')
-    }
-  }, [])
+  //   if (storedSkipLogin !== 'true' && !accountContext.account) {
+  //     router.replace('/login')
+  //   }
+  // }, [pathname])
 
   useEffect(() => {
     if (pageProps.rooms) {
