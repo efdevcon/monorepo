@@ -5,9 +5,22 @@ import fs from 'fs'
 
 async function main() {
   console.log('Syncing Pretalx...')
+
+  await syncEventData()
   await syncRooms()
   await syncSessions()
   await createPresentations()
+}
+
+async function syncEventData() {
+  let version = await GetLastcheduleUpdate()
+  if (version === 0) {
+    version = Date.now()
+  }
+
+  const event = fs.readFileSync(`./data/events/devcon-7.json`, 'utf8')
+  const eventData = JSON.parse(event)
+  fs.writeFileSync(`./data/events/devcon-7.json`, JSON.stringify({ ...eventData, version: version.toString() }, null, 2))
 }
 
 async function syncRooms() {
