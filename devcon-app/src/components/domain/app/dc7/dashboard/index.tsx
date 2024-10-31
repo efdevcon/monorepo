@@ -228,7 +228,7 @@ export const Dashboard = () => {
             </div>
             <Link
               {...draggableLink}
-              to="/login"
+              to={accountContext?.account ? '/account' : '/login'}
               className={cn(featuredClass, 'bg-gradient-to-br from-[#4d56ff] via-[#4799f2] to-[#3467ff]')}
             >
               <p className="text-white font-semibold">Personalization</p>
