@@ -360,7 +360,7 @@ export const SessionCard = ({ session, className }: { session: SessionType; clas
                   const startTime = start
                   const endTime = end
 
-                  return `${startTime.format('MMM Do')} — ${startTime.format('HH:mm A')} - ${endTime.format('HH:mm A')}`
+                  return `${startTime.format('MMM Do')} — ${startTime.format('h:mm A')} - ${endTime.format('h:mm A')}`
                 })()}
               </p>
             </div>
@@ -1236,8 +1236,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <IconClock className="icon flex shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
             {moment.utc(session.slot_start).add(7, 'hours').format('MMM Do')} —{' '}
-            {moment.utc(session.slot_start).add(7, 'hours').format('HH:mm A')} -{' '}
-            {moment.utc(session.slot_end).add(7, 'hours').format('HH:mm A')}
+            {moment.utc(session.slot_start).add(7, 'hours').format('h:mm A')} -{' '}
+            {moment.utc(session.slot_end).add(7, 'hours').format('h:mm A')}
           </span>
         </div>
 
