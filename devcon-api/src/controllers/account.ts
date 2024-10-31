@@ -217,7 +217,7 @@ async function LoginEmail(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'Invalid input.' })
   }
 
-  address = address.toLowerCase()
+  address = address
   let data = await client.verificationToken.findFirst({
     where: { identifier: address, nonce: nonce, expires: { gt: new Date() } },
   })
