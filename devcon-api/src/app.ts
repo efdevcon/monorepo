@@ -62,11 +62,11 @@ const sessionConfig: SessionOptions = {
     pool: getDbPool(),
     tableName: 'Session',
   }),
-  proxy: true,
 }
 
 if (SERVER_CONFIG.NODE_ENV === 'production') {
   sessionConfig.cookie = {
+    ...sessionConfig.cookie,
     maxAge: 30 * 24 * 60 * 60 * 1000,
     httpOnly: true,
     sameSite: 'none',
@@ -74,6 +74,8 @@ if (SERVER_CONFIG.NODE_ENV === 'production') {
     path: '/',
     domain: '.devcon.org',
   }
+
+  sessionConfig.proxy = true
   app.set('trust proxy', 1)
 }
 app.use(session(sessionConfig))
