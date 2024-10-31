@@ -11,7 +11,7 @@ export const contentType = "image/png";
 export default async function Image({ params }: { params: { code: string } }) {
   const url = process.env.SITE_URL || "http://localhost:3000";
   const res = await fetch(
-    `https://cfp.ticketh.xyz/api/events/devcon7-sea/talks/${params.code}`,
+    `https://cfp.ticketh.xyz/api/events/devcon7-sea/talks/${params.code.toUpperCase()}`,
     {
       headers: {
         Authorization: `Token ${process.env.PRETALX_API_KEY}`,
