@@ -16,7 +16,7 @@ import { useAccountContext } from 'context/account-context'
 import { ZupassProvider } from 'context/zupass'
 import { SessionCard } from 'components/domain/app/dc7/sessions'
 import { Speaker as SpeakerType } from 'types/Speaker'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 import { usePathname } from 'next/navigation'
 
@@ -242,17 +242,18 @@ function App({ Component, pageProps }: AppProps) {
   const [rooms, setRooms] = useRecoilState(roomsAtom)
   const accountContext = useAccountContext()
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
-  // const router = useRouter()
-  // const pathname = usePathname()
+  const router = useRouter()
+  const pathname = usePathname()
 
-  // useEffect(() => {
-  //   // Read skipLogin from localStorage on mount
-  //   const storedSkipLogin = localStorage.getItem('skipLogin')
-
-  //   if (storedSkipLogin !== 'true' && !accountContext.account) {
-  //     router.replace('/login')
-  //   }
-  // }, [pathname])
+  useEffect(() => {
+    // Only run on mount and only for root path
+    if (pathname === '/') {
+      const storedSkipLogin = localStorage.getItem('skipLogin')
+      if (storedSkipLogin !== 'true' && !accountContext.account) {
+        router.replace('/login')
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (pageProps.rooms) {
