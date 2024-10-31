@@ -176,12 +176,12 @@ export async function UpdateSessionSources(req: Request, res: Response) {
 
   let newSessionData = {
     ...data,
+    sources_ipfsHash: body.sources_ipfsHash ?? '',
+    sources_youtubeId: body.sources_youtubeId ?? '',
+    sources_swarmHash: body.sources_swarmHash ?? '',
+    sources_livepeerId: body.sources_livepeerId ?? '',
+    duration: body.duration ?? 0,
   }
-  if (body.sources_ipfsHash) newSessionData.sources_ipfsHash = body.sources_ipfsHash
-  if (body.sources_youtubeId) newSessionData.sources_youtubeId = body.sources_youtubeId
-  if (body.sources_swarmHash) newSessionData.sources_swarmHash = body.sources_swarmHash
-  if (body.sources_livepeerId) newSessionData.sources_livepeerId = body.sources_livepeerId
-  if (body.duration) newSessionData.duration = body.duration
 
   try {
     const updatedData = await client.session.update({
