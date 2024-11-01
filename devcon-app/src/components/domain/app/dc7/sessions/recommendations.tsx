@@ -19,14 +19,16 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
   const [filter, setFilter] = useState<'featured' | 'personal' | 'recommended'>('featured')
 
   const featured = useMemo(
-    () => sessions.filter(s => s.featured).sort((a, b) => a.slot_start - b.slot_start),
+    () => sessions.filter(s => s.featured).sort((a: SessionType, b: SessionType) => a.slot_start - b.slot_start),
     [sessions]
   )
   const personal = useMemo(
     () =>
       sessions
-        .filter(s => account?.attending_sessions.includes(s.sourceId))
-        .sort((a, b) => a.slot_start - b.slot_start),
+        .filter(
+          s => account?.attending_sessions.includes(s.sourceId) || account?.interested_sessions.includes(s.sourceId)
+        )
+        .sort((a: SessionType, b: SessionType) => a.slot_start - b.slot_start),
     [sessions, account]
   )
 
@@ -39,7 +41,11 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
       }
 
       try {
-        const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/sessions/recommended`)
+        const response = await fetch(`${APP_CONFIG.API_BASE_URL}/account/sessions/recommended`, {
+          method: 'GET',
+          credentials: 'include',
+        })
+
         const { data } = await response.json()
         return data.sort((a: SessionType, b: SessionType) => a.slot_start - b.slot_start)
       } catch (error) {
