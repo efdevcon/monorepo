@@ -83,7 +83,7 @@ model Session {
 
   resources_presentation String?
   resources_slides String?
-
+ 
   relatedSessions RelatedSession[] @relation(name: "Related")
   recommendedSessions RecommendedSession[] @relation(name: "Recommended")
 }
@@ -93,7 +93,7 @@ model RelatedSession {
   sessionId String
   vector Bytes?
 
-  other Session @relation(name: "Related", fields: [otherId], references: [id])
+  other Session @relation("Related", fields: [otherId], references: [id], onDelete: Cascade)
   otherId String
 
   similarity Float
@@ -104,7 +104,7 @@ model RecommendedSession {
   sessionId String
   vector Bytes?
 
-  other Session @relation(name: "Recommended", fields: [otherId], references: [id])
+  other Session @relation("Recommended", fields: [otherId], references: [id], onDelete: Cascade)
   otherId String
   
   similarity Float

@@ -526,7 +526,7 @@ export default pageHOC(function Index(props: any) {
             </div>
           </div> */}
 
-          <div className="pt-8">
+          <div className="pt-8 z-[1]">
             <CLSSection
               title={pages.community_led_sessions?.title}
               body={pages.community_led_sessions?.body}

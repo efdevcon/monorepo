@@ -132,9 +132,6 @@ const BackButton = () => {
     }
   }, [sessionId, setSessionId])
 
-  console.log(typeof window !== 'undefined' ? history.state.key : null, 'STATE HISTORY')
-  console.log(sessionId, 'SESSION ID')
-
   const canBack = typeof window !== 'undefined' && history.state?.key !== sessionId
 
   const handleBackClick = () => {

@@ -8,6 +8,7 @@ import MagnifierIcon from 'assets/icons/magnifier.svg'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import Image from 'next/image'
 import css from './speakers.module.scss'
+import NoResults from 'assets/images/state/no-results.png'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { devaBotVisibleAtom, selectedSpeakerSelector, sessionsAtom, speakerFilterAtom } from 'pages/_app'
@@ -517,6 +518,13 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
           )
         })}
 
+        {visibleSpeakers.length === 0 && (
+          <div className="flex flex-col justify-center items-center h-full my-8">
+            <Image src={NoResults} alt="No results" className="w-[300px] lg:max-w-[30%]" />
+            <div className="mt-4 text-sm text-[#535353] font-semibold">No speakers match your filter</div>
+          </div>
+        )}
+
         {/* {visibleSpeakers.length < filteredSpeakers.length && <LoadMoreTrigger onLoadMore={loadMoreHandler} />} */}
       </motion.div>
       <ScrollUpComponent visible={visibleSpeakers.length > 20} />
@@ -573,7 +581,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
           height={393}
           className={cn(
             'rounded-2xl w-full h-full aspect-video',
-            speaker.avatar?.startsWith('data') ? 'object-contain object-center' : 'object-cover'
+            speaker.avatar?.startsWith('data') ? 'object-contain object-center' : 'object-cover object-[50%_40%]'
           )}
         />
         <div
