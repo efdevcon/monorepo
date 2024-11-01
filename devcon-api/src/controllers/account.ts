@@ -505,10 +505,11 @@ async function RecommendedSpeakers(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
 
-  const speakers =
-    account.addresses.length > 0
-      ? (await Promise.all(account.addresses.map((i: string) => GetRecommendedSpeakers(i, true)))).flat()
-      : await GetRecommendedSpeakers('', true)
+  if (account.addresses.length === 0) {
+    return res.status(200).send({ code: 200, message: '', data: [] })
+  }
+
+  const speakers = (await Promise.all([...new Set(account.addresses)].map((i: string) => GetRecommendedSpeakers(i)))).flat()
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
 }

@@ -62,10 +62,6 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
     return []
   }, [filter, featured, personal, recommended])
 
-  console.log('FEATURED', featured, featured?.length)
-  console.log('PERSONAL', personal, personal?.length)
-  console.log('RECOMMENDED', recommended, recommended?.length)
-
   return (
     <>
       <div className="flex justify-between gap-3 pb-4 px-4 font-semibold">
