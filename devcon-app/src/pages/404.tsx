@@ -1,5 +1,5 @@
 import React from 'react'
-import Image404 from 'assets/images/404.png'
+import Image404 from 'assets/images/state/route.png'
 import Image from 'next/image'
 import { AppLayout } from 'components/domain/app/Layout'
 

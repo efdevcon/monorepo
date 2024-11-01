@@ -71,7 +71,32 @@ export const sessionFilterAtom = atom<any>({
     ({ onSet }) => {
       onSet(newValue => {
         if (typeof window !== 'undefined') {
-          localStorage.setItem('sessionFilter', JSON.stringify(newValue))
+          const searchParams = new URLSearchParams()
+
+          Object.entries(newValue).forEach(([key, value]: any) => {
+            // Skip if it's the default value
+            // @ts-ignore
+            if (JSON.stringify(value) === JSON.stringify(initialFilterState[key])) return
+
+            // Handle different value types
+            if (typeof value === 'object' && Object.keys(value).length > 0) {
+              // For objects (like type, track, expertise), use keys that are true
+              const activeKeys = Object.entries(value)
+                .filter(([_, isActive]) => isActive)
+                .map(([k]) => encodeURIComponent(k))
+              if (activeKeys.length) searchParams.set(key, activeKeys.join(','))
+            } else if (typeof value === 'boolean' && value) {
+              // For boolean flags (like attending, favorited), just include if true
+              searchParams.set(key, '1')
+            } else if (value) {
+              // For simple values (like text, letter), include if non-empty
+              searchParams.set(key, encodeURIComponent(value))
+            }
+          })
+
+          const { pathname } = window.location
+          const query = searchParams.toString() ? `${searchParams.toString()}` : ''
+          router.replace({ pathname, query }, undefined, { shallow: true })
         }
       })
     },

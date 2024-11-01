@@ -24,6 +24,7 @@ import { useRecoilState } from 'recoil'
 import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
 import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useDraggableLink } from 'lib/hooks/useDraggableLink'
+import NoResults from 'assets/images/state/no-results.png'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { useWindowWidth } from '../../Layout'
@@ -85,10 +86,38 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 
 const useSessionFilter = (sessions: SessionType[], event: any) => {
   const { account } = useAccountContext()
-  const [sessionFilter, _] = useRecoilState(sessionFilterAtom)
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const searchParams = new URLSearchParams(window.location.search)
+    const newFilter = { ...sessionFilter }
+
+    searchParams.forEach((value, key) => {
+      if (key in newFilter) {
+        if (key === 'text') {
+          // Handle text filter
+          newFilter.text = decodeURIComponent(value)
+        } else if (typeof newFilter[key] === 'object') {
+          // Handle object filters (type, track, expertise, etc)
+          const values = value.split(',').map(v => decodeURIComponent(v))
+          newFilter[key] = values.reduce((acc: any, val: string) => {
+            acc[val] = true
+            return acc
+          }, {})
+        } else if (value === '1') {
+          // Handle boolean values
+          newFilter[key] = true
+        }
+      }
+    })
+
+    setSessionFilter(newFilter)
+  }, [])
 
   const filterOptions = useMemo(() => {
     return {
@@ -104,7 +133,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       track: [...new Set(sessions.map(session => session.track))]
         .filter(Boolean)
         .filter(track => !track.startsWith('[CLS]')),
-      room: [...new Set(sessions.map(session => session.room))].filter(Boolean),
+      room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
   }, [sessions])
@@ -128,7 +157,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         sessionFilter.day[moment.utc(session.slot_start).add(7, 'hours').format('MMM D')]
       const matchesExpertise = Object.keys(expertise).length === 0 || sessionFilter.expertise[session.expertise]
       const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track]
-      const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.room]
+      const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.slot_room?.name]
 
       const matchesAttending = sessionFilter.other['Attending'] && isAttending
       const matchesInterested = sessionFilter.other['Interested In'] && isInterested
@@ -450,6 +479,8 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
     setSessionFilter(nextFilter)
   }
 
+  console.log(filterOptions, 'filterOptions')
+
   return (
     <div className="flex flex-col gap-4 p-4">
       <div>
@@ -541,16 +572,34 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      {/* <div>
-        <div className="flex flex-col gap-3 pb-4 lg:px-4 font-semibold">Rooms</div>
+      <div>
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
+          Rooms
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                room: {},
+              })
+            }}
+            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+          >
+            Reset
+          </div>
+        </div>
         <div className="flex flex-wrap gap-2">
           {filterOptions.room.map((room: string) => (
-            <div key={room} className={tagClass(sessionFilter.room[room])} onClick={() => toggleFilter('room', room)}>
+            <div
+              key={room}
+              //   className={tagClass(sessionFilter.room[room]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.room[room]), '!shrink')}
+              onClick={() => toggleFilter('room', room)}
+            >
               {room}
             </div>
           ))}
         </div>
-      </div> */}
+      </div>
 
       <Separator className="my-1" />
 
@@ -1044,6 +1093,13 @@ export const SessionList = ({
           ))}
         </div>
       ))}
+
+      {visibleSessions.length === 0 && (
+        <div className="flex flex-col justify-center items-center h-full my-8">
+          <Image src={NoResults} alt="No results" className="w-[300px] lg:max-w-[30%]" />
+          <div className="mt-4 text-sm text-[#535353] font-semibold">No sessions match your filter</div>
+        </div>
+      )}
 
       <ScrollUpComponent visible={visibleSessions.length > 20} />
       {/* </div> */}
