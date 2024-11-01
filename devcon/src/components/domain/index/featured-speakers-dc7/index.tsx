@@ -515,7 +515,7 @@ const FeaturedSpeakers = () => {
       },
       {
         name: 'Lefteris Karapetsas',
-        role: 'Founder of Rotki',
+        role: 'Founder of rotki',
         avatarUrl: LefterisKarapetsasImage,
         link: 'https://x.com/LefterisJP',
       },
