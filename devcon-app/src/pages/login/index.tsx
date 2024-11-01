@@ -23,6 +23,7 @@ import { useRouter } from 'next/router'
 import { isEmail } from 'utils/validators'
 import { Link } from 'components/common/link'
 import Alert from 'lib/components/alert'
+import { SEO } from 'components/domain/seo'
 
 const MobileLogin = (props: any) => {
   const accountContext = useAccountContext()
@@ -444,7 +445,7 @@ const Index = (props: any) => {
 
   return (
     <div className="text-base bg-white">
-      {/* <SEO title="Passport Login" /> */}
+      <SEO title="Passport Login" />
       <div
         className={cn(
           'flex flex-row lg:p-2 w-full 2xl:justify-center 2xl:items-center fixed inset-0 overflow-hidden',
