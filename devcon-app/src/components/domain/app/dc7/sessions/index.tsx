@@ -63,6 +63,7 @@ import VideoIcon from 'assets/icons/video-play.svg'
 import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
+import { PersonalizedSuggestions } from './recommendations'
 
 export const tagClassTwo = (active?: boolean, className?: string) =>
   cn(
@@ -921,48 +922,6 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
         </motion.div>
       )}
     </AnimatePresence>
-  )
-}
-
-// TODO: use recommendation engine to generate personalized suggestions
-export const PersonalizedSuggestions = ({
-  sessions,
-  standalone,
-}: {
-  sessions: SessionType[]
-  standalone?: boolean
-}) => {
-  // @ts-ignore
-  const featuredSessions = useMemo(() => sessions.filter(s => s.featured).sort(() => Math.random() - 0.5), [sessions])
-
-  return (
-    <>
-      <div className="flex justify-between gap-3 pb-4 px-4 font-semibold">
-        Schedule Highlights{' '}
-        {standalone && (
-          <Link
-            to="/schedule"
-            className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
-          >
-            <p>Go to Schedule</p>
-          </Link>
-        )}
-      </div>
-
-      <div className="overflow-hidden">
-        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3">
-            {featuredSessions.map((session, index) => (
-              <SessionCard
-                session={session}
-                key={session.sourceId}
-                className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'ml-4' : '')}
-              />
-            ))}
-          </div>
-        </SwipeToScroll>
-      </div>
-    </>
   )
 }
 
