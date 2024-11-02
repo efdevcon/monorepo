@@ -1,26 +1,11 @@
 import { AppLayout } from 'components/domain/app/Layout'
 import { SessionView, Livestream, cardClass } from 'components/domain/app/dc7/sessions/index'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { fetchSessions } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import { useRecoilState } from 'recoil'
-import { selectedSessionAtom } from 'pages/_app'
-import { useRouter } from 'next/router'
 import cn from 'classnames'
 
 export default (props: any) => {
-  // const [_, setSelectedSession] = useRecoilState(selectedSessionAtom)
-  // const router = useRouter()
-
-  //   useEffect(() => {
-  //     if (props.session) {
-  //       setSelectedSession(props.session)
-
-  //       // redirect to /speakers
-  //       router.replace('/speakers')
-  //     }
-  //   }, [props.session])
-
   if (!props.session) return null
 
   return (
