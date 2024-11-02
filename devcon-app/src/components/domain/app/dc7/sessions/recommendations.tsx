@@ -8,6 +8,7 @@ import { useAccountContext } from 'context/account-context'
 import { APP_CONFIG } from 'utils/config'
 import { Separator } from 'lib/components/ui/separator'
 import cn from 'classnames'
+import { FancyLoader } from 'lib/components/loader/loader'
 
 interface Props {
   sessions: SessionType[]
@@ -32,7 +33,7 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
     [sessions, account]
   )
 
-  const { data: recommended } = useQuery({
+  const { data: recommended, isLoading } = useQuery({
     queryKey: ['account', 'sessions', 'recommended', account?.id],
     queryFn: async () => {
       if (!account?.id) {
@@ -100,21 +101,16 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
                 name: 'Recommended',
                 list: recommended,
               },
-            ].map(({ name, list }) => {
-              const isEmpty = !list?.length
+            ].map(({ name }) => {
               return (
                 <div
                   key={name}
-                  title={'Login for more personalized recommendations'}
                   className={cn(
                     'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
-                    filter === name.toLowerCase() ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-                    isEmpty ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#f8f7ff] cursor-pointer'
+                    filter === name.toLowerCase() ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
                   )}
                   onClick={() => {
-                    if (!isEmpty) {
-                      setFilter(name.toLowerCase() as 'featured' | 'personal' | 'recommended')
-                    }
+                    setFilter(name.toLowerCase() as 'featured' | 'personal' | 'recommended')
                   }}
                 >
                   {name}
@@ -126,6 +122,31 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
       )}
 
       <div className={cn('overflow-hidden mb-3', standalone ? 'my-4' : '')}>
+        {filter === 'personal' && !sessionList?.length && (
+          <div className="ml-4 text-xs text-[#717784]">
+            <p>
+              <Link to="/account/profile" className="underline text-[#7d52f4]">
+                Complete your profile
+              </Link>{' '}
+              to see personalized recommendations.
+            </p>
+          </div>
+        )}
+        {filter === 'recommended' && isLoading && (
+          <div className="ml-4 flex items-center justify-center w-full">
+            <FancyLoader loading={isLoading} size={60} />
+          </div>
+        )}
+        {filter === 'recommended' && !isLoading && !sessionList?.length && (
+          <div className="ml-4 text-xs text-[#717784]">
+            <p>
+              <Link to="/account/profile" className="underline text-[#7d52f4]">
+                Complete your profile
+              </Link>{' '}
+              to see personalized recommendations.
+            </p>
+          </div>
+        )}
         <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
           <div className="flex flex-row gap-3">
             {sessionList?.map((session: SessionType, index: number) => (

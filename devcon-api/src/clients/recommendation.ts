@@ -100,6 +100,10 @@ export async function GetRecommendedSessions(id: string, includeFeatured?: boole
         },
       ],
     },
+    include: {
+      speakers: true,
+      slot_room: true,
+    },
     orderBy: {
       slot_start: 'asc',
     },
