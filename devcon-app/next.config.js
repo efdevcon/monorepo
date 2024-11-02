@@ -176,7 +176,7 @@ const createConfig = phase => {
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     dynamicStartUrl: false,
-    skipWaiting: true,
+    skipWaiting: false,
     customWorkerDir: 'workbox',
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],

@@ -47,6 +47,11 @@ export const selectedSessionAtom = atom<SessionType | null>({
   ],
 })
 
+export const sessionTimelineViewAtom = atom<boolean>({
+  key: 'sessionTimelineView',
+  default: false,
+})
+
 export const sessionFilterOpenAtom = atom<boolean>({
   key: 'sessionFilterOpen',
   default: false,
@@ -269,6 +274,34 @@ function App({ Component, pageProps }: AppProps) {
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
   const router = useRouter()
   const pathname = usePathname()
+
+  useEffect(() => {
+    // @ts-ignore
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+      // @ts-ignore
+      const wb = window.workbox
+
+      const promptNewVersionAvailable = (event: any) => {
+        // `event.wasWaitingBeforeRegister` will be false if this is the first time the updated service worker is waiting.
+        // When `event.wasWaitingBeforeRegister` is true, a previously updated service worker is still waiting.
+        // You may want to customize the UI prompt accordingly.
+        if (confirm('A newer version of this web app is available, reload to update?')) {
+          wb.addEventListener('controlling', (event: any) => {
+            window.location.reload()
+          })
+
+          // Send a message to the waiting service worker, instructing it to activate.
+          wb.messageSkipWaiting()
+        } else {
+          console.log(
+            'User rejected to reload the web app, keep using old version. New version will automatically load when user opens the app next time.'
+          )
+        }
+      }
+
+      wb.addEventListener('waiting', promptNewVersionAvailable)
+    }
+  }, [])
 
   useEffect(() => {
     // Only run on mount and only for root path
