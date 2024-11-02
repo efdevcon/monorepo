@@ -596,7 +596,10 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       <div className="text-sm text-[#717784] shrink-0">{speaker?.description}</div>
 
       <div
-        className={cn('flex gap-4 text-xs', speaker.twitter && speaker.farcaster && speaker.lens && 'justify-between')}
+        className={cn(
+          'flex gap-4 text-xs shrink-0',
+          speaker.twitter && speaker.farcaster && speaker.lens && 'justify-between'
+        )}
       >
         {speaker?.twitter && (
           <Link
