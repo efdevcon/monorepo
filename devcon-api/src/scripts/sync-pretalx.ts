@@ -13,14 +13,9 @@ async function main() {
 }
 
 async function syncEventData() {
-  let version = await GetLastcheduleUpdate()
-  if (version === 0) {
-    version = Date.now()
-  }
-
   const event = fs.readFileSync(`./data/events/devcon-7.json`, 'utf8')
   const eventData = JSON.parse(event)
-  fs.writeFileSync(`./data/events/devcon-7.json`, JSON.stringify({ ...eventData, version: version.toString() }, null, 2))
+  fs.writeFileSync(`./data/events/devcon-7.json`, JSON.stringify({ ...eventData, version: Date.now().toString() }, null, 2))
 }
 
 async function syncRooms() {

@@ -62,6 +62,7 @@ const sessionConfig: SessionOptions = {
   store: new pgSessionStore({
     pool: getDbPool(),
     tableName: 'Session',
+    ttl: 30 * 24 * 60 * 60,
   }),
 }
 

@@ -6,6 +6,7 @@ import { STOPWORDS } from '@/utils/stopwords'
 import { writeFileSync } from 'fs'
 import dictionary from '../../data/vectors/dictionary.json'
 import vectorizedSessions from '../../data/vectors/devcon-7.json'
+import dayjs from 'dayjs'
 
 export const WEIGHTS = {
   track: 6,
@@ -42,12 +43,13 @@ let cachedDictionary: VectorDictionary = dictionary
 const scheduleClient = new ScheduleClient()
 const accountClient = new AccountClient()
 
-export async function GetRecommendedSpeakers(id: string, includeFeatured?: boolean) {
+export async function GetRecommendedSpeakers(id: string) {
   console.log('Get Recommended Speakers', id)
   const farcasterProfile = await GetFarcasterProfile(id)
   const farcaster = farcasterProfile ? await GetFarcasterFollowing(farcasterProfile.fid) : []
   const lensProfileId = await GetLensProfileId(id)
   const lens = lensProfileId ? await GetLensFollowing(lensProfileId) : []
+  const efp = await GetEFPFollowing(id)
 
   const speakers = await scheduleClient.speaker.findMany({
     where: {
@@ -63,8 +65,8 @@ export async function GetRecommendedSpeakers(id: string, includeFeatured?: boole
           OR: [
             { lens: { in: lens.filter((i) => i.handle).map((i) => i.handle) } },
             { ens: { in: lens.filter((i) => i.ens).map((i) => i.ens) } },
+            { ens: { in: efp.filter((i: string) => i) } },
             { farcaster: { in: farcaster.filter((i) => i.username).map((i) => i.username) } },
-            includeFeatured ? { sessions: { some: { featured: true } } } : {},
           ],
         },
       ],
@@ -94,13 +96,16 @@ export async function GetRecommendedSessions(id: string, includeFeatured?: boole
       AND: [
         { eventId: 'devcon-7' },
         {
-          OR: [
-            includeFeatured ? { featured: true } : {},
-            { speakers: { some: { id: { in: account.favorite_speakers } } } },
-            { id: { in: personalizedRecommendations.map((r) => r.id) } },
-          ],
+          OR: [{ speakers: { some: { id: { in: account.favorite_speakers } } } }, { id: { in: personalizedRecommendations.map((r) => r.id) } }],
         },
       ],
+    },
+    include: {
+      speakers: true,
+      slot_room: true,
+    },
+    orderBy: {
+      slot_start: 'asc',
     },
   })
 
@@ -109,7 +114,7 @@ export async function GetRecommendedSessions(id: string, includeFeatured?: boole
 
 export function GetRecommendedVectorSearch(sessionVector: number[], allSessions: VectorizedSession[], limit: number = 10): Session[] {
   const similarities = allSessions
-    .filter((vs) => vs.vector !== sessionVector)
+    .filter((vs) => vs.vector !== sessionVector && dayjs(vs.session.slot_start).isAfter(dayjs()))
     .map((vs) => {
       const vectorSimilarity = getSimilarity(sessionVector, vs.vector)
       const featuredBoost = vs.session.featured ? WEIGHTS.featured : 0
@@ -319,6 +324,19 @@ export async function GetLensProfileId(id: string) {
     return data.data.defaultProfile.id
   } catch (error) {
     console.error('Error fetching social followers:', error)
+  }
+}
+
+export async function GetEFPFollowing(address: string): Promise<string[]> {
+  console.log('Get EFP Following', address)
+
+  try {
+    const response = await fetch(`https://api.ethfollow.xyz/api/v1/users/${address}/searchFollowing?limit=1000&term=0`)
+    const data = await response.json()
+    return data?.following?.map((i: any) => i.ens?.name || i.data || i.address) || []
+  } catch (error) {
+    console.error('Error fetching EFP following:', error)
+    return []
   }
 }
 

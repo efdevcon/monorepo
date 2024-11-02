@@ -11,6 +11,8 @@ export interface Session {
   expertise: string
   audience: string
   similarity?: number
+  slot_start: number
+  slot_end: number
 }
 
 export function pretalxToSessionData(item: any) {
