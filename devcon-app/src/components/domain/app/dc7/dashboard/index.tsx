@@ -6,12 +6,11 @@ import { Button } from 'lib/components/button'
 // import Portal from 'assets/images/dc-7/portal.png'
 import Portal from 'pages/login/dc-7-images/login-backdrop-2.png'
 import PhonePreview from 'assets/images/dc-7/phone-preview.png'
-import PassportLogo from 'assets/images/dc-7/passport-logo.png'
 import PassportLogoBlack from 'assets/images/dc-7/passport-logo-black.png'
 import { NotificationCard } from 'components/domain/app/dc7/profile/notifications'
-import { SessionCard, PersonalizedSuggestions, tagClass } from 'components/domain/app/dc7/sessions'
+import { PersonalizedSuggestions } from 'components/domain/app/dc7/sessions/recommendations'
 import { useRecoilState, useRecoilValue } from 'recoil'
-import { devaBotVisibleAtom, notificationsAtom, sessionsAtom, useSeenNotifications } from 'pages/_app'
+import { devaBotVisibleAtom, notificationsAtom, sessionsAtom, speakersAtom, useSeenNotifications } from 'pages/_app'
 import FoodIcon from 'assets/icons/food-beverage.svg'
 import CityGuideIcon from 'assets/icons/city-guide.svg'
 import VideoIcon from 'assets/icons/video-play.svg'
@@ -26,6 +25,8 @@ import { Link } from 'components/common/link'
 import { TruncateMiddle } from 'utils/formatting'
 import ChevronRight from 'assets/icons/chevron_right.svg'
 import { FancyLoader } from 'lib/components/loader/loader'
+import { RecommendedSpeakers } from '../speakers/recommendations'
+import { useSpeakerData } from 'services/event-data'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -158,6 +159,7 @@ const featuredClass =
 export const Dashboard = () => {
   const accountContext = useAccountContext()
   const sessions = useRecoilValue(sessionsAtom)
+  const speakers = useSpeakerData()
   const draggableLink = useDraggableLink()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const { account, loading } = accountContext
@@ -292,7 +294,13 @@ export const Dashboard = () => {
         </SwipeToScroll>
       </div>
       <div className="pb-4 mx-4 border-top"></div>
-      <PersonalizedSuggestions sessions={sessions || []} standalone />
+      <div>
+        <RecommendedSpeakers speakers={speakers ?? []} standalone />
+      </div>
+      <div className="pb-4 mx-4 mt-6 border-top"></div>
+      <div className="">
+        <PersonalizedSuggestions sessions={sessions || []} standalone />
+      </div>
     </div>
   )
 }

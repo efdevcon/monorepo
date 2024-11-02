@@ -27,6 +27,7 @@ import { ScrollUpComponent } from '../sessions'
 import { Popup } from 'lib/components/pop-up'
 import { useAccountContext } from 'context/account-context'
 import moment from 'moment'
+import { RecommendedSpeakers } from './recommendations'
 // import { SessionFilterAdvanced } from '../sessions'
 
 export const cardClass =
@@ -397,60 +398,33 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
     setVisibleSpeakers(filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE))
   }, [page, filteredSpeakers])
 
+  const onSpeakerSelect = (e: any, speaker: SpeakerType) => {
+    const result = draggableLink.onClick(e)
+
+    if (!result) return
+
+    if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
+
+    if (isLargeScreen) {
+      if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
+        setSelectedSpeaker(null)
+      } else {
+        setSelectedSpeaker(speaker)
+      }
+    }
+
+    setDevaBotVisible(false)
+  }
+
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>
       <SpeakerFilter filterOptions={filterOptions} />
 
-      <div className="flex flex-col gap-3 pb-4 px-4 font-semibold">Featured Speakers</div>
-
-      <div className="overflow-hidden">
-        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3">
-            {featuredSpeakers.map((speaker, index) => (
-              <Link
-                to={`/speakers/${speaker.sourceId}`}
-                key={speaker.sourceId}
-                className={cn(
-                  'flex flex-col items-center justify-center gap-2 rounded-xl bg-white border border-solid border-[#E1E4EA] p-2 shrink-0 cursor-pointer hover:border-[#ac9fdf] transition-all duration-300',
-                  selectedSpeaker?.sourceId === speaker.sourceId ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-                  index === 0 ? 'ml-4' : ''
-                )}
-                {...draggableLink}
-                onClick={(e: any) => {
-                  const result = draggableLink.onClick(e)
-
-                  if (!result) return
-
-                  if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
-
-                  if (isLargeScreen) {
-                    if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
-                      setSelectedSpeaker(null)
-                    } else {
-                      setSelectedSpeaker(speaker)
-                    }
-                  }
-
-                  setDevaBotVisible(false)
-                }}
-              >
-                <div className="relative rounded-full w-[80px] h-[80px]">
-                  <Image
-                    // @ts-ignore
-                    src={speaker.avatar}
-                    alt={speaker.name}
-                    width={80}
-                    height={80}
-                    className="rounded-full w-full h-full mb-2 object-cover"
-                  />
-                  <div className={cn('absolute inset-0 rounded-full', css['speaker-gradient'])} />
-                </div>
-                <p className="text-xs font-medium">{speaker.name}</p>
-              </Link>
-            ))}
-          </div>
-        </SwipeToScroll>
-      </div>
+      <RecommendedSpeakers
+        speakers={speakers ?? []}
+        selectedSpeaker={selectedSpeaker}
+        onSpeakerSelect={onSpeakerSelect}
+      />
 
       <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend speakers who know about ')}>

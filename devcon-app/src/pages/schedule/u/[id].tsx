@@ -21,5 +21,6 @@ export async function getServerSideProps(context: any) {
       userId: context.params.id,
       userSchedule: {},
     },
+    revalidate: 60,
   }
 }

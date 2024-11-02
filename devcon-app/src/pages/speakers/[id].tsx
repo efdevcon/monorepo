@@ -1,7 +1,7 @@
 import { AppLayout } from 'components/domain/app/Layout'
 import { SpeakerView, SpeakerSessions, cardClass } from 'components/domain/app/dc7/speakers/index'
 import React from 'react'
-import { fetchSessionsBySpeaker, fetchSpeaker, fetchSpeakers } from 'services/event-data'
+import { fetchSpeaker, fetchSpeakers } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
 
@@ -47,14 +47,13 @@ export async function getStaticProps(context: any) {
     }
   }
 
-  const sessions = await fetchSessionsBySpeaker(speaker.id)
-
   return {
     props: {
       speaker: {
         ...speaker,
-        sessions,
+        sessions: speaker.sessions,
       },
     },
+    revalidate: 60,
   }
 }

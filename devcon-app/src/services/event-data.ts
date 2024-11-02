@@ -196,14 +196,11 @@ export const fetchEvent = async (): Promise<any> => {
 }
 
 export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionType>> => {
-  // return await get(`/speakers/${id}/sessions?event=${eventName}`)
-  // no endpoint exists, so fetches and filters all sessions recursively
-  return (await fetchSessions()).filter(i => i.speakers.some(x => x.id === id))
+  return await get(`/speakers/${id}/sessions?event=${eventName}`)
 }
 
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
-  // return await get(`/sessions?room=${id}&event=${eventName}`)
-  return (await fetchSessions()).filter(i => i.room?.id === id)
+  return await get(`/sessions?room=${id}&event=${eventName}`)
 }
 
 export const fetchExpertiseLevels = async (): Promise<Array<string>> => {
@@ -265,7 +262,10 @@ export const fetchSpeaker = async (id: string): Promise<Speaker | undefined> => 
 
   if (!speaker || speaker.detail === 'Not found.') return undefined
 
-  return speaker
+  return {
+    ...speaker,
+    sessions: speaker.sessions?.filter((i: any) => i.eventId === eventName),
+  }
 }
 
 async function get(slug: string) {
@@ -283,7 +283,7 @@ async function get(slug: string) {
 
   // Extract nested items when using api.devcon.org
   if (response.data) data = response.data
-  if (response.data.items) data = response.data.items
+  if (response.data?.items) data = response.data.items
 
   cache.set(slug, data)
 
