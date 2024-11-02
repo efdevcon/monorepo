@@ -53,6 +53,13 @@ export async function GetSpeaker(req: Request, res: Response) {
     where: {
       OR: [{ id: req.params.id }, { sourceId: req.params.id }],
     },
+    include: {
+      sessions: {
+        include: {
+          slot_room: true,
+        },
+      },
+    },
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
