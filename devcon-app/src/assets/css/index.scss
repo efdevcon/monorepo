@@ -81,3 +81,11 @@ body {
 .custom.react-toggle--checked .react-toggle-thumb {
   border-color: #7d52f4 !important;
 }
+
+// ZUPASS DIALOG CENTERING
+dialog.parcnet-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
