@@ -279,6 +279,16 @@ if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.work
   }
 
   wb.addEventListener('waiting', promptNewVersionAvailable)
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      navigator.serviceWorker.getRegistration().then(registration => {
+        if (registration) {
+          registration.update()
+        }
+      })
+    }
+  })
 }
 
 const withProviders = (Component: React.ComponentType<AppProps>) => {
