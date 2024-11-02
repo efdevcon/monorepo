@@ -8,6 +8,8 @@ export interface Speaker {
   company?: string
   website?: string
   twitter?: string
+  lens?: string
+  farcaster?: string
   github?: string
   avatar?: string
   description?: string

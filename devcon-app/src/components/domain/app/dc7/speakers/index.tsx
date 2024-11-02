@@ -21,6 +21,8 @@ import { useWindowWidth } from '../../Layout'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import FarcasterIcon from 'assets/icons/farcaster.svg'
+import LensIcon from 'assets/icons/lens.svg'
 // import { useToast } from 'lib/hooks/use-toast'
 // import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
@@ -398,24 +400,6 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
     setVisibleSpeakers(filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE))
   }, [page, filteredSpeakers])
 
-  const onSpeakerSelect = (e: any, speaker: SpeakerType) => {
-    const result = draggableLink.onClick(e)
-
-    if (!result) return
-
-    if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
-
-    if (isLargeScreen) {
-      if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
-        setSelectedSpeaker(null)
-      } else {
-        setSelectedSpeaker(speaker)
-      }
-    }
-
-    setDevaBotVisible(false)
-  }
-
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>
       <SpeakerFilter filterOptions={filterOptions} />
@@ -423,7 +407,17 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       <RecommendedSpeakers
         speakers={speakers ?? []}
         selectedSpeaker={selectedSpeaker}
-        onSpeakerSelect={onSpeakerSelect}
+        onSpeakerSelect={(e, speaker) => {
+          if (pathname === '/speakers' && isLargeScreen) e.preventDefault()
+
+          if (isLargeScreen) {
+            if (selectedSpeaker?.sourceId === speaker.sourceId && pathname === '/speakers') {
+              setSelectedSpeaker(null)
+            } else {
+              setSelectedSpeaker(speaker)
+            }
+          }
+        }}
       />
 
       <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
@@ -533,6 +527,8 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
 
   if (!speaker) return null
 
+  console.log(speaker, 'speaker')
+
   return (
     <div
       data-type="speaker-view"
@@ -598,18 +594,49 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       </div>
       <div className="flex flex-col gap-3  font-semibold shrink-0">Profile</div>
       <div className="text-sm text-[#717784] shrink-0">{speaker?.description}</div>
-      {/* {speaker?.twitter && (
-        <Link
-          className="flex items-center justify-center gap-1 self-start"
-          to={`https://twitter.com/${speaker.twitter}`}
-        >
-          <TwitterIcon
-            className="icon flex justify-center items-center"
-            style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
-          />
-          <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
-        </Link>
-      )} */}
+
+      <div
+        className={cn('flex gap-4 text-xs', speaker.twitter && speaker.farcaster && speaker.lens && 'justify-between')}
+      >
+        {speaker?.twitter && (
+          <Link
+            className="flex flex-col justify-center gap-1 self-start mt-2"
+            to={speaker.twitter.startsWith('https') ? speaker.twitter : `https://x.com/${speaker.twitter}`}
+          >
+            <TwitterIcon
+              className="icon flex justify-center items-center"
+              style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
+            />
+            <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
+          </Link>
+        )}
+
+        {speaker?.farcaster && (
+          <Link
+            className="flex flex-col justify-center gap-1 self-start mt-2"
+            to={speaker.farcaster.startsWith('https') ? speaker.farcaster : `https://warpcast.com/${speaker.farcaster}`}
+          >
+            <FarcasterIcon
+              className="icon flex justify-center items-center"
+              style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
+            />
+            <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
+          </Link>
+        )}
+
+        {speaker?.lens && (
+          <Link
+            className="flex flex-col justify-center gap-1 self-start mt-2"
+            to={speaker.lens.startsWith('https') ? speaker.lens : `https://lenspeer.com/profile/${speaker.lens}`}
+          >
+            <LensIcon
+              className="icon flex justify-center items-center"
+              style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
+            />
+            <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
+          </Link>
+        )}
+      </div>
 
       <div className={cn('border-top pt-4 shrink-0', !standalone && 'pb-4 border-bottom')}>
         <StandalonePrompt

@@ -30,7 +30,7 @@ export function RecommendedSpeakers({ speakers, selectedSpeaker, standalone, onS
     () =>
       speakers
         ?.filter(speaker =>
-          speaker.sessions?.some(session => session.featured && moment(session.slot_start).isAfter(moment()))
+          speaker.sessions?.some(session => session.featured && moment.utc(session.slot_start).isAfter(moment.utc()))
         )
         .sort(() => Math.random() - 0.5),
     [speakers]
@@ -159,7 +159,11 @@ export function RecommendedSpeakers({ speakers, selectedSpeaker, standalone, onS
                   index === 0 ? 'ml-4' : ''
                 )}
                 {...draggableLink}
-                onClick={(e: any) => onSpeakerSelect?.(e, speaker)}
+                onClick={(e: any) => {
+                  const result = draggableLink.onClick(e)
+                  if (!result) return
+                  onSpeakerSelect?.(e, speaker)
+                }}
               >
                 <div className="relative rounded-full w-[80px] h-[80px]">
                   <Image
