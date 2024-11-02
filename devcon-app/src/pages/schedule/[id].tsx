@@ -72,5 +72,6 @@ export async function getStaticProps(context: any) {
     props: {
       session,
     },
+    revalidate: 60,
   }
 }

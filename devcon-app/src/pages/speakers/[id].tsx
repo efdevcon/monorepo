@@ -56,5 +56,6 @@ export async function getStaticProps(context: any) {
         sessions,
       },
     },
+    revalidate: 60,
   }
 }
