@@ -27,10 +27,13 @@ import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 import NoResults from 'assets/images/state/no-results.png'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import ShareIcon from 'assets/icons/arrow-curved.svg'
+import { Modal, ModalContent } from 'lib/components/modal'
 import { useWindowWidth } from '../../Layout'
 import TimelineIcon from 'assets/icons/dc-7/timeline.svg'
 import ListIcon from 'assets/icons/dc-7/listview.svg'
+import CalendarExport from 'lib/assets/images/modal-export.png'
 import Entertainment from 'assets/images/dc-7/entertainment.png'
+import { generateCalendarExport } from 'lib/components/add-to-calendar'
 import {
   devaBotVisibleAtom,
   selectedSessionAtom,
@@ -1222,6 +1225,32 @@ export const Livestream = ({ session, className }: { session: SessionType; class
 export const SessionView = ({ session, standalone }: { session: SessionType | null; standalone?: boolean }) => {
   const { account, setSessionBookmark } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
+  const [cal, setCal] = React.useState<any>(null)
+
+  React.useEffect(() => {
+    if (!session) return
+    setCal(
+      generateCalendarExport({
+        timezone: 'Asia/Bangkok',
+        PRODID: 'app.devcon.org',
+        icsFileName: session?.title,
+        entries: [
+          {
+            start: moment.utc(session.slot_start),
+            end: moment.utc(session.slot_end),
+            description: session?.description,
+            title: session?.title ?? '',
+            location: {
+              url: 'https://devcon.org',
+              // text: 'QNSCC — Queen Sirikit National Convention Center',
+              text: `${session?.slot_room?.name} - QNSCC — Queen Sirikit National Convention Center`,
+            },
+          },
+        ],
+      })
+    )
+  }, [session])
   //   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
 
   if (!session) return null
@@ -1414,23 +1443,48 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <p>Mark as interesting</p>
         </div>
 
-        {/* <AddToCalendar
-          event={{
-            id: session.id,
-            title: `${session.title}${session.room ? ` / Room: ${session.room.name}` : ''}`,
-            description: session.description,
-            location: 'Queen Sirikit National Convention Center',
-            startDate: moment.utc(session.start),
-            endDate: moment.utc(session.end),
-          }}
+        <div
+          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          onClick={() => setCalendarModalOpen(true)}
         >
-          <div className="flex flex-col items-center gap-1 cursor-pointer">
-            <div className="text-lg hover:scale-110 transition-transform duration-300">
-              <IconCalendar />
-            </div>
-            <p>Export to Calendar</p>
+          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+            <IconCalendar />
           </div>
-        </AddToCalendar> */}
+          <p>Export to Calendar</p>
+        </div>
+
+        {cal && (
+          <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
+            <ModalContent
+              className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
+              close={() => setCalendarModalOpen(false)}
+            >
+              <div className="relative">
+                <Image src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></Image>
+                <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
+              </div>
+              <div className="p-4">
+                <p className="font-bold">Add {session.title} to your external calendar!</p>
+
+                <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
+
+                <div className="flex mt-4 flex-row gap-4 items-center">
+                  <a {...cal.icsAttributes}>
+                    <Button fat color="purple-1">
+                      <span className="mr-2">Download (.ics)</span>
+                      <IconCalendar />
+                    </Button>
+                  </a>
+                  <Link to={cal.googleCalUrl} className="h-full">
+                    <Button fat color="purple-1" fill>
+                      Google Calendar
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </ModalContent>
+          </Modal>
+        )}
 
         {/* <Link to={standalone ? `/venue?room=${session.room?.id}` : `/venue/${session.room?.id}`}>
           <p>Room Details</p> <PinIcon />
