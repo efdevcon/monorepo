@@ -630,7 +630,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
         {speaker?.lens && (
           <Link
             className="flex flex-col justify-center gap-1 self-start mt-2"
-            to={speaker.lens.startsWith('https') ? speaker.lens : `https://lenspeer.com/profile/${speaker.lens}`}
+            to={speaker.lens.startsWith('https') ? speaker.lens : `https://hey.xyz/u/${speaker.lens}`}
           >
             <LensIcon
               className="icon flex justify-center items-center"
