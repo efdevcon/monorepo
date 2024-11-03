@@ -14,10 +14,16 @@ export default (props: any) => {
   )
 }
 
-export async function getServerSideProps(context: any) {
+export async function getStaticPaths() {
+  return {
+    paths: [],
+    fallback: 'blocking',
+  }
+}
+
+export async function getStaticProps(context: any) {
   return {
     props: {
-      page: DEFAULT_APP_PAGE,
       userId: context.params.id,
       userSchedule: {},
     },
