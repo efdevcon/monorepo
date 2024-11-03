@@ -23,6 +23,7 @@ import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
 import LensIcon from 'assets/icons/lens.svg'
+import GithubIcon from 'assets/icons/github.svg'
 // import { useToast } from 'lib/hooks/use-toast'
 // import { Button } from 'lib/components/button'
 import { ScrollUpComponent } from '../sessions'
@@ -637,6 +638,19 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
               style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
             />
             <div className="hover:text-[#7D52F4]">@{speaker.twitter}</div>
+          </Link>
+        )}
+
+        {speaker?.github && (
+          <Link
+            className="flex flex-col justify-center gap-1 self-start mt-2"
+            to={`https://github.com/${speaker.github}`}
+          >
+            <GithubIcon
+              className="icon flex justify-center items-center"
+              style={{ '--color-icon': '#7D52F4', fontSize: '16px' }}
+            />
+            <div className="hover:text-[#7D52F4]">@{speaker.github}</div>
           </Link>
         )}
       </div>
