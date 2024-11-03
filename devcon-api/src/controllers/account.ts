@@ -10,6 +10,7 @@ import { RemapPretixRoles } from '@/clients/pretix'
 import { decryptFile } from '@/utils/encrypt'
 import { parseCSV } from '@/utils/files'
 import { ValidateTicketPod } from '@/utils/zupass'
+import { GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
@@ -17,6 +18,7 @@ const scheduleClient = new ScheduleClient()
 
 export const accountRouter = Router()
 accountRouter.get(`/account`, GetAccount)
+accountRouter.get(`/account/:id/schedule`, GetAccountSchedule)
 accountRouter.put(`/account/:id`, UpdateAccount)
 accountRouter.put(`/account/zupass/import`, UpdateAccountImport)
 accountRouter.delete(`/account/:id`, DeleteAccount)
@@ -56,6 +58,66 @@ async function GetAccount(req: Request, res: Response) {
   res.status(500).send({ code: 500, message: 'Unable to get user account.' })
 }
 
+async function GetAccountSchedule(req: Request, res: Response) {
+  // #swagger.tags = ['Account']
+
+  let id = req.params.id
+  if (id?.startsWith('0x')) {
+    const ens = await GetEnsName(id as `0x${string}`)
+    if (ens) {
+      id = ens
+    }
+  }
+  if (id?.endsWith('.eth')) {
+    const ens = await GetEnsAddress(id)
+    if (ens) {
+      id = ens
+    }
+  }
+
+  const account = await client.account.findFirst({
+    where: {
+      OR: [
+        { id: id },
+        { username: { equals: id, mode: 'insensitive' } },
+        { username: { equals: req.params.id, mode: 'insensitive' } },
+        { addresses: { hasSome: [id, id.toLowerCase(), id.toUpperCase()] } },
+        { addresses: { hasSome: [req.params.id, req.params.id.toLowerCase(), req.params.id.toUpperCase()] } },
+      ],
+      publicSchedule: true,
+    },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      addresses: true,
+      attending_sessions: true,
+    },
+  })
+
+  if (!account) {
+    return res.status(404).send({ code: 404, message: 'User schedule not found. Make sure it is public.' })
+  }
+
+  const schedule = await scheduleClient.session.findMany({
+    where: {
+      sourceId: { in: account.attending_sessions },
+    },
+  })
+
+  res.status(200).send({
+    code: 200,
+    message: '',
+    data: schedule,
+    user: {
+      userId: account.id,
+      id: id,
+      username: account.username,
+      avatar: await GetEnsAvatar(id),
+    },
+  })
+}
+
 async function UpdateAccountImport(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
@@ -85,7 +147,7 @@ async function UpdateAccountImport(req: Request, res: Response) {
     return res.status(400).send({ message: 'Profile data not found.' })
   }
 
-  const updated = await client.account.update({ where: { id: userId }, data: profileData })
+  const updated = await client.account.update({ where: { id: userId }, data: { ...profileData, updatedAt: new Date() } })
   return res.status(200).send({ code: 200, data: updated })
 }
 
@@ -110,7 +172,7 @@ async function UpdateAccount(req: Request, res: Response) {
   }
 
   try {
-    const updated = await client.account.update({ where: { id: paramId }, data: account })
+    const updated = await client.account.update({ where: { id: paramId }, data: { ...account, updatedAt: new Date() } })
     if (updated) {
       return res.status(200).send({ code: 200, message: 'OK', data: account })
     }

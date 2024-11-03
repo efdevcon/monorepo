@@ -62,6 +62,30 @@
         }
       }
     },
+    "/account/{id}/schedule": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/account/{id}": {
       "put": {
         "tags": [
@@ -1065,6 +1089,13 @@
             "description": "Forbidden"
           }
         }
+      }
+    },
+    "{{where{id:data.id}}": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/push-subscriptions": {
