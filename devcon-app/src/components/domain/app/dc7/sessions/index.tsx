@@ -133,7 +133,8 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   const filterOptions = useMemo(() => {
     return {
       type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
-      day: timelineView ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'] : ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
+      // day: timelineView ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'] : ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
+      day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
       expertise: [
         ...new Set(
           ['Beginner', 'Intermediate', 'Expert']
@@ -1098,12 +1099,10 @@ export const SessionList = ({
 
   useEffect(() => {
     if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
-      setTimeout(() => {
-        window.scrollTo({
-          top: scrollRestorationTracker[history.state.key].lastScrollY,
-          // behavior: 'smooth',
-        })
-      }, 100)
+      window.scrollTo({
+        top: scrollRestorationTracker[history.state.key].lastScrollY,
+        behavior: 'smooth',
+      })
     }
 
     const handleScroll = () => {
@@ -1185,12 +1184,12 @@ export const SessionList = ({
             onClick={() => {
               setTimelineView(true)
 
-              if (Object.keys(sessionFilter.day).length === 0) {
-                setSessionFilter({
-                  ...sessionFilter,
-                  day: { 'Nov 12': true },
-                })
-              }
+              // if (Object.keys(sessionFilter.day).length === 0) {
+              //   setSessionFilter({
+              //     ...sessionFilter,
+              //     day: { 'Nov 12': true },
+              //   })
+              // }
             }}
           >
             <TimelineIcon
