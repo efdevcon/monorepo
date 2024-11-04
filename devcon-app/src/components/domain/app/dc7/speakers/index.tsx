@@ -340,6 +340,8 @@ export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
 
 const SPEAKERS_PER_PAGE = 30
 
+const scrollRestorationTracker = {} as any
+
 export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) => {
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
   const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
@@ -352,8 +354,9 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
 
   const [isSticky, setIsSticky] = useState(false)
   const stickyRef = useRef<HTMLDivElement>(null)
-  const [visibleSpeakers, setVisibleSpeakers] = useState<SpeakerType[]>([])
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState<number>(
+    typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
+  )
   const featuredSpeakers = useMemo(
     () =>
       speakers?.filter(speaker =>
@@ -361,6 +364,15 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
       ) ?? filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE).sort(() => Math.random() - 0.5),
     [speakers, filteredSpeakers, page]
   )
+
+  if (typeof window !== 'undefined' && !scrollRestorationTracker[history.state.key]) {
+    scrollRestorationTracker[history.state.key] = {
+      lastScrollY: 0,
+      page: 1,
+    }
+  } else if (scrollRestorationTracker[history.state.key]) {
+    scrollRestorationTracker[history.state.key].page = page
+  }
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -380,7 +392,16 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   }, [])
 
   useEffect(() => {
+    if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
+      window.scrollTo({
+        top: scrollRestorationTracker[history.state.key].lastScrollY,
+        behavior: 'smooth',
+      })
+    }
+
     const handleScroll = () => {
+      scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
         setPage(prevPage => prevPage + 1)
       }
@@ -397,9 +418,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
     setPage(1)
   }, [filteredSpeakers])
 
-  useEffect(() => {
-    setVisibleSpeakers(filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE))
-  }, [page, filteredSpeakers])
+  const visibleSpeakers = filteredSpeakers.slice(0, page * SPEAKERS_PER_PAGE)
 
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>

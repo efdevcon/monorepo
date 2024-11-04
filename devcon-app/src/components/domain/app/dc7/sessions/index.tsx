@@ -1042,6 +1042,9 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
 
 const SESSIONS_PER_PAGE = 25
 
+// Restore scroll and pagination state when going back to the page
+const scrollRestorationTracker = {} as any
+
 export const SessionList = ({
   event,
   filteredSessions,
@@ -1053,13 +1056,33 @@ export const SessionList = ({
   filterOptions: any
 }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
-  const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
-  const [page, setPage] = useState(1)
+  // const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
+  const [page, setPage] = useState<number>(
+    typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
+  )
   const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
 
+  if (typeof window !== 'undefined' && !scrollRestorationTracker[history.state.key]) {
+    scrollRestorationTracker[history.state.key] = {
+      lastScrollY: 0,
+      page: 1,
+    }
+  } else if (scrollRestorationTracker[history.state.key]) {
+    scrollRestorationTracker[history.state.key].page = page
+  }
+
   useEffect(() => {
+    if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
+      window.scrollTo({
+        top: scrollRestorationTracker[history.state.key].lastScrollY,
+        behavior: 'smooth',
+      })
+    }
+
     const handleScroll = () => {
+      scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
         setPage(prevPage => prevPage + 1)
       }
@@ -1076,9 +1099,7 @@ export const SessionList = ({
     setPage(1)
   }, [filteredSessions])
 
-  useEffect(() => {
-    setVisibleSessions(filteredSessions.slice(0, page * SESSIONS_PER_PAGE))
-  }, [page, filteredSessions])
+  const visibleSessions = filteredSessions.slice(0, page * SESSIONS_PER_PAGE)
 
   const groupedSessions = useMemo(() => {
     return visibleSessions.reduce((acc, session) => {
