@@ -1081,33 +1081,36 @@ export const SessionList = ({
   // const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
-    typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
+    typeof window !== 'undefined' ? scrollRestorationTracker[window.history.state?.key]?.page ?? 1 : 1
   )
   const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
   const { isPersonalizedSchedule } = usePersonalized()
 
-  if (typeof window !== 'undefined' && !scrollRestorationTracker[history.state.key]) {
-    scrollRestorationTracker[history.state.key] = {
-      lastScrollY: 0,
-      page: 1,
+  if (typeof window !== 'undefined') {
+    if (!scrollRestorationTracker[window.history?.state?.key]) {
+      scrollRestorationTracker[window.history?.state?.key] = {
+        lastScrollY: 0,
+        page: 1,
+      }
+    } else if (scrollRestorationTracker[window.history?.state?.key]) {
+      scrollRestorationTracker[window.history?.state?.key].page = page
     }
-  } else if (scrollRestorationTracker[history.state.key]) {
-    scrollRestorationTracker[history.state.key].page = page
   }
 
   useEffect(() => {
-    if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
-      setTimeout(() => {
-        window.scrollTo({
-          top: scrollRestorationTracker[history.state.key].lastScrollY,
-          // behavior: 'smooth',
-        })
-      }, 100)
+    if (
+      scrollRestorationTracker[window.history.state?.key] &&
+      scrollRestorationTracker[window.history.state?.key].lastScrollY
+    ) {
+      window.scrollTo({
+        top: scrollRestorationTracker[window.history.state?.key].lastScrollY,
+        behavior: 'smooth',
+      })
     }
 
     const handleScroll = () => {
-      if (scrollRestorationTracker[history.state.key]) {
-        scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+      if (scrollRestorationTracker[window.history.state?.key]) {
+        scrollRestorationTracker[window.history.state?.key].lastScrollY = window.scrollY
       }
 
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
