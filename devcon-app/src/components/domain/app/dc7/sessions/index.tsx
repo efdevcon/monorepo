@@ -1081,7 +1081,9 @@ export const SessionList = ({
     }
 
     const handleScroll = () => {
-      scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+      if (scrollRestorationTracker[history.state.key]) {
+        scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+      }
 
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
         setPage(prevPage => prevPage + 1)
