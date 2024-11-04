@@ -1074,10 +1074,12 @@ export const SessionList = ({
 
   useEffect(() => {
     if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
-      window.scrollTo({
-        top: scrollRestorationTracker[history.state.key].lastScrollY,
-        behavior: 'smooth',
-      })
+      setTimeout(() => {
+        window.scrollTo({
+          top: scrollRestorationTracker[history.state.key].lastScrollY,
+          // behavior: 'smooth',
+        })
+      }, 100)
     }
 
     const handleScroll = () => {
