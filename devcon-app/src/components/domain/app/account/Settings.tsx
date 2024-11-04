@@ -175,11 +175,22 @@ export default function SettingsPage() {
                     </div>
                   </div>
                   {accountContext.account?.id && accountContext.account?.publicSchedule && (
-                    <div className="px-4 pb-2">
-                      <LinkList>
-                        <Link to={`/schedule/u/${accountContext.account.id}/`}>Personal schedule link</Link>
-                      </LinkList>
-                    </div>
+                    <>
+                      <div className="px-4 pb-2">
+                        <LinkList>
+                          <Link to={`/schedule/u/${accountContext.account.username ?? accountContext.account.id}/`}>
+                            Personal schedule link
+                          </Link>
+                        </LinkList>
+                        <p className="text-xs py-2">
+                          You can change your link by{' '}
+                          <Link to="/account/username" className="underline text-[#7D52F4]">
+                            updating your username
+                          </Link>
+                          .
+                        </p>
+                      </div>
+                    </>
                   )}
                 </CollapsedSectionContent>
               </CollapsedSection>

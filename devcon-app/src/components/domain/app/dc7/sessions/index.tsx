@@ -73,6 +73,7 @@ import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
 import { PersonalizedSuggestions } from './recommendations'
 import Timeline from './timeline'
+import { usePersonalized } from 'pages/schedule/u/[id]'
 
 export const tagClassTwo = (active?: boolean, className?: string) =>
   cn(
@@ -719,6 +720,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   const [openPopover, setOpenPopover] = useState<string | null>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState(false)
+  const { isPersonalizedSchedule } = usePersonalized()
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -756,8 +758,13 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
 
   return (
     <>
-      <div className="flex flex-row gap-3 items-center justify-between text-xs overflow-hidden lg:pt-3 mb-2">
-        <div className="flex flex-row gap-3 justify-between px-4 relative">
+      <div
+        className={cn(
+          'flex flex-row gap-3 items-center justify-between text-xs w-full overflow-hidden lg:pt-3 mb-2',
+          isPersonalizedSchedule ? 'flex-col sm:flex-row' : ''
+        )}
+      >
+        <div className="flex flex-row gap-3 justify-between px-4 relative w-full lg:w-[350px]">
           <div data-type="session-filter-search" className="relative w-full lg:w-[350px]">
             <input
               type="text"
@@ -787,103 +794,118 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
           </div>
         </div>
 
-        <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl mr-4">
-          <div className="text-xs font-semibold line-clamp-2">
-            {(() => {
-              const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
-                const filterAsKeys = Object.keys(filter)
+        {!isPersonalizedSchedule && (
+          <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl mr-4">
+            <div className="text-xs font-semibold line-clamp-2">
+              {(() => {
+                const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
+                  const filterAsKeys = Object.keys(filter)
 
-                if (filterAsKeys.length === 0) return
-                if (filterAsKeys.length === 1) return filterAsKeys[0]
+                  if (filterAsKeys.length === 0) return
+                  if (filterAsKeys.length === 1) return filterAsKeys[0]
 
-                return `${key} (${filterAsKeys.length})`
-              }
+                  return `${key} (${filterAsKeys.length})`
+                }
 
-              return (
-                [
-                  computeFilterShorthand(sessionFilter.track, 'Tracks'),
-                  computeFilterShorthand(sessionFilter.type, 'Session Type'),
-                  computeFilterShorthand(sessionFilter.expertise, 'Expertise'),
-                  computeFilterShorthand(sessionFilter.room, 'Rooms'),
-                ]
-                  .filter(val => !!val)
-                  .join(', ') || ''
-              )
-            })()}
-          </div>
-
-          <div
-            onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
-            className={cn(
-              'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
-              (sessionFilterOpen || advancedFilterApplied) &&
-                'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
-            )}
-          >
-            <FilterIcon
-              className="icon"
-              style={{
-                '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
-                fontSize: '24px',
-              }}
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className="mx-4 border-bottom h-[1px] !border-[#e5e5e5] mb-3 mt-2" />
-
-      <div className="overflow-hidden">
-        <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-          <div className="flex flex-row gap-3 flex-nowrap p-1 px-4 text-xs">
-            <div
-              className={cn(
-                'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
-                Object.keys(sessionFilter.other).length === 0 ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
-              )}
-              {...draggableLink}
-              onClick={e => {
-                const result = draggableLink.onClick(e)
-
-                if (!result) return
-
-                setSessionFilter({ ...sessionFilter, other: {} })
-              }}
-            >
-              All
+                return (
+                  [
+                    computeFilterShorthand(sessionFilter.track, 'Tracks'),
+                    computeFilterShorthand(sessionFilter.type, 'Session Type'),
+                    computeFilterShorthand(sessionFilter.expertise, 'Expertise'),
+                    computeFilterShorthand(sessionFilter.room, 'Rooms'),
+                  ]
+                    .filter(val => !!val)
+                    .join(', ') || ''
+                )
+              })()}
             </div>
-            <Separator orientation="vertical" className="h-6" />
 
-            {filterOptions.other.map((other: string) => (
-              <div
-                key={other}
-                className={cn(
-                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
-                  sessionFilter.other[other] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
-                )}
-                onClick={() => {
-                  updateOtherFilter(other)
+            <div
+              onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
+              className={cn(
+                'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
+                (sessionFilterOpen || advancedFilterApplied) &&
+                  'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
+              )}
+            >
+              <FilterIcon
+                className="icon"
+                style={{
+                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
+                  fontSize: '24px',
                 }}
-              >
-                {other}
-                {other === 'Attending' && (
-                  <IconAdded className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
-                )}
-                {other === 'Interested In' && (
-                  <StarIcon className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
-                )}
-              </div>
-            ))}
+              />
+            </div>
           </div>
-        </SwipeToScroll>
+        )}
+
+        {isPersonalizedSchedule && (
+          <Link to="/schedule" className="flex w-full sm:w-auto px-4 shrink-0">
+            <Button color="purple-2" fill fat className="flex flex-row w-full sm:w-auto items-center gap-3">
+              <CalendarIcon style={{ '--color-icon': 'white' }} /> Return to main schedule
+            </Button>
+          </Link>
+        )}
       </div>
 
-      <div className="px-4 h-[1px] mb-0 !border-[#e5e5e5] mt-3" />
+      {!isPersonalizedSchedule && (
+        <>
+          <div className="mx-4 border-bottom h-[1px] !border-[#e5e5e5] mb-3 mt-2" />
+
+          <div className="overflow-hidden">
+            <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
+              <div className="flex flex-row gap-3 flex-nowrap p-1 px-4 text-xs">
+                <div
+                  className={cn(
+                    'flex shrink-0 items-center justify-center align-middle rounded-full border border-solid bg-white hover:bg-[#EFEBFF] border-transparent shadow px-4 py-1  cursor-pointer select-none transition-all duration-300',
+                    Object.keys(sessionFilter.other).length === 0 ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                  )}
+                  {...draggableLink}
+                  onClick={e => {
+                    const result = draggableLink.onClick(e)
+
+                    if (!result) return
+
+                    setSessionFilter({ ...sessionFilter, other: {} })
+                  }}
+                >
+                  All
+                </div>
+                <Separator orientation="vertical" className="h-6" />
+
+                {filterOptions.other.map((other: string) => (
+                  <div
+                    key={other}
+                    className={cn(
+                      'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white hover:bg-[#f8f7ff] border-solid border-transparent shadow px-4 py-1 cursor-pointer select-none transition-all duration-300',
+                      sessionFilter.other[other] ? ' border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                    )}
+                    onClick={() => {
+                      updateOtherFilter(other)
+                    }}
+                  >
+                    {other}
+                    {other === 'Attending' && (
+                      <IconAdded className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                    )}
+                    {other === 'Interested In' && (
+                      <StarIcon className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </SwipeToScroll>
+          </div>
+
+          <div className="px-4 h-[1px] mb-0 !border-[#e5e5e5] mt-3" />
+        </>
+      )}
 
       <div
         className={cn(
           'sticky top-[55px] lg:top-[56px] z-[10] border-top border-bottom transition-all duration-300',
-          isSticky ? `${css['sticky-glass']}` : 'bg-[#f5f2ff]'
+          isSticky ? `${css['sticky-glass']}` : 'bg-[#f5f2ff]',
+          isPersonalizedSchedule ? 'mt-2' : ''
         )}
         ref={stickyRef}
       >
@@ -1062,6 +1084,7 @@ export const SessionList = ({
     typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
   )
   const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
+  const { isPersonalizedSchedule } = usePersonalized()
 
   if (typeof window !== 'undefined' && !scrollRestorationTracker[history.state.key]) {
     scrollRestorationTracker[history.state.key] = {
@@ -1120,19 +1143,23 @@ export const SessionList = ({
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
 
-      <PersonalizedSuggestions sessions={filteredSessions} />
+      {!isPersonalizedSchedule && (
+        <>
+          <PersonalizedSuggestions sessions={filteredSessions} />
 
-      <div data-type="session-prompts" className="flex gap-3 mt-4 mb-3 border-bottom mx-4 pb-4">
-        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about ')}>
-          <div className="truncate">Help me find sessions about...</div>
-        </StandalonePrompt>
-        <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend sessions related to ZKP')}>
-          <div className="truncate">Recommend sessions related to ZKP</div>
-        </StandalonePrompt>
-      </div>
+          <div data-type="session-prompts" className="flex gap-3 mt-4 mb-3 border-bottom mx-4 pb-4">
+            <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Help me find sessions about ')}>
+              <div className="truncate">Help me find sessions about...</div>
+            </StandalonePrompt>
+            <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend sessions related to ZKP')}>
+              <div className="truncate">Recommend sessions related to ZKP</div>
+            </StandalonePrompt>
+          </div>
+        </>
+      )}
 
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
-        <div className="font-semibold">Sessions</div>
+        <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
         {/* <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
             className={cn(
