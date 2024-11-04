@@ -549,8 +549,6 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
 
   if (!speaker) return null
 
-  console.log(speaker, 'speaker')
-
   return (
     <div
       data-type="speaker-view"
