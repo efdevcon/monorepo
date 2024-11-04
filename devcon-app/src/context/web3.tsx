@@ -2,7 +2,6 @@
 
 import React, { PropsWithChildren } from 'react'
 import { wagmiAdapter } from 'utils/wallet'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createAppKit } from '@reown/appkit/react'
 import { mainnet } from '@reown/appkit/networks'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
@@ -34,22 +33,10 @@ interface Props extends PropsWithChildren {
 
 export function Web3Provider(props: Props) {
   const initialState = cookieToInitialState(wagmiAdapter.wagmiConfig as Config, props.cookies)
-  const [queryClient] = React.useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            // With SSR, we usually want to set some default staleTime
-            // above 0 to avoid refetching immediately on the client
-            staleTime: 60 * 1000,
-          },
-        },
-      })
-  )
 
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig as Config} initialState={initialState}>
-      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
+      {props.children}
     </WagmiProvider>
   )
 }
