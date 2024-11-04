@@ -10,7 +10,7 @@ import { RemapPretixRoles } from '@/clients/pretix'
 import { decryptFile } from '@/utils/encrypt'
 import { parseCSV } from '@/utils/files'
 import { ValidateTicketPod } from '@/utils/zupass'
-import { GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
+import { GenerateRandomUsername, GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
@@ -62,17 +62,15 @@ async function GetAccountSchedule(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
   let id = req.params.id
-  if (id?.startsWith('0x')) {
-    const ens = await GetEnsName(id as `0x${string}`)
-    if (ens) {
-      id = ens
-    }
-  }
+  let ensName = null
+  let address = null
   if (id?.endsWith('.eth')) {
-    const ens = await GetEnsAddress(id)
-    if (ens) {
-      id = ens
-    }
+    ensName = id
+    address = await GetEnsAddress(id)
+  }
+  if (id?.startsWith('0x')) {
+    address = id
+    ensName = await GetEnsName(id as `0x${string}`)
   }
 
   const account = await client.account.findFirst({
@@ -80,9 +78,9 @@ async function GetAccountSchedule(req: Request, res: Response) {
       OR: [
         { id: id },
         { username: { equals: id, mode: 'insensitive' } },
-        { username: { equals: req.params.id, mode: 'insensitive' } },
+        ensName ? { username: { equals: ensName, mode: 'insensitive' } } : {},
         { addresses: { hasSome: [id, id.toLowerCase(), id.toUpperCase()] } },
-        { addresses: { hasSome: [req.params.id, req.params.id.toLowerCase(), req.params.id.toUpperCase()] } },
+        address ? { addresses: { hasSome: [address, address.toLowerCase(), address.toUpperCase()] } } : {},
       ],
       publicSchedule: true,
     },
@@ -103,18 +101,21 @@ async function GetAccountSchedule(req: Request, res: Response) {
     where: {
       sourceId: { in: account.attending_sessions },
     },
+    include: {
+      speakers: true,
+      slot_room: true,
+    },
   })
 
   res.status(200).send({
     code: 200,
     message: '',
-    data: schedule,
     user: {
-      userId: account.id,
       id: id,
-      username: account.username,
-      avatar: await GetEnsAvatar(id),
+      username: ensName ?? account.username ?? GenerateRandomUsername(account.id),
+      avatar: await GetEnsAvatar(ensName ?? id),
     },
+    data: schedule,
   })
 }
 
@@ -297,7 +298,7 @@ async function LoginEmail(req: Request, res: Response) {
   const userId = req.session.userId
   // if a session exists => add email to existing account
   if (userId) {
-    let userAccount = await client.account.findFirst({ where: { email: address } })
+    let userAccount = await client.account.findFirst({ where: { email: { equals: address, mode: 'insensitive' } } })
     if (userAccount) {
       return res.status(400).send({ code: 400, message: 'Unable to add email address.' }) // TODO: email address already exists
     }
@@ -324,7 +325,7 @@ async function LoginEmail(req: Request, res: Response) {
   }
 
   // else; create new user account based on email address
-  let userAccount = await client.account.findFirst({ where: { email: address } })
+  let userAccount = await client.account.findFirst({ where: { email: { equals: address, mode: 'insensitive' } } })
   if (userAccount) {
     if (!userAccount.onboarded) {
       const profile = await parseProfileData(address)
@@ -341,9 +342,9 @@ async function LoginEmail(req: Request, res: Response) {
   if (!userAccount) {
     const profile = await parseProfileData(address)
     if (profile) {
-      userAccount = await client.account.create({ data: { email: address, ...profile } })
+      userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address), ...profile } })
     } else {
-      userAccount = await client.account.create({ data: { email: address } })
+      userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address) } })
     }
 
     if (userAccount) {
@@ -415,7 +416,7 @@ async function LoginToken(req: Request, res: Response) {
   }
 
   if (!userAccount) {
-    userAccount = await client.account.create({ data: { email: address } })
+    userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address) } })
 
     if (userAccount) {
       req.session.userId = userAccount.id
@@ -470,6 +471,7 @@ async function LoginWeb3(req: Request, res: Response) {
     if (!userAccount) {
       userAccount = await client.account.create({
         data: {
+          username: (await GetEnsName(address as `0x${string}`)) ?? GenerateRandomUsername(address),
           addresses: [address],
           activeAddress: address,
         },
@@ -501,7 +503,13 @@ async function LoginWeb3(req: Request, res: Response) {
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
 
-  userAccount = await client.account.create({ data: { addresses: [address], activeAddress: address } })
+  userAccount = await client.account.create({
+    data: {
+      username: (await GetEnsName(address as `0x${string}`)) ?? GenerateRandomUsername(address),
+      addresses: [address],
+      activeAddress: address,
+    },
+  })
   if (userAccount) {
     req.session.userId = userAccount.id
     req.session.save()
