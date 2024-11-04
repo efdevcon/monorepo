@@ -49,7 +49,7 @@ export const selectedSessionAtom = atom<SessionType | null>({
 
 export const sessionTimelineViewAtom = atom<boolean>({
   key: 'sessionTimelineView',
-  default: false,
+  default: true,
 })
 
 export const sessionFilterOpenAtom = atom<boolean>({

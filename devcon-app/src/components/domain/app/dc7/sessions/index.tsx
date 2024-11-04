@@ -97,6 +97,7 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 const useSessionFilter = (sessions: SessionType[], event: any) => {
   const { account } = useAccountContext()
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
@@ -132,7 +133,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   const filterOptions = useMemo(() => {
     return {
       type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
-      day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
+      day: timelineView ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'] : ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
       expertise: [
         ...new Set(
           ['Beginner', 'Intermediate', 'Expert']
@@ -150,7 +151,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       }),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
-  }, [sessions])
+  }, [sessions, timelineView])
 
   const filteredSessions = useMemo(() => {
     return sessions.filter((session: any) => {
@@ -1078,7 +1079,7 @@ export const SessionList = ({
   filterOptions: any
 }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  // const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
     typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
@@ -1142,7 +1143,6 @@ export const SessionList = ({
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
-
       {!isPersonalizedSchedule && (
         <>
           <PersonalizedSuggestions sessions={filteredSessions} />
@@ -1157,10 +1157,9 @@ export const SessionList = ({
           </div>
         </>
       )}
-
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
         <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
-        {/* <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
+        <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
             className={cn(
               'flex justify-center items-center self-center grow rounded-md gap-2 px-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-0.5 transition-all duration-300 select-none',
@@ -1184,7 +1183,14 @@ export const SessionList = ({
               }
             )}
             onClick={() => {
-              setTimelineView(!timelineView)
+              setTimelineView(true)
+
+              if (Object.keys(sessionFilter.day).length === 0) {
+                setSessionFilter({
+                  ...sessionFilter,
+                  day: { 'Nov 12': true },
+                })
+              }
             }}
           >
             <TimelineIcon
@@ -1193,9 +1199,8 @@ export const SessionList = ({
             />
             Timeline View
           </div>
-        </div> */}
+        </div>
       </div>
-
       {timelineView ? (
         <Timeline sessions={filteredSessions} event={event} />
       ) : (
@@ -1217,7 +1222,6 @@ export const SessionList = ({
           <div className="mt-4 text-sm text-[#535353] font-semibold">No sessions match your filter</div>
         </div>
       )}
-
       <ScrollUpComponent visible={visibleSessions.length > 20} />
       {/* </div> */}
     </div>

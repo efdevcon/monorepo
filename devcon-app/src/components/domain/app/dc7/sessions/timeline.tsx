@@ -4,15 +4,19 @@ import { Event } from 'types/Event'
 import moment from 'moment'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import { SessionCard } from './index'
+import { useRecoilState } from 'recoil'
+import { sessionFilterAtom } from 'pages/_app'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
+  const [sessionFilter] = useRecoilState(sessionFilterAtom)
+
   return (
     <div
       className="flex flex-col shrink-0 z-[5]"
       style={{ gridTemplateColumns: `repeat(${rooms.length}, minmax(80px, 1fr))` }}
     >
       <div className="p-2 h-[40px] flex justify-center items-center !bg-[#F5F7FA] border border-gray-100 border-solid">
-        Nov 12
+        {Object.keys(sessionFilter.day)[0]}
       </div>
       {rooms.map((room, index) => (
         <div
