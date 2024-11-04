@@ -18,24 +18,13 @@ import UserIcon from 'assets/icons/dc-7/account.svg'
 import UserFillIcon from 'assets/icons/dc-7/account-fill.svg'
 import Link from 'next/link'
 import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
-import { Popover, PopoverContent, PopoverTrigger, PopoverArrow } from '@/components/ui/popover'
-import DevaBot from 'lib/components/ai/overlay'
-import { useRecoilState, useRecoilValue } from 'recoil'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { useRecoilState } from 'recoil'
 import ChevronRightIcon from 'assets/icons/chevron_right.svg'
-import {
-  devaBotVisibleAtom,
-  notificationsAtom,
-  notificationsCountSelector,
-  selectedSessionAtom,
-  sessionIdAtom,
-  useSeenNotifications,
-} from 'pages/_app'
-import LoginBackdrop from 'pages/login/dc-7-images/login-backdrop-2.png'
-import { AccountContext, useAccountContext } from 'context/account-context'
-import { useIsScrolled } from 'hooks/useIsScrolled'
+import { devaBotVisibleAtom, selectedSessionAtom, sessionIdAtom, useSeenNotifications } from 'pages/_app'
+import { useAccountContext } from 'context/account-context'
 import ArrowBackIcon from 'assets/icons/arrow_left.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
-import account from 'pages/account'
 
 type HeaderProps = {
   breadcrumbs: {

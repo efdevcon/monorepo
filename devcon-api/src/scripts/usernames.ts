@@ -20,7 +20,7 @@ async function main() {
   })
 
   console.log('Updating accounts with default usernames', accounts.length)
-  for (const account of accounts.slice(0, 100)) {
+  for (const account of accounts) {
     let username
     if (account.addresses.length > 0) {
       username = (await GetEnsName(account.addresses[0] as `0x${string}`)) ?? GenerateRandomUsername(account.addresses[0] as `0x${string}`)
