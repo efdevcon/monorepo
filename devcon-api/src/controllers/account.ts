@@ -105,6 +105,9 @@ async function GetAccountSchedule(req: Request, res: Response) {
       speakers: true,
       slot_room: true,
     },
+    orderBy: {
+      slot_start: 'asc',
+    },
   })
 
   res.status(200).send({

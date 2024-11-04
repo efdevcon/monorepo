@@ -337,8 +337,8 @@ export const SessionCard = ({
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
-
   const trackLogo = getTrackLogo(track)
+  const { isPersonalizedSchedule } = usePersonalized()
 
   if (tiny) {
     return (
@@ -357,6 +357,7 @@ export const SessionCard = ({
           if (!result) return
 
           if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+          if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
           if (isLargeScreen) {
             if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
@@ -391,6 +392,7 @@ export const SessionCard = ({
         if (!result) return
 
         if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+        if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
         if (isLargeScreen) {
           if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
