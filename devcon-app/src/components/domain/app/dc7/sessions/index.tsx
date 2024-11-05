@@ -337,8 +337,8 @@ export const SessionCard = ({
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
-
   const trackLogo = getTrackLogo(track)
+  const { isPersonalizedSchedule } = usePersonalized()
 
   if (tiny) {
     return (
@@ -357,6 +357,7 @@ export const SessionCard = ({
           if (!result) return
 
           if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+          if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
           if (isLargeScreen) {
             if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
@@ -391,6 +392,7 @@ export const SessionCard = ({
         if (!result) return
 
         if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+        if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
         if (isLargeScreen) {
           if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
@@ -1235,27 +1237,50 @@ export const SessionList = ({
 }
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+  const playback = false // session.sources_youtubeId || session.sources_streamethId
   return (
-    <div className={cn('flex flex-col shrink-0 gap-3 opacity-40 pointer-events-none', className)}>
+    <div className={cn('flex flex-col shrink-0 gap-3', className)}>
       <div className={cn('flex justify-between items-center')}>
-        <div className="flex flex-col gap-3 font-semibold">Livestream</div>
-        {/* <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
-          <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
-          <div className="text-red font-semibold">Live</div>
-        </div> */}
+        <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
       </div>
 
       <div className="aspect select-none">
-        <div className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]">
-          <VideoIcon
-            className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
-            style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+        {playback && session.sources_youtubeId && (
+          <iframe
+            src={`https://www.youtube.com/embed/${session.sources_youtubeId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-xl"
           />
-        </div>
+        )}
+        {playback && session.sources_streamethId && (
+          <>
+            <iframe
+              src={`https://streameth.org/embed/?session=${session.sources_streamethId}&vod=true`}
+              title="StreamEth video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
+            ></iframe>
+          </>
+        )}
+        {!playback && (
+          <div
+            className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]
+          opacity-40 pointer-events-none"
+          >
+            <VideoIcon
+              className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
+              style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+            />
+          </div>
+        )}
       </div>
 
       <div
-        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white
+         opacity-40 pointer-events-none"
         // @ts-ignore
         style={{ '--color-icon': '#7D52F4' }}
       >
