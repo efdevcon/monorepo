@@ -38,7 +38,7 @@ export default async function Image({ params }: { params: { id: string } }) {
       >
         <div tw="flex flex-col justify-center absolute top-32 left-10 h-[200px] max-w-[525px]">
           <p tw="text-6xl" style={{ fontFamily: "Inter" }}>
-            wslyvh.eth
+            {user.username}
           </p>
         </div>
         <img
