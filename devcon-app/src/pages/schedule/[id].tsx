@@ -1,11 +1,12 @@
 import { AppLayout } from 'components/domain/app/Layout'
 import { SessionView, Livestream, cardClass } from 'components/domain/app/dc7/sessions/index'
 import React from 'react'
-import { fetchSessions } from 'services/event-data'
+import { fetchSessions, useEventVersion } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
 
 const SessionPage = (props: any) => {
+  const version = useEventVersion()
   if (!props.session) return null
 
   return (
@@ -14,7 +15,7 @@ const SessionPage = (props: any) => {
         title={props.session.title}
         description={props.session.description}
         separator="@"
-        imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image`}
+        imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image?v=${version}`}
       />
       <AppLayout pageTitle="Session" breadcrumbs={[{ label: 'Session' }]}>
         <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>

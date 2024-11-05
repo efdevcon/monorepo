@@ -151,7 +151,7 @@ export default async function Image({ params }: { params: { id: string } }) {
           ) : (
             <>
               <div
-                tw={`flex flex-row items-center justify-center rounded-xl font-medium p-1 border border-1 border-[#cfd4eb] ${getTrackColor(
+                tw={`flex flex-row items-center justify-center rounded-xl text-xl font-medium p-1 border border-1 border-[#cfd4eb] ${getTrackColor(
                   data.track
                 )}`}
               >
@@ -169,7 +169,7 @@ export default async function Image({ params }: { params: { id: string } }) {
                     {data.expertise?.toUpperCase()}
                   </span>
                 )}
-                {data.track && <span tw="mx-2">{data.track}</span>}
+                {data.track && <span tw="mx-4">{data.track}</span>}
               </div>
             </>
           )}
