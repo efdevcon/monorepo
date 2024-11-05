@@ -54,7 +54,7 @@ const FilterTrigger = () => {
       <div
         onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
         className={cn(
-          'flex shrink-0 relative items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5  hover:bg-[#dfd8fc] transition-all duration-300',
+          'flex shrink-0 relative items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 transition-all duration-300',
           (sessionFilterOpen || advancedFilterApplied) && 'bg-[#6d3bff] fill-[#7D52F4]'
         )}
       >

@@ -1409,7 +1409,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             {/* <TrackTag track={session.track} className="self-start" /> */}
             <p className="text-lg leading-6 pb-1">{session.title}</p>
           </div>
-          <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
+          <div className="text-2xl lg:text-lg z-10 flex flex-row self-end hidden lg:flex">
             <div
               className="shrink-0 flex self-start justify-center items-start p-2  cursor-pointer hover:scale-110 transition-all duration-300 select-none"
               onClick={e => {

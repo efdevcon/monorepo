@@ -34,6 +34,7 @@ import { RecommendedSpeakers } from './recommendations'
 import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
 import { Button } from 'lib/components/button'
+import { useToast } from 'lib/hooks/use-toast'
 // import { SessionFilterAdvanced } from '../sessions'
 
 export const cardClass =
@@ -557,6 +558,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
   const { account, setSpeakerFavorite } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
+  const { toast } = useToast()
 
   if (!speaker) return null
 
@@ -593,7 +595,18 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
         >
           {/* <div className={cn('absolute inset-0 rounded-bl-2xl rounded-br-2xl z-[10]', css['speaker-gradient-2'])} /> */}
           <div className="font-medium z-10 text-lg translate-y-[3px] text-white max-w-[70%]">{speaker?.name}</div>
-          <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4">
+          <div className="text-2xl lg:text-lg z-10 flex flex-row gap-4 hidden lg:flex">
+            <ShareIcon
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href)
+                toast({
+                  title: 'Copied to clipboard',
+                })
+              }}
+              className="icon cursor-pointer"
+              style={{ '--color-icon': 'white' }}
+            />
+
             <HeartIcon
               onClick={() =>
                 setSpeakerFavorite(speaker.id, account?.favorite_speakers?.includes(speaker.id) ?? false, account)
