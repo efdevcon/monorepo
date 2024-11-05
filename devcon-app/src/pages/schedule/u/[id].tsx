@@ -5,10 +5,11 @@ import { SEO } from 'components/domain/seo'
 import { APP_CONFIG } from 'utils/config'
 import { fetchEvent } from 'services/event-data'
 import { SessionLayout } from 'components/domain/app/dc7/sessions'
+import { Session as SessionType } from 'types/Session'
 
 interface Props extends PropsWithChildren {
   isPersonalizedSchedule: boolean
-  schedule: any
+  schedule: SessionType[]
   user: any
 }
 
@@ -49,7 +50,11 @@ export default (props: any) => {
         pageTitle={`${props.user.username}'s Agenda`}
         breadcrumbs={[{ label: `${props.user.username}'s Agenda` }]}
       >
-        <SEO title={`${props.user.username}'s Agenda`} />
+        <SEO
+          title={`${props.user.username}'s Agenda`}
+          description={`Check out my personalized schedule for Devcon SEA`}
+          imageUrl={`https://devcon-social.netlify.app/schedule/u/${props.paramsId}/opengraph-image`}
+        />
 
         <SessionLayout sessions={props.schedule} event={props.event} />
       </AppLayout>
@@ -75,6 +80,7 @@ export async function getStaticProps(context: any) {
   const { data, user } = await response.json()
   return {
     props: {
+      paramsId: context.params.id,
       event: await fetchEvent(),
       schedule: data,
       user,

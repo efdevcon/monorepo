@@ -19,6 +19,7 @@ import { Speaker as SpeakerType } from 'types/Speaker'
 import router, { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 import { usePathname } from 'next/navigation'
+import { DataProvider } from 'context/data'
 
 // This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
 export const selectedSpeakerSelector = selector({
@@ -294,9 +295,15 @@ if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.work
 const withProviders = (Component: React.ComponentType<AppProps>) => {
   return (props: AppProps) => (
     <RecoilRoot>
-      <AccountContextProvider>
-        <Component {...props} />
-      </AccountContextProvider>
+      <DataProvider>
+        <AccountContextProvider>
+          <Web3Provider>
+            <ZupassProvider>
+              <Component {...props} />
+            </ZupassProvider>
+          </Web3Provider>
+        </AccountContextProvider>
+      </DataProvider>
     </RecoilRoot>
   )
 }
@@ -402,79 +409,75 @@ function App({ Component, pageProps }: AppProps) {
       </Head>
 
       <AppContext>
-        <Web3Provider>
-          <ZupassProvider>
-            <PWAPrompt />
+        <PWAPrompt />
 
-            <Component {...pageProps} />
+        <Component {...pageProps} />
 
-            {sessions && (
-              <DevaBot
-                sessions={sessions}
-                onToggle={() => setDevaBotVisible(!devaBotVisible)}
-                defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
-                setDefaultPrompt={() => setDevaBotVisible(true)}
-                toggled={!!devaBotVisible}
-                notifications={notifications || undefined}
-                notificationsCount={notificationsCount}
-                markNotificationsAsRead={markAllAsRead}
-                SessionComponent={SessionCard}
-                renderNotifications={() => {
-                  const groupNotificationsByDay = (notifications: any[]) => {
-                    const grouped = notifications.reduce((acc, notification) => {
-                      const date = new Date(notification.sendAt)
-                      const today = new Date()
-                      const yesterday = new Date(today)
-                      yesterday.setDate(yesterday.getDate() - 1)
+        {sessions && (
+          <DevaBot
+            sessions={sessions}
+            onToggle={() => setDevaBotVisible(!devaBotVisible)}
+            defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
+            setDefaultPrompt={() => setDevaBotVisible(true)}
+            toggled={!!devaBotVisible}
+            notifications={notifications || undefined}
+            notificationsCount={notificationsCount}
+            markNotificationsAsRead={markAllAsRead}
+            SessionComponent={SessionCard}
+            renderNotifications={() => {
+              const groupNotificationsByDay = (notifications: any[]) => {
+                const grouped = notifications.reduce((acc, notification) => {
+                  const date = new Date(notification.sendAt)
+                  const today = new Date()
+                  const yesterday = new Date(today)
+                  yesterday.setDate(yesterday.getDate() - 1)
 
-                      let key
-                      if (date.toDateString() === today.toDateString()) {
-                        key = 'Today'
-                      } else if (date.toDateString() === yesterday.toDateString()) {
-                        key = 'Yesterday'
-                      } else {
-                        key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
-                      }
-
-                      if (!acc[key]) {
-                        acc[key] = []
-                      }
-                      acc[key].push(notification)
-                      return acc
-                    }, {})
-
-                    return Object.entries(grouped).sort(([a], [b]) => {
-                      if (a === 'Today') return -1
-                      if (b === 'Today') return 1
-                      if (a === 'Yesterday') return -1
-                      if (b === 'Yesterday') return 1
-                      return new Date(b).getTime() - new Date(a).getTime()
-                    })
+                  let key
+                  if (date.toDateString() === today.toDateString()) {
+                    key = 'Today'
+                  } else if (date.toDateString() === yesterday.toDateString()) {
+                    key = 'Yesterday'
+                  } else {
+                    key = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })
                   }
 
-                  const groupedNotifications = groupNotificationsByDay(notifications)
+                  if (!acc[key]) {
+                    acc[key] = []
+                  }
+                  acc[key].push(notification)
+                  return acc
+                }, {})
 
-                  return (
-                    <>
-                      {groupedNotifications.map(([date, notificationsForDay]: any) => (
-                        <div key={date} className="w-full">
-                          <p className="font-semibold my-2">{date}</p>
-                          {notificationsForDay.map((notification: any) => (
-                            <NotificationCard
-                              key={notification.id}
-                              notification={notification}
-                              seen={seenNotifications.has(notification.id)}
-                            />
-                          ))}
-                        </div>
+                return Object.entries(grouped).sort(([a], [b]) => {
+                  if (a === 'Today') return -1
+                  if (b === 'Today') return 1
+                  if (a === 'Yesterday') return -1
+                  if (b === 'Yesterday') return 1
+                  return new Date(b).getTime() - new Date(a).getTime()
+                })
+              }
+
+              const groupedNotifications = groupNotificationsByDay(notifications)
+
+              return (
+                <>
+                  {groupedNotifications.map(([date, notificationsForDay]: any) => (
+                    <div key={date} className="w-full">
+                      <p className="font-semibold my-2">{date}</p>
+                      {notificationsForDay.map((notification: any) => (
+                        <NotificationCard
+                          key={notification.id}
+                          notification={notification}
+                          seen={seenNotifications.has(notification.id)}
+                        />
                       ))}
-                    </>
-                  )
-                }}
-              />
-            )}
-          </ZupassProvider>
-        </Web3Provider>
+                    </div>
+                  ))}
+                </>
+              )
+            }}
+          />
+        )}
       </AppContext>
       <Toaster />
     </>

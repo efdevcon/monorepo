@@ -249,8 +249,8 @@ const TrustModels = (props: any) => {
                 <PopoverContent>
                   <div className="text-sm">
                     You take the email pill... the story ends, you wake up in your bed and believe whatever you want to
-                    believe. You take the Ethereum pill... you stay in Wonderland, and I show you how deep the rabbit
-                    hole goes.
+                    believe. You take the Ethereum pill... you stay in the infinite garden, and I show you how deep the
+                    rabbit hole goes.
                   </div>
                 </PopoverContent>
               </Popover>

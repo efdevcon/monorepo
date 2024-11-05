@@ -240,6 +240,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/speakers-guide',
+        destination: 'https://ef-events.notion.site/Speakers-Devcon-Wiki-127638cdc41580619bb4f8dd7f735e52',
+        permanent: true,
+      },
+      {
         source: '/schedule',
         destination: 'https://app.devcon.org/schedule',
         permanent: true,

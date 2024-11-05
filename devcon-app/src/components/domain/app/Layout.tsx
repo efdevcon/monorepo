@@ -34,10 +34,19 @@ type HeaderProps = {
     icon?: any
     onClick?: () => void
   }[]
+  renderActions?: () => React.ReactNode
   pageTitle: string
 }
 
-const LocationInformation = ({ className, textColor }: { className: string; textColor?: MotionValue<string> }) => {
+const LocationInformation = ({
+  className,
+  textColor,
+  renderActions,
+}: {
+  className: string
+  textColor?: MotionValue<string>
+  renderActions?: () => React.ReactNode
+}) => {
   const [countdown, setCountdown] = useState('')
   const [currentTime, setCurrentTime] = useState('')
 
@@ -88,10 +97,11 @@ const LocationInformation = ({ className, textColor }: { className: string; text
         <Image src={SunCloudy} alt="sun-cloudy" width={24} height={24} />
         <div className="text-lg font-semibold">32°C</div>
       </div> */}
-      <div className="flex gap-4 text-sm font-semibold">
-        <div>{currentTime}</div>
-        <div>{countdown}</div>
-        {/* <motion.div
+      {!renderActions && (
+        <div className="flex gap-4 text-sm font-semibold">
+          <div>{currentTime}</div>
+          <div>{countdown}</div>
+          {/* <motion.div
           className="text-[#000000] text-[13px] font-semibold header-color"
           style={{ color: textColor || '#000000' }}
         >
@@ -103,7 +113,8 @@ const LocationInformation = ({ className, textColor }: { className: string; text
         >
           {countdown}
         </motion.div> */}
-      </div>
+        </div>
+      )}
     </div>
   )
 }
@@ -182,11 +193,11 @@ const Header = (props: HeaderProps) => {
       >
         <div className="flex justify-between items-center min-h-[56px] w-full gap-4 lg:gap-4">
           <motion.div
-            className="absolute hidden md:block inset-0  self-center left-0 w-screen h-full glass z-[-1]"
+            className="absolute hidden lg:block inset-0  self-center left-0 w-screen h-full glass z-[-1]"
             style={{ opacity }}
           ></motion.div>
           <motion.div
-            className="absolute md:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
+            className="absolute lg:hidden inset-0 header-gradient self-center shadow-lg left-0 w-screen h-full z-[-1]"
             style={{ opacity }}
           ></motion.div>
           <BackButton />
@@ -194,7 +205,7 @@ const Header = (props: HeaderProps) => {
             <AppIcon style={{ fontSize: 20 }} />
           </div> */}
 
-          <div className="flex gap-6 items-center grow line-clamp-1">
+          <div className="flex gap-6 items-center grow line-clamp-1 shrink-0">
             {/* <div className="text-2xl">{props.pageTitle}</div> */}
 
             <div className="flex items-center gap-1.5 text-lg lg:text-base overflow-hidden">
@@ -259,8 +270,12 @@ const Header = (props: HeaderProps) => {
               </BreadcrumbList>
             </Breadcrumb> */}
           </div>
-          <div className="flex items-center justify-center gap-6 shrink-0">
-            <LocationInformation className="hidden sm:flex items-center justify-center gap-6" />
+          <div className="flex items-center justify-center gap-6">
+            {!props.renderActions && (
+              <LocationInformation className="hidden sm:flex items-center justify-center gap-6" />
+            )}
+
+            {props.renderActions && props.renderActions()}
 
             <div className="flex hidden items-center justify-center gap-4 ml-4 user-select-none">
               {/* <Link href="/login">
@@ -275,11 +290,11 @@ const Header = (props: HeaderProps) => {
                   className="cursor-pointer hover:scale-110 transition-transform duration-300 icon !flex items-center justify-center"
                   style={{ width: 18, height: 18 }}
                 />
-              </Link> */}
+              </Link> 
               <ThreeDotsIcon
                 className="cursor-pointer hover:scale-110 transition-transform duration-300 icon !flex items-center justify-center"
                 style={{ width: 18, height: 18 }}
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -471,6 +486,7 @@ export const AppLayout = (
   props: {
     showLogin?: boolean
     pageTitle: string
+    renderActions?: () => React.ReactNode
     breadcrumbs: HeaderProps['breadcrumbs']
   } & PropsWithChildren
 ) => {
@@ -500,7 +516,7 @@ export const AppLayout = (
         //   } as any
         // }
       >
-        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} />
+        <Header pageTitle={props.pageTitle} breadcrumbs={props.breadcrumbs} renderActions={props.renderActions} />
 
         {/* <Image
           src={LoginBackdrop}

@@ -30,3 +30,4 @@ jobs:
           add: "devcon-api/data"
           default_author: github_actions
           message: "[action] Pretalx Sync"
+          pull: "--rebase --autostash"

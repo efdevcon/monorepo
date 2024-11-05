@@ -34,14 +34,14 @@
   }
 
   [data-type='header'] {
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
       background: linear-gradient(to right, #7a3aff, #633cff, #b04cd4) !important;
     }
   }
 
   [data-type='header'],
   :global(.header-color) {
-    @media (max-width: 767px) {
+    @media (max-width: 1023px) {
       --color-icon: #fff !important;
       color: #fff !important;
     }

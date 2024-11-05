@@ -34,6 +34,8 @@ import ListIcon from 'assets/icons/dc-7/listview.svg'
 import CalendarExport from 'lib/assets/images/modal-export.png'
 import Entertainment from 'assets/images/dc-7/entertainment.png'
 import { generateCalendarExport } from 'lib/components/add-to-calendar'
+import CollapsedIcon from 'assets/icons/collapsed.svg'
+import ExpandedIcon from 'assets/icons/expanded.svg'
 import {
   devaBotVisibleAtom,
   selectedSessionAtom,
@@ -195,7 +197,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   }
 }
 
-const getExpertiseColor = (expertise: string) => {
+export const getExpertiseColor = (expertise: string) => {
   if (expertise === 'Beginner') return 'bg-[#7dffa050]'
   if (expertise === 'Intermediate') return 'bg-[#baacff50]'
   if (expertise === 'Expert') return 'bg-[#faa8a850]'
@@ -203,7 +205,7 @@ const getExpertiseColor = (expertise: string) => {
   return 'bg-[#765ae450]'
 }
 
-const getTrackColor = (track: string) => {
+export const getTrackColor = (track: string) => {
   if (track.startsWith('[CLS]')) return '!bg-[#fff2ca]'
 
   switch (track) {
@@ -234,7 +236,7 @@ const getTrackColor = (track: string) => {
   }
 }
 
-const getTrackLogo = (track: string) => {
+export const getTrackLogo = (track: string) => {
   let trackLogo = CityGuide
 
   if (track === 'Core Protocol') {
@@ -267,7 +269,7 @@ const getTrackLogo = (track: string) => {
   if (track === 'Layer 2') {
     trackLogo = Layer2
   }
-  if (track === 'Experiences') {
+  if (track === 'Experiences' || track === 'Entertainment') {
     trackLogo = Entertainment
   }
 
@@ -339,8 +341,8 @@ export const SessionCard = ({
   const pathname = usePathname()
   const windowWidth = useWindowWidth()
   const isLargeScreen = windowWidth > 1024
-
   const trackLogo = getTrackLogo(track)
+  const { isPersonalizedSchedule } = usePersonalized()
 
   if (tiny) {
     return (
@@ -359,6 +361,7 @@ export const SessionCard = ({
           if (!result) return
 
           if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+          if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
           if (isLargeScreen) {
             if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
@@ -393,6 +396,7 @@ export const SessionCard = ({
         if (!result) return
 
         if (pathname === '/schedule' && isLargeScreen) e.preventDefault()
+        if (isPersonalizedSchedule && isLargeScreen) e.preventDefault()
 
         if (isLargeScreen) {
           if (selectedSession?.sourceId === sourceId && pathname === '/schedule') {
@@ -532,6 +536,10 @@ const filterTagClass = (selected: boolean) => {
   )
 }
 
+const OpenAndClose = () => {
+  return <div className="flex gap-2"></div>
+}
+
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
@@ -550,7 +558,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   console.log(filterOptions, 'filterOptions')
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 pb-0">
       <div>
         <div className="flex justify-between gap-3 pb-4 font-semibold">
           <div>Type</div>
@@ -669,50 +677,50 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      <Separator className="my-1" />
+      {/* <Separator className="my-1" /> */}
 
-      <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center">
-        <div
-          onClick={() => {
-            const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-            setSessionFilter({
-              ...sessionFilter,
-              ...advancedFilterKeys.reduce((acc, key) => {
-                acc[key] = {}
-                return acc
-              }, {} as any),
-            })
+      <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+        <div className="flex gap-2 w-full">
+          <Button
+            onClick={() => {
+              setSessionFilterOpen(false)
+            }}
+            color="purple-2"
+            className="w-auto grow-0 shrink-0 !py-2"
+            fat
+          >
+            <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+          </Button>
 
-            setSessionFilterOpen(false)
-          }}
-          className={tagClassTwo(false, ' !text-[black] font-semibold')}
-        >
-          Reset All
+          <Button
+            onClick={() => {
+              const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+              setSessionFilter({
+                ...sessionFilter,
+                ...advancedFilterKeys.reduce((acc, key) => {
+                  acc[key] = {}
+                  return acc
+                }, {} as any),
+              })
+
+              setSessionFilterOpen(false)
+            }}
+            color="purple-2"
+            className="grow !py-2"
+            fat
+            fill
+          >
+            Reset Filters
+          </Button>
         </div>
       </div>
-
-      {/* <Button
-        className="mt-2 flex self-center items-center gap-2 text-sm"
-        fill
-        color="black-1"
-        onClick={() => {
-          const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-          setSessionFilter({
-            ...sessionFilter,
-            ...advancedFilterKeys.reduce((acc, key) => {
-              acc[key] = {}
-              return acc
-            }, {} as any),
-          })
-
-          setSessionFilterOpen(false)
-        }}
-      >
-        <FilterIcon className="icon" style={{ fontSize: '12px' }} />
-        Reset Filter
-      </Button> */}
     </div>
   )
+}
+
+export const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+export const isAdvancedFilterApplied = (sessionFilter: any) => {
+  return advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
 }
 
 export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
@@ -755,9 +763,6 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
     }
   }
 
-  const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-  const advancedFilterApplied = advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
-
   return (
     <>
       <div
@@ -797,7 +802,10 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         </div>
 
         {!isPersonalizedSchedule && (
-          <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl mr-4">
+          <div
+            data-type="session-filter-actions"
+            className="flex flex-row gap-3 items-center text-xl mr-4 hidden lg:flex"
+          >
             <div className="text-xs font-semibold line-clamp-2">
               {(() => {
                 const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
@@ -826,14 +834,14 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
               onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
               className={cn(
                 'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
-                (sessionFilterOpen || advancedFilterApplied) &&
+                (sessionFilterOpen || isAdvancedFilterApplied(sessionFilter)) &&
                   'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
               )}
             >
               <FilterIcon
                 className="icon"
                 style={{
-                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
+                  '--color-icon': sessionFilterOpen || isAdvancedFilterApplied(sessionFilter) ? '#7d52f4' : 'black',
                   fontSize: '24px',
                 }}
               />
@@ -1083,31 +1091,36 @@ export const SessionList = ({
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
-    typeof window !== 'undefined' ? scrollRestorationTracker[history.state.key]?.page ?? 1 : 1
+    typeof window !== 'undefined' ? scrollRestorationTracker[window.history.state?.key]?.page ?? 1 : 1
   )
   const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
   const { isPersonalizedSchedule } = usePersonalized()
 
-  if (typeof window !== 'undefined' && !scrollRestorationTracker[history.state.key]) {
-    scrollRestorationTracker[history.state.key] = {
-      lastScrollY: 0,
-      page: 1,
+  if (typeof window !== 'undefined') {
+    if (!scrollRestorationTracker[window.history?.state?.key]) {
+      scrollRestorationTracker[window.history?.state?.key] = {
+        lastScrollY: 0,
+        page: 1,
+      }
+    } else if (scrollRestorationTracker[window.history?.state?.key]) {
+      scrollRestorationTracker[window.history?.state?.key].page = page
     }
-  } else if (scrollRestorationTracker[history.state.key]) {
-    scrollRestorationTracker[history.state.key].page = page
   }
 
   useEffect(() => {
-    if (scrollRestorationTracker[history.state.key] && scrollRestorationTracker[history.state.key].lastScrollY) {
+    if (
+      scrollRestorationTracker[window.history.state?.key] &&
+      scrollRestorationTracker[window.history.state?.key].lastScrollY
+    ) {
       window.scrollTo({
-        top: scrollRestorationTracker[history.state.key].lastScrollY,
+        top: scrollRestorationTracker[window.history.state?.key].lastScrollY,
         behavior: 'smooth',
       })
     }
 
     const handleScroll = () => {
-      if (scrollRestorationTracker[history.state.key]) {
-        scrollRestorationTracker[history.state.key].lastScrollY = window.scrollY
+      if (scrollRestorationTracker[window.history.state?.key]) {
+        scrollRestorationTracker[window.history.state?.key].lastScrollY = window.scrollY
       }
 
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 20) {
@@ -1122,7 +1135,14 @@ export const SessionList = ({
     }
   }, [])
 
+  const isInitialMount = useRef(true)
+
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+
     setPage(1)
   }, [filteredSessions])
 
@@ -1228,27 +1248,50 @@ export const SessionList = ({
 }
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+  const playback = false // session.sources_youtubeId || session.sources_streamethId
   return (
-    <div className={cn('flex flex-col shrink-0 gap-3 opacity-40 pointer-events-none', className)}>
+    <div className={cn('flex flex-col shrink-0 gap-3', className)}>
       <div className={cn('flex justify-between items-center')}>
-        <div className="flex flex-col gap-3 font-semibold">Livestream</div>
-        {/* <div className="text-xs text-red bg-[#FFC0C5] px-2 py-0.5 rounded-full flex items-center gap-1">
-          <LivestreamIcon className="icon shrink-0" style={{ '--color-icon': 'red' }} />
-          <div className="text-red font-semibold">Live</div>
-        </div> */}
+        <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
       </div>
 
       <div className="aspect select-none">
-        <div className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]">
-          <VideoIcon
-            className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
-            style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+        {playback && session.sources_youtubeId && (
+          <iframe
+            src={`https://www.youtube.com/embed/${session.sources_youtubeId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full rounded-xl"
           />
-        </div>
+        )}
+        {playback && session.sources_streamethId && (
+          <>
+            <iframe
+              src={`https://streameth.org/embed/?session=${session.sources_streamethId}&vod=true`}
+              title="StreamEth video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
+            ></iframe>
+          </>
+        )}
+        {!playback && (
+          <div
+            className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]
+          opacity-40 pointer-events-none"
+          >
+            <VideoIcon
+              className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
+              style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+            />
+          </div>
+        )}
       </div>
 
       <div
-        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white
+         opacity-40 pointer-events-none"
         // @ts-ignore
         style={{ '--color-icon': '#7D52F4' }}
       >
@@ -1282,6 +1325,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [cal, setCal] = React.useState<any>(null)
+  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
 
   React.useEffect(() => {
     if (!session) return
@@ -1338,7 +1382,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       className={cn(
         cardClass,
         'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
-        !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
+        !standalone && 'pb-0 lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
       <div
@@ -1370,7 +1414,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             {/* <TrackTag track={session.track} className="self-start" /> */}
             <p className="text-lg leading-6 pb-1">{session.title}</p>
           </div>
-          <div className="text-2xl lg:text-lg z-10 flex flex-row self-end">
+          <div className="text-2xl lg:text-lg z-10 flex flex-row self-end hidden lg:flex">
             <div
               className="shrink-0 flex self-start justify-center items-start p-2  cursor-pointer hover:scale-110 transition-all duration-300 select-none"
               onClick={e => {
@@ -1570,14 +1614,26 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
 
       {!standalone && (
-        <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
-          <Link
-            to={`/schedule/${session.sourceId}`}
-            className={tagClassTwo(false, 'text-[black] font-semibold')}
-            indicateExternal
-          >
-            Expand Session Page
-          </Link>
+        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+          <div className="flex gap-2 w-full">
+            <Button
+              onClick={() => {
+                setSelectedSession(null)
+              }}
+              color="purple-2"
+              className="w-auto grow-0 shrink-0 !py-2"
+              fat
+            >
+              <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+            </Button>
+
+            <Link to={`/schedule/${session.sourceId}`} className="flex w-auto grow shrink-0">
+              <Button color="purple-2" className="grow !py-2" fat fill>
+                <ExpandedIcon className="icon mr-2" style={{ fontSize: '14px' }} />
+                Expand Session
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

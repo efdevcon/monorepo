@@ -31,4 +31,9 @@ export interface Session {
   image?: string
   resources?: string[]
   tags?: string
+  sources_ipfsHash?: string
+  sources_swarmHash?: string
+  sources_youtubeId?: string
+  sources_livepeerId?: string
+  sources_streamethId?: string
 }
