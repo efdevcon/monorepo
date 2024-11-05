@@ -138,7 +138,16 @@ const useSpeakerFilter = (speakers: SpeakerType[] | null) => {
     return speakers.filter(speaker => {
       const isFavorited = account?.favorite_speakers?.includes(speaker.id)
 
-      const matchesText = speaker.name.toLowerCase().includes(speakerFilter.text.toLowerCase())
+      const matchesText = speaker.name
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .includes(
+          speakerFilter.text
+            .toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+        )
       const matchesLetter = speakerFilter.letter === '' || speaker.name[0].toUpperCase() === speakerFilter.letter
       const matchesType =
         Object.keys(speakerFilter.type).length === 0 ||
