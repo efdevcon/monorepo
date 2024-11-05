@@ -34,6 +34,8 @@ import ListIcon from 'assets/icons/dc-7/listview.svg'
 import CalendarExport from 'lib/assets/images/modal-export.png'
 import Entertainment from 'assets/images/dc-7/entertainment.png'
 import { generateCalendarExport } from 'lib/components/add-to-calendar'
+import CollapsedIcon from 'assets/icons/collapsed.svg'
+import ExpandedIcon from 'assets/icons/expanded.svg'
 import {
   devaBotVisibleAtom,
   selectedSessionAtom,
@@ -193,7 +195,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   }
 }
 
-const getExpertiseColor = (expertise: string) => {
+export const getExpertiseColor = (expertise: string) => {
   if (expertise === 'Beginner') return 'bg-[#7dffa050]'
   if (expertise === 'Intermediate') return 'bg-[#baacff50]'
   if (expertise === 'Expert') return 'bg-[#faa8a850]'
@@ -201,7 +203,7 @@ const getExpertiseColor = (expertise: string) => {
   return 'bg-[#765ae450]'
 }
 
-const getTrackColor = (track: string) => {
+export const getTrackColor = (track: string) => {
   if (track.startsWith('[CLS]')) return '!bg-[#fff2ca]'
 
   switch (track) {
@@ -232,7 +234,7 @@ const getTrackColor = (track: string) => {
   }
 }
 
-const getTrackLogo = (track: string) => {
+export const getTrackLogo = (track: string) => {
   let trackLogo = CityGuide
 
   if (track === 'Core Protocol') {
@@ -265,7 +267,7 @@ const getTrackLogo = (track: string) => {
   if (track === 'Layer 2') {
     trackLogo = Layer2
   }
-  if (track === 'Experiences') {
+  if (track === 'Experiences' || track === 'Entertainment') {
     trackLogo = Entertainment
   }
 
@@ -532,6 +534,10 @@ const filterTagClass = (selected: boolean) => {
   )
 }
 
+const OpenAndClose = () => {
+  return <div className="flex gap-2"></div>
+}
+
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
@@ -550,7 +556,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   console.log(filterOptions, 'filterOptions')
 
   return (
-    <div className="flex flex-col gap-4 p-4">
+    <div className="flex flex-col gap-4 p-4 pb-0">
       <div>
         <div className="flex justify-between gap-3 pb-4 font-semibold">
           <div>Type</div>
@@ -669,50 +675,59 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      <Separator className="my-1" />
+      {/* <Separator className="my-1" /> */}
 
-      <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center">
-        <div
-          onClick={() => {
-            const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-            setSessionFilter({
-              ...sessionFilter,
-              ...advancedFilterKeys.reduce((acc, key) => {
-                acc[key] = {}
-                return acc
-              }, {} as any),
-            })
+      <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+        <div className="flex gap-2 w-full">
+          <Button
+            onClick={() => {
+              const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+              setSessionFilter({
+                ...sessionFilter,
+                ...advancedFilterKeys.reduce((acc, key) => {
+                  acc[key] = {}
+                  return acc
+                }, {} as any),
+              })
 
-            setSessionFilterOpen(false)
-          }}
-          className={tagClassTwo(false, ' !text-[black] font-semibold')}
-        >
-          Reset All
+              setSessionFilterOpen(false)
+            }}
+            color="purple-2"
+            className="w-auto grow-0 shrink-0 !py-2"
+            fat
+          >
+            <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+          </Button>
+
+          <Button
+            onClick={() => {
+              const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+              setSessionFilter({
+                ...sessionFilter,
+                ...advancedFilterKeys.reduce((acc, key) => {
+                  acc[key] = {}
+                  return acc
+                }, {} as any),
+              })
+
+              setSessionFilterOpen(false)
+            }}
+            color="purple-2"
+            className="grow !py-2"
+            fat
+            fill
+          >
+            Reset Filters
+          </Button>
         </div>
       </div>
-
-      {/* <Button
-        className="mt-2 flex self-center items-center gap-2 text-sm"
-        fill
-        color="black-1"
-        onClick={() => {
-          const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-          setSessionFilter({
-            ...sessionFilter,
-            ...advancedFilterKeys.reduce((acc, key) => {
-              acc[key] = {}
-              return acc
-            }, {} as any),
-          })
-
-          setSessionFilterOpen(false)
-        }}
-      >
-        <FilterIcon className="icon" style={{ fontSize: '12px' }} />
-        Reset Filter
-      </Button> */}
     </div>
   )
+}
+
+export const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+export const isAdvancedFilterApplied = (sessionFilter: any) => {
+  return advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
 }
 
 export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
@@ -755,9 +770,6 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
     }
   }
 
-  const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-  const advancedFilterApplied = advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
-
   return (
     <>
       <div
@@ -797,7 +809,10 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
         </div>
 
         {!isPersonalizedSchedule && (
-          <div data-type="session-filter-actions" className="flex flex-row gap-3 items-center text-xl mr-4">
+          <div
+            data-type="session-filter-actions"
+            className="flex flex-row gap-3 items-center text-xl mr-4 hidden lg:flex"
+          >
             <div className="text-xs font-semibold line-clamp-2">
               {(() => {
                 const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
@@ -826,14 +841,14 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
               onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
               className={cn(
                 'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
-                (sessionFilterOpen || advancedFilterApplied) &&
+                (sessionFilterOpen || isAdvancedFilterApplied(sessionFilter)) &&
                   'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
               )}
             >
               <FilterIcon
                 className="icon"
                 style={{
-                  '--color-icon': sessionFilterOpen || advancedFilterApplied ? '#7d52f4' : 'black',
+                  '--color-icon': sessionFilterOpen || isAdvancedFilterApplied(sessionFilter) ? '#7d52f4' : 'black',
                   fontSize: '24px',
                 }}
               />
@@ -1314,6 +1329,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [cal, setCal] = React.useState<any>(null)
+  const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
 
   React.useEffect(() => {
     if (!session) return
@@ -1370,7 +1386,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       className={cn(
         cardClass,
         'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
-        !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
+        !standalone && 'pb-0 lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
       <div
@@ -1602,14 +1618,26 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
 
       {!standalone && (
-        <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
-          <Link
-            to={`/schedule/${session.sourceId}`}
-            className={tagClassTwo(false, 'text-[black] font-semibold')}
-            indicateExternal
-          >
-            Expand Session Page
-          </Link>
+        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+          <div className="flex gap-2 w-full">
+            <Button
+              onClick={() => {
+                setSelectedSession(null)
+              }}
+              color="purple-2"
+              className="w-auto grow-0 shrink-0 !py-2"
+              fat
+            >
+              <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+            </Button>
+
+            <Link to={`/schedule/${session.sourceId}`} className="flex w-auto grow shrink-0">
+              <Button color="purple-2" className="grow !py-2" fat fill>
+                <ExpandedIcon className="icon mr-2" style={{ fontSize: '14px' }} />
+                Expand Session
+              </Button>
+            </Link>
+          </div>
         </div>
       )}
     </div>

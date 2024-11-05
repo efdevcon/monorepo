@@ -96,7 +96,7 @@ export const Popup = ({
             onClick={(e) => e.stopPropagation()}
             className="absolute bottom-0 bg-white self-center rounded-2xl rounded-bl-none rounded-br-none mb-0  shadow flex"
           >
-            <div className="absolute top-[-12px] left-0 translate-y-[-100%] w-full flex items-center justify-center mb-2 pointer-events-none">
+            {/* <div className="absolute top-[-12px] left-0 translate-y-[-100%] w-full flex items-center justify-center mb-2 pointer-events-none">
               <Button
                 onClick={() => setOpen(false)}
                 fill
@@ -106,8 +106,8 @@ export const Popup = ({
               >
                 Back to Overview
               </Button>
-            </div>
-            <div className="max-w-[500px] min-w-[300px] w-screen  max-h-[80vh] overflow-auto px-4 p-4 pb-8 lg:pb-4 no-scrollbar">
+            </div> */}
+            <div className="max-w-[500px] min-w-[300px] w-screen  max-h-[80vh] overflow-auto px-4 p-4 mb-8 pb-0 no-scrollbar">
               {children}
             </div>
           </motion.div>

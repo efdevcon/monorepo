@@ -5,7 +5,7 @@ import { fetchSpeaker, fetchSpeakers } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
 
-export default (props: any) => {
+const SpeakerPage = (props: any) => {
   if (!props.speaker) return null
 
   return (
@@ -25,6 +25,8 @@ export default (props: any) => {
     </>
   )
 }
+
+export default SpeakerPage
 
 export async function getStaticPaths() {
   const speakers = await fetchSpeakers()

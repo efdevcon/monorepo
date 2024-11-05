@@ -5,7 +5,7 @@ import { fetchSessions } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
 
-export default (props: any) => {
+const SessionPage = (props: any) => {
   if (!props.session) return null
 
   return (
@@ -16,7 +16,7 @@ export default (props: any) => {
         separator="@"
         imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image`}
       />
-      <AppLayout pageTitle={props.session.title} breadcrumbs={[{ label: props.session.title }]}>
+      <AppLayout pageTitle="Session" breadcrumbs={[{ label: 'Session' }]}>
         <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>
           <div className={cn('basis-[50%] grow')}>
             <SessionView session={props.session} standalone />
@@ -30,6 +30,8 @@ export default (props: any) => {
     </>
   )
 }
+
+export default SessionPage
 
 export async function getStaticPaths() {
   const sessions = await fetchSessions()

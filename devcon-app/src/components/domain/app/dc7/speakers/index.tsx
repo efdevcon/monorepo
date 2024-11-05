@@ -31,6 +31,9 @@ import { Popup } from 'lib/components/pop-up'
 import { useAccountContext } from 'context/account-context'
 import moment from 'moment'
 import { RecommendedSpeakers } from './recommendations'
+import CollapsedIcon from 'assets/icons/collapsed.svg'
+import ExpandedIcon from 'assets/icons/expanded.svg'
+import { Button } from 'lib/components/button'
 // import { SessionFilterAdvanced } from '../sessions'
 
 export const cardClass =
@@ -281,7 +284,7 @@ export const SpeakerFilter = ({ filterOptions }: { filterOptions: any }) => {
           )}
         </div>
 
-        <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-xl pr-2">
+        <div data-type="speaker-filter-actions" className="flex-row gap-3 items-center text-xl pr-2 hidden lg:flex">
           {/* <FilterIcon
             className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
             style={{ '--color-icon': '#99A0AE' }}
@@ -553,6 +556,7 @@ export const SpeakerSessions = ({
 export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | null; standalone?: boolean }) => {
   const { account, setSpeakerFavorite } = useAccountContext()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [selectedSpeaker, setSelectedSpeaker] = useRecoilState(selectedSpeakerAtom)
 
   if (!speaker) return null
 
@@ -562,7 +566,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       className={cn(
         cardClass,
         'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
-        !standalone && 'lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
+        !standalone && 'pb-0 lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
     >
       {/* <Button color="black-1" fill className="self-center text-sm sticky top-[76px] z-10">
@@ -693,6 +697,29 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
       <SpeakerSessions speaker={speaker} className={cn(standalone && '!border-none shrink-0 lg:hidden')} />
 
       {!standalone && (
+        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+          <div className="flex gap-2 w-full">
+            <Button
+              onClick={() => {
+                setSelectedSpeaker(null)
+              }}
+              color="purple-2"
+              className="w-auto grow-0 shrink-0 !py-2"
+              fat
+            >
+              <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+            </Button>
+
+            <Link to={`/speakers/${speaker.sourceId}`} className="flex w-auto grow shrink-0">
+              <Button color="purple-2" className="grow !py-2" fat fill>
+                <ExpandedIcon className="icon mr-2" style={{ fontSize: '14px' }} />
+                Expand Speaker
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
+      {/* {!standalone && (
         <div className="sticky bottom-0 left-0 right-0 flex justify-center shrink-0">
           <Link
             to={`/speakers/${speaker.sourceId}`}
@@ -702,7 +729,7 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
             Expand Speaker Page
           </Link>
         </div>
-      )}
+      )} */}
     </div>
   )
 }
