@@ -681,15 +681,6 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         <div className="flex gap-2 w-full">
           <Button
             onClick={() => {
-              const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
-              setSessionFilter({
-                ...sessionFilter,
-                ...advancedFilterKeys.reduce((acc, key) => {
-                  acc[key] = {}
-                  return acc
-                }, {} as any),
-              })
-
               setSessionFilterOpen(false)
             }}
             color="purple-2"
