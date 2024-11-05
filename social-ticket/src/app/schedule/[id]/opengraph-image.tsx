@@ -76,7 +76,7 @@ export default async function Image({ params }: { params: { id: string } }) {
     if (title.length > 100) return "text-4xl";
     if (title.length > 90) return "text-4xl leading-snug";
     if (title.length > 70) return "text-5xl leading-snug";
-    if (title.length > 40) return "text-5xl leading-snug";
+    if (title.length > 35) return "text-5xl leading-snug";
     if (title.length > 18) return "text-6xl leading-snug";
 
     return "text-7xl leading-snug";
