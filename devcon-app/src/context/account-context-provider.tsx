@@ -13,6 +13,7 @@ import { useAppKit } from '@reown/appkit/react'
 import { POD } from '@pcd/pod'
 import { Button } from 'lib/components/button'
 import PassportLogoBlack from 'assets/images/dc-7/passport-logo-black.png'
+import { useQueryClient } from '@tanstack/react-query'
 
 interface AccountContextProviderProps {
   children: ReactNode
@@ -20,6 +21,7 @@ interface AccountContextProviderProps {
 
 export const AccountContextProvider = ({ children }: AccountContextProviderProps) => {
   const { close } = useAppKit()
+  const queryClient = useQueryClient()
   const router = useRouter()
   const [showLoginRequired, setShowLoginRequired] = useState(false)
   const [context, setContext] = useState<AccountContextType>({
@@ -143,6 +145,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
 
     if (response.status === 200) {
       close()
+      await queryClient.invalidateQueries({ queryKey: ['account'] })
       setContext({ ...context, account: undefined, loading: true })
       router.push('/login')
       return true
@@ -182,6 +185,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     if (!response) return false
 
     if (response.status === 200) {
+      await queryClient.invalidateQueries({ queryKey: ['account'] })
       setContext({ ...context, account: account, loading: false })
       return true
     }
@@ -219,6 +223,7 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     })
 
     if (response.status === 200) {
+      await queryClient.invalidateQueries({ queryKey: ['account'] })
       setContext({ ...context, account: undefined, loading: true })
       router.push('/login')
       return true
