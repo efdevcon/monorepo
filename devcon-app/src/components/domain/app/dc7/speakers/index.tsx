@@ -416,7 +416,14 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
     }
   }, [])
 
+  const isInitialMount = useRef(true)
+
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false
+      return
+    }
+
     setPage(1)
   }, [filteredSpeakers])
 
