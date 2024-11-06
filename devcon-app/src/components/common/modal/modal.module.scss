@@ -11,7 +11,7 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  padding: $gaps-gap-4;
+  padding: $gaps-gap-6;
   padding-top: $gaps-gap-8;
   padding-bottom: $gaps-gap-8;
   z-index: 100;
@@ -60,8 +60,8 @@
       right: $gaps-gap-8;
 
       @media (max-width: $breakpoints-lg) {
-        top: $gaps-gap-4;
-        right: $gaps-gap-4;
+        top: $gaps-gap-6;
+        right: $gaps-gap-6;
       }
       
       cursor: pointer;
@@ -116,6 +116,7 @@
         width: 560px;
         flex-direction: column;
         justify-content: space-between;
+        padding: 16px;
 
         @media (max-width: $breakpoints-lg) {
           width: auto;
