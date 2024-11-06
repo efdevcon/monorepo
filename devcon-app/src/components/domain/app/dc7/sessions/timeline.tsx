@@ -22,7 +22,7 @@ const RoomGrid = ({ rooms }: { rooms: string[] }) => {
       {rooms.map((room, index) => (
         <div
           key={index}
-          className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100"
+          className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100 glass"
         >
           {room === 'Decompression Room' ? (
             <>
@@ -58,90 +58,96 @@ const DayGrid = ({
           {day}
         </div>
       </div>
-      <div
-        className="grid sticky top-0"
-        style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
-      >
-        {timeSlots.map((time, index) => (
-          <div
-            key={index}
-            data-id={time.format('h:mm')}
-            className="#F5F7FA py-2 text-sm whitespace-nowrap flex items-center h-[40px] border border-gray-200 border-t-solid !bg-[#F5F7FA]"
-          >
+      <div className="flex flex-col relative">
+        <div
+          className="grid shrink-0 sticky top-0"
+          style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
+        >
+          {timeSlots.map((time, index) => (
             <div
-              style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
-              className="flex flex-col justify-center items-center"
+              key={index}
+              data-id={time.format('h:mm')}
+              className="#F5F7FA py-2 text-sm whitespace-nowrap flex items-center h-[40px] border border-gray-200 border-t-solid !bg-[#F5F7FA]"
             >
-              <p>{time.format('h:mm A')}</p>
-              <p className="text-[8px] leading-[6px] text-gray-500">Nov 12</p>
+              <div
+                style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
+                className="flex flex-col justify-center items-center"
+              >
+                <p>{time.format('h:mm A')}</p>
+                <p className="text-[8px] leading-[6px] text-gray-500">Nov 12</p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+        <div
+          className="grid relative shrink-0"
+          style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
+        >
+          {rooms.map((room, roomIndex) => {
+            const sessions = sessionsByRoom[room]
 
-        {rooms.map((room, roomIndex) => {
-          const sessions = sessionsByRoom[room]
+            const sessionByTimeslotStart: Record<
+              string,
+              { session: SessionType; columns: number; columnIndent: number }
+            > = {}
 
-          const sessionByTimeslotStart: Record<
-            string,
-            { session: SessionType; columns: number; columnIndent: number }
-          > = {}
+            if (sessions) {
+              sessions.forEach((session: SessionType) => {
+                const start = moment.utc(session.slot_start).add(7, 'hours')
+                const end = moment.utc(session.slot_end).add(7, 'hours')
+                const durationInMinutes = end.diff(start, 'minutes')
+                // const columns = Math.ceil(durationInMinutes / 10) // Since timeslots are 10 minutes each
+                const columns = durationInMinutes / 10
 
-          if (sessions) {
-            sessions.forEach((session: SessionType) => {
-              const start = moment.utc(session.slot_start).add(7, 'hours')
-              const end = moment.utc(session.slot_end).add(7, 'hours')
-              const durationInMinutes = end.diff(start, 'minutes')
-              // const columns = Math.ceil(durationInMinutes / 10) // Since timeslots are 10 minutes each
-              const columns = durationInMinutes / 10
+                const excessMinutes = start.minute() % 10
 
-              const excessMinutes = start.minute() % 10
+                const nearestTen = start.clone().subtract(excessMinutes, 'minutes')
 
-              const nearestTen = start.clone().subtract(excessMinutes, 'minutes')
+                const startFormatted = nearestTen.format('h:mm A')
 
-              const startFormatted = nearestTen.format('h:mm A')
+                sessionByTimeslotStart[startFormatted] = {
+                  session,
+                  columns,
+                  columnIndent: excessMinutes === 5 ? 0.5 : 0,
+                }
+              })
+            }
 
-              sessionByTimeslotStart[startFormatted] = {
-                session,
-                columns,
-                columnIndent: excessMinutes === 5 ? 0.5 : 0,
-              }
-            })
-          }
+            return (
+              <React.Fragment key={roomIndex}>
+                {timeSlots.map((timeslot, slotIndex) => {
+                  const match = sessionByTimeslotStart[timeslot.format('h:mm A')]
 
-          return (
-            <React.Fragment key={roomIndex}>
-              {timeSlots.map((timeslot, slotIndex) => {
-                const match = sessionByTimeslotStart[timeslot.format('h:mm A')]
+                  if (!match)
+                    //  || room !== 'Main Stage')
+                    return <div key={slotIndex} className="bg-white border border-gray-100 border-solid h-[40px]"></div>
 
-                if (!match)
-                  //  || room !== 'Main Stage')
-                  return <div key={slotIndex} className="bg-white border border-gray-100 border-solid h-[40px]"></div>
-
-                return (
-                  <div
-                    key={slotIndex}
-                    className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
-                    // style={{ gridColumn: `span ${match.columns}` }}
-                  >
+                  return (
                     <div
-                      className={``}
-                      style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
+                      key={slotIndex}
+                      className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
+                      // style={{ gridColumn: `span ${match.columns}` }}
                     >
-                      <SessionCard session={match.session} tiny />
+                      <div
+                        className={``}
+                        style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
+                      >
+                        <SessionCard session={match.session} tiny />
+                      </div>
                     </div>
-                  </div>
-                )
-              })}
-            </React.Fragment>
-          )
-        })}
+                  )
+                })}
+              </React.Fragment>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
 }
 
 const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: Event; days: string[] }) => {
-  console.log(days, 'days')
+  // console.log(days, 'days')
 
   //   const { rooms, days, sessionsByDay } = useMemo(() => {
   //     // Get unique rooms from all sessions
@@ -184,7 +190,7 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
   return (
     <div className="flex flex-nowrap overflow-hidden">
       <RoomGrid rooms={rooms} />
-      <SwipeToScroll>
+      <SwipeToScroll noScrollReset>
         <div className="flex flex-nowrap gap-[120px]">
           {days.map(day => {
             const sessionsForDay = sessions.filter(session => moment(session.slot_start).format('MMM DD') === day)
