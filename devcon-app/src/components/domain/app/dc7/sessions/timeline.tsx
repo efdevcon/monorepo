@@ -120,11 +120,11 @@ const DayGrid = ({
                 return (
                   <div
                     key={slotIndex}
-                    className={`bg-white border border-gray-100 border-solid h-[40px] max-w-[100px]`}
+                    className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
                     // style={{ gridColumn: `span ${match.columns}` }}
                   >
                     <div
-                      className={`relative hover:z-[1] min-h-full py-1`}
+                      className={`relative hover:z-[1] min-h-full h-[100%] py-1`}
                       style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
                     >
                       <SessionCard session={match.session} tiny />

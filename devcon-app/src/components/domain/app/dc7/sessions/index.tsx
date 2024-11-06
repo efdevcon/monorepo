@@ -348,7 +348,7 @@ export const SessionCard = ({
     return (
       <Link
         className={cn(
-          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-full',
+          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] h-[100%]',
           getTrackColor(session.track),
           selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf]' : '',
           className
@@ -374,7 +374,7 @@ export const SessionCard = ({
           setDevaBotVisible(false)
         }}
       >
-        <div className="flex flex-row items-center grow px-1 py-0.5 min-h-full gap-2 sticky left-0 lg:left-[100px]">
+        <div className="flex flex-row items-center grow px-1 py-0.5 h-[100%] gap-2 sticky left-0 lg:left-[100px]">
           {trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
@@ -385,7 +385,12 @@ export const SessionCard = ({
             />
           )}
 
-          <p className="text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[108px] lg:left-[8px] leading-[12px]">
+          <p
+            className={cn(
+              'text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[108px] lg:left-[8px] leading-[12px]',
+              getTrackColor(track)
+            )}
+          >
             {title}
           </p>
         </div>
