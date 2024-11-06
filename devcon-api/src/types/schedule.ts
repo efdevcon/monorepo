@@ -31,7 +31,7 @@ export function pretalxToSessionData(item: any) {
       connect: { id: eventId },
     },
     speakers: {
-      connect: item.speakers.map((i: any) => ({ id: i })),
+      connect: item.speakers.map((i: any) => ({ id: i.id ?? i })),
     },
   }
 

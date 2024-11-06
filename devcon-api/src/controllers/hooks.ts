@@ -2,7 +2,7 @@ import { Request, Response, Router } from 'express'
 import { PretalxScheduleUpdate } from '@/types/schemas'
 import { SERVER_CONFIG } from '@/utils/config'
 import { TriggerWorkflow } from '@/services/github'
-import { GetSession } from '@/clients/pretalx'
+import { GetSession, GetSpeaker } from '@/clients/pretalx'
 import { PrismaClient } from '@prisma/client'
 import { pretalxToSessionData } from '@/types/schedule'
 
@@ -37,11 +37,13 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 
   for (const id of newTalks) {
     try {
-      const session = await GetSession(id)
+      const session = await GetSession(id, { inclContacts: true })
       if (!session) {
         console.error(`Session ${id} not found`)
         continue
       }
+
+      await SyncSpeakers(session.speakers)
 
       console.log('Creating session', id)
       await client.session.create({
@@ -81,6 +83,8 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
         continue
       }
 
+      await SyncSpeakers(session.speakers)
+
       const data = await client.session.findFirst({
         where: {
           OR: [{ id: id }, { sourceId: id }],
@@ -110,4 +114,28 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 
   console.log('Triggering Github action to sync all systems...')
   await TriggerWorkflow('sync-pretalx.yml')
+}
+
+async function SyncSpeakers(speakers: any[]) {
+  for (const speaker of speakers) {
+    console.log('Speaker', speaker?.sourceId ?? speaker)
+    let id = speaker?.sourceId ?? speaker
+    let speakerData = await client.speaker.findFirst({
+      where: {
+        OR: [{ id: id }, { sourceId: id }],
+      },
+    })
+
+    if (!speakerData) {
+      speakerData = await GetSpeaker(id)
+      if (!speakerData) {
+        console.error(`Speaker ${id} not found`)
+        continue
+      }
+
+      await client.speaker.create({
+        data: speakerData,
+      })
+    }
+  }
 }
