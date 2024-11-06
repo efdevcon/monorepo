@@ -348,7 +348,7 @@ export const SessionCard = ({
     return (
       <Link
         className={cn(
-          'flex flex-col rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-full',
+          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-full',
           getTrackColor(session.track),
           selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf]' : '',
           className
@@ -374,8 +374,20 @@ export const SessionCard = ({
           setDevaBotVisible(false)
         }}
       >
-        <div className="flex flex-col justify-between grow px-1 py-0.5 min-h-full">
-          <p className="text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none">{title}</p>
+        <div className="flex flex-row items-center grow px-1 py-0.5 min-h-full gap-2 sticky left-0 lg:left-[100px]">
+          {trackLogo !== CityGuide && (
+            <Image
+              src={trackLogo}
+              alt={track}
+              height={15}
+              width={15}
+              className="w-[15px] h-[15px] shrink-0 grow-0 object-contain"
+            />
+          )}
+
+          <p className="text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[108px] lg:left-[8px] leading-[12px]">
+            {title}
+          </p>
         </div>
       </Link>
     )
@@ -1221,7 +1233,15 @@ export const SessionList = ({
         </div>
       </div>
       {timelineView ? (
-        <Timeline sessions={filteredSessions} event={event} />
+        <Timeline
+          sessions={filteredSessions}
+          event={event}
+          days={
+            Object.keys(sessionFilter.day).length === 0
+              ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15']
+              : Object.keys(sessionFilter.day)
+          }
+        />
       ) : (
         Object.entries(groupedSessions).map(([date, dateSessions]) => (
           <div className="relative flex flex-col" key={date}>
@@ -1241,8 +1261,9 @@ export const SessionList = ({
           <div className="mt-4 text-sm text-[#535353] font-semibold">No sessions match your filter</div>
         </div>
       )}
-      <ScrollUpComponent visible={visibleSessions.length > 20} />
-      {/* </div> */}
+
+      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
+      {timelineView && <div className="py-4"></div>}
     </div>
   )
 }
@@ -1400,8 +1421,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           className="rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right "
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">
-          <TrackTag track={session.track} className="self-start" />
-          <ExpertiseTag expertise={session.expertise || ''} className="self-start" />
+          {session.track && <TrackTag track={session.track} className="self-start" />}
+          {session.expertise && <ExpertiseTag expertise={session.expertise || ''} className="self-start" />}
         </div>
 
         <div
