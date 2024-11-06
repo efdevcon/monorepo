@@ -4,6 +4,7 @@ import { PRETALX_CONFIG } from '@/utils/config'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import Parser from 'rss-parser'
+import { createHash } from 'crypto'
 
 dayjs.extend(utc)
 
@@ -139,6 +140,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
   const lens = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_LENS)?.answer
   const ens = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_ENS)?.answer
   const telegram = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_TELEGRAM)?.answer
+  const email = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_EMAIL)?.answer
 
   let speaker: any = {
     id: defaultSlugify(i.name),
@@ -156,6 +158,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
     const handle = sanitizeProfileField(ens)
     speaker.ens = handle.startsWith('0x') ? handle : handle.endsWith('.eth') ? handle : `${handle}.eth`
   }
+  if (notEmptyOrInvalid(email)) speaker.emailHash = hash(email)
 
   if (params.inclContacts && i.email) speaker.email = i.email
   if (params.inclContacts && notEmptyOrInvalid(telegram)) speaker.telegram = sanitizeProfileField(telegram)
@@ -207,6 +210,10 @@ function sanitizeProfileField(value: string) {
   value = value.replace('/', '')
 
   return value
+}
+
+function hash(secret: string) {
+  return createHash('sha256').update(secret).digest('hex')
 }
 
 function arrayify(value: string | undefined) {

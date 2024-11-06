@@ -60,6 +60,8 @@ export const PRETALX_CONFIG = {
   PRETALX_EVENT_NAME: 'devcon7-sea', // 'devcon-vi-2022' // 'pwa-data'
   PRETALX_EVENT_ID: 7,
 
+  // FIX ME: Update this fictional email question ID
+  PRETALX_QUESTIONS_EMAIL: 1337,
   PRETALX_QUESTIONS_GITHUB: 61,
   PRETALX_QUESTIONS_TWITTER: 62,
   PRETALX_QUESTIONS_WEBSITE: 63,
