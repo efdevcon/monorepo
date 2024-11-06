@@ -147,9 +147,6 @@ const DevaBot = ({
 
     if (devaBotPrompt) {
       onToggle(devaBotPrompt);
-      setTimeout(() => {
-        setQuery(devaBotPrompt);
-      }, 1000);
     }
   }, []);
 
