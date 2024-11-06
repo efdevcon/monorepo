@@ -416,7 +416,7 @@ function App({ Component, pageProps }: AppProps) {
         {sessions && (
           <DevaBot
             sessions={sessions}
-            onToggle={() => setDevaBotVisible(!devaBotVisible)}
+            onToggle={(message: string | boolean) => setDevaBotVisible(message)}
             defaultPrompt={typeof devaBotVisible === 'string' ? devaBotVisible : undefined}
             setDefaultPrompt={() => setDevaBotVisible(true)}
             toggled={!!devaBotVisible}

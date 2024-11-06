@@ -101,7 +101,7 @@ const DevaBot = ({
   recommendationMode?: boolean;
   sessions?: any;
   toggled: boolean;
-  onToggle: (visible: boolean) => void;
+  onToggle: (visible: string | boolean) => void;
   notifications?: any[];
   notificationsCount?: number;
   renderNotifications?: () => React.ReactNode;
@@ -140,6 +140,18 @@ const DevaBot = ({
       }
     }
   }, [defaultPrompt]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const devaBotPrompt = urlParams.get("devabot");
+
+    if (devaBotPrompt) {
+      onToggle(devaBotPrompt);
+      setTimeout(() => {
+        setQuery(devaBotPrompt);
+      }, 1000);
+    }
+  }, []);
 
   // Add this useEffect hook to check screen size
   React.useEffect(() => {
