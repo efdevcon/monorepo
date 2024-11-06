@@ -187,13 +187,16 @@ export default async function Image({ params }: { params: { id: string } }) {
 
           <div tw="flex flex-col justify-center h-40 mb-4">
             <span
-              tw={`text-[#36364C] font-medium ${getTitleClass(data.title)}`}
+              tw={`text-[#36364C] leading-[12px] font-medium ${getTitleClass(
+                data.title
+              )}`}
+              style={{ lineHeight: "1.2em" }}
             >
               {data.title}
             </span>
           </div>
           <div tw="flex">
-            <span tw="text-[#5B5F84] text-2xl mb-2 font-medium">
+            <span tw="text-[#5B5F84] text-2xl font-medium">
               {data.speakers.map((i: any) => i.name).join(", ")}
             </span>
           </div>
