@@ -1,4 +1,11 @@
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+
+// Initialize the plugins
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 import { ImageResponse } from "next/og";
 
 // Route segment config
@@ -217,12 +224,14 @@ export default async function Image({ params }: { params: { id: string } }) {
                 <span>
                   <span>{getDay(data.slot_start)} — </span>
                   <span tw="font-bold">
-                    {dayjs(data.slot_start).format("ddd, MMM DD")}
+                    {dayjs(data.slot_start)
+                      .tz("Asia/Bangkok")
+                      .format("ddd, MMM DD")}
                   </span>
                 </span>
                 <span tw="font-bold">
-                  {dayjs(data.slot_start).format("h:mm a")} -{" "}
-                  {dayjs(data.slot_end).format("h:mm a")}
+                  {dayjs(data.slot_start).tz("Asia/Bangkok").format("h:mm a")} -{" "}
+                  {dayjs(data.slot_end).tz("Asia/Bangkok").format("h:mm a")}
                 </span>
               </div>
             </div>
