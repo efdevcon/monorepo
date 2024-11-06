@@ -124,7 +124,7 @@ const DayGrid = ({
                     // style={{ gridColumn: `span ${match.columns}` }}
                   >
                     <div
-                      className={`relative hover:z-[1] min-h-full h-[100%] py-1`}
+                      className={``}
                       style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
                     >
                       <SessionCard session={match.session} tiny />

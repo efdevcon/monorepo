@@ -232,7 +232,7 @@ export const getTrackColor = (track: string) => {
     case 'Experience':
       return '!bg-[#FFFBF4]'
     default:
-      return 'bg-[white]' // Light Gray (default color)
+      return '!bg-[#dcffea]' // Light Gray (default color)
   }
 }
 
@@ -348,7 +348,7 @@ export const SessionCard = ({
     return (
       <Link
         className={cn(
-          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] h-[100%]',
+          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-[35px] mt-[2px] hover:h-auto group',
           getTrackColor(session.track),
           selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf]' : '',
           className
