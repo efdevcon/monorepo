@@ -21,7 +21,7 @@ export const runtime = "edge";
 
 // Image metadata
 export const alt = "Devcon Schedule";
-export const size = { width: 1200, height: 630 };
+export const size = { width: 1920, height: 1080 };
 export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { id: string } }) {
@@ -37,7 +37,6 @@ export default async function Image({ params }: { params: { id: string } }) {
     new URL("../../assets/Inter-Bold.ttf", import.meta.url)
   ).then((res) => res.arrayBuffer());
 
-  const showSlots = true;
   const url = process.env.SITE_URL || "http://localhost:3000";
   const data = await getSession(params.id);
 
@@ -48,7 +47,7 @@ export default async function Image({ params }: { params: { id: string } }) {
   return new ImageResponse(
     (
       <div
-        tw={`flex flex-row relative justify-between w-full h-full p-12 ${getTrackColor(
+        tw={`flex flex-row relative justify-between w-full h-full p-20 ${getTrackColor(
           data.track
         )}`}
         style={{ fontFamily: "Inter" }}
@@ -57,20 +56,20 @@ export default async function Image({ params }: { params: { id: string } }) {
           <img src={`${url}/dc7/prism.png`} tw="h-full opacity-80" />
         </div>
 
-        <div tw="flex flex-col absolute bottom-12 left-12 w-full">
+        <div tw="flex flex-col absolute bottom-20 left-20 w-full">
           <div
-            tw="flex w-full my-6"
-            style={{ borderTop: "3px dashed #cfd4eb" }}
+            tw="flex w-full my-12"
+            style={{ borderTop: "4px dashed #cfd4eb" }}
           >
             &nbsp;
           </div>
           <div tw="flex flex-row">
-            {data.speakers.length === 0 && <span tw="h-28">&nbsp;</span>}
+            {data.speakers.length === 0 && <span tw="h-44">&nbsp;</span>}
             {data.speakers.map((i: any, index: number) => (
               <img
                 key={i.id}
                 src={i.avatar}
-                tw="w-28 h-28 rounded-full border-4 border-white"
+                tw="w-44 h-44 rounded-full border-4 border-white"
                 style={{
                   marginLeft: index > 0 ? "-16px" : "0",
                   objectFit: "cover",
@@ -84,17 +83,17 @@ export default async function Image({ params }: { params: { id: string } }) {
           <div tw="flex absolute bottom-0 right-0">
             <img
               src={`${url}/programming/${getTrackImage(data.track)}`}
-              tw="h-[32rem]"
+              tw="h-[56rem]"
             />
           </div>
         )}
 
-        <div tw="flex flex-row justify-end items-end absolute bottom-12 right-12 ">
+        <div tw="flex flex-row justify-end items-end absolute bottom-20 right-20">
           {data.track?.startsWith("[CLS]") ? (
             <>
               <div tw="flex flex-col items-end">
-                <span tw="text-xl text-[#5B5F84]">Community-Led Sessions</span>
-                <span tw="text-xl max-w-[440px] text-right break-words">
+                <span tw="text-4xl text-[#5B5F84]">Community-Led Sessions</span>
+                <span tw="text-4xl max-w-[800px] text-right break-words leading-normal">
                   {data.track}
                 </span>
               </div>
@@ -102,18 +101,18 @@ export default async function Image({ params }: { params: { id: string } }) {
           ) : (
             <>
               <div
-                tw={`flex flex-row items-center justify-center rounded-xl text-xl font-medium p-1 border border-1 border-[#cfd4eb] ${getTrackColor(
+                tw={`flex flex-row items-center justify-center rounded-xl text-4xl font-medium p-2 border border-2 border-[#cfd4eb] ${getTrackColor(
                   data.track
                 )}`}
               >
                 {data.type && (
-                  <span tw="font-bold text-[#2d3540] rounded-xl px-2 py-1 bg-[#e1cdff]">
+                  <span tw="font-bold text-[#2d3540] rounded-xl px-4 py-2 bg-[#e1cdff]">
                     {data.type?.toUpperCase()}
                   </span>
                 )}
                 {data.expertise && (
                   <span
-                    tw={`font-bold text-[#2d3540] rounded-xl px-2 py-1 ml-2 ${getExpertiseColor(
+                    tw={`font-bold text-[#2d3540] rounded-xl px-4 py-2 ml-4 ${getExpertiseColor(
                       data.expertise
                     )}`}
                   >
@@ -126,78 +125,41 @@ export default async function Image({ params }: { params: { id: string } }) {
           )}
         </div>
 
-        <div tw="flex flex-col justify-between w-[700px] absolute top-12 left-12">
-          <img src={`${url}/dc7/logo.png`} tw="w-60 mb-8" />
+        <div tw="flex flex-col justify-between w-[1080px] absolute top-20 left-20">
+          <img src={`${url}/dc7/logo.png`} tw="w-96 mb-12" />
 
-          <div tw="flex flex-col justify-center h-48">
+          <div tw="flex flex-col justify-center h-80 mb-4">
             <span
               tw={`text-[#36364C] leading-[12px] font-medium ${getTitleClass(
-                data.title
+                data.title,
+                true
               )}`}
             >
               {data.title}
             </span>
           </div>
           <div tw="flex">
-            <span tw="text-[#5B5F84] text-2xl font-medium">
+            <span tw="text-[#5B5F84] text-4xl font-medium mt-4 leading-normal">
               {data.speakers.map((i: any) => i.name).join(", ")}
             </span>
           </div>
         </div>
 
-        <div tw="flex flex-col justify-between absolute top-12 right-12">
-          {showSlots && (
-            <div tw="flex flex-row text-2xl justify-end items-end text-[#36364C]">
-              <div tw="flex flex-col">
-                <span>
-                  <span>Room — </span>
-                  <span tw="font-bold">
-                    {data.slot_room.name}{" "}
-                    {data.slot_room.description &&
-                      `(${data.slot_room.description})`}
-                  </span>
-                </span>
-                <span tw="flex justify-end items-end">
-                  {data.slot_room.info && (
-                    <>
-                      <span>Floor — </span>
-                      <span tw="font-bold">{data.slot_room.info}</span>
-                    </>
-                  )}
-                </span>
-              </div>
-              <div tw="flex flex-col items-end ml-12">
-                <span>
-                  <span>{getDay(data.slot_start)} — </span>
-                  <span tw="font-bold">
-                    {dayjs(data.slot_start)
-                      .tz("Asia/Bangkok")
-                      .format("ddd, MMM DD")}
-                  </span>
-                </span>
-                <span tw="font-bold">
-                  {dayjs(data.slot_start).tz("Asia/Bangkok").format("h:mm a")} -{" "}
-                  {dayjs(data.slot_end).tz("Asia/Bangkok").format("h:mm a")}
-                </span>
-              </div>
-            </div>
-          )}
-          {!showSlots && (
-            <div tw="flex flex-col text-2xl justify-end items-end">
-              <span tw="font-bold uppercase text-[#5B5F84]">
-                Bangkok, Thailand
-              </span>
-              <span tw="">
-                <span tw="text-[#6B54AB] mr-2">12 — 15</span>Nov, 2024
-              </span>
-            </div>
-          )}
+        <div tw="flex flex-col justify-between absolute top-20 right-20">
+          <div tw="flex flex-col text-4xl justify-end items-end">
+            <span tw="font-bold uppercase text-[#5B5F84]">
+              Bangkok, Thailand
+            </span>
+            <span tw="mt-2">
+              <span tw="text-[#6B54AB] mr-4">12 — 15</span>Nov, 2024
+            </span>
+          </div>
         </div>
       </div>
     ),
     {
-      width: 1200,
-      height: 630,
+      width: 1920,
+      height: 1080,
       fonts: [
         {
           name: "Inter",
