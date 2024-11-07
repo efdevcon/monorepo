@@ -1243,7 +1243,8 @@ export const SessionList = ({
 }
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
-  const playback = false // session.sources_youtubeId || session.sources_streamethId
+  const playback = session.sources_youtubeId || session.sources_streamethId
+
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
       <div className={cn('flex justify-between items-center')}>
@@ -1268,7 +1269,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full rounded-xl"
-            ></iframe>
+            />
           </>
         )}
         {!playback && (
@@ -1285,25 +1286,30 @@ export const Livestream = ({ session, className }: { session: SessionType; class
       </div>
 
       <div
-        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white
-         opacity-40 pointer-events-none"
+        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
         // @ts-ignore
         style={{ '--color-icon': '#7D52F4' }}
       >
-        <div className="flex flex-col items-center justify-center cursor-pointer">
+        <Link
+          to={`https://devcon.fileverse.io/devcon7/portal?event=${session.sourceId}`}
+          className="flex flex-col items-center justify-center cursor-pointer"
+        >
           <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
             <PenIcon />
           </div>
           <p>Take Collaborative Notes</p>
           <p className="text-[10px] text-[#717784]">Powered by Fileverse</p>
-        </div>
-        <div className="flex flex-col items-center justify-center cursor-pointer">
+        </Link>
+        <Link
+          to={`https://meerkat.events/e/${session.sourceId}/remote`}
+          className="flex flex-col items-center justify-center cursor-pointer"
+        >
           <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
             <QuestionsIcon />
           </div>
           <p>Ask Speaker Questions</p>
           <p className="text-[10px] text-[#717784]">Powered by Meerkat</p>
-        </div>
+        </Link>
       </div>
 
       <div className="flex justify-center">
