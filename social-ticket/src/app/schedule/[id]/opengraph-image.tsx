@@ -71,7 +71,7 @@ export default async function Image({ params }: { params: { id: string } }) {
                 key={i.id}
                 src={i.avatar}
                 tw={`rounded-full border-4 border-white ${
-                  data.speakers.length > 6 ? "w-20 h-20" : "w-28 h-28"
+                  data.speakers.length > 6 ? "w-16 h-16" : "w-28 h-28"
                 }`}
                 style={{
                   marginLeft: index > 0 ? "-16px" : "0",
