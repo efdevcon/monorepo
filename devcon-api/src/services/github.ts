@@ -29,6 +29,10 @@ export async function CommitSession(session: any, commitMessage: string = '') {
         message: message,
         content: content,
         sha: sha,
+        author: {
+          name: 'github-actions[bot]',
+          email: '41898282+github-actions[bot]@users.noreply.github.com',
+        },
       }),
     })
 
