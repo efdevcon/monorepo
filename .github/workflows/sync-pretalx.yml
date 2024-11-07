@@ -23,6 +23,7 @@ jobs:
         env:
           PRETALX_API_KEY: ${{ secrets.PRETALX_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
           GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
       - uses: EndBug/add-and-commit@v9

@@ -71,6 +71,8 @@ export default async function Image({ params }: { params: { id: string } }) {
               <img
                 key={i.id}
                 src={i.imageSrc}
+                width={data.speakers.length > 6 ? 80 : 176} // w-20 = 80px, w-44 = 176px
+                height={data.speakers.length > 6 ? 80 : 176}
                 tw={`rounded-full border-4 border-white ${
                   data.speakers.length > 6 ? "w-20 h-20" : "w-44 h-44"
                 }`}
