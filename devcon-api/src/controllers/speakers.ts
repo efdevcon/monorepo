@@ -51,7 +51,7 @@ export async function GetSpeaker(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
   const data = await client.speaker.findFirst({
     where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
     },
     include: {
       sessions: {
@@ -72,7 +72,7 @@ export async function GetSpeakerSessions(req: Request, res: Response) {
 
   const data = await client.speaker.findFirst({
     where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
     },
     include: {
       sessions: {
