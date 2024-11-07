@@ -104,11 +104,12 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
     }
   }
 
-  console.log('Updating event version...')
+  const version = Date.now().toString()
+  console.log('Updating event version...', version)
   await client.event.update({
     where: { id: 'devcon-7' },
     data: {
-      version: Date.now().toString(),
+      version,
     },
   })
 
@@ -117,6 +118,7 @@ async function SyncPretalx(newTalks: string[], canceledTalks: string[], movedTal
 }
 
 async function SyncSpeakers(speakers: any[]) {
+  console.log('Syncing speakers', speakers.length)
   for (const speaker of speakers) {
     console.log('Speaker', speaker?.sourceId ?? speaker)
     let id = speaker?.sourceId ?? speaker
@@ -133,6 +135,7 @@ async function SyncSpeakers(speakers: any[]) {
         continue
       }
 
+      console.log('Creating speaker', speakerData.id)
       await client.speaker.create({
         data: speakerData,
       })
