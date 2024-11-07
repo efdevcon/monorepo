@@ -69,7 +69,9 @@ export default async function Image({ params }: { params: { id: string } }) {
               <img
                 key={i.id}
                 src={i.avatar}
-                tw="w-44 h-44 rounded-full border-4 border-white"
+                tw={`rounded-full border-4 border-white ${
+                  data.speakers.length > 6 ? "w-20 h-20" : "w-44 h-44"
+                }`}
                 style={{
                   marginLeft: index > 0 ? "-16px" : "0",
                   objectFit: "cover",

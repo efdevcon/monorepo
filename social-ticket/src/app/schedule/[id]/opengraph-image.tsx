@@ -70,7 +70,9 @@ export default async function Image({ params }: { params: { id: string } }) {
               <img
                 key={i.id}
                 src={i.avatar}
-                tw="w-28 h-28 rounded-full border-4 border-white"
+                tw={`rounded-full border-4 border-white ${
+                  data.speakers.length > 6 ? "w-20 h-20" : "w-28 h-28"
+                }`}
                 style={{
                   marginLeft: index > 0 ? "-16px" : "0",
                   objectFit: "cover",
@@ -139,7 +141,11 @@ export default async function Image({ params }: { params: { id: string } }) {
             </span>
           </div>
           <div tw="flex">
-            <span tw="text-[#5B5F84] text-2xl font-medium">
+            <span
+              tw={`text-[#5B5F84] text-2xl font-medium ${
+                data.speakers.length > 6 ? "text-xl" : ""
+              }`}
+            >
               {data.speakers.map((i: any) => i.name).join(", ")}
             </span>
           </div>
