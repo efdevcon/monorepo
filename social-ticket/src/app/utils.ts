@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import makeBlockie from "ethereum-blockies-base64";
 
 export async function getSession(id: string) {
   const apiUrl = process.env.API_URL || "http://localhost:4000";
@@ -79,4 +80,34 @@ export function getDay(date: string) {
   if (day === "15") return "Day 4";
 
   return day;
+}
+
+export async function fetchImageWithTimeout(src: string, timeout: number) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    const response = await fetch(src, { signal: controller.signal });
+    clearTimeout(id);
+    return response.ok ? src : null;
+  } catch {
+    clearTimeout(id);
+    return null;
+  }
+}
+
+export async function fetchSpeakerImages(data: any) {
+  return await Promise.all(
+    data.speakers.map(async (i: any) => {
+      const imageSrc = await fetchImageWithTimeout(i.avatar, 5000);
+      return {
+        ...i,
+        imageSrc: imageSrc || generateAvatar(i.ens || i.name),
+      };
+    })
+  );
+}
+
+export function generateAvatar(username: string) {
+  return makeBlockie(username);
 }
