@@ -162,7 +162,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
     speaker.ens = handle.startsWith('0x') ? handle : handle.endsWith('.eth') ? handle : `${handle}.eth`
   }
   if (i.email && process.env.EMAIL_SECRET) {
-    speaker.hash = createHmac('sha256', process.env.EMAIL_SECRET).update(i.email).digest('hex')
+    speaker.hash = createHmac('sha256', process.env.EMAIL_SECRET).update(i.email.trim().toLowerCase()).digest('hex')
   }
 
   if (params.inclContacts && i.email) speaker.email = i.email
