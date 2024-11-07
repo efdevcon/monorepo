@@ -99,7 +99,7 @@ export async function fetchImageWithTimeout(src: string, timeout: number) {
 export async function fetchSpeakerImages(data: any) {
   return await Promise.all(
     data.speakers.map(async (i: any) => {
-      const imageSrc = await fetchImageWithTimeout(i.avatar, 5000);
+      const imageSrc = await fetchImageWithTimeout(i.avatar, 3000);
       return {
         ...i,
         imageSrc: imageSrc || generateAvatar(i.ens || i.name),
