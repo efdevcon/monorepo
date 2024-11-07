@@ -72,11 +72,22 @@ async function syncSessions() {
   }
 
   for (const session of sessions) {
+    const fsSession = sessionsFs.find((s: any) => s.id === session.id)
     if (session.speakers.length > 0) {
       acceptedSpeakers.push(...speakers.filter((s: any) => session.speakers.includes(s.id)))
     }
 
-    fs.writeFileSync(`./data/sessions/devcon-7/${session.id}.json`, JSON.stringify(session, null, 2))
+    fs.writeFileSync(
+      `./data/sessions/devcon-7/${session.id}.json`,
+      JSON.stringify(
+        {
+          ...fsSession,
+          ...session,
+        },
+        null,
+        2
+      )
+    )
   }
 
   console.log('Speakers Pretalx', speakers.length, 'Accepted Speakers', acceptedSpeakers.length)
