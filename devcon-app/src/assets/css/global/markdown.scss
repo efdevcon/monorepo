@@ -20,7 +20,8 @@
   ol {
     // overflow: auto;
     li {
-      margin-left: 1em;
+      margin-left: 0.5em;
+      margin-top: 0.5em;
     }
   }
 
@@ -42,10 +43,10 @@
     // padding-top: 1em;
   }
 
-  h3 {
-    @include fonts-highlighted;
-    margin-bottom: 0.5em;
-  }
+  // h3 {
+  //   @include fonts-highlighted;
+  //   margin-bottom: 0.5em;
+  // }
 
   p {
     // @include fonts-md-fixed;

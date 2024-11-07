@@ -7,6 +7,7 @@ const client = new PrismaClient()
 export const speakersRouter = Router()
 speakersRouter.get(`/speakers`, GetSpeakers)
 speakersRouter.get(`/speakers/:id`, GetSpeaker)
+speakersRouter.get(`/speakers/:id/sessions`, GetSpeakerSessions)
 
 export async function GetSpeakers(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
@@ -50,11 +51,44 @@ export async function GetSpeaker(req: Request, res: Response) {
   // #swagger.tags = ['Speakers']
   const data = await client.speaker.findFirst({
     where: {
-      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
+    },
+    include: {
+      sessions: {
+        include: {
+          slot_room: true,
+        },
+      },
     },
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+
+  res.status(200).send({ status: 200, message: '', data: data })
+}
+
+export async function GetSpeakerSessions(req: Request, res: Response) {
+  // #swagger.tags = ['Speakers']
+
+  const data = await client.speaker.findFirst({
+    where: {
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }, { hash: req.params.id }],
+    },
+    include: {
+      sessions: {
+        include: {
+          slot_room: true,
+        },
+      },
+    },
+  })
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
+
+  if (req.query.event) {
+    // TODO: filter from prisma query? didnt seem to work properly
+    data.sessions = data.sessions.filter((session) => session.eventId === req.query.event)
+  }
 
   res.status(200).send({ status: 200, message: '', data: data })
 }

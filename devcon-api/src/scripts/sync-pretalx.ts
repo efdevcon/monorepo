@@ -5,9 +5,17 @@ import fs from 'fs'
 
 async function main() {
   console.log('Syncing Pretalx...')
+
+  await syncEventData()
   await syncRooms()
   await syncSessions()
   await createPresentations()
+}
+
+async function syncEventData() {
+  const event = fs.readFileSync(`./data/events/devcon-7.json`, 'utf8')
+  const eventData = JSON.parse(event)
+  fs.writeFileSync(`./data/events/devcon-7.json`, JSON.stringify({ ...eventData, version: Date.now().toString() }, null, 2))
 }
 
 async function syncRooms() {
@@ -64,11 +72,22 @@ async function syncSessions() {
   }
 
   for (const session of sessions) {
+    const fsSession = sessionsFs.find((s: any) => s.id === session.id)
     if (session.speakers.length > 0) {
       acceptedSpeakers.push(...speakers.filter((s: any) => session.speakers.includes(s.id)))
     }
 
-    fs.writeFileSync(`./data/sessions/devcon-7/${session.id}.json`, JSON.stringify(session, null, 2))
+    fs.writeFileSync(
+      `./data/sessions/devcon-7/${session.id}.json`,
+      JSON.stringify(
+        {
+          ...fsSession,
+          ...session,
+        },
+        null,
+        2
+      )
+    )
   }
 
   console.log('Speakers Pretalx', speakers.length, 'Accepted Speakers', acceptedSpeakers.length)

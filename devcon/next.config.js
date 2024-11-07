@@ -22,7 +22,7 @@ const nextConfig = {
       'img.youtube.com',
       'www.gravatar.com',
       'assets.tina.io',
-      'cfp.ticketh.xyz'
+      'cfp.ticketh.xyz',
     ],
   },
   i18n: {
@@ -37,7 +37,7 @@ const nextConfig = {
       plugins: [
         ...config.plugins,
         new webpack.DefinePlugin({
-          'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId)
+          'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
         }),
       ],
       resolve: {
@@ -46,7 +46,7 @@ const nextConfig = {
           ...config.resolve.alias,
           react: path.resolve(__dirname, 'node_modules/react'),
           'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-          'recoil': path.resolve(__dirname, 'node_modules/recoil'),
+          recoil: path.resolve(__dirname, 'node_modules/recoil'),
         },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
       },
@@ -240,6 +240,22 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/speakers-guide',
+        destination: 'https://ef-events.notion.site/Speakers-Devcon-Wiki-127638cdc41580619bb4f8dd7f735e52',
+        permanent: true,
+      },
+      {
+        source: '/reserve',
+        destination:
+          'https://ef-events.notion.site/Public-Devcon-Meeting-Rooms-and-Discussion-Corners-Booking-System-11c638cdc41580318344cf7736c02f92?pvs=4',
+        permanent: true,
+      },
+      {
+        source: '/schedule',
+        destination: 'https://app.devcon.org/schedule',
+        permanent: true,
+      },
+      {
         source: '/vi',
         destination: '/',
         permanent: true,
@@ -252,8 +268,8 @@ const nextConfig = {
     ]
   },
   env: {
-    RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED: "false"
-  }
+    RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED: 'false',
+  },
 }
 
 module.exports = nextConfig

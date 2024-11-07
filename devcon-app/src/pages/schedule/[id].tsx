@@ -1,83 +1,153 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { Session } from 'components/domain/app/session'
-import { pageHOC } from 'context/pageHOC'
+import { SessionView, Livestream, cardClass } from 'components/domain/app/dc7/sessions/index'
 import React from 'react'
-import { fetchSessions, useSessionData } from 'services/event-data'
-import { API_URL, DEFAULT_APP_PAGE, DEFAULT_REVALIDATE_PERIOD } from 'utils/constants'
-import { getGlobalData } from 'services/global'
-import { Session as SessionType } from 'types/Session'
+import { fetchSessions, useEventVersion } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import Fuse from 'fuse.js'
+import cn from 'classnames'
+import { useAccountContext } from 'context/account-context'
+import { useToast } from 'lib/hooks/use-toast'
+import { Session } from 'types/Session'
+import TwitterIcon from 'assets/icons/twitter.svg'
+import StarIcon from 'assets/icons/dc-7/star.svg'
+import StarFillIcon from 'assets/icons/dc-7/star-fill.svg'
+import IconAdded from 'assets/icons/calendar-added.svg'
+import IconCalendar from 'assets/icons/favorite.svg'
+import { Link } from 'components/common/link'
+import ShareIcon from 'assets/icons/arrow-curved.svg'
 
-const options = {
-  includeScore: true,
-  useExtendedSearch: true,
-  shouldSort: true,
-  ignoreLocation: true,
-  keys: [
-    {
-      name: 'speakers.name',
-      weight: 1,
-    },
-    {
-      name: 'track',
-      weight: 0.5,
-    },
-    {
-      name: 'tags',
-      weight: 0.2,
-    },
-  ],
-}
+const SessionActions = ({ session }: { session: Session }) => {
+  const { account, setSessionBookmark } = useAccountContext()
+  const { toast } = useToast()
 
-export function GetRelatedSessions(id: string, sessions: SessionType[]): Array<SessionType> {
-  const session = sessions.find(i => i.id === id)
-  if (!session) return []
-
-  const fuse = new Fuse(sessions, options)
-  const query = `${session.speakers.map(i => `"${i.name}"`).join(' | ')} | "${session.track}" | ${session.tags
-    ?.split(',')
-    ?.map(i => `"${i}"`)
-    .join(' | ')}`
-  const result = fuse.search(query)
-
-  return result
-    .map(i => i.item)
-    .filter(i => i.id !== id)
-    .slice(0, 5)
-}
-
-export default pageHOC((props: any) => {
   return (
-    <AppLayout>
-      <>
-        <SEO
-          title={props.session.title}
-          description={props.session.description}
-          imageUrl={`${API_URL}sessions/${props.session.id}/image`}
+    <div data-type="speaker-filter-actions" className="flex-row gap-5 items-center text-2xl flex lg:hidden">
+      <ShareIcon
+        onClick={() => {
+          navigator.clipboard.writeText(window.location.href)
+          toast({
+            title: 'Copied to clipboard',
+          })
+        }}
+        className="icon cursor-pointer"
+        style={{ '--color-icon': 'white' }}
+      />
+
+      {account?.attending_sessions?.includes(session.sourceId) ? (
+        <IconAdded
+          onClick={() =>
+            setSessionBookmark(
+              session,
+              'attending',
+              account,
+              account?.attending_sessions?.includes(session.sourceId) ?? false
+            )
+          }
+          className="icon cursor-pointer"
+          style={{ '--color-icon': 'white' }}
         />
-        <Session {...props} />
-      </>
-    </AppLayout>
+      ) : (
+        <IconCalendar
+          onClick={() =>
+            setSessionBookmark(
+              session,
+              'attending',
+              account,
+              account?.attending_sessions?.includes(session.sourceId) ?? false
+            )
+          }
+          className="icon cursor-pointer"
+          style={{ '--color-icon': 'white' }}
+        />
+      )}
+
+      {account?.interested_sessions?.includes(session.sourceId) ? (
+        <StarFillIcon
+          onClick={() =>
+            setSessionBookmark(
+              session,
+              'interested',
+              account,
+              account?.interested_sessions?.includes(session.sourceId) ?? false
+            )
+          }
+          className="icon cursor-pointer"
+          style={{ '--color-icon': 'white' }}
+        />
+      ) : (
+        <StarIcon
+          onClick={() =>
+            setSessionBookmark(
+              session,
+              'interested',
+              account,
+              account?.interested_sessions?.includes(session.sourceId) ?? false
+            )
+          }
+          className="icon cursor-pointer"
+          style={{ '--color-icon': 'white' }}
+        />
+      )}
+
+      {/* {speaker?.twitter && (
+        <Link className="flex justify-center items-center" to={`https://twitter.com/${speaker.twitter}`}>
+          <TwitterIcon
+            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+            style={{ '--color-icon': 'white' }}
+          />
+        </Link>
+      )} */}
+    </div>
   )
-})
+}
+
+const SessionPage = (props: any) => {
+  const version = useEventVersion()
+  if (!props.session) return null
+
+  return (
+    <>
+      <SEO
+        title={props.session.title}
+        description={props.session.description}
+        separator="@"
+        imageUrl={`https://devcon-social.netlify.app/schedule/${props.session.sourceId}/opengraph-image?v=${version}`}
+      />
+      <AppLayout
+        pageTitle="Session"
+        breadcrumbs={[{ label: 'Session' }]}
+        renderActions={() => <SessionActions session={props.session} />}
+      >
+        <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+          <div className={cn('basis-[50%] grow')}>
+            <SessionView session={props.session} standalone />
+          </div>
+
+          <div className={cn('basis-[50%] hidden lg:block')}>
+            <Livestream session={props.session} className={cn(cardClass, 'p-4')} />
+          </div>
+        </div>
+      </AppLayout>
+    </>
+  )
+}
+
+export default SessionPage
 
 export async function getStaticPaths() {
   const sessions = await fetchSessions()
   const paths = sessions.map(i => {
-    return { params: { id: i.id } }
+    return { params: { id: i.sourceId } }
   })
 
   return {
     paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 
 export async function getStaticProps(context: any) {
   const sessions = await fetchSessions()
-  const session = sessions.find(i => i.id === context.params.id)
-
+  const session = sessions.find(i => i.sourceId === context.params.id)
   if (!session) {
     return {
       props: null,
@@ -85,12 +155,10 @@ export async function getStaticProps(context: any) {
     }
   }
 
-  const related = session ? GetRelatedSessions(String(session.id), sessions) : []
-
   return {
     props: {
-      relatedSessions: related,
       session,
     },
+    revalidate: 60,
   }
 }

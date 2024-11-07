@@ -54,9 +54,19 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
+            title: intl('navigation_forum'),
+            url: 'https://forum.devcon.org/',
+            type: 'link',
+          },
+          {
             title: intl('navigation_updates'),
             url: '#',
             type: 'header',
+          },
+          {
+            title: intl('navigation_blog'),
+            url: '/blogs',
+            type: 'page',
           },
           {
             title: intl('news'),
@@ -208,19 +218,29 @@ const useNavigationData = () => {
             url: '#',
             type: 'header',
           },
+          // {
+          //   title: 'Devcon Schedule',
+          //   url: 'https://app.devcon.org/schedule',
+          //   type: 'page',
+          // },
           {
             title: 'Program Overview',
             url: '/programming',
             type: 'page',
           },
           {
-            title: 'City Guide',
-            url: '/city-guide',
+            title: 'Experiences',
+            url: '/experiences',
             type: 'page',
           },
           {
-            title: 'Experiences',
-            url: '/experiences',
+            title: 'Tickets',
+            url: '/tickets',
+            type: 'page',
+          },
+          {
+            title: 'City Guide',
+            url: '/city-guide',
             type: 'page',
           },
           {
@@ -230,12 +250,6 @@ const useNavigationData = () => {
           },
         ],
       },
-      {
-        title: 'Tickets',
-        url: '/tickets',
-        type: 'page',
-      },
-
       // {
       //   title: 'Program',
       //   url: '/programming',
@@ -280,16 +294,16 @@ const useNavigationData = () => {
       //     },
       //   ],
       // },
-      {
-        title: intl('navigation_forum'),
-        url: 'https://forum.devcon.org/',
-        type: 'link',
-      },
-      {
-        title: intl('navigation_blog'),
-        url: '/blogs',
-        type: 'page',
-      },
+      // {
+      //   title: intl('navigation_forum'),
+      //   url: 'https://forum.devcon.org/',
+      //   type: 'link',
+      // },
+      // {
+      //   title: intl('navigation_blog'),
+      //   url: '/blogs',
+      //   type: 'page',
+      // },
       // Comment these back in when closer to the event ;)
       // {
       //   title: intl('navigation_live'),
@@ -312,7 +326,18 @@ const useNavigationData = () => {
         title: intl('navigation_archive'),
         url: 'https://archive.devcon.org',
         type: 'page',
-        highlight: 'archive',
+        // highlight: 'archive',
+      },
+      {
+        title: 'Schedule',
+        url: 'https://app.devcon.org/schedule',
+        type: 'page',
+      },
+      {
+        title: 'Devcon App',
+        url: 'https://app.devcon.org',
+        type: 'page',
+        highlight: 'app',
       },
     ],
     footer: {
@@ -410,7 +435,7 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: 'DIPs & Community Hubs',
+          title: 'DIPs',
           url: '/dips',
           type: 'page',
         },

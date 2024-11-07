@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import css from './login.module.scss'
 import { Link, LinkList } from 'components/common/link'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import { useAccountContext } from 'context/account-context'
-import { Alert } from 'components/common/alert'
+import Alert from 'lib/components/alert'
 import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
 import AccountFooter from './AccountFooter'
 import { useAvatar } from 'hooks/useAvatar'
 import { isEmail } from 'utils/validators'
 import { TruncateMiddle } from 'utils/formatting'
 import { useRouter } from 'next/router'
-import { AppNav } from 'components/domain/app/navigation'
 import Toggle from 'react-toggle'
 import { EMAIL_DEVCON } from 'utils/constants'
+import { cn } from 'lib/shadcn/lib/utils'
+import { LoggedInCard } from 'components/domain/app/dc7/dashboard'
+import { Notifications } from 'components/domain/app/dc7/profile/notifications'
+import { toast } from 'lib/hooks/use-toast'
+import CopyIcon from 'assets/icons/copy.svg'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -55,38 +59,57 @@ export default function SettingsPage() {
     router.push('/login')
   }
 
+  const sharingLink = `https://app.devcon.org/schedule/u/${
+    accountContext.account?.username ?? accountContext.account?.id
+  }/`
+
+  const copyShareLink = () => {
+    navigator.clipboard
+      .writeText(sharingLink)
+      .then(() => {
+        toast({
+          title: 'Schedule link copied.',
+          duration: 3000,
+        })
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err)
+        toast({
+          title: 'Failed to copy link',
+          description: 'Please try again',
+          duration: 3000,
+        })
+      })
+  }
+
   return (
     <>
-      <AppNav
-        links={[
-          {
-            title: 'Settings',
-          },
-        ]}
-      />
-      <div className={css['container']}>
-        <div>
-          <div className="section">
-            <div className="content">
-              <div className={css['alert']}>{error && <Alert title='Info' type="info" message={error} />}</div>
-
-              <div className={css['profile']}>
-                <div className={css['avatar']}>
-                  <img src={avatar.url} alt={avatar.name} />
+      <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+        <div className={cn('basis-[60%] grow')}>
+          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
+            <div className="flex flex-col gap-3 pb-4 lg:pt-4 px-4 text-sm">
+              {error && (
+                <div className={css['alert']}>
+                  <Alert title="Error" color="orange">
+                    {error}
+                  </Alert>
                 </div>
-                <p className={`${css['name']} title`}>
-                  {accountContext.account?.username
-                    ? accountContext.account?.username
-                    : isEmail(avatar.name)
-                      ? avatar.name
-                      : TruncateMiddle(avatar.name, 8)}
-                </p>
-                <span className={css['signout']} role="button" onClick={disconnect}>
-                  Sign out
-                </span>
+              )}
+
+              <div className="flex">
+                <LoggedInCard className="lg:self-start w-full pointer-events-none cursor-default">
+                  <span
+                    className="font-semibold text-[#1a1a1a] pointer-events-auto cursor-pointer pr-2"
+                    role="button"
+                    onClick={disconnect}
+                  >
+                    Sign out
+                  </span>
+                </LoggedInCard>
               </div>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['account']}
                 setOpen={() => {
                   const isOpen = openTabs['account']
@@ -103,20 +126,21 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Account" />
+                <CollapsedSectionHeader title="Account" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['links']}>
-                    <LinkList>
-                      <Link to="/settings/email">Manage Email</Link>
-                      <Link to="/settings/wallets">Manage Wallets</Link>
-                      <Link to="/settings/username">Manage Username</Link>
-                      <Link to="/settings/profile">Manage Profile</Link>
+                  <div className="px-4 pb-2">
+                    <LinkList noIndicator>
+                      <Link to="/account/email">Manage Email</Link>
+                      <Link to="/account/wallets">Manage Wallets</Link>
+                      <Link to="/account/username">Manage Username</Link>
+                      <Link to="/account/profile">Manage Profile</Link>
                     </LinkList>
                   </div>
                 </CollapsedSectionContent>
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['schedule']}
                 setOpen={() => {
                   const isOpen = openTabs['schedule']
@@ -133,28 +157,60 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Schedule" />
+                <CollapsedSectionHeader title="Schedule" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['share']}>
-                    <p>Public schedule</p>
-                    <div className={css['toggle']}>
-                      <Toggle
-                        defaultChecked={accountContext.account?.publicSchedule}
-                        onChange={toggleScheduleSharing}
-                      />
+                  <div className="px-4 pb-4">
+                    <div className="mb-0">
+                      <p className="font-bold">Personal schedule</p>
+                    </div>
+                    <div className="flex justify-between items-center gap-4">
+                      <p>Share your personal schedule with your colleagues and friends.</p>
+                      <div className={css['toggle']}>
+                        <Toggle
+                          className={'custom'}
+                          icons={false}
+                          defaultChecked={accountContext.account?.publicSchedule}
+                          onChange={toggleScheduleSharing}
+                        />
+                      </div>
                     </div>
                   </div>
                   {accountContext.account?.id && accountContext.account?.publicSchedule && (
-                    <div className={css['links']}>
-                      <LinkList>
-                        <Link to={`/schedule/u/${accountContext.account.id}/`}>Personal schedule link</Link>
-                      </LinkList>
-                    </div>
+                    <>
+                      <div className="px-4 pb-2">
+                        <div
+                          className="flex flex-row w-full justify-between items-center py-2"
+                          style={{
+                            borderTop: '1px solid #E1E4EA',
+                            borderBottom: '1px solid #E1E4EA',
+                          }}
+                        >
+                          <Link to={`/schedule/u/${accountContext.account.username ?? accountContext.account.id}/`}>
+                            {sharingLink}
+                          </Link>
+                          <span
+                            className="cursor-pointer mr-2"
+                            style={{ '--color-icon': '#999999' } as React.CSSProperties}
+                            onClick={copyShareLink}
+                          >
+                            <CopyIcon style={{ width: '18px', height: '18px' }} />
+                          </span>
+                        </div>
+                        <p className="text-xs py-2">
+                          You can change your link by{' '}
+                          <Link to="/account/username" className="underline text-[#7D52F4]">
+                            updating your username
+                          </Link>
+                          .
+                        </p>
+                      </div>
+                    </>
                   )}
                 </CollapsedSectionContent>
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['notifications']}
                 setOpen={() => {
                   const isOpen = openTabs['notifications']
@@ -171,21 +227,16 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Notifications" />
+                <CollapsedSectionHeader title="Push Notifications" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['share']}>
-                    <p>Notifications</p>
-                    <div className={css['toggle']}>
-                      <Toggle
-                        defaultChecked={accountContext.account?.notifications}
-                        onChange={toggleNotifications}
-                      />
-                    </div>
+                  <div className="px-4 pb-4">
+                    <Notifications standalone />
                   </div>
                 </CollapsedSectionContent>
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['application']}
                 setOpen={() => {
                   const isOpen = openTabs['application']
@@ -202,11 +253,11 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Application" />
+                <CollapsedSectionHeader title="Application" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['links']}>
+                  <div className="px-4 pb-2">
                     <LinkList>
-                      <Link to="/info#faq">FAQ</Link>
+                      {/* <Link to="/info#faq">FAQ</Link> */}
                       <Link to={`mailto:${EMAIL_DEVCON}`}>Support</Link>
                     </LinkList>
                   </div>
@@ -214,6 +265,7 @@ export default function SettingsPage() {
               </CollapsedSection>
 
               <CollapsedSection
+                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
                 open={openTabs['delete']}
                 setOpen={() => {
                   const isOpen = openTabs['delete']
@@ -230,22 +282,25 @@ export default function SettingsPage() {
                   setOpenTabs(nextOpenState)
                 }}
               >
-                <CollapsedSectionHeader title="Delete Account" />
+                <CollapsedSectionHeader title="Delete Account" className="py-4 px-4" />
                 <CollapsedSectionContent>
-                  <div className={css['wallet']}>
+                  <div className="px-4 pb-2 flex flex-col items-start gap-4 pb-4">
                     <p>Once you delete your Devcon account, there is no going back. Tread lightly.</p>
                     {!areYouSure && (
-                      <Button className={`red ${css['button']}`} onClick={() => setAreYouSure(true)}>
-                        Delete Devcon account
-                      </Button>
+                      <>
+                        <Button className="plain" color="purple-2" fill onClick={() => setAreYouSure(true)}>
+                          Delete Devcon account
+                        </Button>
+                      </>
                     )}
 
                     {areYouSure && (
                       <>
-                        <Button className={`black ${css['button']}`} onClick={() => setAreYouSure(false)}>
+                        <Button className="plain" color="black-1" fill onClick={() => setAreYouSure(false)}>
                           No, keep my account
-                        </Button>&nbsp;
-                        <Button className={`red ${css['button']}`} onClick={deleteAccount}>
+                        </Button>
+                        &nbsp;
+                        <Button className="plain" color="purple-2" fill onClick={deleteAccount}>
                           Yes, delete my account
                         </Button>
                       </>
@@ -253,11 +308,28 @@ export default function SettingsPage() {
                   </div>
                 </CollapsedSectionContent>
               </CollapsedSection>
+
+              <div>
+                <p className="text-[#585858] mt-5 flex justify-center text-xs">
+                  Devcon facilitates complete ownership over your data, while allowing you to access web3 interactivity
+                  through our application if you choose to.
+                </p>
+
+                <div className="flex justify-center gap-4 mb-2 mt-1 text-xs text-[#7D52F4]">
+                  <Link to="https://ethereum.org/en/privacy-policy">
+                    <p className="underline">Privacy Policy</p>
+                  </Link>
+                  <Link to="https://ethereum.org/en/terms-of-use/">
+                    <p className="underline">Terms of Use</p>
+                  </Link>
+                  <Link to="https://ethereum.org/en/cookie-policy/">
+                    <p className="underline">Cookie Policy</p>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <AccountFooter />
       </div>
     </>
   )

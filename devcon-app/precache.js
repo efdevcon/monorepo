@@ -36,11 +36,11 @@ const pages = [
   //   precacheHtml: true,
   //   precacheJson: true,
   // },
-  {
-    route: '/venue',
-    precacheHtml: true,
-    // precacheJson: true,
-  },
+  // {
+  //   route: '/venue',
+  //   precacheHtml: true,
+  //   // precacheJson: true,
+  // },
   // {
   //   route: '/schedule',
   //   precacheHtml: false,

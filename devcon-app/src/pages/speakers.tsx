@@ -1,90 +1,73 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { Speakers } from 'components/domain/app/speakers'
-import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { useRouter } from 'next/router'
-import { Speaker as SpeakerType } from 'types/Speaker'
-import {
-  fetchSessions,
-  fetchRooms,
-  fetchTracks,
-  fetchEvent,
-  fetchExpertiseLevels,
-  fetchSessionTypes,
-} from 'services/event-data'
-import { DEFAULT_APP_PAGE } from 'utils/constants'
-import { SpeakerDetails } from 'components/domain/app/speakers'
+import { useSpeakerData } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import { useSpeakersWithSessions } from 'services/event-data'
+import { FancyLoader } from 'lib/components/loader/loader'
+import { SpeakerLayout } from 'components/domain/app/dc7/speakers/index'
+import { useRecoilState } from 'recoil'
+import { speakerFilterAtom } from 'pages/_app'
+import HeartIcon from 'assets/icons/heart.svg'
+import HeartIconFill from 'assets/icons/dc-7/heart-fill.svg'
+import cn from 'classnames'
+import ShareIcon from 'assets/icons/arrow-curved.svg'
 
-export default pageHOC((props: any) => {
-  const speakers = useSpeakersWithSessions()
-  const { query } = useRouter()
+const FilterTrigger = () => {
+  const [speakerFilter, setSpeakerFilter] = useRecoilState(speakerFilterAtom)
 
   return (
-    <AppLayout>
-      <SEO title="Speakers" />
+    <div data-type="speaker-filter-actions" className="flex flex-row gap-3 items-center text-2xl">
+      {/* <FilterIcon
+    className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+    style={{ '--color-icon': '#99A0AE' }}
+  /> */}
 
-      {speakers &&
-        (() => {
-          const speakerID = query.speaker
-          const speaker = speakers.find((speaker: SpeakerType) => speaker.id === speakerID)
+      {/* <ShareIcon className="icon cursor-pointer font-xl" /> */}
 
-          return speaker ? (
-            <>
-              <>
-                <SEO title={speaker.name} description={speaker.description} separator="@" />
-                <SpeakerDetails speaker={speaker} {...props} speakers={speakers} />
-              </>
-            </>
-          ) : (
-            <>
-              <Speakers {...props} speakers={speakers} />
-            </>
-          )
-        })()}
+      {speakerFilter.favorited && <div className="text-xs font-semibold line-clamp-2">Showing Favorites</div>}
 
-      <div className={`${speakers ? 'loaded' : ''} loader`}>
-        <div className="indicator"></div>
+      <div
+        onClick={() => setSpeakerFilter({ ...speakerFilter, favorited: !speakerFilter.favorited })}
+        className={cn(
+          'flex shrink-0 relative items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 transition-all duration-300',
+          speakerFilter.favorited && 'bg-[#6d3bff] fill-[#7D52F4]'
+        )}
+      >
+        {speakerFilter.favorited ? (
+          <HeartIconFill
+            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+            style={{ '--color-icon': 'white' }}
+          />
+        ) : (
+          <HeartIcon
+            className="icon cursor-pointer hover:scale-110 transition-transform duration-300"
+            style={{ '--color-icon': 'white' }}
+          />
+        )}
+      </div>
+    </div>
+  )
+}
+
+const SpeakersPage = (props: any) => {
+  const speakers = useSpeakerData()
+
+  return (
+    <AppLayout pageTitle="Speakers" breadcrumbs={[{ label: 'Speakers' }]} renderActions={() => <FilterTrigger />}>
+      <SEO title={'Speakers'} />
+
+      <SpeakerLayout speakers={speakers} />
+
+      <div className="fixed inset-0 h-[101vh] w-full flex justify-center items-center z-5 pointer-events-none">
+        <FancyLoader loading={!speakers} />
       </div>
     </AppLayout>
   )
-})
+}
+
+export default SpeakersPage
 
 export async function getStaticProps(context: any) {
-  // const sessions = await GetSessions()
-  // const speakers = await GetSpeakers()
-
-  // const sessionsBySpeakerId: any = {}
-
-  // sessions.forEach(session => {
-  //   session.speakers.forEach(speaker => {
-  //     if (sessionsBySpeakerId[speaker.id]) {
-  //       sessionsBySpeakerId[speaker.id].push(session)
-  //     } else {
-  //       sessionsBySpeakerId[speaker.id] = [session]
-  //     }
-  //   })
-  // })
-
-  // const speakersWithSessions = speakers.map(speaker => {
-  //   return {
-  //     ...speaker,
-  //     sessions: sessionsBySpeakerId[speaker.id],
-  //   }
-  // })
-
   return {
-    props: {
-      // ...(await getGlobalData(context.locale, true)),
-      // sessions,
-      page: DEFAULT_APP_PAGE,
-      // speakers: speakersWithSessions,
-      tracks: await fetchTracks(),
-      // eventDays: await fetchEventDays(),
-      rooms: await fetchRooms(),
-      expertiseLevels: await fetchExpertiseLevels(),
-      sessionTypes: await fetchSessionTypes(),
-    },
+    props: {},
   }
 }

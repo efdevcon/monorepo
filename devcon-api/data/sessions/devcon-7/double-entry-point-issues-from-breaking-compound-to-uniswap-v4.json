@@ -1,0 +1,34 @@
+{
+  "id": "double-entry-point-issues-from-breaking-compound-to-uniswap-v4",
+  "sourceId": "N9ZSQW",
+  "title": "Double entry point issues - From breaking Compound to Uniswap v4",
+  "description": "A short explanation of a critical-severity vulnerability we found in the Uniswap V4 core contracts that would have caused a ~$15M loss in Uniswap's pools. The goal is to explain the risks of double entry points, from the $30M+ TUSD issue in Compound to the Uniswap V4-specific case where protocols use native tokens and operate on chains where the native token has a corresponding ERC-20 token, and how to prevent them.",
+  "track": "Security",
+  "type": "Lightning Talk",
+  "expertise": "Intermediate",
+  "audience": "Research",
+  "featured": false,
+  "doNotRecord": false,
+  "keywords": [
+    "Contest"
+  ],
+  "tags": [
+    "Security",
+    "Bug",
+    "Bounties",
+    "contest",
+    "Architecture",
+    "Auditing",
+    "Bug",
+    "Security"
+  ],
+  "language": "en",
+  "speakers": [
+    "jota-carpanelli"
+  ],
+  "eventId": "devcon-7",
+  "slot_start": 1731657000000,
+  "slot_end": 1731657600000,
+  "slot_roomId": "stage-4",
+  "resources_presentation": "https://docs.google.com/presentation/d/1nsS3htMgQANlE-F_Bcm9jAbdeixMwbjLd0u9GrwuCV0"
+}

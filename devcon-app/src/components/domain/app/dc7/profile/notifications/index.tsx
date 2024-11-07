@@ -1,128 +1,94 @@
-import React from 'react'
-import { PushNotification } from 'types/PushNotification'
-import { ThumbnailBlock } from 'components/common/thumbnail-block'
-import IconCheck from 'assets/icons/check_circle.svg'
-// import css from './notifications.module.scss'
-// import { useFilter, Filter } from 'components/common/filter'
-import { usePageContext } from 'context/page-context'
-// import { Search, Tags, Basic, FilterFoldout } from 'components/common/filter/Filter'
-import moment from 'moment'
-// import { Button } from 'components/common/button'
-import { useAppContext } from 'context/app-context'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-// import EthBackground from 'assets/images/eth-diamond-rainbow.png'
-// import AppLogoColor from 'assets/images/app-logo-color.png'
-import AppLogo from 'assets/images/app-logo.svg'
-import { useLocalStorage } from 'hooks/useLocalStorage'
-import { Link } from 'components/common/link'
 import { Button } from 'lib/components/button'
 import { Separator } from 'lib/components/ui/separator'
-import { SubscribePushNotification } from '../../../pwa-prompt/PWAPrompt'
-import App from 'next/app'
 import { motion } from 'framer-motion'
 import BellIcon from 'assets/icons/bell-simple.svg'
 import { pwaUtilities } from '../../../pwa-prompt/pwa-utilities'
 import { Toaster } from 'lib/components/ui/toaster'
 import { useToast } from 'lib/hooks/use-toast'
 import OnboardingNotifications from 'assets/images/dc-7/onboarding-notifications.png'
+import cn from 'classnames'
+import { APP_CONFIG } from 'utils/config'
+import moment from 'moment'
 
-const filters = [
-  {
-    value: 'inbox',
-    text: 'Inbox',
-  },
-  {
-    value: 'health-safety',
-    text: 'Health & Safety',
-  },
-  {
-    value: 'all',
-    text: 'All',
-  },
-  {
-    value: 'archived',
-    text: 'Archived',
-  },
-]
+export const NotificationCard = (props: any) => {
+  const { notification, seen } = props
+  const [isNew, _] = useState(!seen)
 
-export const NotificationCard = () => {
-  return 'hello'
+  const getTimeAgo = (sendAt: string) => {
+    const now = moment.utc()
+    const sentDate = moment.utc(sendAt)
+    const diffInSeconds = Math.floor(sentDate.diff(now, 'seconds'))
+
+    if (diffInSeconds > 0) {
+      if (diffInSeconds < 60) return `Sending in ${diffInSeconds} seconds (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+      if (diffInSeconds < 3600)
+        return `Sending in ${Math.floor(diffInSeconds / 60)} minutes (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+      if (diffInSeconds < 86400)
+        return `Sending in ${Math.floor(diffInSeconds / 3600)} hours (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+      if (diffInSeconds < 2592000)
+        return `Sending in ${Math.floor(diffInSeconds / 86400)} days (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+      return `Sending in ${Math.floor(diffInSeconds / 2592000)} months (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+    }
+
+    const pastDiffInSeconds = Math.abs(diffInSeconds)
+    if (pastDiffInSeconds < 60) return `${pastDiffInSeconds} seconds ago`
+    if (pastDiffInSeconds < 3600) return `${Math.floor(pastDiffInSeconds / 60)}m ago`
+    if (pastDiffInSeconds < 86400) return `${Math.floor(pastDiffInSeconds / 3600)}h ago`
+    if (pastDiffInSeconds < 2592000) return `${Math.floor(pastDiffInSeconds / 86400)}d ago`
+    if (pastDiffInSeconds < 31536000) return `${Math.floor(pastDiffInSeconds / 2592000)} months ago`
+
+    return `${Math.floor(pastDiffInSeconds / 31536000)} years ago`
+  }
+
+  return (
+    <div className="flex justify-between gap-0 border border-solid border-gray-200 rounded-lg p-2 w-full bg-white mb-2 relative">
+      <div className="flex flex-col gap-2">
+        <p className="text-sm semi-bold pr-10">{notification.title}</p>
+        <p className="text-sm text-[#717784] pr-4">{notification.message}</p>
+      </div>
+      <div className="flex flex-col gap-1 shrink-0 items-end absolute right-2 top-2">
+        <p className="text-xs text-[#7D52F4] shrink-0 font-semibold">{getTimeAgo(notification.sendAt)}</p>
+        {isNew && <div className="text-[#7D52F4] h-[12px] flex items-center justify-center text-base">●</div>}
+      </div>
+    </div>
+  )
 }
 
-// export const NotificationCard = React.forwardRef((props: any, ref: any) => {
-//   const { seenNotifications, setSeenNotifications } = useAppContext()
-//   const [notificationSeen, setNotificationSeen] = useLocalStorage(
-//     `notification-seen-${props.notification.id}`,
-//     seenNotifications?.[props.notification.id]
-//   )
+export const NotificationsList = (props: any) => {
+  const [notifications, setNotifications] = React.useState<any>([])
 
-//   const markAsSeen = () => {
-//     setSeenNotifications((seenNotifications: any) => {
-//       return {
-//         ...seenNotifications,
-//         [props.notification.id]: true,
-//       }
-//     })
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      const response = await fetch(`${APP_CONFIG.API_BASE_URL}/notifications`, {
+        credentials: 'include',
+      })
 
-//     setNotificationSeen('yes')
-//   }
+      const { data } = await response.json()
+      setNotifications(data)
+    }
 
-//   React.useImperativeHandle(ref, () => ({
-//     notificationSeen,
-//     markAsSeen,
-//   }))
+    fetchNotifications()
+  }, [])
 
-//   // let className = `!shadow-lg ${css['notification-block']}`
+  return (
+    <div className="flex flex-col gap-4 mb-6">
+      <p className="font-xl semi-bold">Notifications</p>
+      {notifications &&
+        notifications.length > 0 &&
+        notifications.map((notification: any) => (
+          <NotificationCard key={notification.id} notification={notification} />
+        ))}
+    </div>
+  )
+}
 
-//   // if (!notificationSeen) className += ` ${css['highlight']}`
-
-//   const notification = props.notification
-//   const dateAsMoment = moment.utc(notification.date)
-
-//   // return (
-//   //   <ThumbnailBlock key={notification.id} className={className}>
-//   //     <div className={css['top']}>
-//   //       <div className={css['time']}>
-//   //         <p>{dateAsMoment.format('MM/DD/YY')}</p>
-//   //         <p>{dateAsMoment.format('HH:mm A')}</p>
-//   //         {/* TODO: Why the fook doesn't this work? */}
-//   //         {/* <p>{dateAsMoment.from(moment.utc())}</p> */}
-//   //       </div>
-
-//   //       {notificationSeen ? <IconCheck /> : <div className="label sm error bold">New</div>}
-//   //     </div>
-//   //     <div className={css['details']}>
-//   //       {notification.label === 'Twitter' && (
-//   //         <p className={`bold hover-underline ${css['title']}`}>
-//   //           <Link to={notification.url}>{notification.title}</Link>
-//   //         </p>
-//   //       )}
-//   //       {notification.label !== 'Twitter' && <p className={`bold ${css['title']}`}>{notification.title}</p>}
-//   //       <p>{notification.body}</p>
-//   //     </div>
-//   //     {notification.label && (
-//   //       <div className={css['labels']}>
-//   //         <div className={`label sm bold ${notification.labelType}`}>{notification.label}</div>
-//   //       </div>
-//   //     )}
-//   //   </ThumbnailBlock>
-//   // )
-// })
-
+// This is the "push notifications"
 export const Notifications = (props: any) => {
-  const pageContext = usePageContext()
-  const notificationRefs = React.useRef<any>({})
-  const { seenNotifications, setSeenNotifications } = useAppContext()
   const [pushNotificationsEnabled, setPushNotificationsEnabled] = React.useState(false)
-  const [toastMessage, setToastMessage] = React.useState('')
   const { toast } = useToast()
   const [isLoading, setIsLoading] = React.useState(false)
-
-  const unseenNotifications =
-    pageContext &&
-    pageContext.appNotifications &&
-    Object.values(seenNotifications).length < pageContext.appNotifications?.length
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -170,7 +136,13 @@ export const Notifications = (props: any) => {
   return (
     <motion.div variants={containerVariants} initial="hidden" animate="visible">
       <motion.div
-        className="flex items-center justify-center p-4 mb-6 lg:mb-12 rounded-full bg-[#EFEBFF] h-[48px] w-[48px] lg:h-[64px] lg:w-[64px]"
+        className={cn(
+          'flex items-center justify-center p-4 mb-6 lg:mb-12 rounded-full bg-[#EFEBFF] h-[48px] w-[48px] lg:h-[64px] lg:w-[64px]',
+          {
+            '!mb-4': props.standalone,
+            hidden: props.standalone,
+          }
+        )}
         variants={itemVariants}
       >
         <BellIcon style={{ '--color-icon': '#7D52F4' }} className="text-[20px] lg:text-[24px] icon" />
@@ -193,7 +165,10 @@ export const Notifications = (props: any) => {
       <motion.div variants={itemVariants}>
         {!pushNotificationsEnabled && (
           <Button
-            className="plain mt-2 lg:mt-8 w-full"
+            className={cn('plain mt-2 lg:mt-8 w-full', {
+              '!mt-2': props.standalone,
+              '!w-auto': props.standalone,
+            })}
             color="purple-2"
             fat
             fill
@@ -206,7 +181,10 @@ export const Notifications = (props: any) => {
 
         {pushNotificationsEnabled && (
           <Button
-            className="plain mt-8 w-full"
+            className={cn('plain mt-2 lg:mt-8 w-full', {
+              '!mt-2': props.standalone,
+              '!w-auto': props.standalone,
+            })}
             color="black-1"
             fat
             fill

@@ -140,11 +140,11 @@ async function deletePushNotifications(req: CustomRequest, res: Response) {
 }
 
 async function getNotifications(req: CustomRequest, res: Response) {
-  const userId = req.session.userId as string
+  // const userId = req.session.userId as string
 
-  if (!userId) {
-    return res.status(403).send({ code: 403, message: 'Login required.' })
-  }
+  // if (!userId) {
+  //   return res.status(403).send({ code: 403, message: 'Login required.' })
+  // }
 
   try {
     const search = {
@@ -173,7 +173,7 @@ async function sendScheduledNotifications() {
   console.log('Sending scheduled notifications...')
 
   try {
-    const notifications = await prisma.$transaction(async (tx) => {
+    const notifications = await prisma.$transaction(async (tx: any) => {
       const now = new Date()
 
       const notificationsToSend = await tx.notification.findMany({
@@ -185,7 +185,7 @@ async function sendScheduledNotifications() {
 
       await tx.notification.updateMany({
         where: {
-          id: { in: notificationsToSend.map((n) => n.id) },
+          id: { in: notificationsToSend.map((n: any) => n.id) },
         },
         data: { sent: true },
       })
@@ -197,7 +197,7 @@ async function sendScheduledNotifications() {
       const subscriptions = await prisma.pushSubscription.findMany()
 
       const results = await Promise.allSettled(
-        subscriptions.map(async (subscription) => {
+        subscriptions.map(async (subscription: any) => {
           const pushSubscription = {
             endpoint: subscription.endpoint,
             keys: {
@@ -215,8 +215,8 @@ async function sendScheduledNotifications() {
         })
       )
 
-      const successfulNotifications = results.filter((result) => result.status === 'fulfilled').length
-      const failedNotifications = results.filter((result) => result.status === 'rejected').length
+      const successfulNotifications = results.filter((result: any) => result.status === 'fulfilled').length
+      const failedNotifications = results.filter((result: any) => result.status === 'rejected').length
 
       console.log(`Sent scheduled notification ${notification.id}: ${successfulNotifications} successful, ${failedNotifications} failed`)
 

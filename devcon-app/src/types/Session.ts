@@ -4,14 +4,20 @@ import { Moment } from 'moment'
 
 export interface Session {
   id: string
+  sourceId: string
   speakers: Speaker[]
   title: string
+  slot_roomId?: string
   track: string
   duration: number
+  featured: boolean
   slot_start: number
   slot_end: number
+  slot_room?: Room
   start: number
   end: number
+  startTime: string
+  endTime: string
   startTimeAsMoment?: Moment
   endTimeAsMoment?: Moment
   day?: string
@@ -25,4 +31,9 @@ export interface Session {
   image?: string
   resources?: string[]
   tags?: string
+  sources_ipfsHash?: string
+  sources_swarmHash?: string
+  sources_youtubeId?: string
+  sources_livepeerId?: string
+  sources_streamethId?: string
 }

@@ -1,6 +1,7 @@
 import { defaultSlugify } from '@/utils/content'
 import { CreateBlockie } from '@/utils/account'
 import { PRETALX_CONFIG } from '@/utils/config'
+import { createHmac } from 'crypto'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import Parser from 'rss-parser'
@@ -23,7 +24,7 @@ export async function GetLastcheduleUpdate() {
     return lastUpdate.valueOf()
   } catch (e) {
     console.log('Unable to fetch schedule update. Make sure the event name is correct and made public.')
-    return 0
+    return Date.now()
   }
 }
 
@@ -41,6 +42,10 @@ export async function GetRooms() {
 }
 
 export async function GetSpeakers(params: Partial<RequestParams> = {}) {
+  if (!process.env.EMAIL_SECRET) {
+    console.warn('EMAIL_SECRET is not set. Skipping email hashing.')
+  }
+
   const speakersData = await exhaustResource(`speakers?questions=all`)
   return speakersData.map((i: any) => mapSpeaker(i, params))
 }
@@ -101,6 +106,10 @@ function mapSession(i: any, params: Partial<RequestParams>) {
   const audience = i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_AUDIENCE)?.answer as string
   const keywords = arrayify(i.answers?.find((i: any) => i.question.id === PRETALX_CONFIG.PRETALX_QUESTIONS_KEYWORDS)?.answer)
 
+  let tags: string[] = []
+  if (i.tags) tags = [...i.tags]
+  if (predefinedTags) tags = [...tags, ...predefinedTags]
+
   let session: any = {
     id: defaultSlugify(i.title),
     sourceId: i.code,
@@ -113,15 +122,15 @@ function mapSession(i: any, params: Partial<RequestParams>) {
     featured: i.is_featured ?? false,
     doNotRecord: i.do_not_record ?? false,
     keywords: keywords,
-    tags: [...i.tags, ...predefinedTags] ?? [],
+    tags: tags,
     language: 'en',
     speakers: params.inclContacts ? i.speakers.map((i: any) => mapSpeaker(i, params)) : i.speakers.map((i: any) => defaultSlugify(i.name)),
     eventId: `devcon-${PRETALX_CONFIG.PRETALX_EVENT_ID}`,
   }
 
   if (i.slot) {
-    session.slot_start = dayjs.utc(i.slot.start).toDate()
-    session.slot_end = dayjs.utc(i.slot.end).toDate()
+    session.slot_start = dayjs.utc(i.slot.start).valueOf()
+    session.slot_end = dayjs.utc(i.slot.end).valueOf()
     session.slot_roomId = i.slot?.room ? defaultSlugify(i.slot.room.en) : null
   }
 
@@ -152,6 +161,9 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
     const handle = sanitizeProfileField(ens)
     speaker.ens = handle.startsWith('0x') ? handle : handle.endsWith('.eth') ? handle : `${handle}.eth`
   }
+  if (i.email && process.env.EMAIL_SECRET) {
+    speaker.hash = createHmac('sha256', process.env.EMAIL_SECRET).update(i.email.trim().toLowerCase()).digest('hex')
+  }
 
   if (params.inclContacts && i.email) speaker.email = i.email
   if (params.inclContacts && notEmptyOrInvalid(telegram)) speaker.telegram = sanitizeProfileField(telegram)
@@ -179,13 +191,13 @@ function sanitizeProfileField(value: string) {
   if (value.includes(';')) value = value.split(';')[0]
 
   value = value.replace(/['"]+/g, '').trim().toLowerCase()
-  value = value.replace('@', '')
-  value = value.replace('.lens', '')
   value = value.replace('https://github.com/', '')
   value = value.replace('https:/gist.github.com/', '')
+  value = value.replace('github.com/', '')
   value = value.replace('https://twitter.com/', '')
-  value = value.replace('twitter.com/', '')
   value = value.replace('https://x.com/', '')
+  value = value.replace('https://www.x.com/', '')
+  value = value.replace('twitter.com/', '')
   value = value.replace('x.com/', '')
   value = value.replace('https://farcaster.xyz/u/', '')
   value = value.replace('https://warpcast.com/', '')
@@ -194,6 +206,13 @@ function sanitizeProfileField(value: string) {
   value = value.replace('https://app.ens.domains/', '')
   value = value.replace('https://ens.domains/', '')
   value = value.replace('https://t.me/', '')
+  value = value.replace('https://www.t.me/', '')
+  value = value.replace('t.me/', '')
+  value = value.replace('.lens', '')
+  value = value.replace('?s=21', '')
+  value = value.replace('?lang=en', '')
+  value = value.replace('@', '')
+  value = value.replace('/', '')
 
   return value
 }

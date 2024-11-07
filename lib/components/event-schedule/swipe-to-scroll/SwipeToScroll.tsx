@@ -5,6 +5,7 @@ import useDimensions from "react-cool-dimensions";
 
 type SwipeToScrollProps = {
   noBounds?: boolean;
+  noScrollReset?: boolean;
   focusRef?: React.RefObject<HTMLElement>;
   children: React.ReactChild | React.ReactChild[];
   scrollIndicatorDirections?: {
@@ -103,7 +104,9 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
 
       setIsNativeScroll(isNativeScroll);
 
-      reset();
+      if (!props.noScrollReset) {
+        reset();
+      }
 
       if (el.current && el.current.scrollWidth) {
         const maxScroll = el.current.scrollWidth - width;
@@ -115,6 +118,8 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
 
   // When window changes size, reset
   React.useEffect(() => {
+    if (!props.noScrollReset) return;
+
     const resizeListener = reset;
 
     window.addEventListener("resize", resizeListener);

@@ -8,7 +8,7 @@ import {
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 import Image from 'next/image'
-import AppIcons from 'pages/wip/dc-7-images/login-icons-colorless.png'
+import AppIcons from 'pages/login/dc-7-images/login-icons-colorless.png'
 import ProfileIcon from 'assets/icons/person.svg'
 
 type PageProps = {

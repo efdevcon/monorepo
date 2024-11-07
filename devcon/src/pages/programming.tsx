@@ -119,8 +119,8 @@ export default pageHOC(function Programming(props: any) {
           <div className="flex-0 shrink-0 max-w-[100%] lg:max-w-[50%] w-[550px]">
             <CallToAction
               color="purple"
-              title={'Check out experiences!'}
-              tag="Event Experiences"
+              title={'Devcon Schedule available now!'}
+              tag="Devcon Passport"
               BackgroundSvg={SpeakersBackground}
               // link={pages.overview?.button?.link}
               // linkText={pages.overview?.button?.text}

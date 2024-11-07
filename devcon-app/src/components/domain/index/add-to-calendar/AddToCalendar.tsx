@@ -31,7 +31,7 @@ export const generateAddToCalendarUrls = (event: EventData) => {
   const endOfLastDay = formatTimeOfDay(end)
 
   const googleCalUrl = (() => {
-    const googleCalUrl = new URL(`https://www.google.com/calendar/render?action=TEMPLATE&ctz=America/Bogota`)
+    const googleCalUrl = new URL(`https://www.google.com/calendar/render?action=TEMPLATE&ctz=Asia/Bangkok`)
 
     googleCalUrl.searchParams.append('text', title)
     googleCalUrl.searchParams.append('details', description)
@@ -53,8 +53,8 @@ export const generateAddToCalendarUrls = (event: EventData) => {
       `BEGIN:VEVENT`,
       `UID:${id}`,
       `DTSTAMP${moment.utc().format('YYYYMMDDTHHmmss')}`,
-      `DTSTART;TZID=America/Bogota:${start.format('YYYYMMDD')}`,
-      `DTEND;TZID=America/Bogota:${end.format('YYYYMMDD')}`,
+      `DTSTART;TZID=Asia/Bangkok:${start.format('YYYYMMDD')}`,
+      `DTEND;TZID=Asia/Bangkok:${end.format('YYYYMMDD')}`,
       `SUMMARY:${title}`,
       `DESCRIPTION:${description}`,
       location && `LOCATION:${location}`,
@@ -69,8 +69,8 @@ export const generateAddToCalendarUrls = (event: EventData) => {
       `BEGIN:VEVENT`,
       `UID:${id}`,
       `DTSTAMP:${moment.utc().format('YYYYMMDDTHHmmss')}`,
-      `DTSTART;TZID=America/Bogota:${start.format('YYYYMMDD')}T${startOfFirstDay}`,
-      `DTEND;TZID=America/Bogota:${end.format('YYYYMMDD')}T${endOfLastDay}`,
+      `DTSTART;TZID=Asia/Bangkok:${start.format('YYYYMMDD')}T${startOfFirstDay}`,
+      `DTEND;TZID=Asia/Bangkok:${end.format('YYYYMMDD')}T${endOfLastDay}`,
       `SUMMARY:${title}`,
       `DESCRIPTION:${description}`,
       location && `LOCATION:${location}`,

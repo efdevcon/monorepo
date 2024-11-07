@@ -11,11 +11,14 @@ type LinkProps = {
   indicateExternal?: boolean // Whether or not to add an external link indicator (only applies when the url is external)
   allowDrag?: boolean
   to: string // Gatsby legacy - can rename to href at some point if we want
+  external?: boolean // Add this since it's used in params
+  locale?: string // Add this since it's used in params
+  ref?: React.Ref<HTMLAnchorElement> // Add ref type
   [key: string]: any
 }
 
-const Link = React.forwardRef(
-  ({ children, indicateExternal, external, allowDrag, locale, to, ...rest }: LinkProps, ref: any) => {
+const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+  ({ children, indicateExternal, external, allowDrag, locale, to, ...rest }, ref) => {
     const dragging = React.useRef(false)
 
     const linkAttributes = {

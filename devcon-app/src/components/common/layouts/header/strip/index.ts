@@ -1,1 +1,0 @@
-export { Strip } from './Strip'

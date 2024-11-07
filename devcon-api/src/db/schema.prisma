@@ -47,6 +47,7 @@ model Speaker {
   lens String?
   ens String?
   github String?
+  hash String?
   events Event[]
   sessions Session[]
 }
@@ -83,16 +84,29 @@ model Session {
 
   resources_presentation String?
   resources_slides String?
-
+ 
   relatedSessions RelatedSession[] @relation(name: "Related")
+  recommendedSessions RecommendedSession[] @relation(name: "Recommended")
 }
 
 model RelatedSession {
   id Int @id @default(autoincrement())
   sessionId String
+  vector Bytes?
 
-  related Session @relation(name: "Related", fields: [relatedId], references: [id])
-  relatedId String
+  other Session @relation("Related", fields: [otherId], references: [id], onDelete: Cascade)
+  otherId String
 
+  similarity Float
+}
+
+model RecommendedSession {
+  id Int @id @default(autoincrement())
+  sessionId String
+  vector Bytes?
+
+  other Session @relation("Recommended", fields: [otherId], references: [id], onDelete: Cascade)
+  otherId String
+  
   similarity Float
 }

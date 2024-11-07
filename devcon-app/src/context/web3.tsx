@@ -2,13 +2,10 @@
 
 import React, { PropsWithChildren } from 'react'
 import { wagmiAdapter } from 'utils/wallet'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createAppKit } from '@reown/appkit/react'
 import { mainnet } from '@reown/appkit/networks'
 import { cookieToInitialState, WagmiProvider, type Config } from 'wagmi'
 import { APP_CONFIG } from 'utils/config'
-
-const queryClient = new QueryClient()
 
 createAppKit({
   adapters: [wagmiAdapter],
@@ -22,7 +19,11 @@ createAppKit({
     icons: ['https://avatars.githubusercontent.com/u/40744488'],
   },
   features: {
+    swaps: false,
+    onramp: false,
     analytics: true,
+    history: false,
+    socials: [],
   },
 })
 
@@ -35,7 +36,7 @@ export function Web3Provider(props: Props) {
 
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig as Config} initialState={initialState}>
-      <QueryClientProvider client={queryClient}>{props.children}</QueryClientProvider>
+      {props.children}
     </WagmiProvider>
   )
 }

@@ -31,6 +31,7 @@ export async function GetSessions(req: Request, res: Response) {
     where: {},
     include: {
       speakers: true,
+      slot_room: true,
     },
   }
   if (req.query.from) args.skip = parseInt(req.query.from as string)
@@ -104,6 +105,10 @@ export async function GetSession(req: Request, res: Response) {
     where: {
       OR: [{ id: req.params.id }, { sourceId: req.params.id }],
     },
+    include: {
+      speakers: true,
+      slot_room: true,
+    },
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
@@ -145,17 +150,7 @@ export async function UpdateSession(req: Request, res: Response) {
       },
     })
 
-    await CommitSession(
-      {
-        ...updatedData,
-        tags: updatedData.tags?.split(',') || [],
-        keywords: updatedData.keywords?.split(',') || [],
-        speakers: updatedData.speakers.map((speaker) => speaker.id),
-        slot_start: updatedData.slot_start ? dayjs(updatedData.slot_start).valueOf() : null,
-        slot_end: updatedData.slot_end ? dayjs(updatedData.slot_end).valueOf() : null,
-      },
-      `[skip deploy] PUT /sessions/${updatedData.id}`
-    )
+    await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {
@@ -171,30 +166,22 @@ export async function UpdateSessionSources(req: Request, res: Response) {
 
   const body = req.body
   if (!body) return res.status(400).send({ status: 400, message: 'No Body' })
-  if (req.params.id !== body.id && req.params.id !== body.sourceId) {
-    return res.status(400).send({ status: 400, message: 'Invalid Id' })
-  }
 
   const data = await client.session.findFirst({
     where: {
       OR: [{ id: req.params.id }, { sourceId: req.params.id }],
     },
   })
-
-  const allowedFields = ['sources_ipfsHash', 'sources_youtubeId', 'sources_swarmHash', 'sources_livepeerId', 'duration']
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
-  if (Object.keys(body).some((key) => !(key in allowedFields))) {
-    return res.status(400).send({ status: 400, message: 'Invalid fields' })
-  }
 
   let newSessionData = {
     ...data,
+    sources_ipfsHash: body.sources_ipfsHash ?? '',
+    sources_youtubeId: body.sources_youtubeId ?? '',
+    sources_swarmHash: body.sources_swarmHash ?? '',
+    sources_livepeerId: body.sources_livepeerId ?? '',
+    duration: body.duration ?? 0,
   }
-  if (body.sources_ipfsHash) newSessionData.sources_ipfsHash = body.sources_ipfsHash
-  if (body.sources_youtubeId) newSessionData.sources_youtubeId = body.sources_youtubeId
-  if (body.sources_swarmHash) newSessionData.sources_swarmHash = body.sources_swarmHash
-  if (body.sources_livepeerId) newSessionData.sources_livepeerId = body.sources_livepeerId
-  if (body.duration) newSessionData.duration = body.duration
 
   try {
     const updatedData = await client.session.update({
@@ -205,7 +192,7 @@ export async function UpdateSessionSources(req: Request, res: Response) {
       data: newSessionData,
     })
 
-    await CommitSession(newSessionData, `[skip deploy] PUT /sessions/${updatedData.id}`)
+    await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
     res.status(204).send()
   } catch (error) {
@@ -219,13 +206,13 @@ export async function GetSessionRelated(req: Request, res: Response) {
   const data = await client.relatedSession.findMany({
     where: { sessionId: req.params.id },
     orderBy: { similarity: 'desc' },
-    include: { related: true },
+    include: { other: true },
     take: 10,
   })
 
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
-  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.related) })
+  res.status(200).send({ status: 200, message: '', data: data.map((i) => i.other) })
 }
 
 export async function GetSessionImage(req: Request, res: Response) {

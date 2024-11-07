@@ -1,32 +1,32 @@
-import { Home } from 'components/domain/app/home'
+// import { Home } from 'components/domain/app/home'
 import { AppLayout } from 'components/domain/app/Layout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SEO } from 'components/domain/seo'
-import { PageContext } from '../context/page-context'
-import { useSessionData } from 'services/event-data'
-import { DEFAULT_APP_PAGE } from 'utils/constants'
+import { Dashboard } from 'components/domain/app/dc7/dashboard'
+import { useAccountContext } from 'context/account-context'
+import { useRouter } from 'next/router'
+import { sessionsAtom } from './_app'
+import { useRecoilValue } from 'recoil'
 
 const Index = (props: any) => {
-  const sessions = useSessionData()
+  const sessions = useRecoilValue(sessionsAtom)
+  const accountContext = useAccountContext()
+  const router = useRouter()
 
-  const context = {
-    navigation: props.navigationData,
-    notification: props.notification,
-    appNotifications: [],
-    current: DEFAULT_APP_PAGE,
-  }
+  useEffect(() => {
+    const storedSkipLogin = localStorage.getItem('skipLogin')
+
+    if (storedSkipLogin !== 'true' && !accountContext.account) {
+      router.replace('/login')
+    }
+  }, [])
 
   return (
-    <PageContext.Provider value={context}>
-      <AppLayout>
-        <SEO title="Dashboard" />
-        {sessions ? <Home {...props} sessions={sessions} /> : <></>}
+    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]}>
+      <SEO title="Dashboard" />
 
-        <div className={`${sessions ? 'loaded' : ''} loader`}>
-          <div className="indicator"></div>
-        </div>
-      </AppLayout>
-    </PageContext.Provider>
+      <Dashboard {...props} sessions={sessions} />
+    </AppLayout>
   )
 }
 

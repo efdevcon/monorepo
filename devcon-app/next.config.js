@@ -12,8 +12,15 @@ const runtimeCache = require('./runtime-cache')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ['@parcnet-js/podspec', '@pcd/pod'],
   staticPageGenerationTimeout: 300,
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ],
     domains: [
       'speak.devcon.org',
       'storage.googleapis.com',
@@ -48,7 +55,7 @@ const nextConfig = {
           ...config.resolve.alias,
           react: path.resolve(__dirname, 'node_modules/react'),
           'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-          'recoil': path.resolve(__dirname, 'node_modules/recoil'),
+          recoil: path.resolve(__dirname, 'node_modules/recoil'),
         },
         modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
         fallback: {
@@ -169,6 +176,7 @@ const createConfig = phase => {
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
     mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
     dynamicStartUrl: false,
+    skipWaiting: false,
     customWorkerDir: 'workbox',
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],

@@ -10,6 +10,7 @@ import useNavigationData from '../../useNavigationData'
 import IconCalendar from 'assets/icons/calendar.svg'
 import IconWatch from 'assets/icons/on_demand_video.svg'
 import { Button } from 'lib/components/button'
+import AppIcons from 'assets/icons/app-icons.svg'
 
 const Mobile = (props: any) => {
   const [openItem, setOpenItem] = React.useState<string | undefined>()
@@ -64,7 +65,7 @@ const Mobile = (props: any) => {
                   >
                     <>
                       {i.title}
-                      {i.highlight === 'app' && <IconCalendar style={{ fontSize: '1em' }} />}
+                      {i.highlight === 'app' && <AppIcons style={{ fontSize: '1em' }} />}
                       {i.highlight === 'livestream' ||
                         (i.highlight === 'archive' && <IconWatch style={{ fontSize: '1em' }} />)}
                     </>
@@ -149,6 +150,25 @@ export const Navigation = (props: any) => {
                   <Button color="purple-1" className="shadow lg !py-1" fill>
                     <IconWatch className="mr-2 icon" />
                     {i.title}
+                  </Button>
+                </Link>
+              )
+            }
+
+            if (i.highlight === 'app') {
+              return (
+                <Link to={i.url}>
+                  <Button
+                    color="purple-2"
+                    className="shadow lg shrink-0 !py-1 flex gap-2 items-center !rounded-2xl"
+                    fill
+                  >
+                    <AppIcons
+                      className="mx-0.5 mr-1 transform scale-[140%] icon"
+                      style={{ width: 'auto', height: 'auto', fontSize: '20px' }}
+                    />
+                    {i.title}
+                    {/* <IconCalendar className="icon shrink-0" style={{ fontSize: '12px' }} /> */}
                   </Button>
                 </Link>
               )

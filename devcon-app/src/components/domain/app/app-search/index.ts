@@ -1,1 +1,0 @@
-export { AppSearch } from './AppSearch';

@@ -34,6 +34,17 @@
         }
       }
     },
+    "/cookies": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/account": {
       "get": {
         "tags": [
@@ -47,6 +58,30 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/account/{id}/schedule": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
@@ -102,6 +137,39 @@
           },
           "404": {
             "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/account/zupass/import": {
+      "put": {
+        "tags": [
+          "Account"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "entries": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
@@ -928,6 +996,35 @@
         }
       }
     },
+    "/speakers/{id}/sessions": {
+      "get": {
+        "tags": [
+          "Speakers"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
     "/devabot": {
       "post": {
         "description": "",
@@ -956,33 +1053,6 @@
         "responses": {
           "429": {
             "description": "Too Many Requests"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/devabot/recommendations": {
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1019,6 +1089,13 @@
             "description": "Forbidden"
           }
         }
+      }
+    },
+    "{{where{id:data.id}}": {
+      "delete": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
       }
     },
     "/push-subscriptions": {
@@ -1129,9 +1206,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
           },
           "500": {
             "description": "Internal Server Error"

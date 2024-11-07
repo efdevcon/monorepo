@@ -2,10 +2,15 @@ import { Request, Response, Router } from 'express'
 import { API_INFO } from '@/utils/config'
 import { PrismaClient } from '@/db/clients/account'
 import { PrismaClient as ScheduleClient } from '@prisma/client'
-import { UserAccount } from '@/types/accounts'
+import { AccountProfileData, UserAccount } from '@/types/accounts'
 import { sendMail } from '@/services/email'
 import { isValidSignature } from '@/utils/web3'
 import { GetRecommendedSessions, GetRecommendedSpeakers } from '@/clients/recommendation'
+import { RemapPretixRoles } from '@/clients/pretix'
+import { decryptFile } from '@/utils/encrypt'
+import { parseCSV } from '@/utils/files'
+import { ValidateTicketPod } from '@/utils/zupass'
+import { GenerateRandomUsername, GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
@@ -13,7 +18,9 @@ const scheduleClient = new ScheduleClient()
 
 export const accountRouter = Router()
 accountRouter.get(`/account`, GetAccount)
+accountRouter.get(`/account/:id/schedule`, GetAccountSchedule)
 accountRouter.put(`/account/:id`, UpdateAccount)
+accountRouter.put(`/account/zupass/import`, UpdateAccountImport)
 accountRouter.delete(`/account/:id`, DeleteAccount)
 accountRouter.post(`/account/token`, Token)
 accountRouter.post(`/account/login/email`, LoginEmail)
@@ -51,6 +58,103 @@ async function GetAccount(req: Request, res: Response) {
   res.status(500).send({ code: 500, message: 'Unable to get user account.' })
 }
 
+async function GetAccountSchedule(req: Request, res: Response) {
+  // #swagger.tags = ['Account']
+
+  let id = req.params.id
+  let ensName = null
+  let address = null
+  if (id?.endsWith('.eth')) {
+    ensName = id
+    address = await GetEnsAddress(id)
+  }
+  if (id?.startsWith('0x')) {
+    address = id
+    ensName = await GetEnsName(id as `0x${string}`)
+  }
+
+  const account = await client.account.findFirst({
+    where: {
+      OR: [
+        { id: id },
+        { username: { equals: id, mode: 'insensitive' } },
+        ensName ? { username: { equals: ensName, mode: 'insensitive' } } : {},
+        { addresses: { hasSome: [id, id.toLowerCase(), id.toUpperCase()] } },
+        address ? { addresses: { hasSome: [address, address.toLowerCase(), address.toUpperCase()] } } : {},
+      ],
+      publicSchedule: true,
+    },
+    select: {
+      id: true,
+      username: true,
+      email: true,
+      addresses: true,
+      attending_sessions: true,
+    },
+  })
+
+  if (!account) {
+    return res.status(404).send({ code: 404, message: 'User schedule not found. Make sure it is public.' })
+  }
+
+  const schedule = await scheduleClient.session.findMany({
+    where: {
+      sourceId: { in: account.attending_sessions },
+    },
+    include: {
+      speakers: true,
+      slot_room: true,
+    },
+    orderBy: {
+      slot_start: 'asc',
+    },
+  })
+
+  res.status(200).send({
+    code: 200,
+    message: '',
+    user: {
+      id: id,
+      username: ensName ?? account.username ?? GenerateRandomUsername(account.id),
+      avatar: await GetEnsAvatar(ensName ?? id),
+    },
+    data: schedule,
+  })
+}
+
+async function UpdateAccountImport(req: Request, res: Response) {
+  // #swagger.tags = ['Account']
+
+  const userId = req.session.userId
+  if (!userId) {
+    // return as HTTP 200 OK
+    return res.status(401).send({ message: 'userId session not found.' })
+  }
+
+  const pod = req.body?.pod
+  if (!pod) {
+    return res.status(400).send({ message: 'Ticket POD not provided.' })
+  }
+
+  const valid = ValidateTicketPod(pod)
+  if (!valid) {
+    return res.status(400).send({ message: 'Ticket POD is not valid.' })
+  }
+
+  const attendeeEmail = pod.entries.attendeeEmail
+  if (!attendeeEmail) {
+    return res.status(400).send({ message: 'Attendee email not found.' })
+  }
+
+  const profileData = await parseProfileData(attendeeEmail)
+  if (!profileData) {
+    return res.status(400).send({ message: 'Profile data not found.' })
+  }
+
+  const updated = await client.account.update({ where: { id: userId }, data: { ...profileData, updatedAt: new Date() } })
+  return res.status(200).send({ code: 200, data: updated })
+}
+
 async function UpdateAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
 
@@ -72,7 +176,7 @@ async function UpdateAccount(req: Request, res: Response) {
   }
 
   try {
-    const updated = await client.account.update({ where: { id: paramId }, data: account })
+    const updated = await client.account.update({ where: { id: paramId }, data: { ...account, updatedAt: new Date() } })
     if (updated) {
       return res.status(200).send({ code: 200, message: 'OK', data: account })
     }
@@ -138,7 +242,7 @@ async function Token(req: any, res: Response) {
     if (isEmail) {
       const cta = update ? 'Confirm email' : 'Login using magic link'
       const magiclink = update
-        ? `${req.headers.origin || API_INFO.website}/settings/email?token=${nonce}`
+        ? `${req.headers.origin || API_INFO.website}/account/email?token=${nonce}`
         : `${req.headers.origin || API_INFO.website}/login?token=${nonce}`
 
       await sendMail(identifier, 'email-cta', `${nonce} is your Devcon verification code`, {
@@ -179,6 +283,7 @@ async function LoginEmail(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'Invalid input.' })
   }
 
+  address = address
   let data = await client.verificationToken.findFirst({
     where: { identifier: address, nonce: nonce, expires: { gt: new Date() } },
   })
@@ -196,7 +301,7 @@ async function LoginEmail(req: Request, res: Response) {
   const userId = req.session.userId
   // if a session exists => add email to existing account
   if (userId) {
-    let userAccount = await client.account.findFirst({ where: { email: address } })
+    let userAccount = await client.account.findFirst({ where: { email: { equals: address, mode: 'insensitive' } } })
     if (userAccount) {
       return res.status(400).send({ code: 400, message: 'Unable to add email address.' }) // TODO: email address already exists
     }
@@ -207,6 +312,12 @@ async function LoginEmail(req: Request, res: Response) {
     }
 
     userAccount = { ...userAccount, email: address }
+    if (!userAccount.onboarded) {
+      const profile = await parseProfileData(address)
+      if (profile) {
+        userAccount = { ...userAccount, ...profile }
+      }
+    }
     const updated = await client.account.update({ where: { id: userId }, data: userAccount })
     if (updated) {
       // SUCCESS - No need to update session, userId remains the same
@@ -217,16 +328,27 @@ async function LoginEmail(req: Request, res: Response) {
   }
 
   // else; create new user account based on email address
-  let userAccount = await client.account.findFirst({ where: { email: address } })
+  let userAccount = await client.account.findFirst({ where: { email: { equals: address, mode: 'insensitive' } } })
   if (userAccount) {
+    if (!userAccount.onboarded) {
+      const profile = await parseProfileData(address)
+      if (profile) {
+        userAccount = await client.account.update({ where: { id: userAccount.id }, data: profile })
+      }
+    }
+
     req.session.userId = userAccount.id
     req.session.save()
-
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
 
   if (!userAccount) {
-    userAccount = await client.account.create({ data: { email: address } })
+    const profile = await parseProfileData(address)
+    if (profile) {
+      userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address), ...profile } })
+    } else {
+      userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address) } })
+    }
 
     if (userAccount) {
       req.session.userId = userAccount.id
@@ -297,7 +419,7 @@ async function LoginToken(req: Request, res: Response) {
   }
 
   if (!userAccount) {
-    userAccount = await client.account.create({ data: { email: address } })
+    userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address) } })
 
     if (userAccount) {
       req.session.userId = userAccount.id
@@ -352,6 +474,7 @@ async function LoginWeb3(req: Request, res: Response) {
     if (!userAccount) {
       userAccount = await client.account.create({
         data: {
+          username: (await GetEnsName(address as `0x${string}`)) ?? GenerateRandomUsername(address),
           addresses: [address],
           activeAddress: address,
         },
@@ -383,7 +506,13 @@ async function LoginWeb3(req: Request, res: Response) {
     return res.status(200).send({ code: 200, message: '', data: userAccount })
   }
 
-  userAccount = await client.account.create({ data: { addresses: [address], activeAddress: address } })
+  userAccount = await client.account.create({
+    data: {
+      username: (await GetEnsName(address as `0x${string}`)) ?? GenerateRandomUsername(address),
+      addresses: [address],
+      activeAddress: address,
+    },
+  })
   if (userAccount) {
     req.session.userId = userAccount.id
     req.session.save()
@@ -449,10 +578,11 @@ async function RecommendedSpeakers(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'No user account found.' })
   }
 
-  const speakers =
-    account.addresses.length > 0
-      ? (await Promise.all(account.addresses.map((i) => GetRecommendedSpeakers(i, true)))).flat()
-      : await GetRecommendedSpeakers('', true)
+  if (account.addresses.length === 0) {
+    return res.status(200).send({ code: 200, message: '', data: [] })
+  }
+
+  const speakers = (await Promise.all([...new Set(account.addresses)].map((i: string) => GetRecommendedSpeakers(i)))).flat()
 
   return res.status(200).send({ code: 200, message: '', data: speakers })
 }
@@ -513,4 +643,30 @@ async function RecommendedSessions(req: Request, res: Response) {
   const sessions = await GetRecommendedSessions(account.id, true)
 
   return res.status(200).send({ code: 200, message: '', data: sessions })
+}
+
+async function parseProfileData(attendeeEmail: string) {
+  const normalizedEmail = attendeeEmail.toLowerCase()
+  const data = await decryptFile(`data/accounts/pretix.encrypted`)
+  const results = await parseCSV(data)
+
+  const account = results.find((row) => (Object.values(row)[0] as string)?.toLowerCase() === normalizedEmail)
+  if (!account) {
+    return undefined
+  }
+
+  const years = Object.entries(account)[1][1]
+  const tracks = Object.entries(account)
+    .filter(([track, interest]) => interest === 'Yes')
+    .map(([track]) => track)
+  const roles = RemapPretixRoles(Object.entries(account)[12][1] as string)
+  const reason = Object.entries(account)[13][1] as string
+  const profileData: AccountProfileData = {
+    since: years === "I'm new to the space!" ? 2024 : 2024 - Number(years),
+    roles: roles,
+    tracks: tracks,
+    reason: reason,
+  }
+
+  return profileData
 }

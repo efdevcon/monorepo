@@ -1,81 +1,100 @@
 import { AppLayout } from 'components/domain/app/Layout'
-import { Schedule } from 'components/domain/app/schedule'
-import { pageHOC } from 'context/pageHOC'
 import React from 'react'
-import { useRouter } from 'next/router'
-import { fetchRooms, fetchTracks, fetchEvent, fetchExpertiseLevels, fetchSessionTypes } from 'services/event-data'
-import { API_URL, DEFAULT_APP_PAGE } from 'utils/constants'
-import { Session } from 'components/domain/app/session'
-import { Session as SessionType } from 'types/Session'
+import { fetchRooms, fetchEvent } from 'services/event-data'
 import { SEO } from 'components/domain/seo'
-import { GetRelatedSessions } from './schedule/[id]'
-import { useSessionData } from 'services/event-data'
-import { PageContext } from '../context/page-context'
-import { ScheduleState, useScheduleContext } from 'components/domain/app/schedule/Schedule'
-import Link from 'next/link'
+import { SessionLayout, isAdvancedFilterApplied, advancedFilterKeys } from 'components/domain/app/dc7/sessions'
+import { sessionsAtom } from './_app'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { usePersonalized } from './schedule/u/[id]'
+import { cn } from 'lib/shadcn/lib/utils'
+import FilterIcon from 'assets/icons/filter-tract.svg'
+import { sessionFilterOpenAtom, sessionFilterAtom } from 'pages/_app'
 
-export default pageHOC((props: any) => {
-  const sessions = useSessionData()
-  const scheduleContext = useScheduleContext()
-  const { query } = useRouter()
-  // const speakers = useSpeakerData()
-  const context = {
-    navigation: props.navigationData,
-    notification: props.notification,
-    appNotifications: [],
-    current: DEFAULT_APP_PAGE,
-  }
+const FilterTrigger = () => {
+  const { isPersonalizedSchedule } = usePersonalized()
+  const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
+  const sessionFilter = useRecoilValue(sessionFilterAtom)
+  const advancedFilterApplied = isAdvancedFilterApplied(sessionFilter)
+
+  if (isPersonalizedSchedule) return null
+
+  let filterCount = 0
 
   return (
-    <PageContext.Provider value={context}>
-      <AppLayout>
-        <SEO title="Schedule" />
+    <div
+      data-type="session-filter-actions"
+      className="flex flex-row gap-2 items-center ml-4 mr-1 text-right text-xl lg:hidden"
+    >
+      <div className="text-xs font-semibold line-clamp-2">
+        {(() => {
+          const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
+            const filterAsKeys = Object.keys(filter)
 
-        {/* <Link href="/wip/onboarding">Onboarding Shortcut</Link> */}
+            filterCount += filterAsKeys.length
 
-        {sessions ? (
-          (() => {
-            const sessionID = query.session
-            const session = sessions.find((session: SessionType) => session.id === sessionID)
-            const related = session ? GetRelatedSessions(String(sessionID), sessions) : []
+            if (filterAsKeys.length === 0) return
+            if (filterAsKeys.length === 1) return filterAsKeys[0]
 
-            return session ? (
-              <>
-                <SEO
-                  title={session.title}
-                  description={session.description}
-                  imageUrl={`${API_URL}sessions/${session.id}/image`}
-                />
-                <Session session={session} relatedSessions={related} />
-              </>
-            ) : (
-              <>
-                <ScheduleState sessions={props.sessions}>
-                  <Schedule sessions={sessions} {...props} />
-                </ScheduleState>
-              </>
-            )
-          })()
-        ) : (
-          <></>
+            return `${key} (${filterAsKeys.length})`
+          }
+
+          return (
+            [
+              computeFilterShorthand(sessionFilter.track, 'Tracks'),
+              computeFilterShorthand(sessionFilter.type, 'Session Type'),
+              computeFilterShorthand(sessionFilter.expertise, 'Expertise'),
+              computeFilterShorthand(sessionFilter.room, 'Rooms'),
+            ]
+              .filter(val => !!val)
+              .join(', ') || ''
+          )
+        })()}
+      </div>
+
+      <div
+        onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
+        className={cn(
+          'flex shrink-0 relative items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 transition-all duration-300',
+          (sessionFilterOpen || advancedFilterApplied) && 'bg-[#6d3bff] fill-[#7D52F4]'
         )}
+      >
+        <FilterIcon
+          className="icon"
+          style={{
+            '--color-icon': sessionFilterOpen || advancedFilterApplied ? 'white' : 'white',
+            fontSize: '22px',
+          }}
+        />
 
-        <div className={`${sessions ? 'loaded' : ''} loader`}>
-          <div className="indicator"></div>
-        </div>
-      </AppLayout>
-    </PageContext.Provider>
+        {filterCount > 0 && (
+          <div className="absolute -top-[3px] -right-[8px] bg-[#ed3636] text-white rounded-full w-5 h-5 md:w-[1.1rem] md:h-[1.1rem] lg:-top-0.5 lg:-right-0.5 flex items-center justify-center text-xs lg:text-[12px]">
+            {filterCount}
+          </div>
+        )}
+      </div>
+    </div>
   )
-})
+}
+
+const SessionPage = (props: any) => {
+  const sessions = useRecoilValue(sessionsAtom)
+
+  return (
+    <AppLayout pageTitle="Schedule" breadcrumbs={[{ label: 'Schedule' }]} renderActions={() => <FilterTrigger />}>
+      <SEO title="Schedule" />
+
+      <SessionLayout sessions={sessions} event={props.event} />
+    </AppLayout>
+  )
+}
+
+export default SessionPage
 
 export async function getStaticProps(context: any) {
   return {
     props: {
       event: await fetchEvent(),
-      tracks: await fetchTracks(),
       rooms: await fetchRooms(),
-      expertiseLevels: await fetchExpertiseLevels(),
-      sessionTypes: await fetchSessionTypes(),
     },
   }
 }
