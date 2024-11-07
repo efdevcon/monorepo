@@ -46,10 +46,13 @@ const accountClient = new AccountClient()
 export async function GetRecommendedSpeakers(id: string) {
   console.log('Get Recommended Speakers', id)
   const farcasterProfile = await GetFarcasterProfile(id)
-  const farcaster = farcasterProfile ? await GetFarcasterFollowing(farcasterProfile.fid) : []
   const lensProfileId = await GetLensProfileId(id)
-  const lens = lensProfileId ? await GetLensFollowing(lensProfileId) : []
-  const efp = await GetEFPFollowing(id)
+
+  const [farcaster, lens, efp] = await Promise.all([
+    farcasterProfile ? GetFarcasterFollowing(farcasterProfile.fid) : Promise.resolve([]),
+    lensProfileId ? GetLensFollowing(lensProfileId) : Promise.resolve([]),
+    GetEFPFollowing(id),
+  ])
 
   const speakers = await scheduleClient.speaker.findMany({
     where: {
@@ -161,7 +164,7 @@ export async function GetFarcasterFollowing(profileId: string, cursor?: string):
       return items
     }
   } catch (error) {
-    console.error('Error fetching Farcaster following:', error)
+    console.warn('Error fetching Farcaster following:', error)
     return []
   }
 }
@@ -234,7 +237,7 @@ export async function GetLensFollowers(profileId: string, cursor?: string): Prom
       return items
     }
   } catch (error) {
-    console.error('Error fetching Lens followers:', error)
+    console.warn('Error fetching Lens followers:', error)
     return []
   }
 }
@@ -296,7 +299,7 @@ export async function GetLensFollowing(profileId: string, cursor?: string): Prom
       return items
     }
   } catch (error) {
-    console.error('Error fetching Lens following:', error)
+    console.warn('Error fetching Lens following:', error)
     return []
   }
 }
@@ -323,7 +326,7 @@ export async function GetLensProfileId(id: string) {
     const data = await response.json()
     return data.data.defaultProfile.id
   } catch (error) {
-    console.error('Error fetching social followers:', error)
+    console.warn('Error fetching social followers:', error)
   }
 }
 
@@ -335,7 +338,7 @@ export async function GetEFPFollowing(address: string): Promise<string[]> {
     const data = await response.json()
     return data?.following?.map((i: any) => i.ens?.name || i.data || i.address) || []
   } catch (error) {
-    console.error('Error fetching EFP following:', error)
+    console.warn('Error fetching EFP following:', error)
     return []
   }
 }
