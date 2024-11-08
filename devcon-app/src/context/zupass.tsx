@@ -3,8 +3,8 @@
 import { ZAPP, ZUPASS_URL } from '../utils/zupass'
 import { connect, ParcnetAPI } from '@parcnet-js/app-connector'
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react'
-import { pod } from '@parcnet-js/podspec'
-import { POD } from '@pcd/pod'
+import { pod, PODData } from '@parcnet-js/podspec'
+import { POD, PODContent } from '@pcd/pod'
 import { useAccountContext } from './account-context'
 
 interface ZupassContext {
@@ -12,8 +12,8 @@ interface ZupassContext {
   error?: string
   publicKey: string
   Connect: (onboard: boolean) => void
-  GetTicket: () => void
-  GetPods: () => void
+  GetTicket: () => Promise<PODContent | undefined>
+  GetPods: () => Promise<PODData[]>
 }
 
 const defaultZupassContext: ZupassContext = {
@@ -21,8 +21,8 @@ const defaultZupassContext: ZupassContext = {
   error: '',
   publicKey: '',
   Connect: (onboard: boolean) => {},
-  GetTicket: () => {},
-  GetPods: () => {},
+  GetTicket: () => Promise.resolve(undefined),
+  GetPods: () => Promise.resolve([]),
 }
 
 const ZupassContext = createContext<ZupassContext>(defaultZupassContext)
@@ -61,6 +61,7 @@ export function ZupassProvider(props: PropsWithChildren) {
         if (ticket) {
           const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
           await accountContext.updateZupassProfile(pod)
+          localStorage.setItem('zupassTicket', JSON.stringify(pod.toJSON()))
         }
       }
 
@@ -75,8 +76,26 @@ export function ZupassProvider(props: PropsWithChildren) {
   async function GetTicket() {
     console.log('Getting Devcon ticket')
 
-    const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
-    return getTicket(zupass)
+    try {
+      const zupassTicket = localStorage.getItem('zupassTicket')
+      if (zupassTicket) {
+        const pod = POD.fromJSON(JSON.parse(zupassTicket))
+        if (pod.verifySignature()) {
+          return pod.content
+        }
+      }
+
+      const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+      const ticket = await getTicket(zupass)
+      if (ticket) {
+        const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
+        localStorage.setItem('zupassTicket', JSON.stringify(pod.toJSON()))
+
+        return pod.content
+      }
+    } catch (error) {
+      console.error('[ZUPASS] Error getting ticket', error)
+    }
   }
 
   async function GetPods() {
