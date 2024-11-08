@@ -15,10 +15,8 @@ import { EMAIL_DEVCON } from 'utils/constants'
 import { cn } from 'lib/shadcn/lib/utils'
 import { LoggedInCard } from 'components/domain/app/dc7/dashboard'
 import { Notifications } from 'components/domain/app/dc7/profile/notifications'
-// import ProfileSettings from 'components/domain/app/account/settings/Profile'
-// import EmailSettings from 'components/domain/app/account/settings/Email'
-// import WalletSettings from 'components/domain/app/account/settings/Wallet'
-// import UsernameSettings from 'components/domain/app/account/settings/Username'
+import { toast } from 'lib/hooks/use-toast'
+import CopyIcon from 'assets/icons/copy.svg'
 
 export default function SettingsPage() {
   const router = useRouter()
@@ -61,6 +59,29 @@ export default function SettingsPage() {
     router.push('/login')
   }
 
+  const sharingLink = `https://app.devcon.org/schedule/u/${
+    accountContext.account?.username ?? accountContext.account?.id
+  }/`
+
+  const copyShareLink = () => {
+    navigator.clipboard
+      .writeText(sharingLink)
+      .then(() => {
+        toast({
+          title: 'Schedule link copied.',
+          duration: 3000,
+        })
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err)
+        toast({
+          title: 'Failed to copy link',
+          description: 'Please try again',
+          duration: 3000,
+        })
+      })
+  }
+
   return (
     <>
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
@@ -75,10 +96,6 @@ export default function SettingsPage() {
                 </div>
               )}
 
-              {/* <div className={cn(css['profile']')}> */}
-              {/* <div className={css['avatar']}>
-                  <img src={avatar.url} alt={avatar.name} />
-                </div> */}
               <div className="flex">
                 <LoggedInCard className="lg:self-start w-full pointer-events-none cursor-default">
                   <span
@@ -89,23 +106,7 @@ export default function SettingsPage() {
                     Sign out
                   </span>
                 </LoggedInCard>
-                {/* <p className={`${css['name']} text-xl font-semibold`}>
-                  {accountContext.account?.username
-                    ? accountContext.account?.username
-                    : isEmail(avatar.name)
-                    ? avatar.name
-                    : TruncateMiddle(avatar.name, 8)}
-                </p> */}
-                {/* <span className={css['signout']} role="button" onClick={disconnect}>
-                  Sign out
-                </span> */}
               </div>
-              {/* </div> */}
-
-              {/* <ProfileSettings />
-              <EmailSettings />
-              <WalletSettings />
-              <UsernameSettings /> */}
 
               <CollapsedSection
                 className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
@@ -177,11 +178,24 @@ export default function SettingsPage() {
                   {accountContext.account?.id && accountContext.account?.publicSchedule && (
                     <>
                       <div className="px-4 pb-2">
-                        <LinkList>
+                        <div
+                          className="flex flex-row w-full justify-between items-center py-2"
+                          style={{
+                            borderTop: '1px solid #E1E4EA',
+                            borderBottom: '1px solid #E1E4EA',
+                          }}
+                        >
                           <Link to={`/schedule/u/${accountContext.account.username ?? accountContext.account.id}/`}>
-                            Personal schedule link
+                            {sharingLink}
                           </Link>
-                        </LinkList>
+                          <span
+                            className="cursor-pointer mr-2"
+                            style={{ '--color-icon': '#999999' } as React.CSSProperties}
+                            onClick={copyShareLink}
+                          >
+                            <CopyIcon style={{ width: '18px', height: '18px' }} />
+                          </span>
+                        </div>
                         <p className="text-xs py-2">
                           You can change your link by{' '}
                           <Link to="/account/username" className="underline text-[#7D52F4]">
@@ -218,22 +232,6 @@ export default function SettingsPage() {
                   <div className="px-4 pb-4">
                     <Notifications standalone />
                   </div>
-                  {/* <div className="px-4 pb-4">
-                    <div className="flex flex-col gap-2">
-                      <p className="font-bold">Event updates</p>
-                    </div>
-                    <div className="flex justify-between items-center gap-4">
-                      <p>Stay informed about the latest news, updates, and announcements related to Devcon SEA.</p>
-                      <div className={css['toggle']}>
-                        <Toggle
-                          className={'custom'}
-                          icons={false}
-                          defaultChecked={accountContext.account?.notifications}
-                          onChange={toggleNotifications}
-                        />
-                      </div>
-                    </div>
-                  </div> */}
                 </CollapsedSectionContent>
               </CollapsedSection>
 

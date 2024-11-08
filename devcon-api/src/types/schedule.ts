@@ -1,3 +1,4 @@
+import { defaultSlugify } from '@/utils/content'
 import dayjs from 'dayjs'
 
 export interface Session {
@@ -16,28 +17,24 @@ export interface Session {
 }
 
 export function pretalxToSessionData(item: any) {
-  const eventId = item.eventId
-  delete item.eventId
-  const roomId = item.slot_roomId
-  delete item.slot_roomId
-
   let data: any = {
     ...item,
     tags: item.tags?.join(',') || '',
     keywords: item.keywords?.join(',') || '',
-    slot_start: item.slot_start ? dayjs(item.slot_start).toISOString() : null,
-    slot_end: item.slot_end ? dayjs(item.slot_end).toISOString() : null,
     event: {
-      connect: { id: eventId },
+      connect: { id: 'devcon-7' },
     },
     speakers: {
-      connect: item.speakers.map((i: any) => ({ id: i })),
+      connect: item.speakers.map((i: any) => ({ id: i.id ?? i })),
     },
   }
 
-  if (roomId) {
+  if (item.slot) {
+    data.slot_start = dayjs.utc(item.slot.start).valueOf()
+    data.slot_end = dayjs.utc(item.slot.end).valueOf()
+    data.slot_roomId = item.slot?.room ? defaultSlugify(item.slot.room.en) : null
     data.slot_room = {
-      connect: { id: roomId },
+      connect: { id: data.slot_roomId },
     }
   }
 

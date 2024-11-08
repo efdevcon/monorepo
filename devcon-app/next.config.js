@@ -181,6 +181,7 @@ const createConfig = phase => {
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
     buildExcludes: [/media\/.*$/, /\.map$/],
+    maximumFileSizeToCacheInBytes: 10000000,
     runtimeCaching: runtimeCache,
     // fallbacks: {
     //   image:

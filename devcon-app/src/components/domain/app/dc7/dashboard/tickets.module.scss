@@ -1,0 +1,42 @@
+.border {
+  position: absolute;
+  pointer-events: none;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  z-index: 1;
+  bottom: 0px;
+  border: 1px solid rgb(225 228 234);
+}
+
+.mask {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 55%;
+    margin-top: -16px;
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.25);
+    height: 32px;
+    width: 32px;
+    background: #f7f5ff;
+    @media (min-width: 1024px) {
+      background: #fbfbfb;
+    }
+    border: 1px solid rgb(225 228 234);
+    border-radius: 1000px;
+  }
+
+  &:after {
+    left: auto;
+    right: -19px;
+  }
+}

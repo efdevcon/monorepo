@@ -1,6 +1,7 @@
 import { defaultSlugify } from '@/utils/content'
 import { CreateBlockie } from '@/utils/account'
 import { PRETALX_CONFIG } from '@/utils/config'
+import { createHmac } from 'crypto'
 import dayjs from 'dayjs'
 import utc from 'dayjs/plugin/utc'
 import Parser from 'rss-parser'
@@ -23,7 +24,7 @@ export async function GetLastcheduleUpdate() {
     return lastUpdate.valueOf()
   } catch (e) {
     console.log('Unable to fetch schedule update. Make sure the event name is correct and made public.')
-    return 0
+    return Date.now()
   }
 }
 
@@ -41,6 +42,10 @@ export async function GetRooms() {
 }
 
 export async function GetSpeakers(params: Partial<RequestParams> = {}) {
+  if (!process.env.EMAIL_SECRET) {
+    console.warn('EMAIL_SECRET is not set. Skipping email hashing.')
+  }
+
   const speakersData = await exhaustResource(`speakers?questions=all`)
   return speakersData.map((i: any) => mapSpeaker(i, params))
 }
@@ -144,7 +149,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
     id: defaultSlugify(i.name),
     sourceId: i.code,
     name: i.name,
-    avatar: i.avatar ?? CreateBlockie(i.name),
+    avatar: i.avatar ?? CreateBlockie(i.name || i.code),
     description: i.biography ?? '',
   }
 
@@ -155,6 +160,9 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
   if (notEmptyOrInvalid(ens)) {
     const handle = sanitizeProfileField(ens)
     speaker.ens = handle.startsWith('0x') ? handle : handle.endsWith('.eth') ? handle : `${handle}.eth`
+  }
+  if (i.email && process.env.EMAIL_SECRET) {
+    speaker.hash = createHmac('sha256', process.env.EMAIL_SECRET).update(i.email.trim().toLowerCase()).digest('hex')
   }
 
   if (params.inclContacts && i.email) speaker.email = i.email

@@ -716,10 +716,10 @@ export const SpeakerView = ({ speaker, standalone }: { speaker: SpeakerType | nu
         </StandalonePrompt>
       </div>
 
-      <SpeakerSessions speaker={speaker} className={cn(standalone && '!border-none shrink-0 lg:hidden')} />
+      <SpeakerSessions speaker={speaker} className={cn('shrink-0', standalone && '!border-none shrink-0 lg:hidden')} />
 
       {!standalone && (
-        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white z-[9]">
           <div className="flex gap-2 w-full">
             <Button
               onClick={() => {

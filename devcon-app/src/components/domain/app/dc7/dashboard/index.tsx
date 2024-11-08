@@ -27,6 +27,7 @@ import ChevronRight from 'assets/icons/chevron_right.svg'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { RecommendedSpeakers } from '../speakers/recommendations'
 import { useSpeakerData } from 'services/event-data'
+import { ZupassTickets } from './ticket'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -301,6 +302,8 @@ export const Dashboard = () => {
       <div className="">
         <PersonalizedSuggestions sessions={sessions || []} standalone />
       </div>
+
+      {/* <ZupassTickets className="flex flex-col md:flex-row justify-between gap-4 items-stretch mt-4 border-top pt-4 mx-4 relative" /> */}
     </div>
   )
 }

@@ -209,7 +209,7 @@ export default pageHOC(function DevconWeek(props: any) {
                 className="relative w-full h-full min-h-[300px] bg-[#f8f9ff] border-solid border-t-4 border-b-[18px] border-2 border-[#9667bc] shadow-lg group"
                 ref={elementRef}
               >
-                <Link to="/">
+                <Link to="https://app.devcon.org/schedule">
                   {/* <Image
                   src={EventBlocker}
                   alt="Blocked Event Graphic"
@@ -245,10 +245,10 @@ export default pageHOC(function DevconWeek(props: any) {
 
                     {/* <Link to="/"> */}
                     <Button color="purple-1" fill className="semi-bold shadow-xl">
-                      Devcon Main Event →
+                      Devcon Event Schedule →
                     </Button>
 
-                    <p className="text-xs font-bold">Agenda Coming Soon</p>
+                    {/* <p className="text-xs font-bold">Agenda Coming Soon</p> */}
                     {/* </Link> */}
                   </div>
                 </Link>

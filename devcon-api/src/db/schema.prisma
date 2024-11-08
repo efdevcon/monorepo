@@ -47,6 +47,7 @@ model Speaker {
   lens String?
   ens String?
   github String?
+  hash String?
   events Event[]
   sessions Session[]
 }
@@ -71,6 +72,7 @@ model Session {
   sources_youtubeId String?
   sources_ipfsHash String?
   sources_livepeerId String?
+  sources_streamethId String?
 
   speakers Speaker[]
   event Event @relation(fields: [eventId], references: [id])

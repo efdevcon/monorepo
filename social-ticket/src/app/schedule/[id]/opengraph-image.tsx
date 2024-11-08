@@ -1,4 +1,20 @@
 import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import {
+  getDay,
+  getExpertiseColor,
+  getSession,
+  getTitleClass,
+  getTrackColor,
+  getTrackImage,
+  fetchSpeakerImages,
+} from "@/app/utils";
+
+// Initialize the plugins
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
 import { ImageResponse } from "next/og";
 
 // Route segment config
@@ -24,75 +40,13 @@ export default async function Image({ params }: { params: { id: string } }) {
 
   const showSlots = true;
   const url = process.env.SITE_URL || "http://localhost:3000";
-  const apiUrl = process.env.API_URL || "http://localhost:4000";
-  const res = await fetch(`${apiUrl}/sessions/${params.id}`);
-  const { data } = await res.json();
+  const data = await getSession(params.id);
 
   if (!data) {
     return new Response("Not found", { status: 404 });
   }
 
-  function getExpertiseColor(expertise?: string) {
-    if (expertise === "Beginner") return "bg-[#d2ffd6]";
-    if (expertise === "Intermediate") return "bg-[#e3dcff]";
-    if (expertise === "Expert") return "bg-[#f7dbe4]";
-
-    return "bg-[#d0cbec]";
-  }
-
-  function getTrackImage(track?: string) {
-    if (track === "Core Protocol") return "CoreProtocol.png";
-    if (track === "Cypherpunk & Privacy") return "Cypherpunk.png";
-    if (track === "Usability") return "Usability.png";
-    if (track === "Real World Ethereum") return "RealWorldEthereum.png";
-    if (track === "Applied Cryptography") return "AppliedCryptography.png";
-    if (track === "Cryptoeconomics") return "CryptoEconomics.png";
-    if (track === "Coordination") return "Coordination.png";
-    if (track === "Developer Experience") return "DeveloperExperience.png";
-    if (track === "Security") return "Security.png";
-    if (track === "Layer 2") return "Layer2.png";
-    if (track === "Entertainment") return "Entertainment.png";
-
-    return "RealWorldEthereum.png";
-  }
-
-  function getTrackColor(track?: string) {
-    if (track === "Core Protocol") return "bg-[#F6F2FF]";
-    if (track === "Cypherpunk & Privacy") return "bg-[#FFF4FF]";
-    if (track === "Usability") return "bg-[#FFF4F4]";
-    if (track === "Real World Ethereum") return "bg-[#FFEDDF]";
-    if (track === "Applied Cryptography") return "bg-[#FFFEF4]";
-    if (track === "Cryptoeconomics") return "bg-[#F9FFDF]";
-    if (track === "Coordination") return "bg-[#E9FFD7]";
-    if (track === "Developer Experience") return "bg-[#E8FDFF]";
-    if (track === "Security") return "bg-[#E4EEFF]";
-    if (track === "Layer 2") return "bg-[#F0F1FF]";
-    if (track === "Entertainment") return "bg-[#FFF0F2]";
-
-    return "bg-[#FFEDDF]";
-  }
-
-  function getTitleClass(title: string) {
-    if (title.length > 100) return "text-4xl";
-    if (title.length > 90) return "text-4xl leading-snug";
-    if (title.length > 70) return "text-5xl leading-snug";
-    if (title.length > 35) return "text-5xl leading-snug";
-    if (title.length > 18) return "text-6xl leading-snug";
-
-    return "text-7xl leading-snug";
-  }
-
-  function getDay(date: string) {
-    const day = dayjs(date).format("DD");
-    if (day === "12") return "Day 1";
-    if (day === "13") return "Day 2";
-    if (day === "14") return "Day 3";
-    if (day === "15") return "Day 4";
-
-    return day;
-  }
-
-  console.log("DATA", data.slot_room);
+  const speakerImages = await fetchSpeakerImages(data);
 
   return new ImageResponse(
     (
@@ -115,11 +69,15 @@ export default async function Image({ params }: { params: { id: string } }) {
           </div>
           <div tw="flex flex-row">
             {data.speakers.length === 0 && <span tw="h-28">&nbsp;</span>}
-            {data.speakers.map((i: any, index: number) => (
+            {speakerImages.map((i: any, index: number) => (
               <img
                 key={i.id}
-                src={i.avatar}
-                tw="w-28 h-28 rounded-full border-4 border-white"
+                src={i.imageSrc}
+                width={data.speakers.length > 6 ? 64 : 112}
+                height={data.speakers.length > 6 ? 64 : 112}
+                tw={`rounded-full border-4 border-white ${
+                  data.speakers.length > 6 ? "w-16 h-16" : "w-28 h-28"
+                }`}
                 style={{
                   marginLeft: index > 0 ? "-16px" : "0",
                   objectFit: "cover",
@@ -178,15 +136,21 @@ export default async function Image({ params }: { params: { id: string } }) {
         <div tw="flex flex-col justify-between w-[700px] absolute top-12 left-12">
           <img src={`${url}/dc7/logo.png`} tw="w-60 mb-8" />
 
-          <div tw="flex flex-col justify-center h-40 mb-4">
+          <div tw="flex flex-col justify-center h-48">
             <span
-              tw={`text-[#36364C] font-medium ${getTitleClass(data.title)}`}
+              tw={`text-[#36364C] leading-[12px] font-medium ${getTitleClass(
+                data.title
+              )}`}
             >
               {data.title}
             </span>
           </div>
           <div tw="flex">
-            <span tw="text-[#5B5F84] text-2xl mb-2 font-medium">
+            <span
+              tw={`text-[#5B5F84] text-2xl font-medium ${
+                data.speakers.length > 6 ? "text-xl" : ""
+              }`}
+            >
               {data.speakers.map((i: any) => i.name).join(", ")}
             </span>
           </div>
@@ -204,7 +168,7 @@ export default async function Image({ params }: { params: { id: string } }) {
                       `(${data.slot_room.description})`}
                   </span>
                 </span>
-                <span>
+                <span tw="flex justify-end items-end">
                   {data.slot_room.info && (
                     <>
                       <span>Floor — </span>
@@ -217,12 +181,14 @@ export default async function Image({ params }: { params: { id: string } }) {
                 <span>
                   <span>{getDay(data.slot_start)} — </span>
                   <span tw="font-bold">
-                    {dayjs(data.slot_start).format("ddd, MMM DD")}
+                    {dayjs(data.slot_start)
+                      .tz("Asia/Bangkok")
+                      .format("ddd, MMM DD")}
                   </span>
                 </span>
                 <span tw="font-bold">
-                  {dayjs(data.slot_start).format("h:mm a")} -{" "}
-                  {dayjs(data.slot_end).format("h:mm a")}
+                  {dayjs(data.slot_start).tz("Asia/Bangkok").format("h:mm a")} -{" "}
+                  {dayjs(data.slot_end).tz("Asia/Bangkok").format("h:mm a")}
                 </span>
               </div>
             </div>
@@ -241,6 +207,8 @@ export default async function Image({ params }: { params: { id: string } }) {
       </div>
     ),
     {
+      width: 1200,
+      height: 630,
       fonts: [
         {
           name: "Inter",

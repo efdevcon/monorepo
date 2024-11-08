@@ -245,6 +245,12 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/reserve',
+        destination:
+          'https://ef-events.notion.site/Public-Devcon-Meeting-Rooms-and-Discussion-Corners-Booking-System-11c638cdc41580318344cf7736c02f92?pvs=4',
+        permanent: true,
+      },
+      {
         source: '/schedule',
         destination: 'https://app.devcon.org/schedule',
         permanent: true,
