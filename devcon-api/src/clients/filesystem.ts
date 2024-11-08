@@ -37,7 +37,7 @@ export function GetData(folder: string, fileExtension = '.json') {
 export function GetSpeakerData(): Array<any> {
   const speakers = GetData('speakers')
   return speakers.map((i) => {
-    const avatar = i.avatar || CreateBlockie(i.name)
+    const avatar = i.avatar || CreateBlockie(i.name || i.sourceId)
 
     return {
       ...i,
