@@ -44,7 +44,7 @@ import {
   sessionFilterOpenAtom,
   sessionTimelineViewAtom,
 } from 'pages/_app'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import FilterIcon from 'assets/icons/filter-tract.svg'
 import StarIcon from 'assets/icons/dc-7/star.svg'
 import StarFillIcon from 'assets/icons/dc-7/star-fill.svg'
@@ -1243,6 +1243,8 @@ export const SessionList = ({
 }
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+  const searchParams = useSearchParams()
+  const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
 
   return (
@@ -1301,7 +1303,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           <p className="text-[10px] text-[#717784]">Powered by Fileverse</p>
         </Link>
         <Link
-          to={`https://meerkat.events/e/${session.sourceId}/remote`}
+          to={`https://meerkat.events/e/${session.sourceId}/remote${secret ? `?secret=${secret}` : ''}`}
           className="flex flex-col items-center justify-center cursor-pointer"
         >
           <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">

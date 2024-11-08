@@ -149,7 +149,7 @@ function mapSpeaker(i: any, params: Partial<RequestParams>) {
     id: defaultSlugify(i.name),
     sourceId: i.code,
     name: i.name,
-    avatar: i.avatar ?? CreateBlockie(i.name),
+    avatar: i.avatar ?? CreateBlockie(i.name || i.code),
     description: i.biography ?? '',
   }
 
