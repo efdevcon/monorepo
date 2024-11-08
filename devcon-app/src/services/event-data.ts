@@ -112,7 +112,11 @@ export const useSpeakersWithSessions = () => {
       const speakersWithSessions = speakers.map(speaker => {
         return {
           ...speaker,
-          sessions: sessionsBySpeakerId[speaker.id],
+          sessions: sessionsBySpeakerId[speaker.id]
+            .map((session: SessionType) => {
+              if (!session.slot_start || !session.slot_end) return null
+              return session
+          }).filter(Boolean),
         }
       })
 
@@ -136,6 +140,8 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
 
   return sessions
     .map((session: SessionType) => {
+      if (!session.slot_start || !session.slot_end) return null
+
       const startTS = moment.utc(session.slot_start).add(7, 'hours')
       const endTS = moment.utc(session.slot_end).add(7, 'hours')
 
@@ -146,6 +152,7 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
         duration: startTS.diff(endTS, 'minutes'),
       }
     })
+    .filter(Boolean)
     .sort((a: SessionType, b: SessionType) => {
       // First sort by start time
       const startDiff = moment.utc(a.slot_start).diff(moment.utc(b.slot_start))
