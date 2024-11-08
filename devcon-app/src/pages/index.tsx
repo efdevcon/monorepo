@@ -25,8 +25,6 @@ const Index = (props: any) => {
     <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]}>
       <SEO title="Dashboard" />
 
-      <div>TESTING CACHE NUMBER ONE</div>
-
       <Dashboard {...props} sessions={sessions} />
     </AppLayout>
   )

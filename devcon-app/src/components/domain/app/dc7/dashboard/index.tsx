@@ -145,7 +145,7 @@ const Notifications = () => {
   const { seenNotifications, markAllAsRead, notificationsCount } = useSeenNotifications()
 
   return (
-    <div className="px-4 flex flex-col lg:flex-row gap-2 mb-4 ">
+    <div className="px-4 flex flex-col lg:flex-row gap-2 mb-4 [&>*:not(:first-child)]:hidden lg:[&>*:not(:first-child)]:flex">
       {notifications.map(n => (
         <NotificationCard key={n.id} notification={n} seen={seenNotifications.has(n.id)} />
       ))}

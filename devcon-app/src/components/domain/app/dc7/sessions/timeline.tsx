@@ -62,7 +62,7 @@ const DayGrid = ({
   })
 
   return (
-    <div className="flex shrink-0 w-full relative left-[100px] lg:left-0">
+    <div className={cn('flex shrink-0 w-full relative', isNativeScroll ? 'left-[0px]' : 'left-[0px]')}>
       {/* <div
         data-type="day"
         className="absolute left-0 top-0 w-full h-[40px] z-[10] flex items-center translate-x-[-100px]"
@@ -74,8 +74,9 @@ const DayGrid = ({
       <div className="flex flex-col">
         <div
           className={cn(
-            'grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] glass !border-none pointer-events-none',
-            isNativeScroll ? '!overflow-x-auto !translate-x-0' : ''
+            'grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] !border-none pointer-events-none',
+            isNativeScroll ? '!overflow-x-auto !translate-x-0' : 'glass',
+
           )}
           style={{
             gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`
@@ -93,7 +94,11 @@ const DayGrid = ({
         >
           <div
             data-type="day"
-            className="absolute left-0 top-0 w-[100px] h-[40px] flex items-center translate-x-[-100px] border-bottom border-top z-[1]"
+            className={cn(
+              'absolute left-0 top-0 w-[100px] h-[40px] flex items-center',
+              isNativeScroll ? 'translate-x-[0px]' : 'translate-x-[-100px]',
+              'border-bottom border-top z-[1]'
+            )}
           >
             <div className="sticky left-0 !bg-[#F5F7FA] h-full inline-flex items-center text-sm font-semibold w-[100px] justify-center">
               {day}
@@ -104,7 +109,7 @@ const DayGrid = ({
               key={index}
               data-id={time.format('h:mm')}
               className="py-2 text-sm whitespace-nowrap flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom"
-              style={{ transform: isNativeScroll ? undefined : 'translateX(var(--scroll-x))' }}
+              style={{ transform: isNativeScroll ? 'translateX(100px)' : 'translateX(var(--scroll-x))' }}
             >
               <div
                 style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
@@ -117,9 +122,9 @@ const DayGrid = ({
           ))}
         </div>
         <SwipeToScroll noScrollReset syncElement={scrollSyncRef}>
-          <div className="flex">
+          <div className={cn('flex', isNativeScroll ? '' : '')}>
             <div
-              className="grid relative shrink-0"
+              className={cn('grid relative shrink-0', isNativeScroll ? 'translate-x-[100px]' : '')}
               style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))` }}
             >
               {rooms.map((room, roomIndex) => {
