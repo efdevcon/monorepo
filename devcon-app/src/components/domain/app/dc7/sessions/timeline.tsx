@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { Session as SessionType } from 'types/Session'
 import { Event } from 'types/Event'
 import moment from 'moment'
@@ -6,6 +6,8 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import { SessionCard, getTrackLogo } from './index'
 import { useRecoilState } from 'recoil'
 import { sessionFilterAtom } from 'pages/_app'
+import useDimensions from "react-cool-dimensions";
+import { cn } from 'lib/shadcn/lib/utils'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
   const [sessionFilter] = useRecoilState(sessionFilterAtom)
@@ -49,6 +51,16 @@ const DayGrid = ({
   day: string
 }) => {
   const scrollSyncRef = useRef<HTMLDivElement>(null)
+  const [isNativeScroll, setIsNativeScroll] = useState(false)
+  // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
+  const { observe } = useDimensions({
+    onResize: ({ width }) => {
+      const isNativeScroll = !window.matchMedia('not all and (hover: none)').matches
+
+      setIsNativeScroll(isNativeScroll)
+    },
+  })
+
   return (
     <div className="flex shrink-0 w-full relative left-[100px] lg:left-0">
       {/* <div
@@ -61,9 +73,23 @@ const DayGrid = ({
       </div> */}
       <div className="flex flex-col">
         <div
-          className="grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] glass !border-none"
-          style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))` }}
-          ref={scrollSyncRef}
+          className={cn(
+            'grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] glass !border-none pointer-events-none',
+            isNativeScroll ? '!overflow-x-auto !translate-x-0' : ''
+          )}
+          style={{
+            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`
+          }}
+          // onScroll={(e: any) => {
+          //   console.log('scroll', e.target.scrollLeft)
+          //   e.preventDefault()
+          //   e.stopPropagation()
+          // }}
+          ref={(element) => {
+            // @ts-ignore
+            scrollSyncRef.current = element!
+            observe(element)
+          }}
         >
           <div
             data-type="day"
@@ -78,6 +104,7 @@ const DayGrid = ({
               key={index}
               data-id={time.format('h:mm')}
               className="py-2 text-sm whitespace-nowrap flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom"
+              style={{ transform: isNativeScroll ? undefined : 'translateX(var(--scroll-x))' }}
             >
               <div
                 style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}

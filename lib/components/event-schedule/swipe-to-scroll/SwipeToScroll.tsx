@@ -107,7 +107,8 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
       scrollContainer.style.transform = `translateX(0px)`;
 
       if (props.syncElement?.current) {
-        props.syncElement.current.style.transform = `translateX(0px)`;
+        // props.syncElement.current.style.transform = `translateX(0px)`; 
+        props.syncElement.current.style.setProperty('--scroll-x', '0px');
       }
 
       syncScrollIndicators(scrollContainer);
@@ -184,7 +185,8 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
           scrollContainer.style.transform = `translateX(-${clampedScrollLeft}px)`;
 
           if (props.syncElement?.current) {
-            props.syncElement.current.style.transform = `translateX(-${clampedScrollLeft}px)`;
+            // props.syncElement.current.style.transform = `translateX(-${clampedScrollLeft}px)`;
+            props.syncElement.current.style.setProperty('--scroll-x', `-${clampedScrollLeft}px`);
           }
         }
 
@@ -212,7 +214,8 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`;
 
     if (props.syncElement?.current) {
-      props.syncElement.current.style.transform = `translateX(-${lastX.current}px)`;
+      // props.syncElement.current.style.transform = `translateX(-${lastX.current}px)`;
+      props.syncElement.current.style.setProperty('--scroll-x', `-${lastX.current}px`);
     }
 
     if (down) {
@@ -248,6 +251,7 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
           if (props.syncElement?.current) {
             // @ts-ignore
             props.syncElement.current.scrollLeft = e.target.scrollLeft;
+            // props.syncElement.current.style.setProperty('--scroll-x', `-${e.target.scrollLeft}px`);
           }
         }}
         // This prevents selection (text, image) while dragging
