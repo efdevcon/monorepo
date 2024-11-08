@@ -147,11 +147,21 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       track: [...new Set(sessions.map(session => session.track)), 'CLS']
         .filter(Boolean)
         .filter(track => !track.startsWith('[CLS]')),
-      room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a, b) => {
+      room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a: any, b: any) => {
         if (a === 'Main Stage') return -1
         if (b === 'Main Stage') return 1
-        return (a || '').localeCompare(b || '')
-      }),
+    
+        if (a.toLowerCase().startsWith('stage')) {
+          if (b.toLowerCase().startsWith('stage')) {
+            return a.localeCompare(b)
+          }
+          return -1
+        }
+    
+          if (b.toLowerCase().startsWith('stage')) return 1
+
+          return a.localeCompare(b)
+        }),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
   }, [sessions, timelineView])
@@ -1176,6 +1186,8 @@ export const SessionList = ({
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
 
+  const isNativeScroll = typeof window !== 'undefined' && !window.matchMedia('not all and (hover: none)').matches
+
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
@@ -1194,13 +1206,13 @@ export const SessionList = ({
         </>
       )}
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
-        <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
+        <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}{timelineView && isNativeScroll ? '' : ' (Hold and drag to scroll)'}</div>
         <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
             className={cn(
               'flex justify-center items-center self-center grow rounded-md gap-2 px-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-0.5 transition-all duration-300 select-none',
               {
-                'bg-white shadow-md text-[#7D52F4]': !timelineView,
+                'bg-white shadow-md !text-[#7D52F4]': !timelineView,
               }
             )}
             onClick={() => setTimelineView(false)}
@@ -1215,7 +1227,7 @@ export const SessionList = ({
             className={cn(
               'flex justify-center items-center rounded-md gap-2 text-[#A897FF] px-2 hover:bg-white hover:shadow-md cursor-pointer p-0.5 transition-all duration-300 select-none',
               {
-                'bg-white shadow-md text-[#7D52F4]': timelineView,
+                'bg-white shadow-md !text-[#7D52F4]': timelineView,
               }
             )}
             onClick={() => {
@@ -1688,7 +1700,7 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
 
   return (
     <div
-      data-type="speaker-layout"
+      data-type="session-layout"
       className={cn('flex flex-row lg:gap-3 relative')}
       // initial={{ opacity: 0 }}
       // animate={{ opacity: 1 }}

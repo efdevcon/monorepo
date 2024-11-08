@@ -60,7 +60,7 @@ const DayGrid = ({
       </div>
       <div className="flex flex-col relative">
         <div
-          className="grid shrink-0 sticky top-0"
+          className="grid shrink-0 sticky top-[100px] lg:top-[106px] z-[2] glass"
           style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
         >
           {timeSlots.map((time, index) => (
@@ -74,11 +74,13 @@ const DayGrid = ({
                 className="flex flex-col justify-center items-center"
               >
                 <p>{time.format('h:mm A')}</p>
-                <p className="text-[8px] leading-[6px] text-gray-500">Nov 12</p>
+                <p className="text-[8px] leading-[6px] text-gray-500">{time.format('MMM DD')}</p>
               </div>
             </div>
           ))}
         </div>
+        <SwipeToScroll noScrollReset>
+          <div className='flex'>
         <div
           className="grid relative shrink-0"
           style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
@@ -132,7 +134,7 @@ const DayGrid = ({
                         className={``}
                         style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
                       >
-                        <SessionCard session={match.session} tiny />
+                        <SessionCard session={match.session} tiny className="z-[1] hover:z-[2]" />
                       </div>
                     </div>
                   )
@@ -141,6 +143,8 @@ const DayGrid = ({
             )
           })}
         </div>
+        </div>
+        </SwipeToScroll>
       </div>
     </div>
   )
@@ -188,9 +192,9 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
   }) as string[]
 
   return (
-    <div className="flex flex-nowrap overflow-hidden">
+    <div className="flex flex-nowrap" style={{ contain: 'paint' }}>
       <RoomGrid rooms={rooms} />
-      <SwipeToScroll noScrollReset>
+      {/* <SwipeToScroll noScrollReset> */}
         <div className="flex flex-nowrap gap-[120px]">
           {days.map(day => {
             const sessionsForDay = sessions.filter(session => moment(session.slot_start).format('MMM DD') === day)
@@ -229,7 +233,7 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
             return <DayGrid day={day} rooms={rooms} key={day} sessionsByRoom={sessionsByRoom} timeSlots={timeSlots} />
           })}
         </div>
-      </SwipeToScroll>
+      {/* </SwipeToScroll> */}
     </div>
   )
 }
