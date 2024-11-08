@@ -15,8 +15,9 @@ const Index = (props: any) => {
 
   useEffect(() => {
     const storedSkipLogin = localStorage.getItem('skipLogin')
+    const hasDevabotParam = router.query.devabot !== undefined
 
-    if (storedSkipLogin !== 'true' && !accountContext.account) {
+    if (storedSkipLogin !== 'true' && !accountContext.account && !hasDevabotParam) {
       router.replace('/login')
     }
   }, [])

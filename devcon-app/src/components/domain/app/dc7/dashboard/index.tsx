@@ -27,6 +27,7 @@ import ChevronRight from 'assets/icons/chevron_right.svg'
 import { FancyLoader } from 'lib/components/loader/loader'
 import { RecommendedSpeakers } from '../speakers/recommendations'
 import { useSpeakerData } from 'services/event-data'
+import { Ticket } from './ticket'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -301,6 +302,21 @@ export const Dashboard = () => {
       <div className="">
         <PersonalizedSuggestions sessions={sessions || []} standalone />
       </div>
+
+      {/* <div className="flex flex-col md:flex-row justify-between gap-4 items-stretch mt-4 border-top pt-4 mx-4 relative">
+        <div className="flex flex-col gap-2 basis-full shrink-0 md:basis-1/2">
+          <div className="flex justify-between font-semibold  pb-2">
+            <div>Ticket</div>
+          </div>
+          <Ticket name='Georgios MisterMcLongNameJohnDoe' ticketType='Builder Ticket' />
+        </div>
+        <div className="flex flex-col basis-full shrink-0 md:basis-1/2 gap-2 h-full">
+          <div className="flex font-semibold pb-2">
+            <div>Swag Items</div>
+          </div>
+          Swag Items
+        </div>
+      </div> */}
     </div>
   )
 }
