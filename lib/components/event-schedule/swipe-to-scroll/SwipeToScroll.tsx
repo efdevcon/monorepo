@@ -6,6 +6,7 @@ import useDimensions from "react-cool-dimensions";
 type SwipeToScrollProps = {
   noBounds?: boolean;
   noScrollReset?: boolean;
+  speed?: number;
   focusRef?: React.RefObject<HTMLElement>;
   syncElement?: React.RefObject<HTMLElement>;
   children: React.ReactChild | React.ReactChild[];
@@ -210,7 +211,9 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
   const bind = useDrag(({ down, delta }) => {
     const scrollContainer = el.current!;
 
-    lastX.current = Math.min(Math.max(0, lastX.current - delta[0]), maxScroll);
+    const speed = props.speed || 1.5;
+
+    lastX.current = Math.min(Math.max(0, lastX.current - delta[0] * speed), maxScroll);
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`;
 
     if (props.syncElement?.current) {

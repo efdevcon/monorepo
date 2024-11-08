@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { Session as SessionType } from 'types/Session'
 import { Event } from 'types/Event'
 import moment from 'moment'
@@ -11,10 +11,28 @@ import { cn } from 'lib/shadcn/lib/utils'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
   const [sessionFilter] = useRecoilState(sessionFilterAtom)
+  const [isNativeScroll, setIsNativeScroll] = useState(false)
+  // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
+  // const { observe } = useDimensions({
+  //   onResize: ({ width }) => {
+
+
+  //     setIsNativeScroll(isNativeScroll)
+  //   },
+  // })
+
+  useEffect(() => {
+    const isNativeScroll = !window.matchMedia('not all and (hover: none)').matches
+
+    setIsNativeScroll(isNativeScroll)
+  }, [isNativeScroll])
 
   return (
     <div
-      className="flex flex-col shrink-0 z-[5] left-0 absolute lg:relative"
+      className={cn(
+        "flex flex-col shrink-0 z-[5] left-0",
+        isNativeScroll ? "absolute" : "relative",
+      )}
       style={{ gridTemplateColumns: `repeat(${rooms.length}, minmax(80px, 1fr))` }}
     >
       <div className="p-2 h-[40px] flex justify-center items-center bg-[#F5F7FA] !bg-transparent borderz border-gray-100 border-solid">
@@ -121,7 +139,7 @@ const DayGrid = ({
             </div>
           ))}
         </div>
-        <SwipeToScroll noScrollReset syncElement={scrollSyncRef}>
+        <SwipeToScroll speed={1.5} noScrollReset syncElement={scrollSyncRef}>
           <div className={cn('flex', isNativeScroll ? '' : '')}>
             <div
               className={cn('grid relative shrink-0', isNativeScroll ? 'translate-x-[100px]' : '')}

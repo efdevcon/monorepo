@@ -1206,7 +1206,12 @@ export const SessionList = ({
         </>
       )}
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
-        <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}{timelineView && isNativeScroll ? '' : ' (Hold and drag to scroll)'}</div>
+        <div className="font-semibold flex flex-col">
+          <div> {isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
+          {timelineView && !isNativeScroll && (
+            <div className="text-[#A897FF] text-xs">Drag the timeline to scroll</div>
+          )}
+        </div>
         <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
             className={cn(
