@@ -397,7 +397,7 @@ export const SessionCard = ({
 
           <p
             className={cn(
-              'text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[108px] lg:left-[8px] leading-[12px]',
+              'text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[8px] lg:left-[8px] leading-[12px]',
               getTrackColor(track)
             )}
           >
