@@ -2,12 +2,12 @@ import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import {
-  getDay,
   getExpertiseColor,
   getSession,
   getTitleClass,
   getTrackColor,
   getTrackImage,
+  fetchSpeakerImages,
 } from "@/app/utils";
 
 // Initialize the plugins
@@ -44,6 +44,8 @@ export default async function Image({ params }: { params: { id: string } }) {
     return new Response("Not found", { status: 404 });
   }
 
+  const speakerImages = await fetchSpeakerImages(data);
+
   return new ImageResponse(
     (
       <div
@@ -65,10 +67,12 @@ export default async function Image({ params }: { params: { id: string } }) {
           </div>
           <div tw="flex flex-row">
             {data.speakers.length === 0 && <span tw="h-44">&nbsp;</span>}
-            {data.speakers.map((i: any, index: number) => (
+            {speakerImages.map((i: any, index: number) => (
               <img
                 key={i.id}
-                src={i.avatar}
+                src={i.imageSrc}
+                width={data.speakers.length > 6 ? 80 : 176} // w-20 = 80px, w-44 = 176px
+                height={data.speakers.length > 6 ? 80 : 176}
                 tw={`rounded-full border-4 border-white ${
                   data.speakers.length > 6 ? "w-20 h-20" : "w-44 h-44"
                 }`}
