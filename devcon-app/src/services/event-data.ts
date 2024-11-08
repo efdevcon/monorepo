@@ -112,11 +112,13 @@ export const useSpeakersWithSessions = () => {
       const speakersWithSessions = speakers.map(speaker => {
         return {
           ...speaker,
-          sessions: sessionsBySpeakerId[speaker.id]
+          sessions: sessionsBySpeakerId[speaker.id] ? sessionsBySpeakerId[speaker.id]
             .map((session: SessionType) => {
               if (!session.slot_start || !session.slot_end) return null
-              return session
-          }).filter(Boolean),
+                return session
+              })
+              .filter(Boolean)
+            : [],
         }
       })
 
