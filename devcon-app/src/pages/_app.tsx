@@ -265,7 +265,7 @@ if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.work
     // `event.wasWaitingBeforeRegister` will be false if this is the first time the updated service worker is waiting.
     // When `event.wasWaitingBeforeRegister` is true, a previously updated service worker is still waiting.
     // You may want to customize the UI prompt accordingly.
-    if (confirm('A newer version of this web app is available, reload to update?')) {
+    if (confirm('New update downloaded, please refresh.')) {
       wb.addEventListener('controlling', (event: any) => {
         window.location.reload()
       })

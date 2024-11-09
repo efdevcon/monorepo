@@ -72,6 +72,7 @@ $gradient-size: max(5%, 32px);
 
   &.is-native-scroll {
     overflow-x: auto;
+    // contain: paint;
     transform: translateX(0px) !important;
   }
 }

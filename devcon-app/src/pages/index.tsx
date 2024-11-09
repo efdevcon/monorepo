@@ -23,7 +23,7 @@ const Index = (props: any) => {
   }, [])
 
   return (
-    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]}>
+    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]} /*renderActionss={() => <Image src={LogoFlowers} className="max-w-[110px] hidden md:block" alt="Logo Flowers" />}*/>
       <SEO title="Dashboard" />
 
       <Dashboard {...props} sessions={sessions} />

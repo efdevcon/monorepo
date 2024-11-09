@@ -10,6 +10,27 @@ async function main() {
   await syncRooms()
   await syncSessions()
   await createPresentations()
+  createGlossary()
+}
+
+function createGlossary() {
+  const speakers = GetData('speakers')
+  const sessions = GetData('sessions/devcon-7')
+
+  let dictionary: string[] = []
+  for (const session of sessions) {
+    for (const speakerId of session.speakers) {
+      const speaker = speakers.find((s: any) => s.id === speakerId)
+      if (speaker) {
+        dictionary.push(...speaker.name.split(' '))
+      }
+    }
+
+    // dictionary.push(...session.title.split(' '))
+  }
+
+  dictionary = [...new Set(dictionary)]
+  console.log(dictionary.join(';'))
 }
 
 async function syncEventData() {
@@ -53,7 +74,7 @@ async function syncRooms() {
 }
 
 async function syncSessions() {
-  const speakers = (await GetSpeakers()).filter((s: any) => !!s.name)
+  const speakers = (await GetSpeakers()).filter((s: any) => s.id && s.name)
   const acceptedSpeakers: any[] = []
 
   if (!fs.existsSync(`./data/sessions/devcon-7`)) {

@@ -1,135 +1,220 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { Session as SessionType } from 'types/Session'
 import { Event } from 'types/Event'
 import moment from 'moment'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
-import { SessionCard } from './index'
+import { SessionCard, getTrackLogo } from './index'
+import { useRecoilState } from 'recoil'
+import { sessionFilterAtom } from 'pages/_app'
+import useDimensions from "react-cool-dimensions";
+import { cn } from 'lib/shadcn/lib/utils'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
+  const [sessionFilter] = useRecoilState(sessionFilterAtom)
+  const [isNativeScroll, setIsNativeScroll] = useState(false)
+  // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
+  // const { observe } = useDimensions({
+  //   onResize: ({ width }) => {
+
+
+  //     setIsNativeScroll(isNativeScroll)
+  //   },
+  // })
+
+  useEffect(() => {
+    const isNativeScroll = !window.matchMedia('not all and (hover: none)').matches
+
+    setIsNativeScroll(isNativeScroll)
+  }, [isNativeScroll])
+
   return (
     <div
-      className="flex flex-col shrink-0 z-[5]"
+      className={cn(
+        "flex flex-col shrink-0 z-[5] left-0",
+        isNativeScroll ? "absolute" : "relative",
+      )}
       style={{ gridTemplateColumns: `repeat(${rooms.length}, minmax(80px, 1fr))` }}
     >
-      <div className="p-2 h-[40px] flex justify-center items-center !bg-[#F5F7FA] border border-gray-100 border-solid">
-        Nov 12
+      <div className="p-2 h-[40px] flex justify-center items-center bg-[#F5F7FA] !bg-transparent borderz border-gray-100 border-solid">
+        <div></div>
       </div>
+
       {rooms.map((room, index) => (
         <div
           key={index}
-          className="bg-white p-2 text-center text-xs whitespace-nowrap h-[50px] flex items-center justify-center border border-solid border-gray-100"
+          className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100 glass"
         >
-          {room}
+          {room === 'Decompression Room' ? (
+            <>
+              Decompression<br></br>Room
+            </>
+          ) : (
+            room
+          )}
         </div>
       ))}
     </div>
   )
 }
 
-const DayGrid = ({ rooms, sessionsByRoom, timeSlots }: { rooms: string[]; sessionsByRoom: any; timeSlots: any[] }) => {
-  //   const rooms = ['Room 1', 'Room 2']
+const DayGrid = ({
+  rooms,
+  sessionsByRoom,
+  timeSlots,
+  day,
+}: {
+  rooms: string[]
+  sessionsByRoom: any
+  timeSlots: any[]
+  day: string
+}) => {
+  const scrollSyncRef = useRef<HTMLDivElement>(null)
+  const [isNativeScroll, setIsNativeScroll] = useState(false)
+  // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
+  const { observe } = useDimensions({
+    onResize: ({ width }) => {
+      const isNativeScroll = !window.matchMedia('not all and (hover: none)').matches
 
-  const processedSessions = sessionsByRoom
-
-  /*
-                const currentSession = processedSessions[0]
-
-                const isBeforeEndOfSession = moment.utc(currentSession.slot_end).isAfter(timeslot)
-
-                if (!isBeforeEndOfSession) {
-                  return null
-                }
-
-                let slotsToFill = 0
-
-                currentTimeslot = currentTimeslot.clone().add(10, 'minutes')
-
-                // processedSessions.shift()
-
-                //   if (!currentSlot) return <div key={slotIndex} className="bg-white p-2 border border-gray-100 border-solid h-[50px]">
-  */
+      setIsNativeScroll(isNativeScroll)
+    },
+  })
 
   return (
-    <div className="flex flex-nowrap shrink-0">
-      <div
-        className="grid sticky top-0"
-        style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
+    <div className={cn('flex shrink-0 w-full relative', isNativeScroll ? 'left-[0px]' : 'left-[0px]')}>
+      {/* <div
+        data-type="day"
+        className="absolute left-0 top-0 w-full h-[40px] z-[10] flex items-center translate-x-[-100px]"
       >
-        {timeSlots.map((time, index) => (
+        <div className="sticky left-0 !bg-[#F5F7FA] h-full inline-flex items-center text-sm font-semibold w-[100px] justify-center">
+          {day}
+        </div>
+      </div> */}
+      <div className="flex flex-col">
+        <div
+          className={cn(
+            'grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] !border-none pointer-events-none',
+            isNativeScroll ? '!overflow-x-auto !translate-x-0' : 'glass',
+
+          )}
+          style={{
+            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`
+          }}
+          // onScroll={(e: any) => {
+          //   console.log('scroll', e.target.scrollLeft)
+          //   e.preventDefault()
+          //   e.stopPropagation()
+          // }}
+          ref={(element) => {
+            // @ts-ignore
+            scrollSyncRef.current = element!
+            observe(element)
+          }}
+        >
           <div
-            key={index}
-            data-id={time.format('h:mm')}
-            className="#F5F7FA py-2 text-sm whitespace-nowrap flex items-center h-[40px] border border-gray-200 border-t-solid !bg-[#F5F7FA]"
+            data-type="day"
+            className={cn(
+              'absolute left-0 top-0 w-[100px] h-[40px] flex items-center',
+              isNativeScroll ? 'translate-x-[0px]' : 'translate-x-[-100px]',
+              'border-bottom border-top z-[1]'
+            )}
           >
-            <div style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}>{time.format('h:mm A')}</div>
+            <div className="sticky left-0 !bg-[#F5F7FA] h-full inline-flex items-center text-sm font-semibold w-[100px] justify-center">
+              {day}
+            </div>
           </div>
-        ))}
+          {timeSlots.map((time, index) => (
+            <div
+              key={index}
+              data-id={time.format('h:mm')}
+              className="py-2 text-sm whitespace-nowrap flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom"
+              style={{ transform: isNativeScroll ? 'translateX(100px)' : 'translateX(var(--scroll-x))' }}
+            >
+              <div
+                style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
+                className="flex flex-col justify-center items-center"
+              >
+                <p>{time.format('h:mm A')}</p>
+                <p className="text-[8px] leading-[6px] text-gray-500">{time.format('MMM DD')}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <SwipeToScroll speed={1.5} noScrollReset syncElement={scrollSyncRef}>
+          <div className={cn('flex', isNativeScroll ? '' : '')}>
+            <div
+              className={cn('grid relative shrink-0', isNativeScroll ? 'translate-x-[100px]' : '')}
+              style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))` }}
+            >
+              {rooms.map((room, roomIndex) => {
+                const sessions = sessionsByRoom[room]
 
-        {rooms.map((room, roomIndex) => {
-          const sessions = processedSessions[room]
+                const sessionByTimeslotStart: Record<
+                  string,
+                  { session: SessionType; columns: number; columnIndent: number }
+                > = {}
 
-          console.log(sessions, 'sessions in room', room)
+                if (sessions) {
+                  sessions.forEach((session: SessionType) => {
+                    const start = moment.utc(session.slot_start).add(7, 'hours')
+                    const end = moment.utc(session.slot_end).add(7, 'hours')
+                    const durationInMinutes = end.diff(start, 'minutes')
+                    // const columns = Math.ceil(durationInMinutes / 10) // Since timeslots are 10 minutes each
+                    const columns = durationInMinutes / 10
 
-          const sessionByTimeslotStart: Record<
-            string,
-            { session: SessionType; columns: number; columnIndent: number }
-          > = {}
+                    const excessMinutes = start.minute() % 10
 
-          sessions.forEach((session: SessionType) => {
-            const start = moment.utc(session.slot_start).add(7, 'hours')
-            const end = moment.utc(session.slot_end).add(7, 'hours')
-            const durationInMinutes = end.diff(start, 'minutes')
-            // const columns = Math.ceil(durationInMinutes / 10) // Since timeslots are 10 minutes each
-            const columns = durationInMinutes / 10
+                    const nearestTen = start.clone().subtract(excessMinutes, 'minutes')
 
-            const excessMinutes = start.minute() % 10
+                    const startFormatted = nearestTen.format('h:mm A')
 
-            const nearestTen = start.clone().subtract(excessMinutes, 'minutes')
-
-            const startFormatted = nearestTen.format('h:mm A')
-
-            sessionByTimeslotStart[startFormatted] = {
-              session,
-              columns,
-              columnIndent: excessMinutes === 5 ? 0.5 : 0,
-            }
-          })
-
-          //   console.log(sessionByTimeslotStart, 'sessionByTimeslotStart')
-
-          return (
-            <React.Fragment key={roomIndex}>
-              {timeSlots.map((timeslot, slotIndex) => {
-                const match = sessionByTimeslotStart[timeslot.format('h:mm A')]
-
-                if (!match)
-                  //  || room !== 'Main Stage')
-                  return <div key={slotIndex} className="bg-white border border-gray-100 border-solid h-[50px]"></div>
+                    sessionByTimeslotStart[startFormatted] = {
+                      session,
+                      columns,
+                      columnIndent: excessMinutes * 0.1,
+                    }
+                  })
+                }
 
                 return (
-                  <div
-                    key={slotIndex}
-                    className={`bg-white border border-gray-100 border-solid h-[50px] max-w-[100px]`}
-                    // style={{ gridColumn: `span ${match.columns}` }}
-                  >
-                    <div
-                      className={`relative hover:z-[1] min-h-full `}
-                      style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
-                    >
-                      <SessionCard session={match.session} tiny />
-                    </div>
-                  </div>
+                  <React.Fragment key={roomIndex}>
+                    {timeSlots.map((timeslot, slotIndex) => {
+                      const match = sessionByTimeslotStart[timeslot.format('h:mm A')]
+
+                      if (!match)
+                        //  || room !== 'Main Stage')
+                        return (
+                          <div key={slotIndex} className="bg-white border border-gray-100 border-solid h-[40px]"></div>
+                        )
+
+                      return (
+                        <div
+                          key={slotIndex}
+                          className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
+                          // style={{ gridColumn: `span ${match.columns}` }}
+                        >
+                          <div
+                            className={``}
+                            style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
+                          >
+                            <SessionCard session={match.session} tiny className="z-[1] hover:z-[2]" />
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </React.Fragment>
                 )
               })}
-            </React.Fragment>
-          )
-        })}
+            </div>
+          </div>
+        </SwipeToScroll>
       </div>
     </div>
   )
 }
 
-const Timeline = ({ sessions, event }: { sessions: SessionType[]; event: Event }) => {
+const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: Event; days: string[] }) => {
+  // console.log(days, 'days')
+
   //   const { rooms, days, sessionsByDay } = useMemo(() => {
   //     // Get unique rooms from all sessions
   //     const uniqueRooms = Array.from(new Set(sessions.map(session => session.slot_room?.name))).sort()
@@ -152,57 +237,67 @@ const Timeline = ({ sessions, event }: { sessions: SessionType[]; event: Event }
 
   if (!sessions.length) return null
 
-  // DAY IS IMPLICIT (CHOSEN FROM THE OUTSIDE VIA FILTER)
-  const sessionsByRoom: any = {}
 
-  const firstTimeSlot = moment.utc(sessions[0].slot_start).add(7, 'hours')
-  const lastTimeSlot = moment.utc(sessions[sessions.length - 1].slot_start).add(7, 'hours')
-
-  sessions.forEach((session: any) => {
-    if (sessionsByRoom[session.slot_room?.name]) {
-      sessionsByRoom[session.slot_room?.name].push(session)
-    } else {
-      sessionsByRoom[session.slot_room?.name] = [session]
-    }
-  })
-
-  const generateTimeSlots = () => {
-    const slots = []
-    const startTime = moment.utc(firstTimeSlot)
-    startTime.subtract(startTime.minute() % 10, 'minutes')
-
-    const endTime = moment.utc(lastTimeSlot).add(10, 'minutes') // Add buffer hour after last session + 7 for bangkok
-
-    while (startTime <= endTime) {
-      slots.push(startTime.clone())
-      startTime.add(10, 'minutes')
-    }
-    return slots
-  }
-
-  const timeSlots = generateTimeSlots()
-
-  const rooms = Object.keys(sessionsByRoom).sort((a, b) => {
-    if (a === 'Main Stage') return -1
-    if (b === 'Main Stage') return 1
-    return a.localeCompare(b)
-  })
-
-  //   console.log(rooms, 'rooms')
-  //   console.log(sessions[0])
-
-  //   console.log(sessionsByDay, 'sessionsByDay')
 
   return (
-    <div className="flex flex-nowrap overflow-hidden">
-      <RoomGrid rooms={rooms} />
-      <SwipeToScroll noScrollReset>
-        <div className="flex flex-nowrap">
-          {/* {days.map(day => ( */}
-          <DayGrid rooms={rooms} sessionsByRoom={sessionsByRoom} timeSlots={timeSlots} />
-          {/* ))} */}
-        </div>
-      </SwipeToScroll>
+    <div className="flex flex-col gap-[36px]" style={{ contain: 'paint' }}>
+      {days.map(day => {
+        const sessionsForDay = sessions.filter(session => moment.utc(session.slot_start).add(7, 'hours').format('MMM DD') === day)
+
+        if (!sessionsForDay.length) return null
+
+        const rooms = Array.from(new Set(sessionsForDay.map(session => session.slot_room?.name))).sort((a: any, b: any) => {
+          if (a === 'Main Stage') return -1
+          if (b === 'Main Stage') return 1
+      
+          if (a.toLowerCase().startsWith('stage')) {
+            if (b.toLowerCase().startsWith('stage')) {
+              return a.localeCompare(b)
+            }
+            return -1
+          }
+      
+          if (b.toLowerCase().startsWith('stage')) return 1
+      
+          return a.localeCompare(b)
+        }) as string[]
+
+        const sessionsByRoom: any = {}
+
+        const firstTimeSlot = moment.utc(sessionsForDay[0].slot_start).add(7, 'hours')
+        const lastTimeSlot = moment.utc(sessionsForDay[sessionsForDay.length - 1].slot_end).add(7, 'hours')
+
+        sessionsForDay.forEach((session: any) => {
+          if (sessionsByRoom[session.slot_room?.name]) {
+            sessionsByRoom[session.slot_room?.name].push(session)
+          } else {
+            sessionsByRoom[session.slot_room?.name] = [session]
+          }
+        })
+
+        const generateTimeSlots = () => {
+          const slots = []
+          const startTime = moment.utc(firstTimeSlot)
+          startTime.subtract(startTime.minute() % 10, 'minutes')
+
+          const endTime = moment.utc(lastTimeSlot).add(10, 'minutes') // Add buffer after last session + 7 for bangkok
+
+          while (startTime <= endTime) {
+            slots.push(startTime.clone())
+            startTime.add(10, 'minutes')
+          }
+          return slots
+        }
+
+        const timeSlots = generateTimeSlots()
+
+        return (
+          <div key={day} className="flex relative">
+            <RoomGrid rooms={rooms} />
+            <DayGrid day={day} rooms={rooms} sessionsByRoom={sessionsByRoom} timeSlots={timeSlots} />
+          </div>
+        )
+      })}
     </div>
   )
 }

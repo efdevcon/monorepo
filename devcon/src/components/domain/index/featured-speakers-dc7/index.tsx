@@ -439,8 +439,8 @@ const FeaturedSpeakers = () => {
   const speakers = useMemo(() => {
     const initialSpeakers = [
       {
-        name: 'Aya Miyaguchi',
-        role: 'Director @ Ethereum Foundation',
+        name: 'Aya',
+        role: 'Executive Director @ Ethereum Foundation',
         avatarUrl: AyaMiyaguchiImage,
         link: 'https://x.com/AyaMiyagotchi',
       },

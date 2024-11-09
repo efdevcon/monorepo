@@ -1,4 +1,4 @@
-import React, { forwardRef, useImperativeHandle } from "react";
+import React, { forwardRef, useEffect, useImperativeHandle } from "react";
 import css from "./sts.module.scss";
 import { useDrag } from "react-use-gesture";
 import useDimensions from "react-cool-dimensions";
@@ -6,7 +6,9 @@ import useDimensions from "react-cool-dimensions";
 type SwipeToScrollProps = {
   noBounds?: boolean;
   noScrollReset?: boolean;
+  speed?: number;
   focusRef?: React.RefObject<HTMLElement>;
+  syncElement?: React.RefObject<HTMLElement>;
   children: React.ReactChild | React.ReactChild[];
   scrollIndicatorDirections?: {
     ["left"]?: boolean;
@@ -87,11 +89,29 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
     ]
   );
 
+  // useEffect(() => {
+  //   if (props.syncElement?.current) {
+  //     if (isNativeScroll) {
+  //       props.syncElement.current.style.overflowX = 'auto';
+  //       props.syncElement.current.style.transform = 'translateX(0px) !important';
+  //     } else {
+  //       props.syncElement.current.style.overflowX = '';
+  //       props.syncElement.current.style.transform = '';
+  //     }
+  //   }
+  // }, [isNativeScroll]);
+
   const reset = React.useCallback(() => {
     if (el.current) {
       const scrollContainer = el.current;
       lastX.current = 0;
       scrollContainer.style.transform = `translateX(0px)`;
+
+      if (props.syncElement?.current) {
+        // props.syncElement.current.style.transform = `translateX(0px)`; 
+        props.syncElement.current.style.setProperty('--scroll-x', '0px');
+      }
+
       syncScrollIndicators(scrollContainer);
     }
   }, [syncScrollIndicators]);
@@ -154,9 +174,21 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
             left: clampedScrollLeft, // elementRect.left - 16,
             behavior: "smooth",
           });
+
+          if (props.syncElement?.current) {
+            props.syncElement.current.scrollTo({
+              left: clampedScrollLeft,
+              behavior: "smooth",
+            });
+          }
         } else {
           // Use translateX for devices with a cursor
           scrollContainer.style.transform = `translateX(-${clampedScrollLeft}px)`;
+
+          if (props.syncElement?.current) {
+            // props.syncElement.current.style.transform = `translateX(-${clampedScrollLeft}px)`;
+            props.syncElement.current.style.setProperty('--scroll-x', `-${clampedScrollLeft}px`);
+          }
         }
 
         lastX.current = clampedScrollLeft;
@@ -179,8 +211,15 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
   const bind = useDrag(({ down, delta }) => {
     const scrollContainer = el.current!;
 
-    lastX.current = Math.min(Math.max(0, lastX.current - delta[0]), maxScroll);
+    const speed = props.speed || 1.5;
+
+    lastX.current = Math.min(Math.max(0, lastX.current - delta[0] * speed), maxScroll);
     scrollContainer.style.transform = `translateX(-${lastX.current}px)`;
+
+    if (props.syncElement?.current) {
+      // props.syncElement.current.style.transform = `translateX(-${lastX.current}px)`;
+      props.syncElement.current.style.setProperty('--scroll-x', `-${lastX.current}px`);
+    }
 
     if (down) {
       containerEl.current!.style.cursor = "grabbing";
@@ -194,9 +233,9 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
   if (scrollIndicatorClass) className += ` ${scrollIndicatorClass}`;
   if (props.noBounds) className += ` ${css["no-bounds"]}`;
 
-  let scrollContainerClass = css["swipe-to-scroll"];
+  let scrollContainerClass = "h-full select-none";
 
-  if (isNativeScroll) scrollContainerClass += ` ${css["is-native-scroll"]}`;
+  if (isNativeScroll) scrollContainerClass += " overflow-x-auto !translate-x-0";
 
   return (
     <div
@@ -211,6 +250,13 @@ const SwipeToScroll = forwardRef((props: SwipeToScrollProps, ref) => {
           observe(element);
         }}
         className={scrollContainerClass}
+        onScroll={(e) => {
+          if (props.syncElement?.current) {
+            // @ts-ignore
+            props.syncElement.current.scrollLeft = e.target.scrollLeft;
+            // props.syncElement.current.style.setProperty('--scroll-x', `-${e.target.scrollLeft}px`);
+          }
+        }}
         // This prevents selection (text, image) while dragging
         onMouseDown={(e) => {
           e.preventDefault();
