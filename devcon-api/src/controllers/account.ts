@@ -19,6 +19,7 @@ const scheduleClient = new ScheduleClient()
 export const accountRouter = Router()
 accountRouter.get(`/account`, GetAccount)
 accountRouter.get(`/account/:id/schedule`, GetAccountSchedule)
+accountRouter.get(`/account/:id/poaps`, GetPoaps)
 accountRouter.put(`/account/:id`, UpdateAccount)
 accountRouter.put(`/account/zupass/import`, UpdateAccountImport)
 accountRouter.delete(`/account/:id`, DeleteAccount)
@@ -31,7 +32,6 @@ accountRouter.get(`/account/speakers`, FollowedSpeakers)
 accountRouter.get(`/account/speakers/recommended`, RecommendedSpeakers)
 accountRouter.get(`/account/sessions`, FollowedSessions)
 accountRouter.get(`/account/sessions/recommended`, RecommendedSessions)
-accountRouter.get(`/account/poaps`, GetPoaps)
 
 async function GetAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
@@ -123,6 +123,58 @@ async function GetAccountSchedule(req: Request, res: Response) {
     },
     data: schedule,
   })
+}
+
+async function GetPoaps(req: Request, res: Response) {
+  // #swagger.tags = ['Account']
+
+  let address = req.params.id
+  if (!address) {
+    return res.status(400).send({ code: 400, message: 'No address provided.' })
+  }
+
+  const eventIds = [
+    3, // Devcon 1
+    4, // Devcon 2
+    5, // Devcon 3
+    6, // Devcon 4
+    69, // Devcon 5
+    60695, // Devcon 6
+    178416, // Devcon 7
+    36029, // Devconnect AMS
+    165263, // Devconnect IST
+  ]
+
+  try {
+    const responses = await Promise.all(
+      eventIds.map((eventId) =>
+        fetch(`https://api.poap.tech/actions/scan/${address}/${eventId}`, {
+          headers: { 'X-API-Key': process.env.POAP_API_KEY || '' },
+        })
+          .then(async (res) => {
+            if (res.status === 200) {
+              const data = await res.json()
+              return {
+                ...data,
+                type: data?.event?.id === 36029 || data?.event?.id === 165263 ? 'devconnect' : 'devcon',
+              }
+            }
+
+            return null
+          })
+          .catch((error) => {
+            console.error(`Failed to fetch POAP for event ${eventId}:`, error)
+            return null
+          })
+      )
+    )
+
+    const poaps = responses.filter(Boolean).flat()
+    return res.status(200).send({ code: 200, message: '', data: poaps })
+  } catch (error) {
+    console.error('Failed to fetch POAPs:', error)
+    return res.status(500).send({ code: 500, message: 'Failed to fetch POAPs' })
+  }
 }
 
 async function UpdateAccountImport(req: Request, res: Response) {
@@ -646,48 +698,6 @@ async function RecommendedSessions(req: Request, res: Response) {
   const sessions = await GetRecommendedSessions(account.id, true)
 
   return res.status(200).send({ code: 200, message: '', data: sessions })
-}
-
-async function GetPoaps(req: Request, res: Response) {
-  // #swagger.tags = ['Account']
-
-  const address = req.query.address as string
-  if (!address) {
-    return res.status(400).send({ code: 400, message: 'No address provided.' })
-  }
-
-  // Devcon event IDs
-  const eventIds = [
-    3, // Devcon 1
-    4, // Devcon 2
-    5, // Devcon 3
-    6, // Devcon 4
-    69, // Devcon 5
-    60695, // Devcon 6
-    36029, // Devconnect AMS
-    165263, // Devconnect IST
-  ]
-
-  try {
-    const responses = await Promise.all(
-      eventIds.map((eventId) =>
-        fetch(`https://api.poap.tech/actions/scan/${address}/${eventId}`, {
-          headers: { 'X-API-Key': process.env.POAP_API_KEY || '' },
-        })
-          .then((res) => res.json())
-          .catch((error) => {
-            console.error(`Failed to fetch POAP for event ${eventId}:`, error)
-            return null
-          })
-      )
-    )
-
-    const poaps = responses.filter(Boolean).flat()
-    return res.status(200).send({ code: 200, message: '', data: poaps })
-  } catch (error) {
-    console.error('Failed to fetch POAPs:', error)
-    return res.status(500).send({ code: 500, message: 'Failed to fetch POAPs' })
-  }
 }
 
 async function parseProfileData(attendeeEmail: string) {
