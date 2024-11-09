@@ -63,7 +63,7 @@ const LocationInformation = ({
         const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
         // const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-        setCountdown(`T-${days} Days`) // ${hours}h ${minutes}m`) //  ${seconds}s`)
+        setCountdown(`T-${days}d ${hours}h ${minutes}m`) // ) //  ${seconds}s`)
       } else {
         setCountdown('Event started!')
       }
@@ -77,7 +77,7 @@ const LocationInformation = ({
         minute: '2-digit',
         hour12: true,
       }).format(now)
-      setCurrentTime(bangkokTime + ' Bangkok (GMT-7)')
+      setCurrentTime(bangkokTime + ' Bangkok (GMT+7)')
     }
 
     updateCountdown() // Initial call
@@ -100,7 +100,7 @@ const LocationInformation = ({
       {!renderActions && (
         <div className="flex gap-4 text-sm font-semibold">
           <div>{currentTime}</div>
-          <div>{countdown}</div>
+          {/* <div>{countdown}</div> */}
           {/* <motion.div
           className="text-[#000000] text-[13px] font-semibold header-color"
           style={{ color: textColor || '#000000' }}

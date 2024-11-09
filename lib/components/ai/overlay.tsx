@@ -748,7 +748,7 @@ const DevaBot = ({
                     {!isAtBottom && (
                       <AnimatePresence>
                         <motion.div
-                          className="absolute right-0 left-0 bottom-1 translate-y-full flex justify-center items-center select-none"
+                          className="absolute right-0 left-0 bottom-0.5 translate-y-full flex justify-center items-center select-none"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}

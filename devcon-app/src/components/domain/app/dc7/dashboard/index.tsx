@@ -28,6 +28,8 @@ import { FancyLoader } from 'lib/components/loader/loader'
 import { RecommendedSpeakers } from '../speakers/recommendations'
 import { useSpeakerData } from 'services/event-data'
 import { ZupassTickets } from './ticket'
+import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import DateText from 'assets/images/dc-7/date-text.png'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -167,6 +169,15 @@ export const Dashboard = () => {
 
   return (
     <div className={cn(cardClass, 'lg:py-4 col-start-1 col-end-4')}>
+      <div className="flex justify-between mx-4 mb-4 border-bottom">
+        <div>
+          <Image src={LogoFlowers} alt="Logo Flowers" className="max-w-[100px] translate-y-[-8px]" />
+        </div>
+        <div>
+          <Image src={DateText} alt="Date Text" className="max-w-[120px]" />
+        </div>
+      </div>
+
       {loading && !account && (
         <>
           <div className="flex justify-center items-center h-full">
