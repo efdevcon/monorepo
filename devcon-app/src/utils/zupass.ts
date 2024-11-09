@@ -8,6 +8,6 @@ export const ZAPP: Zapp = {
   permissions: {
     READ_PUBLIC_IDENTIFIERS: {},
     REQUEST_PROOF: { collections: ['Devcon SEA'] },
-    READ_POD: { collections: ['Devcon SEA'] },
+    READ_POD: { collections: ['Devcon SEA', 'Meerkat: Devcon SEA'] },
   },
 }
