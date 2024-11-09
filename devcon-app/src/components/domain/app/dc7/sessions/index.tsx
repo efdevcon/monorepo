@@ -99,6 +99,7 @@ export const matchSessionFilter = (session: SessionType, filter: string) => {
 const useSessionFilter = (sessions: SessionType[], event: any) => {
   const { account } = useAccountContext()
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
   const { now } = useAppContext()
 
   const { text, type, day, expertise, track, room, other } = sessionFilter
@@ -134,6 +135,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   const filterOptions = useMemo(() => {
     return {
       type: [...new Set(sessions.map(session => session.type))].filter(Boolean),
+      // day: timelineView ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'] : ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
       day: ['All', 'Nov 12', 'Nov 13', 'Nov 14', 'Nov 15'],
       expertise: [
         ...new Set(
@@ -145,14 +147,24 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       track: [...new Set(sessions.map(session => session.track)), 'CLS']
         .filter(Boolean)
         .filter(track => !track.startsWith('[CLS]')),
-      room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a, b) => {
+      room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a: any, b: any) => {
         if (a === 'Main Stage') return -1
         if (b === 'Main Stage') return 1
-        return (a || '').localeCompare(b || '')
-      }),
+    
+        if (a.toLowerCase().startsWith('stage')) {
+          if (b.toLowerCase().startsWith('stage')) {
+            return a.localeCompare(b)
+          }
+          return -1
+        }
+    
+          if (b.toLowerCase().startsWith('stage')) return 1
+
+          return a.localeCompare(b)
+        }),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
-  }, [sessions])
+  }, [sessions, timelineView])
 
   const filteredSessions = useMemo(() => {
     return sessions.filter((session: any) => {
@@ -230,7 +242,7 @@ export const getTrackColor = (track: string) => {
     case 'Experience':
       return '!bg-[#FFFBF4]'
     default:
-      return 'bg-[white]' // Light Gray (default color)
+      return '!bg-[#dcffea]' // Light Gray (default color)
   }
 }
 
@@ -346,7 +358,7 @@ export const SessionCard = ({
     return (
       <Link
         className={cn(
-          'flex flex-col rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-full',
+          'flex flex-col rounded-lg relative hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 group hover:z-[2] min-h-[35px] mt-[2px] hover:h-auto group',
           getTrackColor(session.track),
           selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf]' : '',
           className
@@ -372,8 +384,25 @@ export const SessionCard = ({
           setDevaBotVisible(false)
         }}
       >
-        <div className="flex flex-col justify-between grow px-1 py-0.5 min-h-full">
-          <p className="text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none">{title}</p>
+        <div className="flex flex-row items-center grow px-1 py-0.5 h-[100%] gap-2 sticky left-0 lg:left-[100px]">
+          {trackLogo !== CityGuide && (
+            <Image
+              src={trackLogo}
+              alt={track}
+              height={15}
+              width={15}
+              className="w-[15px] h-[15px] shrink-0 grow-0 object-contain"
+            />
+          )}
+
+          <p
+            className={cn(
+              'text-xs font-medium text-gray-800 line-clamp-2 group-hover:line-clamp-none sticky left-[8px] lg:left-[8px] leading-[12px]',
+              getTrackColor(track)
+            )}
+          >
+            {title}
+          </p>
         </div>
       </Link>
     )
@@ -1086,7 +1115,7 @@ export const SessionList = ({
   filterOptions: any
 }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
-  // const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
+  const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
     typeof window !== 'undefined' ? scrollRestorationTracker[window.history.state?.key]?.page ?? 1 : 1
@@ -1157,10 +1186,11 @@ export const SessionList = ({
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
 
+  const isNativeScroll = typeof window !== 'undefined' && !window.matchMedia('not all and (hover: none)').matches
+
   return (
     <div data-type="session-list" className={cn(cardClass)}>
       <SessionFilter filterOptions={filterOptions} />
-
       {!isPersonalizedSchedule && (
         <>
           <PersonalizedSuggestions sessions={filteredSessions} />
@@ -1175,15 +1205,19 @@ export const SessionList = ({
           </div>
         </>
       )}
-
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
-        <div className="font-semibold">{isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
-        {/* <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
+        <div className="font-semibold flex flex-col">
+          <div> {isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
+          {timelineView && !isNativeScroll && (
+            <div className="text-[#A897FF] text-xs">Drag the timeline to scroll</div>
+          )}
+        </div>
+        <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
             className={cn(
               'flex justify-center items-center self-center grow rounded-md gap-2 px-2 text-[#A897FF] hover:bg-white hover:shadow-md cursor-pointer p-0.5 transition-all duration-300 select-none',
               {
-                'bg-white shadow-md text-[#7D52F4]': !timelineView,
+                'bg-white shadow-md !text-[#7D52F4]': !timelineView,
               }
             )}
             onClick={() => setTimelineView(false)}
@@ -1198,11 +1232,18 @@ export const SessionList = ({
             className={cn(
               'flex justify-center items-center rounded-md gap-2 text-[#A897FF] px-2 hover:bg-white hover:shadow-md cursor-pointer p-0.5 transition-all duration-300 select-none',
               {
-                'bg-white shadow-md text-[#7D52F4]': timelineView,
+                'bg-white shadow-md !text-[#7D52F4]': timelineView,
               }
             )}
             onClick={() => {
-              setTimelineView(!timelineView)
+              setTimelineView(true)
+
+              // if (Object.keys(sessionFilter.day).length === 0) {
+              //   setSessionFilter({
+              //     ...sessionFilter,
+              //     day: { 'Nov 12': true },
+              //   })
+              // }
             }}
           >
             <TimelineIcon
@@ -1211,11 +1252,18 @@ export const SessionList = ({
             />
             Timeline View
           </div>
-        </div> */}
+        </div>
       </div>
-
       {timelineView ? (
-        <Timeline sessions={filteredSessions} event={event} />
+        <Timeline
+          sessions={filteredSessions}
+          event={event}
+          days={
+            Object.keys(sessionFilter.day).length === 0
+              ? ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15']
+              : Object.keys(sessionFilter.day)
+          }
+        />
       ) : (
         Object.entries(groupedSessions).map(([date, dateSessions]) => (
           <div className="relative flex flex-col" key={date}>
@@ -1236,8 +1284,8 @@ export const SessionList = ({
         </div>
       )}
 
-      <ScrollUpComponent visible={visibleSessions.length > 20} />
-      {/* </div> */}
+      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
+      {timelineView && <div className="py-4"></div>}
     </div>
   )
 }
@@ -1403,8 +1451,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           className="rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right "
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">
-          <TrackTag track={session.track} className="self-start" />
-          <ExpertiseTag expertise={session.expertise || ''} className="self-start" />
+          {session.track && <TrackTag track={session.track} className="self-start" />}
+          {session.expertise && <ExpertiseTag expertise={session.expertise || ''} className="self-start" />}
         </div>
 
         <div
@@ -1665,7 +1713,7 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
 
   return (
     <div
-      data-type="speaker-layout"
+      data-type="session-layout"
       className={cn('flex flex-row lg:gap-3 relative')}
       // initial={{ opacity: 0 }}
       // animate={{ opacity: 1 }}
