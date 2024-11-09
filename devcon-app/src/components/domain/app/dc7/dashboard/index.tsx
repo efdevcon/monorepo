@@ -30,6 +30,7 @@ import { useSpeakerData } from 'services/event-data'
 import { ZupassTickets } from './ticket'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import DateText from 'assets/images/dc-7/date-text.png'
+import { Poaps } from './poaps'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -315,6 +316,8 @@ export const Dashboard = () => {
       </div>
 
       {/* <ZupassTickets className="flex flex-col md:flex-row justify-between gap-4 items-stretch mt-4 border-top pt-4 mx-4 relative" /> */}
+
+      {/* <Poaps /> */}
     </div>
   )
 }
