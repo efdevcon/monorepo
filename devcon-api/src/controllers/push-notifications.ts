@@ -12,7 +12,13 @@ const prisma = new PrismaClient()
 
 export const pushNotificationRouter = Router()
 
-const whitelist = ['cm233cak10002lxqfrjktv79a', 'cm2kystr5001ogoa7zkxay23l', 'clw802l3m0023arj8oi1y3qho']
+const whitelist = [
+  'cm233cak10002lxqfrjktv79a',
+  'cm2kystr5001ogoa7zkxay23l',
+  'clw802l3m0023arj8oi1y3qho',
+  'clw802l4a0110arj85elqodpr',
+  'clw802l3l0000arj8ztdk6c9f',
+]
 
 const isAdmin = (req: CustomRequest, res: Response, next: NextFunction) => {
   const userId = req.session.userId as string
