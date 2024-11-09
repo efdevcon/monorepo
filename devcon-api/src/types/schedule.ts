@@ -30,8 +30,8 @@ export function pretalxToSessionData(item: any) {
   }
 
   if (item.slot) {
-    data.slot_start = dayjs.utc(item.slot.start).valueOf()
-    data.slot_end = dayjs.utc(item.slot.end).valueOf()
+    data.slot_start = item.slot_start ? dayjs(item.slot_start).toISOString() : null
+    data.slot_end = item.slot_end ? dayjs(item.slot_end).toISOString() : null
     data.slot_roomId = item.slot?.room ? defaultSlugify(item.slot.room.en) : null
     data.slot_room = {
       connect: { id: data.slot_roomId },

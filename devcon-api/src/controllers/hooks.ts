@@ -128,17 +128,20 @@ async function SyncSpeakers(speakers: any[]) {
       },
     })
 
-    if (!speakerData) {
-      speakerData = await GetSpeaker(id)
-      if (!speakerData) {
-        console.error(`Speaker ${id} not found`)
-        continue
-      }
-
-      console.log('Creating speaker', speakerData.id)
-      await client.speaker.create({
-        data: speakerData,
-      })
+    if (speakerData) {
+      console.log('Speaker already exists', speakerData.id)
+      continue
     }
+
+    speakerData = await GetSpeaker(id)
+    if (!speakerData) {
+      console.error(`Speaker ${id} not found`)
+      continue
+    }
+
+    console.log('Creating speaker', speakerData.id)
+    await client.speaker.create({
+      data: speakerData,
+    })
   }
 }
