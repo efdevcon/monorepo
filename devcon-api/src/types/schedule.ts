@@ -21,6 +21,8 @@ export function pretalxToSessionData(item: any) {
     ...item,
     tags: item.tags?.join(',') || '',
     keywords: item.keywords?.join(',') || '',
+    slot_start: item.slot_start ? dayjs(item.slot_start).toISOString() : null,
+    slot_end: item.slot_end ? dayjs(item.slot_end).toISOString() : null,
     event: {
       connect: { id: 'devcon-7' },
     },
@@ -29,10 +31,7 @@ export function pretalxToSessionData(item: any) {
     },
   }
 
-  if (item.slot) {
-    data.slot_start = item.slot_start ? dayjs(item.slot_start).toISOString() : null
-    data.slot_end = item.slot_end ? dayjs(item.slot_end).toISOString() : null
-    data.slot_roomId = item.slot?.room ? defaultSlugify(item.slot.room.en) : null
+  if (item.slot_roomId) {
     data.slot_room = {
       connect: { id: data.slot_roomId },
     }
