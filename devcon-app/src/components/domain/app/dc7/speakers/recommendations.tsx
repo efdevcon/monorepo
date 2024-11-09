@@ -115,6 +115,8 @@ export function RecommendedSpeakers({ speakers, selectedSpeaker, standalone, onS
                 </div>
               )
             })}
+
+            <div className="shrink-0 w-[16px]"></div>
           </div>
         </SwipeToScroll>
       )}
@@ -179,6 +181,7 @@ export function RecommendedSpeakers({ speakers, selectedSpeaker, standalone, onS
                 <p className="text-xs font-medium">{speaker.name}</p>
               </Link>
             ))}
+            <div className="shrink-0 w-[16px]"></div>
           </div>
         </SwipeToScroll>
       </div>

@@ -1,5 +1,5 @@
 import React, { use } from 'react'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { useAccountContext } from 'context/account-context'
 import cn from 'classnames'
 import { Button } from 'lib/components/button'
@@ -30,6 +30,12 @@ import { useSpeakerData } from 'services/event-data'
 import { ZupassTickets } from './ticket'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import DateText from 'assets/images/dc-7/date-text.png'
+import HackerCave from 'assets/images/dc-7/dashboard-highlights/hacker-cave.png'
+import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
+import Decompression from 'assets/images/dc-7/dashboard-highlights/decompression.png'
+import CityGuide from 'assets/images/dc-7/city-guide.png'
+import { useAppContext } from 'context/app-context'
+import moment from 'moment'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -206,6 +212,10 @@ export const Dashboard = () => {
           </div>
         </div>
       )}
+
+      <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Highlights</div>
+      <Highlights />
+
       <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">
         Notifications
         <div
@@ -285,7 +295,7 @@ export const Dashboard = () => {
             <Link
               {...draggableLink}
               to="https://devcon.org/devcon-week"
-              className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}
+              className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131]')}
             >
               <p className="text-white  font-semibold">Devcon Week</p>
               <CalendarIcon
@@ -296,6 +306,8 @@ export const Dashboard = () => {
                 Devcon may be only 4 days long. But there is a week full of Ethereum Events.
               </div>
             </Link>
+
+            <div className="shrink-0 w-[16px]"></div>
 
             {/* <div className={cn(featuredClass, 'bg-gradient-to-br from-[#6C6A77] via-[#252525] to-[#313131] mr-4')}>
               <p className="text-white font-semibold">Food & Beverage</p>
@@ -315,6 +327,76 @@ export const Dashboard = () => {
       </div>
 
       {/* <ZupassTickets className="flex flex-col md:flex-row justify-between gap-4 items-stretch mt-4 border-top pt-4 mx-4 relative" /> */}
+    </div>
+  )
+}
+
+type HighlightCardProps = {
+  title: string
+  to: string
+  description: string
+  image: StaticImageData
+  className?: string
+}
+
+const HighlightCard = ({ title, to, description, image, className }: HighlightCardProps) => {
+  return (
+    <Link
+      to={to}
+      className={cn(
+        'rounded-2xl shrink-0 bg-white border border-solid border-[#E4E6EB] w-[300px] rounded-2xl overflow-hidden group',
+        className
+      )}
+    >
+      <Image
+        src={image}
+        alt={title}
+        className="aspect-[4/2] object-cover group-hover:scale-105 transition-all duration-500 cursor-pointer"
+      />
+      <div className="flex flex-col bg-white z-[10] relative">
+        <p className="font-semibold text-sm px-4 py-2 pb-1">{title}</p>
+        <div className="text-xs px-4 pb-4">{description}</div>
+      </div>
+    </Link>
+  )
+}
+
+export const Highlights = () => {
+  const { now } = useAppContext()
+
+  return (
+    <div className="flex flex-col gap-2 overflow-hidden">
+      <SwipeToScroll>
+        <div className="flex no-wrap gap-2 ml-4 pr-4">
+          <HighlightCard
+            title="Opening Ceremonies"
+            to="/schedule/P8W9LZ"
+            description="The Ethereum conference for developers, thinkers, and makers is finally here. Join for the opening ceremonies and celebration of our community Reunion."
+            image={CityGuide}
+            className={now?.isAfter(moment.utc('2024-11-12T12:15:00Z').utcOffset(7)) ? 'hidden' : ''}
+          />
+
+          <HighlightCard
+            to="/schedule/P8W9LZ"
+            title="Hacker Cave"
+            description="Visit the Hacker Cave to experience a truly immersive co-working space. Kept open late into the night to accomadate your needs."
+            image={HackerCave}
+          />
+          {/* <HighlightCard
+            title="Deva Awards"
+            description="Visit the Hacker Cave to experience a truly immersive co-working space. Kept open late into the night to accomadate your needs."
+            image={DevaAwards}
+          /> */}
+          <HighlightCard
+            to="/schedule/P8W9LZ"
+            title="Decompression Room"
+            description="Overwhelmed with the amount of new friends and knowledge you’ve gathered. Come  de-stress and breathe at the decompression room. "
+            image={Decompression}
+          />
+
+          <div className="shrink-0 w-[16px]"></div>
+        </div>
+      </SwipeToScroll>
     </div>
   )
 }

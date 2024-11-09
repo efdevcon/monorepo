@@ -117,6 +117,8 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
                 </div>
               )
             })}
+
+            <div className="shrink-0 w-[16px]"></div>
           </div>
         </SwipeToScroll>
       )}
@@ -156,6 +158,8 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
                 className={cn('w-[360px] max-w-[360px] shrink-0', index === 0 ? 'ml-4' : '')}
               />
             ))}
+
+            <div className="shrink-0 w-[16px]"></div>
           </div>
         </SwipeToScroll>
       </div>

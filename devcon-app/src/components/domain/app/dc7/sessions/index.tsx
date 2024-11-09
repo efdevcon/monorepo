@@ -339,9 +339,7 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
             getTrackColor(session.track)
           )}
         >
-          <div
-            className="absolute top-0 flex w-full self-start font-semibold p-[0.125em] z-[1] line-clamp-3 break-words "
-          >
+          <div className="absolute top-0 flex w-full self-start font-semibold p-[0.125em] z-[1] line-clamp-3 break-words ">
             <div className="text-white z-[2] line-clamp-4 !text-[0.8em]">{session.track}</div>
           </div>
 
@@ -649,7 +647,7 @@ export const SessionCard = ({
       </div>
 
       {isKeynote && (
-        <div className="absolute right-2 bottom-2 label !border-[#713ff6] !text-[#713ff6] rounded !p-0.5 !text-[8px] !px-1 bold">
+        <div className="absolute right-2 bottom-2 label !border-[#713ff6] !bg-white !text-[#713ff6] rounded !p-0.5 !text-[8px] !px-1 bold">
           Keynote
         </div>
       )}

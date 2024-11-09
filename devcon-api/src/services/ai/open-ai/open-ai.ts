@@ -477,7 +477,7 @@ export const api = (() => {
           return {
             id: session.id,
             title: session.title,
-            description: session.description,
+            summary: session.description,
             track: session.track,
             type: session.type,
             start: `${dayLabel} - ${bangkokStart}`,
