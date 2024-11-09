@@ -146,6 +146,15 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
+  if (context.params.id === '8YBVU8') {
+    return {
+      redirect: {
+        destination: '/schedule?day=Nov%252015&room=Breakout%25203%2CBreakout%25202',
+        permanent: false,
+      },
+    }
+  }
+
   const sessions = await fetchSessions()
   const session = sessions.find(i => i.sourceId === context.params.id)
   if (!session) {

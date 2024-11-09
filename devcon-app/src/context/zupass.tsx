@@ -4,16 +4,40 @@ import { ZAPP, ZUPASS_URL } from '../utils/zupass'
 import { connect, ParcnetAPI } from '@parcnet-js/app-connector'
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react'
 import { pod, PODData } from '@parcnet-js/podspec'
-import { POD, PODContent } from '@pcd/pod'
+import { POD } from '@pcd/pod'
 import { useAccountContext } from './account-context'
+
+interface Ticket {
+  ticketId: string
+  attendeeName: string
+  attendeeEmail: string
+  productId: string
+  ticketType: string
+  ticketSecret: string
+  isConsumed: boolean
+  isRevoked: boolean
+  signature: string
+  signerPublicKey: string
+}
+
+interface Collectible {
+  id: string
+  title: string
+  description: string
+  track: string
+  imageUrl: string
+  signature: string
+  signerPublicKey: string
+}
 
 interface ZupassContext {
   loading: boolean
   error?: string
   publicKey: string
   Connect: (onboard: boolean) => void
-  GetTicket: () => Promise<PODContent | undefined>
-  GetPods: () => Promise<PODData[]>
+  GetTicket: () => Promise<Ticket | undefined>
+  GetSwag: () => Promise<Ticket[]>
+  GetCollectibles: () => Promise<Collectible[]>
 }
 
 const defaultZupassContext: ZupassContext = {
@@ -22,7 +46,8 @@ const defaultZupassContext: ZupassContext = {
   publicKey: '',
   Connect: (onboard: boolean) => {},
   GetTicket: () => Promise.resolve(undefined),
-  GetPods: () => Promise.resolve([]),
+  GetSwag: () => Promise.resolve([]),
+  GetCollectibles: () => Promise.resolve([]),
 }
 
 const ZupassContext = createContext<ZupassContext>(defaultZupassContext)
@@ -45,7 +70,8 @@ export function ZupassProvider(props: PropsWithChildren) {
     publicKey: '',
     Connect,
     GetTicket,
-    GetPods,
+    GetSwag,
+    GetCollectibles,
   })
 
   async function Connect(onboard: boolean) {
@@ -77,43 +103,72 @@ export function ZupassProvider(props: PropsWithChildren) {
     console.log('Getting Devcon ticket')
 
     try {
-      const zupassTicket = localStorage.getItem('zupassTicket')
-      if (zupassTicket) {
-        const pod = POD.fromJSON(JSON.parse(zupassTicket))
-        if (pod.verifySignature()) {
-          return pod.content
-        }
-      }
-
       const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
       const ticket = await getTicket(zupass)
-      if (ticket) {
-        const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
-        localStorage.setItem('zupassTicket', JSON.stringify(pod.toJSON()))
 
-        return pod.content
+      if (ticket) {
+        return mapToTicket(ticket)
       }
     } catch (error) {
       console.error('[ZUPASS] Error getting ticket', error)
     }
   }
 
-  async function GetPods() {
+  async function GetSwag() {
     console.log('Getting Devcon add-ons')
+
+    try {
+      const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+      const query = pod({
+        entries: {
+          eventId: {
+            type: 'string',
+            isMemberOf: [{ type: 'string', value: '5074edf5-f079-4099-b036-22223c0c6995' }],
+          },
+        },
+      })
+
+      const pods = await zupass.pod.collection('Devcon SEA').query(query)
+      const addons = pods.filter(pod => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1))
+      return addons?.map(mapToTicket) || []
+    } catch (error) {
+      console.error('[ZUPASS] Error getting add-ons', error)
+    }
+
+    return []
+  }
+
+  async function GetCollectibles() {
+    console.log('Getting Meerkat collectibles')
 
     const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
     const query = pod({
       entries: {
-        eventId: {
+        pod_type: {
           type: 'string',
-          isMemberOf: [{ type: 'string', value: '5074edf5-f079-4099-b036-22223c0c6995' }],
+          isMemberOf: [
+            {
+              type: 'string',
+              value: 'events.meerkat/attendance',
+            },
+          ],
         },
       },
     })
 
-    const pods = await zupass.pod.collection('Devcon SEA').query(query)
-    const addons = pods.filter(pod => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1))
-    return addons
+    const attendance = await zupass.pod.collection('Meerkat: Devcon SEA').query(query)
+    return attendance.map(
+      pod =>
+        ({
+          id: pod.entries.code.value,
+          title: pod.entries.zupass_title.value,
+          description: pod.entries.zupass_description.value,
+          track: pod.entries.track.value,
+          imageUrl: pod.entries.zupass_image_url.value,
+          signature: pod.signature,
+          signerPublicKey: pod.signerPublicKey,
+        } as Collectible)
+    )
   }
 
   async function getTicket(zupass: ParcnetAPI) {
@@ -128,6 +183,21 @@ export function ZupassProvider(props: PropsWithChildren) {
 
     const pods = await zupass.pod.collection('Devcon SEA').query(query)
     return pods.find(pod => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0))
+  }
+
+  function mapToTicket(pod: PODData) {
+    return {
+      ticketId: pod.entries.ticketId.value,
+      attendeeName: pod.entries.attendeeName.value || 'Devcon Attendee',
+      attendeeEmail: pod.entries.attendeeEmail.value,
+      productId: pod.entries.productId.value,
+      ticketType: pod.entries.ticketName.value || 'Ticket',
+      ticketSecret: pod.entries.ticketSecret.value,
+      isConsumed: pod.entries.isConsumed.value === BigInt(1),
+      isRevoked: pod.entries.isRevoked.value === BigInt(1),
+      signature: pod.signature,
+      signerPublicKey: pod.signerPublicKey,
+    } as Ticket
   }
 
   useEffect(() => {

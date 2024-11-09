@@ -83,6 +83,7 @@ export function ZupassTickets(props: Props) {
   const zupass = useZupass()
   const [ticket, setTicket] = useState<any>()
   const [swag, setSwag] = useState<any>()
+  const [collectibles, setCollectibles] = useState<any>()
 
   let className = 'flex flex-col lg:flex-row gap-2 basis-full shrink-0 md:basis-1/2 mt-0'
   if (props.className) {
@@ -92,13 +93,25 @@ export function ZupassTickets(props: Props) {
   useEffect(() => {
     async function init() {
       const ticket = await zupass.GetTicket()
-      const swag = await zupass.GetPods()
+      const swag = await zupass.GetSwag()
+      const collectibles = await zupass.GetCollectibles()
 
       setTicket(ticket)
       setSwag(swag)
+      setCollectibles(collectibles)
     }
     init()
   }, [])
+
+  async function GetData() {
+    const ticket = await zupass.GetTicket()
+    const swag = await zupass.GetSwag()
+    const collectibles = await zupass.GetCollectibles()
+
+    setTicket(ticket)
+    setSwag(swag)
+    setCollectibles(collectibles)
+  }
 
   return (
     <div className={className}>
@@ -121,24 +134,32 @@ export function ZupassTickets(props: Props) {
             <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-full object-contain object-left" />
           </div>
           <div className="flex flex-col justify-center grow">
-            <div className="text-lg lg:text-2xl break-words">
-              {ticket?.getValue('attendeeName')?.value || 'Devcon Attendee'}
-            </div>
-            <span className="text-[#5B5F84]">{ticket?.getValue('ticketName')?.value || 'Ticket'}</span>
+            <div className="text-lg lg:text-2xl break-words">{ticket?.attendeeName || 'Devcon Attendee'}</div>
+            <span className="text-[#5B5F84]">{ticket?.ticketType || 'Ticket'}</span>
           </div>
           <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
         </div>
 
         <div className="grow p-4 h-[47%] w-full flex justify-between">
           <div className="sm:p-3 p-4 border border-solid border-[#D9D9D9] shrink-0 rounded-2xl self-end">
-            <div className="max-w-[105px] sm:max-w-[150px]" style={{ height: 'auto', margin: '0 auto', width: '100%' }}>
-              <QRCode
-                size={256}
-                style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-                value={ticket?.getValue('ticketSecret')?.value || ''}
-                viewBox={`0 0 256 256`}
-              />
-            </div>
+            {!ticket?.ticketSecret && <div className="text-center text-sm text-gray-500">No ticket secret</div>}
+            {ticket?.ticketSecret && ticket?.isConsumed && (
+              <div className="text-center text-sm text-gray-500">Ticket already consumed</div>
+            )}
+
+            {ticket?.ticketSecret && !ticket?.isConsumed && (
+              <div
+                className="max-w-[105px] sm:max-w-[150px]"
+                style={{ height: 'auto', margin: '0 auto', width: '100%' }}
+              >
+                <QRCode
+                  size={256}
+                  style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+                  value={ticket?.ticketSecret || ''}
+                  viewBox={`0 0 256 256`}
+                />
+              </div>
+            )}
             {/* <QRCode value={ticket?.getValue('ticketSecret')?.value || ''} size={125} level="H" /> */}
           </div>
           <div className="flex flex-col justify-between p-1">

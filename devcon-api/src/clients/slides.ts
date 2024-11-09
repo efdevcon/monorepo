@@ -133,6 +133,55 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
   }
 }
 
+export async function RunPermissions(title: string, id: string, emails: string[]) {
+  if (!client) {
+    client = await AuthenticateServiceAccount(SCOPES)
+  }
+  const drive = client.drive('v3')
+
+  let presentationId = null
+  try {
+    const exists = await drive.files.list({
+      q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${FOLDER_ID}' in parents`,
+      corpora: 'drive',
+      spaces: 'drive',
+      driveId: DRIVE_ID,
+      supportsAllDrives: true,
+      includeItemsFromAllDrives: true,
+    })
+
+    presentationId = exists?.data?.files?.[0]?.id
+  } catch (e) {
+    console.log('Error fetching file', id, title)
+    // console.error(e)
+  }
+
+  if (!presentationId) {
+    console.log('Presentation not found', id, title)
+    return
+  }
+
+  try {
+    for (const email of emails) {
+      await drive.permissions.create({
+        fileId: presentationId,
+        supportsAllDrives: true,
+        requestBody: {
+          type: 'user',
+          role: 'writer',
+          emailAddress: email,
+        },
+        sendNotificationEmail: false,
+      })
+    }
+
+    return true
+  } catch (e) {
+    console.log('Error setting permissions. Grant manually', id)
+    // console.error(e)
+  }
+}
+
 export async function DownloadSlides(id: string) {
   const res = await fetch(`https://docs.google.com/presentation/d/${id}/export/pdf?opts=shs%3D0`)
   const arr = await res.arrayBuffer()
