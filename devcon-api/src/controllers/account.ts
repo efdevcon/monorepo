@@ -76,7 +76,7 @@ async function GetAccountSchedule(req: Request, res: Response) {
   const account = await client.account.findFirst({
     where: {
       OR: [
-        { id: id },
+        { id: { equals: id, mode: 'insensitive' } },
         { username: { equals: id, mode: 'insensitive' } },
         ensName ? { username: { equals: ensName, mode: 'insensitive' } } : {},
         { addresses: { hasSome: [id, id.toLowerCase(), id.toUpperCase()] } },
@@ -90,6 +90,7 @@ async function GetAccountSchedule(req: Request, res: Response) {
       email: true,
       addresses: true,
       attending_sessions: true,
+      interested_sessions: true,
     },
   })
 
@@ -97,9 +98,10 @@ async function GetAccountSchedule(req: Request, res: Response) {
     return res.status(404).send({ code: 404, message: 'User schedule not found. Make sure it is public.' })
   }
 
+  const sessionIds = account.attending_sessions?.length > 0 ? account.attending_sessions : account.interested_sessions || []
   const schedule = await scheduleClient.session.findMany({
     where: {
-      sourceId: { in: account.attending_sessions },
+      sourceId: { in: sessionIds },
     },
     include: {
       speakers: true,
