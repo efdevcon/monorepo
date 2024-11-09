@@ -17,8 +17,46 @@ import { LoggedInCard } from 'components/domain/app/dc7/dashboard'
 import { Notifications } from 'components/domain/app/dc7/profile/notifications'
 import { toast } from 'lib/hooks/use-toast'
 import CopyIcon from 'assets/icons/copy.svg'
+import Tabs from 'components/domain/app/account/tabs'
 
-export default function SettingsPage() {
+export const EditSettings = () => {
+  const [openTabs, setOpenTabs] = useState<any>({})
+
+  return (
+    <CollapsedSection
+      className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+      open={openTabs['account']}
+      setOpen={() => {
+        const isOpen = openTabs['account']
+
+        const nextOpenState = {
+          ...openTabs,
+          ['account']: true,
+        }
+
+        if (isOpen) {
+          delete nextOpenState['account']
+        }
+
+        setOpenTabs(nextOpenState)
+      }}
+    >
+      <CollapsedSectionHeader title="Account" className="py-4 px-4" />
+      <CollapsedSectionContent>
+        <div className="px-4 pb-2">
+          <LinkList noIndicator>
+            <Link to="/account/email">Manage Email</Link>
+            <Link to="/account/wallets">Manage Wallets</Link>
+            <Link to="/account/username">Manage Username</Link>
+            <Link to="/account/profile">Manage Profile</Link>
+          </LinkList>
+        </div>
+      </CollapsedSectionContent>
+    </CollapsedSection>
+  )
+}
+
+export default function SettingsPage(props: any) {
   const router = useRouter()
   const accountContext = useAccountContext()
   const avatar = useAvatar()
@@ -86,8 +124,10 @@ export default function SettingsPage() {
     <>
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
         <div className={cn('basis-[60%] grow')}>
-          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
-            <div className="flex flex-col gap-3 pb-4 lg:pt-4 px-4 text-sm">
+          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] lg:bg-[#fbfbfb] rounded-3xl relative">
+            <Tabs />
+
+            <div className="flex flex-col gap-3 pb-4 pt-4 px-4 text-sm">
               {error && (
                 <div className={css['alert']}>
                   <Alert title="Error" color="orange">
@@ -139,175 +179,181 @@ export default function SettingsPage() {
                 </CollapsedSectionContent>
               </CollapsedSection>
 
-              <CollapsedSection
-                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
-                open={openTabs['schedule']}
-                setOpen={() => {
-                  const isOpen = openTabs['schedule']
+              {!props.onlyAccount && (
+                <>
+                  <CollapsedSection
+                    className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+                    open={openTabs['schedule']}
+                    setOpen={() => {
+                      const isOpen = openTabs['schedule']
 
-                  const nextOpenState = {
-                    ...openTabs,
-                    ['schedule']: true,
-                  }
+                      const nextOpenState = {
+                        ...openTabs,
+                        ['schedule']: true,
+                      }
 
-                  if (isOpen) {
-                    delete nextOpenState['schedule']
-                  }
+                      if (isOpen) {
+                        delete nextOpenState['schedule']
+                      }
 
-                  setOpenTabs(nextOpenState)
-                }}
-              >
-                <CollapsedSectionHeader title="Schedule" className="py-4 px-4" />
-                <CollapsedSectionContent>
-                  <div className="px-4 pb-4">
-                    <div className="mb-0">
-                      <p className="font-bold">Personal schedule</p>
-                    </div>
-                    <div className="flex justify-between items-center gap-4">
-                      <p>Share your personal schedule with your colleagues and friends.</p>
-                      <div className={css['toggle']}>
-                        <Toggle
-                          className={'custom'}
-                          icons={false}
-                          defaultChecked={accountContext.account?.publicSchedule}
-                          onChange={toggleScheduleSharing}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  {accountContext.account?.id && accountContext.account?.publicSchedule && (
-                    <>
-                      <div className="px-4 pb-2">
-                        <div
-                          className="flex flex-row w-full justify-between items-center py-2"
-                          style={{
-                            borderTop: '1px solid #E1E4EA',
-                            borderBottom: '1px solid #E1E4EA',
-                          }}
-                        >
-                          <Link to={`/schedule/u/${accountContext.account.username ?? accountContext.account.id}/`}>
-                            {sharingLink}
-                          </Link>
-                          <span
-                            className="cursor-pointer mr-2"
-                            style={{ '--color-icon': '#999999' } as React.CSSProperties}
-                            onClick={copyShareLink}
-                          >
-                            <CopyIcon style={{ width: '18px', height: '18px' }} />
-                          </span>
+                      setOpenTabs(nextOpenState)
+                    }}
+                  >
+                    <CollapsedSectionHeader title="Schedule" className="py-4 px-4" />
+                    <CollapsedSectionContent>
+                      <div className="px-4 pb-4">
+                        <div className="mb-0">
+                          <p className="font-bold">Personal schedule</p>
                         </div>
-                        <p className="text-xs py-2">
-                          You can change your link by{' '}
-                          <Link to="/account/username" className="underline text-[#7D52F4]">
-                            updating your username
-                          </Link>
-                          .
-                        </p>
+                        <div className="flex justify-between items-center gap-4">
+                          <p>Share your personal schedule with your colleagues and friends.</p>
+                          <div className={css['toggle']}>
+                            <Toggle
+                              className={'custom'}
+                              icons={false}
+                              defaultChecked={accountContext.account?.publicSchedule}
+                              onChange={toggleScheduleSharing}
+                            />
+                          </div>
+                        </div>
                       </div>
-                    </>
-                  )}
-                </CollapsedSectionContent>
-              </CollapsedSection>
+                      {accountContext.account?.id && accountContext.account?.publicSchedule && (
+                        <>
+                          <div className="px-4 pb-2">
+                            <div
+                              className="flex flex-row w-full justify-between items-center py-2"
+                              style={{
+                                borderTop: '1px solid #E1E4EA',
+                                borderBottom: '1px solid #E1E4EA',
+                              }}
+                            >
+                              <Link to={`/schedule/u/${accountContext.account.username ?? accountContext.account.id}/`}>
+                                {sharingLink}
+                              </Link>
+                              <span
+                                className="cursor-pointer mr-2"
+                                style={{ '--color-icon': '#999999' } as React.CSSProperties}
+                                onClick={copyShareLink}
+                              >
+                                <CopyIcon style={{ width: '18px', height: '18px' }} />
+                              </span>
+                            </div>
+                            <p className="text-xs py-2">
+                              You can change your link by{' '}
+                              <Link to="/account/username" className="underline text-[#7D52F4]">
+                                updating your username
+                              </Link>
+                              .
+                            </p>
+                          </div>
+                        </>
+                      )}
+                    </CollapsedSectionContent>
+                  </CollapsedSection>
 
-              <CollapsedSection
-                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
-                open={openTabs['notifications']}
-                setOpen={() => {
-                  const isOpen = openTabs['notifications']
+                  <CollapsedSection
+                    className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+                    open={openTabs['notifications']}
+                    setOpen={() => {
+                      const isOpen = openTabs['notifications']
 
-                  const nextOpenState = {
-                    ...openTabs,
-                    ['notifications']: true,
-                  }
+                      const nextOpenState = {
+                        ...openTabs,
+                        ['notifications']: true,
+                      }
 
-                  if (isOpen) {
-                    delete nextOpenState['notifications']
-                  }
+                      if (isOpen) {
+                        delete nextOpenState['notifications']
+                      }
 
-                  setOpenTabs(nextOpenState)
-                }}
-              >
-                <CollapsedSectionHeader title="Push Notifications" className="py-4 px-4" />
-                <CollapsedSectionContent>
-                  <div className="px-4 pb-4">
-                    <Notifications standalone />
-                  </div>
-                </CollapsedSectionContent>
-              </CollapsedSection>
+                      setOpenTabs(nextOpenState)
+                    }}
+                  >
+                    <CollapsedSectionHeader title="Push Notifications" className="py-4 px-4" />
+                    <CollapsedSectionContent>
+                      <div className="px-4 pb-4">
+                        <Notifications standalone />
+                      </div>
+                    </CollapsedSectionContent>
+                  </CollapsedSection>
 
-              <CollapsedSection
-                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
-                open={openTabs['application']}
-                setOpen={() => {
-                  const isOpen = openTabs['application']
+                  <CollapsedSection
+                    className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+                    open={openTabs['application']}
+                    setOpen={() => {
+                      const isOpen = openTabs['application']
 
-                  const nextOpenState = {
-                    ...openTabs,
-                    ['application']: true,
-                  }
+                      const nextOpenState = {
+                        ...openTabs,
+                        ['application']: true,
+                      }
 
-                  if (isOpen) {
-                    delete nextOpenState['application']
-                  }
+                      if (isOpen) {
+                        delete nextOpenState['application']
+                      }
 
-                  setOpenTabs(nextOpenState)
-                }}
-              >
-                <CollapsedSectionHeader title="Application" className="py-4 px-4" />
-                <CollapsedSectionContent>
-                  <div className="px-4 pb-2">
-                    <LinkList>
-                      {/* <Link to="/info#faq">FAQ</Link> */}
-                      <Link to={`mailto:${EMAIL_DEVCON}`}>Support</Link>
-                    </LinkList>
-                  </div>
-                </CollapsedSectionContent>
-              </CollapsedSection>
+                      setOpenTabs(nextOpenState)
+                    }}
+                  >
+                    <CollapsedSectionHeader title="Application" className="py-4 px-4" />
+                    <CollapsedSectionContent>
+                      <div className="px-4 pb-2">
+                        <LinkList>
+                          {/* <Link to="/info#faq">FAQ</Link> */}
+                          <Link to={`mailto:${EMAIL_DEVCON}`}>Support</Link>
+                        </LinkList>
+                      </div>
+                    </CollapsedSectionContent>
+                  </CollapsedSection>
 
-              <CollapsedSection
-                className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
-                open={openTabs['delete']}
-                setOpen={() => {
-                  const isOpen = openTabs['delete']
+                  <CollapsedSection
+                    className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+                    open={openTabs['delete']}
+                    setOpen={() => {
+                      const isOpen = openTabs['delete']
 
-                  const nextOpenState = {
-                    ...openTabs,
-                    ['delete']: true,
-                  }
+                      const nextOpenState = {
+                        ...openTabs,
+                        ['delete']: true,
+                      }
 
-                  if (isOpen) {
-                    delete nextOpenState['delete']
-                  }
+                      if (isOpen) {
+                        delete nextOpenState['delete']
+                      }
 
-                  setOpenTabs(nextOpenState)
-                }}
-              >
-                <CollapsedSectionHeader title="Delete Account" className="py-4 px-4" />
-                <CollapsedSectionContent>
-                  <div className="px-4 pb-2 flex flex-col items-start gap-4 pb-4">
-                    <p>Once you delete your Devcon account, there is no going back. Tread lightly.</p>
-                    {!areYouSure && (
-                      <>
-                        <Button className="plain" color="purple-2" fill onClick={() => setAreYouSure(true)}>
-                          Delete Devcon account
-                        </Button>
-                      </>
-                    )}
+                      setOpenTabs(nextOpenState)
+                    }}
+                  >
+                    <CollapsedSectionHeader title="Delete Account" className="py-4 px-4" />
+                    <CollapsedSectionContent>
+                      <div className="px-4 pb-2 flex flex-col items-start gap-4 pb-4">
+                        <p>Once you delete your Devcon account, there is no going back. Tread lightly.</p>
+                        {!areYouSure && (
+                          <>
+                            <Button className="plain" color="purple-2" fill onClick={() => setAreYouSure(true)}>
+                              Delete Devcon account
+                            </Button>
+                          </>
+                        )}
 
-                    {areYouSure && (
-                      <>
-                        <Button className="plain" color="black-1" fill onClick={() => setAreYouSure(false)}>
-                          No, keep my account
-                        </Button>
-                        &nbsp;
-                        <Button className="plain" color="purple-2" fill onClick={deleteAccount}>
-                          Yes, delete my account
-                        </Button>
-                      </>
-                    )}
-                  </div>
-                </CollapsedSectionContent>
-              </CollapsedSection>
+                        {areYouSure && (
+                          <>
+                            <Button className="plain" color="black-1" fill onClick={() => setAreYouSure(false)}>
+                              No, keep my account
+                            </Button>
+                            &nbsp;
+                            <Button className="plain" color="purple-2" fill onClick={deleteAccount}>
+                              Yes, delete my account
+                            </Button>
+                          </>
+                        )}
+                      </div>
+                    </CollapsedSectionContent>
+                  </CollapsedSection>
+                </>
+              )}
+
+              {props.children}
 
               <div>
                 <p className="text-[#585858] mt-5 flex justify-center text-xs">

@@ -37,6 +37,7 @@ import CityGuide from 'assets/images/dc-7/city-guide.png'
 import { useAppContext } from 'context/app-context'
 import moment from 'moment'
 import { Poaps } from './poaps'
+import QRIcon from 'assets/icons/dc-7/qr.svg'
 
 export const cardClass =
   'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
@@ -122,7 +123,7 @@ export const LoggedInCard = ({
           </div>
         </div>
 
-        {dashboard ? <ChevronRight className="text-xs icon mx-4" style={{ '--color-icon': '#7d52f4' }} /> : children}
+        {dashboard ? <QRIcon className="text-2xl icon mx-2" style={{ '--color-icon': 'black' }} /> : children}
       </div>
     </Link>
   )
@@ -156,7 +157,7 @@ const Notifications = () => {
 
   return (
     <div className="px-4 flex flex-col lg:flex-row gap-2 mb-4 [&>*:not(:first-child)]:hidden lg:[&>*:not(:first-child)]:flex">
-      {notifications.map(n => (
+      {notifications.slice(0, 3).map(n => (
         <NotificationCard key={n.id} notification={n} seen={seenNotifications.has(n.id)} />
       ))}
     </div>
@@ -214,8 +215,8 @@ export const Dashboard = () => {
         </div>
       )}
 
-      <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Highlights</div>
-      <Highlights />
+      {/* <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Highlights</div>
+      <Highlights /> */}
 
       <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">
         Notifications

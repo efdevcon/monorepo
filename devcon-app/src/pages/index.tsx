@@ -15,15 +15,20 @@ const Index = (props: any) => {
 
   useEffect(() => {
     const storedSkipLogin = localStorage.getItem('skipLogin')
-    const hasDevabotParam = router.query.devabot !== undefined
+    const devabotParam = router.query.devabot
 
-    if (storedSkipLogin !== 'true' && !accountContext.account && !hasDevabotParam) {
+    if (storedSkipLogin !== 'true' && !accountContext.account && !devabotParam) {
       router.replace('/login')
     }
   }, [])
 
   return (
-    <AppLayout pageTitle="Dashboard" breadcrumbs={[{ label: 'Dashboard' }]} /*renderActionss={() => <Image src={LogoFlowers} className="max-w-[110px] hidden md:block" alt="Logo Flowers" />}*/>
+    <AppLayout
+      pageTitle="Dashboard"
+      breadcrumbs={[
+        { label: 'Dashboard' },
+      ]} /*renderActionss={() => <Image src={LogoFlowers} className="max-w-[110px] hidden md:block" alt="Logo Flowers" />}*/
+    >
       <SEO title="Dashboard" />
 
       <Dashboard {...props} sessions={sessions} />

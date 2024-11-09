@@ -9,6 +9,7 @@ import { isEmail } from 'utils/validators'
 import NotFound from './NotFound'
 import { useRouter } from 'next/router'
 import { cn } from 'lib/shadcn/lib/utils'
+import Tabs from 'components/domain/app/account/tabs'
 
 export default function EmailSettings() {
   const router = useRouter()
@@ -84,7 +85,7 @@ export default function EmailSettings() {
     <>
       <div data-type="settings-layout" className={cn('flex flex-row lg:gap-3 relative')}>
         <div className={cn('basis-[60%] grow')}>
-          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative">
+          <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] lg:bg-[#fbfbfb] rounded-3xl relative">
             <div className="flex flex-col gap-3 pb-4 px-4">
               <div className={css['alert']}>
                 {error && (
