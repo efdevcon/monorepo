@@ -1,16 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-// import Link from "next/link";
 import Link from "lib/components/link";
-import DevaHead from "./deva.png";
 import { Button } from "lib/components/button";
 import CloseIcon from "../../assets/icons/cross.svg";
-import AppIcon from "../../assets/icons/app-icons.svg";
-import AppIconOne from "../../assets/icons/app-icons-1.svg";
-import ChevronRight from "../../assets/icons/chevron_right.svg";
 import Markdown from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
-import Loader from "lib/components/loader";
 import { useRecoilState, useResetRecoilState, atom } from "recoil";
 import { CircleIcon } from "lib/components/circle-icon";
 import { FancyLoader } from "lib/components/loader/loader";
@@ -24,12 +18,6 @@ import SquareSparkles from "lib/assets/icons/square-sparkle.svg";
 import AIImage from "./ai-generate.png";
 import ScrollDownIcon from "lib/assets/icons/scroll-down.svg";
 import SendIcon from "lib/assets/icons/send.svg";
-import SquaresIcon from "lib/assets/icons/squares.svg";
-import {
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-} from "lib/components/ui/popover";
 import {
   visibleState,
   queryState,
@@ -760,7 +748,7 @@ const DevaBot = ({
                     {!isAtBottom && (
                       <AnimatePresence>
                         <motion.div
-                          className="absolute right-0 left-0 bottom-2 flex justify-center items-center select-none"
+                          className="absolute right-0 left-0 bottom-1 translate-y-full flex justify-center items-center select-none"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
@@ -808,7 +796,7 @@ const DevaBot = ({
                   </AnimatePresence>
 
                   {messages.length > 0 && !executingQuery && (
-                    <div className="flex justify-center w-full mb-2 shrink-0">
+                    <div className="flex justify-start ml-2 w-full mb-2 shrink-0">
                       <div
                         onClick={reset}
                         className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
