@@ -170,7 +170,7 @@ const DayGrid = ({
                     sessionByTimeslotStart[startFormatted] = {
                       session,
                       columns,
-                      columnIndent: excessMinutes === 5 ? 0.5 : 0,
+                      columnIndent: excessMinutes * 0.1,
                     }
                   })
                 }

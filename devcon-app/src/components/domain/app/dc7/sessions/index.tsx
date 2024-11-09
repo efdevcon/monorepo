@@ -150,18 +150,18 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
       room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a: any, b: any) => {
         if (a === 'Main Stage') return -1
         if (b === 'Main Stage') return 1
-    
+
         if (a.toLowerCase().startsWith('stage')) {
           if (b.toLowerCase().startsWith('stage')) {
             return a.localeCompare(b)
           }
           return -1
         }
-    
-          if (b.toLowerCase().startsWith('stage')) return 1
 
-          return a.localeCompare(b)
-        }),
+        if (b.toLowerCase().startsWith('stage')) return 1
+
+        return a.localeCompare(b)
+      }),
       other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
     }
   }, [sessions, timelineView])
@@ -319,6 +319,93 @@ const TrackTag = ({ track, className, applyColor = true, ...rest }: any) => {
   )
 }
 
+export const SessionCardPercentual = ({ session, className }: { session: SessionType; className?: string }) => {
+  const start = moment.utc(session.slot_start).add(7, 'hours')
+  const end = moment.utc(session.slot_end).add(7, 'hours')
+  const trackLogo = getTrackLogo(session.track)
+
+  return (
+    <div
+      className={cn(
+        'flex flex-col bg-white rounded-[1em] overflow-hidden border border-solid border-[#E1E4EA] transition-all duration-300',
+        className
+      )}
+      // style={{ fontSize: '16px' }} // Base font size to calculate ems from
+    >
+      <div className="flex justify-between" style={{ minHeight: '6.25em' }}>
+        <div
+          className={cn(
+            'basis-[6.25em] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
+            getTrackColor(session.track)
+          )}
+        >
+          <div
+            className="absolute top-0 flex w-full self-start font-semibold p-[0.125em] z-[1] line-clamp-3 break-words "
+          >
+            <div className="text-white z-[2] line-clamp-4 !text-[0.8em]">{session.track}</div>
+          </div>
+
+          {trackLogo !== CityGuide && (
+            <Image
+              src={trackLogo}
+              alt={session.track}
+              height={150}
+              width={150}
+              className="w-full h-[90%] object-contain transform translate-x-1/4 -translate-y-1/6"
+            />
+          )}
+
+          <div className="absolute bottom-[0.0625em] w-full left-[0.0625em] flex">
+            <div
+              className={cn(
+                'text-black rounded-full px-[0.625em] py-[0.3125em] font-semibold border border-width-[0.1vw] border-solid border-[transparent]',
+                getExpertiseColor(session.expertise || 'All Welcome'),
+                className,
+                css['glass-tag'],
+                '!text-[0.5em]' // Changed from text-[10px] to text-[0.625em]
+              )}
+            >
+              {session.expertise || 'All Welcome'}
+            </div>
+            {/* <ExpertiseTag expertise={session.expertise || 'All Welcome'} /> */}
+          </div>
+        </div>
+
+        <div className="flex flex-col justify-between grow p-[0.125em] pl-[0.1875em]">
+          <div style={{ marginBottom: '0.125em' }}>
+            <p style={{ fontSize: '0.875em' }} className="font-medium text-gray-800 line-clamp-2">
+              {session.title}
+            </p>
+          </div>
+
+          <div>
+            <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
+              <IconClock className="icon flex shrink-0" style={{ fontSize: '1em' }} />
+              <p className="shrink-0 text-gray-600">
+                {start.format('MMM Do')} — {start.format('h:mm A')} - {end.format('h:mm A')}
+              </p>
+            </div>
+
+            <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
+              <IconVenue className="icon shrink-0" style={{ fontSize: '1em' }} />
+              <p className="shrink-0 text-gray-600">
+                {session.type} - {session.slot_room?.name ?? session.slot_roomId}
+              </p>
+            </div>
+
+            {session.speakers && session.speakers.length > 0 && (
+              <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
+                <IconSpeaker className="icon shrink-0" style={{ fontSize: '1em' }} />
+                <p className="text-gray-600 line-clamp-1">{session.speakers.map(speaker => speaker.name).join(', ')}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const SessionCard = ({
   session,
   className,
@@ -327,6 +414,7 @@ export const SessionCard = ({
   session: SessionType
   className?: string
   tiny?: boolean
+  scalePercentages?: boolean
 }) => {
   const { account, setSessionBookmark } = useAccountContext()
   const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
@@ -408,12 +496,16 @@ export const SessionCard = ({
     )
   }
 
+  const isKeynote = title.startsWith('Keynote:')
+
   return (
     <Link
       className={cn(
-        'flex flex-col bg-white rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300',
+        'flex flex-col rounded-lg overflow-hidden hover:border-[#ac9fdf] border border-solid border-[#E1E4EA] transition-all duration-300 relative',
         selectedSession?.sourceId === sourceId && pathname === '/schedule' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
-        className
+        className,
+        isKeynote && 'bg-[#F0F2FF]',
+        !isKeynote && 'bg-white'
       )}
       to={`/schedule/${sourceId}`}
       {...draggableLink}
@@ -500,12 +592,15 @@ export const SessionCard = ({
               </p>
             </div>
 
+            {/* <div className='flex justify-between gap-1'> */}
             {speakerNames && speakerNames.length > 0 && (
-              <div className="flex items-center gap-2 text-xs text-gray-500">
+              <div className="flex items-center gap-2 text-xs text-gray-500 w-full">
                 <IconSpeaker className="icon shrink-0" />
                 <p className="text-xs text-gray-600 line-clamp-1">{speakerNames}</p>
               </div>
             )}
+
+            {/* </div> */}
           </div>
         </div>
 
@@ -552,6 +647,12 @@ export const SessionCard = ({
           </div>
         </div>
       </div>
+
+      {isKeynote && (
+        <div className="absolute right-2 bottom-2 label !border-[#713ff6] !text-[#713ff6] rounded !p-0.5 !text-[8px] !px-1 bold">
+          Keynote
+        </div>
+      )}
     </Link>
   )
 }
@@ -1208,9 +1309,7 @@ export const SessionList = ({
       <div className="flex flex-row justify-between items-center gap-3 px-4 mb-1">
         <div className="font-semibold flex flex-col">
           <div> {isPersonalizedSchedule ? 'Schedule Snapshot' : 'Sessions'}</div>
-          {timelineView && !isNativeScroll && (
-            <div className="text-[#A897FF] text-xs">Drag the timeline to scroll</div>
-          )}
+          {timelineView && !isNativeScroll && <div className="text-[#A897FF] text-xs">Drag the timeline to scroll</div>}
         </div>
         <div className="flex justify-evenly bg-[#EFEBFF] gap-1.5 rounded-lg p-1 mt-2 shrink-0 mb-2 self-center text-sm">
           <div
