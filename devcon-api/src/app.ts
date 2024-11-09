@@ -28,6 +28,7 @@ const ALLOWED_ORIGINS = [
   'https://devcon.org',
   'https://dev--devcon-app.netlify.app',
   'http://localhost:3000',
+  'https://meerkat.events',
 ]
 
 app.use(

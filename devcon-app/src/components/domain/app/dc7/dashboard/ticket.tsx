@@ -18,6 +18,7 @@ export function ZupassTickets(props: Props) {
   const zupass = useZupass()
   const [ticket, setTicket] = useState<any>()
   const [swag, setSwag] = useState<any>()
+  const [collectibles, setCollectibles] = useState<any>()
 
   let className = ''
   if (props.className) {
@@ -27,13 +28,25 @@ export function ZupassTickets(props: Props) {
   useEffect(() => {
     async function init() {
       const ticket = await zupass.GetTicket()
-      const swag = await zupass.GetPods()
+      const swag = await zupass.GetSwag()
+      const collectibles = await zupass.GetCollectibles()
 
       setTicket(ticket)
       setSwag(swag)
+      setCollectibles(collectibles)
     }
     init()
   }, [])
+
+  async function GetData() {
+    const ticket = await zupass.GetTicket()
+    const swag = await zupass.GetSwag()
+    const collectibles = await zupass.GetCollectibles()
+
+    setTicket(ticket)
+    setSwag(swag)
+    setCollectibles(collectibles)
+  }
 
   return (
     <div className={className}>
@@ -56,10 +69,8 @@ export function ZupassTickets(props: Props) {
               <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-full object-contain object-left" />
             </div>
             <div className="flex flex-col justify-center grow">
-              <div className="text-lg lg:text-2xl break-words">
-                {ticket?.getValue('attendeeName')?.value || 'Devcon Attendee'}
-              </div>
-              <span className="text-[#5B5F84]">{ticket?.getValue('ticketName')?.value || 'Ticket'}</span>
+              <div className="text-lg lg:text-2xl break-words">{ticket?.attendeeName || 'Devcon Attendee'}</div>
+              <span className="text-[#5B5F84]">{ticket?.ticketType || 'Ticket'}</span>
             </div>
             <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
           </div>
@@ -67,7 +78,13 @@ export function ZupassTickets(props: Props) {
           <div className="grow p-4 h-[45%] w-full border-dashed border-t border-[#D9D9D9] flex justify-between">
             <div className="p-4 border border-solid aspect-square border-[#D9D9D9] shrink-0 rounded-2xl">
               <div>
-                <QRCode value={ticket?.getValue('ticketSecret')?.value || ''} size={150} level="H" />
+                {!ticket?.ticketSecret && <div className="text-center text-sm text-gray-500">No ticket secret</div>}
+                {ticket?.ticketSecret && ticket?.isConsumed && (
+                  <div className="text-center text-sm text-gray-500">Ticket already consumed</div>
+                )}
+                {ticket?.ticketSecret && !ticket?.isConsumed && (
+                  <QRCode value={ticket?.ticketSecret} size={150} level="H" />
+                )}
               </div>
             </div>
             <div className="flex flex-col justify-between p-1">
