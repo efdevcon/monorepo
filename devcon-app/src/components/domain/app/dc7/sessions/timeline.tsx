@@ -237,28 +237,30 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
 
   if (!sessions.length) return null
 
-  const rooms = Array.from(new Set(sessions.map(session => session.slot_room?.name))).sort((a: any, b: any) => {
-    if (a === 'Main Stage') return -1
-    if (b === 'Main Stage') return 1
 
-    if (a.toLowerCase().startsWith('stage')) {
-      if (b.toLowerCase().startsWith('stage')) {
-        return a.localeCompare(b)
-      }
-      return -1
-    }
-
-    if (b.toLowerCase().startsWith('stage')) return 1
-
-    return a.localeCompare(b)
-  }) as string[]
 
   return (
-    <div className="flex flex-col gap-[64px]" style={{ contain: 'paint' }}>
+    <div className="flex flex-col gap-[36px]" style={{ contain: 'paint' }}>
       {days.map(day => {
-        const sessionsForDay = sessions.filter(session => moment(session.slot_start).format('MMM DD') === day)
+        const sessionsForDay = sessions.filter(session => moment.utc(session.slot_start).add(7, 'hours').format('MMM DD') === day)
 
         if (!sessionsForDay.length) return null
+
+        const rooms = Array.from(new Set(sessionsForDay.map(session => session.slot_room?.name))).sort((a: any, b: any) => {
+          if (a === 'Main Stage') return -1
+          if (b === 'Main Stage') return 1
+      
+          if (a.toLowerCase().startsWith('stage')) {
+            if (b.toLowerCase().startsWith('stage')) {
+              return a.localeCompare(b)
+            }
+            return -1
+          }
+      
+          if (b.toLowerCase().startsWith('stage')) return 1
+      
+          return a.localeCompare(b)
+        }) as string[]
 
         const sessionsByRoom: any = {}
 
