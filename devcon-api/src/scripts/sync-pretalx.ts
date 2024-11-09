@@ -1,10 +1,14 @@
 import { GetData } from '@/clients/filesystem'
 import { GetLastcheduleUpdate, GetRooms, GetSessions, GetSpeakers } from '@/clients/pretalx'
-import { CreatePresentationFromTemplate } from '@/clients/slides'
+import { CreatePresentationFromTemplate, RunPermissions } from '@/clients/slides'
 import fs from 'fs'
 
 async function main() {
   console.log('Syncing Pretalx...')
+
+  await runPermissions()
+  //
+  return
 
   await syncEventData()
   await syncRooms()
@@ -119,6 +123,25 @@ async function syncSessions() {
 
   console.log('Synced Pretalx Schedule')
   console.log('')
+}
+
+async function runPermissions() {
+  const sessionsFs = GetData('sessions/devcon-7')
+  const sessions = await GetSessions({ inclContacts: true })
+  console.log('# of Submissions', sessions.length)
+
+  for (const sessionFs of sessionsFs) {
+    if (sessionFs.resources_presentation) {
+      const session = sessions.find((s: any) => s.id === sessionFs.id)
+      const speakerEmails = session?.speakers.map((speaker: any) => speaker.email).filter(Boolean)
+
+      if (session && speakerEmails?.length > 0) {
+        await RunPermissions(session.title, session.sourceId, speakerEmails)
+      }
+    }
+  }
+
+  console.log('All done')
 }
 
 async function createPresentations() {
