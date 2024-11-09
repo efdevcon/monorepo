@@ -201,11 +201,6 @@ export function ZupassProvider(props: PropsWithChildren) {
   }
 
   useEffect(() => {
-    async function init() {
-      await GetCollectibles()
-    }
-
-    init()
     const publicKey = localStorage.getItem('zupassPublicKey')
     if (publicKey) {
       setContext(prevContext => ({ ...prevContext, publicKey }))
