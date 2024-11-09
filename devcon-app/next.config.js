@@ -152,7 +152,7 @@ const nextConfig = {
       },
       {
         source: '/schedule/8YBVU8',
-        destination: '/schedule?day=Nov%252015&room=Breakout%25203%2CBreakout%25202',
+        destination: 'https://app.devcon.org/schedule?day=Nov%252015&room=Breakout%25203%2CBreakout%25202',
       },
       {
         source: '/robots.txt',
