@@ -189,10 +189,15 @@ export const Venue = (props: any) => {
 
   return (
     <>
-      <div className={cn(cardClass, 'my-4')}>
+      <div className={cn(cardClass, 'my-4 lg:max-w-[850px] !bg-[#c774dd1a]')}>
         <div className={cn(css['panzoom'], 'border-t border-solid border-[#E1E4EA] border-b lg:border-none')}>
-          <div className={css['image']} id="image-container">
-            <Image src={VenueMap} alt="venue map" className="object-contain h-full py-8" id="venue-image" />
+          <div className={cn(css['image'], 'lg:rounded-3xl')} id="image-container">
+            <Image
+              src={VenueMap}
+              alt="venue map"
+              className="object-contain lg:rounded-3xl h-full w-full"
+              id="venue-image"
+            />
           </div>
           <PanzoomControls pz={pz} />
           <div className="absolute bottom-2 left-4 lg:bottom-3 lg:left-4 flex flex-col z-[1] text-xs">

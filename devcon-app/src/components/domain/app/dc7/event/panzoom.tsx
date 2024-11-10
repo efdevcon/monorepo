@@ -101,7 +101,7 @@ export const usePanzoom = () => {
     if (scene) {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
-        boundsPadding: 0.1,
+        boundsPadding: 0.5,
         // maxZoom: 1,
         minZoom: 0.5,
         beforeWheel: function (e) {

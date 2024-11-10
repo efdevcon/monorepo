@@ -415,6 +415,7 @@ export const SessionCard = ({
   tiny?: boolean
   scalePercentages?: boolean
 }) => {
+  console.log(session, 'session')
   const { account, setSessionBookmark } = useAccountContext()
   const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)

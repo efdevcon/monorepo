@@ -129,11 +129,30 @@ export const useSpeakersWithSessions = () => {
   return speakersWithSessions
 }
 
-// Ssimple endpoint we can ping to see if event data updated - we append this to requests to speakers and sessions to break their caches
+// Simple endpoint we can ping to see if event data updated - we append this to requests to speakers and sessions to break their caches
 export const fetchEventVersion = async (): Promise<string> => {
   const version = await get(`/events/${eventName}/version`)
 
   return version
+}
+
+const modifySessionEndTime = (session: SessionType) => {
+  let modifiedEndTime = moment.utc(session.slot_end)
+
+  if (session.track.includes('[CLS]') || session.track.includes('Entertainment') || session.type === 'Mixed Formats') {
+    // No change
+  } else if (session.type === 'Lightning Talk') {
+    modifiedEndTime = modifiedEndTime.subtract(3, 'minutes')
+  } else if (session.type === 'Workshop') {
+    modifiedEndTime = modifiedEndTime.subtract(10, 'minutes')
+  } else {
+    modifiedEndTime = modifiedEndTime.subtract(5, 'minutes')
+  }
+
+  return {
+    ...session,
+    slot_end: modifiedEndTime.valueOf(),
+  }
 }
 
 export const fetchSessions = async (version?: string): Promise<SessionType[]> => {
@@ -144,14 +163,16 @@ export const fetchSessions = async (version?: string): Promise<SessionType[]> =>
     .map((session: SessionType) => {
       if (!session.slot_start || !session.slot_end) return null
 
-      const startTS = moment.utc(session.slot_start).add(7, 'hours')
-      const endTS = moment.utc(session.slot_end).add(7, 'hours')
+      // const startTS = moment.utc(session.slot_start).add(7, 'hours')
+      // const endTS = moment.utc(session.slot_end).add(7, 'hours')
+
+
 
       return {
-        ...session,
+        ...modifySessionEndTime(session),
         // start: startTS.valueOf(),
-        // end: endTS.valueOf(),
-        duration: startTS.diff(endTS, 'minutes'),
+        // slot_end: modifiedEndTime.valueOf(),
+        // duration: startTS.diff(endTS, 'minutes'),
       }
     })
     .filter(Boolean)
@@ -273,7 +294,7 @@ export const fetchSpeaker = async (id: string): Promise<Speaker | undefined> => 
 
   return {
     ...speaker,
-    sessions: speaker.sessions?.filter((i: any) => i.eventId === eventName),
+    sessions: speaker.sessions?.filter((i: any) => i.eventId === eventName).map(modifySessionEndTime),
   }
 }
 
