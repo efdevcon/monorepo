@@ -17,11 +17,16 @@ async function main() {
 
 async function notifyClients() {
   try {
+    if (!process.env.WEBHOOK_MEERKAT_SECRET) {
+      console.error('WEBHOOK_MEERKAT_SECRET is not set')
+      return
+    }
+
     const result = await fetch('https://meerkat.events/api/v1/sync/devcon/devcon-7', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: process.env.WEBHOOK_MEERKAT_SECRET || '',
+        Authorization: `Bearer ${process.env.WEBHOOK_MEERKAT_SECRET}`,
       },
     })
 
