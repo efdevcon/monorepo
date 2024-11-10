@@ -190,7 +190,7 @@ export const Venue = (props: any) => {
   return (
     <>
       <div className={cn(cardClass, 'my-4')}>
-        <div className={cn(css['panzoom'], 'border-t border-solid border-[#E1E4EA] border-b')}>
+        <div className={cn(css['panzoom'], 'border-t border-solid border-[#E1E4EA] border-b lg:border-none')}>
           <div className={css['image']} id="image-container">
             <Image src={VenueMap} alt="venue map" className="object-contain h-full py-8" id="venue-image" />
           </div>
