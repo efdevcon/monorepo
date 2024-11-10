@@ -342,6 +342,12 @@ const DevaBot = ({
   }, []);
 
   React.useEffect(() => {
+    if (activeTab === 1 && markNotificationsAsRead) {
+      markNotificationsAsRead();
+    }
+  }, [activeTab]);
+
+  React.useEffect(() => {
     if (toggled) {
       scrollPositionRef.current = window.scrollY;
       scrollLock.current = true;
@@ -500,9 +506,6 @@ const DevaBot = ({
                     )}
                     onClick={() => {
                       setActiveTab(1);
-                      setTimeout(() => {
-                        markNotificationsAsRead && markNotificationsAsRead();
-                      }, 500);
                     }}
                   >
                     <BellHollow
@@ -745,10 +748,10 @@ const DevaBot = ({
 
                     <div className="absolute bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 
-                    {!isAtBottom && (
+                    {!isAtBottom && !isIOS && (
                       <AnimatePresence>
                         <motion.div
-                          className="absolute right-0 left-0 bottom-0.5 translate-y-full flex justify-center items-center select-none"
+                          className="absolute right-0 left-0 bottom-4 translate-y-full flex justify-center items-center select-none"
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}

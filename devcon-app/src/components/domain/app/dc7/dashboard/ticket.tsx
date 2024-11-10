@@ -176,8 +176,8 @@ export function ZupassTickets(props: Props) {
           </div>
         </div>
       </div>
-      {/* </div> */}
-      <div className="flex flex-col grow  h-full rounded-2xl lg:bg-white lg:border lg:border-solid border-[#E1E4EA] hidden">
+      {/* TODO: Swag QR connected */}
+      <div className="flex flex-col grow  h-full rounded-2xl lg:bg-white lg:border lg:border-solid border-[#E1E4EA]">
         <div className="flex font-semibold pb-4 py-2 lg:p-4 lg:pb-0">
           <div>Swag</div>
         </div>
