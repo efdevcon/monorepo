@@ -649,6 +649,13 @@ const DevaBot = ({
                                                 </Link>
                                               );
                                             }
+                                          } else if (
+                                            file?.filename?.includes(
+                                              "Devcon Thrival Guide"
+                                            )
+                                          ) {
+                                            // TODO: add link to thrival guide
+                                            return;
                                           } else {
                                             otherReferences.push(
                                               <div key={index}>
