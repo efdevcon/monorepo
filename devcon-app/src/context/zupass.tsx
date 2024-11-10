@@ -7,7 +7,7 @@ import { pod, PODData } from '@parcnet-js/podspec'
 import { POD } from '@pcd/pod'
 import { useAccountContext } from './account-context'
 
-interface Ticket {
+export interface Ticket {
   ticketId: string
   attendeeName: string
   attendeeEmail: string
@@ -20,7 +20,7 @@ interface Ticket {
   signerPublicKey: string
 }
 
-interface Collectible {
+export interface Collectible {
   id: string
   title: string
   description: string

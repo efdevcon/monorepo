@@ -7,7 +7,7 @@ import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import css from './tickets.module.scss'
 import WhenImage from 'assets/images/dc-7/date-text.png'
 import { cn } from 'lib/shadcn/lib/utils'
-import { useZupass } from 'context/zupass'
+import { Ticket, useZupass } from 'context/zupass'
 import QRCode from 'react-qr-code'
 import { StaticImageData } from 'next/image'
 import QRIcon from 'assets/icons/dc-7/qr.svg'
@@ -16,6 +16,7 @@ import Pants from 'assets/images/dc-7/swag/pants.png'
 import Lantern from 'assets/images/dc-7/swag/lantern.png'
 import Raincoat from 'assets/images/dc-7/swag/raincoat.png'
 import Shirt from 'assets/images/dc-7/swag/shirt.png'
+import { useQuery } from '@tanstack/react-query'
 
 interface Props {
   className?: string
@@ -103,14 +104,22 @@ export function ZupassTickets(props: Props) {
     init()
   }, [])
 
-  async function GetData() {
-    const ticket = await zupass.GetTicket()
-    const swag = await zupass.GetSwag()
-    const collectibles = await zupass.GetCollectibles()
+  function getSwagImage(item: Ticket) {
+    if (item.ticketType.includes('Herbal')) return Herbal
+    if (item.ticketType.includes('Pajama')) return Pants
+    if (item.ticketType.includes('Lantern')) return Lantern
+    if (item.ticketType.includes('Rain')) return Raincoat
+    if (item.ticketType.includes('Shirt')) return Shirt
 
-    setTicket(ticket)
-    setSwag(swag)
-    setCollectibles(collectibles)
+    return null
+  }
+
+  function getSwagTitle(item: Ticket) {
+    if (item.ticketType.includes('Herbal')) return '🦄 Herbal Inhaler'
+    if (item.ticketType.includes('Pajama')) return '👖 Pajama Pants'
+    if (item.ticketType.includes('Lantern')) return '🏮 Ethereum Lantern'
+    if (item.ticketType.includes('Rain')) return '⛈️ Rain Coat'
+    if (item.ticketType.includes('Shirt')) return '👕 T-Shirt'
   }
 
   return (
@@ -160,7 +169,6 @@ export function ZupassTickets(props: Props) {
                 />
               </div>
             )}
-            {/* <QRCode value={ticket?.getValue('ticketSecret')?.value || ''} size={125} level="H" /> */}
           </div>
           <div className="flex flex-col justify-between p-1">
             <Image src={WhenImage} alt="When" className="w-[120px] self-end object-contain object-right mb-2" />
@@ -176,58 +184,18 @@ export function ZupassTickets(props: Props) {
           </div>
         </div>
       </div>
-      {/* TODO: Swag QR connected */}
       <div className="flex flex-col grow  h-full rounded-2xl lg:bg-white lg:border lg:border-solid border-[#E1E4EA]">
         <div className="flex font-semibold pb-4 py-2 lg:p-4 lg:pb-0">
           <div>Swag</div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-2 lg:p-4 pt-0 font-secondary">
-          <SwagCard
-            title="Permissionless Innovation Devcon Reunion Tour T-shirt"
-            to="/"
-            description="Description"
-            image={Shirt}
-          />
-          <SwagCard
-            title={
-              <>
-                Infinite Garden <br /> Herbal Inhaler
-              </>
-            }
-            to="/"
-            description="Description"
-            image={Herbal}
-          />
-          <SwagCard
-            title={
-              <>
-                Dark Forest <br /> Lantern Builder Kit
-              </>
-            }
-            to="/"
-            description="Description"
-            image={Lantern}
-          />
-          <SwagCard
-            title={
-              <>
-                Make Ethereum <br /> Cypherpunk Raincoat
-              </>
-            }
-            to="/"
-            description="Description"
-            image={Raincoat}
-          />
-          <SwagCard
-            title={
-              <>
-                Devcon SEA <br /> Thai Flow pants
-              </>
-            }
-            to="/"
-            description="Description"
-            image={Pants}
-          />
+          {swag?.map((item: any) => {
+            const image = getSwagImage(item)
+            const title = getSwagTitle(item)
+            if (!image) return null
+
+            return <SwagCard key={item.id} title={title} to="/" description="" image={image} />
+          })}
         </div>
       </div>
     </div>
