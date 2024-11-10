@@ -91,8 +91,7 @@ export function ZupassTickets(props: Props) {
     className = cn(props.className)
   }
 
-  const ticketLoading = true
-  const { data: ticket } = useQuery({
+  const { data: ticket, isLoading: ticketLoading } = useQuery({
     queryKey: ['zupass', 'ticket', zupass.publicKey],
     enabled: !!zupass.publicKey,
     initialData: localStorage.getItem('zupassTicket') ? JSON.parse(localStorage.getItem('zupassTicket')!) : undefined,
@@ -105,6 +104,9 @@ export function ZupassTickets(props: Props) {
     initialData: localStorage.getItem('zupassSwag') ? JSON.parse(localStorage.getItem('zupassSwag')!) : undefined,
     queryFn: zupass.GetSwag,
   })
+
+  console.log('[TICKETING] TICKET', ticketLoading, ticket)
+  console.log('[TICKETING] SWAG', swagLoading, swag)
 
   function getSwagImage(item: Ticket) {
     if (item.ticketType.includes('Herbal')) return Herbal
@@ -167,7 +169,7 @@ export function ZupassTickets(props: Props) {
         {!zupass.publicKey && (
           <div className="flex flex-col gap-2 grow sm:p-3 p-4 mt-4 h-[47%] w-full items-center">
             <Image src={WhenImage} alt="When" className="w-[120px] self-end object-contain object-right mb-2" />
-            <p className="text-sm text-center sm:mt-4 w-[80%]">
+            <p className="text-sm text-[#474747] text-center sm:mt-4 w-[80%]">
               To import your Visual Ticket, Swag items, and unlock unique experiences made available through Zupass at
               Devcon.
             </p>
@@ -180,9 +182,11 @@ export function ZupassTickets(props: Props) {
         {zupass.publicKey && (
           <div className="grow p-4 h-[47%] w-full flex justify-between">
             <div className="sm:p-3 p-4 border border-solid border-[#D9D9D9] shrink-0 rounded-2xl self-end">
-              {ticket?.isConsumed && <div className="text-center text-sm text-gray-500">Ticket claimed</div>}
+              {!ticketLoading && ticket?.isConsumed && (
+                <div className="text-center text-sm text-gray-500">Ticket claimed</div>
+              )}
 
-              {ticket?.ticketSecret && !ticket?.isConsumed && (
+              {!ticketLoading && ticket?.ticketSecret && !ticket?.isConsumed && (
                 <div
                   className="max-w-[105px] sm:max-w-[150px]"
                   style={{ height: 'auto', margin: '0 auto', width: '100%' }}
@@ -222,13 +226,13 @@ export function ZupassTickets(props: Props) {
           </div>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-2 lg:p-4 pt-0">
-          {!swag && <p className="text-sm">No swag items found</p>}
+          {!swag && !swagLoading && <p className="text-sm">No swag items found</p>}
           {swag?.map((item: any) => {
             const image = getSwagImage(item)
             const title = getSwagTitle(item)
             if (!image) return null
 
-            return <SwagCard key={item.id} title={title} to="/" description="" image={image} />
+            return <SwagCard key={`${item.id}_${title}`} title={title} to="/" description="" image={image} />
           })}
         </div>
       </div>
