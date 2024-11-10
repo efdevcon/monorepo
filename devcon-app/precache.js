@@ -16,6 +16,11 @@ const pages = [
     precacheHtml: true,
     // precacheJson: true,
   },
+  {
+    route: '/event',
+    precacheHtml: true,
+    // precacheJson: true,
+  },
   // {
   //   route: '/side-events',
   //   precacheHtml: true,

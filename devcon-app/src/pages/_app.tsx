@@ -21,6 +21,11 @@ import { Toaster } from 'lib/components/ui/toaster'
 import { usePathname } from 'next/navigation'
 import { DataProvider } from 'context/data'
 
+export const selectedEventTabAtom = atom<'venue' | 'information' | 'contact' | 'directions'>({
+  key: 'selectedEventTab',
+  default: 'venue',
+})
+
 // This selector is used to get the full speaker object from the selectedSpeakerAtom - useful for /speakers pages where the full object is needed - this can be impartial if the speaker was linked from a session (where the speakers don't recursively have the session objects)
 export const selectedSpeakerSelector = selector({
   key: 'selectedSpeakerSelector',

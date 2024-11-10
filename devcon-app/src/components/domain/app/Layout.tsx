@@ -1,6 +1,5 @@
 import React, { PropsWithChildren, useState, useEffect, useRef, RefObject, ReactNode } from 'react'
 import css from './app.module.scss'
-import useGetElementHeight from 'hooks/useGetElementHeight'
 import AppIcon from 'assets/icons/app-icons-1.svg'
 import TilesIcon from 'assets/icons/dc-7/tiles.svg'
 import TilesFillIcon from 'assets/icons/dc-7/tiles-fill.svg'
@@ -23,6 +22,8 @@ import { useRecoilState } from 'recoil'
 import ChevronRightIcon from 'assets/icons/chevron_right.svg'
 import { devaBotVisibleAtom, selectedSessionAtom, sessionIdAtom, useSeenNotifications } from 'pages/_app'
 import { useAccountContext } from 'context/account-context'
+import IconVenue from 'assets/icons/dc-7/event.svg'
+import IconFilledVenue from 'assets/icons/dc-7/event-fill.svg'
 import ArrowBackIcon from 'assets/icons/arrow_left.svg'
 import { selectedSpeakerAtom } from 'pages/_app'
 
@@ -327,18 +328,19 @@ const navItems = (isLoggedIn: boolean, pathname: string) => [
     size: 18,
   },
   {
+    label: 'Event',
+    icon: pathname === '/event' ? IconFilledVenue : IconVenue,
+    href: '/event',
+    isActive: pathname.startsWith('/event'),
+    size: 18,
+  },
+  {
     icon: pathname.startsWith('/account') ? UserFillIcon : UserIcon,
     label: isLoggedIn ? 'Account' : 'Log In',
     href: isLoggedIn ? '/account' : '/login',
     isActive: pathname.startsWith('/account'),
     size: 22,
   },
-  // {
-  //   icon: TicketIcon,
-  //   label: 'Venue',
-  //   href: '/venue',
-  //   size: 18,
-  // },
 ]
 
 export const useWindowWidth = () => {

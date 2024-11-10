@@ -38,6 +38,7 @@ import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
 import {
   devaBotVisibleAtom,
+  initialFilterState,
   selectedSessionAtom,
   selectedSessionSelector,
   sessionFilterAtom,
@@ -108,7 +109,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     if (typeof window === 'undefined') return
 
     const searchParams = new URLSearchParams(window.location.search)
-    const newFilter = { ...sessionFilter }
+    const newFilter = { ...initialFilterState } as any //...sessionFilter }
 
     searchParams.forEach((value, key) => {
       if (key in newFilter) {
