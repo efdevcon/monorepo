@@ -106,9 +106,6 @@ export function ZupassTickets(props: Props) {
     queryFn: zupass.GetSwag,
   })
 
-  console.log('TICKET COMPONENT', ticketLoading, ticket)
-  console.log('SWAG COMPONENT', swagLoading, swag)
-
   function getSwagImage(item: Ticket) {
     if (item.ticketType.includes('Herbal')) return Herbal
     if (item.ticketType.includes('Pajama')) return Pants
