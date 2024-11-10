@@ -64,8 +64,6 @@ export const cardClass =
 // }
 
 const List = (props: any) => {
-  console.log(props)
-
   return (
     <div className="px-4 ">
       <p className="mb-4 pt-4 font-semibold">Floors & Rooms</p>
@@ -125,8 +123,6 @@ const List = (props: any) => {
                   if (name.startsWith('breakout')) return '#EF4444' // red
                   return '#7D52F4' // default purple
                 }
-
-                console.log(room.name)
 
                 let roomName = room.name
 

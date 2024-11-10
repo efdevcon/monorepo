@@ -352,15 +352,15 @@ function App({ Component, pageProps }: AppProps) {
   //   }
   // }, [])
 
-  useEffect(() => {
-    // Only run on mount and only for root path
-    if (pathname === '/') {
-      const storedSkipLogin = localStorage.getItem('skipLogin')
-      if (storedSkipLogin !== 'true' && !accountContext.account) {
-        router.replace('/login')
-      }
-    }
-  }, [])
+  // useEffect(() => {
+  //   // Only run on mount and only for root path
+  //   if (pathname === '/') {
+  //     const storedSkipLogin = localStorage.getItem('skipLogin')
+  //     if (storedSkipLogin !== 'true' && !accountContext.account) {
+  //       router.replace('/login')
+  //     }
+  //   }
+  // }, [])
 
   useEffect(() => {
     if (pageProps.rooms) {
