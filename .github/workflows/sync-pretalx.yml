@@ -26,6 +26,7 @@ jobs:
           EMAIL_SECRET: ${{ secrets.EMAIL_SECRET }}
           GOOGLE_CLIENT_EMAIL: ${{ secrets.GOOGLE_CLIENT_EMAIL }}
           GOOGLE_PRIVATE_KEY: ${{ secrets.GOOGLE_PRIVATE_KEY }}
+          WEBHOOK_MEERKAT_SECRET: ${{ secrets.WEBHOOK_MEERKAT_SECRET }}
       - uses: EndBug/add-and-commit@v9
         with:
           add: "devcon-api/data"

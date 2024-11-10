@@ -1,7 +1,7 @@
 'use client'
 
 import { ZAPP, ZUPASS_URL } from '../utils/zupass'
-import { connect, ParcnetAPI } from '@parcnet-js/app-connector'
+import { init, doConnect, ParcnetAPI, InitContext } from '@parcnet-js/app-connector'
 import { createContext, PropsWithChildren, useContext, useEffect, useRef, useState } from 'react'
 import { pod, PODData } from '@parcnet-js/podspec'
 import { POD } from '@pcd/pod'
@@ -34,6 +34,7 @@ interface ZupassContext {
   loading: boolean
   error?: string
   publicKey: string
+  context: InitContext | undefined
   Connect: (onboard: boolean) => void
   GetTicket: () => Promise<Ticket | undefined>
   GetSwag: () => Promise<Ticket[]>
@@ -44,6 +45,7 @@ const defaultZupassContext: ZupassContext = {
   loading: false,
   error: '',
   publicKey: '',
+  context: undefined,
   Connect: (onboard: boolean) => {},
   GetTicket: () => Promise.resolve(undefined),
   GetSwag: () => Promise.resolve([]),
@@ -68,6 +70,7 @@ export function ZupassProvider(props: PropsWithChildren) {
     loading: false,
     error: '',
     publicKey: '',
+    context: undefined,
     Connect,
     GetTicket,
     GetSwag,
@@ -79,7 +82,12 @@ export function ZupassProvider(props: PropsWithChildren) {
 
     console.log('Connecting to Zupass...', ZUPASS_URL, onboard)
     try {
-      const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+      let initContext = context.context
+      if (!initContext) {
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+      }
+
+      const zupass = await doConnect(ZAPP, initContext)
       const publicKey = await zupass.identity.getPublicKey()
 
       if (onboard) {
@@ -87,7 +95,7 @@ export function ZupassProvider(props: PropsWithChildren) {
         if (ticket) {
           const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
           await accountContext.updateZupassProfile(pod)
-          localStorage.setItem('zupassTicket', JSON.stringify(pod.toJSON()))
+          localStorage.setItem('zupassTicket', JSON.stringify(mapToTicket(ticket)))
         }
       }
 
@@ -100,14 +108,21 @@ export function ZupassProvider(props: PropsWithChildren) {
   }
 
   async function GetTicket() {
-    console.log('Getting Devcon ticket')
+    console.log('Getting Devcon ticket', context.publicKey)
 
     try {
-      const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+      let initContext = context.context
+      if (!initContext) {
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+      }
+
+      const zupass = await doConnect(ZAPP, initContext)
       const ticket = await getTicket(zupass)
 
       if (ticket) {
-        return mapToTicket(ticket)
+        const ticketData = mapToTicket(ticket)
+        localStorage.setItem('zupassTicket', JSON.stringify(ticketData))
+        return ticketData
       }
     } catch (error) {
       console.error('[ZUPASS] Error getting ticket', error)
@@ -118,7 +133,12 @@ export function ZupassProvider(props: PropsWithChildren) {
     console.log('Getting Devcon add-ons')
 
     try {
-      const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+      let initContext = context.context
+      if (!initContext) {
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+      }
+
+      const zupass = await doConnect(ZAPP, initContext)
       const query = pod({
         entries: {
           eventId: {
@@ -130,7 +150,10 @@ export function ZupassProvider(props: PropsWithChildren) {
 
       const pods = await zupass.pod.collection('Devcon SEA').query(query)
       const addons = pods.filter(pod => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1))
-      return addons?.map(mapToTicket) || []
+      const swag = addons.map(mapToTicket) || []
+
+      localStorage.setItem('zupassSwag', JSON.stringify(swag))
+      return swag
     } catch (error) {
       console.error('[ZUPASS] Error getting add-ons', error)
     }
@@ -141,7 +164,12 @@ export function ZupassProvider(props: PropsWithChildren) {
   async function GetCollectibles() {
     console.log('Getting Meerkat collectibles')
 
-    const zupass = await connect(ZAPP, ref.current as HTMLElement, ZUPASS_URL)
+    let initContext = context.context
+    if (!initContext) {
+      initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+    }
+
+    const zupass = await doConnect(ZAPP, initContext)
     const query = pod({
       entries: {
         pod_type: {
@@ -157,7 +185,7 @@ export function ZupassProvider(props: PropsWithChildren) {
     })
 
     const attendance = await zupass.pod.collection('Meerkat: Devcon SEA').query(query)
-    return attendance.map(
+    const collectibles = attendance.map(
       pod =>
         ({
           id: pod.entries.code.value,
@@ -169,6 +197,9 @@ export function ZupassProvider(props: PropsWithChildren) {
           signerPublicKey: pod.signerPublicKey,
         } as Collectible)
     )
+
+    localStorage.setItem('zupassCollectibles', JSON.stringify(collectibles))
+    return collectibles
   }
 
   async function getTicket(zupass: ParcnetAPI) {
@@ -201,10 +232,13 @@ export function ZupassProvider(props: PropsWithChildren) {
   }
 
   useEffect(() => {
-    const publicKey = localStorage.getItem('zupassPublicKey')
-    if (publicKey) {
-      setContext(prevContext => ({ ...prevContext, publicKey }))
+    async function initContext() {
+      const context = await init(ref.current as HTMLElement, ZUPASS_URL)
+      const publicKey = localStorage.getItem('zupassPublicKey') || ''
+      setContext(prevContext => ({ ...prevContext, context, publicKey }))
     }
+
+    initContext()
   }, [])
 
   return (

@@ -17,6 +17,9 @@ import Lantern from 'assets/images/dc-7/swag/lantern.png'
 import Raincoat from 'assets/images/dc-7/swag/raincoat.png'
 import Shirt from 'assets/images/dc-7/swag/shirt.png'
 import { useQuery } from '@tanstack/react-query'
+import { Button } from 'lib/components/button'
+import { FancyLoader } from 'lib/components/loader/loader'
+import { Skeleton } from 'lib/components/skeleton'
 
 interface Props {
   className?: string
@@ -82,27 +85,28 @@ const SwagCard = ({ title, to, description, image, className }: SwagCardProps) =
 
 export function ZupassTickets(props: Props) {
   const zupass = useZupass()
-  const [ticket, setTicket] = useState<any>()
-  const [swag, setSwag] = useState<any>()
-  const [collectibles, setCollectibles] = useState<any>()
 
   let className = 'flex flex-col lg:flex-row gap-2 basis-full shrink-0 md:basis-1/2 mt-0'
   if (props.className) {
     className = cn(props.className)
   }
 
-  useEffect(() => {
-    async function init() {
-      const ticket = await zupass.GetTicket()
-      const swag = await zupass.GetSwag()
-      const collectibles = await zupass.GetCollectibles()
+  const { data: ticket, isLoading: ticketLoading } = useQuery({
+    queryKey: ['zupass', 'ticket', zupass.publicKey],
+    enabled: !!zupass.publicKey,
+    initialData: localStorage.getItem('zupassTicket') ? JSON.parse(localStorage.getItem('zupassTicket')!) : undefined,
+    queryFn: zupass.GetTicket,
+  })
 
-      setTicket(ticket)
-      setSwag(swag)
-      setCollectibles(collectibles)
-    }
-    init()
-  }, [])
+  const { data: swag, isLoading: swagLoading } = useQuery({
+    queryKey: ['zupass', 'swag', zupass.publicKey],
+    enabled: !!zupass.publicKey,
+    initialData: localStorage.getItem('zupassSwag') ? JSON.parse(localStorage.getItem('zupassSwag')!) : undefined,
+    queryFn: zupass.GetSwag,
+  })
+
+  console.log('[TICKETING] TICKET', ticketLoading, ticket)
+  console.log('[TICKETING] SWAG', swagLoading, swag)
 
   function getSwagImage(item: Ticket) {
     if (item.ticketType.includes('Herbal')) return Herbal
@@ -143,58 +147,92 @@ export function ZupassTickets(props: Props) {
             <Image src={LogoFlowers} alt="Devcon logo flowers" className="h-full object-contain object-left" />
           </div>
           <div className="flex flex-col justify-center grow">
-            <div className="text-lg lg:text-2xl break-words">{ticket?.attendeeName || 'Devcon Attendee'}</div>
-            <span className="text-[#5B5F84]">{ticket?.ticketType || 'Ticket'}</span>
+            <div className="text-lg lg:text-2xl break-words max-w-[90%]">
+              {!ticket && !zupass.publicKey && <p>Connect your Zupass</p>}
+              {zupass.publicKey && ticketLoading && !ticket && (
+                <>
+                  <Skeleton className="h-6 w-[80%] bg-[#D9D9D9] rounded-xl" />
+                  <Skeleton className="h-4 mt-2 w-[60%] bg-[#D9D9D9] rounded-xl" />
+                </>
+              )}
+              {ticket && (
+                <>
+                  <p>Devcon Attendee</p>
+                  <p className="text-sm text-[#5B5F84]">{ticket.ticketType}</p>
+                </>
+              )}
+            </div>
           </div>
           <div className="bold uppercase h-[20%] text-xs flex items-end">Devcon.org</div>
         </div>
 
-        <div className="grow p-4 h-[47%] w-full flex justify-between">
-          <div className="sm:p-3 p-4 border border-solid border-[#D9D9D9] shrink-0 rounded-2xl self-end">
-            {!ticket?.ticketSecret && <div className="text-center text-sm text-gray-500">No ticket secret</div>}
-            {ticket?.ticketSecret && ticket?.isConsumed && (
-              <div className="text-center text-sm text-gray-500">Ticket already consumed</div>
-            )}
-
-            {ticket?.ticketSecret && !ticket?.isConsumed && (
-              <div
-                className="max-w-[105px] sm:max-w-[150px]"
-                style={{ height: 'auto', margin: '0 auto', width: '100%' }}
-              >
-                <QRCode
-                  size={256}
-                  style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-                  value={ticket?.ticketSecret || ''}
-                  viewBox={`0 0 256 256`}
-                />
-              </div>
-            )}
-          </div>
-          <div className="flex flex-col justify-between p-1">
+        {!zupass.publicKey && (
+          <div className="flex flex-col gap-2 grow sm:p-3 p-4 mt-4 h-[47%] w-full items-center">
             <Image src={WhenImage} alt="When" className="w-[120px] self-end object-contain object-right mb-2" />
-            <div className="ml-2 text-[9px] sm:text-xs shrink-0 text-right text-[#99A0AE] leading-4">
-              <span className="font-semibold">QSNCC —</span>
-              <br />
-              60 Queen Sirikit National Convention Center Ratchadaphisek Road
-              <br />
-              Khlong Toei District
-              <br />
-              Bangkok, Thailand
+            <p className="text-sm text-[#474747] text-center sm:mt-4 w-[80%]">
+              To import your Visual Ticket, Swag items, and unlock unique experiences made available through Zupass at
+              Devcon.
+            </p>
+            <Button color="purple-2" className="mt-2 sm:mt-4" fill onClick={zupass.Connect} disabled={zupass.loading}>
+              {zupass.loading ? 'Connecting...' : 'Connect Zupass'}
+            </Button>
+          </div>
+        )}
+
+        {zupass.publicKey && (
+          <div className="grow p-4 h-[47%] w-full flex justify-between">
+            <div className="sm:p-3 p-4 border border-solid border-[#D9D9D9] shrink-0 rounded-2xl self-end">
+              {!ticketLoading && ticket?.isConsumed && (
+                <div className="text-center text-sm text-gray-500">Ticket claimed</div>
+              )}
+
+              {!ticketLoading && ticket?.ticketSecret && !ticket?.isConsumed && (
+                <div
+                  className="max-w-[105px] sm:max-w-[150px]"
+                  style={{ height: 'auto', margin: '0 auto', width: '100%' }}
+                >
+                  <QRCode
+                    size={256}
+                    style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
+                    value={ticket?.ticketSecret || ''}
+                    viewBox={`0 0 256 256`}
+                  />
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col justify-between p-1">
+              <Image src={WhenImage} alt="When" className="w-[120px] self-end object-contain object-right mb-2" />
+              <div className="ml-2 text-[9px] sm:text-xs shrink-0 text-right text-[#99A0AE] leading-4">
+                <span className="font-semibold">QSNCC —</span>
+                <br />
+                60 Queen Sirikit National Convention Center Ratchadaphisek Road
+                <br />
+                Khlong Toei District
+                <br />
+                Bangkok, Thailand
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
+
       <div className="flex flex-col grow  h-full rounded-2xl lg:bg-white lg:border lg:border-solid border-[#E1E4EA]">
         <div className="flex font-semibold pb-4 py-2 lg:p-4 lg:pb-0">
           <div>Swag</div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-2 lg:p-4 pt-0 font-secondary">
+        {!swag && swagLoading && (
+          <div className="my-4 items-center justify-center w-full">
+            <FancyLoader loading={swagLoading} size={60} />
+          </div>
+        )}
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-2 gap-2 lg:p-4 pt-0">
+          {!swag && !swagLoading && <p className="text-sm">No swag items found</p>}
           {swag?.map((item: any) => {
             const image = getSwagImage(item)
             const title = getSwagTitle(item)
             if (!image) return null
 
-            return <SwagCard key={item.id} title={title} to="/" description="" image={image} />
+            return <SwagCard key={`${item.id}_${title}`} title={title} to="/" description="" image={image} />
           })}
         </div>
       </div>

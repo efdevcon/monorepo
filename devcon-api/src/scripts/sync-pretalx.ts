@@ -7,11 +7,37 @@ import fs from 'fs'
 async function main() {
   console.log('Syncing Pretalx...')
 
+  await notifyClients()
   await syncEventData()
   await syncRooms()
   await syncSessions()
   await createPresentations()
   createGlossary()
+}
+
+async function notifyClients() {
+  try {
+    if (!process.env.WEBHOOK_MEERKAT_SECRET) {
+      console.error('WEBHOOK_MEERKAT_SECRET is not set')
+      return
+    }
+
+    const result = await fetch('https://meerkat.events/api/v1/sync/devcon/devcon-7', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.WEBHOOK_MEERKAT_SECRET}`,
+      },
+    })
+
+    if (result.ok) {
+      console.log('Notified Meerkat')
+    } else {
+      console.error('Error notifying Meerkat', result)
+    }
+  } catch (error) {
+    console.error('Error notifying Meerkat', error)
+  }
 }
 
 function createGlossary() {
