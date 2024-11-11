@@ -566,10 +566,10 @@ export const SessionCard = ({
             {/* <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p> */}
           </div>
           <div>
-            {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
+            {/* {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
             {isSoon && (
               <div className="label rounded text-gray-500 !border-gray-400 bold sm mb-1">Starts {relativeTime}</div>
-            )}
+            )} */}
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <IconClock className="icon flex shrink-0" />

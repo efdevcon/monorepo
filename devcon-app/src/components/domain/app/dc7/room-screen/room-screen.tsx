@@ -60,7 +60,35 @@ type ScreenProps = {
 
 const SessionBar = ({ session }: { session: Session }) => {
   console.log(session)
-  return <div className={cn('rounded-full', getTrackColor(session.track))}>Hello I am the session bar</div>
+  return (
+    <div
+      className={cn(
+        'rounded-full flex items-center gap-[0.5em] p-[0.5em] border border-solid border-[#dfd8fc]',
+        getTrackColor(session.track)
+      )}
+    >
+      <p
+        className={cn(
+          'rounded-full px-[0.75em] py-[0.25em] uppercase font-semibold text-1 bg-[#dfd8fc]'
+          // getExpertiseColor(session.expertise || '')
+        )}
+      >
+        {session.type}
+      </p>
+      <p
+        className={cn(
+          'rounded-full px-[0.75em] py-[0.25em] uppercase font-semibold text-1',
+          getExpertiseColor(session.expertise || '')
+        )}
+      >
+        {session.expertise}
+      </p>
+      <div className="flex items-center gap-[0.5em] text-center">
+        <Image src={getTrackLogo(session.track)} alt={session.track} width={20} height={20} />
+        <p className="text-1 font-semibold">{session.track}</p>
+      </div>
+    </div>
+  )
 }
 
 export const RoomScreen = (props: ScreenProps) => {
@@ -248,7 +276,7 @@ export const RoomScreen = (props: ScreenProps) => {
                   Wifi Password: <b>runafullnode</b>
                 </p>
 
-                <div className={css['session-link']}>app.devcon.org/schedule/{currentSession.id}</div>
+                {/* <div className={css['session-link']}>app.devcon.org/schedule/{currentSession.id}</div> */}
               </div>
 
               <div className={cn(css['qr-code'], 'rounded-xl')}>
