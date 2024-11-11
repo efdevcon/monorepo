@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import ListIcon from 'assets/icons/list.svg'
 import TimelineIcon from 'assets/icons/timeline.svg'
-import VenueMap from 'assets/images/dc-7/venue/venue-map.jpg'
+import VenueMap from 'assets/images/dc-7/venue/venue-map-floors.jpg'
 import VenueLogo from 'assets/images/dc-7/venue/qsncc.png'
 import Image from 'next/image'
 import css from './event.module.scss'
@@ -11,6 +11,8 @@ import { StandalonePrompt } from 'lib/components/ai/standalone-prompt'
 import { useRecoilState } from 'recoil'
 import { devaBotVisibleAtom } from 'pages/_app'
 import { Link } from 'components/common/link'
+import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
+import { TrailTexture } from '@react-three/drei'
 
 // import Panzoom, { PanZoom } from 'panzoom'
 
@@ -189,11 +191,11 @@ export const Venue = (props: any) => {
 
   return (
     <>
-      <div className={cn(cardClass, 'my-4 lg:max-w-[550px] !bg-[#c774dd1a]')}>
+      <div className={cn(cardClass, 'mb-4 mt-2 !bg-[#c2b5ff]')}>
         <div
           className={cn(
             css['panzoom'],
-            'border-t border-solid border-[#E1E4EA] border-b lg:border-none aspect-[4000/3845]'
+            'border-t border-solid border-[#E1E4EA] border-b lg:border-none aspect-[4000/3845] md:aspect-[16/7] lg:rounded-3xl'
           )}
         >
           <div className={cn(css['image'], 'lg:rounded-3xl')} id="image-container">
@@ -234,5 +236,292 @@ export const Venue = (props: any) => {
         </StandalonePrompt>
       </div>
     </>
+  )
+}
+
+const sections = (setDevaBotVisible: (prompt: string) => void) => [
+  {
+    header: 'Devcon Thrival Guide',
+    body: (
+      <div className="px-4 pb-2">
+        <div className="mb-4">
+          <p className="mb-2">Your comprehensive guide to having the best possible Devcon experience.</p>
+        </div>
+
+        <div>
+          <a
+            href="https://thrive.devcon.org"
+            className="text-[#7D52F4] hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View the Thrival Guide
+          </a>
+        </div>
+
+        <StandalonePrompt
+          className="mt-4 lg:mb-2"
+          onClick={() => setDevaBotVisible('What is the Devcon Thrival Guide?')}
+        >
+          <div className="truncate">Ask Devai about the Devcon Thrival Guide</div>
+        </StandalonePrompt>
+      </div>
+    ),
+  },
+  {
+    header: 'Registration and Venue Hours',
+    body: (
+      <div className="px-4 pb-2">
+        <div className="mb-4">
+          <strong>Registration</strong>
+          <p>
+            Your ticket QR code was delivered via email. Search for subject: "Your Devcon ticket is ready for download".
+          </p>
+          <p>
+            At the registration desk, you'll receive your wristband – please keep it on throughout all 4 days of Devcon.
+            🙏
+          </p>
+        </div>
+
+        <div className="mb-4">
+          <strong>Skip the line of 12,000 people:</strong>
+          <ul className="list-disc pl-5 mt-1">
+            <li>
+              <strong>Pre-Registration:</strong> November 10 and 11, 10:00–18:00
+              <br />
+              QSNCC, at the foyer on Level G
+            </li>
+            <li>
+              <strong>Registration:</strong> November 12, 8:30 AM
+              <br />
+              QSNCC, Level G, Hall 2
+            </li>
+          </ul>
+        </div>
+
+        <div className="mb-4">
+          <strong>Venue Hours & Ceremonies</strong>
+          <ul className="list-disc pl-5 mt-1">
+            <li>Venue Hours: 9:00 AM–8:00 PM (8:30 AM on Day 1, November 12)</li>
+            <li>Sessions: 10:00 AM–6:30 PM daily</li>
+            <li>Opening Ceremony: November 12, 10:00 AM–12:30 PM</li>
+            <li>Closing Ceremony: November 15, 4:00 PM–6:00 PM</li>
+          </ul>
+        </div>
+
+        <div className="mb-4">
+          <strong>Last Day Specials</strong>
+          <ul className="list-disc pl-5 mt-1">
+            <li>Smoothie: 1:00 PM - 3:00 PM at Snacks area 3 (Level 1)</li>
+            <li>Happy Hour: After closing ceremony</li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    header: 'Food & Beverage',
+    body: (
+      <div className="px-4 pb-2">
+        <div className="mb-2">
+          <strong>Breakfast</strong>
+          <br />
+          09:00 AM - 11:00 AM
+          <br />
+          Location: Level G and Level 1
+        </div>
+        <div className="mb-2">
+          <strong>Lunch</strong>
+          <br />
+          12:00 PM - 03:00 PM
+          <br />
+          Location: Level G and Level 2
+        </div>
+        <div className="mb-2">
+          <strong>Heavy Snacks</strong>
+          <br />
+          04:00 PM - 07:00 PM
+          <br />
+          Location: All Levels
+        </div>
+        <div className="mb-2">
+          <strong>Available All Day (All Levels)</strong>
+          <ul className="list-disc pl-5">
+            <li>Snacks and fruits</li>
+            <li>Tea and Coffee</li>
+            <li>Water Dispensers</li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    header: 'Internet Access',
+    body: (
+      <div className="px-4 pb-2">
+        <div className="mb-2">
+          <strong>Wifi Access</strong>
+          <br />
+          Network name: Ethereum
+          <br />
+          Password: theinfinitegarden
+        </div>
+
+        <div className="mb-2">
+          <strong>Mobile Data Options</strong>
+          <ul className="list-disc pl-5">
+            <li>Roamless is offering 2GB free data with code "DEVCON7"</li>
+            <li>
+              Local SIM providers:
+              <ul className="list-disc pl-5 mt-1">
+                <li>
+                  <strong>AIS</strong> (recommended for signal stability & better service)
+                  <br />
+                  <a
+                    href="https://www.ais.th/en/consumers/package/international/tourist-plan"
+                    className="text-[#7D52F4] hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Tourist Plan Details
+                  </a>
+                </li>
+                <li>
+                  <strong>True</strong>
+                  <br />
+                  <a
+                    href="https://www.true.th/en/international/roaming/tourist-sim"
+                    className="text-[#7D52F4] hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Tourist Plan Details
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li>SIM cards available at Suvarnabhumi airport booths</li>
+          </ul>
+        </div>
+      </div>
+    ),
+  },
+  {
+    header: 'Emergency Contacts',
+    body: (
+      <>
+        <div className="px-4 pb-2">
+          <a
+            href="https://docs.google.com/document/d/1Hu4TT9pvo0ckXFRom0t-UL-xIMMuvOmGvu93eCHl-yA/edit?tab=t.0"
+            className="text-[#7D52F4] hover:underline pb-2 block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            What to do in case of an emergency
+          </a>
+
+          <div className="mb-2">
+            Police 👮‍♂️
+            <br />
+            191
+          </div>
+          <div className="mb-2">
+            Fire Department 🚒
+            <br />
+            119
+          </div>
+          <div className="mb-2">
+            Ambulance 🚑
+            <br />
+            1669
+          </div>
+          <div className="mb-2">
+            QSNCC Emergency Contact
+            <br />
+            02-229-3099
+          </div>
+          <div className="mb-2">
+            Embassies
+            <br />
+            <a
+              href="https://www.mfa.go.th/en/page/diplomatic-and-consular-list"
+              className="text-[#7D52F4] hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              https://www.mfa.go.th/en/page/diplomatic-and-consular-list
+            </a>
+          </div>
+        </div>
+      </>
+    ),
+  },
+  //   {
+  //     header: 'Impact Booths',
+  //     body: (
+  //       <div className="px-4 pb-2">
+  //         <div className="mb-2">
+  //           <strong>Meet teams in the Ethereum ecosystem</strong>
+  //           <br />
+  //           <strong>Location:</strong> Level 1
+  //         </div>
+
+  //         <div className="mb-2">
+  //           You're able to find over 50 ecosystem teams in the Impact Forum spaces. There are three areas with Impact
+  //           Spaces.
+  //         </div>
+
+  //         <div>
+  //           Check them out and meet teams building in Ethereum.{' '}
+  //           <a
+  //             href="https://blog.ethereum.org/2024/10/25/devcon-supporters-forum"
+  //             className="text-[#7D52F4] hover:underline"
+  //             target="_blank"
+  //             rel="noopener noreferrer"
+  //           >
+  //             Find all teams that are represented here
+  //           </a>
+  //           .
+  //         </div>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     header: 'Experiences',
+  //     body: <div className="px-4 pb-2">{/* Add Experiences content */}</div>,
+  //   },
+  //   {
+  //     header: 'Legal and Privacy Policies',
+  //     body: <div className="px-4 pb-2">{/* Add Legal and Privacy Policies content */}</div>,
+  //   },
+]
+
+export const VenueInformation = (props: any) => {
+  const [openTabs, setOpenTabs] = useState<any>({ 'important-info': true })
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+
+  return (
+    <div className={cn(cardClass, 'p-4 flex flex-col gap-3 text-sm')}>
+      {sections(setDevaBotVisible).map((section: any) => (
+        <CollapsedSection
+          className="bg-white rounded-2xl border border-solid border-[#E1E4EA]"
+          open={openTabs[section.header]}
+          setOpen={() => {
+            const isOpen = openTabs[section.header]
+
+            const nextOpenState = {
+              ...openTabs,
+              [section.header]: !isOpen,
+            }
+
+            setOpenTabs(nextOpenState)
+          }}
+          key={section.header}
+        >
+          <CollapsedSectionHeader title={section.header} className="py-4 px-4 " />
+          <CollapsedSectionContent>{section.body}</CollapsedSectionContent>
+        </CollapsedSection>
+      ))}
+    </div>
   )
 }

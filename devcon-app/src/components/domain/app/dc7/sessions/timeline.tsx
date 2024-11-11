@@ -40,7 +40,13 @@ const RoomGrid = ({ rooms }: { rooms: string[] }) => {
           key={index}
           className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100 glass"
         >
-          {room === 'Decompression Room' ? <>Decompression</> : room}
+          {room === 'Decompression Room' ? (
+            <>Decompression</>
+          ) : room === 'Artists Cohort Pyramid' ? (
+            <>Artists Pyramid</>
+          ) : (
+            room
+          )}
         </div>
       ))}
     </div>

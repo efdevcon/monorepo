@@ -5,7 +5,7 @@ import { SEO } from 'components/domain/seo'
 import cn from 'classnames'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { selectedEventTabAtom } from 'pages/_app'
-import { Venue } from 'components/domain/app/dc7/event'
+import { Venue, VenueInformation } from 'components/domain/app/dc7/event'
 
 const activeClass = '!border-[#7D52F4] !text-[#7D52F4] '
 const tabClass =
@@ -24,12 +24,12 @@ const Tabs = () => {
       >
         Venue Map
       </div>
-      {/* <div
+      <div
         onClick={() => setSelectedEventTab('information')}
         className={cn(tabClass, selectedEventTab === 'information' && activeClass)}
       >
         Information
-      </div> */}
+      </div>
       {/* <div
         onClick={() => setSelectedEventTab('contact')}
         className={cn(tabClass, selectedEventTab === 'contact' && activeClass)}
@@ -47,6 +47,7 @@ const Tabs = () => {
 }
 
 const VenuePage = (props: any) => {
+  const [selectedEventTab, setSelectedEventTab] = useRecoilState(selectedEventTabAtom)
   const floorOrder: any = { G: 0, '1': 1, '2': 2 }
   const uniqueFloors = [...new Set(props.rooms.map((room: any) => room.info))].sort(
     (a: any, b: any) => floorOrder[a] - floorOrder[b]
@@ -56,7 +57,8 @@ const VenuePage = (props: any) => {
     <AppLayout pageTitle="Event" breadcrumbs={[{ label: 'Event' }]}>
       <SEO title="Event" />
       <Tabs />
-      <Venue floors={uniqueFloors} rooms={props.rooms} />
+      {selectedEventTab === 'venue' && <Venue floors={uniqueFloors} rooms={props.rooms} />}
+      {selectedEventTab === 'information' && <VenueInformation />}
     </AppLayout>
   )
 }
