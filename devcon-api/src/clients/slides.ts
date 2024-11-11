@@ -140,6 +140,7 @@ export async function RunPermissions(title: string, id: string, emails: string[]
   const drive = client.drive('v3')
 
   let presentationId = null
+  let lastEditor = null
   try {
     const exists = await drive.files.list({
       q: `name contains '[${id}]' and trashed=false and mimeType='application/vnd.google-apps.presentation' and '${FOLDER_ID}' in parents`,
@@ -148,9 +149,11 @@ export async function RunPermissions(title: string, id: string, emails: string[]
       driveId: DRIVE_ID,
       supportsAllDrives: true,
       includeItemsFromAllDrives: true,
+      fields: 'files(id, lastModifyingUser)',
     })
 
     presentationId = exists?.data?.files?.[0]?.id
+    lastEditor = exists?.data?.files?.[0]?.lastModifyingUser
   } catch (e) {
     console.log('Error fetching file', id, title)
     // console.error(e)
@@ -161,8 +164,13 @@ export async function RunPermissions(title: string, id: string, emails: string[]
     return
   }
 
+  if (lastEditor?.emailAddress !== 'service@efdevcon.iam.gserviceaccount.com') {
+    return
+  }
+
   try {
     for (const email of emails) {
+      console.log('Sending Notification Email', id, email)
       await drive.permissions.create({
         fileId: presentationId,
         supportsAllDrives: true,
