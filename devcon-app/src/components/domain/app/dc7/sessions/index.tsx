@@ -1414,8 +1414,6 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const playback = session.sources_youtubeId || session.sources_streamethId
   const [openTabs, setOpenTabs] = React.useState<any>({})
 
-  console.log('SESSION ROOM INFO', session.slot_room)
-
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
       <div className={cn('flex justify-between items-center')}>
@@ -1429,7 +1427,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="w-full h-full rounded-xl"
+            className="w-full h-full rounded-2xl"
           />
         )}
         {playback && session.sources_streamethId && (
@@ -1439,7 +1437,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
               title="StreamEth video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="w-full h-full rounded-xl"
+              className="w-full h-full rounded-2xl"
             />
           </>
         )}
@@ -1450,7 +1448,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="w-full h-full rounded-xl"
+              className="w-full h-full rounded-2xl"
             />
           </div>
         )}
@@ -1479,7 +1477,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           <div className="aspect select-none px-4 pb-2">
             {/* &bg-color=white */}
             <iframe
-              src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=bg-white&color=text-black`}
+              src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=ffffff&color=30354b`}
               title="Mainstage"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
