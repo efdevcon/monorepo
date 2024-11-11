@@ -1417,6 +1417,14 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
   const [openTabs, setOpenTabs] = React.useState<any>({})
+  const start = moment.utc(session.slot_start).add(7, 'hours')
+  const day = start.date()
+  let streamUrl: any = ''
+  if (day == 11) streamUrl = session.slot_room?.youtubeStreamUrl_1
+  if (day == 12) streamUrl = session.slot_room?.youtubeStreamUrl_2
+  if (day == 13) streamUrl = session.slot_room?.youtubeStreamUrl_3
+  if (day == 14) streamUrl = session.slot_room?.youtubeStreamUrl_4
+  const noStreams = !playback && !streamUrl
 
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
@@ -1424,7 +1432,13 @@ export const Livestream = ({ session, className }: { session: SessionType; class
         <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
       </div>
 
-      <div className="aspect select-none">
+      <div
+        className={
+          !noStreams
+            ? 'aspect bg-white rounded-2xl'
+            : ' bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA] select-none h-24'
+        }
+      >
         {playback && session.sources_youtubeId && (
           <iframe
             src={`https://www.youtube.com/embed/${session.sources_youtubeId}`}
@@ -1445,10 +1459,11 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             />
           </>
         )}
-        {!playback && (
-          <div className="aspect">
+
+        {!playback && streamUrl && (
+          <div className="aspect bg-white">
             <iframe
-              src={session.slot_room?.youtubeStreamUrl_1}
+              src={streamUrl}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -1456,40 +1471,46 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             />
           </div>
         )}
+
+        {noStreams && (
+          <div className="text-sm text-[#7D52F4] font-semibold p-4">No livestream available for this session</div>
+        )}
       </div>
 
-      <CollapsedSection
-        className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
-        open={openTabs['translations']}
-        setOpen={() => {
-          const isOpen = openTabs['translations']
+      {session.slot_room?.translationUrl && (
+        <CollapsedSection
+          className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
+          open={openTabs['translations']}
+          setOpen={() => {
+            const isOpen = openTabs['translations']
 
-          const nextOpenState = {
-            ...openTabs,
-            ['translations']: true,
-          }
+            const nextOpenState = {
+              ...openTabs,
+              ['translations']: true,
+            }
 
-          if (isOpen) {
-            delete nextOpenState['translations']
-          }
+            if (isOpen) {
+              delete nextOpenState['translations']
+            }
 
-          setOpenTabs(nextOpenState)
-        }}
-      >
-        <CollapsedSectionHeader title="Translations" className="py-4 px-4" />
-        <CollapsedSectionContent>
-          <div className="aspect select-none px-4 pb-2">
-            {/* &bg-color=white */}
-            <iframe
-              src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=ffffff&color=30354b`}
-              title="Mainstage"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full rounded-xl"
-            />
-          </div>
-        </CollapsedSectionContent>
-      </CollapsedSection>
+            setOpenTabs(nextOpenState)
+          }}
+        >
+          <CollapsedSectionHeader title="Translations" className="py-4 px-4" />
+          <CollapsedSectionContent>
+            <div className="aspect select-none px-4 pb-2">
+              {/* &bg-color=white */}
+              <iframe
+                src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=ffffff&color=30354b&font-size=medium`}
+                title="Mainstage"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full rounded-xl"
+              />
+            </div>
+          </CollapsedSectionContent>
+        </CollapsedSection>
+      )}
 
       <div
         className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
