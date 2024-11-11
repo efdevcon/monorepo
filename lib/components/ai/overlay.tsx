@@ -529,7 +529,9 @@ const DevaBot = ({
               )}
 
               {activeTab === 1 && notifications && renderNotifications && (
-                <div className="w-full px-4">{renderNotifications()}</div>
+                <div className="relative grow overflow-auto no-scrollbarw-full px-4">
+                  {renderNotifications()}
+                </div>
               )}
 
               {activeTab === 0 && (
@@ -654,8 +656,14 @@ const DevaBot = ({
                                               "Devcon Thrival Guide"
                                             )
                                           ) {
-                                            // TODO: add link to thrival guide
-                                            return;
+                                            otherReferences.push(
+                                              <Link
+                                                key={index}
+                                                href="https://thrive.devcon.org"
+                                              >
+                                                Devcon Thrival Guide
+                                              </Link>
+                                            );
                                           } else {
                                             otherReferences.push(
                                               <div key={index}>

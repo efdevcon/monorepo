@@ -1,38 +1,36 @@
+import React, { useEffect, useState } from 'react'
 import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen'
 import { sessionsAtom } from 'pages/_app'
-import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil'
-import { fetchEvent, fetchRooms, fetchSessionsByRoom } from 'services/event-data'
+import { useRecoilState } from 'recoil'
+import { fetchEvent, fetchRooms, fetchSessions, fetchSessionsByRoom } from 'services/event-data'
 import { Session } from 'types/Session'
 
 const VenuePage = (props: any) => {
-  const sessions = useRecoilValue(sessionsAtom)
+  const [sessions, setSessions] = useRecoilState(sessionsAtom)
 
-  console.log('sessions', sessions)
+  useEffect(() => {
+    // Set up polling every  minutes
+    const intervalId = setInterval(async () => {
+      try {
+        const sessions = await fetchSessions(Math.random().toString())
+        setSessions(sessions)
+
+        console.log('sessions refreshed')
+      } catch (error) {
+        // Silently ignore any errors during refetch
+        console.debug('Failed to refresh sessions:', error)
+      }
+    }, 30 * 60 * 1000) // 30 minutes in milliseconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId)
+  }, [])
 
   if (!sessions) return null
 
   const sessionsInRoom = sessions.filter(session => session.slot_room?.id === props.room.id)
 
   // const [sessions, setSessions] = useState<Session[]>(props.sessions || [])
-
-  // useEffect(() => {
-  //   setSessions(props.sessions)
-
-  //   // Set up polling every 5 minutes
-  //   const intervalId = setInterval(async () => {
-  //     try {
-  //       const updatedSessions = await fetchSessionsByRoom(props.room.id)
-  //       setSessions(updatedSessions)
-  //     } catch (error) {
-  //       // Silently ignore any errors during refetch
-  //       console.debug('Failed to refresh sessions:', error)
-  //     }
-  //   }, 5 * 60 * 1000) // 5 minutes in milliseconds
-
-  //   // Cleanup interval on component unmount
-  //   return () => clearInterval(intervalId)
-  // }, [props.sessions, props.room.id])
 
   return <RoomScreen {...props} sessions={sessionsInRoom} />
 }

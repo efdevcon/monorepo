@@ -31,8 +31,11 @@ import { ZupassTickets } from './ticket'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import DateText from 'assets/images/dc-7/date-text.png'
 import HackerCave from 'assets/images/dc-7/dashboard-highlights/hacker-cave.png'
+import IconClock from 'assets/icons/clock.svg'
 import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
 import Decompression from 'assets/images/dc-7/dashboard-highlights/decompression.png'
+import Ticketing from 'assets/images/dc-7/dashboard-highlights/ticketing.jpeg'
+import GetInvolved from 'assets/images/dc-7/dashboard-highlights/get-involved.jpg'
 import CityGuide from 'assets/images/dc-7/city-guide.png'
 import { useAppContext } from 'context/app-context'
 import moment from 'moment'
@@ -167,7 +170,53 @@ const Notifications = () => {
 const featuredClass =
   'text-center flex flex-col gap-3 group items-center rounded-2xl justify-between border border-solid border-[#E4E6EB] p-4 text-white shadow cursor-pointer text-sm shrink-0 w-[230px] max-w-[60%]'
 
+const DaySchedule = ({
+  dayNumber,
+  startTime,
+  endTime,
+  date,
+}: {
+  dayNumber: number
+  startTime: string
+  endTime: string
+  date: moment.Moment
+}) => {
+  const { now } = useAppContext()
+
+  if (!now) return null
+
+  const isToday = date.isSame(now, 'day')
+  const isTomorrow = date.isSame(now.clone().add(1, 'day'), 'day')
+
+  if (!isToday && !isTomorrow) {
+    return (
+      <div className="hidden md:flex items-center gap-2 text-[#717784]">
+        <p className="text-xs font-semibold">Day {dayNumber}</p>
+        <div className="flex items-center gap-2">
+          <IconClock className="icon" />
+          <p className="text-xs font-semibold">
+            {startTime} - {endTime}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className={cn('flex items-center gap-2 text-[#7d52f4]', !isToday && '!text-[#717784]')}>
+      <p className="text-xs font-semibold">Day {dayNumber}</p>
+      <div className="flex items-center gap-2">
+        <IconClock className="icon" style={{ '--color-icon': !isToday ? '#717784' : '#7d52f4' }} />
+        <p className="text-xs font-semibold">
+          {startTime} - {endTime}
+        </p>
+      </div>
+    </div>
+  )
+}
+
 export const Dashboard = () => {
+  const { now } = useAppContext()
   const accountContext = useAccountContext()
   const sessions = useRecoilValue(sessionsAtom)
   const speakers = useSpeakerData()
@@ -177,13 +226,20 @@ export const Dashboard = () => {
 
   return (
     <div className={cn(cardClass, 'lg:py-4 col-start-1 col-end-4')}>
-      <div className="flex justify-between mx-4 mb-4 border-bottom">
+      <div className="flex justify-between px-4 border-bottom">
         <div>
           <Image src={LogoFlowers} alt="Logo Flowers" className="max-w-[100px] translate-y-[-8px]" />
         </div>
         <div>
           <Image src={DateText} alt="Date Text" className="max-w-[120px]" />
         </div>
+      </div>
+
+      <div className="flex gap-4 w-full bg-[#f4f2ff] justify-between px-4 py-3 border-bottom mb-4">
+        <DaySchedule dayNumber={1} startTime="8:30 AM" endTime="9:00 PM" date={moment.utc('2024-11-12').utcOffset(7)} />
+        <DaySchedule dayNumber={2} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-13').utcOffset(7)} />
+        <DaySchedule dayNumber={3} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-14').utcOffset(7)} />
+        <DaySchedule dayNumber={4} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-15').utcOffset(7)} />
       </div>
 
       {loading && !account && (
@@ -193,6 +249,7 @@ export const Dashboard = () => {
           </div>
         </>
       )}
+
       {!loading && account && <LoggedIn />}
       {!loading && !account && (
         <div className="flex justify-between md:items-center gap-6 flex-col md:flex-row px-4 relative">
@@ -215,8 +272,8 @@ export const Dashboard = () => {
         </div>
       )}
 
-      {/* <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Highlights</div>
-      <Highlights /> */}
+      <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">Highlights</div>
+      <Highlights />
 
       <div className="flex justify-between gap-3 pb-4 mx-4 font-semibold border-top py-4 mt-4">
         Notifications
@@ -344,6 +401,7 @@ type HighlightCardProps = {
 }
 
 const HighlightCard = ({ title, to, description, image, className }: HighlightCardProps) => {
+  const draggableLink = useDraggableLink()
   return (
     <Link
       to={to}
@@ -351,6 +409,7 @@ const HighlightCard = ({ title, to, description, image, className }: HighlightCa
         'rounded-2xl shrink-0 bg-white border border-solid border-[#E4E6EB] w-[300px] rounded-2xl overflow-hidden group',
         className
       )}
+      {...draggableLink}
     >
       <Image
         src={image}
@@ -376,15 +435,29 @@ export const Highlights = () => {
             title="Opening Ceremonies"
             to="/schedule/P8W9LZ"
             description="The Ethereum conference for developers, thinkers, and makers is finally here. Join for the opening ceremonies and celebration of our community Reunion."
-            image={CityGuide}
+            image={Ticketing}
             className={now?.isAfter(moment.utc('2024-11-12T12:15:00Z').utcOffset(7)) ? 'hidden' : ''}
           />
 
           <HighlightCard
-            to="/schedule/P8W9LZ"
+            to="https://thrive.devcon.org"
+            title="Thrival Guide"
+            description="The Devcon Thrival Guide is your one-stop-shop for all the information you need to make the most of your Devcon experience."
+            image={CityGuide}
+          />
+
+          <HighlightCard
+            to="https://devcon.org/experiences#hacker-cave"
             title="Hacker Cave"
             description="Visit the Hacker Cave to experience a truly immersive co-working space. Kept open late into the night to accomadate your needs."
             image={HackerCave}
+          />
+
+          <HighlightCard
+            to="https://vote.devcon.org"
+            title="Support Ethereum dashboards that matter to you"
+            description="Participate in the Devcon quadratic voting round, and help decide how funds will be allocated to the most valuable Ethereum dashboards."
+            image={GetInvolved}
           />
           {/* <HighlightCard
             title="Deva Awards"
@@ -392,7 +465,7 @@ export const Highlights = () => {
             image={DevaAwards}
           /> */}
           <HighlightCard
-            to="/schedule/P8W9LZ"
+            to="https://devcon.org/experiences#spaces"
             title="Decompression Room"
             description="Overwhelmed with the amount of new friends and knowledge you’ve gathered. Come  de-stress and breathe at the decompression room. "
             image={Decompression}

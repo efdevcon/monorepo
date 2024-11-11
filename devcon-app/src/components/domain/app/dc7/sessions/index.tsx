@@ -683,10 +683,6 @@ const filterTagClass = (selected: boolean) => {
   )
 }
 
-const OpenAndClose = () => {
-  return <div className="flex gap-2"></div>
-}
-
 export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any }) => {
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   const [sessionFilterOpen, setSessionFilterOpen] = useRecoilState(sessionFilterOpenAtom)
@@ -705,10 +701,10 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   console.log(filterOptions, 'filterOptions')
 
   return (
-    <div className="flex flex-col gap-4 p-4 pb-0">
-      <div>
+    <div className="flex flex-col overflow-auto no-scrollbar max-h-[calc(100vh-100px)] gap-4 p-4 pb-0">
+      <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
-          <div>Type</div>
+          <div>Session Type</div>
           <div
             onClick={() => {
               setSessionFilter({
@@ -734,7 +730,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      <div>
+      <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
           <div>Tracks</div>
           <div
@@ -766,7 +762,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      <div>
+      <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
           Expertise
           <div
@@ -795,7 +791,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
         </div>
       </div>
 
-      <div>
+      <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
           Rooms
           <div
@@ -878,6 +874,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   const stickyRef = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState(false)
   const { isPersonalizedSchedule } = usePersonalized()
+  let filterCount = 0
 
   useEffect(() => {
     const stickyElement = stickyRef.current
@@ -958,6 +955,8 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                 const computeFilterShorthand = (filter: { [key: string]: boolean }, key: string) => {
                   const filterAsKeys = Object.keys(filter)
 
+                  filterCount += filterAsKeys.length
+
                   if (filterAsKeys.length === 0) return
                   if (filterAsKeys.length === 1) return filterAsKeys[0]
 
@@ -980,7 +979,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
             <div
               onClick={() => setSessionFilterOpen(!sessionFilterOpen)}
               className={cn(
-                'flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
+                'relative flex shrink-0 items-center xl:w-[40px] xl:h-[40px] w-[38px] h-[38px] justify-center text-xl cursor-pointer rounded-full p-2.5 hover:bg-[#dfd8fc] transition-all duration-300',
                 (sessionFilterOpen || isAdvancedFilterApplied(sessionFilter)) &&
                   'bg-[#dfd8fc] fill-[#7D52F4] border border-solid border-[#cdbaff]'
               )}
@@ -992,6 +991,11 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                   fontSize: '24px',
                 }}
               />
+              {filterCount > 0 && (
+                <div className="absolute -top-[4px] -right-[4px] bg-[#ed3636] text-white rounded-full w-5 h-5 md:w-[1.1rem] md:h-[1.1rem] lg:-top-1 lg:-right-1 flex items-center justify-center text-xs lg:text-[12px]">
+                  {filterCount}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -1816,30 +1820,32 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </>
       )}
 
-      <Livestream session={session} className="border-top pt-2 shrink-0 lg:hidden" />
-
       {!standalone && (
-        <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
-          <div className="flex gap-2 w-full">
-            <Button
-              onClick={() => {
-                setSelectedSession(null)
-              }}
-              color="purple-2"
-              className="w-auto grow-0 shrink-0 !py-2"
-              fat
-            >
-              <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
-            </Button>
+        <>
+          <Livestream session={session} className="border-top pt-2 shrink-0" />
 
-            <Link to={`/schedule/${session.sourceId}`} className="flex w-auto grow shrink-0">
-              <Button color="purple-2" className="grow !py-2" fat fill>
-                <ExpandedIcon className="icon mr-2" style={{ fontSize: '14px' }} />
-                Expand Session
+          <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
+            <div className="flex gap-2 w-full">
+              <Button
+                onClick={() => {
+                  setSelectedSession(null)
+                }}
+                color="purple-2"
+                className="w-auto grow-0 shrink-0 !py-2"
+                fat
+              >
+                <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
               </Button>
-            </Link>
+
+              <Link to={`/schedule/${session.sourceId}`} className="flex w-auto grow shrink-0">
+                <Button color="purple-2" className="grow !py-2" fat fill>
+                  <ExpandedIcon className="icon mr-2" style={{ fontSize: '14px' }} />
+                  Expand Session
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   )

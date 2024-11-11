@@ -19,6 +19,7 @@ const whitelist = [
   'clw802l4a0110arj85elqodpr',
   'clw802l3l0000arj8ztdk6c9f',
   'cm30ck3og001norhz179r8727',
+  'clw802l3n0037arj8mhnrbluw',
 ]
 
 const isAdmin = (req: CustomRequest, res: Response, next: NextFunction) => {
