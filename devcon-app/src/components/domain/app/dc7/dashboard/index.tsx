@@ -236,10 +236,10 @@ export const Dashboard = () => {
       </div>
 
       <div className="flex gap-4 w-full bg-[#f4f2ff] justify-between px-4 py-3 border-bottom mb-4">
-        <DaySchedule dayNumber={1} startTime="8:30 AM" endTime="9:00 PM" date={moment.utc('2024-11-12').utcOffset(7)} />
-        <DaySchedule dayNumber={2} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-13').utcOffset(7)} />
-        <DaySchedule dayNumber={3} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-14').utcOffset(7)} />
-        <DaySchedule dayNumber={4} startTime="8:00 AM" endTime="9:00 PM" date={moment.utc('2024-11-15').utcOffset(7)} />
+        <DaySchedule dayNumber={1} startTime="8:30 AM" endTime="8:00 PM" date={moment.utc('2024-11-12').utcOffset(7)} />
+        <DaySchedule dayNumber={2} startTime="9:00 AM" endTime="8:00 PM" date={moment.utc('2024-11-13').utcOffset(7)} />
+        <DaySchedule dayNumber={3} startTime="9:00 AM" endTime="8:00 PM" date={moment.utc('2024-11-14').utcOffset(7)} />
+        <DaySchedule dayNumber={4} startTime="9:00 AM" endTime="8:00 PM" date={moment.utc('2024-11-15').utcOffset(7)} />
       </div>
 
       {loading && !account && (

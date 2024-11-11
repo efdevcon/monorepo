@@ -6,7 +6,7 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import { SessionCard, getTrackLogo } from './index'
 import { useRecoilState } from 'recoil'
 import { sessionFilterAtom } from 'pages/_app'
-import useDimensions from "react-cool-dimensions";
+import useDimensions from 'react-cool-dimensions'
 import { cn } from 'lib/shadcn/lib/utils'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
@@ -15,7 +15,6 @@ const RoomGrid = ({ rooms }: { rooms: string[] }) => {
   // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
   // const { observe } = useDimensions({
   //   onResize: ({ width }) => {
-
 
   //     setIsNativeScroll(isNativeScroll)
   //   },
@@ -29,10 +28,7 @@ const RoomGrid = ({ rooms }: { rooms: string[] }) => {
 
   return (
     <div
-      className={cn(
-        "flex flex-col shrink-0 z-[5] left-0",
-        isNativeScroll ? "absolute" : "relative",
-      )}
+      className={cn('flex flex-col shrink-0 z-[5] left-0', isNativeScroll ? 'absolute' : 'relative')}
       style={{ gridTemplateColumns: `repeat(${rooms.length}, minmax(80px, 1fr))` }}
     >
       <div className="p-2 h-[40px] flex justify-center items-center bg-[#F5F7FA] !bg-transparent borderz border-gray-100 border-solid">
@@ -44,13 +40,7 @@ const RoomGrid = ({ rooms }: { rooms: string[] }) => {
           key={index}
           className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100 glass"
         >
-          {room === 'Decompression Room' ? (
-            <>
-              Decompression<br></br>Room
-            </>
-          ) : (
-            room
-          )}
+          {room === 'Decompression Room' ? <>Decompression</> : room}
         </div>
       ))}
     </div>
@@ -93,18 +83,17 @@ const DayGrid = ({
         <div
           className={cn(
             'grid shrink-0 sticky top-[100px] lg:top-[106px] z-[6] !border-none pointer-events-none',
-            isNativeScroll ? '!overflow-x-auto !translate-x-0' : 'glass',
-
+            isNativeScroll ? '!overflow-x-auto !translate-x-0' : 'glass'
           )}
           style={{
-            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`
+            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`,
           }}
           // onScroll={(e: any) => {
           //   console.log('scroll', e.target.scrollLeft)
           //   e.preventDefault()
           //   e.stopPropagation()
           // }}
-          ref={(element) => {
+          ref={element => {
             // @ts-ignore
             scrollSyncRef.current = element!
             observe(element)
@@ -237,30 +226,32 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
 
   if (!sessions.length) return null
 
-
-
   return (
     <div className="flex flex-col gap-[36px]" style={{ contain: 'paint' }}>
       {days.map(day => {
-        const sessionsForDay = sessions.filter(session => moment.utc(session.slot_start).add(7, 'hours').format('MMM DD') === day)
+        const sessionsForDay = sessions.filter(
+          session => moment.utc(session.slot_start).add(7, 'hours').format('MMM DD') === day
+        )
 
         if (!sessionsForDay.length) return null
 
-        const rooms = Array.from(new Set(sessionsForDay.map(session => session.slot_room?.name))).sort((a: any, b: any) => {
-          if (a === 'Main Stage') return -1
-          if (b === 'Main Stage') return 1
-      
-          if (a.toLowerCase().startsWith('stage')) {
-            if (b.toLowerCase().startsWith('stage')) {
-              return a.localeCompare(b)
+        const rooms = Array.from(new Set(sessionsForDay.map(session => session.slot_room?.name))).sort(
+          (a: any, b: any) => {
+            if (a === 'Main Stage') return -1
+            if (b === 'Main Stage') return 1
+
+            if (a.toLowerCase().startsWith('stage')) {
+              if (b.toLowerCase().startsWith('stage')) {
+                return a.localeCompare(b)
+              }
+              return -1
             }
-            return -1
+
+            if (b.toLowerCase().startsWith('stage')) return 1
+
+            return a.localeCompare(b)
           }
-      
-          if (b.toLowerCase().startsWith('stage')) return 1
-      
-          return a.localeCompare(b)
-        }) as string[]
+        ) as string[]
 
         const sessionsByRoom: any = {}
 
