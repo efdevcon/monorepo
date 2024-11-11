@@ -193,8 +193,18 @@ export async function UpdateSessionSources(req: Request, res: Response) {
       },
       data: newSessionData,
     })
+    console.log('Updated session', updatedData.id)
 
-    // update AI transcripts
+    const version = Date.now().toString()
+    console.log('Updating event version...', version)
+    await client.event.update({
+      where: { id: 'devcon-7' },
+      data: {
+        version,
+      },
+    })
+
+    // TODO: update AI transcripts
 
     await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 
