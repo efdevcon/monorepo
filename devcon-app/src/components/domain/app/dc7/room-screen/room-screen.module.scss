@@ -8,6 +8,7 @@
 
 .room-screen {
   height: 56.25vw;
+  width: 100vw;
   // font-size: 5vw;
   // border: 1px solid black;
   display: flex;
@@ -17,6 +18,27 @@
   :global {
     .gradient {
       background: linear-gradient(to right, #7a3aff, #633cff, #bc52f1) !important;
+    }
+
+    .gradient-text {
+      // position: relative;
+
+      &::before {
+        content: '';
+        // z-index: 5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(122, 58, 255, 1) 30%, transparent);
+        pointer-events: none;
+      }
+    }
+
+    .text-0-75, p, div {
+      font-size: 0.75vw;
+      line-height: 1.5em;
     }
 
     .text-1, p, div {
@@ -35,6 +57,10 @@
     .text-2 {
       font-size: 2vw;
       line-height: 1.5em;
+    }
+
+    .text-2-5 {
+      font-size: 2.5vw;
     }
 
     .text-3 {
@@ -204,7 +230,15 @@
   .right {
     position: relative;
     padding: 2vw;
+    padding-top: 0px;
     width: 74%;
+    // max-width: 74%;
+    box-sizing: border-box;
+
+    > * {
+      flex-shrink: 0;
+      // max-width: 100%;
+    }
 
     .first-row {
       display: flex;
@@ -220,10 +254,20 @@
 
     .speakers {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      border-bottom: 1px solid $colors-standard-border-color;
-      padding: 1vw 0px;
+      // flex-wrap: wrap;
+      z-index: 1;
+      // align-items: center;
+      // border-bottom: 1px solid $colors-standard-border-color;
+      padding: 0.5vw 0px;
+
+      // background: rgba(255, 255, 255, 0.465);
+      // box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      // backdrop-filter: blur(8px);
+      // -webkit-backdrop-filter: blur(8px);
+      // border: 1px solid rgba(255, 255, 255, 0.3);
+
+
+      
 
       .speaker {
         &:first-child {
@@ -243,8 +287,8 @@
         
           .wrapper {
             position: relative;
-            width: 3vw;
-            height: 3vw;
+            width: 4vw;
+            height: 4vw;
         
             img {
               border-radius: 50%;
@@ -272,10 +316,14 @@
 
       .livestreams, .upcoming {
         flex-shrink: 0;
+        flex-grow: 0;
         flex-basis: 50%;
       }
 
       .upcoming {
+        position: relative;
+
+        mask-image: linear-gradient(to bottom, white 80%, transparent 93%, transparent);
         > * {
           &:nth-child(2) {
             margin-top: 0.6vw !important;
@@ -290,10 +338,10 @@
         .body{
           display: flex;
           flex-direction: column;
-
+          gap: 1vw;
 
           > * {
-            margin-top: 0.5vw;
+            flex-shrink: 0;
 
             &:first-child {
               margin-top: 0px;
@@ -309,11 +357,14 @@
 
         .qr-code {
           flex-basis: 50%;
+          flex-shrink: 0;
           margin: 3vw;
-          margin-top: 4vw;
+          margin-right: 3.25vw;
+          margin-left: 2vw;
+          margin-top: 5.25vw;
           position: relative;
           padding: 1vw;
-          padding-bottom: 0.8vw;
+          padding-bottom: 0.9vw;
           flex-grow: 0;
           align-self: flex-start;
           border: 1px solid $colors-standard-border-color;

@@ -27,7 +27,13 @@ import Floor2 from 'assets/images/dc-7/venue/venue-map.png'
 import Floor3 from 'assets/images/dc-7/venue/venue-map.png'
 import Floor4 from 'assets/images/dc-7/venue/venue-map.png'
 import Floor5 from 'assets/images/dc-7/venue/venue-map.png'
+import Stage12 from 'assets/images/dc-7/venue/stages/stage-1-2.png'
+import Stage34 from 'assets/images/dc-7/venue/stages/stage-3-4.png'
+import Stage56 from 'assets/images/dc-7/venue/stages/main-stage.png'
 import cn from 'classnames'
+import { notificationsAtom } from 'pages/_app'
+import { useRecoilState } from 'recoil'
+import { Button } from 'lib/components/button'
 // const trackID = getTrackID(props.track)
 
 declare const VALID_LAYOUT_VALUES: readonly ['fill', 'fixed', 'intrinsic', 'responsive', 'raw', undefined]
@@ -43,14 +49,11 @@ export const getFloorImage = (floor: string, className = '') => {
 }
 
 export const getRoomImage = (room: string, className = '') => {
-  console.log(room)
-  if (room === 'stage-1') return <Image src={Floor1} className={className} alt={room} id="venue-image" priority />
-  if (room === 'stage-2') return <Image src={Floor2} className={className} alt={room} id="venue-image" priority />
-  if (room === 'stage-3') return <Image src={Floor3} className={className} alt={room} id="venue-image" priority />
-  if (room === 'stage-4') return <Image src={Floor4} className={className} alt={room} id="venue-image" priority />
-  if (room === 'stage-5') return <Image src={Floor5} className={className} alt={room} id="venue-image" priority />
-  if (room === 'main-stage')
-    return <Image src={FloorBasement} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-1') return <Image src={Stage12} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-2') return <Image src={Stage12} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-3') return <Image src={Stage34} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-4') return <Image src={Stage34} className={className} alt={room} id="venue-image" priority />
+  if (room === 'main-stage') return <Image src={Stage56} className={className} alt={room} id="venue-image" priority />
 }
 
 type ScreenProps = {
@@ -63,13 +66,13 @@ const SessionBar = ({ session }: { session: Session }) => {
   return (
     <div
       className={cn(
-        'rounded-full flex items-center gap-[0.5em] p-[0.5em] border border-solid border-[#dfd8fc]',
+        'rounded-full flex items-center mt-[1vw] gap-[0.5em] p-[0.5em] pr-[1em] border border-solid border-[#dfd8fc] self-start',
         getTrackColor(session.track)
       )}
     >
       <p
         className={cn(
-          'rounded-full px-[0.75em] py-[0.25em] uppercase font-semibold text-1 bg-[#dfd8fc]'
+          'rounded-full px-[0.75em] py-[0.25em] uppercase font-bold text-0-75 bg-[#dfd8fc]'
           // getExpertiseColor(session.expertise || '')
         )}
       >
@@ -77,14 +80,20 @@ const SessionBar = ({ session }: { session: Session }) => {
       </p>
       <p
         className={cn(
-          'rounded-full px-[0.75em] py-[0.25em] uppercase font-semibold text-1',
+          'rounded-full px-[0.75em] py-[0.25em] uppercase font-bold text-0-75',
           getExpertiseColor(session.expertise || '')
         )}
       >
         {session.expertise}
       </p>
-      <div className="flex items-center gap-[0.5em] text-center">
-        <Image src={getTrackLogo(session.track)} alt={session.track} width={20} height={20} />
+      <div className="flex items-center gap-[0.5em] text-center ml-[0.5em]">
+        <Image
+          src={getTrackLogo(session.track)}
+          alt={session.track}
+          width={20}
+          height={20}
+          className="w-[1.5em] h-[1.5em] object-contain"
+        />
         <p className="text-1 font-semibold">{session.track}</p>
       </div>
     </div>
@@ -93,6 +102,7 @@ const SessionBar = ({ session }: { session: Session }) => {
 
 export const RoomScreen = (props: ScreenProps) => {
   const { now } = useAppContext()
+  const [notifications, setNotifications] = useRecoilState(notificationsAtom)
   // const pz = usePanzoom()
 
   const getDayLabel = (date: any) => {
@@ -118,7 +128,7 @@ export const RoomScreen = (props: ScreenProps) => {
         return moment.utc(a.slot_start).isBefore(moment.utc(b.slot_start)) ? -1 : 1
       })
 
-    return upcoming.slice(0, 3)
+    return upcoming.slice(0, 2)
     // Get upcoming sessions
   })()
 
@@ -210,11 +220,10 @@ export const RoomScreen = (props: ScreenProps) => {
         </div>
       </div>
 
-      <div className={css['right']}>
+      <div className={cn(css['right'], 'flex flex-col')}>
         {currentSession && (
           <>
             <div className={css['first-row']}>
-              <SessionBar session={currentSession} />
               {/* <p className="text-1">Session</p>
               <p className="text-1 bold">{currentSession.type}</p>
               <p className="text-1 bold">{currentSession.track}</p>
@@ -228,11 +237,48 @@ export const RoomScreen = (props: ScreenProps) => {
               {sessionIsLive && <p className="text-1 live bold">Happening Now</p>} */}
             </div>
 
-            <div className={css['second-row']}>
-              <p className="text-3 clamp-2">{currentSession.title}</p>
+            <div className={cn(css['second-row'], 'flex-grow flex justify-between relative')}>
+              <div className="flex flex-col gap-4 w-[60%]">
+                <div className="absolute bottom-0 right-[-2vw] left-[-2vw] h-[6.5em] bg-black z-[-1] glass"></div>
+                <SessionBar session={currentSession} />
+
+                <p className="text-2-5 clamp-3 !leading-[1.3em]">{currentSession.title}</p>
+
+                <div className={cn(css['speakers'], 'grow flex-col justify-end flex-nowrap nowrap')}>
+                  {/* <p className={css['title']}>Speakers</p> */}
+                  <div className="glass flex items-center gap-[0.5em]">
+                    {currentSession.speakers.map(speaker => {
+                      return (
+                        <div className={cn(css['speaker'], 'shrink-0')} key={speaker.id}>
+                          <div className={css['thumbnail']}>
+                            <div className={css['wrapper']}>
+                              <Image
+                                src={speaker.avatar || makeBlockie(speaker.name || speaker.id)}
+                                alt={speaker.name}
+                                objectFit="cover"
+                                layout="fill"
+                              />
+                            </div>
+                          </div>
+                          <p className="bold">{speaker.name}</p>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* <div className="fixed botto-0 right-0 transform -translate-y-1/4 translate-x-1/4 z-[-1]"> */}
+              <Image
+                src={getTrackLogo(currentSession.track)}
+                alt={currentSession.track}
+                quality="100"
+                className="object-cover absolute w-[60%] h-full right-[-20%] right-0 bottom-0 z-[-2]"
+              />
+              {/* </div> */}
             </div>
 
-            <div className={css['speakers']}>
+            {/* <div className={css['speakers']}>
               <p className={css['title']}>Speakers</p>
 
               {currentSession.speakers.map(speaker => {
@@ -252,7 +298,7 @@ export const RoomScreen = (props: ScreenProps) => {
                   </div>
                 )
               })}
-            </div>
+            </div> */}
 
             <div className={css['description']}>
               <p className={css['title']}>Description</p>
@@ -262,34 +308,39 @@ export const RoomScreen = (props: ScreenProps) => {
           </>
         )}
 
-        <div className={css['livestreams-upcoming']}>
+        <div className={cn(css['livestreams-upcoming'], 'grow')}>
           {currentSession && (
-            <div className={css['livestreams']}>
-              <div className={css['body']}>
-                <p className={css['title']}>Resources / Livestreams</p>
-                <p>Please visit the session on the Devcon App to access more information. </p>
+            <div className="flex flex-col gap-[1em]">
+              <div className={cn(css['livestreams'], '')}>
+                <div className={css['body']}>
+                  <p className={css['title']}>Resources / Livestreams</p>
+                  <p>Please visit the session on the Devcon App to access more information. </p>
 
-                <p>If room capacity is full, please watch the session on live stream.</p>
-                <p>
-                  Network Name: <b>DevconBogota</b>
-                  <br />
-                  Wifi Password: <b>runafullnode</b>
-                </p>
+                  <p>If room capacity is full, please watch the session on live stream.</p>
 
-                {/* <div className={css['session-link']}>app.devcon.org/schedule/{currentSession.id}</div> */}
-              </div>
+                  <div className="rounded-xl border border-solid font-semibold border-[#dfd8fc] p-[0.5em] px-[1em] self-start shrink-0 text-0-75">
+                    https://app.devcon.org/schedule/{currentSession.sourceId}
+                  </div>
 
-              <div className={cn(css['qr-code'], 'rounded-xl')}>
-                <QRCode
-                  size={256}
-                  style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-                  value={`app.devcon.org/schedule/${currentSession.id}`}
-                  viewBox={`0 0 256 256`}
-                />
+                  <p>
+                    Network Name: <b>DevconSEA</b>
+                    <br />
+                    Wifi Password: <b>infinitegarden</b>
+                  </p>
+                </div>
+
+                <div className={cn(css['qr-code'], 'rounded-xl max-w-[10em] max-h-[10em]')}>
+                  <QRCode
+                    size={256}
+                    style={{ height: 'auto', maxWidth: '10em', width: '100%' }}
+                    value={`app.devcon.org/schedule/${currentSession.sourceId}`}
+                    viewBox={`0 0 256 256`}
+                  />
+                </div>
               </div>
             </div>
           )}
-          <div className={css['upcoming']}>
+          <div className={cn(css['upcoming'], 'min-h-[12em]')}>
             <p className={css['title']}>Upcoming Sessions</p>
 
             {upcomingSessions.length === 0 && <p>There are no upcoming sessions</p>}
@@ -299,11 +350,25 @@ export const RoomScreen = (props: ScreenProps) => {
             ))}
           </div>
         </div>
-        <div className={css['updates-row']}>
-          <div className="tag red sm">Updates</div>
-          <p>Wifi password: &apos;runafullnode&apos;</p>
+        <div className={cn(css['updates-row'], 'flex items-center gap-[0.5em] h-[3em] !bg-[#F8F4FF]')}>
+          <p
+            className={cn(
+              'rounded-full px-[0.75em] py-[0.25em] uppercase font-bold text-0-75 bg-[#dfd8fc] shrink-0'
+              // getExpertiseColor(session.expertise || '')
+            )}
+          >
+            Notifications
+          </p>
 
-          <div className="">
+          {notifications.slice(0, 1).map((notification: any) => (
+            <p key={notification.title} className="whitespace-nowrap shrink-0">
+              {notification.message}
+            </p>
+          ))}
+
+          {/* <p>Wifi password: &apos;runafullnode&apos;</p> */}
+
+          <div className="whitespace-nowrap">
             If the room is full please view on livestream or ask volunteers for any overflow rooms.
           </div>
         </div>

@@ -334,15 +334,15 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
       )}
       // style={{ fontSize: '16px' }} // Base font size to calculate ems from
     >
-      <div className="flex justify-between" style={{ minHeight: '6.25em' }}>
+      <div className="flex justify-between" style={{ minHeight: '5.25em' }}>
         <div
           className={cn(
             'basis-[6.25em] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
             getTrackColor(session.track)
           )}
         >
-          <div className="absolute top-0 flex w-full self-start font-semibold p-[0.125em] z-[1] line-clamp-3 break-words ">
-            <div className="text-white z-[2] line-clamp-4 !text-[0.8em]">{session.track}</div>
+          <div className="absolute top-0 flex w-full self-start font-semibold p-[0.6em] pt-[0.4em] z-[1] line-clamp-3 break-words gradient-text">
+            <div className="text-white z-[2] line-clamp-3 !text-[0.8em] !leading-[1.2em]">{session.track}</div>
           </div>
 
           {trackLogo !== CityGuide && (
@@ -355,7 +355,7 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
             />
           )}
 
-          <div className="absolute bottom-[0.0625em] w-full left-[0.0625em] flex">
+          <div className="absolute bottom-[0.0625em] w-full left-[0.2em] flex">
             <div
               className={cn(
                 'text-black rounded-full px-[0.625em] py-[0.3125em] font-semibold border border-width-[0.1vw] border-solid border-[transparent]',
@@ -373,13 +373,13 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
 
         <div className="flex flex-col justify-between grow p-[0.5em]">
           <div style={{ marginBottom: '0.125em' }}>
-            <p className="font-medium text-gray-800 line-clamp-2 text-1">{session.title}</p>
+            <p className="font-medium text-gray-800 line-clamp-2 text-1 !leading-[1.2em]">{session.title}</p>
           </div>
 
           <div>
-            <div className="flex items-center gap-[0.5em] text-1-25">
+            <div className="flex items-center gap-[0.5em] text-1">
               <IconClock className="icon flex shrink-0" style={{ fontSize: '0.8em' }} />
-              <p className="shrink-0 text-gray-600">
+              <p className="shrink-0 text-gray-600 text-0-75">
                 {start.format('MMM Do')} — {start.format('h:mm A')} - {end.format('h:mm A')}
               </p>
             </div>
@@ -392,9 +392,11 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
             </div> */}
 
             {session.speakers && session.speakers.length > 0 && (
-              <div className="flex items-center gap-[0.5em] text-1-25">
+              <div className="flex items-center gap-[0.5em] text-1">
                 <IconSpeaker className="icon shrink-0" style={{ fontSize: '0.8em' }} />
-                <p className="text-gray-600 line-clamp-1">{session.speakers.map(speaker => speaker.name).join(', ')}</p>
+                <p className="text-gray-600 line-clamp-1 text-0-75">
+                  {session.speakers.map(speaker => speaker.name).join(', ')}
+                </p>
               </div>
             )}
           </div>
@@ -414,7 +416,7 @@ export const SessionCard = ({
   tiny?: boolean
   scalePercentages?: boolean
 }) => {
-  console.log(session, 'session')
+  x
   const { account, setSessionBookmark } = useAccountContext()
   const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
