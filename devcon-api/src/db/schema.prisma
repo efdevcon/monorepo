@@ -32,6 +32,13 @@ model Room {
   description String?
   info String?
   capacity Int?
+
+  youtubeStreamUrl_1 String?
+  youtubeStreamUrl_2 String?
+  youtubeStreamUrl_3 String?
+  youtubeStreamUrl_4 String?
+  translationUrl String?
+
   events Event[]
   sessions Session[]
 }
@@ -73,6 +80,9 @@ model Session {
   sources_ipfsHash String?
   sources_livepeerId String?
   sources_streamethId String?
+
+  transcript_vtt String?
+  transcript_text String?
 
   speakers Speaker[]
   event Event @relation(fields: [eventId], references: [id])

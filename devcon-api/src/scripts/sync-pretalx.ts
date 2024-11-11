@@ -84,7 +84,18 @@ async function syncRooms() {
   }
 
   for (const room of rooms) {
-    fs.writeFileSync(`./data/rooms/devcon-7/${room.id}.json`, JSON.stringify(room, null, 2))
+    const roomFs = roomsFs.find((r: any) => r.id === room.id)
+    fs.writeFileSync(
+      `./data/rooms/devcon-7/${room.id}.json`,
+      JSON.stringify(
+        {
+          ...roomFs,
+          ...room,
+        },
+        null,
+        2
+      )
+    )
   }
 
   // Update event data
