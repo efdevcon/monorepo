@@ -1420,10 +1420,10 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const start = moment.utc(session.slot_start).add(7, 'hours')
   const day = start.date()
   let streamUrl: any = ''
-  if (day == 11) streamUrl = session.slot_room?.youtubeStreamUrl_1
-  if (day == 12) streamUrl = session.slot_room?.youtubeStreamUrl_2
-  if (day == 13) streamUrl = session.slot_room?.youtubeStreamUrl_3
-  if (day == 14) streamUrl = session.slot_room?.youtubeStreamUrl_4
+  if (day == 12) streamUrl = session.slot_room?.youtubeStreamUrl_1
+  if (day == 13) streamUrl = session.slot_room?.youtubeStreamUrl_2
+  if (day == 14) streamUrl = session.slot_room?.youtubeStreamUrl_3
+  if (day == 15) streamUrl = session.slot_room?.youtubeStreamUrl_4
   const noStreams = !playback && !streamUrl
 
   return (
