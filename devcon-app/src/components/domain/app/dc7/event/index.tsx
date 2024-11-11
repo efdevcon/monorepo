@@ -15,7 +15,7 @@ import { Link } from 'components/common/link'
 // import Panzoom, { PanZoom } from 'panzoom'
 
 export const cardClass =
-  'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] rounded-3xl relative lg:bg-[#fbfbfb]'
+  'flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] lg:rounded-3xl relative lg:bg-[#fbfbfb]'
 
 // const Switch = () => {
 //   return (
@@ -190,7 +190,12 @@ export const Venue = (props: any) => {
   return (
     <>
       <div className={cn(cardClass, 'my-4 lg:max-w-[850px] !bg-[#c774dd1a]')}>
-        <div className={cn(css['panzoom'], 'border-t border-solid border-[#E1E4EA] border-b lg:border-none')}>
+        <div
+          className={cn(
+            css['panzoom'],
+            'border-t border-solid border-[#E1E4EA] border-b lg:border-none aspect-[5/5] lg:aspect-[5905/3543]'
+          )}
+        >
           <div className={cn(css['image'], 'lg:rounded-3xl')} id="image-container">
             <Image
               src={VenueMap}

@@ -34,6 +34,7 @@ import cn from 'classnames'
 import { notificationsAtom } from 'pages/_app'
 import { useRecoilState } from 'recoil'
 import NoResults from 'assets/images/state/no-results.png'
+import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 // import LogoSimple from 'assets/images/dc-7/venue/logo-simple.svg'
 // import { Button } from 'lib/components/button'
 // const trackID = getTrackID(props.track)
@@ -141,7 +142,7 @@ export const RoomScreen = (props: ScreenProps) => {
         return moment.utc(a.slot_start).isBefore(moment.utc(b.slot_start)) ? -1 : 1
       })
 
-    return upcoming.slice(0, 2)
+    return upcoming.slice(0, 3)
     // Get upcoming sessions
   })()
 
@@ -378,12 +379,12 @@ export const RoomScreen = (props: ScreenProps) => {
             {upcomingSessions.length === 0 && (
               <div className="flex flex-col justify-center items-center h-full !mt-0">
                 <Image src={NoResults} alt="No results" className="w-[50%]" />
-                <div className="mt-[0.5em] text-sm text-[#535353] font-semibold">There are no upcoming sessions</div>
+                {/* <div className="mt-[0.5em] text-sm text-[#535353] font-semibold">There are no upcoming sessions</div> */}
               </div>
             )}
           </div>
         </div>
-        <div className={cn(css['updates-row'], 'flex items-center gap-[0.5em] h-[3em] !bg-[#F8F4FF]')}>
+        <div className={cn(css['updates-row'], 'flex items-center h-[3em] !bg-[#F8F4FF]')}>
           <p
             className={cn(
               'rounded-full px-[0.75em] py-[0.25em] uppercase font-bold text-0-75 bg-[#dfd8fc] shrink-0'
@@ -393,17 +394,19 @@ export const RoomScreen = (props: ScreenProps) => {
             Notifications
           </p>
 
-          {notifications.slice(0, 1).map((notification: any) => (
-            <p key={notification.title} className="whitespace-nowrap shrink-0">
-              {notification.message}
-            </p>
-          ))}
+          <InfiniteScroll>
+            {notifications.slice(0, 1).map((notification: any) => (
+              <p key={notification.title} className="whitespace-nowrap shrink-0 mr-[2em]">
+                {notification.message}
+              </p>
+            ))}
 
-          {/* <p>Wifi password: &apos;runafullnode&apos;</p> */}
+            {/* <p>Wifi password: &apos;runafullnode&apos;</p> */}
 
-          <div className="whitespace-nowrap">
-            If the room is full please view on livestream or ask volunteers for any overflow rooms.
-          </div>
+            <div className="whitespace-nowrap mr-[2em]">
+              If the room is full please view on livestream or ask volunteers for any overflow rooms.
+            </div>
+          </InfiniteScroll>
         </div>
       </div>
     </div>
