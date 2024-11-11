@@ -117,12 +117,12 @@ const SessionPage = (props: any) => {
         breadcrumbs={[{ label: 'Session' }]}
         renderActions={() => <SessionActions session={props.session} />}
       >
-        <div data-type="session-layout" className={cn('flex flex-row lg:gap-3 relative')}>
+        <div data-type="session-layout" className={cn('flex flex-col lg:flex-row lg:gap-3 relative')}>
           <div className={cn('basis-[50%] grow')}>
             <SessionView session={props.session} standalone />
           </div>
 
-          <div className={cn('basis-[50%] hidden lg:block')}>
+          <div className={cn('basis-[50%]')}>
             <Livestream session={props.session} className={cn(cardClass, 'p-4')} />
           </div>
         </div>

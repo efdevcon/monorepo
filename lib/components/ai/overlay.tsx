@@ -654,8 +654,10 @@ const DevaBot = ({
                                           } else if (
                                             file?.filename?.includes(
                                               "Devcon Thrival Guide"
-                                            )
+                                            ) &&
+                                            !referencesTracker["thrival"]
                                           ) {
+                                            referencesTracker["thrival"] = true;
                                             otherReferences.push(
                                               <Link
                                                 key={index}

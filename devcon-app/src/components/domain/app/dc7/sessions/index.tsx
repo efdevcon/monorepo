@@ -112,24 +112,39 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     const searchParams = new URLSearchParams(window.location.search)
     const newFilter = { ...initialFilterState } as any //...sessionFilter }
 
-    searchParams.forEach((value, key) => {
-      if (key in newFilter) {
-        if (key === 'text') {
-          // Handle text filter
-          newFilter.text = decodeURIComponent(value)
-        } else if (typeof newFilter[key] === 'object') {
-          // Handle object filters (type, track, expertise, etc)
-          const values = value.split(',').map(v => decodeURIComponent(v))
-          newFilter[key] = values.reduce((acc: any, val: string) => {
-            acc[val] = true
-            return acc
-          }, {})
-        } else if (value === '1') {
-          // Handle boolean values
-          newFilter[key] = true
+    console.log('searchParams', searchParams.size)
+
+    if (searchParams.size > 0) {
+      searchParams.forEach((value, key) => {
+        if (key in newFilter) {
+          if (key === 'text') {
+            // Handle text filter
+            newFilter.text = decodeURIComponent(value)
+          } else if (typeof newFilter[key] === 'object') {
+            // Handle object filters (type, track, expertise, etc)
+            const values = value.split(',').map(v => decodeURIComponent(v))
+            newFilter[key] = values.reduce((acc: any, val: string) => {
+              acc[val] = true
+              return acc
+            }, {})
+          } else if (value === '1') {
+            // Handle boolean values
+            newFilter[key] = true
+          }
         }
+      })
+    } else {
+      // Set current day automatically
+      const currentDay = moment.utc().add(7, 'hours').format('MMM D')
+      if (!currentDay) return
+      const validDays = ['Nov 12', 'Nov 13', 'Nov 14', 'Nov 15']
+
+      if (validDays.includes(currentDay)) {
+        setSessionFilter({ ...initialFilterState, day: { [currentDay]: true } })
+
+        return
       }
-    })
+    }
 
     setSessionFilter(newFilter)
   }, [])
@@ -164,7 +179,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
         return a.localeCompare(b)
       }),
-      other: ['Attending', 'Interested In', 'Upcoming', 'Past'],
+      other: ['Attending', 'Interested In', 'Upcoming'], //, 'Past'],
     }
   }, [sessions, timelineView])
 
@@ -192,12 +207,16 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
       const matchesAttending = sessionFilter.other['Attending'] && isAttending
       const matchesInterested = sessionFilter.other['Interested In'] && isInterested
-      const matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment.utc(session.slot_end).add(7, 'hours'))
-      const matchesUpcoming =
-        sessionFilter.other['Upcoming'] && now?.isBefore(moment.utc(session.slot_start).add(7, 'hours'))
+      const matchesFavorites =
+        matchesAttending ||
+        matchesInterested ||
+        (!sessionFilter.other['Attending'] && !sessionFilter.other['Interested In'])
+      // const matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment.utc(session.slot_end).add(7, 'hours'))
+      const matchesUpcoming = sessionFilter.other['Upcoming']
+        ? now?.isBefore(moment.utc(session.slot_start).add(7, 'hours'))
+        : true
 
-      const matchesOther =
-        matchesAttending || matchesInterested || matchesUpcoming || matchesPast || Object.keys(other).length === 0
+      const matchesOther = (matchesUpcoming && matchesFavorites) || Object.keys(other).length === 0
 
       return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
     })
@@ -442,6 +461,7 @@ export const SessionCard = ({
   //   const formatTime = (time: moment.Moment | undefined) => time?.format('HH:mm')
   const speakerNames = speakers ? speakers.map(speaker => speaker.name).join(', ') : ''
   const { now } = useAppContext()
+
   const bookmarkedSessions = account?.sessions
   const bookmarkedSession = bookmarkedSessions?.find(bookmark => bookmark.id === id && bookmark.level === 'attending')
   const sessionIsBookmarked = !!bookmarkedSession
@@ -581,13 +601,13 @@ export const SessionCard = ({
           </div>
         </div>
         <div className="flex flex-col justify-between grow p-2 pl-3">
-          <div className="mb-2">
+          <div className="mb-0.5">
             <p className="text-sm font-medium text-gray-800 line-clamp-2">{title}</p>
             {/* <p className="text-xs text-gray-600 mt-1 truncate">{track}</p> */}
             {/* <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p> */}
           </div>
           <div>
-            {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
+            {sessionIsLive && <div className="label rounded red bold mb-2 sm shrink-0">Happening now!</div>}
             {isSoon && (
               <div className="label rounded text-gray-500 !border-gray-400 bold sm mb-1">Starts {relativeTime}</div>
             )}
@@ -874,6 +894,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   const stickyRef = useRef<HTMLDivElement>(null)
   const [isSticky, setIsSticky] = useState(false)
   const { isPersonalizedSchedule } = usePersonalized()
+  const { now } = useAppContext()
   let filterCount = 0
 
   useEffect(() => {
@@ -1116,7 +1137,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                 }, 100)
               }}
             >
-              {day}
+              {now?.format('MMM D') === day ? 'Today' : day}
             </div>
 
             //   <div
@@ -1297,7 +1318,8 @@ export const SessionList = ({
     setPage(1)
   }, [filteredSessions])
 
-  const visibleSessions = filteredSessions.slice(0, page * SESSIONS_PER_PAGE)
+  const visibleSessions =
+    Object.keys(sessionFilter.day).length === 0 ? filteredSessions.slice(0, page * SESSIONS_PER_PAGE) : filteredSessions
 
   const groupedSessions = useMemo(() => {
     return visibleSessions.reduce((acc, session) => {
@@ -1554,6 +1576,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false)
   const [cal, setCal] = React.useState<any>(null)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
+  const { now } = useAppContext()
 
   React.useEffect(() => {
     if (!session) return
@@ -1582,27 +1605,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
   if (!session) return null
 
-  const trackLogo = getTrackLogo(session.track)
+  const start = moment.utc(session.slot_start).add(7, 'hours')
+  const end = moment.utc(session.slot_end).add(7, 'hours')
+  const sessionHasPassed = now?.isAfter(end)
+  const sessionIsUpcoming = now?.isBefore(start)
+  const sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
+  const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
+  const isSoon = start.isAfter(now) && start.isBefore(nowPlusSoonThreshold)
+  const relativeTime = start?.from(now)
 
-  //   const copyShareLink = () => {
-  //     const shareUrl = `${window.location.origin}/sessions/${session.id}`
-  //     navigator.clipboard
-  //       .writeText(shareUrl)
-  //       .then(() => {
-  //         toast({
-  //           title: 'Session link copied to clipboard!',
-  //           duration: 3000,
-  //         })
-  //       })
-  //       .catch(err => {
-  //         console.error('Failed to copy: ', err)
-  //         toast({
-  //           title: 'Failed to copy link',
-  //           description: 'Please try again',
-  //           duration: 3000,
-  //         })
-  //       })
-  //   }
+  const trackLogo = getTrackLogo(session.track)
 
   return (
     <div
@@ -1706,6 +1718,11 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       </div>
 
       <div className="flex flex-col gap-2 shrink-0">
+        {sessionIsLive && <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>}
+        {isSoon && (
+          <div className="label self-start rounded text-gray-500 !border-gray-400 bold sm">Starts {relativeTime}</div>
+        )}
+
         <div className="flex items-center gap-2">
           <IconClock className="icon flex shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
