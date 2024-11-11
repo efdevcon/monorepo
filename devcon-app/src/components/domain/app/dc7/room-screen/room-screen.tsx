@@ -17,7 +17,7 @@ import {
   SessionCardPercentual,
   getExpertiseColor,
   getTrackColor,
-  getTrackLogo,
+  // getTrackLogo,
 } from 'components/domain/app/dc7/sessions'
 import makeBlockie from 'ethereum-blockies-base64'
 // import { Room } from '../venue'
@@ -35,9 +35,59 @@ import { notificationsAtom } from 'pages/_app'
 import { useRecoilState } from 'recoil'
 import NoResults from 'assets/images/state/no-results.png'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
+import CoreProtocol from 'assets/images/dc-7/venue/tracks-hd/core.png'
+import Cypherpunk from 'assets/images/dc-7/venue/tracks-hd/cypher.png'
+import Usability from 'assets/images/dc-7/venue/tracks-hd/usability.png'
+import RealWorldEthereum from 'assets/images/dc-7/venue/tracks-hd/rwe.png'
+import AppliedCryptography from 'assets/images/dc-7/venue/tracks-hd/applied.png'
+import CryptoEconomics from 'assets/images/dc-7/venue/tracks-hd/crypto.png'
+import Coordination from 'assets/images/dc-7/venue/tracks-hd/coordination.png'
+import DeveloperExperience from 'assets/images/dc-7/venue/tracks-hd/developer.png'
+import Security from 'assets/images/dc-7/venue/tracks-hd/security.png'
+import Layer2 from 'assets/images/dc-7/venue/tracks-hd/layer2.png'
 // import LogoSimple from 'assets/images/dc-7/venue/logo-simple.svg'
 // import { Button } from 'lib/components/button'
 // const trackID = getTrackID(props.track)
+
+export const getTrackLogo = (track: string) => {
+  let trackLogo = CoreProtocol
+
+  if (track === 'Core Protocol') {
+    trackLogo = CoreProtocol
+  }
+  if (track === 'Cypherpunk & Privacy') {
+    trackLogo = Cypherpunk
+  }
+  if (track === 'Usability') {
+    trackLogo = Usability
+  }
+  if (track === 'Real World Ethereum') {
+    trackLogo = RealWorldEthereum
+  }
+  if (track === 'Applied Cryptography') {
+    trackLogo = AppliedCryptography
+  }
+  if (track === 'Cryptoeconomics') {
+    trackLogo = CryptoEconomics
+  }
+  if (track === 'Coordination') {
+    trackLogo = Coordination
+  }
+  if (track === 'Developer Experience') {
+    trackLogo = DeveloperExperience
+  }
+  if (track === 'Security') {
+    trackLogo = Security
+  }
+  if (track === 'Layer 2') {
+    trackLogo = Layer2
+  }
+  // if (track === 'Experiences' || track === 'Entertainment') {
+  //   trackLogo = Entertainment
+  // }
+
+  return trackLogo
+}
 
 const LogoSimple = () => (
   <svg width="125" height="13" viewBox="0 0 95 9" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,6 +168,8 @@ export const RoomScreen = (props: ScreenProps) => {
   const { now } = useAppContext()
   const [notifications, setNotifications] = useRecoilState(notificationsAtom)
   // const pz = usePanzoom()
+
+  React.useEffect(() => {}, [notifications])
 
   const getDayLabel = (date: any) => {
     if (!now) return ''
@@ -394,7 +446,7 @@ export const RoomScreen = (props: ScreenProps) => {
             Notifications
           </p>
 
-          <InfiniteScroll>
+          <InfiniteScroll speed="100s">
             {notifications.slice(0, 1).map((notification: any) => (
               <p key={notification.title} className="whitespace-nowrap shrink-0 mr-[2em]">
                 {notification.message}

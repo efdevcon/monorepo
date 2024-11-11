@@ -2,7 +2,7 @@ import React from 'react'
 import cn from 'classnames'
 import ListIcon from 'assets/icons/list.svg'
 import TimelineIcon from 'assets/icons/timeline.svg'
-import VenueMap from 'assets/images/dc-7/venue/venue-map.png'
+import VenueMap from 'assets/images/dc-7/venue/venue-map.jpg'
 import VenueLogo from 'assets/images/dc-7/venue/qsncc.png'
 import Image from 'next/image'
 import css from './event.module.scss'
@@ -111,7 +111,7 @@ const List = (props: any) => {
                 className="flex items-center text-sm border border-solid border-[#E1E4EA] p-2 bg-white rounded-xl mb-2"
               >
                 {/* <div className="w-3 h-3 rounded-full bg-[#7D52F4] ml-1 mr-3" /> */}
-                <span className="font-semibold ml-1">{floorName}</span>
+                <p className="font-semibold ml-1">{floorName}</p>
               </div>
 
               {rooms.map((room: any) => {
@@ -167,9 +167,9 @@ const List = (props: any) => {
                         className="w-3 h-3 rounded-full ml-1 mr-3"
                         style={{ backgroundColor: getColor(room.name) }}
                       />
-                      <span>{roomName}</span>
+                      <p className="whitespace-nowrap">{roomName}</p>
                     </div>
-                    <div className="opacity-0 text-sm text-gray-500 group-hover:opacity-100 transition-all duration-300">
+                    <div className="opacity-0 hidden lg:block text-sm text-gray-500 group-hover:opacity-100 transition-all duration-300">
                       Click to view sessions in this room
                     </div>
                   </Link>
@@ -189,11 +189,11 @@ export const Venue = (props: any) => {
 
   return (
     <>
-      <div className={cn(cardClass, 'my-4 lg:max-w-[850px] !bg-[#c774dd1a]')}>
+      <div className={cn(cardClass, 'my-4 lg:max-w-[550px] !bg-[#c774dd1a]')}>
         <div
           className={cn(
             css['panzoom'],
-            'border-t border-solid border-[#E1E4EA] border-b lg:border-none aspect-[5/5] lg:aspect-[5905/3543]'
+            'border-t border-solid border-[#E1E4EA] border-b lg:border-none aspect-[4000/3845]'
           )}
         >
           <div className={cn(css['image'], 'lg:rounded-3xl')} id="image-container">

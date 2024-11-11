@@ -262,7 +262,13 @@ export const useSeenNotifications = () => {
 }
 
 // @ts-ignore
-if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
+if (
+  typeof window !== 'undefined' &&
+  'serviceWorker' in navigator &&
+  // @ts-ignore
+  window.workbox !== undefined &&
+  !window.location.pathname.includes('/room-screens')
+) {
   // @ts-ignore
   const wb = window.workbox
 
