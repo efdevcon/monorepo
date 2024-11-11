@@ -230,7 +230,32 @@ export const fetchSessionsBySpeaker = async (id: string): Promise<Array<SessionT
 }
 
 export const fetchSessionsByRoom = async (id: string): Promise<Array<SessionType>> => {
-  return await get(`/sessions?room=${id}&event=${eventName}`)
+  const sessions =  await get(`/sessions?room=${id}&event=${eventName}&size=1000&version=${Math.random()}`)
+
+  return sessions
+    .map((session: SessionType) => {
+      if (!session.slot_start || !session.slot_end) return null
+
+      // const startTS = moment.utc(session.slot_start).add(7, 'hours')
+      // const endTS = moment.utc(session.slot_end).add(7, 'hours')
+
+      return {
+        ...modifySessionEndTime(session),
+        // start: startTS.valueOf(),
+        // slot_end: modifiedEndTime.valueOf(),
+        // duration: startTS.diff(endTS, 'minutes'),
+      }
+    })
+    .filter(Boolean)
+    .sort((a: SessionType, b: SessionType) => {
+      // First sort by start time
+      const startDiff = moment.utc(a.slot_start).diff(moment.utc(b.slot_start))
+      // If start times are equal, sort by end time
+      if (startDiff === 0) {
+        return moment.utc(a.slot_end).diff(moment.utc(b.slot_end))
+      }
+      return startDiff
+    })
 }
 
 export const fetchExpertiseLevels = async (): Promise<Array<string>> => {

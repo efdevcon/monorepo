@@ -322,8 +322,16 @@ const TrackTag = ({ track, className, applyColor = true, ...rest }: any) => {
 }
 
 export const SessionCardPercentual = ({ session, className }: { session: SessionType; className?: string }) => {
-  const start = moment.utc(session.slot_start).add(7, 'hours')
-  const end = moment.utc(session.slot_end).add(7, 'hours')
+  const { id, sourceId, title, speakers, track, slot_start, slot_end, expertise, description } = session
+  const { now } = useAppContext()
+  const start = moment.utc(slot_start).add(7, 'hours')
+  const end = moment.utc(slot_end).add(7, 'hours')
+  const sessionHasPassed = now?.isAfter(end)
+  const sessionIsUpcoming = now?.isBefore(start)
+  const sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
+  const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
+  const isSoon = start.isAfter(now) && start.isBefore(nowPlusSoonThreshold)
+  const relativeTime = start?.from(now)
   const trackLogo = getTrackLogo(session.track)
 
   return (
@@ -375,6 +383,17 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
           <div style={{ marginBottom: '0.125em' }}>
             <p className="font-medium text-gray-800 line-clamp-2 text-1 !leading-[1.2em]">{session.title}</p>
           </div>
+
+          {sessionIsLive && (
+            <div className="rounded text-red-500 border border-solid self-start border-gray-400 text-0-75 bold mb-[0.2em] px-[0.4em]">
+              Happening now!
+            </div>
+          )}
+          {isSoon && (
+            <div className="rounded text-gray-500 border border-solid self-start border-gray-400 text-0-75 bold mb-[0.2em] px-[0.4em]">
+              Starts {relativeTime}
+            </div>
+          )}
 
           <div>
             <div className="flex items-center gap-[0.5em] text-1">
@@ -568,10 +587,10 @@ export const SessionCard = ({
             {/* <p className="text-xs text-gray-600 mt-1 line-clamp-2 mb-1">{description}</p> */}
           </div>
           <div>
-            {/* {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
+            {sessionIsLive && <div className="label rounded red bold mb-1 sm shrink-0">Happening now!</div>}
             {isSoon && (
               <div className="label rounded text-gray-500 !border-gray-400 bold sm mb-1">Starts {relativeTime}</div>
-            )} */}
+            )}
 
             <div className="flex items-center gap-2 text-xs text-gray-500">
               <IconClock className="icon flex shrink-0" />

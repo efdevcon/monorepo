@@ -31,8 +31,8 @@ import Stage12 from 'assets/images/dc-7/venue/stages/stage-1-2.png'
 import Stage34 from 'assets/images/dc-7/venue/stages/stage-3-4.png'
 import Stage56 from 'assets/images/dc-7/venue/stages/main-stage.png'
 import cn from 'classnames'
-import { notificationsAtom } from 'pages/_app'
-import { useRecoilState } from 'recoil'
+import { notificationsAtom, sessionsAtom } from 'pages/_app'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import NoResults from 'assets/images/state/no-results.png'
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll'
 import CoreProtocol from 'assets/images/dc-7/venue/tracks-hd/core.png'
@@ -167,13 +167,15 @@ const SessionBar = ({ session }: { session: Session }) => {
 export const RoomScreen = (props: ScreenProps) => {
   const { now } = useAppContext()
   const [notifications, setNotifications] = useRecoilState(notificationsAtom)
+  // const sessions = useRecoilValue(sessionsAtom)
+
   // const pz = usePanzoom()
 
-  React.useEffect(() => {}, [notifications])
+  // React.useEffect(() => {}, [notifications])
 
   const getDayLabel = (date: any) => {
     if (!now) return ''
-    const nov12 = moment.utc('2024-11-12')
+    const nov12 = moment.utc('2024-11-12').add(7, 'hours')
     const dayDiff = date.diff(nov12, 'days')
     if (dayDiff >= 0 && dayDiff <= 3) {
       return `Day 0${dayDiff + 1}`
@@ -184,7 +186,7 @@ export const RoomScreen = (props: ScreenProps) => {
   const upcomingSessions = (() => {
     const upcoming = props.sessions
       .filter(session => {
-        const start = moment.utc(session.slot_start)
+        const start = moment.utc(session.slot_start).add(7, 'hours')
 
         const sessionUpcoming = now?.isBefore(start)
 
@@ -215,11 +217,13 @@ export const RoomScreen = (props: ScreenProps) => {
   if (!currentSession && upcomingSessions.length > 0) currentSession = upcomingSessions[0]
 
   let sessionIsLive = false
+  let relativeTime = ''
 
   if (currentSession) {
     const sessionHasPassed = now?.isAfter(moment.utc(currentSession.slot_end).add(7, 'hours'))
     const sessionIsUpcoming = now?.isBefore(moment.utc(currentSession.slot_start).add(7, 'hours'))
     sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
+    relativeTime = moment.utc(currentSession.slot_start).add(7, 'hours').from(now)
   }
 
   return (
@@ -284,7 +288,7 @@ export const RoomScreen = (props: ScreenProps) => {
 
               <div className={cn(css['next-session'], 'flex items-center justify-between')}>
                 <p className="bold text-1-25">Next Session</p>
-                <p className="text-2">{moment.utc(upcomingSessions[0].slot_start).from(now, true)}</p>
+                <p className="text-2">{moment.utc(upcomingSessions[0].slot_start).add(7, 'hours').from(now, true)}</p>
               </div>
             </>
           )}
@@ -311,7 +315,14 @@ export const RoomScreen = (props: ScreenProps) => {
             <div className={cn(css['second-row'], 'flex-grow flex justify-between relative')}>
               <div className="flex flex-col gap-4 w-[60%]">
                 {/* <div className="absolute bottom-0 right-[-2vw] left-[-2vw] h-[6.5em] z-[-1] glass"></div> */}
-                <SessionBar session={currentSession} />
+
+                <div className="flex items-center gap-[0.5em]">
+                  <SessionBar session={currentSession} />
+                  {sessionIsLive && <p className="text-1-25 mt-[1vw] ml-[1vw] live bold">Happening Now</p>}
+                  {relativeTime && !sessionIsLive && (
+                    <p className="text-1-25 mt-[1vw] ml-[1vw] !border-gray-400 bold">Starts {relativeTime}</p>
+                  )}
+                </div>
 
                 <p className="text-2-5 clamp-3 !leading-[1.3em]">{currentSession.title}</p>
 

@@ -1,32 +1,40 @@
 import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen'
+import { sessionsAtom } from 'pages/_app'
 import React, { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 import { fetchEvent, fetchRooms, fetchSessionsByRoom } from 'services/event-data'
 import { Session } from 'types/Session'
 
 const VenuePage = (props: any) => {
-  const [sessions, setSessions] = useState<Session[]>(props.sessions || [])
+  const sessions = useRecoilValue(sessionsAtom)
 
-  useEffect(() => {
-    setSessions(props.sessions)
+  console.log('sessions', sessions)
 
-    // Set up polling every 5 minutes
-    const intervalId = setInterval(async () => {
-      try {
-        const updatedSessions = await fetchSessionsByRoom(props.room.id)
-        setSessions(updatedSessions)
-      } catch (error) {
-        // Silently ignore any errors during refetch
-        console.debug('Failed to refresh sessions:', error)
-      }
-    }, 5 * 60 * 1000) // 5 minutes in milliseconds
+  if (!sessions) return null
 
-    // Cleanup interval on component unmount
-    return () => clearInterval(intervalId)
-  }, [props.sessions, props.room.id])
+  const sessionsInRoom = sessions.filter(session => session.slot_room?.id === props.room.id)
 
-  return (
-    <RoomScreen {...props} sessions={sessions} />
-  )
+  // const [sessions, setSessions] = useState<Session[]>(props.sessions || [])
+
+  // useEffect(() => {
+  //   setSessions(props.sessions)
+
+  //   // Set up polling every 5 minutes
+  //   const intervalId = setInterval(async () => {
+  //     try {
+  //       const updatedSessions = await fetchSessionsByRoom(props.room.id)
+  //       setSessions(updatedSessions)
+  //     } catch (error) {
+  //       // Silently ignore any errors during refetch
+  //       console.debug('Failed to refresh sessions:', error)
+  //     }
+  //   }, 5 * 60 * 1000) // 5 minutes in milliseconds
+
+  //   // Cleanup interval on component unmount
+  //   return () => clearInterval(intervalId)
+  // }, [props.sessions, props.room.id])
+
+  return <RoomScreen {...props} sessions={sessionsInRoom} />
 }
 
 export default VenuePage
@@ -56,9 +64,9 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      event: await fetchEvent(),
+      // event: await fetchEvent(),
       room,
-      sessions: await fetchSessionsByRoom(id),
+      // sessions: await fetchSessionsByRoom(id),
     },
   }
 }
