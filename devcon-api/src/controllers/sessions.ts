@@ -180,6 +180,8 @@ export async function UpdateSessionSources(req: Request, res: Response) {
     sources_youtubeId: body.sources_youtubeId ?? '',
     sources_swarmHash: body.sources_swarmHash ?? '',
     sources_livepeerId: body.sources_livepeerId ?? '',
+    transcript_vtt: body.transcript_vtt ?? '',
+    transcript_text: body.transcript_text ?? '',
     duration: body.duration ?? 0,
   }
 
@@ -191,6 +193,8 @@ export async function UpdateSessionSources(req: Request, res: Response) {
       },
       data: newSessionData,
     })
+
+    // update AI transcripts
 
     await CommitSession(updatedData, `[skip deploy] PUT /sessions/${updatedData.id}`)
 

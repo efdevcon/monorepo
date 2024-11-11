@@ -52,7 +52,7 @@ import StarFillIcon from 'assets/icons/dc-7/star-fill.svg'
 import MagnifierIcon from 'assets/icons/magnifier.svg'
 import { Separator } from 'lib/components/ui/separator'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'components/common/link'
+import { Link, LinkList } from 'components/common/link'
 import { SpeakerCard } from '../speakers'
 import { CircleIcon } from 'lib/components/circle-icon'
 import ScrollDownIcon from 'lib/assets/icons/scroll-down.svg'
@@ -77,6 +77,7 @@ import { Button } from 'lib/components/button'
 import { PersonalizedSuggestions } from './recommendations'
 import Timeline from './timeline'
 import { usePersonalized } from 'pages/schedule/u/[id]'
+import { CollapsedSection, CollapsedSectionContent, CollapsedSectionHeader } from 'components/common/collapsed-section'
 
 export const tagClassTwo = (active?: boolean, className?: string) =>
   cn(
@@ -1391,6 +1392,8 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const searchParams = useSearchParams()
   const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
+  const [openTabs, setOpenTabs] = React.useState<any>({})
+  console.log('SESSION', session.room)
 
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
@@ -1431,6 +1434,41 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           </div>
         )}
       </div>
+
+      {/* Only show live */}
+
+      <CollapsedSection
+        className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
+        open={openTabs['translations']}
+        setOpen={() => {
+          const isOpen = openTabs['translations']
+
+          const nextOpenState = {
+            ...openTabs,
+            ['translations']: true,
+          }
+
+          if (isOpen) {
+            delete nextOpenState['translations']
+          }
+
+          setOpenTabs(nextOpenState)
+        }}
+      >
+        <CollapsedSectionHeader title="Translations" className="py-4 px-4" />
+        <CollapsedSectionContent>
+          <div className="aspect select-none px-4 pb-2">
+            <iframe
+              src={`https://stm.live/Mainstage/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=white`}
+              title="Mainstage"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
+            />
+          </div>
+        </CollapsedSectionContent>
+      </CollapsedSection>
+      {/* Only show live */}
 
       <div
         className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
