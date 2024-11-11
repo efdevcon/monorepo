@@ -1394,7 +1394,8 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
   const [openTabs, setOpenTabs] = React.useState<any>({})
-  console.log('SESSION', session.room)
+
+  console.log('SESSION ROOM INFO', session.slot_room)
 
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)}>
@@ -1424,19 +1425,17 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           </>
         )}
         {!playback && (
-          <div
-            className="w-full h-full bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA]
-          opacity-40 pointer-events-none"
-          >
-            <VideoIcon
-              className="icon hover:scale-110 transition-transform duration-300 cursor-pointer"
-              style={{ '--color-icon': '#7D52F4', fontSize: '40px' }}
+          <div className="aspect">
+            <iframe
+              src={session.slot_room?.youtubeStreamUrl_1}
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-xl"
             />
           </div>
         )}
       </div>
-
-      {/* Only show live */}
 
       <CollapsedSection
         className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
@@ -1459,8 +1458,9 @@ export const Livestream = ({ session, className }: { session: SessionType; class
         <CollapsedSectionHeader title="Translations" className="py-4 px-4" />
         <CollapsedSectionContent>
           <div className="aspect select-none px-4 pb-2">
+            {/* &bg-color=white */}
             <iframe
-              src={`https://stm.live/Mainstage/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=white`}
+              src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=bg-white&color=text-black`}
               title="Mainstage"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -1469,7 +1469,6 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           </div>
         </CollapsedSectionContent>
       </CollapsedSection>
-      {/* Only show live */}
 
       <div
         className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"

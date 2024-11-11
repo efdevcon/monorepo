@@ -4,20 +4,10 @@ export interface Room {
   description: string
   info: string
   capacity?: number
-}
 
-/*
-id: 3
-name:
-  en: Room One
-description: {}
-capacity: null
-position: null
-url: /orga/event/pwa-data/schedule/rooms/3/
-speaker_info: {}
-availabilities:
-  - id: 1
-    start: '2022-10-01T09:00:00Z'
-    end: '2022-10-01T20:30:00Z'
-    allDay: false
-*/
+  youtubeStreamUrl_1?: string
+  youtubeStreamUrl_2?: string
+  youtubeStreamUrl_3?: string
+  youtubeStreamUrl_4?: string
+  translationUrl?: string
+}
