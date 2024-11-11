@@ -370,31 +370,29 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
           </div>
         </div>
 
-        <div className="flex flex-col justify-between grow p-[0.125em] pl-[0.1875em]">
+        <div className="flex flex-col justify-between grow p-[0.5em]">
           <div style={{ marginBottom: '0.125em' }}>
-            <p style={{ fontSize: '0.875em' }} className="font-medium text-gray-800 line-clamp-2">
-              {session.title}
-            </p>
+            <p className="font-medium text-gray-800 line-clamp-2 text-1">{session.title}</p>
           </div>
 
           <div>
-            <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
-              <IconClock className="icon flex shrink-0" style={{ fontSize: '1em' }} />
+            <div className="flex items-center gap-[0.5em] text-1-25">
+              <IconClock className="icon flex shrink-0" style={{ fontSize: '0.8em' }} />
               <p className="shrink-0 text-gray-600">
                 {start.format('MMM Do')} — {start.format('h:mm A')} - {end.format('h:mm A')}
               </p>
             </div>
 
-            <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
+            {/* <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
               <IconVenue className="icon shrink-0" style={{ fontSize: '1em' }} />
               <p className="shrink-0 text-gray-600">
                 {session.type} - {session.slot_room?.name ?? session.slot_roomId}
               </p>
-            </div>
+            </div> */}
 
             {session.speakers && session.speakers.length > 0 && (
-              <div className="flex items-center gap-[0.125em]" style={{ fontSize: '0.75em' }}>
-                <IconSpeaker className="icon shrink-0" style={{ fontSize: '1em' }} />
+              <div className="flex items-center gap-[0.5em] text-1-25">
+                <IconSpeaker className="icon shrink-0" style={{ fontSize: '0.8em' }} />
                 <p className="text-gray-600 line-clamp-1">{session.speakers.map(speaker => speaker.name).join(', ')}</p>
               </div>
             )}

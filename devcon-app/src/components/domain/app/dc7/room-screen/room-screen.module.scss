@@ -15,9 +15,17 @@
   line-height: 1.5em;
 
   :global {
+    .gradient {
+      background: linear-gradient(to right, #7a3aff, #633cff, #bc52f1) !important;
+    }
+
     .text-1, p, div {
       font-size: 1vw;
       line-height: 1.5em;
+    }
+
+    .text-1-25 {
+      font-size: 1.25vw;
     }
 
     .text-1-5 {
@@ -64,7 +72,7 @@
     > * {
       &:first-child {
         position: relative;
-        background: #D2E0FF;
+        background: #efebff;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -109,7 +117,21 @@
         }
 
         .title {
-          margin: 1.5vw;
+          padding: 1.5vw;
+          position: relative;
+          color: white;
+      
+          &::before {
+            content: '';
+            // z-index: 5;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(122, 58, 255, 0.5), transparent);
+            pointer-events: none;
+          }
         }
 
         .image-wrapper {
@@ -125,13 +147,13 @@
 
       &:nth-child(2) {
         background:#DDDDDD;
-        height: 18.5%;
+        // height: 18.5%;
       }
     }
 
     .capacity {
       // position: absolute; // 58px 
-      position: absolute;
+      // position: absolute;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -174,7 +196,7 @@
       .next-session {
         display: flex;
         justify-content: space-between;
-        align-items: flex-end;
+        align-items: center;
       }
     }
   }
@@ -240,7 +262,7 @@
     }
 
     .title {
-      color: $colors-monochrome-7;
+      color: black;
       padding: 1vw 0px;
     }
 
