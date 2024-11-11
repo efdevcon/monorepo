@@ -2,18 +2,16 @@
 
 import React from 'react'
 import Image from 'next/image'
-import { cn } from 'lib/shadcn/lib/utils'
 import { useAccountContext } from 'context/account-context'
 import { useQuery } from '@tanstack/react-query'
 import { APP_CONFIG } from 'utils/config'
 import { Link } from 'components/common/link'
+import { CollapsedSection, CollapsedSectionContent, CollapsedSectionHeader } from 'components/common/collapsed-section'
 
-interface Props {
-  className?: string
-}
-
-export function Poaps(props: Props) {
+export function Poaps() {
   const { account } = useAccountContext()
+  const [openTabs, setOpenTabs] = React.useState<any>({})
+
   const { data: poaps, isLoading } = useQuery({
     queryKey: ['account', 'poaps', account?.activeAddress || account?.addresses?.[0] || ''],
     queryFn: async () => {
@@ -38,45 +36,66 @@ export function Poaps(props: Props) {
     },
   })
 
-  let className = 'flex flex-col gap-4'
-  if (props.className) {
-    className = cn(props.className)
-  }
-
   return (
-    <div className={className}>
-      <div className="font-semibold">Devcon</div>
-      <div className="flex gap-4">
-        {poaps
-          ?.filter((i: any) => i.type === 'devcon')
-          .map((poap: any) => (
-            <Link key={poap.tokenId} to={`https://collectors.poap.xyz/token/${poap.tokenId}`} external>
-              <Image
-                className="rounded-full"
-                src={poap.event?.image_url}
-                alt={poap.event?.name}
-                width={100}
-                height={100}
-              />
-            </Link>
-          ))}
-      </div>
-      <div className="font-semibold">Devconnect</div>
-      <div className="flex gap-4">
-        {poaps
-          ?.filter((i: any) => i.type === 'devconnect')
-          .map((poap: any) => (
-            <Link key={poap.tokenId} to={`https://collectors.poap.xyz/token/${poap.tokenId}`} external>
-              <Image
-                className="rounded-full"
-                src={poap.event?.image_url}
-                alt={poap.event?.name}
-                width={100}
-                height={100}
-              />
-            </Link>
-          ))}
-      </div>
-    </div>
+    <CollapsedSection
+      className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
+      open={openTabs['poaps']}
+      setOpen={() => {
+        const isOpen = openTabs['poaps']
+
+        const nextOpenState = {
+          ...openTabs,
+          ['poaps']: true,
+        }
+
+        if (isOpen) {
+          delete nextOpenState['poaps']
+        }
+
+        setOpenTabs(nextOpenState)
+      }}
+    >
+      <CollapsedSectionHeader title="POAPs" className="py-4 px-4" />
+      <CollapsedSectionContent>
+        <div className="flex flex-col gap-4 px-4 mt-2 mb-6">
+          <div className="font-semibold uppercase text-xs text-[#717784]">Devcon</div>
+          <div className="flex flex-wrap gap-8">
+            {poaps
+              ?.filter((i: any) => i.type === 'devcon')
+              .map((poap: any, index: number) => (
+                <Link key={poap.tokenId} to={`https://collectors.poap.xyz/token/${poap.tokenId}`} external>
+                  <Image
+                    className={`rounded-full shrink-0 transform ${
+                      index % 2 === 0 ? 'rotate-[12deg]' : 'rotate-[16deg]'
+                    }`}
+                    src={poap.event?.image_url}
+                    alt={poap.event?.name}
+                    width={100}
+                    height={100}
+                  />
+                </Link>
+              ))}
+          </div>
+          <div className="font-semibold uppercase text-xs text-[#717784]">Devconnect</div>
+          <div className="flex flex-wrap gap-8">
+            {poaps
+              ?.filter((i: any) => i.type === 'devconnect')
+              .map((poap: any, index: number) => (
+                <Link key={poap.tokenId} to={`https://collectors.poap.xyz/token/${poap.tokenId}`} external>
+                  <Image
+                    className={`rounded-full shrink-0 transform ${
+                      index % 2 === 0 ? '-rotate-[16deg]' : 'rotate-[12deg]'
+                    }`}
+                    src={poap.event?.image_url}
+                    alt={poap.event?.name}
+                    width={100}
+                    height={100}
+                  />
+                </Link>
+              ))}
+          </div>
+        </div>
+      </CollapsedSectionContent>
+    </CollapsedSection>
   )
 }

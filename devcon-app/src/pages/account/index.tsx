@@ -5,6 +5,7 @@ import { SEO } from 'components/domain/seo'
 import React from 'react'
 import { ZupassTickets } from 'components/domain/app/dc7/dashboard/ticket'
 import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
+import { Poaps } from 'components/domain/app/dc7/dashboard/poaps'
 
 const Account = (props: any) => {
   return (
@@ -14,6 +15,7 @@ const Account = (props: any) => {
         {/* <div className="flex flex-col lg:border lg:border-solid lg:border-[#E4E6EB] lg:bg-[#fbfbfb] rounded-3xl relative lg:p-4"> */}
         <SettingsPage onlyAccount>
           <ZupassTickets />
+          <Poaps />
         </SettingsPage>
         {/* <CollapsedSection className="bg-white rounded-2xl border border-solid border-[#E1E4EA]">
             <CollapsedSectionHeader className="py-4 px-4">Zupass Tickets</CollapsedSectionHeader>
