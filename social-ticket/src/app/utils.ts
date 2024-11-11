@@ -54,7 +54,7 @@ export function getTitleClass(title: string, av?: boolean) {
 
   if (av) {
     if (title.length > 100) return "text-6xl leading-tight";
-    if (title.length > 90) return "text-6xl leading-normal";
+    if (title.length > 85) return "text-6xl leading-normal";
     if (title.length > 80) return "text-7xl leading-snug";
     if (title.length > 70) return "text-7xl leading-normal";
     if (title.length > 35) return "text-7xl leading-normal";
@@ -63,7 +63,7 @@ export function getTitleClass(title: string, av?: boolean) {
   }
 
   if (title.length > 100) return "text-4xl";
-  if (title.length >= 90) return "text-4xl leading-snug";
+  if (title.length >= 85) return "text-4xl leading-snug";
   if (title.length >= 80) return "text-5xl leading-tight";
   if (title.length >= 70) return "text-5xl leading-snug";
   if (title.length >= 60) return "text-5xl leading-tight";
@@ -87,7 +87,6 @@ export async function fetchImageWithTimeout(
   timeout: number = 2000
 ) {
   if (!src) return null;
-
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
 
