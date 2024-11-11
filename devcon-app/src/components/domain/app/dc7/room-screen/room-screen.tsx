@@ -33,8 +33,19 @@ import Stage56 from 'assets/images/dc-7/venue/stages/main-stage.png'
 import cn from 'classnames'
 import { notificationsAtom } from 'pages/_app'
 import { useRecoilState } from 'recoil'
-import { Button } from 'lib/components/button'
+import NoResults from 'assets/images/state/no-results.png'
+// import LogoSimple from 'assets/images/dc-7/venue/logo-simple.svg'
+// import { Button } from 'lib/components/button'
 // const trackID = getTrackID(props.track)
+
+const LogoSimple = () => (
+  <svg width="125" height="13" viewBox="0 0 95 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M4.07966 3.88693C4.44028 3.95416 4.73672 4.13447 4.96898 4.42785C5.20125 4.72124 5.31738 5.05741 5.31738 5.43636C5.31738 5.77864 5.23181 6.08119 5.06067 6.34402C4.89564 6.60073 4.65421 6.80243 4.33637 6.94912C4.01854 7.09581 3.64264 7.16916 3.20868 7.16916H0.449038V0.769723H3.08949C3.52346 0.769723 3.8963 0.840013 4.20802 0.980593C4.52585 1.12117 4.76423 1.31676 4.92314 1.56736C5.08817 1.81796 5.17069 2.10217 5.17069 2.42001C5.17069 2.79285 5.06983 3.10457 4.86813 3.35517C4.67254 3.60577 4.40972 3.78302 4.07966 3.88693ZM1.73259 3.41018H2.90613C3.21174 3.41018 3.44705 3.34294 3.61208 3.20848C3.77711 3.0679 3.85963 2.86925 3.85963 2.61254C3.85963 2.35583 3.77711 2.15718 3.61208 2.0166C3.44705 1.87602 3.21174 1.80573 2.90613 1.80573H1.73259V3.41018ZM3.02532 6.12398C3.33704 6.12398 3.57847 6.05063 3.74961 5.90394C3.92686 5.75725 4.01549 5.54944 4.01549 5.2805C4.01549 5.00545 3.9238 4.79153 3.74044 4.63872C3.55707 4.47981 3.30953 4.40035 2.99781 4.40035H1.73259V6.12398H3.02532ZM10.2644 5.94978H7.71559L7.29385 7.16916H5.94612L8.24735 0.760554H9.74177L12.043 7.16916H10.6861L10.2644 5.94978ZM9.91597 4.92294L8.98998 2.24581L8.06398 4.92294H9.91597ZM18.3766 7.16916H17.0931L14.1867 2.77757V7.16916H12.9032V0.760554H14.1867L17.0931 5.16131V0.760554H18.3766V7.16916ZM24.1008 2.69505C23.9541 2.42612 23.7524 2.22136 23.4957 2.08078C23.239 1.9402 22.9395 1.86991 22.5972 1.86991C22.2183 1.86991 21.8821 1.95548 21.5887 2.12662C21.2953 2.29776 21.0661 2.54225 20.9011 2.86008C20.7361 3.17792 20.6536 3.54465 20.6536 3.96027C20.6536 4.38812 20.7361 4.76097 20.9011 5.0788C21.0722 5.39663 21.3076 5.64112 21.6071 5.81226C21.9066 5.9834 22.2549 6.06897 22.6522 6.06897C23.1412 6.06897 23.5416 5.94061 23.8533 5.6839C24.165 5.42108 24.3698 5.05741 24.4676 4.59288H22.2672V3.61188H25.7328V4.73041C25.6472 5.17659 25.4638 5.58916 25.1827 5.96812C24.9015 6.34707 24.5378 6.65268 24.0917 6.88494C23.6516 7.11109 23.1565 7.22417 22.6064 7.22417C21.9891 7.22417 21.4298 7.08664 20.9286 6.8116C20.4335 6.53044 20.0423 6.14232 19.7551 5.64723C19.4739 5.15214 19.3333 4.58983 19.3333 3.96027C19.3333 3.33072 19.4739 2.7684 19.7551 2.27332C20.0423 1.77212 20.4335 1.384 20.9286 1.10895C21.4298 0.827788 21.986 0.687209 22.5972 0.687209C23.3185 0.687209 23.945 0.864461 24.4767 1.21897C25.0085 1.56736 25.3752 2.05939 25.5769 2.69505H24.1008ZM30.2947 7.16916L27.966 4.31783V7.16916H26.6824V0.769723H27.966V3.63938L30.2947 0.769723H31.8441L29.2037 3.94194L31.9175 7.16916H30.2947ZM35.7322 7.23334C35.1333 7.23334 34.5832 7.09276 34.082 6.8116C33.5808 6.53044 33.1835 6.14232 32.8901 5.64723C32.5967 5.14603 32.45 4.58066 32.45 3.9511C32.45 3.32766 32.5967 2.7684 32.8901 2.27332C33.1835 1.77212 33.5808 1.38094 34.082 1.09978C34.5832 0.81862 35.1333 0.678041 35.7322 0.678041C36.3374 0.678041 36.8874 0.81862 37.3825 1.09978C37.8837 1.38094 38.278 1.77212 38.5652 2.27332C38.8586 2.7684 39.0053 3.32766 39.0053 3.9511C39.0053 4.58066 38.8586 5.14603 38.5652 5.64723C38.278 6.14232 37.8837 6.53044 37.3825 6.8116C36.8813 7.09276 36.3312 7.23334 35.7322 7.23334ZM35.7322 6.08731C36.1173 6.08731 36.4565 6.00174 36.7499 5.83059C37.0433 5.65334 37.2725 5.40274 37.4375 5.0788C37.6026 4.75485 37.6851 4.37896 37.6851 3.9511C37.6851 3.52325 37.6026 3.15041 37.4375 2.83258C37.2725 2.50863 37.0433 2.26109 36.7499 2.08995C36.4565 1.91881 36.1173 1.83324 35.7322 1.83324C35.3472 1.83324 35.0049 1.91881 34.7054 2.08995C34.412 2.26109 34.1828 2.50863 34.0178 2.83258C33.8528 3.15041 33.7702 3.52325 33.7702 3.9511C33.7702 4.37896 33.8528 4.75485 34.0178 5.0788C34.1828 5.40274 34.412 5.65334 34.7054 5.83059C35.0049 6.00174 35.3472 6.08731 35.7322 6.08731ZM43.5725 7.16916L41.2438 4.31783V7.16916H39.9602V0.769723H41.2438V3.63938L43.5725 0.769723H45.122L42.4815 3.94194L45.1953 7.16916H43.5725ZM47.4423 5.82143L46.3696 8.3977H45.5445L46.1404 5.82143H47.4423ZM54.907 0.769723V1.80573H53.2017V7.16916H51.9181V1.80573H50.2128V0.769723H54.907ZM61.1519 0.769723V7.16916H59.8684V4.44619H57.1271V7.16916H55.8435V0.769723H57.1271V3.40101H59.8684V0.769723H61.1519ZM66.3393 5.94978H63.7905L63.3688 7.16916H62.021L64.3223 0.760554H65.8167L68.1179 7.16916H66.761L66.3393 5.94978ZM65.9909 4.92294L65.0649 2.24581L64.1389 4.92294H65.9909ZM70.2617 0.769723V7.16916H68.9781V0.769723H70.2617ZM72.8134 6.15148H74.9221V7.16916H71.5298V0.769723H72.8134V6.15148ZM79.6619 5.94978H77.1131L76.6914 7.16916H75.3437L77.6449 0.760554H79.1393L81.4405 7.16916H80.0836L79.6619 5.94978ZM79.3135 4.92294L78.3875 2.24581L77.4615 4.92294H79.3135ZM87.7742 7.16916H86.4906L83.5843 2.77757V7.16916H82.3007V0.760554H83.5843L86.4906 5.16131V0.760554H87.7742V7.16916ZM91.2796 0.769723C91.952 0.769723 92.5418 0.901134 93.0491 1.16396C93.5625 1.42678 93.9568 1.80268 94.2318 2.29165C94.513 2.77451 94.6536 3.33683 94.6536 3.97861C94.6536 4.62039 94.513 5.18271 94.2318 5.66557C93.9568 6.14232 93.5625 6.5121 93.0491 6.77492C92.5418 7.03775 91.952 7.16916 91.2796 7.16916H89.0426V0.769723H91.2796ZM91.2338 6.07814C91.9061 6.07814 92.4257 5.89477 92.7924 5.52804C93.1591 5.16131 93.3425 4.64484 93.3425 3.97861C93.3425 3.31238 93.1591 2.79285 92.7924 2.42001C92.4257 2.04105 91.9061 1.85158 91.2338 1.85158H90.3261V6.07814H91.2338Z"
+      fill="#5B5F84"
+    />
+  </svg>
+)
 
 declare const VALID_LAYOUT_VALUES: readonly ['fill', 'fixed', 'intrinsic', 'responsive', 'raw', undefined]
 declare type LayoutValue = (typeof VALID_LAYOUT_VALUES)[number]
@@ -66,7 +77,7 @@ const SessionBar = ({ session }: { session: Session }) => {
   return (
     <div
       className={cn(
-        'rounded-full flex items-center mt-[1vw] gap-[0.5em] p-[0.5em] pr-[1em] border border-solid border-[#dfd8fc] self-start',
+        'rounded-full flex items-center mt-[1vw] gap-[0.5em] p-[0.4em] pr-[1em] border border-solid border-[#dfd8fc] self-start',
         getTrackColor(session.track)
       )}
     >
@@ -94,7 +105,7 @@ const SessionBar = ({ session }: { session: Session }) => {
           height={20}
           className="w-[1.5em] h-[1.5em] object-contain"
         />
-        <p className="text-1 font-semibold">{session.track}</p>
+        <p className="text-0-75 uppercase font-semibold">{session.track}</p>
       </div>
     </div>
   )
@@ -110,7 +121,7 @@ export const RoomScreen = (props: ScreenProps) => {
     const nov12 = moment.utc('2024-11-12')
     const dayDiff = date.diff(nov12, 'days')
     if (dayDiff >= 0 && dayDiff <= 3) {
-      return `Day ${dayDiff + 1}`
+      return `Day 0${dayDiff + 1}`
     }
     return ''
   }
@@ -160,19 +171,25 @@ export const RoomScreen = (props: ScreenProps) => {
     <div className={css['room-screen']}>
       <div className={css['left']}>
         <div className="grow">
-          <div className="flex justify-between items-center gap-[1.5em] border-bottom">
-            <Image src={DevconLogo} alt="w/e" quality="100" className="w-1/2 p-[1.5em]" />
-            <p className="text-1">
-              {now?.format('dddd, MMM Do')}, {getDayLabel(now)}
-            </p>
+          <div className="flex justify-between items-center gap-[1.5em] mx-[1em] border-bottom !border-[#b2b2b2] p-[1em]">
+            <Image src={DevconLogo} alt="w/e" quality="100" className="w-1/2" />
+            <div className="flex flex-col gap-0 items-end w-1/2 grow-0">
+              <LogoSimple />
+              <p className="text-1 !leading-[0.9em] text-[#6B54AB]">{getDayLabel(now)}</p>
+            </div>
           </div>
 
+          <div className="flex justify-between m-[0.3em] p-[1em]">
+            <p className="text-1-5 text-[black] ml-[0.2em]">{now?.format('dddd, MMM D')}</p>
+            <p className="text-1-25 font-bold text-[black] flex gap-[0.75em] items-center mr-[0.5em]">
+              <IconClock style={{ '--color-icon': '#7D52F4' } as React.CSSProperties} />
+              {now?.format('LT')}
+            </p>
+          </div>
           {/* <div className={css['logo-wrapper']}>
             <Image src={DevconLogo} alt="w/e" quality="100" />
           </div> */}
-
           {/* <div className={css['image-wrapper']}>{getFloorImage(props.room.info)}</div> */}
-
           {/* <div data-type="image-left grow relative z-[-1]"> */}
           <div id="image-container" className="inset-0 grow relative">
             <div className="absolute left-0 top-0 right-0 bottom-0">
@@ -186,13 +203,12 @@ export const RoomScreen = (props: ScreenProps) => {
             {getRoomImage(props.room.id, 'contain w-full h-full object-cover')}
           </div>
           {/* </div> */}
-
           {props.room.capacity && (
             <div className={cn(css['capacity'], 'flex grow-0')}>
               <p className="text-1-25">
                 Room Capacity: <span className="font-semibold">{props.room.capacity}</span>
               </p>
-              <IconPeople style={{ '--color-icon': 'blue', fontSize: '2.2em' } as React.CSSProperties} />
+              <IconPeople style={{ '--color-icon': '#765BE6', fontSize: '2.2em' } as React.CSSProperties} />
             </div>
           )}
         </div>
@@ -239,17 +255,25 @@ export const RoomScreen = (props: ScreenProps) => {
 
             <div className={cn(css['second-row'], 'flex-grow flex justify-between relative')}>
               <div className="flex flex-col gap-4 w-[60%]">
-                <div className="absolute bottom-0 right-[-2vw] left-[-2vw] h-[6.5em] bg-black z-[-1] glass"></div>
+                {/* <div className="absolute bottom-0 right-[-2vw] left-[-2vw] h-[6.5em] z-[-1] glass"></div> */}
                 <SessionBar session={currentSession} />
 
                 <p className="text-2-5 clamp-3 !leading-[1.3em]">{currentSession.title}</p>
 
                 <div className={cn(css['speakers'], 'grow flex-col justify-end flex-nowrap nowrap')}>
                   {/* <p className={css['title']}>Speakers</p> */}
-                  <div className="glass flex items-center gap-[0.5em]">
+                  <div className="flex items-center">
                     {currentSession.speakers.map(speaker => {
                       return (
-                        <div className={cn(css['speaker'], 'shrink-0')} key={speaker.id}>
+                        <div
+                          className={cn(
+                            css['speaker'],
+                            'glass p-[0.2em] py-[0.8em] shrink-0',
+                            // Only apply rounded corners to last child
+                            speaker === currentSession.speakers[currentSession.speakers.length - 1] && 'rounded-tr-2xl'
+                          )}
+                          key={`${speaker.id}-${Math.random()}`}
+                        >
                           <div className={css['thumbnail']}>
                             <div className={css['wrapper']}>
                               <Image
@@ -314,7 +338,7 @@ export const RoomScreen = (props: ScreenProps) => {
               <div className={cn(css['livestreams'], '')}>
                 <div className={css['body']}>
                   <p className={css['title']}>Resources / Livestreams</p>
-                  <p>Please visit the session on the Devcon App to access more information. </p>
+                  <p className="!mt-0"> the session on the Devcon App to access more information. </p>
 
                   <p>If room capacity is full, please watch the session on live stream.</p>
 
@@ -340,14 +364,21 @@ export const RoomScreen = (props: ScreenProps) => {
               </div>
             </div>
           )}
-          <div className={cn(css['upcoming'], 'min-h-[12em]')}>
+          <div className={cn(css['upcoming'], 'relative')}>
             <p className={css['title']}>Upcoming Sessions</p>
 
-            {upcomingSessions.length === 0 && <p>There are no upcoming sessions</p>}
+            {/* {upcomingSessions.length === 0 && <p>There are no upcoming sessions</p>} */}
 
             {upcomingSessions.map(session => (
               <SessionCardPercentual key={session.id} session={session} className="mb-[0.5em]" />
             ))}
+
+            {upcomingSessions.length === 0 && (
+              <div className="flex flex-col justify-center items-center h-full !mt-0">
+                <Image src={NoResults} alt="No results" className="w-[50%]" />
+                <div className="mt-[0.5em] text-sm text-[#535353] font-semibold">There are no upcoming sessions</div>
+              </div>
+            )}
           </div>
         </div>
         <div className={cn(css['updates-row'], 'flex items-center gap-[0.5em] h-[3em] !bg-[#F8F4FF]')}>

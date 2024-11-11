@@ -98,7 +98,7 @@
     > * {
       &:first-child {
         position: relative;
-        background: #efebff;
+        background: #F2EFFF;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -184,13 +184,13 @@
       justify-content: space-between;
       align-items: center;
       bottom: 0px;
-      background: white;
+      background: #f8f4ff;
       width: 100%;
-      padding: 1.5vw;
+      padding: 1vw 1.5vw;
 
-      svg {
-        opacity: 0.6;
-      }
+      // svg {
+      //   opacity: 0.6;
+      // }
     }
 
     .time {
@@ -250,6 +250,16 @@
     .second-row {
       border-bottom: 1px solid $colors-standard-border-color;
       padding: 0.5vw 0px;
+      padding-bottom: 0px;
+    }
+
+    :global(.glass) {
+      background: rgba(255, 255, 255, 0.81);
+      // box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      // mask-image: linear-gradient(to top, white, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      // border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .speakers {
@@ -258,7 +268,7 @@
       z-index: 1;
       // align-items: center;
       // border-bottom: 1px solid $colors-standard-border-color;
-      padding: 0.5vw 0px;
+      padding: 0px;
 
       // background: rgba(255, 255, 255, 0.465);
       // box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -267,15 +277,13 @@
       // border: 1px solid rgba(255, 255, 255, 0.3);
 
 
-      
 
       .speaker {
         &:first-child {
           margin-left: 0px;
         }
 
-        margin-left: 1vw;
-
+        margin-left: 0vw;
         display: flex;
         align-items: center;
 
@@ -324,11 +332,11 @@
         position: relative;
 
         mask-image: linear-gradient(to bottom, white 80%, transparent 93%, transparent);
-        > * {
-          &:nth-child(2) {
-            margin-top: 0.6vw !important;
-          }
-        }
+        // > * {
+        //   &:nth-child(2) {
+        //     margin-top: 0.6vw !important;
+        //   }
+        // }
       }
 
       .livestreams {
@@ -338,10 +346,11 @@
         .body{
           display: flex;
           flex-direction: column;
-          gap: 1vw;
+          // gap: 0vw;
 
           > * {
             flex-shrink: 0;
+            margin-top: 1vw;
 
             &:first-child {
               margin-top: 0px;
