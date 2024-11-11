@@ -64,6 +64,8 @@ export const getRoomImage = (room: string, className = '') => {
   if (room === 'stage-2') return <Image src={Stage12} className={className} alt={room} id="venue-image" priority />
   if (room === 'stage-3') return <Image src={Stage34} className={className} alt={room} id="venue-image" priority />
   if (room === 'stage-4') return <Image src={Stage34} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-5') return <Image src={Stage56} className={className} alt={room} id="venue-image" priority />
+  if (room === 'stage-6') return <Image src={Stage56} className={className} alt={room} id="venue-image" priority />
   if (room === 'main-stage') return <Image src={Stage56} className={className} alt={room} id="venue-image" priority />
 }
 
@@ -269,10 +271,10 @@ export const RoomScreen = (props: ScreenProps) => {
                           className={cn(
                             css['speaker'],
                             'glass p-[0.2em] py-[0.8em] shrink-0',
-                            // Only apply rounded corners to last child
+                            // @ts-ignore
                             speaker === currentSession.speakers[currentSession.speakers.length - 1] && 'rounded-tr-2xl'
                           )}
-                          key={`${speaker.id}-${Math.random()}`}
+                          key={`${speaker.id}`}
                         >
                           <div className={css['thumbnail']}>
                             <div className={css['wrapper']}>
@@ -347,9 +349,9 @@ export const RoomScreen = (props: ScreenProps) => {
                   </div>
 
                   <p>
-                    Network Name: <b>DevconSEA</b>
+                    Network Name: <b>Ethereum</b>
                     <br />
-                    Wifi Password: <b>infinitegarden</b>
+                    Wifi Password: <b>theinfinitegarden</b>
                   </p>
                 </div>
 
