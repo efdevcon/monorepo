@@ -26,6 +26,7 @@ import indexCss from './index.module.scss'
 import { Button } from 'lib/components/button'
 import { CLSSection } from './index'
 import classNames from 'classnames'
+import { Link } from 'components/common/link'
 import Image from 'next/image'
 
 export default pageHOC(function Experiences(props: any) {
@@ -103,17 +104,29 @@ export default pageHOC(function Experiences(props: any) {
             )}
           >
             {pages.hubs_list &&
-              pages.hubs_list.map(({ title, description, location }: any) => {
+              pages.hubs_list.map(({ title, description, location, url }: any) => {
                 return (
-                  <div className="flex flex-col justify-between gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow" key={title}>
+                  <Link
+                    to={url || ''}
+                    onClick={(e: any) => {
+                      if (!url) {
+                        e.preventDefault()
+                        return
+                      }
+                    }}
+                    className="flex flex-col justify-between gap-2 p-4 bg-[#F8F9FE] rounded-xl shadow hover:bg-[#eeeeff] transition-colors duration-500"
+                    key={title}
+                  >
                     <div>
                       <p className="text-xl font-secondary bold underline mb-2">{title}</p>
                       <RichText content={description}></RichText>
                     </div>
-                    {/* <div className="border-top pt-4 mt-2 text-xs text-[#646a6b] bold uppercase">
-                      Location: {location}
-                    </div> */}
-                  </div>
+                    {location && (
+                      <div className="border-top pt-4 mt-2 text-xs text-[#646a6b] bold uppercase">
+                        Location: {location}
+                      </div>
+                    )}
+                  </Link>
                 )
               })}
           </div>
@@ -128,6 +141,17 @@ export default pageHOC(function Experiences(props: any) {
               <p className="bold">AROUND THE VENUE&nbsp;</p>
             </InfiniteScroller>
           </div>
+        </div>
+      </div>
+
+      <div className="section">
+        <div className="py-8 border-bottom relative" id="discussion-corners">
+          <RichText content={pages?.discussion_corners}></RichText>
+          <iframe
+            src="https://calendar.google.com/calendar/u/0/embed?height=600&wkst=2&ctz=Asia/Bangkok&showPrint=0&mode=WEEK&showTabs=0&showDate=0&showTitle=0&showNav=0&showTz=0&src=Y18xZjA5MTAyYWQ2ZjIzNzM1M2ZjMGVjNGM3NDk2MTAzODU2ZDgyMGUzNjVhYzA1ZjZmMmU1NGNkZDRmNGYwMjdmQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19lMTE4NTY3NTU2ZGViMWY5ZjI1MzMzMmUyMzkyZjA3YWNiNDFhZjVjMzRlNWQ4YmJkMzg4NjFlOWJmODhlMTE1QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y183YmIzZGViNDhlNTM5ZGNmMmExNjJiNTZjOTc4MmRlOGJjN2NkMmQ1YTY2ZDk4ZmIxNGJmYjJmZjRhNDkyZDM2QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y19kOGNiZDY1NjM1OWU3MTlhNDM4NmQ1MTQyMTJmZDhkMDlhMDA4ZjJjZDU2YjNlZGE1OTkzOTI5MDM3MjI4MDAxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&color=%234285F4&color=%23EF6C00&color=%23B39DDB&color=%23D50000&dates=20241111/20241117
+"
+            className="w-full h-[500px]"
+          ></iframe>
         </div>
       </div>
 

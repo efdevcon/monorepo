@@ -7,6 +7,7 @@ const Experiences: Template = {
   fields: [
     createRichText('intro'),
     createRichText('community_hubs'),
+    createRichText('discussion_corners'),
     {
       label: 'hubs_list',
       name: 'hubs_list',
@@ -16,6 +17,7 @@ const Experiences: Template = {
         { label: 'title', name: 'title', type: 'string' },
         createRichText('description'),
         { label: 'location', name: 'location', type: 'string' },
+        { label: 'url', name: 'url', type: 'string' },
       ],
     },
     {
