@@ -667,6 +667,7 @@ const DevaBot = ({
                                               </Link>
                                             );
                                           } else {
+                                            return;
                                             otherReferences.push(
                                               <div key={index}>
                                                 {file.filename}
