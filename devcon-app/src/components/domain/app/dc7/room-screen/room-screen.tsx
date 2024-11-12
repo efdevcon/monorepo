@@ -401,7 +401,7 @@ export const RoomScreen = (props: ScreenProps) => {
         <div className={cn(css['livestreams-upcoming'], 'grow')}>
           {currentSession && (
             <div className="flex flex-col gap-[1em]">
-              <div className={cn(css['livestreams'], '')}>
+              <div className={cn(css['livestreams'], 'mr-2')}>
                 <div className={css['body']}>
                   <p className={css['title']}>Resources / Livestreams</p>
                   <p className="!mt-0"> the session on the Devcon App to access more information. </p>
@@ -419,18 +419,25 @@ export const RoomScreen = (props: ScreenProps) => {
                   </p>
                 </div>
 
-                <div className={cn(css['qr-code'], 'rounded-xl max-w-[10em] max-h-[10em]')}>
-                  <QRCode
-                    size={256}
-                    style={{ height: 'auto', maxWidth: '10em', width: '100%' }}
-                    value={`app.devcon.org/schedule/${currentSession.sourceId}`}
-                    viewBox={`0 0 256 256`}
-                  />
+                {/* <div className={cn(css['qr-code'], 'rounded-xl')}> */}
+                <div className="flex flex-col items-center justify-center mt-[5em] mx-[1em]">
+                  <div className="flex shrink-0 justify-center aspect-square items-center p-[1em] border border-solid border-[#dfd8fc] rounded-2xl">
+                    <QRCode
+                      size={256}
+                      // className="aspect-square"
+                      style={{ height: 'auto', maxWidth: '10em', width: '100%' }}
+                      value={`app.devcon.org/schedule/${currentSession.sourceId}`}
+                      viewBox={`0 0 256 256`}
+                    />
+                  </div>
+                  <p className="text-sm bg-[#7D52F4] py-[0.5em] px-[1em] rounded-2xl text-center text-[white] font-semibold !leading-[1.2em] mt-[0.7em] shrink-0">
+                    Watch Livestream
+                  </p>
                 </div>
               </div>
             </div>
           )}
-          <div className={cn(css['upcoming'], 'relative')}>
+          <div className={cn(css['upcoming'], 'relative ml-[1em]')}>
             <p className={css['title']}>Upcoming Sessions</p>
 
             {/* {upcomingSessions.length === 0 && <p>There are no upcoming sessions</p>} */}

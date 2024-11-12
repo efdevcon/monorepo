@@ -36,6 +36,7 @@ import Entertainment from 'assets/images/dc-7/entertainment.png'
 import { generateCalendarExport } from 'lib/components/add-to-calendar'
 import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
+import PlayIcon from 'assets/icons/play.svg'
 import {
   devaBotVisibleAtom,
   initialFilterState,
@@ -408,6 +409,7 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
               Happening now!
             </div>
           )}
+
           {isSoon && (
             <div className="rounded text-gray-500 border border-solid self-start border-gray-400 text-0-75 bold mb-[0.2em] px-[0.4em]">
               Starts {relativeTime}
@@ -852,7 +854,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
             className="w-auto grow-0 shrink-0 !py-2"
             fat
           >
-            <CollapsedIcon className="icon mr-2 rotate-[-90deg] lg:rotate-0" /> Collapse
+            <CollapsedIcon className="icon mr-2 rotate-[90deg] lg:rotate-0" /> Collapse
           </Button>
 
           <Button
@@ -1449,7 +1451,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const noStreams = !playback && !streamUrl
 
   return (
-    <div className={cn('flex flex-col shrink-0 gap-3', className)}>
+    <div className={cn('flex flex-col shrink-0 gap-3', className)} id="livestream-container">
       <div className={cn('flex justify-between items-center')}>
         <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
       </div>
@@ -1556,7 +1558,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
           <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
             <QuestionsIcon />
           </div>
-          <p>Ask Speaker Questions</p>
+          <p>Join Live Q&A</p>
           <p className="text-[10px] text-[#717784]">Powered by Meerkat</p>
         </Link>
       </div>
@@ -1577,6 +1579,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const [cal, setCal] = React.useState<any>(null)
   const [selectedSession, setSelectedSession] = useRecoilState(selectedSessionAtom)
   const { now } = useAppContext()
+  const sessionViewRef = React.useRef<HTMLDivElement>(null)
 
   React.useEffect(() => {
     if (!session) return
@@ -1613,8 +1616,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const nowPlusSoonThreshold = now && now.clone().add(1, 'hours')
   const isSoon = start.isAfter(now) && start.isBefore(nowPlusSoonThreshold)
   const relativeTime = start?.from(now)
-
   const trackLogo = getTrackLogo(session.track)
+  const isStreaming = session.slot_room?.youtubeStreamUrl_1 && sessionIsLive
 
   return (
     <div
@@ -1624,6 +1627,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
         !standalone && 'pb-0 lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
+      ref={sessionViewRef}
     >
       <div
         className={cn(
@@ -1718,7 +1722,24 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       </div>
 
       <div className="flex flex-col gap-2 shrink-0">
-        {sessionIsLive && <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>}
+        {sessionIsLive && !isStreaming && (
+          <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>
+        )}
+
+        {isStreaming ||
+          (true && (
+            <div
+              onClick={() => {
+                // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
+                // @ts-ignore
+                sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+              }}
+              className="label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300"
+            >
+              Stream available! Watch now
+            </div>
+          ))}
+
         {isSoon && (
           <div className="label self-start rounded text-gray-500 !border-gray-400 bold sm">Starts {relativeTime}</div>
         )}
