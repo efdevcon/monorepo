@@ -21,6 +21,7 @@
     "migrate": "ts-node ./src/scripts/migrate.ts",
     "slides": "ts-node ./src/scripts/slides.ts",
     "stats": "ts-node ./src/scripts/stats.ts",
+    "stats:v": "ts-node ./src/scripts/stats-video.ts",
     "usernames": "ts-node ./src/scripts/usernames.ts",
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
     "db:generate:all": "prisma generate --schema src/db/schema.prisma && prisma generate --schema src/db/account.prisma && yarn copy:account",
