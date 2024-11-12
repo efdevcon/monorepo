@@ -40,7 +40,9 @@ function Stream({ room }: { room: Room }) {
   console.log('STREAM ROOM', room.id, room)
   const start = moment.utc().add(7, 'hours')
   const day = start.date()
-  const youtubeUrl = room.youtubeStreamUrl_1
+  const youtubeUrl = `${room.youtubeStreamUrl_1}${
+    room.youtubeStreamUrl_1?.includes('?') ? '&autoplay=1' : '?autoplay=1'
+  }`
   const translationUrl = `${room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=en-US&bg-color=ffffff&color=30354b&font-size=medium`
 
   return (
