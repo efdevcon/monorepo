@@ -58,7 +58,7 @@ export function getTitleClass(title: string, av?: boolean) {
     if (title.length > 80) return "text-7xl leading-snug";
     if (title.length > 70) return "text-7xl leading-normal";
     if (title.length > 35) return "text-7xl leading-normal";
-    if (title.length > 18) return "text-8xl leading-normal";
+    if (title.length >= 18) return "text-8xl leading-normal";
     return "text-9xl leading-normal";
   }
 
