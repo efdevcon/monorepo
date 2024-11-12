@@ -9,21 +9,30 @@
   "audience": "Engineering",
   "featured": true,
   "doNotRecord": false,
-  "keywords": [
-    "Programmable",
-    "Cryptography"
-  ],
   "tags": [
     "Cryptography",
     "Use cases of cryptography"
   ],
-  "language": "en",
-  "speakers": [
-    "gubsheep"
+  "keywords": [
+    "Programmable",
+    "Cryptography"
   ],
+  "duration": 1517,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "oQOE-HAu9WM",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6733199b3a168eb5351198a0.vtt",
+  "transcript_text": " Awesome. It's great to see everyone at DevCon. Thank you all for coming. Today I'm going to be talking about programmable cryptography and Ethereum. As a quick introduction, I'm Gubsheep. I'm one of the co-founders of 0xPark. We're an organization that emerged out of the Ethereum ecosystem about three years ago. And since we first coined the term programmable cryptography in 2022, we've been working to accelerate the development of the field from a technical ecosystem and conceptual perspective. Our goal is to take programmable cryptography from research to production and to harness its powers for a new digital universe. A lot of this talk will center around the following question. How do we compute together? Specifically, how do we, as in a group of multiple people, perform a computation or execute a program together? Now, to give some context on this question, I want to take us back about 30 or 40 years to the earliest days of the internet. In the beginning, the internet was a peer to peer network for essentially transmitting bits between equal peers. This means that you could do things like send a document to another IP address using protocols like FTP or SMTP. At this point, there was not yet any notion of web servers as we traditionally think about them today or the client server model. Rather, the internet, instead of being an answer to the question of how do we compute together, was more of a peer-to-peer network for communicating together. But computing is something much more than that. And pretty early on, people started to realize that it's useful to be able to do more than just send data back and forth. It would be useful to be able to run programs on this data that's being passed around on the internet. But with the existing setup of the internet in the early days, there was a problem. In the days of the early internet, the ability to compute was limited to individual machines running programs over their own data. So you could only run a program over data that lives physically on your own device. You know, that makes sense. So most apps looked like single-player programs. Imagine games like Solitaire, you know, a single-player game, or something like Flappy Bird, or tools like spreadsheets or word processors or photo editing tools or a calculator that just runs locally on your own device. But of course we wanted to do more. We wanted to compute together and have services like marketplaces or ride-sharing apps or social networks or massively multiplayer games or global payment systems or dating apps or all sorts of things. And so we came up with a way of sort of simulating this idea of computing together, while in reality we were actually still sticking to the single-player compute model. And that first solution, the strategy for the last 30 years, has been to pick one very important node, like Dave over here in the middle, and to promote Dave such that we all give Dave all of our data. And now Dave can basically run something like the Facebook backend as if it was a single player application running just on Dave's machine. So this has been the status quo for many decades. And from this example, we can sort of see why servers came to exist in the first place. Web servers do several things that individuals and pure peer-to-peer networks like the early internet can't do alone. Web servers allow us to coordinate on and perform computations over multiple people's state. That state might be private to some particular subset. It might be public. It allows us to decide which state is canonical and web servers also provide strong uptime and liveness guarantees that don't necessarily exist in a peer to peer network. So um this has taken us pretty far but uh you know one question is is can we do better right? There's been a lot of problems that have arisen as a result of this being the fundamental architecture. And in fact, these problems are a big part of why many of us today are in this room. You can feel free to choose the problems you care about. There's all sorts of things. And when we return back to the question then of how do we compute together, we have to ask, is there a better way that we could go about this? And one of the really interesting discoveries of the last decade is that blockchains, crypto economics, and Ethereum have given us new answers to this question for the first time in decades. So now, Ethereum allows us to run a single computer collectively in a way that's sort of very different than the traditional model where we promote that one single node, Dave, to be a very important node that we give all of our data to. So Ethereum has given us extraordinary things, you know, many of which we saw this morning. Because we have the ability to have decentralized consensus over global state, we have neutral and autonomous marketplaces, financial derivatives, prediction markets, we have payment systems that no single authority controls, we have permissionless identity registries spinning up, we have interoperable and composable games. Um but we also can't do everything that we want yet. In fact nearly everything that I showed on the previous slide is still beyond the capabilities of Ethereum alone. And not just as a result of performance, but as a result of fundamental architecture and capability limitations. So enter programmable cryptography. Programmable cryptography is a technology that can give us many more answers to the question of how do we compute together. And it can give us these answers both independently and in combination with Ethereum. So what is programmable cryptography? For those of you who aren't familiar with the term, programmable cryptography refers to a second generation of cryptographic primitives that have started to emerge and become viable in the past two to five years.",
   "eventId": "devcon-7",
   "slot_start": 1731398400000,
   "slot_end": 1731400200000,
   "slot_roomId": "main-stage",
-  "resources_presentation": "https://docs.google.com/presentation/d/1xCnHIn3N6_CE75tyV-Jo2eMU07wZIBXFedFxwrk7xf4"
+  "resources_presentation": "https://docs.google.com/presentation/d/1xCnHIn3N6_CE75tyV-Jo2eMU07wZIBXFedFxwrk7xf4",
+  "resources_slides": null,
+  "speakers": [
+    "gubsheep"
+  ]
 }
