@@ -9,9 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Groups"
-  ],
   "tags": [
     "Tooling",
     "DAO",
@@ -37,13 +34,25 @@
     "Zero-Knowledge",
     "ZKP"
   ],
-  "language": "en",
-  "speakers": [
-    "vivian-plasencia"
+  "keywords": [
+    "Groups"
   ],
+  "duration": 464,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "dWQWoqJVfn8",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67330caf3a168eb535f0cb29.vtt",
+  "transcript_text": " Hello everyone, my name is Vivian Plasencia and I'm a software engineer in the privacy and scaling aspirations team at the theorem foundation and today I will be talking about privacy preserving groups. Privacy preserving groups are groups where the identity or the actions of the members is private. There are a lot of use cases for this type of groups and one of them is everything related to anonymous interactions like anonymous feedback, anonymous voting. There is also an interesting use case related to proof that you own a credential. So there are a lot of credentials that take time to prove and verify. So something that you can do is to ask people to verify the credential once and then add them to a group. And then they can just, every time they want to prove the credential, they just have to prove that they are a member of that group group and that's a cool use case of this type of groups because you can keep privacy. We cannot talk about groups without talking about anti-civil mechanisms so there are a lot of ways to use anti-civil mechanisms for your groups and an anti-civil mechanism is a method to prevent fake or duplicate identities in your group. And something interesting that you can do to have a stronger anti-civil mechanism is to combine many anti-civil mechanisms using logical operators so that you have a stronger anti-civil for your group. There are a lot of examples of anti-civil for your group. There are a lot of examples of anti-civil mechanisms so one of I will mention a few one of them can be like in bytecodes you can send people in bytecode and they can join a group and another can be like social media information like github followers or personal stars and also a number of commits on a specific repository, also Twitter followers or if you follow a specific user. Those can be anti-civil mechanisms from Web2. And there are also anti-civil mechanisms that we can get from blockchain information, like your account balance, the number of transactions. And the identity protocols are also a nice way to have anti-civil mechanisms for your groups. An example of this is AnonAtar and also OpenPassport. There are a lot of other protocols that are really cool anti-civil mechanisms, like Ethereum Attestation service, CKE, MelTLS, Notary, and POP. So some projects can be useful for privacy-preserving groups and also for anti-civil mechanisms. One of these is Semaphore. This is for groups, anonymous interaction, but it's really useful for if you are part of a group then you can be added to another group just if you are part of another different group. So also SUPAS which is a project that we are using here it has groups and also can be used as an anti-civil mechanism and Bandada which is an infrastructure to manage privacy preserving groups. And it also has a lot of credentials. And CKKit, which is a set of libraries and algorithms. So that also has groups and can be used for anti-CV2. So the three main ideas from this presentation that I would like you to remember are privacy preserving groups can ideas from this presentation that I would like you to remember are like privacy preserving groups can be used to verify credentials and to have a better user experience in your applications also that you can combine different anti-civil mechanisms to have a stronger one and that's a very important is maybe it's not your case but for your, but it can be the case for some other applications. And some projects can also be used as an antecedent mechanism. They were not created for that, but they are really useful as an antecedent mechanism. So that's the third point. So thank you very much. And yeah, I will be around. Feel free to ask me any questions about these topics. Thank you. And yeah, I will be around. Feel free to ask me any questions about these topics. Thank you. Thank you, Vivian. We have some time for questions. Hi. Hi, Vivian. I've used Bandana before. I just find it difficult to understand. This works with IDs, right? You get a group ID and user's IDs. So how do I use these group IDs, or what happens after I get one of these groups set up? Yes, Bandana is compatible with Semaphore, so you can use the Semaphore identity package to have the Semaphore identities, and you can add this, the commitment to a Bandala group, and then you can work with that group. And it's also, since it's compatible with Semaphore, you can do anonymous things with, yeah, the members in your group any other questions it's over there I see some people wearing the mere cat hat but unfortunately we're doing the rolling the ball of throwing. Yeah, please. So, quick question. So, are there any practical way to forcefully remove someone from a group? So, I understand that it's kind of easy to verify someone and try to add to a group, right? But, I mean, as the group have run, and there might be a reason to remove someone forcefully, are there any practical way to do that? Yeah, yeah, there is. If you want to do it with code, there are functions for that. If you want to use it in case of application, for example, Bandana, you can do it directly in the dashboard. Yeah, there is a way, an easy way, if you are using code or not. Can you explain the mechanic behind, like how can you maintain privacy of everyone, and also can specifically remove someone? Yeah. In the group, you will have identity commitments, which is like a public key, like your account that is public and you have a private value. So the commitment can be public, and commitments are not attached to the identity of the real person. So you can, I mean the person, it's a commitment so people don't know like who is that commitment. Okay, thank you. Do we have other questions for Vivian? There's one question here. A lot of these privacy groups are opt-in privacy groups. Is there any opt-out privacy groups as well that you guys have looked into? You mean like if you want to be out of the group you can do it yeah like by default everybody yeah there is an admin and the admin can remove people see ya",
   "eventId": "devcon-7",
   "slot_start": 1731396600000,
   "slot_end": 1731397200000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/13v7xDojqK_R5sq5GZJLvGNitJNJ0JqrztXhZYzs0pXM"
+  "resources_presentation": "https://docs.google.com/presentation/d/13v7xDojqK_R5sq5GZJLvGNitJNJ0JqrztXhZYzs0pXM",
+  "resources_slides": null,
+  "speakers": [
+    "vivian-plasencia"
+  ]
 }
