@@ -35,7 +35,7 @@ const VenuePage = (props: any) => {
   return (
     <>
       <div className="flex flex-col gap-4"> HELLO</div>
-      <RoomScreen {...props} sessions={sessionsInRoom} />
+      {/* <RoomScreen {...props} sessions={sessionsInRoom} /> */}
     </>
   )
 }
