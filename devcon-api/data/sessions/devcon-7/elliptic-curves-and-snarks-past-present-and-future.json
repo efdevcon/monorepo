@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "elliptic",
-    "curves"
-  ],
   "tags": [
     "ZKP",
     "Cryptography",
@@ -23,13 +19,26 @@
     "SNARK",
     "ZKP"
   ],
-  "language": "en",
-  "speakers": [
-    "youssef-el-housni"
+  "keywords": [
+    "elliptic",
+    "curves"
   ],
+  "duration": 1519,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "D5x6H5HPkHM",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673334463a168eb535c515c9.vtt",
+  "transcript_text": " Hi everyone. My name is Yousef. I'm a cryptographer at ConsenSys working on Gnark, the ZK Snark library and Linear, the ZK EVM. Today I'm going to talk about elliptic curves on Snarks. I have two problems in my life. One, getting my wife to choose a restaurant. A difficult one. And two, Ethereum supports only BN254 pre-compiles. So today I'm going to talk about the second problem, because the first one, we need more time, right? So what are these BN254 pre-compiles? So BN254 is an elliptic curve. So it is this mathematical object on which we can do some sort of cryptography. And mainly these three operations that we call precompile, so they are like native smart contracts in Ethereum. So you can do addition, like take two points and add them, have a third point. And you can do scalar multiplication, which is if you multiply a scalar by a point. So you get another point, which is like adding the points in time to itself, and the scalar. And pairing product check, where you have some bilinear map. It takes points on elliptic curves, output them on some line, some extension field, and multiplies these and check if it is one. So I'm not going to talk about this",
   "eventId": "devcon-7",
   "slot_start": 1731405600000,
   "slot_end": 1731407400000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/15MaGmHzAvHj765BvqDHs0ZxiiGevi3H9hscAvkCAGTc"
+  "resources_presentation": "https://docs.google.com/presentation/d/15MaGmHzAvHj765BvqDHs0ZxiiGevi3H9hscAvkCAGTc",
+  "resources_slides": null,
+  "speakers": [
+    "youssef-el-housni"
+  ]
 }
