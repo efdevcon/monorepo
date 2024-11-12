@@ -9,11 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "simulation",
-    "wallet",
-    "safety"
-  ],
   "tags": [
     "Security",
     "User Experience",
@@ -21,13 +16,27 @@
     "Security",
     "User Experience"
   ],
-  "language": "en",
-  "speakers": [
-    "kim-persson"
+  "keywords": [
+    "simulation",
+    "wallet",
+    "safety"
   ],
+  "duration": 458,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "6-ygj7_IqEg",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67333e6c3a168eb53500581d.vtt",
+  "transcript_text": " Hello everyone. My name is Shi, and I'm a security engineer at Fasen. And for the past year, we have been digging into the Amoeba world, so we have some insights to share to bring some new methodologies into this world. And the topic is how to front-run a transaction in the future. So in 2023, we have seen a lot of front-runners have rescued millions of dollars in the hack incidents. For example, they rescued 5.4 million, and also BlockSec. And also in the Khyber-Swab incident, they rescued 5.7 million and returned those funds to the protocols. These are like white hat hackers. But we are seeing a declining trend for this in 2024. And there are some reasons for that. So before that, let me go over about the background of MEV and front-running. So this is how a transaction's lifecycle. So on the top, you can see when the user wants to send the transaction, he wants to send it to the builder first, then the validator. Then the validator will propose a block and commit it to the chain. But if there is a frontrunner, when the user sends a transaction to the builder, the frontrunner will see this transaction. And when he detects this transaction is profitable, he'll replace the beneficiary to himself, and then add a little bit more gas onto that. So the builder will place his transaction in front of the normal transaction. So the user's transaction his transaction in front of the normal transaction. So the user's transaction will be reverted. So the frontrunner will gain profit from this. So then the role of private mempool came. They say we will keep transaction private. And this is beneficiary for most parties. First, arbitrage are fair. Like, at MVVBoss, they want to balance the pools. They find a better swap path win. And also, users, they don't need to suffer from sandwiches. And also, the side effect of this is that hackers transactions, they are protected by the private pool as well. For example, in the previous examples, those frontrunners are not able to frontrun with a private transaction. And is frontrunning dead? And we found the answer to this question is no, not on the block level. Let me explain that. So we have seen a lot of patterns like this. It's called a two-phase style attack. So first, if a hacker wants to hack something, he will first deploy a assistant contract and do some preparation. And finally, he'll send another transaction to trigger the vulnerable function of the victim. So to exploit it, all a map bot or a frontrunner needs to do is to extract all the functions of a contract by using the function signatures and call every function. And if it happens to be the trigger function, a contract by using the function signatures and call every function. And if it happens to be the trigger function, a frontrunner will be able to frontrun this transaction that has never been sent to the builder before. And so it becomes a cat and mouse game between the MEV bots and hackers. And hackers, they thought of some better strategies to protect their contracts. For example, here we have address verification. Basically, it's easy to bypass. All a bot needs to do is to add some hints. And also, if it has an authentication, like here you have a hash of some address. If it's compared to a fixed hash. But all a bot needs to do is to change that equal sign to a not equal sign. And also, then hackers thought of some more sophisticated methods. For example, they hide the parameter to the vulnerable function directly in the parameter in the function. And we found that the goal is really to find the input to trigger a profitable path in the contract because it's already in this contract. And fuzzing is a good tool to do that. So what is fuzzing? It's basically generate a random input. This random is not really random. And then it executes the program, observe and analyze the execution, collect interesting information. And if it's a profitable path, we will exit. Otherwise, we repeat using the collected information. And there are different purposes for fuzzing. In Web 2, you might be corrupting some memory. In Web 3, all this space, it might be breaking some invariants. And here, we are really to find a profitable path. So the effects really depends on the input generation. Here are some heuristic functions or generation methods we want to offer you. And the important thing is about the heuristic functions. These are the that makes the fuzzing different. And there are some pros and cons to fuzzing. For example, it's fast, accurate, and easy to build a prototype. And also, for the cons, it can be time consuming, especially in some chains that have a very low block time interval. And what we want to promote is that I think we should bring more Web 2.0 methodologies into Web 3.0. For example, we haven't seen static analysis, something like that. We're bringing fuzzing, also adding some tint analysis and symbolic execution into our engine. And yeah, we're hoping to see more of this. And that's the end of my talk. I'm ready to take any questions. Thank you so much, Qi. Any questions? The last chance to ask questions before the end of today. Anyone wants to give a go? No questions? Okay. Thank you, Chi. And that wraps up the day of Lightning Talks. What an incredible series we had today. And thanks for attending and all our speakers. And tomorrow we'll continue. So hopefully see you tomorrow. Thank you. you",
   "eventId": "devcon-7",
   "slot_start": 1731409800000,
   "slot_end": 1731410400000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Bl4qs4Zj65LUtt4i8uht8GdKLHGxRkYht0gt_Qcd_n4"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Bl4qs4Zj65LUtt4i8uht8GdKLHGxRkYht0gt_Qcd_n4",
+  "resources_slides": null,
+  "speakers": [
+    "kim-persson"
+  ]
 }
