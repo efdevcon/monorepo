@@ -9,9 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "DevOps"
-  ],
   "tags": [
     "Core Protocol",
     "Security",
@@ -21,13 +18,25 @@
     "Security",
     "Testing"
   ],
-  "language": "en",
-  "speakers": [
-    "parithosh-jayanthi"
+  "keywords": [
+    "DevOps"
   ],
+  "duration": 1433,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "NHsi-lyOEUA",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673326163a168eb53561c36a.vtt",
+  "transcript_text": " So today we're going to talk about tales from Interop. The main point is how do we get core devs, so about 120 people, working on roughly five forks to not make everything super chaotic. So before we start, I'm going to set the stage a little bit. What is Pektra? So Pektra is the fork after Denkun. Denkun is the one that we shipped in March of 2024. That's with 4844. The scoping discussions kind of started earlier this year compared to the previous times. So we already had a general idea of what's going to go in Pektra in Jan of 2024. So client teams kind of started working and kind of started bike sharing what's going to go in. Naturally, since we started early, we over-promised or over-committed what we wanted to do. And by May, we had EIP-3074, which is a version of account abstraction, max effective balance, EOF, PRDAS, as well as a lot of other miscellaneous EIPs that were supposed to go into Pectra. And that's the stage in which we are going to be talking about for most of the talk. And then I'll continue with what Pectra looks like today. SSZ, EPBS, Verkl, as well as Verkl transitions were also features that we wanted to think about and wanted to test over the course of the year. There are different teams working on things at the same time. Specifications are getting updated at the same time. So you're essentially looking for a moving target or you're implementing a moving target. So how do we actually ship this thing? Enter Neuta Interop. So this is an event that was held in Kenya for every client team to participate in. So these are the people that are building the Pektra fork. Just a side note, we also had a Frontiers event in Kenya where we got to meet a lot of local builders, and that was extremely nice, and I hope we continue that type of format in the future. The aim was to work on Pektra as well as all the features that I spoke about earlier, and the idea was to try and figure out all the hard problems, see what we needed to do, and how do we ship it. It's an in-person event, and since most of the client teams are spread around the world, it's invaluable to actually be in the same room. You can figure out a problem within a matter of minutes instead of waiting for the person who lives in Seattle to wake up and spend the next two days figuring it out. There's about 120 people who were invited, and we split it into five work streams. So, Pectra, EOF, Pyrdas, Vercl, and Vercl Transition. And like I mentioned, there's 120 people. We're also a very opinionated bunch, so it's not like 120 people have the same machine. There are people with Arch Linux with disabled kernel modules over there, and we need to make sure that the tools work for them. There are people with Windows machines. We need to make sure that the tools work for them. The five work streams make it hard to keep up with what's going on as well. There's not enough dedicated DevOps people for each client team. It's impossible to keep up with updates. Imagine 120 people messaging you, hey, I pushed this commit. Can you actually deploy it for me?",
   "eventId": "devcon-7",
   "slot_start": 1731403800000,
   "slot_end": 1731405600000,
   "slot_roomId": "stage-1",
-  "resources_presentation": "https://docs.google.com/presentation/d/1EI6PvXpSa-LCMg1S_f31vrLcip8y61g5BqDRGaUIJe0"
+  "resources_presentation": "https://docs.google.com/presentation/d/1EI6PvXpSa-LCMg1S_f31vrLcip8y61g5BqDRGaUIJe0",
+  "resources_slides": null,
+  "speakers": [
+    "parithosh-jayanthi"
+  ]
 }
