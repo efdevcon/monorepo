@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen'
+import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen-de'
 import { sessionsAtom } from 'pages/_app'
 import { useRecoilState } from 'recoil'
 import { fetchEvent, fetchRooms, fetchSessions, fetchSessionsByRoom } from 'services/event-data'
@@ -35,7 +35,7 @@ const VenuePage = (props: any) => {
   return (
     <>
       <div className="flex flex-col gap-4"> HELLO</div>
-      {/* <RoomScreen {...props} sessions={sessionsInRoom} /> */}
+      <RoomScreen {...props} sessions={sessionsInRoom} />
     </>
   )
 }
