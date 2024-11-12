@@ -1726,19 +1726,18 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>
         )}
 
-        {isStreaming ||
-          (true && (
-            <div
-              onClick={() => {
-                // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
-                // @ts-ignore
-                sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
-              }}
-              className="label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300"
-            >
-              Stream available! Watch now
-            </div>
-          ))}
+        {isStreaming && (
+          <div
+            onClick={() => {
+              // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
+              // @ts-ignore
+              sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+            }}
+            className="label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300"
+          >
+            Stream available! Watch now
+          </div>
+        )}
 
         {isSoon && (
           <div className="label self-start rounded text-gray-500 !border-gray-400 bold sm">Starts {relativeTime}</div>
