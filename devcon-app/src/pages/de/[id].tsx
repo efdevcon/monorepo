@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { RoomScreen } from 'components/domain/app/dc7/room-screen/room-screen-de'
+import { RoomScreen } from 'components/domain/app/dc7/room-screen-de/room-screen'
 import { sessionsAtom } from 'pages/_app'
 import { useRecoilState } from 'recoil'
 import { fetchEvent, fetchRooms, fetchSessions, fetchSessionsByRoom } from 'services/event-data'
