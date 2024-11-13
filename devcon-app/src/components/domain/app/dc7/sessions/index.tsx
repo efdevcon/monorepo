@@ -1504,7 +1504,7 @@ export const SessionList = ({
         </div>
       )}
       {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
-      {timelineView && <div className="py-4"></div>}s
+      {timelineView && <div className="py-4"></div>}
     </div>
   )
 }
