@@ -72,6 +72,7 @@ import IconCalendar from 'assets/icons/calendar.svg'
 import PinIcon from 'assets/icons/pin.svg'
 import AddToCalendar from 'components/domain/index/add-to-calendar/AddToCalendar'
 import VideoIcon from 'assets/icons/video-play.svg'
+import WhiteRabbit from 'assets/images/dc-7/dashboard-highlights/white-rabbit.png'
 import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
@@ -482,6 +483,7 @@ export const SessionCard = ({
   const isLargeScreen = windowWidth > 1024
   const trackLogo = getTrackLogo(track)
   const { isPersonalizedSchedule } = usePersonalized()
+  const isWhiteRabbit = session.sourceId === '7CFGTS'
 
   if (tiny) {
     return (
@@ -584,7 +586,7 @@ export const SessionCard = ({
           >
             <div className="text-white z-[2] line-clamp-4">{track}</div>
           </div>
-          {trackLogo !== CityGuide && (
+          {!isWhiteRabbit && trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
               alt={track}
@@ -594,8 +596,12 @@ export const SessionCard = ({
             />
           )}
 
-          {trackLogo === CityGuide && (
+          {!isWhiteRabbit && trackLogo === CityGuide && (
             <Image src={trackLogo} alt={track} height={150} width={150} className="w-full h-full object-cover" />
+          )}
+
+          {isWhiteRabbit && (
+            <Image src={WhiteRabbit} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
@@ -1619,6 +1625,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const trackLogo = getTrackLogo(session.track)
   const isStreaming = session.slot_room?.youtubeStreamUrl_1 && sessionIsLive
 
+  const isWhiteRabbit = session.sourceId === '7CFGTS'
+
   return (
     <div
       data-type="session-view"
@@ -1637,7 +1645,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       >
         <Image
           // @ts-ignore
-          src={trackLogo}
+          src={isWhiteRabbit ? WhiteRabbit : trackLogo}
           alt={session.track}
           //   width={393}
           //   height={393}
@@ -1826,7 +1834,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           to={`/event`}
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
-            <IconVenue />
+            <IconVenue style={{ fontSize: '19px' }} />
           </div>
           <p className="text-left">Find Location</p>
         </Link>
