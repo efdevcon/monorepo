@@ -1801,7 +1801,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>
         )}
 
-        {true && (
+        {isStreaming && (
           <div
             onClick={() => {
               // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
