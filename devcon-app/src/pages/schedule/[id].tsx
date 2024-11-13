@@ -146,6 +146,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
+  if (context.params.id === 'P8W9LZ') {
+    return {
+      redirect: {
+        destination: '/schedule',
+        permanent: false,
+      },
+    }
+  }
   if (context.params.id === '8YBVU8') {
     return {
       redirect: {

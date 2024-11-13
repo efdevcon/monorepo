@@ -9,10 +9,6 @@
   "audience": "Product",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Incident",
-    "Response"
-  ],
   "tags": [
     "Coordination",
     "Security",
@@ -21,14 +17,27 @@
     "Coordination",
     "Security"
   ],
-  "language": "en",
-  "speakers": [
-    "isaac-patka",
-    "kelsie-nabben"
+  "keywords": [
+    "Incident",
+    "Response"
   ],
+  "duration": 1350,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "9UBmda-mqGs",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6732febd80d989c5b7b49fc9.vtt",
+  "transcript_text": " And I also lead the War Games initiative for the Security Alliance. I'll give a brief introduction to just what the Security Alliance is and what the various initiatives are, because I think it's actually pretty relevant also after the first talk about ENS and data sharing. And so the top initiative here is actually called the SEAL-ISAC, which is not me, I'm SEAL-ISAC. This is the Information Security something something, which basically this is like a shared database between many different companies where they can share data on like DPRK threat actors or phishing data or bad domains. There's SEAL War Games, which is the initiative that I lead, where we prepare protocol teams for incident response through both tabletop simulations and then live simulations on forked environments. SEAL also operates SEAL 911, the emergency hotline, if your protocol is under attack or if you have discovered a vulnerability in a protocol and need to get in touch with a security expert as fast as possible. The Safe Harbor Agreement, which is legal protection if you're a white hat hacker and you're acting benevolently in an urgent situation to rescue funds from a protocol. Think Nomad Bridge hack a few years ago if you were trying to save money, but maybe you were worried because you thought that you'd be sued for hacking during because it'd be impossible to distinguish. The White Hat Safe Harbor Agreement exists to protect white hat hackers in those situations and a legal defense fund in case they sue you anyway. So today what we'll talk about primarily is war games. So what are these war games and why do we do them? I'll have some links to resources on how you can work with us. There's a lot of open source toolkits and we also run these as like a public good throughout the space. We'll be talking through some best practices that I've learned from working with some of the major protocols in the ecosystem and then just briefly show you what this new toolkit is that we released so you can run these yourself if you would like. So what are wargames? These are cybersecurity exercises for Web3. I've heard traditional cybersecurity folks call these something like a purple team exercise, where we're not exactly red team, blue team, but we're basically just trying to stress test these teams and understand how they behave under pressure. And so we want to help teams practice for these high-pressure situations before they actually happen. We want to be able to test both the technical side of their team and their social resilience. And we're not just trying to help cause them to panic, but we want them to practice emergency response. A lot of the reason why we started doing this was a few years ago. So the security lines was started by Sam Sun, and he was pulled into so many war rooms where it seemed like, I guess, from what I've heard, teams just completely melting down and not really being exactly prepared for what would happen. So what could we actually do to help put them in that situation before that inevitably happens? So war games take place through three phases. I do a lot of intelligence gathering, which really just means reading every document that the protocol's ever published, understand their contracts, understand how it works. We do a tabletop exercise where we talk through various scenarios with them and understand how they would have detected them, what they would do, who's in charge, and how would they have fixed something. And then what I think is the most fun is we do a live simulation. So we set up a forked environment, we run all of their contracts, we write all of their UIs, we run all of their monitoring, and then they actually have to coordinate in real time to defend and respond as if it was a real incident. And we tend to find a lot of things that they can improve through that process, and it also just helps the team build trust in each other so that they know when an incident goes down for real, I can trust my team to be there. So a big reason why we do this is because more and more hacks are due to operational failures, not smart contract bugs. That's a really, I think, good sign that we're making fewer and fewer dumb mistakes on the smart contract side. However, as all of the stuff that we're building is becoming such a critical component of global financial infrastructure, the stakes are higher to actually operationally be strong as well. And so whether that's things like supply chain attacks or social engineering, it's much harder now than just not including dumb bugs in your smart contracts. So these are cross-functional exercises. We're not just working with the development team. They're of course a core part of it, but we're also tending to work with their auditors if they're a big protocol that has a guardian multi-sig that's in charge of pausing the protocol in case of emergency. We of course work with them. Communications team is actually essential so that we know what would they be communicating out to the public and when during an incident and legal so that they can say, okay, if we were to take this action perhaps to protect the users of our protocol, can we do that? Should we do that? And what should we be saying? The conversations between communications, legal, and devs should really be things that are figured out in advance so that during the incident,'re not thinking like do we tweet out that we're under attack right now or do we say something cryptic or what do we say like these are things that you can just have in a playbook so that you don't have to think about it in the moment. We've worked with a number of products of protocols so far but the purpose of this slide is also just to show you like why teams are working with us, it's because teams are growing. These are global teams, and it's really hard to prepare for this type of thing. There's many ways to engage with us. If you're a protocol that wants to work with a security alliance and have a drill performed with you, there's a form on the website, and there's also open source resources for you to be able to run these yourself. So this is a quote that I had a really hard time attributing. The internet said it was either like a Greek poet or the Navy Seals, but I think that it really like stands to to show like why we do this and it's that under pressure we don't rise to the occasion, we sink to our level of training. Yeah I think that that speaks to why we do this. So each one of these builds is quite different. A lot of protocols have various sorts of custom infrastructure and monitoring. So every time we do this, we end up having to build a lot of things. And we've tried to combine all of those tools and things that we've learned on how to run these simulations into this drill template that you can see here. It's on the Security Alliance GitHub repository. But what are the things that we do to make the environment feel realistic? So we of course have to run a network fork. We're usually either doing that with Anvil or with Tenderly. We have to run a block explorer, so we're either running Block Scout or using a virtual test net. We're running monitoring, so it's essential to mirror the same monitoring that you would have on main net.",
   "eventId": "devcon-7",
   "slot_start": 1731390600000,
   "slot_end": 1731392400000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Vl9aDLrFn0_bNTA3ddPbHqxDjrCLUyNEIUn4eBlSNzE"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Vl9aDLrFn0_bNTA3ddPbHqxDjrCLUyNEIUn4eBlSNzE",
+  "resources_slides": null,
+  "speakers": [
+    "isaac-patka",
+    "kelsie-nabben"
+  ]
 }

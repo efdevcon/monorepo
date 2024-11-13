@@ -11,7 +11,7 @@ async function main() {
   const { data } = await res.json()
   const sessions = data.items
 
-  const daily = sessions.filter((i: any) => dayjs(i.slot_start).isSame(dayjs(), 'day'))
+  const daily = sessions.filter((i: any) => dayjs(i.slot_start).isSame(dayjs(), 'day') && i.slot_room.youtubeStreamUrl_1)
   const processedVideos = daily.filter((i: any) => !!i.sources_youtubeId)
   const missingVideos = daily.filter((i: any) => !i.sources_youtubeId)
 

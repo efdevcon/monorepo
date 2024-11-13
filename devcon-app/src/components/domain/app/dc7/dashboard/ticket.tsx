@@ -27,13 +27,12 @@ interface Props {
 
 interface SwagCardProps {
   title: any
-  to: string
-  description: string
+  qr: string
   image: StaticImageData
   className?: string
 }
 
-const SwagCard = ({ title, to, description, image, className }: SwagCardProps) => {
+const SwagCard = ({ title, qr, image, className }: SwagCardProps) => {
   const [QRVisible, setQRVisible] = useState(false)
   const [isClaimed, setIsClaimed] = useState(false)
 
@@ -61,7 +60,7 @@ const SwagCard = ({ title, to, description, image, className }: SwagCardProps) =
             <QRCode
               size={256}
               style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-              value={''}
+              value={qr}
               viewBox={`0 0 256 256`}
             />
           </div>
@@ -229,7 +228,7 @@ export function ZupassTickets(props: Props) {
             const title = getSwagTitle(item)
             if (!image) return null
 
-            return <SwagCard key={`${item.id}_${title}`} title={title} to="/" description="" image={image} />
+            return <SwagCard key={`${item.id}_${title}`} title={title} qr={item.ticketSecret} image={image} />
           })}
         </div>
       </div>
