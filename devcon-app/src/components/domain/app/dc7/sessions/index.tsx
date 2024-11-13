@@ -1504,7 +1504,7 @@ export const SessionList = ({
         </div>
       )}
       {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
-      {timelineView && <div className="py-4"></div>}s
+      {timelineView && <div className="py-4"></div>}
     </div>
   )
 }
@@ -1514,6 +1514,18 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
   const [openTabs, setOpenTabs] = React.useState<any>({})
+  const [player, setPlayer] = useState<'youtube' | 'streameth' | 'swarm'>(
+    session.sources_youtubeId
+      ? 'youtube'
+      : session.sources_streamethId
+      ? 'streameth'
+      : session.sources_swarmHash
+      ? 'swarm'
+      : 'youtube'
+  )
+  const [video, setVideo] = useState(
+    session.sources_youtubeId || session.sources_streamethId || session.sources_swarmHash
+  )
   const start = moment.utc(session.slot_start).add(7, 'hours')
   const day = start.date()
   let streamUrl: any = ''
@@ -1523,11 +1535,62 @@ export const Livestream = ({ session, className }: { session: SessionType; class
   if (day == 15) streamUrl = session.slot_room?.youtubeStreamUrl_4
   const noStreams = !playback && !streamUrl
 
+  const selectPlayer = (type: 'youtube' | 'streameth' | 'swarm') => {
+    if (type === 'youtube') {
+      setPlayer('youtube')
+      setVideo(session.sources_youtubeId)
+    } else if (type === 'streameth') {
+      setPlayer('streameth')
+      setVideo(session.sources_streamethId)
+    } else {
+      setPlayer('swarm')
+      setVideo(session.sources_swarmHash)
+    }
+  }
+
   return (
     <div className={cn('flex flex-col shrink-0 gap-3', className)} id="livestream-container">
       <div className={cn('flex justify-between items-center')}>
         <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
       </div>
+
+      {playback && session.sources_swarmHash && (
+        <div className="flex flex-row flex-nowrap text-xs items-center gap-2">
+          {session.sources_youtubeId && (
+            <div
+              className={cn(
+                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                player === 'youtube' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+              )}
+              onClick={() => selectPlayer('youtube')}
+            >
+              YouTube
+            </div>
+          )}
+          {session.sources_streamethId && (
+            <div
+              className={cn(
+                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                player === 'streameth' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+              )}
+              onClick={() => selectPlayer('streameth')}
+            >
+              StreamEth
+            </div>
+          )}
+          {session.sources_swarmHash && (
+            <div
+              className={cn(
+                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                player === 'swarm' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+              )}
+              onClick={() => selectPlayer('swarm')}
+            >
+              Swarm
+            </div>
+          )}
+        </div>
+      )}
 
       <div
         className={
@@ -1536,7 +1599,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             : ' bg-[#784DEF1A] rounded-2xl relative flex items-center justify-center border border-solid border-[#E1E4EA] select-none h-24'
         }
       >
-        {playback && session.sources_youtubeId && (
+        {playback && player === 'youtube' && session.sources_youtubeId && (
           <iframe
             src={`https://www.youtube.com/embed/${session.sources_youtubeId}`}
             title="YouTube video player"
@@ -1545,11 +1608,22 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             className="w-full h-full rounded-2xl"
           />
         )}
-        {playback && session.sources_streamethId && (
+        {playback && player === 'streameth' && session.sources_streamethId && (
           <>
             <iframe
               src={`https://streameth.org/embed/?session=${session.sources_streamethId}&vod=true`}
               title="StreamEth video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full rounded-2xl"
+            />
+          </>
+        )}
+        {playback && player === 'swarm' && session.sources_swarmHash && (
+          <>
+            <iframe
+              src={`https://etherna.io/embed/${session.sources_swarmHash}`}
+              title="Etherna video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="w-full h-full rounded-2xl"
@@ -1806,9 +1880,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             onClick={() => {
               // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
               // @ts-ignore
-              sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+              if (standalone) {
+                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+              } else if (sessionViewRef.current) {
+                sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+              }
             }}
-            className="label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300"
+            className={cn(
+              'label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300',
+              standalone ? 'lg:pointer-events-none' : ''
+            )}
           >
             Stream available! Watch now
           </div>
