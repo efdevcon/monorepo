@@ -72,6 +72,7 @@ import IconCalendar from 'assets/icons/calendar.svg'
 import PinIcon from 'assets/icons/pin.svg'
 import AddToCalendar from 'components/domain/index/add-to-calendar/AddToCalendar'
 import VideoIcon from 'assets/icons/video-play.svg'
+import WhiteRabbit from 'assets/images/dc-7/dashboard-highlights/white-rabbit.png'
 import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
 import { Button } from 'lib/components/button'
@@ -180,7 +181,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
         return a.localeCompare(b)
       }),
-      other: ['Attending', 'Interested In', 'Upcoming'], //, 'Past'],
+      other: ['Upcoming', 'Attending', 'Interested In'], //, 'Past'],
     }
   }, [sessions, timelineView])
 
@@ -214,7 +215,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         (!sessionFilter.other['Attending'] && !sessionFilter.other['Interested In'])
       // const matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment.utc(session.slot_end).add(7, 'hours'))
       const matchesUpcoming = sessionFilter.other['Upcoming']
-        ? now?.isBefore(moment.utc(session.slot_start).add(7, 'hours'))
+        ? now?.isBefore(moment.utc(session.slot_end).add(7, 'hours'))
         : true
 
       const matchesOther = (matchesUpcoming && matchesFavorites) || Object.keys(other).length === 0
@@ -482,6 +483,7 @@ export const SessionCard = ({
   const isLargeScreen = windowWidth > 1024
   const trackLogo = getTrackLogo(track)
   const { isPersonalizedSchedule } = usePersonalized()
+  const isWhiteRabbit = session.sourceId === '7CFGTS'
 
   if (tiny) {
     return (
@@ -569,7 +571,7 @@ export const SessionCard = ({
         setDevaBotVisible(false)
       }}
     >
-      <div className="flex justify-between min-h-[100px] h-full">
+      <div className="flex justify-between min-h-[100px] h-full" data-time={start.format('HH:mm')}>
         <div
           className={cn(
             'basis-[100px] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
@@ -584,7 +586,7 @@ export const SessionCard = ({
           >
             <div className="text-white z-[2] line-clamp-4">{track}</div>
           </div>
-          {trackLogo !== CityGuide && (
+          {!isWhiteRabbit && trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
               alt={track}
@@ -594,8 +596,12 @@ export const SessionCard = ({
             />
           )}
 
-          {trackLogo === CityGuide && (
+          {!isWhiteRabbit && trackLogo === CityGuide && (
             <Image src={trackLogo} alt={track} height={150} width={150} className="w-full h-full object-cover" />
+          )}
+
+          {isWhiteRabbit && (
+            <Image src={WhiteRabbit} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
@@ -1068,7 +1074,11 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                       updateOtherFilter(other)
                     }}
                   >
-                    {other}
+                    {other === 'Upcoming' ? 'Now & Upcoming' : other}
+                    {other === 'Upcoming' && (
+                      <IconClock className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                    )}
+
                     {other === 'Attending' && (
                       <IconAdded className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
                     )}
@@ -1217,32 +1227,53 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
   }, [])
 
   return (
-    <AnimatePresence>
-      {visible && isScrolled && (
-        <motion.div
-          className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <CircleIcon
-            className="bg-[#F0F2FF] w-[30px] h-[30px] pointer-events-auto"
-            onClick={() => {
-              const container =
-                document.querySelector('[data-type="session-list"]') ||
-                document.querySelector('[data-type="speaker-list"]')
-
-              if (container) {
-                container.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
+    <>
+      {/* <AnimatePresence>
+        {!isScrolled && (
+          <motion.div
+            className="left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <ScrollDownIcon style={{ fontSize: '18px', transform: 'rotateX(180deg)' }} />
-          </CircleIcon>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <div
+              onClick={goToNow}
+              className="bg-[#F0F2FF] rounded-full px-2 py-1.5 text-xs border border-solid border-[#E1E4EA] hover:border-neutral-400 hover:scale-105 transition-all duration-300"
+            >
+              Scroll To Now
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence> */}
+
+      <AnimatePresence>
+        {visible && isScrolled && (
+          <motion.div
+            className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CircleIcon
+              className="bg-[#F0F2FF] w-[30px] h-[30px] pointer-events-auto"
+              onClick={() => {
+                const container =
+                  document.querySelector('[data-type="session-list"]') ||
+                  document.querySelector('[data-type="speaker-list"]')
+
+                if (container) {
+                  container.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              <ScrollDownIcon style={{ fontSize: '18px', transform: 'rotateX(180deg)' }} />
+            </CircleIcon>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
@@ -1262,6 +1293,7 @@ export const SessionList = ({
   filterOptions: any
 }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const { now } = useAppContext()
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
@@ -1333,6 +1365,43 @@ export const SessionList = ({
       return acc
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
+
+  const goToNow = () => {
+    if (!now) return
+
+    // Get all timestamps from groupedSessions
+    const timestamps = Object.keys(groupedSessions)
+    let nearestTimestamp = timestamps[0]
+    let smallestDiff = Infinity
+
+    // Find the timestamp closest to now
+    timestamps.forEach(timestamp => {
+      const sessionTime = moment.utc(timestamp, 'MMM D — h:mm A')
+      const diff = Math.abs(sessionTime.diff(now))
+
+      if (diff < smallestDiff) {
+        smallestDiff = diff
+        nearestTimestamp = timestamp
+      }
+    })
+
+    // Find and scroll to the element with matching data-time
+    const nearestElement = document.querySelector(`[data-time="${nearestTimestamp}"]`)
+    if (nearestElement) {
+      nearestElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      // Fallback to scrolling to the session list container
+      const container = document.querySelector('[data-type="session-list"]')
+      if (container) {
+        container.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
+  // useEffect(() => {
+  //   if (!now) return
+  //   goToNow()
+  // }, [now])
 
   const isNativeScroll = typeof window !== 'undefined' && !window.matchMedia('not all and (hover: none)').matches
 
@@ -1413,7 +1482,13 @@ export const SessionList = ({
       ) : (
         Object.entries(groupedSessions).map(([date, dateSessions]) => (
           <div className="relative flex flex-col" key={date}>
-            <div className={cn('font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start')}>{date}</div>
+            <div
+              className={cn('relative font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start')}
+              data-time={date}
+              style={{ scrollMarginTop: '110px' }}
+            >
+              {date}
+            </div>
             {dateSessions.map(session => (
               <div key={session.sourceId} className="mx-4 mb-3">
                 <SessionCard session={session} />
@@ -1422,16 +1497,14 @@ export const SessionList = ({
           </div>
         ))
       )}
-
       {visibleSessions.length === 0 && (
         <div className="flex flex-col justify-center items-center h-full my-8">
           <Image src={NoResults} alt="No results" className="w-[300px] lg:max-w-[30%]" />
           <div className="mt-4 text-sm text-[#535353] font-semibold">No sessions match your filter</div>
         </div>
       )}
-
       {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
-      {timelineView && <div className="py-4"></div>}
+      {timelineView && <div className="py-4"></div>}s
     </div>
   )
 }
@@ -1619,6 +1692,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const trackLogo = getTrackLogo(session.track)
   const isStreaming = session.slot_room?.youtubeStreamUrl_1 && sessionIsLive
 
+  const isWhiteRabbit = session.sourceId === '7CFGTS'
+
   return (
     <div
       data-type="session-view"
@@ -1637,7 +1712,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       >
         <Image
           // @ts-ignore
-          src={trackLogo}
+          src={isWhiteRabbit ? WhiteRabbit : trackLogo}
           alt={session.track}
           //   width={393}
           //   height={393}
@@ -1769,9 +1844,9 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </div> */}
       </div>
 
-      <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 bg-white">
+      <div className="flex justify-evenly shrink-0 text-xs !leading-[1.2em] border border-solid border-[#E1E4EA] text-gray-500 px-3 rounded-2xl p-2 pt-1 gap-2 my-1 bg-white">
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
+          className="flex flex-col gap-1 hover:text-black transition-all duration-300 cursor-pointer select-none"
           onClick={() =>
             setSessionBookmark(
               session,
@@ -1781,7 +1856,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             )
           }
         >
-          <div className="text-lg hover:scale-110 transition-transform duration-300">
+          <div className="text-lg hover:text-black transition-transform duration-300">
             {account?.attending_sessions?.includes(session.sourceId) ? (
               <IconAdded style={{ '--color-icon': '#7d52f4' }} />
             ) : (
@@ -1791,7 +1866,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <p>Attend Session</p>
         </div>
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
           onClick={() =>
             setSessionBookmark(
               session,
@@ -1803,27 +1878,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
             {account?.interested_sessions?.includes(session.sourceId) ? (
-              <StarFillIcon style={{ '--color-icon': '#7d52f4', fontSize: '21px' }} />
+              <StarFillIcon style={{ '--color-icon': '#7d52f4', fontSize: '20px' }} />
             ) : (
-              <StarIcon style={{ fontSize: '21px' }} />
+              <StarIcon style={{ fontSize: '20px' }} />
             )}
           </div>
           <p>Mark as interesting</p>
         </div>
 
-        {/* <div className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none">
-          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
-            {account?.interested_sessions?.includes(session.sourceId) ? (
-              <StarFillIcon style={{ '--color-icon': '#7d52f4' }} />
-            ) : (
-              <StarIcon />
-            )}
-          </div>
-          <p>Room Location</p>
-        </div> */}
-
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
           onClick={() => setCalendarModalOpen(true)}
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
@@ -1831,6 +1895,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           </div>
           <p>Export to Calendar</p>
         </div>
+
+        <Link
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
+          to={`/event`}
+        >
+          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+            <IconVenue style={{ fontSize: '19px' }} />
+          </div>
+          <p className="text-left">Find Location</p>
+        </Link>
 
         {cal && (
           <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>

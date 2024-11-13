@@ -9,12 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Optimal",
-    "Stopping;",
-    "Dynamic",
-    "Programming;"
-  ],
   "tags": [
     "Rollups",
     "Economics",
@@ -27,13 +21,28 @@
     "MEV",
     "Rollups"
   ],
-  "language": "en",
-  "speakers": [
-    "akaki-mamageishvili"
+  "keywords": [
+    "Optimal",
+    "Stopping;",
+    "Dynamic",
+    "Programming;"
   ],
+  "duration": 562,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "9r7hmxQ8DTA",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673468a09dbb7a90e188a277.vtt",
+  "transcript_text": " . Hello everyone. Welcome to the presentation. Today, I will talk about MEV capture through time advantage arbitrage. So this is the title of the paper that we wrote together with Ed Felten, Robin Frisch, Maria Silva, and Benjamin Lifshitz. This is different from the title of the session. So take your time to take a picture or write it down. It will be gone. I cannot go really back. So initially, I submitted it as a 20-minute presentation, but it was demoted to five minutes. So the only thing I can do is to motivate you to read the paper. And I hope I can do that. Okay, so main part, motivation. So we tried to understand what TimeBoost does to MEV, and to give you a very quick introduction in the TimeBoost, this is selling Fastlane license that allows one player to have 200 millisecond advantage over all other players and this advantage lasts only for one minute and after one minute there will be another auction. Then advantages of course achieved by delaying all the other transactions by other users. And we want to understand the arbitrage between automated market makers and outside markets. So we have a lot of assumptions in order to derive our few theoretical results and many simulation results. So we assume that in the outside markets fees are very low or let's say zero, and the price discovery happens on the external market. On the IMM that is on the chain, it's only arbitrage transactions. Of course, there are some noise transactions as well, but we assume that they can go into both directions, so they cancel the effects. We also assume the efficient market assumption which is that the price depends only on the current, so price change doesn't depend on the previous price changes, so it's a pure random process which is of course not true in reality and we even observed on the data that it's not true. So the model looks like this, We have this one player that has this time advantage during time t. There are two assets, one risky asset and the numeraire. Think of as Ether risky asset and numeraire USD or the other way around. The AMM has a trading fee and the risky assets price changes on the outside market. So initially we assume initially of the simulation we assume that they are the same, the prices are the same, and then once the arbitrage opportunity arises on the outside market, so price moves, then arbitrage needs to decide when to capitalize on it. And we assume that it has only time advantage time so after this time passes opportunity will be taken away by other arbitrage and this is a conservative assumption for the arbitrage value so this reduces to an optimization problem so So we have time advantage arbitrage here, and we have three parameters that give a state. What is the current price difference, relative time, so price difference? How much time passed in this 200 millisecond? And how much time passed in the total period time? And we need to decide between trading, so taking the arbitrage, or waiting. And the punchline here is that dynamic programming solves this problem. And with dynamic programming, we simulate it on the real data. So we took, let's say, Ethereum USDT market on the Binance, and we step size 10 millisecond. We have advantage window 200 millisecond and total time one minute. And we can calculate for each point, internal point. We can calculate what is the optimal move and also what is the average gains, average arbitrage value. And we obtained the observation that waiting till the end of this advantage time is mostly optimal, but not always. So there are some cases when it's not optimal. So I will not give you any numbers, because that's the only thing that people remember in the end, how much money time boost makes with these assumptions. But it gives some upper bound on this type of arbitrage, so decentralized exchange arbitrage. Additionally to this, we also looked into opportunity to let the pool contract know about time boosted transactions which allows them to price such transactions differently and this introduces some interesting game between LPS and the time advantage the arbitrage and then we can calculate what will be the distribution of value between these two and other arbitrage years so thank you for your attention happy to answer questions about this and the time boost in general. Thank you very much. So raise your hand if you have any questions. Yep, over there. There first. Oops, sorry. Sorry. Thanks. Do you think it's a good idea to use one minute allocation for arbitrage? Is this too long? Have you tried to do shorter simulation times? I ask for, because MEV, multi-block MEV has been a problem. We don't understand it very well. So have you tried to simulate shorter? So we, in simulation, of course, you can simulate and get results, what you get. But we thought that one minute is not very long, because if you make it longer, it's even worse from your perspective. But if you make it shorter, we need to conduct this auction too frequently. And that also has some cost. So that was this kind of trade-off that we analyzed. There's another question over there. Did you try this using real money, and did you find anything interesting between real and simulation? So we didn't try real money, but you are welcome to try. We analyzed the backtesting, so this data was taken in July. But in principle, you can forward test that too once once it's there but you can also forward without time post deployed on arbitrum you can just assume that you have this advantage and you can then see how much you can make with the strategies that we suggest so answer is it's very easy to do, but we didn't do it. Hi, this is Kenneth, and I'm not sure if you covered it, but was any differential gas price that was taken into consideration in your simulation? So what differential I didn't get? Gas. Amount gas fees. Or decentralized exchange. Decentralization. Yeah. The gas fees. Ah. So gas fees we assume to be, let's say, sub-cent for the exchange. So we took realistic gas fees and subtracted from the gains. But they are very not substantial for the results. I see. Thank you. There's one last question over there. Oh, over there? Okay. Over there, yeah. Yeah. What kind of inventory is needed to actually pull this off in a relatively profitable manner? I mean, you need to have both assets on the chain and on the external exchange to try this strategy. Yeah, but I guess I'm just looking from a volume perspective of what they actually need. In your simulations, was there a drop-off point where, let's say, if they only had 100k versus 500k, it's no longer profitable? Yeah, actually, sometimes you need very large inventories to realize very large price difference. But we didn't go into this we assume that you always have enough but you're right that to take this advantage you can check numbers to take very large advantage you need very large inventory as well so that was the last question thank you very much for your talk please give a",
   "eventId": "devcon-7",
   "slot_start": 1731487200000,
   "slot_end": 1731487800000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1CjpmVDcW4MOjilttmNcrYu_KP0rC8ud1_BjudHV_ntI"
+  "resources_presentation": "https://docs.google.com/presentation/d/1CjpmVDcW4MOjilttmNcrYu_KP0rC8ud1_BjudHV_ntI",
+  "resources_slides": null,
+  "speakers": [
+    "akaki-mamageishvili"
+  ]
 }

@@ -18,6 +18,7 @@ import { Notifications } from 'components/domain/app/dc7/profile/notifications'
 import { toast } from 'lib/hooks/use-toast'
 import CopyIcon from 'assets/icons/copy.svg'
 import Tabs from 'components/domain/app/account/tabs'
+import { useZupass } from 'context/zupass'
 
 export const EditSettings = () => {
   const [openTabs, setOpenTabs] = useState<any>({})
@@ -58,6 +59,7 @@ export const EditSettings = () => {
 
 export default function SettingsPage(props: any) {
   const router = useRouter()
+  const zupass = useZupass()
   const accountContext = useAccountContext()
   const avatar = useAvatar()
   const [areYouSure, setAreYouSure] = useState(false)
@@ -169,12 +171,37 @@ export default function SettingsPage(props: any) {
                 <CollapsedSectionHeader title="Account" className="py-4 px-4" />
                 <CollapsedSectionContent>
                   <div className="px-4 pb-2">
-                    <LinkList noIndicator>
-                      <Link to="/account/email">Manage Email</Link>
-                      <Link to="/account/wallets">Manage Wallets</Link>
-                      <Link to="/account/username">Manage Username</Link>
-                      <Link to="/account/profile">Manage Profile</Link>
-                    </LinkList>
+                    <div className="flex flex-col gap-2">
+                      <Link className="hover:text-black text-gray-600 cursor-pointer" to="/account/email">
+                        Manage Email
+                      </Link>
+                      <Link
+                        className="hover:text-black text-gray-600 cursor-pointer border-top pt-2"
+                        to="/account/wallets"
+                      >
+                        Manage Wallets
+                      </Link>
+                      <Link
+                        className="hover:text-black text-gray-600 cursor-pointer border-top pt-2"
+                        to="/account/username"
+                      >
+                        Manage Username
+                      </Link>
+                      <Link
+                        className="hover:text-black text-gray-600 cursor-pointer border-top pt-2"
+                        to="/account/profile"
+                      >
+                        Manage Profile
+                      </Link>
+                      {!zupass.publicKey && (
+                        <div
+                          className="hover:text-black text-gray-600 cursor-pointer border-top pt-2"
+                          onClick={() => zupass.Connect(true)}
+                        >
+                          Connect Zupass
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </CollapsedSectionContent>
               </CollapsedSection>

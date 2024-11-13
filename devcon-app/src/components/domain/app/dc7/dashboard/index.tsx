@@ -36,6 +36,7 @@ import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
 import Decompression from 'assets/images/dc-7/dashboard-highlights/decompression.png'
 import Ticketing from 'assets/images/dc-7/dashboard-highlights/ticketing.jpeg'
 import GetInvolved from 'assets/images/dc-7/dashboard-highlights/get-involved.jpg'
+import WhiteRabbit from 'assets/images/dc-7/dashboard-highlights/white-rabbit.png'
 import CityGuide from 'assets/images/dc-7/city-guide.png'
 import { useAppContext } from 'context/app-context'
 import moment from 'moment'
@@ -437,6 +438,13 @@ export const Highlights = () => {
             description="The Ethereum conference for developers, thinkers, and makers is finally here. Join for the opening ceremonies and celebration of our community Reunion."
             image={Ticketing}
             className={now?.isAfter(moment.utc('2024-11-12T12:15:00Z').utcOffset(7)) ? 'hidden' : ''}
+          />
+
+          <HighlightCard
+            to="/schedule/7CFGTS"
+            title="White Rabbit World Premiere"
+            description="White Rabbit is the first crowdfunded anime on Ethereum. It is about the metaphorical journey of going down the crypto rabbit hole."
+            image={WhiteRabbit}
           />
 
           <HighlightCard
