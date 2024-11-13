@@ -9,10 +9,6 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "DIY",
-    "Arduino"
-  ],
   "tags": [
     "DevEx",
     "Hacks",
@@ -22,13 +18,26 @@
     "Hacks",
     "Hardware wallets"
   ],
-  "language": "en",
-  "speakers": [
-    "richard-moore"
+  "keywords": [
+    "DIY",
+    "Arduino"
   ],
+  "duration": 564,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "NWdMDKMZdpQ",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": null,
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67343ffe9dbb7a90e1fa7007.vtt",
+  "transcript_text": " So a lot of you probably know me from, my slides are excellent, most of you probably know me from Ethers.js, but today I'll be talking to you about Firefly, our new exciting hardware wallet that we want to get in the hands of everyone. So keep an eye on my time. I see all the things. Okay, so what do we have? So what is Firefly? So Firefly, it's an open source firmware, open hardware, hardware wallet. It's going to be cost effective. Hopefully everyone will get them for free. We have like 126 to give out today. So feel free to drop by after and grab one. And it's customizable. You can do whatever you want with it. If you want to start your own Firefly competitor and just take our hardware and our software, you can run with it. If you can produce this cheaper than us, we welcome you to. The goal is to get security in the hands of people everywhere, no matter what. And so if you have a more cost-effective or a better way to disseminate to a group of people we can't reach, we want that. So again, it's about making HarderWalt fun again. Whether you want to put a game on it, whether you want it to be like a little animated GIF thing, Pong. If you have a CryptoKitty you really like and you just want like a HarderWalt that's just dedicated to that CryptoKitty only forever, you can do it. So, assembly. Originally, this was going to be a, like, two-hour, like, assembly thing. So, if you want to build your own, you're starting your own empire for Firefly, you're trying to take us out, first thing you need is a crew. So, my parents and my wife over here, we got together, and in an evening, I mean, it took about an hour and a half. I think we made 200 Firefly. So, I mean, my parents aren't super technical and they can build these things. I actually have one here I was going to build on stage, but I think I will forgo that just because I'm running out of hands. So, things you need, you need basically a pile system, you need a pile of the panelized boards, so six fireflies come per board. This is all in a script in the repository. If you want a single PCB board, you can do it and just have one firefly per board. If you've got a crazy manufacturing facility and you want a kilometer square of these things, you can just type those numbers in and I mean power to you. So you have a pile for like your completed Fireflies, your displays, the cases, and that's really it. It just like clips together. Again it's designed to be nice and simple. We're trying to like reduce costs to make it easier to do what you want to do. Right so step one,, I guess I can just cover this. You deep handle it, it just snaps off, and there you go, there's your Firefly. Then you clip your little screen in, I'm not going to do that right now, again, lack of hands, and snaps in. It's like a snap fit, so it has a nice satisfying click once it all works. Okay, so that's assembling. Provisioning. So this is where you might, if you were trying to like compete with us, do your own thing. So we have a private key that we use to sign each device. So the device generates the private key for attestation on the device. It's never been on any computer ever. It also is why it takes like two minutes to provision a device sometimes. RSA is kind of crazy. You basically pick a bunch of random numbers, do some rudimentary math to make sure it's not obviously not co-prime. And then you burn that to the chip. And well, first it sends that to a signing server, which signs it. It's a bunch of like back and forth. But at the end of the day, you get like proof on the device, sorry, evidence on the device that it can use to prove that it's a genuine device. So if you're trying to build your own CryptoKitty empire that each CryptoKitty lives on a device, now the device can prove to the world.",
   "eventId": "devcon-7",
   "slot_start": 1731473400000,
   "slot_end": 1731474000000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/12mlEi-XhwS1335VqCql4XOq2MN1ZU6WJeQLvyAc-QHU"
+  "resources_presentation": "https://docs.google.com/presentation/d/12mlEi-XhwS1335VqCql4XOq2MN1ZU6WJeQLvyAc-QHU",
+  "resources_slides": null,
+  "speakers": [
+    "richard-moore"
+  ]
 }
