@@ -53,6 +53,7 @@ export function getTitleClass(title: string, av?: boolean) {
   console.log("TITLE Length", title.length, av ? "AV" : "SCHEDULE");
 
   if (av) {
+    if (title.length > 150) return "text-5xl leading-normal";
     if (title.length > 100) return "text-6xl leading-tight";
     if (title.length > 85) return "text-6xl leading-normal";
     if (title.length > 80) return "text-7xl leading-snug";
@@ -62,6 +63,7 @@ export function getTitleClass(title: string, av?: boolean) {
     return "text-9xl leading-normal";
   }
 
+  if (title.length > 150) return "text-3xl leading-normal";
   if (title.length > 100) return "text-4xl";
   if (title.length >= 85) return "text-4xl leading-snug";
   if (title.length >= 80) return "text-5xl leading-tight";

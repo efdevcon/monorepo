@@ -365,7 +365,7 @@ export const SessionCardPercentual = ({ session, className }: { session: Session
       <div className="flex justify-between" style={{ minHeight: '5.25em' }}>
         <div
           className={cn(
-            'basis-[6.25em] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
+            'basis-[6.75em] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
             getTrackColor(session.track)
           )}
         >
@@ -1755,7 +1755,11 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         <div className="flex items-center gap-2">
           <IconVenue className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
-            {session.type} - {session.slot_room?.name ?? session.slot_roomId}
+            {session.type} -{' '}
+            <Link to={`/event`} className="hover:underline">
+              {session.slot_room?.name ?? session.slot_roomId},{' '}
+              {session.slot_room?.info === 'G' ? 'Ground Floor' : `Level ${session.slot_room?.info}`}
+            </Link>
           </span>
         </div>
 
@@ -1765,7 +1769,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </div> */}
       </div>
 
-      <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white">
+      <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 bg-white">
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
           onClick={() =>
@@ -1799,13 +1803,24 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
             {account?.interested_sessions?.includes(session.sourceId) ? (
+              <StarFillIcon style={{ '--color-icon': '#7d52f4', fontSize: '21px' }} />
+            ) : (
+              <StarIcon style={{ fontSize: '21px' }} />
+            )}
+          </div>
+          <p>Mark as interesting</p>
+        </div>
+
+        {/* <div className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none">
+          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+            {account?.interested_sessions?.includes(session.sourceId) ? (
               <StarFillIcon style={{ '--color-icon': '#7d52f4' }} />
             ) : (
               <StarIcon />
             )}
           </div>
-          <p>Mark as interesting</p>
-        </div>
+          <p>Room Location</p>
+        </div> */}
 
         <div
           className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"

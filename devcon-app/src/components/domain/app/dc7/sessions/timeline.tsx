@@ -1,13 +1,14 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react'
 import { Session as SessionType } from 'types/Session'
 import { Event } from 'types/Event'
-import moment from 'moment'
+import moment, { now } from 'moment'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import { SessionCard, getTrackLogo } from './index'
 import { useRecoilState } from 'recoil'
 import { sessionFilterAtom } from 'pages/_app'
 import useDimensions from 'react-cool-dimensions'
 import { cn } from 'lib/shadcn/lib/utils'
+import { useAppContext } from 'context/app-context'
 
 const RoomGrid = ({ rooms }: { rooms: string[] }) => {
   const [sessionFilter] = useRecoilState(sessionFilterAtom)
@@ -64,6 +65,7 @@ const DayGrid = ({
   timeSlots: any[]
   day: string
 }) => {
+  const { now } = useAppContext()
   const scrollSyncRef = useRef<HTMLDivElement>(null)
   const [isNativeScroll, setIsNativeScroll] = useState(false)
   // When element changes size, record its max scroll boundary and reset all scroll related state to avoid edge cases
@@ -117,22 +119,48 @@ const DayGrid = ({
               {day}
             </div>
           </div>
-          {timeSlots.map((time, index) => (
-            <div
-              key={index}
-              data-id={time.format('h:mm')}
-              className="py-2 text-sm whitespace-nowrap flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom"
-              style={{ transform: isNativeScroll ? 'translateX(100px)' : 'translateX(var(--scroll-x))' }}
-            >
+          {timeSlots.map((time, index) => {
+            const isCurrent =
+              moment.utc(time).isSameOrBefore(now, 'minutes') &&
+              moment.utc(time).add(10, 'minutes').isAfter(now, 'minutes')
+
+            let offset = 0
+
+            if (isCurrent) {
+              const minutesElapsed = moment.utc(now).diff(moment.utc(time), 'minutes')
+              offset = (minutesElapsed / 10) * 100
+            }
+
+            return (
               <div
-                style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
-                className="flex flex-col justify-center items-center"
+                key={index}
+                data-id={time.format('h:mm')}
+                className={cn(
+                  'py-2 text-sm whitespace-nowrap relative flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom'
+                )}
+                style={{ transform: isNativeScroll ? 'translateX(100px)' : 'translateX(var(--scroll-x))' }}
               >
-                <p>{time.format('h:mm A')}</p>
-                <p className="text-[8px] leading-[6px] text-gray-500">{time.format('MMM DD')}</p>
+                {isCurrent && (
+                  <div
+                    className={cn('absolute left-0 top-0 w-[7px] h-full flex items-end justify-center')}
+                    style={{ transform: `translateX(${offset}px)` }}
+                  >
+                    <div className="absolute left-[-1px] top-0 w-[2px] h-full bg-red-200"></div>
+                    {/* <div className="absolute bottom-0 margin-auto bg-red-500 w-[20px] h-[20px] flex justify-center translate-y-full"> */}
+                    <div className="bg-red-400 w-[7px] h-[7px] rounded-full flex justify-center translate-y-1/2 -translate-x-1/2"></div>
+                  </div>
+                )}
+
+                <div
+                  style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
+                  className="flex flex-col justify-center items-center"
+                >
+                  <p>{time.format('h:mm A')}</p>
+                  <p className="text-[8px] leading-[6px] text-gray-500">{time.format('MMM DD')}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
         <SwipeToScroll speed={1.5} noScrollReset syncElement={scrollSyncRef}>
           <div className={cn('flex', isNativeScroll ? '' : '')}>
@@ -208,6 +236,7 @@ const DayGrid = ({
 }
 
 const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: Event; days: string[] }) => {
+  const { now } = useAppContext()
   // console.log(days, 'days')
 
   //   const { rooms, days, sessionsByDay } = useMemo(() => {
@@ -287,6 +316,26 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
         }
 
         const timeSlots = generateTimeSlots()
+
+        // const findNearestTimeslot = (time: string) => {
+        //   if (!time) return null
+        //   const timeMoment = moment.utc(time).add(7, 'hours')
+
+        //   // Only proceed if the time is for the current day
+        //   if (timeMoment.format('MMM DD') !== day) return null
+
+        //   return timeSlots.reduce((nearest: any, slot: any) => {
+        //     if (!nearest) return slot
+        //     const currentDiff = Math.abs(timeMoment.diff(slot))
+        //     const nearestDiff = Math.abs(timeMoment.diff(nearest))
+        //     return currentDiff < nearestDiff ? slot : nearest
+        //   }, null)
+        // }
+
+        // console.log(
+        //   moment.utc(findNearestTimeslot(now?.format('h:mm A') || '')).format('h:mm A'),
+        //   'findNearestTimeslot'
+        // )
 
         return (
           <div key={day} className="flex relative">
