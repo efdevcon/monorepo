@@ -1207,7 +1207,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   )
 }
 
-export const ScrollUpComponent = ({ visible, goToNow }: { visible: boolean; goToNow: () => void }) => {
+export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -1497,17 +1497,14 @@ export const SessionList = ({
           </div>
         ))
       )}
-
       {visibleSessions.length === 0 && (
         <div className="flex flex-col justify-center items-center h-full my-8">
           <Image src={NoResults} alt="No results" className="w-[300px] lg:max-w-[30%]" />
           <div className="mt-4 text-sm text-[#535353] font-semibold">No sessions match your filter</div>
         </div>
       )}
-
-      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} goToNow={goToNow} />}
-
-      {timelineView && <div className="py-4"></div>}
+      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
+      {timelineView && <div className="py-4"></div>}s
     </div>
   )
 }
