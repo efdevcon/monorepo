@@ -181,7 +181,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
         return a.localeCompare(b)
       }),
-      other: ['Attending', 'Interested In', 'Upcoming'], //, 'Past'],
+      other: ['Upcoming', 'Attending', 'Interested In'], //, 'Past'],
     }
   }, [sessions, timelineView])
 
@@ -215,7 +215,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         (!sessionFilter.other['Attending'] && !sessionFilter.other['Interested In'])
       // const matchesPast = sessionFilter.other['Past'] && now?.isAfter(moment.utc(session.slot_end).add(7, 'hours'))
       const matchesUpcoming = sessionFilter.other['Upcoming']
-        ? now?.isBefore(moment.utc(session.slot_start).add(7, 'hours'))
+        ? now?.isBefore(moment.utc(session.slot_end).add(7, 'hours'))
         : true
 
       const matchesOther = (matchesUpcoming && matchesFavorites) || Object.keys(other).length === 0
@@ -571,7 +571,7 @@ export const SessionCard = ({
         setDevaBotVisible(false)
       }}
     >
-      <div className="flex justify-between min-h-[100px] h-full">
+      <div className="flex justify-between min-h-[100px] h-full" data-time={start.format('HH:mm')}>
         <div
           className={cn(
             'basis-[100px] shrink-0 flex rounded-tr-none rounded-br-none items-center justify-center relative overflow-hidden',
@@ -1074,7 +1074,11 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                       updateOtherFilter(other)
                     }}
                   >
-                    {other}
+                    {other === 'Upcoming' ? 'Now & Upcoming' : other}
+                    {other === 'Upcoming' && (
+                      <IconClock className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
+                    )}
+
                     {other === 'Attending' && (
                       <IconAdded className="icon ml-2" style={{ '--color-icon': '#7d52f4', fontSize: '14px' }} />
                     )}
@@ -1203,7 +1207,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
   )
 }
 
-export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
+export const ScrollUpComponent = ({ visible, goToNow }: { visible: boolean; goToNow: () => void }) => {
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -1223,32 +1227,53 @@ export const ScrollUpComponent = ({ visible }: { visible: boolean }) => {
   }, [])
 
   return (
-    <AnimatePresence>
-      {visible && isScrolled && (
-        <motion.div
-          className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <CircleIcon
-            className="bg-[#F0F2FF] w-[30px] h-[30px] pointer-events-auto"
-            onClick={() => {
-              const container =
-                document.querySelector('[data-type="session-list"]') ||
-                document.querySelector('[data-type="speaker-list"]')
-
-              if (container) {
-                container.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
+    <>
+      {/* <AnimatePresence>
+        {!isScrolled && (
+          <motion.div
+            className="left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
           >
-            <ScrollDownIcon style={{ fontSize: '18px', transform: 'rotateX(180deg)' }} />
-          </CircleIcon>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            <div
+              onClick={goToNow}
+              className="bg-[#F0F2FF] rounded-full px-2 py-1.5 text-xs border border-solid border-[#E1E4EA] hover:border-neutral-400 hover:scale-105 transition-all duration-300"
+            >
+              Scroll To Now
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence> */}
+
+      <AnimatePresence>
+        {visible && isScrolled && (
+          <motion.div
+            className="right-0 left-0 flex justify-center items-center select-none sticky bottom-4 py-4 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CircleIcon
+              className="bg-[#F0F2FF] w-[30px] h-[30px] pointer-events-auto"
+              onClick={() => {
+                const container =
+                  document.querySelector('[data-type="session-list"]') ||
+                  document.querySelector('[data-type="speaker-list"]')
+
+                if (container) {
+                  container.scrollIntoView({ behavior: 'smooth' })
+                }
+              }}
+            >
+              <ScrollDownIcon style={{ fontSize: '18px', transform: 'rotateX(180deg)' }} />
+            </CircleIcon>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 
@@ -1268,6 +1293,7 @@ export const SessionList = ({
   filterOptions: any
 }) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const { now } = useAppContext()
   const [sessionFilter, setSessionFilter] = useRecoilState(sessionFilterAtom)
   // const [visibleSessions, setVisibleSessions] = useState<SessionType[]>([])
   const [page, setPage] = useState<number>(
@@ -1339,6 +1365,43 @@ export const SessionList = ({
       return acc
     }, {} as Record<string, SessionType[]>)
   }, [visibleSessions])
+
+  const goToNow = () => {
+    if (!now) return
+
+    // Get all timestamps from groupedSessions
+    const timestamps = Object.keys(groupedSessions)
+    let nearestTimestamp = timestamps[0]
+    let smallestDiff = Infinity
+
+    // Find the timestamp closest to now
+    timestamps.forEach(timestamp => {
+      const sessionTime = moment.utc(timestamp, 'MMM D — h:mm A')
+      const diff = Math.abs(sessionTime.diff(now))
+
+      if (diff < smallestDiff) {
+        smallestDiff = diff
+        nearestTimestamp = timestamp
+      }
+    })
+
+    // Find and scroll to the element with matching data-time
+    const nearestElement = document.querySelector(`[data-time="${nearestTimestamp}"]`)
+    if (nearestElement) {
+      nearestElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    } else {
+      // Fallback to scrolling to the session list container
+      const container = document.querySelector('[data-type="session-list"]')
+      if (container) {
+        container.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
+  // useEffect(() => {
+  //   if (!now) return
+  //   goToNow()
+  // }, [now])
 
   const isNativeScroll = typeof window !== 'undefined' && !window.matchMedia('not all and (hover: none)').matches
 
@@ -1419,7 +1482,13 @@ export const SessionList = ({
       ) : (
         Object.entries(groupedSessions).map(([date, dateSessions]) => (
           <div className="relative flex flex-col" key={date}>
-            <div className={cn('font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start')}>{date}</div>
+            <div
+              className={cn('relative font-semibold px-4 py-2 stickyz top-[107px]z z-[9] text-sm self-start')}
+              data-time={date}
+              style={{ scrollMarginTop: '110px' }}
+            >
+              {date}
+            </div>
             {dateSessions.map(session => (
               <div key={session.sourceId} className="mx-4 mb-3">
                 <SessionCard session={session} />
@@ -1436,7 +1505,8 @@ export const SessionList = ({
         </div>
       )}
 
-      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} />}
+      {!timelineView && <ScrollUpComponent visible={visibleSessions.length > 20} goToNow={goToNow} />}
+
       {timelineView && <div className="py-4"></div>}
     </div>
   )
