@@ -1801,14 +1801,21 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <div className="label self-start rounded red bold sm shrink-0">Happening now!</div>
         )}
 
-        {isStreaming && (
+        {true && (
           <div
             onClick={() => {
               // sessionViewRef.current?.scrollIntoView({ behavior: 'smooth' })
               // @ts-ignore
-              sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+              if (standalone) {
+                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' })
+              } else if (sessionViewRef.current) {
+                sessionViewRef.current.scrollTop = sessionViewRef.current.scrollHeight
+              }
             }}
-            className="label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300"
+            className={cn(
+              'label self-start rounded red bold sm shrink-0 cursor-pointer hover:bg-red-100/70 transition-all duration-300',
+              standalone ? 'lg:pointer-events-none' : ''
+            )}
           >
             Stream available! Watch now
           </div>
