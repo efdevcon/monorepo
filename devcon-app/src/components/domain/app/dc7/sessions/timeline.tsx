@@ -317,25 +317,25 @@ const Timeline = ({ sessions, event, days }: { sessions: SessionType[]; event: E
 
         const timeSlots = generateTimeSlots()
 
-        const findNearestTimeslot = (time: string) => {
-          if (!time) return null
-          const timeMoment = moment.utc(time).add(7, 'hours')
+        // const findNearestTimeslot = (time: string) => {
+        //   if (!time) return null
+        //   const timeMoment = moment.utc(time).add(7, 'hours')
 
-          // Only proceed if the time is for the current day
-          if (timeMoment.format('MMM DD') !== day) return null
+        //   // Only proceed if the time is for the current day
+        //   if (timeMoment.format('MMM DD') !== day) return null
 
-          return timeSlots.reduce((nearest: any, slot: any) => {
-            if (!nearest) return slot
-            const currentDiff = Math.abs(timeMoment.diff(slot))
-            const nearestDiff = Math.abs(timeMoment.diff(nearest))
-            return currentDiff < nearestDiff ? slot : nearest
-          }, null)
-        }
+        //   return timeSlots.reduce((nearest: any, slot: any) => {
+        //     if (!nearest) return slot
+        //     const currentDiff = Math.abs(timeMoment.diff(slot))
+        //     const nearestDiff = Math.abs(timeMoment.diff(nearest))
+        //     return currentDiff < nearestDiff ? slot : nearest
+        //   }, null)
+        // }
 
-        console.log(
-          moment.utc(findNearestTimeslot(now?.format('h:mm A') || '')).format('h:mm A'),
-          'findNearestTimeslot'
-        )
+        // console.log(
+        //   moment.utc(findNearestTimeslot(now?.format('h:mm A') || '')).format('h:mm A'),
+        //   'findNearestTimeslot'
+        // )
 
         return (
           <div key={day} className="flex relative">

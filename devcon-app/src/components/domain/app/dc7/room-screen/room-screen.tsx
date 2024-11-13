@@ -126,7 +126,6 @@ type ScreenProps = {
 }
 
 const SessionBar = ({ session }: { session: Session }) => {
-  console.log(session)
   return (
     <div
       className={cn(
@@ -158,7 +157,9 @@ const SessionBar = ({ session }: { session: Session }) => {
           height={20}
           className="w-[1.5em] h-[1.5em] object-contain"
         />
-        <p className="text-0-75 uppercase font-semibold">{session.track}</p>
+        <p className="text-0-75 uppercase font-semibold">
+          {session.track.startsWith('[CLS]') ? 'Community-Led Session' : session.track}
+        </p>
       </div>
     </div>
   )
