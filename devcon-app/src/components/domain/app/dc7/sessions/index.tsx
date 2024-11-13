@@ -1769,9 +1769,9 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </div> */}
       </div>
 
-      <div className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 bg-white">
+      <div className="flex justify-evenly shrink-0 text-xs !leading-[1.2em] border border-solid border-[#E1E4EA] text-gray-500 px-3 rounded-2xl p-2 pt-1 gap-2 my-1 bg-white">
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer select-none"
+          className="flex flex-col gap-1 hover:text-black transition-all duration-300 cursor-pointer select-none"
           onClick={() =>
             setSessionBookmark(
               session,
@@ -1781,7 +1781,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
             )
           }
         >
-          <div className="text-lg hover:scale-110 transition-transform duration-300">
+          <div className="text-lg hover:text-black transition-transform duration-300">
             {account?.attending_sessions?.includes(session.sourceId) ? (
               <IconAdded style={{ '--color-icon': '#7d52f4' }} />
             ) : (
@@ -1791,7 +1791,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <p>Attend Session</p>
         </div>
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
           onClick={() =>
             setSessionBookmark(
               session,
@@ -1803,27 +1803,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
             {account?.interested_sessions?.includes(session.sourceId) ? (
-              <StarFillIcon style={{ '--color-icon': '#7d52f4', fontSize: '21px' }} />
+              <StarFillIcon style={{ '--color-icon': '#7d52f4', fontSize: '20px' }} />
             ) : (
-              <StarIcon style={{ fontSize: '21px' }} />
+              <StarIcon style={{ fontSize: '20px' }} />
             )}
           </div>
           <p>Mark as interesting</p>
         </div>
 
-        {/* <div className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none">
-          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
-            {account?.interested_sessions?.includes(session.sourceId) ? (
-              <StarFillIcon style={{ '--color-icon': '#7d52f4' }} />
-            ) : (
-              <StarIcon />
-            )}
-          </div>
-          <p>Room Location</p>
-        </div> */}
-
         <div
-          className="flex flex-col items-center justify-center gap-1 cursor-pointer group select-none"
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
           onClick={() => setCalendarModalOpen(true)}
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
@@ -1831,6 +1820,16 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           </div>
           <p>Export to Calendar</p>
         </div>
+
+        <Link
+          className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
+          to={`/event`}
+        >
+          <div className="text-lg group-hover:scale-110 transition-transform duration-300">
+            <IconVenue />
+          </div>
+          <p className="text-left">Find Location</p>
+        </Link>
 
         {cal && (
           <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
