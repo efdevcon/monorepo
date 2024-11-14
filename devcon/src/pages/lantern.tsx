@@ -46,8 +46,8 @@ export default pageHOC(function SeaLocal(props: any) {
           </div>
         </div>
 
-        <div className="w-[630px] max-w-full flex flex-col items-center md:flex-row gap-8 md:items-stretch text-xs">
-          <div className="text-center">
+        <div className="w-[630px] max-w-full flex flex-col order-2 items-center md:flex-row gap-8 md:items-stretch text-xs">
+          <div className="order-2 text-center mb-4 md:mb-0">
             <div className="text-left flex flex-col">
               <p className="mb-2 font-semibold text-sm">
                 Here are your DIY instructions for the Dark Forest Illuminating Paper Lantern builder kit:
@@ -111,7 +111,7 @@ export default pageHOC(function SeaLocal(props: any) {
               </p> */}
             </div>
           </div>
-          <div className="text-center flex items-center justify-center aspect-[873/1600] relative mb-12 md:mb-0 shrink-0 max-w-[200px] md:self-start rounded-2xl overflow-hidden">
+          <div className="text-center flex items-center justify-center aspect-[873/1600] md:order-3 relative md:mb-0 shrink-0 sm:max-w-[200px] max-w-full md:self-start rounded-2xl overflow-hidden">
             {/* <div className={`${themes['lantern']}`}> */}
             <iframe
               width="560"
