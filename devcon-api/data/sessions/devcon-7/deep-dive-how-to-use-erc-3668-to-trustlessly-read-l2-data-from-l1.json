@@ -9,18 +9,27 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [],
   "tags": [],
+  "keywords": [],
+  "duration": 3425,
   "language": "en",
-  "speakers": [
-    "julien",
-    "grant-southey",
-    "gregskrileth",
-    "thomas-clowes"
-  ],
+  "sources_swarmHash": "",
+  "sources_youtubeId": "L1pwtkKSTvs",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673483049dbb7a90e1e6f0c7",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673483049dbb7a90e1e6f0c7.vtt",
+  "transcript_text": " I think we're going to get started here. Okay, cool. Hey, everyone. This workshop is going to be about CCIP read. Maybe I'll hold this. Or maybe not. Okay, also known as ERC3668. I'm Greg Devrel at ENS Labs, and I'm going to be splitting this up with some friends from Linnea and Unruggable who you'll be hearing from a little bit later. Uh so just agenda, I know this is workshop so we're gonna try and limit the slides. But uh to keep it interesting we're gonna give you three different perspectives. I'm gonna give a brief overview. Uh Julian and Grant from Linnea are gonna share their perspective as kind of the first layer two team that really built and uses Trustless CCIP read infrastructure in production. And then Thomas from Unruggable is going to share a more generalized framework around how you can use Trustless CCIP read infrastructure in production as well. So if you haven't seen it, this is CCIP read or ERC 3668. It was authored by Nick Johnson, founder and lead developer of ENS, and you'll hear why that's relevant in a second. And before we dive in, we just want to answer two questions today. Why was it created and how is it used? And I guess before I do that, has anybody kind of written a contract that uses CCIP read before? Just to figure out the audience. Okay, so not very many. Cool. This is gonna be useful introduction then. So, CCIP read was written with Enus in mind, but written as an EIP so that it can be used for other things as well. Uh, and the reason it was written with Enus's in mind is because we have fairly unique needs. ENS is rooted in L1, which obviously is decentralized but expensive. And so we wanted to have a flexible system to where you can also basically fetch data from other places. And the first solution that people might think about is why not just deploy to a bunch of chains? And the reason we're unique is because we kind of can't do that. There has to be one central registry for where you have .eth names which is only a part of ENS but an important one. Uh and so we can't just kind of deploy to different chains. There can't be a world in which a .eth name is registered on multiple chains and different owners is just messy. So we have to have a central chain and we it's important for us to stay on main net for that central chain, or for that central registry because of decentralization and stuff like that. So an ideal solution to these kind of set of problems would be supporting reading data from any off-chain data source. And we really say off-chain, but it's like off L1 to be a little more explicit. So that could be a database, any generic API, or a layer two. And at the initial level, kind of like the first level of defense, both of these look the same, like off-chain is just off L1. But we'll kind of talk about how that difference comes into play in a minute. And similar to point one, based on where you read from, you'll have different sorts of verification logic. And so if you're reading from an off-chain data source, it will be a basic verification logic. If you're reading from an L2, you want something a little bit more complex and more kind of provable. And ultimately you don't want to add an extra burden on app developers that have to like do a bunch of whole custom stuff. And you also don't want a whole bunch of burden on gateway operators that might like push data to L1 by making a transaction and basically trying to mirror other chains because that's just expensive and not really sustainable. So the solution is this kind of diagram. I think you can see it pretty well. It's small on my screen, so I'll try and explain it. Basically, there are three parties. You have a client, you have a contract, and you have a gateway. Or in other words, it's like an application, a smart contract, and then an API. You know, the spec is that a client will call a function on a smart contract, as you do on any contract, and instead of returning data directly from, you know, internal storage or something it will actually return an error if you're implementing CCIP read and that error has a specific signature basically it's it's this off chain data error and this indicates to the client that it should send the call data that it gets back from that error to some URL which is also defined in the error and this kind",
   "eventId": "devcon-7",
   "slot_start": 1731481200000,
   "slot_end": 1731486600000,
   "slot_roomId": "classroom-e",
-  "resources_presentation": "https://docs.google.com/presentation/d/1W0jwOLdutdtpuJNo6WvxKfcV8v0h4mUvf0CLm68DfjQ"
+  "resources_presentation": "https://docs.google.com/presentation/d/1W0jwOLdutdtpuJNo6WvxKfcV8v0h4mUvf0CLm68DfjQ",
+  "resources_slides": null,
+  "speakers": [
+    "grant-southey",
+    "gregskrileth",
+    "julien",
+    "thomas-clowes"
+  ]
 }
