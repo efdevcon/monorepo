@@ -405,7 +405,7 @@ export const RoomScreen = (props: ScreenProps) => {
               <div className={cn(css['livestreams'], 'mr-2')}>
                 <div className={css['body']}>
                   <p className={css['title']}>Resources / Livestreams</p>
-                  <p className="!mt-0"> the session on the Devcon App to access more information. </p>
+                  <p className="!mt-0">View the session on the Devcon App to access more information. </p>
 
                   <p>If room capacity is full, please watch the session on live stream.</p>
 
