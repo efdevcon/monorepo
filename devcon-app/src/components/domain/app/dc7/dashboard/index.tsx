@@ -440,12 +440,12 @@ export const Highlights = () => {
             className={now?.isAfter(moment.utc('2024-11-12T12:15:00Z').utcOffset(7)) ? 'hidden' : ''}
           />
 
-          <HighlightCard
+          {/* <HighlightCard
             to="/schedule/7CFGTS"
             title="White Rabbit World Premiere"
             description="White Rabbit is the first crowdfunded anime on Ethereum. It is about the metaphorical journey of going down the crypto rabbit hole."
             image={WhiteRabbit}
-          />
+          /> */}
 
           <HighlightCard
             to="https://thrive.devcon.org"
