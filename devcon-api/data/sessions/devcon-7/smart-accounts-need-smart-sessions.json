@@ -9,21 +9,30 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
+  "tags": [
+    "interoperability"
+  ],
   "keywords": [
     "standards",
     "wallets",
     "interoperability"
   ],
-  "tags": [
-    "interoperability"
-  ],
+  "duration": 1802,
   "language": "en",
-  "speakers": [
-    "pedro-gomes"
-  ],
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67356fb59dbb7a90e189a824",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673572269dbb7a90e19a37f9.vtt",
+  "transcript_text": " In numbers, the total size of the game is about a total of 150 bytes. That's the entire state of the game. The front end is built in React and Phaser. The source code for the back end is about 500 or so lines of C++, not including boilerplate. That might be something like half of that. And it took about a month for a team of devs and collaborators from Gauss Labs and Xerox PARC and PSE to build this together. So why am I showing you this? Why am I showing you this incredibly simple game that a kid could have probably built as their first programming project? Well, essentially, the interesting thing about this game is that the back end of the game is running entirely inside of fully homomorphic encryption. And to our knowledge, this is the first time a multi-user application with a back end that is running inside of FHE has actually been built. So that means that all of the state of this game is encrypted using FHE, and all player actions and everything happening inside of the game is encrypted using FHE, and all player actions and everything happening inside of the game is happening inside of FHE. Thank you. So one question you might ask is why bother running this inside of FHE, right? FHE is super expensive. Well, one thread that we've been pulling at in the last year is this idea that technologies like FHE can enable us to run what we think about as hallucinated servers. So let me describe what I mean by that. Today, if a group of us wanted to come together and to build some sort of application that all of us might use, like let's say a social network for DevCon attendees, the way we would do that today is that we would have someone rent out an AWS server, write some sort of back-end code, and then deploy that back-end code to the web server, and then each of us would, using our computer or using our browser or client or whatever else, talk to this back-end server, making API requests to update and retrieve the state of the application. making API requests to update and retrieve the state of the application. Now using technologies like programmable cryptography, another way we can imagine doing this sort of thing opens up. So we can imagine in a world with programmable cryptography that rather than there existing a specific physical server with a physical footprint that's running all of the computations of the application, instead every participant of the application might store something like a cryptographic shard of the overall state. And using technologies like multi-party computation or fully homomorphic encryption, we could cryptographically simulate the execution of this virtual machine using things like ZK-proofs or FHE to advance the state of this arbitrary machine using things like zk proofs or fhe to advance the state of This arbitrary computation one step at a time ensuring its consistency ensuring that everybody is only you know Having access to the data that they're supposed to be able to While doing so in a in a decentralized multi-party way without needing to rely on a physical server anywhere that actually is the source of truth for the system. So, you know, this sort of opens up a lot of interesting questions. What if our digital services ran as these distributed hallucinated computations between just the relevant parties? We could imagine having this abstraction for a server where instead of, you know, servers run by Zuck, we have a server made of math that's perfectly secure, privacy preserving, verifiable, interoperable with every other service built in this way, etc. Of course, right now we're very early on our journey. So in terms of the game in numbers, in order to run this extraordinarily simple game, 150 bytes of state with four frogs on a 32 by 32 grid, we are using nine machines to coordinate a variety of different MPCs together. So we have four MacBooks downstairs, and we also have five 192 core AWS machines in the cloud, costing us about $200 an hour to run this game. Every binary gate involved in the execution of any operation takes about 10 milliseconds to evaluate, which is about a 1 billion times overhead on top of ordinary computation. And for every bit of plain text state in this game, this bit will blow up to about 3,000 bits. Actually, I think this might be 3,000 bytes of ciphertext. I need to check on that, but it's a huge overhead. So the way that I think about what's going on is it's sort of like we've built almost this particle accelerator and spent enormous amount of resources just so that we can suspend in the middle of the cryptographic ether for a brief instant something that looks like the Higgs boson, and we can sort of hold that",
   "eventId": "devcon-7",
   "slot_start": 1731552300000,
   "slot_end": 1731554100000,
   "slot_roomId": "main-stage",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Xn-t83UrHqZiD2z9Y1uuRL-w6SCGvLF-dX6-cK0TwYM"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Xn-t83UrHqZiD2z9Y1uuRL-w6SCGvLF-dX6-cK0TwYM",
+  "resources_slides": null,
+  "speakers": [
+    "pedro-gomes"
+  ]
 }
