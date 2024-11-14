@@ -201,11 +201,6 @@ const DayGrid = ({
                   })
                 }
 
-                // if (room === 'Classroom A') {
-                //   console.log('room', room)
-                //   console.log(sessions, 'sessions')
-                // }
-
                 return (
                   <React.Fragment key={roomIndex}>
                     {timeSlots.map((timeslot, slotIndex) => {
