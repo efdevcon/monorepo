@@ -9,23 +9,32 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
+  "tags": [
+    "data",
+    "real-time"
+  ],
   "keywords": [
     "blockchain explorer",
     "user experience",
     "Real-Time Data"
   ],
-  "tags": [
-    "data",
-    "real-time"
-  ],
+  "duration": 426,
   "language": "en",
-  "speakers": [
-    "joan-baylina",
-    "daniel"
-  ],
+  "sources_swarmHash": "",
+  "sources_youtubeId": "4NJZijpEH6A",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67348d8a9dbb7a90e16d35b3",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67348d8a9dbb7a90e16d35b3.vtt",
+  "transcript_text": " All right. . All right. So sorry. Oh, shit. Okay. Good evening, you all. First of all, I would like to thank the DEF CON organization for letting us host this talk together. And I shall start. So my name is Daniel. I am a co-founder of Chain. Chain is a company that we decided to do a block explorer. As we can all see, a bunch of new blockchains are being spawned every day. And this number is not slowing. But the currently offer for block explorers is rather limited. We believe the community needs new actors, so that's why we decided to go for it. As for today, we are live on the Ethereum mainnet and testnet. And on the Polygon GKVM and Cardona, that is its testnet. We support all the basic things that a user or a developer can possibly need, such as data from the transactions, interacting with verified smart contracts, or verifying smart contracts. So, as you may know, running a block spares is not as easy as it seems. It's not just connecting to an RPC and showing the data on a beautiful UI. It actually involves a lot of interdisciplinary technologies. Such as the big data being the part, like the guy before me said, that he indexed the whole blockchain on ten hours. the blockchain. So, the guy before me said that he blockchain on ten hours. available on just a few clicks and on a couple of seconds, it's very hard. Let me give you a quick overview of our infrastructure, what makes us different. So, what we pursue is the onboarding of any newer blockchain, EVM compatible blockchains, and as seamlessly and as easy as possible. For that, what we have done is that we have extracted all the EVM compatible core, the stuff, like the blocks, the transactions, the internal transactions, all of these we have extracted on our core module and then we inherit from that and then we build the primitives that are needed to index. For example, for the Ethereum block, we inherit from the base block, the base EVM compatible block and then we top it up with specifics for the chain. In Ethereum would be all the consensus info, the blobs, et cetera. So that we top it up with specifics for the chain. In Ethereum would be all the consensus info, the blobs, et cetera, so that we have it. That makes us able to index any newer EVM compatible chain in no time. This level of flexibility is what we believe what gives us an advantage here. Because we will... Sorry. This level of flexibility is what we believe is necessary for creating the tools that will help to onboard new users to the blockchain. We envision that the solution is to develop purpose-built explorers. More than one feature solution. It's what we have right now. Different blockchains have different needs and different users, therefore their explorers should be different. Now this is what we currently have. Now let's talk about the future. We're exploring the idea of decentralising the block explorer. As you may know, blockchain technology is all about decentralization and trustlessness. Yet the irony is that most users get into this space using centralized explorers. This creates a significant contradiction. If we believe in the power of blockchain and decentralization, our tools should align with this. Centralized explorers are single points of failure. Someone could tamper with data, introduce bias, and even send some transactions. What would happen if a main explorer gets hacked and changes the AVI of a really used smart contract? This reliance on centralized parties undermines the very values we stand for in the blockchain community. If our infrastructure is built on trustlessness, then our tools should reflect that. We think the future lies in a decentralized open source and trustless data feeds, much like how Chainlink functions as a decentralized data oracle. Imagine block experts that aggregate information from different validators. It would be like as chain link does with all the oracles to come up with a price. We envision that the solution is to grab data from different data sources and aggregate it on a one proof. Remember several racist rules by Oracle manipulation. It hasn't happened yet that we have this data manipulation. But it's something that can happen. And we better be safe than sorry. And I will conclude now with my final statement that to truly embrace the blockchain revolution, we need to align our tools with its principles. Together, we can build a future where the explorers are decentralized, transparent, and open to all, ensuring blockchain data remains a public good for everyone. Thank you very much. All right, so let's see, we can take questions from the audience. Do we have any hands raised up? No? Anybody? Oh, we do have a live question coming in. Do you have differentiators from Etherscan, BlockScout? Yep. As I said at the beginning, our infrastructure and our vision,'s what it's different we we believe that the that the future are the are all the chains that are spawning up and being able to respond quickly to their needs is what differentiates us i mean we have a level of of personalization and a level of of um of giving the the the layout that they that they need that they want that our competitors doesn't have",
   "eventId": "devcon-7",
   "slot_start": 1731493200000,
   "slot_end": 1731493800000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1_ATKYtQF_Q_hjc85bqwcab990AdWWjiO8FiSDVR2BMg"
+  "resources_presentation": "https://docs.google.com/presentation/d/1_ATKYtQF_Q_hjc85bqwcab990AdWWjiO8FiSDVR2BMg",
+  "resources_slides": null,
+  "speakers": [
+    "daniel",
+    "joan-baylina"
+  ]
 }
