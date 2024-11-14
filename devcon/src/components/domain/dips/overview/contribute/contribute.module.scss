@@ -186,6 +186,10 @@
       border-radius: 100px;
       max-width: none;
 
+      img {
+        border-radius: 100px;
+      }
+
       @media (max-width: $breakpoints-md) {
         &:nth-last-child(-n + 1) {
           display: none;
