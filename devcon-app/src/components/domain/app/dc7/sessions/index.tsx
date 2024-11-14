@@ -36,6 +36,7 @@ import Entertainment from 'assets/images/dc-7/entertainment.png'
 import { generateCalendarExport } from 'lib/components/add-to-calendar'
 import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
+import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
 import PlayIcon from 'assets/icons/play.svg'
 import {
   devaBotVisibleAtom,
@@ -113,8 +114,6 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
     const searchParams = new URLSearchParams(window.location.search)
     const newFilter = { ...initialFilterState } as any //...sessionFilter }
-
-    console.log('searchParams', searchParams.size)
 
     if (searchParams.size > 0) {
       searchParams.forEach((value, key) => {
@@ -540,6 +539,7 @@ export const SessionCard = ({
   }
 
   const isKeynote = title.startsWith('Keynote:')
+  const isDevaAward = session.sourceId === 'KGA9ZA'
 
   return (
     <Link
@@ -586,7 +586,7 @@ export const SessionCard = ({
           >
             <div className="text-white z-[2] line-clamp-4">{track}</div>
           </div>
-          {!isWhiteRabbit && trackLogo !== CityGuide && (
+          {!isDevaAward && !isWhiteRabbit && trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
               alt={track}
@@ -596,12 +596,16 @@ export const SessionCard = ({
             />
           )}
 
-          {!isWhiteRabbit && trackLogo === CityGuide && (
+          {!isDevaAward && !isWhiteRabbit && trackLogo === CityGuide && (
             <Image src={trackLogo} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           {isWhiteRabbit && (
             <Image src={WhiteRabbit} alt={track} height={150} width={150} className="w-full h-full object-cover" />
+          )}
+
+          {isDevaAward && (
+            <Image src={DevaAwards} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
@@ -725,8 +729,6 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
 
     setSessionFilter(nextFilter)
   }
-
-  console.log(filterOptions, 'filterOptions')
 
   return (
     <div className="flex flex-col overflow-auto no-scrollbar max-h-[calc(100vh-100px)] gap-4 p-4 pb-0">
@@ -1728,6 +1730,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const { now } = useAppContext()
   const sessionViewRef = React.useRef<HTMLDivElement>(null)
 
+  // console.log(session)
+
   React.useEffect(() => {
     if (!session) return
     setCal(
@@ -1767,6 +1771,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const isStreaming = session.slot_room?.youtubeStreamUrl_1 && sessionIsLive
 
   const isWhiteRabbit = session.sourceId === '7CFGTS'
+  const isDevaAward = session.sourceId === 'KGA9ZA'
 
   return (
     <div
@@ -1786,11 +1791,14 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       >
         <Image
           // @ts-ignore
-          src={isWhiteRabbit ? WhiteRabbit : trackLogo}
+          src={isDevaAward ? DevaAwards : isWhiteRabbit ? WhiteRabbit : trackLogo}
           alt={session.track}
           //   width={393}
           //   height={393}
-          className="rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right "
+          className={cn(
+            'rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right',
+            isDevaAward && '!object-center'
+          )}
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">
           {session.track && <TrackTag track={session.track} className="self-start" />}
@@ -1912,7 +1920,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <IconVenue className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
             {session.type} -{' '}
-            <Link to={`/event`} className="hover:underline">
+            <Link to={`/event?floor=${session.slot_room?.info}`} className="hover:underline">
               {session.slot_room?.name ?? session.slot_roomId},{' '}
               {session.slot_room?.info === 'G' ? 'Ground Floor' : `Level ${session.slot_room?.info}`}
             </Link>
@@ -1979,7 +1987,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
         <Link
           className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
-          to={`/event`}
+          to={`/event?floor=${session.slot_room?.info}`}
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
             <IconVenue style={{ fontSize: '19px' }} />
