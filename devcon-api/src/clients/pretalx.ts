@@ -47,7 +47,7 @@ export async function GetSpeakers(params: Partial<RequestParams> = {}) {
   }
 
   const speakersData = await exhaustResource(`speakers?questions=all`)
-  return speakersData.map((i: any) => mapSpeaker(i, params))
+  return speakersData.map((i: any) => mapSpeaker(i, params)).filter((s: any) => s.sourceId !== 'ADDJPN')
 }
 
 export async function GetSubmissions(params: Partial<RequestParams> = {}) {

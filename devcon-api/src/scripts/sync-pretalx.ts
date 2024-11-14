@@ -112,7 +112,7 @@ async function syncRooms() {
 }
 
 async function syncSessions() {
-  const speakers = (await GetSpeakers()).filter((s: any) => s.id && s.name && s.sourceId !== 'ADDJPN')
+  const speakers = (await GetSpeakers()).filter((s: any) => s.id && s.name)
   const acceptedSpeakers: any[] = []
 
   if (!fs.existsSync(`./data/sessions/devcon-7`)) {
