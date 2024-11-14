@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Data",
-    "Processing"
-  ],
   "tags": [
     "Architecture",
     "Scalability",
@@ -23,13 +19,26 @@
     "Event monitoring",
     "Scalability"
   ],
-  "language": "en",
-  "speakers": [
-    "panjamapong-panj-sermsawatsri"
+  "keywords": [
+    "Data",
+    "Processing"
   ],
+  "duration": 509,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "MQsj9MWBz1M",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6734879d9dbb7a90e1230047",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6734879d9dbb7a90e1230047.vtt",
+  "transcript_text": " So for our next talk, we have Peng Jie to give us a talk on indexing entire 2.4 billion transactions on Ethereum in 10 hours. Let's welcome Peng Jie on the stage. Thank you. Oh, everyone. My name is Panjay. I'm Thai. So as a Thai, welcome to Bangkok and DEF CON here in Thailand. All right. So today I'm... Thank you. Okay. Thank you. Okay, so today I'm going to talk about indexing entire 2.4 billion transactions on Ethereum in 10 hours. Okay, right now it may be like 2.7 billion right now, but at the time it was 2.4. Okay, let's get started. So when talking about indexing on blockchain, this is the conventional way to do it. So you have a database that tracks the latest block that you have processed. And then you call the blockchain node and then get the data and then update that block and so on. So you loop this until you get the latest block, right? This is a conventional way to work on the blockchain indexer. But looking on the product I'm working on, it's called AlphaTrace. This one, we have some special requirements. We want to index all addresses on the Ethereum since Genesis. And also, we want to get all the ERC20 token events and then get those prices to get what is called P&L, the profit and loss. That's what we want. But how we do it? We cannot do it in a conventional way because it would take forever, right? To read those 2.4 billion transactions and then loop one by one. So, we need to think, come up with a way to do the indexer in large scale. So let's get back to the basic of the blockchain indexer. Actually it's just data processing, right? We've got input, then we put it into the process, and then we've got output. So let's look into each component. What we need from the input to be able to process it at large scale is that we want it to be compact and structured. So this is the solution because Parquet gives us the compression. Also, we have type in Parquet as well. See Parquet format is like CSV, but better CSV. And we found this project. This is a very good open source project. It reads data on the Ethereum node and then writes it into a packet file so that when we want to process, we just read the file in our file system. This is very lightweight. We don't need to call the node every time to get the data. Okay, let's talk about the process. How to do the process in large scale? So we have to do it in a parallel way. There are couples of solutions. One is the Apache Spark, another is Apache Beam. We choose Apache Beam because there is a managed service on the cloud platform. And then output. When we have processed the data, we have to write it somewhere, right? So that destination that I have to write needs to be able to scale horizontally, meaning that if I want to read a lot of and write a lot of data, I can just create new instances and then I can read and write more. There are a couple of solutions to do the distributed database. As you might guess that I selected the Google Bigtable because I don't have to worry anything about infrastructure of the database. Alright, now piece everythingต่อไป พร้อมทุกอย่างแล้ว ทำคอล์ดิงนี่ไม่ใช่ 10 นาทีคือ คอล์ดิงของผม คือ 2-3 สัปดาห์เพื่อทำงานทุกส่วนและรับรับรับรับ แบบนี้แล้วติดตามนี่คือสร้างของการ 10 ชั่วโหลดเพื่อให้รายการทุกข่าวอีเทอร์แรม และ ERC20 ทีกอย่างก็คือ เราแบบคุณสิ่งที่เราสร้าง คุณสร้างของข้อมูลที่สุด ข้อมูลที่สุดที่สุดและว่าจะทำได้ในเวลาที่สุด And because I don't need it to do at large scale anymore, I can just do it traditional way to make it real time. These are the numbers. It cost me about $350, and the number of the row that is written on the database in 10 hours was the 7.1 billion records. And I scaled the Bigtable instance up to 20 instances. The good thing about Bigtable is that when I finish writing the data, I can scale it down. So after I finish index those big data, I scale it down to just one to handle the normal read operation. Yeah, that's the good thing about this whole thing. Yep, I think that's all for me today. Thank you very much. All right. So we can ask some questions in the audience. We can pass around the mic if there's any questions for PenJ. Oh, awesome. We do have some questions on screen. So let's go through the first one. For ETH node, how did you host that to handle large read? All right. In this process, it's the cryo reads from the node, not my indexer. So we use Minit service, and that is a dedicated server to read all the data. All right, I guess we have one minute to take one more question. Where are you reading the archive data from? How does reading from the node scale for you? Okay. Fortunately for my case, I don't need the archive data. I just need the transaction data, the logs, yeah, from the Ethereum node. That is just full node. It suffice. All right. So I think that concludes our talk for today. Yeah, from the Ethereum node, that is just full node. It's suffice. All right. So I think that concludes our talk for today.",
   "eventId": "devcon-7",
   "slot_start": 1731492600000,
   "slot_end": 1731493200000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1e7StVYyUS6PD_m8Qka4g3W8mafU8txCAZgD9XA95sSI"
+  "resources_presentation": "https://docs.google.com/presentation/d/1e7StVYyUS6PD_m8Qka4g3W8mafU8txCAZgD9XA95sSI",
+  "resources_slides": null,
+  "speakers": [
+    "panjamapong-panj-sermsawatsri"
+  ]
 }
