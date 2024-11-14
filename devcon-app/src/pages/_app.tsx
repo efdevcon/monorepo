@@ -23,7 +23,7 @@ import { DataProvider } from 'context/data'
 import { init } from '@socialgouv/matomo-next'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
-const MATOMO_SITE_ID = process.env.PUBLIC_MATOMO_SITE_ID || '8'
+const MATOMO_SITE_ID = process.env.PUBLIC_MATOMO_SITE_ID || '38'
 let matomoAdded = false
 
 export const selectedEventTabAtom = atom<'venue' | 'information' | 'contact' | 'directions'>({
