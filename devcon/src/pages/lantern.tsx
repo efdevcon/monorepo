@@ -116,7 +116,7 @@ export default pageHOC(function SeaLocal(props: any) {
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/NNSLwc0CdRM?si=d9KHkXaPWY6Fj6Mq"
+              src="https://www.youtube.com/embed/lZTWkomovec?si=1ZrBH52EBf-ITupe"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
