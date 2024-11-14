@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import cn from 'classnames'
 import ListIcon from 'assets/icons/list.svg'
 import TimelineIcon from 'assets/icons/timeline.svg'
@@ -193,11 +193,19 @@ export const Venue = (props: any) => {
   const [floor, setFloor] = useState('')
 
   const getFloorImage = () => {
-    if (floor === 'L2') return Floor2
-    if (floor === 'L1') return Floor1
+    if (floor === '2') return Floor2
+    if (floor === '1') return Floor1
     if (floor === 'G') return FloorG
     return VenueMap
   }
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    const floor = urlParams.get('floor')
+
+    console.log(floor)
+    setFloor(floor ?? '')
+  }, [])
 
   return (
     <>
@@ -220,22 +228,22 @@ export const Venue = (props: any) => {
 
           <div className={'absolute top-4 right-4 flex flex-col z-[1] gap-2 text-xs'}>
             <div
-              onClick={() => setFloor(floor === 'L2' ? '' : 'L2')}
+              onClick={() => setFloor(floor === '2' ? '' : '2')}
               className={cn(
                 'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center',
                 {
-                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'L2',
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === '2',
                 }
               )}
             >
               L2
             </div>
             <div
-              onClick={() => setFloor(floor === 'L1' ? '' : 'L1')}
+              onClick={() => setFloor(floor === '1' ? '' : '1')}
               className={cn(
                 'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 border-gray-200 rounded-full flex items-center justify-center',
                 {
-                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'L1',
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === '1',
                 }
               )}
             >

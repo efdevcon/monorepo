@@ -1734,6 +1734,8 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const { now } = useAppContext()
   const sessionViewRef = React.useRef<HTMLDivElement>(null)
 
+  console.log(session)
+
   React.useEffect(() => {
     if (!session) return
     setCal(
@@ -1797,7 +1799,10 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           alt={session.track}
           //   width={393}
           //   height={393}
-          className="rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right "
+          className={cn(
+            'rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right',
+            isDevaAward && 'object-center'
+          )}
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">
           {session.track && <TrackTag track={session.track} className="self-start" />}
@@ -1919,7 +1924,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           <IconVenue className="icon shrink-0" style={{ '--color-icon': 'black' }} />
           <span className="text-sm text-[black]">
             {session.type} -{' '}
-            <Link to={`/event`} className="hover:underline">
+            <Link to={`/event?floor=${session.slot_room?.info}`} className="hover:underline">
               {session.slot_room?.name ?? session.slot_roomId},{' '}
               {session.slot_room?.info === 'G' ? 'Ground Floor' : `Level ${session.slot_room?.info}`}
             </Link>
@@ -1986,7 +1991,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
         <Link
           className="flex flex-col gap-1 cursor-pointer hover:text-black transition-transform duration-300 select-none"
-          to={`/event`}
+          to={`/event?floor=${session.slot_room?.info}`}
         >
           <div className="text-lg group-hover:scale-110 transition-transform duration-300">
             <IconVenue style={{ fontSize: '19px' }} />
