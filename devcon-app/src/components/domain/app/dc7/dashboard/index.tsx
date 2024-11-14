@@ -449,6 +449,13 @@ export const Highlights = () => {
           /> */}
 
           <HighlightCard
+            to="/schedule/KGA9ZA"
+            title="Deva Awards"
+            description="The DEVA Awards at Devcon, are lighthearted accolades designed to celebrate and acknowledge outstanding contributions within the Ethereum ecosystem."
+            image={DevaAwards}
+          />
+
+          <HighlightCard
             to="/schedule?track=CLS&day=Nov%252014"
             title="Community Led Sessions"
             description="Community-led Sessions (CLS) are focused mini-events designed to make Devcon truly special by bringing together diverse fields and fostering interdisciplinary conversations."
@@ -475,11 +482,7 @@ export const Highlights = () => {
             description="Participate in the Devcon quadratic voting round, and help decide how funds will be allocated to the most valuable Ethereum dashboards."
             image={GetInvolved}
           />
-          {/* <HighlightCard
-            title="Deva Awards"
-            description="Visit the Hacker Cave to experience a truly immersive co-working space. Kept open late into the night to accomadate your needs."
-            image={DevaAwards}
-          /> */}
+
           <HighlightCard
             to="https://devcon.org/experiences#spaces"
             title="Decompression Room"
