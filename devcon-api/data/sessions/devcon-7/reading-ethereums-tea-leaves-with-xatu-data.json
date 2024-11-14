@@ -9,11 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Data",
-    "Analysis",
-    "Observability"
-  ],
   "tags": [
     "Layer 1",
     "Consensus",
@@ -23,16 +18,30 @@
     "Layer 1",
     "Testing"
   ],
-  "language": "en",
-  "speakers": [
-    "toni-wahrstatter",
-    "andrew-davis",
-    "sam-calder-mason",
-    "leo-bautista-gomez"
+  "keywords": [
+    "Data",
+    "Analysis",
+    "Observability"
   ],
+  "duration": 3344,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "MKZ7tFBMrsk",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67358b949dbb7a90e19ee9d9",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67358b949dbb7a90e19ee9d9.vtt",
+  "transcript_text": " Hey, good morning everyone. Thank you for coming to our workshop today. Before we start, if you have any questions just throw your hand up. It'll be pretty relaxed, so yeah. Just look into the workshop overview. Introduction, that's us right now. We're going to go into Xar2 Genesis, see sort of how it happened, why it happened, and then we'll look into the data sets that have emerged since. We'll then progress into how we're using the data, how others are using the data. Leo over here will then present. He's from the Megalabs team. He'll present the big blocks test that happened last year, and then we'll have a live tutorial from Tony. He'll go through how he uses Paisa to run his analysis. Sweet. So a little intro on who we are. I'm Sam. That's Andrew. He's hiding. We've both been doing DevOps on the PandaOps team for the last few years. And we both have a deep appreciation for things like Ethereum and observability. As for our team, ETH Panda Ops, we started out in 2021, being thrown straight into the deep end with the merge. We're embedded in the F and do DevOps for the protocol. And we post blogs semi-frequently on our website. We try to keep them really high signal. They're the best way to keep up to date with us. Scan the QR code and it'll jump you straight there. Our team has a pretty wide range of projects cooking at all times. You've probably come across a couple of them. For example, if you've ever run a node, you've probably checkpoint synced from an endpoint that was running checkpoint Z. You may have also seen Parry and Barnabas whipping core devs in the core dev calls. Yeah, there's a lot of stuff going on. So let's move on to the workshop. To set the scene, it's late 2022 to the workshop. To set the scene, it's late 2022 and the merger's just happened. We've switched from proof of work to proof of stake, but in doing so, our consensus mechanism has become a lot more sensitive to time. Suddenly the when of things happening has become a lot more important. And this data at a global and network level doesn't really exist. It's easy to check that a block was seen, but it's much harder to see when that block was actually seen in Sydney compared to Berlin, for example. And now that we're clear from the merge, researchers start hacking away. They want to upgrade the beacon chain. But yeah, they need this timing data to validate their ideas. And they start capturing it themselves. Varying scales, different implementations. It's hard to expose, it's hard to validate. There's a bit of potential errors in there. So we started to brainstorm ideas on how to solve our problems. We needed to somehow integrate with existing beacon node implementations as neither of us were really too keen to implement a full beacon node. As DevOps engineers, we'd usually just implement a few Prometheus metrics, put the feet up and call it a day. But millisecond-level precision is pretty important, so that rules out Prometheus metrics. Log aggregation was also another option, but it's definitely a moving target. These things change all the time. It's not really something that the client devs really pay too much attention to. And we'd also just have to turn on debug-level logging. We'd be throwing the kitchen sink at our log aggregation pipeline, and it would potentially be an unreliable result anyway. So that rules out logs. So we started to look at other options. Turns out that the beacon API has this thing called the event stream. You can subscribe to it, and when the beacon node sees things or does things, it will emit an event. So blocks, attestations, voluntary exits, everything. It was all there. The beautiful thing is that the beacon node implementation all supported this endpoint in a standardized fashion. So what we landed on was Zatu. We used Go, gRPC, and we thought that it would be responsible for just collecting Ethereum timing data. It definitely wasn't going to be trying to store or query that data, but the plan was to derive events and ship them somewhere else. To do this, we initially created two modules. Zatu's server would create events from other modules, would collect events from other modules and send them somewhere else, and Zatu's Sentry was our first module. It would run as a sidecar next to every beacon node, modules and send them somewhere else. And Zartu Sentry was our first module. It would run as a sidecar next to every beacon node, subscribe to events, and send them off to Zartu server. We wanted to make sure that all of the events followed the same structure so that it was much easier to add new events into the future. And also, really importantly, since this is like a distributed system, we wanted to make it clear how much you could trust the data. So data coming from a client is not necessarily trusted, but if it's been derived by Xar2's server, something that we control, maybe you can trust it a bit more. This example event is for one of our Xaru sentry nodes running on mainnet, subscribing to a beacon node, and a new block has just come in. I've redacted a couple of the fields, but yeah, that's the general idea. That's all great, but we still hadn't really solved where to send the data. And it turns out it was a lot of data.",
   "eventId": "devcon-7",
   "slot_start": 1731555000000,
   "slot_end": 1731560400000,
   "slot_roomId": "classroom-d",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Ii_t0zNEsYz1aRQml-w9fPgG3GbBAXs49o3KIFZpdCM"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Ii_t0zNEsYz1aRQml-w9fPgG3GbBAXs49o3KIFZpdCM",
+  "resources_slides": null,
+  "speakers": [
+    "andrew-davis",
+    "leo-bautista-gomez",
+    "sam-calder-mason",
+    "toni-wahrstatter"
+  ]
 }
