@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Smart contracts",
-    "modularity"
-  ],
   "tags": [
     "Governance",
     "Design",
@@ -20,13 +16,26 @@
     "Design",
     "Governance"
   ],
-  "language": "en",
-  "speakers": [
-    "hadrien-croubois"
+  "keywords": [
+    "Smart contracts",
+    "modularity"
   ],
+  "duration": 418,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "iyWhVEouHn4",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6734849a9dbb7a90e1fb0634",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6734849a9dbb7a90e1fb0634.vtt",
+  "transcript_text": " I want to take a seat, please. We have Adrian to give us the next talk. The next generation of governance will be modular. I encourage everyone to scan the QR code on the right. So if you have any questions, Adrian will address them in the end. All right, let's give a round of applause for Adrian. Thank you, Adrian. Hello, thank you for being here. Let's do that. Thank you for being here, everyone. So very quickly, governors are a big thing in Ethereum. There is an estimation that there is about $30 billion locked into different forms of DAO, governor contracts, that kind of thing. But I think that's just the tip of the iceberg, because most of the value is also these governor contracts controlling the upgrade of the L2 and all these kind of processes, like governor control compound, and compound holds a lot of assets. And this is governed by about 30 million people that have wallets that contain, whether they know it or not, tokens that allow them to vote. And that's a lot of people. And you can go to Tally, one of our partners, to have a look at all the governors that exist. There are a lot. Maybe some of them are not even here. But this is a big part of the space. Yet users are not that much involved into this process. Most people don't vote. In the base case, they delegate to someone else. So the question is, what can we do here, and what's missing? Usually when you have an application, you start your application by deploying it with BlackHand and as your application grows, you update your governance. You go from an EOA to a multisig in your early stage. And once you have a big enough user base with token distributed, you can go to having a full-fledged DAO. But this should not be rushed. You should take your time doing it. But you should be aware that this is where you should be heading at some point and prepare for that. And so usually the question that we get is, if I want to launch a governor, which governor should I use? And the thing is that there are many, many options to choose from. And there are a lot of questions that you need to ask yourself when you are going to launch a governor. Who is going to vote? What's the model? Is it like a multi-sig with a small party of people or is it like completely open, like compound with a voting token? Like what am I going to do with my governor? Am I going to manage some funds that came in, like for example, the funds that are raised by ENS by selling domain names? Or am I going to upgrade the bridge from mainnet to my L2? And what's going to be the lifecycle of our proposal? And there are a lot of options that you need to figure out. And that's painful to figure out because you need to figure that out early before you launch your governor. And so you can basically use OpenDeepLint contracts. We have a set of contracts to building your governor and hopefully you can choose from many options and build a governor that fits your need. But ultimately this is not a silver bullet because you still have some limitation. For example, maybe you want to have different rules for executing a proposal depending on the details. Maybe if it's just paying a subcontractor, some multisig would be able to do it, but if it's a bigger upgrade, you want the entire community to vote for it. Maybe you want to have a complement like this of the votes of the user and the vote of guardians. There are many things that you may want to do. You may have a dynamic approach to voting, whatever that may mean to you. And so you could have an upgradeable governor that will have a new feature at some point, but upgradeability is not ideal, in particular because if you have proposals that are in flight that are active when you do the upgrade, you might mess up with this proposal. And so we need something better. And my claim here is that we want to do something that is more modular. And by modular you may understand a lot of things. Some people may think like, oh, we can make it modular by using like a diamond proxy approach and we can add new feature and it's less monolithic. But I don't think that's the right approach. And my claim today is that I think that you should be able to do that transition from the multisig phase to this DO phase very smoothly by having a single core contract that is basically the vault of your governance and being able to turn on and turn off different modules. Like having a module that you use early on so that it behaves like a multisig. And at some point, this module would go away opening the space to another module that would allow people voting with token and maybe those two modules can coexist with a system that decide depending on what the proposal is and what the state of this proposal is which module takes over. So that was what I could come up with in five minutes. But I hope I got you interested in the subject of governor contract and governance of application in general. And please stay in touch with this if it's something that interests you. We'll definitely want user feedback on whatever we build for doing that. Thank you. We don't have live questions rolling in, so let's pass around the mic in the audience if anyone has questions. Hi. Awesome. And thanks for building all the good stuff you have there for free and open source. So is any of these things that you've mentioned already being built? What's the state of the roadmap? So the governor contracts from Open Zeppelin, that's built and that's modular in the way that you can assemble module before compilation and then it compiles to a minority contract that may be upgradeable. So that's something we already have and we have a big set of modules and some modules we design on our own, some we design with users like the ENS foundation and we are going to extend that with more modules. And you can build your own modules. But for like the end game thing I'm talking about like the smart account, honestly it's a very fresh idea that came up during DEF CON. So those slides are very, very new. We do have an effort to building a framework for ERC 4237 smart account that uses ERC 7579 as a plug-in system. So this is something we've been working on for a few months. It will very soon be available as a public demo, like sort of a back and forth discussion space before it gets frozen into the main repository. And during this back and forth discussion with the community that we're expecting to have in the upcoming months, we will try to",
   "eventId": "devcon-7",
   "slot_start": 1731489600000,
   "slot_end": 1731490200000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1DnvD2EnuiJkqkdlnAA1h6CZl0zqKU90ShcgX4KV0SrE"
+  "resources_presentation": "https://docs.google.com/presentation/d/1DnvD2EnuiJkqkdlnAA1h6CZl0zqKU90ShcgX4KV0SrE",
+  "resources_slides": null,
+  "speakers": [
+    "hadrien-croubois"
+  ]
 }
