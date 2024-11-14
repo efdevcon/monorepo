@@ -9,9 +9,6 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "MUD"
-  ],
   "tags": [
     "Frameworks",
     "Gaming",
@@ -21,13 +18,25 @@
     "Frameworks",
     "Gaming"
   ],
-  "language": "en",
-  "speakers": [
-    "alvarius"
+  "keywords": [
+    "MUD"
   ],
+  "duration": 418,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "twSYvUk55TQ",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67348dfc9dbb7a90e1732e65",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67348dfc9dbb7a90e1732e65.vtt",
+  "transcript_text": " IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! IMPORTANT! I install the dependencies and while this is running, this takes a couple seconds, while this is running I'm going to quickly explain you what MUD is. So, MUD is a fully on-chain, uh, well, MUD is a full stack framework for building fully on-chain games, or really any on-chain app that you want to build. And now that the, um, dependencies have been installed, we can start the local dev runner, which will start a, uh, client dev runner, and it will also start a contract dev runner and it will also start a local node and it will also start the local world explorer. Alright, the first thing we're going to have a look at is our client. Need the video to start. There you go. All right. So, the first thing we're going to have a look at is our client. For that, we're going to open the URL that's printed here. And Mudd has onboarding and smart accounts built in. So we could connect our external wallet here, or we can just create a fresh wallet that's PASC-y controlled here and then create a local session account that receives some delegations from the main wallet so that now we can move our little color blob here in this world without having to hit approve every time again. All right. Let's have a look at the explorer next. For that we'll click this little button here on the bottom. In mud all the state is stored in tables. And the state, the on-chain state is automatically synchronized with the client and also with the Explorer here. So as we move around our little color blob, we can see the state on the bottom in our Explorer update, and we can also explore all the other state that's in this app. And then another very useful feature that the Explorer gives us is the interact tab, where it basically automatically synchronizes the entire ABI of the world dynamically. And then we can use the interact functionality here to interact with the world directly for stuff that doesn't have UI yet, for example. So in this case, we're gonna move another, we're gonna spawn another color blob and move it around by calling the functions directly on the explorer. And then, now it's time to add some game mechanics, to add some functionality. For that we're going to open our favorite code editor, and we're going to open, in this case, the move system. Systems are what Mudd uses to implement the logic of the game. So the move system here, for example, implements the logic to move a player. And this is where we're going to add one more game mechanic which is the ability to teleport a player. In this case we can we just receive two input variables and then we're going to write them to the on chain table and then as we write that it's going to be synchronized to the client again. And then once we save, once we hit save here, after we're done implementing this function, the dev runner is going to pick up the change here in the contract, and it's going to redeploy, redeploy, upgrade, it's actually not going to redeploy the world, but it's going to upgrade the system. So we still see our state here. And now immediately the new ABI has been synchronized, and we can now interact with this new function that we've just built. The teleport function. All right. I think this is pretty good so far. So it's time to deploy to a chain. For that we're going to run the deploy command. And in this case we're going to deploy to the Rodolite chain. And we didn't have to fund our deployer account here because it's actually going to use smart accounts again and the deployments actually going to use smart accounts again and the deployments are going to be sponsored. So now we have deployed to real chain and we can now run the client again against this version that we have just deployed and then we can open our browser again and connect our wallet again, this time to real chain and then, yeah, we're in and we can again move around in our little world. If you want to try out this game, I won't promise it's fun. But you can go on workshop.mud.dev and try it out, try the onboarding flow and everything. And if this made you a little bit curious, you should scan the QR code, because there's a much better, longer version of this workshop that's going to be held tomorrow at mud day. And this QR code is going to bring you right there. Um, Frolic from our team is going to hold that and he is going to go into much more detail. Um, and with that, we're done. All right. Thank you. Let's take some live questions. What is the tech stack you're building on? So this is MUD. So MUD is the framework, the main piece. And then MUD is EVM compatible, so you can literally deploy to any EVM chain. There's no... Yeah, any chain that can run EVM bytecode is basically that. And, yeah, we're using a bunch of, like, I mean, we're using all the libraries that everybody is using, VM permissionless and so on. Perfect. So I'm going to mark that as answered. Do you have differentiators from either scan slash block? That's probably a question for the previous talk. So what's Rotolite? Rotolite is just our testnet that we're running. It's the testnet that belongs to Redstone. Rotolite is a type of Redstone, if you're curious. That's why it's called like that. But yeah, it's just a testnet. Perfect. So we actually do have one minute for any questions from the audience. No? All right. Cool. Oh, we do have one over there. How are tables represented on chain? That's a great question. It's, you could technically represent them as mappings. It's very similar to mappings. Like you just have the keys in the mapping and then you have the data that's the value in the mapping. We're not actually doing it as mappings because we do some custom stuff to make it more efficient, but you could implement them as mappings, yeah. So not a mapping? Like, I mean, I have 10 seconds left, so I can't go into detail,",
   "eventId": "devcon-7",
   "slot_start": 1731493800000,
   "slot_end": 1731494400000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1qMDjbZEumhcxlbrMh8-E5iJpvSVc-VXecukqL_lGC4I"
+  "resources_presentation": "https://docs.google.com/presentation/d/1qMDjbZEumhcxlbrMh8-E5iJpvSVc-VXecukqL_lGC4I",
+  "resources_slides": null,
+  "speakers": [
+    "alvarius"
+  ]
 }
