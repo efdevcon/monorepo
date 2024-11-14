@@ -12,7 +12,9 @@ import { useRecoilState } from 'recoil'
 import { devaBotVisibleAtom } from 'pages/_app'
 import { Link } from 'components/common/link'
 import { CollapsedSection, CollapsedSectionHeader, CollapsedSectionContent } from 'components/common/collapsed-section'
-import { TrailTexture } from '@react-three/drei'
+import Floor1 from 'assets/images/dc-7/venue/floors/level-1.png'
+import Floor2 from 'assets/images/dc-7/venue/floors/level-2.png'
+import FloorG from 'assets/images/dc-7/venue/floors/level-g.png'
 
 // import Panzoom, { PanZoom } from 'panzoom'
 
@@ -188,6 +190,14 @@ const List = (props: any) => {
 export const Venue = (props: any) => {
   const pz = usePanzoom()
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
+  const [floor, setFloor] = useState('')
+
+  const getFloorImage = () => {
+    if (floor === 'L2') return Floor2
+    if (floor === 'L1') return Floor1
+    if (floor === 'G') return FloorG
+    return VenueMap
+  }
 
   return (
     <>
@@ -200,13 +210,51 @@ export const Venue = (props: any) => {
         >
           <div className={cn(css['image'], 'lg:rounded-3xl')} id="image-container">
             <Image
-              src={VenueMap}
+              src={getFloorImage()}
               alt="venue map"
               className="object-contain lg:rounded-3xl h-full w-full"
               id="venue-image"
             />
           </div>
           <PanzoomControls pz={pz} />
+
+          <div className={'absolute top-4 right-4 flex flex-col z-[1] gap-2 text-xs'}>
+            <div
+              onClick={() => setFloor(floor === 'L2' ? '' : 'L2')}
+              className={cn(
+                'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center',
+                {
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'L2',
+                }
+              )}
+            >
+              L2
+            </div>
+            <div
+              onClick={() => setFloor(floor === 'L1' ? '' : 'L1')}
+              className={cn(
+                'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 border-gray-200 rounded-full flex items-center justify-center',
+                {
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'L1',
+                }
+              )}
+            >
+              L1
+            </div>
+
+            <div
+              onClick={() => setFloor(floor === 'G' ? '' : 'G')}
+              className={cn(
+                'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 border-gray-200 rounded-full flex items-center justify-center',
+                {
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'G',
+                }
+              )}
+            >
+              G
+            </div>
+          </div>
+
           <div className="absolute bottom-2 left-4 lg:bottom-3 lg:left-4 flex flex-col z-[1] text-xs">
             <div className="text-[#7D52F4]">QSNCC</div>
             <div className="text-[#A897FF]">Venue Map</div>
