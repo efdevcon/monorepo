@@ -22,14 +22,11 @@ export const NotificationCard = (props: any) => {
     const diffInSeconds = Math.floor(sentDate.diff(now, 'seconds'))
 
     if (diffInSeconds > 0) {
-      if (diffInSeconds < 60) return `Sending in ${diffInSeconds} seconds (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
-      if (diffInSeconds < 3600)
-        return `Sending in ${Math.floor(diffInSeconds / 60)} minutes (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
-      if (diffInSeconds < 86400)
-        return `Sending in ${Math.floor(diffInSeconds / 3600)} hours (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
-      if (diffInSeconds < 2592000)
-        return `Sending in ${Math.floor(diffInSeconds / 86400)} days (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
-      return `Sending in ${Math.floor(diffInSeconds / 2592000)} months (ADMINS CAN SEE FUTURE NOTIFICATIONS)`
+      if (diffInSeconds < 60) return `In ${diffInSeconds} seconds`
+      if (diffInSeconds < 3600) return `In ${Math.floor(diffInSeconds / 60)} minutes`
+      if (diffInSeconds < 86400) return `In ${Math.floor(diffInSeconds / 3600)} hours`
+      if (diffInSeconds < 2592000) return `In ${Math.floor(diffInSeconds / 86400)} days`
+      return `In ${Math.floor(diffInSeconds / 2592000)} months`
     }
 
     const pastDiffInSeconds = Math.abs(diffInSeconds)

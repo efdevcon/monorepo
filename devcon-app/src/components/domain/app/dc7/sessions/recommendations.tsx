@@ -63,6 +63,8 @@ export function PersonalizedSuggestions({ sessions, standalone }: Props) {
     return []
   }, [filter, featured, personal, recommended])
 
+  if (!sessionList?.length) return null
+
   return (
     <>
       <div className="flex justify-between gap-3 pb-4 px-4 font-semibold">
