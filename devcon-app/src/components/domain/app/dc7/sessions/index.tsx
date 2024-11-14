@@ -115,8 +115,6 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
     const searchParams = new URLSearchParams(window.location.search)
     const newFilter = { ...initialFilterState } as any //...sessionFilter }
 
-    console.log('searchParams', searchParams.size)
-
     if (searchParams.size > 0) {
       searchParams.forEach((value, key) => {
         if (key in newFilter) {
@@ -731,8 +729,6 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
 
     setSessionFilter(nextFilter)
   }
-
-  console.log(filterOptions, 'filterOptions')
 
   return (
     <div className="flex flex-col overflow-auto no-scrollbar max-h-[calc(100vh-100px)] gap-4 p-4 pb-0">
@@ -1734,7 +1730,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const { now } = useAppContext()
   const sessionViewRef = React.useRef<HTMLDivElement>(null)
 
-  console.log(session)
+  // console.log(session)
 
   React.useEffect(() => {
     if (!session) return
@@ -1801,7 +1797,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
           //   height={393}
           className={cn(
             'rounded-2xl w-[120%] h-[120%] aspect-video scale-[120%] object-contain object-right',
-            isDevaAward && 'object-center'
+            isDevaAward && '!object-center'
           )}
         />
         <div className="absolute inset-0 flex items-start gap-2 p-2">

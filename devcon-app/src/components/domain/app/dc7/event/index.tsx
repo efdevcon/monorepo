@@ -67,13 +67,109 @@ export const cardClass =
 //   )
 // }
 
+const HUBS = [
+  {
+    title: 'Account Abstraction Hub',
+    location: 'Level 1',
+    url: 'https://aa-hub.erc4337.io/',
+  },
+  {
+    title: 'Adoption Hub',
+    location: 'Level 1',
+    url: 'https://lu.ma/dn7tp87r',
+  },
+  {
+    title: 'Community Gardeners Hub',
+    location: 'Level 1',
+    url: 'https://lu.ma/5pig5tye',
+  },
+  {
+    title: 'Governance Geeks Hub',
+    location: 'Level G',
+    url: 'https://forum.devcon.org/t/sea-community-hub-proposal-collective-intelligence-governance-hub/4025',
+  },
+  {
+    title: 'Ethereum SEA Hub',
+    location: 'Level G',
+    url: 'https://docs.google.com/spreadsheets/d/1SujPXE8BzywfXwF7blweBkDFJ-OBaACFP90Iw1jJLvo/edit?gid=0#gid=0',
+  },
+  {
+    title: 'GM Hub',
+    location: 'Level G',
+    url: 'https://docs.google.com/spreadsheets/d/1KQiEK6KweKV9tlHx6e-uFn5A_K1au72_Dlx3wFrnt18/edit?gid=1130079654#gid=1130079654',
+  },
+  {
+    title: 'Hacktivism Hub',
+    location: 'Level G',
+    url: 'https://forum.devcon.org/t/sea-community-hub-proposal-hacktivism/3793',
+  },
+  {
+    title: 'Home Operators Hub',
+    location: 'Level 1',
+    url: 'https://ethstaker.cc/events/devcon7-home-operator-community-hub',
+  },
+  {
+    title: 'Onchain Creators Hub',
+    location: 'Level 1',
+    url: 'https://onchain-creators-hub.notion.site/Onchain-Creators-Hub-Contributor-Workspace-133956931ccc803eb831cac34a181d5e',
+  },
+  {
+    title: 'Regen Hub',
+    location: 'Level 1',
+    url: 'https://regensunite.notion.site/Regen-Hub-Devcon7-Schedule-9c638a94592243b5abea0cb9dc7b696b',
+  },
+  {
+    title: 'Sustaining Open-Source Development Hub',
+    location: 'Level 1',
+    url: 'https://docs.google.com/spreadsheets/d/1VjpjU8_Ef6UKYfZQLkbjiEq5izbHVVJKtG5POg9cvnI/edit?gid=1407092633#gid=1407092633',
+  },
+  {
+    title: 'The World of DeSci Hub',
+    location: 'Level 1',
+    url: 'https://forum.devcon.org/t/sea-community-hub-proposal-the-world-of-desci/3890',
+  },
+  {
+    title: 'Women in Web3 World (W3)',
+    location: 'Level 1',
+    url: 'https://sedate-moon-bc6.notion.site/138662e673eb80b094e1d9a86dfb2e68?v=c8e80d26aea74d2ba7507f534680be85',
+  },
+  {
+    title: 'Grants & Impact Hub',
+    location: 'Level 1',
+    url: 'https://docs.google.com/spreadsheets/d/1FrzJmEC2ziriAFIiD0ziZ_gb5YXpZK9MmEp11crs0hA/edit?gid=971577641#gid=971577641',
+  },
+  {
+    title: 'L2 Collaboration Ground',
+    location: 'Level 1',
+    // url: 'https://docs.google.com/spreadsheets/d/1VjpjU8_Ef6UKYfZQLkbjiEq5izbHVVJKtG5POg9cvnI/edit?gid=1407092633#gid=1407092633',
+  },
+]
+
 const List = (props: any) => {
+  const [openFloors, setOpenFloors] = useState<Record<string, boolean>>({ G: true })
+  const [openHubs, setOpenHubs] = useState<Record<string, boolean>>({})
+
+  // Group hubs by floor
+  const hubsByFloor = HUBS.reduce((acc: any, hub: any) => {
+    const floor = hub.location?.includes('Level G')
+      ? 'G'
+      : hub.location?.includes('Level 1')
+      ? '1'
+      : hub.location?.includes('Level 2')
+      ? '2'
+      : null
+    if (floor) {
+      if (!acc[floor]) acc[floor] = []
+      acc[floor].push(hub)
+    }
+    return acc
+  }, {})
+
   return (
-    <div className="px-4 ">
+    <div className="px-4">
       <p className="mb-4 pt-4 font-semibold">Floors & Rooms</p>
 
-      <div className="mb-4">
-        {/* <p className="text-xs text-gray-500 mb-2">STAGES</p> */}
+      <div className="mb-4 text-sm">
         {props.floors.map((floor: any) => {
           let floorName = floor
 
@@ -108,78 +204,111 @@ const List = (props: any) => {
               return a.name.localeCompare(b.name)
             })
 
+          const floorHubs = hubsByFloor[floor] || []
+
           return (
-            <div className="flex flex-col" key={floor}>
-              <div
-                key={floor}
-                className="flex items-center text-sm border border-solid border-[#E1E4EA] p-2 bg-white rounded-xl mb-2"
-              >
-                {/* <div className="w-3 h-3 rounded-full bg-[#7D52F4] ml-1 mr-3" /> */}
-                <p className="font-semibold ml-1">{floorName}</p>
-              </div>
+            <CollapsedSection
+              key={floor}
+              className="bg-white rounded-2xl border border-solid border-[#E1E4EA] mb-2"
+              open={openFloors[floor]}
+              setOpen={() => setOpenFloors(prev => ({ ...prev, [floor]: !prev[floor] }))}
+            >
+              <CollapsedSectionHeader title={floorName} className="py-2 px-3" />
+              <CollapsedSectionContent className="mr-4">
+                {rooms.map((room: any) => {
+                  const getColor = (roomName: string) => {
+                    const name = roomName.toLowerCase()
+                    if (name.startsWith('classroom')) return '#14B8A6' // teal
+                    if (name.includes('decompression') || name.includes('music stage')) return '#22C55E' // green
+                    if (name.startsWith('stage') || name === 'main stage') return '#7D52F4' // purple
+                    if (name.startsWith('breakout')) return '#EF4444' // red
+                    return '#7D52F4' // default purple
+                  }
 
-              {rooms.map((room: any) => {
-                const getColor = (roomName: string) => {
-                  const name = roomName.toLowerCase()
-                  if (name.startsWith('classroom')) return '#14B8A6' // teal
-                  if (name.includes('decompression') || name.includes('music stage')) return '#22C55E' // green
-                  if (name.startsWith('stage') || name === 'main stage') return '#7D52F4' // purple
-                  if (name.startsWith('breakout')) return '#EF4444' // red
-                  return '#7D52F4' // default purple
-                }
+                  let roomName = room.name
 
-                let roomName = room.name
+                  if (roomName === 'Main Stage') {
+                    roomName += ' — Masks'
+                  }
 
-                if (roomName === 'Main Stage') {
-                  roomName += ' — Masks'
-                }
+                  if (roomName === 'Stage 1') {
+                    roomName += ' — Fans'
+                  }
 
-                if (roomName === 'Stage 1') {
-                  roomName += ' — Fans'
-                }
+                  if (roomName === 'Stage 2') {
+                    roomName += ' — Lanterns'
+                  }
 
-                if (roomName === 'Stage 2') {
-                  roomName += ' — Lanterns'
-                }
+                  if (roomName === 'Stage 3') {
+                    roomName += ' — Fabrics'
+                  }
 
-                if (roomName === 'Stage 3') {
-                  roomName += ' — Fabrics'
-                }
+                  if (roomName === 'Stage 4') {
+                    roomName += ' — Leaf'
+                  }
 
-                if (roomName === 'Stage 4') {
-                  roomName += ' — Leaf'
-                }
+                  if (roomName === 'Stage 5') {
+                    roomName += ' — Hats'
+                  }
 
-                if (roomName === 'Stage 5') {
-                  roomName += ' — Hats'
-                }
+                  if (roomName === 'Stage 6') {
+                    roomName += ' — Kites'
+                  }
 
-                if (roomName === 'Stage 6') {
-                  roomName += ' — Kites'
-                }
+                  if (roomName === 'Keynote') return null
 
-                if (roomName === 'Keynote') return null
+                  return (
+                    <Link
+                      to={`/schedule?room=${room.name}`}
+                      key={room.name}
+                      className="flex ml-2 mb-2 mt-1 items-center justify-between text-sm border border-solid border-[#E1E4EA] p-2 py-1.5 bg-white rounded-xl mb-2 group hover:bg-[#F5F7F9] cursor-pointer"
+                    >
+                      <div className="flex items-center text-xs">
+                        <div
+                          className="w-3 h-3 rounded-full ml-1 mr-3 "
+                          style={{ backgroundColor: getColor(room.name) }}
+                        />
+                        <p className="whitespace-nowrap">{roomName}</p>
+                      </div>
+                      <div className="opacity-0 hidden lg:block text-sm text-gray-500 group-hover:opacity-100 transition-all duration-300">
+                        Click to view sessions in this room
+                      </div>
+                    </Link>
+                  )
+                })}
 
-                return (
-                  <Link
-                    to={`/schedule?room=${room.name}`}
-                    key={room.name}
-                    className="flex ml-4 items-center justify-between text-sm border border-solid border-[#E1E4EA] p-2 bg-white rounded-xl mb-2 group hover:bg-[#F5F7F9] cursor-pointer"
+                {/* Hubs Section */}
+                {floorHubs.length > 0 && (
+                  <CollapsedSection
+                    className="bg-white rounded-2xl border border-solid border-[#E1E4EA] mb-2 ml-2 text-xs"
+                    open={openHubs[floor]}
+                    setOpen={() => setOpenHubs(prev => ({ ...prev, [floor]: !prev[floor] }))}
                   >
-                    <div className="flex items-center">
-                      <div
-                        className="w-3 h-3 rounded-full ml-1 mr-3"
-                        style={{ backgroundColor: getColor(room.name) }}
-                      />
-                      <p className="whitespace-nowrap">{roomName}</p>
-                    </div>
-                    <div className="opacity-0 hidden lg:block text-sm text-gray-500 group-hover:opacity-100 transition-all duration-300">
-                      Click to view sessions in this room
-                    </div>
-                  </Link>
-                )
-              })}
-            </div>
+                    <CollapsedSectionHeader title={`Community Hubs (${floorHubs.length})`} className="py-2 px-3" />
+                    <CollapsedSectionContent>
+                      {floorHubs.map((hub: any) => (
+                        <Link
+                          to={hub.url || ''}
+                          key={hub.title}
+                          className="flex ml-2 mb-2 mt-1 mr-2 items-center justify-between text-xs border border-solid border-[#E1E4EA] p-2 py-1.5 bg-white rounded-xl group hover:bg-[#F5F7F9] cursor-pointer"
+                        >
+                          <div className="flex items-center text-xs">
+                            <div
+                              className="w-3 h-3 rounded-full ml-1 mr-3"
+                              style={{ backgroundColor: '#3B82F6' }} // blue for hubs
+                            />
+                            <p className="whitespace-nowrap">{hub.title}</p>
+                          </div>
+                          <div className="opacity-0 hidden lg:block text-sm text-gray-500 group-hover:opacity-100 transition-all duration-300">
+                            Click to learn more
+                          </div>
+                        </Link>
+                      ))}
+                    </CollapsedSectionContent>
+                  </CollapsedSection>
+                )}
+              </CollapsedSectionContent>
+            </CollapsedSection>
           )
         })}
       </div>
@@ -203,7 +332,6 @@ export const Venue = (props: any) => {
     const urlParams = new URLSearchParams(window.location.search)
     const floor = urlParams.get('floor')
 
-    console.log(floor)
     setFloor(floor ?? '')
   }, [])
 
@@ -232,7 +360,7 @@ export const Venue = (props: any) => {
               className={cn(
                 'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 rounded-full flex items-center justify-center',
                 {
-                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === '2',
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110 !border-slate-600': floor === '2',
                 }
               )}
             >
@@ -243,7 +371,7 @@ export const Venue = (props: any) => {
               className={cn(
                 'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 border-gray-200 rounded-full flex items-center justify-center',
                 {
-                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === '1',
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110 !border-slate-600': floor === '1',
                 }
               )}
             >
@@ -255,7 +383,7 @@ export const Venue = (props: any) => {
               className={cn(
                 'cursor-pointer h-[30px] w-[30px] glass !shadow-none select-none hover:bg-gray-100 border border-solid !border-gray-200 hover:scale-110 transition-all duration-300 border-gray-200 rounded-full flex items-center justify-center',
                 {
-                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110': floor === 'G',
+                  'bg-[#7D52F4] font-bold hover:bg-[#7D52F4] scale-110 !border-slate-600': floor === 'G',
                 }
               )}
             >
