@@ -36,6 +36,7 @@ import Entertainment from 'assets/images/dc-7/entertainment.png'
 import { generateCalendarExport } from 'lib/components/add-to-calendar'
 import CollapsedIcon from 'assets/icons/collapsed.svg'
 import ExpandedIcon from 'assets/icons/expanded.svg'
+import DevaAwards from 'assets/images/dc-7/dashboard-highlights/deva-awards.png'
 import PlayIcon from 'assets/icons/play.svg'
 import {
   devaBotVisibleAtom,
@@ -540,6 +541,7 @@ export const SessionCard = ({
   }
 
   const isKeynote = title.startsWith('Keynote:')
+  const isDevaAward = session.sourceId === 'KGA9ZA'
 
   return (
     <Link
@@ -586,7 +588,7 @@ export const SessionCard = ({
           >
             <div className="text-white z-[2] line-clamp-4">{track}</div>
           </div>
-          {!isWhiteRabbit && trackLogo !== CityGuide && (
+          {!isDevaAward && !isWhiteRabbit && trackLogo !== CityGuide && (
             <Image
               src={trackLogo}
               alt={track}
@@ -596,12 +598,16 @@ export const SessionCard = ({
             />
           )}
 
-          {!isWhiteRabbit && trackLogo === CityGuide && (
+          {!isDevaAward && !isWhiteRabbit && trackLogo === CityGuide && (
             <Image src={trackLogo} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           {isWhiteRabbit && (
             <Image src={WhiteRabbit} alt={track} height={150} width={150} className="w-full h-full object-cover" />
+          )}
+
+          {isDevaAward && (
+            <Image src={DevaAwards} alt={track} height={150} width={150} className="w-full h-full object-cover" />
           )}
 
           <div className="absolute bottom-1 w-full left-1 flex">
@@ -1767,6 +1773,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
   const isStreaming = session.slot_room?.youtubeStreamUrl_1 && sessionIsLive
 
   const isWhiteRabbit = session.sourceId === '7CFGTS'
+  const isDevaAward = session.sourceId === 'KGA9ZA'
 
   return (
     <div
@@ -1786,7 +1793,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       >
         <Image
           // @ts-ignore
-          src={isWhiteRabbit ? WhiteRabbit : trackLogo}
+          src={isDevaAward ? DevaAwards : isWhiteRabbit ? WhiteRabbit : trackLogo}
           alt={session.track}
           //   width={393}
           //   height={393}
