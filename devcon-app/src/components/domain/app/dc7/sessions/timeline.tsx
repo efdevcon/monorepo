@@ -173,7 +173,7 @@ const DayGrid = ({
 
                 const sessionByTimeslotStart: Record<
                   string,
-                  { session: SessionType; columns: number; columnIndent: number }
+                  Array<{ session: SessionType; columns: number; columnIndent: number }>
                 > = {}
 
                 if (sessions) {
@@ -190,37 +190,47 @@ const DayGrid = ({
 
                     const startFormatted = nearestTen.format('h:mm A')
 
-                    sessionByTimeslotStart[startFormatted] = {
+                    if (!sessionByTimeslotStart[startFormatted]) {
+                      sessionByTimeslotStart[startFormatted] = []
+                    }
+                    sessionByTimeslotStart[startFormatted].push({
                       session,
                       columns,
                       columnIndent: excessMinutes * 0.1,
-                    }
+                    })
                   })
                 }
 
                 return (
                   <React.Fragment key={roomIndex}>
                     {timeSlots.map((timeslot, slotIndex) => {
-                      const match = sessionByTimeslotStart[timeslot.format('h:mm A')]
+                      const matches = sessionByTimeslotStart[timeslot.format('h:mm A')] || []
 
-                      if (!match)
-                        //  || room !== 'Main Stage')
+                      if (!matches.length) {
                         return (
                           <div key={slotIndex} className="bg-white border border-gray-100 border-solid h-[40px]"></div>
                         )
+                      }
 
                       return (
                         <div
                           key={slotIndex}
                           className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
-                          // style={{ gridColumn: `span ${match.columns}` }}
                         >
-                          <div
-                            className={``}
-                            style={{ width: `${match.columns * 100}px`, marginLeft: `${match.columnIndent * 100}px` }}
-                          >
-                            <SessionCard session={match.session} tiny className="z-[1] hover:z-[2]" />
-                          </div>
+                          {matches.map((match, index) => {
+                            return (
+                              <div
+                                key={index}
+                                className={`absolute h-full`}
+                                style={{
+                                  width: `${match.columns * 100}px`,
+                                  left: `${match.columnIndent * 100}px`,
+                                }}
+                              >
+                                <SessionCard session={match.session} tiny className="z-[1] hover:z-[2]" />
+                              </div>
+                            )
+                          })}
                         </div>
                       )
                     })}

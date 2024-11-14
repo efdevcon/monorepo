@@ -20,6 +20,11 @@ import router, { useRouter } from 'next/router'
 import { Toaster } from 'lib/components/ui/toaster'
 import { usePathname } from 'next/navigation'
 import { DataProvider } from 'context/data'
+import { init } from '@socialgouv/matomo-next'
+
+const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
+const MATOMO_SITE_ID = process.env.PUBLIC_MATOMO_SITE_ID || '38'
+let matomoAdded = false
 
 export const selectedEventTabAtom = atom<'venue' | 'information' | 'contact' | 'directions'>({
   key: 'selectedEventTab',
@@ -329,44 +334,12 @@ function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const pathname = usePathname()
 
-  // useEffect(() => {
-  //   console.log('ehh')
-  //   // @ts-ignore
-  //   if (typeof window !== 'undefined' && 'serviceWorker' in navigator && window.workbox !== undefined) {
-  //     // @ts-ignore
-  //     const wb = window.workbox
-
-  //     const promptNewVersionAvailable = (event: any) => {
-  //       // `event.wasWaitingBeforeRegister` will be false if this is the first time the updated service worker is waiting.
-  //       // When `event.wasWaitingBeforeRegister` is true, a previously updated service worker is still waiting.
-  //       // You may want to customize the UI prompt accordingly.
-  //       if (confirm('A newer version of this web app is available, reload to update?')) {
-  //         wb.addEventListener('controlling', (event: any) => {
-  //           window.location.reload()
-  //         })
-
-  //         // Send a message to the waiting service worker, instructing it to activate.
-  //         wb.messageSkipWaiting()
-  //       } else {
-  //         console.log(
-  //           'User rejected to reload the web app, keep using old version. New version will automatically load when user opens the app next time.'
-  //         )
-  //       }
-  //     }
-
-  //     wb.addEventListener('waiting', promptNewVersionAvailable)
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   // Only run on mount and only for root path
-  //   if (pathname === '/') {
-  //     const storedSkipLogin = localStorage.getItem('skipLogin')
-  //     if (storedSkipLogin !== 'true' && !accountContext.account) {
-  //       router.replace('/login')
-  //     }
-  //   }
-  // }, [])
+  React.useEffect(() => {
+    if (!matomoAdded && process.env.NODE_ENV === 'production') {
+      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
+      matomoAdded = true
+    }
+  }, [])
 
   useEffect(() => {
     if (pageProps.rooms) {
