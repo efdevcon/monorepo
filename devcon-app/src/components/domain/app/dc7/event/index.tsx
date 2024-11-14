@@ -146,7 +146,7 @@ const HUBS = [
 ]
 
 const List = (props: any) => {
-  const [openFloors, setOpenFloors] = useState<Record<string, boolean>>({ G: true })
+  const [openFloors, setOpenFloors] = useState<Record<string, boolean>>({})
   const [openHubs, setOpenHubs] = useState<Record<string, boolean>>({})
 
   // Group hubs by floor
