@@ -9,9 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "EOF"
-  ],
   "tags": [
     "Core Protocol",
     "ACD",
@@ -21,13 +18,25 @@
     "Core Protocol",
     "Testing"
   ],
-  "language": "en",
-  "speakers": [
-    "hubert-ritzdorf"
+  "keywords": [
+    "EOF"
   ],
+  "duration": 461,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673594ae9dbb7a90e1313871",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673594ae9dbb7a90e1313871.vtt",
+  "transcript_text": " Yeah, hello everyone. It's my distinct pleasure to today introduce Emily, which is our small contribution to hopefully make EOF safe, so to make sure everything in EOF works properly. So not just right before me, but today already multiple times, EOF has been discussed. So in case you just walked in because you were especially interested in Emily, I'll give you a short recap. So what is EOF? So there are two talks listed here by Dan O'Farran and also from this morning, which are really good and really summarize it well. But for the purpose of this talk, we're just going to say EUF is a big change in EVM. So what is the problem with that? Because as in with any big change in EVM, a lot can go wrong. So we have a lot of different smart contracts, right? And we are using different compilers. I mean, there's Solidity and there's Viper, and they have a bunch of different versions. They have different optimization features and so on. So we actually have quite a few compilers that we're using. And then out of that, we get lots of different bytecodes. And these bytecodes we execute on different execution clients. And on these execution clients, these new bytecodes interact with many different existing contracts. So we have a horribly big search space to look for things that can go wrong, right? And experience shows that things do go wrong. And unfortunately, things don't always detect it during testing because we had chain splits after certain hard forks on chain. So what do we think can go wrong here? So first of all, there has been some discussions on what compilers should support, so we want to figure out what is actually supported so that users can have a seamless transition to EOF. In the bytecodes, of course, we can have incorrect compilation. We have totally new features. We might very well see incorrect compilation. And in the clients, we also have very new implementations. It's not implausible that we see incorrect execution. So all of these would be horrible. They would lead to chain splits. And then lastly, we might have incorrect interaction, right? So you're calling an existing old contract from your new EOF contract. Maybe that doesn't work the way you thought it would work. So now, how can we fix all that? So that's why we're here, to improve stuff. So first of all, is this news? Well, no, of course not. So there is already a lot of testing going on, right? So there's the testing team and lots of tests are being written. But we think that Emily can improve the situation because we, in the past past have learned that what really helps is real contracts with real data and real interactions because that's in the end what we want to be sure that works on chain right because that's what might cause the chain split so what does Emily do so here we have an existing mainnet transaction, which you are all familiar with. So now what does Emily do exactly? So we take contract A and we recompile it to EOF and we execute it again. So now we can compare these two executions, right? Because now we actually have a really good idea of what correctness should look like because we have the execution above, which is the current execution, and we can compare all the parts. So we can compare what does contract A do, what does it write to storage, how do all the call data and return data look, how is the output, how is the success flex, and so on. So we have a great correctness reference here. So Emily checks a bunch of things. I mentioned some of them already. So obviously Emily checks all the storage changes. Emily checks which events are emitted. Emily checks the call data. Emily checks the return data and the execution status. And lastly, what we also found quite interesting while developing is that we can monitor some of the gas costs. So we can see overall is UF execution on average cheaper or more expensive than the previous execution. And with that we can then find all these things that we're really concerned about. Missing compiler features, incorrect compilation, incorrect execution, incorrect interaction. So all these horrible things we're really concerned about, right? Missing compiler features, incorrect compilation, incorrect execution, incorrect interaction. So all these horrible things we want to avoid, we can hopefully find before they are happening on-chain. So with that, Emily contributes to the security of EOF. Of course, as is the usual case, things are not quite as simple, so a bunch of things can go wrong. I'm happy to discuss them a little bit more during the questions, but one of the things that can go wrong is as was previously discussed, the gas oil code is disappearing, but currently it's still there, and it's causing a bunch of problems, as was just discussed in the previous talk. But yeah, we have some countermeasures for that, so I'm happy to discuss this in the questions. And with that, I close, and thank you for your attention. Thank you, thank you. So, let's start with the questions. Are there instances where one may want to rewrite their contracts for EOF for better performance or other reasons? Yeah, I guess we're going to see. I think the truth is that we don't know exactly what the numbers are going to be like because we haven't seen the latest compiler versions and we haven't seen the full EOF spec. But I think that's quite possible, because it's feasible that there might be contracts which are significantly cheaper when executed in EOF, yes. So is the recompilation to EOF done from source code? Where do you get the source code? Yeah, excellent question. So we get the source code from Etherscan, and also other sources, but one of the sources is Etherscan. So obviously we don't have source code for every contract, but that's also not necessary. I mean, we just want to test as much as possible, and it's actually good that we don't have source code for everything, because we we as I said we also want to test this interaction with legacy contracts so we don't want to necessarily recompile everything but yeah we recompile some and then test the interaction. If Emily compiles legacy bytecode to EUF how does it cuts compiler bugs from a high-level language to EUF? Yeah, so basically we take the code and we previously ran it with the real data, right? So, for example, let's consider a transfer, an ESC20 transfer. And let's say the ESC20 transfer now works incorrectly when compiled with EUF. Now what we would see is we would, for example, see a difference in the storage. And because we check how was the storage changed originally, and now we check how is it changed now that we ran it based on EUF, we can detect those kind of correctness issues.",
   "eventId": "devcon-7",
   "slot_start": 1731562800000,
   "slot_end": 1731563400000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/17yJsWv6HioxijpCWnMnLMPeQFMTy_KMomUQHF2n1hS8"
+  "resources_presentation": "https://docs.google.com/presentation/d/17yJsWv6HioxijpCWnMnLMPeQFMTy_KMomUQHF2n1hS8",
+  "resources_slides": null,
+  "speakers": [
+    "hubert-ritzdorf"
+  ]
 }
