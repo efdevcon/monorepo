@@ -13,7 +13,7 @@ export const Streams = (props: any) => {
         room.id.startsWith('classroom-') ||
         room.id.startsWith('breakout-')
     )
-    .filter((i: any) => !!i.youtubeStreamUrl_3)
+    .filter((i: any) => !!i.youtubeStreamUrl_4)
 
   return (
     <div className="flex flex-row flex-wrap gap-4 justify-center items-center">
@@ -27,8 +27,8 @@ export const Streams = (props: any) => {
 function Stream({ room }: { room: Room }) {
   const start = moment.utc().add(7, 'hours')
   const day = start.date()
-  const youtubeUrl = `${room.youtubeStreamUrl_3}${
-    room.youtubeStreamUrl_3?.includes('?') ? '&autoplay=1' : '?autoplay=1'
+  const youtubeUrl = `${room.youtubeStreamUrl_4}${
+    room.youtubeStreamUrl_4?.includes('?') ? '&autoplay=1' : '?autoplay=1'
   }`
   const translationUrl = `${room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=en-US&bg-color=ffffff&color=30354b&font-size=medium`
 
