@@ -9,10 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Language",
-    "Security"
-  ],
   "tags": [
     "Languages",
     "Security",
@@ -22,13 +18,26 @@
     "Languages",
     "Security"
   ],
-  "language": "en",
-  "speakers": [
-    "nicolas-garcia"
+  "keywords": [
+    "Language",
+    "Security"
   ],
+  "duration": 513,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6737481f1b0f83434d55627c",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6737481f1b0f83434d55627c.vtt",
+  "transcript_text": " Can you guys hear me okay? Okay, so thank you for that introduction. That was great. I want to start this presentation with a quick poll. So please raise your hand if you're an auditor. Okay, nice. Now, raise your hand if you ever audit a smart contract language, like Solidity, Stylus, Viper, or any other. Oh, nice, I see a few hands. But probably not as many as the one who raised their hand first. And the reason is because it's not as common as auditing the smart contracts, for sure. And to be honest, I haven't found good resources to know how to do it. Fortunately, I had the opportunity to audit this type of codebases sometimes, like a few. And I learned many things, and that's basically the main motivation for today's talk, to share with you some of the things that I learned many things and that's basically the main motivation for today's talk, to share with you some of the things that I learned. So one second, we already did it all, fantastic. Now let's start by asking ourselves why do we need to audit the languages? Because of this. Basically here you can see a bunch of headlines and one meme that highlight some of the like incidents that happen because of issues at the language level, right? I'm pretty sure you guys remember from last year what happened with Viper, the reentrancy guard that basically like in this case attackers were able to bypass the guard even though the guards were properly implemented within the contracts. The issue was at the compiler level, right? And that causes many losses in core finance. What I want to convey here with this is that basically those are not issues that are rare those are actually more common than you might think. Okay so now I want to get into the differences between auditing a smart contract and auditing the languages behind them right so I have four key differences that I want to share with you guys. The first one, the focus areas. When we're doing an audit of a smart contract, we tend to look for logic, like business logic flaws, right? It's normally what we look for when we are doing the manual audit. But when we're doing the review of the language we tend to see for things like undefined behaviors, features that could be misused, and overall we try to validate that the design choices of the language are correct. Okay, second the complexity of a scope. Of course, when you're doing an audit of a language, you need to be aware of the whole ecosystem, compiler, libraries, tooling, whereas in smart contracts, it's mostly like the contracts and the dependencies. Okay, third, the severity and risk mitigation, propagation. So if you ever find an issue at the language level, it's probably going to impact the whole ecosystem. So it's quite important for you to mitigate it. And it's an actual task that is way difficult, right? Because you need to reach out to many stakeholders, which is complicated. Whereas when you find issues in a contract, it's mostly isolated within the contract, right? Okay, maintenance aspects. Normally, contracts are immutable. Normally, of course, if they're upgradable, that's another case, but the majority are immutable. Normally, of course, if they're upgradable, that's another case. But the majority are immutable. And on the other hand, we have languages. They basically evolve constantly. So you need to be aware about the fact that you need to keep track of both the past and the future of the language. So the mindset, of course, is way different. So what are the things that we can look for when we're doing this type of audits? One example is function identifier management. What I mean by this is that if you're like checking the dispatcher of the language you need to make sure that if for some reason within your contract you have two functions that share the same selector or identifier, the compiler must throw one error. If that's not the case, you basically will end up with a function that is going to be unreachable, right? Also, try to check if for some reason the language have something that is basically custom selectors. This feature is actually like at least for me not a good feature to have because it's quite prone for scammers to create hard to detect scams and to be honest the benefits of having this type of issues are not clear to me. Okay. Another thing, the storage layout implementation. This must be consistent, and I want to take into, like, the meeting one particular issue that we find in Stylus, which basically, like, they manage the inheritance fields different from Solidity, right? But the thing is that they were promoting, like, you could jump from a contract that is upgradable, that basically you can have an implementation, right? You switch from Solidity to a Stylus, right? So they were, like, pushing this type of things, but as I just mentioned, they manage the inherent fields different, so this is going to mess up the layout of your contracts. So there are many things to look for. Of course, we cannot go into details because this is a lightning talk, but what I did is that I create this repository, which is basically a checker. But what I did is that I create this repository, which is basically a checker with everything that I know about auditing languages, right? So I'm pretty sure that it will be valuable for you guys if you ever need to face this type of audit. So please give it a look. I'm pretty sure that there is still a lot of room for improvement. So please contribute to it, and hopefully you find value on it. So that's it. Thank you so much for your time, for your attention. Big round of applause for our speaker. If you have questions, I'd love to hear them. Check the repository, please. And thank you for doing the hard work. Questions? Any hand? Hand? Okay. Thank you. Yeah, I'm from random verification, and I'm very curious about the language auditing. Is that equivalent to compiler verification? Not actually. But in our case, we had to take many approaches because it's not only languages that were written from scratch, but also EDSL languages. So there are many types, right? So in our case, we didn't audit the compiler, for example, for Xilus and neither for Ink, because it's Rust. So we validate that for example, the macros were properly implemented, the WASM was correctly generated by the code that they've written. But we do not do a formal verification first. We actually first do the manual review and then we jump into formal verification. That's basically like the framework that we normally do. Thank you. Any other question? There is one guy over there. Let's be very quick or no we are out of time. Okay. Sorry. So please catch up with the speaker. Reach out. Thank you again. Bye-bye. Another round of applause.",
   "eventId": "devcon-7",
   "slot_start": 1731655800000,
   "slot_end": 1731656400000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1r4V8Ln3v53MiKcUcMCQ8Cs-LG2p8VboqrQ6RHXvL-DY"
+  "resources_presentation": "https://docs.google.com/presentation/d/1r4V8Ln3v53MiKcUcMCQ8Cs-LG2p8VboqrQ6RHXvL-DY",
+  "resources_slides": null,
+  "speakers": [
+    "nicolas-garcia"
+  ]
 }
