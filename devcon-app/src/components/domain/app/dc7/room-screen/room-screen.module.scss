@@ -415,3 +415,48 @@
 //   justify-content: space-between;
 //   padding: 0.5vw 0px;
 // }
+
+
+.thanks-for-coming {
+  :global(.text-3)  {
+    font-size: 3vw;
+    line-height: 1.5em;
+  }
+
+  position: relative;
+
+  // &:before {
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   content: '';
+  //   // -webkit-box-shadow:inset 0px 0px 0px 10px rgb(98, 98, 98);
+  //   // -moz-box-shadow:inset 0px 0px 0px 10px #f00;
+  //   box-shadow: inset 0px 0px 300px 0px rgb(4, 0, 17);
+  //   pointer-events: none;
+  // }
+
+  // // Add extra box shadow strength on bottom by layering
+  // &:after {
+  //   z-index: 0;
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   content: '';
+  //   // box-shadow: inset 0px -100px 300px 0px rgb(0, 3, 20);
+  //   box-shadow: inset 0px 0px 300px 0px rgb(4, 0, 17);
+  //   pointer-events: none;
+  // }
+
+  &::before {
+    content: '';
+    // z-index: 5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(71, 4, 218, 0.5), transparent);
+    pointer-events: none;
+  }
+}

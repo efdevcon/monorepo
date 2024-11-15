@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "sumcalc",
-    "sumcheck"
-  ],
   "tags": [
     "Scalability",
     "Validiums",
@@ -22,13 +18,26 @@
     "Validiums",
     "Zero-Knowledge"
   ],
-  "language": "en",
-  "speakers": [
-    "don-beaver"
+  "keywords": [
+    "sumcalc",
+    "sumcheck"
   ],
+  "duration": 1477,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67346c7c9dbb7a90e1c29eff",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67346c7c9dbb7a90e1c29eff.vtt",
+  "transcript_text": " Thank you so much for that nice introduction. I did actually go all out to try to make this the best title ever, or if not, it's at least a tribute. What I want to talk about today, just to give a level set, is Zero Knowledge, of course course this applied cryptography track it's intended and directed at people who have a little bit of knowledge about cryptography a little bit of knowledge about zero knowledge but are basically mostly developers interested in finding out why bother doing this and what is actually going on behind the scenes so without further ado I'm going to talk a little bit not too much metaphysical or mystical, but more about how do you get calculations done by powerful entities, and how do you trust that those results are actually true when they hand something to you. This is really the realm of zero knowledge. It's actually a bit broader, zero knowledge and verifiable knowledge. There's a lot of different properties that are important. They're really important to scaling things up on the blockchain, any kind of blockchain in general, and I'm sure many of you will have seen a lot of buzz around these topics as well. So what's the buzz about? How does this actually work? What is going on behind the scenes at some reasonable level? In general, I'll do a quick background. So zero-knowledge proofs or interactive proofs are ways for a computationally limited verifier, a client, to actually ask for the truth or falsity, ask for a claim to be made, and for somebody with a lot of power to give them a proof that that claim is true. So, for example, some of these problems might be complicated, like, hey, I know a Sudoku solution. And, you know, a 9x9 is not a big deal, but an nxn is actually an NP-complete problem to solve. So these are actually intensely complex problems that people work on and try to demonstrate the truth of. More practically, you might be looking at consensus algorithms and saying, hey, look, I can tell you that I checked 400,000 signatures, and they all checked out. You don't need to bother. So trust me. Well, in this setting, we don't really want to just trust people. We want to actually verify what's going on. So that's the setting. The scalability argument here is that one person is going to do the work, and everybody else can just sort of check after that one person did the work. Okay, so for example, what did the consensus say? I checked a bunch of signatures. You know, did they all pan out? What's the new state on maybe on my own chain or on somebody else's chain? That's a lot of work to do. If you try to do that work inside of a contract, it's going to be very expensive. If somebody can do that work for you outside of a contract and just prove it to you in a contract, that helps you scale. Because it's a much cheaper thing to check than it is to calculate. And so in general, these things help us scale with things like roll-ups with other chains, with exchanges, and so forth. Anytime you have a big calculation that you want to land just the result of on another chain, we'll use these kind of results. So, all right. There are two kind of very closely connected problems here. In order to motivate it, I mean, really, we're going to talk about proving a calculation here, which is the middle one. We'll look at a couple tools. One is called sum check. It's actually kind of a very old play on words. When you're sending a message from A to B, you do a check sum to make sure it wasn't actually munged in the middle. Sum check is a way of getting a calculation from A to B and making sure the calculation wasn't messed up, that the result that you get is really true. Related to this is something I'm calling sum calc, which is how do you delegate a problem to somebody else and get them to calculate it for you. You're a contract on chain. You ask somebody off chain to do the calculation. So very related math behind it. You know, and then we'll go into a little bit of the math and see what helps us scale these different algorithms. Okay. So what's really happening here, what is the supreme rule? I'll get to it more in a second. It is basically a trick that helps us look at very, very large calculations, essentially exponential-sized calculations, and use a moderate amount of checking to see whether they're true or false. You can scale this down a little bit. You can say maybe I have a human scale and step calculation, and I have a very, very tiny verifier that only uses logarithmically many steps. I won't get too far into the weeds about the complexity of the theory, but really if you wanna think about it concretely, you got a million step calculation",
   "eventId": "devcon-7",
   "slot_start": 1731484800000,
   "slot_end": 1731486600000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/1IP5PshRsU2LlH33ndPmkTGZJki3mzS-uZ3M-Yc5vD6o"
+  "resources_presentation": "https://docs.google.com/presentation/d/1IP5PshRsU2LlH33ndPmkTGZJki3mzS-uZ3M-Yc5vD6o",
+  "resources_slides": null,
+  "speakers": [
+    "don-beaver"
+  ]
 }

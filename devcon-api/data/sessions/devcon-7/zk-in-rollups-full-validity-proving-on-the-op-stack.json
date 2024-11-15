@@ -9,19 +9,28 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [],
   "tags": [
     "Layer 2s",
     "Rollups",
     "ZKP"
   ],
+  "keywords": [],
+  "duration": 901,
   "language": "en",
-  "speakers": [
-    "uma-roy"
-  ],
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6735e5c39dbb7a90e1bb8d44",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6735e5c39dbb7a90e1bb8d44.vtt",
+  "transcript_text": " Hello, my name is Uma, I'm one of the co-founders of Sysynkt, and today I'm going to be telling you guys about introducing full ZK validity proving into the OP stack. So let's start off with kind of motivating the problem, which is why are ZK rollups interesting and important to the Ethereum endgame? So today, the Ethereum rollup-centric roadmap is how Ethereum is going to scale. And within that, I think it's commonly acknowledged that ZK rollups are the only way that a lot of the problems we're facing today as an ecosystem will get solved. For example, we'll get fast finality, we'll get interoperability across all the rollups, unified liquidity for users, and overall, it'll help improve UX greatly. Inherently, we can kind of think of why ZK helps solve all these problems, because decentralization, with all the different Ethereum nodes re-running and re-executing transactions inherently has some overhead and ZK by giving us verifiability fixes this. So, ZK rollups have been around for a long time. Historically we've known that ZK has been very important. But until recently, ZK rollups have been really challenging. You'd have to write in specialized languages, SDKs and DSLs, to actually encode an Ethereum EVM state transition function in a ZK circuit to be able to prove it. And then, in general, there were a lot of compromises. You had type 1, type 2, type 3, where you can't use the native Ethereum storage format or sometimes even be bytecode compatible due to the limitations of ZK. So how are we solving this? Well, at Sysynkt we're building a ZK VM, not a ZK EVM, a ZK virtual machine where you can just write Rust and then use ZK. So what does that mean? As a developer, you can just take arbitrary Rust code.",
   "eventId": "devcon-7",
   "slot_start": 1731582600000,
   "slot_end": 1731583800000,
   "slot_roomId": "stage-5",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Dw9W_WUh2DLUhcVkatH257BHYs8yWdxlfLhoJXs8jnY"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Dw9W_WUh2DLUhcVkatH257BHYs8yWdxlfLhoJXs8jnY",
+  "resources_slides": null,
+  "speakers": [
+    "uma-roy"
+  ]
 }

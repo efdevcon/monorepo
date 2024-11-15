@@ -433,12 +433,12 @@ export const Highlights = () => {
     <div className="flex flex-col gap-2 overflow-hidden">
       <SwipeToScroll>
         <div className="flex no-wrap gap-2 ml-4 pr-4">
-          {/* <HighlightCard
+          <HighlightCard
             title="Closing Ceremonies"
             to="/schedule/RUZK3B"
             description="The closing ceremonies will feature a discussion round with members of 0xPARC, The Long Now Foundation, and the Ethereum Foundation, followed by exclusive content, closing remarks, and a performance to conclude the event."
             image={Ticketing}
-          /> */}
+          />
           {/* <HighlightCard
             title="Opening Ceremonies"
             to="/schedule/P8W9LZ"

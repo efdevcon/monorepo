@@ -12,6 +12,7 @@ import moment from 'moment'
 // import venueCss from 'components/domain/app/venue/venue.module.scss'
 // import { getFloorImage } from 'components/domain/app/venue/Floor'
 import Image from 'next/image'
+import CLS from './thank-you-bg.png'
 import DevconLogo from 'assets/images/dc-7/logo-flowers.png'
 import {
   SessionCardPercentual,
@@ -225,6 +226,43 @@ export const RoomScreen = (props: ScreenProps) => {
     const sessionIsUpcoming = now?.isBefore(moment.utc(currentSession.slot_start).add(7, 'hours'))
     sessionIsLive = !sessionHasPassed && !sessionIsUpcoming
     relativeTime = moment.utc(currentSession.slot_start).add(7, 'hours').from(now)
+  }
+
+  if (!currentSession) {
+    return (
+      <div className={cn(css['room-screen'], css['thanks-for-coming'], 'fixed h-screen relative w-screen')}>
+        <Image src={CLS} alt="CLS" className="object-cover h-full w-full" />
+        <div className="absolute bottom-[0em] flex-col text-3 font-semibold text-white left-0 right-0 p-[1em] flex items-center justify-center">
+          <div className="fixed inset-0 w-full h-full flex justify-center items-center">
+            <Image src={DevconLogo} alt="w/e" quality="100" className="object-contain w-1/2" />
+          </div>
+          <div className="text-2 mb-[0.3em]">Thank you for attending Devcon SEA 2024!</div>
+          <p className="whitespace-nowrap shrink-0 text-1-25 text-center !leading-[1.2em]">
+            Join us at the closing ceremonies at the Main Stage at 4:00 PM <br />
+            <span className="">for a final goodbye</span>
+          </p>
+        </div>
+
+        {/* <div className={cn(css['updates-row'], 'flex items-center h-[3em] !bg-[#F8F4FF]')}> */}
+        {/* <p
+            className={cn(
+              'rounded-full px-[0.75em] py-[0.25em] uppercase font-bold text-0-75 bg-[#dfd8fc] shrink-0'
+              // getExpertiseColor(session.expertise || '')
+            )}
+          >
+            Notifications
+          </p> */}
+
+        {/* <InfiniteScroll speed="100s">
+            {notifications.slice(0, 1).map((notification: any) => (
+              <p key={notification.title} className="whitespace-nowrap shrink-0 mr-[2em]">
+                Join us at the closing ceremonies at the main stage at 4pm!
+              </p>
+            ))}
+          </InfiniteScroll> */}
+        {/* </div> */}
+      </div>
+    )
   }
 
   return (

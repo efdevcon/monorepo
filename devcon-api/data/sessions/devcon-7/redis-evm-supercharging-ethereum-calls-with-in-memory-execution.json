@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "RPC",
-    "Execution"
-  ],
   "tags": [
     "Scalability",
     "EVM-equivalent",
@@ -22,13 +18,26 @@
     "Scalability",
     "Tooling"
   ],
-  "language": "en",
-  "speakers": [
-    "everton-fraga"
+  "keywords": [
+    "RPC",
+    "Execution"
   ],
+  "duration": 582,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6735a10d9dbb7a90e1ad95c0",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6735a10d9dbb7a90e1ad95c0.vtt",
+  "transcript_text": " Thank you all for coming. Can everybody hear me, had the honor and privilege to do so. Now, I help customers exclusively from the Web3 space to deploy and scale on AWS, which gives me visibility to some of the problems that they face, right? Okay, big one, challenges on RPC scaling. That's super fun. So to begin with, whenever you have a consumer-facing application, let's think about a Wi-Fi router, right? You have to serve all those RPC requests to millions of people. The traffic can be unpredictable, and you might have some huge surges in traffic. So some strategies that folks typically do is horizontal scalability of nodes. Super fair. But it comes with some challenges, right? So first of all is reaction time. The time it takes for you to deploy a new instance. So take the snapshot, load it, copy files, and load the chain data, and also synchronize the difference from that time. Second, that's not a trivial challenge though, by the way. Second, forecasting to understand your user patterns and see how on weekends I have lower usage, and then on Tuesdays I might have more access, and then you react accordingly, proactively. But that is a very specialized task, right? So the caveat is of over-provisioning, which happens a lot. Basically, people paying for more servers with idle capacity. That's not good for any business. Final boss, consistency, right? So when you scale horizontally, well, you suffer from that. You have potentially nodes that are behind the chain. You have, you know, different states across, and people use typically the latest data, right? So you do not scale horizontally to serve archive data. Some businesses, they operate only on current data. So, consistency, I would say, that is the final boss that typically makes people delegate the task of managing these RPC nodes management to infrastructure providers, some of the ones that you know, right? But they suffer from the same problem. So they need to get really good at forecasting reaction time, and that's all the perpetuating and putting lots of pressure on those players. Well, a typical strategy to deal with a lot of read access is caching. Some of those RPC methods are pretty easy. Chain ID would never change. Block by hash, one parameter. Get logs. You can offload the data to some database index, but the list goes on and it becomes even harder. ETH call is the main villain because it is typically used for over 70% compared. So if you want to address this issue, we should first and foremost tackle the ETH call problem. Word of the day, externalization. So can we, is there any opportunity to externalize the processing of EVM opcodes to a very fast engine? So I'm introducing today the EVM Lua project. It is technical validation mode. It is a micro EVM interpreted, implemented in Lua, and it executes inside Redis with minimal storage read latency. And it is able to process, ultimately, EVM operations. So ETH calls, estimate gas in the future, of course, and others. How it works, you can actually select what are the contracts you have there, and then you load the attributes from that contract. So code balance, no storage, all the storage keys, there are scripts for you to do that. And we have some phases. So R&D stage, this is where we're at so loading the entire storage from selected contracts keeping up with the state if processing EVM code strips next up EVM compliance so implementing all the opcodes including transient storage and adding EVM metering, so gas metering. And further steps include deployment, so benchmarks, optimization, feedback loop, and building for catering to user-specific features. So those are baseline numbers from Amazon ElastiCache benchmark using, of course, the simplest data structures. This is not our project yet. But 1.2 million requests per second for a single instance. That is a lot, right? And in a cluster, you can have over 5 million requests per second if you scale those Redis nodes horizontally. So here's the project. Have fun. Please start it. And, well, thank you very much. Thank you so much, Everton. So now we'll move on to a quick Q&A. So we have one question thus far. What are some potential security risks of embedding an EVM interpreter within Redis? All right. Interesting question. So you can have several guardrails for that. But because you have control of the opcodes that are being executed, that would be only for reads and not to write. So you can separate who writes and who reads at a user level and have several folks only reading from that in-memory database. Does that answer the question? Whoever asked? I think so. Okay, just on time, we have another question. How large is the RAM size needed? That's another great question. So to begin with, only, you know, just a couple megabytes, and it is already enough to start playing. And it depends on the contract storage you want to load up there, right? So on AWS, the instances go up to 2 terabytes of memory within a single instance. So the sky can be really the limit here. It could fit the entire state. All right, and I accidentally pressed answer for one of the questions, so it's not showing up, but I'll read it out. Why don't we access state DB remotely? Why don't we access DB state remotely? Great question. I thought about that too. So you can create a compute unit that is external to the node and scale that out. However, they will all be executing get storage at sequentially as you execute the EVM instructions, and you will get the penalty of latency, right? So the thesis here is to put together both storage and the execution in an scalable way. All right, now we have a lot of questions. Next, what happens if the EVM hits an unimplemented opcode? It breaks really hard. Okay, next one. I'm assuming, can this run on Redis community? Absolutely, yes. All right. Yeah, so there are even novel engines there. One of them is called Valky. That is a drop-in replacement for Redis. Should be the same thing, right? And there's a developing space. Okay, and our last question, does it need archive notes to feed the data? Is Redis sorting all archive data? Great question. So the project is currently focused on current state. You don't need to have an archive node to feed that in, but your RPC source needs to have some specific debug methods available. So the way to export the entire state of a contract is one of them. All right, we just have one last question. When can we use this for full block execution? Oh, wow. I don't question. When can we use this for full block execution? Oh wow. I don't know. Soon. Please help me. Alright, I think unfortunately that's all the time we have. I know we have one more question, but I believe Everton will be hanging around here. So yeah, you can catch up with him after this session. Thank you so much, Everton. Let's give him another round of applause. Thank you.",
   "eventId": "devcon-7",
   "slot_start": 1731565200000,
   "slot_end": 1731565800000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/1fF69WpIZk0d5kqOiGISG9maJgrmsuKxAcyzfYSedRsw"
+  "resources_presentation": "https://docs.google.com/presentation/d/1fF69WpIZk0d5kqOiGISG9maJgrmsuKxAcyzfYSedRsw",
+  "resources_slides": null,
+  "speakers": [
+    "everton-fraga"
+  ]
 }

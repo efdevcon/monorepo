@@ -9,10 +9,6 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Hardhat",
-    "Solidity"
-  ],
   "tags": [
     "Developer Infrastructure",
     "Tooling",
@@ -22,13 +18,26 @@
     "DevEx",
     "Tooling"
   ],
-  "language": "en",
-  "speakers": [
-    "patricio-palladino"
+  "keywords": [
+    "Hardhat",
+    "Solidity"
   ],
+  "duration": 1620,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67348e149dbb7a90e175a3e3",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67348e149dbb7a90e175a3e3.vtt",
+  "transcript_text": " Hey everyone, thanks for being here. My name is Patricio, I'm the co-founder and CTO of Nomic Foundation, which is a non-profit dedicated to Ethereum developers like you. At Nomic, what we do is building open source infrastructure and tooling for the Ethereum community. And the most well-known of our tools is HardHat. And during this presentation, what we are or I'm going to talk about is HardHat v3 or HardHat 3, the new version of HardHat, which is still in development because it's a whole overhaul of HardHat v3, or HardHat 3, the new version of HardHat, which is still in development, because it's a whole overhaul of HardHat with tons of changes. But first, let's take a look at HardHat 2 for a second, especially its limitations and why we decided to rewrite it. The first one, and main one, is that Ethereum changed a ton during the lifetime of Hard Hat. We started working on it almost seven years ago, about 2018. And back then, Ethereum was a single chain, a way more simple ecosystem. There was mainnet and a few testnets. Those testnets aren't even alive nowadays. And the applications were simpler, those test nets aren't even alive nowadays, and the applications were simpler, right? There wasn't even stable coins back then. Now, applications are larger, and Ethereum turned to be a single chain into an ever-increasing ecosystem of different chains, each of them with a slightly different behavior. Another problem that we have in Hard Hat 2, or Hat, is that we brought everything in JavaScript, including our network simulator, and that had several performance issues. We also focused a ton on the Node.js ecosystem because we envisioned building a platform for others to be able to customize and extend their own setups, but that focus on JavaScript only also meant that you could only write tests in JavaScript or TypeScript. And the final limitation is that when we designed Hard Hat, there was only one chain mainnet. We designed it in a way where for every single hard hat process, there is a single chain, a single network connection, you just import hard hat, you have your network connected there, most of the time it's going to be simulated by us, and all the boilerplate, all of your libraries, all your plugins get configured for you, but it's a single chain. As soon as you want to work with multiple chains, you hit this limitation and you start making workarounds. We created RPCs for switching the hard forks or forking other networks. People use different configurations and things like that. So, HARDCAD 3, we rewrote it from scratch to circumvent these limitations and offer more functionality. And how does it look? Well, it looks a bit like this. It's a bit like hard hat. It's still hard hat, but hard hat from the future or more technical hard hat. But at the end, it's just a hard hat, right? Like, it feels and looks like hard hat. So, as I mentioned, it's a complete revamp of the product. The scope is massive. Hard hat grew during these six, seven years. It has tons and tons of clients and functionality. And I can't cover everything here. I'm only going to focus on this list of things, which are the network simulator that we rewrote in Rust, the Solidity Test support that is added in hard hat 3, our deployment solutions.",
   "eventId": "devcon-7",
   "slot_start": 1731495600000,
   "slot_end": 1731497400000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/1XDRIhALcLD_91krtX14MMkCYoXRCN3nZ_oia1tIdaLw"
+  "resources_presentation": "https://docs.google.com/presentation/d/1XDRIhALcLD_91krtX14MMkCYoXRCN3nZ_oia1tIdaLw",
+  "resources_slides": null,
+  "speakers": [
+    "patricio-palladino"
+  ]
 }

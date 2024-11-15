@@ -474,7 +474,8 @@ export const api = (() => {
           const dayNumber = startDate.getDate()
           const dayLabel = dayNumber === 12 ? 'Day 1' : dayNumber === 13 ? 'Day 2' : dayNumber === 14 ? 'Day 3' : dayNumber === 15 ? 'Day 4' : ''
 
-          return {
+
+          const formattedSession = {
             id: session.id,
             title: session.title,
             summary: session.description,
@@ -483,7 +484,7 @@ export const api = (() => {
             start: `${dayLabel} - ${bangkokStart}`,
             end: `${dayLabel} - ${bangkokEnd}`,
             duration: `${durationMinutes} minutes`,
-            expertise: session.expertise,
+            difficulty: session.expertise,
             tags: session.tags,
             keywords: session.keywords,
             speakers: session.speakers.map((speaker: any) => {
@@ -493,10 +494,16 @@ export const api = (() => {
                 name: speaker.name,
               }
             }),
+          } as any
+
+          if (session.transcript_text) {
+            formattedSession.transcriptions = session.transcript_text
           }
+
+          return formattedSession
         })
 
-        console.log(formattedSessions.length, 'formattedSessions amount')
+        // console.log(formattedSessions.length, 'formattedSessions amount')
 
         // return
 
