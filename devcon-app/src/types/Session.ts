@@ -36,4 +36,5 @@ export interface Session {
   sources_youtubeId?: string
   sources_livepeerId?: string
   sources_streamethId?: string
+  transcript_text?: string
 }

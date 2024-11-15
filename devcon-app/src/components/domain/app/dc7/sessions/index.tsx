@@ -1512,6 +1512,7 @@ export const SessionList = ({
 }
 
 export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+  const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const searchParams = useSearchParams()
   const secret = searchParams.get('secret')
   const playback = session.sources_youtubeId || session.sources_streamethId
@@ -1683,6 +1684,21 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             </div>
           </CollapsedSectionContent>
         </CollapsedSection>
+      )}
+
+      {session.transcript_text && (
+        <div>
+          <StandalonePrompt
+            className="w-full"
+            onClick={() =>
+              setDevaBotVisible(
+                `Using the transcriptions of the session with the title: '${session.title}' and id: '${session.id}', give me a summary of the session.`
+              )
+            }
+          >
+            <div className="truncate">Summarize this session using AI</div>
+          </StandalonePrompt>
+        </div>
       )}
 
       <div
