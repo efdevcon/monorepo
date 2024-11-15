@@ -176,6 +176,6 @@ export async function getStaticProps(context: any) {
     props: {
       session,
     },
-    revalidate: 0,
+    revalidate: 1,
   }
 }
