@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "aggLayer",
-    "shared liquidity"
-  ],
   "tags": [
     "ZKP",
     "liquidity",
@@ -20,14 +16,27 @@
     "agglayer",
     "ZKP"
   ],
-  "language": "en",
-  "speakers": [
-    "ignasi-ramos",
-    "jesus"
+  "keywords": [
+    "aggLayer",
+    "shared liquidity"
   ],
+  "duration": 470,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67370c6574749a4b898bd059",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67370c6574749a4b898bd059.vtt",
+  "transcript_text": " Hi, thank you, Miros, for the presentation, and thank you, everybody, for coming. My name is Ignasi Ramos. I work at Polygon, at the protocol team, and today I will be presenting what the frog is the pessimistic proof. But before going straight to the pessimistic proof let me give you a bit of context and nowadays one of the problems of blockchain not being mainstream in my opinion is the fragmentation there are a lot of good projects and they have to deploy in all the chains but the worst thing is that for the user experience, this is very, very bad, because they may want to use for one reason or another, more than one chain, two chains, whatever number of chains. So if they want to move assets from one chain to another one, sometimes there are delays. Sometimes it's difficult to track high fees. They have to wait a lot. This is why, from Polygongon we propose the aggregation layer. The aggregation layer connects sovereign chains together, unifying liquidity, users and state, but with the feel of a single chain, a multi-chain web that is better for the user experience, better for network effects and better for the user experience, better for network effects, and better for security. We think, for example, like Internet, where everything is built at the top of the same protocol, the TCP IP. In the aggregation layer, we will be aggregating chains in a unified bridge, and they do not have to be only EBM chain compatible. They can only be like what we call sovereign chains, for example, a Solana, whatever chain that they maintain, like an estate of their balances. But with this system, there is a problem. What happens if one of these chains is compromised? What happens if one of these chains has a bug that the bridge gets drained? What will happen is that the other chains will be affected because of the insecurity of one of the other chains. This is where we introduce the pessimistic proof. The pessimistic proof has this name because it pessimistically thinks that any of the chains that are added in the aggregation layer can be vulnerable. So it tries to secure this. How does it do it? The solution is to architect the aggregation layer in a way that assumes that every prover can be unsound. The pessimistic proof guarantees that even if a prover for a particular chain is unsound, that prover cannot drain more funds than are currently deposited on that chain. In this way, a soundness issue cannot infect the rest of the ecosystem. So this means that every time a chain wants to submit their bridges to be consolidated, he will have to attach a proof proving that he has enough balance to execute those bridges. The proving system that will handle all of this, the proof generation and the verification, can be any of these advanced set, like general VMs, like for example JISC, for example RISC0, or SP1. So, let's go a bit deeper on the pessimistic proof. Now we will get a bit more tech, but it will be anyway very high, yes, very high level trees. We have the local balance tree, the local exit tree and the nullifier tree. The local balance tree is the one that handles the balance of each one of the tokens in the network. Each one of the leaf has the following information. The origin network is the one that handles the balance of each one of the tokens in the network. The origin network is the one that handles the balance of each one of the tokens in the network. Each one of the leaf has the following information. The origin network of the token, the token address and the balance. The origin network and the token address completely define a token. So this balance is the one that handles all the balances of the tokens in each one of the chains. Another one is the local exit tree. The local exit tree grows sequentially every time a bridge is created. So in each one of the leaves, he has information of a bridge event. And the third one is the nullifier tree. The nullifier tree basically is used for the aggregation layer to avoid the double spending. I will explain it later. And finally, the steps for computing this proof are these four. Well, here it's a very summarized interface. First of all, we apply the bridge exit to our local exit tree, generating the new local exit tree. After that, we apply the bridge exit and important bridges. The bridge exits are the ones that are generated from my chain that want to transfer assets to other chains. The imported bridges are the ones that are generated in other chains and want to transfer assets to my chain. So we compute them and we add them to the local balance tree, generating a new local balance tree. Finally, we check the nullifiers. We check that none of these bridges we're importing has already been computed or has already been consolidated or spent. And finally, we check that none of the balances in the local balance tree is lower than zero, meaning that we can compute all these bridges with the balances that we have in our chain. So that will be anything from my side. Thank you very much, and if you have any questions. Okay, let's give a big round of applause for Ignacy. Thank you, Ignacy, for this presentation. So these proofs, apart from their name, they are actually very fun. Apart from being pessimistic, right? We have time for a few questions. I will hit you with the red box which you talk at this is a microphone so please raise your hand if you have a question for Ignacy it's not easy right yes please okay great presentation so my question is is this only for polygon Network or is it supposed to no no it will support any chain like um in the example there were like the cdks and the ckv which are polygon network but it can support like any chain that handles a balance of the state as i said it can even handle solana it's a good idea to because it's one of the changes responsible of the state transition. more? Yes, please. measure? How does this help with interoperability? Sorry, can you repeat that last part? Like pessimistic proof sounds from the... Yes, it's 100% security. Does it help, does it simplify interoperability in any way? Like you say, Solana could use pessimistic proof. Like does this help sending assets from one chain to the other? Yes, it helps in the way that you are sure that this chain has enough funds to be transferred. So the only thing you have to do is verify that proof. You don't have to, like, if in case now on the bridges wait that the transaction is finalized or in case of an optimistic roll-up, wait these days for the withdrawal. This will not be happening. That makes the interoperability very fast. Okay. Thank you all. That was it. Yes, we have, let's go, like, very fast. I'll be here around anyway. Thank you. Okay. Well. No, that's it. Thank you, Ign anyway. Thank you. Okay. Well, that's it. Thank you, Ignacy. Thanks again.",
   "eventId": "devcon-7",
   "slot_start": 1731654000000,
   "slot_end": 1731654600000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1BLkd5LgVpoznDQEyKsIo9P94GZyyUdEhmVBoZTS692Q"
+  "resources_presentation": "https://docs.google.com/presentation/d/1BLkd5LgVpoznDQEyKsIo9P94GZyyUdEhmVBoZTS692Q",
+  "resources_slides": null,
+  "speakers": [
+    "ignasi-ramos",
+    "jesus"
+  ]
 }
