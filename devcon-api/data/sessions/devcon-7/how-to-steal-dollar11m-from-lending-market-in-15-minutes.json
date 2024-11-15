@@ -9,11 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "defi",
-    "lending protocols",
-    "exploit"
-  ],
   "tags": [
     "Security",
     "Auditing",
@@ -23,13 +18,27 @@
     "Bug",
     "Security"
   ],
-  "language": "en",
-  "speakers": [
-    "bartosz-barwikowski"
+  "keywords": [
+    "defi",
+    "lending protocols",
+    "exploit"
   ],
+  "duration": 567,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673749fc1b0f83434d8b3f52",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673749fc1b0f83434d8b3f52.vtt",
+  "transcript_text": " We have... One, one. Oh, hey, everyone. Now it's working. I'm going to tell you about one of my favorite issues, and I will show you how I was theoretically able to steal $1.1 million in 15 minutes. So how the story started? A few months ago, I was browsing the interesting applications on the blockchain, and I found a very interesting lending market. They were offering 82% returns in USDC, in stables. So a crazy good deal. So there's something wrong with this? Or is the best deal ever? Or is it scam? I decided to check it. So I did what I do the best, and I started to checking the source code. Fortunately, it was open source, so I checked everything, how the platforms works, if they're really having the loans or not, and I decided in the end to verify all the loans, collaterals, debt in the system. So in the lending market, the important thing is healthy and unhealthy loan. So basically, when you take a loan, you need to give some collateral. So let's say you want to borrow $50, you need to give $100 of collateral. And whenever the debt becomes too high, let's say it grows by 20% because value of token went up, the platform needs to liquidate the loan. Because if it didn't, then there's just not enough collateral to pay for the loan. Most of the platforms usually require pretty high collateral. In this case, let's assume it was a 2 to 1 ratio. So if I want to borrow $100, I need to give $200 in collateral. Okay, so I created a simple script to verify all the loans, assets, and collaterals. Everything was fine with the platform, but I decided to go even deeper. So what I noticed is that the platform was very complex. They have very complex logic, the liquidation, the flash loans, support for very untypical loans, support for multiple assets. And from my experience as an auditor, I quickly noticed it's very easy to make a mistake, especially with liquidation process. So I already was able to see some low severity issues and I decided to dig deeper if I can achieve something more with them. And the most interesting part was liquidation of unhealthy loan because it worked like a flash loan. If you want to liquidate the loan, first you get a collateral, and then you repay the debt in the end of the transaction. So it works like the flash loan, you get token X, but you are forced to repay the token Y by the end of the transaction. So this kind of logic is very complex. It's very easy to make a mistake. So I started to search, okay, how can I abuse it to get some critical issue? And there was another very complex thing, which was linked loans. Basically, you are able to have multiple loans for a single collateral. The reason was, you know, if you want to have a loan for different things, you can have it. So you just create one account with all the collateral and then create multiple loans linked to it. And the important part was how to create a linked loan. So you could do it by creating a new empty loan with no collateral, and then you linked it to the other loan which already had collateral. But I noticed they only check if the loan has no collateral. They didn't check if the loan has any debt. So that may be an issue. But the question is, is it even possible to create a loan with only debt and no collateral? And actually, there is. You know, this liquidation process from before. I noticed that this is the only place which is taking the collateral from the loan. And then, for a moment, the collateral is lower than it should be. Of course, normally, the collateral is pretty high, so you cannot take everything, but here's where they made a mistake. They allowed to start multiple liquidations of the same loan in the same transaction. So I was able to start liquidation twice and create a loan which has, for a moment, no collateral. This transaction would fail, because then when I would like to repay $100 of debt, there wouldn't be enough debt in a smart contract to actually repay it. So the transaction would fail. But fortunately, I mean, unfortunately for them, I found a way to fix this issue. So the idea is, OK, I have too much debt, which I need to repay. So to fix it, I simply need to take, after linking this loan to another one, I simply need to take more debt. And then by the end of transaction, when I try to repay $100 of debt, it's possible. So I managed to make this transaction work. And what does it accomplish? So first of all, I am able to link a loan which has only a debt to another one. And the problem with this is they assume that this loan, which I'm linking, has no debt. So whenever I was repaying, linking the loan, the debt wasn't added to the master loan. However, when I was repaying this, repaying the debt, it was being removed from the master loan. So in the end, by doing this complex transaction, I was able to remove some debt from the system, from the master loan. So with every transaction, I was able to steal some amount of the money. So now I knew I had an exploit. I decided to code it, spend the next 30 hours, basically during the two days, to write the exploit. It was hard and unexpected because they had a lot of running issues, so it wasn't so simple to remove all collateral to be exactly zero, but they managed to do it. So when I ran the exploit, it was, of course, on a testnet, which I created by copying the main database. In 15 minutes, by doing 1,000 transactions, I was able to extract everything. And yeah, it was $1.1 million. So 15 minutes. And of course, then I contacted the and then I contacted the project and we fixed the issue so it worked well for everyone and then I put a lot of money there because the returns were crazy high so last thing my recommendations to how to avoid this, first of all don't go into such complex logic if you don't need to keep your projects as simple as possible especially if you can't test something just don't write it have a developer with experience in cyber security of course they can audit have a bounty programmed they didn't but i contacted them on Telegram and we found out the way how to cooperate on that. Write as many tests and use platforms which can help you to stop attacks if they can be detected. If you would like to talk more about this issue, I have LabHotTop with me. We have talked an hour about this because it was quite more complex than I'm showing here, then feel free to catch me. I'm easy to find. So thank you. Any questions? So we are short on time. We're going to take one question. It's the flying mic. If a user is sending ERC20 tokens to a contract which is not designed to receive them, then these tokens are lost. This cannot happen with an ERC223 token, NFT, or native currency. There are $115 million lost because of the trust problem now. Do you think about it? I don't know what to think about it. I mean, I would need more time to see this in details. I'll show you the details. Yeah, sure, sure. We can talk about it in a second. Okay, so another round of applause for Bartosz. Time is up.",
   "eventId": "devcon-7",
   "slot_start": 1731657600000,
   "slot_end": 1731658200000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1_JwwqcHhRqpyNIOuusmiEAr-roI7bAxIOH-9iiMKSaM"
+  "resources_presentation": "https://docs.google.com/presentation/d/1_JwwqcHhRqpyNIOuusmiEAr-roI7bAxIOH-9iiMKSaM",
+  "resources_slides": null,
+  "speakers": [
+    "bartosz-barwikowski"
+  ]
 }
