@@ -9,22 +9,31 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "EOF",
-    "EVM"
-  ],
   "tags": [
     "Cryptography",
     "EVM",
     "Cryptography"
   ],
-  "language": "en",
-  "speakers": [
-    "rodiazet"
+  "keywords": [
+    "EOF",
+    "EVM"
   ],
+  "duration": 1500,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67357dc39dbb7a90e1f50a68",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67357dc39dbb7a90e1f50a68.vtt",
+  "transcript_text": " I'm Radek from IPSIN Long Research and Development team at Ethereum Foundation and today I want to talk to you about some extension we're gonna add to the to the Ethereum virtual machine in the near future. So the idea has a couple of years already, and it was initiated by some core devs to improve the way how the cryptography is handled or cryptography-related functions are handled in the EVM. The main reason was to avoid adding or limit the need to adding new precompiles. But before we get into the details, I would like to make some simple introduction and explain the reasoning behind EVM Max. So what's the EVM Max? So EVM Max translates to EVMterior Virtual Machine Modular Arithmetic Extension. It's a set of new modular arithmetic instructions which support every sized-capped, which is important, odd modules. At the current spec, we define addition, subtractions, and multiplication. We also consider adding exponentiation, which is helpful for calculation some more advanced modular arithmetic functions like modular inversion or square root. One every important thing which should be noticed here is that this proposal is built on the top of the EVM object format, which we had just a presentation of in a minute. And also there was one presentation made by Dano on Tuesday. So EVM Max makes a usage of EOF immediate arguments and the validation of the immediate bytecode also. And it makes it possible to validate EVM Max code before the deployment of the contract to the chain. But I'm not going to get into details of this validation, because it's not the main topic of this presentation. But it's worth mentioning that EOF is a crucial dependency which makes EVM Max easier to implement in an efficient way. It doesn't mean that EOF is a dependency which has to be before. It just makes the implementation of EVX much easier in an efficient way. before, it just makes the implementation of EVX much easier in an efficient way. So, but where exactly EVM Max is located in the cryptography related EVM stack? So we have basic operations in the modular arithmetic on the bottom level, which are used to implement the second level, the elliptic curve cryptography primitives like point addition, multiplication and more advanced like pairing verification. And these primitives are used to implement ECC algorithms like signature verification and Zika related functions. But EVM-Max implements only the bottom one level on this diagram. In the Epsilon team we also use EVM max to implement the second level to make sure that the set of instructions of EVM max is offered and the API offers right write abstractions, write abstraction and efficiency. So, sorry, too fast. What is going on? Yeah, okay. So we now know what's EVM Maxis in general. So one of the reasons I already mentioned at the beginning of the presentation, but there are a couple more reasons I want to list. So in the Ethereum community, there is a need to make the implementation of the cryptography in EVM much easier and efficient. I'm just kidding. Easier and efficient. So. Yeah. So with EVM, we won't need to wait for a specific precompile to be delivered in a fork. We also would like EVMX to be a tool which allows to avoid adding new precompiles in the future. It will make the core devs' lives much easier because they won't need to maintain the very specialized cryptographic libraries in the EVM so they they will not have a headache like what exactly this function do I'm not the cryptographer exactly or we don't have a specialized cryptographer in the team so why do we need to maintain this complicated libraries, which we take basically very often from some external libraries, which are already implemented. But so EVM Max will deliver a tool which should make precompile for some reason will be still needed to be implemented and to use by the EVM, we can imagine that the EVM max bytecode can define the specification of the precompiles, how they should be implemented exactly. But let's get a little bit deeper into the EVM Max instruction details. So, we can split it into three different parts. So, the first part is responsible for setting up the EVM Max context. The second one is just a set of modular arithmetic instructions I already mentioned. And the third one is responsible for EVM, EVM max context communication. So let's get into details of these three parts. So first, SetupX creates the EVM max context if it doesn't exist yet, which means it initializes modulus values and allocates EVM max value slots in the dedicated for EVM max memory only these slots can be only accessed by the EVM max of code of course and Also initialize some specific constant values like for example R squared which must be which is used for Which is used by Montgomery form. In this context, if the context is already defined, so the setup just only switches to this already defined context. Second part are the arithmetic instructions. So basically, they perform the arithmetic operation according to their names, as you can see so everybody who who know a little bit about the arithmetic modular arithmetic should be able to know what's what they exactly do but it's worth noticing that they operate only on indexes of the slots in the EVM Max context. So the indexes are static and can be validated on the deployment before deployment of the contract to the mainnet, which allows to validate them exactly the same way as all the other",
   "eventId": "devcon-7",
   "slot_start": 1731556800000,
   "slot_end": 1731558600000,
   "slot_roomId": "stage-3",
-  "resources_presentation": "https://docs.google.com/presentation/d/1fh8W3duOjm-uN-PLpwXQdH39CtC5VtYT9yOjlpTE8hk"
+  "resources_presentation": "https://docs.google.com/presentation/d/1fh8W3duOjm-uN-PLpwXQdH39CtC5VtYT9yOjlpTE8hk",
+  "resources_slides": null,
+  "speakers": [
+    "rodiazet"
+  ]
 }
