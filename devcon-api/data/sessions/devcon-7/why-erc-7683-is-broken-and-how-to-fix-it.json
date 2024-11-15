@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "chain-abstraction",
-    "intents"
-  ],
   "tags": [
     "Appchains",
     "Cross-L2",
@@ -25,13 +21,26 @@
     "Cross-L2",
     "Token bridging"
   ],
-  "language": "en",
-  "speakers": [
-    "vaibhav-chellani"
+  "keywords": [
+    "chain-abstraction",
+    "intents"
   ],
+  "duration": 1275,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67344f0d9dbb7a90e1accefa",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67344f0d9dbb7a90e1accefa.vtt",
+  "transcript_text": " Thank you so much for sticking through. I know everyone's hungry for lunch, so am I. Hopefully, this will be a solid one, after which you think you will need a break. Super glad that you are still up and alive. Sweet guys, I think to get into it, I sort of wanted to talk about this upcoming thing called Intents, which is supposed to change how we interact with chains going forward. And a bunch of projects are starting to look at it in a pretty deep level, including people at Uniswap, Cowswap, and a bunch of other protocols. So I just wanted to chat about an upcoming proposal there and talk through some of the design choices that have been made and why those might not be right and how could we potentially fix it. This is not a diss track. I'm using the EIP or ERC as sort of like a channel to talk about this stuff. Not really talking about this specific implementation. I work at Socket. I'm a web host. Also go by VC. You can find me after the talk. But if you want to check out the exact proposal I'm talking about here, there's a quick QR code. I think this is by Mark Tura from Uniswap. And this is what Uniswap is going to be using for the cross-chain swap stuff, generally speaking. I think we always begin this topic with what really are intents, right? Unfortunately, that is something I don't want to get into for this particular doc, right? It always sort of goes into something you don't want to get into. But I think broadly speaking, you want to do something on-chain, you specify it, someone else takes care of it. That's the rough mental model you can have in mind. And this is different than transactions, because in transactions you sort of like send the transaction on-chain saying exactly what you want to do, but here you just talk about the end goal you want to achieve, and someone else takes care of the execution. That's roughly how to think about it. I'm going to talk about a particular design pattern here. Goals of this particular ERC, 7683, are about how do we make it such that fillers aren't fragmented. This probably doesn't make sense right away, so let me give you guys a quick walkthrough about what really is happening here. So you see a nice farmer emoji there? That is our normal blockchain user today who is sort of like signing something that looks like a struct where he's sort of like talking about what chains he wants to go between, what's the input between, what's the input asset, what's the output asset, things like that. And he signs this stuff and sends it on chain to a particular settlement contract on some source network where a bunch of these robots, these bots sort of look up to this source chain contract for what are pending intents that need to be filled. Then they sort of like fill it on the destination. And then there's a oracle that sort of lets the settlement contract on source chain know that hey, the request that you had has been fulfilled by this particular bot on destination. So really simple. User sends funds on source. The bots fill it on the destination. And then the oracle sort of conveys the message that things are done, really. I think filler fragmentation starts here. So now we have two structs, which basically means now we have two intent protocols. The only difference between the first one and the second one is that the second one has an extra parameter called call data. Let's assume everything else is the same. This is the only difference, right? Due to which now we have these two separate contracts, and earlier while we had had eight fillers solving for this particular intent protocol, as soon as we have two intent protocols, these are now split in two. As more and more intent protocols go live, fillers get fragmented because they need to do more work. They need to do more integrations and stuff like that, super annoying stuff. This is harmful for everyone. Not exactly harmful, but really undesirable, specifically because there aren't too many fillers anyway in the space. There are probably 15 to 20 entities that are operating in this particular role. And if you start fragmenting those, we don't know where we'll end up. So we want competition over here. So we want as many fillers as possible. role and if you start fragmenting those, we don't know where we'll end up. So we want competition over here. So we want as many fillers as possible. So fragmentation is something we want to avoid here. Fragmentation is bad for all three of these parties. It's bad for the user because if people aren't competing, you're going to get the worst possible price. If you don't have an intent standard, then you don't actually understand what you are",
   "eventId": "devcon-7",
   "slot_start": 1731479400000,
   "slot_end": 1731481200000,
   "slot_roomId": "stage-5",
-  "resources_presentation": "https://docs.google.com/presentation/d/1MNzcD3lH260PkgaznRJQQW41lkxoYMoKXT73MHMNPfg"
+  "resources_presentation": "https://docs.google.com/presentation/d/1MNzcD3lH260PkgaznRJQQW41lkxoYMoKXT73MHMNPfg",
+  "resources_slides": null,
+  "speakers": [
+    "vaibhav-chellani"
+  ]
 }
