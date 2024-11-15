@@ -9,11 +9,6 @@
   "audience": "Product",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "TLSNotary",
-    "ZKEmail",
-    "P2P marketplaces"
-  ],
   "tags": [
     "ZKP",
     "Signatures",
@@ -24,13 +19,27 @@
     "Signatures",
     "ZKP"
   ],
-  "language": "en",
-  "speakers": [
-    "richard"
+  "keywords": [
+    "TLSNotary",
+    "ZKEmail",
+    "P2P marketplaces"
   ],
+  "duration": 422,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6735781c9dbb7a90e1b5649c",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6735781c9dbb7a90e1b5649c.vtt",
+  "transcript_text": " Awesome. Hey, guys. I'm Richard. Today I'll be talking about trust-minimized P2P marketplaces on Ethereum. Go over the why, how, and some thoughts of looking ahead. So why are we here? Um, if we look at web 2 today, uh, data currently exists in these centralized data silos, whether it's fiat currency in your bank account, uh, your social graph, concert tickets, domains, et cetera. Um, these lead to high switching costs for users. For example, you can't bring your followers from Facebook to Twitter. And these also are very extractive to these users. For example, Ticketmaster charges, like, monopolistic prices because they own both the secondary and primary exchanges. And lastly, there's, like, closed APIs, which make it very difficult to interoperate between payment APIs, for example. Additionally, if you look at Web3 in our permissionless database, the problem is that it's really detached from the real world. If you look at your social graph, stable coins, like these DeFi instruments, and even ETH, all of it runs in a parallel system. In fact, most of DeFi today is self-referential. And so the solution here is to bring the real world to Ethereum. And the question is how? We can break through these kind of wall gardens using cryptography and also maybe TEs. So we can use ZK and MPC, these new technologies, to allow us to permissionlessly export data from these centralized data silos. Techniques such as ZK email and TLS notary, which also can help us redact any kind of private sensitive information prior to exporting. Check out some of the other talks on ZK email or TLS notary today if you want to learn more deeply. But yeah, now with these tools, we can kind of compose any kind of Web2 action with Web3 action, such as proving a fiat transfer using zk email to swap for some stable coins on chain or proving ticket transfer using TLS notary to swap for stable coins or swap domains for ETH, et cetera, or even put a social graph inside a TEE to do some DeFi stuff with. An example of this flow that is in production today is ZKP2P, the project I work on. The problem that it fixes some of the issues I mentioned earlier, such as the high fees. The construction for this is pretty simple, actually. A seller comes in, escrows some funds in a smart contract and provides a payment ID. A seller comes in, escrows some funds in a smart contract and provides a payment ID. A buyer comes in, pays the seller, and uses that proof to unlock the escrow contract. It kind of replaces Binance or any kind of centralized exchange with a smart contract, and replaces the manual process of unlocking the escrow with instant unlock upon satisfying a predicate. This construction extends beyond fiat. Simply replace the off-chain payment with a digital asset transfer and a proof of payment with a proof of asset transfer. Now you can kind of do P2P trading tickets, trading domains, trade social media handles, CSGO skins, gift cards and much more. You can even further extend this construction if you, if you trust TEs as a credit poll third party. You can kind of encumber a Web2 account, put it inside a TEE and act that, act as an escrow for the Web2 asset. And both seller and buyer send requests through the TEE. Uh, once the TEE owns both funds and the Web2 asset say tickets, uh, then they can proceed to unlock funds to both parties. Uh, yeah, now you kind of can see the Web2 account is fully programmable. You can do some weird stuff like make the TEE run an AMM pricing model for exam, for example. Yeah, in conclusion, design space is huge. To do trust-minimized marketplaces, the tech here is ready. Dev tooling will continue to only get better. And instead of only bringing Ethereum to the real world, I think it's time to bring some of the real world onto Ethereum. Uh, thank you, and that's it. Thank you Richard. Do we have any questions? Shy crowd today, come on guys. I don't even know if you have the ability to go back in slides. Sorry, is this better? Yeah, if you can't go back, that's okay. I was just gonna ask something about it, but it doesn't matter. I don't think we can. Maybe you can just going to ask something about it, but it doesn't matter. I don't think we can. Maybe you can just talk to it. Okay. Any particular use cases you're most excited about, like in terms of future of peer-to-peer marketplaces? I think there's just a lot of ideas out there. You can put almost any Internet data on-chain and use it. Trade any kind of Web2 asset or even data and anything that you think has value on an internet, you can kind of bring into on-chain to do cool stuff with. Yeah, love to see it. I mean, just like you said, Ticketmaster, I think a prime example of just like marketplaces that are absolutely using monopolistic pricing to just gouge consumers in what is becoming, yeah, a very much frictionless process to do straight Peter Peer. I guess a question, have you seen any regulatory issues? How are you thinking about navigating that? Yeah, I think there haven't been so far. I think P2P is a legally, I guess, gray area kind of thing. You are allowed to transact with your peer. For example, Facebook Marketplace is a huge P2P marketplace. And we're just basically enabling the coordination of that to be easier through on-chain means on Ethereum. Totally. All right. Thank you, Richard. Appreciate it. Give it up.",
   "eventId": "devcon-7",
   "slot_start": 1731556200000,
   "slot_end": 1731556800000,
   "slot_roomId": "stage-6",
-  "resources_presentation": "https://docs.google.com/presentation/d/1_yxVcYnivrcVQGtbD7FmPQLfgJn75M9f-qQDTJJuPH8"
+  "resources_presentation": "https://docs.google.com/presentation/d/1_yxVcYnivrcVQGtbD7FmPQLfgJn75M9f-qQDTJJuPH8",
+  "resources_slides": null,
+  "speakers": [
+    "richard"
+  ]
 }
