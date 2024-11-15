@@ -9,11 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "model checking",
-    "TLA+",
-    "Apalache"
-  ],
   "tags": [
     "Consensus",
     "Protocol Design",
@@ -23,14 +18,28 @@
     "Formal Verification",
     "Protocol Design"
   ],
-  "language": "en",
-  "speakers": [
-    "igor-konnov",
-    "thanh-hai-tran"
+  "keywords": [
+    "model checking",
+    "TLA+",
+    "Apalache"
   ],
+  "duration": 379,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6736d63474749a4b892f230d",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6736d63474749a4b892f230d.vtt",
+  "transcript_text": " Hello, thank you. So my name is Igor Konov. Here are the slides. Happy to be here. Actually, this is work done by myself, Tan Haidran, who is also here in the room, Jure Kukovic, Thomas Pani, who is also here, and Roberto Saltini. And we are happy to have done this work supported by Ethereum Foundation. So if you look at consensus, Ethereum consensus, you probably see a lot of algorithms starting as Casper, Gasper. Now we have single-slot finality. And recently on the block, we have three slot finality. You can check the recent report by Francesco, Roberto, Tanhai, and Luca. And if you look into these things, you'll see that there are a lot of definitions. I cannot explain all of you, all these definitions to you. You'll see that there are chain blocks slots checkpoints justified checkpoints finalized checkpoints votes by validators ffg votes that connect these checkpoints and so on so forth so these are not simple algorithms so in our work we don't uh we don't have uh basically time budget to to do everything so we focus on accountable safety which means roughly speaking that if you have a fork in consensus you should be able to identify at least one-third of the validators that are basically that produce this fork and they should be slashed. So we focus on accountable safety here. How would we be able to check that these protocols, namely three-slot finality, satisfy accountable safety? Well, in science fiction solution, when it's all good, we will take the code in Python, we will take the executable spec in Python, produce some examples maybe to convince ourselves that it kind of works, but also we would also produce an automatic proof of accountable safety. Unfortunately that's a bit of science fiction nowadays, there are no over-the-shelf solutions that would take executable Python spec and reason about such complex algorithms as consensus. So what we have been doing in this project, we actually were writing specifications in temporal logic of actions. That's a language invented by Les Lampert some time ago for reason about concurrent and distributed systems. And we did produce specifications by hand because there are no tools that would be able to do that, although we have been thinking how we could automate that. So basically the first specification we wrote was just too complex for the model checkers. We gradually produced abstractions using this specification and essentially produced like four levels of abstractions here so the model checker could handle the complexity of the algorithm at the end. We used the model checker Apalache, which is offloading the verification task to the SMT solver D3. And in addition to that, as things were a bit slow, we also wrote a specification in Alloy, which is also a well-known model checker that is backed by a sat solver and in addition to that we wrote smt constraints in cvc5 using the theory of finite sets and cardinalities so we kind of did a lot of experiments here to check accountable safety under different uh using different tools so as as I told you, model checking could help you. How can it help you? The first thing it can help you is actually you can query for interesting states. If you have a large protocol, it's not easy to produce examples. And that's what model checking is good about. For instance, here, I'm just writing an invariant saying there are no two conflicting blocks. Basically, there is no fork. And challenge the model checker writing an invariant saying there are no two conflicting blocks, basically there is no fork, and challenge the model checker with this false invariant. Then the model checker comes back in several minutes and shows me an example. So actually these tools work as a good communication tool for protocol designers. Here's an example of such an execution. You don't have to read it, it's just long, but it's machine readable and it's an actual execution in the in this specification so the second thing where these tools can help you is to show some properties not for all kinds of values but for small scopes for small parameters for instance here we have experiments for five blocks seven checkpointspoints, 24 votes. And as you can see, when we increase the parameter space, the tools slow down dramatically. However, we have some evidence that these properties hold true, at least for the small parameters. And that's, again, fast feedback that you can get without proving things in heavy tools. So to come to the summary of our work, we believe that model checking actually helps in ensuring correctness of protocols. We still need humans in the loops, unfortunately. We still need us, basically, to construct these abstractions and specifications. Tune in for the upcoming technical report. We are going to publish all of it and you'll see it. And thank you Ethereum Foundation for giving us a grant. Thanks a lot. Thank you, Igor. Does anybody have any questions? Okay. Okay. I think it was very clear. Nobody has anything. You have two quick and come back again at 10. .",
   "eventId": "devcon-7",
   "slot_start": 1731641400000,
   "slot_end": 1731642000000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1Xd-R_4o4lETYbwbQd-AVQI0TPre950m6puMNTO8psWk"
+  "resources_presentation": "https://docs.google.com/presentation/d/1Xd-R_4o4lETYbwbQd-AVQI0TPre950m6puMNTO8psWk",
+  "resources_slides": null,
+  "speakers": [
+    "igor-konnov",
+    "thanh-hai-tran"
+  ]
 }
