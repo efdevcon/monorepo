@@ -9,11 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "logs",
-    "local apps",
-    "indexing"
-  ],
   "tags": [
     "DevEx",
     "Privacy",
@@ -23,13 +18,27 @@
     "DevEx",
     "Privacy"
   ],
-  "language": "en",
-  "speakers": [
-    "yabir-garcia-benchakhtir"
+  "keywords": [
+    "logs",
+    "local apps",
+    "indexing"
   ],
+  "duration": 526,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6736d90d74749a4b8935f22a",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6736d90d74749a4b8935f22a.vtt",
+  "transcript_text": " . Hello everyone. Thanks for coming. Thanks to the organization for this event, it has been great so far. So for today, my goal is logs for you, Anu. I will be talking about logs. So first, let's see what logs are. They are a piece of information emitted by contracts. They don't have a limit on size more than the block size, and they have three important parts. One is the address of the contract emitting the log. The other is topics that are indexed information so it can be retrieved fast. And then we have data that is decimal data field, and it can be whatever you want. So this is a BlockScout screenshot, and this is a transfer from USDT. And you can see that they present, like, a very human-friendly UI, like they could input data. But here below, you can see the topics and the data. The first one is the signature, always, the signature of the event. In this case, the transfer has a from and a to. And these are the two other topics in the logs. So the importance of topics is, for example, this is a screenshot from Rodkey, and we can use logs to provide insightful information to the user. From transfer, for example, we can obtain what tokens were swapped in a transaction, and it works in any EVM chain. So for example, these are information obtained from Arbitrum and Optimist, and we can see that the user swapped some tokens in Lama Thief. And all this is thank you to logs. So what is the problem with them? There are two big complaints that the community has about them. One is that the user has to pay for emitting logs, so every time the contract emits information, the user pays for it. And the network as a whole needs to store this information in the database. To see about the first problem, I took this Dune dashboard, and as you can see, it's a bit old information, but in the 30 days period, it was over 1,000 Ethereum spent only on gas, and this is around 15 to 20% of the total spent in transactions. So what can we do about this? One of the proposals that I saw, the first company that I saw was Shadow, is to completely remove the locks. So if they are a problem, we get rid of them. And the proposal is that you can have the chain without locks, and then afterwards, you off-chain, emit them, like reprocess the transaction and emit them, modifying the bytecode of the contract. This was from a company, and then it came the proposal, the standard proposal. It is this one, and it's useful to have a standard because everyone can implement it. But it has a conversation and it didn't have much feedback. It stopped at some point last year. So is this good, is this bad? We need to consider a few things first. The user pays for the emitting logs, but they also benefit from them. So as you can see in RodKey, we display information, and it's thanks to the logs. Also, if you use Sirion or any other application, Aave, Frontend, whatever, they all use logs. So you are paying for them, but they are useful for you always. Also, regarding the Ethereum scalability, GoEthereum, the node is 14 terabytes in archive mode. I was told that it's around 600 gigabytes the locks in the system so it's a small proportion of the 14 terabytes and if at any point there are problems, they can be completely removed from the node. Also, they can be sharded in a different node or whatever. And it's not such a big deal. And if it ever becomes a problem, we can manage it. And also data ownership. The problem is that if you put a company like Shadow or Ghost or any other company doing Shadow Logs, you are not sovereign of your data. You can't use your node anymore to get this information that it is useful for you. So you are using it. So this is a big problem. And, of course, we are cyberpunk, so we want to have this data and use it. There are also good things about shadow logs. For example, liquidity liquidations in the contracts were not indexed properly. So you can use shadow logs to properly detect when you were liquidated. And also there is a similar issue in the Gnosis bridge because the address is not indexed properly. Also, for example, Uniswap created a beautiful dashboard and Pendel improved the routing using shadow logs, so there are good use cases for them. So my feedback here is that we need balance and there are two main takeaways. One is that we need the logs for everyone to use them. We don't need everything in there. You can add it later, but we need a minimum. And it's good to have extra information in Shadow Logs. So that is all. Thank you for coming. Let's see if you have any questions. Okay. Now, if somebody has any questions, please raise your hand and I will throw you this. Don't worry, it doesn't hurt. It's soft. Also, it's a five-minute talk. Yeah, and afterwards if there's some more deep questions, you can discuss it outside. It's okay. Okay, Miko has a question. Don't worry, it doesn't break. Mikko on käsitellyt. Ei huomaa, se ei rikki. Onko tämä mikrofoni? Se on. Laita sen lähelle ja puhutaan siitä. Se ei ole orffi. Miksi ei laiteta ne melkein ilmaiseksi, jotta protokollit käyttäisivät niitä enemmän? them basically almost free so that the protocols would use them more and that way we don't need set of logs because I don't think the impact on the node performance is that bad. As far as I know there is no such big impact on using the logs. The main problem will be, I guess I'm not an expert on that part, but I guess it will be DDoS to the node. So if you can expand as much logs as you want, someone could DDoS and it's not zero cost but it's almost free, the logs in the disk, but if you can reduce the amount that you spend on them, you can DDoS nodes and also you have to careful measure because everything is like an equilibrium in the Ethereum ecosystem so if you modify one constant here in the price it can affect to everything because as far as I know, locks were supposed to be like for real-time notification so user could get real-time feedback and then developers use them to store information so they change it the use case of the lock. So I guess it needs an equilibrium and careful review for that. Hey. Do you think that it's fair to say that the reason that Shadow wants to just eliminate the logs is in order to make the users pay less, but in the end, the users end up using the logs from like Rodkey, from Aave, from every front end. So shouldn't the users actually end up paying for the logs? I mean, doesn't it make sense in the end? For users to pay? Yeah. Yeah, for me, it makes use of what I said a little bit. The user is paying for this information, but they directly have a positive impact from it. So shadow logs are good in cases that you need extra information, like adding more things as a developer if you need analytics or anything. But the user has a real positive impact for having logs. They pay for something that really benefits. And it's not that expensive. For a single user, the whole network can have a high cost but the single user is not paying everything, just paying a fraction of that. So this is positive for them. Okay. Thank you very much, Javier. Time is up. Thank you. Bye. . So now please...",
   "eventId": "devcon-7",
   "slot_start": 1731646200000,
   "slot_end": 1731646800000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/19tr5hJbHHcDFcMqxEDdnvWaK2uCU2yR2HV12bhQ1NTQ"
+  "resources_presentation": "https://docs.google.com/presentation/d/19tr5hJbHHcDFcMqxEDdnvWaK2uCU2yR2HV12bhQ1NTQ",
+  "resources_slides": null,
+  "speakers": [
+    "yabir-garcia-benchakhtir"
+  ]
 }
