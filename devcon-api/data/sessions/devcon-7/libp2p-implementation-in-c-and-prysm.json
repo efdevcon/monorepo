@@ -9,24 +9,33 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
+  "tags": [
+    "Consensus",
+    "Network State"
+  ],
   "keywords": [
     "Libp2p",
     "Networking",
     "P2P"
   ],
-  "tags": [
-    "Consensus",
-    "Network State"
-  ],
+  "duration": 1015,
   "language": "en",
-  "speakers": [
-    "rose",
-    "richa",
-    "kira"
-  ],
+  "sources_swarmHash": "",
+  "sources_youtubeId": "zAlxmEONKGE",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673443a29dbb7a90e136e2e7",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673443a29dbb7a90e136e2e7.vtt",
+  "transcript_text": " . So before diving deep into my contributions, I would first- . Before diving deep into my contribution, I would first like to go through the introduction of the libP2P. So libP2P is a modular networking framework library used by the peers to communicate in a distributed network. It comprises of various protocols, like the transfer protocols, the multiplexers, and it transfers, transfers, et cetera. And when compared with the DevP2P, it's more modular and interoperable. DevP2P is more concerned to the Ethereum's needs specifically. So it comprises of various components. So the first component is transport. So when a peer is connected to the internet, it basically shares and sends the bytes and bits via IP and TCP connection, which is like the combination of the internet protocol, which is responsible for the addressing and the sending data packets. And for the TCP, Transport Control Protocol, it's responsible for the sequencing of the data, like the order of the data packets that have been moved to the sender, it's been the same order as of the receiver. Moving on to the next, the handshake. So basically when we have a TCP or IP connection, it's not secure. We need to secure the connection to, you know, transmit the data. So the handshake is for the secure communication channel for the message exchanges. So it comprises the TLS protocol and the noise protocol. Also like the QIC is like one kind of transport which has the inbuilt encryption towards it. Yeah, so moving on to the next, the protocol negotiation. So during the selection of the multi-stream, there are various multi-streams that the client can support, right? So we need to negotiate over one particular stream. So that's what the protocol negotiation is there, like that was the negotiation of the protocol happens between the peers when they are, you know, trying to have a connection between them. Multiplexing. So multiplexing is used for creating multiple virtual connections within a stream. So it's like a more scalable connection when the peer wants to send the multiple stream of messages over a network. So it comprises the Mplex and the Yamax. It's fast and efficient. Now I would like to move on to my contribution towards it. So I built the full implementation of the TLS protocol. So I would like to give the introduction of the TLS protocol. So TLS protocol is a secure layer communication used to encrypt data and authenticate peers. So how it works, so basically during the handshake, peers authenticate the user by encoding the public host key into the x.509 certificate. And so peers are not compiled to use their original public host key, they can use any arbitrary key types. And so like then the, yeah. Peers use their host key along with the, into the libp2b public key extension. So libp2b public extension comprises of two parts that is the signature and the host key. So for making the signature the endpoints what they do is they add on the string libp2b tls handshake along with the along with their host key and it's signed by their private key. So when it's been transferred to the other peers, the peers verify that the signature is current and hence the successful handshake takes place. So here's the diagram that's showing that it send the request of the same and when the certificate is verified, the successful handshake takes place. So these are my most peers that I contributed to request of the same and when the certificate is verified, the successful handshake takes place. So these are my most PRs that I contributed to the Nethermind's .NET Lipid V repo. Now moving on to the perf protocol. So perf protocol is basically used to measure how fast the Lipid V works. It's a benchmarking protocol and it depends upon the two scenarios, like the throughput per second, and also the handset per second. So yeah, so it comprises of the two tests, update test and the download speed test. So what happens with the update speed test is that the client configures the server to respond with the zero bytes. That means the client will send the data and the server doesn't need to send back the data. So once the predetermined bytes has been sent to the server, the client closes the connection. So it means, so yeah, so it closes the connection and the time is calculated for the same and that's how the upload speed test has been calculated. Moving on to the download speed test. So download speed test, the client configures server to send over the end bytes, which is like the total bytes that will be downloaded from the server. So then, like the server sends the data, and the time is calculated, and that's when the download speed test is conducted. So here's the screenshot showing the time seconds for the download speed test. It's like, I haven't fully implemented it, it's in progress and like, here's the link for the PR and like, the mentor has suggested some changes, so like I need to go, it's in progress. Moving on to the next, so the next thing that I implemented was the noise protocol feature edition. So as described earlier, that during the protocol negotiation, we need to select the particular protocol for the multiplexing. So what happens is we can fasten the process during the handshake itself. We can combine the handshake and. Like we can combine the handshake and the protocol negotiation as well. So it can be done with the help of the noise extensions. It's a particular feature of the noise. So like what happens is like the, when, so like there is the list of the protocols that the client supports, and there's a list of protocols that the server supports. Then when they're doing the handshake, so the follow will be conducted through it, and the first common protocol will be selected. Here's the most we have for the team. Thank you. Thank you so much, Rose. Before we continue with the second half of this presentation, do we have questions on this part, on Rose? Anyone? Comments, questions? Okay. We can slowly move on then. Guys, come to, please, plug in. Yeah, because the story of this project is that it was started as a joint effort, but then it's split into these parts. So we have the C-sharp part by Rose, and we continue with the Prism implementation with Kira and Richa. So yeah, I promise you, you will see Richa on the stage again today, and here it is. So yeah, we need to switch to HDF. There was a question for Rose. Can you estimate the time required to develop in a new language? Could you more elaborate the question? Is it like the compilation time? Or, like, to develop a new language? How long have you been working for this? Yeah, so I've been working for the past three months for this. How long have you been working for this? Yes, sir. I've been contributing to it from the past three months. Thank you. And if we can switch to HDMI, we have the slides ready.",
   "eventId": "devcon-7",
   "slot_start": 1731476700000,
   "slot_end": 1731477600000,
   "slot_roomId": "breakout-1",
-  "resources_presentation": "https://docs.google.com/presentation/d/114N7ZFoxay5HlB8T-LpY8iCOTKX70658i91W43eXDpc"
+  "resources_presentation": "https://docs.google.com/presentation/d/114N7ZFoxay5HlB8T-LpY8iCOTKX70658i91W43eXDpc",
+  "resources_slides": null,
+  "speakers": [
+    "kira",
+    "richa",
+    "rose"
+  ]
 }

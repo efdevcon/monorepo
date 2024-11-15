@@ -9,9 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Preconfirmations"
-  ],
   "tags": [
     "Architecture",
     "Protocol Design",
@@ -29,13 +26,25 @@
     "Scalability",
     "User Experience"
   ],
-  "language": "en",
-  "speakers": [
-    "daniel-marzec"
+  "keywords": [
+    "Preconfirmations"
   ],
+  "duration": 1501,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "OcFEOVIeb5E",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67344e929dbb7a90e1a59d47",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67344e929dbb7a90e1a59d47.vtt",
+  "transcript_text": " Awesome. Wow. Cool to see so many people turn out to discuss the rollup centric roadmap. It's a pretty full house, so I'm going to have to ask everyone to really just squish in. I think there's a lot of people standing in the back for anyone watching the live stream. Cool. Well, let's get into it. I'm Dan, also DMARS online, and I'll be talking about how we can turbocharge the rollup centric roadmap with Rollup Boost. I'll be using a lot of triple R alliteration. If you see any of those, talk to me afterwards and I'll give you a special prize. Cool. So this will be structured in three parts. I'll go over a little reflection on the rollup-centric roadmap. I'll then talk about what a layer two technology tree looks like. And then I'll discuss how we can use rollup boost to accelerate innovation on the layer two technology tree. Cool. So let's get into the first section. So yeah, we're four years into the roll-up centric roadmap. If you're unfamiliar with what that is, the roll-up centric roadmap was Ethereum's strategic shift towards scaling the network by embracing roll-ups as a primary solution. If you're unfamiliar with roll-ups as well, they are a way which we can process transactions off-chain and submit compressed proofs to Ethereum mainnet, which allows us to increase throughput of these off-chain components without necessarily sacrificing the decentralization of the underlying layer. In this vision, Ethereum becomes a more robust and secure settlement layer while most activity happens on these layer two rollups and we've already seen that a lot of activity has shifted to a lot of layer two rollups. Yeah, and there's a lot of benefits of this, and we'll be going into a lot of details, but one of the biggest benefits, in my opinion, is that we can innovate on a separate layer than the layer one, which doesn't need to go through the entire core dev process, or have tons and tons of research and formal analysis before we ever actually start to create a proof of concept or ship something. Because a lot of the times, when you are trying to build innovative features, you typically don't discover... There's a lot of unknowns, unknowns you don't discover until you start building. And we've seen many such cases of that with MEV on Ethereum. Yeah, cool. So let's go into it. So we're four years in. How are we doing? Well, we had roughly three goals. One, increase the transaction per second of Ethereum. Two, reduce transaction costs. And three, outsource innovation to the Layer 2 ecosystem. So let's go through each of those. First how are we doing on TPS? If you look at L2B, we have scaled Ethereum 26X in transactions per second, which is no small feat. That's more than double per year since we've announced the roadmap. That's pretty awesome. We can check that off. On the way to scaling transactions per second, we also discovered maybe that's not the best metric as there's a lot of activity on chains which aren't just, which can't just be basically categorized via a transaction. So a lot of chains simply just have a transfer and that's like very simple. It only touches the part of the chain associated with your balance and someone else's balance. But when you look at more complex activity, it could be touching hundreds or thousands of accounts, doing very complicated computation. And so we also started to look at GPS as a metric, which is gas per second. And this is a bit small, but if you can see on conduits, rollup.wtf, we have increased the gas per second by almost 55x compared to the Ethereum layer one. So even more great progress. Cool, so we've checked that off. What about transaction costs? They should be lower just because we're also scaling. And yeah, this slide basically speaks for itself. Most of the top roll-ups are less than a cent sometimes to transact on. Cool. And so the last one, which is much more complicated and will be the segue into the rest of this talk, is how are we doing on outsourcing of innovation to the Layer 2 ecosystem? And I think this is really important because with the roll-up-centric roadmap, we essentially said, hey, you know, everyone focusing on Layer 1, you know, you keep doing that, but we are going to push the boundaries and the next version of Ethereum will be built on Layer 2s. And so it's really important that that actually succeeds. And we as a community lended all of our credibility to these layer twos. And so, you know, we should be checking in on how they're doing. So it's a little bit complicated to look at how innovation is transferring between these layers, but there's roughly three ways we can look at it. It's innovations ported from the layer one to the layer two, innovations from the layer two back to the layer one, and then innovation between the layer twos. And so we'll go through each of them. So yeah, what's been ported from layer one to layer two? Well, basically everything. Most of the popular blockchain clients, layer two blockchain clients, with the exception of some, actually use a minimized, a version of the Ethereum 1 blockchain clients that has like a very minimum diff to it. And so this means anytime there's an upgrade to the layer one client, the layer twos can easily pull it in. And you can see this with chains like Optimism, where after EIP-1559 went live, they had it very soon after and all other upgrades. But this is not true for all chains. Yeah, layer two to layer one. Basically nothing. If you know of any improvements to the layer one that have been made, because as a result of research from layer twos, please let me know, but there really haven't been any EIPs driven through the layer two process that have gone into the layer one. There is one large notable exception that ZK proving and ZK technology has like massively been accelerated by the fact that layer twos have poured tons of research and usually through the support of a token but again none of that has actually gone live on the layer one yet and then layer two to layer two there's almost nothing we are now starting to see some collaboration I think I just saw the first cross l2 eip slash roll-up improvement proposal like yesterday which is pretty",
   "eventId": "devcon-7",
   "slot_start": 1731479400000,
   "slot_end": 1731481200000,
   "slot_roomId": "stage-1",
-  "resources_presentation": "https://docs.google.com/presentation/d/1B_rCk0bkXtF-tfbBfcDeRBqZxjx4AKThyOjuNnKCVhw"
+  "resources_presentation": "https://docs.google.com/presentation/d/1B_rCk0bkXtF-tfbBfcDeRBqZxjx4AKThyOjuNnKCVhw",
+  "resources_slides": null,
+  "speakers": [
+    "daniel-marzec"
+  ]
 }
