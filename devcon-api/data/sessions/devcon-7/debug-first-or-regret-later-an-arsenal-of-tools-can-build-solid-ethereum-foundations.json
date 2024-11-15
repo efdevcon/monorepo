@@ -9,11 +9,6 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Tooling",
-    "debugging",
-    "testing"
-  ],
   "tags": [
     "DevEx",
     "Security",
@@ -24,13 +19,27 @@
     "Security",
     "Testing"
   ],
-  "language": "en",
-  "speakers": [
-    "aellison-cassimiro"
+  "keywords": [
+    "Tooling",
+    "debugging",
+    "testing"
   ],
+  "duration": 424,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673748ae1b0f83434d688ac5",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673748ae1b0f83434d688ac5.vtt",
+  "transcript_text": " Everyone, my name is Alisson. I am a formal verification engineer for Runtime Verification. I do audits and software development and today I hope to show you a couple of approaches and tools that you can use to protect your systems, your smart contracts, or regret later. So, code is a product of human work. We are all humans, and we all make mistakes. Thankfully, we have tools that allow us to check and avoid having these mistakes being broadcasted into worse situations. We work in blockchain and we all know that it's quite dangerous to have potential issues being implemented in your contracts. You do not want to have the name of your protocol or your company into one of these articles. Bold take, but I think it's pretty bad. So let's avoid that. And testing also, unlike, for example, hacks that originate from private keys being compromised due to social engineering, these are quite hard to test. But you can actually test, for example, math mistake exploits in your contracts. And since 2016, roughly $251 million have been lost because of issues originated from that. And these are things that you can test. These are things that you can protect yourself against. So, which brings us to the question, what to test, how to test, when, and to that I say you have many options. It really depends on what you need. You can test that functionalities of your contract work as expected with unit testing. You can, if considering that your system is composed of many systems by themselves, you can do integration testing to make sure that they work as expected. You can fuzz to test different values. You can formally verify your code to make sure that it will work under any condition. But the thing is, ideally, they are not supposed to be each in their own boxes. They are supposed to be in a huge box. They are complementary to each other. You should not be picking one and using one. You should be using several. So the other detail that is missing here is that your code is only as good as you make it be. So your contract will only be safe as you make your codes be as well, your tests be as well. Sorry. And to that, I say that a really good approach that I like talking about is invariant testing. This is something that you can use with each and every approach that you're being shown here in this presentation. An invariant, to understand invariant testing, then the first thing that you have to do is understand what an invariant is. So an invariant is something that never changes. It's something that remains constant at all times. Everything has invariants. Every protocol has invariants. Every smart contract has its own invariants. You can even abstract them. You can think about like an elevator. An elevator has its invariance. One of them can be I'm not going to open the doors if I'm moving and if I'm moving I will not open doors. I can consider, I can show these as invariant. So another example that I like to show is we all live in Earth and in Earth we have gravity so I'm gonna do some invariant testing right now. I just tested gravity. So this is something that you have to keep in mind when developing your tests and believe me you'll make the life of your auditor quite hard by doing so. Which brings us to the tools that you can use for testing and I would like to of your auditor quite hard by doing so. Which brings us to the tools that you can use for testing. And I would like to have much more than five minutes to talk about them. And I bring this right here just to show two things. The first one is there is an abundance of tools that you can use to protect yourself and your code. And we all, as developers, we have to do our due diligence and learn about them. Do not restrain yourself from just learning a few. Try to take a look at them all. And the second thing that I would like to talk about is that some of these tools, they go hand in hand. For example, you can use BOLOC to generate tests that can be used by Medusa and Echidna. You can use Foundry, Control, and Symbolic together to formally verify your code, do some fuzzing, and visualize the debugging process of your contracts. So do not be ashamed. Do not be afraid. Learn as much as you can. And make my life as an auditor harder, please. These are some resources if you want to check it later. And I'm now taking questions. Go for it. Okay. Thank you, Alison. Okay. Let's give some questions. Hello. Hello. Invariance within a probability. Perhaps people expect the universe not to change. But what if it does change? And how should people gauge invariability in that respect? Sorry, can you repeat the last part? How should people gauge invariability within that respect with regard to probability? Because the universe can change unbeknownst to us. That's true, that's true. But the point of invariance is they go particularly well when you consider math equations. So the point on defining which invariant to use comes from the fact of what you don't want to happen in your contract. So if you think about how your contract is supposed to behave, you can think also about things that you don't want it to happen. And you can use these things to make an appearance. With regards to how they change, that's the fun part about them. They're not supposed to. So, yeah, you think about what you don't want to change, and that's your environment until you actually change the code and the design of your protocol. I hope that answers your question. It's within a context, right? Yes, within a context. Okay, thank you for this nice question. Thank you. More questions? No? Okay, well, thank you again, Alison. Thank you. Please, round of applause.",
   "eventId": "devcon-7",
   "slot_start": 1731656400000,
   "slot_end": 1731657000000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1XRh2Y67-uqHjSpr6HxoT0Q9rUneXHLaUjz_9YbFd3SM"
+  "resources_presentation": "https://docs.google.com/presentation/d/1XRh2Y67-uqHjSpr6HxoT0Q9rUneXHLaUjz_9YbFd3SM",
+  "resources_slides": null,
+  "speakers": [
+    "aellison-cassimiro"
+  ]
 }
