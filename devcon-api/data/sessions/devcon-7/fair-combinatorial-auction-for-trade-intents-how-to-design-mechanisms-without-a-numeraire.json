@@ -9,13 +9,6 @@
   "audience": "Academic",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Batch auctions",
-    "dutch auctions",
-    "auctions",
-    "CoW Swap",
-    "research"
-  ],
   "tags": [
     "Mechanism design",
     "Intents",
@@ -23,13 +16,29 @@
     "Intents",
     "Mechanism design"
   ],
-  "language": "en",
-  "speakers": [
-    "andrea-canidio"
+  "keywords": [
+    "Batch auctions",
+    "dutch auctions",
+    "auctions",
+    "CoW Swap",
+    "research"
   ],
+  "duration": 1599,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6736fa1d1b0f83434deba3c9",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6736fa1d1b0f83434deba3c9.vtt",
+  "transcript_text": " Hello everyone. All right, so yeah, today I'd like to discuss with you a new auction design that we plan to implement at Kao Protocol and a little bit of kind of the thinking process behind it. So how did we get to this specific auction design? Which has to do with the fact that, you know, blockchain is an environment where there may not be a numeraire. And, of course, I'll explain what it is in a second. All right, so many talks that have to do with DeFi start by saying, okay, look, we have all this mechanism from traditional finance, but they don't necessarily quite apply to our environment because, say, you know, in the context of blockchain, transaction can be reordered, and therefore we have MEV. I'm going to follow a similar template, but I'm not going to focus so much on the usual suspects, and instead focus on a different element, which is the absence of a numeraire. First of all, what is a numeraire? A numeraire is an asset that in your market or in your mechanism, your environment, you can assume that everybody likes and is happy to receive and can be used to share value between people. Now, off-chain, there is usually a numeraire in the environments you consider. If we want to look at financial markets, well, typically all stocks are traded against the national currency. So the national currency is the numeraire. A possible exception could be forex markets where people exchange national currencies. But when you look carefully that's not quite an exception in my opinion, because first of all there are very few assets exchanged and then essentially the vast majority of these trades is anyway set against the US dollar so even in that environment there is theoretically there is no numerare, anybody may be demanding different assets and exchanging any currency for any currency, really most of the volume goes through the dollar anyway now on chain things are very different there may be specific environments where you can assume that there is a numeraire but I think generally this is not it may not be the case because we have anonymous participants that could live anywhere in the world. When you look at financial markets on-chain, people may want to swap any asset for any other asset. There are like thousands. I don't know if there is a number out there. I know that ChaosSwap in its history has traded more than 11,000 different tokens. So there are at least that many different tokens on chain at the moment, and probably even more, which makes it very different than in any kind of the Forex market, for example. Also because here what matters is not the number of tokens, it's the number of token pairs. So that kind of blows up the complexity of the problem. So why does this matter? Because the numeraire and the absence of the numeraire determines how easy it is for people to share the benefit of collaborations. This is something that we know from a branch of gaming theory called cooperative gaming theory, which is the branch of game theory that has nothing to do with auction, in fact. But it turns out that it also matters when you're designing certain type of auctions, such as trade intent auctions. Now, what is a trade intent? A trade intent is essentially an order in which a user specifies a sell token and a buy token and might specify also a limit price or a slippage tolerance. And then it delegates to another agent, a solver, the exact execution of that order. And this is done in the context of an auction, where solvers are going to propose prices for each order, for the different orders. And let's say the details are important, but for the moment, let's just say that the solver that proposes the best price wins the auction and then has the right to complete this order and actually execute it on-chain. Now, this is an environment where you can have separate auction for different trade intents. An order comes in, you run an auction. Another order comes in, you run an auction. And this is how protocol like 1-inch fusion and Uniswap X work. However, there are typically additional efficiencies when orders are executed together. This could be in the form of coincidence of wants. Maybe people can trade directly with each other without really having to access an external market. It could be in the form of gas savings. Coincidence of wants can also arise as an intermediate hop of trades anyway. Generally, you can squeeze out additional efficiencies by executing trades together. But of course, the problem becomes in which assets those efficiencies materialize. Maybe it's extra ETH because it's gas savings. Maybe it's something else. But then not everybody may actually want the assets in which those efficiencies are actually generated and the question becomes then, how do you share those extra efficiency if it's in an asset that not everybody is demanding? And then, yeah, then the question becomes, well, do you want to execute the two orders together even if there are efficiency because you cannot really share them?",
   "eventId": "devcon-7",
   "slot_start": 1731650400000,
   "slot_end": 1731652200000,
   "slot_roomId": "stage-2",
-  "resources_presentation": "https://docs.google.com/presentation/d/1LquF7sJyYCfQkhUppmol316cCEsxjzZbhvuKG4u7QnU"
+  "resources_presentation": "https://docs.google.com/presentation/d/1LquF7sJyYCfQkhUppmol316cCEsxjzZbhvuKG4u7QnU",
+  "resources_slides": null,
+  "speakers": [
+    "andrea-canidio"
+  ]
 }
