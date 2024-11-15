@@ -9,10 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Reward mechanism",
-    "LMD GHOST"
-  ],
   "tags": [
     "Consensus",
     "Decentralization Improvements",
@@ -25,13 +21,26 @@
     "Game Theory",
     "Mechanism design"
   ],
-  "language": "en",
-  "speakers": [
-    "barnabe-monnot"
+  "keywords": [
+    "Reward mechanism",
+    "LMD GHOST"
   ],
+  "duration": 1444,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6736fff51b0f83434d9a1780",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6736fff51b0f83434d9a1780.vtt",
+  "transcript_text": " Thank you for the introduction and thank you for coming to the session this afternoon. It's the tail end of DEF CON, I hope it was really nice for you. And I know we're all a bit tired, so I'll take it slow and show you some of our results. So, the talk is titled Fair Reestateurs plus décentralisés ». Je replace un de nos co-auteurs, qui malheureusement ne l'a pas fait, mais je suis vraiment excité de vous parler de notre travail. Pourquoi avons-nous besoin d'attestateurs décentralisés ? Les validateurs sont ceux qui participent à la preuve de stake, à Ethereum. En tant que partie de leurs devoirs, So validators are the ones who participate in proof of stake in Ethereum. As part of their duties, sometimes they are asked to be attesters. So you can think of it as the swarm of people who are making sure that the chain comes to consensus. You have thousands of people speaking in every round, every 12 seconds. They cast votes. Et c'est vraiment important pour ces votes de rester aussi véritables et aussi indéviables que possible. Il y a de nombreux mécanismes dans le protocole qui briseraient horreusement si la couche d'attestation n'était pas en bonne forme. Donc, nous avons besoin de ces votes pour rester véritables, ce qui signifie qu'il faut aussi s'assurer shape. And so we need these votes to remain truthful, which means we also really need to ensure that the voice of these attesters is secure and heard. The paper discusses an attack, which I'll present in the next section, essentially trying to show you that the mechanisms we have today are perhaps a little too brittle, and so I'll show you how to fix that, or at least a possible way forward. Most of this talk is adapted from the paper that we released earlier this year, Breaking the Balance of Power. This is joint work with Roozbeh, who was supposed to present today, Nusret, Kaspar, my colleague, and Bart. So let me start the talk with showing one of these attacks that may endanger the health",
   "eventId": "devcon-7",
   "slot_start": 1731655800000,
   "slot_end": 1731657600000,
   "slot_roomId": "stage-2",
-  "resources_presentation": "https://docs.google.com/presentation/d/15pGWoL5JVQjTyDhG1Gd2UgLELOwq6HZtyeZZ9rAGAZ8"
+  "resources_presentation": "https://docs.google.com/presentation/d/15pGWoL5JVQjTyDhG1Gd2UgLELOwq6HZtyeZZ9rAGAZ8",
+  "resources_slides": null,
+  "speakers": [
+    "barnabe-monnot"
+  ]
 }
