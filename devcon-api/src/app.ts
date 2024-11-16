@@ -22,12 +22,14 @@ app.use(urlencoded({ extended: true }))
 app.use(logHandler)
 
 const ALLOWED_ORIGINS = [
+  'http://localhost:3000',
+  'http://localhost:8000',
+  'https://devcon.org',
+  'https://test.devcon.org',
+  'https://dev--devcon-app.netlify.app',
   'https://api.devcon.org',
   'https://app.devcon.org',
   'https://archive.devcon.org',
-  'https://devcon.org',
-  'https://dev--devcon-app.netlify.app',
-  'http://localhost:3000',
   'https://meerkat.events',
   'https://connections.cursive.team',
 ]
