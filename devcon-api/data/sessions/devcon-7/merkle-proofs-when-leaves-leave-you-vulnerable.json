@@ -9,9 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Merkle"
-  ],
   "tags": [
     "Auditing",
     "Bug",
@@ -19,13 +16,25 @@
     "Auditing",
     "Bug"
   ],
-  "language": "en",
-  "speakers": [
-    "shufan-wang"
+  "keywords": [
+    "Merkle"
   ],
+  "duration": 334,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6732face80d989c5b7aebead",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6732face80d989c5b7aebead.vtt",
+  "transcript_text": " I'm a security engineer from China Security. I'm very happy to share my insights about Merkle proofs. Today, especially, I'm going to talk about when leaves will leave you vulnerable. So, I believe in your life you have seen many trees with different shapes, different structures. For example, it's a very simple tree. It could be bigger and more complex. And in addition, this is good, like it doesn't look like a tree. It could also be the Earth tree in the game Elden Ring. And for Merkle tree, it's very similar. It could be a very balanced and simple Merkle tree, where data is at the bottom and it's balanced. It could also be very imbalanced in this case. And be sure to distinguish Merkle tree from Merkle tree. It's very different. And in addition, we all know the Merkle Patricia tree, which is a very important data structure in the Ethereum global storage. So with all these trees, there are very different Merkle tree algorithms. However, I believe you can find all the important checklists that you should use to ensure a security proof in your protocols. But even though we have this checklist, we cannot ensure that we can find all the vulnerabilities in very different Merkle algorithms. And that is when the leaves can leave your protocol vulnerable. The answer is very clear. The answer is when the leafs can leave your protocol vulnerable. The answer is very clear. The answer is about the beginning. If you don't recognize a node as a leaf, you will never ensure the property from the checklist against it and make it secure. So today, I'm just going to show you one example of this kind of attack that is about Merkle-Monte range. I'm not sure if you have all heard about this algorithm. So let me first introduce what is Merkle monorange. It is a very simple data structure. It's just like a group of sub-Merkle trees. You just add the data at the bottom of this Merkle monorange, and once you keep adding new data, if there are two siblings, we add a parent. If there are two parents, we add a parent. If there are two parents, we add another parent. You do this recursively, and eventually you will get several Merkle trees in this Merkle mountain range with different depths and different size. And we call the top node of this sub-tree peaks. And why do we use Merkle mountain range? As I tell you, if you are adding a new node here, it's very easy to build a tree. And you don't need to re-compute all the nodes in this tree. You just append only. And now we have this sub-trade. If we only want to store a constant size of commitment on the blockchain, what we do is we compute a route. The route will be a nested hash of all the subtree peaks and this process we call it a bagging process. So once you have the route, you can do a normal existence proof of any data within this Merkle monorange. How do you do that? That's also very simple. We first do a proof of any of the leaf within the subtree. And once we have that proof, we can also add more pigs within this proof so we can reconstruct the root at the top. And just take a minute to think about what can go wrong in this algorithm if you want to prove any data within any of the leaves. So we must have some assumptions. So let's assume the people who is adding data to this Merkle-Moner range is trusted. So he won't add any malicious data. He won't add a subtree into these leaves. In addition, let's assume you have sufficient validation of the index and the depth of the leaves when you do the proof so that you can easily use another intermediate node as a leaf here. Like for example, the P1 and D1, they are very different nodes. The P1 has depth one, but D1 has depth two. So you can't use the intermediate node in this proof. Even with these constraints, can you break this system? The answer is yes. If we just take one step back and look at this Merkle-Marner range again, we'll find there is actually a hidden tree when you build the route. That makes up of these peaks. So we have three peaks of the subtrees here. And now we are building another Merkle tree with these peaks to the route. And as you can see, we have no validation of the peaks in the previous assumptions. And that means you can easily find a vulnerability here. And here is one example of this attack. So on the left side, this is the Merkle-Marner range. On the right side, I do the attack by just removing the D5 and D6 leave node. And now, as you can see, the P4, the intermediate node, becomes a leave. And more surprisingly, they have the same depth as the node D5. So now if I'm going to prove P4 in the subtree of N1, it will have depth one. That satisfies all the properties we have validated before, but we have never validated the peaks. So this is a trick that now you can prove something non-existing in your Merkle tree. So that's the example I want to show you today, and the summary is very simple. A non-leaf with leaf could be a leaf. So please ensure that you check all the input and validate all the properties you desire in your protocol. Otherwise it could become vulnerable easily. And thank you very much for listening. If you want to know more about chain security and our work",
   "eventId": "devcon-7",
   "slot_start": 1731390000000,
   "slot_end": 1731390600000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1_G-GfGgNMUn5tiiaH-Srat0PLHtYYRNtiVjZwWlxU_c"
+  "resources_presentation": "https://docs.google.com/presentation/d/1_G-GfGgNMUn5tiiaH-Srat0PLHtYYRNtiVjZwWlxU_c",
+  "resources_slides": null,
+  "speakers": [
+    "shufan-wang"
+  ]
 }
