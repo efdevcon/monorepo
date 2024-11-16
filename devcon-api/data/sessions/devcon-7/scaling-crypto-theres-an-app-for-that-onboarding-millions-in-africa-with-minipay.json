@@ -9,11 +9,6 @@
   "audience": "Product",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "payment",
-    "p2p finance",
-    "mobile"
-  ],
   "tags": [
     "Protocol Design",
     "Scalability",
@@ -23,13 +18,27 @@
     "Scalability",
     "UI/UX"
   ],
-  "language": "en",
-  "speakers": [
-    "charles-hamel"
+  "keywords": [
+    "payment",
+    "p2p finance",
+    "mobile"
   ],
+  "duration": 575,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6735c0b19dbb7a90e1dd49c5",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6735c0b19dbb7a90e1dd49c5.vtt",
+  "transcript_text": " All right. Hi, everyone. I'm Charles from Opera. I'm leading the product team for Minipay. And I'm here to tell you about how we're onboarding millions of users in Africa to crypto and to stable coins. Opera, as you may know, is a browser company. We have many apps, and we have over 100 million users on the African continent. Opera Mini is our most popular app. It's a browser that allows you to surf the web, but in a very efficient way that means that you don't have to buy as much data to browse the web, so people love it. And MiniPay is built right into Opera Mini and distributed through this channel. We've launched about a year ago to five African countries, and we've been getting tremendous traction. MiniPay is not only built inside Opera Mini, but it's also built on the best of Celo. And it's different in many ways to other crypto wallets. Minipay doesn't try to be a Swiss army knife that sees all your assets and all the chains and all the swaps. It's really focused around a payment use case using stable coins. And Celo is perfectly suited for that. It allows us to use phone numbers instead of wallet addresses. So similar as to mobile money systems already in market today. It's super fast and almost free. So a typical stablecoin transfer on Celo is 0.1 cent. So we don't need things like account abstraction to really get the user benefit of gas abstraction. It also has automatic key backup, so when users activate MiniPay, their keys are backed up, they don't lose them, which is a common thing in self-custody wallets. And it's a UI that really tries to speak to users with familiar terms and has this Web2 experience to it with the full power of Web3. And the last part, which very few wallets do, is really have a localized approach to on and off ramp by working with smaller partners to really make sure that it's possible to buy and sell stable coins for very low amounts using local payment methods. Zooming in on one of these differences, the phone number to wallet address system is actually built on Social Connect, which is a solo protocol that allows us to map this in a privacy-preserving way, from number to address, but not the other way. And it really improves discoverability. You can see which one of your friends is already on MiniPay, and it makes copy-pasting addresses a thing of the past. Another interesting feature of Opera MiniPay is that although we've added support for more stablecoins, dollar stablecoins, we wanted to make it easy for users to move in and out of them if needed by having this concept of swaps using pockets. So you can simply drag and swap from one pocket to the other, one to one. And we use the mental protocol for this, which allows us to have super low slippage and excellent fees. As this is a developer conference, I'll mention that we also have mini apps, which are web apps that are integrated within MiniPay. We have over 10 of them now. Also getting tremendous traction since launch and this is something that you can do and you can build using existing web and ethereum technologies and the cello team is there to assess also in making this a reality I'm happy to share that since launch, we've activated over 4 million wallets, mapped to phone numbers, and as of October, we've done over a million, during October, we've done over a million P2P transfers between those users. Thank you. You know, going past the tech and the numbers, right, we're starting now to tell a bit more of these stories that we're seeing in market using MiniPay. I'll go a bit quick now. I see time's running out. But this is a story of a freelancer getting paid in stables and being able to use them locally. This is another one in Kenya, being able to use USDT and pay local merchants for groceries interacting directly with the payment system locally M-Pesa so it requires no merchant integration. This is another one someone has lost their wallet in Kenya and was able to basically pay for everything during a week, thanks to MiniPay and this integration with the local payment system. MiniPay is now growing outside of Opera Mini, so I'm also glad to announce that we've made available now the Android app as a standalone app, so you can just go on the Google Play Store and try it out. It's enabled in over 60 countries, and we basically ramp up as we have good cash in and cash out in those countries. This is what it looks like, really trying to focus on the dollar use case and the payment use case. And we foresee that users in country in Nigeria or Kenya will invite people from outside Nigeria to the standalone app, and you can imagine cross-border payments being powered through this system. Also happy to reveal that the iOS version is coming very soon. So if you are keen to be one of the first to try MiniPay on iOS, scan this QR code, sign up the form, and we'll be sending invites to the test flight very shortly. And if you want to build on MiniPay, please reach out to us on x at MiniPay or at cellodevs. And the cellodevs are organizing bounties during EVE Global. So if you're joining the hackathon, make sure you check it out. Thank you. Thank you, Charles. That was incredible, all the attractions. Any questions from our audience? Any questions? Okay, well, a few. I see the gentleman in the red shirt first. So my understanding is that in Africa, there's not much of a savings culture because many of the currencies are losing their value every year. So there's more of a borrowing culture than a savings culture. With access to stable coins and mini-pay, are you seeing more of a savings culture develop? Are people using this for savings and accruing those savings over time? What sort of data are you seeing around that? So savings is certainly something that we hear could be useful in the context of mini-pay. This is not a use case we're really focusing on now. So for us right now, it's a marginal use case. It's really around money movement at this point. Another one over there. With using USD there, is that somehow in conflict with the local currencies? Is that something that you see as a risk? Like, for example, when integrating with tax payments, that should be happening, or just with local governments not being happy that their original money is not being used, or how is that in Africa? So, I mean, these economies already have a lot of demand for dollars. This is just a different channel to access them. And, you know, users can use Opera Mini and, sorry, MiniPay in a way that they can think in local currency, like they can denominate everything in local currency. So a lot of people are doing that to alleviate the kind of mental friction. One more over here. Good job. All right. What is a mini app? Is it like an iframe or? Yeah, it's an embedded web app. Yeah, it's not an iframe, but we just invoke your app. And each app is within a sandbox, so we only allow known blockchain interactions. Is the output dumping HTML? Yeah, this is existing web technology. This is existing Web3 API. It's not exotic anymore, but it's packaged in a way that users don't have to connect their wallets. It's integrated, and the signing process is very human-readable. Okay, cool. I see that there's a few people wanting to ask more questions, but the time is up for this session. Feel free to reach out to Charles for further discussion. Let's thank Charles for another day. Thank you, Charles.",
   "eventId": "devcon-7",
   "slot_start": 1731574800000,
   "slot_end": 1731575400000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1lk319WDhop2qBsR_BdMLAl1tdzOwri17ao4IPguI7Ac"
+  "resources_presentation": "https://docs.google.com/presentation/d/1lk319WDhop2qBsR_BdMLAl1tdzOwri17ao4IPguI7Ac",
+  "resources_slides": null,
+  "speakers": [
+    "charles-hamel"
+  ]
 }
