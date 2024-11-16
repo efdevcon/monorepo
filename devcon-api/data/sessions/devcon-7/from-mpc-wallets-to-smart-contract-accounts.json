@@ -9,9 +9,6 @@
   "audience": "Product",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "EIP-7702"
-  ],
   "tags": [
     "MPC",
     "Account Abstraction",
@@ -19,13 +16,25 @@
     "Account Abstraction",
     "MPC"
   ],
-  "language": "en",
-  "speakers": [
-    "phuc-thai"
+  "keywords": [
+    "EIP-7702"
   ],
+  "duration": 537,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673581a69dbb7a90e14ff55d",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673581a69dbb7a90e14ff55d.vtt",
+  "transcript_text": " Hello everyone, my name is Phuc Thai, I'm from Sky Mavis. So today I'm going to talk about how already understand that there is a lot of issue with the current EOAC that it's too complex for some non-technical and even technical users. There's inaccessible recovering mechanisms. accessible recovery mechanisms. So to solve this problem we have a few solutions in place already and I want to highlight two main things is MPC wallet and archive collection. So both of them can offer a lot of help with onboarding new users, offer social login, key recovery and some transaction policy. So the difference between MPCs and account protection is most of the things MPC do is on the off-chain, including query-recreation and transaction policy. Whereas on account corrections, it has more transparency and everything can happen on-chain. And with account corrections, users can also have more flexibility in a lot of feature for convenience suggests batch interaction, gas sponsors and automation and something but account collection is relatively new compared with the MPC technologies. It is 40 years old technology already and it's ready to be adopted right now. So yeah, so one of the problems with MPC is that users cannot have the flexibility that account protection offers. But with the introduction of 7.7.0.2, we can actually combine it with MPC to offer a great have. So this is a picture from Vitalik Blocks. As we can see here, with MPC and 7702, we can achieve most of the goal, all the convenient goal that account ratings still can be achieved. And some of them are critical. So, such as like here, we can see that automation can be done if we can delegate the account to some key data store on the server, get attractions, sponsor, and everything. So the reason that 7702 can be a great combination with MPC wallet is that the current infrastructure of MPCs already in place that can help with some of the features of 7702. want to highlight here is the privilege de-escalation. In MPC, we had multiple key sats that store in the user device in the server that we already had a system in place for this. And with 7702, we can set the MPC account to set code for that account to enable delegation, so some access to the key set that in either in the client device or in the server that can do some of the operations that user can do day to day. some of the operations that users can do day to day. And so another thing that I want to mention here is that one of the problems with current MPC is that when we select a threshold for MPC, we usually need to involve a trade-off. For example, if we use like 2.0.3 threshold, some transaction can be signed without the user knowing. But if we use 2.0.2 threshold, then every transaction needs to be signed by user, but the key cannot recover if the user lost the key shot and they have not had any backup. So with the 7.7.0.2, we can introduce a time-locked on-chain key recovery that we can have either key shard can be gain full access to the wallet, it initiates a transaction, and then the other one do not challenge that in, let's say, 30-day periods. So I think that's it for now. Thank you. Thank you, Phuc. We have some time for questions, so raise your hand if you want to ask a question, and I'll get the box to you. Or if you're further in the back, a colleague of mine will do it. I know you want to know things. This is your chance. If not, then I'll ask a question, and trust me, you don't want to hear my questions. They're not going to be that good. Okay, well, I'll still do it. If you want people to come away from this with one thing and start implementing that in their work, what would that be? Can you elaborate that a little bit? So we all go back home after DEF CON and you want people to do one thing. What's the thing that you want people to do? So I think the thing I want people to do is to push out 7702 as soon as possible. Yeah, cool, cool. Anyone have a question? Or shall we call it a day? Yes, amazing. All right, I think I can do it, maybe. Yeah, okay. And one, and two, and woo! Ah, almost. and two and whoo ah almost okay so my question is a little more on the gas abstraction part i i know mpc wallets can be um connected to aa wallets and um yeah uh my question is, is there another solution that is more sustainable compared to just sponsoring the gas for every transaction? Yeah, can you elaborate a little bit? Yeah, so some wallets, because most of the non-crypto native users don't have a concept of gas that they have to pay for each transaction. A lot of protocols and applications sponsor this gas so that the user can continue with using the application. And the way they do it is that they fund the paymaster and that paymaster pays for the user's transaction fees. And yeah, my question is how, are there any solutions that you think can make this sustainable for the applications? So I think, so that is a good question. So that is a good question. But I think the sponsor, so this comes from that if the app developer, that they want to be more convenient for the user. So they want to onboard more users. So one of the things they can do is that they can ease out the onboarding process and pay for the gas for the user. So I think that can be a great help in this case. All right. That's all the time we have for questions. Thanks again, Phuc. Give it up for Phuc for the wonderful talk.",
   "eventId": "devcon-7",
   "slot_start": 1731559200000,
   "slot_end": 1731559800000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1ZE8L3c1yymoZrVimyFHEaxXRlckYyGWHcRVxv5R5bzQ"
+  "resources_presentation": "https://docs.google.com/presentation/d/1ZE8L3c1yymoZrVimyFHEaxXRlckYyGWHcRVxv5R5bzQ",
+  "resources_slides": null,
+  "speakers": [
+    "phuc-thai"
+  ]
 }
