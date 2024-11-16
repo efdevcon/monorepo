@@ -9,11 +9,6 @@
   "audience": "Developer",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Based Rollup",
-    "Preconfirmations",
-    "Sequencing"
-  ],
   "tags": [
     "Validator Experience",
     "Layer 2s",
@@ -25,13 +20,27 @@
     "Rollups",
     "Validator Experience"
   ],
-  "language": "en",
-  "speakers": [
-    "jason-vranek"
+  "keywords": [
+    "Based Rollup",
+    "Preconfirmations",
+    "Sequencing"
   ],
+  "duration": 462,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "673838b41b0f83434df58cff",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/673838b41b0f83434df58cff.vtt",
+  "transcript_text": " All right. Thanks for coming, everyone. I know it's kind of early. So this is a lightning talk on based roll-ups and pre-comps. And as you know, these lightning talks are extremely quick. So this isn't going to answer all of the questions. It's really going to try and lay the foundation and motivation for why different teams are working on this. So I would want to start with like, what is the big motivation here? And the big goal of these base rollups really is to help solve this fragmentation issue we're starting to see in the L2 space and to restore some value capture back to the base layer. So how did we get here? Well, Ethereum is always in this tricky position. The goalposts always move. Gas was too expensive. We created this roll-up centric roadmap. We succeeded in offloading all of this execution. Things got cheaper. TPS increased. But ETH is dead. So we really want to try and address some of these problems head-on. And the big focus of this talk is around fragmentation. So currently these L2s aren't interoperable with each other. They fragment liquidity, they fragment users, they also fragment developers. You have to pick a winning ecosystem to deploy on or deploy across many, which starts to spread your resources. And what we're really seeing is this kind of convergence on what I'm calling intra-op. You have interoperability within your ecosystem but not across these ecosystems. So how do we fix this fragmentation problem? Well, one easy solution is that we just agree on one entity to sequence all of these rollups. And that sounds pretty centralizing. So can we do this in a way that preserves a lot of the values that we care about? So enter based rollups. The idea here, this is a quote from Justin's paper. The TLDR here is it's a based rollup when it's sequenced by Ethereum validators. So in this picture, on the left-hand side here, we have centralized sequencing. The idea is you have these unordered transactions. A centralized sequencer's job is to order them for the rollup. These little squiggly things are the rollups at the bottom here. Okay. As we move to the right, we're increasing in decentralization, and we're unlocking interoperability. So with shared sequencing, you have multiple parties that are all agreeing, according to some leader election mechanism, on who has the ability to sequence all of the roll-ups. And as we move all the way to the right, we enter this based sequencing mode. The idea is that the transactions for these L2s will be sequenced directly by Ethereum validators. And how does this help? How does this unlock interoperability? The idea is that we have these write locks over L2 state. When an Ethereum validator is going to propose a block, they have a write lock over the entire L1 block and all of the L2 blocks that are going to be included. And when we have a bunch of rollups that are all agreeing to be sequenced by this validator, it unlocks this ability for you to start passing messages across these rollups that are all agreeing to be sequenced by this validator, it unlocks this ability for you to start passing messages across these rollups. We don't need these bridges. We're able to do these more seamlessly. So this has limitations. One of the big issues with based rollups is that they have really 12 second block times. A lot of users wanna come to L2s because they care about that snappy UX, those instant transactions. We can always reduce the L1 block times, but that's a very long, arduous process that has a lot of unknowns and centralization vectors. So, pre-confs, this is another one of these new terms, that stands for pre-confirmations. A pre-conf is a commitment made by these validators to users about doing something related to block proposals. So this could mean I'm giving a guarantee to a user that I'll include their transaction when it's my turn to propose a block, or I can even give a stronger guarantee, like this will be the state after executing your transaction. And if I break my promise as the pre-confer, then I can get slashed on various means. So to kind of wrap this up, like how does this all come together? So the user over here would be able to send their roll-up transactions to be sequenced by an Ethereum validator. They, in response, give back this pre-confirmation signature, which is like this receipt for the users, guaranteeing that their transaction will be included or it'll be executed inside of the rollup. And if the validator does break this promise, they can be slashed by submitting evidence to the slashing contract. And what does this enable? Well, it solves a lot of these UX problems. And when we start to enter this execution pre-comps, we really make it to a place where we can actually outperform these Alt-L1s by giving these very instant transactions back to users. And this all comes without modifications to the base layer. So hopefully this maybe piqued people's interest on this topic, but of course, in a five-minute lightning talk, there's still many, many things to be explored. So thank you all for joining. Okay, yeah, we have a few questions. Right, yeah, so the first question here, how does this notion scale if they need to validate all of the L2 transactions? So this is a great question. So I think there's kind of two worlds here. Like one is sequencing itself doesn't imply execution, so it doesn't have to take on all of the load. But realistically, there's been a lot of work to get the data out there. And, you know, I think that's a big part of the reason why we're doing this. And, you know, I think that's a big part of the reason why we're doing this. So, I think that's a big part of the reason why we're doing this. And, you know, I think that's a big part of the reason why we're doing this. for me, these pre-conf networks will likely require consensus. Is this the biggest drawback? So definitely over the past year, it started from this very dark forest, unknown, and over time, we've started to untangle it. And some of the bigger questions are now just around pricing. But really, you don't need an actual consensus protocol to build this. You're able to just broadcast actual consensus protocol to build this. You're able to just broadcast these messages directly to the users. And if the user doesn't get their pre-confirmation, they're able to go and slash. And maybe one last question. Why is Spire better than Puffer? Why is Spire better than Puffer? Well, we're all here building based rollups. So, yeah. I understand. So everyone has their own vision for the best approach. Thank you very much. So thank you. Please give a round of applause to our speaker. Thank you. Thank you. Thank you.",
   "eventId": "devcon-7",
   "slot_start": 1731642000000,
   "slot_end": 1731642600000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1XBmbnq_59WsG85OTcNpUu6A8prP6pC2w2YjOs_3x7-Y"
+  "resources_presentation": "https://docs.google.com/presentation/d/1XBmbnq_59WsG85OTcNpUu6A8prP6pC2w2YjOs_3x7-Y",
+  "resources_slides": null,
+  "speakers": [
+    "jason-vranek"
+  ]
 }
