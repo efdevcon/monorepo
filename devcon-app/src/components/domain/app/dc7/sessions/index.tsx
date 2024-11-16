@@ -1511,7 +1511,15 @@ export const SessionList = ({
   )
 }
 
-export const Livestream = ({ session, className }: { session: SessionType; className?: string }) => {
+export const Livestream = ({
+  session,
+  className,
+  minimal,
+}: {
+  session: SessionType
+  className?: string
+  minimal?: boolean
+}) => {
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const searchParams = useSearchParams()
   const secret = searchParams.get('secret')
@@ -1555,45 +1563,44 @@ export const Livestream = ({ session, className }: { session: SessionType; class
     <div className={cn('flex flex-col shrink-0 gap-3', className)} id="livestream-container">
       <div className={cn('flex justify-between items-center')}>
         <div className="flex flex-col gap-3 font-semibold">{playback ? 'Video Recording' : 'Livestream'}</div>
+        {playback && session.sources_swarmHash && (
+          <div className="flex flex-row flex-nowrap text-xs items-center gap-2">
+            {session.sources_youtubeId && (
+              <div
+                className={cn(
+                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                  player === 'youtube' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                )}
+                onClick={() => selectPlayer('youtube')}
+              >
+                YouTube
+              </div>
+            )}
+            {session.sources_streamethId && (
+              <div
+                className={cn(
+                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                  player === 'streameth' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                )}
+                onClick={() => selectPlayer('streameth')}
+              >
+                StreamEth
+              </div>
+            )}
+            {session.sources_swarmHash && (
+              <div
+                className={cn(
+                  'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
+                  player === 'swarm' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
+                )}
+                onClick={() => selectPlayer('swarm')}
+              >
+                Swarm
+              </div>
+            )}
+          </div>
+        )}
       </div>
-
-      {playback && session.sources_swarmHash && (
-        <div className="flex flex-row flex-nowrap text-xs items-center gap-2">
-          {session.sources_youtubeId && (
-            <div
-              className={cn(
-                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
-                player === 'youtube' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
-              )}
-              onClick={() => selectPlayer('youtube')}
-            >
-              YouTube
-            </div>
-          )}
-          {session.sources_streamethId && (
-            <div
-              className={cn(
-                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
-                player === 'streameth' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
-              )}
-              onClick={() => selectPlayer('streameth')}
-            >
-              StreamEth
-            </div>
-          )}
-          {session.sources_swarmHash && (
-            <div
-              className={cn(
-                'flex shrink-0 items-center justify-center align-middle rounded-full border bg-white border-solid border-transparent shadow px-4 py-1 select-none transition-all duration-300',
-                player === 'swarm' ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : ''
-              )}
-              onClick={() => selectPlayer('swarm')}
-            >
-              Swarm
-            </div>
-          )}
-        </div>
-      )}
 
       <div
         className={
@@ -1651,7 +1658,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
         )}
       </div>
 
-      {session.slot_room?.translationUrl && (
+      {!minimal && session.slot_room?.translationUrl && (
         <CollapsedSection
           className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
           open={openTabs['translations']}
@@ -1670,7 +1677,7 @@ export const Livestream = ({ session, className }: { session: SessionType; class
             setOpenTabs(nextOpenState)
           }}
         >
-          <CollapsedSectionHeader title="Translations" className="py-4 px-4" />
+          <CollapsedSectionHeader title="Translations" className="py-2 px-4 text-sm" />
           <CollapsedSectionContent>
             <div className="aspect select-none px-4 pb-2">
               {/* &bg-color=white */}
@@ -1701,38 +1708,42 @@ export const Livestream = ({ session, className }: { session: SessionType; class
         </div>
       )}
 
-      <div
-        className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
-        // @ts-ignore
-        style={{ '--color-icon': '#7D52F4' }}
-      >
-        <Link
-          to={`https://devcon.fileverse.io/devcon7/portal?event=${session.sourceId}`}
-          className="flex flex-col items-center justify-center cursor-pointer"
-        >
-          <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
-            <PenIcon />
+      {!minimal && (
+        <>
+          <div
+            className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
+            // @ts-ignore
+            style={{ '--color-icon': '#7D52F4' }}
+          >
+            <Link
+              to={`https://devcon.fileverse.io/devcon7/portal?event=${session.sourceId}`}
+              className="flex flex-col items-center justify-center cursor-pointer"
+            >
+              <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
+                <PenIcon />
+              </div>
+              <p>Take Collaborative Notes</p>
+              <p className="text-[10px] text-[#717784]">Powered by Fileverse</p>
+            </Link>
+            <Link
+              to={`https://meerkat.events/e/${session.sourceId}/remote${secret ? `?secret=${secret}` : ''}`}
+              className="flex flex-col items-center justify-center cursor-pointer"
+            >
+              <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
+                <QuestionsIcon />
+              </div>
+              <p>Join Live Q&A</p>
+              <p className="text-[10px] text-[#717784]">Powered by Meerkat</p>
+            </Link>
           </div>
-          <p>Take Collaborative Notes</p>
-          <p className="text-[10px] text-[#717784]">Powered by Fileverse</p>
-        </Link>
-        <Link
-          to={`https://meerkat.events/e/${session.sourceId}/remote${secret ? `?secret=${secret}` : ''}`}
-          className="flex flex-col items-center justify-center cursor-pointer"
-        >
-          <div className="text-lg hover:scale-110 transition-transform duration-300 mb-1">
-            <QuestionsIcon />
-          </div>
-          <p>Join Live Q&A</p>
-          <p className="text-[10px] text-[#717784]">Powered by Meerkat</p>
-        </Link>
-      </div>
 
-      <div className="flex justify-center">
-        <Link to="https://devcon.org/dips" className="text-xs text-[#7D52F4] text-underline" indicateExternal>
-          Learn more about Devcon Improvement Proposals
-        </Link>
-      </div>
+          <div className="flex justify-center">
+            <Link to="https://devcon.org/dips" className="text-xs text-[#7D52F4] text-underline" indicateExternal>
+              Learn more about Devcon Improvement Proposals
+            </Link>
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -1799,10 +1810,13 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       )}
       ref={sessionViewRef}
     >
+      {!standalone && <Livestream session={session} minimal />}
+
       <div
         className={cn(
           'relative rounded-2xl w-full h-full flex items-end overflow-hidden border border-solid border-[#cdbaff] lg:border-[#E1E4EA] shrink-0',
-          getTrackColor(session.track)
+          getTrackColor(session.track),
+          standalone ? 'flex' : 'hidden'
         )}
       >
         <Image
@@ -1890,7 +1904,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
         </div>
       </div>
       <div className="flex flex-col gap-1 shrink-0">
-        <div className="flex flex-col font-semibold">Description</div>
+        <div className="flex flex-col font-semibold">{session.title}</div>
         <div className="text-sm text-[#535353] shrink-0">{session.description}</div>
       </div>
 
@@ -2072,7 +2086,7 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
 
       {!standalone && (
         <>
-          <Livestream session={session} className="border-top pt-2 shrink-0" />
+          {/* <Livestream session={session} className="border-top pt-2 shrink-0" /> */}
 
           <div className="sticky bottom-0 left-0 right-0 shrink-0 flex justify-center border-top py-2 bg-white">
             <div className="flex gap-2 w-full">
@@ -2139,28 +2153,6 @@ export const SessionLayout = ({ sessions, event }: { sessions: SessionType[] | n
           filterOptions={filterOptions}
         />
       </div>
-
-      {/* {selectedSession && (
-        <div
-          className={cn(
-            'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start no-scrollbar'
-          )}
-        >
-          <SessionView session={selectedSession} />
-        </div>
-      )} */}
-
-      {/* <div className="block lg:hidden">
-        <Popup open={!!selectedSession} setOpen={() => setSelectedSession(null)}>
-          <div
-            className={cn(
-              'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start'
-            )}
-          >
-            <SessionView session={selectedSession} />
-          </div>
-        </Popup>
-      </div> */}
 
       {sessionFilterOpen && (
         <div
