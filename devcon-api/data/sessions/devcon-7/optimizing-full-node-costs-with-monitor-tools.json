@@ -9,10 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "performance optimization",
-    "service level improvement"
-  ],
   "tags": [
     "Architecture",
     "Developer Infrastructure",
@@ -24,13 +20,26 @@
     "Best Practices",
     "Developer Infrastructure"
   ],
-  "language": "en",
-  "speakers": [
-    "jsvisa"
+  "keywords": [
+    "performance optimization",
+    "service level improvement"
   ],
+  "duration": 389,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6736f8d01b0f83434dbd1a8a",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6736f8d01b0f83434dbd1a8a.vtt",
+  "transcript_text": " Hello everyone, this is JS Visa and I come from Amber Group. Before this project, I want to introduce Amber Group. Amber Group is a leading digital finance company and in the meantime Amber Group is also holding Amber AC which is launched for the BuildQuest Web3 innovation challenges. And I'm the DA leader of the Amber Group Web3 security team and besides of my job I'm also an independent Ethereum ecosystem contributor and I'm also managing execution clients for Gaia, REST and ELEGAN. And here's a picture about my contribution over the past six years and yeah I'm continually contributing and let's continue contributing. So today I will introduce a small piece of our fund in the history, which is, let me show you what we found in the monitoring panel. You can see there are some abnormal points in the picture, and so we just found that maybe there is something wrong, and so we need to find out what's wrong. It is really very hard to find out which process indicates abnormal points. But we are lucky. We found a project, a process that uses WebSocket to connect with the guest node and pull some data back. So we found this process, then we just pip of it. This is a piece of the proof frame graph and in the picture you can see there's many CPU used to do this module and yeah very much. So we found this maybe there's something wrong in the process, maybe in the client or in the server. And luckily, we finally found there's something wrong in the server. So what's the problem? We just write some simple code to reproduce the issue. So in the picture, you can see we have two structures. One is the load result and the other one is the interface result. And the load result which uses JSON.loadMessaging and the other one uses interface. And we also load some benchmark functions to just benchmark it. It is really simple. You can just reply it with the same code in your machine. And here is the result. In the picture we can see, yeah, let's translate into the chart. In the chart you can see, so in the first one, this uses less CPU and in the meantime, so memory usage is also smaller than the load messaging. So here's the question. In the subset, they store the data as JSON.loadMessaging and they use it to mature and unmature again and again. But what we want to improve is just to store it as an interface and on the end we just return the interface and mature it into JSON messaging. And so this is a PR way proposal in the Goethe theorem and It is much. Yeah. So fix is really easy. Not very much. You just need to find where's problems and fix it. And add some test case. Yeah. That's all. Thank you. All right. Let's give him a warm round of applause. JS Visa. You speak as fast as a choo-choo train, man. All I heard was JSON file and you're saving. So if I understand correctly, you're using JSON file to save on memory space and that's how you save your costs. Is that correct? Yeah. Okay, good. So I'm not completely an idiot. You know, I don't come from a tech background, so it can be quite challenging for me. But nevertheless, let's quickly look at the screen. We've got two questions for you, JS Visa. So let's look at the first question at the top. What do you dislike about the clients that you worked on? Get Eragon Red. Actually, I select the clients I like. So I like Gail, I like Eragon, and I like Luis. But in the meantime, for some other clients like Zawa, I really dislike them. Okay. All right. I appreciate the honesty. You select clients you like. Fantastic. How much of... Oh, excuse me. One got voted to the top. What other problems did you find in Getz P-Prof? I think maybe a lot of other issues. But in my point is you need to improve it. It depends on your workload. It depends on your company's workload. You need to first measure it and you need to monitor it and then say you can find an issue you want to fix or you want to improve. Alright. We got 30 seconds. You think you can do one more question? Let's try. Quick answer. How much of a performance improvement do you get after the PR? Actually, let me see. Maybe 13%. 13%? That's pretty good. That's pretty good. But it's just for the WebSocket and Notify, says RPC. Okay, you've got 20 seconds. Let's do one more. How come interface is faster than raw message unpassed bytes? I think I'm not really into that one. But I think because inside the same one to marshal and unmarshal, because every time you marshal it into better understand,",
   "eventId": "devcon-7",
   "slot_start": 1731571800000,
   "slot_end": 1731572400000,
   "slot_roomId": "stage-2",
-  "resources_presentation": "https://docs.google.com/presentation/d/1DOTMyJmIPI5tdLiG_5PoOmjA44ieroq22BSvZjFN9no"
+  "resources_presentation": "https://docs.google.com/presentation/d/1DOTMyJmIPI5tdLiG_5PoOmjA44ieroq22BSvZjFN9no",
+  "resources_slides": null,
+  "speakers": [
+    "jsvisa"
+  ]
 }
