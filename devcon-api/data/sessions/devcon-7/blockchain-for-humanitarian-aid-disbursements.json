@@ -9,10 +9,6 @@
   "audience": "Research",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Humanitarian aid",
-    "Anticipatory action"
-  ],
   "tags": [
     "Open Source Software",
     "Use Cases",
@@ -27,14 +23,27 @@
     "Public good",
     "Use Cases"
   ],
-  "language": "en",
-  "speakers": [
-    "rumee-singh",
-    "arun-maharajan"
+  "keywords": [
+    "Humanitarian aid",
+    "Anticipatory action"
   ],
+  "duration": 550,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67374c061b0f83434dc3272b",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67374c061b0f83434dc3272b.vtt",
+  "transcript_text": " Hi, I'm Rumi. I run a blockchain for impact company in Nepal. And with Arun and his team at the UNICEF Innovation Fund, we've been building and expanding our open source solution, Rahat, to streamline aid delivery. And I'm very happy to be here to share our learnings and experiences. Last year, we piloted a response to COVID pilot with 1,900 households for vulnerable populations. And we worked primarily with the underbanked and unbanked and with a focus to test SMS-based cash transfer. We worked closely with local government bodies and mobilizers. And this monsoon, we've been working with the Danish Red Cross in testing the impact of the solution in anticipatory action. So basically looking at timely assistance and information in flood zone areas even before the onset of the disaster. using smart contracts with verified, predefined climate risk triggers for automated payout and timely information, early warning messages with climate oracles. Some of the key learnings that we've had is with what we've learned is like with real-time verifiable data and transparency, it's really streamlined the reconciliation process, which has really built on the cost and time efficiency with being able to give in timely information for early action. The other thing that has also been very, very important that we've realized is the leapfrogging of financial inclusion. So there is access to finance for vulnerable populations who have not even been introduced to, who have not even been able to adopt traditional financial methods and services. The challenges that we've seen has been on the knowledge gap, where there is an onboarding hurdle of humanitarian stakeholders, and especially with the local government bodies, there is a data resource gap as we are working with limited localized weather information. We've seen there's a need for holistic integration, where to make a bigger case for value for the humanitarian stakeholders is to be able to integrate and have the interoperability with their existing tools. And for scalability, there are limitations when it comes to, because we are working on off-chain data in the last mile, so there is a challenge, even though we've been able to, there is a potential of scaling it to different areas, there is a limitation in that. And we've been, that's why we've been looking into crypto funds and piloting that and the humanitarian aid delivery to build in transparency and increase that, increase the speed and efficiency of that. And I'll pass it to Arun to speak more about that. Thanks, Rumi. Yeah, so I'm Arun. I'm the blockchain lead at the UNICEF Office of Innovation. So I work with wonderful teams such as Roomsan, then there's Excapit, and KotaniPay, and then so on. So many startups who are all working towards building solutions that help UNICEF do better at what it does. So cash transfers is a very important part of the equation. UNICEF does hundreds of millions of dollars of cash every year. We also have the crypto fund, which has been operating since 2019, where we custody our own Bitcoin and Ether so far. So now, zooming out for a second, this wonderful pilot showed us many, many various lessons that we learned from, especially how to work with the most vulnerable, with the latest technology, with the cutting edge technology. And then we hope to take these lessons to the future where the idea eventually, once we put all the puzzle pieces in place and once we have all the approvals in place to use crypto hopefully in a humanitarian cash transfer pilot. So what are the puzzle pieces, right? So one is a platform such as Rahat to help coordinate all the stakeholders together. Then you need wallets that can work in low or no internet situations and then of course you need off-ramping because we still do not live in a world where somebody can just go and buy a piece of bread with a direct crypto peer-to-peer payment we are not yet in that in that world maybe we'll get to that world later where we don't need any off-ramping partner, but as of now, we do need them. So UNICEF is working to put various of these puzzle pieces together, and then hopefully we'll have something interesting to look forward to where we can actually trial these things out, and then hopefully bring much-needed relief to millions of people worldwide. I think that's about it. Yeah. Thank you. Thank you both for the presentation and thank you for helping the ones that really need it the most. So let's have some questions for these two wonderful people. Or you can just tell them thank you. That's also fine. Yes, there. Use the mic. Okay. You mentioned a few of the issues and the puzzle pieces you're trying to solve. Do you have current examples of how you've been able to address any of them? Any of them would be interesting, actually. Yes. So we work with startups of how you've been able to address any of them? Any of them would be interesting, actually. Yes, so we work with startups such as RoomSun, who, of course, work with their own business model to build a part of the entire puzzle, right? So I mentioned two other startups. So one is Xcapit, who we have already worked with. So they have built a traditional Web3 wallet earlier, and now they've got a second round of funding from us to build an account abstraction based SMS wallet for reaching those people who do not have a smartphone. We have already invested in another company called KotaniPay from Kenya, so they help off-ramping into M-Pesa. So these are some of the puzzle pieces. Thank you. Yes? Have you noticed any issues with privacy with these organizations since everything is public? Very good question. Whoever, I mean, can... Yeah, so we've, so in Nepal, we've used a permissioned private chain, and so that sort of has, we haven't really delved into that piece yet, and that's primarily because of the regulatory challenges we've gotten there, and we're hoping to see if we could have work on the crypto piece in more open regulatory areas. But like going into the future, in a public blockchain-based approach, of course, privacy is important. So we are already very clear that we do not want to store personally identifiable information on-chain. And of course, now you have ZK technology and you know, whatever. So we are looking at how in the future that can be applied. Yes, there's one more question, right? We have time. Hi, I was wondering if you guys went through a process to compare other potential solutions besides the blockchain and ethereum. I was wondering what that process looked like, what other things you considered, like what the pros and cons of using blockchain were. What's the question? What do we do apart from blockchain? Have you considered using any other things except from the blockchain? We're doing the same, right? Okay. Please keep it short. Yes. So the UNICEF Venture Fund works with frontier technology, blockchain being one of them. So we have AI, data science, machine learning, drones. We used to have augmented reality, virtual reality. And we will look at other upcoming future tech as well. So the puzzle pieces are not only blockchain puzzle pieces. So we invest in other startups as well. We have so far done 80, 81 I think, 81 of these. And right now, we have a call out for companies who work in data trust and privacy to apply to us for a $100,000 grant. So please look it up. Thank you for sharing that.",
   "eventId": "devcon-7",
   "slot_start": 1731660000000,
   "slot_end": 1731660600000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/15oeEm8e0fRuUC_J5uLjNq4nII_1D6WDqnxNLOBX4rRs"
+  "resources_presentation": "https://docs.google.com/presentation/d/15oeEm8e0fRuUC_J5uLjNq4nII_1D6WDqnxNLOBX4rRs",
+  "resources_slides": null,
+  "speakers": [
+    "arun-maharajan",
+    "rumee-singh"
+  ]
 }
