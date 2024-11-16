@@ -9,11 +9,6 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Innovation",
-    "Algorithms",
-    "Optimised Proof of Work"
-  ],
   "tags": [
     "Coordination",
     "DeSci",
@@ -25,14 +20,28 @@
     "DeSci",
     "Economics"
   ],
-  "language": "en",
-  "speakers": [
-    "dr-john-fletcher-phd",
-    "kilian-hikaru-scheutwinkel"
+  "keywords": [
+    "Innovation",
+    "Algorithms",
+    "Optimised Proof of Work"
   ],
+  "duration": 560,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "6735a8119dbb7a90e15193d6",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/6735a8119dbb7a90e15193d6.vtt",
+  "transcript_text": " Hello, hello. My name is Kilian. Thank you for the kind introduction. And I'm going to talk about the innovation game. Unfortunately, the founder, John Fletcher, couldn't make it due to scheduling issues, so I had to jump in last minute. We are a project based out of Cambridge University. Myself, I'm a PhD candidate in astrophysics, and Dr. John Fletcher is an applied mathematician also from Cambridge. So what is the innovation game? Well, our theme, or our mission, is to incentivize algorithmic innovation. Well, what does it exactly mean, you may ask? If you look at the scientific literature, you see that most problems, such as the traveling salesman problem that you might know, right? Finding the shortest distance between, let's say, 20 cities. This kind of problem is a hard problem to solve, And you can only solve it through like various types of algorithms. What you see in this graph is on the x-axis, the year, on the y-axis, you see like some kind of performance metrics when you run these algorithms. So for instance, in the first, let's say, 1940s to 1970s for, let's say, the traveling salesman problem, people have been just brute forcing solutions, which is not very efficient, right? So you have, for instance, a performance of one, a constant, right? But then people started to innovate on the algorithm side. And what they achieved is like magnitudes of order of performance boost just by having an algorithm. For instance, the red curve, you see is 2 to the power 40 more efficient to innovate on the algorithm side for a given problem versus another algorithm like the blue ones and the green ones as well. Why do we care? Well, you can achieve a lot of breakthroughs just by not just by hardware, but by innovating in the algorithm space, right? And why I'm talking about that in the blockchain conference. Well, our protocol is there to incentivize this kind of algorithmic breakthrough. And how do we do that? We're actually using blockchain technology. You might know that blockchain is more about transactions, etc. And how do we achieve that kind of algorithmic breakthrough, and how do we incentivize that? We are actually using the proof-of-work mechanism, such as you might know from Bitcoin, and basically having many algorithms together, and then benchmark those, and find the best ones for a given problem, right? So let's say you have for a traveling salesman problem, you have four different kinds of algorithm people have been implementing, and then you use the benchmarking process, which is the proof of work mechanism, where you mine for the best algorithm. Once you've found the best algorithm, you basically reward the people that have been providing the IP to our platform, but also the miner who has been providing compute resources. So on the right side, you basically see how our system works. Just as a side note, of course, we also need to verify that the algorithms that were submitted to a platform are also correct so that means it's the solution correct but also is the method correct right and how do we capture value for the innovator well we can basically run two licenses for the proprietary or for the open source algorithm. One, the open license, open data license. That means any algorithm that is found through our platform can be used for free if you also publish the data. Why is that relevant? Well, imagine you have a scientific paper in biology. Would you trust the paper if you're not providing the data as well? No, right? It's very unscientific. So we are following the ethos of open source or academia through this license. And the other license is, okay, I don't want to publish my data, but I can pay a small fee, like a license, to access the algorithm. And what we are basically doing is we are combating, through the innovation game, the centralization risks through AI-driven algorithms. So what does it mean? Nowadays, you have large language models, and it is possible to now look for solutions by using large language models, which is not very good, because that means suddenly your innovation is directly dependent on the amount of compute you provide, which is bad, because most of the large capital for these computing platforms are at Meta, Google, etc. But we are based at the innovation game. We are the only protocol as of now that can incentivize and combat this type of AI driven algorithm development by incentivizing and rewarding the people that provide our IP to our platform. Thank you. Thank you, Killian. Do we have any questions from the audience for Killian? One over there. You want to try? I don't think so. I'm sorry. Okay. Time to work out. Thanks for that. So on that chart of algorithm development over time, I noticed there were quite large step functions. Do you expect that algorithmic development is continuous enough for the rewards to actually incentivize the actors? Yeah, so we expect that most of the people that use our platform are probably not innovating. They're more like benchmarkers, or they look at existing algorithms and then optimize the code a little bit. So we expect that it's very difficult to innovate, but we want to incentivize this behavior. And the challenges that we include in our, let's say, mathematical computationally challenging problems that we include in our platform are various sorts of. For relevant for blockchain would be, for instance, ZK proving mechanism, right? It is hard to compute a proof generally, but it's easy to verify, right? So this is very relevant for, let's say, the blockchain industry, if people are innovating on our platform. Other areas could include AI, that we also work on, and other theoretical computer science problems as well. Thank you. We have time for one more question. It's over there. I have a funny one. So you, maybe people don't hear, no, but there was a mess up and everyone got an email about the innovation game, all the speakers. So did it do anything for awareness of the work that you're doing? Or did it have no effect? Because I'm here because I got that email, too, of the innovation game. So could you repeat the question? I couldn't understand. So from the DEF CON committee, there was an email that was sent out to everyone who ever applied for a speaker slot. And that included, it was an email that was sent out to everyone who ever applied for a speaker slot and that included uh it was a it was an incorrect email but it it included the innovation game so i was just wondering did it do anything for the awareness of what you're working on or did it have no effect because i thought it would sorry i couldn't catch your question could you please like close speak closer to mike or you can come after talk okay i'm sorry i couldn't catch your question. Could you please speak closer to the mic? Or you can come after the talk. Okay, maybe. I'm sorry, I couldn't understand it. We can come up. We can talk after. Yeah. It's okay. I guess we'll have private conversation around that question after the session. Anyone else? We still have a little bit of the opening for a question. One over here. I'll just ask a very general question. What would you like us to do with this information? Sorry? What do you want us to do with this information now? Do you want us to go research in? So you can reach out to us if you have any hard problem, let's say in DeFi, and you want to formulate, let's say, a computational problem, you can reach out to us. Or if you're a hardware or like benchmarker, you can use our system to mine and benchmark these different algorithms. So there are two approaches. Either you want to provide a challenge for us, or you want to provide compute, or maybe you're a developer, you want to provide actually an algorithm. So there are these tracks. Amazing. That's time for us. Thank you again, Kilian. Another round of applause for Kilian.",
   "eventId": "devcon-7",
   "slot_start": 1731566400000,
   "slot_end": 1731567000000,
   "slot_roomId": "stage-4",
-  "resources_presentation": "https://docs.google.com/presentation/d/1LhUMD8kPbukRuIeQXcyC9Nzn52Zdr6JH80byPktkErk"
+  "resources_presentation": "https://docs.google.com/presentation/d/1LhUMD8kPbukRuIeQXcyC9Nzn52Zdr6JH80byPktkErk",
+  "resources_slides": null,
+  "speakers": [
+    "dr-john-fletcher-phd",
+    "kilian-hikaru-scheutwinkel"
+  ]
 }
