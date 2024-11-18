@@ -20,8 +20,8 @@ const fetcher = async (url: string) => {
 export const useArchiveSearch = (qs: string, params?: SearchParams): FetchedResult<PagedResult<ArchiveVideo>> => {
   const defaultData = { total: 0, currentPage: 0, items: [] }
   const [data, setData] = useState<PagedResult<ArchiveVideo>>(defaultData)
-  let uri = `https://api.devcon.org/sessions${qs}`
-  if (!qs) uri += '?'
+  let uri = `https://api.devcon.org/sessions?event=devcon-6&event=devcon-5&event=devcon-4&event=devcon-3&event=devcon-2&event=devcon-1&event=devcon-0`
+  if (qs) uri += qs.replace('?', '&')
   if (params?.q) uri += `&q=${params.q}`
   if (params?.from) uri += `&from=${params.from}`
   if (params?.size) uri += `&size=${params.size}`
@@ -35,7 +35,7 @@ export const useArchiveSearch = (qs: string, params?: SearchParams): FetchedResu
     onError: () => {
       setData(defaultData)
     },
-    revalidateOnFocus: false
+    revalidateOnFocus: false,
   })
 
   return {
@@ -64,9 +64,9 @@ export const useArchiveSearch = (qs: string, params?: SearchParams): FetchedResu
           keywords: item.tags.split(','),
           tags: item.tags.split(','),
           speakers: item.speakers.map((speaker: any) => speaker.name),
-          profiles: []
+          profiles: [],
         } as unknown as ArchiveVideo
-      })      
-    }
+      }),
+    },
   }
 }
