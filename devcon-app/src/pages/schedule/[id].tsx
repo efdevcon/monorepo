@@ -122,7 +122,7 @@ const SessionPage = (props: any) => {
             <SessionView session={props.session} standalone />
           </div>
 
-          <div className={cn('basis-[50%]')}>
+          <div className={cn('basis-[50%] hidden lg:block')}>
             <Livestream session={props.session} className={cn(cardClass, 'p-4')} />
           </div>
         </div>

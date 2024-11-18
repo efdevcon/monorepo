@@ -1805,18 +1805,20 @@ export const SessionView = ({ session, standalone }: { session: SessionType | nu
       data-type="session-view"
       className={cn(
         cardClass,
-        'flex flex-col gap-3 p-4 self-start w-full no-scrollbar',
+        'flex flex-col gap-3 p-4 pt-0 lg:pt-4 self-start w-full no-scrollbar',
         !standalone && 'pb-0 lg:max-h-[calc(100vh-84px)] lg:overflow-auto'
       )}
       ref={sessionViewRef}
     >
-      {!standalone && <Livestream session={session} minimal />}
+      {/* <div className={cn(standalone && 'shrink-0 lg:hidden')}> */}
+      <Livestream session={session} minimal className={cn('shrink-0', standalone ? 'lg:hidden' : '')} />
+      {/* </div> */}
 
       <div
         className={cn(
           'relative rounded-2xl w-full h-full flex items-end overflow-hidden border border-solid border-[#cdbaff] lg:border-[#E1E4EA] shrink-0',
           getTrackColor(session.track),
-          standalone ? 'flex' : 'hidden'
+          standalone ? 'hidden lg:flex' : 'hidden'
         )}
       >
         <Image
