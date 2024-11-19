@@ -9,11 +9,6 @@
   "audience": "Design",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Cooperative",
-    "Game",
-    "Theory;"
-  ],
   "tags": [
     "Core Protocol",
     "Gaming",
@@ -25,13 +20,27 @@
     "Mechanism design",
     "MEV"
   ],
-  "language": "en",
-  "speakers": [
-    "akaki-mamageishvili"
+  "keywords": [
+    "Cooperative",
+    "Game",
+    "Theory;"
   ],
+  "duration": 599,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67383c451b0f83434d2a7a78",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67383c451b0f83434d2a7a78.vtt",
+  "transcript_text": " Hello everyone, welcome to the presentation. Today I will talk about searcher competition in block building. So this is the paper title and it was co-authored with Christoph Schlegel and Danik Sui from Flashpots and Benny Sudakov from ETH Zurich and I'm a researcher at off-chain labs. So motivation was MEV and we know that there are many forms of MEV extraction and I'm listing only the most popular ones here. So there's this sex-sex arbitrage, background, sandwiches, and liquidation. And in each form, there are also many different specializations that you can take as a searcher. And here, the main point is that there are many different types, so searchers are different in their specializations. So it creates some kind of heterogeneity among searchers. So we tried to model this with the tools of game theory. And for that, we need to identify who are the players. And the main player is validator or a proposer that proposes the next block. And then there are these specialized arbitrageurs that in the Ethereum setting are called searchers. And in current market, there are also builders that aggregate searchers and also mempool, public mempool transactions. But we are ignoring it for this simplified game because for us, the fundamental players are searchers and the proposer. We denote the set of searchers by S that we can identify by their addresses. Then searchers submit their bundles of transactions to include in the block. Typically now they send it to block builder, but in principle they could have sent it to a proposer then from these bundles there are some in these bundles there are some conflicts so you cannot build the block that is the union of all bundles so you can build many different blocks. For a build block, searcher generates some value, and validator or the proposer also generates a value. So, these are the smallest building blocks of our game. So, we are abstracting away from all particular mechanisms, how they interact, and that includes builders and we only try to understand who will get how much among these players depending on their bundles. So for this we are using tools from cooperative game theory and for that we need to define a value of a coalition and value of a coalition is the best block that the searchers in this coalition build. If there is no proposer in the coalition, then the value is zero. So proposer or validator can block any, or veto any block. So you need to agree with the proposer, the searchers. And this already gives a coalitional transferable utility game. And in these games, the most natural solution, we think, is the core. And let me define what is core. It's very simple and intuitive. The core solution gives payoffs to all players so that no coalition of players prefer to deviate from their location and create their own block together. Because if they can, they will. And so we need to specify the payments to all searchers and the validator of the global game. So there are nice properties that Core has. First of all, it's always non-empty. You always have one solution. In particular, you can give all the value to the validator. But, of course, this would be very unfair to searchers. And there are other core solutions too, often, but not always. So, for example, there are cores such that searchers capture all the value. And if we have additive value over the bundles, then we actually have nice characterization of the core. So to make it more interesting, we look at the stochastic setting where we have a number of opportunities denoted by M and number of searchers denoted by N. And each searcher generates some value for each opportunity, so we have this matrix. And by P we denote the probability that each searcher finds each opportunity. Then we have very nice simple result that as soon as probability slightly high so it's larger than this tool log n divided by n and there are not too many opportunities so m is less than n and with high probability the validator captures everything and this can be in particular empirically checked in the data. So thank you for your attention. Happy to answer your questions. Thank you very much. So I posted one question. I wonder if you know how many search providers are currently in ethereum ecosystem so currently today i don't know but it's in the order of hundreds hundreds yes okay and we have one more question how do you know that the core is non-empty and this is usually requires strong assumptions so we know because if you give all the value to validator, it satisfies all these inequalities that core requires. It's very easy to check and strong assumption is that what you may refer as strong assumption is that validator can block any or veto any coalition. So that has a veto power and that's what that's why core is non-empty. And in particular we give exact example of a core. Okay, thank you very much. Please give a round of applause to our speaker. So we're gonna to have, I think, a break and the next session will start at 1.50. Thank you. Terima kasih telah menonton! Kampung Kampung Kampung Thank you.",
   "eventId": "devcon-7",
   "slot_start": 1731648600000,
   "slot_end": 1731649200000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1oRDP1vAH4P88oiBLEXOsJco7KgtJbQmYvKAeAkMug6Y"
+  "resources_presentation": "https://docs.google.com/presentation/d/1oRDP1vAH4P88oiBLEXOsJco7KgtJbQmYvKAeAkMug6Y",
+  "resources_slides": null,
+  "speakers": [
+    "akaki-mamageishvili"
+  ]
 }
