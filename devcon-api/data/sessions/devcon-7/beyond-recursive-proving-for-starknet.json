@@ -9,22 +9,31 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "Proving",
-    "recursion"
-  ],
   "tags": [
     "Zk Rollups",
     "starknet",
     "recursion"
   ],
-  "language": "en",
-  "speakers": [
-    "gideon-kaempfer"
+  "keywords": [
+    "Proving",
+    "recursion"
   ],
+  "duration": 1434,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67383a891b0f83434d0bb1ae",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67383b971b0f83434d1dbd83.vtt",
+  "transcript_text": " Hello everyone. Today I'm gonna talk about base pre-confirmation with Mr. Meb Boost. I'm Lino Shitaini from Nethermind Research. Okay, so most rollups, let's talk about most rollups today. So most rollups today build their blocks using centralized sequencer. So users send their transaction to centralized sequencer, the L2 transactions. The centralized sequ sequencer, the L2 transactions. The centralized sequencer will sequence the L2 transactions, eventually construct these L2 blocks, submit it to the L1 block building pipeline, and then the L1 block will include these L2 blocks. And centralized sequencer are nice. They can provide pre-confirmations. And pre-confirmations, what are pre-confirmations? Basically, users, for example, user submits their transaction C to the centralized sequencer. The centralized sequencer will return a pre-conf, which will say, I will promise to include your transaction C at the third position of the L2 block after transaction A and transaction B. And then some time passes, and then the centralized sequencer will actually submit this L2 block. But the thing here is this preconf will happen way ahead of time before the L2 block is actually submitted to the L1. So it provides good UX. So centralized sequencer are nice, they can provide facts to UX via preconfs, but however they're centralized. So big question here is how do we decentralize? So one idea here is what if we move the sequencer role entirely? And this brings us to based rollups. The based rollups idea is to use the L1 block building pipeline to sequence not only the L1 transactions, but also the L2 transactions. So the user submits their transactions, not only L1, but also the L2, and then the L1 block building pipeline will sequence not only the L1, but also the L2 blocks. So let's expand this L1 block building pipeline part. So this is like what the L1 block building pipeline looks like right now. The user will submit their transaction, and then there are going to be builders who are going to collect these L1 transactions, and then they're gonna be builders who are gonna collect these L1 transactions and then they're gonna construct blocks. And then there are gonna be many builders and then there are gonna be many blocks and then each are gonna submit a bid to the proposer. The proposer is gonna select the most profitable block and then propose it. So the idea of base rollups is that let's use this same pipeline that was used for the L1 which is used in blue here. Also for the L1, which is used in blue here, also for the L2 transactions, which is using the red arrow here. And base follow-ups are great. They inherit the L1 censorship resistance and liveness, because there is no external entity other than the, and we only have the L1 actors that we already have right now. And it also enables L1 composability, because these L1 builders, they will have full sequencing rights over the L1 and the L2. So they can act basically as a shared sequencer between the L1 and the L2, providing composability guarantees. But there's a problem, which is base rollups are slow, because there is no pre-confirmations here. So to the address of this problem, there is base pre-confirmations here. To the address problem, there is base pre-confirmations. Base pre-confirmations idea is this. Let's let the L1 proposer opt in to provide pre-confirmation during their slot. The user can directly send their L2 transactions to the L1 proposer. The L1 proposer can directly respond with a pre-confirmation. And then later on, the L1 block building pipeline runs, and then the proposer will ensure that these L2 blocks are included in the L1 blocks that they propose. So one observation here is that providing pre-confirmation requires sophistication. Because like the proposer here, you have to have some API or some like RPC endpoint to provide the pre-confirmations and you also need to run the L2 full nodes to actually like sequence these L2 blocks. So they would probably want to delegate and they will want to delegate to what we call gateways. So the idea of gateways is this. Proposer can delegate their pre-conf duties to gateways ahead of their slot. So the proposer can say, hey, this is my gateway. Please send your pre-conf request, not to me, but to this gateway. And the gateway will be responsible for responding with pre-confirmations. And then eventually the gateway will sequence L2 blocks, submit it to proposer, proposer will include it in their L1 blocks. So gateways are nice, but they have some problems, which is first, the inheritance of L1 censorship resistance and liveness is degraded. Because now you have this gateway entity that didn't exist in the L1 blockbinding pipeline that is now sequencing the L2 transactions. And now L1 composability is also made more complicated because you no longer have an entity that's sequencing both the L1 and the L2. Because the gateway is sequencing the L2, the builder is sequencing the L1. So the question here is, can we introduce base pre-conformation while retaining the good properties of base rollups? And here comes our proposal, which is called Mr. MevBoost. So it's for multi-round MevBoost. And the idea is this. So let's split the slots into multiple sub-slots, aka rounds, and in each round let's run a MevBoost auction to pre-confirm a partial block. So this whole L1 block pipeline that's sequencing both L1 and L2, let's just run this whole thing many times during the slot. So instead of running it once in the 12 second duration, run it every three seconds, for example. This pipeline is nice because there is no additional entity added to the pipeline. So there is no gateway here. And as a result, we inherit the L1 sensor resistance and liveness much better. Because there is no additional choke point to the system. And also enables L1 composability. Because the L1 builder now is sequencing both L1 and L2. Or they're pre-confirming both L1 and L2 at the same time. That it is, thank you very much. Yeah, thank you a lot. So just a quick reminder to the audience, you can ask questions by scanning the QR code. Do we have any questions from the audience, you can ask questions by scanning the QR code. Do we have any questions from the audience? Yeah, I was wondering myself if you can explain how long you've been working on this idea and if you published any papers already. Yes, there's an E3 search post titled",
   "eventId": "devcon-7",
   "slot_start": 1731644400000,
   "slot_end": 1731646200000,
   "slot_roomId": "classroom-a",
-  "resources_presentation": "https://docs.google.com/presentation/d/1iFe5uo4vVJtKR4EYxLvteyWIaeQLzKWuZBOgGlIlGLk"
+  "resources_presentation": "https://docs.google.com/presentation/d/1iFe5uo4vVJtKR4EYxLvteyWIaeQLzKWuZBOgGlIlGLk",
+  "resources_slides": null,
+  "speakers": [
+    "gideon-kaempfer"
+  ]
 }
