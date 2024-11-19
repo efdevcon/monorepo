@@ -176,6 +176,12 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
+      if (!item.Location) return null
+
+      if (item.Location.text) {
+        return <p className="bolda">{item.Location.text}</p>
+      }
+
       return <p className="bolda">{item.Location}</p>
     },
   },

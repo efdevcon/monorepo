@@ -247,7 +247,7 @@ const getNotionDatabase = async (
         sorts,
         filter,
         start_cursor: startCursor,
-        page_size: 100, // Maximum allowed by Notion API
+        page_size: 50, // Maximum allowed by Notion API
       })
 
       data = [...data, ...response.results.map(formatResult(locale, shouldNormalize))]
