@@ -9,26 +9,35 @@
   "audience": "Engineering",
   "featured": false,
   "doNotRecord": false,
-  "keywords": [
-    "FOSS",
-    "Regional",
-    "Insights"
-  ],
   "tags": [
     "FOSS",
     "regional",
     "insights"
   ],
-  "language": "en",
-  "speakers": [
-    "hong-phuc-dang",
-    "mario-behling",
-    "brianna-chang",
-    "mishari-muqbil"
+  "keywords": [
+    "FOSS",
+    "Regional",
+    "Insights"
   ],
+  "duration": 3310,
+  "language": "en",
+  "sources_swarmHash": "",
+  "sources_youtubeId": "",
+  "sources_ipfsHash": "",
+  "sources_livepeerId": "",
+  "sources_streamethId": "67343e109dbb7a90e1d6c5ab",
+  "transcript_vtt": "https://streameth-develop.ams3.digitaloceanspaces.com/transcriptions/67343f599dbb7a90e1f03f5b.vtt",
+  "transcript_text": " Hello everyone, my name is Rim. I'm a software engineer at BoxScout, which is an open source Box Explorer. And today I want to invite you to try to verify a couple of contracts along with me. Let's start with answering the question, what the contract verification is. When you deploy the contract onto the chain, it is represented as a number of bytes, which Ethereum virtual machine can understand and execute. And there are no solidity of IP sources stored inside the blockchain. So when indexers index the contract data, all we can see are those two bytecode values, which are contract creation code and contract and time of deployed codes. But most of the people are not good in understanding what the in understanding the raw sequence of bytes and what we usually want to see what is represented in the picture below so we ask our developers to send those sources to us and we recompile them and check that those actually correspond to the on-chain code values. And this is the contract verification. And today I want to verify a couple of contracts with you. So let's start with the simple one. Represented by those two code values here. What do we need from the user to verify the contract? First of all, we need the source files themselves, of course. And let's assume that this tricky storage contract is our potential candidate. It is tricky just because it adds some magic number before storing it inside the storage. That's it. Also, we need the compiler version, which the contract has been compiled with, and the compilation settings. With all that information, our next first step is just to combine all of that into the standard JSON input format, which has all information just in one file. We submit this JSON to the compiler, and what returns us back is the standard JSON output, which is quite big usually, but what is important here for us is that it returns two bytecode values, compiled creation and compiled runtime code values. So what we have to do here is to just take those two bytecodes and compare them. Do they match? Yep, they match, so that's it. Actually, is it always that easy to verify the context, though? Let's look at a little bit more complex example here, which is where we used as external library for making the addition operation, and external libraries as the contact codes, which are deployed once at some address, and when our contacts can link their addresses inside themselves, and reuse their functions by delegate call opcode. So we'll do the same transformations as before, and we'll get two bytecodes as well. But do they match? Well, we can see that there is a strange, not even a hex part inside the compiled creation code, which does not correspond to the on-chain value. So why it happens? Actually, this is the place where the library at least should be put at, but as we haven't provided it to the compiler during the compilation, it just doesn't know what to put inside and places some placeholder instead. And our question is how to verify such contracts. Luckily for us, there is a special section inside the standard JSON output, which is named link references, and which for each unlinked library contains some information how to, where this library address should be placed inside, especially the first byte where it should be placed at and its length which is always 20 bytes. So what we need to do is just to take the specified offset value, when take the next 20 bytes from the on chain code and substitute it inside the compiled code. So do those two byte code match now? Yes, we do. Luckily for us. So here we are just to verify the second contract for today. In general, such replacements, we name them code transformations, and those are some actions which may be applied to the compiled code before or after, during the deployment process, and which changes its bytecode a little bit, but which remains the functionality the same. And there are currently five of such transformations we know about and support. And we've talked about the libraries, but there are four more we don't have time to talk about today. But if you are interested, you might just follow the QR link and see some more information about. So, also, I think the last slide, my presentation title was Verifier Alliance, the first part of it. And I haven't talked about that a lot. But if you are interested in that part as well, you are welcome to the panel which will take place today at 5.30 p.m. where Boxcouts, SourceFind, RoadScan, the members of this Verify Alliance initiative will describe you this a little bit more and talk about verification as well. Thank you. I think that's it. Thank you, Reem. We have questions for Reem? Oh, okay. This is Mike, too. This is pretty awesome, actually. Why is it so difficult to have decentralized contract verification? We use services like BoxScout, Etherscan, but why after all these years is the experience still so bad in general? Well, I think it happens a lot because you have to store this contract somewhere first of all, and the resource file which tries to decentralize the storage process itself and but actually what is more important here were a lot of different formats and all Like different explorers use their own formats to store this data inside source file uses its own data and one of the Vsverify Alliance initiatives idea was to develop the schema in which all contracts should be sorted, and with that actually we are going to have just one database of all verified contracts shared between different verification providers and I hope that will help to increase the decentralization of this data so we're going to share some market dumps for that opens access to the database maybe and hopefully that will work. All right. Shoot. In the verification part for contracts that use library, looks like we are using the reference by code from the deploy by code. Is that safe? Yes, that is safe, because after the compilation we've seen that with 20 bytes, the library address was assumed to be put inside those 20 bytes by the contract code itself, and this address can be anything actually actually so we just take the actual value so we assume that the on-chain code should also contain the library address at this place and take it as our address. So it's actually safe just because this offset was in the standard JSON output section. Alright, thank you so much for this session. Please help me appreciate our amazing speaker, Ren.",
   "eventId": "devcon-7",
   "slot_start": 1731468600000,
   "slot_end": 1731472200000,
   "slot_roomId": "stage-1",
-  "resources_presentation": "https://docs.google.com/presentation/d/1ADQtojPz5zGpvoa8L2aH0vcyddEYsowQH6-jcNkUIMU"
+  "resources_presentation": "https://docs.google.com/presentation/d/1ADQtojPz5zGpvoa8L2aH0vcyddEYsowQH6-jcNkUIMU",
+  "resources_slides": null,
+  "speakers": [
+    "brianna-chang",
+    "hong-phuc-dang",
+    "mario-behling",
+    "mishari-muqbil"
+  ]
 }
