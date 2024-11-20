@@ -228,7 +228,7 @@ export const Dashboard = () => {
 
   return (
     <div className={cn(cardClass, 'lg:py-4 col-start-1 col-end-4')}>
-      <div className="flex justify-between px-4 border-bottom">
+      <div className="flex justify-between px-4 border-bottom mb-4">
         <div>
           <Image src={LogoFlowers} alt="Logo Flowers" className="max-w-[100px] translate-y-[-8px]" />
         </div>
