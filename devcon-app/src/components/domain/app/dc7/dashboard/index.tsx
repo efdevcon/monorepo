@@ -147,7 +147,7 @@ const LoggedIn = () => {
           {account?.username ? `Welcome, ${account?.username}!` : 'Welcome!'} 👋
         </div>
         <p className="text-xs text-[#505050] mt-1">
-          Thank you for connecting to the Devcon Passport - have a wonderful Devcon.
+          Thank you for connecting to the Devcon Passport.
         </p>
       </div>
 
