@@ -947,7 +947,7 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
   )
 }
 
-export const advancedFilterKeys = ['type', 'track', 'expertise', 'room']
+export const advancedFilterKeys = ['type', 'track', 'expertise', 'room', 'cls']
 export const isAdvancedFilterApplied = (sessionFilter: any) => {
   return advancedFilterKeys.some(key => Object.keys(sessionFilter[key]).length > 0)
 }
