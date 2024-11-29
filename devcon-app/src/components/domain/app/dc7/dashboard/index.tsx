@@ -146,9 +146,7 @@ const LoggedIn = () => {
         <div className="text-lg font-semibold">
           {account?.username ? `Welcome, ${account?.username}!` : 'Welcome!'} 👋
         </div>
-        <p className="text-xs text-[#505050] mt-1">
-          Thank you for connecting to the Devcon Passport.
-        </p>
+        <p className="text-xs text-[#505050] mt-1">Thank you for connecting to the Devcon Passport.</p>
       </div>
 
       <LoggedInCard dashboard className="lg:min-w-[350px] lg:max-w-[50%]" />
@@ -378,10 +376,10 @@ export const Dashboard = () => {
           </div>
         </SwipeToScroll>
       </div>
-      <div className="pb-4 mx-4 border-top"></div>
+      {/* <div className="pb-4 mx-4 border-top"></div>
       <div>
         <RecommendedSpeakers speakers={speakers ?? []} standalone />
-      </div>
+      </div> */}
       <div className="pb-4 mx-4 mt-6 border-top"></div>
       <div className="">
         <PersonalizedSuggestions sessions={sessions || []} standalone />

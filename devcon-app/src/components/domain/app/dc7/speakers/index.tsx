@@ -445,7 +445,7 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
   return (
     <div data-type="speaker-list" className={cn(cardClass)}>
       <SpeakerFilter filterOptions={filterOptions} />
-
+      {/* 
       <RecommendedSpeakers
         speakers={speakers ?? []}
         selectedSpeaker={selectedSpeaker}
@@ -460,9 +460,9 @@ export const SpeakerList = ({ speakers }: { speakers: SpeakerType[] | null }) =>
             }
           }
         }}
-      />
+      /> */}
 
-      <div data-type="speaker-prompts" className="flex gap-3 my-4 border-bottom mx-4 pb-4">
+      <div data-type="speaker-prompts" className="flex gap-3 mb-4 border-bottom mx-4 pb-4">
         <StandalonePrompt className="w-full" onClick={() => setDevaBotVisible('Recommend speakers who know about ')}>
           <div className="truncate">Recommend speakers who know about...</div>
         </StandalonePrompt>
@@ -782,7 +782,7 @@ export const SpeakerLayout = ({ speakers }: { speakers: SpeakerType[] | null }) 
             className={cn(
               'basis-[100%] lg:basis-[40%] lg:min-w-[393px] max-w-[100%] lg:sticky lg:top-[72px] lg:self-start'
             )}
-          >
+          >   
             <SpeakerView speaker={selectedSpeaker} />
           </div>
         </Popup>

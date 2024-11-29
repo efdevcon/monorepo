@@ -77,6 +77,7 @@ export const initialFilterState = {
   expertise: {},
   day: {},
   room: {},
+  cls: {},
   other: {},
 }
 

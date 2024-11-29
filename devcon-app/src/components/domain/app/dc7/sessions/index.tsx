@@ -84,7 +84,7 @@ import { CollapsedSection, CollapsedSectionContent, CollapsedSectionHeader } fro
 
 export const tagClassTwo = (active?: boolean, className?: string) =>
   cn(
-    'shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[black] hover:border-[black] font-semibold hover:text-black transition-all duration-300',
+    'shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-0.5 text-xs flex items-center justify-center text-[black] hover:border-[black] font-semibold hover:text-black transition-all duration-300',
     active ? 'border-[#ac9fdf] !bg-[#EFEBFF]' : '',
     className
   )
@@ -107,7 +107,7 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
   const [timelineView, setTimelineView] = useRecoilState(sessionTimelineViewAtom)
   const { now } = useAppContext()
 
-  const { text, type, day, expertise, track, room, other } = sessionFilter
+  const { text, type, day, expertise, track, room, cls, other } = sessionFilter
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -162,9 +162,12 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
             .filter(Boolean)
         ),
       ],
-      track: [...new Set(sessions.map(session => session.track)), 'CLS']
+      track: [...new Set(sessions.map(session => session.track))]
         .filter(Boolean)
         .filter(track => !track.startsWith('[CLS]')),
+      cls: [...new Set(sessions.map(session => session.track))]
+        .filter(Boolean)
+        .filter(track => track.startsWith('[CLS]')),
       room: [...new Set(sessions.map(session => session.slot_room?.name))].filter(Boolean).sort((a: any, b: any) => {
         if (a === 'Main Stage') return -1
         if (b === 'Main Stage') return 1
@@ -202,10 +205,10 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
         Object.keys(day).length === 0 ||
         sessionFilter.day[moment.utc(session.slot_start).add(7, 'hours').format('MMM D')]
       const matchesExpertise = Object.keys(expertise).length === 0 || sessionFilter.expertise[session.expertise]
-      const matchesCLS = session.track.startsWith('[CLS]') && sessionFilter.track['CLS']
-      const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track] || matchesCLS
+      const matchesCLSTrack = session.track.startsWith('[CLS]') && sessionFilter.track['CLS']
+      const matchesTrack = Object.keys(track).length === 0 || sessionFilter.track[session.track] || matchesCLSTrack
       const matchesRoom = Object.keys(room).length === 0 || sessionFilter.room[session.slot_room?.name]
-
+      const matchesCLS = Object.keys(cls).length === 0 || sessionFilter.cls[session.track]
       const matchesAttending = sessionFilter.other['Attending'] && isAttending
       const matchesInterested = sessionFilter.other['Interested In'] && isInterested
       const matchesFavorites =
@@ -219,7 +222,16 @@ const useSessionFilter = (sessions: SessionType[], event: any) => {
 
       const matchesOther = (matchesUpcoming && matchesFavorites) || Object.keys(other).length === 0
 
-      return matchesText && matchesType && matchesDay && matchesExpertise && matchesTrack && matchesRoom && matchesOther
+      return (
+        matchesText &&
+        matchesType &&
+        matchesDay &&
+        matchesExpertise &&
+        matchesTrack &&
+        matchesRoom &&
+        matchesOther &&
+        matchesCLS
+      )
     })
   }, [sessions, sessionFilter])
 
@@ -742,7 +754,10 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
                 type: {},
               })
             }}
-            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+            className={cn(
+              tagClassTwo(false, ' !text-[black] font-semibold'),
+              Object.keys(sessionFilter.type).length === 0 && 'hidden'
+            )}
           >
             Reset
           </div>
@@ -762,6 +777,38 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
 
       <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
+          Expertise
+          <div
+            onClick={() => {
+              setSessionFilter({
+                ...sessionFilter,
+                expertise: {},
+              })
+            }}
+            className={cn(
+              tagClassTwo(false, ' !text-[black] font-semibold'),
+              Object.keys(sessionFilter.expertise).length === 0 && 'hidden'
+            )}
+          >
+            Reset
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {filterOptions.expertise.map((expertise: string) => (
+            <div
+              key={expertise}
+              //   className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.expertise[expertise]), '!shrink')}
+              onClick={() => toggleFilter('expertise', expertise)}
+            >
+              {expertise}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="shrink-0">
+        <div className="flex justify-between gap-3 pb-4 font-semibold">
           <div>Tracks</div>
           <div
             onClick={() => {
@@ -770,7 +817,10 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
                 track: {},
               })
             }}
-            className={tagClassTwo(false, ' font-semibold')}
+            className={cn(
+              tagClassTwo(false, ' !text-[black] font-semibold'),
+              Object.keys(sessionFilter.track).length === 0 && 'hidden'
+            )}
           >
             Reset
           </div>
@@ -794,28 +844,31 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
 
       <div className="shrink-0">
         <div className="flex justify-between gap-3 pb-4 font-semibold">
-          Expertise
+          Community-Led Sessions (CLS)
           <div
             onClick={() => {
               setSessionFilter({
                 ...sessionFilter,
-                expertise: {},
+                cls: {},
               })
             }}
-            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+            className={cn(
+              tagClassTwo(false, ' !text-[black] font-semibold'),
+              Object.keys(sessionFilter.cls).length === 0 && 'hidden'
+            )}
           >
             Reset
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
-          {filterOptions.expertise.map((expertise: string) => (
+          {filterOptions.cls.map((cls: string) => (
             <div
-              key={expertise}
-              //   className={tagClass(sessionFilter.expertise[expertise]) + ' !text-black font-semibold !shrink'}
-              className={cn(filterTagClass(sessionFilter.expertise[expertise]), '!shrink')}
-              onClick={() => toggleFilter('expertise', expertise)}
+              key={cls}
+              //   className={tagClass(sessionFilter.cls[cls]) + ' !text-black font-semibold !shrink'}
+              className={cn(filterTagClass(sessionFilter.cls[cls]), '!shrink')}
+              onClick={() => toggleFilter('cls', cls)}
             >
-              {expertise}
+              {cls.split('[CLS]')[1]}
             </div>
           ))}
         </div>
@@ -831,7 +884,10 @@ export const SessionFilterAdvanced = ({ filterOptions }: { filterOptions: any })
                 room: {},
               })
             }}
-            className={tagClassTwo(false, ' !text-[black] font-semibold')}
+            className={cn(
+              tagClassTwo(false, ' !text-[black] font-semibold'),
+              Object.keys(sessionFilter.room).length === 0 && 'hidden'
+            )}
           >
             Reset
           </div>
@@ -1000,6 +1056,7 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                     computeFilterShorthand(sessionFilter.type, 'Session Type'),
                     computeFilterShorthand(sessionFilter.expertise, 'Expertise'),
                     computeFilterShorthand(sessionFilter.room, 'Rooms'),
+                    computeFilterShorthand(sessionFilter.cls, 'CLS'),
                   ]
                     .filter(val => !!val)
                     .join(', ') || ''
