@@ -1122,10 +1122,6 @@ export const SessionFilter = ({ filterOptions }: { filterOptions: any }) => {
                   : ''
               )}
               onClick={e => {
-                const result = draggableLink.onClick(e)
-
-                if (!result) return
-
                 const container = document.querySelector('[data-type="session-list"]')
 
                 if (container) {

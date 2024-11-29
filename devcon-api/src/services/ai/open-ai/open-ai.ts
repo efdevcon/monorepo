@@ -442,6 +442,24 @@ export const api = (() => {
           return
         }
 
+        const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
+        const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
+        const knowledgeBaseContent = knowledgeBaseFiles.map((filename: string) => {
+          const content = fs.readFileSync(path.join(knowledgeBaseDirectory, filename), 'utf8')
+
+          return content
+          // return {
+          //   id: filename,
+          //   content: content,
+          // }
+        })
+
+        // Create FileLike objects for knowledge base files
+        // const knowledgeBaseFileLikes: FileLike[] = knowledgeBaseContent.map((file: any) => {
+        //   const blob = new Blob([JSON.stringify(file)], { type: 'application/json' })
+        //   return new File([blob], `kb_${file.id}.json`)
+        // })
+
         const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
 
         const sessions = await sessionsResponse.json()
@@ -473,7 +491,6 @@ export const api = (() => {
           const startDate = new Date(session.slot_start)
           const dayNumber = startDate.getDate()
           const dayLabel = dayNumber === 12 ? 'Day 1' : dayNumber === 13 ? 'Day 2' : dayNumber === 14 ? 'Day 3' : dayNumber === 15 ? 'Day 4' : ''
-
 
           const formattedSession = {
             id: session.id,
@@ -523,26 +540,28 @@ export const api = (() => {
           // }
         })
 
-        // Split files into batches of 50
+        const allFiles = [...sessionFiles, ...knowledgeBaseContent] as any
+
+        // Split files into batches and upload
         const batchSize = 100
         const batches = []
-        for (let i = 0; i < sessionFiles.length; i += batchSize) {
-          batches.push(sessionFiles.slice(i, i + batchSize))
+        for (let i = 0; i < allFiles.length; i += batchSize) {
+          batches.push(allFiles.slice(i, i + batchSize))
         }
 
-        // Upload each batch sequentially
+        // Upload each batch
         for (const batch of batches) {
           const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
           console.log(`Uploaded batch of ${batch.length} files`)
           console.log(response, 'response')
         }
 
-        // Update assistant to use our new vector store
+        // Update assistant
         await openai.beta.assistants.update(assistantID, {
           tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
         })
 
-        console.log('Assistant updated with new vector store')
+        console.log('Assistant updated with new vector store including knowledge base files')
       },
       getScheduleRecommendations: async (assistantID: string, userQuery: string) => {
         const thread = await openai.beta.threads.create()

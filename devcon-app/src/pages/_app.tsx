@@ -208,7 +208,13 @@ export const notificationsCountSelector = selector({
 
     const notifications = get(notificationsAtom)
     const seenNotifications = JSON.parse(localStorage.getItem('seenNotifications') || '[]')
-    return notifications.filter(notification => !seenNotifications.includes(notification.id)).length
+    const threeDaysAgo = new Date()
+    threeDaysAgo.setDate(threeDaysAgo.getDate() - 3)
+
+    return notifications.filter(notification => {
+      const notificationDate = new Date(notification.sendAt)
+      return notificationDate >= threeDaysAgo && !seenNotifications.includes(notification.id)
+    }).length
   },
 })
 

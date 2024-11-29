@@ -581,7 +581,10 @@ const DevaBot = ({
                                           if (
                                             process.env.NODE_ENV !==
                                               "development" &&
-                                            file.filename === "ai_context.txt"
+                                            [
+                                              "ai_context.txt",
+                                              "ai_context.json",
+                                            ].includes(file.filename)
                                           ) {
                                             return;
                                           }
