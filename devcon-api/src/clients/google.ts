@@ -1,5 +1,7 @@
 import { google } from 'googleapis'
 import { JWT } from 'google-auth-library'
+import path from 'path'
+import { authenticate } from '@google-cloud/local-auth'
 
 export async function AuthenticateServiceAccount(scopes: string[]) {
   console.log('Authenticating with Google', scopes)
@@ -18,4 +20,19 @@ export async function AuthenticateServiceAccount(scopes: string[]) {
   google.options({ auth })
 
   return google
+}
+
+export async function GetAuthenticatedYoutubeClient() {
+  console.log('Authenticating with Youtube', path.join(__dirname, 'client_secret.json'))
+  const auth = await authenticate({
+    keyfilePath: path.join(__dirname, '../../credentials.json'),
+    scopes: [
+      'https://www.googleapis.com/auth/youtube',
+      'https://www.googleapis.com/auth/youtube.readonly',
+      'https://www.googleapis.com/auth/youtube.upload',
+    ],
+  })
+
+  google.options({ auth })
+  return google.youtube('v3')
 }

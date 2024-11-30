@@ -22,6 +22,7 @@
     "slides": "ts-node ./src/scripts/slides.ts",
     "stats": "ts-node ./src/scripts/stats.ts",
     "stats:v": "ts-node ./src/scripts/stats-video.ts",
+    "yt": "ts-node ./src/scripts/yt.ts",
     "usernames": "ts-node ./src/scripts/usernames.ts",
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
     "db:generate:all": "prisma generate --schema src/db/schema.prisma && prisma generate --schema src/db/account.prisma && yarn copy:account",
@@ -64,6 +65,7 @@
     ]
   },
   "dependencies": {
+    "@google-cloud/local-auth": "^3.0.1",
     "@octokit/rest": "^19.0.7",
     "@parcnet-js/ticket-spec": "^1.1.8",
     "@pcd/pod": "^0.4.0",
