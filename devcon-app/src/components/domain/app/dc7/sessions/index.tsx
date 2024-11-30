@@ -1576,7 +1576,7 @@ export const Livestream = ({
   const [_, setDevaBotVisible] = useRecoilState(devaBotVisibleAtom)
   const searchParams = useSearchParams()
   const secret = searchParams.get('secret')
-  const playback = session.sources_youtubeId || session.sources_streamethId
+  const playback = (session.sources_youtubeId || session.sources_streamethId) && !session.doNotRecord
   const [openTabs, setOpenTabs] = React.useState<any>({})
   const [player, setPlayer] = useState<'youtube' | 'streameth' | 'swarm'>(
     session.sources_youtubeId
@@ -1706,11 +1706,15 @@ export const Livestream = ({
           </div>
         )}
 
+        {session.doNotRecord && (
+          <div className="text-sm text-[#7D52F4] font-semibold p-4">This session is not recorded</div>
+        )}
+
         {noStreams && (
           <div className="text-sm text-[#7D52F4] font-semibold p-4">No livestream available for this session</div>
         )}
       </div>
-
+      {/* 
       {!minimal && session.slot_room?.translationUrl && (
         <CollapsedSection
           className="border-b-none bg-white rounded-2xl border border-solid border-[#E1E4EA] mt-2"
@@ -1733,7 +1737,6 @@ export const Livestream = ({
           <CollapsedSectionHeader title="Translations" className="py-2 px-4 text-sm" />
           <CollapsedSectionContent>
             <div className="aspect select-none px-4 pb-2">
-              {/* &bg-color=white */}
               <iframe
                 src={`${session.slot_room?.translationUrl}/fullscreen?embed=true&hide-toolbar=true&hide-stt=true&language=th-TH&bg-color=ffffff&color=30354b&font-size=medium`}
                 title="Mainstage"
@@ -1744,7 +1747,7 @@ export const Livestream = ({
             </div>
           </CollapsedSectionContent>
         </CollapsedSection>
-      )}
+      )} */}
 
       {session.transcript_text && (
         <div>
