@@ -1706,10 +1706,6 @@ export const Livestream = ({
           </div>
         )}
 
-        {session.doNotRecord && (
-          <div className="text-sm text-[#7D52F4] font-semibold p-4">This session is not recorded</div>
-        )}
-
         {noStreams && (
           <div className="text-sm text-[#7D52F4] font-semibold p-4">No livestream available for this session</div>
         )}
@@ -1748,6 +1744,12 @@ export const Livestream = ({
           </CollapsedSectionContent>
         </CollapsedSection>
       )} */}
+
+      {session.doNotRecord && (
+        <div className="border border-solid border-[#E1E4EA] rounded-2xl text-[#7D52F4] bg-white text-sm font-semibold mt-2 p-4">
+          This session is not recorded
+        </div>
+      )}
 
       {session.transcript_text && (
         <div>
