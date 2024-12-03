@@ -7,6 +7,8 @@ const branch =
   process.env.HEAD ||
   "main";
 
+console.log('TINA branch', branch)
+
 export default defineConfig({
   branch,
   // Get this from tina.io
