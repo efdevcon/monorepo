@@ -131,21 +131,21 @@ const useNavigationData = () => {
             url: '/dips',
             type: 'page',
           },
-          {
-            title: 'Supporters & Impact Teams',
-            url: '/supporters',
-            type: 'page',
-          },
-          {
-            title: 'Apply To Volunteer',
-            url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
-            type: 'url',
-          },
-          {
-            title: 'Apply to Speak',
-            url: '/speaker-applications',
-            type: 'page',
-          },
+          // {
+          //   title: 'Supporters & Impact Teams',
+          //   url: '/supporters',
+          //   type: 'page',
+          // },
+          // {
+          //   title: 'Apply To Volunteer',
+          //   url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+          //   type: 'url',
+          // },
+          // {
+          //   title: 'Apply to Speak',
+          //   url: '/speaker-applications',
+          //   type: 'page',
+          // },
           {
             title: 'RTD Grants',
             url: 'https://esp.ethereum.foundation/devcon-grants',
@@ -191,11 +191,11 @@ const useNavigationData = () => {
             url: '#',
             type: 'header',
           },
-          {
-            title: 'Press & Media',
-            url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
-            type: 'link',
-          },
+          // {
+          //   title: 'Press & Media',
+          //   url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
+          //   type: 'link',
+          // },
           {
             title: 'Press Kit',
             url:
@@ -207,49 +207,44 @@ const useNavigationData = () => {
           },
         ],
       },
-      {
-        title: 'Event',
-        url: '#',
-        type: 'links',
-        logo: LogoGetInvolved,
-        links: [
-          {
-            title: 'Event',
-            url: '#',
-            type: 'header',
-          },
-          // {
-          //   title: 'Devcon Schedule',
-          //   url: 'https://app.devcon.org/schedule',
-          //   type: 'page',
-          // },
-          {
-            title: 'Program Overview',
-            url: '/programming',
-            type: 'page',
-          },
-          {
-            title: 'Experiences',
-            url: '/experiences',
-            type: 'page',
-          },
-          {
-            title: 'Tickets',
-            url: '/tickets',
-            type: 'page',
-          },
-          {
-            title: 'City Guide',
-            url: '/city-guide',
-            type: 'page',
-          },
-          {
-            title: 'Devcon Week',
-            url: '/devcon-week',
-            type: 'page',
-          },
-        ],
-      },
+      // {
+      //   title: 'Event',
+      //   url: '#',
+      //   type: 'links',
+      //   logo: LogoGetInvolved,
+      //   links: [
+      //     {
+      //       title: 'Event',
+      //       url: '#',
+      //       type: 'header',
+      //     },
+      //     {
+      //       title: 'Program Overview',
+      //       url: '/programming',
+      //       type: 'page',
+      //     },
+      //     {
+      //       title: 'Experiences',
+      //       url: '/experiences',
+      //       type: 'page',
+      //     },
+      //     {
+      //       title: 'Tickets',
+      //       url: '/tickets',
+      //       type: 'page',
+      //     },
+      //     {
+      //       title: 'City Guide',
+      //       url: '/city-guide',
+      //       type: 'page',
+      //     },
+      //     {
+      //       title: 'Devcon Week',
+      //       url: '/devcon-week',
+      //       type: 'page',
+      //     },
+      //   ],
+      // },
       // {
       //   title: 'Program',
       //   url: '/programming',
@@ -329,9 +324,9 @@ const useNavigationData = () => {
         // highlight: 'archive',
       },
       {
-        title: 'Schedule',
-        url: 'https://app.devcon.org/schedule',
-        type: 'page',
+        title: 'Devconnect 2025',
+        url: 'https://devconnect.org',
+        type: 'link',
       },
       {
         title: 'Devcon App',
@@ -361,37 +356,37 @@ const useNavigationData = () => {
           url: '/about',
           type: 'page',
         },
-        {
-          title: 'Program',
-          url: '/programming',
-          type: 'page',
-        },
-        {
-          title: 'Tickets',
-          url: '/tickets',
-          type: 'page',
-        },
-        {
-          title: 'City Guide',
-          url: '/city-guide',
-          type: 'page',
-        },
-        {
-          title: 'Experiences',
-          url: '/experiences',
-          type: 'page',
-        },
+        // {
+        //   title: 'Program',
+        //   url: '/programming',
+        //   type: 'page',
+        // },
+        // {
+        //   title: 'Tickets',
+        //   url: '/tickets',
+        //   type: 'page',
+        // },
+        // {
+        //   title: 'City Guide',
+        //   url: '/city-guide',
+        //   type: 'page',
+        // },
+        // {
+        //   title: 'Experiences',
+        //   url: '/experiences',
+        //   type: 'page',
+        // },
 
         // {
         //   title: 'Apply To Speak',
         //   url: '/speaker-applications',
         //   type: 'page',
         // },
-        {
-          title: 'Volunteer',
-          url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
-          type: 'url',
-        },
+        // {
+        //   title: 'Volunteer',
+        //   url: 'https://forms.gle/yKnLpNzkchjX8nqbA',
+        //   type: 'url',
+        // },
         {
           title: 'FAQ',
           url: '/faq',
@@ -420,7 +415,7 @@ const useNavigationData = () => {
       ],
       right: [
         {
-          title: 'Events',
+          title: 'RTD',
           url: '/road-to-devcon#events',
           type: 'page',
         },
@@ -429,11 +424,11 @@ const useNavigationData = () => {
           url: '/devcon-week',
           type: 'page',
         },
-        {
-          title: 'Supporters',
-          url: '/supporters',
-          type: 'page',
-        },
+        // {
+        //   title: 'Supporters',
+        //   url: '/supporters',
+        //   type: 'page',
+        // },
         {
           title: 'DIPs',
           url: '/dips',
@@ -459,11 +454,11 @@ const useNavigationData = () => {
           url: 'https://devconnect.org',
           type: 'link',
         },
-        {
-          title: 'Press & Media',
-          url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
-          type: 'link',
-        },
+        // {
+        //   title: 'Press & Media',
+        //   url: 'https://forms.gle/5VmWvgb3ZaGamUXL7',
+        //   type: 'link',
+        // },
         {
           title: 'Press Kit',
           url:

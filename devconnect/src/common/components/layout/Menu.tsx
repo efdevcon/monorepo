@@ -279,6 +279,10 @@ export const Menu = (props: any) => {
         <a target="_blank" rel="noreferrer" href="https://warpcast.com/efdevconnect">
           <FarcasterIcon style={{ fill: 'white' }} />
         </a>
+
+        {/* <a target="_blank" rel="noreferrer" href="https://github.com/efdevconnect/">
+          <GithubIcon style={{ fill: 'white' }} />
+        </a> */}
       </div>
     </div>
   )

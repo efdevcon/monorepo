@@ -49,7 +49,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
       `}</style>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showBanner && (
           <motion.div
             initial={{ y: -100 }}
@@ -72,7 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <Component {...pageProps} />
     </>

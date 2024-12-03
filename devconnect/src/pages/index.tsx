@@ -17,8 +17,8 @@ import Link from 'common/components/link/Link'
 import Accordion, { AccordionItem } from 'common/components/accordion'
 import Modal from 'common/components/modal'
 // import bgMerged from 'assets/images/istanbul-bg/bg-merged.png'
-import bgMerged from 'assets/images/landscape.png'
-import Hehe from 'assets/images/hehe.png'
+// import bgMerged from 'assets/images/landscape.png'
+// import Hehe from 'assets/images/hehe.png'
 import Observer from 'common/components/observer'
 import ErrorBoundary from 'common/components/error-boundary/ErrorBoundary'
 // @ts-ignore
@@ -489,7 +489,7 @@ const FAQ = [
             direction. It is our principal event, all in one place with one big venue, and talks and workshops open to
             all.{' '}
             <Link href="https://devcon.org" indicateExternal>
-              Devcon SEA will take place in Bangkok, Thailand between 12-15 November 2024!
+              Devcon SEA took place in Bangkok, Thailand between 12-15 November 2024. The next Devcon will be in 2026.
             </Link>
           </p>
           <p>
@@ -548,26 +548,12 @@ const FAQ = [
     },
   },
   {
-    text: 'Will there be a Devconnect 2024?',
+    text: 'Will there be a Devconnect 2025?',
     value: 'devconnect-2024',
     content: () => {
       return (
         <>
-          <p>
-            Our next event will be{' '}
-            <Link href="https://devcon.org/en" indicateExternal>
-              Devcon 7 2024 in Southeast Asia!
-            </Link>{' '}
-            Follow{' '}
-            <Link href="https://twitter.com/EFDevcon" indicateExternal>
-              Deva on Twitter
-            </Link>{' '}
-            to stay up to date. And for updates for a future Devconnect,{' '}
-            <Link href="https://twitter.com/EFDevconnect" indicateExternal>
-              keep an eye on Twitter
-            </Link>{' '}
-            and the website for updates!{' '}
-          </p>
+          <p>Yes! Stay tuned for further information</p>
         </>
       )
     },
@@ -1157,10 +1143,14 @@ const Home: NextPage = (props: any) => {
               <div className={css['info-container']}>
                 <div className={`${css['info']}`}>
                   <div>
-                    <p className={`${css['big-description']}`}>{data.pages.catchphrase}</p>
+                    <p className={`${css['big-description']}`}>
+                      {data.pages.catchphrase}
+                      {/* Devconnect 2025 */}
+                    </p>
 
                     <div style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
                       <TinaMarkdown content={data.pages.subtext} />
+                      {/* Devconnect is happening in 2025. Stay tuned for more information. */}
                     </div>
 
                     <div className={css['buttons']}>
@@ -1168,8 +1158,14 @@ const Home: NextPage = (props: any) => {
                         <PlayIcon /> Get cowork tickets
                       </Link> */}
 
-                      <Link href="#gallery" className={`button slick-purple ${css['video-recap-button']}`}>
-                        <span className="!mr-0">{data.pages.button}</span>
+                      <Link
+                        href="https://x.com/EFDevconnect"
+                        className={`button slick-purple hover:scale-[1.02] transition-all duration-300 ${css['video-recap-button']}`}
+                      >
+                        {/* <span className="!mr-0"> */}
+                        {/* Follow on X for latest information */}
+                        {data.pages.button}
+                        {/* </span> */}
                       </Link>
                     </div>
                   </div>
@@ -1207,8 +1203,9 @@ const Home: NextPage = (props: any) => {
                     onMouseLeave={() => setHehe(false)}
                     onTouchStart={() => setHehe(!hehe)}
                     className={css['logo-bottom-left']}
+                    style={{ filter: 'grayscale(40%)' }}
                   />
-                  {hehe && <ImageNew src={Hehe} alt="Hehe" className={css['hehe']} />}
+                  {/* {hehe && <ImageNew src={Hehe} alt="Hehe" className={css['hehe']} />} */}
                 </div>
 
                 <div className={css['scroll-for-more']}>
@@ -1233,7 +1230,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene>
 
-          <Scene growVertically growNaturally id="recap-video" className={`${css['scene-istanbul']}`}>
+          {/* <Scene growVertically growNaturally id="recap-video" className={`${css['scene-istanbul']}`}>
             <div className="section" id="about">
               <h1 className="section-header clear-vertical" style={{ zIndex: 1 }}>
                 <span className="orange">DEVCONNECT IST</span>
@@ -1307,11 +1304,59 @@ const Home: NextPage = (props: any) => {
             <div className={css['background-cityscape']}>
               <ImageNew src={bgMerged} alt="Istanbul inspired Cityscape Background" />
             </div>
+          </Scene> */}
+
+          <Scene growVertically growNaturally className={`${css['scene-content']} mt-8`}>
+            <div className="section">
+              <div className="flex mb-0 2xl:mb-8 flex-col 2xl:flex-row">
+                <div className="basis-1/1 2xl:basis-2/4 shrink-0">
+                  <h1 className="section-header orange">About Devconnect</h1>
+
+                  <div className="mt-6">
+                    <p className={css['big-description']}>
+                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
+                      <b>
+                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
+                      </b>
+                    </p>
+
+                    <p className="large-text margin-top-less">
+                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
+                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
+                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
+                      rich history and culture of the unique city where we gather.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="basis-1/1 2xl:basis-2/4 overflow-hidden mt-8 2xl:mt-0 pl-0 2xl:pl-8">
+                  <h1 className="section-header orange">Past Devconnects</h1>
+
+                  <div className="flex flex-row lg:flex-nowrap flex-wrap gap-4 py-6 pb-2 max-w-full">
+                    <PastEventCard
+                      text="Devconnect IST 2023"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
+                      image={istanbulScheduleBackground}
+                      imageAlt="Istanbul collage"
+                      link="/istanbul"
+                    />
+
+                    <PastEventCard
+                      text="Devconnect AMS 2022"
+                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
+                      image={amsterdamScheduleBackground}
+                      imageAlt="Amsterdam collage"
+                      link="/amsterdam"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </Scene>
 
           <Scene growVertically growNaturally className={`${css['scene-content']} mt-8`}>
             <div className="section">
-              <h1 className="section-header orange">Gallery</h1>
+              <h1 className="section-header orange border-top padding-top-less">Relive Devconnect IST (2023)</h1>
 
               <p className={`large-text mt-4`} id="gallery">
                 <b>Relive the Devconnect experience</b> in Istanbul and reminisce about the meaningful conversations and
@@ -1359,9 +1404,9 @@ const Home: NextPage = (props: any) => {
                   </h1>
 
                   <p className="large-text xl:pb-12">
-                    Don't miss out on valuable insights from Devconnect - Streameth has recorded some of the Devconnect
-                    events, check them out if you want to re-experience talks or if you couldn't make it to Istanbul
-                    this year. You can also check out the{' '}
+                    Don't miss out on valuable insights from Devconnect IST - Streameth has recorded some of the
+                    Devconnect events, check them out if you want to re-experience talks or if you couldn't make it to
+                    Istanbul this year. You can also check out the{' '}
                     <Link href="/istanbul">
                       <b>schedule</b>
                     </Link>{' '}
@@ -1624,57 +1669,9 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene>
 
-          <Scene growVertically growNaturally className={`${css['scene-content']}`}>
-            <div className="section">
-              <div className="flex mb-0 2xl:mb-8 flex-col 2xl:flex-row">
-                <div className="basis-1/1 2xl:basis-2/4 shrink-0">
-                  <h1 className="section-header orange">About Devconnect</h1>
-
-                  <div className="mt-6">
-                    <p className={css['big-description']}>
-                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
-                      <b>
-                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
-                      </b>
-                    </p>
-
-                    <p className="large-text margin-top-less">
-                      At Devconnect events, you can have deep discussions about trending topics in Ethereum, and
-                      collaborate in person on problems you are currently trying to solve. The Devconnect Cowork is a
-                      place to network, and meet the people working in Ethereum. And on the side, you can explore the
-                      rich history and culture of the unique city where we gather.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="basis-1/1 2xl:basis-2/4 overflow-hidden mt-8 2xl:mt-0 pl-0 2xl:pl-8">
-                  <h1 className="section-header orange">Past Events</h1>
-
-                  <div className="flex flex-row lg:flex-nowrap flex-wrap gap-4 py-8 max-w-full">
-                    <PastEventCard
-                      text="Istanbul Schedule"
-                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
-                      image={istanbulScheduleBackground}
-                      imageAlt="Istanbul collage"
-                      link="/istanbul"
-                    />
-
-                    <PastEventCard
-                      text="Amsterdam Schedule"
-                      className="sm:max-w-[350px] 2xl:max-w-none 2xl:flex-grow"
-                      image={amsterdamScheduleBackground}
-                      imageAlt="Amsterdam collage"
-                      link="/amsterdam"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Scene>
-
           <Scene growVertically growNaturally className={`${css['scene-faq']}`}>
             <div className="section">
-              <h1 className="section-header orange border-top padding-top-less">Blog Posts</h1>
+              <h1 className="section-header orange">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
             </div>

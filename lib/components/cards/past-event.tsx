@@ -24,9 +24,9 @@ export default (props: PastEventCard) => {
           className="h-full w-full object-fill scale-100 group-hover:scale-105 transition-transform duration-500 ease-in-out"
         />
       </div>
-      <div className="flex shrink-0 grow-0 content-center justify-between py-6 px-4">
+      <div className="flex shrink-0 grow-0 content-center justify-between py-4 px-4">
         <p className="flex items-center uppercase font-bold ">{props.text}</p>
-        <CalendarIcon className="h-[32px] w-[32px] icon" />
+        <CalendarIcon className="h-[26px] w-[26px] icon" />
       </div>
     </Link>
   );

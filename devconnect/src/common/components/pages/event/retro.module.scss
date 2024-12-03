@@ -4,3 +4,25 @@
 //     }
 // }
 
+@import 'styles/variables.scss';
+
+.background-cityscape {
+    height: max(100px, 10vw);
+    width: 100%;
+    position: relative;
+
+    // @media (max-width: $screen-md) {
+    //     display: none;
+    // }
+
+    img {
+        position: absolute;
+        top: 5px;
+        height: 200%;
+        transform: translateY(-40%);
+        pointer-events: none;
+        width: 100%;
+        object-fit: cover;
+        object-position: 100% 0%;
+    }
+}

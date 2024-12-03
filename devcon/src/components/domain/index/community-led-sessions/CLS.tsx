@@ -95,8 +95,8 @@ export function CLSReel(props: Props) {
                 </div>
                 <div className="border-solid border-t border-[#E2E3FF] border-w-[1px]"></div>
                 {session.url && (
-                  <Link to={session.url || ''} className="bold pt-3 pb-3 font-secondary shrink-0">
-                    <div>LEARN MORE</div>
+                  <Link to={session.url || ''} className="bold pt-3 pb-3 font-secondary shrink-0 hover:underline">
+                    <div>Watch Videos</div>
                   </Link>
                 )}
               </div>

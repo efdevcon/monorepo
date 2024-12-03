@@ -11,7 +11,7 @@ interface SEOProps {
 
 export function SEO(props: SEOProps) {
   const router = useRouter()
-  const title = props.title ? `${props.title} · ${TITLE}` : `${TITLE} · Istanbul`
+  const title = props.title ? `${props.title} · ${TITLE}` : `${TITLE} · 2025`
   const description = props.description || DESCRIPTION
   const image = props.imageUrl || IMAGE_OG
   const url = router.route === '/' ? SITE_URL : SITE_URL.replace(/\/$/, '') + router.asPath.split('?')[0]

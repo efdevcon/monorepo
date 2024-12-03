@@ -235,35 +235,35 @@ const StatsAnimation = () => {
 
   return (
     <div id="matter-container" ref={observe} className={css['container']}>
-      <div id="box1" className={`${css['element']} ${css['white']}`}>
-        <span className={css['number']}>350+</span> Speakers
+      <div id="box1" className={`${css['element']} flex items-center justify-center ${css['white']}`}>
+        <span className={css['number']}>750&nbsp;</span> Speakers
       </div>
-      <div id="box2" className={`${css['element']} ${css['teal']}`}>
-        <span className={css['number']}>2000+</span> Hours of Content
+      <div id="box2" className={`${css['element']} flex items-center justify-center ${css['teal']}`}>
+        <span className={css['number']}>3000&nbsp;</span> Hours of Content
       </div>
-      <div id="box3" className={`${css['element']} ${css['red']}`}>
-        <span className={css['number']}>4 </span>Days
+      <div id="box3" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
+        <span className={css['number']}>04&nbsp;</span>Days
       </div>
-      <div id="box4" className={`${css['element']} ${css['yellow']}`}>
-        <span className={css['number']}>300+</span> Sessions
+      <div id="box4" className={`${css['element']} flex items-center justify-center ${css['yellow']}`}>
+        <span className={css['number']}>300+&nbsp;</span> Sessions
       </div>
-      <div id="box5" className={`${css['element']} ${css['purple']}`}>
-        <span className={css['number']}>7 </span>Community Hubs
+      <div id="box5" className={`${css['element']} flex items-center justify-center ${css['purple']}`}>
+        <span className={css['number']}>17&nbsp;</span>Community Hubs
       </div>
-      <div id="box6" className={`${css['element']} ${css['blue']}`}>
-        <span className={css['number']}>5500+</span> Attendees
+      <div id="box6" className={`${css['element']} flex items-center justify-center ${css['blue']}`}>
+        <span className={css['number']}>12500+&nbsp;</span> Attendees
       </div>
-      <div id="box7" className={`${css['element']} ${css['orange']}`}>
-        <span className={css['number']}>50 </span>Side Events
+      <div id="box7" className={`${css['element']} flex items-center justify-center ${css['orange']}`}>
+        <span className={css['number']}>99&nbsp;</span>RTD Events
       </div>
-      <div id="box8" className={`${css['element']} ${css['green']}`}>
-        <span className={css['number']}>1337 </span>Hacker Basement
+      <div id="box8" className={`${css['element']} flex items-center justify-center ${css['green']}`}>
+        <span className={css['number']}>21&nbsp;</span>DIPs
       </div>
-      <div id="box9" className={`${css['element']} ${css['blue-2']}`}>
-        <span className={css['number']}>105+</span> Countries Represented
+      <div id="box9" className={`${css['element']} flex items-center justify-center ${css['blue-2']}`}>
+        <span className={css['number']}>130&nbsp;</span> Countries Represented
       </div>
-      <div id="box10" className={`${css['element']} ${css['red']}`}>
-        <span className={css['number']}>10 </span>Tracks
+      <div id="box10" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
+        <span className={css['number']}>10&nbsp;</span>Tracks
       </div>
     </div>
   )

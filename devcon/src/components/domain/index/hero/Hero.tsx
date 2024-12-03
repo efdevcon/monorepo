@@ -203,7 +203,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
         }`}
       >
         <motion.div
-          className={`${css['devcon-7-background']} ${!isVisible ? 'hidden' : ''}`}
+          className={`${css['devcon-7-background']} pointer-events-none ${!isVisible ? 'hidden' : ''}`}
           ref={backdropRef}
           // initial={{ opacity: 1 }}
           // animate={{ opacity: isVisible ? 1 : 0 }}
@@ -358,7 +358,22 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
                   <div className={`${css['butterflies']} hidden lg:block`}>
                     <Butterflies2 />
                   </div>
-                  <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority />
+
+                  <Link to="https://devconnect.org">
+                    <Button
+                      className={`py-3.5 px-6 !text-base bold pointer-events-auto z-10`}
+                      color="blue-1"
+                      style={{ boxShadow: '0px 0px 25px 0px black' }}
+                      fat
+                      fill
+                    >
+                      <div className="flex flex-col items-end">
+                        <div className="">Devconnect is returning in 2025!</div>
+                        <div className="text-[9px] leading-none opacity-50 uppercase">→ Click to Learn More</div>
+                      </div>
+                    </Button>
+                  </Link>
+                  {/* <Image className={`${css['dc7-logo-text']} `} src={DC7OverlayRight} alt="Event location" priority /> */}
                 </div>
               </div>
             </div>

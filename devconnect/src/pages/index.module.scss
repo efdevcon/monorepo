@@ -225,7 +225,7 @@
         align-items: center;
 
         &:first-child {
-          margin-right: 1em;
+          // margin-right: 1em;
         }
       }
 
@@ -365,33 +365,33 @@
       z-index: 1;
     }
 
-    .logo-bottom-left {
-      @keyframes shine {
-        0% {
-          mask-position: 0;
-        }
+    // .logo-bottom-left {
+    //   @keyframes shine {
+    //     0% {
+    //       mask-position: 0;
+    //     }
 
-        20% {
-          mask-position: -120%;
-        }
+    //     20% {
+    //       mask-position: -120%;
+    //     }
 
-        100% {
-          mask-position: -120%;
-        }
-      }
+    //     100% {
+    //       mask-position: -120%;
+    //     }
+    //   }
 
-      position: relative;
-      z-index: 2;
+    //   position: relative;
+    //   z-index: 2;
 
-      @media (hover: hover) {
-        mask-image: linear-gradient(45deg,#000 25%,rgba(0,0,0,.2) 50%,#000 75%);
-        mask-size: 800%;
+    //   @media (hover: hover) {
+    //     mask-image: linear-gradient(45deg,#000 25%,rgba(0,0,0,.2) 50%,#000 75%);
+    //     mask-size: 800%;
 
-        &:not(:hover) {
-          animation: shine 12s 5s infinite;
-        }
-      }
-    }
+    //     &:not(:hover) {
+    //       animation: shine 12s 5s infinite;
+    //     }
+    //   }
+    // }
 
     .bottom {
       position: relative;

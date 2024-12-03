@@ -1734,17 +1734,17 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
               if (props.edition === 'amsterdam') return 'Schedule - Amsterdam 2022'
             })()}
           </p>
-          <Link
+          {/* <Link
             href="https://ef-events.notion.site/How-to-organize-an-event-during-Devconnect-4175048066254f48ae85679a35c94022"
             className={`button orange-fill sm margin-top-much-less`}
             indicateExternal
           >
             Host An Event
-          </Link>
+          </Link> */}
         </div>
       </Hero>
 
-      {props.edition === 'istanbul' && (
+      {/* {props.edition === 'istanbul' && (
         <div className="section">
           <Alert title="Important" className={`sm ${css['alert']}`}>
             <p className="bold small-text padding-top-less padding-bottom-less">
@@ -1753,11 +1753,12 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
             </p>
           </Alert>
         </div>
-      )}
+      )} */}
 
       <div className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
-          {props.edition !== 'istanbul' && <Retro />}
+          {props.edition === 'amsterdam' && <Retro edition={props.edition} />}
+          {props.edition === 'istanbul' && <Retro edition={props.edition} />}
           <div className={css['top-bar-wrapper']}>
             <SwipeToScroll noBounds scrollIndicatorDirections={{ right: true, left: true }}>
               <div className={css['top-bar']}>

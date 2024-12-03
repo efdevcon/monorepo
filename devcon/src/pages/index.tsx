@@ -60,7 +60,23 @@ import DeveloperExperience from 'assets/images/programming/DeveloperExperience.p
 import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
 
+// YyK8i2-0aPk
+// YyK8i2-0aPk
+// YyK8i2-0aPk
+// YyK8i2-0aPk
+
 const videos = [
+  // {
+  //   url: 'YyK8i2-0aPk',
+  //   title: 'Devcon SEA Recap Video',
+  //   devcon: 7,
+  // },
+  {
+    url: 'ei3tDRMjw6k',
+    title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon SEA',
+    author: 'Vitalik Buterin',
+    devcon: 7,
+  },
   {
     url: 'lgTMm7J0t7c',
     title: 'Devcon VI Bogota Recap Video',
@@ -72,12 +88,12 @@ const videos = [
     author: 'Aya Miyaguchi',
     devcon: 6,
   },
-  {
-    url: 'UihMqcj-cqc',
-    title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon Bogotá',
-    author: 'Vitalik Buterin',
-    devcon: 6,
-  },
+  // {
+  //   url: 'UihMqcj-cqc',
+  //   title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon Bogotá',
+  //   author: 'Vitalik Buterin',
+  //   devcon: 6,
+  // },
   {
     url: '-AEnRzzFpBE',
     title: "Publisher's Denial of Digital Ownership vs Decentralization",
@@ -333,7 +349,7 @@ export default pageHOC(function Index(props: any) {
               )}
               {/* </div> */}
             </div>
-            <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
+            {/* <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
               <div className="flex justify-between w-full gap-4">
                 <ImageNew src={BangkokVenue} alt="Devcon 7 Bangkok Venue" className="max-w-[162px]" />
                 <p className="text-lg font-secondary text-[#8B6BBB] bold">
@@ -367,7 +383,7 @@ export default pageHOC(function Index(props: any) {
                   <AddCalendarIcon className="icon" />
                 </Button>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* <div className="relative flex flex-col lg:flex-row lg:items-center justify-center mb-8 pb-8 border-bottom gap-8 xl:gap-16">
@@ -679,7 +695,7 @@ export default pageHOC(function Index(props: any) {
           <BlogReel blogs={props.blogs} />
         </div>
 
-        <div className="section mt-4">
+        {/* <div className="section mt-4">
           <div className="my-4 h2">Frequently Asked</div>
           <div className="flex flex-col">
             {faq?.questions?.map(({ question, answer }: any) => {
@@ -708,7 +724,7 @@ export default pageHOC(function Index(props: any) {
               )
             })}
           </div>
-        </div>
+        </div> */}
 
         <div className="mb-8"></div>
 

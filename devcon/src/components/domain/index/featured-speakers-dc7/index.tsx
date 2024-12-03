@@ -602,11 +602,11 @@ const FeaturedSpeakers = () => {
     <div className="mt-8 mb-4">
       <h2 className="font-secondary mb-6">Featured Speakers</h2>
       <HighlightedSpeakers key={key} speakers={speakers} />
-      <div className="flex flex-col mt-8">
+      {/* <div className="flex flex-col mt-8">
         <AutoScroller speakers={firstHalf} reverse />
         <div className="my-2" />
         <AutoScroller speakers={secondHalf} reverse={false} />
-      </div>
+      </div> */}
     </div>
   )
 }
