@@ -4,10 +4,10 @@ import { readFileSync, writeFileSync } from 'fs'
 
 async function main() {
   const speakers = GetData('speakers')
-  const sessions = GetData('sessions/devcon-7').slice(0, 100)
+  const sessions = GetData('sessions/devcon-7')
 
   let youtube = await GetAuthenticatedYoutubeClient()
-  let processedYouTubeIds: string[] = JSON.parse(readFileSync('src/scripts/youtube-ids.json', 'utf8'))
+  let processedYouTubeIds: string[] = JSON.parse(readFileSync('src/scripts/youtube-descriptions.json', 'utf8'))
 
   for (const session of sessions.filter((s: any) => s.sources_youtubeId && !processedYouTubeIds.includes(s.sources_youtubeId))) {
     console.log('-', session.sourceId, `https://studio.youtube.com/video/${session.sources_youtubeId}/edit`)
@@ -58,7 +58,7 @@ async function main() {
     }
   }
 
-  writeFileSync('src/scripts/youtube-ids.json', JSON.stringify(processedYouTubeIds, null, 2))
+  writeFileSync('src/scripts/youtube-descriptions.json', JSON.stringify(processedYouTubeIds, null, 2))
 }
 
 function getSessionDescription(session: any, speakers: any[]) {
