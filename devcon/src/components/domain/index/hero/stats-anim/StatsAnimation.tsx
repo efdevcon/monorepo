@@ -248,7 +248,7 @@ const StatsAnimation = () => {
         <span className={css['number']}>750&nbsp;</span> Speakers
       </div>
       <div id="box2" className={`${css['element']} flex items-center justify-center ${css['teal']}`}>
-        <span className={css['number']}>3000&nbsp;</span> Hours of Content
+        <span className={css['number']}>300+&nbsp;</span> Hours of Content
       </div>
       <div id="box3" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
         <span className={css['number']}>04&nbsp;</span>Days
@@ -269,7 +269,7 @@ const StatsAnimation = () => {
         <span className={css['number']}>21&nbsp;</span>DIPs
       </div>
       <div id="box9" className={`${css['element']} flex items-center justify-center ${css['blue-2']}`}>
-        <span className={css['number']}>130&nbsp;</span> Countries Represented
+        <span className={css['number']}>135&nbsp;</span> Countries Represented
       </div>
       <div id="box10" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
         <span className={css['number']}>10&nbsp;</span>Tracks
