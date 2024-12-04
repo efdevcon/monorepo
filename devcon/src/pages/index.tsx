@@ -25,8 +25,8 @@ import { GetContentSections } from 'services/page'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery, PagesIndex, PagesFaq_General, PagesProgramming } from '../../tina/__generated__/types'
-// import TitleDevcon from 'assets/images/devcon-title.svg'
-// import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
+import TitleDevcon from 'assets/images/devcon-title.svg'
+import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import StatsAnimation from 'components/domain/index/hero/stats-anim'
 import RTDGrants from 'assets/images/dc-7/rtd-grants.png'
@@ -60,21 +60,35 @@ import DeveloperExperience from 'assets/images/programming/DeveloperExperience.p
 import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
 
-// YyK8i2-0aPk
-// YyK8i2-0aPk
-// YyK8i2-0aPk
-// YyK8i2-0aPk
-
 const videos = [
-  // {
-  //   url: 'YyK8i2-0aPk',
-  //   title: 'Devcon SEA Recap Video',
-  //   devcon: 7,
-  // },
+  {
+    url: 'YyK8i2-0aPk',
+    title: 'This Year in Ethereum',
+    author: 'Josh Stark',
+    devcon: 7,
+  },
+  {
+    url: 'SE15rsPVHz0',
+    title: 'Redefining boundaries in the Infinite Garden',
+    author: 'Aya Miyaguchi',
+    devcon: 7,
+  },
   {
     url: 'ei3tDRMjw6k',
-    title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon SEA',
+    title: 'Ethereum in 30 minutes',
     author: 'Vitalik Buterin',
+    devcon: 7,
+  },
+  {
+    url: 'n3R4ze2hesk',
+    title: 'Keynote: ⿻ Infinite Diversity in Infinite Combinations',
+    author: 'Audrey Tang',
+    devcon: 7,
+  },
+  {
+    url: '7LRbiZ_FiSg',
+    title: 'Keynote: Glass Houses and Tornados',
+    author: 'Peter Van Valkenburgh',
     devcon: 7,
   },
   {
@@ -102,7 +116,7 @@ const videos = [
   },
   {
     url: 'oLGZdLpHl1w',
-    title: 'A Conversation with Stewart Brand (Devcon4)',
+    title: 'A Conversation with Stewart Brand',
     author: 'Stewart Brand',
     devcon: 4,
   },
@@ -281,7 +295,7 @@ export default pageHOC(function Index(props: any) {
         />
 
         <div className="section">
-          <div className="border border-solid border-neutral-100 shadow-lg mt-6 bg-[#f6edff] rounded">
+          {/* <div className="border border-solid border-neutral-100 shadow-lg mt-6 bg-[#f6edff] rounded">
             <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
               <div className="flex justify-between items-center no-wrap ">
                 <Petals className="icon grow-0 shrink-0 mx-8 text-3xl" style={{ '--color-icon': '#7958A5' }} />
@@ -308,14 +322,13 @@ export default pageHOC(function Index(props: any) {
                   })}
               </div>
             </SwipeToScroll>
-          </div>
-          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-10 pb-8">
+          </div> */}
+          <div className="flex flex-col justify-center lg:flex-row gap-8 xl:gap-16 border-bottom mt-8 pb-8">
             <div className="grow">
               {/* <TitleDevcon className="hidden lg:block" /> */}
-              {/* <div className="lg:mt-6"> */}
               <RichText content={pages.section1?.body}></RichText>
 
-              {cal && (
+              {/* {cal && (
                 <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
                   <ModalContent
                     className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
@@ -346,8 +359,7 @@ export default pageHOC(function Index(props: any) {
                     </div>
                   </ModalContent>
                 </Modal>
-              )}
-              {/* </div> */}
+              )} */}
             </div>
             {/* <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
               <div className="flex justify-between w-full gap-4">
@@ -385,88 +397,68 @@ export default pageHOC(function Index(props: any) {
               </div>
             </div> */}
           </div>
+        </div>
 
-          {/* <div className="relative flex flex-col lg:flex-row lg:items-center justify-center mb-8 pb-8 border-bottom gap-8 xl:gap-16">
-            <RichText content={pages.devcon_week?.body}></RichText>
-            <div className="flex lg:justify-between items-center shrink-0 grow gap-8">
-              <div className="font-secondary">
-                <p className="uppercase bold leading-tight lg:text-xl">BANGKOK, THAILAND</p>
-                <p className="text-xl leading-tight">
-                  <span className="text-[#B1ABFE] bold">12—15</span> Nov, 2024
-                </p>
-              </div>
+        <div className="section">
+          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none ">
+            <div className={`${css['scrolling-text-background']}`}>
+              <InfiniteScroller nDuplications={2} speed="120s">
+                <p className="bold">DEVCON RECAP&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+            {/* 
+            <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
+              <InfiniteScroller nDuplications={2} speed="140s" reverse>
+                <p className="bold">DEVCON RECAP&nbsp;</p>
+              </InfiniteScroller>
+            </div> */}
 
-              <Button fat color="purple-1" onClick={() => setCalendarModalOpen(true)}>
-                <span className="mr-2">Add to Calendar</span>
-                <AddCalendarIcon className="icon" />
-              </Button>
+            <div className={`z-10 ${css['background-text']}`}>
+              <RichText content={pages.section4?.body}></RichText>
+            </div>
 
-              {cal && (
-                <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
-                  <ModalContent
-                    className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
-                    close={() => setCalendarModalOpen(false)}
-                  >
-                    <div className="relative">
-                      <ImageNew src={CalendarExport} alt="Calendar Share" className="w-full h-auto"></ImageNew>
-                      <p className="absolute text-xs font-bold top-4 left-4 text-uppercase">Add To Calendar</p>
-                    </div>
-                    <div className="p-4">
-                      <p className="font-bold">Add Devcon to your calendar!</p>
-
-                      <p className="text-sm">Download the .ics file to upload to your favorite calendar app.</p>
-
-                      <div className="flex mt-4 flex-row gap-4 items-center">
-                        <a {...cal.icsAttributes}>
-                          <Button fat color="purple-1">
-                            <span className="mr-2">Download (.ics)</span>
-                            <AddCalendarIcon className="icon" />
-                          </Button>
-                        </a>
-                        <Link to={cal.googleCalUrl} className="h-full">
-                          <Button fat color="purple-1" fill>
-                            Google Calendar
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </ModalContent>
-                </Modal>
+            <div
+              className="sm:h-[250px] xl:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto"
+              ref={scrollRef}
+            >
+              {isInView && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+                  <StatsAnimation />
+                </motion.div>
               )}
             </div>
-          </div> */}
+          </div>
         </div>
 
         <div className="section">
           <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 mt-8">
-            <div className={`${css['scrolling-text-background']}`}>
+            {/* <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8">
-              <div className="flex flex-col h-full lg:mt-4">
-                <RichText content={pages.section2?.top}></RichText>
-                <div className="my-8 border-top"></div>
+              <div className="flex flex-col h-full lg:mt-2">
+                {/* <RichText content={pages.section2?.top}></RichText> */}
+                {/* <div className="my-8 border-top"></div> */}
                 <RichText content={pages.section3?.body}></RichText>
               </div>
 
               <div className="flex flex-col items-center justify-center">
                 <div className="flex grow shrink-0 items-center justify-center self-center">
-                  <Link to={pages.section3?.graphic_url}>
+                  <ImageNew
+                    src={LogoFlowers}
+                    alt="Devcon 7 Logo"
+                    className="w-[85%] max-w-[250px] lg:w-auto lg:max-w-[315px]"
+                  />
+
+                  {/* <Link to={pages.section3?.graphic_url}>
                     <div className={css['tilt-hover-image']}>
                       <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
                     </div>
-                  </Link>
+                  </Link> */}
                 </div>
-                {/*                 
-                <ImageNew
-                  src={LogoFlowers}
-                  alt="Devcon 7 Logo"
-                  className="w-[85%] max-w-[250px] lg:w-auto lg:max-w-[315px]"
-                /> */}
-
                 <div className="flex flex-col justify-center items-center w-full">
                   {/* <TitleDevcon className="md:block max-w-[124px] md:max-w-auto md:w-[124px]" /> */}
                   {/* <p className={`${css['rainbow-text']} text-3xl`}>เอเชียตะวันออกเฉียงใต้</p> */}
@@ -491,17 +483,6 @@ export default pageHOC(function Index(props: any) {
                 </div>
               </div>
             </div>
-            {/* <div className="flex flex-col md:flex-row gap-8">
-              <RichText content={pages.section2?.left}></RichText>
-
-              <RichText content={pages.section2?.right}></RichText>
-            </div>
-
-            <Link to={pages.section2?.button_info?.link}>
-              <Button fat color="purple-1" fill href="">
-                {pages.section2?.button_info?.text}
-              </Button>
-            </Link> */}
           </div>
 
           <div className="relative pb-4 border-bottom" id="featured-speakers">
@@ -514,34 +495,6 @@ export default pageHOC(function Index(props: any) {
             <FeaturedSpeakers />
           </div>
 
-          {/* <div className="mb-4">
-            <RoadToDevconGrants pages={pages} />
-          </div> */}
-          {/* <div className="flex-col md:flex-row flex relative pt-12 mb-8 pb-8 gap-8 border-bottom items-center">
-            <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
-              <InfiniteScroller nDuplications={2} reverse speed="150s">
-                <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
-              </InfiniteScroller>
-            </div>
-
-            <div className="md:basis-[800px] shrink">
-              <RichText content={pages.section3?.body}></RichText>
-
-              <Link to="https://esp.ethereum.foundation/devcon-grants">
-                <Button fat color="purple-1" className="mt-8" fill>
-                  {pages.section3?.button}
-                </Button>
-              </Link>
-            </div>
-            <div className="flex grow shrink-0 items-center justify-center">
-              <Link to="https://esp.ethereum.foundation/devcon-grants">
-                <div className={css['tilt-hover-image']}>
-                  <ImageNew src={RTDGrants} alt="Devcon RTD Grants" className="max-w-[300px]" />
-                </div>
-              </Link>
-            </div>
-          </div> */}
-
           <div className="pt-8 z-[1]">
             <CLSSection
               title={pages.community_led_sessions?.title}
@@ -550,33 +503,7 @@ export default pageHOC(function Index(props: any) {
             />
           </div>
 
-          {/* <div className="relative flex flex-col items-start border-bottom py-8">
-            <div className="h2 mb-7" id="cls">
-              {pages.community_led_sessions?.title}
-            </div>
-
-            <div className="border border-solid border-[#E2E3FF] rounded-2xl flex flex-col gap-2 max-w-full overflow-hidden pb-2">
-              <p className="text-[100px] leading-[0.8em] font-bold text-[#EFEFFE] mt-5 mx-4 font-secondary">CLS</p>
-
-              <div className="flex flex-col">
-                <div className="m-4 mb-4 mt-3">
-                  <RichText content={pages.community_led_sessions?.body}></RichText>
-                </div>
-
-                <div className="border-t border-solid border-[#E2E3FF]"></div>
-
-
-                <div className="mb-4 relative grow-0 mx-4">
-                  {pages.community_led_sessions?.sessions && (
-                    <CLSReel sessions={pages.community_led_sessions?.sessions} />
-                  )}
-                </div>
-
-              </div>
-            </div>
-          </div> */}
-
-          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
+          {/* <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>
             </div>
@@ -588,38 +515,16 @@ export default pageHOC(function Index(props: any) {
                 </motion.div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
-        {/* <About content={props.sections['devcon-about']} /> */}
-
-        {/* <div className={`${css['background-container']} section`}>
-          <div className={`${css['circle-background']} expand`}>
-            <Image src={CircleBackground} alt="Circles" />
-          </div>
-        </div> */}
-
-        {/* <About recap content={props.sections['devcon-recap']} /> */}
-
-        {/* <FeaturedSpeakers /> */}
-
-        {/* <CallsToAction
-        scholarApplications={props.sections['cta-scholar-applications']}
-        // speakerApplications={props.sections['cta-speaker-applications']}
-        // ticketPresale={props.sections['cta-ticket-presale']}
-        ticketsOnSale={props.sections['tickets-on-sale-now']}
-      /> */}
-
-        {/* <News data={props.news} /> */}
-
-        {/* <div className="clear-bottom border-bottom"></div> */}
 
         <div className="section">
           <div className="relative pt-9">
-            <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
-              {/* <InfiniteScroller nDuplications={2} speed="150s">
+            {/* <div className={`${css['scrolling-text-background']} ${css['alternate']}`}>
+              <InfiniteScroller nDuplications={2} speed="150s">
                 <p className="bold rotate-x-180">ROAD TO DEVCON&nbsp;</p>
-              </InfiniteScroller> */}
-            </div>
+              </InfiniteScroller>
+            </div> */}
 
             <div className="mb-7">
               <RichText content={pages.section5?.title}></RichText>

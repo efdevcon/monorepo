@@ -36,7 +36,7 @@ export function SEO(props: SEOProps) {
 
   const globalTitle = 'Devcon 2024' // Bogotá, Oct 11 → 14'
   const globalDescription = 'Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.'
-  const globalImage = 'https://www.devcon.org/assets/images/dc7-og.png'
+  const globalImage = 'https://www.devcon.org/assets/images/og.png'
   const canonical = props.canonicalUrl || ''
 
   let description = globalDescription
@@ -66,7 +66,7 @@ export function SEO(props: SEOProps) {
         {/* title={title} titleTemplate={titleTemplate} htmlAttributes={{ lang: lang }}> */}
 
         {title && <title>{title}</title>}
-        <meta name="description" key='description' content={description} />
+        <meta name="description" key="description" content={description} />
         <meta name="image" key="image" content={image} />
 
         {globalTitle !== title && <meta property="og:site_name" key="og:site_name" content={globalTitle} />}
@@ -87,9 +87,9 @@ export function SEO(props: SEOProps) {
             </span>
           ))}
 
-        <meta name="twitter:site" key="twitter:site" content='@efdevcon' />
-        <meta name="twitter:creator" key="twitter:creator" content='@efdevcon' />
-        <meta name="twitter:card" key="twitter:card" content='summary_large_image' />
+        <meta name="twitter:site" key="twitter:site" content="@efdevcon" />
+        <meta name="twitter:creator" key="twitter:creator" content="@efdevcon" />
+        <meta name="twitter:card" key="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" key="twitter:title" content={title} />
         <meta name="twitter:description" key="twitter:description" content={description} />
         {image && <meta name="twitter:image" key="twitter:image" content={image} />}

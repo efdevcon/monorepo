@@ -112,6 +112,7 @@ const StatsAnimation = () => {
       createHtmlObject('box8'),
       createHtmlObject('box9'),
       createHtmlObject('box10'),
+      createHtmlObject('box11'),
     ]
 
     const wallOptions = {
@@ -140,7 +141,16 @@ const StatsAnimation = () => {
     const useFillerObjects = window.matchMedia('(min-width: 800px)').matches
 
     if (useFillerObjects) {
-      const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
+      // const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
+      const icons = [
+        'flower-pink.png',
+        'flower-red.png',
+        'cloud.png',
+        'kite.png',
+        'leaves.png',
+        'lantern.png',
+        'riceball.png',
+      ]
       const colors = ['#F5D222', '#88C43F', '#E55066', '#0FADCF', '#00B3A4', '#F69022', '#E4F6FA']
 
       const canvasWidth = width // Width of the canvas
@@ -181,8 +191,8 @@ const StatsAnimation = () => {
               render: {
                 sprite: {
                   texture: `/assets/textures/${icon}`,
-                  xScale: 0.7,
-                  yScale: 0.7,
+                  xScale: 0.6,
+                  yScale: 0.6,
                 },
               },
               frictionAir: 0.15,
@@ -239,7 +249,7 @@ const StatsAnimation = () => {
         <span className={css['number']}>750&nbsp;</span> Speakers
       </div>
       <div id="box2" className={`${css['element']} flex items-center justify-center ${css['teal']}`}>
-        <span className={css['number']}>3000&nbsp;</span> Hours of Content
+        <span className={css['number']}>300+&nbsp;</span> Hours of Content
       </div>
       <div id="box3" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
         <span className={css['number']}>04&nbsp;</span>Days
@@ -260,10 +270,13 @@ const StatsAnimation = () => {
         <span className={css['number']}>21&nbsp;</span>DIPs
       </div>
       <div id="box9" className={`${css['element']} flex items-center justify-center ${css['blue-2']}`}>
-        <span className={css['number']}>130&nbsp;</span> Countries Represented
+        <span className={css['number']}>135&nbsp;</span> Countries Represented
       </div>
       <div id="box10" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
         <span className={css['number']}>10&nbsp;</span>Tracks
+      </div>
+      <div id="box11" className={`${css['element']} flex items-center justify-center ${css['green']}`}>
+        <span className={css['number']}>70&nbsp;</span>Impact Spaces
       </div>
     </div>
   )
