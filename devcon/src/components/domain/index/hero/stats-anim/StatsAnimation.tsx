@@ -112,6 +112,7 @@ const StatsAnimation = () => {
       createHtmlObject('box8'),
       createHtmlObject('box9'),
       createHtmlObject('box10'),
+      createHtmlObject('box11'),
     ]
 
     const wallOptions = {
@@ -273,6 +274,9 @@ const StatsAnimation = () => {
       </div>
       <div id="box10" className={`${css['element']} flex items-center justify-center ${css['red']}`}>
         <span className={css['number']}>10&nbsp;</span>Tracks
+      </div>
+      <div id="box11" className={`${css['element']} flex items-center justify-center ${css['green']}`}>
+        <span className={css['number']}>70&nbsp;</span>Impact Spaces
       </div>
     </div>
   )
