@@ -1217,8 +1217,8 @@ const Home: NextPage = (props: any) => {
             <div className={`section ${css['bottom-section']}`}>
               <div className={`${css['bottom']} margin-bottom-less`}>
                 <div className="flex gap-3 text-xl items-center relative">
-                  <div className={'absolute top-0 -translate-y-full left-0 text-[11px] leading-none pb-1.5 opacity-60'}>
-                    Follow us on...
+                  <div className={'absolute top-0 -translate-y-full left-0 text-[11px] leading-none pb-1.5 opacity-50'}>
+                    @EFDevconnect
                   </div>
                   {/* <Logo
                     onMouseEnter={() => setHehe(true)}
@@ -1235,7 +1235,7 @@ const Home: NextPage = (props: any) => {
                     target="_blank"
                     className="cursor-pointer flex items-center"
                     rel="noreferrer"
-                    href="https://twitter.com/efdevconnect"
+                    href="https://x.com/EFDevconnect/"
                   >
                     <TwitterIcon style={{ fill: 'black' }} />
                   </a>
