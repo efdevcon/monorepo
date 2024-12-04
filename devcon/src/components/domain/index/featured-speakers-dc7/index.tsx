@@ -203,26 +203,26 @@ const HighlightedSpeakers = ({
   const isInView = useInView(ref, { once: true })
   const controls = useAnimation()
 
-  useEffect(() => {
-    if (isInView && !isHovered) {
-      const rotateInterval = setInterval(() => {
-        try {
-          setCurrentIndex(prevIndex => (prevIndex + 4) % speakers.length)
-          controls.set({ scaleX: 0 })
-          controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
-        } catch (error) {
-          console.error('Error in rotateInterval:', error)
-        }
-      }, 6000)
+  // useEffect(() => {
+  //   if (isInView && !isHovered) {
+  //     const rotateInterval = setInterval(() => {
+  //       try {
+  //         setCurrentIndex(prevIndex => (prevIndex + 4) % speakers.length)
+  //         controls.set({ scaleX: 0 })
+  //         controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+  //       } catch (error) {
+  //         console.error('Error in rotateInterval:', error)
+  //       }
+  //     }, 6000)
 
-      controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
+  //     controls.start({ scaleX: 1, transition: { duration: 6, ease: 'linear' } })
 
-      return () => clearInterval(rotateInterval)
-    } else if (isHovered) {
-      controls.stop()
-      controls.set({ scaleX: 0 })
-    }
-  }, [isInView, speakers, controls, isHovered])
+  //     return () => clearInterval(rotateInterval)
+  //   } else if (isHovered) {
+  //     controls.stop()
+  //     controls.set({ scaleX: 0 })
+  //   }
+  // }, [isInView, speakers, controls, isHovered])
 
   const currentSpeakers = useMemo(() => {
     const endIndex = currentIndex + 4
@@ -310,13 +310,13 @@ const HighlightedSpeakers = ({
           ))}
         </motion.div>
       </AnimatePresence>
-      <div className="flex justify-center items-center w-[100px] bg-gray-100 mx-auto transform translate-y-2">
+      {/* <div className="flex justify-center items-center w-[100px] bg-gray-100 mx-auto transform translate-y-2">
         <motion.div
           className="h-[2px] w-[100px] bg-indigo-400 origin-center"
           initial={{ scaleX: 0 }}
           animate={controls}
         />
-      </div>
+      </div> */}
     </div>
   )
 }
@@ -442,25 +442,29 @@ const FeaturedSpeakers = () => {
         name: 'Aya',
         role: 'Executive Director @ Ethereum Foundation',
         avatarUrl: AyaMiyaguchiImage,
-        link: 'https://x.com/AyaMiyagotchi',
+        // link: 'https://x.com/AyaMiyagotchi',
+        link: 'https://app.devcon.org/speakers/ADH9HF',
       },
       {
         name: 'Vitalik Buterin',
         role: 'Co-founder @ Ethereum',
         avatarUrl: VitalikImage,
-        link: 'https://x.com/VitalikButerin',
+        // link: 'https://x.com/VitalikButerin',
+        link: 'https://app.devcon.org/speakers/FLKFV8',
       },
       {
         name: 'Roger Dingledine',
         role: 'Co-founder @ Tor Project',
         avatarUrl: RogerDingledineImage,
-        link: 'https://x.com/RogerDingledine',
+        // link: 'https://x.com/RogerDingledine',
+        link: 'https://app.devcon.org/speakers/P9TDQR',
       },
       {
         name: 'Bruno Macaes',
         role: 'Political Scientist, Author, and former Secretary of State',
         avatarUrl: BrunoImage,
-        link: 'https://x.com/MacaesBruno',
+        // link: 'https://x.com/MacaesBruno',
+        link: 'https://app.devcon.org/speakers/PRM7AM',
       },
     ]
 

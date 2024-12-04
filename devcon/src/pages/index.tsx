@@ -25,7 +25,7 @@ import { GetContentSections } from 'services/page'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
 import { PagesQuery, PagesIndex, PagesFaq_General, PagesProgramming } from '../../tina/__generated__/types'
-// import TitleDevcon from 'assets/images/devcon-title.svg'
+import TitleDevcon from 'assets/images/devcon-title.svg'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import StatsAnimation from 'components/domain/index/hero/stats-anim'
@@ -61,15 +61,34 @@ import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
 
 const videos = [
-  // {
-  //   url: 'YyK8i2-0aPk',
-  //   title: 'Devcon SEA Recap Video',
-  //   devcon: 7,
-  // },
+  {
+    url: 'YyK8i2-0aPk',
+    title: 'This Year in Ethereum',
+    author: 'Josh Stark',
+    devcon: 7,
+  },
+  {
+    url: 'SE15rsPVHz0',
+    title: 'Redefining boundaries in the Infinite Garden',
+    author: 'Aya Miyaguchi',
+    devcon: 7,
+  },
   {
     url: 'ei3tDRMjw6k',
-    title: 'Ethereum in 30 minutes by Vitalik Buterin | Devcon SEA',
+    title: 'Ethereum in 30 minutes',
     author: 'Vitalik Buterin',
+    devcon: 7,
+  },
+  {
+    url: 'n3R4ze2hesk',
+    title: 'Keynote: ⿻ Infinite Diversity in Infinite Combinations',
+    author: 'Audrey Tang',
+    devcon: 7,
+  },
+  {
+    url: '7LRbiZ_FiSg',
+    title: 'Keynote: Glass Houses and Tornados',
+    author: 'Peter Van Valkenburgh',
     devcon: 7,
   },
   {
@@ -97,7 +116,7 @@ const videos = [
   },
   {
     url: 'oLGZdLpHl1w',
-    title: 'A Conversation with Stewart Brand (Devcon4)',
+    title: 'A Conversation with Stewart Brand',
     author: 'Stewart Brand',
     devcon: 4,
   },
@@ -309,7 +328,7 @@ export default pageHOC(function Index(props: any) {
               {/* <TitleDevcon className="hidden lg:block" /> */}
               <RichText content={pages.section1?.body}></RichText>
 
-              {cal && (
+              {/* {cal && (
                 <Modal open={calendarModalOpen} close={() => setCalendarModalOpen(false)}>
                   <ModalContent
                     className="border-solid border-[#8B6BBB] border-t-4 w-[560px]"
@@ -340,7 +359,7 @@ export default pageHOC(function Index(props: any) {
                     </div>
                   </ModalContent>
                 </Modal>
-              )}
+              )} */}
             </div>
             {/* <div className="flex w-full flex-col grow shrink-0 max-w-[410px] lg:grow-0 relative">
               <div className="flex justify-between w-full gap-4">
@@ -381,12 +400,43 @@ export default pageHOC(function Index(props: any) {
         </div>
 
         <div className="section">
-          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 mt-8">
+          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none ">
             <div className={`${css['scrolling-text-background']}`}>
+              <InfiniteScroller nDuplications={2} speed="120s">
+                <p className="bold">DEVCON RECAP&nbsp;</p>
+              </InfiniteScroller>
+            </div>
+            {/* 
+            <div className={`${css['scrolling-text-background']} ${css['alternate']} ${css['blue']}`}>
+              <InfiniteScroller nDuplications={2} speed="140s" reverse>
+                <p className="bold">DEVCON RECAP&nbsp;</p>
+              </InfiniteScroller>
+            </div> */}
+
+            <div className={`z-10 ${css['background-text']}`}>
+              <RichText content={pages.section4?.body}></RichText>
+            </div>
+
+            <div
+              className="sm:h-[250px] xl:h-[300px] h-[350px] relative w-full z-0 pointer-events-auto"
+              ref={scrollRef}
+            >
+              {isInView && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+                  <StatsAnimation />
+                </motion.div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="section">
+          <div className="relative flex flex-col items-start pb-8 border-bottom gap-4 mt-8">
+            {/* <div className={`${css['scrolling-text-background']}`}>
               <InfiniteScroller nDuplications={2} speed="120s">
                 <p className="bold">SOUTHEAST ASIA&nbsp;</p>
               </InfiniteScroller>
-            </div>
+            </div> */}
 
             <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-8">
               <div className="flex flex-col h-full lg:mt-2">
@@ -453,7 +503,7 @@ export default pageHOC(function Index(props: any) {
             />
           </div>
 
-          <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
+          {/* <div className="relative flex flex-col items-start border-bottom gap-8 pt-8 pointer-events-none">
             <div className={`z-10 ${css['background-text']}`}>
               <RichText content={pages.section4?.body}></RichText>
             </div>
@@ -465,7 +515,7 @@ export default pageHOC(function Index(props: any) {
                 </motion.div>
               )}
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="section">

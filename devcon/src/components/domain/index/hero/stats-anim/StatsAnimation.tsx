@@ -190,8 +190,8 @@ const StatsAnimation = () => {
               render: {
                 sprite: {
                   texture: `/assets/textures/${icon}`,
-                  xScale: 0.7,
-                  yScale: 0.7,
+                  xScale: 0.6,
+                  yScale: 0.6,
                 },
               },
               frictionAir: 0.15,
