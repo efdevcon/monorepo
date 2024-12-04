@@ -56,6 +56,10 @@ import { useTina } from 'tinacms/dist/react'
 import { TinaMarkdown } from 'tinacms/dist/rich-text'
 import { PagesQuery } from '../../tina/__generated__/types'
 import { motion } from 'framer-motion'
+import TwitterIcon from 'assets/icons/twitter.svg'
+import TelegramIcon from 'assets/icons/telegram.svg'
+import FarcasterIcon from 'assets/icons/farcaster.svg'
+import MailIcon from 'assets/icons/mail.svg'
 
 // import Cowork1 from 'assets/images/event-pictures/amsterdam-2022-event-picture-2.jpg'
 // import Cowork2 from 'assets/images/event-pictures/amsterdam-2022-event-picture-6.jpg'
@@ -71,6 +75,7 @@ import Cowork5 from 'assets/images/cowork-recap/cowork-5.jpg'
 import Cowork6 from 'assets/images/cowork-recap/cowork-6.jpg'
 import Cowork7 from 'assets/images/cowork-recap/cowork-7.jpg'
 import Cowork8 from 'assets/images/cowork-recap/cowork-8.jpg'
+import { Button } from 'lib/components/button'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -1148,8 +1153,25 @@ const Home: NextPage = (props: any) => {
                       {/* Devconnect 2025 */}
                     </p>
 
-                    <div style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }} className="big-text">
-                      <TinaMarkdown content={data.pages.subtext} />
+                    <div
+                      style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }}
+                      className="big-text flex gap-3 items-center"
+                    >
+                      {/* <TinaMarkdown content={data.pages.subtext} /> */}
+                      {/* <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevconnect">
+                        <TwitterIcon style={{ fill: 'black' }} />
+                      </a>
+                      <a target="_blank" rel="noreferrer" href="https://t.me/efdevconnect">
+                        <TelegramIcon style={{ fill: 'black' }} />
+                      </a>
+
+                      <a target="_blank" rel="noreferrer" href="https://warpcast.com/efdevconnect">
+                        <FarcasterIcon style={{ fill: 'black' }} />
+                      </a>
+
+                      <Button href="https://x.com/EFDevconnect" className="-translate-y-[2px]" color="black-1" fill>
+                        Subscribe to Newsletter
+                      </Button> */}
                       {/* Devconnect is happening in 2025. Stay tuned for more information. */}
                     </div>
 
@@ -1162,10 +1184,7 @@ const Home: NextPage = (props: any) => {
                         href="https://x.com/EFDevconnect"
                         className={`button slick-purple hover:scale-[1.02] transition-all duration-300 ${css['video-recap-button']}`}
                       >
-                        {/* <span className="!mr-0"> */}
-                        {/* Follow on X for latest information */}
                         {data.pages.button}
-                        {/* </span> */}
                       </Link>
                     </div>
                   </div>
@@ -1197,15 +1216,50 @@ const Home: NextPage = (props: any) => {
 
             <div className={`section ${css['bottom-section']}`}>
               <div className={`${css['bottom']} margin-bottom-less`}>
-                <div>
-                  <Logo
+                <div className="flex gap-3 text-xl items-center relative">
+                  <div className={'absolute top-0 -translate-y-full left-0 text-[11px] leading-none pb-1.5 opacity-60'}>
+                    Follow us on...
+                  </div>
+                  {/* <Logo
                     onMouseEnter={() => setHehe(true)}
                     onMouseLeave={() => setHehe(false)}
                     onTouchStart={() => setHehe(!hehe)}
                     className={css['logo-bottom-left']}
-                    style={{ filter: 'grayscale(40%)' }}
-                  />
+                    style={{ filter: 'grayscale(40%)', marginRight: '8px' }}
+                  /> */}
                   {/* {hehe && <ImageNew src={Hehe} alt="Hehe" className={css['hehe']} />} */}
+                  {/* <Button href="https://x.com/EFDevconnect" className="-translate-y-[2px]" color="black-1" fill fat> */}
+                  {/* Subscribe to Newsletter */}
+                  {/* </Button> */}
+                  <a
+                    target="_blank"
+                    className="cursor-pointer flex items-center"
+                    rel="noreferrer"
+                    href="https://twitter.com/efdevconnect"
+                  >
+                    <TwitterIcon style={{ fill: 'black' }} />
+                  </a>
+                  <a
+                    target="_blank"
+                    className="cursor-pointer flex items-center"
+                    rel="noreferrer"
+                    href="https://t.me/efdevconnect"
+                  >
+                    <TelegramIcon style={{ fill: 'black' }} />
+                  </a>
+                  <a
+                    target="_blank"
+                    className="cursor-pointer flex items-center"
+                    rel="noreferrer"
+                    href="https://warpcast.com/efdevconnect"
+                  >
+                    <FarcasterIcon style={{ fill: 'black' }} />
+                  </a>
+
+                  <MailIcon
+                    style={{ fill: 'black', display: 'block', cursor: 'pointer' }}
+                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                  />
                 </div>
 
                 <div className={css['scroll-for-more']}>
@@ -1314,10 +1368,11 @@ const Home: NextPage = (props: any) => {
 
                   <div className="mt-6">
                     <p className={css['big-description']}>
-                      Devconnect aims to bring together Ethereum&apos;s most important{' '}
+                      Devconnect is a week-long gathering of{' '}
                       <b>
-                        <span className={css['red-underline']}>builders</span>, researchers, and its community.
-                      </b>
+                        <span className={css['red-underline']}>independent Ethereum events</span>
+                      </b>{' '}
+                      to make progress together.
                     </p>
 
                     <p className="large-text margin-top-less">

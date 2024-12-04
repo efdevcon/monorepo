@@ -140,7 +140,16 @@ const StatsAnimation = () => {
     const useFillerObjects = window.matchMedia('(min-width: 800px)').matches
 
     if (useFillerObjects) {
-      const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
+      // const icons = ['unicorn.png', 'panda.png', 'mountain.png', 'rocket.png']
+      const icons = [
+        'flower-pink.png',
+        'flower-red.png',
+        'cloud.png',
+        'kite.png',
+        'leaves.png',
+        'lantern.png',
+        'riceball.png',
+      ]
       const colors = ['#F5D222', '#88C43F', '#E55066', '#0FADCF', '#00B3A4', '#F69022', '#E4F6FA']
 
       const canvasWidth = width // Width of the canvas
