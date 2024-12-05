@@ -151,19 +151,19 @@ export default async function Image({ params }: { params: { id: string } }) {
                 fontSize:
                   data.title.length > 100
                     ? "82px"
-                    : data.title.length > 50
+                    : data.title.length > 45
                     ? "92px"
                     : "102px",
                 lineHeight:
                   data.title.length > 100
                     ? "1.1em"
-                    : data.title.length > 50
+                    : data.title.length > 45
                     ? "1.15em"
                     : "1.2em",
                 maxHeight:
                   data.title.length > 100
                     ? "3.3em"
-                    : data.title.length > 50
+                    : data.title.length > 45
                     ? "3.45em"
                     : "3.6em",
                 textOverflow: "ellipsis",
