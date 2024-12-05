@@ -1,15 +1,27 @@
 import { GetData } from '@/clients/filesystem'
 import { GetAuthenticatedYoutubeClient } from '@/clients/google'
 import { readFileSync, writeFileSync } from 'fs'
+import { youtube_v3 } from 'googleapis'
+
+let youtube: youtube_v3.Youtube
+let processedYouTubeDescriptions: string[] = JSON.parse(readFileSync('src/scripts/youtube-descriptions.json', 'utf8'))
+let processedYouTubeThumbnails: string[] = JSON.parse(readFileSync('src/scripts/youtube-thumbnails.json', 'utf8'))
 
 async function main() {
+  // console.log('Syncing YouTube descriptions..')
+  // await syncDescriptions()
+
+  console.log('Syncing YouTube thumbnails..')
+  await syncThumbnails()
+}
+
+async function syncDescriptions() {
   const speakers = GetData('speakers')
   const sessions = GetData('sessions/devcon-7')
 
-  let youtube = await GetAuthenticatedYoutubeClient()
-  let processedYouTubeIds: string[] = JSON.parse(readFileSync('src/scripts/youtube-descriptions.json', 'utf8'))
+  if (!youtube) youtube = await GetAuthenticatedYoutubeClient()
 
-  for (const session of sessions.filter((s: any) => s.sources_youtubeId && !processedYouTubeIds.includes(s.sources_youtubeId))) {
+  for (const session of sessions.filter((s: any) => s.sources_youtubeId && !processedYouTubeDescriptions.includes(s.sources_youtubeId))) {
     console.log('-', session.sourceId, `https://studio.youtube.com/video/${session.sources_youtubeId}/edit`)
 
     const sessionSpeakers = session.speakers.map((i: any) => speakers.find((s: any) => s.id === i))
@@ -43,7 +55,7 @@ async function main() {
         },
       })
 
-      if (res.status === 200) processedYouTubeIds.push(session.sources_youtubeId)
+      if (res.status === 200) processedYouTubeDescriptions.push(session.sources_youtubeId)
     } catch (err: any) {
       console.error(`=> [ERROR] Processing ${session.sourceId}`, err.status, err.errors?.[0]?.message)
       if (err.status === 404) {
@@ -58,7 +70,36 @@ async function main() {
     }
   }
 
-  writeFileSync('src/scripts/youtube-descriptions.json', JSON.stringify(processedYouTubeIds, null, 2))
+  writeFileSync('src/scripts/youtube-descriptions.json', JSON.stringify(processedYouTubeDescriptions, null, 2))
+}
+
+async function syncThumbnails() {
+  const sessions = GetData('sessions/devcon-7')
+  const filtered = sessions.filter((s: any) => s.sources_youtubeId && !processedYouTubeThumbnails.includes(s.sources_youtubeId))
+
+  if (!youtube) youtube = await GetAuthenticatedYoutubeClient()
+
+  for (const session of filtered.slice(0, 50)) {
+    console.log('-', session.sourceId, `https://studio.youtube.com/video/${session.sources_youtubeId}/edit`)
+
+    try {
+      const imageUrl = `https://devcon-social.netlify.app/av/${session.sourceId}/opengraph-image`
+      const response = await fetch(imageUrl)
+      const imageBuffer = Buffer.from(await response.arrayBuffer())
+
+      const res = await youtube.thumbnails.set({
+        videoId: session.sources_youtubeId,
+        media: {
+          body: imageBuffer,
+        },
+      })
+
+      if (res.status === 200) processedYouTubeThumbnails.push(session.sources_youtubeId)
+    } catch (err: any) {
+      console.error(`=> [ERROR] Processing ${session.sourceId}`, err.status, err.errors?.[0]?.message)
+    }
+  }
+  writeFileSync('src/scripts/youtube-thumbnails.json', JSON.stringify(processedYouTubeThumbnails, null, 2))
 }
 
 function getSessionDescription(session: any, speakers: any[]) {
