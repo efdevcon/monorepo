@@ -49,18 +49,36 @@ export function getTrackColor(track?: string) {
   return "bg-[#FFEDDF]";
 }
 
-export function getTitleClass(title: string, av?: boolean) {
+export function getSpeakerClass(speakers: any[], av?: boolean) {
+  // return "text-4xl";
+
+  const totalLength = speakers.map((i) => i.name).join(", ").length;
+  console.log("SPEAKER Length", totalLength, av ? "AV" : "SCHEDULE");
+  if (totalLength >= 60) return "text-4xl";
+  if (totalLength >= 30) return "text-6xl";
+
+  return "text-7xl";
+}
+
+export function getTitleClass(title: string, av?: boolean, cls?: boolean) {
   console.log("TITLE Length", title.length, av ? "AV" : "SCHEDULE");
 
   if (av) {
-    if (title.length > 150) return "text-5xl leading-normal";
-    if (title.length > 100) return "text-6xl leading-tight";
-    if (title.length > 85) return "text-6xl leading-normal";
-    if (title.length > 80) return "text-7xl leading-snug";
-    if (title.length > 70) return "text-7xl leading-normal";
-    if (title.length > 35) return "text-7xl leading-normal";
-    if (title.length >= 18) return "text-8xl leading-normal";
-    return "text-9xl leading-normal";
+    if (title.length > 150)
+      return cls ? "text-6xl leading-normal" : "text-5xl leading-normal";
+    if (title.length > 100)
+      return cls ? "text-7xl leading-tight" : "text-6xl leading-tight";
+    if (title.length > 85)
+      return cls ? "text-7xl leading-normal" : "text-6xl leading-normal";
+    if (title.length > 80)
+      return cls ? "text-8xl leading-snug" : "text-7xl leading-snug";
+    if (title.length > 70)
+      return cls ? "text-8xl leading-normal" : "text-8xl leading-normal";
+    if (title.length > 35) return cls ? "text-8xl leading-normal" : "text-8xl";
+    if (title.length >= 18)
+      return cls ? "text-9xl leading-normal" : "text-8xl leading-normal";
+
+    return cls ? "text-10xl leading-normal" : "text-9xl leading-normal";
   }
 
   if (title.length > 150) return "text-3xl leading-normal";

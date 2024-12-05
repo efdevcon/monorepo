@@ -8,6 +8,7 @@ import {
   getTrackColor,
   getTrackImage,
   fetchSpeakerImages,
+  getSpeakerClass,
 } from "@/app/utils";
 
 // Initialize the plugins
@@ -45,6 +46,7 @@ export default async function Image({ params }: { params: { id: string } }) {
   }
 
   const speakerImages = await fetchSpeakerImages(data);
+  console.log("TITLE LENGTH", data.title.length);
 
   return new ImageResponse(
     (
@@ -89,7 +91,7 @@ export default async function Image({ params }: { params: { id: string } }) {
           <div tw="flex absolute bottom-0 right-0">
             <img
               src={`${url}/programming/${getTrackImage(data.track)}`}
-              tw="h-[56rem]"
+              tw="h-[38rem]"
             />
           </div>
         )}
@@ -131,21 +133,68 @@ export default async function Image({ params }: { params: { id: string } }) {
           )}
         </div>
 
-        <div tw="flex flex-col justify-between w-[1080px] absolute top-20 left-20">
+        <div
+          tw={`flex flex-col justify-between absolute top-20 left-20 ${
+            data.track?.startsWith("[CLS]") ? "w-full" : "w-[1320px]"
+          }`}
+        >
           <img src={`${url}/dc7/logo.png`} tw="w-96 mb-12" />
 
-          <div tw="flex flex-col justify-center h-80 mb-4">
+          <div tw="flex flex-col justify-center h-80 mb-4 overflow-hidden">
             <span
-              tw={`text-[#36364C] leading-[12px] font-medium ${getTitleClass(
-                data.title,
-                true
-              )}`}
+              tw={`text-[#36364C] leading-tight font-medium`}
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: "3",
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                fontSize:
+                  data.title.length > 100
+                    ? "82px"
+                    : data.title.length > 50
+                    ? "92px"
+                    : "112px",
+                lineHeight:
+                  data.title.length > 100
+                    ? "1.1em"
+                    : data.title.length > 50
+                    ? "1.15em"
+                    : "1.2em",
+                maxHeight:
+                  data.title.length > 100
+                    ? "3.3em"
+                    : data.title.length > 50
+                    ? "3.45em"
+                    : "3.6em",
+                textOverflow: "ellipsis",
+              }}
             >
               {data.title}
             </span>
           </div>
           <div tw="flex">
-            <span tw="text-[#5B5F84] text-4xl font-medium mt-4 leading-normal">
+            <span
+              tw={`text-[#5B5F84] font-medium mt-4 ${getSpeakerClass(
+                data.speakers,
+                true
+              )}`}
+              style={{
+                display: "-webkit-box",
+                WebkitLineClamp: "2",
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+                fontSize:
+                  data.speakers.map((i: any) => i.name).join(", ").length > 80
+                    ? "40px"
+                    : data.speakers.map((i: any) => i.name).join(", ").length >
+                      40
+                    ? "56px"
+                    : "72px",
+                lineHeight: "1.2em",
+                maxHeight: "2.4em", // 2 lines * 1.2em line height
+                textOverflow: "ellipsis",
+              }}
+            >
               {data.speakers.map((i: any) => i.name).join(", ")}
             </span>
           </div>
