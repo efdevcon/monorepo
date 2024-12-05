@@ -153,7 +153,7 @@ export default async function Image({ params }: { params: { id: string } }) {
                     ? "82px"
                     : data.title.length > 50
                     ? "92px"
-                    : "112px",
+                    : "102px",
                 lineHeight:
                   data.title.length > 100
                     ? "1.1em"
