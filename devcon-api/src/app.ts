@@ -12,6 +12,7 @@ import { router } from './routes'
 import { SERVER_CONFIG, SESSION_CONFIG } from '@/utils/config'
 import pgSession from 'connect-pg-simple'
 import { getDbPool } from './utils/db'
+import { existsSync } from 'fs'
 
 const app = express()
 
@@ -89,7 +90,14 @@ app.use(session(sessionConfig))
 
 // static endpoints
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))
-app.use('/data', express.static(path.join(__dirname, '..', 'data')))
+const dataPath = path.join(__dirname, '..', 'data')
+console.log('Serving static files from:', dataPath)
+app.use('/data', express.static(dataPath))
+if (existsSync(dataPath)) {
+  console.log('✅ Data directory exists')
+} else {
+  console.warn('⚠️ Data directory not found!')
+}
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // add routes before error handlers
