@@ -28,7 +28,7 @@ async function exportSlides() {
           JSON.stringify(
             {
               ...session,
-              resources_slides: `https://api.devcon.org/slides/${session.eventId}/${session.id}.pdf`,
+              resources_slides: `https://api.devcon.org/data/slides/${session.eventId}/${session.id}.pdf`,
             },
             null,
             2

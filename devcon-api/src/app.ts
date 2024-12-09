@@ -89,6 +89,7 @@ app.use(session(sessionConfig))
 
 // static endpoints
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))
+app.use('/data', express.static(path.join(__dirname, '..', 'data')))
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // add routes before error handlers
