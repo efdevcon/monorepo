@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "postbuild": "cp -r data dist/data",
     "start": "NODE_PATH=./dist node ./dist/devcon-api/src/index",
     "dev:generate": "yarn swagger:generate && yarn db:generate && nodemon ./src/index.ts",
     "dev": "nodemon ./src/index.ts",
