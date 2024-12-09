@@ -95,6 +95,10 @@ console.log('Serving static files from:', dataPath)
 app.use('/data', express.static(dataPath))
 if (existsSync(dataPath)) {
   console.log('✅ Data directory exists')
+  console.log('Sessions folder exists:', existsSync(path.join(dataPath, 'sessions')))
+  console.log('Slides folder exists:', existsSync(path.join(dataPath, 'slides')))
+  const file = path.join(dataPath, 'slides', 'devcon-7', 'a-cat-and-mouse-game-how-to-frontrun-a-transaction-in-the-future.pdf')
+  console.log('File exists:', existsSync(file))
 } else {
   console.warn('⚠️ Data directory not found!')
 }
