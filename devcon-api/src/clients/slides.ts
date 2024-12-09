@@ -1,6 +1,4 @@
-import { AuthenticateServiceAccount } from '@/clients/google'
-import { CONFIG } from '@/utils/config'
-import fs from 'fs'
+import { AuthenticateServiceAccount, GetAccessToken } from '@/clients/google'
 import { GoogleApis } from 'googleapis'
 
 const SCOPES = ['https://www.googleapis.com/auth/presentations', 'https://www.googleapis.com/auth/drive']
@@ -12,6 +10,7 @@ const skipPermissions = false // ONLY SET TRUE FOR LOCAL TESTING (DO NOT COMMIT)
 const sendEmails = false
 
 let client: GoogleApis | null = null
+let token: string | null | undefined = undefined
 
 export async function CreateFolders(folders: string[]) {
   console.log('Create folders', folders)
@@ -190,13 +189,22 @@ export async function RunPermissions(title: string, id: string, emails: string[]
   }
 }
 
-export async function DownloadSlides(id: string) {
-  const res = await fetch(`https://docs.google.com/presentation/d/${id}/export/pdf?opts=shs%3D0`)
-  const arr = await res.arrayBuffer()
-  const buffer = Buffer.from(arr)
+export async function GetSlides(id: string) {
+  if (!token) {
+    token = (await GetAccessToken(SCOPES)).token
+  }
+
+  const res = await fetch(`https://docs.google.com/presentation/d/${id}/export/pdf?opts=shs%3D0`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  const arrayBuffer = await res.arrayBuffer()
+  const buffer = Buffer.from(arrayBuffer)
 
   if (buffer.length > 3125) {
-    fs.writeFileSync(`${CONFIG.DATA_FOLDER}/slides/${id}.pdf`, buffer)
+    return buffer
   } else {
     console.log('Invalid slides', id)
   }

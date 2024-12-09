@@ -9,6 +9,8 @@ import { PrismaClient } from '@prisma/client'
 import { API_DEFAULTS } from '@/utils/config'
 import { CommitSession } from '@/services/github'
 import { apikeyHandler } from '@/middleware/apikey'
+import path from 'path'
+import { existsSync } from 'fs'
 
 const client = new PrismaClient()
 
@@ -17,6 +19,7 @@ sessionsRouter.get(`/sessions`, GetSessions)
 sessionsRouter.get(`/sessions/:id`, GetSession)
 sessionsRouter.put(`/sessions/:id`, apikeyHandler, UpdateSession)
 sessionsRouter.put(`/sessions/sources/:id`, apikeyHandler, UpdateSessionSources)
+sessionsRouter.get(`/sessions/:id/slides`, GetSessionSlides)
 sessionsRouter.get(`/sessions/:id/image`, GetSessionImage)
 sessionsRouter.get(`/sessions/:id/related`, GetSessionRelated)
 
@@ -228,6 +231,25 @@ export async function GetSessionRelated(req: Request, res: Response) {
   if (!data) return res.status(404).send({ status: 404, message: 'Not Found' })
 
   res.status(200).send({ status: 200, message: '', data: data.map((i) => i.other) })
+}
+
+export async function GetSessionSlides(req: Request, res: Response) {
+  // #swagger.tags = ['Sessions']
+  const data = await client.session.findFirst({
+    where: {
+      OR: [{ id: req.params.id }, { sourceId: req.params.id }],
+    },
+  })
+
+  if (!data) return res.status(404).send({ status: 404, message: 'Session not found' })
+
+  const filePath = path.join(__dirname, '../../data/slides/', data.eventId, `${data.id}.pdf`)
+  if (!existsSync(filePath)) return res.status(404).send({ status: 404, message: 'File not found' })
+
+  res.setHeader('Content-Type', 'application/pdf')
+  res.setHeader('Cache-Control', `immutable, no-transform, s-max-age=2592000, max-age=2592000`)
+  res.setHeader('Content-Disposition', `inline; filename="${data.id}.pdf"`)
+  res.sendFile(filePath)
 }
 
 export async function GetSessionImage(req: Request, res: Response) {
