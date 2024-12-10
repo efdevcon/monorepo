@@ -76,6 +76,7 @@ import VideoIcon from 'assets/icons/video-play.svg'
 import WhiteRabbit from 'assets/images/dc-7/dashboard-highlights/white-rabbit.png'
 import PenIcon from 'assets/icons/pen.svg'
 import QuestionsIcon from 'assets/icons/questions.svg'
+import SlidesIcon from 'assets/icons/slides.svg'
 import { Button } from 'lib/components/button'
 import { PersonalizedSuggestions } from './recommendations'
 import Timeline from './timeline'
@@ -1570,6 +1571,17 @@ const Integrations = ({ session }: { session: SessionType }) => {
 
   return (
     <>
+      {session.resources_slides && (
+        <Link
+          to={session.resources_slides ?? ''}
+          className="flex border border-solid border-[#E1E4EA] items-center rounded-2xl py-2 px-4 gap-2 mt-1 bg-white cursor-pointer"
+        >
+          <SlidesIcon className="w-5 h-5" style={{ fill: '#7D52F4' }} />
+
+          <p className="text-xs font-semibold ">Presentation Slides</p>
+        </Link>
+      )}
+
       <div
         className="flex justify-evenly shrink-0 text-xs border border-solid border-[#E1E4EA] rounded-2xl p-1 gap-2 my-1 font-semibold bg-white"
         // @ts-ignore

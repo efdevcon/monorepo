@@ -38,4 +38,5 @@ export interface Session {
   sources_livepeerId?: string
   sources_streamethId?: string
   transcript_text?: string
+  resources_slides?: string
 }
