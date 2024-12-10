@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
-    "postbuild": "cp -rv data/* dist/devcon-api/data/ && cp -rv public/* dist/devcon-api/public/",
+    "postbuild": "node -e \"require('fs-extra').copySync('data', 'dist/devcon-api/data') && require('fs-extra').copySync('public', 'dist/devcon-api/public')\"",
     "start": "NODE_PATH=./dist node ./dist/devcon-api/src/index",
     "dev:generate": "yarn swagger:generate && yarn db:generate && nodemon ./src/index.ts",
     "dev": "nodemon ./src/index.ts",

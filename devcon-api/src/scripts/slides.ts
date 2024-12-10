@@ -10,9 +10,7 @@ async function main() {
 
 async function exportSlides() {
   console.log('Export slides...')
-  const sessions = GetData('sessions/devcon-7')
-    .filter((i: any) => !i.resources_slides)
-    .slice(0, 10)
+  const sessions = GetData('sessions/devcon-7').filter((i: any) => !i.resources_slides)
 
   for (const session of sessions) {
     const slides = session.resources_presentation

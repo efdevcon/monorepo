@@ -90,18 +90,7 @@ app.use(session(sessionConfig))
 
 // static endpoints
 app.use('/static', express.static(path.join(__dirname, '..', 'public')))
-const dataPath = path.join(__dirname, '..', 'data')
-console.log('Serving static files from:', dataPath)
-app.use('/data', express.static(dataPath))
-if (existsSync(dataPath)) {
-  console.log('✅ Data directory exists')
-  console.log('Sessions folder exists:', existsSync(path.join(dataPath, 'sessions')))
-  console.log('Slides folder exists:', existsSync(path.join(dataPath, 'slides')))
-  const file = path.join(dataPath, 'slides', 'devcon-7', 'a-cat-and-mouse-game-how-to-frontrun-a-transaction-in-the-future.pdf')
-  console.log('File exists:', existsSync(file))
-} else {
-  console.warn('⚠️ Data directory not found!')
-}
+app.use('/data', express.static(path.join(__dirname, '..', 'data')))
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // add routes before error handlers
