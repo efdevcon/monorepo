@@ -132,6 +132,34 @@ export async function CreatePresentationFromTemplate(title: string, id: string, 
   }
 }
 
+export async function UploadSlides(id: string, buffer: Buffer) {
+  if (!client) {
+    client = await AuthenticateServiceAccount(SCOPES)
+  }
+  const drive = client.drive('v3')
+
+  try {
+    console.log('Upload slides', id)
+    const file = await drive.files.create({
+      supportsAllDrives: true,
+      requestBody: {
+        name: `${id}.pdf`,
+        parents: ['1w2B2d5ZM1i03HrV5TAlkLKuihkgDYlxf'],
+      },
+      media: {
+        mimeType: 'application/pdf',
+        body: require('stream').Readable.from(buffer),
+      },
+    })
+
+    console.log('Slides uploaded', file.data.id)
+    return file.data.id
+  } catch (e) {
+    console.log('Error upload slides', id)
+    console.error(e)
+  }
+}
+
 export async function RunPermissions(title: string, id: string, emails: string[]) {
   if (!client) {
     client = await AuthenticateServiceAccount(SCOPES)
