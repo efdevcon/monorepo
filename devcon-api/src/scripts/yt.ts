@@ -79,7 +79,7 @@ async function syncThumbnails() {
 
   if (!youtube) youtube = await GetAuthenticatedYoutubeClient()
 
-  for (const session of filtered.slice(0, 50)) {
+  for (const session of filtered.slice(0, 105)) {
     console.log('-', session.sourceId, `https://studio.youtube.com/video/${session.sources_youtubeId}/edit`)
 
     try {
