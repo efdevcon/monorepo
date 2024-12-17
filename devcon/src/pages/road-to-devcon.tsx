@@ -482,11 +482,11 @@ const Hero = (props: any) => {
 
               <p className="text-slate-100 mt-4 text-sm">
                 <Link to="#events" className="text-underline">
-                  Find the event that vibes with you
+                  Check the scheduled Satellite events
                 </Link>
-                . Or if you’re missing something…{' '}
+                ...{' '}
                 <span className="text-underline cursor-pointer" onClick={() => goToSection(3)}>
-                  follow me!
+                  Or apply to organize your own event by following me!
                 </span>{' '}
                 🦄✨
               </p>
@@ -567,7 +567,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   return (
     <>
       <div className="flex justify-between items-center mb-4 gap-2">
-        <p className="h2">RTD Events</p>
+        <p className="h2">Devcon Satellite Events</p>
         <input
           className={`${css['input']} rounded-full p-1.5 text-base lg:text-sm px-4 border-solid border border-slate-300`}
           type="text"
@@ -836,9 +836,9 @@ export default pageHOC(function RoadToDevcon(props: any) {
           <Gallery />
 
           {/* <div className="border-t border-solid border-bottom border-[#b9b9b9] pb-4" id="grants"> */}
-          <div className="border-t border-solid border-[#b9b9b9] pb-4" id="grants">
+          {/* <div className="border-t border-solid border-[#b9b9b9] pb-4" id="grants">
             <RoadToDevconGrants pages={grantsPages} />
-          </div>
+          </div> */}
         </div>
       </Page>
     </>
