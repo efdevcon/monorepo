@@ -203,7 +203,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
         }`}
       >
         <motion.div
-          className={`${css['devcon-7-background']} pointer-events-none ${!isVisible ? 'hidden' : ''}`}
+          className={`${css['devcon-7-background']}  ${!isVisible ? 'hidden' : ''}`}
           ref={backdropRef}
           // initial={{ opacity: 1 }}
           // animate={{ opacity: isVisible ? 1 : 0 }}
