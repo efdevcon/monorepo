@@ -27,7 +27,7 @@ export const API_INFO = {
 export const API_DEFAULTS = {
   SIZE: 20,
   ORDER: 'desc',
-  githubDataUrl: 'https://raw.githubusercontent.com/efdevcon/api/dev/data',
+  githubDataUrl: 'https://raw.githubusercontent.com/efdevcon/monorepo/main/devcon-api/data',
 }
 
 export const CONFIG = {
