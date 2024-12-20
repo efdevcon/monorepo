@@ -24,14 +24,21 @@ export function ToNavigationData(nodes: any, videoTags?: any[], type?: 'default'
 export function ToArchiveNavigation(videoTags?: any[]): Array<Link> {
   const links = new Array<Link>()
   links.push({ title: 'Watch', url: '/archive/watch', type: 'page' })
-  const eventLinks = [6, 5, 4, 3, 2, 1, 0].map(
-    event =>
-      ({
+  const eventLinks = [
+    {
+      title: 'Devcon 7',
+      url: 'https://app.devcon.org/schedule',
+      type: 'page',
+    },
+  ].concat(
+    [6, 5, 4, 3, 2, 1, 0].map(
+      event =>
+        ({
         title: `Devcon ${event}`,
         url: `/archive/watch?event=devcon-${event}`,
         type: 'page',
       } as Link)
-  )
+  ))
   const tagLinks = videoTags?.filter((i: string) => !!i).map(i => {
     return { title: i, url: `/archive/watch?tags=${encodeURIComponent(i)}`, type: 'page' } as Link
   })

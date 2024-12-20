@@ -21,7 +21,7 @@
     left: 0px;
   }
 
-  // Gradient
+  // Gradient f
   &:before {
     background-repeat: no-repeat;
     background-position: center right;
@@ -164,7 +164,8 @@
 .info {
   @include layout-content;
   height: 100%;
-
+  position: relative;
+  
   .path {
     display: flex;
     padding-top: $gaps-gap-4;
@@ -262,6 +263,7 @@
 }
 
 .scenes {
+  position: relative;
   margin-bottom: $gaps-gap-4;
   width: 100%;
   display: grid;
@@ -396,5 +398,48 @@
 
   :global(.gatsby-image-wrapper) {
     width: 100%;
+  }
+}
+
+.banner {
+    
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  // bottom: 0px; 
+  // padding: 5px;
+  
+  a {
+    color: white;
+    text-decoration: underline;
+  }
+
+ 
+  :global(.section) {
+    > * {
+      background-color: #30354b;
+      color: white;
+      font-size: 14px;
+      padding: 4px 10px;
+      margin: 8px;
+      border-radius: 4px;
+      
+      // Add animation
+      opacity: 0;
+      animation: fadeIn 0.5s ease-in forwards;
+    }
+  }
+}
+
+// Add keyframes at the end of the file
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
