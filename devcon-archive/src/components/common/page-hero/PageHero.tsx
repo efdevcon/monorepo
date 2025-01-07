@@ -36,6 +36,7 @@ type PathSegment = {
 }
 
 type PageHeroProps = {
+  banner?: React.ReactNode
   title?: string
   titleSubtext?: string
   titleClassName?: string
@@ -169,6 +170,12 @@ export const PageHero = (props: PageHeroProps) => {
           </div>
 
           {props.children}
+
+          {props.banner && (
+            <div className={css['banner']}>
+              <div className="section">{props.banner}</div>
+            </div>
+          )}
 
           {props.scenes && (
             <div className={css['scenes']}>

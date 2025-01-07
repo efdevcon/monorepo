@@ -12,6 +12,7 @@ import { Interests } from './interests'
 import OnDemandVideoIcon from 'src/assets/icons/on_demand_video.svg'
 import { Button } from 'src/components/common/button'
 import { ARCHIVE_DESCRIPTION, ARCHIVE_IMAGE_URL, ARCHIVE_TITLE } from 'src/utils/constants'
+import { Link } from 'src/components/common/link'
 // import LibButton from 'lib/components/button'
 
 type ArchiveProps = {}
@@ -72,7 +73,13 @@ export const Archive = (props: ArchiveProps) => {
         title="Archive"
         titleClassName={css['white-title']}
         // titleSubtext="Devcon"
-      />
+        banner={
+          <div>
+            Devcon 7 videos will be added to the archive soon.{' '}
+            <Link to="https://app.devcon.org/schedule">Visit the app in the meantime to watch them now.</Link>
+          </div>
+        }
+      ></PageHero>
 
       <div className={css['content']}>
         <Interests />

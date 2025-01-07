@@ -908,33 +908,6 @@
         }
       }
     },
-    "/sessions/{id}/slides": {
-      "get": {
-        "tags": [
-          "Sessions"
-        ],
-        "description": "",
-        "produces": [
-          "application/pdf"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
     "/sessions/{id}/image": {
       "get": {
         "tags": [
