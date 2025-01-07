@@ -955,23 +955,6 @@ const DevaBot = ({
                                 </div>
                               )
                             )}
-                            {threadHistory?.map(
-                              (thread: any, index: number) => (
-                                <div
-                                  key={thread.threadID}
-                                  onClick={() => setThread(thread.threadID)}
-                                  className={cn(
-                                    "border shrink-0 border-solid border-gray-300 rounded-lg p-2 cursor-pointer hover:bg-gray-100 truncate mx-2 mb-2",
-                                    {
-                                      "mt-2": index === 0,
-                                    }
-                                  )}
-                                >
-                                  {thread.createdAt} -{" "}
-                                  <strong>{thread.convoTitle}</strong>
-                                </div>
-                              )
-                            )}
                           </div>
                         </motion.div>
                       )}
