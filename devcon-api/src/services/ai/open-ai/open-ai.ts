@@ -264,6 +264,49 @@ export const api = (() => {
         }
       }
     },
+    getThreadMessages: async (threadID: string) => {
+      const messages = await openai.beta.threads.messages.list(threadID)
+
+      const formattedMessagesPromises = messages.data.reverse().map(async (message: any) => {
+        const content = message.content[0]
+
+        let references
+
+        if (content.text.annotations) {
+          const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
+            if (annotation.type === 'file_citation') {
+              const file = await openai.files.retrieve(annotation.file_citation.file_id)
+              const fileUrl = filenameToUrl[file.filename.split('.txt')[0]]
+
+              return {
+                file,
+                fileUrl: fileUrl,
+                textReplace: annotation.text,
+              }
+            }
+          })
+
+          references = await Promise.all(fileAnnotationsPromises)
+        }
+
+        let text = content.text.value
+
+        if (references) {
+          for (const reference of references) {
+            text = text.replace(reference.textReplace, ``)
+          }
+        }
+
+        return {
+          id: message.id,
+          role: message.role,
+          text,
+          files: references || [],
+        }
+      })
+
+      return Promise.all(formattedMessagesPromises)
+    },
     createMessageStream: async (assistantID: string, userMessage: string, threadID: string) => {
       if (!threadID) {
         const thread = await _interface.createThread()
@@ -348,49 +391,8 @@ export const api = (() => {
           // After the stream is complete, fetch the final run and process annotations
           if (runID) {
             const completedRun = await openai.beta.threads.runs.retrieve(threadID, runID)
-            const messages = await openai.beta.threads.messages.list(threadID)
-
-            const formattedMessagesPromises = messages.data.reverse().map(async (message: any) => {
-              const content = message.content[0]
-
-              let references
-
-              if (content.text.annotations) {
-                const fileAnnotationsPromises = await content.text.annotations.map(async (annotation: any) => {
-                  if (annotation.type === 'file_citation') {
-                    const file = await openai.files.retrieve(annotation.file_citation.file_id)
-
-                    // @ts-ignore
-                    const fileUrl = filenameToUrl[file.filename.split('.txt')[0]]
-
-                    return {
-                      file,
-                      fileUrl: fileUrl,
-                      textReplace: annotation.text,
-                    }
-                  }
-                })
-
-                references = await Promise.all(fileAnnotationsPromises)
-              }
-
-              let text = content.text.value
-
-              if (references) {
-                for (const reference of references) {
-                  text = text.replace(reference.textReplace, ``)
-                }
-              }
-
-              return {
-                id: message.id,
-                role: message.role,
-                text,
-                files: references || [],
-              }
-            })
-
-            const formattedMessages = await Promise.all(formattedMessagesPromises)
+            const formattedMessages = await _interface.getThreadMessages(threadID)
+            const rawMessages = await openai.beta.threads.messages.list(threadID)
 
             yield {
               type: 'done',
@@ -399,7 +401,7 @@ export const api = (() => {
               threadID,
               runID,
               status: completedRun.status,
-              rawMessages: messages.data,
+              rawMessages: rawMessages.data,
               messages: formattedMessages,
             }
           }

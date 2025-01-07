@@ -32,6 +32,19 @@ const getRateLimiter = async (): Promise<RateLimiterPostgres> => {
   })
 }
 
+aiRouter.get('/devabot/threads/:threadID', async (req: Request, res: Response) => {
+  const { threadID } = req.params
+
+  try {
+    const messages = await api.getThreadMessages(threadID)
+
+    res.json(messages)
+  } catch (e) {
+    console.error(e, 'error')
+    res.status(500).json({ error: 'Internal Server Error' })
+  }
+})
+
 aiRouter.post('/devabot', async (req: Request, res: Response) => {
   try {
     const rateLimiter = await getRateLimiter()
@@ -46,28 +59,25 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
 
   console.log(threadID, 'msg thread id')
 
+  // Set headers for streaming before any async operations
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache, no-transform',
+    Connection: 'keep-alive',
+  })
+
   try {
-    // Create a stream for the AI response
     const stream = await api.createMessageStream('asst_B3UJxQ8V53rmVWxaqu3Iraif', message, threadID)
 
-    // Set headers for streaming
-    res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache, no-transform',
-      Connection: 'keep-alive',
-    })
-
-    // Stream the response to the client
     for await (const chunk of stream) {
       res.write(JSON.stringify(chunk) + '_chunk_end_')
     }
-
-    // End the response
-    res.end()
   } catch (e) {
     console.error(e, 'error')
-
-    res.status(500).json({ error: 'Internal Server Error' })
+    // Send error through the stream instead of trying to send a new response
+    res.write(JSON.stringify({ error: 'Internal Server Error' }) + '_chunk_end_')
+  } finally {
+    res.end()
   }
 })
 

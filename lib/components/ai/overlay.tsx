@@ -162,6 +162,75 @@ const DevaBot = ({
     setError("");
   }, [query]);
 
+  React.useEffect(() => {
+    if (threadID) {
+      // Get existing threads from localStorage
+      const existingThreads = JSON.parse(
+        localStorage.getItem("devabot_threads") || "[]"
+      );
+
+      // Only add if this thread isn't already saved
+      if (
+        !existingThreads.some((thread: any) => thread.threadID === threadID)
+      ) {
+        existingThreads.push({
+          threadID,
+          convoTitle: query,
+          createdAt: new Date().toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+          }),
+        });
+
+        localStorage.setItem(
+          "devabot_threads",
+          JSON.stringify(existingThreads)
+        );
+
+        syncThreadHistory();
+      }
+    }
+  }, [threadID]);
+
+  const [threadHistory, setThreadHistory] = useState([]);
+
+  const syncThreadHistory = () => {
+    const threadHistory = JSON.parse(
+      localStorage.getItem("devabot_threads") || "[]"
+    );
+
+    setThreadHistory(threadHistory);
+  };
+
+  React.useEffect(() => {
+    // Load conversation history on mount
+    syncThreadHistory();
+  }, []);
+
+  // useEffect(() => {
+  //   const threadID = "thread_sfFH6abzIXEeVdntxuXinBwS";
+  //   const url =
+  //     process.env.NODE_ENV === "development"
+  //       ? `http://localhost:4000/devabot/threads/${threadID}`
+  //       : `https://api.devcon.org/devabot/threads/${threadID}`;
+
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     credentials: "include",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setThreadID(threadID);
+  //       setMessages(data);
+  //       setStreamingMessage("");
+  //       setExecutingQuery(false);
+  //     });
+  // }, []);
+
   // React.useEffect(() => {
   //   if (typeof toggled === "boolean") {
   //     onToggle(toggled);
@@ -221,12 +290,40 @@ const DevaBot = ({
     };
   }, []);
 
+  const setThread = (threadID: string) => {
+    const url =
+      process.env.NODE_ENV === "development"
+        ? `http://localhost:4000/devabot/threads/${threadID}`
+        : `https://api.devcon.org/devabot/threads/${threadID}`;
+
+    fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setThreadID(threadID);
+        setMessages(data);
+        setStreamingMessage("");
+        setExecutingQuery(false);
+        setIsAtBottom(true);
+      })
+      .catch((e) => {
+        setError("An error occurred: " + e.message);
+        setExecutingQuery(false);
+      });
+  };
+
   const reset = () => {
     setExecutingQuery(false);
     setStreamingMessage("");
     setError("");
     resetThreadID();
     resetMessages();
+    setIsAtBottom(true);
   };
 
   const onSend = async (overrideQuery?: string) => {
@@ -538,7 +635,7 @@ const DevaBot = ({
                 <>
                   <div className="relative flex flex-col grow w-full gap-4 no-scrollbar px-4">
                     <div
-                      className="relative overflow-auto flex flex-col grow w-full gap-2 no-scrollbar pb-10 mt-4 text-base lg:text-sm"
+                      className="relative overflow-auto flex flex-col grow w-full gap-2 no-scrollbar pb-10 mt-2 text-base lg:text-sm"
                       ref={messagesContainerRef}
                       onScroll={checkIfAtBottom}
                     >
@@ -757,8 +854,7 @@ const DevaBot = ({
                                     This is an MVP and Deva may sometimes
                                     provide answers that are not true - we take
                                     no responsibility for, or endorse, anything
-                                    Deva says beyond Event information. All chat
-                                    data will be deleted after Devcon.
+                                    Deva says beyond Event information.
                                   </p>
                                 </div>
                               </div>
@@ -796,6 +892,8 @@ const DevaBot = ({
                   <AnimatePresence>
                     {!executingQuery &&
                       !streamingMessage &&
+                      threadHistory &&
+                      threadHistory.length === 0 &&
                       messages &&
                       messages.length === 0 && (
                         <motion.div
@@ -803,7 +901,7 @@ const DevaBot = ({
                           animate={{ opacity: 1 }}
                           exit={{ opacity: 0 }}
                           transition={{ duration: 0.5 }}
-                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-4"
+                          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-lg w-full flex items-center justify-center px-4 text-center flex-col gap-2"
                         >
                           <Image
                             src={AIImage}
@@ -818,12 +916,72 @@ const DevaBot = ({
                         </motion.div>
                       )}
                   </AnimatePresence>
+                  <AnimatePresence>
+                    {!executingQuery &&
+                      !streamingMessage &&
+                      threadHistory &&
+                      threadHistory.length > 0 &&
+                      messages &&
+                      messages.length === 0 && (
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className="text-lg relative w-full flex text-sm text-center flex-col gap-2 grow px-4 items-end justify-end"
+                        >
+                          <div className="w-full max-h-[40vh] flex flex-col rounded-xl border border-solid border-gray-300 overflow-auto">
+                            <div className="font-bold sticky top-0 z-10 bg-white shrink-0 flex justify-between w-full items-center gap-1 border-b border-solid border-gray-300 p-2.5 px-3">
+                              <div className="shrink-0 flex gap-1 items-center">
+                                <SquareSparkles className="mr-1" />
+                                Conversation History
+                              </div>
+                              {/* <div className="shrink-0">Delete All</div> */}
+                            </div>
+                            {threadHistory?.map(
+                              (thread: any, index: number) => (
+                                <div
+                                  key={thread.threadID}
+                                  onClick={() => setThread(thread.threadID)}
+                                  className={cn(
+                                    "border shrink-0 border-solid border-gray-300 rounded-lg p-2 cursor-pointer hover:bg-gray-100 truncate mx-2 mb-2",
+                                    {
+                                      "mt-2": index === 0,
+                                    }
+                                  )}
+                                >
+                                  {thread.createdAt} -{" "}
+                                  <strong>{thread.convoTitle}</strong>
+                                </div>
+                              )
+                            )}
+                            {threadHistory?.map(
+                              (thread: any, index: number) => (
+                                <div
+                                  key={thread.threadID}
+                                  onClick={() => setThread(thread.threadID)}
+                                  className={cn(
+                                    "border shrink-0 border-solid border-gray-300 rounded-lg p-2 cursor-pointer hover:bg-gray-100 truncate mx-2 mb-2",
+                                    {
+                                      "mt-2": index === 0,
+                                    }
+                                  )}
+                                >
+                                  {thread.createdAt} -{" "}
+                                  <strong>{thread.convoTitle}</strong>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </motion.div>
+                      )}
+                  </AnimatePresence>
 
                   {messages.length > 0 && !executingQuery && (
-                    <div className="flex justify-start ml-2 w-full mb-2 shrink-0">
+                    <div className="flex justify-start ml-4 w-full mb-2 shrink-0 z-10 pointer-events-none">
                       <div
                         onClick={reset}
-                        className="shrink-0 select-none cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
+                        className="shrink-0 select-none pointer-events-auto cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
                       >
                         <p>Start New Conversation</p>
                       </div>
@@ -863,7 +1021,7 @@ const DevaBot = ({
                     })}
                   >
                     <SwipeToScroll scrollIndicatorDirections={{ right: true }}>
-                      <div className="flex mb-3">
+                      <div className="flex my-1">
                         <div
                           className={`flex flex-wrap gap-2 py-2 shrink-0 ${
                             messages.length > 0 ? "hidden" : ""
@@ -871,20 +1029,19 @@ const DevaBot = ({
                         >
                           {["What should I do at Devcon?", "Why SEA?"].map(
                             (suggestion, index, array) => (
-                              <Button
+                              <div
                                 key={index}
                                 {...draggable}
-                                className={`!text-black !py-1.5 !px-3 rounded !text-base lg:!text-sm plain border-none shadow bg-gray-100 ${
+                                className={`shrink-0 select-none pointer-events-auto cursor-pointer mr-1 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300 ${
                                   index === array.length - 1 ? "" : ""
                                 } ${index === 0 ? "ml-4" : ""}`}
-                                fat
                                 onClick={() => {
                                   setQuery(suggestion);
                                   textareaRef.current?.focus();
                                 }}
                               >
                                 {suggestion}
-                              </Button>
+                              </div>
                             )
                           )}
                         </div>
@@ -941,8 +1098,10 @@ const DevaBot = ({
                           }
                         )}
                         onClick={() => {
-                          setQuery("");
-                          textareaRef.current?.focus();
+                          if (!executingQuery) {
+                            setQuery("");
+                            textareaRef.current?.focus();
+                          }
                         }}
                       >
                         <CloseIcon
