@@ -26,6 +26,7 @@ import {
   threadIDState,
   messagesState,
 } from "./state"; // Adjust the import path
+import TrashIcon from "lib/assets/icons/trash.svg";
 import cn from "classnames";
 
 const Trigger = ({ className }: { className?: string }) => {
@@ -203,6 +204,17 @@ const DevaBot = ({
     setThreadHistory(threadHistory);
   };
 
+  const deleteThreadHistory = () => {
+    if (
+      window.confirm(
+        "Are you sure you want to delete all conversation history? This is irreversible."
+      )
+    ) {
+      localStorage.removeItem("devabot_threads");
+      setThreadHistory([]);
+    }
+  };
+
   React.useEffect(() => {
     // Load conversation history on mount
     syncThreadHistory();
@@ -295,6 +307,8 @@ const DevaBot = ({
       process.env.NODE_ENV === "development"
         ? `http://localhost:4000/devabot/threads/${threadID}`
         : `https://api.devcon.org/devabot/threads/${threadID}`;
+
+    setExecutingQuery(true);
 
     fetch(url, {
       method: "GET",
@@ -936,7 +950,12 @@ const DevaBot = ({
                                 <SquareSparkles className="mr-1" />
                                 Conversation History
                               </div>
-                              {/* <div className="shrink-0">Delete All</div> */}
+                              <div
+                                className="shrink-0 cursor-pointer"
+                                onClick={deleteThreadHistory}
+                              >
+                                <TrashIcon />
+                              </div>
                             </div>
                             {threadHistory?.map(
                               (thread: any, index: number) => (
