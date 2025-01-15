@@ -509,21 +509,21 @@ export const api = (() => {
       syncScheduleContent: async () => {
         console.log('syncing schedule assistant')
 
-        // const vectorStore = await openai.beta.vectorStores.create({
-        //   name: `pretalx_schedule_${scheduleVersion}`,
-        // })
+        const vectorStore = await openai.beta.vectorStores.create({
+          name: `devcon_sea_${process.env.GITHUB_SHA}`,
+        })
 
-        const vectorStoreName = `devcon_sea_${process.env.GITHUB_SHA}`
+        // const vectorStoreName = `devcon_sea_${process.env.GITHUB_SHA}`
 
-        const vectorStores = await openai.beta.vectorStores.list()
+        // const vectorStores = await openai.beta.vectorStores.list()
 
-        const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
+        // const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
-        if (!vectorStore) {
-          console.error(`Vector store not found ${vectorStoreName}`)
+        // if (!vectorStore) {
+        //   console.error(`Vector store not found ${vectorStoreName}`)
 
-          return
-        }
+        //   return
+        // }
 
         const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
         const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
