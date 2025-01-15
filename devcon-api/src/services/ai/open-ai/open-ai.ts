@@ -506,7 +506,7 @@ export const api = (() => {
 
       //   return recommendationAssistant
       // },
-      syncScheduleAssistant: async (assistantID: string, scheduleVersion: string) => {
+      syncScheduleContent: async (assistantID: string, scheduleVersion: string) => {
         console.log('syncing schedule assistant')
 
         // const vectorStore = await openai.beta.vectorStores.create({
@@ -640,11 +640,11 @@ export const api = (() => {
         }
 
         // Update assistant
-        await openai.beta.assistants.update(assistantID, {
-          tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
-        })
+        // await openai.beta.assistants.update(assistantID, {
+        //   tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
+        // })
 
-        console.log('Assistant updated with new vector store including knowledge base files')
+        console.log('Vector store created for devcon SEA including knowledge base files')
       },
       getScheduleRecommendations: async (assistantID: string, userQuery: string) => {
         const thread = await openai.beta.threads.create()
