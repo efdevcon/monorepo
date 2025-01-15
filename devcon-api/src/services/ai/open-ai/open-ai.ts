@@ -440,29 +440,31 @@ export const api = (() => {
       console.log(assistant, `Newly created assistant for ${version}`)
     },
     attachVectorStoresToAssistant: async (assistantID: string) => {
-      const vectorStoreNames: any = [
-        `devcon_website_${process.env.GITHUB_SHA}`,
-        `devconnect_website_${process.env.GITHUB_SHA}`,
-        `devcon_sea_${process.env.GITHUB_SHA}`,
-      ]
+      // const vectorStoreNames: any = [
+      //   `devcon_website_${process.env.GITHUB_SHA}`,
+      //   `devconnect_website_${process.env.GITHUB_SHA}`,
+      //   `devcon_${process.env.GITHUB_SHA}`,
+      // ]
+
+      const vectorStoreName = `devcon_${process.env.GITHUB_SHA}`
 
       const vectorStores = await openai.beta.vectorStores.list()
 
-      const vectorStoreIDs = vectorStoreNames.map((name: string) => {
-        const vectorStore = vectorStores.data.find((store: any) => store.name === name)
+      // const vectorStoreIDs = vectorStoreNames.map((name: string) => {
+      const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
-        if (!vectorStore) {
-          throw new Error(`Vector store not found: ${name}, aborting...`)
-        }
+      if (!vectorStore) {
+        throw new Error(`Vector store not found: ${vectorStoreName}, aborting...`)
+      }
 
-        return vectorStore.id
-      })
+      // return vectorStore.id
+      // })
 
       await openai.beta.assistants.update(assistantID, {
-        tool_resources: { file_search: { vector_store_ids: vectorStoreIDs } },
+        tool_resources: { file_search: { vector_store_ids: [vectorStore.id] } },
       })
 
-      await _interface.cleanStaleVectorStores()
+      // await _interface.cleanStaleVectorStores()
     },
     cleanStaleVectorStores: async () => {
       console.log('cleaning stale vector stores')
@@ -507,23 +509,24 @@ export const api = (() => {
       //   return recommendationAssistant
       // },
       syncScheduleContent: async () => {
-        console.log('syncing schedule assistant')
+        console.log('syncing schedule to vector store')
 
-        const vectorStore = await openai.beta.vectorStores.create({
-          name: `devcon_sea_${process.env.GITHUB_SHA}`,
-        })
+        // const vectorStore = await openai.beta.vectorStores.create({
+        //   name: `devcon_sea_${process.env.GITHUB_SHA || '5a0c40e446ca79181d27a415afa244c83050e802'}`,
+        // })
 
         // const vectorStoreName = `devcon_sea_${process.env.GITHUB_SHA}`
+        const vectorStoreName = `devcon_${process.env.GITHUB_SHA}`
 
-        // const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.beta.vectorStores.list()
 
-        // const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
+        const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
-        // if (!vectorStore) {
-        //   console.error(`Vector store not found ${vectorStoreName}`)
+        if (!vectorStore) {
+          console.error(`Vector store not found ${vectorStoreName}`)
 
-        //   return
-        // }
+          return
+        }
 
         const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
         const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
