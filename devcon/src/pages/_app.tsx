@@ -8,6 +8,7 @@ import { init } from '@socialgouv/matomo-next'
 import { SessionProvider } from 'next-auth/react'
 import { Web3ModalProvider } from 'context/web3modal'
 import { RecoilRoot } from 'recoil'
+// import DevaBot from 'lib/components/ai/overlay'
 import Head from 'next/head'
 
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'

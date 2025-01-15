@@ -2,6 +2,7 @@ import { Request, Response, Router } from 'express'
 import { Pool } from 'pg'
 import { RateLimiterPostgres } from 'rate-limiter-flexible'
 import { api } from '../services/ai/open-ai/open-ai'
+import { devconAppAssistant, devconWebsiteAssistant, devconnectWebsiteAssistant } from '../services/ai/open-ai/assistant-versions'
 
 export const aiRouter = Router()
 
@@ -59,6 +60,21 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
 
   console.log(threadID, 'msg thread id')
 
+  const version = req.query.version
+  let assistant = ''
+
+  if (version === 'devconnect') {
+    assistant = devconnectWebsiteAssistant.assistant_id
+  } else if (version === 'devcon') {
+    assistant = devconWebsiteAssistant.assistant_id
+  } else if (version === 'devcon-app') {
+    assistant = devconAppAssistant.assistant_id
+  }
+
+  if (!assistant) {
+    return res.status(400).json({ error: 'Invalid DevaBot version' })
+  }
+
   // Set headers for streaming before any async operations
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',
@@ -67,7 +83,7 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
   })
 
   try {
-    const stream = await api.createMessageStream('asst_B3UJxQ8V53rmVWxaqu3Iraif', message, threadID)
+    const stream = await api.createMessageStream(assistant, message, threadID)
 
     for await (const chunk of stream) {
       res.write(JSON.stringify(chunk) + '_chunk_end_')

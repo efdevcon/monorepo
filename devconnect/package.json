@@ -7,6 +7,7 @@
     "dev-inspect": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "tinacms build && cd ../lib && yarn && cd ../devconnect && next build",
     "start": "next start",
+    "ai-content-sync": "ts-node src/ai/sync-vector-store",
     "lint": "next lint"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "moment-timezone": "^0.5.34",
     "moment-timezone-data-webpack-plugin": "^1.5.0",
     "next": "13.4.9",
+    "openai": "^4.55.5",
     "postcss": "^8.4.31",
     "query-string": "^7.0.1",
     "react": "^18.2.0",
@@ -45,7 +47,8 @@
     "tailwind-merge": "^2.0.0",
     "tailwindcss": "^3.3.5",
     "tailwindcss-animate": "^1.0.7",
-    "tinacms": "^1.5.28"
+    "tinacms": "^1.5.28",
+    "ts-node": "10.9.1"
   },
   "devDependencies": {
     "@socialgouv/matomo-next": "^1.8.0",

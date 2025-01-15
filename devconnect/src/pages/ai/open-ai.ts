@@ -19,7 +19,7 @@ export const api = (() => {
       // Create vector store for website content
       const vectorStore = await openai.beta.vectorStores.create({
         // name: 'Website Content: ' + new Date().toISOString(),
-        name: `devcon_website_${process.env.GITHUB_SHA}`,
+        name: `devconnect_website_${process.env.GITHUB_SHA}`,
       })
 
       const contentDir = path.resolve(__dirname, 'formatted-content')

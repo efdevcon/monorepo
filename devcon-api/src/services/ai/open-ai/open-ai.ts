@@ -9,6 +9,7 @@ import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
 // import { PrismaClient } from '@prisma/client'
 import { FileLike } from 'openai/uploads'
+import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
 
 // const client = new PrismaClient()
 
@@ -408,23 +409,103 @@ export const api = (() => {
         },
       }
     },
+    createAssistant: async (version: 'devconnect' | 'devcon' | 'devcon-app') => {
+      console.log('Creating assistant for version: ', version)
+
+      const assistantInstructions =
+        version === 'devconnect'
+          ? devconnectWebsiteAssistant.instructions
+          : version === 'devcon'
+          ? devconWebsiteAssistant.instructions
+          : devconAppAssistant.instructions
+
+      const assistant = await openai.beta.assistants.create({
+        name: `DevaBot ${version}`,
+        instructions: assistantInstructions,
+        tools: [
+          { type: 'file_search' },
+          // {
+          //   type: 'function',
+          //   function: {
+          //     name: 'getCurrentDate',
+          //     description:
+          //       'Get the current date to give answers that make sense from a temporal perspective. E.g. "when is Devcon?" can yield a different answer if the event is in the future or in the past.',
+          //   },
+          // },
+        ],
+        // model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
+        model: 'gpt-4o-mini',
+      })
+
+      console.log(assistant, `Newly created assistant for ${version}`)
+    },
+    attachVectorStoresToAssistant: async (assistantID: string) => {
+      const vectorStoreNames: any = [
+        `devcon_website_${process.env.GITHUB_SHA}`,
+        `devconnect_website_${process.env.GITHUB_SHA}`,
+        `devcon_sea_${process.env.GITHUB_SHA}`,
+      ]
+
+      const vectorStores = await openai.beta.vectorStores.list()
+
+      const vectorStoreIDs = vectorStoreNames.map((name: string) => {
+        const vectorStore = vectorStores.data.find((store: any) => store.name === name)
+
+        if (!vectorStore) {
+          throw new Error(`Vector store not found: ${name}, aborting...`)
+        }
+
+        return vectorStore.id
+      })
+
+      await openai.beta.assistants.update(assistantID, {
+        tool_resources: { file_search: { vector_store_ids: vectorStoreIDs } },
+      })
+
+      await _interface.cleanStaleVectorStores()
+    },
+    cleanStaleVectorStores: async () => {
+      console.log('cleaning stale vector stores')
+
+      try {
+        // List all vector stores
+        const vectorStores = await openai.beta.vectorStores.list()
+
+        // Sort vector stores by creation date, newest first
+        const sortedStores = vectorStores.data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+
+        // Keep the 15 most recent stores - just to avoid edge cases where we delete the wrong vector store, and to avoid having infinity vector
+        const storesToKeep = sortedStores.slice(0, 15)
+        const storesToDelete = sortedStores.slice(15)
+
+        // Delete old stores
+        for (const store of storesToDelete) {
+          await openai.beta.vectorStores.del(store.id)
+          console.log(`Deleted vector store: ${store.id}`)
+        }
+
+        console.log(`Cleaned up ${storesToDelete.length} old vector stores. Kept ${storesToKeep.length} most recent.`)
+      } catch (error) {
+        console.error('Error cleaning up vector stores:', error)
+      }
+    },
     recommendations: {
-      createScheduleAssistant: async () => {
-        // const Recommendations = z.object({
-        //   talk_ids: z.array(z.string()),
-        // })
+      // createScheduleAssistant: async () => {
+      //   // const Recommendations = z.object({
+      //   //   talk_ids: z.array(z.string()),
+      //   // })
 
-        const recommendationAssistant = await openai.beta.assistants.create({
-          instructions:
-            'You are a recommendation assistant for Devcon, the premier Ethereum Conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Every time you recommend a talk, reference the talk in the annotations. Try to recommend talks that are in the future. The current date will be provided to you with the user query, to help you discern what is in the future and what is not.', // You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Return a list of session IDs in JSON format. You ONLY return JSON, and you ONLY return the session IDs, in the form of a JSON array named "session_ids". The current date will be provided to you, only recommend talks that are in the future.',
-          name: `recommendation_assistant`,
-          tools: [{ type: 'file_search' }],
-          // response_format: zodResponseFormat(Recommendations, 'json_object'),
-          model: 'gpt-4o-mini',
-        })
+      //   const recommendationAssistant = await openai.beta.assistants.create({
+      //     instructions:
+      //       'You are a recommendation assistant for Devcon, the premier Ethereum Conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Every time you recommend a talk, reference the talk in the annotations. Try to recommend talks that are in the future. The current date will be provided to you with the user query, to help you discern what is in the future and what is not.', // You are a recommendation assistant for Devcon, an Ethereum conference. Users will ask you questions, and you will use the file_search tool to look through the schedule of talks. Return a list of session IDs in JSON format. You ONLY return JSON, and you ONLY return the session IDs, in the form of a JSON array named "session_ids". The current date will be provided to you, only recommend talks that are in the future.',
+      //     name: `recommendation_assistant`,
+      //     tools: [{ type: 'file_search' }],
+      //     // response_format: zodResponseFormat(Recommendations, 'json_object'),
+      //     model: 'gpt-4o-mini',
+      //   })
 
-        return recommendationAssistant
-      },
+      //   return recommendationAssistant
+      // },
       syncScheduleAssistant: async (assistantID: string, scheduleVersion: string) => {
         console.log('syncing schedule assistant')
 
@@ -432,7 +513,7 @@ export const api = (() => {
         //   name: `pretalx_schedule_${scheduleVersion}`,
         // })
 
-        const vectorStoreName = `github_${process.env.GITHUB_SHA}`
+        const vectorStoreName = `devcon_sea_${process.env.GITHUB_SHA}`
 
         const vectorStores = await openai.beta.vectorStores.list()
 

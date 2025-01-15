@@ -4,9 +4,12 @@ import LogoAbout from 'assets/images/pages/about.svg'
 import LogoBogota from 'assets/images/pages/bogota.svg'
 import LogoTickets from 'assets/images/pages/tickets.svg'
 import LogoGetInvolved from 'assets/images/pages/get-involved.svg'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { appState as appStateAtom } from 'state/main'
 
 const useNavigationData = () => {
   const intl = useTranslations()
+  const [appState, setAppState] = useRecoilState(appStateAtom)
 
   return {
     top: [
@@ -327,6 +330,13 @@ const useNavigationData = () => {
         title: 'Devconnect 2025',
         url: 'https://devconnect.org',
         type: 'link',
+      },
+      {
+        title: 'DevAI 🦄',
+        type: 'button',
+        onClick: () => {
+          setAppState({ ...appState, devabotVisible: !appState.devabotVisible })
+        },
       },
       {
         title: 'Devcon App',

@@ -3,7 +3,10 @@ import api from './open-ai'
 
 async function main() {
   //   await seedPretalx()
-  await api.recommendations.syncScheduleAssistant(process.env.OPEN_AI_ASSISTANT_ID as string, 'devcon-7')
+  // await api.recommendations.syncScheduleAssistant(process.env.OPEN_AI_ASSISTANT_ID as string, 'devcon-7')
+  await api.attachVectorStoresToAssistant('devconnect')
+  await api.attachVectorStoresToAssistant('devcon')
+  await api.attachVectorStoresToAssistant('devcon-app')
 }
 
 main()

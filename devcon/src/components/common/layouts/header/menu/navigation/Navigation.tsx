@@ -28,6 +28,16 @@ const Mobile = (props: any) => {
           const hasChildren = children && children.length > 0
           const open = openItem === i.title
 
+          if (i.type === 'button') {
+            return (
+              <li key={i.title}>
+                <button onClick={i.onClick} className={css['accordion-toggle']}>
+                  {i.title}
+                </button>
+              </li>
+            )
+          }
+
           return (
             <li key={i.title} className={open && hasChildren ? css['open'] : ''}>
               {i.logo && (
@@ -132,6 +142,16 @@ export const Navigation = (props: any) => {
           const link = (() => {
             let className = `${css['foldout-link']} bold`
 
+            if (i.type === 'button') {
+              return (
+                // <li key={primaryKey}>
+                <button key={i.title} onClick={i.onClick} className={className}>
+                  {i.title}
+                </button>
+                // </li>
+              )
+            }
+
             if (i.highlight) {
               className += ` button ${css[i.highlight as any]}`
 
@@ -208,6 +228,14 @@ export const Navigation = (props: any) => {
                             return (
                               <li key={subKey} className={css['header']}>
                                 <span className={css['foldout-header']}>{c.title}</span>
+                              </li>
+                            )
+                          }
+
+                          if (c.type === 'button') {
+                            return (
+                              <li key={subKey}>
+                                <button onClick={c.onClick}>{c.title}</button>
                               </li>
                             )
                           }

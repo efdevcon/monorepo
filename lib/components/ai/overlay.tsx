@@ -18,6 +18,7 @@ import SquareSparkles from "lib/assets/icons/square-sparkle.svg";
 import AIImage from "./ai-generate.png";
 import ScrollDownIcon from "lib/assets/icons/scroll-down.svg";
 import SendIcon from "lib/assets/icons/send.svg";
+import { Session as SessionType } from "@/types/Session";
 import {
   visibleState,
   queryState,
@@ -28,6 +29,7 @@ import {
 } from "./state"; // Adjust the import path
 import TrashIcon from "lib/assets/icons/trash.svg";
 import cn from "classnames";
+import { fetchSessions } from "lib/helpers/devcon-api-fetch";
 
 const Trigger = ({ className }: { className?: string }) => {
   return (
@@ -75,11 +77,12 @@ const Trigger = ({ className }: { className?: string }) => {
 };
 
 const DevaBot = ({
-  recommendationMode,
+  botVersion,
   sessions,
   onToggle,
   defaultPrompt,
   setDefaultPrompt,
+  autoFetchSessions,
   toggled,
   notifications,
   notificationsCount,
@@ -87,8 +90,9 @@ const DevaBot = ({
   markNotificationsAsRead,
   SessionComponent,
 }: {
-  recommendationMode?: boolean;
+  botVersion: "devcon-website" | "devcon-app" | "devconnect";
   sessions?: any;
+  autoFetchSessions?: boolean;
   toggled: boolean;
   onToggle: (visible: string | boolean) => void;
   notifications?: any[];
@@ -109,6 +113,17 @@ const DevaBot = ({
   const textareaRef = React.useRef<HTMLInputElement>(null);
   const draggable = useDraggableLink();
   // const messagesScrollRef = React.useRef<HTMLDivElement>(null);
+  const [autoFetchedSessions, setAutoFetchedSessions] = useState<SessionType[]>(
+    []
+  );
+
+  React.useEffect(() => {
+    if (autoFetchSessions) {
+      fetchSessions().then((sessions) => {
+        setAutoFetchedSessions(sessions);
+      });
+    }
+  }, [autoFetchSessions]);
 
   const resetMessages = useResetRecoilState(messagesState);
   const resetThreadID = useResetRecoilState(threadIDState);
@@ -354,9 +369,8 @@ const DevaBot = ({
         process.env.NODE_ENV === "development"
           ? "http://localhost:4000/devabot"
           : "https://api.devcon.org/devabot";
-      if (recommendationMode) {
-        url += "?recommendations=true";
-      }
+
+      url += `?version=${botVersion}`;
 
       const response = await fetch(url, {
         method: "POST",
@@ -515,7 +529,7 @@ const DevaBot = ({
       <AnimatePresence>
         {toggled && (
           <motion.div
-            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden"
+            className="fixed bottom-0 right-0 left-0 top-0 z-[1000000000] overflow-hidden text-black"
             onClick={() => onToggle(false)}
             initial={{
               background: "#00000000",
@@ -710,9 +724,28 @@ const DevaBot = ({
                                               .split(".json")[0];
 
                                           if (sessionId) {
-                                            const session = sessions.find(
-                                              (s: any) => s.id === sessionId
-                                            );
+                                            if (
+                                              autoFetchSessions &&
+                                              !autoFetchedSessions
+                                            ) {
+                                              if (sessions) {
+                                                sessionReferences.push(
+                                                  <div>
+                                                    Sessions are loading...
+                                                  </div>
+                                                );
+                                              }
+
+                                              return;
+                                            }
+
+                                            const session = autoFetchSessions
+                                              ? autoFetchedSessions.find(
+                                                  (s: any) => s.id === sessionId
+                                                )
+                                              : sessions.find(
+                                                  (s: any) => s.id === sessionId
+                                                );
                                             if (
                                               session &&
                                               !referencesTracker[sessionId]
@@ -728,7 +761,7 @@ const DevaBot = ({
                                                   />
                                                 ) : (
                                                   <Link
-                                                    href={`/sessions/${session.sourceId}`}
+                                                    href={`https://app.devcon.org/schedule/${session.sourceId}`}
                                                     className="p-2 bg-[#303030] rounded-md !text-white text-xs flex flex-col gap-1 hover:bg-[#232323] transition-all duration-300 w-full"
                                                     key={index}
                                                   >
@@ -925,7 +958,7 @@ const DevaBot = ({
                           />
 
                           <p className="font-semibold w-[250px]">
-                            Ask me anything related to Devcon SEA.
+                            Ask me anything related to Devcon and Devconnect.
                           </p>
                         </motion.div>
                       )}
@@ -954,7 +987,15 @@ const DevaBot = ({
                                 className="shrink-0 cursor-pointer"
                                 onClick={deleteThreadHistory}
                               >
-                                <TrashIcon />
+                                <TrashIcon
+                                  className="icon"
+                                  style={
+                                    {
+                                      "--icon-color": "black",
+                                      "--color-icon": "black",
+                                    } as any
+                                  }
+                                />
                               </div>
                             </div>
                             {threadHistory?.map(
@@ -1029,23 +1070,23 @@ const DevaBot = ({
                             messages.length > 0 ? "hidden" : ""
                           }`}
                         >
-                          {["What should I do at Devcon?", "Why SEA?"].map(
-                            (suggestion, index, array) => (
-                              <div
-                                key={index}
-                                {...draggable}
-                                className={`shrink-0 select-none pointer-events-auto cursor-pointer mr-1 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300 ${
-                                  index === array.length - 1 ? "" : ""
-                                } ${index === 0 ? "ml-4" : ""}`}
-                                onClick={() => {
-                                  setQuery(suggestion);
-                                  textareaRef.current?.focus();
-                                }}
-                              >
-                                {suggestion}
-                              </div>
-                            )
-                          )}
+                          {[
+                            "What is the difference between Devcon and Devconnect?",
+                          ].map((suggestion, index, array) => (
+                            <div
+                              key={index}
+                              {...draggable}
+                              className={`shrink-0 select-none pointer-events-auto cursor-pointer mr-1 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300 ${
+                                index === array.length - 1 ? "" : ""
+                              } ${index === 0 ? "ml-4" : ""}`}
+                              onClick={() => {
+                                setQuery(suggestion);
+                                textareaRef.current?.focus();
+                              }}
+                            >
+                              {suggestion}
+                            </div>
+                          ))}
                         </div>
                       </div>
                     </SwipeToScroll>
