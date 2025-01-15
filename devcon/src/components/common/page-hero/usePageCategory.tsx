@@ -4,7 +4,7 @@ import { usePageContext } from 'context/page-context'
 import { Link as LinkType } from 'types/Link'
 
 const resolvePageCategory = (pathname: string, link: LinkType, parent?: string): undefined | JSX.Element => {
-  const urlMatch = link.url.includes(pathname)
+  const urlMatch = link.url && link.url.includes(pathname)
 
   if (urlMatch) {
     if (parent) {
