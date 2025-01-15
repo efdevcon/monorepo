@@ -65,7 +65,7 @@ jobs:
 
   sync-schedule:
     # Running after the website content is synced because that job is also responsible for creating the vector store which this job will use
-    needs: sync-website
+    needs: [sync-website-content, sync-devconnect-content]
     defaults:
       run:
         working-directory: ./devcon-api

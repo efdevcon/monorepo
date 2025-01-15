@@ -506,7 +506,7 @@ export const api = (() => {
 
       //   return recommendationAssistant
       // },
-      syncScheduleContent: async (assistantID: string, scheduleVersion: string) => {
+      syncScheduleContent: async () => {
         console.log('syncing schedule assistant')
 
         // const vectorStore = await openai.beta.vectorStores.create({
