@@ -65,7 +65,7 @@ aiRouter.post('/devabot', async (req: Request, res: Response) => {
 
   if (version === 'devconnect') {
     assistant = devconnectWebsiteAssistant.assistant_id
-  } else if (version === 'devcon') {
+  } else if (version === 'devcon-website') {
     assistant = devconWebsiteAssistant.assistant_id
   } else if (version === 'devcon-app') {
     assistant = devconAppAssistant.assistant_id

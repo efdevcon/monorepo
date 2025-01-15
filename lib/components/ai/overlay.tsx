@@ -370,7 +370,7 @@ const DevaBot = ({
           ? "http://localhost:4000/devabot"
           : "https://api.devcon.org/devabot";
 
-      url += `?version=${botVersion}`;
+      url += `?version=${encodeURIComponent(botVersion)}`;
 
       const response = await fetch(url, {
         method: "POST",
