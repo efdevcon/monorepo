@@ -237,6 +237,26 @@ export const FooterMenu = (props: any) => {
           <GithubIcon style={{ fill: 'white' }} />
         </a>
       </div>
+
+      <div className="flex gap-2 items-start mt-4">
+        {router.locale === 'es' ? (
+          <Link
+            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
+            href="/"
+            locale={false}
+          >
+            English 🇬🇧
+          </Link>
+        ) : (
+          <Link
+            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
+            href="/es"
+            locale={false}
+          >
+            Español 🇪🇸
+          </Link>
+        )}
+      </div>
     </div>
   )
 }
@@ -268,7 +288,7 @@ export const Menu = (props: any) => {
         )
       })}
 
-      <div className={css['social-media']}>
+      {/* <div className={css['social-media']}>
         <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevconnect">
           <TwitterIcon style={{ fill: 'white' }} />
         </a>
@@ -280,9 +300,26 @@ export const Menu = (props: any) => {
           <FarcasterIcon style={{ fill: 'white' }} />
         </a>
 
-        {/* <a target="_blank" rel="noreferrer" href="https://github.com/efdevconnect/">
-          <GithubIcon style={{ fill: 'white' }} />
-        </a> */}
+      </div> */}
+
+      <div className="gap-2 items-start hidden xl:flex">
+        {router.locale === 'es' ? (
+          <Link
+            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
+            href="/"
+            locale={false}
+          >
+            English 🇬🇧
+          </Link>
+        ) : (
+          <Link
+            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
+            href="/es"
+            locale={false}
+          >
+            Español 🇪🇸
+          </Link>
+        )}
       </div>
     </div>
   )

@@ -47,7 +47,7 @@ export const useDraggableLink = (thresholdPixels = 5) => {
 }
 
 const WrappedLink = React.forwardRef(
-  ({ children, indicateExternal, external, allowDrag, onClick, href, ...rest }: LinkProps, ref: any) => {
+  ({ children, indicateExternal, external, allowDrag, onClick, locale, href, ...rest }: LinkProps, ref: any) => {
     const isMailTo = href.startsWith('mailto:')
     const linkAttributes = {
       ...rest,
@@ -95,7 +95,7 @@ const WrappedLink = React.forwardRef(
     }
 
     return (
-      <NextLink href={href} {...linkAttributes}>
+      <NextLink href={href} {...linkAttributes} locale={locale}>
         <span className={css['link']} data-type="link-text">
           {children}
         </span>

@@ -16,6 +16,7 @@ import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
 import Accordion, { AccordionItem } from 'common/components/accordion'
 import Modal from 'common/components/modal'
+import FAQComponent from 'common/components/faq/faq'
 // import bgMerged from 'assets/images/istanbul-bg/bg-merged.png'
 // import bgMerged from 'assets/images/landscape.png'
 // import Hehe from 'assets/images/hehe.png'
@@ -1047,6 +1048,9 @@ const Home: NextPage = (props: any) => {
   // console.log(props.cms, 'content?')
   const { data }: { data: PagesQuery } = useTina(props.cms)
 
+  console.log('locale', props.locale)
+  console.log(data)
+
   // const [dateHovered, setDateHovered] = React.useState(false)
   const [hehe, setHehe] = React.useState(false)
   const organizersRef = React.useRef<any>()
@@ -1110,7 +1114,7 @@ const Home: NextPage = (props: any) => {
 
             <div className={css['spline']}>
               <ErrorBoundary>
-                <Spline
+                {/* <Spline
                   scene="https://prod.spline.design/03JSjbnhW8P41kDH/scene.splinecode"
                   onLoad={application => {
                     splineRef.current = application
@@ -1133,7 +1137,7 @@ const Home: NextPage = (props: any) => {
                       splineRef.current.setZoom(0.3)
                     }
                   }}
-                />
+                /> */}
               </ErrorBoundary>
             </div>
 
@@ -1793,6 +1797,8 @@ const Home: NextPage = (props: any) => {
           </Scene>
         </main>
 
+        <FAQComponent questions={data.pages.faq} />
+
         <Footer />
       </div>
     </>
@@ -1826,8 +1832,9 @@ const getBlogPosts = async (maxItems: number = 6): Promise<Array<BlogPost>> => {
   return blogs.slice(0, maxItems)
 }
 
-export async function getStaticProps() {
-  const content = await client.queries.pages({ relativePath: 'Index.md' })
+export async function getStaticProps({ locale }: { locale: string }) {
+  const path = locale === 'en' ? 'index.mdx' : locale + '/index.mdx'
+  const content = await client.queries.pages({ relativePath: path })
   return {
     props: {
       blogs: await getBlogPosts(),
@@ -1836,6 +1843,7 @@ export async function getStaticProps() {
         data: content.data,
         query: content.query,
       },
+      locale,
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
   }

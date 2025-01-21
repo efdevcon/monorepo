@@ -1,4 +1,5 @@
 import { defineConfig } from "tinacms";
+import index from "./templates/index";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -29,26 +30,30 @@ export default defineConfig({
   schema: {
     collections: [
       {
-        name: "pages",
-        label: "Pages",
-        path: "cms/pages",
-        fields: [
-          {
-            type: "string",
-            name: "catchphrase",
-            label: "Catchphrase",
-          },
-          {
-            type: "rich-text",
-            name: "subtext",
-            label: "Subtext",
-          },
-          {
-            type: "string",
-            name: "button",
-            label: "Button text",
-          },
+        name: 'pages',
+        label: 'Pages',
+        path: 'cms/pages',
+        format: 'mdx',
+        templates: [
+          index,
         ],
+        // fields: [
+        //   {
+        //     type: "string",
+        //     name: "catchphrase",
+        //     label: "Catchphrase",
+        //   },
+        //   {
+        //     type: "rich-text",
+        //     name: "subtext",
+        //     label: "Subtext",
+        //   },
+        //   {
+        //     type: "string",
+        //     name: "button",
+        //     label: "Button text",
+        //   },
+        // ],
         ui: {
           router: ({ document }) => `/`,
         },
