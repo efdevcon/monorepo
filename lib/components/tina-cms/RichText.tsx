@@ -3,6 +3,7 @@ import { TinaMarkdown, TinaMarkdownContent } from "tinacms/dist/rich-text";
 import { Button } from "lib/components/button";
 import css from "./rich-text.module.scss";
 import Link from "next/link";
+import cn from "classnames";
 
 const EnhancedTinaMarkdown = (props: any) => {
   return (
@@ -111,9 +112,15 @@ const Buttons = (data: any) => {
   );
 };
 
-export default ({ content }: { content: TinaMarkdownContent }) => {
+export default ({
+  content,
+  className,
+}: {
+  content: TinaMarkdownContent;
+  className?: string;
+}) => {
   return (
-    <div className={css["rich-text"]}>
+    <div className={cn(css["rich-text"], className)}>
       <EnhancedTinaMarkdown content={content}></EnhancedTinaMarkdown>
     </div>
   );
