@@ -1,1 +1,0 @@
-export { Tags } from './Tags'

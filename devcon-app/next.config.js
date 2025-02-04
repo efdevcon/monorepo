@@ -1,10 +1,10 @@
 const withPWA = require('next-pwa')
 const webpack = require('webpack')
 const { nanoid } = require('nanoid')
-const { PHASE_PRODUCTION_BUILD } = require('next/constants')
+// const { PHASE_PRODUCTION_BUILD } = require('next/constants')
+// const { withSentryConfig } = require('@sentry/nextjs')
 const getGeneratedPrecacheEntries = require('./precache')
 const getStaticPrecacheEntries = require('./precache-public')
-const { withSentryConfig } = require('@sentry/nextjs')
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const runtimeCache = require('./runtime-cache')
@@ -170,7 +170,6 @@ const createConfig = phase => {
     generateBuildId: () => buildId,
   }
 
-  // if (phase === PHASE_PRODUCTION_BUILD) {
   const pwaConfig = withPWA({
     dest: '/public',
     additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
@@ -181,7 +180,7 @@ const createConfig = phase => {
     cacheOnFrontEndNav: true,
     ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
     buildExcludes: [/media\/.*$/, /\.map$/],
-    maximumFileSizeToCacheInBytes: 10000000,
+    maximumFileSizeToCacheInBytes: 10000000, // this is important, the default file cache size is low, and it can cause some weird problems if certain files aren't cached
     runtimeCaching: runtimeCache,
     // fallbacks: {
     //   image:
@@ -190,48 +189,6 @@ const createConfig = phase => {
   })
 
   return pwaConfig(config)
-  // }
-
-  return config
 }
 
-// const config = createConfig()
-
 module.exports = createConfig
-
-// module.exports = withSentryConfig(
-//   (phase, { defaultConfig }) => {
-//     const buildId = nanoid()
-
-//     let config = {
-//       ...defaultConfig,
-//       ...nextConfig,
-//       generateBuildId: () => buildId,
-//     }
-
-//     if (phase === PHASE_PRODUCTION_BUILD) {
-//       config = withPWA({
-//         ...config,
-//         pwa: {
-//           dest: '/public',
-//           additionalManifestEntries: [...getGeneratedPrecacheEntries(buildId) /*, ...getStaticPrecacheEntries({})*/],
-//           mode: 'production',
-//           dynamicStartUrl: false,
-//           customWorkerDir: 'workbox',
-//           cacheOnFrontEndNav: true,
-//           ignoreURLParametersMatching: [/^session/, /^speaker/, /^room/, /^floor/],
-//           buildExcludes: [/media\/.*$/, /\.map$/],
-//           // fallbacks: {
-//           //   image:
-//           //     'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
-//           // },
-//         },
-//       })
-//     }
-
-//     return config
-//   },
-//   {
-//     silent: true, // Suppresses all Sentry logs
-//   }
-// )

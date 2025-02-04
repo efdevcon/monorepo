@@ -1,1 +1,0 @@
-export { InfoIcon } from './InfoIcon'
