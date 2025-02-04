@@ -1,5 +1,6 @@
 import { defineConfig } from "tinacms";
 import index from "./templates/index";
+import pastEditions from "./templates/past-editions";
 
 // Your hosting provider likely exposes this as an environment variable
 const branch =
@@ -9,6 +10,30 @@ const branch =
   "main";
 
 console.log('TINA branch', branch)
+
+const translationConfig = {
+  name: 'global_translations',
+  label: 'Global Translations',
+  path: 'cms/global-translations',
+  format: 'json',
+  fields: [
+    {
+      type: 'string',
+      name: 'global_translations',
+      label: 'global_translations',
+      ui: {
+        description: 'You can use this editor to format your JSON: https://jsonformatter.org/json-editor',
+        validate: (value: any) => {
+          try {
+            JSON.parse(value);
+          } catch (e) {
+            return 'Please enter valid JSON';
+          }
+        },
+      },
+    }
+  ],
+} as any
 
 export default defineConfig({
   branch,
@@ -36,28 +61,46 @@ export default defineConfig({
         format: 'mdx',
         templates: [
           index,
+          pastEditions,
         ],
-        // fields: [
-        //   {
-        //     type: "string",
-        //     name: "catchphrase",
-        //     label: "Catchphrase",
-        //   },
-        //   {
-        //     type: "rich-text",
-        //     name: "subtext",
-        //     label: "Subtext",
-        //   },
-        //   {
-        //     type: "string",
-        //     name: "button",
-        //     label: "Button text",
-        //   },
-        // ],
         ui: {
           router: ({ document }) => `/`,
         },
       },
+      translationConfig,
+      // {
+      //   ...translationConfig,
+      //   path: 'cms/global-translations/es',
+      //   name: 'global_translations',
+      // },
+      // {
+      //   ...translationConfig,
+      //   path: 'cms/global-translations/pt',
+      //   name: 'global_translations',
+      // }
+      // {
+      //   name: 'global_translations',
+      //   label: 'Global Translations',
+      //   path: 'cms/global-translations',
+      //   format: 'json',
+      //   fields: [
+      //     {
+      //       type: 'string',
+      //       name: 'global_translations',
+      //       label: 'global_translations',
+      //       ui: {
+      //         description: 'You can use this editor to format your JSON: https://jsonformatter.org/json-editor',
+      //         validate: (value) => {
+      //           try {
+      //             JSON.parse(value);
+      //           } catch (e) {
+      //             return 'Please enter valid JSON';
+      //           }
+      //         },
+      //       },
+      //     }
+      //   ],
+      // },
     ],
   },
 });

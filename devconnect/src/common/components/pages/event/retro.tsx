@@ -1,17 +1,14 @@
 import React from 'react'
 import css from './retro.module.scss'
-import Link from 'common/components/link/Link'
-import ImageNew from 'next/image'
-import bgMerged from 'assets/images/landscape.png'
-/*
-  TODO: Generalize this when adding Istanbul retro/recap
-*/
+import RichText from 'lib/components/tina-cms//RichText'
+
 const Retro = (props: any) => {
   if (props.edition === 'amsterdam') {
     return (
       <div className={`columns clear-vertical ${css['retro']}`}>
         <div className={`left fill-45`}>
-          <p className="paragraph-intro">
+          <RichText content={props.content} />
+          {/* <p className="paragraph-intro">
             The first-ever <b>Devconnect</b> was held in 2022 in Amsterdam.
           </p>
           <p className="big-text bold margin-top-less">
@@ -23,7 +20,7 @@ const Retro = (props: any) => {
             To get a glimpse of the trending Ethereum topics at the time, check out the Devconnect Amsterdam Schedule
             below. You can also visit the different event host&apos;s websites (links provided in the schedule) to find
             recaps and photos of the independent events.
-          </p>
+          </p> */}
         </div>
         <div className={'right'}>
           <div className="aspect">
@@ -53,7 +50,8 @@ const Retro = (props: any) => {
 
           <div className={`columns margin-bottom flex flex-col xl:flex-row`}>
             <div className="xl:basis-1/2 align-self flex flex-col lg:mr-[25px]">
-              <div>
+              <RichText content={props.content} />
+              {/* <div>
                 <p className="large-text">
                   The vibrant metropolis of Istanbul hosted Devconnect from November 13-19, 2023.{' '}
                   <span className="border-b-[3px] border-solid font-bold border-red-500">
@@ -79,14 +77,7 @@ const Retro = (props: any) => {
                   Ethereum. It highlighted how local communities are essential in fostering a global network,
                   contributing unique perspectives.
                 </p>
-
-                {/* <br />
-
-                <p>
-                  <b>Thank you</b> to everyone who joined us at Devconnect Istanbul 2023! We look forward to seeing the
-                  ongoing connections and progress you all will continue to make for Ethereum.
-                </p> */}
-              </div>
+              </div> */}
 
               {/* <div className={`margin-top ${css['nowrap']}`}>
                 <Link

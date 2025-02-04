@@ -11,6 +11,8 @@ import IconCross from 'assets/icons/cross.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import ArrowUpIcon from 'assets/icons/arrow-up.svg'
 import ArrowDropdown from 'assets/icons/arrow-dropdown.svg'
+import GlobeIcon from 'assets/icons/globe.svg'
+import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
 import DevconnectLogoText from 'assets/images/istanbul-logo-text.svg'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -18,12 +20,14 @@ import { createPortal } from 'react-dom'
 import { Footer } from 'pages/index'
 import { useRouter } from 'next/router'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
+import cn from 'classnames'
+import { useScroll } from 'framer-motion'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <div className={css['multi-link']} onClick={() => setOpen(!open)}>
+    <div className={cn(css['multi-link'], props.className)} onClick={() => setOpen(!open)}>
       {props.children}
 
       <div className={css['hover-to-open']}>
@@ -33,7 +37,7 @@ const MultiLink = (props: any) => {
       <div className={css['click-to-open']}>{open ? <ChevronUp /> : <ChevronDown />}</div>
 
       <div className={`${css['dropdown']} ${open && css['open']}`}>
-        <div className={`${css['dropdown-content']} fade-in-up fast`}>
+        <div className={`${css['dropdown-content']} rounded-lg`}>
           {props.to.map((menuItem: any) => {
             if (menuItem.external) {
               return (
@@ -69,7 +73,7 @@ const MultiLink = (props: any) => {
 
 const menuItems = (pathname: string) => [
   {
-    text: 'About',
+    text: (globalThis as any).translations.about,
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
   },
   // {
@@ -105,7 +109,7 @@ const menuItems = (pathname: string) => [
   //   ],
   // },
   {
-    text: 'Past Events',
+    text: (globalThis as any).translations.past_events,
     children: [
       {
         text: 'Istanbul 2023',
@@ -134,8 +138,8 @@ const menuItems = (pathname: string) => [
   // },
 ]
 
-const Mobile = () => {
-  const [open, setOpen] = React.useState(false)
+const Mobile = (props: any) => {
+  // const [open, setOpen] = React.useState(false)
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => {
@@ -145,7 +149,7 @@ const Mobile = () => {
   React.useEffect(() => {
     if (!mounted) return
 
-    if (open) {
+    if (props.menuOpen) {
       document.body.style.overflow = 'hidden'
     } else {
       document.body.style.overflow = ''
@@ -154,30 +158,30 @@ const Mobile = () => {
     return () => {
       document.body.style.overflow = ''
     }
-  }, [open, mounted])
+  }, [props.menuOpen, mounted])
 
   if (!mounted) return null
 
   return (
     <div className={css['mobile-menu']}>
-      <div className={css['foldout-toggle']}>
-        <div className={css['icon']} onClick={() => setOpen(true)}>
-          <HamburgerIcon className="large-text-em" />
+      <div className={cn(css['foldout-toggle'], 'flex lg:hidden')}>
+        <div className={css['icon']} onClick={() => props.setMenuOpen(!props.menuOpen)}>
+          <HamburgerIcon className="text-lg" />
         </div>
       </div>
 
       {createPortal(
-        <div className={`${open ? css['open'] : ''} ${css['foldout']}`}>
-          <div className="section">
+        <div className={`${props.menuOpen ? css['open'] : ''} ${css['foldout']}`}>
+          <div className="section py-4">
             <div className={`${css['foldout-toggle']}`}>
-              <DevconnectLogoText width="100px" height="50px" />
-              <div className={css['icon']} onClick={() => setOpen(false)}>
-                <IconCross />
-              </div>
+              {/* <DevconnectLogoText width="100px" height="50px" /> */}
+              {/* <div className={css['icon']} onClick={() => setOpen(false)}> */}
+              {/* <IconCross /> */}
+              {/* </div> */}
             </div>
           </div>
 
-          <Footer inFoldoutMenu onClickMenuItem={() => setOpen(false)} />
+          <Footer inFoldoutMenu onClickMenuItem={() => props.setMenuOpen(false)} />
         </div>,
         document.body
       )}
@@ -186,12 +190,13 @@ const Mobile = () => {
 }
 
 export const FooterMenu = (props: any) => {
+  const [languageOpen, setLanguageOpen] = React.useState(false)
   const router = useRouter()
 
   return (
-    <div className={css['footer-menu']} id="footer-menu">
+    <div className={cn(css['footer-menu'], 'pt-2.5')}>
       <AnchorLink href="#__next" id="back-to-top" className={`${css['back-to-top']}`}>
-        Back to top <ArrowUpIcon />
+        {(globalThis as any).translations.back_to_top} <ArrowUpIcon />
       </AnchorLink>
 
       {menuItems(router.pathname).map((menuItem: any) => {
@@ -200,7 +205,7 @@ export const FooterMenu = (props: any) => {
         if (isMultiLink) {
           return (
             <MultiLink
-              className={menuItem.customClass}
+              className={cn(menuItem.customClass, 'flex')}
               key={menuItem.text}
               to={menuItem.children}
               onClickMenuItem={props.onClickMenuItem}
@@ -212,7 +217,7 @@ export const FooterMenu = (props: any) => {
 
         return (
           <Link
-            className={menuItem.customClass}
+            className={cn(menuItem.customClass, 'flex')}
             key={menuItem.text}
             href={menuItem.url}
             onClick={props.onClickMenuItem}
@@ -222,6 +227,45 @@ export const FooterMenu = (props: any) => {
           </Link>
         )
       })}
+
+      <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
+        <PopoverTrigger asChild>
+          <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg py-2 px-2 mt-5 translate-x-[-8px]">
+            <GlobeIcon className="opacity-90  icon" />
+            <span className="text-white">
+              {router.locale === 'es' ? 'ES 🇪🇸' : router.locale === 'pt' ? 'PT 🇵🇹' : 'EN 🇬🇧'}
+            </span>
+          </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-32 p-1 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg z-[100000]">
+          <div className="flex flex-col">
+            <Link
+              className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+              href={router.asPath}
+              locale={false}
+              onClick={() => setLanguageOpen(false)}
+            >
+              English 🇬🇧
+            </Link>
+            <Link
+              className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+              href={router.asPath}
+              locale="es"
+              onClick={() => setLanguageOpen(false)}
+            >
+              Español 🇪🇸
+            </Link>
+            <Link
+              className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+              href={router.asPath}
+              locale="pt"
+              onClick={() => setLanguageOpen(false)}
+            >
+              Português 🇵🇹
+            </Link>
+          </div>
+        </PopoverContent>
+      </Popover>
 
       <div className={css['social-media']}>
         <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevconnect">
@@ -237,36 +281,31 @@ export const FooterMenu = (props: any) => {
           <GithubIcon style={{ fill: 'white' }} />
         </a>
       </div>
-
-      <div className="flex gap-2 items-start mt-4">
-        {router.locale === 'es' ? (
-          <Link
-            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
-            href="/"
-            locale={false}
-          >
-            English 🇬🇧
-          </Link>
-        ) : (
-          <Link
-            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
-            href="/es"
-            locale={false}
-          >
-            Español 🇪🇸
-          </Link>
-        )}
-      </div>
     </div>
   )
 }
 
 export const Menu = (props: any) => {
   const router = useRouter()
+  const { scrollY } = useScroll()
+  const [hasScrolled, setHasScrolled] = React.useState(false)
+  const [languageOpen, setLanguageOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    return scrollY.onChange(latest => {
+      setHasScrolled(latest > 0)
+    })
+  }, [scrollY])
 
   return (
-    <div className={css['menu']}>
-      <Mobile />
+    <div
+      className={cn(
+        css['menu'],
+        'self-start items-center backdrop-blur-sm bg-black/20 rounded-lg p-1.5 lg:p-0 lg:px-4 lg:pr-2transition-all duration-500',
+        hasScrolled && 'bg-black/50'
+      )}
+    >
+      <Mobile menuOpen={props.menuOpen} setMenuOpen={props.setMenuOpen} />
 
       {menuItems(router.pathname).map((menuItem: any) => {
         const isMultiLink = !!menuItem.children
@@ -275,14 +314,23 @@ export const Menu = (props: any) => {
 
         if (isMultiLink) {
           return (
-            <MultiLink className={menuItem.customClass} key={menuItem.text} to={menuItem.children}>
+            <MultiLink
+              className={cn(menuItem.customClass, 'hidden lg:flex')}
+              key={menuItem.text}
+              to={menuItem.children}
+            >
               {menuItem.text}
             </MultiLink>
           )
         }
 
         return (
-          <Link className={menuItem.customClass} key={menuItem.text} href={menuItem.url} indicateExternal>
+          <Link
+            className={cn(menuItem.customClass, 'hidden lg:flex')}
+            key={menuItem.text}
+            href={menuItem.url}
+            indicateExternal
+          >
             {menuItem.text}
           </Link>
         )
@@ -302,24 +350,45 @@ export const Menu = (props: any) => {
 
       </div> */}
 
-      <div className="gap-2 items-start hidden xl:flex">
-        {router.locale === 'es' ? (
-          <Link
-            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
-            href="/"
-            locale={false}
-          >
-            English 🇬🇧
-          </Link>
-        ) : (
-          <Link
-            className=" text-white hover:text-gray-200 transition-colors rounded-md px-2 py-1 mt-1 bg-slate-800"
-            href="/es"
-            locale={false}
-          >
-            Español 🇪🇸
-          </Link>
-        )}
+      <div className="gap-2 items-center hidden lg:flex">
+        <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
+          <PopoverTrigger asChild>
+            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2">
+              <GlobeIcon className="opacity-90  icon" />
+              <span className="text-white text-base">
+                {router.locale === 'es' ? '🇪🇸' : router.locale === 'pt' ? '🇵🇹' : '🇬🇧'}
+              </span>
+            </div>
+          </PopoverTrigger>
+          <PopoverContent className="w-32 p-1 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg z-[100000]">
+            <div className="flex flex-col">
+              <Link
+                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                href={router.asPath}
+                locale={false}
+                onClick={() => setLanguageOpen(false)}
+              >
+                English 🇬🇧
+              </Link>
+              <Link
+                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                href={router.asPath}
+                locale="es"
+                onClick={() => setLanguageOpen(false)}
+              >
+                Español 🇪🇸
+              </Link>
+              <Link
+                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                href={router.asPath}
+                locale="pt"
+                onClick={() => setLanguageOpen(false)}
+              >
+                Português 🇵🇹
+              </Link>
+            </div>
+          </PopoverContent>
+        </Popover>
       </div>
     </div>
   )

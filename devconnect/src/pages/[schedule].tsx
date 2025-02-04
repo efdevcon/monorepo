@@ -21,7 +21,7 @@ import ScheduleBackgroundAmsterdam from 'assets/images/schedule-bg.svg'
 import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
 import DevconnectAmsterdam from 'assets/images/amsterdam-logo-with-eth.svg'
 import DevconnectIstanbulText from 'assets/images/istanbul-logo-text.svg'
-import Alert from 'common/components/alert'
+import cn from 'classnames'
 import { useRouter } from 'next/dist/client/router'
 // @ts-ignore
 import Toggle from 'react-toggle'
@@ -43,6 +43,9 @@ import InfoIcon from 'assets/icons/info.svg'
 import ExportModalImage from 'assets/images/schedule/modal-export.png'
 import ShareModalImage from 'assets/images/schedule/modal-share.png'
 import EventAdd from 'assets/icons/event_added.svg'
+import { client } from '../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
+import { PagesQuery } from '../../tina/__generated__/types'
 
 const favoritedEventsThisSession = new Set()
 
@@ -1683,6 +1686,12 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   const { scheduleView, setScheduleView } = props
   const favorites = useFavorites(props.events, props.edition)
 
+  const { data }: { data: PagesQuery } = useTina(props.cms)
+
+  console.log(data, 'data')
+
+  // const translations = props.translations
+
   let {
     events,
     mobileFilterOpen,
@@ -1727,7 +1736,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
           if (props.edition === 'amsterdam') return 'Amsterdam'
         })()}
       >
-        <div className={css['hero-content']}>
+        <div className={cn(css['hero-content'], '')}>
           <p className="uppercase extra-large-text bold secondary title">
             {(() => {
               if (props.edition === 'istanbul') return 'Schedule - Istanbul 2023'
@@ -1757,8 +1766,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 
       <div className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
-          {props.edition === 'amsterdam' && <Retro edition={props.edition} />}
-          {props.edition === 'istanbul' && <Retro edition={props.edition} />}
+          {props.edition === 'amsterdam' && <Retro content={data.pages.amsterdam} edition={props.edition} />}
+          {props.edition === 'istanbul' && <Retro content={data.pages.istanbul} edition={props.edition} />}
           <div className={css['top-bar-wrapper']}>
             <SwipeToScroll noBounds scrollIndicatorDirections={{ right: true, left: true }}>
               <div className={css['top-bar']}>
@@ -2194,7 +2203,11 @@ const formatResult = (result: any) => {
   return { ...properties, isVirtualEvent, ID: result.id, ShortID: result.id.slice(0, 5) /* raw: result*/ }
 }
 
-export async function getStaticProps(context: any) {
+export async function getStaticProps({ locale, params }: { locale: string; params: { schedule: string } }) {
+  const contentPath = locale === 'en' ? 'past_events.mdx' : locale + '/past_events.mdx'
+  const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
+  const content = await client.queries.pages({ relativePath: contentPath })
+  const translations = await client.queries.global_translations({ relativePath: translationPath })
   const notion = new Client({
     auth: process.env.NOTION_SECRET,
   })
@@ -2261,7 +2274,7 @@ export async function getStaticProps(context: any) {
     },
   }
 
-  let path = context.params.schedule
+  let path = params.schedule
 
   if (path === 'schedule') path = 'istanbul'
 
@@ -2290,18 +2303,26 @@ export async function getStaticProps(context: any) {
     props: {
       events: data,
       edition: path,
+      cms: {
+        variables: content.variables,
+        data: content.data,
+        query: content.query,
+      },
+      translations: translations.data,
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
   }
 }
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
+  const paths = locales.flatMap(locale => [
+    { params: { schedule: 'schedule' }, locale },
+    { params: { schedule: 'amsterdam' }, locale },
+    { params: { schedule: 'istanbul' }, locale },
+  ])
+
   return {
-    paths: [
-      { params: { schedule: 'schedule' } },
-      { params: { schedule: 'amsterdam' } },
-      { params: { schedule: 'istanbul' } },
-    ],
+    paths,
     fallback: false,
   }
 }

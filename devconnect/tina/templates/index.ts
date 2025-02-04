@@ -21,6 +21,17 @@ const index: Template = {
       name: "button",
       label: "Button text",
     },
+    createRichText('what_is_devconnect'),
+    createRichText('buenos_aires'),
+    createRichText('what_to_expect'),
+    {
+      type: 'string',
+      name: 'devconnect_themes',
+      label: 'Devconnect Themes',
+      list: true
+    },
+    createRichText('catch_the_vibe'),
+    createRichText('watch_the_presentations'),
     {
       label: 'faq',
       name: 'faq',

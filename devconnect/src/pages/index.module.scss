@@ -1,5 +1,166 @@
 @import 'styles/variables.scss';
 
+.hero {
+  &:before {
+    content: '';
+    width: 100%;
+    top: 0px;
+    position: absolute;
+    height: 160px;
+    z-index: 1;
+    opacity: 1;
+    background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #ec7272 59.35%, #1ab18c 100%);
+    -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  }
+
+
+  
+  // &:before {
+  //   position: absolute;
+  //   height: 100%;
+  //   width: 100%;
+  //   z-index: 1;
+  //   content: '';
+  //   background: radial-gradient(ellipse at center, 
+  //     transparent 0%,
+  //     transparent 20%, 
+  //     rgba(0, 0, 0, 0.541) 85%,
+  //     rgba(0, 0, 0, 0.966) 100%
+  //   );
+  //   // linear-gradient(to bottom,
+  //   //   rgba(0, 0, 0, 0.661) 0%,
+  //   //   transparent 10%,
+  //   //   transparent 85%,
+  //   //   rgba(0, 0, 0, 0.661) 100%
+  //   // );
+  //   pointer-events: none;
+  // }
+}
+
+.video-recap-button {
+  // background: none;
+  position: relative;
+  background-clip: padding-box;
+  // border: solid 1px transparent;
+  color: black !important;
+  --icon-color: black !important;
+  opacity: 1;
+  text-decoration: none !important;
+      
+
+  * {
+    text-decoration: none !important;
+  }
+  // font-weight: bold;
+
+  @keyframes fade-in-delay {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* Gradient border hack */
+  // &:not(:hover) {
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      // background: teal;
+      // background: linear-gradient(60deg, #06060f, #151526, #100a17, #121212);
+      background: white;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      margin: -1px;
+      border-radius: inherit;
+      z-index: 4;
+    }
+  // }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 3;
+    margin: -2px;
+    color: black;
+    border-radius: inherit;
+    // opacity: 0.;
+    // background: teal;
+    background: linear-gradient(45deg, #a08bff, #ff8563, #25d2df);
+  }
+  
+  span {
+    z-index: 5;
+  }
+}
+
+.topics {
+  font-size: 36px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  display: block;
+
+  @media (max-width: $screen-lg) {
+    border: none !important;
+    font-size: 32px;
+  }
+
+  .topic {
+    color: rgba(0, 0, 0, 0.1);
+    transition: color .7s;
+    display: inline;
+    opacity: 1 !important;
+
+    &.transformed {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+}
+
+.background-cityscape {
+  height: max(100px, 10vw);
+  width: 100%;
+  position: relative;
+
+  @media (max-width: $screen-md) {
+    display: none;
+  }
+
+  img {
+    position: absolute;
+    top: 5px;
+    height: 200%;
+    transform: translateY(-40%);
+    pointer-events: none;
+    width: 100%;
+    object-fit: cover;
+    object-position: 100% 0%;
+  }
+}
+
+.revealFromLeft {
+  animation: revealLeft 1.2s ease forwards;
+}
+
+@keyframes revealLeft {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 .container {
   height: 100%;
 }
@@ -9,7 +170,7 @@
   width: 100%;
   flex-shrink: 0;
   justify-content: space-between;
-  z-index: 1;
+  // z-index: 1;
 
   .menu {
     display: flex;
@@ -196,6 +357,7 @@
       opacity: 1;
       // font-weight: bold;
 
+
       @keyframes fade-in-delay {
         0% {
           opacity: 0;
@@ -206,35 +368,8 @@
         }
       }
 
-      // animation: fade-in-delay 0.6s 2.25s ease-out forwards;
-
-      @media (max-width: $screen-md) {
-        font-size: 12px;
-        height: 48px;
-        padding: 0 18px;
-      }
-
-      span {
-        svg {
-          font-size: 1.2em;
-          margin-right: 0.5em;
-        }
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &:first-child {
-          // margin-right: 1em;
-        }
-      }
-
-      >* {
-        z-index: 3;
-      }
-
       /* Gradient border hack */
-      // &:not(:hover) {
+      &:not(:hover) {
         &:after {
           content: '';
           position: absolute;
@@ -244,7 +379,7 @@
           left: 0;
           // background: teal;
           // background: linear-gradient(60deg, #06060f, #151526, #100a17, #121212);
-          background: rgba(255, 255, 255, 0.65);
+          // background: rgba(255, 255, 255, 0.65);
           // box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           backdrop-filter: blur(5px);
           -webkit-backdrop-filter: blur(5px);
@@ -253,7 +388,7 @@
           border-radius: inherit;
           z-index: 2;
         }
-      // }
+      }
       // // }
 
       &:before {
@@ -263,7 +398,7 @@
         right: 0;
         bottom: 0;
         left: 0;
-        z-index: 1;
+        z-index: 3;
         margin: -2px;
         color: black;
         border-radius: inherit;
@@ -1150,7 +1285,7 @@
       margin-top: 40px;
       display: flex;
       justify-content: space-between;
-      text-transform: uppercase;
+      // text-transform: uppercase;
 
       @media (max-width: $screen-md) {
         flex-direction: column;
@@ -1158,7 +1293,7 @@
       }
 
       .left {
-        font-weight: 700;
+        // font-weight: 700;
 
         .road-to-devcon {
           display: flex;
@@ -1269,7 +1404,7 @@
         display: flex;
         flex-wrap: wrap;
         text-transform: uppercase;
-        font-weight: 700;
+        // font-weight: 700;
         margin-left: 16px;
 
         >* {
@@ -1294,21 +1429,6 @@
 .modal-overrides {
   [data-type='modal-content'] {
     width: min(800px, 80vw) !important;
-  }
-}
-
-.code-of-conduct {
-  padding: 32px;
-  color: black;
-  overflow: auto;
-
-  > :not(:global(.big-text)) {
-    margin-bottom: 1em;
-    margin-top: 0.5em;
-  }
-
-  li {
-    margin-left: 1em;
   }
 }
 
@@ -1361,7 +1481,7 @@
 
   .topics {
     // color: rgba(144, 152, 161, 0.70);
-    font-size: 64px;
+    font-size: 58px;
     letter-spacing: 3.2px;
     text-transform: uppercase;
     display: block;
@@ -1370,7 +1490,7 @@
 
     @media (max-width: $screen-lg) {
       border: none !important;
-      font-size: 32px;
+      font-size: 28px;
     }
 
     .topic {

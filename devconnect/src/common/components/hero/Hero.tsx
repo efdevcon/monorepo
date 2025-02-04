@@ -34,8 +34,14 @@ const Hero = (props: HeroProps) => {
       )}
 
       <div className={`${css['content']} section`}>
-        {props.backgroundTitle && <p className={`background-title clear-vertical`}>{props.backgroundTitle}</p>}
-        <div className={`${css['children']} ${props.autoHeight ? css['auto-height'] : ' '} clear-vertical`}>
+        {/* {props.backgroundTitle && (
+          <p className={`background-title clear-vertical !justify-end !items-end`}>{props.backgroundTitle}</p>
+        )} */}
+        <div
+          className={`${css['children']} ${
+            props.autoHeight ? css['auto-height'] : ' '
+          } clear-vertical !justify-end !items-end min-h-[200px]`}
+        >
           {props.children}
         </div>
 

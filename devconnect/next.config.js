@@ -9,7 +9,7 @@ module.exports = {
     externalDir: true,
   },
   i18n: {
-    locales: ['en', 'es'],
+    locales: ['en', 'es', 'pt'],
     defaultLocale: 'en',
     localeDetection: false,
   },

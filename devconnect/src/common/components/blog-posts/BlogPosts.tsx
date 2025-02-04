@@ -4,6 +4,7 @@ import { Card } from 'common/components/card'
 import { BlogPost } from 'types/BlogPost'
 import { Slider, useSlider } from 'common/components/slider'
 import moment from 'moment'
+import cn from 'classnames'
 
 interface Props {
   blogs: Array<BlogPost>
@@ -41,7 +42,7 @@ export function BlogReel(props: Props) {
     <div className={`${css['cards']}`}>
       <Slider sliderProps={sliderProps} title="Devcon Blog">
         {props.blogs.map((blog: BlogPost, i: number) => {
-          let className = css['card']
+          let className = cn(css['card'], 'rounded-lg')
 
           if (i === props.blogs.length - 1) className += ` ${css['last']}`
 

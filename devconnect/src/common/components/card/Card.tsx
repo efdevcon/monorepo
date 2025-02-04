@@ -4,7 +4,7 @@ import Image from 'next/image'
 // import { GetExcerpt } from 'utils/formatting'
 import css from './card.module.scss'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
-
+import cn from 'classnames'
 interface CardProps {
   title: string
   titleAsIcon?: React.ReactElement
@@ -34,14 +34,20 @@ interface BasicCardProps {
 // Card has too many variations to be encapsulated by the default Card export
 // For places where we need more customization, you can import BasicCard instead of Card and fill in the contents yourself
 export const BasicCard = React.forwardRef((props: BasicCardProps, ref: any) => {
-  let className = css['card']
+  let className = cn(css['card'], 'rounded-lg border-solid overflow-hidden')
 
   if (props.className) className = `${className} ${props.className}`
   if (props.slide) className = ` ${className} ${css['slide']}`
 
   if (props.expandLink && props.linkUrl) {
     return (
-      <Link className={className} href={props.linkUrl} ref={ref} allowDrag={props.allowDrag}>
+      <Link
+        className={className}
+        spanClass={'rounded-lg border border-slate-300/50 border-solid overflow-hidden'}
+        href={props.linkUrl}
+        ref={ref}
+        allowDrag={props.allowDrag}
+      >
         {props.children}
       </Link>
     )
@@ -69,13 +75,13 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
   const readMore =
     props.expandLink || !props.linkUrl ? (
       <div className={css['read-more']}>
-        <p>Read More</p>
+        <p className="text-sm">Read More</p>
         <IconArrowRight />
       </div>
     ) : (
       <Link href={props.linkUrl} className={css['read-more']}>
         <>
-          <p>Read More</p>
+          <p className="text-sm">Read More</p>
           <IconArrowRight />
         </>
       </Link>
@@ -124,7 +130,9 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
         {props.description && (
           <p
             className={css['text']}
-            dangerouslySetInnerHTML={{ __html: props.description /* GetExcerpt(props.description)*/ }}
+            dangerouslySetInnerHTML={{
+              __html: props.description.slice(0, 160) + '...' /* GetExcerpt(props.description)*/,
+            }}
           />
         )}
 
@@ -149,7 +157,7 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
   if (props.imageUrl) className = `${className} ${css['img']}`
 
   return (
-    <BasicCard className={className} {...props} ref={ref}>
+    <BasicCard className={cn(className, 'rounded-lg')} {...props} ref={ref}>
       {cardContent}
     </BasicCard>
   )
