@@ -5,69 +5,6 @@ const _self = self
 //
 // self.__WB_DISABLE_DEV_LOGS = true
 
-// Nextjs build id
-// const buildId = process.env.CONFIG_BUILD_ID
-
-// listen to message event from window
-// _self.addEventListener('message', event => {
-//   // HOW TO TEST THIS?
-//   // Run this in your browser console:
-//   //     window.navigator.serviceWorker.controller.postMessage({command: 'log', message: 'hello world'})
-//   // OR use next-pwa injected workbox object
-//   //     window.workbox.messageSW({command: 'log', message: 'hello world'})
-//   // console.log(event?.data, 'data')
-//   // console.log(process.env, 'env')
-// })
-
-// _self.addEventListener("fetch", (e: any) => {
-//   console.log('FETCH', e.request.url)
-//   // const controlledRoutes = ['/schedule', '/speakers', '/rooms'];
-//   const requestURL = e.request.url;
-//   // const controlledRoute = controlledRoutes.find(route => requestURL.includes(route));
-
-//   if (requestURL.includes('api.devcon.org')) {
-//     // const urlWithNoQuery = requestURL.split('?')[0];
-
-//     // e.respondWith(fetch(urlWithNoQuery));
-//     e.respondWith(caches.match(e.request).then(response => {
-//         if (response) {
-//             console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
-//             return response;
-//         }
-//         console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
-//         return fetch(e.request);
-//     }))
-//     // );
-//   }
-
-// e.respondWith(
-//   caches.match(e.request).then(function(response) {
-//       if (response) {
-//           console.log('[demoPWA - ServiceWorker] Retrieving from cache...');
-//           return response;
-//       }
-//       console.log('[demoPWA - ServiceWorker] Retrieving from URL...');
-//       return fetch(e.request);
-//   })
-// );
-// });
-
-// _self.addEventListener('activate', event => {
-//   console.log('activated')
-//   if ('serviceWorker' in navigator) {
-//     navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
-//         serviceWorkerRegistration.pushManager.subscribe({
-//             userVisibleOnly: true
-//         }).then(function(subscription) {
-//             console.log('User is subscribed:', subscription);
-//             // Send subscription to your server
-//         }).catch(function(err) {
-//             console.log('Failed to subscribe the user: ', err);
-//         });
-//     });
-//   }
-// });
-
 _self.addEventListener('push', event => {
   let data = {}
   try {
@@ -122,27 +59,3 @@ _self.addEventListener('notificationclick', event => {
     )
   }
 })
-
-// TODO: this breaks things
-// self.addEventListener('fetch', event => {
-//   event.respondWith(
-//     caches.match(event.request).then(cachedResponse => {
-//       if (cachedResponse) {
-//         return cachedResponse
-//       }
-//       return fetch(event.request).then(response => {
-//         // Check if the response is a 404
-//         if (response.status === 404) {
-//           // Handle 404 response, e.g., return a custom 404 page or ignore caching
-//           return caches.match('/404') || Response.error()
-//         }
-//         // Cache the response if it's not a 404
-//         const responseClone = response.clone()
-//         caches.open('dynamic-cache').then(cache => {
-//           cache.put(event.request, responseClone)
-//         })
-//         return response
-//       })
-//     })
-//   )
-// })

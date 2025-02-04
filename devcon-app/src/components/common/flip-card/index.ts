@@ -1,2 +1,0 @@
-
-export { FlipCard } from './FlipCard'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from 'components/common/button'
+import { Button } from 'lib/components/button'
 import css from './add-to-calendar.module.scss'
 import { Modal } from 'components/common/modal'
 import { Link } from 'components/common/link'

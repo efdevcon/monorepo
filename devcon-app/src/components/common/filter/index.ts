@@ -1,2 +1,1 @@
-export { Filter, FilterFoldout, useFilter } from './Filter'
-export { NoResults } from './no-results';
+export { NoResults } from './no-results/NoResults';

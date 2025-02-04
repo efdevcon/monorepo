@@ -2,9 +2,6 @@ import React from 'react'
 import { createPortal } from 'react-dom'
 import css from './modal.module.scss'
 import IconClose from 'assets/icons/cross.svg'
-import IconChevronLeft from 'assets/icons/chevron_left.svg'
-import IconChevronRight from 'assets/icons/chevron_right.svg'
-import { Button } from 'components/common/button'
 import Image from 'next/image'
 
 type ModalProps = {
@@ -34,23 +31,6 @@ const SliderControls = (props: any) => {
             </div>
           )
         })}
-      </div>
-
-      <div className={css['arrows']}>
-        <Button
-          className={`${css['arrow']} red sm squared`}
-          disabled={props.currentSlideIndex === 0}
-          onClick={() => props.setCurrentSlideIndex((prev: number) => prev - 1)}
-        >
-          <IconChevronLeft />
-        </Button>
-        <Button
-          className={`${css['arrow']} red sm squared`}
-          disabled={props.currentSlideIndex === props.slides.length - 1}
-          onClick={() => props.setCurrentSlideIndex((prev: number) => prev + 1)}
-        >
-          <IconChevronRight />
-        </Button>
       </div>
     </div>
   )
