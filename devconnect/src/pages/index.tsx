@@ -46,9 +46,7 @@ import SwipeToScroll from 'common/components/swipe-to-scroll'
 import { client } from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import RichText from 'lib/components/tina-cms/RichText'
-import { TinaMarkdown } from 'tinacms/dist/rich-text'
-import { PagesQuery } from '../../tina/__generated__/types'
-import { motion, useScroll } from 'framer-motion'
+import { useScroll } from 'framer-motion'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import TelegramIcon from 'assets/icons/telegram.svg'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
@@ -296,7 +294,7 @@ const Home: NextPage = (props: any) => {
               <div className="flex justify-end gap-4">
                 <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
                   <a
-                    className="cursor-pointer flex items-center"
+                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                     target="_blank"
                     rel="noreferrer"
                     href="https://twitter.com/efdevconnect"
@@ -304,7 +302,7 @@ const Home: NextPage = (props: any) => {
                     <TwitterIcon style={{ fill: 'white' }} />
                   </a>
                   <a
-                    className="cursor-pointer flex items-center"
+                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                     target="_blank"
                     rel="noreferrer"
                     href="https://t.me/efdevconnect"
@@ -313,7 +311,7 @@ const Home: NextPage = (props: any) => {
                   </a>
 
                   <a
-                    className="cursor-pointer flex items-center"
+                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                     target="_blank"
                     rel="noreferrer"
                     href="https://warpcast.com/efdevconnect"
@@ -323,11 +321,12 @@ const Home: NextPage = (props: any) => {
 
                   <MailIcon
                     style={{ fill: 'white', display: 'block', cursor: 'pointer' }}
+                    className="hover:scale-[1.02] transition-all duration-300"
                     onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
                   />
                 </div>
 
-                <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black ">
+                <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
                   <div className="flex items-center text-sm gap-1.5">
                     <p className="text-sm font-semibold opacity-60">
                       {(globalThis as any).translations.scroll_for_more}
@@ -349,12 +348,6 @@ const Home: NextPage = (props: any) => {
                     </svg>
                   </div>
                 </div>
-
-                {/* <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/10 rounded-lg p-2">
-                  <Link className="text-sm" href="/es" locale={false}>
-                    Español 🇪🇸
-                  </Link>
-                </div> */}
               </div>
             </div>
           </div>

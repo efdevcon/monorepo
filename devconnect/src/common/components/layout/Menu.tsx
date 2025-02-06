@@ -164,9 +164,9 @@ const Mobile = (props: any) => {
 
   return (
     <div className={css['mobile-menu']}>
-      <div className={cn(css['foldout-toggle'], 'flex lg:hidden')}>
+      <div className={cn(css['foldout-toggle'], 'hover:scale-[1.1] transition-all duration-300 flex lg:hidden')}>
         <div className={css['icon']} onClick={() => props.setMenuOpen(!props.menuOpen)}>
-          <HamburgerIcon className="text-lg" />
+          <HamburgerIcon className="text-lg " />
         </div>
       </div>
 
@@ -277,7 +277,7 @@ export const FooterMenu = (props: any) => {
         <a target="_blank" rel="noreferrer" href="https://warpcast.com/efdevconnect">
           <FarcasterIcon style={{ fill: 'white' }} />
         </a>
-        <a target="_blank" rel="noreferrer" href="https://github.com/efdevconnect/">
+        <a target="_blank" rel="noreferrer" href="https://github.com/efdevcon/monorepo">
           <GithubIcon style={{ fill: 'white' }} />
         </a>
       </div>
@@ -353,7 +353,7 @@ export const Menu = (props: any) => {
       <div className="gap-2 items-center hidden lg:flex">
         <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
           <PopoverTrigger asChild>
-            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2">
+            <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none">
               <GlobeIcon className="opacity-90  icon" />
               <span className="text-white text-base">
                 {router.locale === 'es' ? '🇪🇸' : router.locale === 'pt' ? '🇵🇹' : '🇬🇧'}
@@ -361,9 +361,9 @@ export const Menu = (props: any) => {
             </div>
           </PopoverTrigger>
           <PopoverContent className="w-32 p-1 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg z-[100000]">
-            <div className="flex flex-col">
+            <div className="flex flex-col text-sm">
               <Link
-                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"
                 href={router.asPath}
                 locale={false}
                 onClick={() => setLanguageOpen(false)}
@@ -371,7 +371,7 @@ export const Menu = (props: any) => {
                 English 🇬🇧
               </Link>
               <Link
-                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"
                 href={router.asPath}
                 locale="es"
                 onClick={() => setLanguageOpen(false)}
@@ -379,7 +379,7 @@ export const Menu = (props: any) => {
                 Español 🇪🇸
               </Link>
               <Link
-                className="text-white hover:bg-white/10 rounded p-2 transition-colors"
+                className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"
                 href={router.asPath}
                 locale="pt"
                 onClick={() => setLanguageOpen(false)}
