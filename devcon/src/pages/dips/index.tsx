@@ -79,6 +79,6 @@ export async function getStaticProps(context: any) {
         query: content.query,
       },
     },
-    revalidate: 43200, // 12 hours in seconds
+    revalidate: 43200, // 12 hours
   }
 }
