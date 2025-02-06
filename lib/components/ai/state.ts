@@ -1,31 +1,51 @@
-import { atom } from "recoil";
+import { create } from 'zustand'
 
-export const visibleState = atom<boolean>({
-  key: "visibleState",
-  default: false,
-});
+interface DevaBotState {
+  visible: boolean
+  setVisible: (visible: boolean) => void
+  
+  query: string
+  setQuery: (query: string) => void
+  
+  executingQuery: boolean
+  setExecutingQuery: (executing: boolean) => void
+  
+  error: string
+  setError: (error: string) => void
+  
+  threadID: string
+  setThreadID: (threadID: string) => void
+  
+  messages: any[]
+  setMessages: (messages: any[]) => void
+  
+  reset: () => void
+}
 
-export const queryState = atom<string>({
-  key: "queryState",
-  default: "",
-});
+export const useDevaBotStore = create<DevaBotState>((set) => ({
+  visible: false,
+  setVisible: (visible) => set({ visible }),
 
-export const executingQueryState = atom<boolean>({
-  key: "executingQueryState",
-  default: false,
-});
+  query: '',
+  setQuery: (query) => set({ query }),
 
-export const errorState = atom<string>({
-  key: "errorState",
-  default: "",
-});
+  executingQuery: false, 
+  setExecutingQuery: (executingQuery) => set({ executingQuery }),
 
-export const threadIDState = atom<string>({
-  key: "threadIDState",
-  default: "",
-});
+  error: '',
+  setError: (error) => set({ error }),
 
-export const messagesState = atom<any[]>({
-  key: "messagesState",
-  default: [],
-});
+  threadID: '',
+  setThreadID: (threadID) => set({ threadID }),
+
+  messages: [],
+  setMessages: (messages) => set({ messages }),
+
+  reset: () => set({
+    threadID: '',
+    messages: [],
+    error: '',
+    executingQuery: false,
+    query: ''
+  })
+}))

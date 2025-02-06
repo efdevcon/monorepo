@@ -5,7 +5,7 @@ import { Button } from "lib/components/button";
 import CloseIcon from "../../assets/icons/cross.svg";
 import Markdown from "react-markdown";
 import { motion, AnimatePresence } from "framer-motion";
-import { useRecoilState, useResetRecoilState, atom } from "recoil";
+import { useDevaBotStore } from "./state";
 import { CircleIcon } from "lib/components/circle-icon";
 import { FancyLoader } from "lib/components/loader/loader";
 import { Separator } from "lib/components/ui/separator";
@@ -19,14 +19,6 @@ import AIImage from "./ai-generate.png";
 import ScrollDownIcon from "lib/assets/icons/scroll-down.svg";
 import SendIcon from "lib/assets/icons/send.svg";
 import { Session as SessionType } from "@/types/Session";
-import {
-  visibleState,
-  queryState,
-  executingQueryState,
-  errorState,
-  threadIDState,
-  messagesState,
-} from "./state"; // Adjust the import path
 import TrashIcon from "lib/assets/icons/trash.svg";
 import cn from "classnames";
 import { fetchSessions } from "lib/helpers/devcon-api-fetch";
@@ -103,16 +95,21 @@ const DevaBot = ({
   setDefaultPrompt?: (prompt: string) => void;
   SessionComponent?: React.ReactNode | React.ElementType;
 }) => {
-  // const [visible, onToggled] = useRecoilState(visibleState);
-  const [query, setQuery] = useRecoilState(queryState);
-  const [executingQuery, setExecutingQuery] =
-    useRecoilState(executingQueryState);
-  const [error, setError] = useRecoilState(errorState);
-  const [threadID, setThreadID] = useRecoilState(threadIDState);
-  const [messages, setMessages] = useRecoilState(messagesState);
+  const {
+    query,
+    setQuery,
+    executingQuery,
+    setExecutingQuery,
+    error,
+    setError,
+    threadID,
+    setThreadID,
+    messages,
+    setMessages,
+    reset,
+  } = useDevaBotStore();
   const textareaRef = React.useRef<HTMLInputElement>(null);
   const draggable = useDraggableLink();
-  // const messagesScrollRef = React.useRef<HTMLDivElement>(null);
   const [autoFetchedSessions, setAutoFetchedSessions] = useState<SessionType[]>(
     []
   );
@@ -124,9 +121,6 @@ const DevaBot = ({
       });
     }
   }, [autoFetchSessions]);
-
-  const resetMessages = useResetRecoilState(messagesState);
-  const resetThreadID = useResetRecoilState(threadIDState);
 
   const [activeTab, setActiveTab] = React.useState(0);
   const [isTouchDevice, setIsTouchDevice] = React.useState(false);
@@ -235,35 +229,6 @@ const DevaBot = ({
     syncThreadHistory();
   }, []);
 
-  // useEffect(() => {
-  //   const threadID = "thread_sfFH6abzIXEeVdntxuXinBwS";
-  //   const url =
-  //     process.env.NODE_ENV === "development"
-  //       ? `http://localhost:4000/devabot/threads/${threadID}`
-  //       : `https://api.devcon.org/devabot/threads/${threadID}`;
-
-  //   fetch(url, {
-  //     method: "GET",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     credentials: "include",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setThreadID(threadID);
-  //       setMessages(data);
-  //       setStreamingMessage("");
-  //       setExecutingQuery(false);
-  //     });
-  // }, []);
-
-  // React.useEffect(() => {
-  //   if (typeof toggled === "boolean") {
-  //     onToggle(toggled);
-  //   }
-  // }, [toggled]);
-
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
   const messagesContainerRef = React.useRef<HTMLDivElement>(null);
   const [isAtBottom, setIsAtBottom] = React.useState(true);
@@ -346,12 +311,10 @@ const DevaBot = ({
       });
   };
 
-  const reset = () => {
+  const handleReset = () => {
     setExecutingQuery(false);
     setStreamingMessage("");
-    setError("");
-    resetThreadID();
-    resetMessages();
+    reset();
     setIsAtBottom(true);
   };
 
@@ -362,7 +325,6 @@ const DevaBot = ({
 
     setExecutingQuery(true);
     setStreamingMessage("");
-    // setPartialChunk("");
 
     try {
       let url =
@@ -420,8 +382,6 @@ const DevaBot = ({
       while (true) {
         const { value, done } = await reader.read();
         if (done) break;
-
-        // console.log(value, "value");
 
         buffer += value;
 
@@ -504,26 +464,6 @@ const DevaBot = ({
     }
   }, [toggled, isIOS]);
 
-  // useEffect(() => {
-  //   if (toggled) {
-  //     // Store the current scroll position
-  //     scrollPositionRef.current = window.pageYOffset;
-
-  //     // Apply styles to prevent scrolling
-  //     document.body.style.position = "fixed";
-  //     document.body.style.top = `-${scrollPositionRef.current}px`;
-  //     document.body.style.width = "100%";
-
-  //     return () => {
-  //       // Remove the styles and restore scroll position
-  //       document.body.style.position = "";
-  //       document.body.style.top = "";
-  //       document.body.style.width = "";
-  //       window.scrollTo(0, scrollPositionRef.current);
-  //     };
-  //   }
-  // }, [toggled]);
-
   return (
     <>
       <AnimatePresence>
@@ -571,7 +511,7 @@ const DevaBot = ({
                     Deva crashed for an unknown reason! Please try again.
                   </p>
                   <Button
-                    onClick={reset}
+                    onClick={handleReset}
                     color="black-1"
                     className="mt-4 plain"
                     fill
@@ -1023,40 +963,13 @@ const DevaBot = ({
                   {messages.length > 0 && !executingQuery && (
                     <div className="flex justify-start ml-4 w-full mb-2 shrink-0 z-10 pointer-events-none">
                       <div
-                        onClick={reset}
+                        onClick={handleReset}
                         className="shrink-0 select-none pointer-events-auto cursor-pointer mr-2 rounded-full bg-white border border-solid border-[#E1E4EA] px-3 py-1 text-xs flex items-center justify-center text-[#717784] hover:text-black transition-all duration-300"
                       >
                         <p>Start New Conversation</p>
                       </div>
                     </div>
                   )}
-
-                  {/* <div
-                className={`text-red-500 text-xs shrink-0 ${
-                  messages.length > 0 ? "hidden" : ""
-                }`}
-              >
-                This is an MVP and Deva may rarely provide answers that are not
-                true - we take no responsibility for, or endorse, anything Deva
-                says{"  "}
-                <Popover>
-                  <PopoverTrigger>ℹ️</PopoverTrigger>
-                  <PopoverContent>
-                    <div className="text-xs">
-                      We currently use OpenAI due to the ease of use and mature
-                      APIs, but are actively working on an open source
-                      alternative. We welcome contributions to this effort on
-                      the{" "}
-                      <Link
-                        href="https://github.com/efdevcon/monorepo"
-                        className="generic"
-                      >
-                        Devcon repository.
-                      </Link>
-                    </div>
-                  </PopoverContent>
-                </Popover>
-              </div> */}
 
                   <div
                     className={cn("", {
@@ -1100,13 +1013,9 @@ const DevaBot = ({
                       { "mt-0": executingQuery || messages.length > 0 }
                     )}
                   >
-                    {/* <div className="icon mr-1">
-                      <AppIconOne />
-                    </div> */}
                     <div className={cn("grow relative")}>
                       <input
                         className={cn(
-                          // text-16 = avoid zoom on iphone jesus christ
                           "w-full py-3 h-[35px] px-4 pr-10 bg-[#F0F2FF] text-base lg:text-sm rounded-full placeholder-[#747474] focus:outline-none",
                           {
                             "opacity-50": executingQuery,
@@ -1158,7 +1067,6 @@ const DevaBot = ({
                         className={cn(
                           "mx-1 h-[34px] w-[34px] text-2xl bg-[#F0F2FF]",
                           {
-                            // "opacity-50": executingQuery,
                             "!bg-[#7D52F4]": query.length > 0,
                           }
                         )}
@@ -1184,26 +1092,6 @@ const DevaBot = ({
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* {!onToggle && (
-        <div
-          onClick={() => onToggle(true)}
-          className="section cursor-pointer"
-        >
-          <Trigger />
-        </div>
-      )} */}
-
-      {/* <Button
-        className="plain"
-        className="bold"
-        color="blue-1"
-        fill
-        onClick={() => onToggled(!visible)}
-      >
-        <span className="md:hidden block">Questions?</span>
-        <span className="hidden md:block">Questions? Ask here 🦄</span>
-      </Button> */}
     </>
   );
 };
