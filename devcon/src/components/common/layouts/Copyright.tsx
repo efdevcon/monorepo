@@ -3,7 +3,7 @@ import { useTranslations } from 'next-intl'
 import { COPYRIGHT_NOTICE } from 'utils/constants'
 
 export const Copyright = () => {
-  const intl = useTranslations()
+  // const intl = useTranslations()
 
   return (
     <div className="font-xs">

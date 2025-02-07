@@ -8,6 +8,7 @@ const getStaticPrecacheEntries = require('./precache-public')
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const runtimeCache = require('./runtime-cache')
+const PriorityNodeModulesResolverPlugin = require('../lib/helpers/custom-module-resolver')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -39,6 +40,10 @@ const nextConfig = {
   //   hideSourceMaps: true,
   // },
   webpack: (config, { buildId }) => {
+    // Inject our custom resolver plugin at the beginning of the plugins list.
+    // config.resolve.plugins = config.resolve.plugins || []
+    // config.resolve.plugins.unshift(new PriorityNodeModulesResolverPlugin())
+
     return {
       ...config,
       plugins: [
@@ -53,16 +58,24 @@ const nextConfig = {
         ...config.resolve,
         alias: {
           ...config.resolve.alias,
-          react: path.resolve(__dirname, 'node_modules/react'),
-          'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-          recoil: path.resolve(__dirname, 'node_modules/recoil'),
+          // react: path.resolve(__dirname, 'node_modules/react'),
+          // 'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
+          // recoil: path.resolve(__dirname, 'node_modules/recoil'),
         },
-        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
-        fallback: {
-          tls: false,
-          net: false,
-          fs: false,
-        },
+        plugins: [
+          ...config.resolve.plugins,
+          // new PriorityNodeModulesResolverPlugin(),
+        ],
+        modules: [
+          path.resolve(__dirname, 'src'),
+          'node_modules',
+          path.resolve(__dirname, 'node_modules'),
+        ],
+        // fallback: {
+        //   tls: false,
+        //   net: false,
+        //   fs: false,
+        // },
       },
       module: {
         ...config.module,
@@ -82,7 +95,7 @@ const nextConfig = {
                         params: {
                           overrides: {
                             removeViewBox: false,
-                            cleanupIDs: false, // Critical to have this, otherwise svgs can start affecting each other
+                            cleanupIDs: false,
                           },
                         },
                       },

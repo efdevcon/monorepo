@@ -1,4 +1,4 @@
-import intl from 'content/i18n/en.json' // Default language
+// import intl from 'content/i18n/en.json' // Default language
 
 export const SITE_URL = 'https://devcon.org/'
 export const EMAIL_DEVCON = 'support@devcon.org'
@@ -13,11 +13,11 @@ export const EVENT_DAYS = [11, 12, 13, 14]
 export const DEFAULT_REVALIDATE_PERIOD = 3600
 
 export const DEFAULT_APP_PAGE = {
-    title: intl.global.title,
-    description: intl.global.description,
-    template: 'index',
-    tags: [],
-    lang: 'en',
-    id: 'index',
-    slug: 'index'
+  title: 'Devcon 2024',
+  description: 'Devcon 2024',
+  template: 'index',
+  tags: [],
+  lang: 'en',
+  id: 'index',
+  slug: 'index',
 }

@@ -9,7 +9,6 @@ import { DIP } from 'types/DIP'
 import GithubIcon from 'assets/icons/github.svg'
 import TooltipIcon from 'assets/icons/tooltip.svg'
 import ArrowRight from 'assets/icons/arrow_right.svg'
-import { useTranslations } from 'next-intl'
 import { useFilter } from 'components/common/filter'
 import { CopyToClipboard } from 'components/common/share/CopyToClipboard'
 import { usePageContext } from 'context/page-context'
@@ -40,9 +39,6 @@ type ProposalsProps = {
 }
 
 export const Proposals = (props: ProposalsProps) => {
-  const intl = useTranslations()
-  const context = usePageContext()
-
   // Pushing an extra column into the table to make room for a link back to the page
   const dipsWithLink = React.useMemo(() => {
     return props.dips
@@ -102,7 +98,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_name',
+      title: 'Name',
       key: 'title',
       className: css['name-column'],
       sort: SortVariation.basic,
@@ -111,7 +107,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_summary',
+      title: 'Summary',
       className: css['summary-column'],
       key: 'summary',
       render: (item: DIP) => {
@@ -121,7 +117,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_instances',
+      title: 'Edition',
       key: 'Edition',
       className: '!basis-[115px] !grow-0 !hidden lg:!flex', // css['name-column'],
       // sort: SortVariation.basic,
@@ -134,7 +130,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_status',
+      title: 'Status',
       key: 'status',
       className: css['status-column'],
       // sort: (item1: DIP, item2: DIP) => {
@@ -181,7 +177,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_themes',
+      title: 'Themes',
       key: 'themes',
       className: css['themes-column'],
       sort: SortVariation.basic,
@@ -190,7 +186,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_tags',
+      title: 'Tags',
       key: 'tags',
       className: css['tag-column'],
       sort: (item1: DIP, item2: DIP) => {
@@ -216,7 +212,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_links',
+      title: 'Links',
       key: 'links',
       className: css['links-column'],
       render: (item: DIP) => {
@@ -224,7 +220,7 @@ export const Proposals = (props: ProposalsProps) => {
       },
     },
     {
-      intl: 'dips_expand',
+      title: 'Expand',
       key: 'link',
       className: css['expand-column'],
       render: (item: DIP) => {

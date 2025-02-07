@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import css from './hero.module.scss'
 // import Rays from './images/Rays'
-import { useTranslations } from 'next-intl'
+// import { useTranslations } from 'next-intl'
 // import { CallToAction } from './call-to-action'
 // import BackgroundBogota from './images/bogota-background.png'
 // import BackgroundPassport from './images/passport-background.png'
@@ -99,7 +99,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
   const [currentUrl, setCurrentUrl] = useState('https://devcon.org/tickets/')
   const searchParams = useSearchParams()
   // const router = useRouter()
-  const intl = useTranslations()
+  // const intl = useTranslations()
   // const draggableLinkAttributes = useDraggableLink()
   const heroEl = React.useRef(null)
   // const pages = usePages()x
@@ -403,7 +403,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
         {!props.ticketMode && !props.speakerMode && (
           <>
             <div className={css['left-rotated']}>
-              <p className={'text-uppercase'}>{intl('global_subtitle')}</p>
+              <p className={'text-uppercase'}>Devcon 2024</p>
             </div>
             <div className={css['right-rotated']}>
               <p className={'text-uppercase'}>Road TO SOUTH EAST ASIA 2024</p>

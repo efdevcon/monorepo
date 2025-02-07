@@ -55,7 +55,7 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
-        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules', path.resolve(__dirname, 'node_modules')],
       },
       plugins: [
         // Only include tz data for the zone we use

@@ -8,7 +8,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { appState as appStateAtom } from 'state/main'
 
 const useNavigationData = () => {
-  const intl = useTranslations()
+  // const intl = useTranslations()
   const [appState, setAppState] = useRecoilState(appStateAtom)
 
   return {
@@ -31,7 +31,7 @@ const useNavigationData = () => {
     ],
     site: [
       {
-        title: intl('navigation_about'),
+        title: 'About Devcon',
         url: '#',
         type: 'links',
         logo: LogoAbout,
@@ -42,12 +42,12 @@ const useNavigationData = () => {
             type: 'header',
           },
           {
-            title: intl('navigation_about_devcon'),
+            title: 'About',
             url: '/about',
             type: 'page',
           },
           {
-            title: intl('navigation_past_events'),
+            title: 'Past Events',
             url: '/past-events',
             type: 'page',
           },
@@ -57,25 +57,25 @@ const useNavigationData = () => {
             type: 'page',
           },
           {
-            title: intl('navigation_forum'),
+            title: 'Forum',
             url: 'https://forum.devcon.org/',
             type: 'link',
           },
           {
-            title: intl('navigation_updates'),
+            title: 'Updates',
             url: '#',
             type: 'header',
           },
           {
-            title: intl('navigation_blog'),
+            title: 'Blog',
             url: '/blogs',
             type: 'page',
           },
-          {
-            title: intl('news'),
-            url: '/news',
-            type: 'page',
-          },
+          // {
+          //   title: intl('news'),
+          //   url: '/news',
+          //   type: 'page',
+          // },
           // {
           //   title: intl('navigation_faq'),
           //   url: '/faq',
@@ -114,13 +114,13 @@ const useNavigationData = () => {
         ],
       },
       {
-        title: intl('navigation_get_involved'),
+        title: 'Get Involved',
         url: '#',
         type: 'links',
         logo: LogoGetInvolved,
         links: [
           {
-            title: intl('navigation_community'),
+            title: 'Community',
             url: '#',
             type: 'header',
           },
@@ -149,11 +149,11 @@ const useNavigationData = () => {
           //   url: '/speaker-applications',
           //   type: 'page',
           // },
-          {
-            title: 'RTD Grants',
-            url: 'https://esp.ethereum.foundation/devcon-grants',
-            type: 'link',
-          },
+          // {
+          //   title: 'RTD Grants',
+          //   url: 'https://esp.ethereum.foundation/devcon-grants',
+          //   type: 'link',
+          // },
           // {
           //   title: intl('navigation_supporters'),
           //   url: '/supporters',
@@ -321,7 +321,7 @@ const useNavigationData = () => {
       //   type: 'link',
       // },
       {
-        title: intl('navigation_archive'),
+        title: 'Archive',
         url: 'https://archive.devcon.org',
         type: 'page',
         // highlight: 'archive',
@@ -347,22 +347,22 @@ const useNavigationData = () => {
     ],
     footer: {
       bottom: [
-        {
-          title: intl('navigation_news'),
-          url: '/news',
-          type: 'page',
-        },
+        // {
+        //   title: intl('navigation_news'),
+        //   url: '/news',
+        //   type: 'page',
+        // },
       ],
       highlights: [
         {
-          title: intl('navigation_faq'),
+          title: 'FAQ',
           url: '/faq',
           type: 'page',
         },
       ],
       left: [
         {
-          title: intl('navigation_about'),
+          title: 'About',
           url: '/about',
           type: 'page',
         },
@@ -403,7 +403,7 @@ const useNavigationData = () => {
           type: 'page',
         },
         {
-          title: intl('navigation_blog'),
+          title: 'Blog',
           url: '/blogs',
           type: 'page',
         },
@@ -429,11 +429,11 @@ const useNavigationData = () => {
           url: '/road-to-devcon#events',
           type: 'page',
         },
-        {
-          title: 'Devcon Week',
-          url: '/devcon-week',
-          type: 'page',
-        },
+        // {
+        //   title: 'Devcon Week',
+        //   url: '/devcon-week',
+        //   type: 'page',
+        // },
         // {
         //   title: 'Supporters',
         //   url: '/supporters',
@@ -444,13 +444,13 @@ const useNavigationData = () => {
           url: '/dips',
           type: 'page',
         },
+        // {
+        //   title: 'RTD Grants',
+        //   url: 'https://esp.ethereum.foundation/devcon-grants',
+        //   type: 'link',
+        // },
         {
-          title: 'RTD Grants',
-          url: 'https://esp.ethereum.foundation/devcon-grants',
-          type: 'link',
-        },
-        {
-          title: intl('navigation_forum'),
+          title: 'Forum',
           url: 'https://forum.devcon.org/',
           type: 'link',
         },

@@ -32,7 +32,7 @@ type TableProps = {
 }
 
 export const TableHeader = (props: HeaderProps) => {
-  const intl = useTranslations()
+  // const intl = useTranslations()
 
   return (
     <div className={css['header']}>
@@ -62,7 +62,7 @@ export const TableHeader = (props: HeaderProps) => {
               if (column.sort) props.setSortBy(index)
             }}
           >
-            <p className="text-uppercase">{column.intl ? intl(column.intl) : column.title}</p>
+            <p className="text-uppercase">{column.intl ? 'no intl' : column.title}</p>
             {column.sort && (
               <div className={css['sort']}>
                 {shouldRenderAsc && <ArrowAsc />}

@@ -2,18 +2,12 @@ import React from 'react'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
-import { pageHOC } from 'context/pageHOC'
-import { getGlobalData } from 'services/global'
-import { GetDevconEditions, GetPage } from 'services/page'
 import { Tags } from 'components/common/tags'
-import { usePageContext } from 'context/page-context'
-import ArrowRight from 'assets/icons/arrow_right.svg'
 import css from './past-events.module.scss'
 import { Link } from 'components/common/link'
 import Image from 'next/image'
 import EventLocations from 'assets/images/event-locations.png'
 import { Button } from 'lib/components/button'
-import { useTranslations } from 'next-intl'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -22,9 +16,7 @@ import InfiniteScroller from 'lib/components/infinite-scroll'
 import RichText from 'lib/components/tina-cms/RichText'
 import indexCss from './index.module.scss'
 
-export default pageHOC(function PastEvents(props: any) {
-  const intl = useTranslations()
-  const pageContext = usePageContext()
+export default function PastEvents(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesPast_Events
   const events = pages.events || []
@@ -33,7 +25,8 @@ export default pageHOC(function PastEvents(props: any) {
     <Page theme={themes['about']}>
       <PageHero
         heroBackground={HeroBackground}
-        path={[{ text: <span className="bold">{intl('navigation_about')}</span> }, { text: props.page.header }]}
+        path={[{ text: <span className="bold">About</span> }, { text: 'Past Events' }]}
+        title="Past Events"
         navigation={events.map((event: any) => {
           return {
             title: event.title,
@@ -48,7 +41,7 @@ export default pageHOC(function PastEvents(props: any) {
             <RichText content={pages.section1?.about} />
           </div>
           <div className={`right ${css['right']}`}>
-            <h2 className="spaced">{intl('past_events_locations')}</h2>
+            <h2 className="spaced">Past Events Locations</h2>
             <Image src={EventLocations} alt="Devcon events on world map" />
           </div>
 
@@ -60,7 +53,7 @@ export default pageHOC(function PastEvents(props: any) {
         </div>
 
         <div className="border-bottom clear-bottom">
-          <h2>{intl('past_events_past_devcons')}</h2>
+          <h2>Past Events Past Devcons</h2>
         </div>
 
         {events.map((event, index: number) => {
@@ -100,23 +93,16 @@ export default pageHOC(function PastEvents(props: any) {
         })}
 
         <div className="clear-bottom" />
-
-        <Tags items={pageContext?.current?.tags} viewOnly />
       </div>
     </Page>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
-  const globalData = await getGlobalData(context)
-  const page = await GetPage('/past-events', context.locale)
-
   const content = await client.queries.pages({ relativePath: 'past_events.mdx' })
 
   return {
     props: {
-      ...globalData,
-      page,
       cms: {
         variables: content.variables,
         data: content.data,

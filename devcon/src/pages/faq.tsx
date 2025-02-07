@@ -2,8 +2,6 @@ import React from 'react'
 import Page from 'components/common/layouts/page'
 import { PageHero } from 'components/common/page-hero'
 import themes from './themes.module.scss'
-import { pageHOC } from 'context/pageHOC'
-import { getGlobalData } from 'services/global'
 import HeroBackground from 'assets/images/pages/hero-bgs/about.jpg'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -11,7 +9,6 @@ import RichText from 'lib/components/tina-cms/RichText'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import { motion } from 'framer-motion'
-import { Button } from 'lib/components/button'
 
 const nodeToPlainText = (node: any, acc = '') => {
   if (node.type === 'text') {
@@ -74,7 +71,7 @@ export const FAQ = (props: any) => {
   )
 }
 
-export default pageHOC(function Programming(props: any) {
+export default function Programming(props: any) {
   const [search, setSearch] = React.useState('')
   const { data: general } = useTina<any>(props.general) as any
   const { data: cityGuide } = useTina<any>(props.cityGuide) as any
@@ -168,10 +165,9 @@ export default pageHOC(function Programming(props: any) {
       </div>
     </Page>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
-  const globalData = await getGlobalData(context)
   const programming = await client.queries.pages({ relativePath: 'programming.mdx' })
   const cityGuide = await client.queries.pages({ relativePath: 'city_guide.mdx' })
   const tickets = await client.queries.pages({ relativePath: 'tickets.mdx' })
@@ -180,8 +176,6 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      ...globalData,
-      page: {},
       cityGuide,
       programming,
       tickets,

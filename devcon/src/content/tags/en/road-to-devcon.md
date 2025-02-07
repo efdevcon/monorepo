@@ -1,3 +1,0 @@
----
-title: Road to Devcon
----
