@@ -7,7 +7,7 @@ import RichText from 'lib/components/tina-cms/RichText'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'common/components/link/Link'
-
+import cn from 'classnames'
 // Exporting to cowork page
 export const FAQDuringEvent = [
   {
@@ -464,26 +464,39 @@ const FAQ = (props: any) => {
   const [openFAQ, setOpenFAQ] = useState<string | null>(null)
 
   return (
-    <div className="mt-4 text-black">
+    <div className="mt-4 text-slate-900">
       <div className="flex flex-col">
         {props.questions?.map(({ question, answer }: { question: string; answer: any }) => {
           const open = question === openFAQ
 
           return (
-            <div key={question} className="w-full border-[#E2E3FF] bg-[#F8F9FE] rounded-xl shadow mb-4">
+            <div
+              key={question}
+              className={cn(
+                'w-full flex flex-col bg-teal-100/10 rounded-xl shadow mb-4 shadow-[#74abde]/50 transition-all duration-500',
+                open ? 'bg-teal-100/30' : ''
+              )}
+            >
               <button
-                className="w-full p-4 bold cursor-pointer select-none hover:opacity-70 flex justify-between items-center"
+                className="p-4 grow text-lg  cursor-pointer select-none group flex justify-between items-center"
                 onClick={() => setOpenFAQ(open ? null : question)}
                 type="button"
                 aria-expanded={open}
               >
-                {question}
-                <span className="flex opacity-60">{open ? <ChevronUp /> : <ChevronDown />}</span>
+                <div
+                  className={cn(
+                    'flex items-center text-center translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300',
+                    open ? '' : ''
+                  )}
+                >
+                  {question}
+                </div>
+                {/* <span className="flex opacity-40">{open ? <ChevronUp /> : <ChevronDown />}</span> */}
               </button>
 
               {open && (
                 <motion.div
-                  initial={{ y: '-20%', opacity: 0 }}
+                  initial={{ y: '-10%', opacity: 0 }}
                   animate={{ y: '0%', opacity: 1 }}
                   className="w-full p-4 pt-2"
                 >

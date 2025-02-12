@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "lib/*": ["../../lib/*"]
+      "lib/*": ["../../lib/*"],
+      "@/*": ["./../../lib/*"]
     }
   },
   "ts-node": {

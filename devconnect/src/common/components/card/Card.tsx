@@ -145,7 +145,7 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
             </div>
           )}
 
-          {props.linkUrl && readMore}
+          {/* {props.linkUrl && readMore} */}
         </div>
       </div>
     </>

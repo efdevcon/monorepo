@@ -22,6 +22,7 @@ import { useRouter } from 'next/router'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
 import cn from 'classnames'
 import { useScroll } from 'framer-motion'
+import { useDevaBotStore } from 'store/devai'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -290,7 +291,7 @@ export const Menu = (props: any) => {
   const { scrollY } = useScroll()
   const [hasScrolled, setHasScrolled] = React.useState(false)
   const [languageOpen, setLanguageOpen] = React.useState(false)
-
+  const { visible, toggleVisible } = useDevaBotStore()
   React.useEffect(() => {
     return scrollY.onChange(latest => {
       setHasScrolled(latest > 0)
@@ -301,7 +302,7 @@ export const Menu = (props: any) => {
     <div
       className={cn(
         css['menu'],
-        'self-start items-center backdrop-blur-sm bg-black/20 rounded-lg p-1.5 lg:p-0 lg:px-4 lg:pr-2transition-all duration-500',
+        'flex gap-4 self-start items-center backdrop-blur-sm bg-black/20 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
         hasScrolled && 'bg-black/50'
       )}
     >
@@ -350,7 +351,14 @@ export const Menu = (props: any) => {
 
       </div> */}
 
-      <div className="gap-2 items-center hidden lg:flex">
+      <div className="items-center gap-1 hidden lg:flex">
+        <div
+          className="items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none hidden lg:flex"
+          onClick={toggleVisible}
+        >
+          DevAI 🦄
+        </div>
+
         <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
           <PopoverTrigger asChild>
             <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none">
@@ -360,7 +368,7 @@ export const Menu = (props: any) => {
               </span>
             </div>
           </PopoverTrigger>
-          <PopoverContent className="w-32 p-1 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg z-[100000]">
+          <PopoverContent className="w-auto p-1 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg z-[100000]">
             <div className="flex flex-col text-sm">
               <Link
                 className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"

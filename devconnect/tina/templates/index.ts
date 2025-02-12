@@ -24,6 +24,7 @@ const index: Template = {
     createRichText('what_is_devconnect'),
     createRichText('buenos_aires'),
     createRichText('what_to_expect'),
+    createRichText('devcon_vs_devconnect'),
     {
       type: 'string',
       name: 'devconnect_themes',

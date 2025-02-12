@@ -39,7 +39,7 @@ export function BlogReel(props: Props) {
   const sliderProps = useSlider(settings)
 
   return (
-    <div className={`${css['cards']}`}>
+    <div className={`mt-1 ${css['cards']}`}>
       <Slider sliderProps={sliderProps} title="Devcon Blog">
         {props.blogs.map((blog: BlogPost, i: number) => {
           let className = cn(css['card'], 'rounded-lg')

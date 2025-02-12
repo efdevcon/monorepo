@@ -35,6 +35,20 @@ const translationConfig = {
   ],
 } as any
 
+const pagesConfig = {
+    name: 'pages',
+    label: 'Pages',
+    path: 'cms/pages',
+    format: 'mdx',
+    templates: [
+      index,
+      pastEditions,
+    ],
+    ui: {
+      router: ({ document }) => `/`,
+    },
+} as any
+
 export default defineConfig({
   branch,
   // Get this from tina.io
@@ -54,19 +68,32 @@ export default defineConfig({
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
   schema: {
     collections: [
-      {
-        name: 'pages',
-        label: 'Pages',
-        path: 'cms/pages',
-        format: 'mdx',
-        templates: [
-          index,
-          pastEditions,
-        ],
-        ui: {
-          router: ({ document }) => `/`,
-        },
-      },
+      // {
+      //   name: 'pages',
+      //   label: 'Pages',
+      //   path: 'cms/pages',
+      //   format: 'mdx',
+      //   templates: [
+      //     index,
+      //     pastEditions,
+      //   ],
+      //   ui: {
+      //     router: ({ document }) => `/`,
+      //   },
+      // },
+      pagesConfig,
+      // {
+      //   ...pagesConfig,
+      //   path: 'cms/pages',
+      //   name: 'es',
+      //   label: 'Spanish',
+      // },
+      // {
+      //   ...pagesConfig,
+      //   path: 'cms/pages/pt',
+      //   name: 'pt',
+      //   label: 'Portuguese',
+      // },
       translationConfig,
       // {
       //   ...translationConfig,

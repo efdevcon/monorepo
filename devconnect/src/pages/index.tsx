@@ -62,6 +62,7 @@ import Cowork7 from 'assets/images/cowork-recap/cowork-7.jpg'
 import Cowork8 from 'assets/images/cowork-recap/cowork-8.jpg'
 import { Button } from 'lib/components/button'
 import cn from 'classnames'
+import ScrollingText from 'lib/components/infinite-scroll/scrolling-text'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -112,7 +113,7 @@ export const Header = () => {
 
   return (
     <div className="section z-[100]">
-      <header className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100]`}>
+      <header className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}>
         <div className="section">
           <div className="flex w-full justify-between items-center">
             <Link
@@ -536,18 +537,21 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene> */}
 
-          <div className="section">
-            <div className="flex flex-row gap-4 border-bottom pb-4 flex-wrap md:flex-nowrap">
+          <div className="section relative">
+            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px]">
+              {/* THEMES&nbsp; */}
+            </ScrollingText>
+            <div className="flex flex-row gap-4 border-bottom pb-6 flex-wrap md:flex-nowrap">
               <div className="basis-full md:basis-1/2 shrink-0 text-black" id="about">
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
-              <div className="basis-full md:basis-1/2 shrink-0">
+              <div className="basis-full md:basis-[50%] md:px-8 md:pr-6 flex items-center justify-center md:pt-3 shrink-0">
                 <HorizontalScroller>
-                  <div className="flex flex-row flex-wrap gap-4 py-6 pb-2 max-w-full">
+                  <div className="flex flex-row items-center justify-center  gap-4 py-6 pb-2 max-w-full">
                     <PastEventCard
                       text="Devconnect IST 2023"
-                      className="w-[175px] lg:w-[150px] !min-h-[auto] !min-w-[auto] select-none"
+                      className="w-[175px] lg:w-[280px] !min-h-[auto] !min-w-[auto] select-none"
                       image={istanbulScheduleBackground}
                       imageAlt="Istanbul collage"
                       link="/istanbul"
@@ -555,7 +559,7 @@ const Home: NextPage = (props: any) => {
 
                     <PastEventCard
                       text="Devconnect AMS 2022"
-                      className="w-[175px] lg:w-[150px] !min-h-[auto] !min-w-[auto] select-none"
+                      className="w-[175px] lg:w-[280px] !min-h-[auto] !min-w-[auto] select-none"
                       image={amsterdamScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"
@@ -566,20 +570,27 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-12">
-            <div className="absolute left-0 right-0 bottom-0">
+          <div className="section relative pb-6">
+            {/* <div className="absolute left-0 right-0 bottom-0">
               <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
-            </div>
+            </div> */}
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
           </div>
 
           <div className="section relative">
             <div className="border-top border-bottom">
+              <div className="absolute left-0 right-0 bottom-0">
+                <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
+              </div>
               <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" />
 
-              <div className={css['topics-header']}>
+              {/* <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px]">
+                
+              </ScrollingText> */}
+
+              <div className={cn(css['topics-header'], 'text-center md:text-left')}>
                 <div>
-                  <p className="text-xl uppercase text-red-400 font-secondary mt-6">
+                  <p className="text-xl uppercase text-red-400 font-secondary mt-8">
                     {(globalThis as any).translations.devconnect_themes}
                   </p>
                 </div>
@@ -607,17 +618,32 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <Scene growVertically growNaturally className={`${css['scene-faq']}`}>
-            <div className="section">
-              <div className="border-bottom pb-4 pt-4">
-                <h1 className="section-header text-teal-400">Blog Posts</h1>
+          <div className="section relative pb-6">
+            {/* <ScrollingText reverse direction="up" color="red" speed="100s">
+              DEVCON/NECT
+            </ScrollingText> */}
+            {/* <div className="absolute left-0 right-0 bottom-0">
+              <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
+            </div> */}
+            {/* <ScrollingText direction="down" color="teal">
+              DEVCON/NECT
+            </ScrollingText> */}
+            <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+          </div>
 
-                <BlogReel blogs={props.blogs} />
-              </div>
+          <div className="section relative">
+            <ScrollingText direction="down" reverse color="teal-2" speed="100s" className="!h-[300px]">
+              {/* Posts&nbsp; */}
+            </ScrollingText>
+
+            <div className="pb-8 border-top pt-5">
+              <h1 className="section-header text-teal-400">Blog Posts</h1>
+
+              <BlogReel blogs={props.blogs} />
             </div>
-          </Scene>
+          </div>
 
-          <div className="section">
+          {/* <div className="section">
             <RichText content={data.pages.catch_the_vibe} className="cms-markdown mt-6 mb-8 " />
           </div>
 
@@ -634,9 +660,9 @@ const Home: NextPage = (props: any) => {
                 )
               })}
             </InfiniteScroller>
-          </Scene>
+          </Scene> */}
 
-          <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
+          {/* <Scene growVertically growNaturally className={`${css['scene-about-content']}`}>
             <div className="section">
               <div className="border-bottom mb-6 pb-6">
                 <Link
@@ -650,9 +676,9 @@ const Home: NextPage = (props: any) => {
                 </Link>
               </div>
             </div>
-          </Scene>
+          </Scene> */}
 
-          <Scene growNaturally growVertically className={`${css['scene-content']} !overflow-visible`}>
+          {/* <Scene growNaturally growVertically className={`${css['scene-content']} !overflow-visible`}>
             <div className="section mb-3  ">
               <div className="flex">
                 <div className="relative">
@@ -702,10 +728,10 @@ const Home: NextPage = (props: any) => {
               </SwipeToScroll>
               <p className="text-slate-300 text-xs font-bold mt-2">{(globalThis as any).translations.drag_for_more}</p>
             </div>
-          </Scene>
+          </Scene> */}
 
-          <Scene growVertically growNaturally className={`${css['scene-faq']} section`}>
-            <div className="mt-0 pt-4 border-top mt-4">
+          <div className={`section mb-6 relative`}>
+            <div className="mt-0 pt-6 border-top">
               <h1 className="section-header text-teal-400">
                 {(globalThis as any).translations.frequently_asked_questions}
               </h1>
@@ -714,7 +740,7 @@ const Home: NextPage = (props: any) => {
                 <FAQComponent questions={data.pages.faq} />
               </div>
             </div>
-          </Scene>
+          </div>
         </main>
 
         <Footer />

@@ -19,7 +19,7 @@ export default (props: PastEventCard) => {
     <Link
       href={props.link}
       {...dragAttributes}
-      className={`group rounded-lg relative flex grow flex-col shadow hover:border-teal-400 cursor-pointer aspect-square border border-solid border-teal-200 text-[#6A6868] [--icon-color:#6A6868] relative overflow-hidden min-h-[200px] min-w-[315px] max-w-full ${props.className}`}
+      className={`group rounded-lg relative flex flex-col shadow hover:border-[#74abde] cursor-pointer aspect-square border border-solid border-[#74abde] text-[#6A6868] [--icon-color:#6A6868] relative overflow-hidden min-h-[200px] min-w-[315px] max-w-full ${props.className}`}
     >
       <div className="relative overflow-hidden grow">
         <Image
@@ -30,7 +30,7 @@ export default (props: PastEventCard) => {
       </div>
 
       <div className="absolute bottom-1.5 right-1.5">
-        <div className="bg-teal-400/90 text-white px-2 py-1 rounded-lg backdrop-blur-sm">
+        <div className="bg-teal-500/80 text-white px-2 py-1 rounded-lg backdrop-blur-sm">
           {props.text}
         </div>
       </div>

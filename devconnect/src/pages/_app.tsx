@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import 'styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
+import DevaBot from 'lib/components/ai/overlay'
 import { motion, AnimatePresence } from 'framer-motion'
-export const roboto = Roboto({ subsets: ['latin'], variable: '--font-roboto', weight: ['400', '700'], display: 'swap' })
+export const roboto = Roboto({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+  weight: ['400', '500', '700'],
+  display: 'swap',
+})
 export const robotoCondensed = Roboto_Condensed({
   subsets: ['latin'],
   variable: '--font-roboto-condensed',
@@ -12,7 +18,7 @@ export const robotoCondensed = Roboto_Condensed({
 import { init } from '@socialgouv/matomo-next'
 import { Button } from 'lib/components/button'
 import Link from 'common/components/link'
-
+import { useDevaBotStore } from 'store/devai'
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '29'
 let matomoAdded = false
@@ -32,7 +38,7 @@ if (typeof window !== 'undefined') {
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [showBanner, setShowBanner] = useState(true)
-
+  const { visible, toggleVisible } = useDevaBotStore()
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
       init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
@@ -48,6 +54,8 @@ function MyApp({ Component, pageProps }: AppProps) {
           --font-roboto-condensed: ${robotoCondensed.style.fontFamily};
         }
       `}</style>
+
+      <DevaBot botVersion="devconnect" toggled={visible} onToggle={toggleVisible} />
 
       {/* <AnimatePresence>
         {showBanner && (

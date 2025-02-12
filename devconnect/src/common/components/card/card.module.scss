@@ -96,7 +96,7 @@
   }
 
   .body {
-    padding: 20px;
+    padding: 14px;
     padding-bottom: 0px;
     // border: 1px solid $monochrome-5;
     // border-top: none;
@@ -121,8 +121,12 @@
     flex-direction: column;
 
     .title {
-      @include large-text;
-      font-weight: 700;
+      // @include large-text;
+
+      // font-weight: 700;
+      @apply text-lg;
+      color: #74abde;
+      font-weight: 500;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -131,7 +135,9 @@
 
     .text {
       @include small-text;
-      margin-top: 16px;
+      margin-top: 4px;
+      @apply text-slate-600;
+      line-height: 1.5em;
       font-weight: 400;
       overflow: hidden;
       // color: rgb(152, 152, 152);
@@ -149,7 +155,7 @@
         color: rgb(143, 143, 143);
         display: flex;
         text-transform: uppercase;
-        margin-top: 4px;
+        // margin-top: 4px;
         margin-bottom: 12px;
 
         > * {
@@ -163,10 +169,11 @@
 
       .read-more {
         // @include fonts-section-link;
-        font-weight: 700;
+        // font-weight: 700;
         border-top: 1px solid rgba(0, 0, 0, 0.1);
-        padding-top: 12px;
-        padding-bottom: 12px;
+        opacity: 0.8;
+        padding-top: 8px;
+        padding-bottom: 8px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -175,7 +182,7 @@
 
         > svg {
           margin-left: 12px;
-          font-size: 1em;
+          font-size: 0.7em;
         }
 
         // &:hover {
