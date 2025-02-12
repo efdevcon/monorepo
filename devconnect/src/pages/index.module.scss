@@ -6,6 +6,7 @@
     width: 100%;
     top: 0px;
     position: absolute;
+    opacity: var(--display-gradient);
     height: 160px;
     z-index: 1;
     opacity: 1;
@@ -221,17 +222,17 @@
   // background: linear-gradient(60deg,#0c0c1d,#141424,#271a3a,#121212);
   color: black;
 
-  &:before {
-    content: '';
-    width: 100%;
-    top: 0px;
-    position: absolute;
-    height: 150px;
-    z-index: 1;
-    opacity: 1;
-    background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #ec7272 59.35%, #29F4C1 100%);
-    -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
-  }
+  // &:before {
+  //   content: '';
+  //   width: 100%;
+  //   top: 0px;
+  //   position: absolute;
+  //   height: 150px;
+  //   z-index: 1;
+  //   opacity: 1;
+  //   background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #ec7272 59.35%, #29F4C1 100%);
+  //   -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  // }
 
   .spline {
     position: absolute;
@@ -1110,7 +1111,7 @@
   // background-color: rgb(20 20 32);// linear-gradient(60deg, #0d0d20, #161627, #312046, #121212);
   color: white;
 
-  background-color: #0c2842;
+  background-color: black;
   transition: background-color 0.9s ease-out;
   opacity: 1 !important;
   position: relative;

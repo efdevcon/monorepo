@@ -113,12 +113,19 @@ export const Header = () => {
 
   return (
     <div className="section z-[100]">
-      <header className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}>
+      <header
+        className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}
+        style={{ '--display-gradient': hasScrolled ? '0%' : '100%' } as any}
+      >
         <div className="section">
           <div className="flex w-full justify-between items-center">
             <Link
               href="/"
-              className={cn(css['logo'], 'transition-all ease duration-500', hasScrolled && !menuOpen && 'opacity-0')}
+              className={cn(
+                css['logo'],
+                'transition-all ease duration-500 pointer-events-auto',
+                hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
+              )}
             >
               <HeaderLogo />
             </Link>
@@ -261,7 +268,7 @@ const Home: NextPage = (props: any) => {
     <>
       <SEO />
       <div className={css.container}>
-        <main id="main" className={cn(css.main, 'text-black')}>
+        <main id="main" className={cn(css.main, 'text-black overflow-hidden')}>
           <div className={cn('h-screen w-screen relative text-black', css.hero)}>
             <Header />
 
@@ -277,9 +284,9 @@ const Home: NextPage = (props: any) => {
                 </p>
                 <Link
                   href=""
-                  className={`flex lg:mb-1 self-start shadow text-xs sm:text-base rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']}`}
+                  className={`flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']} shadow`}
                 >
-                  <div className="text-[#55717B] z-10">{data.pages.button}</div>
+                  <div className="font-secondary z-10 ">{data.pages.button}</div>
                 </Link>
                 <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[60px] lg:w-[80px]" />
               </div>
@@ -288,7 +295,7 @@ const Home: NextPage = (props: any) => {
             <Image
               src={HeroImage}
               alt="Hero Image"
-              className={cn('absolute top-0 left-0 w-full h-full object-cover', css.heroImage)}
+              className={cn('fixed top-0 left-0 w-full h-full object-cover', css.heroImage)}
             />
 
             <div className={cn('absolute section bottom-4 right-0 z-10')}>
@@ -537,16 +544,16 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene> */}
 
-          <div className="section relative">
-            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px]">
+          <div className="section relative bg-white">
+            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]">
               {/* THEMES&nbsp; */}
             </ScrollingText>
-            <div className="flex flex-row gap-4 border-bottom pb-6 flex-wrap md:flex-nowrap">
-              <div className="basis-full md:basis-1/2 shrink-0 text-black" id="about">
+            <div className="flex flex-row gap-4 border-bottom pb-6 flex-wrap lg:flex-nowrap z-[2]">
+              <div className="basis-full lg:basis-1/2 shrink-0 text-black" id="about">
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
-              <div className="basis-full md:basis-[50%] md:px-8 md:pr-6 flex items-center justify-center md:pt-3 shrink-0">
+              <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex items-center justify-center lg:pt-3 shrink-0">
                 <HorizontalScroller>
                   <div className="flex flex-row items-center justify-center  gap-4 py-6 pb-2 max-w-full">
                     <PastEventCard
@@ -570,14 +577,14 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-6">
+          <div className="section relative pb-6 bg-white">
             {/* <div className="absolute left-0 right-0 bottom-0">
               <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
             </div> */}
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
           </div>
 
-          <div className="section relative">
+          <div className="section relative bg-white">
             <div className="border-top border-bottom">
               <div className="absolute left-0 right-0 bottom-0">
                 <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
@@ -618,7 +625,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-6">
+          <div className="section relative pb-6 bg-white">
             {/* <ScrollingText reverse direction="up" color="red" speed="100s">
               DEVCON/NECT
             </ScrollingText> */}
@@ -631,13 +638,11 @@ const Home: NextPage = (props: any) => {
             <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
           </div>
 
-          <div className="section relative">
-            <ScrollingText direction="down" reverse color="teal-2" speed="100s" className="!h-[300px]">
-              {/* Posts&nbsp; */}
-            </ScrollingText>
-
-            <div className="pb-8 border-top pt-5">
-              <h1 className="section-header text-teal-400">Blog Posts</h1>
+          <div className="section relative pb-8 md:pb-12 bg-black/50">
+            <div className="pt-6">
+              <h1 className="section-header" style={{ color: 'white !important' }}>
+                Blog Posts
+              </h1>
 
               <BlogReel blogs={props.blogs} />
             </div>
@@ -730,8 +735,8 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene> */}
 
-          <div className={`section mb-6 relative`}>
-            <div className="mt-0 pt-6 border-top">
+          <div className={`section relative bg-white`}>
+            <div className="mt-0 pt-6 border-top pb-6">
               <h1 className="section-header text-teal-400">
                 {(globalThis as any).translations.frequently_asked_questions}
               </h1>

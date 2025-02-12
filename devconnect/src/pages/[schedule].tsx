@@ -3,7 +3,7 @@ import Image from 'next/image'
 import React, { useEffect } from 'react'
 import { Client } from '@notionhq/client'
 import css from './[schedule].module.scss'
-import { Footer } from './index'
+import { Footer, withTranslations } from './index'
 import moment from 'moment'
 import momentTZ from 'moment-timezone'
 import ListIcon from 'assets/icons/list.svg'
@@ -1723,8 +1723,6 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
     textSearch,
   ])
 
-  React.useEffect(() => {}, [])
-
   return (
     <>
       <SEO title="Schedule" description="Devconnect schedule" />
@@ -1737,10 +1735,10 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
         })()}
       >
         <div className={cn(css['hero-content'], '')}>
-          <p className="uppercase extra-large-text bold secondary title">
+          <p className="uppercase extra-large-text font-secondary title">
             {(() => {
-              if (props.edition === 'istanbul') return 'Schedule - Istanbul 2023'
-              if (props.edition === 'amsterdam') return 'Schedule - Amsterdam 2022'
+              if (props.edition === 'istanbul') return 'Istanbul 2023'
+              if (props.edition === 'amsterdam') return 'Amsterdam 2022'
             })()}
           </p>
           {/* <Link
@@ -1766,8 +1764,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 
       <div className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
-          {props.edition === 'amsterdam' && <Retro content={data.pages.amsterdam} edition={props.edition} />}
-          {props.edition === 'istanbul' && <Retro content={data.pages.istanbul} edition={props.edition} />}
+          {props.edition === 'amsterdam' && <Retro content={(data.pages as any)?.amsterdam} edition={props.edition} />}
+          {props.edition === 'istanbul' && <Retro content={(data.pages as any)?.istanbul} edition={props.edition} />}
           <div className={css['top-bar-wrapper']}>
             <SwipeToScroll noBounds scrollIndicatorDirections={{ right: true, left: true }}>
               <div className={css['top-bar']}>
@@ -2084,7 +2082,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   )
 })
 
-export default Schedule
+export default withTranslations(Schedule)
 
 // Notion fetch/format below
 const notionDatabasePropertyResolver = (property: any, key: any) => {
@@ -2205,8 +2203,8 @@ const formatResult = (result: any) => {
 
 export async function getStaticProps({ locale, params }: { locale: string; params: { schedule: string } }) {
   const contentPath = locale === 'en' ? 'past_events.mdx' : locale + '/past_events.mdx'
-  const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const content = await client.queries.pages({ relativePath: contentPath })
+  const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })
   const notion = new Client({
     auth: process.env.NOTION_SECRET,
@@ -2308,7 +2306,7 @@ export async function getStaticProps({ locale, params }: { locale: string; param
         data: content.data,
         query: content.query,
       },
-      translations: translations.data,
+      translations,
     },
     revalidate: 1 * 60 * 30, // 30 minutes, in seconds
   }

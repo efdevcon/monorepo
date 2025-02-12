@@ -5,9 +5,9 @@ import RichText from 'lib/components/tina-cms//RichText'
 const Retro = (props: any) => {
   if (props.edition === 'amsterdam') {
     return (
-      <div className={`columns clear-vertical ${css['retro']}`}>
+      <div className={`columns clear-vertical border-bottom ${css['retro']}`}>
         <div className={`left fill-45`}>
-          <RichText content={props.content} />
+          <RichText content={props.content} className="cms-markdown" />
           {/* <p className="paragraph-intro">
             The first-ever <b>Devconnect</b> was held in 2022 in Amsterdam.
           </p>
@@ -48,9 +48,9 @@ const Retro = (props: any) => {
             <span className="orange">DEVCONNECT IST</span>
           </h1> */}
 
-          <div className={`columns margin-bottom flex flex-col xl:flex-row`}>
+          <div className={`columns margin-bottom border-bottom pb-8 flex flex-col xl:flex-row`}>
             <div className="xl:basis-1/2 align-self flex flex-col lg:mr-[25px]">
-              <RichText content={props.content} />
+              <RichText content={props.content} className="cms-markdown" />
               {/* <div>
                 <p className="large-text">
                   The vibrant metropolis of Istanbul hosted Devconnect from November 13-19, 2023.{' '}

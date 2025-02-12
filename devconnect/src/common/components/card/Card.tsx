@@ -34,20 +34,14 @@ interface BasicCardProps {
 // Card has too many variations to be encapsulated by the default Card export
 // For places where we need more customization, you can import BasicCard instead of Card and fill in the contents yourself
 export const BasicCard = React.forwardRef((props: BasicCardProps, ref: any) => {
-  let className = cn(css['card'], 'rounded-lg border-solid overflow-hidden')
+  let className = cn(css['card'], 'rounded-2xl bg-transparent')
 
   if (props.className) className = `${className} ${props.className}`
   if (props.slide) className = ` ${className} ${css['slide']}`
 
   if (props.expandLink && props.linkUrl) {
     return (
-      <Link
-        className={className}
-        spanClass={'rounded-lg border border-slate-300/50 border-solid overflow-hidden'}
-        href={props.linkUrl}
-        ref={ref}
-        allowDrag={props.allowDrag}
-      >
+      <Link className={className} spanClass={'rounded-2xl'} href={props.linkUrl} ref={ref} allowDrag={props.allowDrag}>
         {props.children}
       </Link>
     )
@@ -103,7 +97,7 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
     }
 
     return (
-      <div className="aspect">
+      <div className="aspect rounded-2xl overflow-hidden">
         <div className={css['img-wrapper']}>
           <Image
             alt={props.title}
