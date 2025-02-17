@@ -198,23 +198,6 @@
   }
 }
 
-.scene {
-  $height: 100vh;
-  height: $height;
-  max-height: $height;
-  overflow: hidden;
-
-  &.grow-vertically {
-    min-height: $height;
-    height: auto;
-    max-height: none;
-  }
-
-  &.grow-naturally {
-    min-height: auto;
-  }
-}
-
 .scene-hero {
   position: relative;
   display: flex;

@@ -1688,8 +1688,6 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
 
   const { data }: { data: PagesQuery } = useTina(props.cms)
 
-  console.log(data, 'data')
-
   // const translations = props.translations
 
   let {
@@ -1765,7 +1763,14 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
       <div className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}>
         <div className="section">
           {props.edition === 'amsterdam' && <Retro content={(data.pages as any)?.amsterdam} edition={props.edition} />}
-          {props.edition === 'istanbul' && <Retro content={(data.pages as any)?.istanbul} edition={props.edition} />}
+          {props.edition === 'istanbul' && (
+            <Retro
+              content={(data.pages as any)?.istanbul}
+              watchThePresentations={(data.pages as any)?.istanbul_watch_the_presentations}
+              catchTheVibe={(data.pages as any)?.istanbul_catch_the_vibe}
+              edition={props.edition}
+            />
+          )}
           <div className={css['top-bar-wrapper']}>
             <SwipeToScroll noBounds scrollIndicatorDirections={{ right: true, left: true }}>
               <div className={css['top-bar']}>

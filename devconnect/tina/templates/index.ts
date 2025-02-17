@@ -31,8 +31,6 @@ const index: Template = {
       label: 'Devconnect Themes',
       list: true
     },
-    createRichText('catch_the_vibe'),
-    createRichText('watch_the_presentations'),
     {
       label: 'faq',
       name: 'faq',
