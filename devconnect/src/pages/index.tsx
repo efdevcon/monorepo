@@ -8,7 +8,8 @@ import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
-import BAText from 'assets/images/ba/ba-text.png'
+// import BAText from 'assets/images/ba/ba-text.png'
+import Argentina from 'assets/images/ba/argentina.png'
 import Modal from 'common/components/modal'
 import { CodeOfConduct } from 'common/components/code-of-conduct/CodeOfConduct'
 import FAQComponent from 'common/components/faq/faq'
@@ -25,7 +26,7 @@ import { HorizontalScroller } from 'lib/components/horizontal-scroller'
 import PastEventCard from 'lib/components/cards/past-event'
 import moment from 'moment'
 import { leftPadNumber } from 'lib/utils'
-import istanbulScheduleBackground from 'assets/images/istanbul-sched.png'
+import istanbulScheduleBackground from 'assets/images/turkeycube.png'
 import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
 import { client } from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
@@ -237,7 +238,7 @@ const Home: NextPage = (props: any) => {
                 <p className={`text-2xl lg:text-4xl  font-semibold`}>
                   {data.pages.catchphrase}...{' '}
                   <Image
-                    src={BAText}
+                    src={Argentina}
                     alt="Buenos Aires"
                     className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
                   />
@@ -513,12 +514,13 @@ const Home: NextPage = (props: any) => {
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
-              <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex items-center justify-center lg:pt-3 shrink-0">
+              <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex flex-col items-center justify-center lg:pt-3 shrink-0">
+                <div className="mb-2 opacity-50 font-secondary bold uppercase pt-6">Catch the Devconnect vibe</div>
                 <HorizontalScroller>
-                  <div className="flex flex-row items-center justify-center  gap-4 py-6 pb-2 max-w-full">
+                  <div className="flex flex-row items-center justify-center  gap-4 pb-8 pt-0 max-w-full">
                     <PastEventCard
                       text="Devconnect IST 2023"
-                      className="w-[175px] lg:w-[280px] !min-h-[auto] !min-w-[auto] select-none"
+                      className="w-[205px] lg:w-[300px] !min-h-[auto] !min-w-[auto] select-none"
                       image={istanbulScheduleBackground}
                       imageAlt="Istanbul collage"
                       link="/istanbul"
@@ -526,7 +528,7 @@ const Home: NextPage = (props: any) => {
 
                     <PastEventCard
                       text="Devconnect AMS 2022"
-                      className="w-[175px] lg:w-[280px] !min-h-[auto] !min-w-[auto] select-none"
+                      className="w-[205px] lg:w-[300px] !min-h-[auto] !min-w-[auto] select-none"
                       image={amsterdamScheduleBackground}
                       imageAlt="Amsterdam collage"
                       link="/amsterdam"

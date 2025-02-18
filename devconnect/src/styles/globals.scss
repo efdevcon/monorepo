@@ -506,17 +506,10 @@ a {
 $standard-spacing: 2em;
 
 .cms-markdown {
-  [data-cms-header] {
-    // font-weight: normal !important;
-    // @apply font-bold;
+  .text-3xl {
+    color: rgb(45, 212, 191) !important;
     font-family: var(--font-roboto-condensed);
     text-transform: uppercase;
-    @apply text-3xl;
-    color: rgb(45, 212, 191) !important;
-  }
-
-  .text-lg {
-    @apply text-2xl;
   }
 }
 
