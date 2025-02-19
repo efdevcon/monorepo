@@ -1,9 +1,7 @@
 import api from './open-ai'
 
 async function main() {
-  await api.createAssistant('devconnect-website')
-  await api.createAssistant('devcon-website')
-  await api.createAssistant('devcon-app')
+  await api.createAllVectorStores()
 }
 
 main()

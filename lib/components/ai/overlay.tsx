@@ -81,6 +81,8 @@ const DevaBot = ({
   renderNotifications,
   markNotificationsAsRead,
   SessionComponent,
+  logo,
+  logoClassName,
 }: {
   botVersion: "devcon-website" | "devcon-app" | "devconnect";
   sessions?: any;
@@ -94,6 +96,8 @@ const DevaBot = ({
   defaultPrompt?: string;
   setDefaultPrompt?: (prompt: string) => void;
   SessionComponent?: React.ReactNode | React.ElementType;
+  logo?: any;
+  logoClassName?: string;
 }) => {
   const {
     query,
@@ -525,9 +529,9 @@ const DevaBot = ({
                 <div className="flex justify-between w-full">
                   <div className="shrink-0 bold">
                     <Image
-                      src={LoginLogo}
+                      src={logo || LoginLogo}
                       alt="Devcon Passport Graphic"
-                      className="object-cover w-[180px]"
+                      className={cn(logoClassName, "w-[180px] object-cover")}
                     />
                     {/* <Trigger className="w-[70px]" /> */}
                   </div>

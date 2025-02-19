@@ -35,7 +35,8 @@
     "swagger:generate": "ts-node ./src/swagger/generate",
     "postinstall": "yarn swagger:generate && yarn db:generate",
     "ai-schedule-sync": "ts-node src/services/ai/open-ai/sync-vector-store",
-    "ai-create-assistants": "ts-node src/services/ai/open-ai/create-assistants.ts"
+    "ai-create-assistants": "ts-node src/services/ai/open-ai/create-assistants.ts",
+    "ai-create-vector-stores": "ts-node src/services/ai/open-ai/create-vector-stores.ts"
   },
   "prisma": {
     "schema": "./src/db/schema.prisma",

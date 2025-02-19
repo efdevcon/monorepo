@@ -9,7 +9,37 @@ on:
   workflow_dispatch:
 
 jobs:
+  # This job is responsible for creating the vector stores for our assistants
+  # They have to be created in advance because each project may have cms content to upload to the stores across project boundaries (e.g. devcon and devconnect both need information from each others cms, so we need to make sure the vector stores are created first)
+  setup-vector-stores:
+    defaults:
+      run:
+        working-directory: ./devcon-api
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn --ignore-scripts
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo OPEN_AI_KEY='${{ secrets.OPEN_AI_KEY }}' >> .env
+          echo GITHUB_SHA='${{ github.sha }}' >> .env
+
+      - name: Run script
+        run: yarn create-vector-stores
+
   sync-website-content:
+    needs: setup-vector-stores
     defaults:
       run:
         working-directory: ./devcon
@@ -37,6 +67,7 @@ jobs:
         run: yarn ai-content-sync
 
   sync-devconnect-content:
+    needs: setup-vector-stores
     defaults:
       run:
         working-directory: ./devconnect
