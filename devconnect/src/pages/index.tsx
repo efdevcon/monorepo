@@ -244,7 +244,7 @@ const Home: NextPage = (props: any) => {
                   />
                 </p>
                 <Link
-                  href=""
+                  href="#about"
                   className={`flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']} shadow`}
                 >
                   <div className="font-secondary z-10 ">{data.pages.button}</div>
@@ -506,9 +506,7 @@ const Home: NextPage = (props: any) => {
           </Scene> */}
 
           <div className="section relative bg-white">
-            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]">
-              {/* THEMES&nbsp; */}
-            </ScrollingText>
+            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText>
             <div className="flex flex-row gap-4 border-bottom pb-6 flex-wrap lg:flex-nowrap z-[2]">
               <div className="basis-full lg:basis-1/2 shrink-0 text-black" id="about">
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
@@ -539,12 +537,13 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-6 bg-white">
+          <div className="section relative pb-4 bg-white">
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
           </div>
 
           <div className="section relative bg-white">
-            <div className="border-top border-bottom">
+            {/* <ScrollingText direction="up" color="teal" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText> */}
+            <div className="border-top border-bottom z-[2]">
               <div className="absolute left-0 right-0 bottom-0">
                 <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
               </div>
@@ -580,7 +579,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-6 bg-white">
+          <div className="section relative pb-10 bg-white">
             <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
           </div>
 

@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useGSAP } from '@gsap/react'
 import BA from 'assets/images/dc-ba/ba.jpg'
 import Image from 'next/image'
+import Voxel from 'common/components/ba/voxel'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -85,6 +86,8 @@ export default function Scroll() {
         Buenos Aires
         <Image src={BA} alt="Buenos Aires" className="absolute inset-0 w-full h-full object-cover" id="ba-image" />
       </div>
+
+      <Voxel />
 
       {/* <section className="section"></section> */}
     </div>

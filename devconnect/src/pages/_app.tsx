@@ -3,7 +3,7 @@ import 'styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
 import DevaBot from 'lib/components/ai/overlay'
-import { motion, AnimatePresence } from 'framer-motion'
+import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 export const roboto = Roboto({
   subsets: ['latin'],
   variable: '--font-roboto',
@@ -16,8 +16,6 @@ export const robotoCondensed = Roboto_Condensed({
   weight: ['400', '700'],
 })
 import { init } from '@socialgouv/matomo-next'
-import { Button } from 'lib/components/button'
-import Link from 'common/components/link'
 import { useDevaBotStore } from 'store/devai'
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '29'
@@ -55,7 +53,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         }
       `}</style>
 
-      <DevaBot botVersion="devconnect" toggled={visible} onToggle={toggleVisible} />
+      <DevaBot
+        botVersion="devconnect"
+        toggled={visible}
+        onToggle={toggleVisible}
+        logo={DevconnectCubeLogo}
+        logoClassName="!w-[40px]"
+      />
 
       {/* <AnimatePresence>
         {showBanner && (
