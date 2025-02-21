@@ -41,13 +41,15 @@ const initializeVoxel = () => {
 
   let activeModelIdx = 4
   const modelURLs = [
+    '/voxel-assets/unicorn.glb',
     '/voxel-assets/eye.glb',
     '/voxel-assets/key.glb',
     '/voxel-assets/lightning.glb',
     '/voxel-assets/sunglasses.glb',
-    '/voxel-assets/sunglasses.glb',
-    '/voxel-assets/sunglasses.glb',
-    
+
+    '/voxel-assets/rocket-ship.glb',
+    '/voxel-assets/rose.glb',
+
     // 'https://ksenia-k.com/models/Chili%20Pepper.glb',
     // 'https://ksenia-k.com/models/Chicken.glb',
     // 'https://ksenia-k.com/models/Cherry.glb',

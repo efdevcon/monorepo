@@ -79,13 +79,13 @@ export default function Scroll() {
         <h2>Basic ScrollTrigger with React</h2>
         <p>Scroll down to see the magic happen!!</p>
       </section> */}
-      <div id="devconnect" className="box h-[100vh] flex items-center justify-center w-full">
+      {/* <div id="devconnect" className="box h-[100vh] flex items-center justify-center w-full">
         Devconnect
       </div>
       <div id="buenos-aires" className="box h-[100vh] flex relative items-center justify-center w-full">
         Buenos Aires
         <Image src={BA} alt="Buenos Aires" className="absolute inset-0 w-full h-full object-cover" id="ba-image" />
-      </div>
+      </div> */}
 
       <Voxel />
 

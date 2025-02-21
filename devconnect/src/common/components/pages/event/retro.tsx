@@ -31,10 +31,11 @@ import ScrollingText from 'lib/components/infinite-scroll/scrolling-text'
 const Retro = (props: any) => {
   if (props.edition === 'amsterdam') {
     return (
-      <div className={`columns clear-vertical border-bottom ${css['retro']}`}>
-        <div className={`left fill-45`}>
-          <RichText content={props.content} className="cms-markdown" />
-          {/* <p className="paragraph-intro">
+      <>
+        <div className={`columns my-4 mt-6 pb-6 border-bottom ${css['retro']}`}>
+          <div className={`left fill-45`}>
+            <RichText content={props.content} className="cms-markdown" />
+            {/* <p className="paragraph-intro">
             The first-ever <b>Devconnect</b> was held in 2022 in Amsterdam.
           </p>
           <p className="big-text bold margin-top-less">
@@ -47,21 +48,26 @@ const Retro = (props: any) => {
             below. You can also visit the different event host&apos;s websites (links provided in the schedule) to find
             recaps and photos of the independent events.
           </p> */}
-        </div>
-        <div className={'right'}>
-          <div className="aspect">
-            <iframe
-              width="100%"
-              height="100%"
-              src="https://www.youtube.com/embed/6X0yIUq7fpc"
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
           </div>
+          <div className={'right'}>
+            <div className="aspect rounded-2xl overflow-hidden">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/6X0yIUq7fpc"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+          <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px]"></ScrollingText>
         </div>
-      </div>
+        <div className="mb-3 mt-2">
+          <h3 className="section-header">Amsterdam 2022 - Schedule</h3>
+        </div>
+      </>
     )
   }
 
@@ -75,7 +81,7 @@ const Retro = (props: any) => {
             </div>
 
             <div className="xl:basis-1/2 w-full md:w-3/4 md:self-start xl:w-full mt-8 xl:mt-0 xl:ml-[25px]">
-              <div className="aspect">
+              <div className="aspect rounded-2xl overflow-hidden">
                 <iframe
                   width="100%"
                   height="100%"
@@ -175,6 +181,9 @@ const Retro = (props: any) => {
             </SwipeToScroll>
             <p className="text-slate-300 text-xs font-bold mt-2">{(globalThis as any).translations.drag_for_more}</p>
           </div>
+        </div>
+        <div className="mb-2">
+          <h3 className="section-header">Istanbul 2023 - Schedule</h3>
         </div>
       </>
       // </div>
