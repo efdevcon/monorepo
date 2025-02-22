@@ -200,6 +200,19 @@
 		touch-action: auto !important;
 		cursor: pointer;
 		border: 2px solid transparent;
+		&.active {
+			position: relative;
+			&::before {
+				content: '';
+				position: absolute;
+				top: -4px;
+				left: -4px;
+				right: -4px;
+				bottom: -4px;
+				border: 2px solid transparent;
+				border-radius: 50%;
+			}
+		}
 	}
 
 	#selector .model-prev:not(.active):hover {
@@ -249,6 +262,27 @@
 		.frame a {
 			justify-self: start;
 		}
+	}
+
+	@keyframes progress {
+		0% {
+			stroke-dasharray: 0 100;
+		}
+		100% {
+			stroke-dasharray: 100 100;
+		}
+	}
+
+	.progress-bar {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		border-radius: 4px;
+		width: 0px;
+		height: 4px;
+		background-color: #afcfed;
+		transition: width 0.1s linear;
 	}
 }
 }

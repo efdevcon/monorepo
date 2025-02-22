@@ -543,8 +543,11 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-4 bg-white">
+          <div className="section relative pb-8 bg-white">
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
+            <div className="absolute left-0 right-0 bottom-0 [transform:rotateY(180deg)]">
+              <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
+            </div>
           </div>
 
           <div className="section relative bg-white">
@@ -555,51 +558,52 @@ const Home: NextPage = (props: any) => {
               </div>
               {/* <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" /> */}
 
-              <div className="flex flex-col lg:flex-row gap-4 mt-6 relative">
+              {/* <h2 className="text-2xl mb-4 section-header mt-6">What to expect</h2> */}
+              <div className="flex flex-col lg:flex-row gap-4 mt-6 relative pb-6">
                 <div className="basis-1/2">
-                  <h2 className="text-2xl mb-4 section-header">What to expect</h2>
                   <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
-                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col items-center justify-center p-4 text-center">
+                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col justify-between p-6">
                       <CampaignIcon className="h-14 w-14 icon mb-1" />
-                      <h3 className="text-sm font-semibold pt-4 border-top">Nov 17 - Big Opening Day</h3>
-                      <p className="text-xs mt-2">
+                      <h3 className="text-base font-semibold pt-4 border-top">Nov 17 - Big Opening Day</h3>
+                      <p className="text-sm mt-2">
                         Save the date, be there, and plan your events around this opening day at La Rural.
                       </p>
                     </div>
-                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col items-center justify-center p-4 text-center">
+                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col justify-between p-6">
                       <PeopleIcon className="h-12 w-12 icon mb-1" />
-                      <h3 className="text-sm font-semibold pt-4 border-top">Holistic Cowork</h3>
-                      <p className="text-xs mt-2">
+                      <h3 className="text-base font-semibold pt-4 border-top">Holistic Cowork</h3>
+                      <p className="text-sm mt-2">
                         A coworking area with Community Hubs for collaboration, idea-sharing, and more.
                       </p>
                     </div>
-                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col items-center justify-center p-4 text-center">
-                      <WorldIcon className="h-12 w-12 icon mb-3" />
-                      <h3 className="text-sm font-semibold pt-4 border-top">Ethereum World's Fair</h3>
-                      <p className="text-xs mt-2">
+                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col justify-between p-6">
+                      <WorldIcon className="h-11 w-11 icon mb-2" />
+                      <h3 className="text-base font-semibold pt-4 border-top">Ethereum World's Fair</h3>
+                      <p className="text-sm mt-2">
                         Live demos, real apps, actual usage—like a mini expo of how Ethereum can power everyday life.
                       </p>
                     </div>
-                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col items-center justify-center p-4 text-center">
-                      <TicketIcon className="h-12 w-12 icon mb-1" />
-                      <h3 className="text-sm font-semibold pt-4 border-top">Decentralized Events</h3>
-                      <p className="text-xs mt-2">
+                    <div className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col justify-between p-6">
+                      <TicketIcon className="h-12 w-12 icon mb-3" />
+                      <h3 className="text-base font-semibold pt-4 border-top">Decentralized Events</h3>
+                      <p className="text-sm mt-2">
                         Different expert teams will host focused gatherings across Buenos Aires, diving deep into the
                         Ethereum topics they know best.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div className="basis-1/2 relative  bg-yellow-500">
+                <div className="basis-1/2 relative group rounded-lg cursor-pointer transition-all duration-300 overflow-hidden">
                   <Voxel />
 
                   {/* <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" /> */}
                 </div>
+                {/* <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px]"></ScrollingText> */}
               </div>
 
               <div className={cn(css['topics-header'], 'text-center md:text-left')}>
                 <div>
-                  <p className="text-xl uppercase text-red-400 font-secondary mt-8">
+                  <p className="text-xl uppercase text-red-400 font-secondary mt-2">
                     {(globalThis as any).translations.devconnect_themes}
                   </p>
                 </div>

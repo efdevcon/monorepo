@@ -11,7 +11,7 @@ import IconCross from 'assets/icons/cross.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import ArrowUpIcon from 'assets/icons/arrow-up.svg'
 import ArrowDropdown from 'assets/icons/arrow-dropdown.svg'
-import GlobeIcon from 'assets/icons/globe.svg'
+import GlobeIcon from 'assets/icons/world.svg'
 import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
 import DevconnectLogoText from 'assets/images/istanbul-logo-text.svg'
 // @ts-ignore
