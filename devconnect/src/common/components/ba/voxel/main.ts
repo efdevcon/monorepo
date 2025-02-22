@@ -21,7 +21,8 @@ import {
   ACESFilmicToneMapping,
   PMREMGenerator,
   TextureLoader,
-  LinearToneMapping
+  LinearToneMapping,
+  HemisphereLight
 } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -134,26 +135,48 @@ const initializeVoxel = (setActiveModelIndex) => {
     rayCaster = new Raycaster()
     dummy = new Object3D()
 
-    // Use a lower ambient light intensity for more dynamic, natural contrast
+    // Add an ambient light for general illumination.
     const ambientLight = new AmbientLight(0xffffff, 1.8)
     mainScene.add(ambientLight)
 
+    // Add a hemisphere light for soft, natural fill lighting.
+    const hemiLight = new HemisphereLight(0xffffff, 0x444444, 0.6)
+    hemiLight.position.set(0, 50, 0)
+    mainScene.add(hemiLight)
+
+    // Group for lights so they can rotate with the camera.
     lightHolder = new Group()
 
-    // Boost the intensities of your spot lights
-    // topLight = new SpotLight(0xffffff, 1.5)
-    // topLight.position.set(0, 15, 3)
-    // topLight.castShadow = true
-    // topLight.shadow.camera.near = 10
-    // topLight.shadow.camera.far = 30
-    // topLight.shadow.mapSize = new Vector2(1024, 1024)
-    // lightHolder.add(topLight)
+    // Add a top spotlight to illuminate models from above.
+    const topLight = new SpotLight(0xffffff, 2.0)
+    topLight.position.set(0, 20, 10)
+    topLight.castShadow = true
+    topLight.shadow.camera.near = 5
+    topLight.shadow.camera.far = 100
+    topLight.shadow.mapSize = new Vector2(2048, 2048)
+    lightHolder.add(topLight)
 
+    // Add a side light to fill in shadows from the side.
     const sideLight = new SpotLight(0xffffff, 1.0)
-    sideLight.position.set(0, -4, 5)
+    sideLight.position.set(10, 5, 10)
+    sideLight.castShadow = true
+    sideLight.shadow.camera.near = 5
+    sideLight.shadow.camera.far = 100
     lightHolder.add(sideLight)
 
     mainScene.add(lightHolder)
+
+    // Adjust shadow plane to have a stronger opacity for better shadow visibility.
+    const planeGeometry = new PlaneGeometry(120, 120)
+    const shadowPlaneMaterial = new ShadowMaterial({
+      opacity: 0.3,
+    })
+    const shadowPlaneMesh = new Mesh(planeGeometry, shadowPlaneMaterial)
+    shadowPlaneMesh.position.y = -15
+    shadowPlaneMesh.rotation.x = -0.5 * Math.PI
+    shadowPlaneMesh.receiveShadow = true
+
+    lightHolder.add(shadowPlaneMesh)
 
     mainOrbit = new OrbitControls(mainCamera, containerEl)
     mainOrbit.enablePan = false
@@ -163,20 +186,6 @@ const initializeVoxel = (setActiveModelIndex) => {
     mainOrbit.minPolarAngle = 0.15 * Math.PI
     mainOrbit.maxPolarAngle = 0.75 * Math.PI
     mainOrbit.enableDamping = true
-
-    voxelGeometry = new RoundedBoxGeometry(params.boxSize, params.boxSize, params.boxSize, 2, params.boxRoundness)
-    voxelMaterial = new MeshLambertMaterial({})
-
-    const planeGeometry = new PlaneGeometry(120, 120)  // Increased shadow plane size
-    const shadowPlaneMaterial = new ShadowMaterial({
-      opacity: 0.1,
-    })
-    const shadowPlaneMesh = new Mesh(planeGeometry, shadowPlaneMaterial)
-    shadowPlaneMesh.position.y = -15  // Adjusted shadow plane position
-    shadowPlaneMesh.rotation.x = -0.5 * Math.PI
-    shadowPlaneMesh.receiveShadow = true
-
-    lightHolder.add(shadowPlaneMesh)
   }
 
   function createPreviewScene(modelIdx) {
