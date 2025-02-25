@@ -1,4 +1,4 @@
-export const TITLE = 'Devconnec Argentina'
+export const TITLE = 'Devconnect Argentina'
 export const DESCRIPTION = 'A collaborative Ethereum week, built by and for everyone.'
 export const SITE_URL =
   process.env.NODE_ENV === 'development' ? 'https://preview-repo.vercel.app/' : 'https://devconnect.org/'

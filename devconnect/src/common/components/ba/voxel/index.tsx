@@ -7,14 +7,17 @@ import cn from 'classnames'
 // https://tympanus.net/codrops/2023/03/28/turning-3d-models-to-voxel-art-with-three-js/
 
 const rotatingText = [
-  'coming to argentina',
   'community',
+  'borderless',
+  'ownership',
   'decentralized',
+  'private',
+  'freedom',
+  'money',
   'permissionless',
-  'interoperable',
-  'sovereignty',
-  'scalable',
-  'cypherpunk',
+  'secure',
+  'progress',
+  'coming to argentina',
 ]
 
 const VoxelComponent = () => {
@@ -30,8 +33,8 @@ const VoxelComponent = () => {
 
   return (
     <>
-      <div className="absolute top-4 left-4 z-10 text-2xl text-[#74ACDF] font-secondary">
-        <div className="text-lg font-secondary">Ethereum is</div>
+      <div className="absolute top-4 left-4 z-10 text-3xl text-[#74ACDF]">
+        <div className="text-xl">Ethereum is</div>
         <div
           key={activeModelIndex}
           className={cn(

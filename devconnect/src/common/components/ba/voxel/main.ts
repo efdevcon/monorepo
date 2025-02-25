@@ -53,23 +53,41 @@ const initializeVoxel = (setActiveModelIndex) => {
   // Initial active model index – note that while the React component uses 0 as its initial state,
   // here we choose a fixed default (e.g. 4) for our scene. You may wish to align these values.
   let activeModelIdx = 0
-  const modelURLs = [
-    '/voxel-assets/unicorn.glb',
-    // '/voxel-assets/eye.glb',
-    // '/voxel-assets/key.glb',
-    '/voxel-assets/padlock.glb',
-    '/voxel-assets/lightning.glb',
-    '/voxel-assets/sunglasses.glb',
-    '/voxel-assets/yellow-unicorn.glb',
 
-    // '/voxel-assets/rocket-ship.glb',
+  const modelURLs = [
+    '/voxel-assets/community_unicorn.glb',
+    '/voxel-assets/borderless_earth.glb',
+    '/voxel-assets/ownership_key.glb',
+    '/voxel-assets/decentralized_worlds.glb',
+    '/voxel-assets/private_sunglasses.glb',
+    '/voxel-assets/freedom_bird.glb',
+    '/voxel-assets/coin.glb',
+    '/voxel-assets/lightning.glb',
+    '/voxel-assets/padlock.glb',
+    '/voxel-assets/rocket-ship.glb',
+    '/voxel-assets/argentina_mate.glb',
+    // '/voxel-assets/freedom_eagle.glb',
+    // '/voxel-assets/argentina_sun.glb',
+    // '/voxel-assets/blocks.glb',
+    // '/voxel-assets/building_blocks.glb',
+    // '/voxel-assets/energy_bolt.glb',
+    // '/voxel-assets/eye.glb',
+    // '/voxel-assets/freedom_bird.glb',
+    // '/voxel-assets/infinitegarden_flowers.glb',
+    // '/voxel-assets/key.glb',
+    // '/voxel-assets/lightning.glb',
+    // '/voxel-assets/liquid_wave.glb',
+    // '/voxel-assets/money_coin.glb',
+    // '/voxel-assets/money_goldbag.glb',
+    // '/voxel-assets/ownership_key.glb',
+    // '/voxel-assets/padlock.glb',
+    // '/voxel-assets/progress_blimp.glb',
+    // '/voxel-assets/progress_rocket.glb',
     // '/voxel-assets/rose.glb',
-    // 'https://ksenia-k.com/models/Chili%20Pepper.glb',
-    // 'https://ksenia-k.com/models/Chicken.glb',
-    // 'https://ksenia-k.com/models/Cherry.glb',
-    // 'https://ksenia-k.com/models/Banana%20Bundle.glb',
-    // 'https://ksenia-k.com/models/Bonsai.glb',
-    // 'https://ksenia-k.com/models/egg.glb',
+    // '/voxel-assets/security_padlock.glb',
+    // '/voxel-assets/sunglasses.glb',
+    // '/voxel-assets/unicorn.glb',
+    // '/voxel-assets/yellow-unicorn.glb'
   ]
 
   const params = {
@@ -148,23 +166,23 @@ const initializeVoxel = (setActiveModelIndex) => {
     lightHolder = new Group()
 
     // Add a top spotlight to illuminate models from above.
-    const topLight = new SpotLight(0xffffff, 2.0)
-    topLight.position.set(0, 20, 10)
-    topLight.castShadow = true
-    topLight.shadow.camera.near = 5
-    topLight.shadow.camera.far = 100
-    topLight.shadow.mapSize = new Vector2(2048, 2048)
-    lightHolder.add(topLight)
+    // const topLight = new SpotLight(0xffffff, 2.0)
+    // topLight.position.set(0, 20, 10)
+    // topLight.castShadow = true
+    // topLight.shadow.camera.near = 5
+    // topLight.shadow.camera.far = 100
+    // topLight.shadow.mapSize = new Vector2(2048, 2048)
+    // lightHolder.add(topLight)
 
     // Add a side light to fill in shadows from the side.
-    const sideLight = new SpotLight(0xffffff, 1.0)
-    sideLight.position.set(10, 5, 10)
-    sideLight.castShadow = true
-    sideLight.shadow.camera.near = 5
-    sideLight.shadow.camera.far = 100
-    lightHolder.add(sideLight)
+    // const sideLight = new SpotLight(0xffffff, 1.0)
+    // sideLight.position.set(10, 5, 10)
+    // sideLight.castShadow = true
+    // sideLight.shadow.camera.near = 5
+    // sideLight.shadow.camera.far = 100
+    // lightHolder.add(sideLight)
 
-    mainScene.add(lightHolder)
+    // mainScene.add(lightHolder)
 
     // Adjust shadow plane to have a stronger opacity for better shadow visibility.
     const planeGeometry = new PlaneGeometry(120, 120)

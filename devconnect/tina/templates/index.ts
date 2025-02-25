@@ -23,7 +23,14 @@ const index: Template = {
     },
     createRichText('what_is_devconnect'),
     createRichText('buenos_aires'),
-    createRichText('what_to_expect'),
+    // createRichText('what_to_expect'),
+    {
+      label: 'what_to_expect',
+      name: 'what_to_expect',
+      list: true,
+      type: 'object',
+      fields: [{ label: 'title', name: 'title', type: 'string' }, { label: 'description', name: 'description', type: 'string' }],
+    },
     createRichText('devcon_vs_devconnect'),
     {
       type: 'string',
