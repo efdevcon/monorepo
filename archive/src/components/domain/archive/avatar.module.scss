@@ -1,0 +1,16 @@
+@use 'src/assets/css/partials/index' as *;
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $colors-monochrome-3;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  font-size: $sizes-size-10;
+
+  img { 
+    border-radius: 50%;
+  }
+}

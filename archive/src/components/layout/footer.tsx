@@ -71,12 +71,9 @@ export function Footer(props: Props) {
           </div>
 
           <div className={css["col-3"]}>
-            <ul className='flex flex-col gap-4 text-sm *:font-semibold'>
+            <ul className="flex flex-col gap-4 text-sm *:font-semibold">
               <li>
-                <Link href="watch">Watch</Link>
-              </li>
-              <li>
-                <Link href="playlists">Playlists</Link>
+                <Link href="/watch">Watch</Link>
               </li>
               <li>
                 <Link href={DEVCON_URL}>Devcon</Link>
@@ -93,7 +90,7 @@ export function Footer(props: Props) {
           <div className={css["col-4"]}>
             <div>
               <p className="font-semibold">Get in touch</p>
-              <p className='mb-8'>{SOCIAL_EMAIL}</p>
+              <p className="mb-8">{SOCIAL_EMAIL}</p>
 
               <div>Newsletter</div>
             </div>
@@ -101,7 +98,7 @@ export function Footer(props: Props) {
 
           <div className={css["col-5"]}>
             <div className={css["scroll-up"]}>
-              <ArrowUpIcon style={{ cursor: "pointer" }} className="size-8"/>
+              <ArrowUpIcon style={{ cursor: "pointer" }} className="size-8" />
             </div>
           </div>
         </div>

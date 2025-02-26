@@ -1,0 +1,54 @@
+@use 'src/assets/css/partials/index' as *;
+
+.indicators {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+  cursor: pointer;
+  width: 100%;
+
+  &.indicator-left {
+    .left {
+      display: inline-flex !important;
+    }
+  }
+
+  &.indicator-right {
+    .right {
+      display: inline-flex !important;
+    }
+  }
+
+  .left,
+  .right {
+    display: none;
+    align-items: center;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: var(--indicator-width, 1.5rem);
+    --color-icon: #{$colors-main-light};
+    font-size: 1.2rem;
+  }
+
+  .left {
+    left: 0px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+  }
+
+  .right {
+    right: 0px;
+    justify-content: flex-end;
+    background: linear-gradient(to left, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.8) 100%);
+  }
+}
+
+.horizontal-scroller {
+  transition: all 0.5s;
+
+  &.native-drag {
+    overflow-x: auto;
+    transform: translateX(0px) !important;
+  }
+}

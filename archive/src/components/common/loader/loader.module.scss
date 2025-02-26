@@ -1,0 +1,80 @@
+@use 'src/assets/css/partials/index' as *;
+
+.loading-overlay {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+
+  &.as-overlay {
+    position: fixed;
+  }
+
+  &.loading,
+  &.no-results,
+  &.error {
+    display: block;
+
+    .message {
+      display: flex;
+    }
+  }
+
+  .blur {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    right: 0px;
+    bottom: 0px;
+    backdrop-filter: blur(5px);
+  }
+
+  &.no-results {
+    .blur {
+      backdrop-filter: none !important;
+    }
+  }
+
+  &.error {
+    .message {
+      background: $colors-system-error;
+    }
+  }
+
+  .message {
+    z-index: 10000;
+    position: sticky;
+    top: var(--headerHeight, 54px);
+    padding: $gaps-gap-2;
+    background: $colors-main;
+    color: white;
+    /*
+    background: $colors-monochrome-1;
+    border: 1px solid $colors-monochrome-5;
+    color: $colors-track-red;
+    */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+
+    .text {
+      margin-right: $gaps-gap-3;
+    }
+
+    @media (max-width: $breakpoints-lg) {
+      @include fonts-sm-fixed;
+      position: fixed;
+      // bottom: 0px;
+      // top: auto;
+      left: 0px;
+      right: 0px;
+      z-index: 100;
+    }
+  }
+}

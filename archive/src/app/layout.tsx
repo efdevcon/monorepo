@@ -8,6 +8,7 @@ import {
   SOCIAL_TWITTER,
 } from "@/utils/site";
 import { Layout } from "@/components/layout";
+import { QueryProvider } from "@/providers/query";
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
@@ -54,10 +55,17 @@ export default function RootLayout(props: PropsWithChildren) {
       <head>
         <link rel="icon" href="favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" type="image/png" sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href="/icons/apple-touch-icon.png"
+          type="image/png"
+          sizes="any"
+        />
       </head>
       <body>
-        <Layout>{props.children}</Layout>
+        <QueryProvider>
+          <Layout>{props.children}</Layout>
+        </QueryProvider>
       </body>
     </html>
   );

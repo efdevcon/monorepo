@@ -1,0 +1,116 @@
+@use 'src/assets/css/partials/index' as *;
+
+.toggle-container {
+  display: none !important;
+  align-items: center;
+  justify-content: flex-end;
+  cursor: pointer;
+  height: 100%;
+
+  @media (max-width: $breakpoints-hamburger) {
+    display: flex !important;
+  }
+}
+
+.toggle {
+  @include fonts-xl;
+}
+
+.foldout {
+  @include layout-content;
+  @include fonts-md;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
+  position: fixed;
+  padding-top: $gaps-gap-4;
+  padding-bottom: $gaps-gap-4;
+  background: $colors-monochrome-1;
+  color: $colors-main;
+  --color-icon: #{$colors-main};
+  z-index: 19;
+  top: 0px;
+  left: 0px;
+  bottom: var(--headerHeight);
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 400ms ease-out;
+
+  @media (max-width: $breakpoints-hamburger) {
+    display: block;
+  }
+
+  &.open {
+    transform: translateY(calc(0px + var(--headerHeight)));
+  }
+
+  > div {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // .top {
+
+    //   margin-bottom: $gaps-gap-4;
+    //   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    // }
+
+    // > *,
+    // > * > * {
+    //   &:not(:nth-child(1)) {
+    //     margin-top: $gaps-gap-4;
+    //     padding-top: $gaps-gap-4;
+    //     border-top: 1px solid rgba(0, 0, 0, 0.1);
+    //   }
+    // }
+
+    .social-media {
+      margin-top: $gaps-gap-4;
+      padding-top: $gaps-gap-4;
+      padding-bottom: $gaps-gap-4;
+      border-top: 1px solid $colors-monochrome-5;
+      border-bottom: 1px solid $colors-monochrome-5;
+      margin-bottom: $gaps-gap-4;
+      display: flex;
+      justify-content: space-between;
+
+      > p {
+        @include fonts-uppercase;
+        @include fonts-xs;
+        color: $colors-main-light;
+        display: flex;
+        align-items: center;
+      }
+
+      .social-media-extension {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        margin-top: 0px;
+        width: 80%;
+        padding-left: $gaps-gap-2;
+        max-width: 200px;
+
+        a {
+          display: flex;
+        }
+      }
+    }
+
+    .newsletter {
+      padding-top: $gaps-gap-4;
+      // border-top: 1px solid $colors-monochrome-5;
+      max-width: 410px;
+      width: 100%;
+    }
+
+    .copyright {
+      margin-top: $gaps-gap-4;
+      padding-top: $gaps-gap-4;
+      border-top: 1px solid $colors-monochrome-5;
+    }
+  }
+}
