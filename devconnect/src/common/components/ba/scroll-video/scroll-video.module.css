@@ -1,0 +1,25 @@
+.fadeInOut {
+  animation: fadeInOut 2s ease-in-out;
+}
+
+.fadeInOutPulse {
+  animation: fadeInOutPulse 2s ease-in-out infinite;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOutPulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}

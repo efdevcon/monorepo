@@ -1,17 +1,19 @@
 @import 'styles/variables.scss';
 
 .hero {
-  &:before {
-    content: '';
-    width: 100%;
-    top: 0px;
-    position: absolute;
-    opacity: var(--display-gradient);
-    height: 160px;
-    z-index: 1;
-    opacity: 1;
-    background: linear-gradient(90deg, #4F6AFA 0%, #6D4FFA 13.54%, #ec7272 59.35%, #1ab18c 100%);
-    -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+  &.gradient {
+    &:before {
+      content: '';
+      width: 100%;
+      top: 0px;
+      position: absolute;
+      opacity: var(--display-gradient, 0%);
+      height: 160px;
+      z-index: 1;
+      opacity: 1;
+      background: linear-gradient(90deg, #129498 0%, #ecc1725f 50.35%, #1aacb1 100%);
+      -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+    }
   }
 
 

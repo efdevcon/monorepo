@@ -1,14 +1,14 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import css from './index.module.scss'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import HeaderLogo from 'assets/images/header-logo.svg'
 import DevconnectIstanbulText from 'assets/images/ba/logo-text.svg'
 import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
-// import BAText from 'assets/images/ba/ba-text.png'
+import BAText from 'assets/images/ba/ba-text.png'
 import Argentina from 'assets/images/ba/argentina.png'
 import Modal from 'common/components/modal'
 import { CodeOfConduct } from 'common/components/code-of-conduct/CodeOfConduct'
@@ -46,44 +46,13 @@ import WorldIcon from 'assets/icons/world.svg'
 import CampaignIcon from 'assets/icons/campaign.svg'
 import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
+import ScrollVideo from 'common/components/ba/scroll-video'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
 // })
 
-function getTimeUntilNovember13InTurkey() {
-  // Create a Date object for the current date
-  const currentDate = moment.utc()
-
-  // Set the target date to November 13th, 8 am
-  const targetDate = moment.utc([2023, 10, 13, 8]) // Note: Month is 0-based, so 10 represents November.
-
-  // Calculate the time difference in milliseconds
-  const timeDifference = targetDate.diff(currentDate) - 1000 * 60 * 60 * 3 // add 3 hours for turkey time (UTC+3)
-
-  // Calculate days, hours, minutes, and seconds
-  const days = Math.max(Math.floor(timeDifference / (1000 * 60 * 60 * 24)), 0)
-  const hours = Math.max(Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)), 0)
-  const minutes = Math.max(Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60)), 0)
-  const seconds = Math.max(Math.floor((timeDifference % (1000 * 60)) / 1000), 0)
-
-  if (timeDifference < 0) {
-    const dayOne = moment.utc([2023, 10, 13])
-    const timeDiff = currentDate.diff(dayOne, 'days')
-
-    return `DAY ${leftPadNumber(timeDiff + 1)}`
-  }
-
-  // Return the time difference as an object
-  return {
-    days,
-    hours,
-    minutes,
-    seconds,
-  }
-}
-
-export const Header = () => {
+export const Header = ({ noGradient }: { noGradient?: boolean }) => {
   const { scrollY } = useScroll()
   const [hasScrolled, setHasScrolled] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -94,11 +63,15 @@ export const Header = () => {
     })
   }, [scrollY])
 
+  const hideGradient = hasScrolled || noGradient
+
+  console.log('hideGradient', hideGradient)
+
   return (
     <div className="section z-[100]">
       <header
         className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}
-        style={{ '--display-gradient': hasScrolled ? '0%' : '100%' } as any}
+        style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
         <div className="section">
           <div className="flex w-full justify-between items-center">
@@ -231,100 +204,158 @@ const Home: NextPage = (props: any) => {
   // const { data: translations } = useTina(props.translations)
   // const translations = JSON.parse(translations.data.global_translations)
 
+  const heroRef = useRef<HTMLDivElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [playbackFinished, setPlaybackFinished] = useState(false)
+
+  const hasStableConnection = true
+
   return (
     <>
       <SEO />
       <div className={css.container}>
-        <main id="main" className={cn(css.main, 'text-black overflow-hidden')}>
-          <div className={cn('h-screen w-screen relative text-black', css.hero)}>
-            <Header />
-
-            <div className={cn('absolute section bottom-4 left-0 z-10', css.heroImage)}>
-              <div className="flex flex-col gap-8">
-                <p className={`text-2xl lg:text-4xl  font-semibold`}>
-                  {data.pages.catchphrase}...{' '}
-                  <Image
-                    src={Argentina}
-                    alt="Buenos Aires"
-                    className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
-                  />
-                </p>
-                <Link
-                  href="#about"
-                  className={`flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']} shadow`}
-                >
-                  <div className="font-secondary z-10 ">{data.pages.button}</div>
-                </Link>
-                <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[60px] lg:w-[80px]" />
-              </div>
+        <main
+          id="main"
+          className={cn(css.main, 'text-black')}
+          // style={!playbackFinished ? { '--display-gradient': '0%' } as any : {}}
+        >
+          <div
+            id="hero"
+            ref={heroRef}
+            className={cn('w-screen relative text-black bg-black', css.hero, {
+              'h-[100vh]': !hasStableConnection,
+              'h-[150vh]': hasStableConnection,
+              [css.gradient]: playbackFinished,
+            })}
+          >
+            <div
+              className={cn('hidden transition-opacity duration-[3000ms]', {
+                '!flex': playbackFinished,
+              })}
+            >
+              <Header noGradient={!playbackFinished} />
             </div>
 
-            <Image
-              src={HeroImage}
-              alt="Hero Image"
-              className={cn('fixed top-0 left-0 w-full h-full object-cover', css.heroImage)}
-            />
+            <div className="fixed top-0 w-full">
+              <ScrollVideo
+                hasStableConnection={true}
+                // playInReverse={true}
+                containerRef={heroRef}
+                onPlaybackFinish={() => {
+                  setPlaybackFinished(true)
+                }}
+                // onScrollProgress={setScrollProgress}
+              />
+            </div>
 
-            <div className={cn('absolute section bottom-4 right-0 z-10')}>
-              <div className="flex justify-end gap-4">
-                <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
-                  <a
-                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://twitter.com/efdevconnect"
+            <div
+              className={cn(
+                'sticky h-screen flex hidden flex-col items-end justify-end relative top-0 w-full transition-opacity duration-[3000ms]',
+                {
+                  '!flex': playbackFinished,
+                }
+              )}
+              // style={scrollProgress < 50 ? {} : { opacity: '100%' }}
+            >
+              <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage, css.revealFromLeft)}>
+                <div className="flex flex-col gap-8">
+                  <p className={`text-2xl lg:text-4xl  font-semibold`}>
+                    {/* {data.pages.catchphrase}...{' '} */}
+                    <Image
+                      src={Argentina}
+                      alt="Buenos Aires"
+                      className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
+                    />
+                    <Image
+                      src={BAText}
+                      alt="Buenos Aires"
+                      className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
+                    />
+                  </p>
+                  {/* <Link
+                    href="#about"
+                    className={`flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']} shadow`}
                   >
-                    <TwitterIcon style={{ fill: 'white' }} />
-                  </a>
-                  <a
-                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://t.me/efdevconnect"
-                  >
-                    <TelegramIcon style={{ fill: 'white' }} />
-                  </a>
-
-                  <a
-                    className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
-                    target="_blank"
-                    rel="noreferrer"
-                    href="https://warpcast.com/efdevconnect"
-                  >
-                    <FarcasterIcon style={{ fill: 'white' }} />
-                  </a>
-
-                  <MailIcon
-                    style={{ fill: 'white', display: 'block', cursor: 'pointer' }}
-                    className="hover:scale-[1.02] transition-all duration-300"
-                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-                  />
+                    <div className="font-secondary z-10 ">{data.pages.button}</div>
+                  </Link> */}
+                  <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[60px] lg:w-[80px]" />
                 </div>
+              </div>
 
-                <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
-                  <div className="flex items-center text-sm gap-1.5">
-                    <p className="text-sm font-semibold opacity-60">
-                      {(globalThis as any).translations.scroll_for_more}
-                    </p>
-                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="14" height="14">
-                      <g className="nc-icon-wrapper" fill="#ffffff">
-                        <g className={`${css['nc-loop-mouse-16-icon-f']} opacity-60`}>
-                          <path
-                            d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                            fill="#000000"
-                          ></path>
-                          <path
-                            d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                            fill="#000000"
-                            data-color="color-2"
-                          ></path>
+              <div className={cn('absolute section bottom-4 right-0 z-10')}>
+                <div className="flex justify-end gap-4">
+                  <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
+                    <a
+                      className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://twitter.com/efdevconnect"
+                    >
+                      <TwitterIcon style={{ fill: 'white' }} />
+                    </a>
+                    <a
+                      className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://t.me/efdevconnect"
+                    >
+                      <TelegramIcon style={{ fill: 'white' }} />
+                    </a>
+
+                    <a
+                      className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://warpcast.com/efdevconnect"
+                    >
+                      <FarcasterIcon style={{ fill: 'white' }} />
+                    </a>
+
+                    <MailIcon
+                      style={{ fill: 'white', display: 'block', cursor: 'pointer' }}
+                      className="hover:scale-[1.02] transition-all duration-300"
+                      onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+                    />
+                  </div>
+
+                  <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
+                    <div className="flex items-center text-sm gap-1.5">
+                      <p className="text-sm font-semibold opacity-60">
+                        {(globalThis as any).translations.scroll_for_more}
+                      </p>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        x="0px"
+                        y="0px"
+                        viewBox="0 0 16 16"
+                        width="14"
+                        height="14"
+                      >
+                        <g className="nc-icon-wrapper" fill="#ffffff">
+                          <g className={`${css['nc-loop-mouse-16-icon-f']} opacity-60`}>
+                            <path
+                              d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
+                              fill="#000000"
+                            ></path>
+                            <path
+                              d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
+                              fill="#000000"
+                              data-color="color-2"
+                            ></path>
+                          </g>
                         </g>
-                      </g>
-                    </svg>
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* <Image
+              src={HeroImage}
+              alt="Hero Image"
+              className={cn('fixed top-0 left-0 w-full h-full object-cover', css.heroImage)}
+            /> */}
           </div>
 
           {/* <Scene className={css['scene-hero']}>
@@ -543,23 +574,23 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-8 bg-white">
+          <div className="section relative pb-0 bg-white">
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
-            <div className="absolute left-0 right-0 bottom-0 [transform:rotateY(180deg)]">
+            {/* <div className="absolute left-0 right-0 bottom-0 [transform:rotateY(180deg)]">
               <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
-            </div>
+            </div> */}
           </div>
 
           <div className="section relative bg-white">
             {/* <ScrollingText direction="up" color="teal" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText> */}
-            <div className="border-top border-bottom z-[2]">
+            <div className="border-bottom z-[2]">
               <div className="absolute left-0 right-0 bottom-0">
                 <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
               </div>
               {/* <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" /> */}
 
-              <h2 className="text-2xl mb-4 section-header mt-6">What to expect</h2>
-              <div className="flex flex-col lg:flex-row gap-4 mt-6 relative pb-5">
+              {/* <h2 className="text-2xl mb-4 section-header mt-6">What to expect</h2> */}
+              <div className="flex flex-col lg:flex-row gap-4 mt-4 relative pb-5">
                 <div className="basis-1/2">
                   <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
                     {data.pages.what_to_expect.map((item: any, index: number) => {
@@ -600,11 +631,11 @@ const Home: NextPage = (props: any) => {
               </div>
 
               <div className={cn(css['topics-header'], 'text-center md:text-left')}>
-                <div>
+                {/* <div>
                   <p className="text-xl uppercase text-red-400 font-secondary mt-2">
                     {(globalThis as any).translations.devconnect_themes}
                   </p>
-                </div>
+                </div> */}
 
                 <div className={`${css['topics']} my-8 mt-4 font-secondary`} id="topics-container">
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
@@ -633,7 +664,7 @@ const Home: NextPage = (props: any) => {
             <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
           </div>
 
-          <div className="section relative pb-8 md:pb-12 bg-black/50">
+          <div className="section relative pb-8 md:pb-12 bg-black/50 overflow-hidden">
             <div className="pt-6">
               <h1 className="section-header" style={{ color: 'white !important' }}>
                 Blog Posts
