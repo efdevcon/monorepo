@@ -1,0 +1,5 @@
+- I need to build a video-like scroll effect where images are loaded in sequence through a scroll range
+- The images will be hosted on the same domain as the page in the public folder
+- The images should be preloaded
+- If possible, I'd like to use gsap scrollTrigger to control the effect
+- If the user has bad internet connection or is on mobile, do not preload anything and just show the first image - make this a flag "hasStableConnection" or something to that effect
