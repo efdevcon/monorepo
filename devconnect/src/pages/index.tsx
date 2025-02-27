@@ -241,20 +241,15 @@ const Home: NextPage = (props: any) => {
                   setPlaybackFinished(true)
                 }, [])}
                 onScrollProgress={useCallback((scrollProgress: number) => {
-                  // if (!playbackFinished) {
-                  if (scrollProgress > 50) {
-                    console.log('scrollProgress', scrollProgress)
-                    setFadeInArgentina(true)
+                  if (!playbackFinished) {
+                    if (scrollProgress > 50) {
+                      console.log('scrollProgress', scrollProgress)
+                      setFadeInArgentina(true)
+                    }
+                    if (scrollProgress > 80) {
+                      setFadeInDate(true)
+                    }
                   }
-
-                  // if (scrollProgress > 40) {
-                  //   setFadeInBA(true)
-                  // }
-
-                  if (scrollProgress > 80) {
-                    setFadeInDate(true)
-                  }
-                  // }
                 }, [])}
               />
             </div>
@@ -262,6 +257,7 @@ const Home: NextPage = (props: any) => {
             <div
               className={cn(
                 'sticky h-screen flex flex-col items-end justify-end relative top-0 w-full'
+
                 // {
                 //   '!flex': playbackFinished,
                 // }
@@ -272,22 +268,23 @@ const Home: NextPage = (props: any) => {
                 <div className="flex flex-col gap-8">
                   <p className={`text-2xl lg:text-4xl  font-semibold`}>
                     {/* {data.pages.catchphrase}...{' '} */}
-                    {fadeInArgentina && (
+                    {playbackFinished && (
                       <Image
-                        src={Argentina}
-                        alt="Argentina"
-                        className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
+                        src={BAText}
+                        alt="Buenos Aires"
+                        className={cn('min-w-[220px] w-[25%] mt-1 lg:mt-2', css.revealFromLeft)}
                       />
                     )}
 
-                    {/* <Image
-                      src={BAText}
-                      alt="Buenos Aires"
-                      className={cn(
-                        'min-w-[320px] w-[45%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[3000ms]',
-                        fadeInBA && 'opacity-100'
-                      )}
-                    /> */}
+                    {fadeInArgentina && (
+                      <div>
+                        <Image
+                          src={Argentina}
+                          alt="Argentina"
+                          className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
+                        />
+                      </div>
+                    )}
                   </p>
                   <Link
                     href="#about"
