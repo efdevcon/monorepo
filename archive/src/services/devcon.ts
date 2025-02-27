@@ -15,9 +15,24 @@ export async function getEvent(id: string) {
 }
 
 export async function getFeaturedSessions(
-  type: "devcon-6" | "devcon-7" | "devcon-7-opening"
+  type: "most-popular" | "devcon-6" | "devcon-7" | "devcon-7-opening"
 ) {
   let featuredSessions: string[] = [];
+
+  if (type === "most-popular") {
+    featuredSessions = [
+      "keynote-ethereum-in-30-minutes",
+      "introduction-to-snarks",
+      "what-to-know-about-zero-knowledge",
+      "opening-ceremonies-vitalik",
+      "why-and-how-to-run-a-node-no-eth-required",
+      "account-abstraction-panel",
+      "ethereum-in-25-minutes",
+      "mev-for-the-next-billion-its-time-to-get-serious",
+      "dai-stablecoin",
+      "cryptoeconomics-in-30-minutes",
+    ];
+  }
 
   if (type === "devcon-6") {
     featuredSessions = [

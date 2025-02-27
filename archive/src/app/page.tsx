@@ -12,9 +12,11 @@ export default async function Home() {
 
       <FeaturedList title="Devcon 7 Opening" type="devcon-7-opening" />
 
-      <FeaturedList title="Keynotes" type="devcon-7" />
+      <FeaturedList title="Devcon 7 Keynotes" type="devcon-7" />
 
       <Editions events={events.reverse()} />
+
+      <FeaturedList title="Most Watched" type="most-popular" />
 
       <FeaturedList title="Devcon 6 Highlights" type="devcon-6" />
     </>
