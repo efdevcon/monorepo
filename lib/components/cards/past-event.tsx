@@ -30,7 +30,7 @@ export default (props: PastEventCard) => {
       </div>
 
       <div className="absolute bottom-1.5 right-1.5">
-        <div className="bg-teal-500/80 text-white px-2 py-1 rounded-lg backdrop-blur-sm">
+        <div className="bg-teal-500/80 text-white text-xs sm:text-sm px-2 py-1 rounded-lg backdrop-blur-sm">
           {props.text}
         </div>
       </div>

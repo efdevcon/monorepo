@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import css from './index.module.scss'
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useRef, useState } from 'react'
 import HeaderLogo from 'assets/images/header-logo.svg'
 import DevconnectIstanbulText from 'assets/images/ba/logo-text.svg'
 import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
@@ -52,7 +52,7 @@ import ScrollVideo from 'common/components/ba/scroll-video'
 //   ssr: false,
 // })
 
-export const Header = ({ noGradient }: { noGradient?: boolean }) => {
+export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: boolean }) => {
   const { scrollY } = useScroll()
   const [hasScrolled, setHasScrolled] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -65,15 +65,13 @@ export const Header = ({ noGradient }: { noGradient?: boolean }) => {
 
   const hideGradient = hasScrolled || noGradient
 
-  console.log('hideGradient', hideGradient)
-
   return (
     <div className="section z-[100]">
       <header
         className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}
         style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
-        <div className="section">
+        <div className={cn('section opacity-0 transition-all duration-[2000ms]', { 'opacity-100': active })}>
           <div className="flex w-full justify-between items-center">
             <Link
               href="/"
@@ -205,8 +203,11 @@ const Home: NextPage = (props: any) => {
   // const translations = JSON.parse(translations.data.global_translations)
 
   const heroRef = useRef<HTMLDivElement>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
+  // const [scrollProgress, setScrollProgress] = useState(0)
+  const [fadeInBA, setFadeInBA] = useState(false)
+  const [fadeInArgentina, setFadeInArgentina] = useState(false)
   const [playbackFinished, setPlaybackFinished] = useState(false)
+  const [fadeInDate, setFadeInDate] = useState(false)
 
   const hasStableConnection = true
 
@@ -214,76 +215,108 @@ const Home: NextPage = (props: any) => {
     <>
       <SEO />
       <div className={css.container}>
-        <main
-          id="main"
-          className={cn(css.main, 'text-black')}
-          // style={!playbackFinished ? { '--display-gradient': '0%' } as any : {}}
-        >
+        <main id="main" className={cn(css.main, 'text-black')}>
           <div
             id="hero"
             ref={heroRef}
             className={cn('w-screen relative text-black bg-black', css.hero, {
               'h-[100vh]': !hasStableConnection,
-              'h-[150vh]': hasStableConnection,
-              [css.gradient]: playbackFinished,
+              'h-[200vh]': hasStableConnection,
+              [css.gradient]: fadeInArgentina,
             })}
           >
-            <div
-              className={cn('hidden transition-opacity duration-[3000ms]', {
-                '!flex': playbackFinished,
+            {/* <div
+              className={cn('transition-opacity duration-[2000ms] opacity-0', {
+                'opacity-100': fadeInArgentina,
               })}
-            >
-              <Header noGradient={!playbackFinished} />
-            </div>
+            > */}
+            <Header noGradient active={fadeInArgentina} />
+            {/* </div> */}
 
             <div className="fixed top-0 w-full">
               <ScrollVideo
                 hasStableConnection={true}
-                // playInReverse={true}
                 containerRef={heroRef}
-                onPlaybackFinish={() => {
+                onPlaybackFinish={useCallback(() => {
                   setPlaybackFinished(true)
-                }}
-                // onScrollProgress={setScrollProgress}
+                }, [])}
+                onScrollProgress={useCallback((scrollProgress: number) => {
+                  // if (!playbackFinished) {
+                  if (scrollProgress > 50) {
+                    console.log('scrollProgress', scrollProgress)
+                    setFadeInArgentina(true)
+                  }
+
+                  // if (scrollProgress > 40) {
+                  //   setFadeInBA(true)
+                  // }
+
+                  if (scrollProgress > 80) {
+                    setFadeInDate(true)
+                  }
+                  // }
+                }, [])}
               />
             </div>
 
             <div
               className={cn(
-                'sticky h-screen flex hidden flex-col items-end justify-end relative top-0 w-full transition-opacity duration-[3000ms]',
-                {
-                  '!flex': playbackFinished,
-                }
+                'sticky h-screen flex flex-col items-end justify-end relative top-0 w-full'
+                // {
+                //   '!flex': playbackFinished,
+                // }
               )}
               // style={scrollProgress < 50 ? {} : { opacity: '100%' }}
             >
-              <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage, css.revealFromLeft)}>
+              <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
                 <div className="flex flex-col gap-8">
                   <p className={`text-2xl lg:text-4xl  font-semibold`}>
                     {/* {data.pages.catchphrase}...{' '} */}
-                    <Image
-                      src={Argentina}
-                      alt="Buenos Aires"
-                      className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
-                    />
-                    <Image
+                    {fadeInArgentina && (
+                      <Image
+                        src={Argentina}
+                        alt="Argentina"
+                        className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
+                      />
+                    )}
+
+                    {/* <Image
                       src={BAText}
                       alt="Buenos Aires"
-                      className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
-                    />
+                      className={cn(
+                        'min-w-[320px] w-[45%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[3000ms]',
+                        fadeInBA && 'opacity-100'
+                      )}
+                    /> */}
                   </p>
-                  {/* <Link
+                  <Link
                     href="#about"
-                    className={`flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] transition-all duration-300 z-10 ${css['video-recap-button']} shadow`}
+                    className={cn(
+                      'flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] opacity-0 transition-all duration-[2000ms] z-10',
+                      css['video-recap-button'],
+                      'shadow',
+                      fadeInArgentina && 'opacity-100'
+                    )}
                   >
                     <div className="font-secondary z-10 ">{data.pages.button}</div>
-                  </Link> */}
-                  <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[60px] lg:w-[80px]" />
+                  </Link>
+                  <Image
+                    src={DevconnectCubeLogo}
+                    alt="Devconnect Cube Logo"
+                    className={cn(
+                      'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[1000ms]',
+                      fadeInArgentina && 'opacity-100'
+                    )}
+                  />
                 </div>
               </div>
 
               <div className={cn('absolute section bottom-4 right-0 z-10')}>
-                <div className="flex justify-end gap-4">
+                <div
+                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[1000ms]', {
+                    '!opacity-100': fadeInArgentina,
+                  })}
+                >
                   <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
                     <a
                       className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"

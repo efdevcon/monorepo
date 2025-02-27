@@ -41,6 +41,7 @@ const ScrollVideoComponent = ({
   const [initialPlayComplete, setInitialPlayComplete] = useState(false)
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
 
   // Add overscroll-none to body on mount and remove on unmount
   useEffect(() => {
@@ -228,7 +229,7 @@ const ScrollVideoComponent = ({
     if (images.length === 0 || !hasStableConnection || initialPlayComplete) return
 
     const totalFrames = images.length - 1
-    const duration = 3 // 3 seconds for the entire animation
+    const duration = 4 // 3 seconds for the entire animation
 
     // Disable scroll trigger during auto-play if it exists
     if (scrollTriggerRef.current) {
@@ -247,7 +248,7 @@ const ScrollVideoComponent = ({
 
           setCurrentFrame(frameIndex)
 
-          if (onScrollProgress) {
+          if (onScrollProgress && !isPlaying) {
             onScrollProgress(Math.round(progress * 100))
           }
         },
@@ -265,7 +266,7 @@ const ScrollVideoComponent = ({
         },
       }
     )
-  }, [images, hasStableConnection, playInReverse, initialPlayComplete, onScrollProgress, onPlaybackFinish])
+  }, [images, hasStableConnection, playInReverse, initialPlayComplete, onScrollProgress, onPlaybackFinish, isPlaying])
 
   // Draw the current frame on the canvas
   useEffect(() => {
@@ -320,15 +321,11 @@ const ScrollVideoComponent = ({
     const st = ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
-      end: 'bottom+=75% bottom',
+      end: 'bottom+=100% bottom', // Extended end point
       scrub: true,
       onUpdate: self => {
-        // Calculate frame index based on scroll progress (0 to 1)
-        const progress = self.progress
-
-        // Report progress as 0-100 value if callback is provided
-        if (onScrollProgress) {
-          onScrollProgress(Math.round(progress * 100))
+        if (onScrollProgress && !isPlaying) {
+          onScrollProgress(self.progress * 100)
         }
 
         let frameIndex
@@ -340,11 +337,11 @@ const ScrollVideoComponent = ({
         if (effectivelyReverse) {
           // When in reverse mode, we want to start from the last frame (when progress is 0)
           // and end at the first frame (when progress is 1)
-          frameIndex = Math.floor((1 - progress) * (images.length - 1))
+          frameIndex = Math.floor((1 - self.progress) * (images.length - 1))
         } else {
           // Normal playback: start from first frame (when progress is 0)
           // and end at the last frame (when progress is 1)
-          frameIndex = Math.floor(progress * (images.length - 1))
+          frameIndex = Math.floor(self.progress * (images.length - 1))
         }
 
         // Ensure frameIndex is within bounds
@@ -365,7 +362,7 @@ const ScrollVideoComponent = ({
       st.kill()
       scrollTriggerRef.current = null
     }
-  }, [images, hasStableConnection, playInReverse, containerRef, onScrollProgress, initialPlayComplete])
+  }, [images, hasStableConnection, playInReverse, containerRef, onScrollProgress, initialPlayComplete, isPlaying])
 
   return (
     <div ref={containerRef} className={cn('w-screen relative h-screen')}>
@@ -374,7 +371,9 @@ const ScrollVideoComponent = ({
 
         {isLoading && firstImageLoaded && (
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-            <div className={`bg-black/50 text-white px-4 py-2 rounded-full pulse ${styles.fadeInOutPulse}`}>
+            <div
+              className={`bg-black/50 text-white text-xs sm:text-sm px-4 py-2 rounded-full pulse ${styles.fadeInOutPulse}`}
+            >
               Loading Devconnect location
             </div>
           </div>
