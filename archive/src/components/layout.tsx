@@ -9,7 +9,7 @@ export function Layout(props: PropsWithChildren) {
       <Header />
       <Hero />
 
-      <main className="container mx-auto">{props.children}</main>
+      <main className="mx-auto">{props.children}</main>
 
       <Footer />
     </main>

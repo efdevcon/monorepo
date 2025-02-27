@@ -3,7 +3,7 @@ import { InputForm } from "@/components/common/input-form";
 import IconSearch from "@/assets/icons/search.svg";
 import css from "./search.module.scss";
 import { useQueryStringer } from "@/hooks/useQueryStringer";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 
 export const Search = (props: any) => {
   let className = css["search-foldout"];
@@ -27,7 +27,7 @@ export const Search = (props: any) => {
   const showSuggested = !searchQuery;
 
   function onSearch() {
-    // navigate(`/archive/watch?q=${searchQuery}`);
+    // navigate(`/watch?q=${searchQuery}`);
   }
 
   return (
@@ -69,7 +69,7 @@ export const Search = (props: any) => {
             })}
 
           <Link
-            href={`/archive/watch?q=${searchQuery}`}
+            href={`/achive/watch?q=${searchQuery}`}
             className={`${css["result"]} bold text-underline"`}
           >
             View all

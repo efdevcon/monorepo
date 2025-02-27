@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import css from "./button.module.scss";
 
 export const Button = (props: any) => {
@@ -52,7 +52,7 @@ export const Button = (props: any) => {
     </>
   );
 
-  if (props.to) {
+  if (props.href) {
     let linkClassName = `${formattedProps.className} button`;
 
     if (props.disabled) linkClassName += ` disabled`;

@@ -16,6 +16,7 @@ export interface Event {
 export interface ArchiveVideo {
   id: string;
   sourceId?: string;
+  eventId: string;
   slug: string;
   edition: number;
   title: string;
@@ -34,8 +35,9 @@ export interface ArchiveVideo {
   track: string;
   keywords: string[];
   tags: string[];
-  speakers: string[];
+  speakers: UserProfile[];
   profiles: UserProfile[];
+  sources_youtubeId?: string;
 }
 
 export interface UserProfile {

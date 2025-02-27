@@ -8,7 +8,7 @@ import { Tabs } from "@/components/common/tabs";
 import { Tab } from "@/components/common/tabs/Tabs";
 import { VideoCard } from "@/components/domain/archive/playlists";
 import GoogleSlides from "src/assets/icons/google_slides.svg";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import { getDevconDate, getVideoId } from "@/utils/video";
 import { Avatar } from "./Avatar";
 import { Banner } from "../ipfs";
@@ -107,7 +107,7 @@ const Labels = ({ tags, playlists }: any) => {
             {tags.map((tag: any) => {
               return (
                 <Link
-                  href={`/archive/watch?tags=${encodeURIComponent(tag)}`}
+                  href={`/watch?tags=${encodeURIComponent(tag)}`}
                   key={tag}
                   className="label label-hover white bold scale"
                 >
@@ -144,9 +144,6 @@ const Labels = ({ tags, playlists }: any) => {
 export const Video = (props: any) => {
   const [activeTab, setActiveTab] = useState("");
   const video = props.video;
-  const imageUrl = `https://img.youtube.com/vi/${video.youtubeUrl
-    .split("/")
-    .pop()}/maxresdefault.jpg`;
   const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
   return (
@@ -155,10 +152,7 @@ export const Video = (props: any) => {
       <Header withStrip={false} />
 
       <PageHero
-        path={[
-          { text: "Watch", url: "/archive/watch" },
-          { text: props.video.title },
-        ]}
+        path={[{ text: "Watch", url: "/watch" }, { text: props.video.title }]}
       >
         <div className={css["container"]}>
           <div className={css["video"]}>

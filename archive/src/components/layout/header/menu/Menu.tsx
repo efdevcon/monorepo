@@ -1,7 +1,7 @@
 import React from "react";
 import { Navigation } from "./navigation";
 import { Foldout } from "./foldout";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import IconMenu from "@/assets/icons/menu.svg";
 import IconCross from "@/assets/icons/cross.svg";
 import SearchIcon from "@/assets/icons/search.svg";

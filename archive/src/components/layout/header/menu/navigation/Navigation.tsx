@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import ArrowCollapse from "@/assets/icons/arrow_collapse.svg";
 import ArrowDropdown from "@/assets/icons/arrow_drop_down.svg";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
@@ -17,11 +17,11 @@ export const NavigationItems = [
     title: "Event",
     url: "",
     type: "links",
-    logo: "/assets/images/menu/bogota.svg",
+    logo: "/images/menu/events.svg",
     links: [
       ...[7, 6, 5, 4, 3, 2, 1, 0].map((event) => ({
         title: `Devcon ${event}`,
-        url: `/archive/watch?event=devcon-${event}`,
+        url: `/watch?event=devcon-${event}`,
         type: "page",
       })),
     ],
@@ -30,10 +30,10 @@ export const NavigationItems = [
     title: "Categories",
     url: "",
     type: "links",
-    logo: "/assets/images/menu/program.svg",
+    logo: "/images/menu/tags.svg",
     links: TRACKS.map((track) => ({
       title: track,
-      url: `/archive/watch?tags=${encodeURIComponent(track)}`,
+      url: `/watch?tags=${encodeURIComponent(track)}`,
       type: "page",
     })),
   },
@@ -91,7 +91,7 @@ const Mobile = (props: any) => {
                           }
                         : undefined
                     }
-                    to={i.url}
+                    href={i.url}
                     onClick={closeFoldout}
                   >
                     {i.title}

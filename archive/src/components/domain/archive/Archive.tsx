@@ -9,8 +9,8 @@ import { usePlaylists } from "@/hooks/usePlaylists";
 import { useStaffPicks } from "@/hooks/useStaffPicks";
 import { Interests } from "./interests";
 import OnDemandVideoIcon from "src/assets/icons/on_demand_video.svg";
-import { Button } from "lib/components/button";
-import { Link } from "@/components/link";
+import { Button } from "@/components/common/button";
+import { Link } from "@/components/common/link";
 
 type ArchiveProps = {};
 
@@ -43,7 +43,7 @@ export const Archive = (props: ArchiveProps) => {
               )}`;
 
               return (
-                <Button to={slug} className={`red ${css["call-to-action"]}`}>
+                <Button href={slug} className={`red ${css["call-to-action"]}`}>
                   <span className={css["watch-now"]}>Watch Now</span>
 
                   <OnDemandVideoIcon

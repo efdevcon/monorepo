@@ -7,7 +7,7 @@ import { useIsScrolled } from "@/hooks/useIsScrolled";
 import ChevronLeft from "@/assets/icons/chevron_left.svg";
 import ChevronRight from "@/assets/icons/chevron_right.svg";
 import { Button } from "@/components/common/button";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import Image from "next/image";
 
@@ -93,7 +93,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
           session: item,
           callToAction: () => {
             return (
-              <Button to={item.id} className={`red ${css["call-to-action"]}`}>
+              <Button href={item.id} className={`red ${css["call-to-action"]}`}>
                 <span className={css["watch-now"]}>Watch Now</span>
 
                 <OnDemandVideoIcon
@@ -330,10 +330,6 @@ export const PageHero = (props: PageHeroProps) => {
 
         if (selected) className += ` ${css["active"]}`;
 
-        console.log(
-          "IMAGE",
-          `/images/featured/${scene.session.eventId}/${scene.session.id}.png`
-        );
         return (
           <div key={i} className={className}>
             <Image

@@ -1,0 +1,95 @@
+@use 'src/assets/css/partials/index' as *;
+
+.slider {
+  margin-left: -$gaps-gap-4;
+  // padding-bottom: $gaps-gap-6;
+
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+
+  .no-grab {
+    cursor: pointer !important;
+  }
+}
+
+.playlists,
+.curated-playlists {
+  // padding-bottom: $gaps-gap-16;
+}
+
+.video-card {
+  &.slide {
+    cursor: grab;
+    margin-left: $gaps-gap-4;
+  }
+
+  .aspect-wrapper {
+    position: relative;
+  }
+
+  &.horizontal {
+    @media (min-width: $breakpoints-lg + 1) {
+      display: flex;
+      flex-direction: row;
+
+      .aspect-wrapper {
+        flex-basis: 30%;
+        min-width: 250px;
+        flex-grow: 0;
+        flex-shrink: 1;
+      }
+
+      .body {
+        // flex-basis: 70%;
+        flex-shrink: 0;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .body {
+    padding: $gaps-gap-2 $gaps-gap-3 $gaps-gap-3 $gaps-gap-3;
+
+    h4 {
+      margin-top: $gaps-gap-1;
+      margin-bottom: $gaps-gap-4;
+    }
+
+    .title {
+      @include fonts-sm;
+      @include fonts-bold;
+    }
+
+    .description {
+      @include fonts-xs;
+    }
+  }
+
+  &.big {
+    .body {
+      padding-left: $gaps-gap-8;
+      padding-top: $gaps-gap-4;
+
+      .title {
+        @include fonts-title;
+      }
+
+      .description {
+        @include fonts-md;
+      }
+
+      h4 {
+        margin-top: $gaps-gap-2;
+        margin-bottom: $gaps-gap-2;
+      }
+
+      span.opaque {
+        @include fonts-xs;
+        text-transform: uppercase;
+        color: $colors-monochrome-7;
+        font-weight: 500;
+      }
+    }
+  }
+}

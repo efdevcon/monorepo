@@ -16,7 +16,7 @@ import { IconTwitter } from "@/assets/icons/twitter";
 import { IconGithub } from "@/assets/icons/github";
 import { IconYouTube } from "@/assets/icons/youtube";
 import { IconFarcaster } from "@/assets/icons/farcaster";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import LogoFoundation from "@/assets/logos/ef.svg";
 import LogoArchive from "@/assets/logos/archive.svg";
 

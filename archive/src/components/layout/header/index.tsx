@@ -4,8 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { Menu } from "./menu";
 import { Search } from "./search";
 import { useOnOutsideClick } from "@/hooks/useOnOutsideClick";
-import { useIsScrolled } from "@/hooks/useIsScrolled";
-import { Link } from "@/components/link";
+import { Link } from "@/components/common/link";
 import HeaderLogoArchive from "./logo";
 import css from "./header.module.scss";
 

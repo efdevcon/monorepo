@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
-import "@/assets/globals.css";
 import {
   SITE_NAME,
   SITE_URL,
@@ -9,6 +8,8 @@ import {
 } from "@/utils/site";
 import { Layout } from "@/components/layout";
 import { QueryProvider } from "@/providers/query";
+import "@/assets/globals.css";
+import "@/assets/css/index.scss";
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
