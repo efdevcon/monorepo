@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
-import { Footer } from "./layout/footer";
-import { Header } from "./layout/header";
-import { Hero } from "./hero";
+import { Footer } from "@/components/layout/footer";
+import { Header } from "@/components/layout/header";
+import { Hero } from "@/components/hero";
 
 export function Layout(props: PropsWithChildren) {
   return (
