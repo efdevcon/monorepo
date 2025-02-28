@@ -1,9 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import css from "./watch.module.scss";
 import { VideoCard } from "./VideoCard";
 import { useSort, SortVariation, Sort } from "@/components/common/sort";
-import IconGrid from "src/assets/icons/grid.svg";
-import IconListView from "src/assets/icons/list-view.svg";
+import IconGrid from "@/assets/icons/grid.svg";
+import IconFilter from "@/assets/icons/filter.svg";
+import IconListView from "@/assets/icons/list-view.svg";
 import {
   VideoFilter,
   useVideoFilter,
@@ -13,7 +16,6 @@ import { useEffect } from "react";
 import { useArchiveSearch } from "@/hooks/useArchiveSearch";
 import { Pagination } from "@/components/common/pagination";
 import { useQueryStringer } from "@/hooks/useQueryStringer";
-import IconFilter from "src/assets/icons/filter.svg";
 import { Loader } from "@/components/common/loader";
 
 type WatchProps = {};

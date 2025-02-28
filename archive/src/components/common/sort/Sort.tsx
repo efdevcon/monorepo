@@ -1,6 +1,6 @@
 import React from "react";
-import ArrowAsc from "src/assets/icons/arrow_asc.svg";
-import ArrowDesc from "src/assets/icons/arrow_desc.svg";
+import ArrowAsc from "@/assets/icons/arrow_asc.svg";
+import ArrowDesc from "@/assets/icons/arrow_desc.svg";
 import css from "./sort.module.scss";
 import { HorizontalScroller } from "@/components/common/horizontal-scroller";
 

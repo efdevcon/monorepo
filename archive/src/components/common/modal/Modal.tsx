@@ -1,6 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/common/button";
+import Image from "next/image";
 import IconClose from "@/assets/icons/cross.svg";
 import IconChevronLeft from "@/assets/icons/chevron_left.svg";
 import IconChevronRight from "@/assets/icons/chevron_right.svg";
@@ -92,10 +93,12 @@ const ModalContent = (props: ModalProps) => {
     >
       {image && (
         <div className={css["left"]}>
-          <GatsbyImage
-            image={getImage(image)}
-            objectFit="cover"
+          <Image
+            src={image}
             alt="Modal image"
+            width={500}
+            height={500}
+            objectFit="cover"
           />
         </div>
       )}

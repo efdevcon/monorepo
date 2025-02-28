@@ -1,0 +1,141 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  margin: 0;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #dddddd;
+
+    @media (max-width: $breakpoints-sm) {
+      justify-content: flex-start;
+    }
+  }
+
+  .cta {
+    @include fonts-semi-bold;
+    background: #f8f8f8;
+    padding: $gaps-gap-1 $gaps-gap-4;
+    border-right: 1px solid #dddddd;
+    padding-bottom: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+
+    svg {
+      padding-top: 2px;
+    }
+
+    // svg path {
+    //   fill: #e55066;
+    // }
+  }
+
+  .link {
+    padding: $gaps-gap-1 $gaps-gap-4;
+    padding-bottom: 2px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    @media (max-width: $breakpoints-sm) {
+      flex-grow: 1;
+    }
+
+    > p {
+      &:last-of-type {
+        @media (max-width: $breakpoints-sm) {
+          margin-left: auto;
+        }
+      }
+
+      svg {
+        fill: $colors-main;
+        stroke: white;
+        margin-top: $gaps-gap-1;
+      }
+    }
+
+    .truncated,
+    .hash {
+      margin: 0 $gaps-gap-2;
+    }
+
+    .hash {
+      display: flex;
+
+      @media (max-width: $breakpoints-md) {
+        display: none;
+      }
+    }
+
+    .truncated {
+      display: none;
+
+      @media (max-width: $breakpoints-md) {
+        @include fonts-semi-bold;
+        display: flex;
+      }
+    }
+
+    .copy-icon {
+      cursor: pointer;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: $gaps-gap-1 $gaps-gap-4;
+    background: #f8f8f8;
+    border: 1px solid #dddddd;
+    border-top: 0;
+  }
+}
+
+.learn-more {
+  cursor: pointer;
+  color: #e55066;
+  padding-left: $gaps-gap-2;
+}
+
+.modal-container {
+  > h4 {
+    @include fonts-xl;
+    font-family: $fonts-primary;
+    text-transform: uppercase;
+    margin-bottom: $gaps-gap-4;
+    padding-bottom: $gaps-gap-4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  }
+
+  > div {
+    max-width: 750px;
+    padding-right: $gaps-gap-8;
+
+    @media (max-width: $breakpoints-sm) {
+      padding-right: 0px;
+    }
+  }
+}
+
+.modal-content {
+  @include fonts-lg;
+
+  .lead {
+    @include fonts-xl;
+  }
+
+  > p {
+    &:not(:last-child) {
+      margin-bottom: $gaps-gap-6;
+    }
+  }
+
+  .learn-more-link {
+    text-decoration: underline;
+  }
+}

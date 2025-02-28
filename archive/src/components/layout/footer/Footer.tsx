@@ -7,7 +7,7 @@ import IconGithub from "@/assets/icons/github.svg";
 import IconTwitter from "@/assets/icons/twitter.svg";
 import IconFarcaster from "@/assets/icons/farcaster.svg";
 import IconYoutube from "@/assets/icons/youtube.svg";
-import smallLogo from "@/assets/images/ef-logo.svg";
+import EfLogo from "@/assets/images/ef-logo.svg";
 import ArchiveLogo from "@/assets/logos/archive.svg";
 import { Newsletter } from "@/components/common/newsletter";
 import { Link } from "@/components/common/link";
@@ -137,7 +137,7 @@ export const Footer = () => {
 
           <div className={css["col-3"]}>
             <Link className={css["small-logo"]} href={FOUNDATION_URL}>
-              <img src={smallLogo} alt="Ethereum Foundation" />
+              <EfLogo width={120} />
             </Link>
           </div>
         </div>

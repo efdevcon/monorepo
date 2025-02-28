@@ -1,0 +1,31 @@
+@use 'src/assets/css/partials/index' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid $colors-standard-border-color;
+
+  padding-left: $gaps-gap-2;
+  padding-right: $gaps-gap-2;
+
+  .header {
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: $gaps-gap-2;
+    padding-top: $gaps-gap-2;
+
+    &:hover {
+      cursor: pointer;
+      // background: $colors-monochrome-2;
+    }
+  }
+
+  .content {
+    transition: all 0.2s linear;
+    overflow: hidden;
+    height: var(--contentHeight);
+  }
+}

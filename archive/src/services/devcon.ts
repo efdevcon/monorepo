@@ -4,7 +4,7 @@ export async function getEvents() {
   console.log("getEvents");
   const response = await fetch(`${CONFIG.API_BASE_URL}/events`);
   const events = await response.json();
-  return events.data;
+  return events.data.sort((a: any, b: any) => b.edition - a.edition);
 }
 
 export async function getEvent(id: string) {

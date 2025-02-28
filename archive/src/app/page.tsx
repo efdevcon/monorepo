@@ -14,7 +14,7 @@ export default async function Home() {
 
       <FeaturedList title="Devcon 7 Keynotes" type="devcon-7" />
 
-      <Editions events={events.reverse()} />
+      <Editions events={events} />
 
       <FeaturedList title="Most Watched" type="most-popular" />
 

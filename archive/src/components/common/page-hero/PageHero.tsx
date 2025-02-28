@@ -10,6 +10,7 @@ import { Button } from "@/components/common/button";
 import { Link } from "@/components/common/link";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 type NavigationLink = {
   to: string;
@@ -50,7 +51,10 @@ type PageHeroProps = {
 
 const PathNavigation = (props: PageHeroProps) => {
   // TODO: Implement path navigation
-  let path;
+  // get full current path from the url using next/navigation
+  let path = usePathname();
+  console.log("USE PATHNAME", path);
+  console.log("path.split('/')", path.split("/"));
 
   if (Array.isArray(props.path)) {
     path = props.path.reduce((acc, pathSegment, index) => {
@@ -78,6 +82,7 @@ const PathNavigation = (props: PageHeroProps) => {
     }, [] as React.ReactNode[]);
   }
 
+  console.log("PATH HERO PROPS", path, props.path, "path");
   return (
     <p className={`${css["path"]} font-xs text-uppercase`}>
       {path || props.path}

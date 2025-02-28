@@ -1,3 +1,4 @@
+import { Video } from "@/components/domain/archive";
 import { getSessionBySlug } from "@/services/devcon";
 
 type Props = {
@@ -12,12 +13,7 @@ export default async function Index({ params }: Props) {
 
   const session = await getSessionBySlug(slug, `devcon-${event}`);
 
-  return (
-    <div className="">
-      <h1>Watch Event Page</h1>
-      <p>Event: {event}</p>
-      <p>Slug: {slug}</p>
-      <p>Session: {JSON.stringify(session)}</p>
-    </div>
-  );
+  if (!session) return null;
+
+  return <Video video={session} />;
 }

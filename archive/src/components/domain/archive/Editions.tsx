@@ -1,16 +1,14 @@
 "use client";
 
 import React, { useState } from "react";
-import { HorizontalScroller } from "@/components/common/horizontal-scroller";
 import { Button } from "@/components/common/button";
-import { Event } from "@/types";
 import Image from "next/image";
 import OnDemandVideoIcon from "@/assets/icons/on_demand_video.svg";
 import css from "./editions.module.scss";
 import dayjs from "dayjs";
+import { Event } from "@/types";
 
 interface Props {
-  className?: string;
   events: Event[];
 }
 
@@ -52,11 +50,7 @@ const Clock = (props: any) => {
 
 export const Editions = (props: Props) => {
   const [selectedEditionIndex, setSelectedEditionIndex] = useState(0);
-  let className = `padding-bottom ${css["container"]}`;
-  if (props.className) {
-    className += ` ${props.className}`;
-  }
-
+  if (!props.events) return null;
   const selectedEdition = props.events[selectedEditionIndex];
 
   return (
@@ -68,7 +62,7 @@ export const Editions = (props: Props) => {
           All Devcons
         </h2>
 
-        <div className={className}>
+        <div className={`padding-bottom ${css["container"]}`}>
           <div className={css["numbers"]}>
             {props.events.map((i: any, index: number) => {
               const selected = i.edition === selectedEdition.edition;

@@ -10,6 +10,11 @@ import { Layout } from "@/components/layout";
 import { QueryProvider } from "@/providers/query";
 import "@/assets/globals.css";
 import "@/assets/css/index.scss";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
@@ -50,7 +55,9 @@ export const viewport: Viewport = {
   themeColor: "#30354b",
 };
 
-export default function RootLayout(props: PropsWithChildren) {
+export default async function RootLayout(props: PropsWithChildren) {
+  const queryClient = new QueryClient();
+
   return (
     <html lang="en">
       <head>
@@ -65,7 +72,9 @@ export default function RootLayout(props: PropsWithChildren) {
       </head>
       <body>
         <QueryProvider>
-          <Layout>{props.children}</Layout>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <Layout>{props.children}</Layout>
+          </HydrationBoundary>
         </QueryProvider>
       </body>
     </html>

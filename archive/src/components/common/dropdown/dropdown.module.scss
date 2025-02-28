@@ -1,0 +1,57 @@
+@use 'src/assets/css/partials/index' as *;
+
+.dropdown-box {
+  background: $colors-monochrome-1;
+  border: 2px solid $colors-main;
+}
+
+$padding: 4px 10px 4px 20px;
+
+.container {
+  @include fonts-bold;
+  @include fonts-uppercase;
+  @extend .dropdown-box;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: $padding;
+
+  :global(.icon) {
+    margin-left: $gaps-gap-4;
+  }
+}
+
+.dropdown {
+  background: $colors-monochrome-1;
+  border: 2px solid #f3f3f3;
+  position: absolute;
+  list-style-type: none;
+  right: -2px;
+  min-width: calc(100% + 4px);
+  top: calc(100% + 2px);
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  li {
+    @include fonts-normal;
+    white-space: nowrap;
+    padding: $padding;
+    text-align: right;
+    border-top: 1px solid $colors-monochrome-3;
+
+    &:hover {
+      background: $colors-monochrome-3;
+    }
+  }
+}
