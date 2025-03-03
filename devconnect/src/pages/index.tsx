@@ -8,12 +8,14 @@ import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
-import BAText from 'assets/images/ba/ba-text.png'
-import Argentina from 'assets/images/ba/argentina.png'
+// import BAText from 'assets/images/ba/ba-text.png'
+// import Argentina from 'assets/images/ba/argentina.png'
+import ArgentinaWhite from 'assets/images/ba/argentina-white.png'
+import BAWhite from 'assets/images/ba/ba-text-white.png'
 import Modal from 'common/components/modal'
 import { CodeOfConduct } from 'common/components/code-of-conduct/CodeOfConduct'
 import FAQComponent from 'common/components/faq/faq'
-import HeroImage from 'assets/images/ba/hero.jpg'
+// import HeroImage from 'assets/images/ba/hero.jpg'
 import Observer from 'common/components/observer'
 import ErrorBoundary from 'common/components/error-boundary/ErrorBoundary'
 import FooterBackground from 'assets/images/footer-background-triangles.png'
@@ -208,8 +210,26 @@ const Home: NextPage = (props: any) => {
   const [fadeInArgentina, setFadeInArgentina] = useState(false)
   const [playbackFinished, setPlaybackFinished] = useState(false)
   const [fadeInDate, setFadeInDate] = useState(false)
+  // Add a new state to track user scroll interaction
+  const [userHasInterruptedPlayback, setUserHasInterruptedPlayback] = useState(false)
+  const userInterruptedPlaybackRef = useRef(false)
 
   const hasStableConnection = true
+
+  // Add an effect to detect user scrolling
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (!userHasInterruptedPlayback) {
+        setUserHasInterruptedPlayback(true)
+        // When user scrolls, immediately show UI elements that would normally wait for video progress
+        if (!fadeInArgentina) setFadeInArgentina(true)
+        if (!fadeInDate) setFadeInDate(true)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [userHasInterruptedPlayback, fadeInArgentina, fadeInDate])
 
   return (
     <>
@@ -220,18 +240,12 @@ const Home: NextPage = (props: any) => {
             id="hero"
             ref={heroRef}
             className={cn('w-screen relative text-black bg-black', css.hero, {
-              'h-[100vh]': !hasStableConnection,
-              'h-[200vh]': hasStableConnection,
-              [css.gradient]: fadeInArgentina,
+              '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
+              'lg:h-[200vh]': hasStableConnection,
+              [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
             })}
           >
-            {/* <div
-              className={cn('transition-opacity duration-[2000ms] opacity-0', {
-                'opacity-100': fadeInArgentina,
-              })}
-            > */}
-            <Header noGradient active={fadeInArgentina} />
-            {/* </div> */}
+            <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} />
 
             <div className="fixed top-0 w-full">
               <ScrollVideo
@@ -240,69 +254,72 @@ const Home: NextPage = (props: any) => {
                 onPlaybackFinish={useCallback(() => {
                   setPlaybackFinished(true)
                 }, [])}
+                onUserPlaybackInterrupt={useCallback(() => {
+                  // When user scrolls during video playback, immediately show all UI elements
+                  setUserHasInterruptedPlayback(true)
+                  setFadeInArgentina(true)
+                  setFadeInDate(true)
+
+                  userInterruptedPlaybackRef.current = true
+                }, [])}
                 onScrollProgress={useCallback((scrollProgress: number) => {
-                  if (!playbackFinished) {
-                    if (scrollProgress > 50) {
-                      console.log('scrollProgress', scrollProgress)
+                  if (!playbackFinished || !userInterruptedPlaybackRef.current) {
+                    if (scrollProgress > 80) {
                       setFadeInArgentina(true)
                     }
-                    if (scrollProgress > 80) {
-                      setFadeInDate(true)
-                    }
+                    // if (scrollProgress > 80) {
+                    //   setFadeInDate(true)
+                    // }
                   }
                 }, [])}
               />
             </div>
 
             <div
-              className={cn(
-                'sticky h-screen flex flex-col items-end justify-end relative top-0 w-full'
-
-                // {
-                //   '!flex': playbackFinished,
-                // }
-              )}
+              className={cn('sticky h-screen flex flex-col items-end justify-end relative top-0 w-full')}
               // style={scrollProgress < 50 ? {} : { opacity: '100%' }}
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
                 <div className="flex flex-col gap-8">
-                  <p className={`text-2xl lg:text-4xl  font-semibold`}>
-                    {/* {data.pages.catchphrase}...{' '} */}
-                    {playbackFinished && (
-                      <Image
-                        src={BAText}
-                        alt="Buenos Aires"
-                        className={cn('min-w-[220px] w-[25%] mt-1 lg:mt-2', css.revealFromLeft)}
-                      />
-                    )}
+                  <div className={`text-2xl lg:text-4xl flex flex-col font-semibold`}>
+                    <Image
+                      priority
+                      src={ArgentinaWhite}
+                      alt="Argentina text"
+                      className={cn(
+                        'min-w-[340px] w-[47%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[2000ms]',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                        userHasInterruptedPlayback && 'duration-[1000ms]'
+                      )}
+                    />
 
-                    {fadeInArgentina && (
-                      <div>
-                        <Image
-                          src={Argentina}
-                          alt="Argentina"
-                          className={cn('min-w-[320px] w-[45%] mt-1 lg:mt-2', css.revealFromLeft)}
-                        />
-                      </div>
-                    )}
-                  </p>
-                  <Link
+                    <Image
+                      src={BAWhite}
+                      alt="Buenos Aires text"
+                      className={cn(
+                        'min-w-[340px] w-[47%] -translate-y-[55%] -translate-x-[7.5%] scale-[80%] opacity-0 transition-opacity duration-[2000ms]',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                        userHasInterruptedPlayback && 'duration-[1000ms]'
+                      )}
+                    />
+                  </div>
+                  {/* <Link
                     href="#about"
                     className={cn(
-                      'flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] opacity-0 transition-all duration-[2000ms] z-10',
+                      'flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] opacity-0 transition-all duration-[3000ms] z-10',
                       css['video-recap-button'],
                       'shadow',
-                      fadeInArgentina && 'opacity-100'
+                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
                     )}
                   >
                     <div className="font-secondary z-10 ">{data.pages.button}</div>
-                  </Link>
+                  </Link> */}
                   <Image
                     src={DevconnectCubeLogo}
                     alt="Devconnect Cube Logo"
                     className={cn(
-                      'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[1000ms]',
-                      fadeInArgentina && 'opacity-100'
+                      'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[3000ms]',
+                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
                     )}
                   />
                 </div>
@@ -310,8 +327,8 @@ const Home: NextPage = (props: any) => {
 
               <div className={cn('absolute section bottom-4 right-0 z-10')}>
                 <div
-                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[1000ms]', {
-                    '!opacity-100': fadeInArgentina,
+                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[3000ms]', {
+                    '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
                   <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
@@ -572,10 +589,10 @@ const Home: NextPage = (props: any) => {
             </div>
           </Scene> */}
 
-          <div className="section relative bg-white">
+          <div className="section relative bg-white" id="about">
             <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText>
             <div className="flex flex-row gap-4 border-bottom pb-2 flex-wrap lg:flex-nowrap z-[2]">
-              <div className="basis-full lg:basis-1/2 shrink-0 text-black" id="about">
+              <div className="basis-full lg:basis-1/2 shrink-0 text-black">
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
@@ -621,7 +638,7 @@ const Home: NextPage = (props: any) => {
 
               {/* <h2 className="text-2xl mb-4 section-header mt-6">What to expect</h2> */}
               <div className="flex flex-col lg:flex-row gap-4 mt-4 relative pb-5">
-                <div className="basis-1/2">
+                <div className="basis-full lg:basis-1/2">
                   <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
                     {data.pages.what_to_expect.map((item: any, index: number) => {
                       const IconComponent = () => {
@@ -655,7 +672,7 @@ const Home: NextPage = (props: any) => {
                   </div>
                 </div>
 
-                <div className="basis-1/2 relative group rounded-lg cursor-pointer transition-all duration-300 overflow-hidden">
+                <div className="basis-full lg:basis-1/2 relative group rounded-lg cursor-pointer transition-all duration-300 overflow-hidden">
                   <Voxel />
                 </div>
               </div>
@@ -700,7 +717,7 @@ const Home: NextPage = (props: any) => {
                 Blog Posts
               </h1>
 
-              <BlogReel blogs={props.blogs} />
+              {/* <BlogReel blogs={props.blogs} /> */}
             </div>
           </div>
 
@@ -758,7 +775,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
   return {
     props: {
-      blogs: await getBlogPosts(),
+      // blogs: await getBlogPosts(),
       cms: {
         variables: content.variables,
         data: content.data,

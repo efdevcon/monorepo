@@ -25,7 +25,7 @@ const Hero = (props: HeroProps) => {
 
   return (
     <div className={className}>
-      <Header />
+      <Header active />
       <div className={props.backgroundClassName || css['background']} />
       {props.imageProps && props.backgroundStyle === 'fill' && (
         <div data-type="background" className={css['background-fill']}>

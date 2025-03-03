@@ -473,12 +473,12 @@ const FAQ = (props: any) => {
             <div
               key={question}
               className={cn(
-                'w-full flex flex-col bg-teal-100/10 rounded-xl shadow mb-4 shadow-[#74abde]/50 transition-all duration-500',
+                'w-full flex flex-col rounded-xl mb-2 border border-solid border-slate-300 transition-all duration-500',
                 open ? 'bg-teal-100/30' : ''
               )}
             >
               <button
-                className="p-4 grow text-lg  cursor-pointer select-none group flex justify-between items-center"
+                className="p-3 px-4 grow text-base cursor-pointer select-none group flex justify-between items-center"
                 onClick={() => setOpenFAQ(open ? null : question)}
                 type="button"
                 aria-expanded={open}

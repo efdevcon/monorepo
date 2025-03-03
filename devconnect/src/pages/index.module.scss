@@ -167,12 +167,18 @@
   animation: revealLeft 2s ease forwards;
 }
 
+.revealFromLeftFast {
+  animation: revealLeft 1s ease forwards;
+}
+
 @keyframes revealLeft {
   0% {
     clip-path: inset(0 100% 0 0);
+    opacity: 0;
   }
   100% {
     clip-path: inset(0 0 0 0);
+    opacity: 1;
   }
 }
 

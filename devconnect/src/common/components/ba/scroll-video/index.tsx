@@ -12,7 +12,9 @@ gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 const amountOfScreenshots = 125
 const hostedScreenshots = '/scroll-video'
+const hostedScreenshotsMobile = '/scroll-video/600p'
 const filenamePrefix = 'Oblisk_4K0' // Sequence is: Oblisk_4K0000, Oblisk_4K0001, Oblisk_4K0002, etc.
+const filenamePrefixMobile = filenamePrefix // 'Oblisk_4K_7200' // Sequence is: Oblisk_720p0000, Oblisk_720p0001, Oblisk_720p0002, etc.
 const extension = '.webp'
 
 interface ScrollVideoProps {
@@ -21,6 +23,7 @@ interface ScrollVideoProps {
   containerRef?: React.RefObject<HTMLDivElement>
   onScrollProgress?: (progress: number) => void
   onPlaybackFinish?: () => void
+  onUserPlaybackInterrupt?: () => void
 }
 
 const ScrollVideoComponent = ({
@@ -29,6 +32,7 @@ const ScrollVideoComponent = ({
   containerRef: externalContainerRef,
   onScrollProgress,
   onPlaybackFinish,
+  onUserPlaybackInterrupt,
 }: ScrollVideoProps) => {
   const internalContainerRef = useRef<HTMLDivElement>(null)
   const containerRef = externalContainerRef || internalContainerRef
@@ -42,6 +46,27 @@ const ScrollVideoComponent = ({
   const scrollTriggerRef = useRef<ScrollTrigger | null>(null)
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const autoPlayAnimationRef = useRef<gsap.core.Tween | null>(null)
+
+  // Detect if we're on mobile - determine immediately instead of using state
+  const isMobileDevice =
+    typeof navigator !== 'undefined' &&
+    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+  const isMobileRef = useRef(isMobileDevice)
+  const [isMobile, setIsMobile] = useState(isMobileDevice)
+
+  // Update mobile status on resize
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      isMobileRef.current = isMobileCheck
+      setIsMobile(isMobileCheck)
+    }
+
+    // Also check on resize in case of orientation changes
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Add overscroll-none to body on mount and remove on unmount
   useEffect(() => {
@@ -56,34 +81,64 @@ const ScrollVideoComponent = ({
 
   // Disable/enable scrolling
   useEffect(() => {
+    const handleUserInteraction = (e: Event) => {
+      if (!initialPlayComplete && !isMobile) {
+        // User is trying to scroll during initial playback (only for desktop)
+        if (autoPlayAnimationRef.current) {
+          // Kill the auto-play animation
+          autoPlayAnimationRef.current.kill()
+          autoPlayAnimationRef.current = null
+        }
+
+        // Set initial play as complete
+        setInitialPlayComplete(true)
+
+        // Call the interrupt callback if provided
+        if (onUserPlaybackInterrupt) {
+          onUserPlaybackInterrupt()
+        }
+
+        // Enable scroll trigger with a slight delay to ensure clean transition
+        setTimeout(() => {
+          if (scrollTriggerRef.current) {
+            // Refresh ScrollTrigger to ensure proper positioning
+            ScrollTrigger.refresh()
+            scrollTriggerRef.current.enable()
+          }
+        }, 50)
+      }
+    }
+
     const disableScroll = (e: Event) => {
-      if (!initialPlayComplete) {
+      // Only disable scrolling on desktop during initial playback
+      if (!initialPlayComplete && !isMobile) {
         e.preventDefault()
+        // Check if this is a user-initiated scroll (not our animation)
+        handleUserInteraction(e)
         return false
       }
       return true
     }
 
-    // Disable scrolling until initial play is complete
-    if (!initialPlayComplete) {
-      document.addEventListener('wheel', disableScroll, { passive: false })
-      document.addEventListener('touchmove', disableScroll, { passive: false })
-    } else {
-      document.removeEventListener('wheel', disableScroll)
-      document.removeEventListener('touchmove', disableScroll)
-    }
+    // Listen for user scroll attempts
+    document.addEventListener('wheel', disableScroll, { passive: false })
+    document.addEventListener('touchmove', disableScroll, { passive: false })
 
     return () => {
       document.removeEventListener('wheel', disableScroll)
       document.removeEventListener('touchmove', disableScroll)
     }
-  }, [initialPlayComplete])
+  }, [initialPlayComplete, onUserPlaybackInterrupt, isMobile])
 
   // Preload images
   useEffect(() => {
     // Calculate the first frame index based on playback direction
     const firstFrameIndex = playInReverse ? (amountOfScreenshots - 1).toString().padStart(3, '0') : '000'
-    const firstFrameSrc = `${hostedScreenshots}/${filenamePrefix}${firstFrameIndex}${extension}`
+
+    // Use mobile path and prefix for smaller screens
+    const screenshotsPath = isMobile ? hostedScreenshotsMobile : hostedScreenshots
+    const prefix = isMobile ? filenamePrefixMobile : filenamePrefix
+    const firstFrameSrc = `${screenshotsPath}/${prefix}${firstFrameIndex}${extension}`
 
     // Load the first frame immediately
     const firstImg = new Image()
@@ -104,6 +159,7 @@ const ScrollVideoComponent = ({
           // Calculate dimensions to maintain aspect ratio while filling screen
           const imgAspect = firstImg.width / firstImg.height
           const canvasAspect = canvas.width / canvas.height
+          const isPortrait = canvasAspect < 1 // Check if device is in portrait mode
 
           let drawWidth,
             drawHeight,
@@ -119,7 +175,13 @@ const ScrollVideoComponent = ({
             // Canvas is taller than image aspect ratio
             drawHeight = canvas.height
             drawWidth = canvas.height * imgAspect
-            offsetX = (canvas.width - drawWidth) / 2
+
+            // For portrait mode, align to the left side instead of center
+            if (isPortrait) {
+              offsetX = 0 // Left-align the image
+            } else {
+              offsetX = (canvas.width - drawWidth) / 2 // Center the image horizontally
+            }
           }
 
           // Draw image to fill canvas while maintaining aspect ratio
@@ -169,6 +231,10 @@ const ScrollVideoComponent = ({
         // Create an array of promises for loading all other images in parallel
         const loadPromises = []
 
+        // Use mobile path and prefix for smaller screens
+        const screenshotsPath = isMobile ? hostedScreenshotsMobile : hostedScreenshots
+        const prefix = isMobile ? filenamePrefixMobile : filenamePrefix
+
         for (let i = 0; i < amountOfScreenshots; i++) {
           // Skip the first frame as we already loaded it
           if ((playInReverse && i === amountOfScreenshots - 1) || (!playInReverse && i === 0)) {
@@ -179,7 +245,7 @@ const ScrollVideoComponent = ({
           const loadPromise = new Promise<void>((resolve, reject) => {
             const img = new Image()
             const index = i.toString().padStart(3, '0')
-            img.src = `${hostedScreenshots}/${filenamePrefix}${index}${extension}`
+            img.src = `${screenshotsPath}/${prefix}${index}${extension}`
 
             img.onload = () => {
               // Store the image in the correct position based on playback direction
@@ -222,21 +288,22 @@ const ScrollVideoComponent = ({
         clearTimeout(loadTimeoutRef.current)
       }
     }
-  }, [hasStableConnection, playInReverse, onPlaybackFinish])
+  }, [hasStableConnection, playInReverse, onPlaybackFinish, isMobile])
 
   // Auto-play animation on load
   useEffect(() => {
     if (images.length === 0 || !hasStableConnection || initialPlayComplete) return
 
     const totalFrames = images.length - 1
-    const duration = 4 // 3 seconds for the entire animation
+    const duration = 4 // 4 seconds for the entire animation
 
     // Disable scroll trigger during auto-play if it exists
     if (scrollTriggerRef.current) {
       scrollTriggerRef.current.disable()
     }
 
-    gsap.to(
+    // Store the animation reference so we can kill it if user interrupts
+    autoPlayAnimationRef.current = gsap.to(
       {},
       {
         duration,
@@ -254,19 +321,46 @@ const ScrollVideoComponent = ({
         },
         onComplete: () => {
           setInitialPlayComplete(true)
-          // Re-enable scroll trigger after auto-play
-          if (scrollTriggerRef.current) {
-            scrollTriggerRef.current.enable()
-          }
 
           // Call the onPlaybackFinish callback if provided
           if (onPlaybackFinish) {
             onPlaybackFinish()
           }
+
+          // Re-enable scroll trigger after auto-play with a slight delay, but only for desktop
+          if (!isMobile) {
+            setTimeout(() => {
+              if (scrollTriggerRef.current) {
+                // Refresh ScrollTrigger to ensure proper positioning
+                ScrollTrigger.refresh()
+                scrollTriggerRef.current.enable()
+              }
+            }, 50)
+          }
+
+          // Clear the animation reference
+          autoPlayAnimationRef.current = null
         },
       }
     )
-  }, [images, hasStableConnection, playInReverse, initialPlayComplete, onScrollProgress, onPlaybackFinish, isPlaying])
+
+    return () => {
+      // Clean up animation if component unmounts during playback
+      if (autoPlayAnimationRef.current) {
+        autoPlayAnimationRef.current.kill()
+        autoPlayAnimationRef.current = null
+      }
+    }
+  }, [
+    images,
+    hasStableConnection,
+    playInReverse,
+    initialPlayComplete,
+    onScrollProgress,
+    onPlaybackFinish,
+    isPlaying,
+    isMobile,
+  ])
 
   // Draw the current frame on the canvas
   useEffect(() => {
@@ -287,6 +381,7 @@ const ScrollVideoComponent = ({
       // Calculate dimensions to maintain aspect ratio while filling screen
       const imgAspect = img.width / img.height
       const canvasAspect = canvas.width / canvas.height
+      const isPortrait = canvasAspect < 1 // Check if device is in portrait mode
 
       let drawWidth,
         drawHeight,
@@ -302,7 +397,13 @@ const ScrollVideoComponent = ({
         // Canvas is taller than image aspect ratio
         drawHeight = canvas.height
         drawWidth = canvas.height * imgAspect
-        offsetX = (canvas.width - drawWidth) / 2
+
+        // For portrait mode, align to the left side instead of center
+        if (isPortrait) {
+          offsetX = 0 // Left-align the image
+        } else {
+          offsetX = (canvas.width - drawWidth) / 2 // Center the image horizontally
+        }
       }
 
       // Draw image to fill canvas while maintaining aspect ratio
@@ -316,13 +417,20 @@ const ScrollVideoComponent = ({
 
   // Set up ScrollTrigger
   useGSAP(() => {
-    if (!containerRef.current || images.length === 0 || !hasStableConnection) return
+    // Skip ScrollTrigger setup on mobile devices
+    if (!containerRef.current || images.length === 0 || !hasStableConnection || isMobile) return
+
+    // Clean up any existing ScrollTrigger instance
+    if (scrollTriggerRef.current) {
+      scrollTriggerRef.current.kill()
+      scrollTriggerRef.current = null
+    }
 
     const st = ScrollTrigger.create({
       trigger: containerRef.current,
       start: 'top top',
       end: 'bottom+=100% bottom', // Extended end point
-      scrub: true,
+      scrub: 0.1, // Use a small value for smoother scrolling
       onUpdate: self => {
         if (onScrollProgress && !isPlaying) {
           onScrollProgress(self.progress * 100)
@@ -362,7 +470,16 @@ const ScrollVideoComponent = ({
       st.kill()
       scrollTriggerRef.current = null
     }
-  }, [images, hasStableConnection, playInReverse, containerRef, onScrollProgress, initialPlayComplete, isPlaying])
+  }, [
+    images,
+    hasStableConnection,
+    playInReverse,
+    containerRef,
+    onScrollProgress,
+    initialPlayComplete,
+    isPlaying,
+    isMobile,
+  ])
 
   return (
     <div ref={containerRef} className={cn('w-screen relative h-screen')}>
@@ -370,11 +487,11 @@ const ScrollVideoComponent = ({
         <canvas ref={canvasRef} className={cn('w-screen h-screen block object-cover', styles.fadeInOut)} />
 
         {isLoading && firstImageLoaded && (
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+          <div className="absolute inset-0 p-4 flex items-center md:items-end justify-center bg-black/50 transition-opacity duration-500">
             <div
-              className={`bg-black/50 text-white text-xs sm:text-sm px-4 py-2 rounded-full pulse ${styles.fadeInOutPulse}`}
+              className={`bg-black/30 text-white text-xs sm:text-sm px-4 py-2 rounded-full  ${styles.fadeInOutPulse}`}
             >
-              Loading Devconnect location
+              Loading Devconnect location. You can scroll to skip.
             </div>
           </div>
         )}
