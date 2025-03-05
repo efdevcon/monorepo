@@ -8,7 +8,7 @@ import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 export default function CodeOfConductTemplate(props: any) {
   return (
     <Page theme={themes['news']}>
-      <PageHero heroBackground={HeroBackground} />
+      <PageHero heroBackground={HeroBackground} path={[{ text: 'Code of Conduct' }]} />
 
       <div className="section">
         <CodeOfConduct />

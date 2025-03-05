@@ -368,7 +368,7 @@ export const Hero = (props: { ticketMode?: boolean; speakerMode?: boolean; name?
                       fill
                     >
                       <div className="flex flex-col items-end">
-                        <div className="">Devconnect is returning in 2025!</div>
+                        <div className="">Check out Devconnect 2025</div>
                         <div className="text-[9px] leading-none opacity-50 uppercase">→ Click to Learn More</div>
                       </div>
                     </Button>

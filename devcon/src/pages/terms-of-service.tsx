@@ -8,7 +8,7 @@ import HeroBackground from 'assets/images/pages/hero-bgs/news.jpg'
 export default function TermsOfServiceTemplate(props: any) {
   return (
     <Page theme={themes['news']}>
-      <PageHero heroBackground={HeroBackground} />
+      <PageHero heroBackground={HeroBackground} path={[{ text: <span className="bold">Terms of Service</span> }]} />
 
       <div className="section">
         <TermsOfService />

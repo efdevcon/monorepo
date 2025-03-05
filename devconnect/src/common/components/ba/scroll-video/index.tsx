@@ -516,11 +516,11 @@ const ScrollVideoComponent = ({
       <div className="sticky top-0 w-full h-screen flex items-center justify-center">
         <canvas ref={canvasRef} className={cn('w-screen h-screen block object-cover', styles.fadeInOut)} />
 
-        {isLoading && firstImageLoaded && (
+        {isLoading && (
           <div
             className={cn(
-              `absolute inset-0 p-4 flex items-center md:items-end justify-center bg-black transition-opacity duration-[1000ms]`,
-              firstImageLoaded && 'bg-black/30'
+              `absolute inset-0 p-4 flex items-center md:items-end justify-center transition-opacity duration-[1000ms]`
+              //   firstImageLoaded && 'bg-black/30'
             )}
           >
             <div

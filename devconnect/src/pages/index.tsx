@@ -10,6 +10,7 @@ import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
 // import BAText from 'assets/images/ba/ba-text.png'
 // import Argentina from 'assets/images/ba/argentina.png'
+import AnnouncementDate from 'assets/images/ba/date.png'
 import ArgentinaWhite from 'assets/images/ba/argentina-white.png'
 import BAWhite from 'assets/images/ba/ba-text-white.png'
 import Modal from 'common/components/modal'
@@ -243,11 +244,13 @@ const Home: NextPage = (props: any) => {
             ref={heroRef}
             className={cn('w-screen relative text-black bg-black h-[100vh]', css.hero, {
               '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
+              [css.gradient]: true,
               // 'lg:h-[200vh]': hasStableConnection,
-              [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
+              // [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
             })}
           >
-            <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} />
+            {/* <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} /> */}
+            <Header noGradient active={true} />
 
             <div className="fixed top-0 w-full">
               <ScrollVideo
@@ -282,8 +285,18 @@ const Home: NextPage = (props: any) => {
               // style={scrollProgress < 50 ? {} : { opacity: '100%' }}
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
-                <div className="flex flex-col gap-8">
+                <div className="flex flex-col gap-0">
                   <div className={`text-2xl lg:text-4xl flex flex-col font-semibold`}>
+                    <Image
+                      src={AnnouncementDate}
+                      alt="Date"
+                      className={cn(
+                        'min-w-[340px] w-[47%] scale-[70%] -translate-x-[12.5%] translate-y-[20%] opacity-0 transition-opacity duration-[1500ms]',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                        userHasInterruptedPlayback && 'duration-[1000ms]'
+                      )}
+                    />
+
                     <Image
                       priority
                       src={ArgentinaWhite}
