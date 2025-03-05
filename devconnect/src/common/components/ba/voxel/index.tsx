@@ -34,7 +34,7 @@ const VoxelComponent = () => {
   return (
     <>
       <div className="relative h-[300px] lg:h-auto lg:absolute top-4 left-4 z-10 text-3xl text-[#74ACDF]">
-        <div className="text-xl">Ethereum is</div>
+        <div className="text-xl">{(globalThis as any).translations.ethereum_is}</div>
         <div
           key={activeModelIndex}
           className={cn(

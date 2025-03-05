@@ -1686,6 +1686,8 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
   const { scheduleView, setScheduleView } = props
   const favorites = useFavorites(props.events, props.edition)
 
+  // console.log(props.events.pop(), 'EVENT EXAMPLE')
+
   const { data }: { data: PagesQuery } = useTina(props.cms)
 
   // const translations = props.translations

@@ -186,8 +186,12 @@ const writeFile = async (fileName: string) => {
 function loadAllFilesFromFolder() {
   try {
     const directoryPath = path.resolve(devconDir, 'cms/pages')
-    const files = fs.readdirSync(directoryPath).filter(Boolean)
-    return files
+    const files = fs.readdirSync(directoryPath)
+      .filter(file => {
+        const filePath = path.join(directoryPath, file);
+        return fs.statSync(filePath).isFile() && Boolean(file);
+      });
+    return files;
   } catch (error) {
     console.error('Error accessing folder or reading files:', error)
     return []

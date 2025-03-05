@@ -47,6 +47,7 @@ const ScrollVideoComponent = ({
   const loadTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const autoPlayAnimationRef = useRef<gsap.core.Tween | null>(null)
+  const [showLoadingMessage, setShowLoadingMessage] = useState(false)
 
   // Detect if we're on mobile - determine immediately instead of using state
   const isMobileDevice =
@@ -437,6 +438,18 @@ const ScrollVideoComponent = ({
         }
 
         let frameIndex
+        let progress = self.progress
+
+        // Apply easing to the progress for smoother end transition
+        // This applies a power2.out easing to the last 20% of the animation
+        if (progress > 0.8) {
+          // Map 0.8-1.0 to 0.0-1.0 for the easing calculation
+          const easeProgress = (progress - 0.8) / 0.2
+          // Apply power2.out easing: 1 - (1 - x)^2
+          const easedEndProgress = 1 - Math.pow(1 - easeProgress, 2)
+          // Remap to 0.8-1.0 range
+          progress = 0.8 + easedEndProgress * 0.2
+        }
 
         // After initial playthrough, we want to reverse the sequence direction
         // This means we're effectively starting from the end of the sequence
@@ -445,11 +458,11 @@ const ScrollVideoComponent = ({
         if (effectivelyReverse) {
           // When in reverse mode, we want to start from the last frame (when progress is 0)
           // and end at the first frame (when progress is 1)
-          frameIndex = Math.floor((1 - self.progress) * (images.length - 1))
+          frameIndex = Math.floor((1 - progress) * (images.length - 1))
         } else {
           // Normal playback: start from first frame (when progress is 0)
           // and end at the last frame (when progress is 1)
-          frameIndex = Math.floor(self.progress * (images.length - 1))
+          frameIndex = Math.floor(progress * (images.length - 1))
         }
 
         // Ensure frameIndex is within bounds
@@ -481,15 +494,40 @@ const ScrollVideoComponent = ({
     isMobile,
   ])
 
+  // Add effect to delay showing the loading message
+  useEffect(() => {
+    let timer: NodeJS.Timeout
+
+    if (isLoading && firstImageLoaded) {
+      timer = setTimeout(() => {
+        setShowLoadingMessage(true)
+      }, 3000) // 3 second delay
+    } else {
+      setShowLoadingMessage(false)
+    }
+
+    return () => {
+      if (timer) clearTimeout(timer)
+    }
+  }, [isLoading, firstImageLoaded])
+
   return (
     <div ref={containerRef} className={cn('w-screen relative h-screen')}>
       <div className="sticky top-0 w-full h-screen flex items-center justify-center">
         <canvas ref={canvasRef} className={cn('w-screen h-screen block object-cover', styles.fadeInOut)} />
 
-        {isLoading && firstImageLoaded && (
-          <div className="absolute inset-0 p-4 flex items-center md:items-end justify-center bg-black/50 transition-opacity duration-500">
+        {isLoading && (
+          <div
+            className={cn(
+              `absolute inset-0 p-4 flex items-center md:items-end justify-center bg-black transition-opacity duration-[1000ms]`,
+              firstImageLoaded && 'bg-black/80'
+            )}
+          >
             <div
-              className={`bg-black/30 text-white text-xs sm:text-sm px-4 py-2 rounded-full  ${styles.fadeInOutPulse}`}
+              className={cn(
+                `bg-black/30 opacity-0 text-white text-xs sm:text-sm px-4 py-2 rounded-full transition-opacity duration-500 ${styles.fadeInOutPulse}`,
+                showLoadingMessage && 'opacity-100'
+              )}
             >
               Loading Devconnect location. You can scroll to skip.
             </div>

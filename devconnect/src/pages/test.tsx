@@ -1,9 +1,17 @@
-import React, { useLayoutEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useGSAP } from '@gsap/react'
-import ScrollVideo from 'common/components/ba/scroll-video'
+import React from 'react'
+import Head from 'next/head'
+import NewSchedule from 'common/components/new-schedule'
 
-export default function Scroll() {
-  return <ScrollVideo hasStableConnection={true} playInReverse={true} />
+const Test = () => {
+  return (
+    <>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+        <meta name="googlebot" content="noindex, nofollow" />
+      </Head>
+      <NewSchedule />
+    </>
+  )
 }
+
+export default Test

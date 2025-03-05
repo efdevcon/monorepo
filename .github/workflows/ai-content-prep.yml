@@ -9,8 +9,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  # This job is responsible for creating the vector stores for our assistants
-  # They have to be created in advance because each project may have cms content to upload to the stores across project boundaries (e.g. devcon and devconnect both need information from each others cms, so we need to make sure the vector stores are created first)
+  # This job is responsible for creating vector stores for our AI assistants
+  # They have to be created in advance because each project may have cms content to upload to the stores across project boundaries (e.g. devcon and devconnect both need information from each others' cms, so we need to make sure the vector stores are created first)
   setup-vector-stores:
     defaults:
       run:
@@ -36,7 +36,7 @@ jobs:
           echo GITHUB_SHA='${{ github.sha }}' >> .env
 
       - name: Run script
-        run: yarn create-vector-stores
+        run: yarn ai-create-vector-stores
 
   sync-website-content:
     needs: setup-vector-stores

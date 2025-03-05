@@ -364,7 +364,7 @@ export const Menu = (props: any) => {
             <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none">
               <GlobeIcon className="opacity-90  icon" />
               <span className="text-white text-base">
-                {router.locale === 'es' ? '🇪🇸' : router.locale === 'pt' ? '🇵🇹' : '🇬🇧'}
+                {router.locale === 'es' ? 'ES' : router.locale === 'pt' ? 'PT' : 'ENG'}
               </span>
             </div>
           </PopoverTrigger>

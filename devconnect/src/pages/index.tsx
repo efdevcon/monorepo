@@ -239,9 +239,9 @@ const Home: NextPage = (props: any) => {
           <div
             id="hero"
             ref={heroRef}
-            className={cn('w-screen relative text-black bg-black', css.hero, {
+            className={cn('w-screen relative text-black bg-black h-[100vh]', css.hero, {
               '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
-              'lg:h-[200vh]': hasStableConnection,
+              // 'lg:h-[200vh]': hasStableConnection,
               [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
             })}
           >
@@ -264,7 +264,7 @@ const Home: NextPage = (props: any) => {
                 }, [])}
                 onScrollProgress={useCallback((scrollProgress: number) => {
                   if (!playbackFinished || !userInterruptedPlaybackRef.current) {
-                    if (scrollProgress > 80) {
+                    if (scrollProgress > 75) {
                       setFadeInArgentina(true)
                     }
                     // if (scrollProgress > 80) {
@@ -287,7 +287,7 @@ const Home: NextPage = (props: any) => {
                       src={ArgentinaWhite}
                       alt="Argentina text"
                       className={cn(
-                        'min-w-[340px] w-[47%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[2000ms]',
+                        'min-w-[340px] w-[47%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[1500ms]',
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}
@@ -297,7 +297,7 @@ const Home: NextPage = (props: any) => {
                       src={BAWhite}
                       alt="Buenos Aires text"
                       className={cn(
-                        'min-w-[340px] w-[47%] -translate-y-[55%] -translate-x-[7.5%] scale-[80%] opacity-0 transition-opacity duration-[2000ms]',
+                        'min-w-[340px] w-[47%] -translate-y-[55%] -translate-x-[7.5%] scale-[80%] opacity-0 transition-opacity duration-[1500ms]',
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}
@@ -597,7 +597,9 @@ const Home: NextPage = (props: any) => {
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
               <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex flex-col items-center justify-center lg:pt-3 shrink-0">
-                <div className="mb-2 opacity-50 font-secondary bold uppercase pt-6">Catch the Devconnect vibe</div>
+                <div className="mb-2 opacity-50 font-secondary bold uppercase pt-6">
+                  {(globalThis as any).translations.catch_the_vibe}
+                </div>
                 <HorizontalScroller>
                   <div className="flex flex-row items-center justify-center  gap-4 pb-8 pt-0 max-w-full">
                     <PastEventCard
@@ -717,7 +719,7 @@ const Home: NextPage = (props: any) => {
                 Blog Posts
               </h1>
 
-              {/* <BlogReel blogs={props.blogs} /> */}
+              <BlogReel blogs={props.blogs} />
             </div>
           </div>
 
@@ -775,7 +777,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
   return {
     props: {
-      // blogs: await getBlogPosts(),
+      blogs: await getBlogPosts(),
       cms: {
         variables: content.variables,
         data: content.data,
@@ -784,7 +786,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
       translations,
       locale,
     },
-    revalidate: 1 * 60 * 30, // 30 minutes, in seconds
+    revalidate: 1 * 60 * 60, // 60 minutes, in seconds
   }
 }
 

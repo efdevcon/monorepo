@@ -635,7 +635,11 @@ const DevaBot = ({
                                 </Markdown>
 
                                 {message.files.length > 0 && (
-                                  <div className="flex flex-col text-sm">
+                                  <div
+                                    className={cn("flex flex-col text-sm", {
+                                      hidden: botVersion === "devconnect",
+                                    })}
+                                  >
                                     {(() => {
                                       const referencesTracker = {} as any;
                                       const otherReferences = [] as any;

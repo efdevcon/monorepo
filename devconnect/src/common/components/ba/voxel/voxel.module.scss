@@ -31,6 +31,7 @@
 		content: '';
 		position: fixed;
 		z-index: 1000;
+		pointer-events: none;
 	}
 
 	.js .loading::before {
@@ -111,6 +112,7 @@
 	.frame {
 		text-align: right;
 		position: fixed;
+		pointer-events: none;
 		z-index: 600;
 		top: 0;
 		width: 100%;
@@ -188,6 +190,7 @@
 		position: fixed;
 		bottom: 20px;
 		left: 0;
+		pointer-events: none;
 		display: flex;
 		flex-direction: row;
 		align-items: center;

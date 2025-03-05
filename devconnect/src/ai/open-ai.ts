@@ -45,20 +45,37 @@ export const api = (() => {
           throw new Error(`Vector store not found: ${vectorStoreName}`)
         }
 
+        const knowledgeBaseDirectory = path.resolve(__dirname, 'knowledge-base')
+        const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
+        const knowledgeBaseStreams = knowledgeBaseFiles.map((filename: string) => {
+          const filePath = path.join(knowledgeBaseDirectory, filename)
+          // Skip directories, only process files
+          if (fs.statSync(filePath).isDirectory()) {
+            return null;
+          }
+          // Create a stream with a custom filename prefix
+          const stream = fs.createReadStream(filePath)
+          return stream
+        }).filter(Boolean) as any // Filter out null values (directories)
+
         const contentDir = path.resolve(__dirname, 'formatted-content')
 
         const files = fs.readdirSync(contentDir)
 
         const fileStreams = files.map((file: string) => {
           const filePath = path.join(contentDir, file)
+          // Skip directories, only process files
+          if (fs.statSync(filePath).isDirectory()) {
+            return null;
+          }
           // Create a stream with a custom filename prefix
           const stream = fs.createReadStream(filePath)
           // stream.path = `devconnect_website_cms_file_${file}` // Override the filename in the stream
           return stream
-        })
+        }).filter(Boolean) as any // Filter out null values (directories)
 
         // Upload files to vector store
-        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: [...fileStreams, ...knowledgeBaseStreams] })
       }
 
       for (const vectorStoreName of targetVectorStores) {
