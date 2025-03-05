@@ -1,9 +1,14 @@
 .fadeInOut {
-  animation: fadeInOut 2s ease-in-out;
+  animation: fadeInOut 2s ease-in-out forwards;
 }
 
 .fadeInOutPulse {
   animation: fadeInOutPulse 2s ease-in-out infinite;
+}
+
+.background {
+    background: url('/scroll-video/Oblisk_4K0000.webp') no-repeat center center;
+    background-size: cover;
 }
 
 @keyframes fadeInOut {

@@ -513,26 +513,34 @@ const ScrollVideoComponent = ({
 
   return (
     <div ref={containerRef} className={cn('w-screen relative h-screen')}>
-      <div className="sticky top-0 w-full h-screen flex items-center justify-center">
-        <canvas ref={canvasRef} className={cn('w-screen h-screen block object-cover', styles.fadeInOut)} />
+      <div className={cn('sticky top-0 w-full h-screen flex items-center justify-center')}>
+        <canvas
+          ref={canvasRef}
+          className={cn(
+            'w-screen h-screen block object-cover opacity-0',
+            firstImageLoaded && 'opacity-100 transition-opacity duration-[2000ms]'
+            // styles.fadeInOut
+          )}
+        />
 
-        {isLoading && showLoadingMessage && (
+        {/* {isLoading && showLoadingMessage && ( */}
+        <div
+          className={cn(
+            `absolute inset-0 p-4 flex items-center md:items-end justify-center transition-opacity duration-[1000ms] opacity-0 pointer-events-none`,
+            isLoading && showLoadingMessage && 'opacity-100 pointer-events-auto'
+            //   styles.background
+          )}
+        >
           <div
             className={cn(
-              `absolute inset-0 p-4 flex items-center md:items-end justify-center transition-opacity duration-[1000ms]`
-              //   firstImageLoaded && 'bg-black/30'
+              `bg-black/30 opacity-0 text-white text-xs sm:text-sm px-4 py-2 rounded-full transition-opacity duration-500 ${styles.fadeInOutPulse}`,
+              showLoadingMessage && 'opacity-100'
             )}
           >
-            <div
-              className={cn(
-                `bg-black/30 opacity-0 text-white text-xs sm:text-sm px-4 py-2 rounded-full transition-opacity duration-500 ${styles.fadeInOutPulse}`,
-                showLoadingMessage && 'opacity-100'
-              )}
-            >
-              Loading Devconnect location. You can scroll to skip.
-            </div>
+            Loading Devconnect location. You can scroll to skip.
           </div>
-        )}
+        </div>
+        {/* )} */}
       </div>
     </div>
   )

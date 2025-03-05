@@ -244,7 +244,7 @@ const Home: NextPage = (props: any) => {
             ref={heroRef}
             className={cn('w-screen relative text-black bg-black h-[100vh]', css.hero, {
               '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
-              [css.gradient]: true,
+              [css.gradient]: userHasInterruptedPlayback || fadeInArgentina,
               // 'lg:h-[200vh]': hasStableConnection,
               // [css.gradient]: fadeInArgentina || userHasInterruptedPlayback,
             })}
