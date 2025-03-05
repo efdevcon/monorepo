@@ -352,12 +352,12 @@ export const Menu = (props: any) => {
       </div> */}
 
       <div className="items-center gap-1 hidden lg:flex">
-        <div
+        {/* <div
           className="items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg p-0.5 px-2 select-none hidden lg:flex"
           onClick={toggleVisible}
         >
           DevAI 🦄
-        </div>
+        </div> */}
 
         <Popover open={languageOpen} onOpenChange={setLanguageOpen}>
           <PopoverTrigger asChild>

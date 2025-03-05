@@ -518,7 +518,7 @@ const ScrollVideoComponent = ({
           ref={canvasRef}
           className={cn(
             'w-screen h-screen block object-cover opacity-0',
-            firstImageLoaded && 'opacity-100 transition-opacity duration-[2000ms]'
+            firstImageLoaded && 'opacity-100 transition-opacity duration-[1500ms]'
             // styles.fadeInOut
           )}
         />
@@ -526,15 +526,15 @@ const ScrollVideoComponent = ({
         {/* {isLoading && showLoadingMessage && ( */}
         <div
           className={cn(
-            `absolute inset-0 p-4 flex items-center md:items-end justify-center transition-opacity duration-[1000ms] opacity-0 pointer-events-none`,
+            `absolute inset-0 p-4 flex items-center justify-center transition-opacity duration-[1000ms] opacity-0 pointer-events-none`,
             isLoading && showLoadingMessage && 'opacity-100 pointer-events-auto'
             //   styles.background
           )}
         >
           <div
             className={cn(
-              `bg-black/30 opacity-0 text-white text-xs sm:text-sm px-4 py-2 rounded-full transition-opacity duration-500 ${styles.fadeInOutPulse}`,
-              showLoadingMessage && 'opacity-100'
+              `bg-black/30 text-white text-xs sm:text-sm px-4 py-2 rounded-full  ${styles.fadeInOutPulse}`
+              //   showLoadingMessage && 'opacity-100'
             )}
           >
             Loading Devconnect location. You can scroll to skip.
