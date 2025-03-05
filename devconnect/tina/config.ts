@@ -44,9 +44,9 @@ const pagesConfig = {
       index,
       pastEditions,
     ],
-    ui: {
-      router: ({ document }) => `/`,
-    },
+    // ui: {
+    //   router: () => `/`,
+    // },
 } as any
 
 export default defineConfig({
