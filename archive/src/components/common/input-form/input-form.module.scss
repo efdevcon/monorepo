@@ -1,0 +1,52 @@
+@use 'src/assets/css/partials/index' as *;
+
+.form {
+  display: flex;
+
+  &.transparent {
+    .container {
+      border-bottom: 1px solid $colors-monochrome-5;
+    }
+
+    input {
+      border: none;
+      background: transparent;
+      padding-left: $gaps-gap-8;
+    }
+
+    .icon {
+      left: 0px;
+      font-size: 1.3em;
+    }
+  }
+
+  .container {
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+  }
+
+  input {
+    @include fonts-md-fixed;
+    width: 100%;
+    padding-left: $gaps-gap-2;
+    padding-right: $gaps-gap-3;
+    padding-top: $gaps-gap-3;
+    padding-bottom: $gaps-gap-3;
+    border-width: 1px;
+    border-style: solid;
+    border-color: var(--theme-color, #{$colors-monochrome-5});
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .icon {
+    position: absolute;
+    --icon-color: $colors-monochrome-5;
+    height: 100%;
+    right: $gaps-gap-3;
+  }
+}

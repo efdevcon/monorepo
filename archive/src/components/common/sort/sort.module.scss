@@ -1,0 +1,57 @@
+@use 'src/assets/css/partials/index' as *;
+
+.sort-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sort-button {
+  user-select: none;
+  margin-left: $gaps-gap-6;
+  padding: $gaps-gap-4;
+  display: inline-flex;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+
+  @media (max-width: $breakpoints-lg) {
+    margin-left: 0px;
+    padding-left: $gaps-gap-3;
+    padding-right: $gaps-gap-3;
+  }
+
+  &.sort-active {
+    @include fonts-bold;
+    border-bottom: 2px solid $colors-main;
+
+    @media (max-width: $breakpoints-lg) {
+      border-bottom: none;
+    }
+  }
+
+  .sort-arrows {
+    margin-left: $gaps-gap-3;
+    font-size: 0.5em;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.text {
+  cursor: auto !important;
+  padding-left: 0px;
+}
+
+// Horizontal scroller (create component for this)
+.horizontal-scroller {
+  // overflow-x: hidden;
+  // background: yellow;
+
+  &.no-resize-observer {
+    overflow-x: auto;
+  }
+}

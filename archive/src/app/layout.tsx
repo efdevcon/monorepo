@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
-import "@/assets/globals.css";
 import {
   SITE_NAME,
   SITE_URL,
@@ -8,6 +7,14 @@ import {
   SOCIAL_TWITTER,
 } from "@/utils/site";
 import { Layout } from "@/components/layout";
+import { QueryProvider } from "@/providers/query";
+import "@/assets/globals.css";
+import "@/assets/css/index.scss";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
@@ -48,16 +55,27 @@ export const viewport: Viewport = {
   themeColor: "#30354b",
 };
 
-export default function RootLayout(props: PropsWithChildren) {
+export default async function RootLayout(props: PropsWithChildren) {
+  const queryClient = new QueryClient();
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" type="image/png" sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href="/icons/apple-touch-icon.png"
+          type="image/png"
+          sizes="any"
+        />
       </head>
       <body>
-        <Layout>{props.children}</Layout>
+        <QueryProvider>
+          <HydrationBoundary state={dehydrate(queryClient)}>
+            <Layout>{props.children}</Layout>
+          </HydrationBoundary>
+        </QueryProvider>
       </body>
     </html>
   );

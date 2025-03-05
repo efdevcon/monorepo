@@ -1,10 +1,9 @@
-interface Props {
-  className?: string;
-}
+import { getFeaturedSessions } from "@/services/devcon";
+import { PageHeroClient } from "./common/page-hero/PageHero";
 
-export function Hero(props: Props) {
-  let className = "flex";
-  if (props.className) className += ` ${props.className}`;
+export async function Hero() {
+  const featuredItems = await getFeaturedSessions("devcon-6");
+  if (!featuredItems) return null;
 
-  return <div className={className}>Hero</div>;
+  return <PageHeroClient featuredItems={featuredItems} />;
 }

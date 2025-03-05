@@ -1,0 +1,63 @@
+@use 'src/assets/css/partials/index' as *;
+
+.tabs {
+  display: flex;
+  flex-shrink: 0;
+  list-style-type: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  li {
+    padding: $gaps-gap-6;
+    padding-bottom: $gaps-gap-5; // off-set border
+    color: $colors-main;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0.5;
+
+    @media (max-width: $breakpoints-lg) {
+      padding: $gaps-gap-4;
+      padding-bottom: $gaps-gap-3;
+      // background: none !important;
+    }
+
+    &.active {
+      opacity: 1;
+      background: $colors-monochrome-2;
+
+      -webkit-box-shadow: inset 0px -2px 0px 0px $colors-main;
+      -moz-box-shadow: inset 0px -2px 0px 0px $colors-main;
+      box-shadow: inset 0px -2px 0px 0px $colors-main;
+    }
+
+    &:not(:only-child) {
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(133, 142, 169, 0.15);
+      }
+    }
+  }
+}
+
+.tab-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  &.with-overflow {
+    overflow-y: visible;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 5px;
+  }
+}

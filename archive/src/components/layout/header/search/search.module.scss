@@ -1,0 +1,54 @@
+@use 'src/assets/css/partials/index' as *;
+
+.search-foldout {
+  position: absolute;
+  transition: opacity 0.5s;
+  top: calc(100%);
+  opacity: 0;
+  pointer-events: none;
+  background: $colors-monochrome-2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 100%;
+  border-top: 1px solid $colors-monochrome-5;
+  box-shadow: var(--header-shadow, 0px 4px 2px rgba(0, 0, 0, 0.15));
+
+  &.open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  .content {
+    @include layout-content;
+    padding-top: $gaps-gap-2;
+    padding-bottom: $gaps-gap-4;
+    width: 100%;
+
+    .input {
+      width: 100%;
+    }
+
+    .results {
+      margin-top: $gaps-gap-2;
+
+      .result {
+        margin-top: $gaps-gap-2;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+
+        > svg {
+          font-size: 0.8em;
+        }
+
+        > p {
+          margin-left: $gaps-gap-2;
+        }
+      }
+    }
+  }
+}

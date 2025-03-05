@@ -1,0 +1,126 @@
+@use 'src/assets/css/partials/index' as *;
+
+.slider {
+  margin-left: -$gaps-gap-4;
+
+  &:last-of-type {
+    margin-bottom: 0px;
+  }
+}
+
+.button {
+  margin-top: $gaps-gap-4;
+
+  svg {
+    margin-left: $gaps-gap-3;
+  }
+}
+
+// .view-more {
+//   .button {
+//     @media (max-width: $breakpoints-lg) {
+//       display: none;
+//     }
+
+//     svg {
+//       margin-left: $gaps-gap-3;
+//     }
+//   }
+
+//   .view-more-mobile {
+//     display: none;
+//     text-decoration: underline;
+
+//     @media (max-width: $breakpoints-lg) {
+//       display: inline-block;
+//     }
+//   }
+// }
+
+.curated-playlists {
+  // padding-bottom: $gaps-gap-12;
+}
+
+.video-card {
+  height: 100%;
+  margin-left: $gaps-gap-4;
+
+  &.slide {
+    &:active {
+      > * {
+        cursor: grabbing !important;
+      }
+    }
+
+    .image {
+      cursor: grab;
+    }
+
+    .body {
+      &:active {
+        cursor: grabbing !important;
+      }
+    }
+  }
+
+  .aspect-wrapper {
+    position: relative;
+  }
+
+  .image {
+    object-fit: cover;
+    background-color: #f1f1f1;
+  }
+
+  .body {
+    padding: $gaps-gap-2 $gaps-gap-3 $gaps-gap-3 $gaps-gap-3;
+    cursor: pointer;
+
+    &:hover {
+      h4 {
+        text-decoration: underline;
+      }
+    }
+
+    h4 {
+      margin-top: $gaps-gap-1;
+      margin-bottom: $gaps-gap-4;
+    }
+
+    .title {
+      @include fonts-sm;
+      @include fonts-bold;
+    }
+
+    .description {
+      @include fonts-xs;
+    }
+  }
+
+  &.big {
+    .body {
+      padding-left: $gaps-gap-4;
+      padding-top: $gaps-gap-4;
+
+      .title {
+        @include fonts-title;
+      }
+
+      .description {
+        @include fonts-md;
+      }
+
+      h4 {
+        margin-top: $gaps-gap-2;
+        margin-bottom: $gaps-gap-2;
+      }
+
+      span.opaque {
+        @include fonts-xs;
+        text-transform: uppercase;
+        color: $colors-monochrome-7;
+        font-weight: 500;
+      }
+    }
+  }
+}
