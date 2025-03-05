@@ -231,7 +231,7 @@ const Home: NextPage = (props: any) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [userHasInterruptedPlayback, fadeInArgentina, fadeInDate])
 
-  return <div>Coming soon</div>
+  return <div className="text-black">Coming soon</div>
 
   return (
     <>
