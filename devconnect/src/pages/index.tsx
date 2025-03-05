@@ -232,7 +232,7 @@ const Home: NextPage = (props: any) => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [userHasInterruptedPlayback, fadeInArgentina, fadeInDate])
 
-  return <div className="text-black">Coming soon</div>
+  // return <div className="text-black">Coming soon</div>
 
   return (
     <>
@@ -291,7 +291,7 @@ const Home: NextPage = (props: any) => {
                       src={AnnouncementDate}
                       alt="Date"
                       className={cn(
-                        'min-w-[340px] w-[47%] scale-[70%] -translate-x-[12.5%] translate-y-[20%] opacity-0 transition-opacity duration-[1500ms]',
+                        'min-w-[340px] w-[47%] scale-[70%] -translate-x-[12.5%] translate-y-[25%] opacity-0 transition-opacity duration-[1500ms]',
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}

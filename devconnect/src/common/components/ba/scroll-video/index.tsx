@@ -39,7 +39,7 @@ const ScrollVideoComponent = ({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [images, setImages] = useState<HTMLImageElement[]>([])
   const [currentFrame, setCurrentFrame] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [firstImageLoaded, setFirstImageLoaded] = useState(false)
   const [firstImage, setFirstImage] = useState<HTMLImageElement | null>(null)
   const [initialPlayComplete, setInitialPlayComplete] = useState(false)
@@ -501,7 +501,7 @@ const ScrollVideoComponent = ({
     if (isLoading && firstImageLoaded) {
       timer = setTimeout(() => {
         setShowLoadingMessage(true)
-      }, 3000) // 3 second delay
+      }, 1000) // 3 second delay
     } else {
       setShowLoadingMessage(false)
     }
@@ -516,7 +516,7 @@ const ScrollVideoComponent = ({
       <div className="sticky top-0 w-full h-screen flex items-center justify-center">
         <canvas ref={canvasRef} className={cn('w-screen h-screen block object-cover', styles.fadeInOut)} />
 
-        {isLoading && (
+        {isLoading && showLoadingMessage && (
           <div
             className={cn(
               `absolute inset-0 p-4 flex items-center md:items-end justify-center transition-opacity duration-[1000ms]`
