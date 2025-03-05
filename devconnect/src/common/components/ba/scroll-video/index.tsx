@@ -206,15 +206,15 @@ const ScrollVideoComponent = ({
     // Set a timeout for loading all frames
     const loadTimeout = setTimeout(() => {
       // If we hit the timeout, treat as unstable connection
-      if (isLoading && images.length < amountOfScreenshots) {
-        console.warn('Image loading timeout reached, treating as unstable connection')
-        setIsLoading(false)
-        setInitialPlayComplete(true)
-        if (onPlaybackFinish) {
-          onPlaybackFinish()
-        }
-      }
-    }, 10000) // 10 second timeout for loading all images
+      //   if (isLoading && images.length < amountOfScreenshots) {
+      //     console.warn('Image loading timeout reached, treating as unstable connection')
+      //     setIsLoading(false)
+      //     setInitialPlayComplete(true)
+      //     if (onPlaybackFinish) {
+      //       onPlaybackFinish()
+      //     }
+      //   }
+    }, 1000000) // 10 second timeout for loading all images
 
     loadTimeoutRef.current = loadTimeout
 
