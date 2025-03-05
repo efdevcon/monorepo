@@ -1,6 +1,5 @@
 import React from 'react'
 import { useFormField } from 'hooks/useFormField'
-import { useTranslations } from 'next-intl'
 import css from './newsletter.module.scss'
 import { Alert } from '../alert'
 import { Button } from 'lib/components/button'
@@ -20,7 +19,6 @@ const MC_ENDPOINT =
   'https://ethereum.us7.list-manage.com/subscribe/post-json?u=bfdb1ffb0f71e3a27b9d96aed&amp;id=013a6fa362'
 
 export const Newsletter = (props: Props) => {
-  const intl = useTranslations()
   const emailField = useFormField()
   const [result, setResult] = React.useState<Result | undefined>(undefined)
 
@@ -34,7 +32,7 @@ export const Newsletter = (props: Props) => {
       method="post"
     >
       <div>
-        <p className="semi-bold">{intl('newsletter_title')}</p>
+        <p className="semi-bold">Subscribe to our newsletter</p>
         <div>
           {result ? (
             <div className={css['alert-container']}>
@@ -42,7 +40,7 @@ export const Newsletter = (props: Props) => {
             </div>
           ) : (
             <>
-              <p>{intl('newsletter_subtitle')}</p>
+              <p>Stay up to date on the latest devcon news and updates.</p>
               <div className={`${css['container']} flex-col`}>
                 <motion.input
                   className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
@@ -50,7 +48,7 @@ export const Newsletter = (props: Props) => {
                   name="email"
                   whileFocus={{ boxShadow: '0px 0px 4px 0px black' }}
                   id={props.id ?? 'newsletter_email'}
-                  placeholder={intl('newsletter_enter')}
+                  placeholder="Enter your email"
                   {...emailField}
                 />
                 <input type="hidden" name="sender" value={EMAIL_DEVCON} />

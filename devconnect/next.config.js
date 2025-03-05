@@ -8,6 +8,11 @@ module.exports = {
     // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
     externalDir: true,
   },
+  i18n: {
+    locales: ['en', 'es', 'pt'],
+    defaultLocale: 'en',
+    localeDetection: false,
+  },
   // transpilePackages: ['lib'],
   // Add redirects to netlify.toml - netlify doesn't seem to pick up next.config.js redirects
   redirects: () => {
@@ -50,7 +55,7 @@ module.exports = {
       ...config,
       resolve: {
         ...config.resolve,
-        modules: [path.resolve(__dirname, 'node_modules'), path.resolve(__dirname, 'src'), 'node_modules'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules', path.resolve(__dirname, 'node_modules')],
       },
       plugins: [
         // Only include tz data for the zone we use

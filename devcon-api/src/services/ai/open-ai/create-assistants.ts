@@ -1,8 +1,8 @@
 import api from './open-ai'
 
 async function main() {
-  await api.createAssistant('devconnect')
-  await api.createAssistant('devcon')
+  await api.createAssistant('devconnect-website')
+  await api.createAssistant('devcon-website')
   await api.createAssistant('devcon-app')
 }
 

@@ -4,6 +4,7 @@ import LinkIndicator from 'assets/icons/link-indicator.svg'
 import css from './link.module.scss'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
+import cn from 'classnames'
 
 type LinkProps = {
   children: ReactNode
@@ -47,7 +48,10 @@ export const useDraggableLink = (thresholdPixels = 5) => {
 }
 
 const WrappedLink = React.forwardRef(
-  ({ children, indicateExternal, external, allowDrag, onClick, href, ...rest }: LinkProps, ref: any) => {
+  (
+    { children, indicateExternal, external, allowDrag, onClick, locale, href, spanClass, ...rest }: LinkProps,
+    ref: any
+  ) => {
     const isMailTo = href.startsWith('mailto:')
     const linkAttributes = {
       ...rest,
@@ -73,7 +77,7 @@ const WrappedLink = React.forwardRef(
     if (isExternal) {
       return (
         <a href={href} ref={ref} {...linkAttributes} target="_blank" rel="noopener noreferrer">
-          <span className={css['link']} data-type="link-text">
+          <span className={cn(css['link'], spanClass)} data-type="link-text">
             {children}
           </span>
           {indicateExternal && (
@@ -95,7 +99,7 @@ const WrappedLink = React.forwardRef(
     }
 
     return (
-      <NextLink href={href} {...linkAttributes}>
+      <NextLink href={href} {...linkAttributes} locale={locale}>
         <span className={css['link']} data-type="link-text">
           {children}
         </span>

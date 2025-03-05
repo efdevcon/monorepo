@@ -1,3 +1,0 @@
----
-title: Camino a Devcon
----

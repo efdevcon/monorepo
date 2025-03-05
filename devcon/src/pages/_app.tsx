@@ -31,13 +31,13 @@ function App({ Component, pageProps }: any) {
       <RecoilRoot>
         <SEO />
 
-        <IntlProvider messages={pageProps.messages} locale="en">
-          <SessionProvider session={pageProps.session}>
-            <Web3ModalProvider>
-              <Component {...pageProps} />
-            </Web3ModalProvider>
-          </SessionProvider>
-        </IntlProvider>
+        {/* <IntlProvider messages={pageProps.messages} locale="en"> */}
+        <SessionProvider session={pageProps.session}>
+          <Web3ModalProvider>
+            <Component {...pageProps} />
+          </Web3ModalProvider>
+        </SessionProvider>
+        {/* </IntlProvider> */}
       </RecoilRoot>
     </>
   )

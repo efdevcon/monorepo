@@ -2,12 +2,7 @@ import React from 'react'
 import css from './page-hero.module.scss'
 import { Link } from 'components/common/link'
 import useGetElementHeight from 'hooks/useGetElementHeight'
-import { usePageCategory } from './usePageCategory'
 import { useIsScrolled } from 'hooks/useIsScrolled'
-import { usePageContext } from 'context/page-context'
-import ChevronLeft from 'assets/icons/chevron_left.svg'
-import ChevronRight from 'assets/icons/chevron_right.svg'
-import { Button } from 'components/common/button'
 import Image from 'next/legacy/image'
 import ImageNew from 'next/image'
 import SwipeToScroll from 'components/common/swipe-to-scroll'
@@ -58,8 +53,6 @@ type PageHeroProps = {
 }
 
 const PathNavigation = (props: PageHeroProps) => {
-  const pagePath = usePageCategory()
-
   let path
 
   if (Array.isArray(props.path)) {
@@ -90,7 +83,7 @@ const PathNavigation = (props: PageHeroProps) => {
 }
 
 export const PageHero = (props: PageHeroProps) => {
-  const pageContext = usePageContext()
+  // const pageContext = usePageContext()
   // const stripHeight = useGetElementHeight('strip')
   const headerHeight = useGetElementHeight('header-container')
   const pageHeaderHeight = useGetElementHeight('page-navigation')
@@ -118,38 +111,10 @@ export const PageHero = (props: PageHeroProps) => {
   if (props.background) className += ` ${css['custom-background']}`
   if (isScrolled) className += ` ${css['scrolled']}`
   if (props.navigation) className += ` ${css['with-navigation']}`
-  if (props.scenes) className += ` ${css['with-scenes']}`
   if (props.children) className += ` ${css['as-background']}`
   if (props.className) className += ` ${props.className}`
 
-  const setNextScene = React.useMemo(
-    () => (increment: number) => {
-      const nextScene = currentScene + increment
-      if (!props.scenes) return
-
-      if (nextScene >= props.scenes.length) {
-        setCurrentScene(0)
-      } else if (nextScene < 0) {
-        setCurrentScene(props.scenes.length - 1)
-      } else {
-        setCurrentScene(nextScene)
-      }
-    },
-    [currentScene, setCurrentScene, props.scenes]
-  )
-
-  // Auto scroll through images
-  React.useEffect(() => {
-    if (props.scenes) {
-      const timeout = setTimeout(() => {
-        setNextScene(1)
-      }, 1000 * 8)
-
-      return () => clearTimeout(timeout)
-    }
-  }, [props.scenes, setNextScene])
-
-  const title = props.title ?? pageContext?.current?.header ?? pageContext?.current?.title
+  const title = props.title
 
   return (
     <div id="page-hero" className={className} style={style}>

@@ -1,12 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { BlogReel } from 'components/domain/blog-overview'
 import { CLSReel } from 'components/domain/index/community-led-sessions/CLS'
-import { pageHOC } from 'context/pageHOC'
 import { GetBlogs } from 'services/blogs'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
-import { getGlobalData } from 'services/global'
 // import { News } from 'components/domain/news'
-import getNews from 'services/news'
 import { Header } from 'components/common/layouts/header'
 import { Footer } from 'components/common/layouts/footer'
 import { Hero } from 'components/domain/index/hero'
@@ -20,7 +17,6 @@ import themes from './themes.module.scss'
 import ImageNew from 'next/image'
 import CircleBackground from 'assets/images/background-circles.png'
 // import TriangleBackground from 'assets/images/background-triangles.png'
-import { GetContentSections } from 'services/page'
 // import TestExternalRepo from 'lib/components/lib-import'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -184,7 +180,7 @@ export const RoadToDevconGrants = ({ pages, down }: any) => {
   )
 }
 
-export default pageHOC(function Index(props: any) {
+export default function Index(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const pages = data.pages as PagesIndex
   const { data: faqData } = useTina<PagesQuery>(props.faq)
@@ -637,22 +633,21 @@ export default pageHOC(function Index(props: any) {
       </div>
     </div>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
-  const globalData = await getGlobalData(context)
-  const sections = await GetContentSections(
-    [
-      'devcon-about',
-      'road-to-devcon-grants',
-      'devcon-recap',
-      'cta-speaker-applications',
-      'cta-ticket-presale',
-      'cta-scholar-applications',
-      'tickets-on-sale-now',
-    ],
-    context.locale
-  )
+  // const sections = await GetContentSections(
+  //   [
+  //     'devcon-about',
+  //     'road-to-devcon-grants',
+  //     'devcon-recap',
+  //     'cta-speaker-applications',
+  //     'cta-ticket-presale',
+  //     'cta-scholar-applications',
+  //     'tickets-on-sale-now',
+  //   ],
+  //   context.locale
+  // )
 
   const content = await client.queries.pages({ relativePath: 'index.mdx' })
   const faq = await client.queries.pages({ relativePath: 'faq.mdx' })
@@ -660,11 +655,11 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      ...globalData,
-      page: DEFAULT_APP_PAGE,
-      news: await getNews(context.locale),
+      // ...globalData,
+      // page: DEFAULT_APP_PAGE,
+      // news: await getNews(context.locale),
       blogs: await GetBlogs(),
-      sections,
+      // sections,
       cms: {
         variables: content.variables,
         data: content.data,

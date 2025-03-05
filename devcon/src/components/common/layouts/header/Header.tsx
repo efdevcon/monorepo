@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { Link } from 'components/common/link'
 import { Menu } from './menu'
-import { Strip } from './strip'
-// import { Search } from './search'
 import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
@@ -56,7 +54,6 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
 
   const body = (
     <header id="header-container" className={headerContainerClass}>
-      {withStrip && <Strip withHero={withHero} />}
       <div id="header" className={headerClass} ref={ref}>
         <div className="section">
           <div className={`${css['menu-container']} ${isApp ? css['no-overflow'] : ''}`}>

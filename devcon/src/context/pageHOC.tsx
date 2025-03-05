@@ -15,27 +15,26 @@ type Props = {
 }
 
 export const pageHOC =
-  (PageContent: any, mapDataToContext?: (props: Props) => { [key: string]: any }) =>
-  (props: Props) => {
+  (PageContent: any, mapDataToContext?: (props: Props) => { [key: string]: any }) => (props: Props) => {
     const context = {
       data: props.data,
-      navigation: props.navigationData,
-      notification: props.notification, // For notification strip - could probably rename this
-      appNotifications: props.appNotifications,
+      // navigation: props.navigationData,
+      // notification: props.notification, // For notification strip - could probably rename this
+      // appNotifications: props.appNotifications,
       ...(mapDataToContext && mapDataToContext(props)),
       current: props.page,
     }
 
-    if (props.page.lang === 'es') {
-      require('moment/locale/es')
-      moment.locale('es')
-    } else {
-      moment.locale('en')
-    }
+    // if (props.page.lang === 'es') {
+    //   require('moment/locale/es')
+    //   moment.locale('es')
+    // } else {
+    //   moment.locale('en')
+    // }
 
     return (
-      <PageContext.Provider value={context}>
-        <PageContent {...props} />
-      </PageContext.Provider>
+      // <PageContext.Provider value={context}>
+      <PageContent {...props} />
+      // </PageContext.Provider>
     )
   }

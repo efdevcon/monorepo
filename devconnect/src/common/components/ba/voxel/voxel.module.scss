@@ -1,0 +1,291 @@
+// *,
+// *::after,
+// *::before {
+// 	box-sizing: border-box;
+// }
+
+// :root {
+// 	font-size: 16px;
+// 	--color-text: #201d1d;
+// 	--color-bg: #eeeff2;
+// 	--color-link: #b020bc;
+// 	--color-link-hover: #201d1d;
+// }
+
+// body {
+// 	margin: 0;
+// 	color: var(--color-text);
+// 	background-color: var(--color-bg);
+// 	font-family: monospace;
+// 	-webkit-font-smoothing: antialiased;
+// 	-moz-osx-font-smoothing: grayscale;
+// 	height: 100vh;
+// 	background: radial-gradient(#eeeff2, #f0e1f0);
+// }
+
+.voxelContainer {
+	:global {
+	/* Page Loader */
+	.js .loading::before,
+	.js .loading::after {
+		content: '';
+		position: fixed;
+		z-index: 1000;
+		pointer-events: none;
+	}
+
+	.js .loading::before {
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: var(--color-bg);
+	}
+
+	.js .loading::after {
+		top: 50%;
+		left: 50%;
+		width: 60px;
+		height: 60px;
+		margin: -30px 0 0 -30px;
+		border-radius: 50%;
+		opacity: 0.4;
+		background: var(--color-link);
+		animation: loaderAnim 0.7s linear infinite alternate forwards;
+
+	}
+
+	@keyframes loaderAnim {
+		to {
+			opacity: 1;
+			transform: scale3d(0.5, 0.5, 1);
+		}
+	}
+
+	a {
+		text-decoration: none;
+		color: var(--color-link);
+		outline: none;
+		cursor: pointer;
+	}
+
+	a:hover {
+		color: var(--color-link-hover);
+		outline: none;
+	}
+
+	/* Better focus styles from https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible */
+	a:focus {
+		/* Provide a fallback style for browsers
+	 that don't support :focus-visible */
+		outline: none;
+		background: lightgrey;
+	}
+
+	a:focus:not(:focus-visible) {
+		/* Remove the focus indicator on mouse-focus for browsers
+	 that do support :focus-visible */
+		background: transparent;
+	}
+
+	a:focus-visible {
+		/* Draw a very noticeable focus style for
+	 keyboard-focus on browsers that do support
+	 :focus-visible */
+		outline: 2px solid red;
+		background: transparent;
+	}
+
+	.unbutton {
+		background: none;
+		border: 0;
+		padding: 0;
+		margin: 0;
+		font: inherit;
+		cursor: pointer;
+	}
+
+	.unbutton:focus {
+		outline: none;
+	}
+
+	.frame {
+		text-align: right;
+		position: fixed;
+		pointer-events: none;
+		z-index: 600;
+		top: 0;
+		width: 100%;
+		padding: 1.5rem;
+		display: grid;
+		grid-template-areas:
+			'title title'
+			'back prev'
+			'sponsor sponsor';
+		grid-template-columns: auto auto;
+		justify-content: end;
+		align-items: end;
+		grid-gap: 0.5rem;
+	}
+
+	.frame a {
+		pointer-events: auto;
+		white-space: nowrap;
+		overflow: hidden;
+		position: relative;
+		justify-self: end;
+	}
+
+	.frame a::before {
+		content: '';
+		height: 1px;
+		width: 100%;
+		background: currentColor;
+		position: absolute;
+		top: 90%;
+		transition: transform 0.3s;
+		transform-origin: 0% 50%;
+	}
+
+	.frame a:hover::before {
+		transform: scaleX(0);
+		transform-origin: 100% 50%;
+	}
+
+	.frame__title {
+		grid-area: title;
+		font-size: 2.5rem;
+		margin: 0;
+		font-family: "rixvideogame-pro", sans-serif;
+		font-weight: 400;
+	}
+
+	.frame__back {
+		grid-area: back;
+	}
+
+	.frame__prev {
+		grid-area: prev;
+	}
+
+	.content,
+	.container {
+		// position: fixed;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#selector {
+		position: fixed;
+		bottom: 20px;
+		left: 0;
+		pointer-events: none;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	#selector .model-prev {
+		position: relative;
+		touch-action: auto !important;
+		cursor: pointer;
+		border: 2px solid transparent;
+		&.active {
+			position: relative;
+			&::before {
+				content: '';
+				position: absolute;
+				top: -4px;
+				left: -4px;
+				right: -4px;
+				bottom: -4px;
+				border: 2px solid transparent;
+				border-radius: 50%;
+			}
+		}
+	}
+
+	#selector .model-prev:not(.active):hover {
+		border: 2px solid var(--color-text);
+	}
+
+	#selector .model-prev:before {
+		content: "";
+		float: left;
+		padding-top: 100%;
+	}
+
+	#selector .model-prev.active {
+		cursor: auto;
+	}
+
+	#selector .model-prev:after {
+		position: absolute;
+		content: '';
+		top: 5px;
+		right: 5px;
+		width: 10px;
+		height: 10px;
+		border-radius: 10px;
+		background-color: var(--color-text);
+		display: none;
+	}
+
+	#selector .model-prev.active:after {
+		display: block;
+	}
+
+	@media screen and (min-width: 53em) {
+		.frame {
+			text-align: left;
+			justify-content: start;
+			align-items: start;
+			grid-gap: 0.5rem;
+			display: grid;
+			grid-template-areas:
+				'title title sponsor'
+				'back prev sponsor';
+			grid-template-columns: auto auto 1fr;
+			grid-template-rows: auto auto;
+		}
+
+		.frame a {
+			justify-self: start;
+		}
+	}
+
+	@keyframes progress {
+		0% {
+			stroke-dasharray: 0 100;
+		}
+		100% {
+			stroke-dasharray: 100 100;
+		}
+	}
+
+	.progress-bar {
+		position: absolute;
+		bottom: 0px;
+		left: 0px;
+		right: 0px;
+		border-radius: 4px;
+		width: 0px;
+		height: 4px;
+		background-color: #afcfed;
+		transition: width 0.1s linear;
+	}
+}
+}

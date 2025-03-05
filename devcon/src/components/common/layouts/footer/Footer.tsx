@@ -5,9 +5,7 @@ import ImageEF from 'assets/images/ef-logo.svg'
 import { Link } from 'components/common/link'
 import { Link as LinkType } from 'types/Link'
 import { Newsletter } from 'components/common/newsletter'
-import { usePageContext } from 'context/page-context'
 import { EMAIL_DEVCON, LINK_ETHEREUM_FOUNDATION } from 'utils/constants'
-import HeaderLogoArchive from '../header/HeaderLogo'
 import { Copyright } from '../Copyright'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'next-intl'
@@ -18,8 +16,6 @@ import IconYoutube from 'assets/icons/youtube.svg'
 import IconTelegram from 'assets/icons/telegram.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import IconLens from 'assets/icons/lens.svg'
-import IconDiscord from 'assets/icons/discord.svg'
-import { CodeOfConduct, TermsOfService } from './Legal'
 import { Modal } from 'components/common/modal'
 import LogoFlowers from 'assets/images/dc-7/logo-flowers.png'
 import DC7Background from 'assets/images/dc-7/footer-bg.png'
@@ -83,7 +79,6 @@ export const SocialMedia = ({ onShare, url, className: extraClassName }: SocialM
 }
 
 const TopSection = () => {
-  const intl = useTranslations()
   const router = useRouter()
   const lang = router.locale
   const navigationData = useNavigationData()
@@ -103,7 +98,6 @@ const TopSection = () => {
         <div className={css['content']}>
           <div className={css['col-1']}>
             <Link to={`/${lang}/`} style={{ maxWidth: '225px', minWidth: '130px', display: 'block' }}>
-              {/* <HeaderLogoArchive /> */}
               <Image
                 src={LogoFlowers}
                 alt="Devcon 7 Logo"
@@ -116,9 +110,12 @@ const TopSection = () => {
 
           <div className={css['col-2']}>
             <div>
-              <p className="semi-bold !mb-2">{intl('footer_about_devcon_1')}</p>
-              <p>{intl('footer_about_devcon_2')}</p>
-              <p>{intl('footer_about_devcon_3')}</p>
+              <p className="semi-bold !mb-2">About Devcon —</p>
+              <p>Devcon is the Ethereum conference for developers, researchers, thinkers, and makers.</p>
+              <p>
+                An intensive introduction for new Ethereum explorers, a global family reunion for those already a part
+                of our ecosystem, and a source of energy and creativity for all.
+              </p>
             </div>
           </div>
 
@@ -152,7 +149,7 @@ const TopSection = () => {
 
           <div className={css['col-4']}>
             <div className={css['contact']}>
-              <p className="semi-bold">{intl('getintouch')}</p>
+              <p className="semi-bold">Get in touch</p>
               <p className={css['email-1']}>{EMAIL_DEVCON}</p>
 
               <div className={css['newsletter']}>
@@ -285,8 +282,6 @@ const TopSection = () => {
 // }
 
 export const Footer = () => {
-  const intl = useTranslations()
-
   return (
     <footer className={`footer ${css['container']} ${css['archive']}`}>
       <TopSection />
@@ -307,19 +302,19 @@ export const Footer = () => {
                 className="bold font-xs text-uppercase hover-underline"
                 to="https://ethereum.org/en/privacy-policy/"
               >
-                {intl('privacy_policy')}
+                Privacy Policy
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/terms-of-use/">
-                {intl('terms_of_use')}
+                Terms of Use
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="https://ethereum.org/en/cookie-policy/">
-                {intl('cookie_policy')}
+                Cookie Policy
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="/code-of-conduct">
-                {intl('code_of_conduct')}
+                Code of Conduct
               </Link>
               <Link className="bold font-xs text-uppercase hover-underline" to="/terms-of-service">
-                {intl('terms_of_service')}
+                Terms of Service
               </Link>
               <Link
                 className="bold font-xs text-uppercase hover-underline"

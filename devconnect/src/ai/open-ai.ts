@@ -2,38 +2,167 @@ import OpenAI from 'openai'
 import fs from 'fs'
 import path from 'path'
 require('dotenv').config()
+import { zodResponseFormat } from 'openai/helpers/zod'
+import { z } from 'zod'
 import { loadAndFormatCMS } from './format-content'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
 })
 
+const CMS_PAGES_DIR = path.resolve(__dirname, '../../cms/pages')
+const CMS_TRANSLATIONS_DIR = path.resolve(__dirname, '../../cms/global-translations')
+
+const TranslationSchema = z.object({
+  output: z.string(),
+})
+
 export const api = (() => {
   const _interface = {
+    translateContent: async () => {
+      // Translate both directories
+      await translateDirectory(CMS_PAGES_DIR)
+      await translateDirectory(CMS_TRANSLATIONS_DIR)
+    },
     // Load CMS data and push to open ai - this is called by a github action triggered on each commit
-    prepareContent: async (assistantID: string) => {
+    prepareContent: async () => {
       console.log('preparing content')
 
       await loadAndFormatCMS()
 
-      // Create vector store for website content
-      const vectorStore = await openai.beta.vectorStores.create({
-        // name: 'Website Content: ' + new Date().toISOString(),
-        name: `devconnect_website_${process.env.GITHUB_SHA}`,
-      })
+      const targetVectorStores = [
+        `devconnect_website_${process.env.GITHUB_SHA}`,
+        `devcon_website_${process.env.GITHUB_SHA}`,
+        `devcon_app_${process.env.GITHUB_SHA}`,
+      ]
 
-      const contentDir = path.resolve(__dirname, 'formatted-content')
+      const attachContent = async (vectorStoreName: string) => {
+        const vectorStores = await openai.beta.vectorStores.list()
 
-      const files = fs.readdirSync(contentDir)
+        const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
-      const fileStreams = files.map((file: string) => {
-        const filePath = path.join(contentDir, file)
-        return fs.createReadStream(filePath)
-      })
+        if (!vectorStore) {
+          throw new Error(`Vector store not found: ${vectorStoreName}`)
+        }
 
-      // Upload files to vector store
-      await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+        const knowledgeBaseDirectory = path.resolve(__dirname, 'knowledge-base')
+        const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
+        const knowledgeBaseStreams = knowledgeBaseFiles.map((filename: string) => {
+          const filePath = path.join(knowledgeBaseDirectory, filename)
+          // Skip directories, only process files
+          if (fs.statSync(filePath).isDirectory()) {
+            return null;
+          }
+          // Create a stream with a custom filename prefix
+          const stream = fs.createReadStream(filePath)
+          return stream
+        }).filter(Boolean) as any // Filter out null values (directories)
+
+        const contentDir = path.resolve(__dirname, 'formatted-content')
+
+        const files = fs.readdirSync(contentDir)
+
+        const fileStreams = files.map((file: string) => {
+          const filePath = path.join(contentDir, file)
+          // Skip directories, only process files
+          if (fs.statSync(filePath).isDirectory()) {
+            return null;
+          }
+          // Create a stream with a custom filename prefix
+          const stream = fs.createReadStream(filePath)
+          // stream.path = `devconnect_website_cms_file_${file}` // Override the filename in the stream
+          return stream
+        }).filter(Boolean) as any // Filter out null values (directories)
+
+        // Upload files to vector store
+        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: [...fileStreams, ...knowledgeBaseStreams] })
+      }
+
+      for (const vectorStoreName of targetVectorStores) {
+        await attachContent(vectorStoreName)
+      }
     },
+  }
+
+  async function translateDirectory(sourceDir: string) {
+    const allEntries = fs.readdirSync(sourceDir)
+    const files = allEntries.filter(entry => fs.statSync(path.join(sourceDir, entry)).isFile())
+
+    // Create translation directories if they don't exist
+    const esDir = path.join(sourceDir, 'es')
+    const ptDir = path.join(sourceDir, 'pt')
+
+    if (!fs.existsSync(esDir)) {
+      fs.mkdirSync(esDir, { recursive: true })
+    }
+    if (!fs.existsSync(ptDir)) {
+      fs.mkdirSync(ptDir, { recursive: true })
+    }
+
+    for (const file of files) {
+      const filePath = path.join(sourceDir, file)
+      let content = fs.readFileSync(filePath, 'utf-8')
+
+      let asJSON
+
+      try {
+        asJSON = JSON.parse(content)
+      } catch (e) {
+        asJSON = false
+      }
+
+      if (asJSON) {
+        content = JSON.stringify(asJSON['global_translations'])
+      }
+
+      const spanishCompletion = await openai.beta.chat.completions.parse({
+        temperature: 0,
+        model: 'gpt-4o',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You take a file generated by our CMS and translate it to Spanish. Keep the exact same structure and formatting. I cannot emphasize this enough. Under no circumstances should your output have ANY structural differentation to the input. Do not include any other text or comments. Do not change or omit *any* field names, and do not translate any values for fields that start with an underscore - e.g. _template, _type, _id, etc.',
+          },
+          { role: 'user', content: content },
+        ],
+        response_format: zodResponseFormat(TranslationSchema, 'output'),
+      })
+
+      let { output: spanish } = spanishCompletion.choices[0].message.parsed as any
+
+      const portugueseCompletion = await openai.beta.chat.completions.parse({
+        temperature: 0,
+        model: 'gpt-4o',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You take a file generated by our CMS and translate it to Portuguese. Keep the exact same structure and formatting. I cannot emphasize this enough. Under no circumstances should your output have ANY structural differentation to the input. Do not include any other text or comments. Do not change or omit *any* field names, and do not translate any values for fields that start with an underscore - e.g. _template, _type, _id, etc.',
+          },
+          { role: 'user', content: content },
+        ],
+        response_format: zodResponseFormat(TranslationSchema, 'output'),
+      })
+
+      let { output: portuguese } = portugueseCompletion.choices[0].message.parsed as any
+
+      if (asJSON) {
+        spanish = JSON.stringify({
+          global_translations: spanish,
+        })
+
+        portuguese = JSON.stringify({
+          global_translations: portuguese,
+        })
+      }
+
+      const spanishFilePath = path.join(sourceDir, `es/${file}`)
+      fs.writeFileSync(spanishFilePath, spanish)
+
+      const portugueseFilePath = path.join(sourceDir, `pt/${file}`)
+      fs.writeFileSync(portugueseFilePath, portuguese)
+    }
   }
 
   return _interface

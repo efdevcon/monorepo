@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { pageHOC } from 'context/pageHOC'
 import { DEFAULT_APP_PAGE } from 'utils/constants'
-import { getGlobalData } from 'services/global'
 import css from './road-to-devcon.module.scss'
 import { useTina } from 'tinacms/dist/react'
 import { client } from '../../tina/__generated__/client'
@@ -531,7 +529,7 @@ const Hero = (props: any) => {
 }
 
 const EventsTable = React.memo(({ events, pages }: any) => {
-  const [includePastEvents, setIncludePastEvents] = React.useState(false)
+  const [includePastEvents, setIncludePastEvents] = React.useState(true)
   const [search, setSearch] = React.useState('')
 
   const formattedEvents = events.map((event: any) => {
@@ -736,7 +734,7 @@ const SlideControls = ({ sectionRefs, controlsRef, goToSection }: any) => {
   )
 }
 
-export default pageHOC(function RoadToDevcon(props: any) {
+export default function RoadToDevcon(props: any) {
   const { data } = useTina<PagesQuery>(props.cms)
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
   const pages = data.pages as PagesRoad_To_Devcon
@@ -843,10 +841,9 @@ export default pageHOC(function RoadToDevcon(props: any) {
       </Page>
     </>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
-  const globalData = await getGlobalData(context)
   const content = await client.queries.pages({ relativePath: 'road_to_devcon.mdx' })
   const grantContent = await client.queries.pages({ relativePath: 'index.mdx' })
 
@@ -854,8 +851,6 @@ export async function getStaticProps(context: any) {
 
   return {
     props: {
-      ...globalData,
-      page: DEFAULT_APP_PAGE,
       events: await getNotionDatabase('en', notionID, false),
       cms: {
         variables: content.variables,

@@ -1,13 +1,14 @@
 import api from './open-ai'
 // import { seedPretalx } from '@/db/pretalx'
+import { devconWebsiteAssistant, devconnectWebsiteAssistant, devconAppAssistant } from './assistant-versions'
 
 async function main() {
   //   await seedPretalx()
   await api.recommendations.syncScheduleContent()
 
-  await api.attachVectorStoresToAssistant('devconnect')
-  await api.attachVectorStoresToAssistant('devcon')
-  await api.attachVectorStoresToAssistant('devcon-app')
+  await api.attachVectorStoresToAssistant(devconnectWebsiteAssistant.assistant_id, devconnectWebsiteAssistant.vector_store_prefix)
+  await api.attachVectorStoresToAssistant(devconWebsiteAssistant.assistant_id, devconWebsiteAssistant.vector_store_prefix)
+  await api.attachVectorStoresToAssistant(devconAppAssistant.assistant_id, devconAppAssistant.vector_store_prefix)
 }
 
 main()

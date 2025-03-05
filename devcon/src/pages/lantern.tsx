@@ -1,13 +1,8 @@
 import React from 'react'
 import themes from './themes.module.scss'
-import { pageHOC } from 'context/pageHOC'
-// import { Header } from 'components/common/layouts/header'
-import { Hero } from 'components/domain/index/hero'
 import DC7Logo from 'assets/images/dc-7/logo-flowers.png'
 import DC7OverlayLeft from 'components/domain/index/hero/images/dc-7/left.png'
 import DC7OverlayRight from 'components/domain/index/hero/images/dc-7/right.png'
-// import { Footer } from 'components/common/layouts/footer'
-// import css from './lantern.module.scss'
 import Image from 'next/image'
 import css from './lantern.module.scss'
 import cn from 'classnames'
@@ -15,7 +10,7 @@ import LanternBG from 'assets/images/dc-7/lantern-bg.png'
 import LanternPrism from 'assets/images/dc-7/lantern-prism.png'
 import DevaSignature from 'assets/images/dc-7/deva-signature.png'
 
-export default pageHOC(function SeaLocal(props: any) {
+export default function SeaLocal(props: any) {
   return (
     <div className={cn(`${themes['index']} flex justify-center min-h-screen w-screen p-4`, css['lantern'])}>
       <Image
@@ -78,41 +73,9 @@ export default pageHOC(function SeaLocal(props: any) {
 
               <p className="mt-4">Safe Travels home.</p>
               <Image src={DevaSignature} alt="Deva Signature" className="w-[70px] mt-2 object-contain self-center" />
-
-              {/* <p className="mb-2 text-base">Required Parts:</p>
-              <ul className="mb-4 ml-4">
-                <li>Paper panels</li>
-                <li>Wooden panels</li>
-                <li>Glue stick</li>
-                <li>Light string</li>
-                <li>Rope</li>
-                <li>Tassel</li>
-              </ul>
-
-              <p className="mb-2 text-base">Assembly Steps:</p>
-              <ol className="ml-4">
-                <li>Connect the edges that interlink for the wooden panels.</li>
-                <li>Glue edges and let glue rest and dry faster by reducing glue amount and residue.</li>
-                <li>Insert and attach next wooden panel and repeat process of gluing.</li>
-                <li>Attach base panel with glue to the created triangle.</li>
-                <li>Repeat process for second triangle.</li>
-                <li>Glue bases together.</li>
-                <li>Glue paper panels on Ethereum Lantern.</li>
-                <li>Remove light battery safety paper.</li>
-                <li>Insert light string and attach to top.</li>
-                <li>Attach tassel to bottom of structure.</li>
-                <li>Tie rope together on top for hanging lantern.</li>
-              </ol>
-
-              <p className="mt-4">
-                The DIY lantern kit was designed for you to be able to travel with and build on your own in the comfort
-                of your home. You are free to use tape or any other method to strengthen the structure and apply the
-                paper panels. Remember to spark the change you want. Be positive-sum.
-              </p> */}
             </div>
           </div>
           <div className="text-center flex items-center justify-center aspect-[873/1600] md:order-3 relative md:mb-0 shrink-0 sm:max-w-[200px] max-w-full md:self-start rounded-2xl overflow-hidden">
-            {/* <div className={`${themes['lantern']}`}> */}
             <iframe
               width="560"
               height="315"
@@ -126,11 +89,9 @@ export default pageHOC(function SeaLocal(props: any) {
           </div>
         </div>
       </div>
-
-      {/* <Footer /> */}
     </div>
   )
-})
+}
 
 export async function getStaticProps(context: any) {
   return {

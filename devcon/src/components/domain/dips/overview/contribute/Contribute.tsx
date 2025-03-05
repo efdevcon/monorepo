@@ -4,10 +4,8 @@ import css from './contribute.module.scss'
 import { Link } from 'components/common/link'
 import { Contributor } from 'types/DIP'
 import { Tooltip } from 'components/common/tooltip'
-import { useTranslations } from 'next-intl'
 import { chunkArray } from 'utils/chunk-array'
 import Image from 'next/legacy/image'
-import { usePageContext } from 'context/page-context'
 import RichText from 'lib/components/tina-cms/RichText'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 import indexCss from 'pages/index.module.scss'
@@ -142,9 +140,6 @@ export const AutoScroller = (props: { contributors: Array<Contributor>; large?: 
 }
 
 export const Contribute = (props: ContributeProps) => {
-  const intl = useTranslations()
-  const page = usePageContext()?.current
-
   return (
     <>
       <section id="contribute" className={css['section']}>
