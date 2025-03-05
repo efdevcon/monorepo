@@ -8,6 +8,7 @@ import DevconnectIstanbul from 'assets/images/istanbul-logo-with-eth.svg'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
+// import ErrorBoundary from 'common/components/error-boundary/ErrorBoundary'
 // import BAText from 'assets/images/ba/ba-text.png'
 // import Argentina from 'assets/images/ba/argentina.png'
 import AnnouncementDate from 'assets/images/ba/date.png'
@@ -253,31 +254,35 @@ const Home: NextPage = (props: any) => {
             <Header noGradient active={true} />
 
             <div className="fixed top-0 w-full">
-              <ScrollVideo
-                hasStableConnection={true}
-                containerRef={heroRef}
-                onPlaybackFinish={useCallback(() => {
-                  setPlaybackFinished(true)
-                }, [])}
-                onUserPlaybackInterrupt={useCallback(() => {
-                  // When user scrolls during video playback, immediately show all UI elements
-                  setUserHasInterruptedPlayback(true)
-                  setFadeInArgentina(true)
-                  setFadeInDate(true)
+              <ErrorBoundary
+                fallback={<div>There was an error playing the video, it could be due to your browser settings.</div>}
+              >
+                <ScrollVideo
+                  hasStableConnection={true}
+                  containerRef={heroRef}
+                  onPlaybackFinish={useCallback(() => {
+                    setPlaybackFinished(true)
+                  }, [])}
+                  onUserPlaybackInterrupt={useCallback(() => {
+                    // When user scrolls during video playback, immediately show all UI elements
+                    setUserHasInterruptedPlayback(true)
+                    setFadeInArgentina(true)
+                    setFadeInDate(true)
 
-                  userInterruptedPlaybackRef.current = true
-                }, [])}
-                onScrollProgress={useCallback((scrollProgress: number) => {
-                  if (!playbackFinished || !userInterruptedPlaybackRef.current) {
-                    if (scrollProgress > 75) {
-                      setFadeInArgentina(true)
+                    userInterruptedPlaybackRef.current = true
+                  }, [])}
+                  onScrollProgress={useCallback((scrollProgress: number) => {
+                    if (!playbackFinished || !userInterruptedPlaybackRef.current) {
+                      if (scrollProgress > 75) {
+                        setFadeInArgentina(true)
+                      }
+                      // if (scrollProgress > 80) {
+                      //   setFadeInDate(true)
+                      // }
                     }
-                    // if (scrollProgress > 80) {
-                    //   setFadeInDate(true)
-                    // }
-                  }
-                }, [])}
-              />
+                  }, [])}
+                />
+              </ErrorBoundary>
             </div>
 
             <div
@@ -690,7 +695,13 @@ const Home: NextPage = (props: any) => {
                 </div>
 
                 <div className="basis-full lg:basis-1/2 relative group rounded-lg cursor-pointer transition-all duration-300 overflow-hidden">
-                  <Voxel />
+                  <ErrorBoundary
+                    fallback={
+                      <div>There was an error playing the video, it could be due to your browser settings.</div>
+                    }
+                  >
+                    <Voxel />
+                  </ErrorBoundary>
                 </div>
               </div>
 
