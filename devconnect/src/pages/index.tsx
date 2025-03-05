@@ -206,7 +206,7 @@ const Home: NextPage = (props: any) => {
 
   const heroRef = useRef<HTMLDivElement>(null)
   // const [scrollProgress, setScrollProgress] = useState(0)
-  const [fadeInBA, setFadeInBA] = useState(false)
+  // const [fadeInBA, setFadeInBA] = useState(false)
   const [fadeInArgentina, setFadeInArgentina] = useState(false)
   const [playbackFinished, setPlaybackFinished] = useState(false)
   const [fadeInDate, setFadeInDate] = useState(false)
@@ -214,7 +214,7 @@ const Home: NextPage = (props: any) => {
   const [userHasInterruptedPlayback, setUserHasInterruptedPlayback] = useState(false)
   const userInterruptedPlaybackRef = useRef(false)
 
-  const hasStableConnection = true
+  // const hasStableConnection = true
 
   // Add an effect to detect user scrolling
   React.useEffect(() => {
@@ -230,6 +230,8 @@ const Home: NextPage = (props: any) => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [userHasInterruptedPlayback, fadeInArgentina, fadeInDate])
+
+  return null
 
   return (
     <>
