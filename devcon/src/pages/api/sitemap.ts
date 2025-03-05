@@ -1,6 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { GetPages } from "services/page"
+// import { GetPages } from "services/page"
 import { SITE_URL } from "utils/constants"
+
+const GetPages = (lang: string) => [
+    {
+        id: '404',
+        lang: lang,
+        slug: '/',
+    },
+]
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
     const baseUrl = SITE_URL
