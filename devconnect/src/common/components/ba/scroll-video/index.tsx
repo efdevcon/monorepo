@@ -520,7 +520,7 @@ const ScrollVideoComponent = ({
           <div
             className={cn(
               `absolute inset-0 p-4 flex items-center md:items-end justify-center bg-black transition-opacity duration-[1000ms]`,
-              firstImageLoaded && 'bg-black/80'
+              firstImageLoaded && 'bg-black/30'
             )}
           >
             <div
