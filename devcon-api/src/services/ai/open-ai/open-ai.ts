@@ -472,13 +472,26 @@ export const api = (() => {
           return
         }
 
+        // const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
+        // const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
+        // const knowledgeBaseContent = knowledgeBaseFiles.map((filename: string) => {
+        //   const content = fs.readFileSync(path.join(knowledgeBaseDirectory, filename), 'utf8')
+
+        //   return content
+        // })
+
         const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
         const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
-        const knowledgeBaseContent = knowledgeBaseFiles.map((filename: string) => {
-          const content = fs.readFileSync(path.join(knowledgeBaseDirectory, filename), 'utf8')
-
-          return content
-        })
+        const knowledgeBaseStreams = knowledgeBaseFiles.map((filename: string) => {
+          const filePath = path.join(knowledgeBaseDirectory, filename)
+          // Skip directories, only process files
+          if (fs.statSync(filePath).isDirectory()) {
+            return null;
+          }
+          // Create a stream with a custom filename prefix
+          const stream = fs.createReadStream(filePath)
+          return stream
+        }).filter(Boolean) as any // Filter out null values (directories)
 
         const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
 
@@ -549,7 +562,7 @@ export const api = (() => {
           return asFile
         })
 
-        const allFiles = [...sessionFiles, ...knowledgeBaseContent] as any
+        const allFiles = [...sessionFiles, ...knowledgeBaseStreams] as any
 
         // Split files into batches and upload
         const batchSize = 100
