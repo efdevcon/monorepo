@@ -163,6 +163,8 @@ const Mobile = (props: any) => {
 
   if (!mounted) return null
 
+  console.log(props.menuOpen, 'menuOpen')
+
   return (
     <div className={css['mobile-menu']}>
       <div className={cn(css['foldout-toggle'], 'hover:scale-[1.1] transition-all duration-300 flex lg:hidden')}>
@@ -174,11 +176,11 @@ const Mobile = (props: any) => {
       {createPortal(
         <div className={`${props.menuOpen ? css['open'] : ''} ${css['foldout']}`}>
           <div className="section py-4">
-            <div className={`${css['foldout-toggle']}`}>
-              {/* <DevconnectLogoText width="100px" height="50px" /> */}
-              {/* <div className={css['icon']} onClick={() => setOpen(false)}> */}
-              {/* <IconCross /> */}
-              {/* </div> */}
+            <div className={`${css['foldout-toggle']} flex justify-between`}>
+              {/* <DevconnectLogoText width="100px" height="50px" />
+              <div className={css['icon']} onClick={() => props.setMenuOpen(false)}>
+                <IconCross />
+              </div> */}
             </div>
           </div>
 

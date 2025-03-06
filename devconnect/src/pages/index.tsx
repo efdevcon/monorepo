@@ -61,11 +61,13 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
 
   const hideGradient = hasScrolled || noGradient
 
+  console.log(menuOpen, 'menuOpen')
+
   return (
     <div className="section z-[100]">
       <header
         className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}
-        style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
+        // style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
         <div className={cn('section opacity-0 transition-all duration-[2000ms]', { 'opacity-100': active })}>
           <div className="flex w-full justify-between items-center">
