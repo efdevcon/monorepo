@@ -59,9 +59,7 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
     })
   }, [scrollY])
 
-  const hideGradient = hasScrolled || noGradient
-
-  console.log(menuOpen, 'menuOpen')
+  // const hideGradient = hasScrolled || noGradient
 
   return (
     <div className="section z-[100]">

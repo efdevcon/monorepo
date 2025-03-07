@@ -163,8 +163,6 @@ const Mobile = (props: any) => {
 
   if (!mounted) return null
 
-  console.log(props.menuOpen, 'menuOpen')
-
   return (
     <div className={css['mobile-menu']}>
       <div className={cn(css['foldout-toggle'], 'hover:scale-[1.1] transition-all duration-300 flex lg:hidden')}>
