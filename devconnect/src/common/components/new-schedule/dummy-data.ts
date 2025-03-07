@@ -44,7 +44,7 @@ export const dummyEvents: Event[] = [
   },
   {
     id: "event-001",
-    name: "Introduction to Blockchain",
+    name: "ETH Day",
     description: "A beginner-friendly workshop covering blockchain fundamentals and use cases.",
     organizer: "Ethereum Foundation",
     difficulty: "Beginner",
@@ -56,8 +56,8 @@ export const dummyEvents: Event[] = [
     },
     timeblocks: [
       {
-        start: "2025-11-15T10:00:00Z",
-        end: "2025-11-15T12:00:00Z"
+        start: "2025-11-17T10:00:00Z",
+        end: "2025-11-17T12:00:00Z"
       }
     ],
     priority: 1,
@@ -84,27 +84,27 @@ export const dummyEvents: Event[] = [
     priority: 2,
     categories: ["Development", "Smart Contracts", "Security"]
   },
-  {
-    id: "event-003",
-    name: "DeFi Panel Discussion",
-    description: "Industry leaders discuss the future of decentralized finance and emerging trends.",
-    organizer: "DeFi Alliance",
-    difficulty: "Intermediate",
-    lemonadeID: "lemonade-003",
-    amountPeople: "100",
-    location: {
-      url: "https://example.com/venue3",
-      text: "Grand Ballroom"
-    },
-    timeblocks: [
-      {
-        start: "2025-11-17T13:00:00Z",
-        end: "2025-11-17T15:00:00Z"
-      }
-    ],
-    priority: 3,
-    categories: ["DeFi", "Panel", "Finance"]
-  },
+  // {
+  //   id: "event-003",
+  //   name: "DeFi Panel Discussion",
+  //   description: "Industry leaders discuss the future of decentralized finance and emerging trends.",
+  //   organizer: "DeFi Alliance",
+  //   difficulty: "Intermediate",
+  //   lemonadeID: "lemonade-003",
+  //   amountPeople: "100",
+  //   location: {
+  //     url: "https://example.com/venue3",
+  //     text: "Grand Ballroom"
+  //   },
+  //   timeblocks: [
+  //     {
+  //       start: "2025-11-17T13:00:00Z",
+  //       end: "2025-11-17T15:00:00Z"
+  //     }
+  //   ],
+  //   priority: 3,
+  //   categories: ["DeFi", "Panel", "Finance"]
+  // },
   {
     id: "event-004",
     name: "Web3 UX Design Workshop",
@@ -218,27 +218,27 @@ export const dummyEvents: Event[] = [
     priority: 1,
     categories: ["Sustainability", "Environment", "Conference"]
   },
-  {
-    id: "event-009",
-    name: "Layer 2 Solutions Showcase",
-    description: "Demonstrations of leading Layer 2 scaling solutions for Ethereum.",
-    organizer: "Scaling Consortium",
-    difficulty: "Intermediate",
-    lemonadeID: "lemonade-009",
-    amountPeople: "80",
-    location: {
-      url: "https://example.com/venue9",
-      text: "Exhibition Hall B"
-    },
-    timeblocks: [
-      {
-        start: "2025-11-17T11:00:00Z",
-        end: "2025-11-17T16:00:00Z"
-      }
-    ],
-    priority: 2,
-    categories: ["Scaling", "Layer 2", "Demo"]
-  },
+  // {
+  //   id: "event-009",
+  //   name: "Layer 2 Solutions Showcase",
+  //   description: "Demonstrations of leading Layer 2 scaling solutions for Ethereum.",
+  //   organizer: "Scaling Consortium",
+  //   difficulty: "Intermediate",
+  //   lemonadeID: "lemonade-009",
+  //   amountPeople: "80",
+  //   location: {
+  //     url: "https://example.com/venue9",
+  //     text: "Exhibition Hall B"
+  //   },
+  //   timeblocks: [
+  //     {
+  //       start: "2025-11-17T11:00:00Z",
+  //       end: "2025-11-17T16:00:00Z"
+  //     }
+  //   ],
+  //   priority: 2,
+  //   categories: ["Scaling", "Layer 2", "Demo"]
+  // },
   {
     id: "event-010",
     name: "Blockchain Governance Forum",

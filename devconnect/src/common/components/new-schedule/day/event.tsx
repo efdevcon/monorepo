@@ -2,6 +2,9 @@ import React from 'react'
 import { PenLine } from 'lucide-react'
 import { Event as EventType } from '../model'
 import { format, parseISO } from 'date-fns'
+import cn from 'classnames'
+import Image from 'next/image'
+import coworkingImage from './cowork.webp'
 
 type EventProps = {
   event: EventType
@@ -29,14 +32,42 @@ const Event: React.FC<EventProps> = ({ event, duration }) => {
       ? 'bg-yellow-300'
       : 'bg-red-300'
 
+  const isCoworking = event.name.includes('Coworking')
+  const isETHDay = event.name.includes('ETH Day')
+
   return (
-    <div className="flex flex-col h-full gap-4 border border-solid border-neutral-200 p-2 px-2 shrink-0 relative rounded-lg">
-      <div className="flex h-full">
-        <div className="flex flex-col mr-2 items-center shrink-0">
+    <div
+      className={cn(
+        'flex flex-col h-full gap-4 border border-solid border-neutral-200 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black cursor-pointer transition-all duration-300',
+        {
+          'bg-[rgb(187,232,255)] border-neutral-400': isCoworking || isETHDay,
+        }
+      )}
+    >
+      {isCoworking && (
+        <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-[80%] bg-gradient-to-r from-white to-transparent z-10"></div>
+          <Image
+            src={coworkingImage}
+            alt="Coworking"
+            className="w-[100%] h-full object-end position-end object-cover"
+          />
+        </div>
+      )}
+
+      {isETHDay && (
+        <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 h-[70%] w-full bg-gradient-to-b from-white to-transparent z-10"></div>
+          <Image src={coworkingImage} alt="ETH Day" className="w-[100%] h-full object-cover" />
+        </div>
+      )}
+
+      <div className="flex h-full z-10">
+        {/* <div className="flex flex-col mr-2 items-center shrink-0">
           <div className="text-[10px]">{startTime}</div>
           <div className="min-h-[10px] grow border-solid border-l border-l-neutral-400 self-center my-1"></div>
           <div className="text-[10px]">{endTime}</div>
-        </div>
+        </div> */}
         <div className="flex flex-col grow justify-between items-stretch">
           <div className="text-xs font-medium line-clamp-1">{event.name}</div>
           {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}

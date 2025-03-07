@@ -107,7 +107,7 @@ const NewScheduleIndex = () => {
   }
 
   // Define shared column template for consistent alignment
-  const columnTemplate = `repeat(${eventRange.length}, minmax(250px, 1fr))`
+  const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
 
   return (
     <SwipeToScroll>
@@ -138,15 +138,17 @@ const NewScheduleIndex = () => {
                 <div
                   key={`event-${placement.event.id}-${idx}`}
                   style={{
-                    gridRow: `${placement.gridPosition.row + 1}`, // +1 to account for header
+                    gridRow: `${placement.gridPosition.row + 1} / span ${
+                      placement.event.name.includes('ETH Day') ? 3 : 1
+                    }`, // Make ETH Day events span 3 rows
                     gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
-                    // margin: '0.375rem',
                   }}
                   className={`bg-white rounded-lg border border-blue-200 m-0.5 mt-0 relative`}
                 >
                   <Event
                     event={placement.event}
                     duration={placement.gridPosition.duration}
+                    // isCoworking={placement.event.name.includes('Coworking')}
                     // isMultiDay={placement.gridPosition.duration > 1}
                     // timeblock={placement.timeblock}
                   />
