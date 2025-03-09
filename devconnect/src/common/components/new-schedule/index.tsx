@@ -87,6 +87,8 @@ const computeEventPlacements = (events: EventType[], dateColumns: string[]): any
         column: startColIndex + 1, // +1 because CSS grid is 1-indexed
         duration,
       },
+      // Store all dates this event covers for hover highlighting
+      datesCovered: dateColumns.slice(startColIndex, startColIndex + duration),
     })
   })
 
@@ -96,6 +98,8 @@ const computeEventPlacements = (events: EventType[], dateColumns: string[]): any
 const NewScheduleIndex = () => {
   const eventRange = computeCalendarRange(dummyEvents)
   const [events] = useState<EventType[]>(dummyEvents)
+  // Add state to track which date is being hovered
+  const [hoveredDate, setHoveredDate] = useState<string | null>(null)
 
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange)
@@ -107,7 +111,16 @@ const NewScheduleIndex = () => {
   }
 
   // Define shared column template for consistent alignment
-  const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
+  // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
+  const columnTemplate = `repeat(${eventRange.length}, minmax(135px, 1fr))`
+
+  // Check if an event should be highlighted based on hovered date
+  const isEventHighlighted = (placement: any) => {
+    if (!hoveredDate) return false
+
+    // Check if any of the dates covered by this event match the hovered date
+    return placement.datesCovered.includes(hoveredDate)
+  }
 
   return (
     <SwipeToScroll>
@@ -125,7 +138,12 @@ const NewScheduleIndex = () => {
             {/* Header row with dates */}
             <div className="contents">
               {eventRange.map(date => (
-                <h2 key={date} className="text-sm font-semibold py-2 px-3 sticky top-0 bg-white z-10 border-b">
+                <h2
+                  key={date}
+                  className="text-sm font-semibold py-2 px-3 sticky top-0 bg-white z-10 border-b cursor-pointer rounded-lg mb-0.5 hover:bg-gray-100"
+                  onMouseEnter={() => setHoveredDate(date)}
+                  onMouseLeave={() => setHoveredDate(null)}
+                >
                   {formatDateHeader(date)}
                 </h2>
               ))}
@@ -143,11 +161,12 @@ const NewScheduleIndex = () => {
                     }`, // Make ETH Day events span 3 rows
                     gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
                   }}
-                  className={`bg-white rounded-lg border border-blue-200 m-0.5 mt-0 relative`}
+                  className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}
                 >
                   <Event
                     event={placement.event}
                     duration={placement.gridPosition.duration}
+                    className={isEventHighlighted(placement) ? '!border-black' : ''}
                     // isCoworking={placement.event.name.includes('Coworking')}
                     // isMultiDay={placement.gridPosition.duration > 1}
                     // timeblock={placement.timeblock}

@@ -43,6 +43,7 @@ import CampaignIcon from 'assets/icons/campaign.svg'
 import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
+import NewSchedule from 'common/components/new-schedule'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -725,6 +726,10 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className="relative pb-10 bg-white">
+            <NewSchedule />
           </div>
 
           <div className="section relative pb-10 bg-white">

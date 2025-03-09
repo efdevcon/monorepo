@@ -9,11 +9,13 @@ import coworkingImage from './cowork.webp'
 type EventProps = {
   event: EventType
   duration: number
+  className?: string
 }
 
-const Event: React.FC<EventProps> = ({ event, duration }) => {
+const Event: React.FC<EventProps> = ({ event, duration, className }) => {
   // Get the first timeblock for display
   const timeblock = event.timeblocks[0]
+  const eventClassName = className || ''
 
   // Format the start and end times
   const formatTime = (isoString: string) => {
@@ -41,7 +43,8 @@ const Event: React.FC<EventProps> = ({ event, duration }) => {
         'flex flex-col h-full gap-4 border border-solid border-neutral-200 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black cursor-pointer transition-all duration-300',
         {
           'bg-[rgb(187,232,255)] border-neutral-400': isCoworking || isETHDay,
-        }
+        },
+        eventClassName
       )}
     >
       {isCoworking && (
