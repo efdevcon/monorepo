@@ -124,7 +124,7 @@ const NewScheduleIndex = () => {
 
   return (
     <SwipeToScroll>
-      <div className="text-black p-4">
+      <div className="text-black">
         {/* Unified Calendar Grid with aligned header and content */}
         <div className="w-full">
           {/* Grid container with header and content in one cohesive grid */}
