@@ -201,7 +201,14 @@ async function UpdateAccountImport(req: Request, res: Response) {
     return res.status(400).send({ message: 'Attendee email not found.' })
   }
 
-  const profileData = await parseProfileData(attendeeEmail)
+  let profileData
+  try {
+    profileData = await parseProfileData(attendeeEmail)
+  } catch (error) {
+    console.error(error, 'Unable to parse profile data.')
+    return res.status(500).send({ code: 500, message: 'Unable to parse profile data.' })
+  }
+
   if (!profileData) {
     return res.status(400).send({ message: 'Profile data not found.' })
   }
@@ -368,9 +375,14 @@ async function LoginEmail(req: Request, res: Response) {
 
     userAccount = { ...userAccount, email: address }
     if (!userAccount.onboarded) {
-      const profile = await parseProfileData(address)
-      if (profile) {
-        userAccount = { ...userAccount, ...profile }
+      try {
+        const profile = await parseProfileData(address)
+        if (profile) {
+          userAccount = { ...userAccount, ...profile }
+        }
+      } catch (error) {
+        console.error(error, 'Unable to parse profile data.')
+        return res.status(500).send({ code: 500, message: 'Unable to parse profile data.' })
       }
     }
     const updated = await client.account.update({ where: { id: userId }, data: userAccount })
@@ -386,9 +398,14 @@ async function LoginEmail(req: Request, res: Response) {
   let userAccount = await client.account.findFirst({ where: { email: { equals: address, mode: 'insensitive' } } })
   if (userAccount) {
     if (!userAccount.onboarded) {
-      const profile = await parseProfileData(address)
-      if (profile) {
-        userAccount = await client.account.update({ where: { id: userAccount.id }, data: profile })
+      try {
+        const profile = await parseProfileData(address)
+        if (profile) {
+          userAccount = await client.account.update({ where: { id: userAccount.id }, data: profile })
+        }
+      } catch (error) {
+        console.error(error, 'Unable to parse profile data.')
+        return res.status(500).send({ code: 500, message: 'Unable to parse profile data.' })
       }
     }
 
@@ -398,7 +415,15 @@ async function LoginEmail(req: Request, res: Response) {
   }
 
   if (!userAccount) {
-    const profile = await parseProfileData(address)
+    let profile
+
+    try {
+      profile = await parseProfileData(address)
+    } catch (error) {
+      console.error(error, 'Unable to parse profile data.')
+      return res.status(500).send({ code: 500, message: 'Unable to parse profile data.' })
+    }
+
     if (profile) {
       userAccount = await client.account.create({ data: { email: address, username: GenerateRandomUsername(address), ...profile } })
     } else {
@@ -702,7 +727,14 @@ async function RecommendedSessions(req: Request, res: Response) {
 
 async function parseProfileData(attendeeEmail: string) {
   const normalizedEmail = attendeeEmail.toLowerCase()
-  const data = await decryptFile(`data/accounts/pretix.encrypted`)
+
+  let data
+  try {
+    data = await decryptFile(`data/accounts/pretix.encrypted`)
+  } catch (error) {
+    console.error(error, 'Unable to parse profile data.')
+    throw error
+  }
   const results = await parseCSV(data)
 
   const account = results.find((row) => (Object.values(row)[0] as string)?.toLowerCase() === normalizedEmail)
