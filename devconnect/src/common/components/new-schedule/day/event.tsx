@@ -37,18 +37,18 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
   const isCoworking = event.name.includes('Coworking')
   const isETHDay = event.name.includes('ETH Day')
 
-  let eventName = '[ Your Event Here ]'
+  let eventName = '[ Community Events ]'
   if (event.name.includes('ETH Day')) {
     eventName = 'ETH Day'
   } else if (event.name.includes('Coworking')) {
-    eventName = `Ethereum World's Fair`
+    eventName = `Ethereum World's Fair & Coworking Space`
   }
 
   return (
     <div
       className={cn(
-        'min-h-[60px] group',
-        'flex flex-col h-full gap-4 border border-solid border-neutral-400 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black cursor-pointer transition-all duration-300',
+        'min-h-[60px] group bg-[#f0faff]',
+        'flex flex-col h-full gap-4 border border-solid border-neutral-400 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black transition-all duration-300',
         {
           'bg-[rgb(187,232,255)] border-neutral-400': isCoworking || isETHDay,
         },

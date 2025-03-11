@@ -140,7 +140,7 @@ const NewScheduleIndex = () => {
               {eventRange.map(date => (
                 <h2
                   key={date}
-                  className="text-sm font-semibold py-2 px-3 sticky top-0 bg-white z-10 border-b cursor-pointer rounded-lg mb-0.5 hover:bg-gray-100"
+                  className="text-sm font-semibold py-2 px-3 stickyy top-0 bg-white z-10 border-b cursor-pointer pointer-events-none rounded-lg mb-0.5 hover:bg-gray-100"
                   onMouseEnter={() => setHoveredDate(date)}
                   onMouseLeave={() => setHoveredDate(null)}
                 >
