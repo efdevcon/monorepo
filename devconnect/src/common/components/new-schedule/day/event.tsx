@@ -37,7 +37,7 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
   const isCoworking = event.name.includes('Coworking')
   const isETHDay = event.name.includes('ETH Day')
 
-  let eventName = '[ Community Events ]'
+  let eventName = event.name
   if (event.name.includes('ETH Day')) {
     eventName = 'ETH Day'
   } else if (event.name.includes('Coworking')) {
@@ -80,26 +80,18 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
           <div className="text-[10px]">{endTime}</div>
         </div> */}
         <div className="flex flex-col grow justify-between items-stretch">
-          <div
-            className={cn('text-sm font-medium line-clamp-1 flex h-full', {
-              'justify-center items-center h-full text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300':
-                !(isCoworking || isETHDay),
-            })}
-          >
-            {eventName}
-          </div>
+          <div className={cn('text-xs font-medium line-clamp-1 flex h-full')}>{eventName}</div>
           {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
-          {(isCoworking || isETHDay) && (
-            <div className="flex gap-2 w-full mt-2 shrink-0 items-end justify-end">
-              {/* <div className={`text-xs rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}>
-                {event.difficulty}
-              </div> */}
-              <div className="text-xs rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center justify-end">
-                <Star className="text-black shrink-0" size={11} />
-                {isETHDay ? 'Kickoff Day' : 'Devconnect Official Event'}
-              </div>
+
+          <div className="flex gap-2 w-full mt-2 shrink-0 items-end justify-end text-[9px]">
+            <div className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}>
+              {event.difficulty}
             </div>
-          )}
+            <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
+              <Star className="text-black shrink-0" size={11} />
+              RSVP
+            </div>
+          </div>
         </div>
       </div>
     </div>
