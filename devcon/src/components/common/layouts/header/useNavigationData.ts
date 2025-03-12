@@ -331,13 +331,13 @@ const useNavigationData = () => {
         url: 'https://devconnect.org',
         type: 'link',
       },
-      {
-        title: 'DevAI 🦄',
-        type: 'button',
-        onClick: () => {
-          setAppState({ ...appState, devabotVisible: !appState.devabotVisible })
-        },
-      },
+      // {
+      //   title: 'DevAI 🦄',
+      //   type: 'button',
+      //   onClick: () => {
+      //     setAppState({ ...appState, devabotVisible: !appState.devabotVisible })
+      //   },
+      // },
       {
         title: 'Devcon App',
         url: 'https://app.devcon.org',
