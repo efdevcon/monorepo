@@ -5,14 +5,16 @@ export interface Event {
   organizer: string;
   difficulty: string;
   lemonadeID: string;
-  amountPeople: string;
+  amountPeople?: string;
   location: {
     url: string;
     text: string;
   };
   timeblocks: {
     start: string;
-    end: string;
+    end: string;   
+    name?: string;
+    location?: string;
   }[];
   priority: number;
   categories: string[];

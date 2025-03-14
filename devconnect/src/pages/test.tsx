@@ -2,6 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import NewSchedule from 'common/components/new-schedule'
 import { Button } from 'lib/components/button'
+
+import Timeline from 'common/components/new-schedule/timeline'
+import { dummyEvents } from 'common/components/new-schedule/dummy-data'
+
 const Test = () => {
   return (
     <>
@@ -17,6 +21,7 @@ const Test = () => {
           </Button>
         </div>
         <NewSchedule />
+        <Timeline events={dummyEvents} />
       </div>
     </>
   )

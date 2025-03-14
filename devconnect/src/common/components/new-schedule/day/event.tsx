@@ -38,11 +38,6 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
   const isETHDay = event.name.includes('ETH Day')
 
   let eventName = event.name
-  if (event.name.includes('ETH Day')) {
-    eventName = 'ETH Day'
-  } else if (event.name.includes('Coworking')) {
-    eventName = `Ethereum World's Fair & Coworking Space`
-  }
 
   return (
     <div

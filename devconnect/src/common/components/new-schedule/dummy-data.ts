@@ -3,12 +3,11 @@ import { Event } from './model';
 export const dummyEvents: Event[] = [
   {
     id: "event-000",
-    name: "DevConnect Coworking Space",
+    name: "Ethereum World's Fair & Coworking Space",
     description: "Open coworking space for developers, builders, and researchers to collaborate throughout the week.",
     organizer: "DevConnect",
     difficulty: "Beginner",
     lemonadeID: "lemonade-000",
-    amountPeople: "100",
     location: {
       url: "https://example.com/coworking",
       text: "Innovation Hub"
@@ -16,27 +15,51 @@ export const dummyEvents: Event[] = [
     timeblocks: [
       {
         start: "2025-11-17T09:00:00Z",
-        end: "2025-11-17T18:00:00Z"
+        end: "2025-11-17T10:00:00Z",
+        name: 'Opening Ceremony',
+        location: "Azul Pavillion"
+      },
+      {
+        start: "2025-11-17T10:00:00Z",
+        end: "2025-11-17T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
+      },
+      {
+        start: "2025-11-17T09:00:00Z",
+        end: "2025-11-17T15:00:00Z",
+        name: 'Talks',
+        location: "Amarillo Pavillion"
       },
       {
         start: "2025-11-18T09:00:00Z",
-        end: "2025-11-18T18:00:00Z"
+        end: "2025-11-18T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
       },
       {
         start: "2025-11-19T09:00:00Z",
-        end: "2025-11-19T18:00:00Z"
+        end: "2025-11-19T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
       },
       {
         start: "2025-11-20T09:00:00Z",
-        end: "2025-11-20T18:00:00Z"
+        end: "2025-11-20T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
       },
       {
         start: "2025-11-21T09:00:00Z",
-        end: "2025-11-21T18:00:00Z"
+        end: "2025-11-21T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
       },
       {
         start: "2025-11-22T09:00:00Z",
-        end: "2025-11-22T18:00:00Z"
+        end: "2025-11-22T18:00:00Z",
+        name: 'Hackathon',
+        location: "Azul Pavillion"
       }
     ],
     priority: 1,
