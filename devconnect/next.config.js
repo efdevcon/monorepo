@@ -4,6 +4,10 @@ const path = require('path')
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
+  env: {
+    API_BASE_URL: process.env.API_BASE_URL,
+    WC_PROJECT_ID: process.env.WC_PROJECT_ID,
+  },
   experimental: {
     // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
     externalDir: true,
