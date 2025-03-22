@@ -43,6 +43,7 @@ import CampaignIcon from 'assets/icons/campaign.svg'
 import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
+import NewSchedule from 'common/components/new-schedule'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -59,9 +60,7 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
     })
   }, [scrollY])
 
-  const hideGradient = hasScrolled || noGradient
-
-  console.log(menuOpen, 'menuOpen')
+  // const hideGradient = hasScrolled || noGradient
 
   return (
     <div className="section z-[100]">
@@ -729,8 +728,32 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
+          <div className="relative bg-white">
+            <div className="section ">
+              <h1 className="section-header mt-6 mb-4">Want to host an event?</h1>
+              <NewSchedule />
+
+              <div className="text-xl  flex flex-col gap-2 mt-6 mb-6">
+                <p>
+                  <b>Save the date:</b> Nov 17 is the daylong official Devconnect kickoff with ceremony at the main
+                  Cowork venue.
+                </p>
+                <p>
+                  We will share details about location and program soon. Make sure to plan your events around the
+                  kickoff day and schedule them for before or after Nov 17.
+                </p>
+                <p>
+                  We will accept submissions for community events in a few weeks. In the meantime write us at
+                  support@devconnect.org with your questions.
+                </p>
+              </div>
+            </div>
+          </div>
+
           <div className="section relative pb-10 bg-white">
-            <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+            <div className="border-top">
+              <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+            </div>
           </div>
 
           <div className="section relative pb-8 md:pb-12 bg-black/50 overflow-hidden">

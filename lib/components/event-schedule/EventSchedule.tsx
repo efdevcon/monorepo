@@ -1,7 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import React, { useEffect } from "react";
-import { Client } from "@notionhq/client";
 import css from "./event-schedule.module.scss";
 import moment from "moment";
 import momentTZ from "moment-timezone";
@@ -12,17 +11,9 @@ import ChevronDown from "../../assets/icons/chevron-down.svg";
 import ChevronUp from "../../assets/icons/chevron-up.svg";
 import AddToCalendarIcon from "../../assets/icons/add-to-calendar.svg";
 import { Button } from "../button";
-// import SwipeToScroll from "common/components/swipe-to-scroll";
-// import { HorizontalScroller as SwipeToScroll } from "../horizontal-scroller";
 import SwipeToScroll from "./swipe-to-scroll";
-// import Hero from "common/components/hero";
 import Link, { useDraggableLink } from "../link";
 import { Modal, ModalContent } from "../modal";
-// import ScheduleBackgroundAmsterdam from "assets/images/schedule-bg.svg";
-// import DevconnectIstanbul from "assets/images/istanbul-logo-with-eth.svg";
-// import DevconnectAmsterdam from "assets/images/amsterdam-logo-with-eth.svg";
-// import DevconnectIstanbulText from "assets/images/istanbul-logo-text.svg";
-import Alert from "../alert";
 import { useRouter } from "next/dist/client/router";
 // @ts-ignore
 import Toggle from "react-toggle";
