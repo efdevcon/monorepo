@@ -1,5 +1,5 @@
 import React from 'react'
-import { PenLine, Star } from 'lucide-react'
+import { PenLine, Star, MapPin } from 'lucide-react'
 import { Event as EventType } from '../model'
 import { format, parseISO } from 'date-fns'
 import cn from 'classnames'
@@ -90,11 +90,22 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
           </div>
           {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
           {(isCoworking || isETHDay) && (
-            <div className="flex gap-2 w-full mt-2 shrink-0 items-end justify-end">
+            <div
+              className={cn('flex gap-2 w-full mt-2 shrink-0 items-end justify-end', {
+                'flex-col justify-end': isETHDay,
+                'justify-start': isCoworking,
+              })}
+            >
               {/* <div className={`text-xs rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}>
                 {event.difficulty}
               </div> */}
-              <div className="text-xs rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center justify-end">
+              <div
+                className={`text-xs rounded text-[10px] ${difficultyClass} bg-[#ded9ff] px-2 py-0.5 flex gap-1 items-center`}
+              >
+                <MapPin className="text-black shrink-0" size={11} />
+                La Rural
+              </div>
+              <div className="text-xs rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
                 <Star className="text-black shrink-0" size={11} />
                 {isETHDay ? 'Kickoff Day' : 'Devconnect Official Event'}
               </div>

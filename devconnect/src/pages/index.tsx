@@ -44,6 +44,7 @@ import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
 import NewSchedule from 'common/components/new-schedule'
+import Venue from 'common/components/ba/venue/venue'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -380,7 +381,7 @@ const Home: NextPage = (props: any) => {
 
                   <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
                     <div className="flex items-center text-sm gap-1.5">
-                      <p className="text-sm font-semibold opacity-60">
+                      <p className="text-sm font-semibold opacity-100 text-white [text-shadow:0_0_1px_#000,0_0_2px_#000] ">
                         {(globalThis as any).translations.scroll_for_more}
                       </p>
                       <svg
@@ -392,14 +393,14 @@ const Home: NextPage = (props: any) => {
                         height="14"
                       >
                         <g className="nc-icon-wrapper" fill="#ffffff">
-                          <g className={`${css['nc-loop-mouse-16-icon-f']} opacity-60`}>
+                          <g className={`${css['nc-loop-mouse-16-icon-f']} opacity-100`}>
                             <path
                               d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                              fill="#000000"
+                              fill="#ffffff"
                             ></path>
                             <path
                               d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                              fill="#000000"
+                              fill="#ffffff"
                               data-color="color-2"
                             ></path>
                           </g>
@@ -601,10 +602,13 @@ const Home: NextPage = (props: any) => {
               <Image src={bgMerged} alt="Istanbul inspired Cityscape Background" />
             </div>
           </Scene> */}
+          <div className="section relative pb-0 bg-[#FAFCFF] overflow-hidden">
+            <Venue />
+          </div>
 
           <div className="section relative bg-white" id="about">
             <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText>
-            <div className="flex flex-row gap-4 border-bottom pb-2 flex-wrap lg:flex-nowrap z-[2]">
+            <div className="flex flex-row gap-4 pb-2 flex-wrap lg:flex-nowrap z-[2] border-bottom">
               <div className="basis-full lg:basis-1/2 shrink-0 text-black">
                 {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
@@ -635,6 +639,10 @@ const Home: NextPage = (props: any) => {
               </div>
             </div>
           </div>
+
+          {/* <div className="section relative pb-0 bg-white">
+            <Venue />
+          </div> */}
 
           <div className="section relative pb-0 bg-white">
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
@@ -733,17 +741,16 @@ const Home: NextPage = (props: any) => {
               <h1 className="section-header mt-6 mb-4">Want to host an event?</h1>
               <NewSchedule />
 
-              <div className="text-xl  flex flex-col gap-2 mt-6 mb-6">
+              <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
                 <p>
                   <b>Save the date:</b> Nov 17 is the daylong official Devconnect kickoff with ceremony at the main
                   Cowork venue.
                 </p>
-                <p>
-                  We will share details about location and program soon. Make sure to plan your events around the
-                  kickoff day and schedule them for before or after Nov 17.
-                </p>
-                <p>
-                  We will accept submissions for community events in a few weeks. In the meantime write us at
+                <p className="text-lg text-black">
+                  <b>
+                    Make sure to plan your events around the kickoff day and schedule them for before or after Nov 17
+                  </b>
+                  . We will accept submissions for community events in a few weeks. In the meantime, write us at
                   support@devconnect.org with your questions.
                 </p>
               </div>
@@ -768,9 +775,7 @@ const Home: NextPage = (props: any) => {
 
           <div className={`section relative bg-white`}>
             <div className="mt-0 pt-6 border-top pb-6">
-              <h1 className="section-header text-teal-400">
-                {(globalThis as any).translations.frequently_asked_questions}
-              </h1>
+              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
                 <FAQComponent questions={data.pages.faq} />

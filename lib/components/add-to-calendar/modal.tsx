@@ -5,18 +5,16 @@ import { Modal, ModalContent } from "lib/components/modal";
 type ModalProps = {
   open: boolean;
   close: () => void;
+  children: React.ReactNode;
 };
 
-export const AddToCalendar = ({ open, close }: ModalProps) => {
+export const AddToCalendarModal = ({ open, close, children }: ModalProps) => {
   if (!open) return <></>;
 
   return (
     <Modal open={open} close={close}>
-      <ModalContent
-        className="border-solid border-[#8B6BBB] border-t-4"
-        close={close}
-      >
-        <div>Hello world</div>
+      <ModalContent className="rounded-lg" close={close}>
+        {children}
       </ModalContent>
     </Modal>
   );
