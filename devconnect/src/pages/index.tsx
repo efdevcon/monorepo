@@ -285,7 +285,7 @@ const Home: NextPage = (props: any) => {
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
                 <div className="flex flex-col gap-0">
-                  <div className={`text-2xl lg:text-4xl flex flex-col font-semibold`}>
+                  <div className={`text-2xl lg:text-4xl flex flex-col -translate-x-[2%]`}>
                     <Image
                       src={AnnouncementDate}
                       alt="Date"
@@ -316,18 +316,20 @@ const Home: NextPage = (props: any) => {
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}
                     />
+                    {/* 
+                    <Link
+                      href="https://paragraph.xyz/@efevents"
+                      className={cn(
+                        'self-start translate-x-[15%] w-[47%] -translate-y-[100%] opacity-0 transition-opacity duration-[1500ms]',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
+                      )}
+                    >
+                      <Button color="teal-1" fat className="!text-lg">
+                        Stay In The Loop
+                      </Button>
+                    </Link> */}
                   </div>
-                  {/* <Link
-                    href="#about"
-                    className={cn(
-                      'flex lg:mb-1 self-start bg-blur-sm shadow-lg text-sm sm:text-lg rounded-full p-3 px-4 sm:p-4 sm:px-6 select-none hover:scale-[1.02] opacity-0 transition-all duration-[3000ms] z-10',
-                      css['video-recap-button'],
-                      'shadow',
-                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
-                    )}
-                  >
-                    <div className="font-secondary z-10 ">{data.pages.button}</div>
-                  </Link> */}
+
                   <Image
                     src={DevconnectCubeLogo}
                     alt="Devconnect Cube Logo"
@@ -738,20 +740,21 @@ const Home: NextPage = (props: any) => {
 
           <div className="relative bg-white">
             <div className="section ">
-              <h1 className="section-header mt-6 mb-4">Want to host an event?</h1>
+              <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
+              <p className="text-xl text-black mb-5">
+                Join our World’s Fair of Ethereum apps, grab a seat at the cowork, and co-create the next big thing in
+                Ethereum.
+              </p>
               <NewSchedule />
-
               <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
                 <p>
-                  <b>Save the date:</b> Nov 17 is the daylong official Devconnect kickoff with ceremony at the main
-                  Cowork venue.
+                  ETH Day will be the official Devconnect kickoff with ceremony, talks, and grand opening of the
+                  Ethereum World's Fair and Community Hubs.
                 </p>
                 <p className="text-lg text-black">
-                  <b>
-                    Make sure to plan your events around the kickoff day and schedule them for before or after Nov 17
-                  </b>
-                  . We will accept submissions for community events in a few weeks. In the meantime, write us at
-                  support@devconnect.org with your questions.
+                  <b>Make sure to plan your community events before or after Nov 17</b>. We will feature some community
+                  events on the calendar as we get closer to the event. In the meantime, share your events on X, tag
+                  @efdevcon or write us at support@devconnect.org with your questions.
                 </p>
               </div>
             </div>
