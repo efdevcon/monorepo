@@ -23,6 +23,7 @@ import FarcasterIcon from 'assets/icons/farcaster.svg'
 import cn from 'classnames'
 import { useScroll } from 'framer-motion'
 import { useDevaBotStore } from 'store/devai'
+import MailIcon from 'assets/icons/mail.svg'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -277,6 +278,9 @@ export const FooterMenu = (props: any) => {
         </a>
         <a target="_blank" rel="noreferrer" href="https://warpcast.com/efdevconnect">
           <FarcasterIcon style={{ fill: 'white' }} />
+        </a>
+        <a target="_blank" rel="noreferrer" href="https://paragraph.xyz/@efevents">
+          <MailIcon style={{ fill: 'white' }} />
         </a>
         <a target="_blank" rel="noreferrer" href="https://github.com/efdevcon/monorepo">
           <GithubIcon style={{ fill: 'white' }} />

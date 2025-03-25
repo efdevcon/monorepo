@@ -131,21 +131,23 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   <div className={css['left']}>
                     <FooterMenu onClickMenuItem={onClickMenuItem} />
 
-                    <form
+                    {/* <form
                       id="newsletter-signup"
                       className={css['newsletter']}
                       action="https://login.sendpulse.com/forms/simple/u/eyJ1c2VyX2lkIjo4MjUxNTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjI4NDA0MywibGFuZyI6ImVuIn0="
                       method="post"
-                    >
-                      <div className={css['input-container']}>
+                    > */}
+                    {/* <div className={css['input-container']}>
                         <div>
                           <label>Email</label>
                           <input type="email" required name="email" />
                         </div>
                       </div>
-                      <input type="hidden" name="sender" value="support@devconnect.org" />
+                      <input type="hidden" name="sender" value="support@devconnect.org" /> */}
+                    {/* <Link href="https://paragraph.xyz/@efevents">
                       <Button color="teal-1">{(globalThis as any).translations.subscribe_to_newsletter}</Button>
-                    </form>
+                    </Link> */}
+                    {/* </form> */}
                   </div>
                 </div>
               </div>
@@ -316,28 +318,40 @@ const Home: NextPage = (props: any) => {
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}
                     />
-                    {/* 
-                    <Link
+                  </div>
+
+                  <div className="flex items-center gap-8">
+                    <Image
+                      src={DevconnectCubeLogo}
+                      alt="Devconnect Cube Logo"
+                      className={cn(
+                        'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[3000ms]',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
+                      )}
+                    />
+
+                    {/* <Link
                       href="https://paragraph.xyz/@efevents"
                       className={cn(
-                        'self-start translate-x-[15%] w-[47%] -translate-y-[100%] opacity-0 transition-opacity duration-[1500ms]',
+                        'opacity-0 transition-opacity duration-[3000ms]',
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
                       )}
                     >
-                      <Button color="teal-1" fat className="!text-lg">
-                        Stay In The Loop
+                      <Button
+                        color="teal-1"
+                        fat
+                        fill
+                        className={cn(
+                          '!bg-black/80 backdrop-blur-md  border-none border-solid !border-teal-900 flex items-center gap-4',
+                          (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                          'text-white [text-shadow:0_0_1px_#000,0_0_2px_#000]'
+                        )}
+                      >
+                        <MailIcon className="w-4 h-4" />
+                        Subscribe to our newsletter
                       </Button>
                     </Link> */}
                   </div>
-
-                  <Image
-                    src={DevconnectCubeLogo}
-                    alt="Devconnect Cube Logo"
-                    className={cn(
-                      'w-[60px] lg:w-[80px] opacity-0 transition-opacity duration-[3000ms]',
-                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
-                    )}
-                  />
                 </div>
               </div>
 
@@ -347,7 +361,29 @@ const Home: NextPage = (props: any) => {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
-                  <div className="text-white text-xl flex gap-4 items-center backdrop-blur-sm bg-black/20 rounded-lg p-2 px-3 shadow">
+                  {/* <Link
+                    href="https://paragraph.xyz/@efevents"
+                    className={cn(
+                      'opacity-0 transition-opacity duration-[3000ms]',
+                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
+                    )}
+                  >
+                    <Button
+                      color="teal-1"
+                      fat
+                      fill
+                      className={cn(
+                        '!bg-black/80 backdrop-blur-sm border-none border-solid !border-teal-900 flex items-center gap-4',
+                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                        'text-white [text-shadow:0_0_1px_#000,0_0_2px_#000]'
+                      )}
+                    >
+                      <MailIcon className="w-4 h-4" />
+                      Subscribe to our newsletter
+                    </Button>
+                  </Link> */}
+                  <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/80 rounded-lg p-2 px-3 shadow">
+                    <p className="text-base">Follow us</p>
                     <a
                       className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                       target="_blank"
@@ -374,11 +410,20 @@ const Home: NextPage = (props: any) => {
                       <FarcasterIcon style={{ fill: 'white' }} />
                     </a>
 
-                    <MailIcon
+                    <a
+                      className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://paragraph.xyz/@efevents"
+                    >
+                      <MailIcon style={{ fill: 'white' }} />
+                    </a>
+
+                    {/* <MailIcon
                       style={{ fill: 'white', display: 'block', cursor: 'pointer' }}
                       className="hover:scale-[1.02] transition-all duration-300"
                       onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-                    />
+                    /> */}
                   </div>
 
                   <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
