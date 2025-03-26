@@ -804,9 +804,7 @@ const Home: NextPage = (props: any) => {
 
           <div className="section relative pb-8 md:pb-12 bg-black/50 overflow-hidden">
             <div className="pt-6">
-              <h1 className="section-header" style={{ color: 'white !important' }}>
-                Blog Posts
-              </h1>
+              <h1 className="section-header white">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
             </div>
