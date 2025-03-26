@@ -786,9 +786,9 @@ const Home: NextPage = (props: any) => {
           <div className="relative bg-white">
             <div className="section ">
               <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
-              <p className="text-xl text-black mb-5">
+              <div className="text-xl text-black mb-5">
                 <RichText content={data.pages.devconnect_week.first_part} className="cms-markdown" />
-              </p>
+              </div>
               <NewSchedule />
               <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
                 <RichText content={data.pages.devconnect_week.second_part} className="cms-markdown" />
