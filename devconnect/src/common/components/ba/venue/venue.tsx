@@ -92,7 +92,10 @@ const Venue: React.FC = () => {
 
             <div className="text-[#575a7b] hidden font-semibold lg:block flex items-center gap-1 mt-1">Directions:</div>
             <div className="text-[#575a7b] flex items-center gap-1 mt-1 justify-center sm:justify-start">
-              <a href="#" className="text-[#575a7b] underline font-bold text-sm sm:text-sm">
+              <a
+                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
+                className="text-[#575a7b] underline font-bold text-sm sm:text-sm"
+              >
                 View Map
               </a>
               <span className="text-[#f78da7] ">
