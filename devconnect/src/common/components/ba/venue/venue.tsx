@@ -107,7 +107,7 @@ const Venue: React.FC = () => {
             <div className="flex flex-col justify-center items-center text-right">
               <p className="text-[#575a7b] text-[0.81rem]">BUENOS AIRES, ARGENTINA</p>
               <p className="text-[#f78da7] bold text-xl leading-tight">
-                17 — 22 <span className="text-[#575a7b] bold">Nov, 2024</span>
+                17 — 22 <span className="text-[#575a7b] bold">Nov, 2025</span>
               </p>
             </div>
             <div className="ml-auto">
