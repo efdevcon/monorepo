@@ -112,7 +112,7 @@ const NewScheduleIndex = () => {
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(135px, 1fr))`
+  const columnTemplate = `repeat(${eventRange.length}, minmax(115px, 1fr))`
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {

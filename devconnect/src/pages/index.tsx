@@ -783,13 +783,24 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="relative bg-white">
+          <div className="relative bg-white overflow-hidden max-w-screen">
             <div className="section ">
               <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
               <div className="text-xl text-black mb-5">
                 <RichText content={data.pages.devconnect_week.first_part} className="cms-markdown" />
               </div>
-              <NewSchedule />
+            </div>
+            <div className="section">
+              <div className="expand-right lg:hidden">
+                <NewSchedule />
+                {/* <div className="w-[16px] h-1 opacity-0 shrink-0" data-id="white-space"></div> */}
+              </div>
+              <div className="hidden lg:block">
+                <NewSchedule />
+              </div>
+            </div>
+
+            <div className="section">
               <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
                 <RichText content={data.pages.devconnect_week.second_part} className="cms-markdown" />
               </div>
