@@ -1,6 +1,6 @@
 import { Watch } from "@/components/domain/archive";
 
-export default async function Index() {
+export default function Index() {
   return (
     <div className="">
       <Watch />

@@ -3,6 +3,9 @@ import css from "./video-card.module.scss";
 import { BasicCard } from "@/components/common/card";
 import { ArchiveVideo, Playlist } from "@/types";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+
+dayjs.extend(utc);
 
 interface Props {
   video: ArchiveVideo;
@@ -25,7 +28,7 @@ export const VideoCard = (props: Props) => {
   if (props.className) className += ` ${props.className}`;
 
   function getWatchUrl() {
-    let url = `${props.video.slug}`;
+    let url = `/${props.video.eventId}/${props.video.id}`;
 
     if (props.playlist) {
       url += `?playlist=${props.playlist.title}`;
@@ -49,7 +52,7 @@ export const VideoCard = (props: Props) => {
             src={
               props.video.sources_youtubeId
                 ? `https://img.youtube.com/vi/${props.video.sources_youtubeId}/maxresdefault.jpg`
-                : "/assets/images/video-soon.png"
+                : "/images/video-soon.png"
             }
             alt={`${props.video.title} preview`}
           />
@@ -80,7 +83,7 @@ export const VideoCard = (props: Props) => {
           <div>
             {props.video.speakers && (
               <p className={`${css["speakers"]}`}>
-                {props.video.speakers.join(", ")}
+                {props.video.speakers.map((speaker) => speaker.name).join(", ")}
               </p>
             )}
           </div>

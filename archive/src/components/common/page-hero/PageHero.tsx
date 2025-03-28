@@ -54,6 +54,8 @@ const PathNavigation = (props: PageHeroProps) => {
   // get full current path from the url using next/navigation
   let path = usePathname();
   console.log("USE PATHNAME", path);
+
+  if (!path || path === "/") return null;
   console.log("path.split('/')", path.split("/"));
 
   if (Array.isArray(props.path)) {
@@ -83,6 +85,7 @@ const PathNavigation = (props: PageHeroProps) => {
   }
 
   console.log("PATH HERO PROPS", path, props.path, "path");
+
   return (
     <p className={`${css["path"]} font-xs text-uppercase`}>
       {path || props.path}

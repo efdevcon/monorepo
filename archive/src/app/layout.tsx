@@ -7,14 +7,9 @@ import {
   SOCIAL_TWITTER,
 } from "@/utils/site";
 import { Layout } from "@/components/layout";
-import { QueryProvider } from "@/providers/query";
+import { Providers } from "@/providers";
 import "@/assets/globals.css";
 import "@/assets/css/index.scss";
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from "@tanstack/react-query";
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
@@ -55,9 +50,7 @@ export const viewport: Viewport = {
   themeColor: "#30354b",
 };
 
-export default async function RootLayout(props: PropsWithChildren) {
-  const queryClient = new QueryClient();
-
+export default function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en">
       <head>
@@ -71,11 +64,9 @@ export default async function RootLayout(props: PropsWithChildren) {
         />
       </head>
       <body>
-        <QueryProvider>
-          <HydrationBoundary state={dehydrate(queryClient)}>
-            <Layout>{props.children}</Layout>
-          </HydrationBoundary>
-        </QueryProvider>
+        <Providers>
+          <Layout>{props.children}</Layout>
+        </Providers>
       </body>
     </html>
   );

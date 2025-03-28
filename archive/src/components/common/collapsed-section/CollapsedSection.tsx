@@ -56,7 +56,7 @@ export const CollapsedSectionContent = (props: any) => {
 
       setTimeout(() => {
         setContentHeight(`0px`);
-        ref.current.style.setProperty("--contentHeight", `0px`);
+        // ref.current.style.setProperty("--contentHeight", `0px`);
 
         locked.current = false;
       }, 10);

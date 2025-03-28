@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import css from "./watch.module.scss";
-import { VideoCard } from "./VideoCard";
+import { VideoCard } from "@/components/domain/archive/VideoCard";
 import { useSort, SortVariation, Sort } from "@/components/common/sort";
 import IconGrid from "@/assets/icons/grid.svg";
 import IconFilter from "@/assets/icons/filter.svg";
@@ -84,8 +84,6 @@ export const Watch = (props: WatchProps) => {
     const from = (nr - 1) * defaultPageSize;
     setFrom(from);
   }
-
-  const imageData = null; // TODO: Add image data
 
   const noResults = data && data.items && data.items.length === 0;
 

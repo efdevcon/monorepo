@@ -11,7 +11,10 @@ type Props = {
 export default async function Index({ params }: Props) {
   const { event, slug } = params;
 
-  const session = await getSessionBySlug(slug, `devcon-${event}`);
+  const session = await getSessionBySlug(
+    slug,
+    event.startsWith("devcon") ? event : `devcon-${event}`
+  );
 
   if (!session) return null;
 

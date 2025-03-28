@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { VideoCard } from "./VideoCard";
+import { VideoCard } from "@/components/domain/archive/VideoCard";
 import { Slider, useSlider } from "@/components/common/slider";
 import { Playlist } from "@/types";
 import css from "./playlists.module.scss";
