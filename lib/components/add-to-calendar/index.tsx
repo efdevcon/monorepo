@@ -1,4 +1,4 @@
-import { AddToCalendar } from "./add-to-calendar";
+import { AddToCalendarModal } from "./modal";
 import { generateCalendarExport } from "./utils";
 
-export { AddToCalendar, generateCalendarExport };
+export { AddToCalendarModal, generateCalendarExport };

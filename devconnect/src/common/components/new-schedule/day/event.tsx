@@ -1,5 +1,5 @@
 import React from 'react'
-import { PenLine, Star } from 'lucide-react'
+import { PenLine, Star, MapPin } from 'lucide-react'
 import { Event as EventType } from '../model'
 import { format, parseISO } from 'date-fns'
 import cn from 'classnames'

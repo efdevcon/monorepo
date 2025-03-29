@@ -76,7 +76,9 @@ $max-content-width: $content-width + ($side-gap * 2);
   font-family: var(--font-roboto-condensed);
   text-transform: uppercase;
   @apply text-3xl;
-  color: rgb(45, 212, 191) !important;
+  font-weight: 700;
+  // color: rgb(45, 212, 191) !important;
+  color: #6b9ad3 !important;
 }
 
 // .grey {
@@ -507,7 +509,9 @@ $standard-spacing: 2em;
 
 .cms-markdown {
   .text-3xl {
-    color: rgb(45, 212, 191) !important;
+    // color: rgb(45, 212, 191) !important;
+    font-weight: 700;
+    color: #6b9ad3 !important;
     font-family: var(--font-roboto-condensed);
     text-transform: uppercase;
   }
