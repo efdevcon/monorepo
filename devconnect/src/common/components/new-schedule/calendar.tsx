@@ -59,7 +59,9 @@ const NewSchedule = () => {
   // Check if event is full (simplified logic - assuming amountPeople is capacity)
   const isEventFull = (event: Event) => {
     // This is a placeholder - in a real app, you'd compare registered users to capacity
-    return parseInt(event.amountPeople) <= 20 // Just for demo purposes
+    // return parseInt(event.amountPeople) <= 20 // Just for demo purposes
+
+    return false
   }
 
   return (
