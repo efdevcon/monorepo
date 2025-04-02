@@ -369,7 +369,7 @@ export function vectorizeSessions(sessions: any[], limit: number = 10, saveToFil
   const similarities = []
   for (let i = 0; i < vectorizedSessions.length; i++) {
     const session = vectorizedSessions[i]
-    const recommendations = GetRecommendedVectorSearch(session.vector, vectorizedSessions, limit)
+    const recommendations = GetRecommendedVectorSearch(session.vector, vectorizedSessions, limit + 1) // +1 to skip itself
     const filteredRecommendations = recommendations.filter((rec) => rec.id !== session.session.id)
     similarities.push(
       ...filteredRecommendations.map((rec) => ({
