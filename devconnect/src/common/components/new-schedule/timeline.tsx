@@ -6,6 +6,11 @@ import Image from 'next/image'
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll'
 import useDimensions from 'react-cool-dimensions'
 import { computeCalendarRange } from './calendar.utils'
+import { useCalendarStore } from 'store/calendar'
+import { Star } from 'lucide-react'
+import coworkingImage from './day/cowork.webp'
+
+const width = 80
 
 // Component to display room headers
 const RoomGrid = ({ locations }: { locations: string[] }) => {
@@ -19,7 +24,7 @@ const RoomGrid = ({ locations }: { locations: string[] }) => {
   return (
     <div
       className={cn('flex flex-col shrink-0 z-[5] left-0', isNativeScroll ? 'absolute' : 'relative')}
-      style={{ gridTemplateColumns: `repeat(${locations.length}, minmax(80px, 1fr))` }}
+      style={{ gridTemplateColumns: `repeat(${locations.length}, minmax(${width}px, 1fr))` }}
     >
       <div className="p-2 h-[40px] flex justify-center items-center bg-[#F5F7FA] !bg-transparent borderz border-gray-100 border-solid">
         <div></div>
@@ -28,9 +33,9 @@ const RoomGrid = ({ locations }: { locations: string[] }) => {
       {locations.map((location, index) => (
         <div
           key={index}
-          className="bg-white p-2 text-xs text-center whitespace-nowrap h-[40px] w-[100px] flex items-center justify-center border border-solid border-gray-100 glass"
+          className={`bg-white p-2 text-xs line-clamp-1 overflow-hidden text-ellipsis  whitespace-nowrap h-[40px] w-[${width}px] flex items-center  border border-solid border-gray-100 glass`}
         >
-          {location}
+          <div className="text-xs text-gray-500 truncate">{location}</div>
         </div>
       ))}
     </div>
@@ -65,7 +70,8 @@ const TimelineEvent = ({
     <div
       className={cn(
         'absolute h-full',
-        'flex flex-col border border-solid border-neutral-300 justify-center p-1 px-2 relative rounded overflow-hidden hover:border-black transition-all duration-300 z-[1] hover:z-[2]',
+        'cursor-pointer',
+        'flex gap-2 border border-solid border-neutral-300 justify-center p-1 px-2 relative rounded overflow-hidden hover:border-black transition-all duration-300 z-[1] hover:z-[2]',
         {
           'bg-[rgb(187,232,255)]': isCoworking || isETHDay,
           'bg-[#f0faff]': !isCoworking && !isETHDay,
@@ -73,8 +79,33 @@ const TimelineEvent = ({
       )}
       style={{ width: `${width}px` }}
     >
-      <div className="text-[11px] font-medium line-clamp-1 shrink-0 left-0 block">{displayName}</div>
-      {timeblock.name && <div className="text-[9px] text-gray-600 mt-0.5 shrink-0">{event.name}</div>}
+      <div className="flex flex-col items-start justify-center">
+        <div className="text-[11px] font-medium line-clamp-1 shrink-0 left-0 block">{displayName}</div>
+        {timeblock.name && <div className="text-[9px] text-gray-600 mt-0.5 shrink-0">{event.name}</div>}
+      </div>
+
+      <div className="flex gap-2 shrink-0 grow sticky right-0 text-[9px] items-center">
+        <div
+          className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center border border-solid border-neutral-700`}
+        >
+          {event.difficulty}
+        </div>
+        <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end border border-solid border-neutral-700">
+          <Star className="text-black shrink-0" size={11} />
+          RSVP
+        </div>
+      </div>
+
+      {/* {isCoworking && (
+        <div className="absolute left-[0%] top-0 bottom-0 max-w-full overflow-hidden z-[1]">
+          <div className="absolute left-0 top-0 bottom-0 w-[50%] bg-gradient-to-r from-white to-transparent z-1"></div>
+          <Image
+            src={coworkingImage}
+            alt="Coworking"
+            className="sticky left-0 h-full w-full object-start position-start object-cover"
+          />
+        </div>
+      )} */}
 
       {/* <div className="flex gap-1 mt-1 items-center justify-end">
         <div className={`rounded text-[8px] ${difficultyClass} px-1 py-0.5`}>{event.difficulty}</div>
@@ -113,11 +144,11 @@ const DayGrid = ({
       <div className="flex flex-col">
         <div
           className={cn(
-            'grid shrink-0 sticky top-[0px] z-[6] !border-none pointer-events-none',
+            'grid shrink-0 sticky top-[0px] z-[12] !border-none pointer-events-none bg-white',
             isNativeScroll ? '!overflow-x-auto !translate-x-0' : 'glass'
           )}
           style={{
-            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))`,
+            gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))`,
           }}
           ref={element => {
             // @ts-ignore
@@ -128,13 +159,16 @@ const DayGrid = ({
           <div
             data-type="day"
             className={cn(
-              'absolute left-0 top-0 w-[100px] h-[40px] flex items-center',
-              isNativeScroll ? 'translate-x-[0px]' : 'translate-x-[-100px]',
+              'absolute left-0 top-0 w-[80px] h-[40px] flex items-center',
+              isNativeScroll ? 'translate-x-[0px]' : 'translate-x-[-80px]',
               'border-bottom border-top z-[1]'
             )}
           >
-            <div className="sticky left-0 !bg-[#F5F7FA] h-full inline-flex items-center text-sm font-semibold w-[100px] justify-center">
+            {/* <div className="sticky left-0 !bg-[#F5F7FA] h-full inline-flex items-center text-sm font-semibold w-[100px] justify-center">
               {format(parseISO(day), 'MMM dd')}
+            </div> */}
+            <div className="sticky left-0 h-full bg-white inline-flex items-center text-sm font-semibold w-[80px] justify-center">
+              {/* {format(parseISO(day), 'MMM dd')} */}
             </div>
           </div>
 
@@ -151,9 +185,9 @@ const DayGrid = ({
               <div
                 key={index}
                 className={cn(
-                  'py-2 text-sm whitespace-nowrap relative flex items-center w-[100px] h-[40px] border-top !bg-[#F5F7FA] border-bottom'
+                  'py-2 text-sm whitespace-nowrap relative flex items-center w-[80px] h-[40px] border-top !bg-[white] border-bottom z-[1]'
                 )}
-                style={{ transform: isNativeScroll ? 'translateX(100px)' : 'translateX(var(--scroll-x))' }}
+                style={{ transform: isNativeScroll ? 'translateX(80px)' : 'translateX(var(--scroll-x))' }}
               >
                 {isCurrent && (
                   <div
@@ -166,7 +200,7 @@ const DayGrid = ({
                 )}
 
                 <div
-                  style={{ transform: index > 0 ? 'translateX(-50%)' : 'translateX(0)' }}
+                  style={{ transform: index > -1 ? 'translateX(-50%)' : 'translateX(0)' }} // set index to 0 to indent the first time slot
                   className="flex flex-col justify-center items-center"
                 >
                   <p className="text-xs">{format(time, 'h:mm a')}</p>
@@ -180,8 +214,8 @@ const DayGrid = ({
         <SwipeToScroll speed={1.5} noScrollReset syncElement={scrollSyncRef}>
           <div className={cn('flex', isNativeScroll ? '' : '')}>
             <div
-              className={cn('grid relative shrink-0', isNativeScroll ? 'translate-x-[100px]' : '')}
-              style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(100px, 1fr))` }}
+              className={cn('grid relative shrink-0', isNativeScroll ? 'translate-x-[80px]' : '')}
+              style={{ gridTemplateColumns: `repeat(${timeSlots.length}, minmax(80px, 1fr))` }}
             >
               {locations.map((location, locationIndex) => {
                 const events = eventsByLocation[location] || []
@@ -235,7 +269,7 @@ const DayGrid = ({
                       return (
                         <div
                           key={slotIndex}
-                          className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[100px]`}
+                          className={`bg-white border border-gray-100 border-solid h-[40px] relative max-w-[80px]`}
                         >
                           {matches.map((match, index) => {
                             const { event, timeblock } = match.eventItem
@@ -268,6 +302,8 @@ const DayGrid = ({
 
 // Main Timeline component
 const Timeline = ({ events }: { events: Event[] }) => {
+  const { selectedDay, setSelectedDay } = useCalendarStore()
+
   // Create a memoized version of timeslots for each day to prevent recalculations
   const days = useMemo(() => {
     return computeCalendarRange(events)
@@ -419,6 +455,7 @@ const Timeline = ({ events }: { events: Event[] }) => {
       {days.map(day => {
         const timeSlots = timeSlotsByDay[day] || []
         if (timeSlots.length === 0) return null
+        if (day !== selectedDay) return null
 
         // Get only locations that have events for this day
         const locationsForDay = locationsByDay[day] || []

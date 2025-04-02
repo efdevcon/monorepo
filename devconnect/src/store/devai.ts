@@ -11,3 +11,4 @@ export const useDevaBotStore = create<DevaBotStore>((set) => ({
   setVisible: (visible: boolean) => set({ visible }),
   toggleVisible: () => set((state) => ({ visible: !state.visible })),
 }));
+

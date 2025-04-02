@@ -5,14 +5,43 @@ import { format, parseISO } from 'date-fns'
 import cn from 'classnames'
 import Image from 'next/image'
 import coworkingImage from './cowork.webp'
+import { useCalendarStore } from 'store/calendar'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from 'lib/components/ui/dialog'
+import { Button } from 'lib/components/button'
 
 type EventProps = {
   event: EventType
   duration: number
   className?: string
 }
+const formatTime = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleTimeString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  })
+}
+
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+  })
+}
 
 const Event: React.FC<EventProps> = ({ event, duration, className }) => {
+  const { selectedEvent, setSelectedEvent } = useCalendarStore()
   // Get the first timeblock for display
   const timeblock = event.timeblocks[0]
   const eventClassName = className || ''
@@ -37,18 +66,23 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
   const isCoworking = event.name.includes('Coworking')
   const isETHDay = event.name.includes('ETH Day')
 
+  const isCoreEvent = event.isCoreEvent || event.isFairEvent
+
   let eventName = event.name
 
   return (
     <div
       className={cn(
-        'min-h-[60px] group bg-[#f0faff]',
+        'min-h-[60px] group bg-[#f0faff] cursor-pointer',
         'flex flex-col h-full gap-4 border border-solid border-neutral-400 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black transition-all duration-300',
         {
-          'bg-[rgb(187,232,255)] border-neutral-400': isCoworking || isETHDay,
+          'bg-[rgb(187,232,255)] border-neutral-400 border-solid': isCoworking || isETHDay,
         },
-        eventClassName
+        eventClassName,
+        isCoreEvent && !isETHDay && !isCoworking && 'bg-blue border-solid',
+        selectedEvent?.id === event.id && 'border-black'
       )}
+      onClick={() => setSelectedEvent(event)}
     >
       {isCoworking && (
         <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
@@ -60,6 +94,41 @@ const Event: React.FC<EventProps> = ({ event, duration, className }) => {
           />
         </div>
       )}
+
+      <Dialog open={selectedEvent?.id === event.id} onOpenChange={() => setSelectedEvent(null)}>
+        <DialogContent className="w-[auto] max-w-[1000px] max-h-[90vh] overflow-y-auto text-black">
+          <DialogHeader>
+            <DialogTitle>{event.name}</DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            <div className="flex flex-col gap-2">
+              <div className="text-sm">
+                {event.timeblocks.map((timeblock, index) => (
+                  <div key={index} className="mb-2 border-b last:border-b-0 pb-2">
+                    <div className="font-medium text-gray-700">{formatDate(timeblock.start)}</div>
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <span>
+                        {formatTime(timeblock.start)} - {formatTime(timeblock.end)}
+                      </span>
+                      {timeblock.name && <span className="text-gray-600">• {timeblock.name}</span>}
+                    </div>
+                    {timeblock.location && <div className="text-gray-500 text-xs mt-0.5">📍 {timeblock.location}</div>}
+                  </div>
+                ))}
+              </div>
+              <div className="text-sm">{event.description}</div>
+              <div className="text-sm">{event.location.text}</div>
+              <div className="text-sm">{event.difficulty}</div>
+              <div className="text-sm">{event.amountPeople}</div>
+              <div className="text-sm">{event.organizer}</div>
+              <div className="text-sm">{event.lemonadeID}</div>
+            </div>
+          </DialogDescription>
+          <DialogFooter>
+            <Button>RSVP</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       {isETHDay && (
         <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">

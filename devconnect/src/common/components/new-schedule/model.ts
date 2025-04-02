@@ -1,6 +1,8 @@
 export interface Event {
   id: string;
   name: string;
+  isFairEvent?: boolean;
+  isCoreEvent?: boolean;
   description: string;
   organizer: string;
   difficulty: string;
@@ -9,6 +11,10 @@ export interface Event {
   location: {
     url: string;
     text: string;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   };
   timeblocks: {
     start: string;

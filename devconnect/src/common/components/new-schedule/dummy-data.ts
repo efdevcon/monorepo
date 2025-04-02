@@ -4,6 +4,7 @@ export const dummyEvents: Event[] = [
   {
     id: "event-000",
     name: "Ethereum World's Fair & Coworking Space",
+    isFairEvent: true,
     description: "Open coworking space for developers, builders, and researchers to collaborate throughout the week.",
     organizer: "DevConnect",
     difficulty: "Beginner",
@@ -68,6 +69,7 @@ export const dummyEvents: Event[] = [
   {
     id: "event-001",
     name: "ETH Day",
+    isFairEvent: true,
     description: "A beginner-friendly workshop covering blockchain fundamentals and use cases.",
     organizer: "Ethereum Foundation",
     difficulty: "Beginner",
@@ -173,6 +175,7 @@ export const dummyEvents: Event[] = [
   {
     id: "event-006",
     name: "Multi-day Hackathon",
+    isFairEvent: true,
     description: "Build innovative blockchain solutions over a three-day hackathon event.",
     organizer: "ETH Global",
     difficulty: "Intermediate",
@@ -265,6 +268,7 @@ export const dummyEvents: Event[] = [
   {
     id: "event-010",
     name: "Blockchain Governance Forum",
+    isFairEvent: true,
     description: "Exploring different governance models in blockchain projects and DAOs.",
     organizer: "Governance Guild",
     difficulty: "Advanced",
@@ -286,6 +290,7 @@ export const dummyEvents: Event[] = [
   {
     id: "event-011",
     name: "NFT Art Exhibition",
+    isFairEvent: true,
     description: "Showcase of digital art and NFT collections from renowned crypto artists.",
     organizer: "CryptoArt Collective",
     difficulty: "Beginner",
@@ -391,5 +396,320 @@ export const dummyEvents: Event[] = [
     ],
     priority: 1,
     categories: ["Keynote", "Networking", "Celebration"]
+  },
+  {
+    id: "event-016",
+    name: "MEV Workshop & Discussion",
+    description: "Deep dive into Maximal Extractable Value, its implications, and potential solutions.",
+    organizer: "MEV Research Collective",
+    difficulty: "Advanced",
+    lemonadeID: "lemonade-016",
+    amountPeople: "75",
+    location: {
+      url: "https://example.com/venue16",
+      text: "Research Hub"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-19T14:00:00Z",
+        end: "2025-11-19T17:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["MEV", "Research", "Technical"]
+  },
+  {
+    id: "event-017",
+    name: "Web3 Career Fair",
+    description: "Connect with leading blockchain companies and explore career opportunities in Web3.",
+    organizer: "Crypto Careers Network",
+    difficulty: "Beginner",
+    lemonadeID: "lemonade-017",
+    amountPeople: "400",
+    location: {
+      url: "https://example.com/venue17",
+      text: "Career Expo Center"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-20T10:00:00Z",
+        end: "2025-11-20T16:00:00Z"
+      }
+    ],
+    priority: 1,
+    categories: ["Career", "Networking", "Recruitment"]
+  },
+  {
+    id: "event-018",
+    name: "Ethereum Security Workshop",
+    description: "Hands-on workshop focusing on smart contract auditing and security best practices.",
+    organizer: "Security DAO",
+    difficulty: "Advanced",
+    lemonadeID: "lemonade-018",
+    amountPeople: "60",
+    location: {
+      url: "https://example.com/venue18",
+      text: "Security Lab"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-21T13:00:00Z",
+        end: "2025-11-21T17:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Security", "Smart Contracts", "Workshop"]
+  },
+  {
+    id: "event-019",
+    name: "Crypto Economics Symposium",
+    description: "Academic conference exploring tokenomics, mechanism design, and economic models in crypto.",
+    organizer: "Crypto Economics Lab",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-019",
+    amountPeople: "120",
+    location: {
+      url: "https://example.com/venue19",
+      text: "Economics Building"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-22T09:00:00Z",
+        end: "2025-11-22T15:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Economics", "Research", "Academic"]
+  },
+  {
+    id: "event-020",
+    name: "Ethereum Identity Systems Workshop",
+    description: "Exploring decentralized identity solutions and their implementation on Ethereum.",
+    organizer: "Identity Working Group",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-020",
+    amountPeople: "80",
+    location: {
+      url: "https://example.com/venue20",
+      text: "Workshop Room A"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-19T10:00:00Z",
+        end: "2025-11-19T13:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Identity", "Privacy", "Technical"]
+  },
+  {
+    id: "event-021",
+    name: "Blockchain for Social Impact",
+    description: "Case studies and discussions on using blockchain technology for social good.",
+    organizer: "Impact DAO",
+    difficulty: "Beginner",
+    lemonadeID: "lemonade-021",
+    amountPeople: "150",
+    location: {
+      url: "https://example.com/venue21",
+      text: "Community Hall"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-20T13:00:00Z",
+        end: "2025-11-20T17:00:00Z"
+      }
+    ],
+    priority: 1,
+    categories: ["Social Impact", "Case Studies", "Community"]
+  },
+  {
+    id: "event-022",
+    name: "Rollup Development Workshop",
+    description: "Technical deep dive into building and optimizing rollup solutions.",
+    organizer: "Scaling Solutions Lab",
+    difficulty: "Advanced",
+    lemonadeID: "lemonade-022",
+    amountPeople: "50",
+    location: {
+      url: "https://example.com/venue22",
+      text: "Tech Lab 2"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-21T10:00:00Z",
+        end: "2025-11-21T16:00:00Z"
+      }
+    ],
+    priority: 3,
+    categories: ["Layer 2", "Scaling", "Development"]
+  },
+  {
+    id: "event-023",
+    name: "Web3 Legal Summit",
+    description: "Legal experts discuss regulatory frameworks and compliance in crypto.",
+    organizer: "Blockchain Law Association",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-023",
+    amountPeople: "180",
+    location: {
+      url: "https://example.com/venue23",
+      text: "Legal Forum"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-22T09:00:00Z",
+        end: "2025-11-22T17:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Legal", "Regulation", "Compliance"]
+  },
+  {
+    id: "event-024",
+    name: "DeFi Risk Management",
+    description: "Understanding and mitigating risks in decentralized finance protocols.",
+    organizer: "DeFi Risk DAO",
+    difficulty: "Advanced",
+    lemonadeID: "lemonade-024",
+    amountPeople: "70",
+    location: {
+      url: "https://example.com/venue24",
+      text: "Finance Center"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-19T15:00:00Z",
+        end: "2025-11-19T18:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["DeFi", "Risk Management", "Finance"]
+  },
+  {
+    id: "event-025",
+    name: "Ethereum Data Analytics",
+    description: "Tools and techniques for analyzing on-chain data and market trends.",
+    organizer: "Blockchain Analytics Group",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-025",
+    amountPeople: "90",
+    location: {
+      url: "https://example.com/venue25",
+      text: "Data Lab"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-20T09:00:00Z",
+        end: "2025-11-20T13:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Analytics", "Data Science", "Research"]
+  },
+  {
+    id: "event-026",
+    name: "Web3 Content Creation Workshop",
+    description: "Learn effective strategies for creating educational crypto content.",
+    organizer: "Crypto Education Network",
+    difficulty: "Beginner",
+    lemonadeID: "lemonade-026",
+    amountPeople: "100",
+    location: {
+      url: "https://example.com/venue26",
+      text: "Media Center"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-21T14:00:00Z",
+        end: "2025-11-21T17:00:00Z"
+      }
+    ],
+    priority: 1,
+    categories: ["Education", "Content", "Media"]
+  },
+  {
+    id: "event-027",
+    name: "Decentralized Storage Summit",
+    description: "Exploring innovations in decentralized storage solutions and IPFS.",
+    organizer: "Storage Protocol Alliance",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-027",
+    amountPeople: "85",
+    location: {
+      url: "https://example.com/venue27",
+      text: "Protocol Hub"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-22T11:00:00Z",
+        end: "2025-11-22T16:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Storage", "Infrastructure", "Technical"]
+  },
+  {
+    id: "event-028",
+    name: "Crypto UX Research Symposium",
+    description: "Share and discuss latest research in blockchain user experience design.",
+    organizer: "UX Research Collective",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-028",
+    amountPeople: "60",
+    location: {
+      url: "https://example.com/venue28",
+      text: "Design Center"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-19T09:00:00Z",
+        end: "2025-11-19T12:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["UX", "Research", "Design"]
+  },
+  {
+    id: "event-029",
+    name: "Smart Contract Testing Workshop",
+    description: "Hands-on session on testing frameworks and best practices for smart contracts.",
+    organizer: "Testing Standards Group",
+    difficulty: "Advanced",
+    lemonadeID: "lemonade-029",
+    amountPeople: "40",
+    location: {
+      url: "https://example.com/venue29",
+      text: "Testing Lab"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-20T14:00:00Z",
+        end: "2025-11-20T18:00:00Z"
+      }
+    ],
+    priority: 2,
+    categories: ["Development", "Testing", "Smart Contracts"]
+  },
+  {
+    id: "event-030",
+    name: "Web3 Startup Pitch Competition",
+    description: "Early-stage blockchain startups compete for funding and mentorship opportunities.",
+    organizer: "Crypto Founders Network",
+    difficulty: "Intermediate",
+    lemonadeID: "lemonade-030",
+    amountPeople: "200",
+    location: {
+      url: "https://example.com/venue30",
+      text: "Startup Arena"
+    },
+    timeblocks: [
+      {
+        start: "2025-11-21T11:00:00Z",
+        end: "2025-11-21T18:00:00Z"
+      }
+    ],
+    priority: 1,
+    categories: ["Startups", "Funding", "Competition"]
   }
 ]; 
