@@ -44,13 +44,13 @@ const MapComponent = () => {
         mapContainerStyle={{ width: '100%', height: '100%' }}
         onLoad={map => {
           eventLocations.forEach(location => {
-            if (location.coordinates) {
-              const advancedMarker = new google.maps.marker.AdvancedMarkerElement({
-                map,
-                position: location.coordinates,
-                title: location.name,
-              })
-            }
+            // if (location.coordinates) {
+            //   const advancedMarker = new google.maps.marker.AdvancedMarkerElement({
+            //     map,
+            //     position: location.coordinates,
+            //     title: location.name,
+            //   })
+            // }
           })
         }}
       ></GoogleMap>
