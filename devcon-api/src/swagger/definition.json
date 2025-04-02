@@ -197,6 +197,9 @@
           },
           "401": {
             "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -1052,6 +1055,27 @@
         }
       }
     },
+    "/devabot/threads/{threadID}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "threadID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/devabot": {
       "post": {
         "description": "",
@@ -1059,6 +1083,11 @@
           {
             "name": "x-forwarded-for",
             "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "version",
+            "in": "query",
             "type": "string"
           },
           {
@@ -1078,11 +1107,11 @@
           }
         ],
         "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
           "429": {
             "description": "Too Many Requests"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
