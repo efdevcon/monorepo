@@ -1,5 +1,5 @@
 import { Video } from "@/components/domain/archive";
-import { getSessionBySlug } from "@/services/devcon";
+import { getRelatedSessions, getSessionBySlug } from "@/services/devcon";
 
 type Props = {
   params: {
@@ -15,8 +15,9 @@ export default async function Index({ params }: Props) {
     slug,
     event.startsWith("devcon") ? event : `devcon-${event}`
   );
+  const related = await getRelatedSessions(session?.id);
 
   if (!session) return null;
 
-  return <Video video={session} />;
+  return <Video video={session} relatedVideos={related} />;
 }

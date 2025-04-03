@@ -81,7 +81,6 @@ export async function getFeaturedSessions(
 }
 
 export async function getSessionBySlug(slug: string, eventId?: string) {
-  console.log("getSessionBySlug", slug, eventId);
   const response = await fetch(`${CONFIG.API_BASE_URL}/sessions/${slug}`);
   const session = await response.json();
 
@@ -90,4 +89,13 @@ export async function getSessionBySlug(slug: string, eventId?: string) {
   if (session?.data?.eventId === eventId) {
     return session.data;
   }
+}
+
+export async function getRelatedSessions(sessionId: string) {
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions/${sessionId}/related`
+  );
+
+  const relatedSessions = await response.json();
+  return relatedSessions.data;
 }
