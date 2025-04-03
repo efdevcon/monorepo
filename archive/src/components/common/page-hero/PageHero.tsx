@@ -99,8 +99,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
   if (isWatch)
     return (
       <PageHero
-        title="Archive"
-        titleClassName={css["white-title"]}
+        title="Watch"
         description="Devcon content curated and organized for your discovery and learning."
       ></PageHero>
     );
@@ -157,7 +156,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
           };
         })}
         title="Archive"
-        titleClassName={css["white-title"]}
+        titleClassName="text-white"
       ></PageHero>
     );
 
@@ -232,7 +231,7 @@ export const PageHero = (props: PageHeroProps) => {
           {(props.title || props.description || props.cta) && (
             <div className={css["title-block"]}>
               <h1
-                className={`font-massive-2 text-white ${
+                className={`font-massive-2 ${
                   props.titleSubtext ? css["subtext"] : ""
                 } ${props.titleClassName ? props.titleClassName : ""}`}
               >
