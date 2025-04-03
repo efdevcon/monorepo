@@ -9,6 +9,7 @@ import { computeCalendarRange } from './calendar.utils'
 import { useCalendarStore } from 'store/calendar'
 import { Star } from 'lucide-react'
 import coworkingImage from './day/cowork.webp'
+import { useDraggableLink } from 'lib/hooks/useDraggableLink'
 
 const width = 80
 
@@ -33,7 +34,7 @@ const RoomGrid = ({ locations }: { locations: string[] }) => {
       {locations.map((location, index) => (
         <div
           key={index}
-          className={`bg-white p-2 text-xs line-clamp-1 overflow-hidden text-ellipsis  whitespace-nowrap h-[40px] w-[${width}px] flex items-center  border border-solid border-gray-100 glass`}
+          className={`bg-white/90 bg-blur-sm p-2 text-xs line-clamp-1 overflow-hidden text-ellipsis  whitespace-nowrap h-[40px] w-[${width}px] flex items-center  border border-solid border-gray-100 glass`}
         >
           <div className="text-xs text-gray-500 truncate">{location}</div>
         </div>
@@ -52,6 +53,7 @@ const TimelineEvent = ({
   timeblock: Event['timeblocks'][0]
   width: number
 }) => {
+  const { selectedEvent, setSelectedEvent } = useCalendarStore()
   // Determine CSS class based on difficulty
   const difficultyClass =
     event.difficulty === 'Beginner'
@@ -65,6 +67,7 @@ const TimelineEvent = ({
 
   // Use timeblock name if available, otherwise use event name
   const displayName = timeblock.name || event.name
+  const dragAttributes = useDraggableLink()
 
   return (
     <div
@@ -78,6 +81,23 @@ const TimelineEvent = ({
         }
       )}
       style={{ width: `${width}px` }}
+      {...dragAttributes}
+      onClick={e => {
+        const allowed = dragAttributes.onClick?.(e)
+        // console.log('prevented', prevented)
+        if (allowed) {
+          setSelectedEvent(event)
+        } else {
+          e.preventDefault()
+        }
+      }}
+      // onClickCapture={e => {
+      //   if (prevented) {
+      //     e.preventDefault()
+      //   } else {
+      //     setSelectedEvent(event)
+      //   }
+      // }}
     >
       <div className="flex flex-col items-start justify-center">
         <div className="text-[11px] font-medium line-clamp-1 shrink-0 left-0 block">{displayName}</div>
@@ -178,7 +198,7 @@ const DayGrid = ({
             let offset = 0
             if (isCurrent) {
               const minutesElapsed = Math.floor((now.getTime() - time.getTime()) / 60000)
-              offset = (minutesElapsed / 10) * 100
+              offset = (minutesElapsed / 10) * 80
             }
 
             return (
@@ -276,13 +296,13 @@ const DayGrid = ({
                             return (
                               <div
                                 key={index}
-                                className="absolute h-full"
+                                className="absolute h-full py-[1px]"
                                 style={{
-                                  width: `${match.columns * 100}px`,
-                                  left: `${match.columnIndent * 100}px`,
+                                  width: `${match.columns * 80}px`,
+                                  left: `${match.columnIndent * 80}px`,
                                 }}
                               >
-                                <TimelineEvent event={event} timeblock={timeblock} width={match.columns * 100} />
+                                <TimelineEvent event={event} timeblock={timeblock} width={match.columns * 80} />
                               </div>
                             )
                           })}
@@ -451,7 +471,7 @@ const Timeline = ({ events }: { events: Event[] }) => {
   if (!events.length) return null
 
   return (
-    <div className="flex flex-col gap-[36px]" style={{ contain: 'paint' }}>
+    <div className="flex flex-col gap-[36px]" style={{ contain: 'auto' }}>
       {days.map(day => {
         const timeSlots = timeSlotsByDay[day] || []
         if (timeSlots.length === 0) return null

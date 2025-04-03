@@ -139,7 +139,7 @@ const NewScheduleIndex = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 w-full">
       <div className="flex justify-between gap-4">
         <div className="text-lg font-bold">Devconnect 2025 Buenos Aires</div>
         <div className="flex gap-2 items-center">
@@ -184,15 +184,15 @@ const NewScheduleIndex = () => {
                 ))}
               </div>
 
-              <div
-                className="left-0 w-full z-[9] top-[100%] mt-2"
+              {/* <div
+                className="left-0 z-[9] top-[100%] mt-2"
                 style={{
                   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
                 }}
               >
                 <Timeline events={dummyEvents} />
                 {selectedDay && <MapComponent />}
-              </div>
+              </div> */}
 
               {/* Calendar body */}
               <div className={cn('contents', selectedDay && 'hidden')}>
@@ -233,6 +233,16 @@ const NewScheduleIndex = () => {
           </div>
         </div>
       </SwipeToScroll>
+
+      <div
+        className="left-0 z-[9] top-[100%] mt-2 w-full"
+        // style={{
+        //   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
+        // }}
+      >
+        <Timeline events={dummyEvents} />
+        {/* {selectedDay && <MapComponent />} */}
+      </div>
     </div>
   )
 }
