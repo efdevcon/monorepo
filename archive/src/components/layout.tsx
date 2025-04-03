@@ -17,7 +17,7 @@ export function Layout(props: PropsWithChildren) {
 
       {isHome && <Hero />}
 
-      <main className="mx-auto">{props.children}</main>
+      {props.children}
 
       <Footer />
     </main>

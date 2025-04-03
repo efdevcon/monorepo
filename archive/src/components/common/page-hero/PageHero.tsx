@@ -210,7 +210,7 @@ export const PageHero = (props: PageHeroProps) => {
     <div id="page-hero" className={className} style={style}>
       <div className="section">
         <div className={css["info"]}>
-          <PathNavigation {...props} />
+          {/* <PathNavigation {...props} /> */}
 
           <div className={css["title-block"]}>
             <h1

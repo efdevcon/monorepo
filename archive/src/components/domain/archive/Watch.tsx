@@ -89,7 +89,7 @@ export const Watch = (props: WatchProps) => {
 
   return (
     <div className="section">
-      <div className="content">
+      <div className={`${css["container"]} content`}>
         {/* Hide header div on Mobile */}
         <div className={`${css["header"]}`}>
           <div className={`${css["filter"]}`}>
