@@ -8,28 +8,67 @@ const nextConfig = {
     externalDir: true,
   },
   webpack: (config, { buildId, webpack }) => {
-    const fileLoaderRule = config.module.rules.find((rule) =>
-      rule.test?.test?.(".svg")
-    );
-
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
-        ...fileLoaderRule,
-        test: /\.svg$/i,
-        resourceQuery: /url/, // *.svg?url
+        test: /\.svg$/,
+        exclude: /icons/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
       },
-      // Convert all other *.svg imports to React components
       {
-        test: /\.svg$/i,
-        issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
-        use: ["@svgr/webpack"],
-      }
+        test: /\.svg$/,
+        include: /icons/,
+        issuer: { not: /\.(css|scss|sass)$/ },
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              svgProps: {
+                className: 'icon',
+              },
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        removeViewBox: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(glsl|vs|fs|vert|frag)$/,
+        exclude: /node_modules/,
+        use: ['raw-loader', 'glslify-loader'],
+      },
     );
 
     // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i;
+    // fileLoaderRule.exclude = /\.svg$/i;
 
     return {
       ...config,

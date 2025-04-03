@@ -214,7 +214,7 @@ export const PageHero = (props: PageHeroProps) => {
 
           <div className={css["title-block"]}>
             <h1
-              className={`font-massive-2 ${
+              className={`font-massive-2 text-white ${
                 props.titleSubtext ? css["subtext"] : ""
               } ${props.titleClassName ? props.titleClassName : ""}`}
             >

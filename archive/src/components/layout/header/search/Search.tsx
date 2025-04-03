@@ -69,7 +69,7 @@ export const Search = (props: any) => {
             })}
 
           <Link
-            href={`/achive/watch?q=${searchQuery}`}
+            href={`/watch?q=${searchQuery}`}
             className={`${css["result"]} bold text-underline"`}
           >
             View all
