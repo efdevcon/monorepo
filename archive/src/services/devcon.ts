@@ -14,6 +14,18 @@ export async function getEvent(id: string) {
   return event.data;
 }
 
+export async function getSessions(size: number = 20, from: number = 0) {
+  console.log("getSessions", size, from);
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions?size=${size}&from=${from}`
+  );
+
+  const body = await response.json();
+  if (!body.data) return [];
+
+  return body.data.items;
+}
+
 export async function getFeaturedSessions(
   type: "most-popular" | "devcon-6" | "devcon-7" | "devcon-7-opening"
 ) {
