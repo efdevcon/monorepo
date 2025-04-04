@@ -50,44 +50,42 @@ type PageHeroProps = {
 };
 
 const PathNavigation = (props: PageHeroProps) => {
-  // TODO: Implement path navigation
-  // get full current path from the url using next/navigation
   let path = usePathname();
-  console.log("USE PATHNAME", path);
 
   if (!path || path === "/") return null;
-  console.log("path.split('/')", path.split("/"));
 
-  if (Array.isArray(props.path)) {
-    path = props.path.reduce((acc, pathSegment, index) => {
-      const { url, text } = pathSegment;
+  const pathSegments = path.split("/").filter((segment) => segment !== "");
+  if (pathSegments.length <= 1) return null;
 
-      if (url) {
-        acc.push(
-          <Link
-            key={`${text} ${index}`}
-            className={`hover-underline bold`}
-            href={url}
-          >
-            {text}
-          </Link>
-        );
-      } else {
-        acc.push(<span key={`${text} ${index}`}>{text}</span>);
-      }
+  const transformedPath = pathSegments.reduce((acc, segment, index) => {
+    const transformedText = segment.replace(/-/g, " ");
 
-      if (index !== props.path.length - 1) {
-        acc.push(<span key={index}>&nbsp;/&nbsp;</span>);
-      }
+    if (index === pathSegments.length - 1) {
+      acc.push(
+        <span key={`${transformedText}-${index}`}>{transformedText}</span>
+      );
+    } else {
+      const href = "/" + pathSegments.slice(0, index + 1).join("/");
+      acc.push(
+        <Link
+          key={`${transformedText}-${index}`}
+          className="hover-underline bold"
+          href={href}
+        >
+          {transformedText}
+        </Link>
+      );
+    }
 
-      return acc;
-    }, [] as React.ReactNode[]);
-  }
+    if (index !== pathSegments.length - 1) {
+      acc.push(<span key={`separator-${index}`}>&nbsp;/&nbsp;</span>);
+    }
+
+    return acc;
+  }, [] as React.ReactNode[]);
 
   return (
-    <p className={`${css["path"]} font-xs text-uppercase`}>
-      {path || props.path}
-    </p>
+    <p className={`${css["path"]} font-xs text-uppercase`}>{transformedPath}</p>
   );
 };
 
@@ -226,7 +224,7 @@ export const PageHero = (props: PageHeroProps) => {
     <div id="page-hero" className={className} style={style}>
       <div className="section">
         <div className={css["info"]}>
-          {/* <PathNavigation {...props} /> */}
+          <PathNavigation {...props} />
 
           {(props.title || props.description || props.cta) && (
             <div className={css["title-block"]}>

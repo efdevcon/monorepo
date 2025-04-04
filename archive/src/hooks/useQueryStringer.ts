@@ -1,4 +1,4 @@
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 export const useQueryStringer = (
   object: { [key: string]: any },
@@ -6,6 +6,7 @@ export const useQueryStringer = (
   preserveUnmanagedKeys?: boolean
 ): string => {
   const isBrowser = typeof window !== "undefined";
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   let formattedObject = {} as any;
 
@@ -54,8 +55,9 @@ export const useQueryStringer = (
   if (result === "?") result = "";
 
   if (replaceState && isBrowser) {
-    const url = `${window.location.pathname}${result}`;
-    window.history.replaceState({ path: url }, "", url);
+    const url = `${pathname}${result}`;
+    // TODO: Fix filtering to queryString
+    // window.history.replaceState(null, "", url);
   }
 
   return result;
