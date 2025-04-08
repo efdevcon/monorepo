@@ -42,7 +42,7 @@ export const useVideoFilter = () => {
   const path = usePathname();
   const searchParams = useSearchParams();
 
-  const nrOfEditions = 6;
+  const nrOfEditions = 7;
   const editionFilters = Array.from(Array(nrOfEditions + 1).keys()).sort(
     (a, b) => b - a
   );
