@@ -1,4 +1,5 @@
 import { usePathname, useSearchParams } from "next/navigation";
+import React from "react";
 
 export const useQueryStringer = (
   object: { [key: string]: any },
@@ -54,11 +55,14 @@ export const useQueryStringer = (
 
   if (result === "?") result = "";
 
-  if (replaceState && isBrowser) {
-    const url = `${pathname}${result}`;
-    // TODO: Fix filtering to queryString
-    // window.history.replaceState(null, "", url);
-  }
+  // Move the URL update to a useEffect
+  React.useEffect(() => {
+    if (replaceState && isBrowser && result !== searchParams.toString()) {
+      const url = `${pathname}${result}`;
+      console.log("useQueryStringer: updating URL", url);
+      window.history.replaceState(null, "", url);
+    }
+  }, [result, pathname, searchParams]);
 
   return result;
 };

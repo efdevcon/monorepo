@@ -18,16 +18,14 @@ const queryStringToFilterState = (qs: string) => {
 
   for (const [key, value] of params.entries()) {
     try {
-      // Handle arrays (comma-separated values)
       if (value.includes(",")) {
         filters[key] = value.split(",").reduce((acc: any, tag: string) => {
-          acc[tag] = true;
+          acc[tag.trim()] = true;
           return acc;
         }, {});
       } else {
-        // Handle single values
         filters[key] = {
-          [value]: true,
+          [value.trim()]: true,
         };
       }
     } catch (e) {

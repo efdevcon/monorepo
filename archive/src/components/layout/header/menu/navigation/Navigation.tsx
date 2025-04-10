@@ -135,13 +135,13 @@ const Mobile = (props: any) => {
                             className={css["category-items"]}
                           >
                             <li key={child.title}>
-                              <Link
+                              <a
                                 className="plain hover-underline"
                                 href={child.url}
                                 // onClick={closeFoldout}
                               >
                                 {child.title}
-                              </Link>
+                              </a>
                             </li>
                           </ul>
                         );
@@ -225,12 +225,12 @@ export const Navigation = (props: NavigationProps) => {
 
                           return (
                             <li key={subKey}>
-                              <Link
+                              <a
                                 className={`${css["foldout-link"]} plain`}
                                 href={c.url}
                               >
                                 {c.title}
-                              </Link>
+                              </a>
                             </li>
                           );
                         })}
