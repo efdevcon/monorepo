@@ -59,7 +59,6 @@ export const useQueryStringer = (
   React.useEffect(() => {
     if (replaceState && isBrowser && result !== searchParams.toString()) {
       const url = `${pathname}${result}`;
-      console.log("useQueryStringer: updating URL", url);
       window.history.replaceState(null, "", url);
     }
   }, [result, pathname, searchParams]);

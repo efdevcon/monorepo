@@ -1,9 +1,12 @@
+"use client";
+
 import React, { useState } from "react";
 import { InputForm } from "@/components/common/input-form";
+import { Link } from "@/components/common/link";
+import { useArchiveSearch } from "@/hooks/useArchiveSearch";
 import IconSearch from "@/assets/icons/search.svg";
 import css from "./search.module.scss";
-import { useQueryStringer } from "@/hooks/useQueryStringer";
-import { Link } from "@/components/common/link";
+import { useRouter } from "next/navigation";
 
 export const Search = (props: any) => {
   let className = css["search-foldout"];
@@ -11,24 +14,18 @@ export const Search = (props: any) => {
     className += ` ${css["open"]}`;
   }
 
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const defaultPageSize = 6;
-  const qs = useQueryStringer({}, false);
-  const { data, isLoading, isError } = {
-    data: {
-      items: [],
-    },
-    isLoading: false,
-    isError: false,
-  }; // TODO: Implement useArchiveSearch
-  const staffPicks = {
-    videos: [],
-  }; // TODO: Implement useStaffPicks
-  const showSuggested = !searchQuery;
+  const { data, isLoading, isError } = useArchiveSearch("", {
+    q: searchQuery || "Keynote:",
+    size: 6,
+  });
 
   function onSearch() {
-    // navigate(`/watch?q=${searchQuery}`);
+    router.push(`/watch?q=${searchQuery}`);
   }
+
+  console.log("SEARCH DATA", data, isLoading, isError);
 
   return (
     <div className={className}>
@@ -51,20 +48,20 @@ export const Search = (props: any) => {
 
           {isLoading && <p className={css["result"]}>Loading results..</p>}
           {isError && <p className={css["result"]}>Unable to fetch videos..</p>}
-          {!showSuggested && data?.items?.length === 0 && (
+          {data?.items?.length === 0 && (
             <p className={css["result"]}>No videos found..</p>
           )}
-          {!showSuggested &&
-            data?.items?.length > 0 &&
+          {data?.items?.length > 0 &&
             data.items.map((i: any) => {
               return (
-                <SearchResult key={i.slug} slug={i.slug} title={i.title} />
-              );
-            })}
-          {showSuggested &&
-            staffPicks.videos.map((i: any) => {
-              return (
-                <SearchResult key={i.slug} slug={i.slug} title={i.title} />
+                <Link
+                  key={i.id}
+                  href={`/${i.eventId}/${i.id}`}
+                  className={`${css["result"]} hover-underline`}
+                >
+                  <IconSearch />
+                  <p>{i.title}</p>
+                </Link>
               );
             })}
 
@@ -77,14 +74,5 @@ export const Search = (props: any) => {
         </div>
       </div>
     </div>
-  );
-};
-
-const SearchResult = (props: any) => {
-  return (
-    <Link href={props.slug} className={`${css["result"]} hover-underline`}>
-      <IconSearch />
-      <p>{props.title}</p>
-    </Link>
   );
 };
