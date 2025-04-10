@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd ../lib && yarn && cd ../archive && next build",
+    "build": "cd ../lib && yarn --no-optional && cd ../archive && next build",
     "start": "next start",
     "lint": "next lint"
   },
