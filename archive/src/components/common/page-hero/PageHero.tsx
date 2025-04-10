@@ -158,7 +158,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
       ></PageHero>
     );
 
-  return <PageHero />;
+  return null;
 };
 
 export const PageHero = (props: PageHeroProps) => {
@@ -226,38 +226,36 @@ export const PageHero = (props: PageHeroProps) => {
         <div className={css["info"]}>
           <PathNavigation {...props} />
 
-          {(props.title || props.description || props.cta) && (
-            <div className={css["title-block"]}>
-              <h1
-                className={`font-massive-2 ${
-                  props.titleSubtext ? css["subtext"] : ""
-                } ${props.titleClassName ? props.titleClassName : ""}`}
-              >
-                {props.title}
-                {props.titleSubtext && <span>{props.titleSubtext}</span>}
-              </h1>
-              {props.description && (
-                <span className={css["description"]}>{props.description}</span>
-              )}
+          <div className={css["title-block"]}>
+            <h1
+              className={`font-massive-2 ${
+                props.titleSubtext ? css["subtext"] : ""
+              } ${props.titleClassName ? props.titleClassName : ""}`}
+            >
+              {props.title}
+              {props.titleSubtext && <span>{props.titleSubtext}</span>}
+            </h1>
+            {props.description && (
+              <span className={css["description"]}>{props.description}</span>
+            )}
 
-              {props.cta && (
-                <div className={css["buttons"]}>
-                  {props.cta.map((link: CTALink) => {
-                    return (
-                      <Link
-                        key={link.to + link.title}
-                        className="button white lg"
-                        href={link.to}
-                      >
-                        {link.icon}
-                        <span>{link.title}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
+            {props.cta && (
+              <div className={css["buttons"]}>
+                {props.cta.map((link: CTALink) => {
+                  return (
+                    <Link
+                      key={link.to + link.title}
+                      className="button white lg"
+                      href={link.to}
+                    >
+                      {link.icon}
+                      <span>{link.title}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           {props.children}
 

@@ -13,6 +13,7 @@ import { Banner } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
+import { PageHero } from "@/components/common/page-hero/PageHero";
 dayjs.extend(duration);
 
 const List = ({ video, playlist, videos }: any) => {
@@ -148,8 +149,8 @@ export const Video = (props: any) => {
   const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
   return (
-    <div className={archiveCss["container"]}>
-      <div className={css["container"]}>
+    <PageHero>
+      <div className={`${css["container"]}`}>
         <div className={css["video"]}>
           <div className={css["player"]}>
             <Tabs onSelectTab={setActiveTab} useQuerystring>
@@ -319,6 +320,6 @@ export const Video = (props: any) => {
           relatedVideos={props.relatedVideos}
         />
       </div>
-    </div>
+    </PageHero>
   );
 };
