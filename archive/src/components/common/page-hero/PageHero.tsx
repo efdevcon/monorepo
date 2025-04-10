@@ -111,7 +111,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
             callToAction: () => {
               return (
                 <Button
-                  href={item.id}
+                  href={`/${item.eventId}/${item.id}`}
                   className={`red ${css["call-to-action"]}`}
                 >
                   <span className={css["watch-now"]}>Watch Now</span>
