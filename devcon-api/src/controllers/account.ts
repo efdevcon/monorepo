@@ -522,15 +522,15 @@ async function LoginWeb3(req: Request, res: Response) {
     return res.status(400).send({ code: 400, message: 'No session token.' })
   }
 
-  const address = req.body.address as string
+  const address = req.body.address as `0x${string}`
   const nonce = Number(req.body.nonce)
   const msg = req.body.msg as string
-  const signed = req.body.signed as string
+  const signed = req.body.signed as `0x${string}`
   if (!address || !msg || !signed || !nonce || isNaN(nonce)) {
     return res.status(400).send({ code: 400, message: 'Invalid input.' })
   }
 
-  const validSignature = isValidSignature(address, msg, signed)
+  const validSignature = await isValidSignature(address, msg, signed)
   if (!validSignature) {
     return res.status(400).send({ code: 400, message: 'Invalid signature.' })
   }
