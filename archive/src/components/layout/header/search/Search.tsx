@@ -25,8 +25,6 @@ export const Search = (props: any) => {
     router.push(`/watch?q=${searchQuery}`);
   }
 
-  console.log("SEARCH DATA", data, isLoading, isError);
-
   return (
     <div className={className}>
       <div className={`${css["content"]}`}>
