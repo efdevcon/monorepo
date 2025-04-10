@@ -31,6 +31,7 @@ const ALLOWED_ORIGINS = [
   'https://api.devcon.org',
   'https://app.devcon.org',
   'https://archive.devcon.org',
+  'https://devconarchive.netlify.app',
   'https://meerkat.events',
   'https://connections.cursive.team',
 ]
