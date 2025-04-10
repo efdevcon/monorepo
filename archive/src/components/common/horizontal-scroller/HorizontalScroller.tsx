@@ -13,12 +13,12 @@ const usePreventClickWhileDragging = (elementRef: any, threshold = 10) => {
 
   // Have to add events directly to the DOM node itself
   React.useEffect(() => {
-    const handleDown = (e: Event) => {
+    const handleDown = (e: MouseEvent) => {
       preventClick.current = false;
 
       initialX.current = e.clientX;
     };
-    const handleMove = (e: Event) => {
+    const handleMove = (e: MouseEvent) => {
       preventClick.current = true;
 
       deltaX.current = Math.abs(initialX.current - e.clientX);

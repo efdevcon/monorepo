@@ -82,7 +82,9 @@ export const useSort = (
         } else {
           // If sort wasn't custom, it should reference a preset sorting method:
           const createSortingMethod =
-            presetSortingMethods[field.sort] || presetSortingMethods.basic;
+            presetSortingMethods[
+              field.sort as keyof typeof presetSortingMethods
+            ] || presetSortingMethods.basic;
           // Have to instantiate the sorting method with the field key so it knows what to sort by
           const sortingMethod = createSortingMethod(field.key);
 

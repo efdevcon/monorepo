@@ -198,10 +198,10 @@ export const PageHero = (props: PageHeroProps) => {
     () => (increment: number) => {
       const nextScene = currentScene + increment;
 
-      if (nextScene >= props.scenes.length) {
+      if (nextScene >= (props.scenes?.length || 0)) {
         setCurrentScene(0);
       } else if (nextScene < 0) {
-        setCurrentScene(props.scenes.length - 1);
+        setCurrentScene((props.scenes?.length || 0) - 1);
       } else {
         setCurrentScene(nextScene);
       }

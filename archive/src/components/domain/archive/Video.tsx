@@ -42,7 +42,9 @@ const List = ({ video, playlist, videos }: any) => {
 
 const Suggested = ({ video, relatedVideos, playlists }: any) => {
   const [playlist, setPlaylist] = React.useState<null | any>(null);
-  const tabsRef = React.useRef();
+  const tabsRef = React.useRef<{ setActiveTab: (tab: string) => void } | null>(
+    null
+  );
 
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);

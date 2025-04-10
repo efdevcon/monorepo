@@ -85,3 +85,5 @@ export const Link = React.forwardRef(
     );
   }
 );
+
+Link.displayName = "Link";

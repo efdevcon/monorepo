@@ -123,7 +123,10 @@ const Mobile = (props: any) => {
 
                         if (isHeader) {
                           return (
-                            <p className={css["category-header"]}>
+                            <p
+                              key={`header-${child.title}`}
+                              className={css["category-header"]}
+                            >
                               {child.title}
                             </p>
                           );
@@ -131,14 +134,13 @@ const Mobile = (props: any) => {
 
                         return (
                           <ul
-                            key={child.title}
+                            key={`category-${child.title}`}
                             className={css["category-items"]}
                           >
                             <li key={child.title}>
                               <a
                                 className="plain hover-underline"
                                 href={child.url}
-                                // onClick={closeFoldout}
                               >
                                 {child.title}
                               </a>

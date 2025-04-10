@@ -49,7 +49,7 @@ export const useFilter = (options: FilterOptions | undefined) => {
 
         setActiveFilterMulti(nextActiveFilter);
       } else {
-        const nextActiveFilter = {
+        const nextActiveFilter: any = {
           ...activeFilterMulti,
           [value]: true,
         };

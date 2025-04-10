@@ -38,7 +38,7 @@ export const Banner = (props: Props) => {
     <div className={className}>
       <div className={css["top"]}>
         <div className={css["cta"]}>
-          <Link to={ctaLink}>{props.cta ?? props.type}</Link>
+          <Link href={ctaLink}>{props.cta ?? props.type}</Link>
           <span
             className={css["learn-more"]}
             role="button"
@@ -66,7 +66,7 @@ export const Banner = (props: Props) => {
                 aria-label="Copy hash to clipboard"
                 onClick={() => {
                   if (window?.navigator?.clipboard) {
-                    navigator.clipboard.writeText(props.hash);
+                    navigator.clipboard.writeText(props.hash || "");
                     setCopied(true);
 
                     setTimeout(() => {
@@ -90,7 +90,7 @@ export const Banner = (props: Props) => {
           <div className={css["modal-content"]}>
             {props.type === "IPFS" && (
               <>
-                <p>Let's just start with a one-line definition of IPFS:</p>
+                <p>Let&apos;s just start with a one-line definition of IPFS:</p>
                 <p className={css["lead"]}>
                   IPFS is a distributed system for storing and accessing files,
                   websites, applications, and data.
@@ -104,7 +104,7 @@ export const Banner = (props: Props) => {
                   more about Ethereum regardless of intermediaries.
                 </p>
                 <p>
-                  <Link to="https://docs.ipfs.io/" indicateExternal>
+                  <Link href="https://docs.ipfs.io/" indicateExternal>
                     Learn more about IPFS
                   </Link>
                 </p>
@@ -120,7 +120,7 @@ export const Banner = (props: Props) => {
                   censorship-resistant, unstoppable, serverless dapps. If
                   Ethereum is considered the world’s CPU, Swarm is the world’s
                   Hard Drive. Find more info about Swarm on{" "}
-                  <Link to="https://www.ethswarm.org/">
+                  <Link href="https://www.ethswarm.org/">
                     https://www.ethswarm.org/
                   </Link>
                 </p>
@@ -133,9 +133,9 @@ export const Banner = (props: Props) => {
                   transparent video platform, free from censorship, where
                   freedom of speech is incentivized, not convicted. Visit
                   Etherna platform at{" "}
-                  <Link to="https://etherna.io/">https://etherna.io/</Link> and
-                  find more info about it at{" "}
-                  <Link to="https://info.etherna.io/">
+                  <Link href="https://etherna.io/">https://etherna.io/</Link>{" "}
+                  and find more info about it at{" "}
+                  <Link href="https://info.etherna.io/">
                     https://info.etherna.io/
                   </Link>
                   .
@@ -168,29 +168,29 @@ export const Banner = (props: Props) => {
               <p>
                 <Link
                   className="hover-underline"
-                  to="https://docs.ipfs.io/install/ipfs-desktop/"
+                  href="https://docs.ipfs.io/install/ipfs-desktop/"
                 >
                   IPFS Desktop Application
                 </Link>{" "}
                 •{" "}
-                <Link className="hover-underline" to="https://brave.com/">
+                <Link className="hover-underline" href="https://brave.com/">
                   Brave
                 </Link>{" "}
                 •{" "}
-                <Link className="hover-underline" to="https://www.opera.com/">
+                <Link className="hover-underline" href="https://www.opera.com/">
                   Opera
                 </Link>{" "}
                 •{" "}
                 <Link
                   className="hover-underline"
-                  to="https://docs.ipfs.io/install/ipfs-companion/"
+                  href="https://docs.ipfs.io/install/ipfs-companion/"
                 >
                   IPFS Companion
                 </Link>
               </p>
 
               <Link
-                to="https://docs.ipfs.io/how-to/pin-files/"
+                href="https://docs.ipfs.io/how-to/pin-files/"
                 className={`${css["learn-more-link"]}`}
               >
                 Learn more about pinning 🡥
@@ -210,32 +210,35 @@ export const Banner = (props: Props) => {
               <p>
                 <Link
                   className="hover-underline"
-                  to="https://docs.pinata.cloud/api-pinning/pin-file"
+                  href="https://docs.pinata.cloud/api-pinning/pin-file"
                 >
                   Pinata
                 </Link>
                 <span>{" • "}</span>
-                <Link className="hover-underline" to="https://temporal.cloud/">
+                <Link
+                  className="hover-underline"
+                  href="https://temporal.cloud/"
+                >
                   Temporal
                 </Link>
                 <span>{" • "}</span>
                 <Link
                   className="hover-underline"
-                  to="https://wiki.crust.network/docs/en/buildIPFSW3AuthPin"
+                  href="https://wiki.crust.network/docs/en/buildIPFSW3AuthPin"
                 >
                   Crust
                 </Link>
                 <span>{" • "}</span>
                 <Link
                   className="hover-underline"
-                  to="https://infura.io/docs/ipfs#section/Getting-started/Pin-a-file"
+                  href="https://infura.io/docs/ipfs#section/Getting-started/Pin-a-file"
                 >
                   Infura
                 </Link>
               </p>
 
               <Link
-                to="https://docs.ipfs.io/how-to/work-with-pinning-services/"
+                href="https://docs.ipfs.io/how-to/work-with-pinning-services/"
                 className={`${css["learn-more-link"]}`}
               >
                 Learn more about Pinning Remotely 🡥
@@ -263,3 +266,5 @@ export const Banner = (props: Props) => {
     </div>
   );
 };
+
+Banner.displayName = "Banner";

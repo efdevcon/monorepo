@@ -5,7 +5,7 @@ import { Menu } from "./menu";
 import { Search } from "./search";
 import { useOnOutsideClick } from "@/hooks/useOnOutsideClick";
 import { Link } from "@/components/common/link";
-import HeaderLogoArchive from "./logo";
+import { Logo } from "./logo";
 import css from "./header.module.scss";
 
 export function Header() {
@@ -39,7 +39,7 @@ export function Header() {
       <div id="header" className={headerClass} ref={ref}>
         <div className={css["menu-container"]}>
           <Link href="/">
-            <HeaderLogoArchive />
+            <Logo />
           </Link>
 
           <Menu
