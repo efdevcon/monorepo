@@ -94,8 +94,8 @@ export async function getFeaturedSessions(
 
   if (type === "devcon-7-picks") {
     featuredSessions = [
-      "keynote-redefining-boundaries-in-the-infinite-garden",
       "keynote-ethereum-in-30-minutes",
+      "keynote-redefining-boundaries-in-the-infinite-garden",
       "keynote-lessons-learned-from-tor",
       "keynote-world-politics-world-building",
     ];

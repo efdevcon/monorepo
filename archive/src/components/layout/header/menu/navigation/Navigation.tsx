@@ -229,7 +229,7 @@ export const Navigation = (props: NavigationProps) => {
                           return (
                             <li key={subKey}>
                               <a
-                                className={`${css["foldout-link"]} plain`}
+                                className={`${css["foldout-link"]} plain semi-bold`}
                                 href={c.url}
                               >
                                 {c.title}
