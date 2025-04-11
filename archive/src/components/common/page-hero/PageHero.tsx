@@ -93,12 +93,21 @@ export const PageHeroClient = ({ featuredItems }: any) => {
   const path = usePathname();
   const isHome = path === "/";
   const isWatch = path.startsWith("/watch");
+  const isPlaylists = path.startsWith("/playlists");
 
   if (isWatch)
     return (
       <PageHero
         title="Watch"
         description="Devcon content curated and organized for your discovery and learning."
+      ></PageHero>
+    );
+
+  if (isPlaylists)
+    return (
+      <PageHero
+        title="Playlists"
+        description="Devcon collections to help you dive deep into specific topic areas."
       ></PageHero>
     );
 

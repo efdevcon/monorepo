@@ -58,4 +58,5 @@ export interface Playlist {
   curators: string[];
   profiles: UserProfile[];
   videos: ArchiveVideo[];
+  nrOfSessions?: number;
 }

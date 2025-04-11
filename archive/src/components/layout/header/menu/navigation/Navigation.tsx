@@ -39,6 +39,7 @@ export const NavigationItems = [
       type: "page",
     })),
   },
+  { title: "Playlists", url: "/playlists", type: "page" },
 ];
 
 const Mobile = (props: any) => {
