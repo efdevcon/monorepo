@@ -16,6 +16,8 @@ export default async function Home() {
 
       <Editions events={events} />
 
+      <FeaturedList title="Staff Picks" type="devcon-7-picks" />
+
       <FeaturedList title="Most Watched" type="most-popular" />
 
       <FeaturedList title="Devcon 6 Highlights" type="devcon-6" />

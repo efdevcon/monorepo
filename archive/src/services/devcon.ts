@@ -27,7 +27,12 @@ export async function getSessions(size: number = 20, from: number = 0) {
 }
 
 export async function getFeaturedSessions(
-  type: "most-popular" | "devcon-6" | "devcon-7" | "devcon-7-opening"
+  type:
+    | "most-popular"
+    | "devcon-6"
+    | "devcon-7"
+    | "devcon-7-opening"
+    | "devcon-7-picks"
 ) {
   let featuredSessions: string[] = [];
 
@@ -84,6 +89,15 @@ export async function getFeaturedSessions(
       "keynote-redefining-boundaries-in-the-infinite-garden",
       "keynote-ethereum-in-30-minutes",
       "devcon-sea-overview",
+    ];
+  }
+
+  if (type === "devcon-7-picks") {
+    featuredSessions = [
+      "keynote-redefining-boundaries-in-the-infinite-garden",
+      "keynote-ethereum-in-30-minutes",
+      "keynote-lessons-learned-from-tor",
+      "keynote-world-politics-world-building",
     ];
   }
 

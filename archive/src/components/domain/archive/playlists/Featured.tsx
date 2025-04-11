@@ -4,7 +4,12 @@ import { getFeaturedSessions } from "@/services/devcon";
 
 interface Props {
   title: string;
-  type: "most-popular" | "devcon-6" | "devcon-7" | "devcon-7-opening";
+  type:
+    | "most-popular"
+    | "devcon-6"
+    | "devcon-7"
+    | "devcon-7-opening"
+    | "devcon-7-picks";
 }
 
 export async function FeaturedList(props: Props) {
