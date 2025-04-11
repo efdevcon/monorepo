@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { PropsWithChildren } from "react";
+import { Roboto, Space_Mono } from "next/font/google";
 import {
   SITE_NAME,
   SITE_URL,
@@ -10,6 +11,21 @@ import { Layout } from "@/components/layout";
 import { Providers } from "@/providers";
 import "@/assets/globals.css";
 import "@/assets/css/index.scss";
+
+// Initialize fonts
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto",
+});
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-mono",
+});
 
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
@@ -70,7 +86,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout(props: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${roboto.variable} ${spaceMono.variable}`}>
       <head>
         <link rel="icon" href="favicon.ico" sizes="any" />
         <link rel="shortcut icon" href="favicon.ico" sizes="any" />

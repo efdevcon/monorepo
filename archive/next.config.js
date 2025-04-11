@@ -2,7 +2,7 @@ const path = require("path");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  optimizeFonts: false,
+  optimizeFonts: true,
   poweredByHeader: false,
   trailingSlash: true,
   experimental: {

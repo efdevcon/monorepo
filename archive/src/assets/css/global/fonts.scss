@@ -1,6 +1,5 @@
 @use 'src/assets/css/partials/index' as *;
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+// Google Fonts imports removed as we're now using Next.js font optimization
 
 p {
   @include fonts-primary;
