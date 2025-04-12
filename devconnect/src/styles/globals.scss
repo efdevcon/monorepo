@@ -8,6 +8,18 @@
   }
 }
 
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 @import './reset.scss';
 @import './variables.scss';
 @import './layout.scss';
@@ -49,11 +61,10 @@ $max-content-width: $content-width + ($side-gap * 2);
   > .expand {
     grid-column: 1 / 4;
   }
-  
+
   > .expand-right {
     grid-column: 2 / 4;
   }
-  
 }
 
 .clear-vertical {
@@ -220,8 +231,6 @@ $max-content-width: $content-width + ($side-gap * 2);
     --icon-color: rgb(209, 209, 209);
   }
 
-
-
   &.xs {
     height: 32px;
     font-size: inherit;
@@ -239,13 +248,13 @@ $max-content-width: $content-width + ($side-gap * 2);
     @include medium-text;
     padding: 0 24px;
   }
-  
+
   &.transparent {
     background: none;
   }
-  
+
   &.purple {
-    background: #6D4FFA;
+    background: #6d4ffa;
     color: white;
     --icon-color: white;
   }
@@ -398,7 +407,7 @@ a {
   }
 
   &.slick-purple {
-    @include slick-purple
+    @include slick-purple;
   }
 
   &.red {
@@ -462,7 +471,7 @@ a {
   &.fast {
     animation-duration: 0.7s;
   }
-  
+
   &.delay {
     opacity: 0;
     animation-duration: 1s;
@@ -636,16 +645,15 @@ $border: 1px solid rgb(203 213 225 / 0.5);
     margin-right: 8px;
   }
 
-  
   &:last-child {
     border-bottom: none;
   }
 }
 
 .slick-purple {
-  background: #ECE9FF;
-  --icon-color: #6664D3;
-  border: 1px solid #6664D3;
+  background: #ece9ff;
+  --icon-color: #6664d3;
+  border: 1px solid #6664d3;
 
   &:hover {
     cursor: pointer;

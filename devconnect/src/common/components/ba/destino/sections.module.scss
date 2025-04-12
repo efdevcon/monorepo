@@ -1,0 +1,88 @@
+.mask-gradient-to-r {
+  mask-image: linear-gradient(to right, transparent 0%, transparent 50%, black 50%, black 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, transparent 50%, black 50%, black 100%);
+}
+
+.mask-gradient-to-l {
+  mask-image: linear-gradient(to left, transparent 0%, transparent 50%, black 50%, black 100%);
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, transparent 50%, black 50%, black 100%);
+}
+
+.mask-fraction-each-side {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    transparent 10%,
+    black 11%,
+    black 89%,
+    transparent 90%,
+    transparent 100%
+  );
+}
+
+.tiled {
+  background-image: url('/destino/bg-tile-yellow.svg');
+  background-size: 165px 94px;
+  background-repeat: repeat;
+}
+
+.fade-sides {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.rotate {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/destino/bg-tile-yellow.svg');
+    background-size: 41px 23.5px;
+    background-repeat: repeat;
+    opacity: 1;
+    filter: grayscale(100%);
+    // mix-blend-mode: multiply;
+  }
+  transform: rotate(45deg);
+}
+
+.clip-path-triangle-down {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.clip-path-triangle {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.consistent-triangle-container {
+  --triangle-height: 100px;
+  position: relative;
+  padding-bottom: var(--triangle-height);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--triangle-height);
+    background: inherit;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+}
+
+.triangle-container {
+  position: relative;
+  width: 100%;
+
+  /* This ensures the mask scales correctly */
+  mask-image: url(#triangleMask);
+  -webkit-mask-image: url(#triangleMask);
+  mask-size: 100% 100%;
+  -webkit-mask-size: 100% 100%;
+}

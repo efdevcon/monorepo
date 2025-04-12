@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document'
 class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang="en" className="no-scrollbar">
         <Head>
           {/* {process.env.NODE_ENV === 'production' && (
             <script

@@ -1,18 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
 import Destino from 'common/components/ba/destino/destino'
-import { Header, withTranslations } from 'pages/index'
+import { Footer, Header, withTranslations } from 'pages/index'
 import client from '../../tina/__generated__/client'
 
 const DestinoPage = () => {
   return (
     <>
-      <Head>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="googlebot" content="noindex, nofollow" />
-      </Head>
       <Header active />
       <Destino />
+      <Footer />
     </>
   )
 }
