@@ -5,12 +5,18 @@ import styles from './sections.module.scss'
 import Tree from './images/tree.png'
 import Sign from './images/sign.png'
 import Image from 'next/image'
+import Path from './images/path.png'
+import Tile from './images/tile-right.png'
+import TileEnd from './images/tile-end.png'
 
 export const FirstSection = () => {
   return (
-    <div className="section relative w-full bg-[#3475ba] text-white py-8 gap-4 z-[11] shadow-lg" id="first-section">
+    <div
+      className={cn('section relative w-full text-white py-8 gap-4 z-[11] shadow-lg', 'w-screen', styles.tiled)}
+      id="first-section"
+    >
       <div className="flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-6 max-w-[50%] text-center">
+        <div className="flex flex-col items-center justify-center gap-6 w-[600px] max-w-[90%] text-center">
           <div className="font-bold text-4xl">Organize your Destino Devconnect event</div>
           <div className="text-lg">
             <b>Devconnect is coming to Buenos Aires this November</b>, and we're supporting local builders, organizers,
@@ -34,27 +40,51 @@ interface PlatformProps {
   triangleColor?: string
   triangleColorShade?: string
   triangleColorShade2?: string
+  reverse?: boolean
   children: React.ReactNode
 }
 
-const Platform = ({ className, triangleColor, triangleColorShade, triangleColorShade2, children }: PlatformProps) => {
+const Platform = ({
+  className,
+  reverse,
+  triangleColor,
+  triangleColorShade,
+  triangleColorShade2,
+  children,
+}: PlatformProps) => {
   return (
     <div className="relative w-full">
       <TriangleSection
         className={cn('absolute inset-0 translate-y-[10%]', triangleColorShade, styles['mask-gradient-to-r'])}
       >
-        <div></div>
+        <></>
       </TriangleSection>
       <TriangleSection
         className={cn('absolute inset-0 translate-y-[10%]', triangleColorShade2, styles['mask-gradient-to-l'])}
       >
-        <div></div>
+        <></>
       </TriangleSection>
       <TriangleSection className={cn('relative z-10')}>
         <div className="relative z-10">{children}</div>
+        <Image
+          src={Tile}
+          alt="Tile"
+          className={cn(
+            'absolute bottom-0 z-[10] w-[30%] left-1/2 -translate-x-[17.5%]',
+            reverse ? 'scale-x-[-1] !translate-x-[17.5%] right-1/2 left-auto' : ''
+          )}
+        />
+        <Image
+          src={TileEnd}
+          alt="Tile"
+          className={cn(
+            'absolute bottom-0 z-[10] w-[30%] translate-y-[-82.5%] left-1/2 -translate-x-[-65%]',
+            reverse ? 'scale-x-[-1] !translate-x-[-65%] right-1/2 left-auto' : ''
+          )}
+        />
       </TriangleSection>
-      <TriangleSection className={cn('absolute bottom-0 left-0 right-0 h-[5000px] z-[9]', triangleColor)}>
-        <div className="relative z-10">{children}</div>
+      <TriangleSection className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles.grass)}>
+        <></>
       </TriangleSection>
     </div>
   )
@@ -68,11 +98,17 @@ export const SecondSection = () => {
   return (
     <div className="relative z-10" id="second-section">
       <Platform triangleColor={sectionColor} triangleColorShade={shade} triangleColorShade2={shade2}>
-        <div className={cn('flex flex-col gap-4 justify-center items-center text-center w-full py-16')}>
+        <div
+          className={cn(
+            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 lg:translate-y-[25%]'
+          )}
+        >
           <div className="text-white text-4xl font-bold">What is Destino Devconnect?</div>
-          <div className="flex flex-col gap-4 max-w-[50%] relative">
-            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-50%] translate-y-[-50%]" />
-            <Image src={Sign} alt="Sign" className="absolute bottom-0 right-0 translate-x-[50%] translate-y-[50%]" />
+          <div className="flex flex-col gap-4 w-[500px] max-w-[90%] relative text-lg">
+            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-120%] translate-y-[-50%]" />
+            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-220%] translate-y-[-40%]" />
+            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-150%] translate-y-[50%]" />
+            <Image src={Sign} alt="Sign" className="absolute bottom-0 right-0 translate-x-[100%] translate-y-[50%]" />
             Destino Devconnect is a local grant round leading up to Devconnect ARG. It's both:
             <ul className="">
               <li>a grant — we're offering up to $1,000 in support per event</li>
@@ -98,11 +134,17 @@ export const ThirdSection = () => {
 
   return (
     <div className="relative z-[9]" id="third-section">
-      <Platform className="" triangleColor={sectionColor} triangleColorShade={shade} triangleColorShade2={shade2}>
+      <Platform
+        reverse
+        className=""
+        triangleColor={sectionColor}
+        triangleColorShade={shade}
+        triangleColorShade2={shade2}
+      >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 max-w-[50%] lg:translate-y-[25%] py-16">
+          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] pt-16">
             <div className="text-white text-4xl font-bold">Who it's for</div>
-            <div className="flex flex-col justify-center items-center gap-4">
+            <div className="flex flex-col justify-center items-center gap-4 text-lg">
               You're eligible if you:
               <ul>
                 <li>Are based in Argentina or Latam</li>
@@ -132,11 +174,10 @@ export const FourthSection = () => {
   return (
     <div className="relative z-[8]" id="fourth-section">
       <Platform triangleColor={sectionColor} triangleColorShade={shade} triangleColorShade2={shade2}>
-        <div className="absolute inset-0 bg-red-500 h-[1000px] translate-y-[-100%]"></div>
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 max-w-[50%] lg:translate-y-[25%] py-16">
+          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] pt-16">
             <div className="text-white text-4xl font-bold">What you get</div>
-            <div className="flex flex-col justify-center items-center gap-4">
+            <div className="flex flex-col justify-center items-center gap-4 text-lg">
               <ul>
                 <li>Up to $1,000 in funding</li>
                 <li>Help with speakers and sponsors if you need it</li>
@@ -156,9 +197,9 @@ export const FourthSection = () => {
 
 export const HowToApply = () => {
   return (
-    <div className="section">
+    <div className="section mt-16">
       <div className="flex flex-col items-center justify-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-4 max-w-[50%]">
+        <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[90%]">
           <div className="text-white text-4xl font-bold">How to apply</div>
           <div className="flex flex-col gap-4 text-center">
             <div className="flex items-center gap-2">
@@ -238,7 +279,7 @@ export const EventsList = () => {
   return (
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
-        <div className="flex flex-col items-center justify-center gap-4 max-w-[50%]">
+        <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[90%]">
           <div className="text-white text-4xl font-bold">Events</div>
 
           <EventsTable />

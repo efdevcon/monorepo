@@ -9,6 +9,7 @@ import styles from './destino.module.scss'
 import cn from 'classnames'
 import Guanaco from './images/guanaco.png'
 import DestinoLogo from './images/destino-logo.png'
+import { Popover, PopoverContent, PopoverTrigger } from 'lib/components/ui/popover'
 
 // https://docs.google.com/document/d/1v5vm0fDMS_5L2uDvuwjkahOcoy8-khFKTi3rGOsfQEw/edit?pli=1&tab=t.0#heading=h.3h638filjl7g
 
@@ -68,6 +69,7 @@ const Hero = () => {
 }
 
 const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.RefObject<HTMLDivElement> | null }) => {
+  const [guanacoReachedEnd, setGuanacoReachedEnd] = useState(false)
   const guanacoRef = useRef<HTMLImageElement>(null)
   const guanacoWidth = 103
   const guanacoHeight = 152
@@ -219,6 +221,7 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
 
               // You can add custom handler calls here later
               // onGuanacoReachedEnd(sectionId, index);
+              setGuanacoReachedEnd(true)
             }
 
             // Check if guanaco left end position (when scrolling back up)
@@ -234,6 +237,7 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
 
               // You can add custom handler calls here later
               // onGuanacoLeftEnd(sectionId, index);
+              setGuanacoReachedEnd(false)
             }
           },
         },
@@ -251,24 +255,38 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
   }, [scrollContainerRef, guanacoRef])
 
   return (
-    <Image
+    <div
       ref={guanacoRef}
-      src={Guanaco}
-      alt="Guanaco"
-      className="object-contain w-[103px] h-[152px] fixed z-[11]"
+      className="fixed z-[11]"
       style={{
         willChange: 'transform',
         position: 'fixed',
         top: '-16px',
         left: 0,
       }}
-    />
+    >
+      <Popover open={guanacoReachedEnd}>
+        <PopoverTrigger className="outline-none">
+          <Image src={Guanaco} alt="Guanaco" className="object-contain w-[103px] h-[152px] outline-none" />
+        </PopoverTrigger>
+        <PopoverContent align="center" side="top" sideOffset={16}>
+          <h3 className="font-bold mb-2">Guanaco found something!</h3>
+          <p>Look at what our friend discovered at this location.</p>
+        </PopoverContent>
+      </Popover>
+    </div>
   )
 }
 
 const Destino = () => {
   return (
-    <div className={cn('text-white', styles['bg-gradient'], 'flex flex-col items-center justify-center no-scrollbar')}>
+    <div
+      className={cn(
+        'text-white',
+        styles['bg-gradient'],
+        'flex flex-col items-center justify-center no-scrollbar w-screen'
+      )}
+    >
       <Hero />
       <FirstSection />
       <ScrollContainer>
