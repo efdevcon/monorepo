@@ -37,6 +37,7 @@ export const FirstSection = () => {
 interface PlatformProps {
   color?: string
   className?: string
+  sectionContentId?: string
   triangleColor?: string
   triangleColorShade?: string
   triangleColorShade2?: string
@@ -46,6 +47,7 @@ interface PlatformProps {
 
 const Platform = ({
   className,
+  sectionContentId,
   reverse,
   triangleColor,
   triangleColorShade,
@@ -65,7 +67,9 @@ const Platform = ({
         <></>
       </TriangleSection>
       <TriangleSection className={cn('relative z-10')}>
-        <div className="relative z-10">{children}</div>
+        <div className="relative z-10" id={sectionContentId}>
+          {children}
+        </div>
         <Image
           src={Tile}
           alt="Tile"
@@ -97,7 +101,12 @@ export const SecondSection = () => {
 
   return (
     <div className="relative z-10" id="second-section">
-      <Platform triangleColor={sectionColor} triangleColorShade={shade} triangleColorShade2={shade2}>
+      <Platform
+        triangleColor={sectionColor}
+        triangleColorShade={shade}
+        triangleColorShade2={shade2}
+        sectionContentId="second-section-content"
+      >
         <div
           className={cn(
             'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 lg:translate-y-[25%]'
@@ -140,6 +149,7 @@ export const ThirdSection = () => {
         triangleColor={sectionColor}
         triangleColorShade={shade}
         triangleColorShade2={shade2}
+        sectionContentId="third-section-content"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] pt-16">
@@ -173,7 +183,12 @@ export const FourthSection = () => {
 
   return (
     <div className="relative z-[8]" id="fourth-section">
-      <Platform triangleColor={sectionColor} triangleColorShade={shade} triangleColorShade2={shade2}>
+      <Platform
+        triangleColor={sectionColor}
+        triangleColorShade={shade}
+        triangleColorShade2={shade2}
+        sectionContentId="fourth-section-content"
+      >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] pt-16">
             <div className="text-white text-4xl font-bold">What you get</div>

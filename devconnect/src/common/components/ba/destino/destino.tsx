@@ -90,8 +90,13 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
     // Reset reached state
     reachedEndRef.current = {}
 
+    const contentSections = [
+      document.getElementById('second-section-content'),
+      document.getElementById('third-section-content'),
+      document.getElementById('fourth-section-content'),
+    ].filter(Boolean) as HTMLElement[]
+
     const sections = [
-      // document.getElementById('first-section'),
       document.getElementById('second-section'),
       document.getElementById('third-section'),
       document.getElementById('fourth-section'),
@@ -116,7 +121,7 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top center',
+          start: 'top 35%',
           end:
             index < sections.length - 1
               ? () => {
@@ -177,9 +182,11 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
 
             // Calculate section-relative positions on each update
             const sectionRect = section.getBoundingClientRect()
+            const sectionContentRect = contentSections[index]?.getBoundingClientRect()
 
             // Top corner of the section in viewport (left or right depending on section)
             const sectionTopViewport = sectionRect.top
+            const sectionContentBottomViewport = sectionContentRect.bottom
 
             // Calculate start position based on whether we start from right or left
             let startX, startY
@@ -187,11 +194,13 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
             if (startsFromRight) {
               // Start from right side
               startX = sectionRect.right - guanacoWidth - 20 // 20px padding from right edge
-              startY = sectionTopViewport + 20
+              // startY = sectionTopViewport + 20
+              startY = sectionContentBottomViewport - guanacoHeight + 20
             } else {
               // Start from left side
               startX = sectionRect.left + 20 // 20px padding from left edge
-              startY = sectionTopViewport + 20
+              // startY = sectionTopViewport + 20
+              startY = sectionContentBottomViewport - guanacoHeight + 20
             }
 
             // End position is always bottom center
