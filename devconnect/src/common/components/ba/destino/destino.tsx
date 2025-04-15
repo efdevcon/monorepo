@@ -129,8 +129,8 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
                   return `+=${nextSection.offsetTop - section.offsetTop}`
                 }
               : 'bottom center',
-          scrub: 1, // Increased for smoother animation
-          markers: true,
+          scrub: true, // Increased for smoother animation
+          // markers: true,
           id: sectionId,
           onEnter: () => {
             // Make guanaco visible with a fade in
@@ -212,9 +212,12 @@ const GuanacoController = ({ scrollContainerRef }: { scrollContainerRef: React.R
             const currentY = startY + (endY - startY) * adjustedProgress
 
             // Update guanaco position with smooth transition
-            gsap.set(guanaco, {
+
+            gsap.to(guanaco, {
               x: currentX,
               y: currentY,
+              duration: 0.5, // Adjust this value to control movement speed
+              ease: 'power2.out', // Makes the movement more natural
             })
 
             // Check if guanaco reached end position (adjustedProgress === 1)
@@ -307,7 +310,7 @@ const Destino = () => {
 
       <div className="flex flex-col items-center justify-center gap-16 my-16 overflow-hidden">
         <HowToApply />
-        <EventsList />
+        {/* <EventsList /> */}
       </div>
     </div>
   )
