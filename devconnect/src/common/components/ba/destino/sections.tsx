@@ -13,6 +13,10 @@ import Guanaco from './images/guanaco.png'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/popover'
 import gsap from 'gsap'
+import Wallet from './images/wallet.png'
+import Suitcase from './images/suitcase.png'
+import Speaker from './images/speaker.png'
+import Comms from './images/comms.png'
 import { useGSAP } from '@gsap/react'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
@@ -24,7 +28,7 @@ export const FirstSection = () => {
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-6 w-[600px] max-w-[90%] text-center">
+        <div className="flex flex-col items-center justify-center gap-6 w-[600px] max-w-[95%] text-center">
           <div className="font-bold text-4xl">Organize your Destino Devconnect event</div>
           <div className="text-lg">
             <b>Devconnect is coming to Buenos Aires this November</b>, and we're supporting local builders, organizers,
@@ -33,9 +37,19 @@ export const FirstSection = () => {
             Latam. If you're already doing this work or have an idea and need a little help to make it real, Destino
             Devconnect is for you.
           </div>
-          <Button fat fill color="black-1">
+
+          <button
+            className={cn(
+              'border-solid  border-b-[10px] px-8 py-2 border-[#F58A36] text-black text-2xl',
+              styles['tiled-button']
+            )}
+          >
+            APPLY NOW
+          </button>
+
+          {/* <Button fat fill color="black-1">
             Apply Now
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
@@ -54,6 +68,7 @@ interface PlatformProps {
   sectionId?: string
   isLast?: boolean
   guanacoSpeechString?: string
+  grassColor: string
 }
 
 interface PlatformGuanacoProps {
@@ -303,6 +318,7 @@ const Platform = ({
   sectionId,
   isLast,
   guanacoSpeechString,
+  grassColor,
 }: PlatformProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -355,9 +371,15 @@ const Platform = ({
             reverse ? 'scale-x-[-1] !translate-x-[-65%] right-1/2 left-auto' : ''
           )}
         />
-        <Image src={Sign} alt="Sign" className="absolute z-[12] top-0 right-0 translate-x-[-200%] translate-y-[45%]" />
+        <Image
+          src={Sign}
+          alt="Sign"
+          className="absolute z-[12] top-0 right-0 translate-x-[-200%] translate-y-[45%] hidden lg:block"
+        />
       </TriangleSection>
-      <TriangleSection className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles.grass)}>
+      <TriangleSection
+        className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles[grassColor])}
+      >
         <></>
       </TriangleSection>
     </div>
@@ -378,14 +400,15 @@ export const SecondSection = () => {
         sectionContentId="second-section-content"
         sectionId="second-section"
         guanacoSpeechString="Let me show you around!"
+        grassColor="grass"
       >
         <div
           className={cn(
-            'flex flex-col gap-4 justify-center items-center text-center w-full pt-8 lg:translate-y-[50%] lg:h-[200px]'
+            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 lg:pt-8 lg:pb-0 lg:translate-y-[50%] lg:h-[200px]'
           )}
         >
           <div className="text-white text-4xl font-bold shrink-0">What is Destino Devconnect?</div>
-          <div className="flex flex-col gap-4 w-[500px] max-w-[90%] relative text-lg shrink-0">
+          <div className="flex flex-col gap-4 w-[500px] max-w-[95%] relative text-lg shrink-0">
             <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-170%] translate-y-[-30%]" />
             <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-270%] translate-y-[-15%]" />
             <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-200%] translate-y-[40%]" />
@@ -427,13 +450,14 @@ export const ThirdSection = () => {
         sectionContentId="third-section-content"
         sectionId="third-section"
         guanacoSpeechString="It's literally made for you"
+        grassColor="grass-2"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[90%] lg:translate-y-[50%] pt-8 lg:h-[200px]">
+          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] lg:translate-y-[50%] py-28 pb-40 lg:pt-8 lg:pb-0 lg:h-[200px]">
             <div className="text-white text-4xl font-bold shrink-0">Who it's for</div>
             <div className="flex flex-col justify-center items-center gap-8 text-lg shrink-0">
               <div className="shrink-0 text-yellow-500 text-2xl">You're eligible if you...</div>
-              <div className="grid grid-cols-4 gap-4 shrink-0 text-base">
+              <div className="grid grid-cols-4 gap-2 lg:gap-4 shrink-0 text-base">
                 <div className="flex flex-col items-center gap-2">
                   <Image src={Check} alt="Check" className="w-14 h-14" />
                   <div>Are based in Argentina or Latam</div>
@@ -478,16 +502,29 @@ export const FourthSection = () => {
         sectionId="fourth-section"
         isLast
         guanacoSpeechString="We gotchu"
+        grassColor="grass-3"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] lg:h-[200px] pt-8">
-            <div className="text-white text-4xl font-bold">What you get</div>
-            <div className="flex flex-col justify-center items-center gap-4 text-lg">
-              <div className="flex flex-col gap-2">
-                <div>Up to $1,000 in funding</div>
-                <div>Help with speakers and sponsors if you need it</div>
-                <div>A spot on the Destino Devconnect calendar</div>
-                <div>Visibility across Devconnect's official comms</div>
+          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[95%] lg:translate-y-[50%] lg:h-[230px] py-28 pb-40 lg:pt-0 lg:pb-0">
+            <div className="text-white text-4xl font-bold shrink-0 mb-4">What you get</div>
+            <div className="flex flex-col justify-center items-center gap-4 lg:text-lg shrink-0">
+              <div className="grid grid-cols-2 gap-4 text-center shrink-0">
+                <div className="flex flex-col items-center gap-2">
+                  <Image src={Wallet} alt="Wallet" className="w-16 h-auto object-cover" />
+                  <div>Up to $1,000 in funding</div>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Image src={Suitcase} alt="Suitcase" className="w-16 h-auto object-cover" />
+                  <div>Help with speakers and sponsors if you need it</div>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Image src={Speaker} alt="Speaker" className="w-16 h-auto object-cover" />
+                  <div>A spot on the Destino Devconnect calendar</div>
+                </div>
+                <div className="flex flex-col items-center gap-2">
+                  <Image src={Comms} alt="Comms" className="w-16 h-auto object-cover" />
+                  <div>Visibility across Devconnect's official comms</div>
+                </div>
               </div>
             </div>
           </div>
@@ -501,7 +538,7 @@ export const HowToApply = () => {
   return (
     <div className="section my-16 mt-24">
       <div className="flex flex-col items-center justify-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-4 w-[800px] max-w-[90%]">
+        <div className="flex flex-col items-center justify-center gap-4 w-[800px] max-w-[95%]">
           <div className="text-white text-4xl font-bold">How to apply</div>
           <div className="flex gap-4 text-center">
             <div className="flex flex-col items-center gap-2">
@@ -578,7 +615,7 @@ export const EventsList = () => {
   return (
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
-        <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[90%]">
+        <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
           <div className="text-white text-4xl font-bold">Events</div>
 
           <EventsTable />
