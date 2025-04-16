@@ -11,7 +11,7 @@ import TileEnd from './images/tile-end.png'
 import Check from './images/check.png'
 import Guanaco from './images/guanaco.png'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
+import { Popover, PopoverTrigger, PopoverContent, PopoverArrow } from '@/components/ui/popover'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
@@ -52,6 +52,8 @@ interface PlatformProps {
   reverse?: boolean
   children: React.ReactNode
   sectionId?: string
+  isLast?: boolean
+  guanacoSpeechString?: string
 }
 
 interface PlatformGuanacoProps {
@@ -59,11 +61,22 @@ interface PlatformGuanacoProps {
   contentRef: React.RefObject<HTMLDivElement>
   reverse?: boolean
   sectionId?: string
+  isLast?: boolean
+  guanacoSpeechString?: string
 }
 
-const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: PlatformGuanacoProps) => {
-  const [guanacoReachedEnd, setGuanacoReachedEnd] = useState(false)
+const PlatformGuanaco = ({
+  containerRef,
+  contentRef,
+  reverse,
+  sectionId,
+  isLast,
+  guanacoSpeechString,
+}: PlatformGuanacoProps) => {
+  const [popoverOpen, setPopoverOpen] = useState(false)
   const guanacoRef = useRef<HTMLImageElement>(null)
+  const targetPositionRef = useRef({ x: 0, y: 0 })
+  const animationActiveRef = useRef(false)
   const guanacoWidth = 103
   const guanacoHeight = 152
 
@@ -75,6 +88,11 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
     const guanaco = guanacoRef.current
 
     const walkToCenter = () => {
+      // Don't start a new animation if one is already running
+      if (animationActiveRef.current) return
+
+      animationActiveRef.current = true
+
       const containerRect = container.getBoundingClientRect()
       const contentRect = content.getBoundingClientRect()
       const triangleHeight = containerRect.width / (69 / 20)
@@ -85,11 +103,14 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
       const endX = (containerRect.width - guanacoWidth) / 2
       const endY = containerRect.height - guanacoHeight - 20 // Move to the very bottom of the container
 
+      // Store target position for later comparison
+      targetPositionRef.current = { x: endX, y: endY }
+
       // Kill any existing animations
       gsap.killTweensOf(guanaco)
 
       // Reset state at the beginning of the animation
-      setGuanacoReachedEnd(false)
+      setPopoverOpen(false)
 
       // Set initial position
       gsap.set(guanaco, {
@@ -101,7 +122,9 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
 
       // Create timeline for walking animation
       const tl = gsap.timeline({
-        onComplete: () => setGuanacoReachedEnd(true),
+        onComplete: () => {
+          animationActiveRef.current = false
+        },
       })
 
       // Fade in and walk to center
@@ -119,6 +142,22 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
           const progress = this.progress()
           const wobble = Math.sin(progress * 12) * 5 // Increased wobble from 3 to 6 degrees
           gsap.set(guanaco, { rotation: wobble })
+
+          // Check if we're almost at the final position
+          if (progress > 0.95) {
+            const currentX = gsap.getProperty(guanaco, 'x') as number
+            const currentY = gsap.getProperty(guanaco, 'y') as number
+            const atFinalPosition =
+              Math.abs(currentX - targetPositionRef.current.x) < 5 &&
+              Math.abs(currentY - targetPositionRef.current.y) < 5
+
+            if (atFinalPosition) {
+              setPopoverOpen(true)
+            }
+          }
+        },
+        onComplete: () => {
+          setPopoverOpen(true)
         },
       })
 
@@ -126,6 +165,11 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
     }
 
     const walkAway = () => {
+      // Don't start a new animation if one is already running
+      if (animationActiveRef.current) return
+
+      animationActiveRef.current = true
+
       const containerRect = container.getBoundingClientRect()
       const contentRect = content.getBoundingClientRect()
       const startX = reverse ? 0 : containerRect.width - guanacoWidth
@@ -133,10 +177,14 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
 
       // Kill any existing animations and reset state
       gsap.killTweensOf(guanaco)
-      setGuanacoReachedEnd(false)
+      setPopoverOpen(false)
 
       // Create timeline for exit animation
-      const tl = gsap.timeline()
+      const tl = gsap.timeline({
+        onComplete: () => {
+          animationActiveRef.current = false
+        },
+      })
 
       // First turn around (flip the direction)
       tl.to(guanaco, {
@@ -169,35 +217,40 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
       return tl
     }
 
-    ScrollTrigger.create({
+    // Create a single ScrollTrigger instance
+    const scrollTrigger = ScrollTrigger.create({
       trigger: container,
       start: 'top 45%',
-      end: 'bottom 45%',
+      end: isLast ? 'bottom 45%' : 'bottom 45%',
       onEnter: () => walkToCenter(),
       onLeave: () => walkAway(),
       onEnterBack: () => walkToCenter(),
       onLeaveBack: () => walkAway(),
-      markers: true,
+      markers: false,
       id: `guanaco-animation-${sectionId || ''}-${reverse ? 'reverse' : 'normal'}`,
       // Make sure to kill any existing animation when starting a new one
       onToggle: self => {
         if (!self.isActive) {
           gsap.killTweensOf(guanaco)
-          setGuanacoReachedEnd(false)
+
+          setPopoverOpen(false)
+          animationActiveRef.current = false
         }
       },
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill())
-      setGuanacoReachedEnd(false)
+      // Kill all ScrollTrigger instances to clean up
+      scrollTrigger.kill()
+      setPopoverOpen(false)
+      animationActiveRef.current = false
     }
-  }, [containerRef, contentRef, reverse, sectionId])
+  }, [containerRef, contentRef, reverse, sectionId]) // Removed popoverOpen dependency
 
   // Clean up state when component unmounts
   React.useEffect(() => {
     return () => {
-      setGuanacoReachedEnd(false)
+      setPopoverOpen(false)
     }
   }, [])
 
@@ -212,26 +265,27 @@ const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: Platf
         left: 0,
       }}
     >
-      {/* <div
-        className={cn('absolute top-0 translate-y-[calc(100%+10px)]', guanacoReachedEnd ? 'opacity-100' : 'opacity-0')}
-      >
-        <h3 className="font-bold mb-2">Guanaco found something!</h3>
-        <p>Look at what our friend discovered at this location.</p>
-      </div> */}
-      {/* <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] h-[152px] outline-none')} /> */}
       <Popover
-        open={guanacoReachedEnd}
+        open={popoverOpen}
         // onOpenChange={open => {
-        //   // Only allow external changes to close the popover, not open it
-        //   if (!open) setGuanacoReachedEnd(false)
+        //   // Allow user to close the popover, but don't open it through UI interaction
+        //   if (!open) setPopoverOpen(false)
         // }}
       >
         <PopoverTrigger className="outline-none">
           <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] h-[152px] outline-none')} />
         </PopoverTrigger>
-        <PopoverContent align="center" side="top" sideOffset={16}>
-          <h3 className="font-bold mb-2">Guanaco found something!</h3>
-          <p>Look at what our friend discovered at this location.</p>
+        <PopoverContent
+          align="center"
+          side="top"
+          avoidCollisions={false}
+          sideOffset={2}
+          onOpenAutoFocus={e => e.preventDefault()}
+          onCloseAutoFocus={e => e.preventDefault()}
+          className={cn('bg-yellow-500 w-auto h-auto', styles['popover-animation'])}
+        >
+          <h3 className="font-bold">{guanacoSpeechString}</h3>
+          <PopoverArrow className="fill-yellow-500" width={16} height={8} />
         </PopoverContent>
       </Popover>
     </div>
@@ -247,6 +301,8 @@ const Platform = ({
   triangleColorShade2,
   children,
   sectionId,
+  isLast,
+  guanacoSpeechString,
 }: PlatformProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
@@ -259,7 +315,14 @@ const Platform = ({
   return (
     <div className="relative w-full" ref={containerRef}>
       {mounted && (
-        <PlatformGuanaco containerRef={containerRef} contentRef={contentRef} reverse={reverse} sectionId={sectionId} />
+        <PlatformGuanaco
+          containerRef={containerRef}
+          contentRef={contentRef}
+          reverse={reverse}
+          sectionId={sectionId}
+          isLast={isLast}
+          guanacoSpeechString={guanacoSpeechString}
+        />
       )}
 
       <TriangleSection
@@ -314,6 +377,7 @@ export const SecondSection = () => {
         triangleColorShade2={shade2}
         sectionContentId="second-section-content"
         sectionId="second-section"
+        guanacoSpeechString="Let me show you around!"
       >
         <div
           className={cn(
@@ -362,6 +426,7 @@ export const ThirdSection = () => {
         triangleColorShade2={shade2}
         sectionContentId="third-section-content"
         sectionId="third-section"
+        guanacoSpeechString="It's literally made for you"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[700px] max-w-[90%] lg:translate-y-[50%] pt-8 lg:h-[200px]">
@@ -411,6 +476,8 @@ export const FourthSection = () => {
         triangleColorShade2={shade2}
         sectionContentId="fourth-section-content"
         sectionId="fourth-section"
+        isLast
+        guanacoSpeechString="We gotchu"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] lg:h-[200px] pt-8">

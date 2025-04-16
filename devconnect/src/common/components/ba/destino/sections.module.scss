@@ -118,3 +118,16 @@
   mask-size: 100% 100%;
   -webkit-mask-size: 100% 100%;
 }
+
+@keyframes popover-animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.popover-animation {
+  animation: popover-animation 700ms ease-in-out;
+}
