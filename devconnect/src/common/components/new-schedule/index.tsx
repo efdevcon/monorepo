@@ -9,7 +9,7 @@ import { format, parseISO } from 'date-fns'
 import { useCalendarStore } from 'store/calendar'
 import cn from 'classnames'
 import Timeline from './timeline'
-import MapComponent from './map'
+// import MapComponent from './map'
 import { Button } from 'lib/components/button'
 
 // Utility function for tracking placed nodes in the grid
