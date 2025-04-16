@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Button } from '@/components/button'
 import cn from 'classnames'
 import styles from './sections.module.scss'
@@ -9,6 +9,13 @@ import Path from './images/path.png'
 import Tile from './images/tile-right.png'
 import TileEnd from './images/tile-end.png'
 import Check from './images/check.png'
+import Guanaco from './images/guanaco.png'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export const FirstSection = () => {
   return (
@@ -44,6 +51,191 @@ interface PlatformProps {
   triangleColorShade2?: string
   reverse?: boolean
   children: React.ReactNode
+  sectionId?: string
+}
+
+interface PlatformGuanacoProps {
+  containerRef: React.RefObject<HTMLDivElement>
+  contentRef: React.RefObject<HTMLDivElement>
+  reverse?: boolean
+  sectionId?: string
+}
+
+const PlatformGuanaco = ({ containerRef, contentRef, reverse, sectionId }: PlatformGuanacoProps) => {
+  const [guanacoReachedEnd, setGuanacoReachedEnd] = useState(false)
+  const guanacoRef = useRef<HTMLImageElement>(null)
+  const guanacoWidth = 103
+  const guanacoHeight = 152
+
+  useGSAP(() => {
+    if (!containerRef?.current || !guanacoRef.current || !contentRef?.current) return
+
+    const container = containerRef.current
+    const content = contentRef.current
+    const guanaco = guanacoRef.current
+
+    const walkToCenter = () => {
+      const containerRect = container.getBoundingClientRect()
+      const contentRect = content.getBoundingClientRect()
+      const triangleHeight = containerRect.width / (69 / 20)
+
+      // Calculate positions
+      const startX = reverse ? 0 : containerRect.width - guanacoWidth
+      const startY = contentRect.height - guanacoHeight
+      const endX = (containerRect.width - guanacoWidth) / 2
+      const endY = containerRect.height - guanacoHeight - 20 // Move to the very bottom of the container
+
+      // Kill any existing animations
+      gsap.killTweensOf(guanaco)
+
+      // Reset state at the beginning of the animation
+      setGuanacoReachedEnd(false)
+
+      // Set initial position
+      gsap.set(guanaco, {
+        opacity: 0,
+        x: startX,
+        y: startY,
+        scaleX: reverse ? -1 : 1, // Set initial direction
+      })
+
+      // Create timeline for walking animation
+      const tl = gsap.timeline({
+        onComplete: () => setGuanacoReachedEnd(true),
+      })
+
+      // Fade in and walk to center
+      tl.to(guanaco, {
+        opacity: 1,
+        duration: 0.3,
+      }).to(guanaco, {
+        x: endX,
+        y: endY,
+        duration: 2,
+        ease: 'power1.inOut',
+        rotation: 0,
+        onUpdate: function () {
+          // Add slight wobbling/rotation as it walks
+          const progress = this.progress()
+          const wobble = Math.sin(progress * 12) * 5 // Increased wobble from 3 to 6 degrees
+          gsap.set(guanaco, { rotation: wobble })
+        },
+      })
+
+      return tl
+    }
+
+    const walkAway = () => {
+      const containerRect = container.getBoundingClientRect()
+      const contentRect = content.getBoundingClientRect()
+      const startX = reverse ? 0 : containerRect.width - guanacoWidth
+      const startY = contentRect.height - guanacoHeight
+
+      // Kill any existing animations and reset state
+      gsap.killTweensOf(guanaco)
+      setGuanacoReachedEnd(false)
+
+      // Create timeline for exit animation
+      const tl = gsap.timeline()
+
+      // First turn around (flip the direction)
+      tl.to(guanaco, {
+        scaleX: reverse ? 1 : -1,
+        duration: 0.3,
+        ease: 'power1.inOut',
+      })
+
+        // Then walk back to start and fade out
+        .to(guanaco, {
+          x: startX,
+          y: startY,
+          opacity: 0,
+          duration: 1,
+          ease: 'power1.inOut',
+          rotation: 0,
+          onUpdate: function () {
+            // Add slight wobbling/rotation as it walks back
+            const progress = this.progress()
+            const wobble = Math.sin(progress * 12) * 5 // Increased wobble from 3 to 6 degrees
+            gsap.set(guanaco, { rotation: wobble })
+          },
+        })
+        // Reset scale for next appearance
+        .set(guanaco, {
+          scaleX: reverse ? -1 : 1,
+          rotation: 0, // Reset rotation when animation completes
+        })
+
+      return tl
+    }
+
+    ScrollTrigger.create({
+      trigger: container,
+      start: 'top 45%',
+      end: 'bottom 45%',
+      onEnter: () => walkToCenter(),
+      onLeave: () => walkAway(),
+      onEnterBack: () => walkToCenter(),
+      onLeaveBack: () => walkAway(),
+      markers: true,
+      id: `guanaco-animation-${sectionId || ''}-${reverse ? 'reverse' : 'normal'}`,
+      // Make sure to kill any existing animation when starting a new one
+      onToggle: self => {
+        if (!self.isActive) {
+          gsap.killTweensOf(guanaco)
+          setGuanacoReachedEnd(false)
+        }
+      },
+    })
+
+    return () => {
+      ScrollTrigger.getAll().forEach(st => st.kill())
+      setGuanacoReachedEnd(false)
+    }
+  }, [containerRef, contentRef, reverse, sectionId])
+
+  // Clean up state when component unmounts
+  React.useEffect(() => {
+    return () => {
+      setGuanacoReachedEnd(false)
+    }
+  }, [])
+
+  return (
+    <div
+      ref={guanacoRef}
+      className="absolute z-[20]"
+      style={{
+        opacity: 0,
+        willChange: 'transform',
+        top: 0,
+        left: 0,
+      }}
+    >
+      {/* <div
+        className={cn('absolute top-0 translate-y-[calc(100%+10px)]', guanacoReachedEnd ? 'opacity-100' : 'opacity-0')}
+      >
+        <h3 className="font-bold mb-2">Guanaco found something!</h3>
+        <p>Look at what our friend discovered at this location.</p>
+      </div> */}
+      {/* <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] h-[152px] outline-none')} /> */}
+      <Popover
+        open={guanacoReachedEnd}
+        // onOpenChange={open => {
+        //   // Only allow external changes to close the popover, not open it
+        //   if (!open) setGuanacoReachedEnd(false)
+        // }}
+      >
+        <PopoverTrigger className="outline-none">
+          <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] h-[152px] outline-none')} />
+        </PopoverTrigger>
+        <PopoverContent align="center" side="top" sideOffset={16}>
+          <h3 className="font-bold mb-2">Guanaco found something!</h3>
+          <p>Look at what our friend discovered at this location.</p>
+        </PopoverContent>
+      </Popover>
+    </div>
+  )
 }
 
 const Platform = ({
@@ -54,9 +246,22 @@ const Platform = ({
   triangleColorShade,
   triangleColorShade2,
   children,
+  sectionId,
 }: PlatformProps) => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full" ref={containerRef}>
+      {mounted && (
+        <PlatformGuanaco containerRef={containerRef} contentRef={contentRef} reverse={reverse} sectionId={sectionId} />
+      )}
+
       <TriangleSection
         className={cn('absolute inset-0 translate-y-[10%]', triangleColorShade, styles['mask-gradient-to-r'])}
       >
@@ -68,7 +273,7 @@ const Platform = ({
         <></>
       </TriangleSection>
       <TriangleSection className={cn('relative z-10')}>
-        <div className="relative z-10" id={sectionContentId}>
+        <div className="relative z-10" id={sectionContentId} ref={contentRef}>
           {children}
         </div>
         <Image
@@ -87,7 +292,6 @@ const Platform = ({
             reverse ? 'scale-x-[-1] !translate-x-[-65%] right-1/2 left-auto' : ''
           )}
         />
-
         <Image src={Sign} alt="Sign" className="absolute z-[12] top-0 right-0 translate-x-[-200%] translate-y-[45%]" />
       </TriangleSection>
       <TriangleSection className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles.grass)}>
@@ -109,6 +313,7 @@ export const SecondSection = () => {
         triangleColorShade={shade}
         triangleColorShade2={shade2}
         sectionContentId="second-section-content"
+        sectionId="second-section"
       >
         <div
           className={cn(
@@ -156,6 +361,7 @@ export const ThirdSection = () => {
         triangleColorShade={shade}
         triangleColorShade2={shade2}
         sectionContentId="third-section-content"
+        sectionId="third-section"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[700px] max-w-[90%] lg:translate-y-[50%] pt-8 lg:h-[200px]">
@@ -204,17 +410,18 @@ export const FourthSection = () => {
         triangleColorShade={shade}
         triangleColorShade2={shade2}
         sectionContentId="fourth-section-content"
+        sectionId="fourth-section"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[90%] lg:translate-y-[50%] lg:h-[200px] pt-8">
             <div className="text-white text-4xl font-bold">What you get</div>
             <div className="flex flex-col justify-center items-center gap-4 text-lg">
-              <ul>
-                <li>Up to $1,000 in funding</li>
-                <li>Help with speakers and sponsors if you need it</li>
-                <li>A spot on the Destino Devconnect calendar</li>
-                <li>Visibility across Devconnect's official comms</li>
-              </ul>
+              <div className="flex flex-col gap-2">
+                <div>Up to $1,000 in funding</div>
+                <div>Help with speakers and sponsors if you need it</div>
+                <div>A spot on the Destino Devconnect calendar</div>
+                <div>Visibility across Devconnect's official comms</div>
+              </div>
             </div>
           </div>
         </div>
