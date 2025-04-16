@@ -31,6 +31,12 @@ const index: Template = {
       type: 'object',
       fields: [{ label: 'title', name: 'title', type: 'string' }, { label: 'description', name: 'description', type: 'string' }],
     },
+    {
+      type: 'object',
+      name: 'devconnect_week',
+      label: 'Devconnect Week',
+      fields: [createRichText('first_part'), createRichText('second_part')],
+    },
     createRichText('devcon_vs_devconnect'),
     {
       type: 'string',

@@ -54,6 +54,8 @@ const PathNavigation = (props: PageHeroProps) => {
   // get full current path from the url using next/navigation
   let path = usePathname();
   console.log("USE PATHNAME", path);
+
+  if (!path || path === "/") return null;
   console.log("path.split('/')", path.split("/"));
 
   if (Array.isArray(props.path)) {
@@ -82,7 +84,6 @@ const PathNavigation = (props: PageHeroProps) => {
     }, [] as React.ReactNode[]);
   }
 
-  console.log("PATH HERO PROPS", path, props.path, "path");
   return (
     <p className={`${css["path"]} font-xs text-uppercase`}>
       {path || props.path}
@@ -91,57 +92,75 @@ const PathNavigation = (props: PageHeroProps) => {
 };
 
 export const PageHeroClient = ({ featuredItems }: any) => {
-  return (
-    <PageHero
-      scenes={featuredItems.map((item: any) => {
-        return {
-          session: item,
-          callToAction: () => {
-            return (
-              <Button href={item.id} className={`red ${css["call-to-action"]}`}>
-                <span className={css["watch-now"]}>Watch Now</span>
+  const path = usePathname();
+  const isHome = path === "/";
+  const isWatch = path.startsWith("/watch");
 
-                <OnDemandVideoIcon
-                  className={`icon ${css["watch-now-icon"]}`}
-                />
-              </Button>
-            );
-          },
-          content: () => {
-            return (
-              <div className={css["page-hero-scene"]}>
-                <div className={css["body"]}>
-                  <div className="label bold">Staff Pick</div>
-                  <p className="font-xl bold">{item.title}</p>
-                  <p className={`${css["description"]} font-lg`}>
-                    {item.description}
-                  </p>
-                </div>
+  if (isWatch)
+    return (
+      <PageHero
+        title="Watch"
+        description="Devcon content curated and organized for your discovery and learning."
+      ></PageHero>
+    );
 
-                <div className={css["metadata"]}>
-                  {item.speakers.length > 0 && (
-                    <p>
-                      By{" "}
-                      <span className="bold">
-                        {item.speakers
-                          .map((speaker: any) => speaker.name)
-                          .join(", ")}
-                      </span>
+  if (isHome)
+    return (
+      <PageHero
+        scenes={featuredItems?.map((item: any) => {
+          return {
+            session: item,
+            callToAction: () => {
+              return (
+                <Button
+                  href={item.id}
+                  className={`red ${css["call-to-action"]}`}
+                >
+                  <span className={css["watch-now"]}>Watch Now</span>
+
+                  <OnDemandVideoIcon
+                    className={`icon ${css["watch-now-icon"]}`}
+                  />
+                </Button>
+              );
+            },
+            content: () => {
+              return (
+                <div className={css["page-hero-scene"]}>
+                  <div className={css["body"]}>
+                    <div className="label bold">Staff Pick</div>
+                    <p className="font-xl bold">{item.title}</p>
+                    <p className={`${css["description"]} font-lg`}>
+                      {item.description}
                     </p>
-                  )}
-                  <p className="bold">
-                    Devcon {item.eventId.replace("devcon-", "")}
-                  </p>
+                  </div>
+
+                  <div className={css["metadata"]}>
+                    {item.speakers.length > 0 && (
+                      <p>
+                        By{" "}
+                        <span className="bold">
+                          {item.speakers
+                            .map((speaker: any) => speaker.name)
+                            .join(", ")}
+                        </span>
+                      </p>
+                    )}
+                    <p className="bold">
+                      Devcon {item.eventId.replace("devcon-", "")}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            );
-          },
-        };
-      })}
-      title="Archive"
-      titleClassName={css["white-title"]}
-    ></PageHero>
-  );
+              );
+            },
+          };
+        })}
+        title="Archive"
+        titleClassName="text-white"
+      ></PageHero>
+    );
+
+  return <PageHero />;
 };
 
 export const PageHero = (props: PageHeroProps) => {
@@ -207,38 +226,40 @@ export const PageHero = (props: PageHeroProps) => {
     <div id="page-hero" className={className} style={style}>
       <div className="section">
         <div className={css["info"]}>
-          <PathNavigation {...props} />
+          {/* <PathNavigation {...props} /> */}
 
-          <div className={css["title-block"]}>
-            <h1
-              className={`font-massive-2 ${
-                props.titleSubtext ? css["subtext"] : ""
-              } ${props.titleClassName ? props.titleClassName : ""}`}
-            >
-              {props.title}
-              {props.titleSubtext && <span>{props.titleSubtext}</span>}
-            </h1>
-            {props.description && (
-              <span className={css["description"]}>{props.description}</span>
-            )}
+          {(props.title || props.description || props.cta) && (
+            <div className={css["title-block"]}>
+              <h1
+                className={`font-massive-2 ${
+                  props.titleSubtext ? css["subtext"] : ""
+                } ${props.titleClassName ? props.titleClassName : ""}`}
+              >
+                {props.title}
+                {props.titleSubtext && <span>{props.titleSubtext}</span>}
+              </h1>
+              {props.description && (
+                <span className={css["description"]}>{props.description}</span>
+              )}
 
-            {props.cta && (
-              <div className={css["buttons"]}>
-                {props.cta.map((link: CTALink) => {
-                  return (
-                    <Link
-                      key={link.to + link.title}
-                      className="button white lg"
-                      href={link.to}
-                    >
-                      {link.icon}
-                      <span>{link.title}</span>
-                    </Link>
-                  );
-                })}
-              </div>
-            )}
-          </div>
+              {props.cta && (
+                <div className={css["buttons"]}>
+                  {props.cta.map((link: CTALink) => {
+                    return (
+                      <Link
+                        key={link.to + link.title}
+                        className="button white lg"
+                        href={link.to}
+                      >
+                        {link.icon}
+                        <span>{link.title}</span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
 
           {props.children}
 

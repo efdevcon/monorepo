@@ -6,7 +6,6 @@ import { STOPWORDS } from '@/utils/stopwords'
 import { writeFileSync } from 'fs'
 import dictionary from '../../data/vectors/dictionary.json'
 import vectorizedSessions from '../../data/vectors/devcon-7.json'
-import dayjs from 'dayjs'
 
 export const WEIGHTS = {
   track: 6,
@@ -117,7 +116,6 @@ export async function GetRecommendedSessions(id: string, includeFeatured?: boole
 
 export function GetRecommendedVectorSearch(sessionVector: number[], allSessions: VectorizedSession[], limit: number = 10): Session[] {
   const similarities = allSessions
-    .filter((vs) => vs.vector !== sessionVector && dayjs(vs.session.slot_start).isAfter(dayjs()))
     .map((vs) => {
       const vectorSimilarity = getSimilarity(sessionVector, vs.vector)
       const featuredBoost = vs.session.featured ? WEIGHTS.featured : 0
@@ -128,6 +126,7 @@ export function GetRecommendedVectorSearch(sessionVector: number[], allSessions:
         similarity: adjustedSimilarity,
       }
     })
+    .filter((item) => item.similarity > 0)
 
   const recommendations = similarities
     .sort((a, b) => b.similarity - a.similarity)
@@ -370,10 +369,12 @@ export function vectorizeSessions(sessions: any[], limit: number = 10, saveToFil
   const similarities = []
   for (let i = 0; i < vectorizedSessions.length; i++) {
     const session = vectorizedSessions[i]
-    const recommendations = GetRecommendedVectorSearch(session.vector, vectorizedSessions, limit)
+    const recommendations = GetRecommendedVectorSearch(session.vector, vectorizedSessions, limit + 1) // +1 to skip itself
+    const filteredRecommendations = recommendations.filter((rec) => rec.id !== session.session.id)
     similarities.push(
-      ...recommendations.map((rec) => ({
+      ...filteredRecommendations.map((rec) => ({
         sessionId: session.session.id,
+        sourceId: session.session.sourceId,
         otherId: rec.id,
         similarity: rec.similarity || 0,
       }))
@@ -389,7 +390,7 @@ export function vectorizeSession(session: Session, dictionary: VectorDictionary)
     ...dictionary.speakers.map((speaker) => (session.speakers.includes(speaker) ? 1 : 0)),
     ...dictionary.tags.map((tag) => (session.tags.includes(tag) ? 1 : 0)),
     ...dictionary.expertise.map((exp) => (session.expertise === exp ? 1 : 0)),
-    ...dictionary.audiences.map((aud) => (session.audience === aud ? 1 : 0)),
+    ...dictionary.audiences.map((aud) => (session.audience && session.audience === aud ? 1 : 0)),
   ]
 
   return getVectorWeight(vector, dictionary)

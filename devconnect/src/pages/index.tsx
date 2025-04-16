@@ -783,24 +783,26 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="relative bg-white">
+          <div className="relative bg-white overflow-hidden max-w-screen">
             <div className="section ">
               <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
-              <p className="text-xl text-black mb-5">
-                Join our World’s Fair of Ethereum apps, grab a seat at the cowork, and co-create the next big thing in
-                Ethereum.
-              </p>
-              <NewSchedule />
+              <div className="text-xl text-black mb-5">
+                <RichText content={data.pages.devconnect_week.first_part} className="cms-markdown" />
+              </div>
+            </div>
+            <div className="section">
+              <div className="expand-right lg:hidden">
+                <NewSchedule />
+                {/* <div className="w-[16px] h-1 opacity-0 shrink-0" data-id="white-space"></div> */}
+              </div>
+              <div className="hidden lg:block">
+                <NewSchedule />
+              </div>
+            </div>
+
+            <div className="section">
               <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
-                <p>
-                  ETH Day will be the official Devconnect kickoff with ceremony, talks, and grand opening of the
-                  Ethereum World's Fair and Community Hubs.
-                </p>
-                <p className="text-lg text-black">
-                  <b>Make sure to plan your community events before or after Nov 17</b>. We will feature some community
-                  events on the calendar as we get closer to the event. In the meantime, share your events on X, tag
-                  @efdevcon or write us at support@devconnect.org with your questions.
-                </p>
+                <RichText content={data.pages.devconnect_week.second_part} className="cms-markdown" />
               </div>
             </div>
           </div>
@@ -813,9 +815,7 @@ const Home: NextPage = (props: any) => {
 
           <div className="section relative pb-8 md:pb-12 bg-black/50 overflow-hidden">
             <div className="pt-6">
-              <h1 className="section-header" style={{ color: 'white !important' }}>
-                Blog Posts
-              </h1>
+              <h1 className="section-header white">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
             </div>

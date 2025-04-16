@@ -103,6 +103,7 @@ model Session {
 model RelatedSession {
   id Int @id @default(autoincrement())
   sessionId String
+  sourceId String
   vector Bytes?
 
   other Session @relation("Related", fields: [otherId], references: [id], onDelete: Cascade)
@@ -114,6 +115,7 @@ model RelatedSession {
 model RecommendedSession {
   id Int @id @default(autoincrement())
   sessionId String
+  sourceId String
   vector Bytes?
 
   other Session @relation("Recommended", fields: [otherId], references: [id], onDelete: Cascade)

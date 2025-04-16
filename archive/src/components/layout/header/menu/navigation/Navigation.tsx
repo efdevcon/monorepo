@@ -17,6 +17,7 @@ export const NavigationItems = [
     title: "Event",
     url: "",
     type: "links",
+    // logo: "/images/menu/events.svg",
     logo: "/images/menu/events.svg",
     links: [
       ...[7, 6, 5, 4, 3, 2, 1, 0].map((event) => ({
@@ -30,6 +31,7 @@ export const NavigationItems = [
     title: "Categories",
     url: "",
     type: "links",
+    // logo: "/images/menu/tags.svg",
     logo: "/images/menu/tags.svg",
     links: TRACKS.map((track) => ({
       title: track,
@@ -61,7 +63,17 @@ const Mobile = (props: any) => {
             >
               {i.logo && (
                 <div className={css["foldout-background"]}>
-                  <img src={i.logo} alt={`${i.title}: background logo`} />
+                  <img
+                    src={i.logo}
+                    // className={css["grayscale"]}
+                    style={{
+                      filter: "brightness(0)",
+                      width: "100%",
+                      height: "100%",
+                    }}
+                    alt={`${i.title}: background logo`}
+                    // style={{ width: "100%", height: "100%" }}
+                  />
                 </div>
               )}
               {hasChildren ? (

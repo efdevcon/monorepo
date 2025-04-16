@@ -5,15 +5,15 @@ import archiveCss from "./archive.module.scss";
 import css from "./video.module.scss";
 import { Tabs } from "@/components/common/tabs";
 import { Tab } from "@/components/common/tabs/Tabs";
-import { VideoCard } from "@/components/domain/archive/playlists";
+import { VideoCard } from "@/components/domain/archive/VideoCard";
 import GoogleSlides from "@/assets/icons/google_slides.svg";
 import { Link } from "@/components/common/link";
 import { Avatar } from "./Avatar";
 import { Banner } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
-
-type VideoProps = {};
+import duration from "dayjs/plugin/duration";
+dayjs.extend(duration);
 
 const List = ({ video, playlist, videos }: any) => {
   return (
@@ -44,11 +44,12 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
   const tabsRef = React.useRef();
 
   React.useEffect(() => {
-    const queryParams = queryString.parse(location.search);
+    const searchParams = new URLSearchParams(window.location.search);
+    const playlistParam = searchParams.get("playlist");
 
-    if (queryParams && queryParams.playlist) {
-      const activePlaylist = playlists.find(
-        (pl: any) => queryParams.playlist === pl.title
+    if (playlistParam) {
+      const activePlaylist = playlists?.find(
+        (pl: any) => playlistParam === pl.title
       );
 
       if (activePlaylist) {
@@ -58,7 +59,7 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
     }
   }, []);
 
-  if (!playlist && relatedVideos.length === 0) return null;
+  if (!playlist && relatedVideos?.length === 0) return null;
 
   return (
     <div className={css["suggested"]}>
@@ -91,8 +92,8 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
 };
 
 const Labels = ({ tags, playlists }: any) => {
-  const hasPlaylists = playlists.length > 0;
-  const hasTags = tags.length > 0;
+  const hasPlaylists = playlists?.length > 0;
+  const hasTags = tags?.length > 0;
 
   if (!hasTags && !hasPlaylists) return null;
 
@@ -164,7 +165,7 @@ export const Video = (props: any) => {
 
                   {!props.video.sources_youtubeId && (
                     <img
-                      src={"/assets/images/video-soon.png"}
+                      src={"/images/video-soon.png"}
                       alt={`${props.video.title} preview`}
                     />
                   )}
@@ -225,10 +226,13 @@ export const Video = (props: any) => {
                   <div className={css["descriptors"]}>
                     <p className={css["descriptor"]}>
                       <span>Duration:</span>{" "}
-                      {dayjs(video.duration * 1000).format("HH:mm:ss")}
+                      {dayjs
+                        .duration(video.duration, "seconds")
+                        .format("HH:mm:ss")}
                     </p>
                     <p className={css["descriptor"]}>
-                      <span>Speaker:</span> {video.speakers.join(", ")}
+                      <span>Speaker:</span>{" "}
+                      {video.speakers.map((i: any) => i.name).join(", ")}
                     </p>
                     <p className={css["descriptor"]}>
                       <span>Type:</span> {video.type}
@@ -240,7 +244,8 @@ export const Video = (props: any) => {
                       <span>Event:</span> Devcon {video.edition}
                     </p>
                     <p className={css["descriptor"]}>
-                      <span>Date:</span> // TODO: Add date
+                      <span>Date:</span>{" "}
+                      {dayjs(video.slot_start).format("MMM YYYY")}
                     </p>
                   </div>
 
@@ -277,7 +282,7 @@ export const Video = (props: any) => {
                   </div>
                 )}
 
-                {video.profiles.length > 0 && (
+                {video.profiles?.length > 0 && (
                   <div className={css["speakers"]}>
                     <span
                       className={`${css["title"]} font-sm bold text-uppercase`}

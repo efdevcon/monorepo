@@ -1,0 +1,32 @@
+.bg-gradient {
+  background: linear-gradient(to bottom, #6060a2, #36364c);
+}
+
+.tiled {
+  position: relative;
+  // background-image: url('/destino/bg-tile-yellow.svg');
+  // background-size: 165px 94px;
+  // background-repeat: repeat;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-image: url('/destino/bg-tile-yellow.svg');
+    background-size: 41px 23.5px;
+    background-repeat: repeat;
+    opacity: 1;
+    filter: blur(8px) grayscale(100%);
+    // mix-blend-mode: multiply;
+  }
+}
+
+.fade-sides {
+  position: relative;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}

@@ -221,7 +221,9 @@ export async function UpdateSessionSources(req: Request, res: Response) {
 export async function GetSessionRelated(req: Request, res: Response) {
   // #swagger.tags = ['Sessions']
   const data = await client.relatedSession.findMany({
-    where: { sessionId: req.params.id },
+    where: {
+      OR: [{ sessionId: req.params.id }, { sourceId: req.params.id }],
+    },
     orderBy: { similarity: 'desc' },
     include: { other: true },
     take: 10,

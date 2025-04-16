@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Calendar, MapPin } from 'lucide-react'
 import LaRuralLogo from './images/la-rural-logo.png'
 import LaRuralVenue from './images/la-rural-picture.png'
@@ -8,12 +8,17 @@ import { AddToCalendarModal, generateCalendarExport } from 'lib/components/add-t
 import moment from 'moment'
 import Link from 'common/components/link'
 
-const Venue: React.FC = () => {
-  const [showCalendarModal, setShowCalendarModal] = useState(false)
+const AddToCalendarButton: React.FC<{ showCalendarModal: boolean; setShowCalendarModal: (show: boolean) => void }> = ({
+  showCalendarModal,
+  setShowCalendarModal,
+}) => {
+  const [mounted, setMounted] = useState(false)
 
-  const handleAddToCalendar = () => {
-    setShowCalendarModal(true)
-  }
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) return null
 
   const calendarData = generateCalendarExport({
     timezone: 'America/Argentina/Buenos_Aires',
@@ -32,6 +37,30 @@ const Venue: React.FC = () => {
       },
     ],
   })
+
+  return (
+    <AddToCalendarModal open={showCalendarModal} close={() => setShowCalendarModal(false)}>
+      <div className="p-6 rounded-lg text-black flex flex-col justify-center items-center gap-4">
+        <p className="">Add to calendar</p>
+
+        <div className="flex flex-col gap-2 relative">
+          <a {...calendarData.icsAttributes} className="w-full block">
+            <Button color="teal-1" fill className="w-full">
+              Download (.ics)
+            </Button>
+          </a>
+
+          <Link href={calendarData.googleCalUrl}>
+            <Button color="teal-1">Google Calendar</Button>
+          </Link>
+        </div>
+      </div>
+    </AddToCalendarModal>
+  )
+}
+
+const Venue: React.FC = () => {
+  const [showCalendarModal, setShowCalendarModal] = useState(false)
 
   return (
     <section className="border-solid border-t border-neutral-200 border-b bg-[#FAFCFF]">
@@ -63,7 +92,10 @@ const Venue: React.FC = () => {
 
             <div className="text-[#575a7b] hidden font-semibold lg:block flex items-center gap-1 mt-1">Directions:</div>
             <div className="text-[#575a7b] flex items-center gap-1 mt-1 justify-center sm:justify-start">
-              <a href="#" className="text-[#575a7b] underline font-bold text-sm sm:text-sm">
+              <a
+                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
+                className="text-[#575a7b] underline font-bold text-sm sm:text-sm"
+              >
                 View Map
               </a>
               <span className="text-[#f78da7] ">
@@ -75,11 +107,11 @@ const Venue: React.FC = () => {
             <div className="flex flex-col justify-center items-center text-right">
               <p className="text-[#575a7b] text-[0.81rem]">BUENOS AIRES, ARGENTINA</p>
               <p className="text-[#f78da7] bold text-xl leading-tight">
-                17 — 22 <span className="text-[#575a7b] bold">Nov, 2024</span>
+                17 — 22 <span className="text-[#575a7b] bold">Nov, 2025</span>
               </p>
             </div>
             <div className="ml-auto">
-              <Button fat color="teal-1" className="flex items-center gap-3" onClick={handleAddToCalendar}>
+              <Button fat color="teal-1" className="flex items-center gap-3" onClick={() => setShowCalendarModal(true)}>
                 <Calendar size={17} className="translate-y-[-0.5px]" />
                 Add to Calendar
               </Button>
@@ -88,23 +120,7 @@ const Venue: React.FC = () => {
         </div>
       </div>
 
-      <AddToCalendarModal open={showCalendarModal} close={() => setShowCalendarModal(false)}>
-        <div className="p-6 rounded-lg text-black flex flex-col justify-center items-center gap-4">
-          <p className="">Add to calendar</p>
-
-          <div className="flex flex-col gap-2 relative">
-            <a {...calendarData.icsAttributes} className="w-full block">
-              <Button color="teal-1" fill className="w-full">
-                Download (.ics)
-              </Button>
-            </a>
-
-            <Link href={calendarData.googleCalUrl}>
-              <Button color="teal-1">Google Calendar</Button>
-            </Link>
-          </div>
-        </div>
-      </AddToCalendarModal>
+      <AddToCalendarButton showCalendarModal={showCalendarModal} setShowCalendarModal={setShowCalendarModal} />
     </section>
   )
 }
