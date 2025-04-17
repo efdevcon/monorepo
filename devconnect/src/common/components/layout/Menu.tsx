@@ -78,6 +78,10 @@ const menuItems = (pathname: string) => [
     text: (globalThis as any).translations.about,
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
   },
+  {
+    text: 'Destino Devconnect',
+    url: '/destino',
+  },
   // {
   //   text: 'Cowork',
   //   url: '/cowork',

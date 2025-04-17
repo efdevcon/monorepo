@@ -18,13 +18,15 @@ import Suitcase from './images/suitcase.png'
 import Speaker from './images/speaker.png'
 import Comms from './images/comms.png'
 import { useGSAP } from '@gsap/react'
+import YellowTile from './images/bg-tile-yellow.svg'
+import Missing from 'assets/images/404.png'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export const FirstSection = () => {
   return (
     <div
-      className={cn('section relative w-full text-white py-8 gap-4 z-[11] shadow-lg', 'w-screen', styles.tiled)}
+      className={cn('section relative w-full text-white py-8 pb-12 gap-4 z-[11] shadow-lg', 'w-screen', styles.tiled)}
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
@@ -40,11 +42,11 @@ export const FirstSection = () => {
 
           <button
             className={cn(
-              'border-solid  border-b-[10px] px-8 py-2 border-[#F58A36] text-black text-2xl',
+              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
               styles['tiled-button']
             )}
           >
-            APPLY NOW
+            <div className="group-hover:translate-y-[3px] transition-transform">APPLY NOW</div>
           </button>
 
           {/* <Button fat fill color="black-1">
@@ -297,7 +299,7 @@ const PlatformGuanaco = ({
           sideOffset={2}
           onOpenAutoFocus={e => e.preventDefault()}
           onCloseAutoFocus={e => e.preventDefault()}
-          className={cn('bg-yellow-500 w-auto h-auto', styles['popover-animation'])}
+          className={cn('bg-yellow-500 w-auto h-auto z-[11]', styles['popover-animation'])}
         >
           <h3 className="font-bold">{guanacoSpeechString}</h3>
           <PopoverArrow className="fill-yellow-500" width={16} height={8} />
@@ -374,7 +376,7 @@ const Platform = ({
         <Image
           src={Sign}
           alt="Sign"
-          className="absolute z-[12] top-0 right-0 translate-x-[-200%] translate-y-[45%] hidden lg:block"
+          className="absolute z-[12] top-0 right-0 translate-x-[-200%] translate-y-[45%] hidden xl:block"
         />
       </TriangleSection>
       <TriangleSection
@@ -404,7 +406,7 @@ export const SecondSection = () => {
       >
         <div
           className={cn(
-            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 lg:pt-8 lg:pb-0 lg:translate-y-[50%] lg:h-[200px]'
+            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 lg:pt-8 lg:pb-24 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] lg:h-[300px] xl:h-[200px]'
           )}
         >
           <div className="text-white text-4xl font-bold shrink-0">What is Destino Devconnect?</div>
@@ -488,7 +490,7 @@ export const ThirdSection = () => {
 }
 
 export const FourthSection = () => {
-  const sectionColor = 'bg-[#A2D0FA]'
+  const sectionColor = 'bg-[#2289e7]'
   const shade = 'bg-[#80B6E8]'
   const shade2 = 'bg-[#498FCE]'
 
@@ -539,18 +541,18 @@ export const HowToApply = () => {
     <div className="section my-16 mt-24">
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="flex flex-col items-center justify-center gap-4 w-[800px] max-w-[95%]">
-          <div className="text-white text-4xl font-bold">How to apply</div>
-          <div className="flex gap-4 text-center">
+          <div className="text-white text-4xl font-bold mb-4">How to apply</div>
+          <div className="flex flex-col md:flex-row gap-6 text-center">
             <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-3xl font-bold">1</div>
+              <div className="text-yellow-500 text-4xl font-bold">1</div>
               <div>Head to the Ecosystem Support Program and fill out the form (takes ~X mins)</div>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-3xl font-bold">2</div>
+              <div className="text-yellow-500 text-4xl font-bold">2</div>
               <div>If it's a good fit, we'll invite you for a 30-min call</div>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-3xl font-bold">3</div>
+              <div className="text-yellow-500 text-4xl font-bold">3</div>
               <div>Get support — host your event — help shape the Ethereum momentum in Argentina</div>
             </div>
           </div>
@@ -616,9 +618,11 @@ export const EventsList = () => {
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
-          <div className="text-white text-4xl font-bold">Events</div>
+          <div className="text-white text-4xl font-bold mb-4">Events List (Coming Soon)</div>
 
-          <EventsTable />
+          <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" />
+
+          {/* <EventsTable /> */}
         </div>
       </div>
     </div>
@@ -638,12 +642,10 @@ const events = [
 
 const EventsTable = () => {
   return (
-    <div className="p-6 bg-gray-900 text-white rounded-lg">
-      <h2 className="text-3xl font-bold text-center mb-4">Satellite Events</h2>
-      <p className="text-center mb-6">
-        The Ethereum community is organizing Devconnect Satellite Events. Join the Devconnect Satellite event near you.
-      </p>
-      <table className="w-full table-auto">
+    <div className="p-6 bg-gray-900 text-white">
+      {/* <h2 className="text-3xl font-bold text-center mb-4">Satellite Events</h2> */}
+      <p className="text-center">Check back soon for Destino Devconnect events near you!</p>
+      {/* <table className="w-full table-auto">
         <thead>
           <tr className="bg-gray-800">
             <th className="px-4 py-2">Date</th>
@@ -679,7 +681,7 @@ const EventsTable = () => {
       <div className="flex justify-center mt-4">
         <button className="bg-yellow-500 text-white px-4 py-2 mx-2 rounded hover:bg-yellow-600">{'<'}</button>
         <button className="bg-yellow-500 text-white px-4 py-2 mx-2 rounded hover:bg-yellow-600">{'>'}</button>
-      </div>
+      </div> */}
     </div>
   )
 }

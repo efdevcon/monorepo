@@ -75,8 +75,8 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
               href="/"
               className={cn(
                 css['logo'],
-                'transition-all ease duration-500 pointer-events-auto',
-                hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
+                'transition-all ease duration-500 pointer-events-auto'
+                // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
               )}
             >
               <HeaderLogo />
