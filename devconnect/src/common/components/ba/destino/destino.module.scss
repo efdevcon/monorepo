@@ -30,3 +30,20 @@
   -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
   mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
 }
+
+@keyframes nc-loop-mouse-anim {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20%);
+  }
+}
+
+.nc-loop-mouse-16-icon-f > :nth-child(2) {
+  --animation-duration: 1s;
+  transform-origin: 50% 50%;
+  animation: nc-loop-mouse-anim var(--animation-duration) infinite;
+}

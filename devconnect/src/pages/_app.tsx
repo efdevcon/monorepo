@@ -37,6 +37,7 @@ if (typeof window !== 'undefined') {
 function MyApp({ Component, pageProps }: AppProps) {
   const [showBanner, setShowBanner] = useState(true)
   const { visible, toggleVisible } = useDevaBotStore()
+
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
       init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })

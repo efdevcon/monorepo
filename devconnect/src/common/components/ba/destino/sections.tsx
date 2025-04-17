@@ -18,6 +18,7 @@ import Suitcase from './images/suitcase.png'
 import Speaker from './images/speaker.png'
 import Comms from './images/comms.png'
 import { useGSAP } from '@gsap/react'
+import YellowTile from './images/bg-tile-yellow.svg'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -40,11 +41,11 @@ export const FirstSection = () => {
 
           <button
             className={cn(
-              'border-solid  border-b-[10px] px-8 py-2 border-[#F58A36] text-black text-2xl',
+              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
               styles['tiled-button']
             )}
           >
-            APPLY NOW
+            <div className="group-hover:translate-y-[3px] transition-transform">APPLY NOW</div>
           </button>
 
           {/* <Button fat fill color="black-1">
@@ -297,7 +298,7 @@ const PlatformGuanaco = ({
           sideOffset={2}
           onOpenAutoFocus={e => e.preventDefault()}
           onCloseAutoFocus={e => e.preventDefault()}
-          className={cn('bg-yellow-500 w-auto h-auto', styles['popover-animation'])}
+          className={cn('bg-yellow-500 w-auto h-auto z-[11]', styles['popover-animation'])}
         >
           <h3 className="font-bold">{guanacoSpeechString}</h3>
           <PopoverArrow className="fill-yellow-500" width={16} height={8} />
@@ -488,7 +489,7 @@ export const ThirdSection = () => {
 }
 
 export const FourthSection = () => {
-  const sectionColor = 'bg-[#A2D0FA]'
+  const sectionColor = 'bg-[#2289e7]'
   const shade = 'bg-[#80B6E8]'
   const shade2 = 'bg-[#498FCE]'
 
