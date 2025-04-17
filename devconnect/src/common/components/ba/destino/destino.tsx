@@ -90,8 +90,9 @@ const Destino = () => {
         <FourthSection />
       </ScrollContainer>
 
-      <div className="flex flex-col items-center justify-center gap-16 my-16 overflow-hidden">
+      <div className="flex flex-col items-center justify-center gap-16 my-24 overflow-hidden">
         <HowToApply />
+        <EventsList />
       </div>
     </div>
   )
