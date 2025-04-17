@@ -19,13 +19,14 @@ import Speaker from './images/speaker.png'
 import Comms from './images/comms.png'
 import { useGSAP } from '@gsap/react'
 import YellowTile from './images/bg-tile-yellow.svg'
+import Missing from 'assets/images/404.png'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
 export const FirstSection = () => {
   return (
     <div
-      className={cn('section relative w-full text-white py-8 gap-4 z-[11] shadow-lg', 'w-screen', styles.tiled)}
+      className={cn('section relative w-full text-white py-8 pb-12 gap-4 z-[11] shadow-lg', 'w-screen', styles.tiled)}
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
@@ -619,7 +620,9 @@ export const EventsList = () => {
         <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
           <div className="text-white text-4xl font-bold mb-4">Events List (Coming Soon)</div>
 
-          <EventsTable />
+          <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" />
+
+          {/* <EventsTable /> */}
         </div>
       </div>
     </div>
