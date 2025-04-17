@@ -79,7 +79,7 @@ const Destino = () => {
       className={cn(
         'text-white',
         styles['bg-gradient'],
-        'flex flex-col items-center justify-center no-scrollbar w-screen'
+        'flex flex-col items-center justify-center no-scrollbar w-screen overflow-x-hidden'
       )}
     >
       <Hero />
