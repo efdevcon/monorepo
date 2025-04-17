@@ -157,7 +157,7 @@ const PlatformGuanaco = ({
         onUpdate: function () {
           // Add slight wobbling/rotation as it walks
           const progress = this.progress()
-          const wobble = Math.sin(progress * 12) * 5 // Increased wobble from 3 to 6 degrees
+          const wobble = Math.sin(progress * 12) * 3 // Increased wobble from 3 to 6 degrees
           gsap.set(guanaco, { rotation: wobble })
 
           // Check if we're almost at the final position
