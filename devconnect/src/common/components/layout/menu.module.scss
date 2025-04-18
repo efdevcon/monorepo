@@ -302,3 +302,13 @@ $width-right-column: 190px;
     margin-right: 4px;
   }
 }
+
+.destino-rainbow {
+  background: #ff66c4;
+  background: -webkit-linear-gradient(left, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: -o-linear-gradient(right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: -moz-linear-gradient(right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: linear-gradient(to right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

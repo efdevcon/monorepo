@@ -40,35 +40,38 @@ const ScrollContainer = ({ children }: { children: React.ReactNode }) => {
 
 const Hero = () => {
   return (
-    <div className="h-screen w-screen relative z-[11]">
-      <Image src={DestinoHero} alt="Destino Hero" className="w-full h-full object-cover object-position" />
-      <Image
-        src={DestinoLogo}
-        alt="Destino Logo"
-        className="object-cover lg:w-[450px] max-w-[80%] absolute top-[35%] lg:top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
-      />
-      <div className="absolute bottom-4 right-0 left-0 justify-center items-center flex gap-2 text-black  pointer-events-none ">
-        <div className="flex items-center text-sm gap-1.5">
-          <p className="text-sm font-semibold opacity-100 text-white [text-shadow:0_0_1px_#000,0_0_2px_#000] ">
-            {(globalThis as any).translations.scroll_for_more}
-          </p>
-          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="14" height="14">
-            <g className="nc-icon-wrapper" fill="#ffffff">
-              <g className={`${styles['nc-loop-mouse-16-icon-f']} opacity-100`}>
-                <path
-                  d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                  fill="#ffffff"
-                ></path>
-                <path
-                  d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                  fill="#ffffff"
-                  data-color="color-2"
-                ></path>
+    <div className="h-screen w-screen relative flex flex-col justify-end z-[11]">
+      <div className="relative top-0 left-0 w-full h-full">
+        <Image src={DestinoHero} alt="Destino Hero" className="w-full h-full absolute object-cover object-position" />
+        <Image
+          src={DestinoLogo}
+          alt="Destino Logo"
+          className="object-cover w-[325px] max-w-[70%] absolute top-[40%] lg:top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        />
+        <div className="absolute bottom-2 right-0 left-0 justify-center items-center flex gap-2 text-black  pointer-events-none ">
+          <div className="flex items-center text-sm gap-1.5">
+            <p className="text-sm font-semibold opacity-100 text-white [text-shadow:0_0_1px_#000,0_0_2px_#000] ">
+              {(globalThis as any).translations.scroll_for_more}
+            </p>
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="14" height="14">
+              <g className="nc-icon-wrapper" fill="#ffffff">
+                <g className={`${styles['nc-loop-mouse-16-icon-f']} opacity-100`}>
+                  <path
+                    d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
+                    fill="#ffffff"
+                  ></path>
+                  <path
+                    d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
+                    fill="#ffffff"
+                    data-color="color-2"
+                  ></path>
+                </g>
               </g>
-            </g>
-          </svg>
+            </svg>
+          </div>
         </div>
       </div>
+      <FirstSection />
     </div>
   )
 }
@@ -83,12 +86,12 @@ const Destino = () => {
       )}
     >
       <Hero />
-      <FirstSection />
-      <ScrollContainer>
+
+      <div className={cn('flex flex-col justify-center w-full relative')}>
         <SecondSection />
         <ThirdSection />
         <FourthSection />
-      </ScrollContainer>
+      </div>
 
       <div className="flex flex-col items-center justify-center gap-16 my-24 overflow-hidden">
         <HowToApply />

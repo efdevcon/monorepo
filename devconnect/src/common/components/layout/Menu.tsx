@@ -80,6 +80,7 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Destino Devconnect',
+    customClass: css['destino-rainbow'],
     url: '/destino',
   },
   // {
@@ -310,8 +311,8 @@ export const Menu = (props: any) => {
     <div
       className={cn(
         css['menu'],
-        'flex gap-4 self-start items-center backdrop-blur-sm bg-black/20 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
-        hasScrolled && 'bg-black/50'
+        'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
+        hasScrolled && 'bg-black/90'
       )}
     >
       <Mobile menuOpen={props.menuOpen} setMenuOpen={props.setMenuOpen} />
