@@ -46,7 +46,7 @@ const Hero = () => {
         <Image
           src={DestinoLogo}
           alt="Destino Logo"
-          className="object-cover lg:w-[325px] max-w-[70%] absolute top-[35%] lg:top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+          className="object-cover w-[325px] max-w-[70%] absolute top-[40%] lg:top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
         <div className="absolute bottom-2 right-0 left-0 justify-center items-center flex gap-2 text-black  pointer-events-none ">
           <div className="flex items-center text-sm gap-1.5">

@@ -398,7 +398,7 @@ const Platform = ({
 }
 
 export const SecondSection = () => {
-  const sectionColor = 'bg-[#829b15]'
+  const sectionColor = 'bg-[#629522]' // 'bg-[#829b15]'
   const shade = 'bg-[#B2CD3E]'
   const shade2 = 'bg-[#629522]'
 
@@ -447,7 +447,7 @@ export const SecondSection = () => {
 }
 
 export const ThirdSection = () => {
-  const sectionColor = 'bg-[#b81175]'
+  const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
   const shade = 'bg-[#E897C5]'
   const shade2 = 'bg-[#BA4588]'
 
