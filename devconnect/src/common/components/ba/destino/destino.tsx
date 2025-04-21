@@ -38,7 +38,7 @@ const ScrollContainer = ({ children }: { children: React.ReactNode }) => {
   return <div className={cn('flex flex-col justify-center w-full relative')}>{children}</div>
 }
 
-const Hero = () => {
+const Hero = ({ content }: { content: any }) => {
   return (
     <div className="h-screen w-screen relative flex flex-col justify-end z-[11]">
       <div className="relative top-0 left-0 w-full h-full">
@@ -71,7 +71,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <FirstSection />
+      <FirstSection content={content} />
     </div>
   )
 }
@@ -85,17 +85,17 @@ const Destino = ({ content }: { content: any }) => {
         'flex flex-col items-center justify-center no-scrollbar w-screen overflow-x-hidden'
       )}
     >
-      <Hero />
+      <Hero content={content} />
 
       <div className={cn('flex flex-col justify-center w-full relative')}>
-        <SecondSection />
-        <ThirdSection />
-        <FourthSection />
+        <SecondSection content={content} />
+        <ThirdSection content={content} />
+        <FourthSection content={content} />
       </div>
 
       <div className="flex flex-col items-center justify-center gap-16 my-24 overflow-hidden">
-        <HowToApply />
-        <EventsList />
+        <HowToApply content={content} />
+        <EventsList content={content} />
       </div>
     </div>
   )

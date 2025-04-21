@@ -1,14 +1,18 @@
 import React from 'react'
-import Head from 'next/head'
 import Destino from 'common/components/ba/destino/destino'
 import { Footer, Header, withTranslations } from 'pages/index'
 import client from '../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
 
 const DestinoPage = ({ content }: { content: any }) => {
+  const { data }: { data: any } = useTina(content)
+
+  // console.log(data.pages)
+
   return (
     <>
       <Header active />
-      <Destino content={content} />
+      <Destino content={data.pages} />
       <Footer />
     </>
   )

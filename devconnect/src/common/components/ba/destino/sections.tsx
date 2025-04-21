@@ -24,10 +24,11 @@ import RockThree from './images/rock-3.png'
 import MountainSnow from './images/mountain-snow.png'
 import MountainBrown from './images/mountain-brown.png'
 import Missing from 'assets/images/404.png'
+import RichText from 'lib/components/tina-cms/RichText'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
-export const FirstSection = () => {
+export const FirstSection = ({ content }: { content: any }) => {
   return (
     <div
       className={cn(
@@ -39,10 +40,9 @@ export const FirstSection = () => {
     >
       <div className="flex flex-col justify-center items-center gap-4">
         <div className="flex flex-col items-center justify-center gap-6 w-[700px] max-w-[95%] text-center">
-          <div className="font-bold text-4xl">Organize your Destino Devconnect event</div>
+          <div className="font-bold text-4xl">{content.intro.title}</div>
           <div className="text-lg">
-            Devconnect is coming to Buenos Aires this November, and we're supporting local builders, organizers, and
-            communities on the mission to bring Argentina onchain.
+            <RichText content={content.intro.destino_devconnect_intro} />
           </div>
 
           <button
@@ -51,7 +51,9 @@ export const FirstSection = () => {
               styles['tiled-button']
             )}
           >
-            <div className="group-hover:translate-y-[3px] transition-transform">APPLY NOW</div>
+            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+              {(globalThis as any).translations.apply_now}
+            </div>
           </button>
 
           {/* <Button fat fill color="black-1">
@@ -397,7 +399,7 @@ const Platform = ({
   )
 }
 
-export const SecondSection = () => {
+export const SecondSection = ({ content }: { content: any }) => {
   const sectionColor = 'bg-[#629522]' // 'bg-[#829b15]'
   const shade = 'bg-[#B2CD3E]'
   const shade2 = 'bg-[#629522]'
@@ -419,7 +421,7 @@ export const SecondSection = () => {
             'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[20%] xl:translate-y-[50%] 2xl:translate-y-[65%] lg:h-[350px] xl:h-[220px]'
           )}
         >
-          <div className="text-white text-4xl font-semibold shrink-0 ">What is Destino Devconnect?</div>
+          <div className="text-white text-4xl font-semibold shrink-0 ">{content.destino_devconnect_about.title}</div>
           <div className="flex flex-col gap-4 w-[500px] max-w-[95%] relative text-lg shrink-0">
             <Image
               src={Tree}
@@ -442,9 +444,20 @@ export const SecondSection = () => {
               alt="Tree"
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
             />
-            Destino Devconnect is a local grant round leading up to Devconnect ARG. It's both...
+
+            <RichText content={content.destino_devconnect_about.description} />
+            {/* Destino Devconnect is a local grant round leading up to Devconnect ARG. It's both... */}
             <div className="flex flex-col gap-4 text-lg">
-              <div className="flex flex-col items-center gap-1">
+              {content.destino_devconnect_about.what_is_it.map((item: any) => {
+                return (
+                  <div className="flex flex-col items-center gap-1">
+                    <div className="text-yellow-400 text-2xl font-bold">{item.title}</div>
+                    <RichText content={item.what_is_it} />
+                    {/* <div>{item.description}</div> */}
+                  </div>
+                )
+              })}
+              {/* <div className="flex flex-col items-center gap-1">
                 <div className="text-yellow-400 text-2xl font-bold">A grant</div>
                 <div>we're offering up to $1,000 in support per event</div>
               </div>
@@ -454,7 +467,7 @@ export const SecondSection = () => {
                   connecting local efforts across the region that share one mission: to accelerate Ethereum adoption in
                   Argentina and beyond
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -463,7 +476,7 @@ export const SecondSection = () => {
   )
 }
 
-export const ThirdSection = () => {
+export const ThirdSection = ({ content }: { content: any }) => {
   // const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
   const sectionColor = 'bg-[#6d3700]'
   const shade = 'bg-[#bb6000]'
@@ -511,26 +524,22 @@ export const ThirdSection = () => {
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 ">Who it's for</div>
+            <div className="text-white text-4xl font-bold shrink-0 ">
+              {content.destino_devconnect_who_can_apply.title}
+            </div>
             <div className="flex flex-col justify-center items-center gap-8 text-lg shrink-0">
-              <div className="shrink-0 text-yellow-400 text-2xl">You're eligible if you...</div>
+              <div className="shrink-0 text-yellow-400 text-2xl">
+                {content.destino_devconnect_who_can_apply.description}
+              </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 shrink-0 text-lg">
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Check} alt="Check" className="w-14 h-14" />
-                  <div>Are based in Argentina or Latam</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Check} alt="Check" className="w-14 h-14" />
-                  <div>Have a track record of community-building or event organizing</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Check} alt="Check" className="w-14 h-14" />
-                  <div>Are already hosting meetups, workshops, or events, or want to start</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Check} alt="Check" className="w-14 h-14" />
-                  <div>Share the mission of bringing Argentina onchain </div>
-                </div>
+                {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
+                  return (
+                    <div className="flex flex-col items-center gap-2">
+                      <Image src={Check} alt="Check" className="w-14 h-14" />
+                      <div>{item.description}</div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -540,7 +549,7 @@ export const ThirdSection = () => {
   )
 }
 
-export const FourthSection = () => {
+export const FourthSection = ({ content }: { content: any }) => {
   const sectionColor = 'bg-[#2871B3]'
   const shade = 'bg-[#80B6E8]'
   const shade2 = 'bg-[#2871B3]'
@@ -559,16 +568,6 @@ export const FourthSection = () => {
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[95%] pt-32 pb-32 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
-            {/* <Image
-              src={Tree}
-              alt="Tree"
-              className="absolute top-0 left-0 translate-x-[-120%] translate-y-[-30%] scale-[0.85]"
-            />
-            <Image
-              src={Tree}
-              alt="Tree"
-              className="absolute top-0 left-0 translate-x-[-220%] translate-y-[-15%] scale-90"
-            /> */}
             <Image
               src={RockOne}
               alt="Rock"
@@ -580,22 +579,24 @@ export const FourthSection = () => {
               alt="Tree"
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[-25%] w-[400px] h-auto"
             />
-            {/* <Image
-              src={Tree}
-              alt="Tree"
-              className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
-            /> */}
 
-            <div className="text-white text-4xl font-bold shrink-0 mb-4">What you get</div>
+            <div className="text-white text-4xl font-bold shrink-0 mb-4">
+              {content.destino_devconnect_how_to_apply.title}
+            </div>
             <div className="flex flex-col justify-center items-center gap-4 lg:text-lg shrink-0">
               <div className="grid grid-cols-2 gap-4 text-center shrink-0">
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Wallet} alt="Wallet" className="w-16 h-auto object-cover" />
-                  <div>Up to $1,000 in funding</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Suitcase} alt="Suitcase" className="w-16 h-auto object-cover" />
-                  <div>Help with speakers and sponsors if you need it</div>
+                {content.destino_devconnect_how_to_apply.destino_devconnect_how_to_apply_list.map(
+                  (item: any, index: number) => {
+                    const icon = index === 0 ? Wallet : index === 1 ? Suitcase : index === 2 ? Speaker : Comms
+                    return (
+                      <div className="flex flex-col items-center gap-2">
+                        <Image src={icon} alt="Wallet" className="w-16 h-auto object-cover" />
+                        <div>{item.description}</div>
+                      </div>
+                    )
+                  }
+                )}
+                {/* <div>Help with speakers and sponsors if you need it</div>
                 </div>
                 <div className="flex flex-col items-center gap-2">
                   <Image src={Speaker} alt="Speaker" className="w-16 h-auto object-cover" />
@@ -604,7 +605,7 @@ export const FourthSection = () => {
                 <div className="flex flex-col items-center gap-2">
                   <Image src={Comms} alt="Comms" className="w-16 h-auto object-cover" />
                   <div>Visibility across Devconnect's official comms</div>
-                </div>
+                </div>*/}
               </div>
             </div>
           </div>
@@ -614,15 +615,15 @@ export const FourthSection = () => {
   )
 }
 
-export const HowToApply = () => {
+export const HowToApply = ({ content }: { content: any }) => {
   return (
     <div className="section my-16 mt-24">
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="flex flex-col items-center justify-center gap-0 w-[800px] max-w-[95%] text-center">
-          <div className="text-white text-4xl font-bold mb-8">How to apply</div>
-          <div className="text-white text-lg font-bold">Applications are open now.</div>
+          <div className="text-white text-4xl font-bold mb-8">{content.destino_devconnect_where_to_apply.title}</div>
+          <div className="text-white text-lg font-bold">{content.destino_devconnect_where_to_apply.description}</div>
           <div className="text-white text-base opacity-70 mb-8">
-            Head over to the Ecosystem Support Program website →{' '}
+            {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
           <button
             className={cn(
@@ -630,23 +631,10 @@ export const HowToApply = () => {
               styles['tiled-button']
             )}
           >
-            <div className="group-hover:translate-y-[3px] transition-transform">APPLY NOW</div>
+            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+              {(globalThis as any).translations.apply_now}
+            </div>
           </button>
-
-          {/* <div className="flex flex-col md:flex-row gap-6 text-center">
-            <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-4xl font-bold">1</div>
-              <div>Head to the Ecosystem Support Program and fill out the form (takes ~X mins)</div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-4xl font-bold">2</div>
-              <div>If it's a good fit, we'll invite you for a 30-min call</div>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="text-yellow-500 text-4xl font-bold">3</div>
-              <div>Get support — host your event — help shape the Ethereum momentum in Argentina</div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>
@@ -704,12 +692,12 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
   )
 }
 
-export const EventsList = () => {
+export const EventsList = ({ content }: { content: any }) => {
   return (
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
-          <div className="text-white text-4xl font-bold mb-4">Event List (Coming Soon)</div>
+          <div className="text-white text-4xl font-bold mb-4">{content.events_list_title}</div>
 
           <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" />
 
