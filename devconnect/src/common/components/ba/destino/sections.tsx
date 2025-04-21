@@ -579,16 +579,6 @@ export const FourthSection = ({ content }: { content: any }) => {
                     )
                   }
                 )}
-                {/* <div>Help with speakers and sponsors if you need it</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Speaker} alt="Speaker" className="w-16 h-auto object-cover" />
-                  <div>A spot on the Destino Devconnect calendar</div>
-                </div>
-                <div className="flex flex-col items-center gap-2">
-                  <Image src={Comms} alt="Comms" className="w-16 h-auto object-cover" />
-                  <div>Visibility across Devconnect's official comms</div>
-                </div>*/}
               </div>
             </div>
           </div>
