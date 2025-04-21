@@ -434,16 +434,14 @@ export const SecondSection = () => {
             <Image
               src={RockOne}
               alt="Rock"
-              className="absolute top-0 left-0 translate-x-[-150%] translate-y-[150%] w-[120px] auto"
+              className="absolute top-0 left-0 translate-x-[-130%] translate-y-[150%] w-[150px] auto"
             />
-            {/* <Image src={Tree} alt="Tree" className="absolute top-0 right-0 translate-x-[120%] translate-y-[-30%]" /> */}
             <Image src={Tree} alt="Tree" className="absolute top-0 right-0 translate-x-[150%] translate-y-[-25%]" />
             <Image
               src={Tree}
               alt="Tree"
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
             />
-            {/* <Image src={Sign} alt="Sign" className="absolute bottom-0 right-0 translate-x-[150%] translate-y-[50%]" /> */}
             Destino Devconnect is a local grant round leading up to Devconnect ARG. It's both...
             <div className="flex flex-col gap-4 text-lg">
               <div className="flex flex-col items-center gap-1">
@@ -466,9 +464,10 @@ export const SecondSection = () => {
 }
 
 export const ThirdSection = () => {
-  const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
-  const shade = 'bg-[#E897C5]'
-  const shade2 = 'bg-[#BA4588]'
+  // const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
+  const sectionColor = 'bg-[#6d3700]'
+  const shade = 'bg-[#bb6000]'
+  const shade2 = 'bg-[#6d3700]'
 
   return (
     <div className="relative z-[9]" id="third-section">
@@ -484,10 +483,33 @@ export const ThirdSection = () => {
         grassColor="grass-2"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
-            <Image src={RockOne} alt="Tree" className="absolute top-0 left-0 translate-x-[170%] translate-y-[-30%]" />
-            <Image src={RockTwo} alt="Tree" className="absolute top-0 left-0 translate-x-[270%] translate-y-[-15%]" />
-            <Image src={RockThree} alt="Tree" className="absolute top-0 left-0 translate-x-[200%] translate-y-[40%]" />
+          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
+            <Image
+              src={RockTwo}
+              alt="Tree"
+              className="absolute top-0 left-0 translate-x-[-100%] translate-y-[-15%] scale-90 w-[300px] h-auto"
+            />
+            <Image
+              src={Tree}
+              alt="Tree"
+              className="absolute top-0 left-0 translate-x-[-120%] translate-y-[0%] scale-[0.85]"
+            />
+            {/* <Image
+              src={RockOne}
+              alt="Rock"
+              className="absolute top-0 left-0 translate-x-[-150%] translate-y-[150%] w-[120px] auto"
+            /> */}
+
+            <Image
+              src={MountainBrown}
+              alt="Tree"
+              className="absolute top-0 right-0 translate-x-[125%] translate-y-[-25%] w-[300px] h-auto"
+            />
+            <Image
+              src={Tree}
+              alt="Tree"
+              className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
+            />
 
             <div className="text-white text-4xl font-bold shrink-0 ">Who it's for</div>
             <div className="flex flex-col justify-center items-center gap-8 text-lg shrink-0">
@@ -536,14 +558,33 @@ export const FourthSection = () => {
         grassColor="grass-3"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[95%] pt-32 pb-32 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
+          <div className="flex flex-col items-center gap-4 w-[500px] max-w-[95%] pt-32 pb-32 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
+            {/* <Image
+              src={Tree}
+              alt="Tree"
+              className="absolute top-0 left-0 translate-x-[-120%] translate-y-[-30%] scale-[0.85]"
+            />
+            <Image
+              src={Tree}
+              alt="Tree"
+              className="absolute top-0 left-0 translate-x-[-220%] translate-y-[-15%] scale-90"
+            /> */}
             <Image
               src={RockOne}
-              alt="Tree"
-              className="absolute top-0 left-0 w-[200px] h-auto translate-x-[-170%] translate-y-[-30%]"
+              alt="Rock"
+              className="absolute top-0 left-0 translate-x-[-110%] translate-y-[-15%] w-[290px] auto"
             />
-            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-270%] translate-y-[-15%]" />
-            <Image src={Tree} alt="Tree" className="absolute top-0 left-0 translate-x-[-200%] translate-y-[40%]" />
+
+            <Image
+              src={MountainSnow}
+              alt="Tree"
+              className="absolute top-0 right-0 translate-x-[100%] translate-y-[-25%] w-[400px] h-auto"
+            />
+            {/* <Image
+              src={Tree}
+              alt="Tree"
+              className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
+            /> */}
 
             <div className="text-white text-4xl font-bold shrink-0 mb-4">What you get</div>
             <div className="flex flex-col justify-center items-center gap-4 lg:text-lg shrink-0">
