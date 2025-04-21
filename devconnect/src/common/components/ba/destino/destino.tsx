@@ -76,7 +76,7 @@ const Hero = () => {
   )
 }
 
-const Destino = () => {
+const Destino = ({ content }: { content: any }) => {
   return (
     <div
       className={cn(
