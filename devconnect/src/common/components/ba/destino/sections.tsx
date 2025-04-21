@@ -446,28 +446,16 @@ export const SecondSection = ({ content }: { content: any }) => {
             />
 
             <RichText content={content.destino_devconnect_about.description} />
-            {/* Destino Devconnect is a local grant round leading up to Devconnect ARG. It's both... */}
+
             <div className="flex flex-col gap-4 text-lg">
               {content.destino_devconnect_about.what_is_it.map((item: any) => {
                 return (
-                  <div className="flex flex-col items-center gap-1">
+                  <div className="flex flex-col items-center gap-1" key={item.title}>
                     <div className="text-yellow-400 text-2xl font-bold">{item.title}</div>
                     <RichText content={item.what_is_it} />
-                    {/* <div>{item.description}</div> */}
                   </div>
                 )
               })}
-              {/* <div className="flex flex-col items-center gap-1">
-                <div className="text-yellow-400 text-2xl font-bold">A grant</div>
-                <div>we're offering up to $1,000 in support per event</div>
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <div className="text-yellow-400 text-2xl font-bold">A shared banner</div>
-                <div>
-                  connecting local efforts across the region that share one mission: to accelerate Ethereum adoption in
-                  Argentina and beyond
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -507,11 +495,6 @@ export const ThirdSection = ({ content }: { content: any }) => {
               alt="Tree"
               className="absolute top-0 left-0 translate-x-[-120%] translate-y-[0%] scale-[0.85]"
             />
-            {/* <Image
-              src={RockOne}
-              alt="Rock"
-              className="absolute top-0 left-0 translate-x-[-150%] translate-y-[150%] w-[120px] auto"
-            /> */}
 
             <Image
               src={MountainBrown}
@@ -534,7 +517,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 shrink-0 text-lg">
                 {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
                   return (
-                    <div className="flex flex-col items-center gap-2">
+                    <div className="flex flex-col items-center gap-2" key={item.description}>
                       <Image src={Check} alt="Check" className="w-14 h-14" />
                       <div>{item.description}</div>
                     </div>
@@ -589,7 +572,7 @@ export const FourthSection = ({ content }: { content: any }) => {
                   (item: any, index: number) => {
                     const icon = index === 0 ? Wallet : index === 1 ? Suitcase : index === 2 ? Speaker : Comms
                     return (
-                      <div className="flex flex-col items-center gap-2">
+                      <div className="flex flex-col items-center gap-2" key={item.description}>
                         <Image src={icon} alt="Wallet" className="w-16 h-auto object-cover" />
                         <div>{item.description}</div>
                       </div>
