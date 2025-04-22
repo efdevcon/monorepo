@@ -3,6 +3,7 @@ import Destino from 'common/components/ba/destino/destino'
 import { Footer, Header, withTranslations } from 'pages/index'
 import client from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
+import { SEO } from 'common/components/SEO'
 
 const DestinoPage = ({ content }: { content: any }) => {
   const { data }: { data: any } = useTina(content)
@@ -11,6 +12,7 @@ const DestinoPage = ({ content }: { content: any }) => {
 
   return (
     <>
+      <SEO title="Destino Devconnect Grants" description="A local grant round to bring Argentina onchain." />
       <Header active />
       <Destino content={data.pages} />
       <Footer />

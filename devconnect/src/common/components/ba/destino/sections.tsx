@@ -25,6 +25,7 @@ import MountainSnow from './images/mountain-snow.png'
 import MountainBrown from './images/mountain-brown.png'
 import Missing from 'assets/images/404.png'
 import RichText from 'lib/components/tina-cms/RichText'
+import Link from 'common/components/link/Link'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -45,16 +46,18 @@ export const FirstSection = ({ content }: { content: any }) => {
             <RichText content={content.intro.destino_devconnect_intro} />
           </div>
 
-          <button
-            className={cn(
-              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-              styles['tiled-button']
-            )}
-          >
-            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-              {(globalThis as any).translations.apply_now}
-            </div>
-          </button>
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
+            >
+              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                {(globalThis as any).translations.apply_now}
+              </div>
+            </button>
+          </Link>
 
           {/* <Button fat fill color="black-1">
             Apply Now
@@ -379,7 +382,7 @@ const Platform = ({
 }
 
 export const SecondSection = ({ content }: { content: any }) => {
-  const sectionColor = 'bg-[#629522]' // 'bg-[#829b15]'
+  const sectionColor = 'bg-[#629522]'
   const shade = 'bg-[#B2CD3E]'
   const shade2 = 'bg-[#629522]'
 
@@ -444,8 +447,6 @@ export const SecondSection = ({ content }: { content: any }) => {
 }
 
 export const ThirdSection = ({ content }: { content: any }) => {
-  // const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
-  // const sectionColor = 'bg-[#6d3700]'
   const sectionColor = 'bg-[#BA4588]'
   const shade = 'bg-[#e297c6]'
   const shade2 = 'bg-[#bf4289]'
@@ -578,16 +579,18 @@ export const HowToApply = ({ content }: { content: any }) => {
           <div className="text-white text-base opacity-70 mb-8">
             {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
-          <button
-            className={cn(
-              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-              styles['tiled-button']
-            )}
-          >
-            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-              {(globalThis as any).translations.apply_now}
-            </div>
-          </button>
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
+            >
+              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                {(globalThis as any).translations.apply_now}
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
