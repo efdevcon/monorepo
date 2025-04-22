@@ -32,14 +32,14 @@ export const FirstSection = ({ content }: { content: any }) => {
   return (
     <div
       className={cn(
-        'section relative w-full text-white py-8 pb-8 gap-4 z-[11] shadow-lg shrink-0',
+        'section relative w-full text-white py-8 lg:py-11 pb-8 gap-4 z-[11] shadow-lg shrink-0',
         'w-screen',
         styles.tiled
       )}
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-6 w-[700px] max-w-[95%] text-center">
+        <div className="flex flex-col items-center justify-center gap-6 w-[700px] max-w-[98%] text-center">
           <div className="font-bold text-4xl">{content.intro.title}</div>
           <div className="text-lg">
             <RichText content={content.intro.destino_devconnect_intro} />
@@ -195,48 +195,27 @@ const PlatformGuanaco = ({
 
       animationActiveRef.current = true
 
-      const containerRect = container.getBoundingClientRect()
-      const contentRect = content.getBoundingClientRect()
-      const startX = reverse ? 0 : containerRect.width - guanacoWidth
-      const startY = contentRect.height - guanacoHeight
-
       // Kill any existing animations and reset state
       gsap.killTweensOf(guanaco)
       setPopoverOpen(false)
 
-      // Create timeline for exit animation
+      // Create timeline for fade out animation
       const tl = gsap.timeline({
         onComplete: () => {
           animationActiveRef.current = false
         },
       })
 
-      // First turn around (flip the direction)
+      // Simply fade out in place
       tl.to(guanaco, {
-        scaleX: reverse ? 1 : -1,
-        duration: 0.3,
-        ease: 'power1.inOut',
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power1.out',
       })
-
-        // Then walk back to start and fade out
-        .to(guanaco, {
-          x: startX,
-          y: startY,
-          opacity: 0,
-          duration: window.innerWidth < 768 ? 0.6 : 1, // Faster animation on mobile
-          ease: 'power1.inOut',
-          rotation: 0,
-          onUpdate: function () {
-            // Add slight wobbling/rotation as it walks back
-            const progress = this.progress()
-            const wobble = Math.sin(progress * 12) * 5 // Increased wobble from 3 to 6 degrees
-            gsap.set(guanaco, { rotation: wobble })
-          },
-        })
-        // Reset scale for next appearance
+        // Reset for next appearance
         .set(guanaco, {
           scaleX: reverse ? -1 : 1,
-          rotation: 0, // Reset rotation when animation completes
+          rotation: 0, // Reset rotation
         })
 
       return tl
@@ -386,7 +365,7 @@ const Platform = ({
           <Image
             src={Sign}
             alt="Sign"
-            className="absolute z-[12] top-0 right-0 translate-x-[-200%] w-[100px] translate-y-[100%] hidden xl:block"
+            className="absolute z-[12] top-0 right-0 lg:translate-x-[-100%] xl:translate-x-[-140%] 2xl:translate-x-[-160%] w-[120px] translate-y-[70%] hidden xl:block"
           />
         )}
       </TriangleSection>
@@ -466,9 +445,10 @@ export const SecondSection = ({ content }: { content: any }) => {
 
 export const ThirdSection = ({ content }: { content: any }) => {
   // const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
-  const sectionColor = 'bg-[#6d3700]'
-  const shade = 'bg-[#bb6000]'
-  const shade2 = 'bg-[#6d3700]'
+  // const sectionColor = 'bg-[#6d3700]'
+  const sectionColor = 'bg-[#BA4588]'
+  const shade = 'bg-[#e297c6]'
+  const shade2 = 'bg-[#bf4289]'
 
   return (
     <div className="relative z-[9]" id="third-section">
@@ -487,19 +467,19 @@ export const ThirdSection = ({ content }: { content: any }) => {
           <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
             <Image
               src={RockTwo}
-              alt="Tree"
-              className="absolute top-0 left-0 translate-x-[-100%] translate-y-[-15%] scale-90 w-[300px] h-auto"
+              alt="Rock"
+              className="absolute top-0 left-0 translate-x-[-130%] translate-y-[-5%] w-[200px] h-auto"
             />
             <Image
               src={Tree}
               alt="Tree"
-              className="absolute top-0 left-0 translate-x-[-120%] translate-y-[0%] scale-[0.85]"
+              className="absolute top-0 left-0 translate-x-[-100%] translate-y-[0%] scale-[0.85]"
             />
 
             <Image
               src={MountainBrown}
-              alt="Tree"
-              className="absolute top-0 right-0 translate-x-[125%] translate-y-[-25%] w-[300px] h-auto"
+              alt="Mountain"
+              className="absolute top-0 right-0 translate-x-[115%] translate-y-[-25%] w-[320px] h-auto"
             />
             <Image
               src={Tree}
@@ -552,21 +532,21 @@ export const FourthSection = ({ content }: { content: any }) => {
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
           <div className="flex flex-col items-center gap-4 w-[500px] max-w-[95%] pt-32 pb-32 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
             <Image
-              src={RockOne}
-              alt="Rock"
-              className="absolute top-0 left-0 translate-x-[-110%] translate-y-[-15%] w-[290px] auto"
+              src={MountainSnow}
+              alt="Tree"
+              className="absolute top-0 left-0 translate-x-[-110%] translate-y-[-45%] w-[340px] h-auto"
             />
 
             <Image
-              src={MountainSnow}
-              alt="Tree"
-              className="absolute top-0 right-0 translate-x-[100%] translate-y-[-25%] w-[400px] h-auto"
+              src={RockOne}
+              alt="Rock"
+              className="absolute top-0 right-0 translate-x-[130%] translate-y-[-40%] w-[150px] auto"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 mb-4">
+            <div className="text-white text-4xl font-bold shrink-0 mb-4 text-center">
               {content.destino_devconnect_how_to_apply.title}
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 lg:text-lg shrink-0">
+            <div className="flex flex-col justify-center items-center gap-4 lg:text-lg  shrink-0">
               <div className="grid grid-cols-2 gap-4 text-center shrink-0">
                 {content.destino_devconnect_how_to_apply.destino_devconnect_how_to_apply_list.map(
                   (item: any, index: number) => {
@@ -670,7 +650,7 @@ export const EventsList = ({ content }: { content: any }) => {
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
-          <div className="text-white text-4xl font-bold mb-4">{content.events_list_title}</div>
+          <div className="text-white text-4xl font-bold mb-4 text-center">{content.events_list_title}</div>
 
           <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" />
 
