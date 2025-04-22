@@ -479,7 +479,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
             <Image
               src={MountainBrown}
               alt="Mountain"
-              className="absolute top-0 right-0 translate-x-[115%] translate-y-[-25%] w-[320px] h-auto"
+              className="absolute top-0 right-0 translate-x-[115%] translate-y-[-25%] w-[260px] h-auto"
             />
             <Image
               src={Tree}
@@ -534,13 +534,13 @@ export const FourthSection = ({ content }: { content: any }) => {
             <Image
               src={MountainSnow}
               alt="Tree"
-              className="absolute top-0 left-0 translate-x-[-110%] translate-y-[-45%] w-[340px] h-auto"
+              className="absolute top-0 left-0 translate-x-[-110%] translate-y-[-45%] w-[260px] h-auto"
             />
 
             <Image
               src={RockOne}
               alt="Rock"
-              className="absolute top-0 right-0 translate-x-[130%] translate-y-[-40%] w-[150px] auto"
+              className="absolute top-0 right-0 translate-x-[130%] translate-y-[-40%] w-[130px] auto"
             />
 
             <div className="text-white text-4xl font-bold shrink-0 mb-4 text-center">
