@@ -8,7 +8,7 @@ $width-right-column: 190px;
 }
 
 .streameth-highlight {
-  color: #8D75FF;
+  color: #8d75ff;
   stroke: black;
 }
 
@@ -141,7 +141,7 @@ $width-right-column: 190px;
   }
 
   .multi-link,
-  >a {
+  > a {
     padding: 8px 0px;
   }
 
@@ -164,7 +164,7 @@ $width-right-column: 190px;
   //   }
   // }
 
-  >* {
+  > * {
     // margin-right: 24px;
     // font-weight: 700;
     cursor: pointer;
@@ -199,7 +199,7 @@ $width-right-column: 190px;
       margin-left: 8px;
     }
 
-    >* {
+    > * {
       &:nth-child(1) {
         @media (max-width: $screen-md) {
           display: none;
@@ -208,7 +208,7 @@ $width-right-column: 190px;
     }
   }
 
-  >a,
+  > a,
   .social-media,
   .multi-link {
     align-self: flex-start;
@@ -216,7 +216,7 @@ $width-right-column: 190px;
   }
 
   .social-media {
-    >* {
+    > * {
       margin-right: 4px;
     }
   }
@@ -275,7 +275,7 @@ $width-right-column: 190px;
   background: linear-gradient(60deg, #323232 30%, #1e1c1c);
   // background: radial-gradient(circle at 0% 200%,rgba(28, 42, 76, 0.7) 30%,rgba(2,0,36,0) 70%);
   bottom: 0px;
-  z-index: 19;
+  z-index: 51;
   top: 0px;
   left: 0px;
   width: 100%;
@@ -297,8 +297,18 @@ $width-right-column: 190px;
   transform: translateX(-8px);
   font-size: 20px;
 
-  >* {
+  > * {
     padding: 8px;
     margin-right: 4px;
   }
+}
+
+.destino-rainbow {
+  background: #ff66c4;
+  background: -webkit-linear-gradient(left, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: -o-linear-gradient(right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: -moz-linear-gradient(right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  background: linear-gradient(to right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -1,13 +1,9 @@
-import { defineConfig } from "tinacms";
-import index from "./templates/index";
-import pastEditions from "./templates/past-editions";
-
+import { defineConfig } from 'tinacms'
+import index from './templates/index'
+import pastEditions from './templates/past-editions'
+import destinoDevconnect from './templates/destino-devconnect'
 // Your hosting provider likely exposes this as an environment variable
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
+const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
 console.log('TINA branch', branch)
 
@@ -25,28 +21,32 @@ const translationConfig = {
         description: 'You can use this editor to format your JSON: https://jsonformatter.org/json-editor',
         validate: (value: any) => {
           try {
-            JSON.parse(value);
+            JSON.parse(value)
           } catch (e) {
-            return 'Please enter valid JSON';
+            return 'Please enter valid JSON'
           }
         },
       },
-    }
+    },
   ],
 } as any
 
 const pagesConfig = {
-    name: 'pages',
-    label: 'Pages',
-    path: 'cms/pages',
-    format: 'mdx',
-    templates: [
-      index,
-      pastEditions,
-    ],
-    // ui: {
-    //   router: () => `/`,
-    // },
+  name: 'pages',
+  label: 'Pages',
+  path: 'cms/pages',
+  format: 'mdx',
+  templates: [index, pastEditions, destinoDevconnect],
+  ui: {
+    router: ({ document }: { document: any }) => {
+      const filename = document._sys.filename
+      const filenameToUrl = {
+        destino_devconnect: 'destino',
+      } as any
+
+      return filename ? filenameToUrl[filename] : '/'
+    },
+  },
 } as any
 
 export default defineConfig({
@@ -56,13 +56,13 @@ export default defineConfig({
   // Get this from tina.io
   token: process.env.TINA_TOKEN,
   build: {
-    outputFolder: "admin",
-    publicFolder: "public",
+    outputFolder: 'admin',
+    publicFolder: 'public',
   },
   media: {
     tina: {
-      mediaRoot: "cms-media",
-      publicFolder: "public",
+      mediaRoot: 'cms-media',
+      publicFolder: 'public',
     },
   },
   // See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
@@ -130,4 +130,4 @@ export default defineConfig({
       // },
     ],
   },
-});
+})

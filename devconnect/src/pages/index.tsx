@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import css from './index.module.scss'
 import React, { useCallback, useRef, useState } from 'react'
-import HeaderLogo from 'assets/images/header-logo.svg'
 import DevconnectIstanbulText from 'assets/images/ba/logo-text.svg'
+import HeaderLogo from 'assets/images/header-logo.png'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
@@ -75,11 +75,15 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
               href="/"
               className={cn(
                 css['logo'],
-                'transition-all ease duration-500 pointer-events-auto',
-                hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
+                'transition-all ease duration-500 pointer-events-auto'
+                // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
               )}
             >
-              <HeaderLogo />
+              <Image
+                src={HeaderLogo}
+                alt="Devconnect Logo"
+                className="w-[105px] lg:w-[120px] h-auto [filter:drop-shadow(1px_1px_0px_rgba(0,0,0,1))]"
+              />
             </Link>
 
             <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
