@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import css from './index.module.scss'
 import React, { useCallback, useRef, useState } from 'react'
-// import HeaderLogo from 'assets/images/header-logo.svg'
 import DevconnectIstanbulText from 'assets/images/ba/logo-text.svg'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
@@ -55,10 +54,23 @@ const HeaderLogo = () => {
     <svg width="111" height="59" viewBox="0 0 111 59" fill="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <filter id="hard-shadow" x="-2" y="-2" width="115" height="63">
+          <feDropShadow dx="0.5" dy="0.5" stdDeviation="0.25" flood-color="rgba(0,0,0,0.6)" flood-opacity="0.8" />
+        </filter>
+        <filter id="desktop-shadow" x="-2" y="-2" width="115" height="63">
           <feDropShadow dx="2" dy="2" stdDeviation="0.5" flood-color="rgba(0,0,0,0.6)" flood-opacity="0.8" />
         </filter>
+        <style>
+          {`
+            @media (min-width: 768px) {
+              #logo-paths { filter: url(#desktop-shadow); }
+            }
+            @media (max-width: 767px) {
+              #logo-paths { filter: url(#hard-shadow); }
+            }
+          `}
+        </style>
       </defs>
-      <g filter="url(#hard-shadow)">
+      <g id="logo-paths">
         <path
           d="M42.4756 45.3544V44.0383C42.4756 42.6045 41.8387 42.3617 41.1098 42.7833C39.9715 43.4416 39.6077 44.2631 39.6077 45.5313V54.1275C39.6077 55.3957 39.972 55.7969 41.1098 55.1424C41.5583 54.9062 41.9271 54.5428 42.17 54.0978C42.413 53.6529 42.5193 53.1462 42.4756 52.6411V50.5961L45.298 48.9703V50.9228C45.2508 52.3168 44.8392 53.6742 44.1044 54.8597C43.3696 56.0453 42.3372 57.0178 41.1098 57.6803C38.1508 59.3796 36.7848 58.2157 36.7848 55.8221V47.0926C36.7848 44.6989 38.1508 41.96 41.1098 40.2455C43.9326 38.6107 45.298 39.9368 45.298 42.4774V43.7219L42.4756 45.3544Z"
           fill="white"
