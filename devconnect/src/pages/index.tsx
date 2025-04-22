@@ -82,7 +82,7 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
               <Image
                 src={HeaderLogo}
                 alt="Devconnect Logo"
-                className="w-[120px] h-auto [filter:drop-shadow(1px_1px_0px_rgba(0,0,0,1))]"
+                className="w-[105px] lg:w-[120px] h-auto [filter:drop-shadow(1px_1px_0px_rgba(0,0,0,1))]"
               />
             </Link>
 
