@@ -12,7 +12,11 @@ const DestinoPage = ({ content }: { content: any }) => {
 
   return (
     <>
-      <SEO title="Destino Devconnect Grants" description="A local grant round to bring Argentina onchain." />
+      <SEO
+        title="Destino Devconnect Grants"
+        description="A local grant round to bring Argentina onchain."
+        imageUrl={`https://devconnect.org/destino/hero-bg.png`}
+      />
       <Header active />
       <Destino content={data.pages} />
       <Footer />

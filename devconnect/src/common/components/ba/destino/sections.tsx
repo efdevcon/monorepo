@@ -447,7 +447,7 @@ export const SecondSection = ({ content }: { content: any }) => {
 }
 
 export const ThirdSection = ({ content }: { content: any }) => {
-  const sectionColor = 'bg-[#BA4588]'
+  const sectionColor = 'bg-[#DD66AA]'
   const shade = 'bg-[#e297c6]'
   const shade2 = 'bg-[#bf4289]'
 
@@ -514,7 +514,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
 }
 
 export const FourthSection = ({ content }: { content: any }) => {
-  const sectionColor = 'bg-[#2871B3]'
+  const sectionColor = 'bg-[#4B91D1]'
   const shade = 'bg-[#80B6E8]'
   const shade2 = 'bg-[#2871B3]'
 
