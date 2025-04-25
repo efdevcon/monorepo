@@ -811,9 +811,19 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-10 bg-white">
+          {/* <div className="section relative pb-10 bg-white">
             <div className="border-top">
               <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+            </div>
+          </div> */}
+
+          <div className={`section relative bg-white`}>
+            <div className="mt-0 pt-6 border-top pb-8">
+              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
+
+              <div className={`${css['accordion']} tab-content`} id="faq">
+                <FAQComponent questions={data.pages.faq} />
+              </div>
             </div>
           </div>
 
@@ -822,16 +832,6 @@ const Home: NextPage = (props: any) => {
               <h1 className="section-header white">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
-            </div>
-          </div>
-
-          <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-6 border-top pb-6">
-              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-
-              <div className={`${css['accordion']} tab-content`} id="faq">
-                <FAQComponent questions={data.pages.faq} />
-              </div>
             </div>
           </div>
         </main>
