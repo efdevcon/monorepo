@@ -1,0 +1,56 @@
+.sort-container {
+  display: flex;
+  flex-direction: row;
+  transform: translateX(-8px);
+}
+
+.sort-button {
+  user-select: none;
+  margin-left: 24px;
+  padding: 16px;
+  display: inline-flex;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  &.sort-active {
+    font-weight: 600;
+    border-bottom: 2px solid black;
+
+    @media (max-width: 1024px) {
+      border-bottom: none;
+    }
+  }
+
+  .sort-arrows {
+    margin-left: 12px;
+    font-size: 0.5em;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
+
+.text {
+  cursor: auto !important;
+  padding-left: 0px;
+}
+
+// Horizontal scroller (create component for this)
+.horizontal-scroller {
+  // overflow-x: hidden;
+  // background: yellow;
+
+  &.no-resize-observer {
+    overflow-x: auto;
+  }
+}

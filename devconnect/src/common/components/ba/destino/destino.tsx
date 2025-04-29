@@ -76,7 +76,7 @@ const Hero = ({ content }: { content: any }) => {
   )
 }
 
-const Destino = ({ content }: { content: any }) => {
+const Destino = ({ content, events }: { content: any; events: any }) => {
   return (
     <div
       className={cn(
@@ -87,15 +87,15 @@ const Destino = ({ content }: { content: any }) => {
     >
       <Hero content={content} />
 
-      <div className={cn('flex flex-col justify-center w-full relative')}>
+      <div className={cn('flex flex-col justify-center w-full relative overflow-hidden pb-24')}>
         <SecondSection content={content} />
         <ThirdSection content={content} />
         <FourthSection content={content} />
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-16 my-24 overflow-hidden">
+      <div className="flex flex-col items-center justify-center gap-16 mb-24 overflow-hidden">
         <HowToApply content={content} />
-        <EventsList content={content} />
+        <EventsList content={content} events={events} />
       </div>
     </div>
   )
