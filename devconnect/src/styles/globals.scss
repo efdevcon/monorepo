@@ -509,12 +509,14 @@ a {
   -webkit-text-stroke-color: rgb(255, 255, 255);
 }
 
-.icon {
+svg.icon {
   display: inline-block;
-  vertical-align: baseline;
+  width: 1em;
+  height: 1em;
+  fill: var(--icon-color, 'black');
 
   * {
-    fill: var(--icon-color);
+    fill: var(--icon-color, 'black');
   }
 }
 
