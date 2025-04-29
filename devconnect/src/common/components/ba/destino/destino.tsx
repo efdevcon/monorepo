@@ -95,7 +95,7 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
 
       <div className="flex flex-col items-center justify-center gap-16 mb-24 overflow-hidden">
         <HowToApply content={content} />
-        <EventsList content={content} events={events} />
+        {/* <EventsList content={content} events={events} /> */}
       </div>
     </div>
   )
