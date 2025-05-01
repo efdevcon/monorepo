@@ -3,15 +3,9 @@ import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 dotenv.config()
-// import { prompts } from './fine-tune'
 import { filenameToUrl } from '@lib/cms/filenameToUrl'
-import { zodResponseFormat } from 'openai/helpers/zod'
-import { z } from 'zod'
-// import { PrismaClient } from '@prisma/client'
 import { FileLike } from 'openai/uploads'
 import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
-
-// const client = new PrismaClient()
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -19,94 +13,6 @@ const openai = new OpenAI({
 
 export const api = (() => {
   const _interface = {
-    // createEmbeddingsFromContent: async () => {
-    //   const contentDir = path.resolve(__dirname, 'content')
-    //   const files = fs.readdirSync(contentDir)
-
-    //   // Filter only .txt files
-    //   const txtFiles = files.filter((file) => file.endsWith('.txt'))
-
-    //   // Read content of each .txt file and prepare sections array
-    //   const sections = txtFiles.map((file) => {
-    //     const content = fs.readFileSync(path.join(contentDir, file), 'utf8')
-
-    //     return content
-    //     // return `Page ${file.replace('.txt', '')}: ${content}`;
-    //   })
-
-    //   try {
-    //     const allPromises = sections.map(async (section) => {
-    //       const embedding = await createOpenAIEmbedding(section)
-
-    //       return {
-    //         embedding: embedding,
-    //         text: section,
-    //       }
-    //     })
-
-    //     await Promise.allSettled(allPromises).then((results) => {
-    //       //@ts-ignore
-    //       fs.writeFileSync(path.resolve(__dirname, 'openai_embeddings.json'), JSON.stringify(results.map(({ value }: any) => value)))
-    //     })
-    //   } catch (error) {
-    //     console.error('Error creating OpenAI embeddings:', error)
-    //   }
-    // },
-    // getRelevantTextByQuery: async (query: string, maxTokens = 10000, minSimilarity = 0.3) => {
-    //   const embeddings = loadEmbeddings()
-    //   const queryEmbedding = await createOpenAIEmbedding(query)
-
-    //   // @ts-ignore
-    //   const sectionsWithSimilarity = [] as any
-
-    //   // Calculate similarity for each section
-    //   embeddings.forEach((section: any) => {
-    //     const similarity = cosineSimilarity(queryEmbedding, section.embedding)
-    //     if (similarity > minSimilarity) {
-    //       // Only include sections above the similarity threshold
-    //       sectionsWithSimilarity.push({
-    //         text: section.text,
-    //         similarity: similarity,
-    //       })
-    //     }
-    //   })
-
-    //   // Sort sections by similarity in descending order
-    //   sectionsWithSimilarity.sort((a: any, b: any) => b.similarity - a.similarity)
-
-    //   // Select top sections within the token limit
-    //   let tokenCount = 0
-    //   let selectedText = ''
-    //   for (const section of sectionsWithSimilarity) {
-    //     const sectionTokenCount = section.text.split(/\s+/).length // Estimate token count as number of words
-    //     if (tokenCount + sectionTokenCount > maxTokens) {
-    //       break // Stop adding sections if max token count is reached
-    //     }
-    //     selectedText += section.text + '\n\n' // Add two new lines for clear separation
-    //     tokenCount += sectionTokenCount
-    //   }
-
-    //   return selectedText.trim() || 'No sufficiently relevant section found.'
-    // },
-    // generateResponseUsingCompletionsAPI: async (relevantText: string, query: string) => {
-    //   console.log(relevantText, 'relevant text')
-    //   const prompt = `You are tasked to help users answer questions about Devcon and its history. When possible, try to refer the user to the relevant category by linking to the content. The current date is ${new Date().toLocaleDateString()}. Based on the following content from our website: "${relevantText}", how would you answer the question: "${query}"? The user does not know which content you are provided, so be sensitive to how they perceive your answer.`
-    //   // const clarifications = `If the content is irrelevant, say "I don't know". The current date is ${new Date().toLocaleDateString()}.`;
-    //   const completion = await openai.chat.completions.create({
-    //     model: 'gpt-3.5-turbo-0125',
-    //     messages: [{ role: 'system', content: prompt }],
-    //   })
-
-    //   return completion.choices[0]
-    // },
-    // basicCompletionsAPI: async () => {
-    //   const completion = await openai.chat.completions.create({
-    //     model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
-    //     messages: prompts[6].messages.slice(0, 2),
-    //   })
-
-    //   console.log(completion.choices)
-    // },
     createThread: async () => {
       const thread = await openai.beta.threads.create()
 
@@ -405,7 +311,7 @@ export const api = (() => {
       ]
 
       for (const vectorStoreName of vectorStoreNames) {
-        const vectorStore = await openai.beta.vectorStores.create({
+        const vectorStore = await openai.vectorStores.create({
           name: vectorStoreName,
         })
 
@@ -419,7 +325,7 @@ export const api = (() => {
     attachVectorStoresToAssistant: async (assistantID: string, vectorStorePrefix: string) => {
       const vectorStoreName = `${vectorStorePrefix}_${process.env.GITHUB_SHA}`
 
-      const vectorStores = await openai.beta.vectorStores.list()
+      const vectorStores = await openai.vectorStores.list()
 
       // const vectorStoreIDs = vectorStoreNames.map((name: string) => {
       const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
@@ -437,10 +343,10 @@ export const api = (() => {
 
       try {
         // List all vector stores
-        const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         // Sort vector stores by creation date, newest first
-        const sortedStores = vectorStores.data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        const sortedStores = vectorStores.data.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
         // Keep the 15 most recent stores - just to avoid edge cases where we delete the wrong vector store, and to avoid having infinity vector
         const storesToKeep = sortedStores.slice(0, 15)
@@ -448,7 +354,7 @@ export const api = (() => {
 
         // Delete old stores
         for (const store of storesToDelete) {
-          await openai.beta.vectorStores.del(store.id)
+          await openai.vectorStores.del(store.id)
           console.log(`Deleted vector store: ${store.id}`)
         }
 
@@ -462,7 +368,7 @@ export const api = (() => {
         console.log('syncing schedule to vector store')
 
         const vectorStoreName = `${devconAppAssistant.vector_store_prefix}_${process.env.GITHUB_SHA}`
-        const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
@@ -482,16 +388,18 @@ export const api = (() => {
 
         const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
         const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
-        const knowledgeBaseStreams = knowledgeBaseFiles.map((filename: string) => {
-          const filePath = path.join(knowledgeBaseDirectory, filename)
-          // Skip directories, only process files
-          if (fs.statSync(filePath).isDirectory()) {
-            return null;
-          }
-          // Create a stream with a custom filename prefix
-          const stream = fs.createReadStream(filePath)
-          return stream
-        }).filter(Boolean) as any // Filter out null values (directories)
+        const knowledgeBaseStreams = knowledgeBaseFiles
+          .map((filename: string) => {
+            const filePath = path.join(knowledgeBaseDirectory, filename)
+            // Skip directories, only process files
+            if (fs.statSync(filePath).isDirectory()) {
+              return null
+            }
+            // Create a stream with a custom filename prefix
+            const stream = fs.createReadStream(filePath)
+            return stream
+          })
+          .filter(Boolean) as any // Filter out null values (directories)
 
         const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
 
@@ -573,7 +481,7 @@ export const api = (() => {
 
         // Upload each batch
         for (const batch of batches) {
-          const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
+          const response = await openai.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
           console.log(`Uploaded batch of ${batch.length} files`)
           console.log(response, 'response')
         }
