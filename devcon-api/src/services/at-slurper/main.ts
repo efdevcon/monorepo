@@ -144,4 +144,5 @@ export { experimentation, api }
 /*
  Useful links:
  https://github.com/likeandscribe/frontpage/tree/main/packages/atproto-browser
+ https://atproto-browser.vercel.app/at/ethlasse.bsky.social
 */
