@@ -4,8 +4,8 @@
 @use 'colors';
 
 // Fonts
-$primary: 'Roboto', serif;
-$secondary: 'Space Mono', monospace;
+$primary: var(--font-roboto), serif;
+$secondary: var(--font-space-mono), monospace;
 
 // Add more sizes as needed. Make sure to reference any newly added mixins from typography.scss so we have one source of truth for text sizes.
 @mixin xxs {
@@ -114,19 +114,19 @@ $secondary: 'Space Mono', monospace;
 
 // Misc
 @mixin normal {
-  font-weight: 400;
+  font-weight: 300;
 }
 
 @mixin semi-bold {
-  font-weight: 600;
+  font-weight: 400;
 }
 
 @mixin bold {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 @mixin very-bold {
-  font-weight: 900;
+  font-weight: 700;
 }
 
 @mixin title {

@@ -14,8 +14,25 @@ export async function getEvent(id: string) {
   return event.data;
 }
 
+export async function getSessions(size: number = 20, from: number = 0) {
+  console.log("getSessions", size, from);
+  const response = await fetch(
+    `${CONFIG.API_BASE_URL}/sessions?size=${size}&from=${from}`
+  );
+
+  const body = await response.json();
+  if (!body.data) return [];
+
+  return body.data.items;
+}
+
 export async function getFeaturedSessions(
-  type: "most-popular" | "devcon-6" | "devcon-7" | "devcon-7-opening"
+  type:
+    | "most-popular"
+    | "devcon-6"
+    | "devcon-7"
+    | "devcon-7-opening"
+    | "devcon-7-picks"
 ) {
   let featuredSessions: string[] = [];
 
@@ -72,6 +89,15 @@ export async function getFeaturedSessions(
       "keynote-redefining-boundaries-in-the-infinite-garden",
       "keynote-ethereum-in-30-minutes",
       "devcon-sea-overview",
+    ];
+  }
+
+  if (type === "devcon-7-picks") {
+    featuredSessions = [
+      "keynote-ethereum-in-30-minutes",
+      "keynote-redefining-boundaries-in-the-infinite-garden",
+      "keynote-lessons-learned-from-tor",
+      "keynote-world-politics-world-building",
     ];
   }
 

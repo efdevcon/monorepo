@@ -23,7 +23,9 @@ const FoldoutContent = (props: any) => {
   return createPortal(
     <div
       className={foldoutClassName}
-      style={{ "--headerHeight": `${fullHeaderHeight}px` }}
+      style={
+        { "--headerHeight": `${fullHeaderHeight}px` } as React.CSSProperties
+      }
     >
       <div>
         <div className={css["top"]}>{props.children}</div>

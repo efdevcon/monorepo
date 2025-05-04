@@ -31,7 +31,6 @@ export const useFilter = (options: FilterOptions | undefined) => {
   const [activeFilter, setActiveFilter] = React.useState(
     options?.initialFilter || defaultValue
   );
-  // Some filters use multiselect
   const [activeFilterMulti, setActiveFilterMulti] = React.useState(
     (options?.initialFilter || {}) as { [key: string]: any }
   );
@@ -42,16 +41,24 @@ export const useFilter = (options: FilterOptions | undefined) => {
     if (options.multiSelect) {
       if (setExact) return setActiveFilterMulti(value);
 
-      const nextActiveFilter = {
-        ...activeFilterMulti,
-        [value]: true,
-      };
+      if (typeof value === "object" && value !== null) {
+        const nextActiveFilter = {
+          ...activeFilterMulti,
+          ...value,
+        };
 
-      const selected = activeFilterMulti[value];
+        setActiveFilterMulti(nextActiveFilter);
+      } else {
+        const nextActiveFilter: any = {
+          ...activeFilterMulti,
+          [value]: true,
+        };
 
-      if (selected) delete nextActiveFilter[value];
+        const selected = activeFilterMulti[value];
+        if (selected) delete nextActiveFilter[value];
 
-      setActiveFilterMulti(nextActiveFilter);
+        setActiveFilterMulti(nextActiveFilter);
+      }
     } else {
       setActiveFilter(value);
     }

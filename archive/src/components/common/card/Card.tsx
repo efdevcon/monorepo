@@ -145,3 +145,6 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
     </BasicCard>
   );
 });
+
+Card.displayName = "Card";
+BasicCard.displayName = "BasicCard";

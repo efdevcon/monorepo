@@ -240,7 +240,7 @@ export const FooterMenu = (props: any) => {
           <div className="flex items-center gap-2 hover:cursor-pointer hover:bg-white/10 rounded-lg py-2 px-2 mt-5 translate-x-[-8px]">
             <GlobeIcon className="opacity-90  icon" />
             <span className="text-white">
-              {router.locale === 'es' ? 'ES 🇪🇸' : router.locale === 'pt' ? 'PT 🇵🇹' : 'EN 🇬🇧'}
+              {router.locale === 'es' ? 'Español' : router.locale === 'pt' ? 'Português' : 'English'}
             </span>
           </div>
         </PopoverTrigger>
@@ -252,7 +252,7 @@ export const FooterMenu = (props: any) => {
               locale={false}
               onClick={() => setLanguageOpen(false)}
             >
-              English 🇬🇧
+              English
             </Link>
             <Link
               className="text-white hover:bg-white/10 rounded p-2 transition-colors"
@@ -260,7 +260,7 @@ export const FooterMenu = (props: any) => {
               locale="es"
               onClick={() => setLanguageOpen(false)}
             >
-              Español 🇪🇸
+              Español
             </Link>
             <Link
               className="text-white hover:bg-white/10 rounded p-2 transition-colors"
@@ -268,7 +268,7 @@ export const FooterMenu = (props: any) => {
               locale="pt"
               onClick={() => setLanguageOpen(false)}
             >
-              Português 🇵🇹
+              Português
             </Link>
           </div>
         </PopoverContent>
@@ -385,7 +385,7 @@ export const Menu = (props: any) => {
                 locale={false}
                 onClick={() => setLanguageOpen(false)}
               >
-                English 🇬🇧
+                English
               </Link>
               <Link
                 className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"
@@ -393,7 +393,7 @@ export const Menu = (props: any) => {
                 locale="es"
                 onClick={() => setLanguageOpen(false)}
               >
-                Español 🇪🇸
+                Español
               </Link>
               <Link
                 className="text-white hover:bg-white/10 rounded p-2 pt-1 transition-colors"
@@ -401,7 +401,7 @@ export const Menu = (props: any) => {
                 locale="pt"
                 onClick={() => setLanguageOpen(false)}
               >
-                Português 🇵🇹
+                Português
               </Link>
             </div>
           </PopoverContent>

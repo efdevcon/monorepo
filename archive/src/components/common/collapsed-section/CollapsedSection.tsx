@@ -86,7 +86,7 @@ export const CollapsedSectionContent = (props: any) => {
     <div
       ref={ref}
       className={css["content"]}
-      style={{ "--contentHeight": contentHeight }}
+      style={{ "--contentHeight": contentHeight } as React.CSSProperties}
     >
       {props.children}
     </div>

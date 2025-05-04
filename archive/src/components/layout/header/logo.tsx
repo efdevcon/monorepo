@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
 
 type Props = {
-  [key: string]: any
-}
+  [key: string]: any;
+};
 
-export default React.memo((props: Props) => {
+export const Logo = React.memo((props: Props) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.3 38" aria-labelledby="Devcon Archive logo">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 133.3 38"
+      aria-labelledby="Devcon Archive logo"
+    >
       <title>Devcon Archive logo</title>
       <g>
         <path
@@ -38,8 +42,14 @@ export default React.memo((props: Props) => {
           d="M32.8,2.9h4c3.1,0,5.2,1.9,5.2,4.8c0,2.8-2.1,4.8-5.2,4.8h-4V2.9z M36.8,11.3c2.4,0,3.9-1.4,3.9-3.6
 			c0-2.1-1.5-3.6-3.9-3.6h-2.6v7.2L36.8,11.3L36.8,11.3z"
         />
-        <path fill="#2F354B" d="M53.8,11.3v1.2h-7V2.9h6.8v1.2h-5.4v2.9H53v1.2h-4.8v3.1L53.8,11.3L53.8,11.3z" />
-        <path fill="#2F354B" d="M67,2.9l-4.2,9.6h-1.4l-4.2-9.6h1.5l3.5,7.9l3.5-7.9H67z" />
+        <path
+          fill="#2F354B"
+          d="M53.8,11.3v1.2h-7V2.9h6.8v1.2h-5.4v2.9H53v1.2h-4.8v3.1L53.8,11.3L53.8,11.3z"
+        />
+        <path
+          fill="#2F354B"
+          d="M67,2.9l-4.2,9.6h-1.4l-4.2-9.6h1.5l3.5,7.9l3.5-7.9H67z"
+        />
         <path
           fill="#2F354B"
           d="M70.1,7.7c0-2.8,2.2-4.9,5.1-4.9c1.5,0,2.8,0.5,3.6,1.5l-0.9,0.9c-0.7-0.8-1.6-1.1-2.7-1.1
@@ -51,8 +61,13 @@ export default React.memo((props: Props) => {
           d="M82.5,7.7c0-2.8,2.2-4.9,5.1-4.9c2.9,0,5.1,2.1,5.1,4.9c0,2.8-2.2,4.9-5.1,4.9C84.7,12.6,82.5,10.5,82.5,7.7z
 			M91.3,7.7c0-2.1-1.6-3.7-3.7-3.7c-2.1,0-3.7,1.6-3.7,3.7c0,2.1,1.6,3.7,3.7,3.7C89.7,11.4,91.3,9.8,91.3,7.7z"
         />
-        <path fill="#2F354B" d="M105.8,2.9v9.6h-1.1l-5.8-7.1v7.1h-1.4V2.9h1.1l5.8,7.1V2.9H105.8z" />
+        <path
+          fill="#2F354B"
+          d="M105.8,2.9v9.6h-1.1l-5.8-7.1v7.1h-1.4V2.9h1.1l5.8,7.1V2.9H105.8z"
+        />
       </g>
     </svg>
-  )
-})
+  );
+});
+
+Logo.displayName = "Logo";

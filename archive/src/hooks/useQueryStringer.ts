@@ -1,4 +1,5 @@
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
+import React from "react";
 
 export const useQueryStringer = (
   object: { [key: string]: any },
@@ -6,6 +7,7 @@ export const useQueryStringer = (
   preserveUnmanagedKeys?: boolean
 ): string => {
   const isBrowser = typeof window !== "undefined";
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   let formattedObject = {} as any;
 
@@ -53,10 +55,13 @@ export const useQueryStringer = (
 
   if (result === "?") result = "";
 
-  if (replaceState && isBrowser) {
-    const url = `${window.location.pathname}${result}`;
-    window.history.replaceState({ path: url }, "", url);
-  }
+  // Move the URL update to a useEffect
+  React.useEffect(() => {
+    if (replaceState && isBrowser && result !== searchParams.toString()) {
+      const url = `${pathname}${result}`;
+      window.history.replaceState(null, "", url);
+    }
+  }, [result, pathname, searchParams]);
 
   return result;
 };

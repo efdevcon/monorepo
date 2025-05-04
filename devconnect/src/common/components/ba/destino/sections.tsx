@@ -25,6 +25,8 @@ import MountainSnow from './images/mountain-snow.png'
 import MountainBrown from './images/mountain-brown.png'
 import Missing from 'assets/images/404.png'
 import RichText from 'lib/components/tina-cms/RichText'
+import Link from 'common/components/link/Link'
+import { EventsTable } from './event-table'
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -45,16 +47,18 @@ export const FirstSection = ({ content }: { content: any }) => {
             <RichText content={content.intro.destino_devconnect_intro} />
           </div>
 
-          <button
-            className={cn(
-              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-              styles['tiled-button']
-            )}
-          >
-            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-              {(globalThis as any).translations.apply_now}
-            </div>
-          </button>
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
+            >
+              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                {(globalThis as any).translations.apply_now}
+              </div>
+            </button>
+          </Link>
 
           {/* <Button fat fill color="black-1">
             Apply Now
@@ -379,7 +383,7 @@ const Platform = ({
 }
 
 export const SecondSection = ({ content }: { content: any }) => {
-  const sectionColor = 'bg-[#629522]' // 'bg-[#829b15]'
+  const sectionColor = 'bg-[#629522]'
   const shade = 'bg-[#B2CD3E]'
   const shade2 = 'bg-[#629522]'
 
@@ -444,9 +448,7 @@ export const SecondSection = ({ content }: { content: any }) => {
 }
 
 export const ThirdSection = ({ content }: { content: any }) => {
-  // const sectionColor = 'bg-[#BA4588]' // 'bg-[#b81175]]'
-  // const sectionColor = 'bg-[#6d3700]'
-  const sectionColor = 'bg-[#BA4588]'
+  const sectionColor = 'bg-[#DD66AA]'
   const shade = 'bg-[#e297c6]'
   const shade2 = 'bg-[#bf4289]'
 
@@ -513,7 +515,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
 }
 
 export const FourthSection = ({ content }: { content: any }) => {
-  const sectionColor = 'bg-[#2871B3]'
+  const sectionColor = 'bg-[#4B91D1]'
   const shade = 'bg-[#80B6E8]'
   const shade2 = 'bg-[#2871B3]'
 
@@ -578,16 +580,18 @@ export const HowToApply = ({ content }: { content: any }) => {
           <div className="text-white text-base opacity-70 mb-8">
             {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
-          <button
-            className={cn(
-              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-              styles['tiled-button']
-            )}
-          >
-            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-              {(globalThis as any).translations.apply_now}
-            </div>
-          </button>
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
+            >
+              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                {(globalThis as any).translations.apply_now}
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -645,77 +649,16 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
   )
 }
 
-export const EventsList = ({ content }: { content: any }) => {
+export const EventsList = ({ content, events }: { content: any; events: any }) => {
   return (
     <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
-        <div className="flex flex-col items-center justify-center gap-4 w-[500px] max-w-[95%]">
-          <div className="text-white text-4xl font-bold mb-4 text-center">{content.events_list_title}</div>
+        {/* <div className="text-white text-4xl font-bold mb-4 text-center">{content.events_list_title}</div> */}
 
-          <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" />
+        {/* <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" /> */}
 
-          {/* <EventsTable /> */}
-        </div>
+        <EventsTable events={events} />
       </div>
     </div>
   )
 }
-
-const events = [
-  {
-    date: '06-06',
-    name: 'ETH somewhere',
-    location: 'Somewhere',
-    type: 'Meetup',
-    team: 'ETH from somewhere',
-    link: 'x.com/ethsomewhere',
-  },
-]
-
-const EventsTable = () => {
-  return (
-    <div className="p-6 bg-gray-900 text-white">
-      {/* <h2 className="text-3xl font-bold text-center mb-4">Satellite Events</h2> */}
-      <p className="text-center">Check back soon for Destino Devconnect events near you!</p>
-      {/* <table className="w-full table-auto">
-        <thead>
-          <tr className="bg-gray-800">
-            <th className="px-4 py-2">Date</th>
-            <th className="px-4 py-2">Name</th>
-            <th className="px-4 py-2">Location</th>
-            <th className="px-4 py-2">Type of Event</th>
-            <th className="px-4 py-2">Team</th>
-            <th className="px-4 py-2">Link</th>
-          </tr>
-        </thead>
-        <tbody>
-          {events.map((event, index) => (
-            <tr key={index} className="bg-gray-700">
-              <td className="border px-4 py-2">{event.date}</td>
-              <td className="border px-4 py-2">{event.name}</td>
-              <td className="border px-4 py-2">{event.location}</td>
-              <td className="border px-4 py-2">{event.type}</td>
-              <td className="border px-4 py-2">{event.team}</td>
-              <td className="border px-4 py-2">
-                <a
-                  href={`https://${event.link}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-yellow-400 hover:underline"
-                >
-                  {event.link}
-                </a>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flex justify-center mt-4">
-        <button className="bg-yellow-500 text-white px-4 py-2 mx-2 rounded hover:bg-yellow-600">{'<'}</button>
-        <button className="bg-yellow-500 text-white px-4 py-2 mx-2 rounded hover:bg-yellow-600">{'>'}</button>
-      </div> */}
-    </div>
-  )
-}
-
-export default EventsTable

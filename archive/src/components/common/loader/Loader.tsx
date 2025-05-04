@@ -30,7 +30,7 @@ export const Loader = (props: LoaderProps) => {
   if (props.error)
     className = `${css["loading-overlay"]} ${css["error"]} ${css["no-results"]}`;
 
-  const currentState = (() => {
+  const currentState: any = (() => {
     if (props.error) return props.messages.error?.message || "Error :-(";
     if (props.loading) return props.messages.loading?.message || "Loading...";
     if (props.noResults)
@@ -40,7 +40,7 @@ export const Loader = (props: LoaderProps) => {
   return (
     <div
       className={className}
-      style={{ "--headerHeight": `${headerHeight}px` }}
+      style={{ "--headerHeight": `${headerHeight}px` } as React.CSSProperties}
     >
       <div className={css["message"]}>
         <span className={css["text"]}>{currentState}</span>

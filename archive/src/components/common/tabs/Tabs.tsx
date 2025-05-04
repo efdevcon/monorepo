@@ -12,13 +12,13 @@ interface TabsProps {
   onSelectTab?: (tab: string) => void;
 }
 
-const isValidTab = (children: React.ReactChildren, tab: string) => {
+const isValidTab = (children: ReactNode, tab: string) => {
   return React.Children.toArray(children).some(
-    (child) => child?.props?.title === tab
+    (child: any) => child?.props?.title === tab
   );
 };
 
-const findFirstValidTab = (children: React.ReactChildren): any => {
+const findFirstValidTab = (children: ReactNode): any => {
   // Children can be invalid (happens when a child is rendered conditionally), so we'll loop until we find the first valid child
   return React.Children.toArray(children).find((child) => !!child);
 };
@@ -104,3 +104,5 @@ interface TabProps {
 export function Tab(props: TabProps) {
   return <div id={props.title}>{props.children}</div>;
 }
+
+Tabs.displayName = "Tabs";

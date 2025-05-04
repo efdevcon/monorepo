@@ -26,7 +26,23 @@ export async function GetEventVersion(req: Request, res: Response) {
 
 export async function GetEvents(req: Request, res: Response) {
   // #swagger.tags = ['Events']
-  const data = await client.event.findMany()
+
+  const data = await client.event
+    .findMany({
+      include: {
+        _count: {
+          select: {
+            sessions: true,
+          },
+        },
+      },
+    })
+    .then((events) =>
+      events.map(({ _count, ...event }) => ({
+        ...event,
+        nrOfSessions: _count.sessions,
+      }))
+    )
 
   res.status(200).send({ status: 200, message: '', data: data })
 }

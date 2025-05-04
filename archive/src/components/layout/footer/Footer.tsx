@@ -59,7 +59,7 @@ export const Footer = () => {
               href={`/`}
               style={{ maxWidth: "200px", minWidth: "130px", display: "block" }}
             >
-              <ArchiveLogo />
+              <ArchiveLogo style={{ fill: "#30354b" }} />
             </Link>
 
             <SocialMedia />

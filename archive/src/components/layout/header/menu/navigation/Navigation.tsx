@@ -39,6 +39,7 @@ export const NavigationItems = [
       type: "page",
     })),
   },
+  { title: "Playlists", url: "/playlists", type: "page" },
 ];
 
 const Mobile = (props: any) => {
@@ -123,7 +124,10 @@ const Mobile = (props: any) => {
 
                         if (isHeader) {
                           return (
-                            <p className={css["category-header"]}>
+                            <p
+                              key={`header-${child.title}`}
+                              className={css["category-header"]}
+                            >
                               {child.title}
                             </p>
                           );
@@ -131,17 +135,16 @@ const Mobile = (props: any) => {
 
                         return (
                           <ul
-                            key={child.title}
+                            key={`category-${child.title}`}
                             className={css["category-items"]}
                           >
                             <li key={child.title}>
-                              <Link
+                              <a
                                 className="plain hover-underline"
                                 href={child.url}
-                                // onClick={closeFoldout}
                               >
                                 {child.title}
-                              </Link>
+                              </a>
                             </li>
                           </ul>
                         );
@@ -225,12 +228,12 @@ export const Navigation = (props: NavigationProps) => {
 
                           return (
                             <li key={subKey}>
-                              <Link
-                                className={`${css["foldout-link"]} plain`}
+                              <a
+                                className={`${css["foldout-link"]} plain semi-bold`}
                                 href={c.url}
                               >
                                 {c.title}
-                              </Link>
+                              </a>
                             </li>
                           );
                         })}

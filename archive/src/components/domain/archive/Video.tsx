@@ -13,6 +13,7 @@ import { Banner } from "@/components/domain/ipfs";
 import { Playlist, UserProfile } from "@/types";
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
+import { PageHero } from "@/components/common/page-hero/PageHero";
 dayjs.extend(duration);
 
 const List = ({ video, playlist, videos }: any) => {
@@ -41,7 +42,9 @@ const List = ({ video, playlist, videos }: any) => {
 
 const Suggested = ({ video, relatedVideos, playlists }: any) => {
   const [playlist, setPlaylist] = React.useState<null | any>(null);
-  const tabsRef = React.useRef();
+  const tabsRef = React.useRef<{ setActiveTab: (tab: string) => void } | null>(
+    null
+  );
 
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
@@ -93,7 +96,9 @@ const Suggested = ({ video, relatedVideos, playlists }: any) => {
 
 const Labels = ({ tags, playlists }: any) => {
   const hasPlaylists = playlists?.length > 0;
-  const hasTags = tags?.length > 0;
+  const tagsArray =
+    typeof tags === "string" ? tags.split(",").filter(Boolean) : tags;
+  const hasTags = tagsArray?.length > 0;
 
   if (!hasTags && !hasPlaylists) return null;
 
@@ -103,7 +108,7 @@ const Labels = ({ tags, playlists }: any) => {
         <div className={css["group"]}>
           <p className="font-xs bold">Categories</p>
           <div className={css["labels"]}>
-            {tags.map((tag: any) => {
+            {tagsArray?.map((tag: any) => {
               return (
                 <Link
                   href={`/watch?tags=${encodeURIComponent(tag)}`}
@@ -146,8 +151,8 @@ export const Video = (props: any) => {
   const swarmHash = video.ethernaPermalink?.split("/").pop() ?? "";
 
   return (
-    <div className={archiveCss["container"]}>
-      <div className={css["container"]}>
+    <PageHero>
+      <div className={`${css["container"]}`}>
         <div className={css["video"]}>
           <div className={css["player"]}>
             <Tabs onSelectTab={setActiveTab} useQuerystring>
@@ -317,6 +322,6 @@ export const Video = (props: any) => {
           relatedVideos={props.relatedVideos}
         />
       </div>
-    </div>
+    </PageHero>
   );
 };

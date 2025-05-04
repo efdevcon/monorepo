@@ -50,44 +50,42 @@ type PageHeroProps = {
 };
 
 const PathNavigation = (props: PageHeroProps) => {
-  // TODO: Implement path navigation
-  // get full current path from the url using next/navigation
   let path = usePathname();
-  console.log("USE PATHNAME", path);
 
   if (!path || path === "/") return null;
-  console.log("path.split('/')", path.split("/"));
 
-  if (Array.isArray(props.path)) {
-    path = props.path.reduce((acc, pathSegment, index) => {
-      const { url, text } = pathSegment;
+  const pathSegments = path.split("/").filter((segment) => segment !== "");
+  if (pathSegments.length <= 1) return null;
 
-      if (url) {
-        acc.push(
-          <Link
-            key={`${text} ${index}`}
-            className={`hover-underline bold`}
-            href={url}
-          >
-            {text}
-          </Link>
-        );
-      } else {
-        acc.push(<span key={`${text} ${index}`}>{text}</span>);
-      }
+  const transformedPath = pathSegments.reduce((acc, segment, index) => {
+    const transformedText = segment.replace(/-/g, " ");
 
-      if (index !== props.path.length - 1) {
-        acc.push(<span key={index}>&nbsp;/&nbsp;</span>);
-      }
+    if (index === pathSegments.length - 1) {
+      acc.push(
+        <span key={`${transformedText}-${index}`}>{transformedText}</span>
+      );
+    } else {
+      const href = "/" + pathSegments.slice(0, index + 1).join("/");
+      acc.push(
+        <Link
+          key={`${transformedText}-${index}`}
+          className="hover-underline bold"
+          href={href}
+        >
+          {transformedText}
+        </Link>
+      );
+    }
 
-      return acc;
-    }, [] as React.ReactNode[]);
-  }
+    if (index !== pathSegments.length - 1) {
+      acc.push(<span key={`separator-${index}`}>&nbsp;/&nbsp;</span>);
+    }
+
+    return acc;
+  }, [] as React.ReactNode[]);
 
   return (
-    <p className={`${css["path"]} font-xs text-uppercase`}>
-      {path || props.path}
-    </p>
+    <p className={`${css["path"]} font-xs text-uppercase`}>{transformedPath}</p>
   );
 };
 
@@ -95,12 +93,21 @@ export const PageHeroClient = ({ featuredItems }: any) => {
   const path = usePathname();
   const isHome = path === "/";
   const isWatch = path.startsWith("/watch");
+  const isPlaylists = path.startsWith("/playlists");
 
   if (isWatch)
     return (
       <PageHero
         title="Watch"
         description="Devcon content curated and organized for your discovery and learning."
+      ></PageHero>
+    );
+
+  if (isPlaylists)
+    return (
+      <PageHero
+        title="Playlists"
+        description="Devcon collections to help you dive deep into specific topic areas."
       ></PageHero>
     );
 
@@ -113,7 +120,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
             callToAction: () => {
               return (
                 <Button
-                  href={item.id}
+                  href={`/${item.eventId}/${item.id}`}
                   className={`red ${css["call-to-action"]}`}
                 >
                   <span className={css["watch-now"]}>Watch Now</span>
@@ -160,7 +167,7 @@ export const PageHeroClient = ({ featuredItems }: any) => {
       ></PageHero>
     );
 
-  return <PageHero />;
+  return null;
 };
 
 export const PageHero = (props: PageHeroProps) => {
@@ -200,10 +207,10 @@ export const PageHero = (props: PageHeroProps) => {
     () => (increment: number) => {
       const nextScene = currentScene + increment;
 
-      if (nextScene >= props.scenes.length) {
+      if (nextScene >= (props.scenes?.length || 0)) {
         setCurrentScene(0);
       } else if (nextScene < 0) {
-        setCurrentScene(props.scenes.length - 1);
+        setCurrentScene((props.scenes?.length || 0) - 1);
       } else {
         setCurrentScene(nextScene);
       }
@@ -226,40 +233,38 @@ export const PageHero = (props: PageHeroProps) => {
     <div id="page-hero" className={className} style={style}>
       <div className="section">
         <div className={css["info"]}>
-          {/* <PathNavigation {...props} /> */}
+          <PathNavigation {...props} />
 
-          {(props.title || props.description || props.cta) && (
-            <div className={css["title-block"]}>
-              <h1
-                className={`font-massive-2 ${
-                  props.titleSubtext ? css["subtext"] : ""
-                } ${props.titleClassName ? props.titleClassName : ""}`}
-              >
-                {props.title}
-                {props.titleSubtext && <span>{props.titleSubtext}</span>}
-              </h1>
-              {props.description && (
-                <span className={css["description"]}>{props.description}</span>
-              )}
+          <div className={css["title-block"]}>
+            <h1
+              className={`font-massive-2 ${
+                props.titleSubtext ? css["subtext"] : ""
+              } ${props.titleClassName ? props.titleClassName : ""}`}
+            >
+              {props.title}
+              {props.titleSubtext && <span>{props.titleSubtext}</span>}
+            </h1>
+            {props.description && (
+              <span className={css["description"]}>{props.description}</span>
+            )}
 
-              {props.cta && (
-                <div className={css["buttons"]}>
-                  {props.cta.map((link: CTALink) => {
-                    return (
-                      <Link
-                        key={link.to + link.title}
-                        className="button white lg"
-                        href={link.to}
-                      >
-                        {link.icon}
-                        <span>{link.title}</span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
+            {props.cta && (
+              <div className={css["buttons"]}>
+                {props.cta.map((link: CTALink) => {
+                  return (
+                    <Link
+                      key={link.to + link.title}
+                      className="button white lg"
+                      href={link.to}
+                    >
+                      {link.icon}
+                      <span>{link.title}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            )}
+          </div>
 
           {props.children}
 
