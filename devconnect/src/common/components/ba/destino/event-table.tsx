@@ -116,9 +116,15 @@ const tableColumns: Array<TableColumn> = [
     render: item => {
       if (!item.Social) return null
 
+      let socialFormatted = item.Social
+
+      if (socialFormatted.startsWith('@')) {
+        socialFormatted = socialFormatted.slice(1)
+      }
+
       return (
-        <Link className="bolda" href={item.Social} indicateExternal>
-          {item.Social}
+        <Link className="bolda" href={`https://x.com/@${socialFormatted}`} indicateExternal>
+          {socialFormatted}
         </Link>
       )
     },
