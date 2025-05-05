@@ -4,7 +4,8 @@ import Image from 'next/image'
 import DestinoHero from 'common/components/ba/destino/images/hero-bg.png'
 import ArrowRight from 'assets/icons/arrow_right.svg'
 import Link from 'common/components/link'
-
+import { fetchFromSalesforce } from '../destino'
+import { destinoEvents } from 'ai/open-ai'
 interface EventPageProps {
   event: string | string[] | undefined
   eventData: any
@@ -95,27 +96,75 @@ const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   )
 }
 
-const getEvent = async (event: string) => {
+const getEvent = async (eventName: string, events: any[]) => {
+  const eventData = events.find(e => e.Name === eventName)
+
+  if (!eventData) {
+    return {
+      title: 'Event not found',
+      description: 'We could not find this event in our database.',
+      image: 'https://devconnect.org/og-argentina.png',
+      when: '',
+      where: '',
+      who: '',
+    }
+  }
+
   return {
-    title: 'Pizza Party for the Ethereum inclined',
-    description: 'Pizzaaaaaaaa',
+    title: eventData.Name,
+    description: eventData.Description || 'No description available',
     image: 'https://devconnect.org/og-argentina.png',
-    when: '2024-01-01',
-    where: 'Buenos Aires, Argentina',
-    who: 'Argentinian Ethereum Wizards',
+    when: eventData.Date?.startDate || '',
+    where: eventData.Location || '',
+    who: eventData.Team || '',
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const { event } = context.params || {}
+// export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
+//   const paths = locales.flatMap(locale => [
+//     { params: { schedule: 'schedule' }, locale },
+//     { params: { schedule: 'amsterdam' }, locale },
+//     { params: { schedule: 'istanbul' }, locale },
+//   ])
 
-  const eventData = await getEvent(event as string)
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
+
+// export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
+//   const { generateDestinoEvents } = await destinoEvents
+
+//   const events = await generateDestinoEvents()
+
+//   const paths = locales.flatMap(locale =>
+//     events.map((event: any) => ({
+//       params: { event: event.event_id },
+//       locale,
+//     }))
+//   )
+
+//   return {
+//     paths,
+//     fallback: 'blocking', // Show a fallback page while generating new pages
+//   }
+// }
+
+export async function getStaticProps({ params, locale }: { params: { event: string }; locale: string }) {
+  // const apiUrl = 'https://ef-esp.lightning.force.com/lightning/o/Lead/list?filterName=PGR_Destino_Devconnect'
+  // const events = await fetchFromSalesforce(apiUrl)
+  // const eventData = await getEvent(params.event, events)
+
+  const { getDestinoEvent } = await destinoEvents
+  const eventData = await getDestinoEvent(params.event)
 
   return {
     props: {
-      event,
+      event: params.event,
       eventData,
     },
+    revalidate: 60 * 60, // Revalidate every hour
   }
 }
 

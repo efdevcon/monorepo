@@ -5,6 +5,8 @@ require('dotenv').config()
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
 import { loadAndFormatCMS } from './format-content'
+import { fetchFromSalesforce } from 'pages/destino'
+import { createClient } from '@supabase/supabase-js'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -169,6 +171,95 @@ export const api = (() => {
       const portugueseFilePath = path.join(sourceDir, `pt/${file}`)
       fs.writeFileSync(portugueseFilePath, portuguese)
     }
+  }
+
+  return _interface
+})()
+
+export const destinoEvents = (async () => {
+  const EventSchema = z.object({
+    en: z.string(),
+    es: z.string(),
+    pt: z.string(),
+  })
+
+  // Define a type for event records
+  interface EventRecord {
+    id: string
+    event_id: string
+    content: {
+      en: string
+      es: string
+      pt: string
+    }
+    updated_at: string
+    last_modified_at: string
+  }
+
+  // Initialize Supabase client once to reuse across functions
+  const supabaseUrl = process.env.SUPABASE_URL || ''
+  const supabaseKey = process.env.SUPABASE_KEY || ''
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
+  const _interface = {
+    getDestinoEvent: async (eventId: string) => {
+      const { data, error } = await supabase.from('destino_events').select('*').eq('event_id', eventId).single()
+      return data as EventRecord | null
+    },
+    generateDestinoEvent: async (event: any) => {
+      // Check if event exists in Supabase with current version
+      const { data, error } = await supabase.from('destino_events').select('*').eq('event_id', event.Id).single()
+
+      const eventRecord = data as EventRecord | null
+
+      // If exists and updated after last modification, return cached content
+      if (eventRecord && new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
+        console.log(`Using cached content for event ${event.Id}`)
+        return eventRecord.content
+      }
+
+      // Otherwise generate new content
+      console.log(`Generating new content for event ${event.Id}`)
+
+      const eventCompletion = await openai.beta.chat.completions.parse({
+        temperature: 0,
+        model: 'gpt-4.1',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You take an event object and generate a simple summary of it in English, Spanish and Portuguese. It will be used on a website to advertise the event.',
+          },
+          { role: 'user', content: JSON.stringify({ ...event, description: '' }) },
+        ],
+        response_format: zodResponseFormat(EventSchema, 'summary'),
+      })
+
+      const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
+
+      // Save to Supabase
+      await supabase.from('destino_events').upsert({
+        event_id: event.Id,
+        content,
+        updated_at: new Date().toISOString(),
+        last_modified_at: event.LastModifiedDate,
+      })
+
+      return content
+    },
+    generateDestinoEvents: async () => {
+      const apiUrl = 'https://ef-esp.lightning.force.com/lightning/o/Lead/list?filterName=PGR_Destino_Devconnect'
+      const events = await fetchFromSalesforce(apiUrl)
+
+      const results = await Promise.all(
+        events.map(async (event: any) => {
+          const content = await _interface.generateDestinoEvent(event)
+          return { event, content }
+        })
+      )
+
+      return results
+    },
   }
 
   return _interface

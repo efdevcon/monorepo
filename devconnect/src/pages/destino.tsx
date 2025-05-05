@@ -24,7 +24,7 @@ const DestinoPage = ({ content, events }: { content: any; events: any }) => {
   )
 }
 
-const fetchFromSalesforce = async (apiUrl: string) => {
+export const fetchFromSalesforce = async (apiUrl: string) => {
   console.log(
     process.env.SF_CONSUMER_KEY,
     process.env.SF_CONSUMER_SECRET,
@@ -34,20 +34,7 @@ const fetchFromSalesforce = async (apiUrl: string) => {
     'CREDENTIALS'
   )
 
-  /*
-3
-
-Had the same error (SalesForce 2020). Under Manage Connected Apps, I had to make sure my selected OAuth Scopes were as follows
-
-Access and manage your data (api)
-Provide access to your data via the Web (web)
-Allow access to your unique identifier (openid)
-*/
-
-  // Replace this with proper Salesforce API call
   const fetchSalesforceData = async () => {
-    // Auth with Connected App credentials
-    // const auth = await fetch('https://ef-esp.lightning.force.com/services/oauth2/token', {
     const auth = await fetch('https://login.salesforce.com/services/oauth2/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -58,13 +45,6 @@ Allow access to your unique identifier (openid)
         username: process.env.SF_USERNAME || '',
         password: process.env.SF_PASSWORD || '' + (process.env.SF_SECURITY_TOKEN || ''),
       }),
-      // method: 'POST',
-      // headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      // body: new URLSearchParams({
-      //   grant_type: 'client_credentials',
-      //   client_id: process.env.SF_CONSUMER_KEY || '',
-      //   client_secret: process.env.SF_CONSUMER_SECRET || '',
-      // }),
     })
 
     const authData = await auth.json()
@@ -104,7 +84,7 @@ Allow access to your unique identifier (openid)
     //   `SELECT FIELDS(ALL) FROM Lead WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`
     // )
     const query = encodeURIComponent(
-      `SELECT Sponsorship_Link__c, Twitter_Handle__c, Company, Type_of_Event__c, Sponsorship_Date__c, Event_Location__c FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect'`
+      `SELECT Sponsorship_Link__c, Twitter_Handle__c, Type_of_Event__c, Sponsorship_Date__c, Event_Location__c FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' AND StageName = 'Awarded'`
     )
     // const query = encodeURIComponent(
     //   `SELECT Name FROM Lead WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`
@@ -157,74 +137,16 @@ export async function getStaticProps({ locale }: { locale: string }) {
   const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })
 
-  // Mock events data for Destino
-  const events = [
-    {
-      Name: 'Destino Hackathon',
-      Description: 'A 3-day hackathon focused on onboarding developers to Ethereum.',
-      Location: 'Buenos Aires, Argentina',
-      Date: {
-        startDate: '2024-11-10',
-        endDate: '2024-11-12',
-      },
-      Link: '/destino/hackathon',
-    },
-    {
-      Name: 'Building on L2 Workshop',
-      Description: 'Learn how to deploy and optimize applications on Ethereum L2 solutions.',
-      Location: 'Córdoba, Argentina',
-      Date: {
-        startDate: '2024-11-15',
-        endDate: '2024-11-15',
-      },
-      Link: '/destino/l2-workshop',
-    },
-    {
-      Name: 'DeFi Summit Argentina',
-      Description: 'Connect with DeFi builders and learn about the latest protocols and opportunities.',
-      Location: 'Mendoza, Argentina',
-      Date: {
-        startDate: '2024-11-18',
-        endDate: '2024-11-20',
-      },
-      Link: '/destino/defi-summit',
-    },
-    {
-      Name: 'Ethereum Community Meetup',
-      Description: 'Network with local Ethereum enthusiasts and projects.',
-      Location: 'Rosario, Argentina',
-      Date: {
-        startDate: '2024-12-05',
-        endDate: '2024-12-05',
-      },
-      Link: '/destino/eth-meetup',
-    },
-    {
-      Name: 'Zero-Knowledge Proofs Conference',
-      Description: 'Deep dive into ZK technology and its applications on Ethereum.',
-      Location: 'Buenos Aires, Argentina',
-      Date: {
-        startDate: '2024-12-10',
-        endDate: '2024-12-12',
-      },
-      Link: '/destino/zk-conference',
-    },
-  ]
-
   const apiUrl = 'https://ef-esp.lightning.force.com/lightning/o/Lead/list?filterName=PGR_Destino_Devconnect'
-  // I need to use salesforce to get the events data
-  // const events = await fetch('https://devconnect.org/api/events')
-  // const eventsData = await events.json()
 
-  const eventsTest = await fetchFromSalesforce(apiUrl)
+  const events = await fetchFromSalesforce(apiUrl)
 
   return {
     props: {
       translations,
       locale,
       content,
-      events: eventsTest,
-      // eventsTest,
+      events,
     },
     revalidate: 1 * 60 * 60, // 60 minutes, in seconds
   }
