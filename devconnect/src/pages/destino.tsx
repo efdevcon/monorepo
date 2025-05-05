@@ -104,7 +104,7 @@ Allow access to your unique identifier (openid)
     //   `SELECT FIELDS(ALL) FROM Lead WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`
     // )
     const query = encodeURIComponent(
-      `SELECT FIELDS(ALL) FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 200`
+      `SELECT Sponsorship_Link__c, Twitter_Handle__c, Company, Type_of_Event__c, Sponsorship_Date__c, Event_Location__c FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect'`
     )
     // const query = encodeURIComponent(
     //   `SELECT Name FROM Lead WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`
@@ -123,7 +123,6 @@ Allow access to your unique identifier (openid)
 
     // Format to match your events data structure
     return records.map((record: any) => ({
-      ...record,
       Name: record.Name,
       Date: {
         startDate: record.Sponsorship_Date__c,
