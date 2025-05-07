@@ -19,9 +19,6 @@
   "ts-node": {
     "require": ["tsconfig-paths/register"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.js"
-  ],
+  "include": ["src/**/*.ts", "src/**/*.js"],
   "exclude": ["node_modules", "./src/**/*.test.ts", "./src/**/*.spec.ts"]
 }

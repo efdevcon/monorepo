@@ -29,8 +29,8 @@ const tableColumns: Array<TableColumn> = [
     title: 'Date',
     key: 'Date',
     sort: (a: any, b: any) => {
-      const { startDate: startDate1 } = a
-      const { startDate: startDate2 } = b
+      const { date: startDate1 } = a
+      const { date: startDate2 } = b
 
       const start1 = moment(startDate1)
       const start2 = moment(startDate2)
@@ -54,7 +54,7 @@ const tableColumns: Array<TableColumn> = [
     render: item => {
       return (
         <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
-          {formatHumanReadableDate(item.Date.startDate, item.Date.endDate)}
+          {formatHumanReadableDate(item.date, item.date)}
         </p>
       )
     },
@@ -64,15 +64,19 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
-      if (item.Link) {
-        return (
-          <Link className="bold" href={item.Link} indicateExternal>
-            {item.Name}
-          </Link>
-        )
-      }
+      // if (item.link) {
+      return (
+        <Link
+          className="bold"
+          href={`/destino/${encodeURIComponent(item.name)}-${encodeURIComponent(item.event_id)}`}
+          indicateExternal
+        >
+          {item.name}
+        </Link>
+      )
+      // }
 
-      return <p className={`bold`}>{item.Name}</p>
+      return <p className={`bold`}>{item.name}</p>
     },
   },
   {
@@ -81,13 +85,13 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      if (!item.Location) return null
+      if (!item.location) return null
 
-      if (item.Location.text) {
-        return <p className="bolda">{item.Location.text}</p>
+      if (item.location) {
+        return <p className="bolda">{item.location}</p>
       }
 
-      return <p className="bolda">{item.Location}</p>
+      return <p className="bolda">{item.location}</p>
     },
   },
   {
@@ -96,27 +100,27 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bolda">{item['Type of Event']}</p>
+      return <p className="bolda">{item.type_of_event}</p>
     },
   },
-  {
-    title: 'Team',
-    key: 'Team',
-    sort: SortVariation.basic,
-    className: '!hidden md:!flex',
-    render: item => {
-      return <p className={`${styles['team-col']}`}>{item.Team}</p>
-    },
-  },
+  // {
+  //   title: 'Team',
+  //   key: 'Team',
+  //   sort: SortVariation.basic,
+  //   className: '!hidden md:!flex',
+  //   render: item => {
+  //     return <p className={`${styles['team-col']}`}>{item.team}</p>
+  //   },
+  // },
   {
     title: 'Social',
     key: 'Social',
     className: '!hidden lg:!flex',
     // sort: SortVariation.basic,
     render: item => {
-      if (!item.Social) return null
+      if (!item.twitter_handle) return null
 
-      let socialFormatted = item.Social
+      let socialFormatted = item.twitter_handle
 
       if (socialFormatted.startsWith('@')) {
         socialFormatted = socialFormatted.slice(1)
@@ -136,7 +140,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   const [search, setSearch] = React.useState('')
 
   const formattedEvents = events.map((event: any) => {
-    const end = moment(event.Date.endDate).add(1, 'days')
+    const end = moment(event.date).add(1, 'days')
     const now = moment()
 
     const eventHasPassed = now.isAfter(end)
