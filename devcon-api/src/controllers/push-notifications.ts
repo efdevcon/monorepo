@@ -243,5 +243,5 @@ async function sendScheduledNotifications() {
 
 sendScheduledNotifications()
 
-// Set up the function to run every 5 minutes
-setInterval(sendScheduledNotifications, 5 * 60 * 1000)
+// Set up the function to run every 60 minutes
+setInterval(sendScheduledNotifications, 60 * 60 * 1000)

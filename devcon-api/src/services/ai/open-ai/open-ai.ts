@@ -1,17 +1,15 @@
-import OpenAI from 'openai'
+import OpenAI, { toFile } from 'openai'
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 dotenv.config()
-// import { prompts } from './fine-tune'
 import { filenameToUrl } from '@lib/cms/filenameToUrl'
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
-// import { PrismaClient } from '@prisma/client'
 import { FileLike } from 'openai/uploads'
 import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
-
-// const client = new PrismaClient()
+import { fetchFromSalesforce } from '@/services/salesforce'
+import { createClient } from '@supabase/supabase-js'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -19,94 +17,6 @@ const openai = new OpenAI({
 
 export const api = (() => {
   const _interface = {
-    // createEmbeddingsFromContent: async () => {
-    //   const contentDir = path.resolve(__dirname, 'content')
-    //   const files = fs.readdirSync(contentDir)
-
-    //   // Filter only .txt files
-    //   const txtFiles = files.filter((file) => file.endsWith('.txt'))
-
-    //   // Read content of each .txt file and prepare sections array
-    //   const sections = txtFiles.map((file) => {
-    //     const content = fs.readFileSync(path.join(contentDir, file), 'utf8')
-
-    //     return content
-    //     // return `Page ${file.replace('.txt', '')}: ${content}`;
-    //   })
-
-    //   try {
-    //     const allPromises = sections.map(async (section) => {
-    //       const embedding = await createOpenAIEmbedding(section)
-
-    //       return {
-    //         embedding: embedding,
-    //         text: section,
-    //       }
-    //     })
-
-    //     await Promise.allSettled(allPromises).then((results) => {
-    //       //@ts-ignore
-    //       fs.writeFileSync(path.resolve(__dirname, 'openai_embeddings.json'), JSON.stringify(results.map(({ value }: any) => value)))
-    //     })
-    //   } catch (error) {
-    //     console.error('Error creating OpenAI embeddings:', error)
-    //   }
-    // },
-    // getRelevantTextByQuery: async (query: string, maxTokens = 10000, minSimilarity = 0.3) => {
-    //   const embeddings = loadEmbeddings()
-    //   const queryEmbedding = await createOpenAIEmbedding(query)
-
-    //   // @ts-ignore
-    //   const sectionsWithSimilarity = [] as any
-
-    //   // Calculate similarity for each section
-    //   embeddings.forEach((section: any) => {
-    //     const similarity = cosineSimilarity(queryEmbedding, section.embedding)
-    //     if (similarity > minSimilarity) {
-    //       // Only include sections above the similarity threshold
-    //       sectionsWithSimilarity.push({
-    //         text: section.text,
-    //         similarity: similarity,
-    //       })
-    //     }
-    //   })
-
-    //   // Sort sections by similarity in descending order
-    //   sectionsWithSimilarity.sort((a: any, b: any) => b.similarity - a.similarity)
-
-    //   // Select top sections within the token limit
-    //   let tokenCount = 0
-    //   let selectedText = ''
-    //   for (const section of sectionsWithSimilarity) {
-    //     const sectionTokenCount = section.text.split(/\s+/).length // Estimate token count as number of words
-    //     if (tokenCount + sectionTokenCount > maxTokens) {
-    //       break // Stop adding sections if max token count is reached
-    //     }
-    //     selectedText += section.text + '\n\n' // Add two new lines for clear separation
-    //     tokenCount += sectionTokenCount
-    //   }
-
-    //   return selectedText.trim() || 'No sufficiently relevant section found.'
-    // },
-    // generateResponseUsingCompletionsAPI: async (relevantText: string, query: string) => {
-    //   console.log(relevantText, 'relevant text')
-    //   const prompt = `You are tasked to help users answer questions about Devcon and its history. When possible, try to refer the user to the relevant category by linking to the content. The current date is ${new Date().toLocaleDateString()}. Based on the following content from our website: "${relevantText}", how would you answer the question: "${query}"? The user does not know which content you are provided, so be sensitive to how they perceive your answer.`
-    //   // const clarifications = `If the content is irrelevant, say "I don't know". The current date is ${new Date().toLocaleDateString()}.`;
-    //   const completion = await openai.chat.completions.create({
-    //     model: 'gpt-3.5-turbo-0125',
-    //     messages: [{ role: 'system', content: prompt }],
-    //   })
-
-    //   return completion.choices[0]
-    // },
-    // basicCompletionsAPI: async () => {
-    //   const completion = await openai.chat.completions.create({
-    //     model: 'ft:gpt-3.5-turbo-0125:personal::9MaoeoMc',
-    //     messages: prompts[6].messages.slice(0, 2),
-    //   })
-
-    //   console.log(completion.choices)
-    // },
     createThread: async () => {
       const thread = await openai.beta.threads.create()
 
@@ -440,7 +350,7 @@ export const api = (() => {
         const vectorStores = await openai.beta.vectorStores.list()
 
         // Sort vector stores by creation date, newest first
-        const sortedStores = vectorStores.data.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
+        const sortedStores = vectorStores.data.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
 
         // Keep the 15 most recent stores - just to avoid edge cases where we delete the wrong vector store, and to avoid having infinity vector
         const storesToKeep = sortedStores.slice(0, 15)
@@ -482,16 +392,18 @@ export const api = (() => {
 
         const knowledgeBaseDirectory = path.resolve(__dirname, '..', 'knowledge-base')
         const knowledgeBaseFiles = fs.readdirSync(knowledgeBaseDirectory)
-        const knowledgeBaseStreams = knowledgeBaseFiles.map((filename: string) => {
-          const filePath = path.join(knowledgeBaseDirectory, filename)
-          // Skip directories, only process files
-          if (fs.statSync(filePath).isDirectory()) {
-            return null;
-          }
-          // Create a stream with a custom filename prefix
-          const stream = fs.createReadStream(filePath)
-          return stream
-        }).filter(Boolean) as any // Filter out null values (directories)
+        const knowledgeBaseStreams = knowledgeBaseFiles
+          .map((filename: string) => {
+            const filePath = path.join(knowledgeBaseDirectory, filename)
+            // Skip directories, only process files
+            if (fs.statSync(filePath).isDirectory()) {
+              return null
+            }
+            // Create a stream with a custom filename prefix
+            const stream = fs.createReadStream(filePath)
+            return stream
+          })
+          .filter(Boolean) as any // Filter out null values (directories)
 
         const sessionsResponse = await fetch('https://api.devcon.org/events/devcon-7/sessions?size=10000')
 
@@ -580,6 +492,153 @@ export const api = (() => {
 
         console.log('Vector store created for devcon SEA including knowledge base files')
       },
+    },
+  }
+
+  return _interface
+})()
+
+export const destinoApi = (() => {
+  const EventSchema = z.object({
+    en: z.string(),
+    es: z.string(),
+    pt: z.string(),
+  })
+
+  // Define a type for event records
+  interface EventRecord {
+    id: string
+    event_id: string
+    content: {
+      en: string
+      es: string
+      pt: string
+    }
+    updated_at: string
+    last_modified_at: string
+  }
+
+  // Initialize Supabase client once to reuse across functions
+  const supabaseUrl = process.env.SUPABASE_URL || ''
+  const supabaseKey = process.env.SUPABASE_KEY || ''
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
+  const _interface = {
+    getAllDestinoEvents: async () => {
+      const { data, error } = await supabase.from('destino_events').select('*')
+
+      return data as EventRecord[]
+    },
+    getDestinoEvent: async (eventId: string) => {
+      const { data, error } = await supabase.from('destino_events').select('*').eq('event_id', eventId).single()
+
+      return data as EventRecord | null
+    },
+    generateDestinoEvent: async (event: any) => {
+      const eventRecord = await _interface.getDestinoEvent(event.Id)
+
+      // If exists and updated after last modification, return cached content
+      if (eventRecord && new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
+        // console.log(`Using cached content for event ${event.Id}`)
+        return eventRecord.content
+      }
+
+      // Otherwise generate new content
+      console.log(`Generating new content for Destino event ${event.Id}`)
+
+      const eventCompletion = await openai.beta.chat.completions.parse({
+        temperature: 0,
+        model: 'gpt-4.1',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'You take an event object and generate a simple summary of it in English, Spanish and Portuguese. Max 500 characters. It will be used to advertise the event.',
+          },
+          { role: 'user', content: JSON.stringify({ ...event, description: '' }) },
+        ],
+        response_format: zodResponseFormat(EventSchema, 'summary'),
+      })
+
+      const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
+
+      const prompt = `
+        Create an image to advertise the following event:
+
+        Event name: ${event.Name}
+        Event location: ${event.Location}
+        Event summary: ${content.en}
+
+        Do not use any text in the generated image. Try to avoid too many details in the image, we want to keep it simple.
+      `
+
+      // const referenceImagePath = path.join(__dirname, 'image-generation', 'destino.png')
+      // const openAICompatibleImage = await toFile(fs.createReadStream(referenceImagePath), null, { type: 'image/png' })
+
+      const resultImage = await openai.images.generate({
+        model: 'dall-e-3',
+        prompt,
+        // image: openAICompatibleImage,
+        response_format: 'b64_json',
+        n: 1,
+        size: '1792x1024',
+      })
+
+      // Save the image to a file
+      const image_base64 = resultImage.data[0].b64_json
+      const image_bytes = image_base64 ? Buffer.from(image_base64, 'base64') : null
+
+      let imageUrl = null
+
+      if (image_bytes) {
+        // Upload to Supabase Storage
+        const { data: uploadData, error: uploadError } = await supabase.storage.from('destino-events').upload(`${event.Id}.png`, image_bytes, {
+          contentType: 'image/png',
+          upsert: true,
+        })
+
+        if (uploadError) {
+          console.error('Error uploading image:', uploadError)
+        } else {
+          // Get public URL
+          const {
+            data: { publicUrl },
+          } = supabase.storage.from('destino-events').getPublicUrl(`${event.Id}.png`)
+
+          imageUrl = publicUrl
+        }
+      }
+
+      // Save to Supabase
+      const result = await supabase.from('destino_events').upsert({
+        event_id: event.Id,
+        content,
+        twitter_handle: event.Twitter,
+        type_of_event: event['Type of Event'],
+        location: event.Location,
+        link: event.Link,
+        name: event.Name,
+        date: event.Date.startDate,
+        target_audience: event.TargetAudience,
+        details: event.Details,
+        image_url: imageUrl,
+        updated_at: new Date().toISOString(),
+        last_modified_at: event.LastModifiedDate,
+      })
+
+      return result
+    },
+    generateDestinoEvents: async () => {
+      const events = await fetchFromSalesforce()
+
+      const results = await Promise.all(
+        events.map(async (event: any) => {
+          const content = await _interface.generateDestinoEvent(event)
+          return { event, content }
+        })
+      )
+
+      return results
     },
   }
 
