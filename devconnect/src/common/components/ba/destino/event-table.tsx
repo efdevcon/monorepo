@@ -68,7 +68,7 @@ const tableColumns: Array<TableColumn> = [
       return (
         <Link
           className="bold"
-          href={`/destino/${encodeURIComponent(item.name)}-${encodeURIComponent(item.event_id)}`}
+          href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
           indicateExternal
         >
           {item.name}
@@ -158,7 +158,14 @@ const EventsTable = React.memo(({ events, pages }: any) => {
     }
 
     if (search.length > 0) {
-      return Object.keys(event).some(key => {
+      const searchableKeys = {
+        name: event.name,
+        location: event.location,
+        type_of_event: event.type_of_event,
+        twitter_handle: event.twitter_handle,
+      }
+
+      return Object.keys(searchableKeys).some(key => {
         const value = event[key]
         return typeof value === 'string' && value.toLowerCase().includes(search.toLowerCase())
       })
@@ -170,7 +177,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center mb-4 gap-2">
-        <div className="font-bold">Destino Devconnect Events</div>
+        {/* <div className="font-bold">Destino Devconnect Events</div> */}
 
         <div className="flex">
           <p
