@@ -718,15 +718,15 @@ const Home: NextPage = (props: any) => {
                       const IconComponent = () => {
                         switch (index) {
                           case 0:
-                            return <CampaignIcon className="h-14 w-14 icon mb-1" />
+                            return <CampaignIcon className="!h-14 !w-14 icon mb-1" />
                           case 1:
-                            return <PeopleIcon className="h-12 w-12 icon mb-1" />
+                            return <PeopleIcon className="!h-12 !w-12 icon mb-1" />
                           case 2:
-                            return <WorldIcon className="h-11 w-11 icon mb-2" />
+                            return <WorldIcon className="!h-11 !w-11 icon mb-2" />
                           case 3:
-                            return <TicketIcon className="h-12 w-12 icon mb-3" />
+                            return <TicketIcon className="!h-12 !w-12 icon mb-3" />
                           default:
-                            return <CampaignIcon className="h-14 w-14 icon mb-1" />
+                            return <CampaignIcon className="!h-14 !w-14 icon mb-1" />
                         }
                       }
 

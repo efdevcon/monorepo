@@ -5,6 +5,8 @@ require('dotenv').config()
 import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
 import { loadAndFormatCMS } from './format-content'
+import { fetchFromSalesforce } from 'pages/destino'
+import { createClient } from '@supabase/supabase-js'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,

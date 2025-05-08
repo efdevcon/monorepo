@@ -52,6 +52,7 @@ module.exports = {
       'blog.ethereum.org',
       'img.youtube.com',
       'www.gravatar.com',
+      'mealmslwugsqqyoesrxd.supabase.co',
     ],
   },
   webpack: (config, { webpack }) => {
