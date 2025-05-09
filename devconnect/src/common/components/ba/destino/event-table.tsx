@@ -67,7 +67,7 @@ const tableColumns: Array<TableColumn> = [
       // if (item.link) {
       return (
         <Link
-          className="bold"
+          className="bolda"
           href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
           indicateExternal
         >
@@ -175,13 +175,13 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   })
 
   return (
-    <div className="w-full">
+    <div className={`w-full ${styles['event-table']}`}>
       <div className="flex justify-between items-center mb-4 gap-2">
         {/* <div className="font-bold">Destino Devconnect Events</div> */}
 
         <div className="flex">
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
+            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-0 py-2 ${
               !includePastEvents ? 'font-bold' : ''
             }`}
             onClick={() => {
@@ -204,7 +204,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
         </div>
 
         <input
-          className={`rounded-lg p-1.5 text-base lg:text-sm px-4 border-solid text-black border border-slate-300 outline-none`}
+          className={`p-1.5 text-base lg:text-sm px-3 border-solid text-black outline-none`}
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -214,7 +214,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 
       <div className="mb-4">{/* <RichText content={pages.events_table}></RichText> */}</div>
 
-      <div className="text-sm text-black rounded-xl overflow-hidden">
+      <div className="text-sm overflow-hidden text-white">
         <Table itemKey="_key" items={filteredEvents} columns={tableColumns} initialSort={0} />
       </div>
     </div>

@@ -35,7 +35,7 @@ ${currentUrl}`
     'MMMM D, YYYY'
   )} as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
     currentUrl
-  )}&channelKey=devcon&embeds[]=${encodeURIComponent(currentUrl)}`
+  )}&channelKey=devconnect&embeds[]=${encodeURIComponent(currentUrl)}`
 
   const hasLink = eventData.link && eventData.link.startsWith('http')
 
@@ -61,7 +61,12 @@ ${currentUrl}`
             {(globalThis as any).translations.this_is_a_destino_devconnect_event}
           </Link>
         </div>
-        <Tilty className="max-w-full relative contents md:block" style={{ transformStyle: 'preserve-3d' }} speed={5000}>
+        <Tilty
+          className="max-w-full relative contents md:block"
+          style={{ transformStyle: 'preserve-3d' }}
+          speed={5000}
+          reverse
+        >
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[800px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
             <div className="w-full aspect-[7/2] relative">
               <Image
@@ -74,9 +79,6 @@ ${currentUrl}`
             <div className="py-4 px-6 flex flex-col">
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
                 <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{eventData?.name}</h1>
-                {/* <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                {eventData.name}
-              </span> */}
                 <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-medium">
                   <svg
                     className="w-4 h-4 text-gray-400"
@@ -94,7 +96,6 @@ ${currentUrl}`
                   {eventData?.location}
                 </span>
               </div>
-              {/* <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight mb-2">{eventData?.name}</h1> */}
               <p className="mb-4 text-xs md:text-base">{eventData?.content}</p>
               <div className="flex flex-col sm:flex-row gap-4 text-sm justify-between">
                 <div className="flex gap-4">
@@ -128,11 +129,7 @@ ${currentUrl}`
               </Button>
             </Link>
           )}
-          {/* <Image
-            src={DestinoLogo}
-            alt="Destino Logo"
-            className="object-cover w-[250px] max-w-[70vw] absolute bottom-0 translate-y-[calc(100%+24px)] left-1/2 -translate-x-1/2"
-          /> */}
+
           <div>
             {(globalThis as any).translations.destino_ai_generated}
             {hasLink && ' - ' + (globalThis as any).translations.destino_ai_generated_2}
@@ -179,8 +176,6 @@ export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
   )
 
   const events = await eventsResponse.json()
-
-  console.log(events, 'EVENTS')
 
   const paths = locales.flatMap(locale =>
     events.map((event: any) => ({
