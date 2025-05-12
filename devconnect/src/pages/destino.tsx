@@ -8,8 +8,6 @@ import { SEO } from 'common/components/SEO'
 const DestinoPage = ({ content, events }: { content: any; events: any }) => {
   const { data }: { data: any } = useTina(content)
 
-  console.log(events, 'EVENTS')
-
   return (
     <>
       <SEO

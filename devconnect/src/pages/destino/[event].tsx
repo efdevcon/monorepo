@@ -50,17 +50,24 @@ ${currentUrl}`
         className="w-full h-full absolute object-cover object-position opacity-40"
       />
 
-      <div className="relative z-10 flex flex-col items-center sm:justify-center h-full w-full px-4">
-        <div className="mb-2 md:mb-4 hidden sm:flex text-white flex-col text-xs text-center relative">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+        <div className="mb-2 md:mb-4 flex text-white flex-col text-xs text-center relative">
           <Image
             src={DestinoLogo}
             alt="Destino Logo"
-            className="object-cover w-[250px] max-w-[70vw] absolute hidden sm:block top-0 translate-y-[calc(-100%-24px)] left-1/2 -translate-x-1/2"
+            className="object-cover w-[250px] max-w-[50vw] absolute top-0 translate-y-[calc(-100%-0px)] sm:translate-y-[calc(-100%-24px)] left-1/2 -translate-x-1/2"
           />
-          <Link href="/destino" className="" indicateExternal style={{ '--icon-color': 'white' }} target="_blank">
+          <Link
+            href="/destino"
+            className="hidden sm:inline-flex"
+            indicateExternal
+            style={{ '--icon-color': 'white' }}
+            target="_blank"
+          >
             {(globalThis as any).translations.this_is_a_destino_devconnect_event}
           </Link>
         </div>
+
         <Tilty
           className="max-w-full relative contents md:block"
           style={{ transformStyle: 'preserve-3d' }}
@@ -77,7 +84,7 @@ ${currentUrl}`
               />
             </div>
             <div className="py-4 px-6 flex flex-col">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 sm:gap-4 mb-3">
                 <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{eventData?.name}</h1>
                 <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-medium">
                   <svg
@@ -96,9 +103,9 @@ ${currentUrl}`
                   {eventData?.location}
                 </span>
               </div>
-              <p className="mb-4 text-xs md:text-base">{eventData?.content}</p>
-              <div className="flex flex-col sm:flex-row gap-4 text-sm justify-between">
-                <div className="flex gap-4">
+              <p className="mb-2 sm:mb-4 text-xs md:text-base">{eventData?.content}</p>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm justify-between">
+                <div className="flex gap-2 sm:gap-4">
                   <div className="flex items-center gap-1 ">{moment(eventData?.date).format('MMMM D, YYYY')}</div>
 
                   <div className="flex items-center gap-1 font-semibold">
@@ -115,6 +122,7 @@ ${currentUrl}`
             </div>
           </div>
         </Tilty>
+
         <div className="mt-2 md:mt-4 text-white flex flex-col text-xs text-center relative">
           {hasLink && (
             <Link href={eventData.link} target="_blank">
@@ -136,7 +144,7 @@ ${currentUrl}`
           </div>
         </div>
 
-        <div className="flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
+        <div className="hidden sm:flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
           <p className="text-sm mb-2 text-white">{(globalThis as any).translations.destino_share_on}</p>
           <div className="flex gap-4">
             <a
@@ -186,7 +194,7 @@ export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
 
   return {
     paths,
-    fallback: 'blocking', // Show a fallback page while generating new pages
+    fallback: 'blocking',
   }
 }
 
