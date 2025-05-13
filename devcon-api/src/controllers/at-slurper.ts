@@ -23,6 +23,12 @@ atSlurperRouter.get('/at-slurper/server-lexicons', async (req: Request, res: Res
   res.json(serverLexicons)
 })
 
+atSlurperRouter.get('/at-slurper/test-pds-oauth-on-behalf-of-user', async (req: Request, res: Response) => {
+  const result = await experimentation.testPdsOauthOnBehalfOfUser()
+
+  res.json(result)
+})
+
 atSlurperRouter.get('/at-slurper/notion-events', async (req: Request, res: Response) => {
   const notionEvents = await fetchFromNotion()
 

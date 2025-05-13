@@ -23,6 +23,33 @@ const api = (() => {
 })()
 
 const experimentation = (() => {
+  // Write data to a user pds, on behalf of a user
+  const pdsOauthOnBehalfOfUser = async (serviceEndpoint: string, username: string, password: string, record: any) => {
+    try {
+      // Import the BskyAgent from @atproto/api
+      const { BskyAgent } = require('@atproto/api')
+
+      // Initialize the agent with Bluesky PDS service
+      const agent = new BskyAgent({
+        service: serviceEndpoint,
+      })
+
+      // Log in with credentials
+      await agent.login({ identifier: username, password })
+
+      // Create a record (e.g. a post)
+      const result = await agent.post({
+        text: record.text || 'Hello from API',
+        facets: record.facets || [],
+        embed: record.embed,
+      })
+
+      return { success: true, data: result }
+    } catch (error: any) {
+      return { success: false, error: error.message }
+    }
+  }
+
   const getServerLexicons = async () => {
     const pds = dids[0].serviceEndpoint
 
@@ -136,6 +163,13 @@ const experimentation = (() => {
     listRecords,
     describeRepo,
     getServerLexicons,
+    testPdsOauthOnBehalfOfUser: async () => {
+      const result = await pdsOauthOnBehalfOfUser('https://bsky.social', 'ethlasse.bsky.social', '', {
+        text: 'This is a test post using pdsOauthOnBehalfOfUser',
+      })
+
+      return result
+    },
   }
 })()
 
@@ -145,4 +179,9 @@ export { experimentation, api }
  Useful links:
  https://github.com/likeandscribe/frontpage/tree/main/packages/atproto-browser
  https://atproto-browser.vercel.app/at/ethlasse.bsky.social
+ https://docs.bsky.app/docs/advanced-guides/posts -- how to post without SDK
+
+ What to do next:
+  Resolve record types by record schema (how to go from ID to schema generically?)
+  How to 
 */
