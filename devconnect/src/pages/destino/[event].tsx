@@ -54,7 +54,7 @@ ${currentUrl}`
       </div>
 
       <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8">
-        <div className="mb-4 md:mb-8 flex text-white flex-col text-xs text-center">
+        <div className="mb-8 flex text-white flex-col text-xs text-center">
           <div className="mb-4">
             <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
           </div>
@@ -74,7 +74,7 @@ ${currentUrl}`
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 sm:gap-4 mb-3">
                 <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{eventData?.name}</h1>
               </div>
-              <div className="flex flex-row gap-2 items-center justify-between mb-2">
+              <div className="flex flex-col min-[480px]:flex-row gap-2 items-start min-[480px]:items-center min-[480px]:justify-between mb-2">
                 <span className="inline-flex items-center gap-1 text-gray-500 text-base font-medium">
                   <svg
                     className="w-4 h-4 text-gray-400"
@@ -91,27 +91,15 @@ ${currentUrl}`
                   </svg>
                   {moment(eventData?.date).format('MMMM D, YYYY')} • {eventData?.location}
                 </span>
-                <div className="bg-black text-xs px-3 py-1 rounded-full shadow ml-2">
+                <div className="bg-black text-xs px-3 py-1 rounded-full shadow">
                   <span className={styles['rainbow-text']}>
                     {(globalThis as any).translations.destino_devconnect_event}
                   </span>
                 </div>
               </div>
-              <p className="mb-2 sm:mb-4 text-xs md:text-base text-gray-900">{eventData?.content}</p>
-              <div className="flex flex-col gap-2 sm:gap-4 text-sm">
-                <div className="flex items-center gap-4 font-semibold">
-                  {eventData?.twitter_handle && (
-                    <Link
-                      href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
-                      target="_blank"
-                      className="text-gray-900 hover:text-gray-600 transition-colors"
-                      indicateExternal
-                    >
-                      {eventData.twitter_handle.startsWith('@')
-                        ? eventData.twitter_handle
-                        : `@${eventData.twitter_handle}`}
-                    </Link>
-                  )}
+              <p className="mb-4 md:text-base text-gray-900">{eventData?.content}</p>
+              <div className="flex flex-col gap-2 text-sm">
+                <div className="flex flex-col min-[480px]:flex-row items-start min-[480px]:items-center gap-4 font-semibold justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-gray-900">{(globalThis as any).translations.destino_share_on}</span>
                     <a
@@ -135,8 +123,20 @@ ${currentUrl}`
                       <IconWarpcast />
                     </a>
                   </div>
+                  {eventData?.twitter_handle && (
+                    <Link
+                      href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
+                      target="_blank"
+                      className="text-gray-900 hover:text-gray-600 transition-colors"
+                      indicateExternal
+                    >
+                      {eventData.twitter_handle.startsWith('@')
+                        ? eventData.twitter_handle
+                        : `@${eventData.twitter_handle}`}
+                    </Link>
+                  )}
                 </div>
-                <div className="flex justify-center">
+                <div className="flex justify-center mt-2">
                   {hasLink && (
                     <Link href={eventData.link} target="_blank">
                       <Button
