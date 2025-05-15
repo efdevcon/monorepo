@@ -158,23 +158,21 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 
         <div className="flex">
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-0 py-2 ${
-              !includePastEvents ? 'font-bold' : ''
-            }`}
+            className={`no-select cursor-pointer px-2 py-2 ${!includePastEvents ? styles['selected-filter'] : ''}`}
             onClick={() => {
               setIncludePastEvents(false)
             }}
+            data-text="Upcoming Events"
           >
             Upcoming Events
           </p>
 
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
-              includePastEvents ? 'font-bold' : ''
-            }`}
+            className={`no-select cursor-pointer px-2 py-2 ${includePastEvents ? styles['selected-filter'] : ''}`}
             onClick={() => {
               setIncludePastEvents(!includePastEvents)
             }}
+            data-text="All Events"
           >
             All Events
           </p>

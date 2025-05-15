@@ -9,6 +9,9 @@
   --icon-color: white;
   --table-header-color: #f3a24a;
   --table-row-background-even: #36364c;
+.selected-filter {
+    color: var(--table-header-color) !important;
+    font-weight: bold !important;
 }
 
 .row-link {
@@ -20,4 +23,5 @@
   &:hover {
     text-decoration: none;
   }
+}
 }
