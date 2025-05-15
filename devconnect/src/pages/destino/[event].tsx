@@ -11,6 +11,8 @@ import IconWarpcast from 'assets/icons/farcaster.svg'
 import { Button } from 'lib/components/button'
 import client from '../../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
+import styles from '../index.module.scss'
+
 interface EventPageProps {
   event: string | string[] | undefined
   eventData: any
@@ -56,7 +58,7 @@ ${currentUrl}`
             alt="Destino Logo"
             className="object-cover w-[250px] max-w-[50vw] absolute top-0 translate-y-[calc(-100%-0px)] sm:translate-y-[calc(-100%-24px)] left-1/2 -translate-x-1/2"
           />
-          <Link
+          {/* <Link
             href="/destino"
             className="hidden sm:inline-flex"
             indicateExternal
@@ -64,12 +66,12 @@ ${currentUrl}`
             target="_blank"
           >
             {(globalThis as any).translations.this_is_a_destino_devconnect_event}
-          </Link>
+          </Link> */}
         </div>
 
         <div className="max-w-full relative">
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[800px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
-            <div className="w-full aspect-[7/2] relative">
+          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[600px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
+            <div className="w-full aspect-[7/4] relative">
               <Image
                 src={eventData.image_url || DestinoHero}
                 fill
@@ -80,47 +82,60 @@ ${currentUrl}`
             <div className="py-4 px-6 flex flex-col">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 sm:gap-4 mb-3">
                 <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{eventData?.name}</h1>
-                <div className="flex flex-col sm:flex-row gap-2">
-                  <span className="inline-flex items-center gap-1 text-gray-500 text-base font-medium">
-                    <svg
-                      className="w-4 h-4 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                      />
-                    </svg>
-                    {moment(eventData?.date).format('MMMM D, YYYY')} • {eventData?.location}
+              </div>
+              <div className="flex flex-row gap-2 items-center justify-between mb-2">
+                <span className="inline-flex items-center gap-1 text-gray-500 text-base font-medium">
+                  <svg
+                    className="w-4 h-4 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {moment(eventData?.date).format('MMMM D, YYYY')} • {eventData?.location}
+                </span>
+                <div className="bg-black text-xs px-3 py-1 rounded-full shadow ml-2">
+                  <span className={styles['rainbow-text']}>
+                    {(globalThis as any).translations.destino_devconnect_event}
                   </span>
                 </div>
               </div>
               <p className="mb-2 sm:mb-4 text-xs md:text-base">{eventData?.content}</p>
-              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm justify-between">
-                <div className="flex gap-2 sm:gap-4">
-                  <div className="flex items-center gap-1 ">{moment(eventData?.date).format('MMMM D, YYYY')}</div>
-
+              <div className="flex flex-col gap-2 sm:gap-4 text-sm">
+                <div className="flex gap-2 sm:gap-4 font-semibold">
                   {eventData?.twitter_handle && (
-                    <div className="flex items-center gap-1 font-semibold">
-                      <Link
-                        href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
-                        target="_blank"
-                        className="hover:text-gray-600 transition-colors"
-                      >
-                        {eventData.twitter_handle.startsWith('@')
-                          ? eventData.twitter_handle
-                          : `@${eventData.twitter_handle}`}
-                      </Link>
-                    </div>
+                    <Link
+                      href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
+                      target="_blank"
+                      className="hover:text-gray-600 transition-colors"
+                      indicateExternal
+                    >
+                      {eventData.twitter_handle.startsWith('@')
+                        ? eventData.twitter_handle
+                        : `@${eventData.twitter_handle}`}
+                    </Link>
                   )}
                 </div>
-
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow self-start">
-                  {(globalThis as any).translations.destino_devconnect_event}
+                <div className="flex justify-center">
+                  {hasLink && (
+                    <Link href={eventData.link} target="_blank">
+                      <Button
+                        color="black-1"
+                        fat
+                        fill
+                        size="sm"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white"
+                      >
+                        {(globalThis as any).translations.visit_event_website}
+                      </Button>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>
@@ -128,20 +143,6 @@ ${currentUrl}`
         </div>
 
         <div className="mt-2 md:mt-4 text-white flex flex-col text-xs text-center relative">
-          {hasLink && (
-            <Link href={eventData.link} target="_blank">
-              <Button
-                className="object-cover w-[250px] max-w-[70vw] absolute bottom-0 translate-y-[calc(100%+8px)] md:translate-y-[calc(100%+24px)] left-1/2 -translate-x-1/2"
-                color="white-1"
-                fat
-                fill
-                size="sm"
-              >
-                {(globalThis as any).translations.visit_event_website}
-              </Button>
-            </Link>
-          )}
-
           <div>
             {(globalThis as any).translations.destino_ai_generated}
             {hasLink && ' - ' + (globalThis as any).translations.destino_ai_generated_2}
