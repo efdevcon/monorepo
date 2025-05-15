@@ -1,6 +1,7 @@
 import { Request, Response, Router } from 'express'
-import { experimentation, api } from '@/services/at-slurper/main'
-import { fetchFromNotion, upsertEventToNotion } from '@/services/at-slurper/notion-client'
+import { experimentation, api } from '@/services/at-slurper/atproto'
+import { fetchFromNotion, upsertEventToNotion } from '@/services/at-slurper/notion'
+import '@/services/at-slurper/main'
 
 export const atSlurperRouter = Router()
 
@@ -25,6 +26,12 @@ atSlurperRouter.get('/at-slurper/server-lexicons', async (req: Request, res: Res
 
 atSlurperRouter.get('/at-slurper/test-pds-oauth-on-behalf-of-user', async (req: Request, res: Response) => {
   const result = await experimentation.testPdsOauthOnBehalfOfUser()
+
+  res.json(result)
+})
+
+atSlurperRouter.get('/at-slurper/add-schema', async (req: Request, res: Response) => {
+  const result = await experimentation.addSchema()
 
   res.json(result)
 })

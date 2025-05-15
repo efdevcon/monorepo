@@ -1,187 +1,105 @@
-import { AtpBaseClient } from '@atproto/api'
-
-const collections = ['events.smokesignal.calendar.event']
-const dids = [
-  {
-    serviceEndpoint: 'https://agrocybe.us-west.host.bsky.network',
-    did: 'did:plc:hbzsfn4hxb4bigmwwhmwl5hl',
-    handle: 'ethlasse.bsky.social',
-  },
-]
-
-const api = (() => {
-  const getATData = async () => {}
-
-  const getATDataFromDID = async (did: string) => {
-    // TODO: implement this using @atproto/api
-  }
-
-  return {
-    getATData,
-    getATDataFromDID,
-  }
-})()
-
-const experimentation = (() => {
-  // Write data to a user pds, on behalf of a user
-  const pdsOauthOnBehalfOfUser = async (serviceEndpoint: string, username: string, password: string, record: any) => {
-    try {
-      // Import the BskyAgent from @atproto/api
-      const { BskyAgent } = require('@atproto/api')
-
-      // Initialize the agent with Bluesky PDS service
-      const agent = new BskyAgent({
-        service: serviceEndpoint,
-      })
-
-      // Log in with credentials
-      await agent.login({ identifier: username, password })
-
-      // Create a record (e.g. a post)
-      const result = await agent.post({
-        text: record.text || 'Hello from API',
-        facets: record.facets || [],
-        embed: record.embed,
-      })
-
-      return { success: true, data: result }
-    } catch (error: any) {
-      return { success: false, error: error.message }
-    }
-  }
-
-  const getServerLexicons = async () => {
-    const pds = dids[0].serviceEndpoint
-
-    const client = new AtpBaseClient(pds)
-
-    try {
-      const response = await client.com.atproto.server.describeServer()
-      return response.data
-    } catch (error: any) {
-      return { error: error.message }
-    }
-  }
-
-  const getATData = async () => {
-    const data = []
-
-    for (const did of dids) {
-      const fetchedData = await getATDataFromDID(did)
-      data.push(fetchedData)
-    }
-
-    return data
-  }
-
-  const getATDataFromDID = async (did: { serviceEndpoint: string; did: string; handle: string }) => {
-    // Using AtpBaseClient directly like in the frontpage repo
-    // const client = new AtpBaseClient(did.serviceEndpoint)
-
-    try {
-      // const response = await client.app.bsky.actor.getProfile({ actor: did.handle })
-
-      //   const describeRepoUrl = new URL(`${did.serviceEndpoint}/xrpc/com.atproto.repo.describeRepo`)
-      //   describeRepoUrl.searchParams.set('repo', did.handle)
-
-      //   const res = await fetch(describeRepoUrl.toString())
-
-      const res = await listRecords(did.serviceEndpoint, did.handle, collections[0])
-
-      if (!res) {
-        throw new Error(`Failed to get profile for handle ${did.handle}`)
-      }
-
-      return res
-    } catch (e: any) {
-      return { error: e.message, did }
-    }
-  }
-
-  // Adding a new function to list records from a repository, similar to frontpage repo
-  const listRecords = async (pds: string, repo: string, collection: string, limit = 50, cursor?: string) => {
-    const client = new AtpBaseClient(pds)
-
-    try {
-      const response = await client.com.atproto.repo.listRecords({
-        repo,
-        collection,
-        limit,
-        cursor,
-      })
-
-      if (!response.success) {
-        throw new Error(`Failed to list records`)
-      }
-
-      return response.data
-    } catch (e: any) {
-      return { error: e.message, repo, collection }
-    }
-  }
-
-  // Adding a function to describe a repository, following frontpage repo pattern
-  const describeRepo = async (repo: string) => {
-    const pds = dids[0].serviceEndpoint
-
-    try {
-      const describeRepoUrl = new URL(`${pds}/xrpc/com.atproto.repo.describeRepo`)
-      describeRepoUrl.searchParams.set('repo', repo)
-
-      const res = await fetch(describeRepoUrl.toString())
-
-      if (!res.ok && res.status !== 400) {
-        throw new Error(`Failed to describe repo: ${res.statusText}`)
-      }
-
-      const body = await res.json()
-
-      if (res.status >= 500) {
-        throw new Error(`Failed to describe repo: ${res.statusText}`)
-      }
-
-      if (!res.ok) {
-        return {
-          success: false,
-          error: body.error,
-          message: body.message,
-        }
-      }
-
-      return {
-        success: true,
-        collections: body.collections,
-      }
-    } catch (e: any) {
-      return { success: false, error: e.message, repo }
-    }
-  }
-
-  return {
-    getATData,
-    getATDataFromDID,
-    listRecords,
-    describeRepo,
-    getServerLexicons,
-    testPdsOauthOnBehalfOfUser: async () => {
-      const result = await pdsOauthOnBehalfOfUser('https://bsky.social', 'ethlasse.bsky.social', '', {
-        text: 'This is a test post using pdsOauthOnBehalfOfUser',
-      })
-
-      return result
-    },
-  }
-})()
-
-export { experimentation, api }
+// import { experimentation } from './atproto'
+import { getTable, upsertEventToNotion } from './notion'
+import { managedNotionKeys } from './event-schema'
 
 /*
- Useful links:
- https://github.com/likeandscribe/frontpage/tree/main/packages/atproto-browser
- https://atproto-browser.vercel.app/at/ethlasse.bsky.social
- https://docs.bsky.app/docs/advanced-guides/posts -- how to post without SDK
-
- What to do next:
-  Resolve record types by record schema (how to go from ID to schema generically?)
-  How to 
+  1) Fetch events from external sources (MOCKED FOR NOW, DO NOT IMPLEMENT YET)
+  2) Fetch events from our Notion database
+  3) Override "managedNotionKeys" with the data from the external sources
+  4) Save the events to the Notion database (only changing the fields that are present in the external sources, while keeping the rest as is), create a new row if the event doesn't exist yet
 */
+const main = async () => {
+  // Step 1: Fetch events from external sources (mocked)
+  const atEvents = [
+    {
+      id: 'atproto_did_1',
+      title: 'Test Event',
+      start: '2024-01-01',
+      end: '2024-01-02',
+      location: 'Test Location',
+      url: 'https://test.com',
+      description: 'Test Description',
+    },
+  ]
+
+  const pretixEvents = [
+    {
+      id: 'pretix_1',
+      title: 'Test Event 2',
+      start: '2024-02-01',
+      end: '2024-02-02',
+      location: 'Another Location',
+      url: 'https://example.com',
+      description: 'Another Test Description',
+    },
+  ]
+
+  // Step 2: Fetch events from our Notion database
+  const notionResults = await getTable('1e6638cdc415802fb81cd03321880cfd')
+
+  // Create a map of external events by ID for easy lookup
+  const externalEvents = [...atEvents, ...pretixEvents]
+  const externalEventsMap = new Map()
+
+  externalEvents.forEach((event) => {
+    externalEventsMap.set(event.id, event)
+  })
+
+  // Step 3 & 4: Process each Notion page
+  for (const result of notionResults) {
+    // Extract the formatted data and original page
+    const { formatted, original } = result
+
+    // Check if this event has a matching external event
+    if (!formatted.externalSourceId || !externalEventsMap.has(formatted.externalSourceId)) continue
+
+    // Get the corresponding external event
+    const externalEvent = externalEventsMap.get(formatted.externalSourceId)
+
+    // Create an updated event object for Notion
+    // Map the external event keys to our schema
+    const mappedEvent = {
+      id: formatted.id,
+      title: externalEvent.title,
+      startDate: externalEvent.start,
+      endDate: externalEvent.end,
+      location: externalEvent.location,
+      url: externalEvent.url,
+      description: externalEvent.description,
+      source: formatted.externalSourceId.startsWith('atproto') ? 'AT Protocol' : 'Pretix',
+      status: 'Published', // Default status
+      externalSourceId: formatted.externalSourceId, // Keep the external ID for reference
+    }
+
+    // Update in Notion
+    await upsertEventToNotion(mappedEvent)
+    console.log(`Updated event: ${mappedEvent.title}`)
+
+    // Remove from map to track which ones need to be created
+    externalEventsMap.delete(formatted.externalSourceId)
+  }
+
+  console.log(`Found ${externalEventsMap.size} new events to create`)
+
+  // Create new events for any remaining external events
+  for (const [id, event] of externalEventsMap.entries()) {
+    const newEvent = {
+      title: event.title,
+      startDate: event.start,
+      endDate: event.end,
+      location: event.location,
+      url: event.url,
+      description: event.description,
+      source: id.startsWith('atproto') ? 'AT Protocol' : 'Pretix',
+      status: 'Published', // Default status
+      externalSourceId: id, // Add the external ID for future reference
+    }
+
+    await upsertEventToNotion(newEvent)
+    console.log(`Created new event: ${newEvent.title}`)
+  }
+
+  console.log('Event synchronization completed')
+}
+
+// main()

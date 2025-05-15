@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client'
+import { managedNotionKeys } from './event-schema'
 // import { NotionEvent } from './converter'
 
 const notionDatabaseId = '1e6638cdc415802fb81cd03321880cfd'
@@ -86,6 +87,15 @@ export const upsertEventToNotion = async (event: any) => {
               name: event.status,
             },
           },
+          'External Source ID': {
+            rich_text: [
+              {
+                text: {
+                  content: event.externalSourceId || '',
+                },
+              },
+            ],
+          },
         },
       })
       console.log(`Updated existing event: ${event.title}`)
@@ -150,6 +160,15 @@ export const upsertEventToNotion = async (event: any) => {
             select: {
               name: event.status,
             },
+          },
+          'External Source ID': {
+            rich_text: [
+              {
+                text: {
+                  content: event.externalSourceId || '',
+                },
+              },
+            ],
           },
         },
       })
@@ -231,4 +250,59 @@ export const saveToNotion = async (events: any): Promise<void> => {
     console.error('Error saving events to Notion:', error)
     throw error
   }
+}
+
+export const getTable = async (databaseId: string) => {
+  const response = await notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: 'External Source ID',
+      rich_text: {
+        is_not_empty: true,
+      },
+    },
+  })
+
+  // Map Notion properties to a more convenient format using managedNotionKeys
+  const formattedResults = response.results.map((page: any) => {
+    const formatted: Record<string, any> = {}
+    const reverseKeys: Record<string, string> = {}
+
+    // Create reverse mapping for easier access
+    Object.entries(managedNotionKeys).forEach(([key, notionKey]) => {
+      reverseKeys[notionKey] = key
+    })
+
+    // Map Notion properties to our schema keys
+    Object.entries(page.properties).forEach(([notionKey, value]: [string, any]) => {
+      if (reverseKeys[notionKey]) {
+        const schemaKey = reverseKeys[notionKey]
+
+        // Extract the actual value based on Notion property type
+        if (notionKey === 'Name') {
+          formatted[schemaKey] = value.title?.[0]?.plain_text || ''
+        } else if (value.rich_text) {
+          formatted[schemaKey] = value.rich_text?.[0]?.plain_text || ''
+        } else if (value.date) {
+          formatted[schemaKey] = value.date?.start || ''
+        } else if (value.url) {
+          formatted[schemaKey] = value.url || ''
+        } else if (value.select) {
+          formatted[schemaKey] = value.select?.name || ''
+        }
+      }
+    })
+
+    // Also include the page ID and external source ID
+    formatted.id = page.id
+    formatted.externalSourceId = page.properties['External Source ID']?.rich_text?.[0]?.plain_text || ''
+
+    return {
+      formatted, // The formatted data using our schema
+      original: page, // The original Notion page for reference if needed
+    }
+  })
+
+  console.log(`Found ${formattedResults.length} events with external source IDs`)
+  return formattedResults
 }
