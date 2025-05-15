@@ -41,36 +41,27 @@ ${currentUrl}`
   const hasLink = eventData.link && eventData.link.startsWith('http')
 
   return (
-    <div className="text-black h-screen w-screen relative bg-black">
+    <div className="min-h-screen w-full bg-black">
       <SEO title={eventData.name} description={eventData.content} imageUrl={eventData.image_url} />
 
-      <Image
-        src={DestinoHero}
-        alt="Destino Hero"
-        fill
-        className="w-full h-full absolute object-cover object-position opacity-40"
-      />
+      <div className="fixed inset-0 z-0">
+        <Image
+          src={DestinoHero}
+          alt="Destino Hero"
+          fill
+          className="w-full h-full object-cover object-position opacity-40"
+        />
+      </div>
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
-        <div className="mb-2 md:mb-4 flex text-white flex-col text-xs text-center relative">
-          <Image
-            src={DestinoLogo}
-            alt="Destino Logo"
-            className="object-cover w-[250px] max-w-[50vw] absolute top-0 translate-y-[calc(-100%-0px)] sm:translate-y-[calc(-100%-24px)] left-1/2 -translate-x-1/2"
-          />
-          {/* <Link
-            href="/destino"
-            className="hidden sm:inline-flex"
-            indicateExternal
-            style={{ '--icon-color': 'white' }}
-            target="_blank"
-          >
-            {(globalThis as any).translations.this_is_a_destino_devconnect_event}
-          </Link> */}
+      <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8">
+        <div className="mb-4 md:mb-8 flex text-white flex-col text-xs text-center">
+          <div className="mb-4">
+            <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
+          </div>
         </div>
 
-        <div className="max-w-full relative">
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[600px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
+        <div className="w-full max-w-[600px] mx-auto">
+          <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-600 border-solid">
             <div className="w-full aspect-[7/4] relative">
               <Image
                 src={eventData.image_url || DestinoHero}
@@ -106,14 +97,14 @@ ${currentUrl}`
                   </span>
                 </div>
               </div>
-              <p className="mb-2 sm:mb-4 text-xs md:text-base">{eventData?.content}</p>
+              <p className="mb-2 sm:mb-4 text-xs md:text-base text-gray-900">{eventData?.content}</p>
               <div className="flex flex-col gap-2 sm:gap-4 text-sm">
                 <div className="flex gap-2 sm:gap-4 font-semibold">
                   {eventData?.twitter_handle && (
                     <Link
                       href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
                       target="_blank"
-                      className="hover:text-gray-600 transition-colors"
+                      className="text-gray-900 hover:text-gray-600 transition-colors"
                       indicateExternal
                     >
                       {eventData.twitter_handle.startsWith('@')
@@ -130,7 +121,7 @@ ${currentUrl}`
                         fat
                         fill
                         size="sm"
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white"
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-black font-semibold"
                       >
                         {(globalThis as any).translations.visit_event_website}
                       </Button>
@@ -142,34 +133,30 @@ ${currentUrl}`
           </div>
         </div>
 
-        <div className="mt-2 md:mt-4 text-white flex flex-col text-xs text-center relative">
+        <div className="mt-2 text-white flex flex-col text-xs text-center">
           <div>
             {(globalThis as any).translations.destino_ai_generated}
             {hasLink && ' - ' + (globalThis as any).translations.destino_ai_generated_2}
           </div>
         </div>
 
-        <div className="hidden sm:flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
+        <div className="mt-8 flex flex-col items-center">
           <p className="text-sm mb-2 text-white">{(globalThis as any).translations.destino_share_on}</p>
           <div className="flex gap-4">
             <a
-              // className="twitter-share-button"
               className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
-              // @ts-ignore
-              style={{ '--color-icon': '#8c72ae' }}
+              style={{ '--color-icon': '#8c72ae' } as any}
               href={`https://x.com/intent/tweet?text=${twitterShare}`}
               target="_blank"
               rel="noreferrer"
-              // data-url={currentUrl}
               data-size="large"
               data-via="efdevcon"
             >
               <IconTwitter />
             </a>
             <a
-              className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
-              // @ts-ignore
-              style={{ '--color-icon': '#8c72ae' }}
+              className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
+              style={{ '--color-icon': '#8c72ae' } as any}
               href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
               target="_blank"
               rel="noreferrer"
