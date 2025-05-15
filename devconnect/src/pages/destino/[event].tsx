@@ -24,7 +24,7 @@ const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
     
 ${eventData.name} is taking place on ${moment(eventData.date).format(
       'MMMM D, YYYY'
-    )} as part of the Destino Devconnect series.
+    )} as part of the Destino Devconnect series.${eventData.twitter_handle ? `\n\nBy ${eventData.twitter_handle}` : ''}
     
 ${currentUrl}`
   )
@@ -102,11 +102,19 @@ ${currentUrl}`
                 <div className="flex gap-2 sm:gap-4">
                   <div className="flex items-center gap-1 ">{moment(eventData?.date).format('MMMM D, YYYY')}</div>
 
-                  <div className="flex items-center gap-1 font-semibold">
-                    {eventData?.twitter_handle.startsWith('@')
-                      ? eventData?.twitter_handle
-                      : `@${eventData?.twitter_handle}`}
-                  </div>
+                  {eventData?.twitter_handle && (
+                    <div className="flex items-center gap-1 font-semibold">
+                      <Link
+                        href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
+                        target="_blank"
+                        className="hover:text-gray-600 transition-colors"
+                      >
+                        {eventData.twitter_handle.startsWith('@')
+                          ? eventData.twitter_handle
+                          : `@${eventData.twitter_handle}`}
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow self-start">
