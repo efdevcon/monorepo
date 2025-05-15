@@ -99,7 +99,7 @@ ${currentUrl}`
               </div>
               <p className="mb-2 sm:mb-4 text-xs md:text-base text-gray-900">{eventData?.content}</p>
               <div className="flex flex-col gap-2 sm:gap-4 text-sm">
-                <div className="flex gap-2 sm:gap-4 font-semibold">
+                <div className="flex items-center gap-4 font-semibold">
                   {eventData?.twitter_handle && (
                     <Link
                       href={`https://x.com/${eventData.twitter_handle.replace('@', '')}`}
@@ -112,6 +112,29 @@ ${currentUrl}`
                         : `@${eventData.twitter_handle}`}
                     </Link>
                   )}
+                  <div className="flex items-center gap-2">
+                    <span className="text-gray-900">{(globalThis as any).translations.destino_share_on}</span>
+                    <a
+                      className="twitter-share-button rounded-full bg-gray-100 w-[2em] h-[2em] flex items-center justify-center hover:bg-gray-200 transition-colors"
+                      style={{ '--color-icon': '#8c72ae' } as any}
+                      href={`https://x.com/intent/tweet?text=${twitterShare}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-size="large"
+                      data-via="efdevcon"
+                    >
+                      <IconTwitter />
+                    </a>
+                    <a
+                      className="rounded-full bg-gray-100 w-[2em] h-[2em] flex items-center justify-center hover:bg-gray-200 transition-colors"
+                      style={{ '--color-icon': '#8c72ae' } as any}
+                      href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <IconWarpcast />
+                    </a>
+                  </div>
                 </div>
                 <div className="flex justify-center">
                   {hasLink && (
@@ -137,32 +160,6 @@ ${currentUrl}`
           <div>
             {(globalThis as any).translations.destino_ai_generated}
             {hasLink && ' - ' + (globalThis as any).translations.destino_ai_generated_2}
-          </div>
-        </div>
-
-        <div className="mt-8 flex flex-col items-center">
-          <p className="text-sm mb-2 text-white">{(globalThis as any).translations.destino_share_on}</p>
-          <div className="flex gap-4">
-            <a
-              className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
-              style={{ '--color-icon': '#8c72ae' } as any}
-              href={`https://x.com/intent/tweet?text=${twitterShare}`}
-              target="_blank"
-              rel="noreferrer"
-              data-size="large"
-              data-via="efdevcon"
-            >
-              <IconTwitter />
-            </a>
-            <a
-              className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
-              style={{ '--color-icon': '#8c72ae' } as any}
-              href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconWarpcast />
-            </a>
           </div>
         </div>
       </div>
