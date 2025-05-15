@@ -10,3 +10,14 @@
   --table-header-color: #f3a24a;
   --table-row-background-even: #36364c;
 }
+
+.row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
