@@ -6,7 +6,6 @@ import { withTranslations } from 'pages/index'
 import Link from 'common/components/link'
 import moment from 'moment'
 import { SEO } from 'common/components/SEO'
-import Tilty from 'react-tilty'
 import IconTwitter from 'assets/icons/twitter.svg'
 import IconWarpcast from 'assets/icons/farcaster.svg'
 import { Button } from 'lib/components/button'
@@ -68,12 +67,7 @@ ${currentUrl}`
           </Link>
         </div>
 
-        <Tilty
-          className="max-w-full relative contents md:block"
-          style={{ transformStyle: 'preserve-3d' }}
-          speed={5000}
-          reverse
-        >
+        <div className="max-w-full relative">
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[800px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
             <div className="w-full aspect-[7/2] relative">
               <Image
@@ -121,7 +115,7 @@ ${currentUrl}`
               </div>
             </div>
           </div>
-        </Tilty>
+        </div>
 
         <div className="mt-2 md:mt-4 text-white flex flex-col text-xs text-center relative">
           {hasLink && (
@@ -180,7 +174,7 @@ ${currentUrl}`
 
 export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
   const eventsResponse = await fetch(
-    process.env.NODE_ENV === 'development' ? `http://localhost:4000/destino` : `https://api.devcon.org/destino`
+    process.env.NODE_ENV === 'development' ? `https://api.devcon.org/destino` : `https://api.devcon.org/destino`
   )
 
   const events = await eventsResponse.json()
@@ -205,7 +199,7 @@ export async function getStaticProps({ params, locale }: { params: { event: stri
 
   const eventDataResponse = await fetch(
     process.env.NODE_ENV === 'development'
-      ? `http://localhost:4000/destino/${event}`
+      ? `https://api.devcon.org/destino/${event}`
       : `https://api.devcon.org/destino/${event}`
   )
 
