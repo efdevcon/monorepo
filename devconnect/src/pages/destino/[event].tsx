@@ -39,9 +39,13 @@ ${currentUrl}`
 
   const hasLink = eventData.link && eventData.link.startsWith('http')
 
+  const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
+
+  const date = moment(eventData.date).format('MMMM D, YYYY')
+
   return (
     <div className="text-black h-screen w-screen relative bg-black">
-      <SEO title={eventData.name} description={eventData.content} imageUrl={eventData.image_url} />
+      <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />
 
       <Image
         src={DestinoHero}
@@ -74,7 +78,7 @@ ${currentUrl}`
           speed={5000}
           reverse
         >
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[800px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
+          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[600px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
             <div className="w-full aspect-[7/2] relative">
               <Image
                 src={eventData.image_url || DestinoHero}
@@ -106,7 +110,7 @@ ${currentUrl}`
               <p className="mb-2 sm:mb-4 text-xs md:text-base">{eventData?.content}</p>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm justify-between">
                 <div className="flex gap-2 sm:gap-4">
-                  <div className="flex items-center gap-1 ">{moment(eventData?.date).format('MMMM D, YYYY')}</div>
+                  {date !== 'Invalid date' && <div className="flex items-center gap-1 ">{date}</div>}
 
                   <div className="flex items-center gap-1 font-semibold">
                     {eventData?.twitter_handle.startsWith('@')

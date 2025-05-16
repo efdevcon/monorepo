@@ -8,8 +8,9 @@ import { zodResponseFormat } from 'openai/helpers/zod'
 import { z } from 'zod'
 import { FileLike } from 'openai/uploads'
 import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
-import { fetchFromSalesforce } from '@/services/salesforce'
 import { createClient } from '@supabase/supabase-js'
+import sharp from 'sharp'
+import { fetchFromSalesforce } from '@/services/salesforce'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -578,42 +579,50 @@ export const destinoApi = (() => {
         const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
 
         const prompt = `
-        Create an image to advertise the following event:
+          Adjust the reference image to match the event. Don't use any text in the generated image.
+          
+          Event name: ${event.Name}
+          Event location: ${event.Location}
+          Event summary: ${content.en}
+        `
 
-        Event name: ${event.Name}
-        Event location: ${event.Location}
-        Event summary: ${content.en}
+        const referenceImagePath = path.join(__dirname, 'image-generation', 'destino.png')
+        const openAICompatibleImage = await toFile(fs.createReadStream(referenceImagePath), null, { type: 'image/png' })
 
-        Do not use any text in the generated image. Try to avoid too many details in the image, we want to keep it simple.
-      `
-
-        // const referenceImagePath = path.join(__dirname, 'image-generation', 'destino.png')
-        // const openAICompatibleImage = await toFile(fs.createReadStream(referenceImagePath), null, { type: 'image/png' })
-
-        const resultImage = await openai.images.generate({
-          model: 'dall-e-3',
+        const resultImage = await openai.images.edit({
+          model: 'gpt-image-1',
           prompt,
-          // image: openAICompatibleImage,
-          response_format: 'b64_json',
+          image: openAICompatibleImage,
+          // @ts-ignore
+          size: '1536x1024',
           n: 1,
-          size: '1792x1024',
         })
 
         // Save the image to a file
-        const image_base64 = resultImage.data[0].b64_json
+        const image_base64 = resultImage.data?.[0]?.b64_json
         const image_bytes = image_base64 ? Buffer.from(image_base64, 'base64') : null
 
         let imageUrl = null
 
         if (image_bytes) {
+          // Twitter resize
+          const resizedImage = await sharp(image_bytes).resize(1200, 675, { fit: 'cover' }).toBuffer()
+
           // Upload to Supabase Storage
-          const { data: uploadData, error: uploadError } = await supabase.storage.from('destino-events').upload(`${event.Id}.png`, image_bytes, {
+          const { data: uploadData1, error: uploadError1 } = await supabase.storage
+            .from('destino-events')
+            .upload(`${event.Id}-twitter.png`, resizedImage, {
+              contentType: 'image/png',
+              upsert: true,
+            })
+
+          const { data: uploadData2, error: uploadError2 } = await supabase.storage.from('destino-events').upload(`${event.Id}.png`, image_bytes, {
             contentType: 'image/png',
             upsert: true,
           })
 
-          if (uploadError) {
-            console.error('Error uploading image:', uploadError)
+          if (uploadError1 || uploadError2) {
+            console.error('Error uploading image:', uploadError1 || uploadError2)
           } else {
             // Get public URL
             const {
@@ -629,9 +638,9 @@ export const destinoApi = (() => {
       }
 
       // Save to Supabase
-      // const result = await supabase.from('destino_events').upsert(upsert)
+      const result = await supabase.from('destino_events').upsert(upsert)
 
-      // return result
+      return result
     },
     generateDestinoEvents: async () => {
       const events = await fetchFromSalesforce()

@@ -10,6 +10,10 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   const start = moment(startDate)
   const end = moment(endDate)
 
+  if (!start.isValid() && !end.isValid()) {
+    return ''
+  }
+
   if (start.isSame(end)) {
     // If start and end date are the same, format as "Feb 3, 2024"
     return start.format('MMM D, YYYY')
