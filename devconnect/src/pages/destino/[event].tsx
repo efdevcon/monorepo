@@ -169,7 +169,7 @@ ${currentUrl}`
 
 export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
   const eventsResponse = await fetch(
-    process.env.NODE_ENV === 'development' ? `https://api.devcon.org/destino` : `https://api.devcon.org/destino`
+    process.env.NODE_ENV === 'development' ? `http://localhost:4000/destino` : `https://api.devcon.org/destino`
   )
 
   const events = await eventsResponse.json()
@@ -194,7 +194,7 @@ export async function getStaticProps({ params, locale }: { params: { event: stri
 
   const eventDataResponse = await fetch(
     process.env.NODE_ENV === 'development'
-      ? `https://api.devcon.org/destino/${event}`
+      ? `http://localhost:4000/destino/${event}`
       : `https://api.devcon.org/destino/${event}`
   )
 
