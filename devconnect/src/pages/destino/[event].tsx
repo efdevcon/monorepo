@@ -20,28 +20,26 @@ interface EventPageProps {
 const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   const currentUrl = `https://devconnect.org/destino/${event}`
 
+  const date = moment(eventData.date).format('MMMM D, YYYY')
+
   const twitterShare = encodeURIComponent(
     `Join us on the journey to Devconnect Buenos Aires!
     
-${eventData.name} is taking place on ${moment(eventData.date).format(
-      'MMMM D, YYYY'
-    )} as part of the Destino Devconnect series.
+${eventData.name} is taking place ${
+      date !== 'Invalid date' ? `on ${date} ` : ''
+    }as part of the Destino Devconnect series.
     
 ${currentUrl}`
   )
-  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${
-    eventData.name
-  } is taking place on ${moment(eventData.date).format(
-    'MMMM D, YYYY'
-  )} as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
+  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${eventData.name} is taking place ${
+    date !== 'Invalid date' ? `on ${date} ` : ''
+  }as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
     currentUrl
   )}&channelKey=devconnect&embeds[]=${encodeURIComponent(currentUrl)}`
 
   const hasLink = eventData.link && eventData.link.startsWith('http')
 
   const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
-
-  const date = moment(eventData.date).format('MMMM D, YYYY')
 
   return (
     <div className="text-black h-screen w-screen relative bg-black">
