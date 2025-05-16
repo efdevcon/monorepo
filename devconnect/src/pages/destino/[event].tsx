@@ -76,8 +76,8 @@ ${currentUrl}`
           speed={5000}
           reverse
         >
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[600px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
-            <div className="w-full aspect-[7/2] relative">
+          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[500px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
+            <div className="w-full aspect-[1536/1024] relative">
               <Image
                 src={eventData.image_url || DestinoHero}
                 fill
@@ -117,7 +117,7 @@ ${currentUrl}`
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow self-start">
+                <div className="hidden sm:block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow self-start">
                   {(globalThis as any).translations.destino_devconnect_event}
                 </div>
               </div>
