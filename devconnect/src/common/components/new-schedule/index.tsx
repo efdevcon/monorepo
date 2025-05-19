@@ -140,13 +140,13 @@ const NewScheduleIndex = () => {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <div className="flex justify-between gap-4">
+      {/* <div className="flex justify-between gap-4">
         <div className="text-lg font-bold">Devconnect 2025 Buenos Aires</div>
         <div className="flex gap-2 items-center">
           <div className="text-sm text-gray-500">Filter Goes here</div>
           <Button variant="secondary">Login with Zupass</Button>
         </div>
-      </div>
+      </div> */}
       <SwipeToScroll>
         <div className="text-black">
           {/* Unified Calendar Grid with aligned header and content */}
