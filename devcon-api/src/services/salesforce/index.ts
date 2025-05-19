@@ -1,15 +1,6 @@
 import fetch from 'node-fetch'
 
 export const fetchFromSalesforce = async () => {
-  console.log(
-    process.env.SF_CONSUMER_KEY,
-    process.env.SF_CONSUMER_SECRET,
-    process.env.SF_USERNAME,
-    process.env.SF_PASSWORD,
-    process.env.SF_SECURITY_TOKEN,
-    'CREDENTIALS'
-  )
-
   const fetchSalesforceData = async () => {
     const auth = await fetch('https://login.salesforce.com/services/oauth2/token', {
       method: 'POST',

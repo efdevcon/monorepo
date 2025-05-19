@@ -21,28 +21,30 @@ interface EventPageProps {
 const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   const currentUrl = `https://devconnect.org/destino/${event}`
 
+  const date = moment(eventData.date).format('MMMM D, YYYY')
+
   const twitterShare = encodeURIComponent(
     `Join us on the journey to Devconnect Buenos Aires!
     
-${eventData.name} is taking place on ${moment(eventData.date).format(
-      'MMMM D, YYYY'
-    )} as part of the Destino Devconnect series.${eventData.twitter_handle ? `\n\nBy ${eventData.twitter_handle}` : ''}
+${eventData.name} is taking place ${
+      date !== 'Invalid date' ? `on ${date} ` : ''
+    }as part of the Destino Devconnect series.
     
 ${currentUrl}`
   )
-  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${
-    eventData.name
-  } is taking place on ${moment(eventData.date).format(
-    'MMMM D, YYYY'
-  )} as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
+  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${eventData.name} is taking place ${
+    date !== 'Invalid date' ? `on ${date} ` : ''
+  }as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
     currentUrl
   )}&channelKey=devconnect&embeds[]=${encodeURIComponent(currentUrl)}`
 
   const hasLink = eventData.link && eventData.link.startsWith('http')
 
+  const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
+
   return (
-    <div className="min-h-screen w-full bg-black">
-      <SEO title={eventData.name} description={eventData.content} imageUrl={eventData.image_url} />
+    <div className="text-black h-screen w-screen relative bg-black">
+      <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />
 
       <div className="fixed inset-0 z-0">
         <Image

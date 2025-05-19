@@ -4,7 +4,11 @@ import { destinoApi } from '../services/ai/open-ai/open-ai'
 export const destinoRouter = Router()
 
 const generateDestinoEvents = async () => {
-  await destinoApi.generateDestinoEvents()
+  try {
+    await destinoApi.generateDestinoEvents()
+  } catch (error) {
+    console.error('Error generating destino events:', error)
+  }
 }
 
 destinoRouter.get('/destino', async (req: Request, res: Response) => {
