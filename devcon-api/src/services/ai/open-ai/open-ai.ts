@@ -540,8 +540,17 @@ export const destinoApi = (() => {
       const eventExists = !!eventRecord
 
       // If exists and updated after last modification, return cached content
-      if (eventRecord && new Date(eventRecord.updated_at) < new Date(event.LastModifiedDate)) {
-        return eventRecord.content
+      if (eventRecord) {
+        // console.log('record found')
+        // console.log('updated_at:', eventRecord.updated_at)
+        // console.log('LastModifiedDate:', event.LastModifiedDate)
+        // console.log('updated_at date:', new Date(eventRecord.updated_at))
+        // console.log('LastModifiedDate date:', new Date(event.LastModifiedDate))
+        // console.log('comparison result:', new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate))
+
+        if (new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
+          return eventRecord.content
+        }
       }
 
       // Otherwise generate new content
@@ -638,7 +647,7 @@ export const destinoApi = (() => {
       }
 
       // Save to Supabase
-      const result = await supabase.from('destino_events').upsert(upsert)
+      const result = await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
 
       return result
     },
