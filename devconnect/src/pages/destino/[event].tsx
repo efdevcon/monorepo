@@ -43,7 +43,7 @@ ${currentUrl}`
   const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
 
   return (
-    <div className="text-black h-screen w-screen relative bg-black">
+    <div className="text-black relative bg-black min-w-[100vw] min-h-[100vh]">
       <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />
 
       <div className="fixed inset-0 z-0">
@@ -64,9 +64,9 @@ ${currentUrl}`
 
         <div className="w-full max-w-[600px] mx-auto">
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-600 border-solid">
-            <div className="w-full aspect-[7/4] relative">
+            <div className="w-full aspect-[1.91/1] relative">
               <Image
-                src={eventData.image_url || DestinoHero}
+                src={imageUrlTwitter || DestinoHero}
                 fill
                 alt="Event Image"
                 className="w-full h-full object-cover"
