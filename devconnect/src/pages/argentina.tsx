@@ -1,21 +1,16 @@
 import React from 'react'
-import Head from 'next/head'
-import NewSchedule from 'common/components/new-schedule'
-import { Button } from 'lib/components/button'
-import Login from 'common/components/login'
 import { useAccountContext } from 'context/account-context'
-import Timeline from 'common/components/new-schedule/timeline'
-import { dummyEvents } from 'common/components/new-schedule/dummy-data'
 import { useCalendarStore } from 'store/calendar'
+import { Client } from '@notionhq/client'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
 import Image from 'next/image'
 import styles from './argentina.module.scss'
 import Oblisk from '../../public/scroll-video/Oblisk_4K0125.webp'
 import cn from 'classnames'
+import NewSchedule from 'lib/components/event-schedule-new'
 
 const Argentina = () => {
-  const user = useAccountContext()
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
 
   return (
@@ -43,10 +38,13 @@ const Argentina = () => {
       <div className="flex flex-col gap-4 text-black">
         <div className="section my-1 mb-8">
           <div className="flex justify-between gap-4 items-end"></div>
-          <NewSchedule />
+          <NewSchedule
+            selectedEvent={selectedEvent}
+            selectedDay={selectedDay}
+            setSelectedEvent={setSelectedEvent}
+            setSelectedDay={setSelectedDay}
+          />
         </div>
-
-        {/* <Timeline events={dummyEvents} /> */}
       </div>
       <Footer />
     </>
@@ -59,11 +57,52 @@ export async function getStaticProps({ locale }: { locale: string }) {
   const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })
 
+  // https://www.notion.so/ef-events/1f5638cdc41580be9117f4963f021d8b?v=1f5638cdc415816c9277000ccc6cda85&pvs=4
+
+  const notion = new Client({
+    auth: process.env.NOTION_SECRET,
+  })
+
+  const query = {
+    database_id: '1f5638cdc41580be9117f4963f021d8b',
+    sorts: [
+      {
+        property: '[HOST] Event Date',
+        direction: 'ascending',
+      },
+      {
+        property: '[WEB] Priority (sort)',
+        direction: 'descending',
+      },
+    ],
+    filter: {
+      and: [
+        {
+          property: '[HOST] Event Date',
+          date: {
+            is_not_empty: true,
+          },
+        },
+        {
+          property: '[WEB] Live',
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
+  }
+
+  const events = await notion.databases.query(query as any)
+
+  console.log(events)
+
   return {
     props: {
       translations,
       locale,
       content,
+      events,
     },
     revalidate: 1 * 60 * 60, // 60 minutes, in seconds
   }

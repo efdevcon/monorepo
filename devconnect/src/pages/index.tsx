@@ -43,7 +43,7 @@ import CampaignIcon from 'assets/icons/campaign.svg'
 import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
-import NewSchedule from 'common/components/new-schedule'
+import NewSchedule from 'lib/components/event-schedule-new'
 import Venue from 'common/components/ba/venue/venue'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
@@ -787,7 +787,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="relative bg-white overflow-hidden max-w-screen">
+          {/* <div className="relative bg-white overflow-hidden max-w-screen">
             <div className="section ">
               <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
               <div className="text-xl text-black mb-5">
@@ -797,7 +797,6 @@ const Home: NextPage = (props: any) => {
             <div className="section">
               <div className="expand-right lg:hidden">
                 <NewSchedule />
-                {/* <div className="w-[16px] h-1 opacity-0 shrink-0" data-id="white-space"></div> */}
               </div>
               <div className="hidden lg:block">
                 <NewSchedule />
@@ -809,7 +808,7 @@ const Home: NextPage = (props: any) => {
                 <RichText content={data.pages.devconnect_week.second_part} className="cms-markdown" />
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="section relative pb-10 bg-white">
             <div className="border-top">
