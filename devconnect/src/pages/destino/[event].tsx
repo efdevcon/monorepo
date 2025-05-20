@@ -19,7 +19,7 @@ interface EventPageProps {
 }
 
 const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
-  const currentUrl = `https://devconnect.org/destino/${event}`
+  const currentUrl = `https://devconnect.org/destino/${event}?r=${Math.random().toString(36).substring(2, 8)}`
 
   const date = moment(eventData.date).format('MMMM D, YYYY')
 
