@@ -47,11 +47,11 @@ ${currentUrl}`
     hasLink = true
   }
 
-  const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
+  const imageUrl = eventData.image_url
 
   return (
     <div className="text-black relative bg-black min-w-[100vw] min-h-[100vh]">
-      <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />
+      <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrl} />
 
       <div className="fixed inset-0 z-0">
         <Image
@@ -74,12 +74,7 @@ ${currentUrl}`
         <div className="w-full max-w-[600px] mx-auto">
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-600 border-solid">
             <div className="w-full aspect-[1.91/1] relative">
-              <Image
-                src={imageUrlTwitter || DestinoHero}
-                fill
-                alt="Event Image"
-                className="w-full h-full object-cover"
-              />
+              <Image src={imageUrl || DestinoHero} fill alt="Event Image" className="w-full h-full object-cover" />
             </div>
             <div className="py-4 px-6 flex flex-col">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 sm:gap-4 mb-3">
