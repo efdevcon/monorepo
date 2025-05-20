@@ -1,13 +1,13 @@
 {
   "name": "devcon-api",
-  "description": "Devcon API exposes information about Devcon, past events, schedules and our video archive. You can find more information at https://github.com/efdevcon/api",
+  "description": "Devcon API exposes information about Devcon, past events, schedules and our video archive. You can find more information at https://github.com/efdevcon/monorepo/tree/main/devcon-api",
   "homepage": "https://api.devcon.org",
   "author": "support@devcon.org",
   "version": "0.6.2",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/efdevcon/api"
+    "url": "https://github.com/efdevcon/monorepo/tree/main/devcon-api"
   },
   "scripts": {
     "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
