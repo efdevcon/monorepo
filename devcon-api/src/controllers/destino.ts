@@ -1,5 +1,6 @@
 import { Request, Response, Router } from 'express'
 import { destinoApi } from '../services/ai/open-ai/open-ai'
+import { apikeyHandler } from '@/middleware/apikey'
 
 export const destinoRouter = Router()
 
@@ -14,7 +15,10 @@ const generateDestinoEvents = async () => {
 destinoRouter.get('/destino', async (req: Request, res: Response) => {
   const eventsList = await destinoApi.getAllDestinoEvents()
 
-  res.json(eventsList)
+  // filter out events that don't have a date
+  const eventsListWithDate = eventsList.filter((event) => event.date)
+
+  res.json(eventsListWithDate)
 })
 
 destinoRouter.get('/destino/:event', async (req: Request, res: Response) => {
@@ -25,7 +29,9 @@ destinoRouter.get('/destino/:event', async (req: Request, res: Response) => {
   res.json(eventData)
 })
 
-destinoRouter.get('/regenerate/:eventId', async (req: Request, res: Response) => {
+destinoRouter.get('/regenerate/:eventId', apikeyHandler, async (req: Request, res: Response) => {
+  // Private route: requires apiKey
+  // #swagger.ignore = true
   const { eventId } = req.params
 
   const eventData = await destinoApi.getDestinoEvent(eventId)
