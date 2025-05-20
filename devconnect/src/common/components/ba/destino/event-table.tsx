@@ -70,7 +70,7 @@ const tableColumns: Array<TableColumn> = [
     render: item => {
       return (
         <Link
-          className="bolda"
+          className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}
           href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
           indicateExternal
         >
@@ -88,10 +88,10 @@ const tableColumns: Array<TableColumn> = [
       if (!item.location) return null
 
       if (item.location) {
-        return <p className="bolda">{item.location}</p>
+        return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.location}</p>
       }
 
-      return <p className="bolda">{item.location}</p>
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.location}</p>
     },
   },
   {
@@ -100,7 +100,7 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bolda">{item.type_of_event}</p>
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.type_of_event}</p>
     },
   },
   {
@@ -117,7 +117,11 @@ const tableColumns: Array<TableColumn> = [
       }
 
       return (
-        <Link className="bolda" href={`https://x.com/@${socialFormatted}`} indicateExternal>
+        <Link
+          className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}
+          href={`https://x.com/@${socialFormatted}`}
+          indicateExternal
+        >
           {socialFormatted}
         </Link>
       )
