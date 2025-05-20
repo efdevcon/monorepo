@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cross-env TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
     "dev-inspect": "cross-env NODE_OPTIONS='--inspect' next dev",
-    "build": "if [ \"$CONTEXT\" = \"deploy-preview\" ]; then mkdir -p tina/__generated__ && echo 'export const client = { request: async () => ({ data: {} }) };' > tina/__generated__/client.ts && echo 'export type PagesQuery = any; export type PagesIndex = any;' > tina/__generated__/types.ts && cd ../lib && yarn && cd ../devconnect && next build; else tinacms build && cd ../lib && yarn && cd ../devconnect && next build; fi",
+    "build": "if [ \"$CONTEXT\" = \"deploy-preview\" ]; then echo 'NEXT_PUBLIC_SKIP_TINA=true' > .env && cd ../lib && yarn && cd ../devconnect && next build; else tinacms build && cd ../lib && yarn && cd ../devconnect && next build; fi",
     "start": "next start",
     "ai-content-sync": "ts-node src/ai/sync-vector-store",
     "ai-translations": "ts-node src/ai/translate",
