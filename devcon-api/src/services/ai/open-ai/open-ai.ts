@@ -619,12 +619,12 @@ export const destinoApi = (() => {
 
           const prompt = `
 Adjust the reference image to suit the context of the event. Do NOT include any text in the generated image.
-Keep top 110px and bottom 110px of the image black ONLY.
+Keep top 110px and bottom 110px of the image black ONLY similar to the reference image.
 The rest of the image should not have any black zones.
 
 Event name: ${event.Name}
 Event location: ${event.Location}
-Don't include this text in the generated image.`
+DO NOT include Event name or location in the generated image.`
           console.log(`[generateDestinoEvent] Generating image for event ${event.Id} with prompt:`, prompt)
 
           const resultImage = await openai.images.edit({
@@ -698,6 +698,7 @@ Don't include this text in the generated image.`
           return {
             content: upsert.content,
             imageUrl: upsert.image_url,
+            updated: true,
           }
         }
 
