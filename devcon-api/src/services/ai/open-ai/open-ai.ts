@@ -549,8 +549,7 @@ export const destinoApi = (() => {
         console.log(`[generateDestinoEvent] Event exists in database: ${eventExists}`)
 
         // If exists and updated after last modification, return cached content
-        if (!forceImageGeneration && eventRecord && new Date(eventRecord.updated_at) < new Date(event.LastModifiedDate)) {
-          console.log(`[generateDestinoEvent] Returning cached content for event ${event.Id}`)
+        if (!forceImageGeneration && eventRecord && new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
           return eventRecord.content
         }
 
@@ -592,6 +591,16 @@ export const destinoApi = (() => {
             throw new Error('Failed to generate content')
           }
 
+          // Fetch reference image from Supabase Storage
+          const { data: imageData, error: imageError } = await supabase.storage.from('destino-events').download('reference/destino.png')
+
+          if (imageError) {
+            console.error('Error fetching reference image:', imageError)
+            throw new Error('Failed to fetch reference image')
+          }
+
+          const openAICompatibleImage = await toFile(imageData, null, { type: 'image/png' })
+
           const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
           console.log(`[generateDestinoEvent] Generated content for event ${event.Id}:`, {
             en: content.en.substring(0, 50) + '...',
@@ -606,14 +615,6 @@ Keep top 110px and bottom 110px of the image black only.
 Event name: ${event.Name}
 Event location: ${event.Location}`
           console.log(`[generateDestinoEvent] Generating image for event ${event.Id} with prompt:`, prompt)
-
-          const referenceImagePath = path.join(__dirname, 'image-generation', 'destino.png')
-          if (!fs.existsSync(referenceImagePath)) {
-            console.error(`[generateDestinoEvent] Reference image not found at ${referenceImagePath}`)
-            throw new Error('Reference image not found')
-          }
-
-          const openAICompatibleImage = await toFile(fs.createReadStream(referenceImagePath), null, { type: 'image/png' })
 
           const resultImage = await openai.images.edit({
             model: 'gpt-image-1',
@@ -674,7 +675,7 @@ Event location: ${event.Location}`
 
         // Save to Supabase
         console.log(`[generateDestinoEvent] Saving event ${event.Id} to database`)
-        const result = await supabase.from('destino_events').upsert(upsert)
+        const result = await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
         console.log(`[generateDestinoEvent] Event ${event.Id} saved successfully`)
 
         // If forceImageGeneration is true, return the image URL

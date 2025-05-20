@@ -28,6 +28,103 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   }
 }
 
+const tableColumns: Array<TableColumn> = [
+  {
+    title: 'Date',
+    key: 'Date',
+    sort: (a: any, b: any) => {
+      const { date: startDate1 } = a
+      const { date: startDate2 } = b
+
+      const start1 = moment(startDate1)
+      const start2 = moment(startDate2)
+
+      if (a.eventHasPassed && !b.eventHasPassed) {
+        return 1
+      } else if (b.eventHasPassed && !a.eventHasPassed) {
+        return -1
+      }
+
+      if (start1.isAfter(start2)) {
+        if (a.eventHasPassed && b.eventHasPassed) return -1
+        return 1
+      } else if (start1.isBefore(start2)) {
+        if (a.eventHasPassed && b.eventHasPassed) return 1
+        return -1
+      }
+
+      return 0
+    },
+    render: item => {
+      return (
+        <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
+          {formatHumanReadableDate(item.date, item.date)}
+        </p>
+      )
+    },
+  },
+  {
+    title: 'Name',
+    key: 'Name',
+    sort: SortVariation.basic,
+    render: item => {
+      return (
+        <Link
+          className="bolda"
+          href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
+          indicateExternal
+        >
+          {item.name}
+        </Link>
+      )
+    },
+  },
+  {
+    title: 'Location',
+    key: 'Location',
+    className: '!hidden md:!flex',
+    sort: SortVariation.basic,
+    render: item => {
+      if (!item.location) return null
+
+      if (item.location) {
+        return <p className="bolda">{item.location}</p>
+      }
+
+      return <p className="bolda">{item.location}</p>
+    },
+  },
+  {
+    title: 'Type of Event',
+    key: 'Type of Event',
+    className: '!hidden md:!flex',
+    sort: SortVariation.basic,
+    render: item => {
+      return <p className="bolda">{item.type_of_event}</p>
+    },
+  },
+  {
+    title: 'Social',
+    key: 'Social',
+    className: '!hidden lg:!flex',
+    render: item => {
+      if (!item.twitter_handle) return null
+
+      let socialFormatted = item.twitter_handle
+
+      if (socialFormatted.startsWith('@')) {
+        socialFormatted = socialFormatted.slice(1)
+      }
+
+      return (
+        <Link className="bolda" href={`https://x.com/@${socialFormatted}`} indicateExternal>
+          {socialFormatted}
+        </Link>
+      )
+    },
+  },
+]
+
 const EventsTable = React.memo(({ events, pages }: any) => {
   const [includePastEvents, setIncludePastEvents] = React.useState(true)
   const [search, setSearch] = React.useState('')
@@ -73,87 +170,6 @@ const EventsTable = React.memo(({ events, pages }: any) => {
       {children}
     </Link>
   )
-
-  const tableColumns: Array<TableColumn> = [
-    {
-      title: 'Date',
-      key: 'Date',
-      sort: (a: any, b: any) => {
-        const { date: startDate1 } = a
-        const { date: startDate2 } = b
-
-        const start1 = moment(startDate1)
-        const start2 = moment(startDate2)
-
-        if (start1.isAfter(start2)) {
-          return 1
-        } else if (start1.isBefore(start2)) {
-          return -1
-        }
-
-        return 0
-      },
-      render: item => {
-        return (
-          <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
-            {formatHumanReadableDate(item.date, item.date)}
-          </p>
-        )
-      },
-    },
-    {
-      title: 'Name',
-      key: 'Name',
-      sort: SortVariation.basic,
-      render: item => {
-        return <p className="bolda">{item.name}</p>
-      },
-    },
-    {
-      title: 'Location',
-      key: 'Location',
-      className: '!hidden md:!flex',
-      sort: SortVariation.basic,
-      render: item => {
-        if (!item.location) return null
-        return <p className="bolda">{item.location}</p>
-      },
-    },
-    {
-      title: 'Type of Event',
-      key: 'Type of Event',
-      className: '!hidden md:!flex',
-      sort: SortVariation.basic,
-      render: item => {
-        return <p className="bolda">{item.type_of_event}</p>
-      },
-    },
-    {
-      title: 'Social',
-      key: 'Social',
-      className: '!hidden lg:!flex',
-      render: item => {
-        if (!item.twitter_handle) return null
-
-        let socialFormatted = item.twitter_handle
-
-        if (socialFormatted.startsWith('@')) {
-          socialFormatted = socialFormatted.slice(1)
-        }
-
-        return (
-          <Link
-            className="bolda"
-            href={`https://x.com/@${socialFormatted}`}
-            indicateExternal
-            onClick={(e: React.MouseEvent) => e.stopPropagation()}
-          >
-            {socialFormatted}
-          </Link>
-        )
-      },
-    },
-  ]
 
   return (
     <div className={`w-full ${styles['event-table']}`}>
