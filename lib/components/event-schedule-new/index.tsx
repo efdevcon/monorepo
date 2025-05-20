@@ -17,6 +17,7 @@ type ScheduleProps = {
   selectedDay: string | null;
   setSelectedEvent: (event: EventType | null) => void;
   setSelectedDay: (day: string | null) => void;
+  events: EventType[];
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -125,10 +126,12 @@ const NewScheduleIndex = ({
   selectedDay,
   setSelectedEvent,
   setSelectedDay,
+  events,
 }: ScheduleProps) => {
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
-  const eventRange = computeCalendarRange(dummyEvents);
-  const [events] = useState<EventType[]>(dummyEvents);
+  const eventRange = computeCalendarRange(events);
+  // const [events] = useState<EventType[]>(dummyEvents);
+  // const [events] = useState<EventType[]>(events);
   // Add state to track which date is being hovered
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
 
@@ -259,7 +262,7 @@ const NewScheduleIndex = ({
         //   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
         // }}
       >
-        <Timeline events={dummyEvents} />
+        <Timeline events={events} />
         {/* {selectedDay && <MapComponent />} */}
       </div>
     </div>

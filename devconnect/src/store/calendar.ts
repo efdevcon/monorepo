@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Event } from 'common/components/new-schedule-hehe/model'
+import { Event } from 'lib/components/event-schedule-new/model'
 
 interface CalendarStore {
   selectedEvent: Event | null

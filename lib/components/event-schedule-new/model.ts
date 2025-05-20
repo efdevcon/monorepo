@@ -6,7 +6,6 @@ export interface Event {
   description: string;
   organizer: string;
   difficulty: string;
-  lemonadeID: string;
   amountPeople?: string;
   location: {
     url: string;
@@ -18,7 +17,7 @@ export interface Event {
   };
   timeblocks: {
     start: string;
-    end: string;   
+    end: string;
     name?: string;
     location?: string;
   }[];

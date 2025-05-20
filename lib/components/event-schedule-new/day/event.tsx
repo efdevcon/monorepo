@@ -72,8 +72,8 @@ const Event: React.FC<EventProps> = ({
       ? "bg-yellow-300"
       : "bg-red-300";
 
-  const isCoworking = event.name.includes("Coworking");
-  const isETHDay = event.name.includes("ETH Day");
+  const isCoworking = event.isCoreEvent; // event.name.includes("Coworking");
+  const isETHDay = event.isFairEvent; // event.name.includes("ETH Day");
 
   const isCoreEvent = event.isCoreEvent || event.isFairEvent;
 
