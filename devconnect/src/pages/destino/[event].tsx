@@ -69,7 +69,31 @@ ${currentUrl}`
           </Link>
         </div>
 
-        <div className="w-full max-w-[600px] mx-auto">
+        <div className="w-full max-w-[600px] mx-auto relative">
+          <Link
+            href="/destino"
+            className="absolute -top-12 -left-2 z-10 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-md transition-colors"
+          >
+            <svg className="w-5 h-5 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+              <rect width="256" height="256" fill="none" />
+              <polyline
+                points="80 136 32 88 80 40"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+              <path
+                d="M80,200h88a56,56,0,0,0,56-56h0a56,56,0,0,0-56-56H32"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="16"
+              />
+            </svg>
+          </Link>
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-600 border-solid">
             <div className="w-full aspect-[1.91/1] relative">
               <Image
