@@ -12,7 +12,7 @@ import { Button } from 'lib/components/button'
 import client from '../../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import styles from '../index.module.scss'
-
+import { SOCIAL_HANDLE, FARCASTE_HANDLE } from 'common/constants'
 interface EventPageProps {
   event: string | string[] | undefined
   eventData: any
@@ -24,7 +24,7 @@ const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   const date = moment(eventData.date).format('MMMM D, YYYY')
 
   const twitterShare = encodeURIComponent(
-    `Join us on the journey to Devconnect Buenos Aires!
+    `Join us on the journey to ${SOCIAL_HANDLE} Buenos Aires!
     
 ${eventData.name} is taking place ${
       date !== 'Invalid date' ? `on ${date} ` : ''
@@ -32,7 +32,9 @@ ${eventData.name} is taking place ${
     
 ${currentUrl}`
   )
-  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${eventData.name} is taking place ${
+  const warpcastShare = `Join us on our journey to ${FARCASTE_HANDLE} Buenos Aires!%0A%0A${
+    eventData.name
+  } is taking place ${
     date !== 'Invalid date' ? `on ${date} ` : ''
   }as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
     currentUrl
@@ -63,7 +65,9 @@ ${currentUrl}`
       <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8">
         <div className="mb-8 flex text-white flex-col text-xs text-center">
           <div className="mb-4">
-            <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
+            <Link href="/destino">
+              <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
+            </Link>
           </div>
         </div>
 
