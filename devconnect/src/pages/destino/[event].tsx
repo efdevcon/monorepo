@@ -1,93 +1,180 @@
-import { NextPage, GetServerSideProps } from 'next'
-import { useEffect, useState } from 'react'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import DestinoHero from 'common/components/ba/destino/images/hero-bg.png'
-import ArrowRight from 'assets/icons/arrow_right.svg'
+import DestinoLogo from 'common/components/ba/destino/images/destino-logo.png'
+import { withTranslations } from 'pages/index'
 import Link from 'common/components/link'
-
+import moment from 'moment'
+import { SEO } from 'common/components/SEO'
+import Tilty from 'react-tilty'
+import IconTwitter from 'assets/icons/twitter.svg'
+import IconWarpcast from 'assets/icons/farcaster.svg'
+import { Button } from 'lib/components/button'
+import client from '../../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
 interface EventPageProps {
   event: string | string[] | undefined
   eventData: any
 }
 
 const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
+  const currentUrl = `https://devconnect.org/destino/${event}`
+
+  const date = moment(eventData.date).format('MMMM D, YYYY')
+
+  const twitterShare = encodeURIComponent(
+    `Join us on the journey to Devconnect Buenos Aires!
+    
+${eventData.name} is taking place ${
+      date !== 'Invalid date' ? `on ${date} ` : ''
+    }as part of the Destino Devconnect series.
+    
+${currentUrl}`
+  )
+  const warpcastShare = `Join us on our journey to Devconnect Buenos Aires!%0A%0A${eventData.name} is taking place ${
+    date !== 'Invalid date' ? `on ${date} ` : ''
+  }as part of the Destino Devconnect series.%0A%0A${encodeURIComponent(
+    currentUrl
+  )}&channelKey=devconnect&embeds[]=${encodeURIComponent(currentUrl)}`
+
+  const hasLink = eventData.link && eventData.link.startsWith('http')
+
+  const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
+
+  console.log(hasLink, eventData.link)
+
   return (
     <div className="text-black h-screen w-screen relative bg-black">
+      <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />
+
       <Image
         src={DestinoHero}
         alt="Destino Hero"
-        className="w-full h-full absolute object-cover object-position opacity-60"
+        fill
+        className="w-full h-full absolute object-cover object-position opacity-40"
       />
 
-      <Link href="/destino" className="absolute top-3 left-4 text-white !flex items-center gap-2 z-[11]">
-        <div className="flex items-center gap-2">
-          <ArrowRight className="rotate-180 icon text-sm" style={{ '--icon-color': 'white' } as React.CSSProperties} />{' '}
-          View all Destino Devconnect events
+      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full px-4">
+        <div className="mb-2 md:mb-4 flex text-white flex-col text-xs text-center relative">
+          <Image
+            src={DestinoLogo}
+            alt="Destino Logo"
+            className="object-cover w-[250px] max-w-[50vw] absolute top-0 translate-y-[calc(-100%-0px)] sm:translate-y-[calc(-100%-24px)] left-1/2 -translate-x-1/2"
+          />
+          <Link
+            href="/destino"
+            className="hidden sm:inline-flex"
+            indicateExternal
+            style={{ '--icon-color': 'white' }}
+            target="_blank"
+          >
+            {(globalThis as any).translations.this_is_a_destino_devconnect_event}
+          </Link>
         </div>
-      </Link>
-      <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
-        <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[800px] shadow-lg border border-gray-600 border-solid">
-          <div className="w-full aspect-[7/2] relativ">
-            <Image src={DestinoHero} alt="Event Image" className="w-full h-full object-cover" />
+
+        <Tilty
+          className="max-w-full relative contents md:block"
+          style={{ transformStyle: 'preserve-3d' }}
+          speed={5000}
+          reverse
+        >
+          <div className="flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[500px] shadow-lg border border-gray-600 border-solid mt-4 mb-0 sm:mt-0 ">
+            <div className="w-full aspect-[1536/1024] relative">
+              <Image
+                src={eventData.image_url || DestinoHero}
+                fill
+                alt="Event Image"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="py-4 px-6 flex flex-col">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2 sm:gap-4 mb-3">
+                <h1 className="text-xl md:text-2xl font-extrabold text-gray-900 leading-tight">{eventData?.name}</h1>
+                <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-medium">
+                  <svg
+                    className="w-4 h-4 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  {eventData?.location}
+                </span>
+              </div>
+              <p className="mb-2 sm:mb-4 text-xs md:text-base">{eventData?.content}</p>
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-sm justify-between">
+                <div className="flex gap-2 sm:gap-4">
+                  {date !== 'Invalid date' && <div className="flex items-center gap-1 ">{date}</div>}
+
+                  <div className="flex items-center gap-1 font-semibold">
+                    {eventData?.twitter_handle.startsWith('@')
+                      ? eventData?.twitter_handle
+                      : `@${eventData?.twitter_handle}`}
+                  </div>
+                </div>
+
+                <div className="hidden sm:block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow self-start">
+                  {(globalThis as any).translations.destino_devconnect_event}
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="p-6 flex flex-col">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-2">
-              <span className="inline-block bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
-                {event}
-              </span>
-              <span className="inline-flex items-center gap-1 text-gray-500 text-xs font-medium">
-                <svg
-                  className="w-4 h-4 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                {eventData?.when}
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight mb-2">{eventData?.title}</h1>
-            <p className="text-lg text-gray-700 mb-4">{eventData?.description}</p>
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex items-center gap-2 text-gray-600">
-                <svg
-                  className="w-6 h-6 text-blue-500"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.657 16.657L13.414 12.414a4 4 0 10-1.414 1.414l4.243 4.243a1 1 0 001.414-1.414z"
-                  />
-                </svg>
-                <span className="font-medium">Where:</span> {eventData?.where}
-              </div>
-              <div className="flex items-center gap-2 text-gray-600">
-                <svg
-                  className="w-6 h-6 text-green-500"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5.121 17.804A13.937 13.937 0 0112 15c2.485 0 4.797.607 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                <span className="font-medium">Who:</span> {eventData?.who}
-              </div>
-            </div>
+        </Tilty>
+
+        <div className="mt-2 md:mt-4 text-white flex flex-col text-xs text-center relative">
+          {hasLink && (
+            <Link href={eventData.link} target="_blank">
+              <Button
+                className="object-cover w-[250px] max-w-[70vw] absolute bottom-0 translate-y-[calc(100%+8px)] md:translate-y-[calc(100%+24px)] left-1/2 -translate-x-1/2"
+                color="white-1"
+                fat
+                fill
+                size="sm"
+              >
+                {(globalThis as any).translations.visit_event_website}
+              </Button>
+            </Link>
+          )}
+
+          <div>
+            {(globalThis as any).translations.destino_ai_generated}
+            {hasLink && ' - ' + (globalThis as any).translations.destino_ai_generated_2}
+          </div>
+        </div>
+
+        <div className="hidden sm:flex flex-col items-center mb-4 absolute bottom-0 margin-auto z-10">
+          <p className="text-sm mb-2 text-white">{(globalThis as any).translations.destino_share_on}</p>
+          <div className="flex gap-4">
+            <a
+              // className="twitter-share-button"
+              className="twitter-share-button rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center"
+              // @ts-ignore
+              style={{ '--color-icon': '#8c72ae' }}
+              href={`https://x.com/intent/tweet?text=${twitterShare}`}
+              target="_blank"
+              rel="noreferrer"
+              // data-url={currentUrl}
+              data-size="large"
+              data-via="efdevcon"
+            >
+              <IconTwitter />
+            </a>
+            <a
+              className="rounded-full bg-white w-[2em] h-[2em] flex items-center justify-center "
+              // @ts-ignore
+              style={{ '--color-icon': '#8c72ae' }}
+              href={`https://warpcast.com/~/compose?text=${warpcastShare}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <IconWarpcast />
+            </a>
           </div>
         </div>
       </div>
@@ -95,28 +182,50 @@ const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   )
 }
 
-const getEvent = async (event: string) => {
+export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
+  const eventsResponse = await fetch(
+    process.env.NODE_ENV === 'development' ? `http://localhost:4000/destino` : `https://api.devcon.org/destino`
+  )
+
+  const events = await eventsResponse.json()
+
+  const paths = locales.flatMap(locale =>
+    events.map((event: any) => ({
+      params: { event: `${encodeURIComponent(event.name).replace(/%20/g, '-')}-${encodeURIComponent(event.event_id)}` },
+      locale,
+    }))
+  )
+
   return {
-    title: 'Pizza Party for the Ethereum inclined',
-    description: 'Pizzaaaaaaaa',
-    image: 'https://devconnect.org/og-argentina.png',
-    when: '2024-01-01',
-    where: 'Buenos Aires, Argentina',
-    who: 'Argentinian Ethereum Wizards',
+    paths,
+    fallback: 'blocking',
   }
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const { event } = context.params || {}
+export async function getStaticProps({ params, locale }: { params: { event: string }; locale: string }) {
+  const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
+  const translations = await client.queries.global_translations({ relativePath: translationPath })
+  const event = decodeURIComponent(params.event).split('-').pop()
 
-  const eventData = await getEvent(event as string)
+  const eventDataResponse = await fetch(
+    process.env.NODE_ENV === 'development'
+      ? `http://localhost:4000/destino/${event}`
+      : `https://api.devcon.org/destino/${event}`
+  )
+
+  const eventData = await eventDataResponse.json()
 
   return {
     props: {
-      event,
-      eventData,
+      translations,
+      event: params.event,
+      eventData: {
+        ...eventData,
+        content: eventData.content[locale || 'en'],
+      },
     },
+    revalidate: 60 * 60 * 1, // Revalidate every 8 hours, just being conservative to avoid rate limiting issues as there may be a lot of events
   }
 }
 
-export default EventPage
+export default withTranslations(EventPage)

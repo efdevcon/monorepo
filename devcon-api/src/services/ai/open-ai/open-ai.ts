@@ -1,11 +1,16 @@
-import OpenAI from 'openai'
+import OpenAI, { toFile } from 'openai'
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 dotenv.config()
 import { filenameToUrl } from '@lib/cms/filenameToUrl'
+import { zodResponseFormat } from 'openai/helpers/zod'
+import { z } from 'zod'
 import { FileLike } from 'openai/uploads'
 import { devconnectWebsiteAssistant, devconWebsiteAssistant, devconAppAssistant } from './assistant-versions'
+import { createClient } from '@supabase/supabase-js'
+import sharp from 'sharp'
+import { fetchFromSalesforce } from '@/services/salesforce'
 
 const openai = new OpenAI({
   apiKey: process.env.OPEN_AI_KEY,
@@ -311,7 +316,7 @@ export const api = (() => {
       ]
 
       for (const vectorStoreName of vectorStoreNames) {
-        const vectorStore = await openai.vectorStores.create({
+        const vectorStore = await openai.beta.vectorStores.create({
           name: vectorStoreName,
         })
 
@@ -325,7 +330,7 @@ export const api = (() => {
     attachVectorStoresToAssistant: async (assistantID: string, vectorStorePrefix: string) => {
       const vectorStoreName = `${vectorStorePrefix}_${process.env.GITHUB_SHA}`
 
-      const vectorStores = await openai.vectorStores.list()
+      const vectorStores = await openai.beta.vectorStores.list()
 
       // const vectorStoreIDs = vectorStoreNames.map((name: string) => {
       const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
@@ -343,7 +348,7 @@ export const api = (() => {
 
       try {
         // List all vector stores
-        const vectorStores = await openai.vectorStores.list()
+        const vectorStores = await openai.beta.vectorStores.list()
 
         // Sort vector stores by creation date, newest first
         const sortedStores = vectorStores.data.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
@@ -354,7 +359,7 @@ export const api = (() => {
 
         // Delete old stores
         for (const store of storesToDelete) {
-          await openai.vectorStores.del(store.id)
+          await openai.beta.vectorStores.del(store.id)
           console.log(`Deleted vector store: ${store.id}`)
         }
 
@@ -368,7 +373,7 @@ export const api = (() => {
         console.log('syncing schedule to vector store')
 
         const vectorStoreName = `${devconAppAssistant.vector_store_prefix}_${process.env.GITHUB_SHA}`
-        const vectorStores = await openai.vectorStores.list()
+        const vectorStores = await openai.beta.vectorStores.list()
 
         const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
@@ -481,13 +486,189 @@ export const api = (() => {
 
         // Upload each batch
         for (const batch of batches) {
-          const response = await openai.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
+          const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
           console.log(`Uploaded batch of ${batch.length} files`)
           console.log(response, 'response')
         }
 
         console.log('Vector store created for devcon SEA including knowledge base files')
       },
+    },
+  }
+
+  return _interface
+})()
+
+export const destinoApi = (() => {
+  const EventSchema = z.object({
+    en: z.string(),
+    es: z.string(),
+    pt: z.string(),
+  })
+
+  // Define a type for event records
+  interface EventRecord {
+    id: string
+    event_id: string
+    content: {
+      en: string
+      es: string
+      pt: string
+    }
+    updated_at: string
+    last_modified_at: string
+  }
+
+  // Initialize Supabase client once to reuse across functions
+  const supabaseUrl = process.env.SUPABASE_URL || ''
+  const supabaseKey = process.env.SUPABASE_KEY || ''
+  const supabase = createClient(supabaseUrl, supabaseKey)
+
+  const _interface = {
+    getAllDestinoEvents: async () => {
+      const { data, error } = await supabase.from('destino_events').select('*')
+
+      return data as EventRecord[]
+    },
+    getDestinoEvent: async (eventId: string) => {
+      const { data, error } = await supabase.from('destino_events').select('*').eq('event_id', eventId).single()
+
+      return data as EventRecord | null
+    },
+    generateDestinoEvent: async (event: any) => {
+      const eventRecord = await _interface.getDestinoEvent(event.Id)
+      const eventExists = !!eventRecord
+
+      // If exists and updated after last modification, return cached content
+      if (eventRecord) {
+        // console.log('record found')
+        // console.log('updated_at:', eventRecord.updated_at)
+        // console.log('LastModifiedDate:', event.LastModifiedDate)
+        // console.log('updated_at date:', new Date(eventRecord.updated_at))
+        // console.log('LastModifiedDate date:', new Date(event.LastModifiedDate))
+        // console.log('comparison result:', new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate))
+
+        if (new Date(eventRecord.updated_at) > new Date(event.LastModifiedDate)) {
+          return eventRecord.content
+        }
+      }
+
+      // Otherwise generate new content
+      console.log(`Generating new content for Destino event ${event.Id}`)
+
+      const upsert = {
+        event_id: event.Id,
+        twitter_handle: event.Twitter,
+        type_of_event: event['Type of Event'],
+        location: event.Location,
+        link: event.Link,
+        name: event.Name,
+        date: event.Date.startDate,
+        target_audience: event.TargetAudience,
+        details: event.Details,
+        updated_at: new Date().toISOString(),
+        last_modified_at: event.LastModifiedDate,
+      } as any
+
+      if (!eventExists) {
+        const eventCompletion = await openai.beta.chat.completions.parse({
+          temperature: 0,
+          model: 'gpt-4.1',
+          messages: [
+            {
+              role: 'system',
+              content:
+                'You take an event object and generate a simple summary of it in English, Spanish and Portuguese. Max 500 characters. It will be used to advertise the event.',
+            },
+            { role: 'user', content: JSON.stringify({ ...event, description: '' }) },
+          ],
+          response_format: zodResponseFormat(EventSchema, 'summary'),
+        })
+
+        const content = eventCompletion.choices[0].message.parsed as { en: string; es: string; pt: string }
+
+        const prompt = `
+          Adjust the reference image to match the event. Don't use any text in the generated image.
+          
+          Event name: ${event.Name}
+          Event location: ${event.Location}
+          Event summary: ${content.en}
+        `
+
+        // Fetch reference image from Supabase Storage
+        const { data: imageData, error: imageError } = await supabase.storage.from('destino-events').download('reference/destino.png')
+
+        if (imageError) {
+          console.error('Error fetching reference image:', imageError)
+          throw new Error('Failed to fetch reference image')
+        }
+
+        const openAICompatibleImage = await toFile(imageData, null, { type: 'image/png' })
+
+        const resultImage = await openai.images.edit({
+          model: 'gpt-image-1',
+          prompt,
+          image: openAICompatibleImage,
+          // @ts-ignore
+          size: '1536x1024',
+          n: 1,
+        })
+
+        // Save the image to a file
+        const image_base64 = resultImage.data?.[0]?.b64_json
+        const image_bytes = image_base64 ? Buffer.from(image_base64, 'base64') : null
+
+        let imageUrl = null
+
+        if (image_bytes) {
+          // Twitter resize
+          const resizedImage = await sharp(image_bytes).resize(1200, 675, { fit: 'cover' }).toBuffer()
+
+          // Upload to Supabase Storage
+          const { data: uploadData1, error: uploadError1 } = await supabase.storage
+            .from('destino-events')
+            .upload(`${event.Id}-twitter.png`, resizedImage, {
+              contentType: 'image/png',
+              upsert: true,
+            })
+
+          const { data: uploadData2, error: uploadError2 } = await supabase.storage.from('destino-events').upload(`${event.Id}.png`, image_bytes, {
+            contentType: 'image/png',
+            upsert: true,
+          })
+
+          if (uploadError1 || uploadError2) {
+            console.error('Error uploading image:', uploadError1 || uploadError2)
+          } else {
+            // Get public URL
+            const {
+              data: { publicUrl },
+            } = supabase.storage.from('destino-events').getPublicUrl(`${event.Id}.png`)
+
+            imageUrl = publicUrl
+          }
+        }
+
+        upsert.image_url = imageUrl
+        upsert.content = content
+      }
+
+      // Save to Supabase
+      const result = await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
+
+      return result
+    },
+    generateDestinoEvents: async () => {
+      const events = await fetchFromSalesforce()
+
+      const results = await Promise.all(
+        events.map(async (event: any) => {
+          const content = await _interface.generateDestinoEvent(event)
+          return { event, content }
+        })
+      )
+
+      return results
     },
   }
 

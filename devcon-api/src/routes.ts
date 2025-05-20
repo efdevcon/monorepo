@@ -6,6 +6,7 @@ import { sessionsRouter } from '@/controllers/sessions'
 import { speakersRouter } from '@/controllers/speakers'
 import { aiRouter } from '@/controllers/ai'
 import { atSlurperRouter } from '@/controllers/at-slurper'
+import { destinoRouter } from '@/controllers/destino'
 import { hooksRouter } from '@/controllers/hooks'
 import { pushNotificationRouter } from '@/controllers/push-notifications'
 import { Router } from 'express'
@@ -36,5 +37,6 @@ router.use(sessionsRouter)
 router.use(speakersRouter)
 router.use(aiRouter)
 router.use(atSlurperRouter)
+router.use(destinoRouter)
 router.use(hooksRouter)
 router.use(pushNotificationRouter)

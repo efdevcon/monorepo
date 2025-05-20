@@ -10,6 +10,10 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   const start = moment(startDate)
   const end = moment(endDate)
 
+  if (!start.isValid() && !end.isValid()) {
+    return ''
+  }
+
   if (start.isSame(end)) {
     // If start and end date are the same, format as "Feb 3, 2024"
     return start.format('MMM D, YYYY')
@@ -29,23 +33,23 @@ const tableColumns: Array<TableColumn> = [
     title: 'Date',
     key: 'Date',
     sort: (a: any, b: any) => {
-      const { startDate: startDate1 } = a
-      const { startDate: startDate2 } = b
+      const { date: startDate1 } = a
+      const { date: startDate2 } = b
 
       const start1 = moment(startDate1)
       const start2 = moment(startDate2)
 
-      // if (a.eventHasPassed && !b.eventHasPassed) {
-      //   return 1
-      // } else if (b.eventHasPassed && !a.eventHasPassed) {
-      //   return -1
-      // }
+      if (a.eventHasPassed && !b.eventHasPassed) {
+        return 1
+      } else if (b.eventHasPassed && !a.eventHasPassed) {
+        return -1
+      }
 
       if (start1.isAfter(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return -1
+        if (a.eventHasPassed && b.eventHasPassed) return -1
         return 1
       } else if (start1.isBefore(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return 1
+        if (a.eventHasPassed && b.eventHasPassed) return 1
         return -1
       }
 
@@ -54,7 +58,7 @@ const tableColumns: Array<TableColumn> = [
     render: item => {
       return (
         <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
-          {formatHumanReadableDate(item.Date.startDate, item.Date.endDate)}
+          {formatHumanReadableDate(item.date, item.date)}
         </p>
       )
     },
@@ -64,15 +68,19 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
-      if (item.Link) {
-        return (
-          <Link className="bold" href={item.Link} indicateExternal>
-            {item.Name}
-          </Link>
-        )
-      }
+      // if (item.link) {
+      return (
+        <Link
+          className="bolda"
+          href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
+          indicateExternal
+        >
+          {item.name}
+        </Link>
+      )
+      // }
 
-      return <p className={`bold`}>{item.Name}</p>
+      return <p className={`bold`}>{item.name}</p>
     },
   },
   {
@@ -81,13 +89,13 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      if (!item.Location) return null
+      if (!item.location) return null
 
-      if (item.Location.text) {
-        return <p className="bolda">{item.Location.text}</p>
+      if (item.location) {
+        return <p className="bolda">{item.location}</p>
       }
 
-      return <p className="bolda">{item.Location}</p>
+      return <p className="bolda">{item.location}</p>
     },
   },
   {
@@ -96,29 +104,35 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bolda">{item['Type of Event']}</p>
+      return <p className="bolda">{item.type_of_event}</p>
     },
   },
-  {
-    title: 'Team',
-    key: 'Team',
-    sort: SortVariation.basic,
-    className: '!hidden md:!flex',
-    render: item => {
-      return <p className={`${styles['team-col']}`}>{item.Team}</p>
-    },
-  },
+  // {
+  //   title: 'Team',
+  //   key: 'Team',
+  //   sort: SortVariation.basic,
+  //   className: '!hidden md:!flex',
+  //   render: item => {
+  //     return <p className={`${styles['team-col']}`}>{item.team}</p>
+  //   },
+  // },
   {
     title: 'Social',
     key: 'Social',
     className: '!hidden lg:!flex',
     // sort: SortVariation.basic,
     render: item => {
-      if (!item.Social) return null
+      if (!item.twitter_handle) return null
+
+      let socialFormatted = item.twitter_handle
+
+      if (socialFormatted.startsWith('@')) {
+        socialFormatted = socialFormatted.slice(1)
+      }
 
       return (
-        <Link className="bolda" href={item.Social} indicateExternal>
-          {item.Social}
+        <Link className="bolda" href={`https://x.com/@${socialFormatted}`} indicateExternal>
+          {socialFormatted}
         </Link>
       )
     },
@@ -130,7 +144,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   const [search, setSearch] = React.useState('')
 
   const formattedEvents = events.map((event: any) => {
-    const end = moment(event.Date.endDate).add(1, 'days')
+    const end = moment(event.date).add(1, 'days')
     const now = moment()
 
     const eventHasPassed = now.isAfter(end)
@@ -148,7 +162,14 @@ const EventsTable = React.memo(({ events, pages }: any) => {
     }
 
     if (search.length > 0) {
-      return Object.keys(event).some(key => {
+      const searchableKeys = {
+        name: event.name,
+        location: event.location,
+        type_of_event: event.type_of_event,
+        twitter_handle: event.twitter_handle,
+      }
+
+      return Object.keys(searchableKeys).some(key => {
         const value = event[key]
         return typeof value === 'string' && value.toLowerCase().includes(search.toLowerCase())
       })
@@ -158,13 +179,13 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   })
 
   return (
-    <div className="w-full">
+    <div className={`w-full ${styles['event-table']}`}>
       <div className="flex justify-between items-center mb-4 gap-2">
-        <div className="font-bold">Destino Devconnect Events</div>
+        {/* <div className="font-bold">Destino Devconnect Events</div> */}
 
         <div className="flex">
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
+            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-0 py-2 ${
               !includePastEvents ? 'font-bold' : ''
             }`}
             onClick={() => {
@@ -187,7 +208,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
         </div>
 
         <input
-          className={`rounded-lg p-1.5 text-base lg:text-sm px-4 border-solid text-black border border-slate-300 outline-none`}
+          className={`p-1.5 text-base lg:text-sm px-3 border-solid text-black outline-none`}
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -197,7 +218,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 
       <div className="mb-4">{/* <RichText content={pages.events_table}></RichText> */}</div>
 
-      <div className="text-sm text-black rounded-xl overflow-hidden">
+      <div className="text-sm overflow-hidden text-white">
         <Table itemKey="_key" items={filteredEvents} columns={tableColumns} initialSort={0} />
       </div>
     </div>
