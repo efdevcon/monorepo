@@ -41,6 +41,8 @@ ${currentUrl}`
 
   const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
 
+  console.log(hasLink, eventData.link)
+
   return (
     <div className="text-black h-screen w-screen relative bg-black">
       <SEO title={eventData.name} description={eventData.content} imageUrl={imageUrlTwitter} />

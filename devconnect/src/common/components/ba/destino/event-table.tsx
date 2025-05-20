@@ -39,17 +39,17 @@ const tableColumns: Array<TableColumn> = [
       const start1 = moment(startDate1)
       const start2 = moment(startDate2)
 
-      // if (a.eventHasPassed && !b.eventHasPassed) {
-      //   return 1
-      // } else if (b.eventHasPassed && !a.eventHasPassed) {
-      //   return -1
-      // }
+      if (a.eventHasPassed && !b.eventHasPassed) {
+        return 1
+      } else if (b.eventHasPassed && !a.eventHasPassed) {
+        return -1
+      }
 
       if (start1.isAfter(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return -1
+        if (a.eventHasPassed && b.eventHasPassed) return -1
         return 1
       } else if (start1.isBefore(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return 1
+        if (a.eventHasPassed && b.eventHasPassed) return 1
         return -1
       }
 

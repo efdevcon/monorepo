@@ -595,8 +595,15 @@ export const destinoApi = (() => {
           Event summary: ${content.en}
         `
 
-        const referenceImagePath = path.join(__dirname, 'image-generation', 'destino.png')
-        const openAICompatibleImage = await toFile(fs.createReadStream(referenceImagePath), null, { type: 'image/png' })
+        // Fetch reference image from Supabase Storage
+        const { data: imageData, error: imageError } = await supabase.storage.from('destino-events').download('reference/destino.png')
+
+        if (imageError) {
+          console.error('Error fetching reference image:', imageError)
+          throw new Error('Failed to fetch reference image')
+        }
+
+        const openAICompatibleImage = await toFile(imageData, null, { type: 'image/png' })
 
         const resultImage = await openai.images.edit({
           model: 'gpt-image-1',
