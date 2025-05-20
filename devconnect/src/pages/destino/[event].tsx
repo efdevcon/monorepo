@@ -64,17 +64,21 @@ ${currentUrl}`
 
       <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8">
         <div className="mb-8 flex text-white flex-col text-xs text-center">
-          <div className="mb-4">
-            <Link href="/destino">
-              <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
-            </Link>
-          </div>
+          <Link href="/destino">
+            <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
+          </Link>
         </div>
 
         <div className="w-full max-w-[600px] mx-auto">
           <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-600 border-solid">
             <div className="w-full aspect-[1.91/1] relative">
-              <Image src={imageUrl || DestinoHero} fill alt="Event Image" className="w-full h-full object-cover" />
+              <Image
+                src={imageUrl || DestinoHero}
+                fill
+                unoptimized
+                alt="Event Image"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="py-4 px-6 flex flex-col">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 sm:gap-4 mb-3">
