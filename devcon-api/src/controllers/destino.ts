@@ -53,16 +53,16 @@ destinoRouter.get('/regenerate/:eventId', async (req: Request, res: Response) =>
       LastModifiedDate: eventData.last_modified_at,
     }
 
-    const testData = await destinoApi.generateDestinoEvent(formattedEvent, true)
+    const updatedEventData = await destinoApi.generateDestinoEvent(formattedEvent, true)
 
-    console.log('[regenerate-destino-event] Generated event result: OK', testData)
+    console.log('[regenerate-destino-event] Generated event result: OK', updatedEventData)
 
-    if (!testData) {
+    if (!updatedEventData) {
       console.error('[regenerate-destino-event] No event data returned from generateDestinoEvent')
       return res.status(500).json({ error: 'Failed to generate event' })
     }
 
-    res.json(testData)
+    res.json(updatedEventData)
   } catch (error: any) {
     console.error('[regenerate-destino-event] Error generating event:', error)
     res.status(500).json({ error: 'Internal server error', details: error.message })
