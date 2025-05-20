@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Devcon API",
-    "description": "Devcon API exposes information about Devcon, past events, schedules and our video archive. You can find more information at https://github.com/efdevcon/api",
+    "description": "Devcon API exposes information about Devcon, past events, schedules and our video archive. You can find more information at https://github.com/efdevcon/monorepo/tree/main/devcon-api",
     "version": "0.6.2",
     "contact": {
       "email": "support@devcon.org"
@@ -11,7 +11,7 @@
       "name": "MIT"
     },
     "externalDocs": {
-      "url": "https://github.com/efdevcon/api"
+      "url": "https://github.com/efdevcon/monorepo/tree/main/devcon-api"
     }
   },
   "host": "localhost:4000",
@@ -1112,6 +1112,35 @@
           },
           "429": {
             "description": "Too Many Requests"
+          }
+        }
+      }
+    },
+    "/destino": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/destino/{event}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "event",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }
