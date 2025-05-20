@@ -517,6 +517,15 @@ export const destinoApi = (() => {
     }
     updated_at: string
     last_modified_at: string
+    name: string
+    location: string
+    date: string
+    type_of_event: string
+    twitter_handle: string
+    link: string
+    target_audience: string
+    details: string
+    image_url?: string
   }
 
   // Initialize Supabase client once to reuse across functions
@@ -610,10 +619,12 @@ export const destinoApi = (() => {
 
           const prompt = `
 Adjust the reference image to suit the context of the event. Do NOT include any text in the generated image.
-Keep top 110px and bottom 110px of the image black only.
+Keep top 110px and bottom 110px of the image black ONLY.
+The rest of the image should not have any black zones.
 
 Event name: ${event.Name}
-Event location: ${event.Location}`
+Event location: ${event.Location}
+Don't include this text in the generated image.`
           console.log(`[generateDestinoEvent] Generating image for event ${event.Id} with prompt:`, prompt)
 
           const resultImage = await openai.images.edit({
@@ -642,15 +653,18 @@ Event location: ${event.Location}`
             // Twitter resize
             const resizedImage = await sharp(image_bytes).resize(1536, 804, { fit: 'cover' }).toBuffer()
 
-            // Upload to Supabase Storage
-            const { data: uploadData1, error: uploadError1 } = await supabase.storage
-              .from('destino-events')
-              .upload(`${event.Id}-twitter.png`, resizedImage, {
-                contentType: 'image/png',
-                upsert: true,
-              })
+            // Generate timestamp for versioning
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
+            const socialImagePath = `${event.Id}-social-${timestamp}.png`
+            const originalImagePath = `${event.Id}-original-${timestamp}.png`
 
-            const { data: uploadData2, error: uploadError2 } = await supabase.storage.from('destino-events').upload(`${event.Id}.png`, image_bytes, {
+            // Upload to Supabase Storage
+            const { data: uploadData1, error: uploadError1 } = await supabase.storage.from('destino-events').upload(socialImagePath, resizedImage, {
+              contentType: 'image/png',
+              upsert: true,
+            })
+
+            const { data: uploadData2, error: uploadError2 } = await supabase.storage.from('destino-events').upload(originalImagePath, image_bytes, {
               contentType: 'image/png',
               upsert: true,
             })
@@ -662,7 +676,7 @@ Event location: ${event.Location}`
               // Get public URL
               const {
                 data: { publicUrl },
-              } = supabase.storage.from('destino-events').getPublicUrl(`${event.Id}.png`)
+              } = supabase.storage.from('destino-events').getPublicUrl(socialImagePath)
 
               imageUrl = publicUrl
               console.log(`[generateDestinoEvent] Images uploaded successfully for event ${event.Id}. URL: ${imageUrl}`)
