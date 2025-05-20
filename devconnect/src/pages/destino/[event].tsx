@@ -26,9 +26,13 @@ const EventPage: NextPage<EventPageProps> = ({ event, eventData }) => {
   const twitterShare = encodeURIComponent(
     `Join us on the journey to ${SOCIAL_HANDLE} Buenos Aires!
     
-${eventData.name} is taking place ${
-      date !== 'Invalid date' ? `on ${date} ` : ''
-    }as part of the Destino Devconnect series.
+${eventData.name} is taking place ${date !== 'Invalid date' ? `on ${date} ` : ''}as part of the Destino Devconnect.${
+      eventData.twitter_handle
+        ? `\n\nThis event is organized by ${
+            eventData.twitter_handle.startsWith('@') ? eventData.twitter_handle : `@${eventData.twitter_handle}.`
+          }`
+        : ''
+    }
     
 ${currentUrl}`
   )
