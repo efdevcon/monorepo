@@ -617,13 +617,13 @@ export const destinoApi = (() => {
             pt: content.pt.substring(0, 50) + '...',
           })
 
-          const prompt = `
-Adjust the reference image to suit the context of the event. Do NOT include any text in the generated image.
-Keep top 110px and bottom 110px of the image black ONLY like in the reference image.
-The rest of the image should not have any black zones.
+          const prompt = `Adjust the reference image to suit the context of the event.
+DO NOT add or include any text in the generated image.
+Keep composition of the reference image.
 
-Event name: ${event.Name}
-Event location: ${event.Location}
+Context:
+- Event name: "${event.Name}"
+- Event location: "${event.Location}"
 DO NOT include Event name or event location in the generated image.`
           console.log(`[generateDestinoEvent] Generating image for event ${event.Id} with prompt:`, prompt)
 
@@ -650,17 +650,17 @@ DO NOT include Event name or event location in the generated image.`
 
           if (image_bytes) {
             console.log(`[generateDestinoEvent] Processing and uploading images for event ${event.Id}`)
-            // Twitter resize
-            const resizedImage = await sharp(image_bytes).resize(1536, 804, { fit: 'cover' }).toBuffer()
+            // Social media resize
+            const resizedImage = await sharp(image_bytes).resize(1200, 628, { fit: 'cover' }).jpeg({ quality: 90 }).toBuffer()
 
             // Generate timestamp for versioning
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-')
-            const socialImagePath = `${event.Id}-social-${timestamp}.png`
+            const socialImagePath = `${event.Id}-social-${timestamp}.jpg`
             const originalImagePath = `${event.Id}-original-${timestamp}.png`
 
             // Upload to Supabase Storage
             const { data: uploadData1, error: uploadError1 } = await supabase.storage.from('destino-events').upload(socialImagePath, resizedImage, {
-              contentType: 'image/png',
+              contentType: 'image/jpeg',
               upsert: true,
             })
 
@@ -694,6 +694,9 @@ DO NOT include Event name or event location in the generated image.`
 
         // If forceImageGeneration is true, return the image URL
         if (forceImageGeneration) {
+          // update image_url in the database
+          await supabase.from('destino_events').update({ image_url: upsert.image_url }).eq('event_id', event.Id)
+
           console.log(`[generateDestinoEvent] Returning content and image URL for event ${event.Id}`)
           return {
             content: upsert.content,
