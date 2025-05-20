@@ -38,7 +38,12 @@ ${currentUrl}`
     currentUrl
   )}&channelKey=devconnect&embeds[]=${encodeURIComponent(currentUrl)}`
 
-  const hasLink = eventData.link && eventData.link.startsWith('http')
+  let hasLink = eventData.link && eventData.link.startsWith('http')
+
+  if (!hasLink && eventData.twitter_handle?.length) {
+    eventData.link = `https://x.com/${eventData.twitter_handle.replace('@', '')}`
+    hasLink = true
+  }
 
   const imageUrlTwitter = eventData.image_url.replace('.png', '-twitter.png')
 
