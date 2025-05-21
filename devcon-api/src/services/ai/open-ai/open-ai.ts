@@ -316,7 +316,7 @@ export const api = (() => {
       ]
 
       for (const vectorStoreName of vectorStoreNames) {
-        const vectorStore = await openai.beta.vectorStores.create({
+        const vectorStore = await openai.vectorStores.create({
           name: vectorStoreName,
         })
 
@@ -330,7 +330,7 @@ export const api = (() => {
     attachVectorStoresToAssistant: async (assistantID: string, vectorStorePrefix: string) => {
       const vectorStoreName = `${vectorStorePrefix}_${process.env.GITHUB_SHA}`
 
-      const vectorStores = await openai.beta.vectorStores.list()
+      const vectorStores = await openai.vectorStores.list()
 
       // const vectorStoreIDs = vectorStoreNames.map((name: string) => {
       const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
@@ -348,7 +348,7 @@ export const api = (() => {
 
       try {
         // List all vector stores
-        const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         // Sort vector stores by creation date, newest first
         const sortedStores = vectorStores.data.sort((a: any, b: any) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime())
@@ -359,7 +359,7 @@ export const api = (() => {
 
         // Delete old stores
         for (const store of storesToDelete) {
-          await openai.beta.vectorStores.del(store.id)
+          await openai.vectorStores.del(store.id)
           console.log(`Deleted vector store: ${store.id}`)
         }
 
@@ -373,7 +373,7 @@ export const api = (() => {
         console.log('syncing schedule to vector store')
 
         const vectorStoreName = `${devconAppAssistant.vector_store_prefix}_${process.env.GITHUB_SHA}`
-        const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
@@ -486,7 +486,7 @@ export const api = (() => {
 
         // Upload each batch
         for (const batch of batches) {
-          const response = await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
+          const response = await openai.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: batch })
           console.log(`Uploaded batch of ${batch.length} files`)
           console.log(response, 'response')
         }

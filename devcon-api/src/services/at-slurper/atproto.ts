@@ -68,10 +68,10 @@ const experimentation = (() => {
       // })
 
       const record = {
-        title: 'Test Event',
-        start: '2024-01-01',
-        end: '2024-01-02',
-        description: 'This is a test event',
+        title: 'Test Firehose Event New Title 2',
+        start: '2024-01-01T00:00:00Z',
+        end: '2024-01-02T00:00:00Z',
+        description: 'WOW!',
         location: 'Test Location',
         url: 'https://test.com',
       }
@@ -210,7 +210,7 @@ const experimentation = (() => {
     describeRepo,
     getServerLexicons,
     testPdsOauthOnBehalfOfUser: async () => {
-      const result = await pdsOauthOnBehalfOfUser('https://bsky.social', 'ethlasse.bsky.social', '', {
+      const result = await pdsOauthOnBehalfOfUser('https://bsky.social', 'ethlasse.bsky.social', process.env.AT_LASSE_PASSWORD!, {
         text: 'This is a test post using pdsOauthOnBehalfOfUser',
       })
 
