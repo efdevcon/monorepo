@@ -68,7 +68,7 @@ const experimentation = (() => {
       // })
 
       const record = {
-        title: 'Test Firehose Event New Title 2',
+        title: 'Test Firehose Again',
         start: '2024-01-01T00:00:00Z',
         end: '2024-01-02T00:00:00Z',
         description: 'WOW!',

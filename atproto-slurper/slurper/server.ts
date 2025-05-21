@@ -258,6 +258,13 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/all-events", async (req, res) => {
+  const { data, error } = await supabase
+    .from("atproto-events")
+    .select("record");
+  res.json(data);
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
