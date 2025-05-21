@@ -261,7 +261,7 @@ app.get("/health", (req, res) => {
 app.get("/all-events", async (req, res) => {
   const { data, error } = await supabase
     .from("atproto-events")
-    .select("record");
+    .select("did, record");
   res.json(data);
 });
 
