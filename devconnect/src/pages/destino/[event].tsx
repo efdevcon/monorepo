@@ -66,7 +66,7 @@ ${currentUrl}`
         />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8">
+      <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8 justify-center">
         <div className="mb-8 flex text-white flex-col text-xs text-center">
           <Link href="/destino">
             <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
