@@ -20,7 +20,7 @@ const createEvent = async (username: string, password: string) => {
 
     // This is your event
     const record = {
-      title: "Example Devconnect Event",
+      title: "Example Devconnect Event Again",
       start: "2026-01-01T00:00:00Z",
       end: "2026-01-02T00:00:00Z",
       description: "This is an example Devcon/nect event",
@@ -29,7 +29,7 @@ const createEvent = async (username: string, password: string) => {
     };
 
     const result = await agent.api.com.atproto.repo.putRecord({
-      repo: agent.session?.did as any,
+      repo: agent.session.did,
       // Your record must adhere to this schema:
       collection: "org.devcon.event.test",
       // Record key - this is effectively the id of your record - it can be whatever you want, as long as it's unique per event

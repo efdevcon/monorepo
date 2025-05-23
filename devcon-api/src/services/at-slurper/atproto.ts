@@ -71,8 +71,8 @@ const experimentation = (() => {
         title: 'Test Firehose Again',
         start: '2024-01-01T00:00:00Z',
         end: '2024-01-02T00:00:00Z',
-        description: 'WOW!',
-        location: 'Test Location',
+        description: 'WOW! new description',
+        location: 'and new test Location?? firehose this',
         url: 'https://test.com',
       }
 
