@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'common/components/link'
 import { useAccountContext } from 'context/account-context'
 import { useCalendarStore } from 'store/calendar'
 import { Client } from '@notionhq/client'
@@ -17,6 +18,74 @@ const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
 
   console.log(props.events)
+
+  const coreEvents = [
+    {
+      id: 'event-000',
+      priority: 1,
+      spanRows: 2,
+      name: `Ethereum World's Fair & Coworking Space`,
+      description: 'Open coworking space for developers, builders, and researchers to collaborate throughout the week.',
+      organizer: 'DevConnect',
+      difficulty: 'All Welcome',
+      amountPeople: '100',
+      isCoreEvent: true,
+      timeblocks: [
+        {
+          start: '2025-11-17T09:00:00Z',
+          end: '2025-11-22T18:00:00Z',
+        },
+        {
+          start: '2025-11-20T09:00:00Z',
+          end: '2025-11-20T18:00:00Z',
+        },
+        {
+          start: '2025-11-22T09:00:00Z',
+          end: '2025-11-22T18:00:00Z',
+        },
+      ],
+      location: {
+        url: 'https://example.com/coworking',
+        text: 'Innovation Hub',
+      },
+    },
+    {
+      id: 'event-001',
+      priority: 2,
+      spanRows: 3,
+      name: 'ETH Day',
+      description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
+      organizer: 'Ethereum Foundation',
+      difficulty: 'All Welcome',
+      isFairEvent: true,
+      amountPeople: '50',
+      timeblocks: [
+        {
+          start: '2025-11-17T10:00:00Z',
+          end: '2025-11-17T12:00:00Z',
+        },
+      ],
+      location: {
+        url: 'https://example.com/venue1',
+        text: 'Main Conference Hall',
+      },
+      // timeblocks: [
+      //   {
+      //     start: '2025-11-17T10:00:00Z',
+      //     end: '2025-11-17T12:00:00Z',
+      //   },
+      // ],
+      // priority: 1,
+      // categories: ['Education', 'Blockchain', 'Workshop'],
+    },
+  ]
+
+  const events = [...props.events, ...coreEvents].map(event => {
+    return {
+      ...event,
+      onClick: () => {},
+    }
+  })
 
   return (
     <>
@@ -43,12 +112,38 @@ const Argentina = (props: any) => {
       <div className="flex flex-col gap-4 text-black">
         <div className="section my-1 mb-8">
           <NewSchedule
-            events={props.events}
+            events={events}
             selectedEvent={selectedEvent}
             selectedDay={selectedDay}
             setSelectedEvent={setSelectedEvent}
             setSelectedDay={setSelectedDay}
           />
+
+          <div className="text-sm flex flex-col gap-4">
+            <p>
+              <strong>Disclaimer:</strong> This calendar is a work in progress and may change a lot before Devconnect
+              week. Please check back regularly for updates.
+            </p>
+            <div>
+              <p>
+                <strong>Want to be featured on our calendar?</strong> We encourage event hosts to submit their events to
+                atprotocol adhering to the [devcon.org event record type].{' '}
+                <strong>This is not a guarantee of inclusion as we still curate events,</strong> but is a{' '}
+                <strong>requirement</strong> for community events to be considered on our calendar.
+              </p>
+              <p>
+                <strong>How do I submit my event to atprotocol?</strong> ...
+              </p>
+            </div>
+            <p>
+              <strong>Want to build a community calendar? </strong> For your convenience, we collect all events
+              submitted to atprotocol and expose them via{' '}
+              <Link indicateExternal className="bold" href="https://at-slurper.onrender.com/all-events">
+                https://at-slurper.onrender.com/all-events
+              </Link>
+              . You can also use atprotocol directly, as all data is public.
+            </p>
+          </div>
         </div>
       </div>
       <Footer />
@@ -70,32 +165,32 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
   const query = {
     database_id: '1f5638cdc41580be9117f4963f021d8b',
-    // sorts: [
-    //   {
-    //     property: '[HOST] Event Date',
-    //     direction: 'ascending',
-    //   },
-    //   {
-    //     property: '[WEB] Priority (sort)',
-    //     direction: 'descending',
-    //   },
-    // ],
-    // filter: {
-    //   and: [
-    //     {
-    //       property: '[HOST] Event Date',
-    //       date: {
-    //         is_not_empty: true,
-    //       },
-    //     },
-    //     {
-    //       property: '[WEB] Live',
-    //       checkbox: {
-    //         equals: true,
-    //       },
-    //     },
-    //   ],
-    // },
+    sorts: [
+      {
+        property: 'Event date',
+        direction: 'ascending',
+      },
+      // {
+      //   property: '[WEB] Priority (sort)',
+      //   direction: 'descending',
+      // },
+    ],
+    filter: {
+      and: [
+        {
+          property: 'Event date',
+          date: {
+            is_not_empty: true,
+          },
+        },
+        {
+          property: 'Live on website',
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
   }
 
   const notionEvents = await notion.databases.query(query as any)
@@ -132,34 +227,39 @@ export interface Event {
 
   // console.log(notionEvents)
 
-  const events = notionEvents.results
-    .map(event => {
-      const formattedEvent = formatResult(event)
+  const events = notionEvents.results.map(event => {
+    const formattedEvent = formatResult(event)
 
-      const startDate = moment('2025-11-17T09:00:00Z').add(Math.floor(Math.random() * 6), 'days')
+    const timeblocks = []
 
-      return {
-        id: event.id,
-        name: formattedEvent['Event name'],
-        description: formattedEvent['Description'] || '',
-        capacity: formattedEvent['Capacity'],
-        size: formattedEvent['Size'],
-        location: formattedEvent['Location'] || { text: 'TBD', url: '' },
-        timeblocks: [
-          {
-            start: startDate.format('YYYY-MM-DDTHH:mm:ss[Z]'),
-            end: startDate.clone().add(4, 'hours').format('YYYY-MM-DDTHH:mm:ss[Z]'),
-          },
-        ],
-        difficulty: 'Beginner',
+    if (formattedEvent['Event date']) {
+      let startDate = moment.utc(formattedEvent['Event date'].startDate)
+      let endDate
+
+      if (formattedEvent['Event date'].endDate) {
+        endDate = moment.utc(formattedEvent['Event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
+      } else {
+        endDate = startDate.format('YYYY-MM-DDTHH:mm:ss[Z]')
       }
-    })
-    .sort((a, b) => moment(a.timeblocks[0].start).valueOf() - moment(b.timeblocks[0].start).valueOf())
 
-  // @ts-ignore
-  events[0].isFairEvent = true
-  // @ts-ignore
-  events[1].isCoreEvent = true
+      timeblocks.push({
+        start: startDate.format('YYYY-MM-DDTHH:mm:ss[Z]'),
+        end: endDate,
+      })
+    }
+
+    return {
+      id: event.id,
+      name: formattedEvent['Event name'],
+      description: formattedEvent['Description'] || '',
+      capacity: formattedEvent['Capacity'],
+      startDate: formattedEvent['Event date'],
+      // size: formattedEvent['Size'],
+      location: formattedEvent['Location'] || { text: 'TBD', url: '' },
+      timeblocks: timeblocks,
+      difficulty: 'Beginner',
+    }
+  })
 
   return {
     props: {

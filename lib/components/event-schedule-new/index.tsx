@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import moment from "moment";
 // import NewSchedule from './calendar'
 import Event from "./day/event";
 import { dummyEvents } from "./dummy-data";
@@ -55,11 +56,24 @@ const computeEventPlacements = (
 
   // Sort events to prioritize isFairEvent and isCoreEvent
   const sortedEvents = [...events].sort((a, b) => {
-    if (a.isFairEvent && !b.isFairEvent) return -1;
-    if (!a.isFairEvent && b.isFairEvent) return 1;
-    if (a.isCoreEvent && !b.isCoreEvent) return -1;
-    if (!a.isCoreEvent && b.isCoreEvent) return 1;
-    return 0;
+    // if (a.isFairEvent && !b.isFairEvent) return 1;
+    // if (!a.isFairEvent && b.isFairEvent) return -1;
+    // if (a.isCoreEvent && !b.isCoreEvent) return 1;
+    // if (!a.isCoreEvent && b.isCoreEvent) return -1;
+
+    const day1 = moment(a.timeblocks[0].start).dayOfYear();
+    const day2 = moment(b.timeblocks[0].start).dayOfYear();
+
+    const isSameDay = day1 === day2;
+
+    if (isSameDay) {
+      return (
+        moment(b.timeblocks[b.timeblocks.length - 1].end).valueOf() -
+        moment(a.timeblocks[a.timeblocks.length - 1].end).valueOf()
+      );
+    }
+
+    return day1 - day2;
   });
 
   const eventPlacements: any[] = [];
@@ -100,6 +114,7 @@ const computeEventPlacements = (
 
     // Find first available row for this event
     let row = 1;
+
     while (!placementTracker.placeItem(row, startColIndex + 1, duration)) {
       row++;
     }
@@ -110,12 +125,21 @@ const computeEventPlacements = (
       timeblock: earliestTimeblock, // Use earliest timeblock for time display
       gridPosition: {
         row,
+        rowSpan: event.spanRows ? event.spanRows : 1,
         column: startColIndex + 1, // +1 because CSS grid is 1-indexed
         duration,
       },
       // Store all dates this event covers for hover highlighting
       datesCovered: dateColumns.slice(startColIndex, startColIndex + duration),
     });
+
+    // Add additional rows for special events
+    if (event.spanRows) {
+      for (let i = 0; i < event.spanRows; i++) {
+        !placementTracker.placeItem(row + i, startColIndex + 1, duration);
+      }
+      row += event.spanRows - 1;
+    }
   });
 
   return eventPlacements;
@@ -183,19 +207,19 @@ const NewScheduleIndex = ({
                   <h2
                     key={date}
                     className={cn(
-                      "text-sm cursor-pointer hover:bg-gray-100 font-semibold py-2 px-3 stickyy top-0 z-10 border-b cursor-pointer rounded-lg mb-0.5",
+                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 stickyy top-0 z-10 border-b rounded-lg mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
                     onMouseEnter={() => setHoveredDate(date)}
                     onMouseLeave={() => setHoveredDate(null)}
-                    onClick={() => {
-                      if (selectedDay !== date) {
-                        setSelectedDay(date);
-                      } else {
-                        setSelectedDay(null);
-                      }
-                    }}
+                    // onClick={() => {
+                    //   if (selectedDay !== date) {
+                    //     setSelectedDay(date);
+                    //   } else {
+                    //     setSelectedDay(null);
+                    //   }
+                    // }}
                   >
                     {formatDateHeader(date)}
                   </h2>
@@ -220,8 +244,8 @@ const NewScheduleIndex = ({
                     key={`event-${placement.event.id}-${idx}`}
                     style={{
                       gridRow: `${placement.gridPosition.row + 1} / span ${
-                        placement.event.name.includes("ETH Day") ? 3 : 1
-                      }`, // Make ETH Day events span 3 rows
+                        placement.gridPosition.rowSpan
+                      }`,
                       gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
                     }}
                     className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}

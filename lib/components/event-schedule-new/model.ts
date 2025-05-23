@@ -7,6 +7,8 @@ export interface Event {
   organizer: string;
   difficulty: string;
   amountPeople?: string;
+  spanRows?: number;
+  onClick?: () => void;
   location: {
     url: string;
     text: string;

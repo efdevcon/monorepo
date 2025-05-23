@@ -1,12 +1,11 @@
 import React from "react";
-import { PenLine, Star, MapPin } from "lucide-react";
+import { PenLine, Star, MapPin, Ticket } from "lucide-react";
 import { Event as EventType } from "../model";
 import { format, parseISO } from "date-fns";
 import cn from "classnames";
 import Image from "next/image";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
-import { useCalendarStore } from "store/calendar";
 import {
   Dialog,
   DialogContent,
@@ -66,7 +65,7 @@ const Event: React.FC<EventProps> = ({
 
   // Determine CSS class based on difficulty
   const difficultyClass =
-    event.difficulty === "Beginner"
+    event.difficulty === "Beginner" || event.difficulty === "All Welcome"
       ? "bg-green-300"
       : event.difficulty === "Intermediate"
       ? "bg-yellow-300"
@@ -81,9 +80,12 @@ const Event: React.FC<EventProps> = ({
 
   return (
     <div
+      style={{
+        height: `${event.spanRows ? event.spanRows * 60 : 60}px`,
+      }}
       className={cn(
-        "min-h-[60px] group bg-[#f0faff] cursor-pointer",
-        "flex flex-col h-full gap-4 border border-solid border-neutral-400 p-2 px-2 shrink-0 relative rounded-lg overflow-hidden hover:border-black transition-all duration-300",
+        `group bg-[#f0faff] cursor-pointer`,
+        "flex flex-col gap-4 border border-solid border-neutral-400 p-2 px-2 h-full shrink-0 relative rounded-lg overflow-hidden hover:border-black transition-all duration-300",
         {
           "bg-[rgb(187,232,255)] border-neutral-400 border-solid":
             isCoworking || isETHDay,
@@ -92,7 +94,13 @@ const Event: React.FC<EventProps> = ({
         isCoreEvent && !isETHDay && !isCoworking && "bg-blue border-solid",
         selectedEvent?.id === event.id && "border-black"
       )}
-      onClick={() => setSelectedEvent(event)}
+      onClick={() => {
+        if (event.onClick) {
+          event.onClick();
+        } else {
+          setSelectedEvent(event);
+        }
+      }}
     >
       {isCoworking && (
         <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
@@ -148,7 +156,6 @@ const Event: React.FC<EventProps> = ({
               <div className="text-sm">{event.difficulty}</div>
               <div className="text-sm">{event.amountPeople}</div>
               <div className="text-sm">{event.organizer}</div>
-              <div className="text-sm">{event.lemonadeID}</div>
             </div>
           </DialogDescription>
           <DialogFooter>
@@ -180,15 +187,41 @@ const Event: React.FC<EventProps> = ({
           </div>
           {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
 
-          <div className="flex gap-2 w-full mt-2 shrink-0 items-end justify-end text-[9px]">
-            <div
-              className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}
+          <div className="flex justify-between">
+            {isCoworking && (
+              <Button
+                size="sm"
+                color="blue-1"
+                fill
+                className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
+              >
+                <Ticket className="shrink-0" size={16} />
+                Tickets Available Now
+                <Ticket className="shrink-0" size={16} />
+              </Button>
+            )}
+
+            <div className="flex gap-2 grow shrink-0 items-end justify-end text-[9px]">
+              <div
+                className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}
+              >
+                {event.difficulty}
+              </div>
+              <div
+                className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
+              >
+                <Star className="text-black shrink-0" size={11} />
+                {event.organizer}
+              </div>
+              {/* <div
+              className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
             >
-              {event.difficulty}
-            </div>
-            <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
+              {event.amountPeople}
+            </div> */}
+              {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
               <Star className="text-black shrink-0" size={11} />
               RSVP
+            </div> */}
             </div>
           </div>
         </div>
