@@ -7,12 +7,14 @@ import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
 import Image from 'next/image'
 import styles from './argentina.module.scss'
-import Oblisk from '../../public/scroll-video/Oblisk_4K0125.webp'
+// import Oblisk from '../../public/scroll-video/Oblisk_4K0125.webp'
 import cn from 'classnames'
 import NewSchedule from 'lib/components/event-schedule-new'
 import { formatResult } from 'lib/helpers/notion-normalizer'
 // import dateFns from 'date-fns'
 import moment from 'moment'
+import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
+import Voxel from 'assets/images/ba/voxel-0.jpg'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
@@ -90,21 +92,19 @@ const Argentina = (props: any) => {
   return (
     <>
       <Header active />
-      <div className="relative h-[20vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden">
+      <div className="relative h-[24vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden">
         <Image
-          src={Oblisk}
-          alt="Argentina"
-          className={cn(styles.argentina, 'object-cover absolute h-full w-full opacity-80')}
+          src={Voxel}
+          alt="Voxel art background"
+          className={cn(styles.argentina, 'object-cover absolute object-[0%,13%] h-full w-full opacity-80')}
         />
-        <div className="section z-10 pb-4">
-          <div className="flex gap-4">
-            <div className="text-lg bg-black/60 text-white  px-4 py-1 rounded-md border border-solid border-black backdrop-blur-sm">
-              Devconnect Argentina - Event Calendar
+
+        <div className="section z-10 pb-1">
+          <div className="flex justify-between items-end">
+            <Image src={PageTitle} alt="Page Title" className={'contain w-[450px] translate-x-[-3%]'} />
+            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white text-lg')}>
+              17 — 22 November Buenos Aires, ARGENTINA
             </div>
-            {/* <div className="flex gap-2 items-center">
-              <div className="text-sm text-gray-500">Filter Goes here</div>
-              <Button variant="secondary">Login with Zupass</Button>
-            </div> */}
           </div>
         </div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
@@ -183,12 +183,12 @@ export async function getStaticProps({ locale }: { locale: string }) {
             is_not_empty: true,
           },
         },
-        {
-          property: 'Live on website',
-          checkbox: {
-            equals: true,
-          },
-        },
+        // {
+        //   property: 'Live on website',
+        //   checkbox: {
+        //     equals: true,
+        //   },
+        // },
       ],
     },
   }

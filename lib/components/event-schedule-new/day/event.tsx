@@ -6,6 +6,8 @@ import cn from "classnames";
 import Image from "next/image";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
+// @ts-ignore
+import ethDayImage from "./ethday.jpg";
 import {
   Dialog,
   DialogContent,
@@ -168,7 +170,7 @@ const Event: React.FC<EventProps> = ({
         <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
           <div className="absolute left-0 top-0 bottom-0 h-[70%] w-full bg-gradient-to-b from-white to-transparent z-10"></div>
           <Image
-            src={coworkingImage}
+            src={ethDayImage}
             alt="ETH Day"
             className="w-[100%] h-full object-cover"
           />
