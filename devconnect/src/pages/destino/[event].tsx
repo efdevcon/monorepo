@@ -68,14 +68,14 @@ ${currentUrl}`
 
       <div className="relative z-10 flex flex-col items-center min-h-screen w-full px-4 py-4 md:py-8 justify-center">
         <div className="mb-8 flex text-white flex-col text-xs text-center">
-          <Link href="/destino">
+          <Link href="/destino#events">
             <Image src={DestinoLogo} alt="Destino Logo" className="object-cover w-[250px] max-w-[50vw] mx-auto" />
           </Link>
         </div>
 
         <div className="w-full max-w-[600px] mx-auto relative">
           <Link
-            href="/destino"
+            href="/destino#events"
             className="absolute -top-12 -left-2 z-10 w-8 h-8 flex items-center justify-center bg-white/90 hover:bg-white rounded-full shadow-md transition-colors"
           >
             <svg className="w-5 h-5 text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">

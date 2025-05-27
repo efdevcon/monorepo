@@ -653,7 +653,7 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
 
 export const EventsList = ({ content, events }: { content: any; events: any }) => {
   return (
-    <div className="section">
+    <div className="section" id="events">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <EventsTable events={events} />
       </div>
