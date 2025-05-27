@@ -50,7 +50,15 @@ import Venue from 'common/components/ba/venue/venue'
 //   ssr: false,
 // })
 
-export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: boolean }) => {
+export const Header = ({
+  noGradient,
+  active,
+  fadeOutOnScroll,
+}: {
+  noGradient?: boolean
+  active?: boolean
+  fadeOutOnScroll?: boolean
+}) => {
   const { scrollY } = useScroll()
   const [hasScrolled, setHasScrolled] = React.useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
@@ -64,12 +72,22 @@ export const Header = ({ noGradient, active }: { noGradient?: boolean; active?: 
   // const hideGradient = hasScrolled || noGradient
 
   return (
-    <div className="section z-[100]">
+    <div
+      className={cn('section z-[100] transition-opacity opacity-100 duration-[1000ms]', {
+        // '!opacity-0': hasScrolled && fadeOutOnScroll,
+      })}
+    >
       <header
-        className={`${css['header']} py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none`}
+        className={cn(
+          css['header'],
+          'py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none transition-all duration-[700ms]',
+          {
+            'opacity-0': hasScrolled && fadeOutOnScroll,
+          }
+        )}
         // style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
-        <div className={cn('section opacity-0 transition-all duration-[2000ms]', { 'opacity-100': active })}>
+        <div className={cn('section')}>
           <div className="flex w-full justify-between items-center">
             <Link
               href="/"
@@ -810,9 +828,19 @@ const Home: NextPage = (props: any) => {
             </div>
           </div> */}
 
-          <div className="section relative pb-10 bg-white">
+          {/* <div className="section relative pb-10 bg-white">
             <div className="border-top">
               <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+            </div>
+          </div> */}
+
+          <div className={`section relative bg-white`}>
+            <div className="mt-0 pt-6 border-top pb-8">
+              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
+
+              <div className={`${css['accordion']} tab-content`} id="faq">
+                <FAQComponent questions={data.pages.faq} />
+              </div>
             </div>
           </div>
 
@@ -821,16 +849,6 @@ const Home: NextPage = (props: any) => {
               <h1 className="section-header white">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
-            </div>
-          </div>
-
-          <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-6 border-top pb-6">
-              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-
-              <div className={`${css['accordion']} tab-content`} id="faq">
-                <FAQComponent questions={data.pages.faq} />
-              </div>
             </div>
           </div>
         </main>

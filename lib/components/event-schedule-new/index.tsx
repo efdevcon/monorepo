@@ -207,7 +207,7 @@ const NewScheduleIndex = ({
                   <h2
                     key={date}
                     className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 stickyy top-0 z-10 border-b rounded-lg mb-0.5",
+                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 sticky top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 rounded-md mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
@@ -254,7 +254,9 @@ const NewScheduleIndex = ({
                       event={placement.event}
                       duration={placement.gridPosition.duration}
                       className={
-                        isEventHighlighted(placement) ? "!border-black" : ""
+                        isEventHighlighted(placement)
+                          ? "!border-neutral-500"
+                          : ""
                       }
                       selectedEvent={selectedEvent}
                       setSelectedEvent={setSelectedEvent}

@@ -6,7 +6,7 @@ import { Client } from '@notionhq/client'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
 import Image from 'next/image'
-import styles from './argentina.module.scss'
+import styles from './schedule.module.scss'
 // import Oblisk from '../../public/scroll-video/Oblisk_4K0125.webp'
 import cn from 'classnames'
 import NewSchedule from 'lib/components/event-schedule-new'
@@ -91,7 +91,7 @@ const Argentina = (props: any) => {
 
   return (
     <>
-      <Header active />
+      <Header active fadeOutOnScroll />
       <div className="relative h-[24vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden">
         <Image
           src={Voxel}
@@ -111,6 +111,16 @@ const Argentina = (props: any) => {
       </div>
       <div className="flex flex-col gap-4 text-black">
         <div className="section my-1 mb-8">
+          <div className="flex justify-between gap-4 my-6">
+            <div className="text-2xl">
+              <b>November</b> 2025
+            </div>
+            <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
+              <b>This calendar is a work in progress and will change before Devconnect week.</b> Check back regularly
+              for updates.
+            </div>
+          </div>
+
           <NewSchedule
             events={events}
             selectedEvent={selectedEvent}
@@ -119,7 +129,16 @@ const Argentina = (props: any) => {
             setSelectedDay={setSelectedDay}
           />
 
-          <div className="text-sm flex flex-col gap-4">
+          <div className="flex flex-col gap-4 my-4">
+            <div className="text-2xl">
+              <b>Want to be featured on our calendar?</b>
+            </div>
+            <div className="text-sm">
+              Check back soon for more information on how to submit your event to our calendar.
+            </div>
+          </div>
+
+          {/* <div className="text-sm flex flex-col gap-4">
             <p>
               <strong>Disclaimer:</strong> This calendar is a work in progress and may change a lot before Devconnect
               week. Please check back regularly for updates.
@@ -143,7 +162,7 @@ const Argentina = (props: any) => {
               </Link>
               . You can also use atprotocol directly, as all data is public.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
       <Footer />
@@ -183,12 +202,12 @@ export async function getStaticProps({ locale }: { locale: string }) {
             is_not_empty: true,
           },
         },
-        // {
-        //   property: 'Live on website',
-        //   checkbox: {
-        //     equals: true,
-        //   },
-        // },
+        {
+          property: 'Live on website',
+          checkbox: {
+            equals: true,
+          },
+        },
       ],
     },
   }

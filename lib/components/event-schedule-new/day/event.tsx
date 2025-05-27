@@ -87,10 +87,10 @@ const Event: React.FC<EventProps> = ({
       }}
       className={cn(
         `group bg-[#f0faff] cursor-pointer`,
-        "flex flex-col gap-4 border border-solid border-neutral-400 p-2 px-2 h-full shrink-0 relative rounded-lg overflow-hidden hover:border-black transition-all duration-300",
+        "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative rounded-md overflow-hidden hover:border-black transition-all duration-300",
         {
-          "bg-[rgb(187,232,255)] border-neutral-400 border-solid":
-            isCoworking || isETHDay,
+          "border-l !border-blue-500 border-l-[4px]": isCoworking || isETHDay,
+          "bg-[rgb(187,232,255)] border-solid": isCoworking || isETHDay,
         },
         eventClassName,
         isCoreEvent && !isETHDay && !isCoworking && "bg-blue border-solid",

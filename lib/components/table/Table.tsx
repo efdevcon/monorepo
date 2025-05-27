@@ -10,11 +10,14 @@ type HeaderProps = {
   sortBy: number;
   sortDirection: string;
 };
+
 type RowProps = {
   columns: TableColumn[];
   itemKey: string;
   items: any[];
+  rowWrapper?: (row: any, children: React.ReactNode) => React.ReactNode;
 };
+
 export type TableColumn = {
   title?: string;
   intl?: string;
@@ -23,10 +26,12 @@ export type TableColumn = {
   render?(args: any): any;
   sort?: SortVariation | Function;
 };
+
 type TableProps = {
   columns: TableColumn[];
   items: any[];
   itemKey: string; // Which value to use to resolve a unique key for React
+  rowWrapper?: (row: any, children: React.ReactNode) => React.ReactNode;
   [key: string]: any;
 };
 
@@ -85,11 +90,10 @@ export const TableRows = (props: RowProps) => {
   return (
     <>
       {props.items.map((item) => {
-        return (
-          <div key={item[props.itemKey]} className={css["row"]}>
+        const rowContent = (
+          <div className={css["row"]}>
             {props.columns.map((column) => {
               const value = item[column.key];
-
               let className = css["cell"];
 
               if (column.className)
@@ -101,6 +105,12 @@ export const TableRows = (props: RowProps) => {
                 </div>
               );
             })}
+          </div>
+        );
+
+        return (
+          <div key={item[props.itemKey]}>
+            {props.rowWrapper ? props.rowWrapper(item, rowContent) : rowContent}
           </div>
         );
       })}
@@ -127,6 +137,7 @@ export const Table = (props: TableProps) => {
         itemKey={props.itemKey}
         columns={props.columns}
         items={sortedData}
+        rowWrapper={props.rowWrapper}
       />
     </div>
   );

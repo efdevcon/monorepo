@@ -10,6 +10,10 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   const start = moment(startDate)
   const end = moment(endDate)
 
+  if (!start.isValid() && !end.isValid()) {
+    return ''
+  }
+
   if (start.isSame(end)) {
     // If start and end date are the same, format as "Feb 3, 2024"
     return start.format('MMM D, YYYY')
@@ -24,6 +28,21 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   }
 }
 
+function formatEventUrl(name: string, eventId: string): string {
+  // Convert to lowercase and replace spaces with hyphens
+  const formattedName = name
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    // Remove special characters but keep hyphens
+    .replace(/[^a-z0-9-]/g, '')
+    // Replace multiple consecutive hyphens with a single one
+    .replace(/-+/g, '-')
+    // Remove leading and trailing hyphens
+    .replace(/^-+|-+$/g, '')
+
+  return `/destino/${formattedName}-${eventId}`
+}
+
 const tableColumns: Array<TableColumn> = [
   {
     title: 'Date',
@@ -35,17 +54,17 @@ const tableColumns: Array<TableColumn> = [
       const start1 = moment(startDate1)
       const start2 = moment(startDate2)
 
-      // if (a.eventHasPassed && !b.eventHasPassed) {
-      //   return 1
-      // } else if (b.eventHasPassed && !a.eventHasPassed) {
-      //   return -1
-      // }
+      if (a.eventHasPassed && !b.eventHasPassed) {
+        return 1
+      } else if (b.eventHasPassed && !a.eventHasPassed) {
+        return -1
+      }
 
       if (start1.isAfter(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return -1
+        if (a.eventHasPassed && b.eventHasPassed) return -1
         return 1
       } else if (start1.isBefore(start2)) {
-        // if (a.eventHasPassed && b.eventHasPassed) return 1
+        if (a.eventHasPassed && b.eventHasPassed) return 1
         return -1
       }
 
@@ -64,19 +83,7 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
-      // if (item.link) {
-      return (
-        <Link
-          className="bold"
-          href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
-          indicateExternal
-        >
-          {item.name}
-        </Link>
-      )
-      // }
-
-      return <p className={`bold`}>{item.name}</p>
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.name}</p>
     },
   },
   {
@@ -88,10 +95,10 @@ const tableColumns: Array<TableColumn> = [
       if (!item.location) return null
 
       if (item.location) {
-        return <p className="bolda">{item.location}</p>
+        return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.location}</p>
       }
 
-      return <p className="bolda">{item.location}</p>
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.location}</p>
     },
   },
   {
@@ -100,23 +107,13 @@ const tableColumns: Array<TableColumn> = [
     className: '!hidden md:!flex',
     sort: SortVariation.basic,
     render: item => {
-      return <p className="bolda">{item.type_of_event}</p>
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.type_of_event}</p>
     },
   },
-  // {
-  //   title: 'Team',
-  //   key: 'Team',
-  //   sort: SortVariation.basic,
-  //   className: '!hidden md:!flex',
-  //   render: item => {
-  //     return <p className={`${styles['team-col']}`}>{item.team}</p>
-  //   },
-  // },
   {
     title: 'Social',
     key: 'Social',
     className: '!hidden lg:!flex',
-    // sort: SortVariation.basic,
     render: item => {
       if (!item.twitter_handle) return null
 
@@ -127,7 +124,16 @@ const tableColumns: Array<TableColumn> = [
       }
 
       return (
-        <Link className="bolda" href={`https://x.com/@${socialFormatted}`} indicateExternal>
+        <Link
+          className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}
+          href={`https://x.com/${socialFormatted}`}
+          indicateExternal
+          onClick={(e: React.MouseEvent) => {
+            e.stopPropagation()
+            e.preventDefault()
+            window.open(`https://x.com/${socialFormatted}`, '_blank')
+          }}
+        >
           {socialFormatted}
         </Link>
       )
@@ -149,6 +155,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
       ...event,
       _key: event.Name + event.Location,
       eventHasPassed,
+      href: formatEventUrl(event.name, event.event_id),
     }
   })
 
@@ -174,37 +181,41 @@ const EventsTable = React.memo(({ events, pages }: any) => {
     return true
   })
 
+  const rowWrapper = (row: any, children: React.ReactNode) => (
+    <Link href={row.href} className={styles['row-link']}>
+      {children}
+    </Link>
+  )
+
   return (
-    <div className="w-full">
+    <div className={`w-full ${styles['event-table']}`}>
       <div className="flex justify-between items-center mb-4 gap-2">
         {/* <div className="font-bold">Destino Devconnect Events</div> */}
 
         <div className="flex">
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
-              !includePastEvents ? 'font-bold' : ''
-            }`}
+            className={`no-select cursor-pointer px-2 py-2 ${!includePastEvents ? styles['selected-filter'] : ''}`}
             onClick={() => {
               setIncludePastEvents(false)
             }}
+            data-text="Upcoming Events"
           >
             Upcoming Events
           </p>
 
           <p
-            className={`no-select cursor-pointer translate-y-[1px] hover:font-bold px-2 md:px-4 py-2 ${
-              includePastEvents ? 'font-bold' : ''
-            }`}
+            className={`no-select cursor-pointer px-2 py-2 ${includePastEvents ? styles['selected-filter'] : ''}`}
             onClick={() => {
               setIncludePastEvents(!includePastEvents)
             }}
+            data-text="All Events"
           >
             All Events
           </p>
         </div>
 
         <input
-          className={`rounded-lg p-1.5 text-base lg:text-sm px-4 border-solid text-black border border-slate-300 outline-none`}
+          className={`p-1.5 text-base lg:text-sm px-3 border-solid text-black outline-none`}
           type="text"
           value={search}
           onChange={e => setSearch(e.target.value)}
@@ -214,8 +225,8 @@ const EventsTable = React.memo(({ events, pages }: any) => {
 
       <div className="mb-4">{/* <RichText content={pages.events_table}></RichText> */}</div>
 
-      <div className="text-sm text-black rounded-xl overflow-hidden">
-        <Table itemKey="_key" items={filteredEvents} columns={tableColumns} initialSort={0} />
+      <div className="text-sm overflow-hidden text-white">
+        <Table itemKey="_key" items={filteredEvents} columns={tableColumns} initialSort={0} rowWrapper={rowWrapper} />
       </div>
     </div>
   )

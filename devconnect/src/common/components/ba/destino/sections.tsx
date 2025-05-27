@@ -26,7 +26,9 @@ import MountainBrown from './images/mountain-brown.png'
 import Missing from 'assets/images/404.png'
 import RichText from 'lib/components/tina-cms/RichText'
 import Link from 'common/components/link/Link'
-import { EventsTable } from './event-table'
+import dynamic from 'next/dynamic'
+
+const EventsTable = dynamic(() => import('./event-table').then(mod => mod.EventsTable), { ssr: false })
 
 gsap.registerPlugin(useGSAP, ScrollTrigger)
 
@@ -651,12 +653,8 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
 
 export const EventsList = ({ content, events }: { content: any; events: any }) => {
   return (
-    <div className="section">
+    <div className="section" id="events">
       <div className="flex flex-col items-center justify-center gap-4 ">
-        {/* <div className="text-white text-4xl font-bold mb-4 text-center">{content.events_list_title}</div> */}
-
-        {/* <Image src={Missing} alt="Missing" className="w-full h-auto object-cover my-4" /> */}
-
         <EventsTable events={events} />
       </div>
     </div>

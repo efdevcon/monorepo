@@ -1613,3 +1613,10 @@
     }
   }
 }
+.rainbow-text {
+  background: linear-gradient(to right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}

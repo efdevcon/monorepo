@@ -7,11 +7,14 @@
 
   .external-indicator {
     text-decoration: none;
+    vertical-align: middle;
+      display: inline-flex;
+      align-items: center;
 
     .icon {
       font-size: 0.6em;
       position: relative;
-      top: -3px;
+      top: 0;
     }
   }
 }
