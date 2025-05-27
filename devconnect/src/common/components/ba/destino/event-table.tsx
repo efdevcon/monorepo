@@ -28,6 +28,21 @@ function formatHumanReadableDate(startDate: string, endDate: string) {
   }
 }
 
+function formatEventUrl(name: string, eventId: string): string {
+  // Convert to lowercase and replace spaces with hyphens
+  const formattedName = name
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    // Remove special characters but keep hyphens
+    .replace(/[^a-z0-9-]/g, '')
+    // Replace multiple consecutive hyphens with a single one
+    .replace(/-+/g, '-')
+    // Remove leading and trailing hyphens
+    .replace(/^-+|-+$/g, '')
+
+  return `/destino/${formattedName}-${eventId}`
+}
+
 const tableColumns: Array<TableColumn> = [
   {
     title: 'Date',
@@ -68,15 +83,7 @@ const tableColumns: Array<TableColumn> = [
     key: 'Name',
     sort: SortVariation.basic,
     render: item => {
-      return (
-        <Link
-          className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}
-          href={`/destino/${encodeURIComponent(item.name).replace(/%20/g, '-')}-${encodeURIComponent(item.event_id)}`}
-          indicateExternal
-        >
-          {item.name}
-        </Link>
-      )
+      return <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>{item.name}</p>
     },
   },
   {
@@ -143,7 +150,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
       ...event,
       _key: event.Name + event.Location,
       eventHasPassed,
-      href: `/destino/${encodeURIComponent(event.name).replace(/%20/g, '-')}-${encodeURIComponent(event.event_id)}`,
+      href: formatEventUrl(event.name, event.event_id),
     }
   })
 
