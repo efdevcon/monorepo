@@ -126,8 +126,13 @@ const tableColumns: Array<TableColumn> = [
       return (
         <Link
           className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}
-          href={`https://x.com/@${socialFormatted}`}
+          href={`https://x.com/${socialFormatted}`}
           indicateExternal
+          onClick={(e: React.MouseEvent) => {
+            e.stopPropagation()
+            e.preventDefault()
+            window.open(`https://x.com/${socialFormatted}`, '_blank')
+          }}
         >
           {socialFormatted}
         </Link>
