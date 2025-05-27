@@ -79,6 +79,14 @@ const menuItems = (pathname: string) => [
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
   },
   {
+    text: 'Tickets',
+    url: 'https://devconnect.org/tickets',
+  },
+  {
+    text: 'Calendar',
+    url: '/schedule',
+  },
+  {
     text: 'Destino Devconnect',
     customClass: css['destino-rainbow'],
     url: '/destino',
@@ -297,22 +305,20 @@ export const FooterMenu = (props: any) => {
 
 export const Menu = (props: any) => {
   const router = useRouter()
-  const { scrollY } = useScroll()
-  const [hasScrolled, setHasScrolled] = React.useState(false)
   const [languageOpen, setLanguageOpen] = React.useState(false)
-  const { visible, toggleVisible } = useDevaBotStore()
-  React.useEffect(() => {
-    return scrollY.onChange(latest => {
-      setHasScrolled(latest > 0)
-    })
-  }, [scrollY])
+  // const { visible, toggleVisible } = useDevaBotStore()
+
+  const hasScrolled = props.hasScrolled
 
   return (
     <div
       className={cn(
         css['menu'],
         'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
-        hasScrolled && 'bg-black/90'
+        hasScrolled && 'bg-black/90',
+        {
+          '!pointer-events-none': hasScrolled && !props.menuOpen,
+        }
       )}
     >
       <Mobile menuOpen={props.menuOpen} setMenuOpen={props.setMenuOpen} />

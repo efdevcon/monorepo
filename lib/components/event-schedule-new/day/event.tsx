@@ -83,13 +83,21 @@ const Event: React.FC<EventProps> = ({
   return (
     <div
       style={{
-        height: `${event.spanRows ? event.spanRows * 60 : 60}px`,
+        // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
+        height: event.spanRows ? `${event.spanRows * 60}px` : "60px",
       }}
       className={cn(
         `group bg-[#f0faff] cursor-pointer`,
         "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative rounded-md overflow-hidden hover:border-black transition-all duration-300",
         {
-          "border-l !border-blue-500 border-l-[4px]": isCoworking || isETHDay,
+          // "border-l !border-blue-500 border-l-[4px]": isCoworking || isETHDay,
+          "border-l !border-[#74ACDF] border-l-[4px]":
+            event.difficulty === "Beginner" ||
+            event.difficulty === "All Welcome",
+          "border-l !border-yellow-500 border-l-[4px]":
+            event.difficulty === "Intermediate",
+          "border-l !border-green-500 border-l-[4px]":
+            event.difficulty === "Advanced",
           "bg-[rgb(187,232,255)] border-solid": isCoworking || isETHDay,
         },
         eventClassName,
@@ -184,12 +192,16 @@ const Event: React.FC<EventProps> = ({
           <div className="text-[10px]">{endTime}</div>
         </div> */}
         <div className="flex flex-col grow justify-between items-stretch">
-          <div className={cn("text-xs font-medium line-clamp-1 flex h-full")}>
+          <div className={cn("text-xs font-medium line-clamp-1 shrink-0")}>
             {eventName}
           </div>
           {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
 
-          <div className="flex justify-between">
+          <div
+            className={cn("flex gap-4 justify-end", {
+              "justify-between": !isCoworking,
+            })}
+          >
             {isCoworking && (
               <Button
                 size="sm"
@@ -203,18 +215,29 @@ const Event: React.FC<EventProps> = ({
               </Button>
             )}
 
-            <div className="flex gap-2 grow shrink-0 items-end justify-end text-[9px]">
+            <div
+              className={cn(
+                "flex gap-2 grow items-end justify-between text-[9px]",
+                { "!justify-end": isCoworking }
+              )}
+            >
+              {event.organizer && (
+                <div
+                  className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
+                >
+                  <Star className="text-black hidden md:block" size={11} />
+                  <div className="line-clamp-1">{event.organizer}</div>
+                </div>
+              )}
+
               <div
-                className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center`}
+                className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center relative`}
               >
-                {event.difficulty}
+                <div className="line-clamp-1 w-full grow">
+                  {event.difficulty}
+                </div>
               </div>
-              <div
-                className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
-              >
-                <Star className="text-black shrink-0" size={11} />
-                {event.organizer}
-              </div>
+
               {/* <div
               className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
             >

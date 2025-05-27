@@ -170,7 +170,7 @@ const NewScheduleIndex = ({
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(115px, 1fr))`;
+  const columnTemplate = `repeat(${eventRange.length}, minmax(155px, 1fr))`;
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {
@@ -190,7 +190,8 @@ const NewScheduleIndex = ({
         </div>
       </div> */}
       <SwipeToScroll>
-        <div className="text-black">
+        <div className="text-black flex">
+          <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
           {/* Unified Calendar Grid with aligned header and content */}
           <div className="w-full">
             {/* Grid container with header and content in one cohesive grid */}
@@ -207,7 +208,7 @@ const NewScheduleIndex = ({
                   <h2
                     key={date}
                     className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 sticky top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 rounded-md mb-0.5",
+                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 rounded-md mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}

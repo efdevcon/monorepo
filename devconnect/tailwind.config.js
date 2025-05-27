@@ -11,4 +11,10 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('mouse-only', '@media screen and (pointer: fine)')
+      addVariant('touch-only', '@media screen and (pointer: coarse)')
+    },
+  ],
 }

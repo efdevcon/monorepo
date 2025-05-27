@@ -28,9 +28,8 @@ const Argentina = (props: any) => {
       spanRows: 2,
       name: `Ethereum World's Fair & Coworking Space`,
       description: 'Open coworking space for developers, builders, and researchers to collaborate throughout the week.',
-      organizer: 'DevConnect',
+      organizer: 'Ethereum Foundation',
       difficulty: 'All Welcome',
-      amountPeople: '100',
       isCoreEvent: true,
       timeblocks: [
         {
@@ -51,43 +50,53 @@ const Argentina = (props: any) => {
         text: 'Innovation Hub',
       },
     },
-    {
-      id: 'event-001',
-      priority: 2,
-      spanRows: 3,
-      name: 'ETH Day',
-      description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
-      organizer: 'Ethereum Foundation',
-      difficulty: 'All Welcome',
-      isFairEvent: true,
-      amountPeople: '50',
-      timeblocks: [
-        {
-          start: '2025-11-17T10:00:00Z',
-          end: '2025-11-17T12:00:00Z',
-        },
-      ],
-      location: {
-        url: 'https://example.com/venue1',
-        text: 'Main Conference Hall',
-      },
-      // timeblocks: [
-      //   {
-      //     start: '2025-11-17T10:00:00Z',
-      //     end: '2025-11-17T12:00:00Z',
-      //   },
-      // ],
-      // priority: 1,
-      // categories: ['Education', 'Blockchain', 'Workshop'],
-    },
+    // {
+    //   id: 'event-001',
+    //   priority: 2,
+    //   spanRows: 3,
+    //   name: 'ETH Day',
+    //   description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
+    //   organizer: 'Ethereum Foundation',
+    //   difficulty: 'All Welcome',
+    //   isFairEvent: true,
+    //   timeblocks: [
+    //     {
+    //       start: '2025-11-17T10:00:00Z',
+    //       end: '2025-11-17T12:00:00Z',
+    //     },
+    //   ],
+    //   location: {
+    //     url: 'https://example.com/venue1',
+    //     text: 'Main Conference Hall',
+    //   },
+    //   // timeblocks: [
+    //   //   {
+    //   //     start: '2025-11-17T10:00:00Z',
+    //   //     end: '2025-11-17T12:00:00Z',
+    //   //   },
+    //   // ],
+    //   // priority: 1,
+    //   // categories: ['Education', 'Blockchain', 'Workshop'],
+    // },
   ]
 
   const events = [...props.events, ...coreEvents].map(event => {
+    const overrides = {} as any
+
+    if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
+      overrides.name = 'ETH Day'
+      overrides.isFairEvent = true
+      overrides.spanRows = 3
+    }
+
     return {
       ...event,
+      ...overrides,
       onClick: () => {},
     }
   })
+
+  console.log(events, 'hello')
 
   return (
     <>
@@ -96,23 +105,23 @@ const Argentina = (props: any) => {
         <Image
           src={Voxel}
           alt="Voxel art background"
-          className={cn(styles.argentina, 'object-cover absolute object-[0%,13%] h-full w-full opacity-80')}
+          className={cn(styles.argentina, 'object-cover absolute object-[0%,14%] h-full w-full opacity-80')}
         />
 
         <div className="section z-10 pb-1">
           <div className="flex justify-between items-end">
             <Image src={PageTitle} alt="Page Title" className={'contain w-[450px] translate-x-[-3%]'} />
-            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white text-lg')}>
+            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>
               17 — 22 November Buenos Aires, ARGENTINA
             </div>
           </div>
         </div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
-      <div className="flex flex-col gap-4 text-black">
-        <div className="section my-1 mb-8">
+      <div className="flex flex-col text-black">
+        <div className="section">
           <div className="flex justify-between gap-4 my-6">
-            <div className="text-2xl">
+            <div className="text-2xl hidden md:block">
               <b>November</b> 2025
             </div>
             <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
@@ -120,7 +129,9 @@ const Argentina = (props: any) => {
               for updates.
             </div>
           </div>
+        </div>
 
+        <div className="section overflow-visible touch-only:contents">
           <NewSchedule
             events={events}
             selectedEvent={selectedEvent}
@@ -128,7 +139,9 @@ const Argentina = (props: any) => {
             setSelectedEvent={setSelectedEvent}
             setSelectedDay={setSelectedDay}
           />
+        </div>
 
+        <div className="section mb-8">
           <div className="flex flex-col gap-4 my-4">
             <div className="text-2xl">
               <b>Want to be featured on our calendar?</b>
@@ -137,8 +150,9 @@ const Argentina = (props: any) => {
               Check back soon for more information on how to submit your event to our calendar.
             </div>
           </div>
+        </div>
 
-          {/* <div className="text-sm flex flex-col gap-4">
+        {/* <div className="text-sm flex flex-col gap-4">
             <p>
               <strong>Disclaimer:</strong> This calendar is a work in progress and may change a lot before Devconnect
               week. Please check back regularly for updates.
@@ -163,8 +177,8 @@ const Argentina = (props: any) => {
               . You can also use atprotocol directly, as all data is public.
             </p>
           </div> */}
-        </div>
       </div>
+
       <Footer />
     </>
   )
@@ -269,14 +283,15 @@ export interface Event {
 
     return {
       id: event.id,
-      name: formattedEvent['Event name'],
+      name: formattedEvent['Event name'] || '',
       description: formattedEvent['Description'] || '',
-      capacity: formattedEvent['Capacity'],
+      capacity: formattedEvent['Capacity'] || '',
       startDate: formattedEvent['Event date'],
       // size: formattedEvent['Size'],
       location: formattedEvent['Location'] || { text: 'TBD', url: '' },
       timeblocks: timeblocks,
       difficulty: 'Beginner',
+      organizer: formattedEvent['Organization'] || '',
     }
   })
 

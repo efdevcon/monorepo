@@ -93,7 +93,10 @@ export const Header = ({
               href="/"
               className={cn(
                 css['logo'],
-                'transition-all ease duration-500 pointer-events-auto'
+                'transition-all ease duration-500 pointer-events-auto',
+                {
+                  '!pointer-events-none': fadeOutOnScroll && hasScrolled && !menuOpen,
+                }
                 // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
               )}
             >
@@ -104,7 +107,7 @@ export const Header = ({
               />
             </Link>
 
-            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} hasScrolled={hasScrolled && fadeOutOnScroll} />
           </div>
         </div>
       </header>
