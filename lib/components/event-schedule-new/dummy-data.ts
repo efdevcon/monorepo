@@ -1,113 +1,113 @@
-import { Event } from './model';
+import { Event } from "./model";
 
 export const dummyEvents: Event[] = [
   {
     id: "event-000",
     name: "Ethereum World's Fair & Coworking Space",
     isFairEvent: true,
-    description: "Open coworking space for developers, builders, and researchers to collaborate throughout the week.",
+    description:
+      "Open coworking space for developers, builders, and researchers to collaborate throughout the week.",
     organizer: "DevConnect",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-000",
     location: {
       url: "https://example.com/coworking",
-      text: "Innovation Hub"
+      text: "Innovation Hub",
     },
     timeblocks: [
       {
         start: "2025-11-17T09:00:00Z",
         end: "2025-11-17T10:00:00Z",
-        name: 'Opening Ceremony',
-        location: "Azul Pavillion"
+        name: "Opening Ceremony",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-17T10:00:00Z",
         end: "2025-11-17T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
+        name: "Hackathon",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-17T09:00:00Z",
         end: "2025-11-17T15:00:00Z",
-        name: 'Talks',
-        location: "Amarillo Pavillion"
+        name: "Talks",
+        location: "Amarillo Pavillion",
       },
       {
         start: "2025-11-18T09:00:00Z",
         end: "2025-11-18T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
+        name: "Hackathon",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-19T09:00:00Z",
         end: "2025-11-19T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
+        name: "Hackathon",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-20T09:00:00Z",
         end: "2025-11-20T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
+        name: "Hackathon",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-21T09:00:00Z",
         end: "2025-11-21T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
+        name: "Hackathon",
+        location: "Azul Pavillion",
       },
       {
         start: "2025-11-22T09:00:00Z",
         end: "2025-11-22T18:00:00Z",
-        name: 'Hackathon',
-        location: "Azul Pavillion"
-      }
+        name: "Hackathon",
+        location: "Azul Pavillion",
+      },
     ],
     priority: 1,
-    categories: ["Coworking", "Networking", "Collaboration"]
+    categories: ["Coworking", "Networking", "Collaboration"],
   },
   {
     id: "event-001",
     name: "ETH Day",
     isFairEvent: true,
-    description: "A beginner-friendly workshop covering blockchain fundamentals and use cases.",
+    description:
+      "A beginner-friendly workshop covering blockchain fundamentals and use cases.",
     organizer: "Ethereum Foundation",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-001",
     amountPeople: "50",
     location: {
       url: "https://example.com/venue1",
-      text: "Main Conference Hall"
+      text: "Main Conference Hall",
     },
     timeblocks: [
       {
         start: "2025-11-17T10:00:00Z",
-        end: "2025-11-17T12:00:00Z"
-      }
+        end: "2025-11-17T12:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Education", "Blockchain", "Workshop"]
+    categories: ["Education", "Blockchain", "Workshop"],
   },
   {
     id: "event-002",
     name: "Advanced Smart Contract Development",
-    description: "Deep dive into secure smart contract patterns and optimization techniques.",
+    description:
+      "Deep dive into secure smart contract patterns and optimization techniques.",
     organizer: "Solidity Experts",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-002",
     amountPeople: "30",
     location: {
       url: "https://example.com/venue2",
-      text: "Developer Lab"
+      text: "Developer Lab",
     },
     timeblocks: [
       {
         start: "2025-11-16T14:00:00Z",
-        end: "2025-11-16T17:00:00Z"
-      }
+        end: "2025-11-16T17:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Development", "Smart Contracts", "Security"]
+    categories: ["Development", "Smart Contracts", "Security"],
   },
   // {
   //   id: "event-003",
@@ -133,116 +133,116 @@ export const dummyEvents: Event[] = [
   {
     id: "event-004",
     name: "Web3 UX Design Workshop",
-    description: "Learn how to create user-friendly interfaces for decentralized applications.",
+    description:
+      "Learn how to create user-friendly interfaces for decentralized applications.",
     organizer: "Design DAO",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-004",
     amountPeople: "40",
     location: {
       url: "https://example.com/venue4",
-      text: "Design Studio"
+      text: "Design Studio",
     },
     timeblocks: [
       {
         start: "2025-11-18T09:00:00Z",
-        end: "2025-11-18T12:00:00Z"
-      }
+        end: "2025-11-18T12:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Design", "UX", "Workshop"]
+    categories: ["Design", "UX", "Workshop"],
   },
   {
     id: "event-005",
     name: "Networking Mixer",
-    description: "Connect with developers, investors, and entrepreneurs in the blockchain space.",
+    description:
+      "Connect with developers, investors, and entrepreneurs in the blockchain space.",
     organizer: "DevConnect",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-005",
     amountPeople: "150",
     location: {
       url: "https://example.com/venue5",
-      text: "Rooftop Lounge"
+      text: "Rooftop Lounge",
     },
     timeblocks: [
       {
         start: "2025-11-18T18:00:00Z",
-        end: "2025-11-18T21:00:00Z"
-      }
+        end: "2025-11-18T21:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Networking", "Social"]
+    categories: ["Networking", "Social"],
   },
   {
     id: "event-006",
     name: "Multi-day Hackathon",
     isFairEvent: true,
-    description: "Build innovative blockchain solutions over a three-day hackathon event.",
+    description:
+      "Build innovative blockchain solutions over a three-day hackathon event.",
     organizer: "ETH Global",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-006",
     amountPeople: "200",
     location: {
       url: "https://example.com/venue6",
-      text: "Innovation Center"
+      text: "Innovation Center",
     },
     timeblocks: [
       {
         start: "2025-11-19T09:00:00Z",
-        end: "2025-11-19T20:00:00Z"
+        end: "2025-11-19T20:00:00Z",
       },
       {
         start: "2025-11-20T09:00:00Z",
-        end: "2025-11-20T20:00:00Z"
+        end: "2025-11-20T20:00:00Z",
       },
       {
         start: "2025-11-21T09:00:00Z",
-        end: "2025-11-21T18:00:00Z"
-      }
+        end: "2025-11-21T18:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Hackathon", "Development", "Competition"]
+    categories: ["Hackathon", "Development", "Competition"],
   },
   {
     id: "event-007",
     name: "Zero Knowledge Proofs Workshop",
-    description: "Explore the fundamentals of ZK proofs and their applications in blockchain privacy.",
+    description:
+      "Explore the fundamentals of ZK proofs and their applications in blockchain privacy.",
     organizer: "ZK Research Group",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-007",
     amountPeople: "45",
     location: {
       url: "https://example.com/venue7",
-      text: "Tech Pavilion"
+      text: "Tech Pavilion",
     },
     timeblocks: [
       {
         start: "2025-11-15T13:00:00Z",
-        end: "2025-11-15T16:00:00Z"
-      }
+        end: "2025-11-15T16:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Privacy", "ZK Proofs", "Workshop"]
+    categories: ["Privacy", "ZK Proofs", "Workshop"],
   },
   {
     id: "event-008",
     name: "Sustainable Blockchain Summit",
-    description: "Discussion on environmental impacts and solutions for blockchain technologies.",
+    description:
+      "Discussion on environmental impacts and solutions for blockchain technologies.",
     organizer: "Green Blockchain Alliance",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-008",
     amountPeople: "120",
     location: {
       url: "https://example.com/venue8",
-      text: "Eco Conference Center"
+      text: "Eco Conference Center",
     },
     timeblocks: [
       {
         start: "2025-11-16T10:00:00Z",
-        end: "2025-11-16T15:00:00Z"
-      }
+        end: "2025-11-16T15:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Sustainability", "Environment", "Conference"]
+    categories: ["Sustainability", "Environment", "Conference"],
   },
   // {
   //   id: "event-009",
@@ -269,447 +269,447 @@ export const dummyEvents: Event[] = [
     id: "event-010",
     name: "Blockchain Governance Forum",
     isFairEvent: true,
-    description: "Exploring different governance models in blockchain projects and DAOs.",
+    description:
+      "Exploring different governance models in blockchain projects and DAOs.",
     organizer: "Governance Guild",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-010",
     amountPeople: "65",
     location: {
       url: "https://example.com/venue10",
-      text: "Forum Auditorium"
+      text: "Forum Auditorium",
     },
     timeblocks: [
       {
         start: "2025-11-18T14:00:00Z",
-        end: "2025-11-18T17:30:00Z"
-      }
+        end: "2025-11-18T17:30:00Z",
+      },
     ],
     priority: 3,
-    categories: ["Governance", "DAO", "Policy"]
+    categories: ["Governance", "DAO", "Policy"],
   },
   {
     id: "event-011",
     name: "NFT Art Exhibition",
     isFairEvent: true,
-    description: "Showcase of digital art and NFT collections from renowned crypto artists.",
+    description:
+      "Showcase of digital art and NFT collections from renowned crypto artists.",
     organizer: "CryptoArt Collective",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-011",
     amountPeople: "200",
     location: {
       url: "https://example.com/venue11",
-      text: "Digital Gallery"
+      text: "Digital Gallery",
     },
     timeblocks: [
       {
         start: "2025-11-19T12:00:00Z",
-        end: "2025-11-19T20:00:00Z"
+        end: "2025-11-19T20:00:00Z",
       },
       {
         start: "2025-11-20T12:00:00Z",
-        end: "2025-11-20T20:00:00Z"
-      }
+        end: "2025-11-20T20:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["NFT", "Art", "Exhibition"]
+    categories: ["NFT", "Art", "Exhibition"],
   },
   {
     id: "event-012",
     name: "Cross-chain Interoperability Panel",
-    description: "Technical discussion on bridging protocols and cross-chain communication standards.",
+    description:
+      "Technical discussion on bridging protocols and cross-chain communication standards.",
     organizer: "Interop Alliance",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-012",
     amountPeople: "70",
     location: {
       url: "https://example.com/venue12",
-      text: "Technical Theater"
+      text: "Technical Theater",
     },
     timeblocks: [
       {
         start: "2025-11-20T15:00:00Z",
-        end: "2025-11-20T17:00:00Z"
-      }
+        end: "2025-11-20T17:00:00Z",
+      },
     ],
     priority: 3,
-    categories: ["Interoperability", "Cross-chain", "Panel"]
+    categories: ["Interoperability", "Cross-chain", "Panel"],
   },
   {
     id: "event-013",
     name: "DeSci Conference",
-    description: "Exploring decentralized science initiatives and blockchain for research funding.",
+    description:
+      "Exploring decentralized science initiatives and blockchain for research funding.",
     organizer: "DeSci Foundation",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-013",
     amountPeople: "90",
     location: {
       url: "https://example.com/venue13",
-      text: "Science Center"
+      text: "Science Center",
     },
     timeblocks: [
       {
         start: "2025-11-21T09:30:00Z",
-        end: "2025-11-21T16:30:00Z"
-      }
+        end: "2025-11-21T16:30:00Z",
+      },
     ],
     priority: 2,
-    categories: ["DeSci", "Research", "Conference"]
+    categories: ["DeSci", "Research", "Conference"],
   },
   {
     id: "event-014",
     name: "Crypto Gaming Tournament",
-    description: "Competitive tournament featuring popular blockchain games with prizes in crypto.",
+    description:
+      "Competitive tournament featuring popular blockchain games with prizes in crypto.",
     organizer: "GameFi League",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-014",
     amountPeople: "150",
     location: {
       url: "https://example.com/venue14",
-      text: "Gaming Arena"
+      text: "Gaming Arena",
     },
     timeblocks: [
       {
         start: "2025-11-22T10:00:00Z",
-        end: "2025-11-22T18:00:00Z"
-      }
+        end: "2025-11-22T18:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Gaming", "GameFi", "Tournament"]
+    categories: ["Gaming", "GameFi", "Tournament"],
   },
   {
     id: "event-015",
     name: "Closing Ceremony & Future of Web3",
-    description: "Keynote speeches on the future direction of Web3 and closing celebrations.",
+    description:
+      "Keynote speeches on the future direction of Web3 and closing celebrations.",
     organizer: "DevConnect",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-015",
     amountPeople: "300",
     location: {
       url: "https://example.com/venue15",
-      text: "Grand Hall"
+      text: "Grand Hall",
     },
     timeblocks: [
       {
         start: "2025-11-23T16:00:00Z",
-        end: "2025-11-23T20:00:00Z"
-      }
+        end: "2025-11-23T20:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Keynote", "Networking", "Celebration"]
+    categories: ["Keynote", "Networking", "Celebration"],
   },
   {
     id: "event-016",
     name: "MEV Workshop & Discussion",
-    description: "Deep dive into Maximal Extractable Value, its implications, and potential solutions.",
+    description:
+      "Deep dive into Maximal Extractable Value, its implications, and potential solutions.",
     organizer: "MEV Research Collective",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-016",
     amountPeople: "75",
     location: {
       url: "https://example.com/venue16",
-      text: "Research Hub"
+      text: "Research Hub",
     },
     timeblocks: [
       {
         start: "2025-11-19T14:00:00Z",
-        end: "2025-11-19T17:00:00Z"
-      }
+        end: "2025-11-19T17:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["MEV", "Research", "Technical"]
+    categories: ["MEV", "Research", "Technical"],
   },
   {
     id: "event-017",
     name: "Web3 Career Fair",
-    description: "Connect with leading blockchain companies and explore career opportunities in Web3.",
+    description:
+      "Connect with leading blockchain companies and explore career opportunities in Web3.",
     organizer: "Crypto Careers Network",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-017",
     amountPeople: "400",
     location: {
       url: "https://example.com/venue17",
-      text: "Career Expo Center"
+      text: "Career Expo Center",
     },
     timeblocks: [
       {
         start: "2025-11-20T10:00:00Z",
-        end: "2025-11-20T16:00:00Z"
-      }
+        end: "2025-11-20T16:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Career", "Networking", "Recruitment"]
+    categories: ["Career", "Networking", "Recruitment"],
   },
   {
     id: "event-018",
     name: "Ethereum Security Workshop",
-    description: "Hands-on workshop focusing on smart contract auditing and security best practices.",
+    description:
+      "Hands-on workshop focusing on smart contract auditing and security best practices.",
     organizer: "Security DAO",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-018",
     amountPeople: "60",
     location: {
       url: "https://example.com/venue18",
-      text: "Security Lab"
+      text: "Security Lab",
     },
     timeblocks: [
       {
         start: "2025-11-21T13:00:00Z",
-        end: "2025-11-21T17:00:00Z"
-      }
+        end: "2025-11-21T17:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Security", "Smart Contracts", "Workshop"]
+    categories: ["Security", "Smart Contracts", "Workshop"],
   },
   {
     id: "event-019",
     name: "Crypto Economics Symposium",
-    description: "Academic conference exploring tokenomics, mechanism design, and economic models in crypto.",
+    description:
+      "Academic conference exploring tokenomics, mechanism design, and economic models in crypto.",
     organizer: "Crypto Economics Lab",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-019",
     amountPeople: "120",
     location: {
       url: "https://example.com/venue19",
-      text: "Economics Building"
+      text: "Economics Building",
     },
     timeblocks: [
       {
         start: "2025-11-22T09:00:00Z",
-        end: "2025-11-22T15:00:00Z"
-      }
+        end: "2025-11-22T15:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Economics", "Research", "Academic"]
+    categories: ["Economics", "Research", "Academic"],
   },
   {
     id: "event-020",
     name: "Ethereum Identity Systems Workshop",
-    description: "Exploring decentralized identity solutions and their implementation on Ethereum.",
+    description:
+      "Exploring decentralized identity solutions and their implementation on Ethereum.",
     organizer: "Identity Working Group",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-020",
     amountPeople: "80",
     location: {
       url: "https://example.com/venue20",
-      text: "Workshop Room A"
+      text: "Workshop Room A",
     },
     timeblocks: [
       {
         start: "2025-11-19T10:00:00Z",
-        end: "2025-11-19T13:00:00Z"
-      }
+        end: "2025-11-19T13:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Identity", "Privacy", "Technical"]
+    categories: ["Identity", "Privacy", "Technical"],
   },
   {
     id: "event-021",
     name: "Blockchain for Social Impact",
-    description: "Case studies and discussions on using blockchain technology for social good.",
+    description:
+      "Case studies and discussions on using blockchain technology for social good.",
     organizer: "Impact DAO",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-021",
     amountPeople: "150",
     location: {
       url: "https://example.com/venue21",
-      text: "Community Hall"
+      text: "Community Hall",
     },
     timeblocks: [
       {
         start: "2025-11-20T13:00:00Z",
-        end: "2025-11-20T17:00:00Z"
-      }
+        end: "2025-11-20T17:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Social Impact", "Case Studies", "Community"]
+    categories: ["Social Impact", "Case Studies", "Community"],
   },
   {
     id: "event-022",
     name: "Rollup Development Workshop",
-    description: "Technical deep dive into building and optimizing rollup solutions.",
+    description:
+      "Technical deep dive into building and optimizing rollup solutions.",
     organizer: "Scaling Solutions Lab",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-022",
     amountPeople: "50",
     location: {
       url: "https://example.com/venue22",
-      text: "Tech Lab 2"
+      text: "Tech Lab 2",
     },
     timeblocks: [
       {
         start: "2025-11-21T10:00:00Z",
-        end: "2025-11-21T16:00:00Z"
-      }
+        end: "2025-11-21T16:00:00Z",
+      },
     ],
     priority: 3,
-    categories: ["Layer 2", "Scaling", "Development"]
+    categories: ["Layer 2", "Scaling", "Development"],
   },
   {
     id: "event-023",
     name: "Web3 Legal Summit",
-    description: "Legal experts discuss regulatory frameworks and compliance in crypto.",
+    description:
+      "Legal experts discuss regulatory frameworks and compliance in crypto.",
     organizer: "Blockchain Law Association",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-023",
     amountPeople: "180",
     location: {
       url: "https://example.com/venue23",
-      text: "Legal Forum"
+      text: "Legal Forum",
     },
     timeblocks: [
       {
         start: "2025-11-22T09:00:00Z",
-        end: "2025-11-22T17:00:00Z"
-      }
+        end: "2025-11-22T17:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Legal", "Regulation", "Compliance"]
+    categories: ["Legal", "Regulation", "Compliance"],
   },
   {
     id: "event-024",
     name: "DeFi Risk Management",
-    description: "Understanding and mitigating risks in decentralized finance protocols.",
+    description:
+      "Understanding and mitigating risks in decentralized finance protocols.",
     organizer: "DeFi Risk DAO",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-024",
     amountPeople: "70",
     location: {
       url: "https://example.com/venue24",
-      text: "Finance Center"
+      text: "Finance Center",
     },
     timeblocks: [
       {
         start: "2025-11-19T15:00:00Z",
-        end: "2025-11-19T18:00:00Z"
-      }
+        end: "2025-11-19T18:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["DeFi", "Risk Management", "Finance"]
+    categories: ["DeFi", "Risk Management", "Finance"],
   },
   {
     id: "event-025",
     name: "Ethereum Data Analytics",
-    description: "Tools and techniques for analyzing on-chain data and market trends.",
+    description:
+      "Tools and techniques for analyzing on-chain data and market trends.",
     organizer: "Blockchain Analytics Group",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-025",
     amountPeople: "90",
     location: {
       url: "https://example.com/venue25",
-      text: "Data Lab"
+      text: "Data Lab",
     },
     timeblocks: [
       {
         start: "2025-11-20T09:00:00Z",
-        end: "2025-11-20T13:00:00Z"
-      }
+        end: "2025-11-20T13:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Analytics", "Data Science", "Research"]
+    categories: ["Analytics", "Data Science", "Research"],
   },
   {
     id: "event-026",
     name: "Web3 Content Creation Workshop",
-    description: "Learn effective strategies for creating educational crypto content.",
+    description:
+      "Learn effective strategies for creating educational crypto content.",
     organizer: "Crypto Education Network",
     difficulty: "Beginner",
-    lemonadeID: "lemonade-026",
     amountPeople: "100",
     location: {
       url: "https://example.com/venue26",
-      text: "Media Center"
+      text: "Media Center",
     },
     timeblocks: [
       {
         start: "2025-11-21T14:00:00Z",
-        end: "2025-11-21T17:00:00Z"
-      }
+        end: "2025-11-21T17:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Education", "Content", "Media"]
+    categories: ["Education", "Content", "Media"],
   },
   {
     id: "event-027",
     name: "Decentralized Storage Summit",
-    description: "Exploring innovations in decentralized storage solutions and IPFS.",
+    description:
+      "Exploring innovations in decentralized storage solutions and IPFS.",
     organizer: "Storage Protocol Alliance",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-027",
     amountPeople: "85",
     location: {
       url: "https://example.com/venue27",
-      text: "Protocol Hub"
+      text: "Protocol Hub",
     },
     timeblocks: [
       {
         start: "2025-11-22T11:00:00Z",
-        end: "2025-11-22T16:00:00Z"
-      }
+        end: "2025-11-22T16:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Storage", "Infrastructure", "Technical"]
+    categories: ["Storage", "Infrastructure", "Technical"],
   },
   {
     id: "event-028",
     name: "Crypto UX Research Symposium",
-    description: "Share and discuss latest research in blockchain user experience design.",
+    description:
+      "Share and discuss latest research in blockchain user experience design.",
     organizer: "UX Research Collective",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-028",
     amountPeople: "60",
     location: {
       url: "https://example.com/venue28",
-      text: "Design Center"
+      text: "Design Center",
     },
     timeblocks: [
       {
         start: "2025-11-19T09:00:00Z",
-        end: "2025-11-19T12:00:00Z"
-      }
+        end: "2025-11-19T12:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["UX", "Research", "Design"]
+    categories: ["UX", "Research", "Design"],
   },
   {
     id: "event-029",
     name: "Smart Contract Testing Workshop",
-    description: "Hands-on session on testing frameworks and best practices for smart contracts.",
+    description:
+      "Hands-on session on testing frameworks and best practices for smart contracts.",
     organizer: "Testing Standards Group",
     difficulty: "Advanced",
-    lemonadeID: "lemonade-029",
     amountPeople: "40",
     location: {
       url: "https://example.com/venue29",
-      text: "Testing Lab"
+      text: "Testing Lab",
     },
     timeblocks: [
       {
         start: "2025-11-20T14:00:00Z",
-        end: "2025-11-20T18:00:00Z"
-      }
+        end: "2025-11-20T18:00:00Z",
+      },
     ],
     priority: 2,
-    categories: ["Development", "Testing", "Smart Contracts"]
+    categories: ["Development", "Testing", "Smart Contracts"],
   },
   {
     id: "event-030",
     name: "Web3 Startup Pitch Competition",
-    description: "Early-stage blockchain startups compete for funding and mentorship opportunities.",
+    description:
+      "Early-stage blockchain startups compete for funding and mentorship opportunities.",
     organizer: "Crypto Founders Network",
     difficulty: "Intermediate",
-    lemonadeID: "lemonade-030",
     amountPeople: "200",
     location: {
       url: "https://example.com/venue30",
-      text: "Startup Arena"
+      text: "Startup Arena",
     },
     timeblocks: [
       {
         start: "2025-11-21T11:00:00Z",
-        end: "2025-11-21T18:00:00Z"
-      }
+        end: "2025-11-21T18:00:00Z",
+      },
     ],
     priority: 1,
-    categories: ["Startups", "Funding", "Competition"]
-  }
-]; 
+    categories: ["Startups", "Funding", "Competition"],
+  },
+];
