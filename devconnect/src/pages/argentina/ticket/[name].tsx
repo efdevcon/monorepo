@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { Ticket } from 'lib/components/ticket'
 import { ShareTicket } from './index'
 
 const TicketPage = (props: any) => {
