@@ -17,19 +17,24 @@ const index: Template = {
       label: 'Subtext',
     },
     {
-      type: "string",
-      name: "button",
-      label: "Button text",
+      type: 'string',
+      name: 'button',
+      label: 'Button text',
     },
     createRichText('what_is_devconnect'),
     createRichText('buenos_aires'),
+    createRichText('how_to_contribute'),
+    createRichText('event_calendar'),
     // createRichText('what_to_expect'),
     {
       label: 'what_to_expect',
       name: 'what_to_expect',
       list: true,
       type: 'object',
-      fields: [{ label: 'title', name: 'title', type: 'string' }, { label: 'description', name: 'description', type: 'string' }],
+      fields: [
+        { label: 'title', name: 'title', type: 'string' },
+        { label: 'description', name: 'description', type: 'string' },
+      ],
     },
     {
       type: 'object',
@@ -42,7 +47,7 @@ const index: Template = {
       type: 'string',
       name: 'devconnect_themes',
       label: 'Devconnect Themes',
-      list: true
+      list: true,
     },
     {
       label: 'faq',

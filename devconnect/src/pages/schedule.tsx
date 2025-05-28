@@ -111,9 +111,7 @@ const Argentina = (props: any) => {
         <div className="section z-10 pb-1">
           <div className="flex justify-between items-end">
             <Image src={PageTitle} alt="Page Title" className={'contain w-[450px] translate-x-[-3%]'} />
-            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>
-              17 — 22 November Buenos Aires, ARGENTINA
-            </div>
+            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>Buenos Aires, ARGENTINA</div>
           </div>
         </div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
@@ -217,7 +215,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
           },
         },
         {
-          property: 'Live on website',
+          property: 'Would you like your event to be live on our website',
           checkbox: {
             equals: true,
           },

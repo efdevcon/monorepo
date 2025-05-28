@@ -97,7 +97,7 @@ export const Card = React.forwardRef((props: CardProps, ref: any) => {
     }
 
     return (
-      <div className="aspect rounded-2xl overflow-hidden">
+      <div className="aspect rounded-t-2xl overflow-hidden">
         <div className={css['img-wrapper']}>
           <Image
             alt={props.title}

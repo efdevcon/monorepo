@@ -1,7 +1,7 @@
 @import 'styles/variables.scss';
 
 .hero {
-  @keyframes fadeInGradient { 
+  @keyframes fadeInGradient {
     from {
       opacity: 0;
     }
@@ -23,22 +23,19 @@
       z-index: 1;
       opacity: 1;
       background: linear-gradient(90deg, #129498 0%, transparent 50.35%, #1aacb1 100%);
-      -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))
+      -webkit-mask-image: -webkit-gradient(linear, left 0%, left bottom, from(rgba(0, 0, 0, 1)), to(rgba(0, 0, 0, 0)));
     }
   }
-  
 
-
-  
   // &:before {
   //   position: absolute;
   //   height: 100%;
   //   width: 100%;
   //   z-index: 1;
   //   content: '';
-  //   background: radial-gradient(ellipse at center, 
+  //   background: radial-gradient(ellipse at center,
   //     transparent 0%,
-  //     transparent 20%, 
+  //     transparent 20%,
   //     rgba(0, 0, 0, 0.541) 85%,
   //     rgba(0, 0, 0, 0.966) 100%
   //   );
@@ -61,7 +58,6 @@
   --icon-color: black !important;
   // opacity: 1;
   text-decoration: none !important;
-      
 
   * {
     text-decoration: none !important;
@@ -80,22 +76,22 @@
 
   /* Gradient border hack */
   // &:not(:hover) {
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      // background: teal;
-      // background: linear-gradient(60deg, #06060f, #151526, #100a17, #121212);
-      background: white;
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      margin: -1px;
-      border-radius: inherit;
-      z-index: 4;
-    }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    // background: teal;
+    // background: linear-gradient(60deg, #06060f, #151526, #100a17, #121212);
+    background: white;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    margin: -1px;
+    border-radius: inherit;
+    z-index: 4;
+  }
   // }
 
   &:before {
@@ -113,14 +109,14 @@
     // background: teal;
     background: linear-gradient(45deg, #a08bff, #ff8563, #25d2df);
   }
-  
+
   span {
     z-index: 5;
   }
 }
 
 .topics {
-  font-size: 36px;
+  font-size: 32px;
   letter-spacing: 5px;
   text-transform: uppercase;
   display: block;
@@ -132,7 +128,7 @@
 
   .topic {
     color: rgba(0, 0, 0, 0.1);
-    transition: color .7s;
+    transition: color 0.7s;
     display: inline;
     opacity: 1 !important;
 
@@ -198,7 +194,7 @@
     flex-wrap: nowrap;
     text-transform: uppercase;
 
-    >a {
+    > a {
       &:not(.twitter) {
         @media (max-width: $screen-sm) {
           display: none;
@@ -206,7 +202,7 @@
       }
     }
 
-    >* {
+    > * {
       margin-right: 50px;
       font-weight: 700;
       cursor: pointer;
@@ -290,8 +286,8 @@
       .countdown-number {
         @include extra-large-text;
         font-weight: bold;
-        color: #89BEEB;
-        --icon-color: #89BEEB;
+        color: #89beeb;
+        --icon-color: #89beeb;
         display: flex;
         align-items: center;
 
@@ -340,10 +336,10 @@
     .ticket-button {
       margin-bottom: 16px;
       font-weight: 400;
-      [data-type="link-text"] {
+      [data-type='link-text'] {
         display: flex;
         align-items: center;
-    
+
         svg {
           font-size: 26px;
           margin-right: 8px;
@@ -351,7 +347,8 @@
       }
     }
 
-    .video-recap-button, .aticket-button {
+    .video-recap-button,
+    .aticket-button {
       // background: none;
       position: relative;
       background-clip: padding-box;
@@ -360,7 +357,6 @@
       --icon-color: black !important;
       opacity: 1;
       // font-weight: bold;
-
 
       @keyframes fade-in-delay {
         0% {
@@ -412,12 +408,11 @@
         // background: #1a1a1a;
       }
     }
-    
 
     .big-description {
       font-size: 60px;
       line-height: 56.25px;
-    
+
       @media (max-width: $screen-lg) {
         font-size: 32px;
         line-height: 1em;
@@ -485,11 +480,11 @@
         }
 
         50% {
-          transform: rotate(-2deg)
+          transform: rotate(-2deg);
         }
 
         100% {
-          transform: rotate(0deg)
+          transform: rotate(0deg);
         }
       }
 
@@ -579,7 +574,7 @@
   //   padding-bottom: 16px;
   // }
 
-  >* {
+  > * {
     flex-grow: 1;
   }
 
@@ -606,7 +601,7 @@
     justify-content: space-between;
     position: relative;
 
-    >* {
+    > * {
       flex-shrink: 0;
     }
 
@@ -673,7 +668,7 @@
         max-width: 650px;
         // min-height: 400px;
 
-        >* {
+        > * {
           // position: absolute;
           position: relative;
           // top: -5%;
@@ -681,14 +676,14 @@
           width: 100%;
         }
 
-         @media (max-width: $screen-lg) {
+        @media (max-width: $screen-lg) {
           display: none;
         }
       }
     }
 
     .topics-container {
-      >* {
+      > * {
         margin-top: 12px;
       }
 
@@ -696,7 +691,7 @@
     }
 
     .buttons {
-      >* {
+      > * {
         display: inline-flex;
         margin-left: 24px;
 
@@ -738,7 +733,8 @@
     justify-content: center;
   }
 
-  .cowork-tickets-button, .city-guide-button {
+  .cowork-tickets-button,
+  .city-guide-button {
     @media (max-width: $screen-sm) {
       padding-left: 16px;
       padding-right: 16px;
@@ -746,10 +742,10 @@
   }
 
   .cowork-tickets-button {
-    [data-type="link-text"] {
+    [data-type='link-text'] {
       display: flex;
       align-items: center;
-  
+
       svg {
         font-size: 28px;
         margin-right: 12px;
@@ -805,7 +801,6 @@
     display: flex;
     grid-template-columns: repeat(130, 1fr);
     padding: 16px 0px;
-
 
     @media (max-width: $screen-lg) {
       display: none !important;
@@ -928,7 +923,6 @@
 //     }
 //   }
 
-
 //   .background {
 //     position: absolute;
 //     left: 0px;
@@ -943,7 +937,6 @@
 //     display: flex;
 //     grid-template-columns: repeat(130, 1fr);
 //     padding: 16px 0px;
-
 
 //     @media (max-width: $screen-lg) {
 //       display: none !important;
@@ -1096,7 +1089,7 @@
     // line-height: 1em;
   }
 
-  >span {
+  > span {
     font-weight: 300;
   }
 
@@ -1118,12 +1111,12 @@
   transition: background-color 0.9s ease-out;
   opacity: 1 !important;
   position: relative;
-  
+
   .gradient-overlay {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 0% 200%,#74abde56 30%,rgba(2,0,36,0) 70%);
+    background: radial-gradient(circle at 0% 200%, #74abde56 30%, rgba(2, 0, 36, 0) 70%);
   }
 
   &.visible {
@@ -1273,7 +1266,7 @@
       justify-content: space-between;
       align-items: center;
 
-      >* {
+      > * {
         &:nth-child(2) {
           width: $width-right-column;
 
@@ -1343,7 +1336,7 @@
           align-items: center;
           padding-right: 15px;
 
-          >* {
+          > * {
             &:nth-child(1) {
               @media (max-width: $screen-md) {
                 display: none;
@@ -1352,7 +1345,7 @@
           }
         }
 
-        >a {
+        > a {
           margin-top: 32px;
 
           @media (max-width: $screen-md) {
@@ -1411,7 +1404,7 @@
         // font-weight: 700;
         margin-left: 16px;
 
-        >* {
+        > * {
           // display: block;
           margin-top: 12px;
           transform: translateY(-8px);
@@ -1436,14 +1429,13 @@
   }
 }
 
-.nc-loop-mouse-16-icon-f> :nth-child(2) {
+.nc-loop-mouse-16-icon-f > :nth-child(2) {
   --animation-duration: 1s;
   transform-origin: 50% 50%;
   animation: nc-loop-mouse-anim var(--animation-duration) infinite;
 }
 
 @keyframes nc-loop-mouse-anim {
-
   0%,
   100% {
     transform: translateY(0);
@@ -1499,7 +1491,7 @@
 
     .topic {
       color: rgba(0, 0, 0, 0.1);
-      transition: color .7s;
+      transition: color 0.7s;
       display: inline;
       opacity: 1 !important;
 
@@ -1550,7 +1542,7 @@
         padding-bottom: 32px;
         border-bottom: none;
       }
-  
+
       img {
         object-fit: contain;
         object-position: center;
@@ -1560,14 +1552,13 @@
     }
   }
 
-
   .reasons-to-attend {
     display: grid;
     flex-wrap: nowrap;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 16px;
 
-    @media(max-width: $screen-md) {
+    @media (max-width: $screen-md) {
       grid-template-columns: 1fr;
     }
 
@@ -1585,7 +1576,7 @@
       padding-right: 32px;
       padding-bottom: 32px;
 
-      @media(max-width: $screen-md) {
+      @media (max-width: $screen-md) {
         padding: 16px;
       }
 
@@ -1609,7 +1600,6 @@
       .right {
         flex-shrink: 1;
       }
-    
     }
   }
 }

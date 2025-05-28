@@ -45,6 +45,8 @@ import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
 import NewSchedule from 'lib/components/event-schedule-new'
 import Venue from 'common/components/ba/venue/venue'
+import { Ticket, ExternalLink } from 'lucide-react'
+import TicketExample from 'assets/images/ba/ticket-example-2.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -222,6 +224,47 @@ export const withTranslations = (Component: any) => {
   }
 }
 
+const TicketButton = ({
+  fadeInArgentina,
+  userHasInterruptedPlayback,
+  className,
+}: {
+  fadeInArgentina: boolean
+  userHasInterruptedPlayback: boolean
+  className?: string
+}) => {
+  return (
+    <Link
+      href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
+      spanClass={cn('flex flex-col items-end gap-1', className)}
+    >
+      <p className="bg-[#f2f7fc] rounded-lg px-4 py-2 flex items-center gap-3 self-end">
+        {/* <Ticket className="w-6 h-6 opacity-80" /> */}
+        Devconnect Ticket Sale has begun!
+        <ExternalLink className="w-5 h-5 opacity-80" />
+      </p>
+      <Image src={TicketExample} alt="Ticket Example" className="w-[400px] translate-x-[2%]" />
+    </Link>
+  )
+
+  return (
+    <Link
+      href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
+      spanClass="flex items-center gap-4"
+      className={cn(
+        '!flex items-center self-start opacity-0 transition-opacity duration-[1500ms] bg-black/80 text-white backdrop-blur-sm rounded-lg px-4 py-2 text-2xl',
+        className,
+        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+        userHasInterruptedPlayback && 'duration-[1000ms]'
+      )}
+    >
+      <Ticket className="w-6 h-6" />
+      Ticket sale is open
+      <Image src={TicketExample} alt="Ticket Example" className="w-6 h-6" />
+    </Link>
+  )
+}
+
 const Home: NextPage = (props: any) => {
   const { data }: { data: any } = useTina(props.cms)
   // const { data: translations } = useTina(props.translations)
@@ -312,6 +355,11 @@ const Home: NextPage = (props: any) => {
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
                 <div className="flex flex-col gap-0">
+                  {/* <TicketButton
+                    fadeInArgentina={fadeInArgentina}
+                    userHasInterruptedPlayback={userHasInterruptedPlayback}
+                  /> */}
+
                   <div className={`text-2xl lg:text-4xl flex flex-col -translate-x-[2%]`}>
                     <Image
                       src={AnnouncementDate}
@@ -386,6 +434,18 @@ const Home: NextPage = (props: any) => {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
+                  <TicketButton
+                    className="mb-24"
+                    fadeInArgentina={fadeInArgentina}
+                    userHasInterruptedPlayback={userHasInterruptedPlayback}
+                  />
+                </div>
+
+                <div
+                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[3000ms]', {
+                    '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
+                  })}
+                >
                   {/* <Link
                     href="https://paragraph.xyz/@efevents"
                     className={cn(
@@ -407,6 +467,7 @@ const Home: NextPage = (props: any) => {
                       Subscribe to our newsletter
                     </Button>
                   </Link> */}
+
                   <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/80 rounded-lg p-2 px-3 shadow">
                     <p className="text-base">Follow us</p>
                     <a
@@ -483,197 +544,8 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
             </div>
-
-            {/* <Image
-              src={HeroImage}
-              alt="Hero Image"
-              className={cn('fixed top-0 left-0 w-full h-full object-cover', css.heroImage)}
-            /> */}
           </div>
 
-          {/* <Scene className={css['scene-hero']}>
-
-            <div className={css['cube-container']}>
-              <div className={css['cube']} id="cube" />
-              <ErrorBoundary>
-                <Cube />
-              </ErrorBoundary>
-            </div> 
-
-            <div className="section">
-              <div className={css['info-container']}>
-                <div className={`${css['info']}`}>
-                  <div>
-                    <p className={`${css['big-description']}`}>
-                      {data.pages.catchphrase}
-                    </p>
-
-                    <div
-                      style={{ maxWidth: '575px', marginBottom: '12px', color: '#3b3b3b' }}
-                      className="big-text flex gap-3 items-center"
-                    >
-                    </div>
-
-                    <div className={css['buttons']}>
-
-
-                      <Link
-                        href="https://x.com/EFDevconnect"
-                        className={`button slick-purple hover:scale-[1.02] transition-all duration-300 ${css['video-recap-button']}`}
-                      >
-                        {data.pages.button}
-                      </Link>
-                    </div>
-                  </div>
-                  <div className={css['countdown']}>
-
-                  </div>
-                </div>
-              </div>
-            </div> 
-
-            <div className={`section ${css['bottom-section']}`}>
-              <div className={`${css['bottom']} margin-bottom-less`}>
-                <div className="flex gap-3 text-xl items-center relative">
-                  <div className={'absolute top-0 -translate-y-full left-0 text-[11px] leading-none pb-1.5 opacity-50'}>
-                    @EFDevconnect
-                  </div>
-                  {/* <Logo
-                    onMouseEnter={() => setHehe(true)}
-                    onMouseLeave={() => setHehe(false)}
-                    onTouchStart={() => setHehe(!hehe)}
-                    className={css['logo-bottom-left']}
-                    style={{ filter: 'grayscale(40%)', marginRight: '8px' }}
-                  /> 
-
-                  <a
-                    target="_blank"
-                    className="cursor-pointer flex items-center"
-                    rel="noreferrer"
-                    href="https://x.com/EFDevconnect/"
-                  >
-                    <TwitterIcon style={{ fill: 'black' }} />
-                  </a>
-                  <a
-                    target="_blank"
-                    className="cursor-pointer flex items-center"
-                    rel="noreferrer"
-                    href="https://t.me/efdevconnect"
-                  >
-                    <TelegramIcon style={{ fill: 'black' }} />
-                  </a>
-                  <a
-                    target="_blank"
-                    className="cursor-pointer flex items-center"
-                    rel="noreferrer"
-                    href="https://warpcast.com/efdevconnect"
-                  >
-                    <FarcasterIcon style={{ fill: 'black' }} />
-                  </a>
-
-                  <MailIcon
-                    style={{ fill: 'black', display: 'block', cursor: 'pointer' }}
-                    onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-                  />
-                </div>
-
-                <div className={css['scroll-for-more']}>
-                  <p>Scroll to learn more</p>
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 16 16" width="16" height="16">
-                    <g className="nc-icon-wrapper" fill="#ffffff">
-                      <g className={`${css['nc-loop-mouse-16-icon-f']}`}>
-                        <path
-                          d="M10,0H6A4.012,4.012,0,0,0,2,4v8a4.012,4.012,0,0,0,4,4h4a4.012,4.012,0,0,0,4-4V4A4.012,4.012,0,0,0,10,0Zm2,12a2.006,2.006,0,0,1-2,2H6a2.006,2.006,0,0,1-2-2V4A2.006,2.006,0,0,1,6,2h4a2.006,2.006,0,0,1,2,2Z"
-                          fill="#ffffff"
-                        ></path>
-                        <path
-                          d="M8,4A.945.945,0,0,0,7,5V7A.945.945,0,0,0,8,8,.945.945,0,0,0,9,7V5A.945.945,0,0,0,8,4Z"
-                          fill="#ffffff"
-                          data-color="color-2"
-                        ></path>
-                      </g>
-                    </g>
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </Scene> */}
-
-          {/* <Scene growVertically growNaturally id="recap-video" className={`${css['scene-istanbul']}`}>
-            <div className="section" id="about">
-              <h1 className="section-header clear-vertical" style={{ zIndex: 1 }}>
-                <span className="text-teal-400">DEVCONNECT IST</span>
-              </h1>
-
-              <div className={`columns margin-bottom flex flex-col xl:flex-row`}>
-                <div className="xl:basis-1/2 align-self flex flex-col lg:mr-[25px]">
-                  <div>
-                    <p className="large-text">
-                      The vibrant metropolis of Istanbul hosted Devconnect from November 13-19.{' '}
-                      <span className="border-b-[3px] border-solid font-bold border-red-500">
-                        Over 3500 Ethereum enthusiasts
-                      </span>{' '}
-                      gathered at the <b>Devconnect Cowork</b> in the Istanbul Congress Center, while many more attended
-                      independent events throughout Istanbul.
-                    </p>
-
-                    <br />
-
-                    <p>
-                      Each event offered key insights into their respective areas and highlighted crucial topics for
-                      progress within the Ethereum ecosystem. Trending topics varied from L2s and programmable
-                      cryptography to world-building, infrastructure, global impact, Ethereum's core values, and
-                      real-world use cases.
-                    </p>
-
-                    <br />
-
-                    <p>
-                      The overarching theme of Devconnect Istanbul 2023 was the enthusiasm and involvement of the local
-                      Turkish Ethereum community. ETHGünü and notDEVCON and d:pact demonstrated the local impact of
-                      Ethereum. It highlighted how local communities are essential in fostering a global network,
-                      contributing unique perspectives.
-                    </p>
-
-                    <br />
-
-                    <p>
-                      <b>Thank you</b> to everyone who joined us at Devconnect Istanbul 2023! We look forward to seeing
-                      the ongoing connections and progress you all will continue to make for Ethereum.
-                    </p>
-                  </div>
-
-                  <div className={`margin-top ${css['nowrap']}`}>
-                    <Link
-                      href="https://blog.ethereum.org/2023/12/04/devconnect-ist-wrap"
-                      indicateExternal
-                      className={`button wide text-teal-400-fill ${css['cowork-tickets-button']}`}
-                    >
-                      Read the blog
-                    </Link>
-                  </div>
-                </div>
-
-                <div className="xl:basis-1/2 w-full md:w-3/4 md:self-start xl:w-full mt-8 xl:mt-0 xl:ml-[25px]">
-                  <div className="aspect">
-                    <iframe
-                      width="100%"
-                      height="100%"
-                      src="https://www.youtube.com/embed/QoPFqV6jCTI"
-                      title="YouTube video player"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className={css['background-cityscape']}>
-              <Image src={bgMerged} alt="Istanbul inspired Cityscape Background" />
-            </div>
-          </Scene> */}
           <div className="section relative pb-0 bg-[#FAFCFF] overflow-hidden">
             <Venue />
           </div>
@@ -681,8 +553,7 @@ const Home: NextPage = (props: any) => {
           <div className="section relative bg-white" id="about">
             <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText>
             <div className="flex flex-row gap-4 pb-2 flex-wrap lg:flex-nowrap z-[2] border-bottom">
-              <div className="basis-full lg:basis-1/2 shrink-0 text-black">
-                {/* <h1 className="section-header text-teal-400 mt-4">About Devconnect</h1> */}
+              <div className="basis-full lg:basis-1/2 shrink-0 text-black flex items-center">
                 <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
               </div>
               <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex flex-col items-center justify-center lg:pt-3 shrink-0">
@@ -712,26 +583,44 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          {/* <div className="section relative pb-0 bg-white">
-            <Venue />
-          </div> */}
-
-          <div className="section relative pb-0 bg-white">
+          <div className="section relative bg-white">
             <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
-            {/* <div className="absolute left-0 right-0 bottom-0 [transform:rotateY(180deg)]">
+            {/* <div className="absolute left-0 right-0 bottom-0">
               <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
             </div> */}
+
+            <div className={`${css['topics']} mt-4 font-secondary`} id="topics-container">
+              {data.pages.devconnect_themes.map((theme: string, i: number) => {
+                return (
+                  <Observer
+                    key={i}
+                    activeClassName={css['transformed']}
+                    repeating
+                    observerOptions={{
+                      rootMargin: '-40% 0px -25% 0%',
+                    }}
+                  >
+                    <div className={css['topic']}>
+                      {theme}
+                      {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                    </div>
+                  </Observer>
+                )
+              })}
+            </div>
+
+            <div className="border-bottom py-4 pb-8"></div>
           </div>
 
           <div className="section relative bg-white">
             {/* <ScrollingText direction="up" color="teal" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText> */}
             <div className="border-bottom z-[2]">
-              <div className="absolute left-0 right-0 bottom-0">
+              {/* <div className="absolute left-0 right-0 bottom-0">
                 <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
-              </div>
+              </div> */}
               {/* <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" /> */}
 
-              {/* <h2 className="text-2xl mb-4 section-header mt-6">What to expect</h2> */}
+              <h2 className="text-2xl mb-4 section-header mt-6">Your Devconnect experience</h2>
               <div className="flex flex-col lg:flex-row gap-4 mt-4 relative pb-5">
                 <div className="basis-full lg:basis-1/2">
                   <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
@@ -777,65 +666,18 @@ const Home: NextPage = (props: any) => {
                   </ErrorBoundary>
                 </div>
               </div>
-
-              <div className={cn(css['topics-header'], 'text-center md:text-left')}>
-                {/* <div>
-                  <p className="text-xl uppercase text-red-400 font-secondary mt-2">
-                    {(globalThis as any).translations.devconnect_themes}
-                  </p>
-                </div> */}
-
-                <div className={`${css['topics']} my-8 mt-4 font-secondary`} id="topics-container">
-                  {data.pages.devconnect_themes.map((theme: string, i: number) => {
-                    return (
-                      <Observer
-                        key={i}
-                        activeClassName={css['transformed']}
-                        repeating
-                        observerOptions={{
-                          rootMargin: '-40% 0px -25% 0%',
-                        }}
-                      >
-                        <div className={css['topic']}>
-                          {theme}
-                          {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
-                        </div>
-                      </Observer>
-                    )
-                  })}
-                </div>
-              </div>
             </div>
           </div>
 
-          {/* <div className="relative bg-white overflow-hidden max-w-screen">
-            <div className="section ">
-              <h1 className="section-header mt-6 mb-4">Devconnect Week</h1>
-              <div className="text-xl text-black mb-5">
-                <RichText content={data.pages.devconnect_week.first_part} className="cms-markdown" />
-              </div>
-            </div>
-            <div className="section">
-              <div className="expand-right lg:hidden">
-                <NewSchedule />
-              </div>
-              <div className="hidden lg:block">
-                <NewSchedule />
-              </div>
-            </div>
+          <div className="section relative pb-6 bg-white">
+            <RichText content={data.pages.event_calendar} className="cms-markdown mt-6" />
+          </div>
 
-            <div className="section">
-              <div className="text-lg  flex flex-col gap-2 mt-6 mb-6">
-                <RichText content={data.pages.devconnect_week.second_part} className="cms-markdown" />
-              </div>
-            </div>
-          </div> */}
-
-          {/* <div className="section relative pb-10 bg-white">
+          <div className="section relative pb-6 bg-white">
             <div className="border-top">
-              <RichText content={data.pages.devcon_vs_devconnect} className="cms-markdown mt-6" />
+              <RichText content={data.pages.how_to_contribute} className="cms-markdown mt-6" />
             </div>
-          </div> */}
+          </div>
 
           <div className={`section relative bg-white`}>
             <div className="mt-0 pt-6 border-top pb-8">
