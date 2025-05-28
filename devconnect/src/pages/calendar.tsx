@@ -19,8 +19,6 @@ import Voxel from 'assets/images/ba/voxel-0.jpg'
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
 
-  console.log(props.events)
-
   const coreEvents = [
     {
       id: 'event-000',
@@ -95,8 +93,6 @@ const Argentina = (props: any) => {
       onClick: () => {},
     }
   })
-
-  console.log(events, 'hello')
 
   return (
     <>

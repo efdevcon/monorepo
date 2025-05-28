@@ -84,7 +84,7 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Calendar',
-    url: '/schedule',
+    url: '/calendar',
   },
   {
     text: 'Destino Devconnect',
