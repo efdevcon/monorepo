@@ -1,4 +1,4 @@
-import { colorKeys, colorMap, Ticket } from 'lib/components/ticket'
+import { colorKeys, colorMap, Ticket } from 'common/components/ticket'
 import { useState } from 'react'
 import argentinaBg from 'assets/images/ba/hero.jpg'
 
