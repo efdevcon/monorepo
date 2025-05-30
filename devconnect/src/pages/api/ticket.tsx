@@ -10,16 +10,22 @@ export const alt = 'Devconnect ARG Tickets'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-// Font
-const fontUrl = new URL(`${SITE_URL}/RobotoCondensed-Bold.ttf?1`, import.meta.url)
-let fontData: ArrayBuffer | null = null
+// Fonts
+const condensedFontUrl = new URL(`${SITE_URL}/RobotoCondensed-Bold.ttf`, import.meta.url)
+const notoSansUrl = new URL(`${SITE_URL}/NotoSansSC-Regular.ttf`, import.meta.url)
+let condensedFontData: ArrayBuffer | null = null
+let notoSansData: ArrayBuffer | null = null
 
-async function loadFont() {
-  if (!fontData) {
-    const res = await fetch(fontUrl)
-    fontData = await res.arrayBuffer()
+async function loadFonts() {
+  if (!condensedFontData) {
+    const res = await fetch(condensedFontUrl)
+    condensedFontData = await res.arrayBuffer()
   }
-  return fontData
+  if (!notoSansData) {
+    const res = await fetch(notoSansUrl)
+    notoSansData = await res.arrayBuffer()
+  }
+  return { condensedFontData, notoSansData }
 }
 
 export default async function GET(req: Request) {
@@ -27,7 +33,7 @@ export default async function GET(req: Request) {
   const name = searchParams.get('name') || 'Anon'
   const color = searchParams.get('color') || 'blue'
   const social = searchParams.get('social') || 'false'
-  const font = await loadFont()
+  const { condensedFontData, notoSansData } = await loadFonts()
 
   console.log('name', name)
   console.log('color', color)
@@ -37,9 +43,15 @@ export default async function GET(req: Request) {
     fonts: [
       {
         name: 'Roboto Condensed',
-        data: font,
+        data: condensedFontData,
         style: 'normal',
         weight: 700,
+      },
+      {
+        name: 'Noto Sans SC',
+        data: notoSansData,
+        style: 'normal',
+        weight: 400,
       },
     ],
   })

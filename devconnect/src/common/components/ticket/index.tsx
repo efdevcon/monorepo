@@ -11,6 +11,12 @@ export const colorMap = {
 
 export const colorKeys = Object.keys(colorMap)
 
+const isLatinOnly = (text: string): boolean => {
+  return /^[\u0000-\u007F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF\u2C60-\u2C7F\uA720-\uA7FF\uFB00-\uFB4F]+$/.test(
+    text
+  )
+}
+
 export const Ticket = ({
   name = 'Anon',
   color = 'blue',
@@ -80,7 +86,7 @@ export const Ticket = ({
             justifyContent: 'center',
             fontSize: '48px',
             color: '#8855CC',
-            fontFamily: 'Roboto Condensed',
+            fontFamily: isLatinOnly(name) ? 'Roboto Condensed' : 'Noto Sans SC',
           }}
         >
           {name}
