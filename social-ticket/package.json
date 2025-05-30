@@ -4,14 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "cd ../lib && yarn && cd ../social-ticket && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "dayjs": "^1.11.13",
     "ethereum-blockies-base64": "^1.0.2",
-    "lib": "file:../lib",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18"
