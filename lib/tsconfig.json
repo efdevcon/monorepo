@@ -3,15 +3,7 @@
   "compilerOptions": {
     "paths": {
       "lib/*": ["./*"],
-      "@/*": ["./*"]
-    },
-    "jsx": "react",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "esModuleInterop": true,
-    "skipLibCheck": true
-  },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+      "@/*": ["./*"],
+    }
+  }
 }
