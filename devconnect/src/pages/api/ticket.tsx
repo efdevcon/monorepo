@@ -40,6 +40,11 @@ export default async function GET(req: Request) {
 
   return new ImageResponse(<Ticket name={name} color={color} social={social} />, {
     ...size,
+    headers: {
+      'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
+      Pragma: 'no-cache',
+      Expires: '0',
+    },
     fonts: [
       {
         name: 'Roboto Condensed',
