@@ -28,7 +28,7 @@
     "sync:pretalx": "ts-node ./src/scripts/sync-pretalx.ts",
     "db:generate:all": "prisma generate --schema src/db/schema.prisma && prisma generate --schema src/db/account.prisma && yarn copy:account",
     "db:generate": "yarn db:generate:all && prisma db push --schema src/db/schema.prisma --force-reset --accept-data-loss && prisma db push --schema src/db/account.prisma && prisma db seed",
-    "copy:account": "mkdir -p dist/db && cp src/db/clients dist/db/clients -r",
+    "copy:account": "mkdir -p dist/db && cp -r src/db/clients dist/db/",
     "db:seed:account": "prisma db push --force-reset --accept-data-loss --schema src/db/account.prisma && ts-node src/db/account-seed",
     "db:studio": "prisma studio",
     "db:studio:account": "prisma studio --schema src/db/account.prisma",
