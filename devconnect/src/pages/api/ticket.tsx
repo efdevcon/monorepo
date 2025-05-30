@@ -1,5 +1,6 @@
 import { ImageResponse } from '@vercel/og'
 import { Ticket } from 'common/components/ticket'
+import { SITE_URL } from 'common/constants'
 
 // Route segment config
 export const runtime = 'edge'
@@ -10,7 +11,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 // Font
-const fontUrl = new URL('http://localhost:3000/RobotoCondensed-Bold.ttf?1', import.meta.url)
+const fontUrl = new URL(`${SITE_URL}/RobotoCondensed-Bold.ttf?1`, import.meta.url)
 let fontData: ArrayBuffer | null = null
 
 async function loadFont() {
@@ -21,12 +22,17 @@ async function loadFont() {
   return fontData
 }
 
-export default async function Image({ searchParams }: { searchParams: { name?: string; color?: string } }) {
-  const name = searchParams?.name || 'Anon'
-  const color = searchParams?.color || 'blue'
+export default async function GET(req: Request) {
+  const { searchParams } = new URL(req.url)
+  const name = searchParams.get('name') || 'Anon'
+  const color = searchParams.get('color') || 'blue'
+  const social = searchParams.get('social') || 'false'
   const font = await loadFont()
 
-  return new ImageResponse(<Ticket name={name} color={color} />, {
+  console.log('name', name)
+  console.log('color', color)
+
+  return new ImageResponse(<Ticket name={name} color={color} social={social} />, {
     ...size,
     fonts: [
       {
