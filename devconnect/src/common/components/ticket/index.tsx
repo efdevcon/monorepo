@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+import { SITE_URL } from 'common/constants'
 import React from 'react'
 
 export const colorMap = {
@@ -10,7 +11,15 @@ export const colorMap = {
 
 export const colorKeys = Object.keys(colorMap)
 
-export const Ticket = ({ name = 'Anon', color = 'blue' }: { name?: string; color?: string }) => {
+export const Ticket = ({
+  name = 'Anon',
+  color = 'blue',
+  social = 'false',
+}: {
+  name?: string
+  color?: string
+  social?: string
+}) => {
   if (!colorMap[color as keyof typeof colorMap]) {
     return (
       <div
@@ -28,8 +37,6 @@ export const Ticket = ({ name = 'Anon', color = 'blue' }: { name?: string; color
     )
   }
 
-  const { primary, secondary } = colorMap[color as keyof typeof colorMap] || colorMap.blue
-
   return (
     <div
       style={{
@@ -39,7 +46,7 @@ export const Ticket = ({ name = 'Anon', color = 'blue' }: { name?: string; color
         position: 'relative',
         top: 0,
         left: 0,
-        backgroundColor: '#36364C',
+        backgroundColor: social === 'true' ? '#36364C' : 'transparent',
       }}
     >
       <img
@@ -51,7 +58,7 @@ export const Ticket = ({ name = 'Anon', color = 'blue' }: { name?: string; color
           width: '1143px',
           height: '630px',
         }}
-        src={'http://localhost:3000/argentina/blue-ticket.png'}
+        src={`${SITE_URL}/argentina/${color}-ticket.png`}
         width={1143}
         height={630}
       />
@@ -65,7 +72,6 @@ export const Ticket = ({ name = 'Anon', color = 'blue' }: { name?: string; color
           top: 200,
           left: 0,
           overflow: 'hidden',
-          // padding: "10px 0",
         }}
       >
         <div
