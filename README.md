@@ -7,15 +7,15 @@ This is the main repository for events organized by the Ethereum Foundation
 
 ## Projects
 
+- [archive](/archive/README.md) - Devcon video archive @ [archive.devcon.org](https://archive.devcon.org/)
 - [devcon](/devcon/README.md) - main Devcon website @ [devcon.org](https://devcon.org/)
 - [devcon-api](/devcon-api/README.md) - API for all Devcon-related apps @ [api.devcon.org](https://api.devcon.org/)
 - [devcon-app](/devcon-app/README.md) - Devcon conference scheduling App @ [app.devcon.org](https://app.devcon.org/)
-- [devcon-archive](/devcon-archive/README.md) - Devcon video archive @ [archive.devcon.org](https://archive.devcon.org/)
 - [devconnect](/devconnect/README.md) - main Devconnect website @ [devconnect.org](https://devconnect.org/)
 - [data](/devcon-api/data) - all Devcon data, recorded talks, sessions, speaker info, etc.
 - [lib](/lib/README.md) - shared components for all projects
 
-## Development 
+## Development
 
 - npm install inside lib before you start for types to be available in lib
 - run whichever project you like as if you weren't working in a monorepo
