@@ -1,6 +1,0 @@
----
-id: "DZVDNL"
-name: "Diego Fernandez"
-description: "Secretario de Innovación y Transformación Digital de la Ciudad de Buenos Aires"
-avatar: ""
----

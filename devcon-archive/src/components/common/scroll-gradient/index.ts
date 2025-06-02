@@ -1,1 +1,0 @@
-export { ScrollGradient } from './ScrollGradient'

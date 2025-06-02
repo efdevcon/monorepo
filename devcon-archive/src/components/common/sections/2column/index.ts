@@ -1,1 +1,0 @@
-export { TwoColumns } from './TwoColumns'
