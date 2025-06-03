@@ -9,11 +9,15 @@ import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
 import IconArrowRight from 'assets/icons/arrow_right.svg'
 import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
+import { ShareButton } from 'common/components/ticket/ShareButton'
 
 export const ShareTicket = ({ name }: { name?: string }) => {
   const [color, setColor] = useState('blue')
 
   const ticketLink = `/api/ticket?name=${name}&color=${color}`
+
+  const twitterShare = `I'm going to Devconnect ARG! Get your ticket: ${ticketLink}`
+  const warpcastShare = `I'm going to Devconnect ARG! Get your ticket: ${ticketLink}`
 
   return (
     <div
@@ -77,6 +81,23 @@ export const ShareTicket = ({ name }: { name?: string }) => {
           </div>
         </button>
       </Link>
+      <div className="flex flex-col mt-4">
+        <div className="flex items-center gap-4">
+          <span className="text-white">Share on</span>
+          <a href={`https://x.com/intent/tweet?text=${twitterShare}`} target="_blank">
+            <ShareButton platform="twitter" />
+          </a>
+          <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
+            <ShareButton platform="farcaster" />
+          </a>
+          <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
+            <ShareButton platform="instagram" />
+          </a>
+          <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
+            <ShareButton platform="linkedin" />
+          </a>
+        </div>
+      </div>
     </div>
   )
 }
