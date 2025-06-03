@@ -22,39 +22,53 @@ const backgroundImages = {
   yellow: yellowBg,
 }
 
-export const ShareTicket = ({ name, color: initialColor }: { name?: string; color?: string }) => {
+export const ShareTicket = ({ name, color: initialColor }: { name: string; color: string }) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
   const [color, setColor] = useState(initialColor)
   const imageCache = useRef<{ [key: string]: { src: string; element: HTMLImageElement } }>({})
   const hasPreloaded = useRef(false)
   const [currentImage, setCurrentImage] = useState<string>('')
+  const [mounted, setMounted] = useState(false)
 
-  const ticketLink = color ? `/api/ticket/${name}/${color}/false` : ''
-  const currentUrl = color && name ? `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}` : ''
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Keep color in sync with props
+  useEffect(() => {
+    if (mounted) {
+      setColor(initialColor)
+    }
+  }, [initialColor, mounted])
+
+  const ticketLink = `/api/ticket/${name}/${color}/false`
+  const currentUrl = `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}`
 
   // Update URL without triggering a route change
   useEffect(() => {
-    if (router.isReady && color && name) {
+    if (mounted && router.isReady && color && name) {
       const newPath = `/argentina/ticket/${encodeURIComponent(name)}/${color}`
       if (window.location.pathname !== newPath) {
         window.history.replaceState({}, '', newPath)
       }
     }
-  }, [color, router.isReady, name])
+  }, [color, router.isReady, name, mounted])
 
   // Update current image when color changes
   useEffect(() => {
-    if (color && imageCache.current[color]) {
-      setCurrentImage(imageCache.current[color].src)
+    if (color) {
+      const imageUrl = `/api/ticket/${name}/${color}/false`
+      setCurrentImage(imageUrl)
     }
-  }, [color])
+  }, [color, name])
 
   // Preload images for all colors
   useEffect(() => {
-    if (!color) return // Don't start preloading until we have a color
+    if (!mounted) return
 
-    let mounted = true
+    let isMounted = true
 
     const preloadImages = async () => {
       if (hasPreloaded.current) {
@@ -69,14 +83,10 @@ export const ShareTicket = ({ name, color: initialColor }: { name?: string; colo
           if (!imageCache.current[colorKey]) {
             const img = new Image()
             img.onload = () => {
-              if (mounted) {
+              if (isMounted) {
                 imageCache.current[colorKey] = {
                   src: imageUrl,
                   element: img,
-                }
-                // Set current image if this is the initial color
-                if (colorKey === color) {
-                  setCurrentImage(imageUrl)
                 }
                 console.log(`Cached image for color: ${colorKey}`)
                 resolve()
@@ -96,14 +106,14 @@ export const ShareTicket = ({ name, color: initialColor }: { name?: string; colo
 
       try {
         await Promise.all(promises)
-        if (mounted) {
+        if (isMounted) {
           hasPreloaded.current = true
           setIsLoading(false)
           console.log('All images preloaded:', Object.keys(imageCache.current))
         }
       } catch (error) {
         console.error('Error preloading images:', error)
-        if (mounted) {
+        if (isMounted) {
           setIsLoading(false)
         }
       }
@@ -113,10 +123,10 @@ export const ShareTicket = ({ name, color: initialColor }: { name?: string; colo
     preloadImages()
 
     return () => {
-      mounted = false
+      isMounted = false
       hasPreloaded.current = false
     }
-  }, [name, color])
+  }, [name, mounted])
 
   const twitterShare = `I'm going to Devconnect ARG!
 Get your ticket: ${encodeURIComponent(currentUrl)}`
@@ -127,23 +137,23 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
   const colorCode = color ? colorMap[color as keyof typeof colorMap].primary : ''
 
   const handleColorChange = (colorKey: string) => {
-    // Only change color if the image is already cached
-    if (imageCache.current[colorKey]) {
-      console.log(`Switching to color: ${colorKey}, image cached:`, !!imageCache.current[colorKey])
+    if (mounted) {
       setColor(colorKey)
-    } else {
-      console.log(`Cannot switch to color: ${colorKey}, image not cached`)
     }
   }
 
   // Log current cache state
   useEffect(() => {
-    if (color) {
+    if (color && mounted) {
       console.log('Current color:', color)
       console.log('Current cache state:', Object.keys(imageCache.current))
       console.log('Current image cached:', !!imageCache.current[color])
     }
-  }, [color])
+  }, [color, mounted])
+
+  if (!mounted) {
+    return null
+  }
 
   return (
     <div
@@ -179,7 +189,9 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
           {colorKeys.map(colorKey => {
             const isSelected = color === colorKey
             const primaryColor = colorMap[colorKey as keyof typeof colorMap].primary
-            const isLoaded = !!imageCache.current[colorKey]
+            console.log('colorKey', colorKey)
+            console.log('isSelected', isSelected)
+            console.log('primaryColor', primaryColor)
             return (
               <button
                 key={colorKey}
@@ -188,11 +200,9 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
                   background: 'none',
                   border: 'none',
                   padding: 0,
-                  cursor: isLoaded ? 'pointer' : 'not-allowed',
-                  opacity: isLoaded ? 1 : 0.5,
+                  cursor: 'pointer',
                 }}
                 aria-label={colorKey}
-                disabled={!isLoaded}
               >
                 <ColorButtonSvg color={primaryColor} selected={isSelected} />
               </button>
@@ -280,7 +290,12 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
 const TicketPage = (props: any) => {
   if (!props.params?.slug || props.params.slug.length < 1) return null
   const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = props.params.slug
-  return <ShareTicket name={name} color={color} />
+  return (
+    <>
+      <SEO {...props.seo} />
+      <ShareTicket name={name} color={color} />
+    </>
+  )
 }
 
 export async function getStaticPaths() {
@@ -291,9 +306,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
+  const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = context.params.slug
+  const ticketLink = `/api/ticket/${name}/${color}/true`
+
   return {
     props: {
       params: context.params,
+      seo: {
+        title: `${name}'s Devconnect ARG Ticket`,
+        description: `${name} is going to Devconnect ARG! Get your ticket and join the community.`,
+        imageUrl: `${SITE_URL.replace(/\/$/, '')}${ticketLink}`,
+      },
     },
   }
 }

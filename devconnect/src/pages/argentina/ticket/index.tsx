@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { useRouter } from 'next/router'
-import { ShareTicket } from './[name]'
+import { ShareTicket } from './[...slug]'
 
 const TicketPage = () => {
-  return <ShareTicket name="Anon" />
+  return <ShareTicket name="Anon" color="blue" />
 }
 
 export async function getStaticProps() {
