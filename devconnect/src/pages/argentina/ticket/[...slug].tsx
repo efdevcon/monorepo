@@ -22,47 +22,26 @@ const backgroundImages = {
   yellow: yellowBg,
 }
 
-export const ShareTicket = ({ name }: { name?: string }) => {
+export const ShareTicket = ({ name, color: initialColor }: { name?: string; color?: string }) => {
   const router = useRouter()
-  const [color, setColor] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
+  const [color, setColor] = useState(initialColor)
   const imageCache = useRef<{ [key: string]: { src: string; element: HTMLImageElement } }>({})
   const hasPreloaded = useRef(false)
   const [currentImage, setCurrentImage] = useState<string>('')
-  const hasInitialized = useRef(false)
-
-  // Initialize color from URL when router is ready
-  useEffect(() => {
-    if (router.isReady && !hasInitialized.current) {
-      const queryColor = router.query.color
-      if (typeof queryColor === 'string' && colorKeys.includes(queryColor)) {
-        setColor(queryColor)
-      } else {
-        setColor('blue')
-      }
-      hasInitialized.current = true
-    }
-  }, [router.isReady, router.query.color])
 
   const ticketLink = color ? `/api/ticket/${name}/${color}/false` : ''
-  const currentUrl =
-    color && name
-      ? `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}?color=${color}&r=${Math.random()
-          .toString(36)
-          .substring(2, 8)}`
-      : ''
+  const currentUrl = color && name ? `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}` : ''
 
   // Update URL without triggering a route change
   useEffect(() => {
-    if (router.isReady && color) {
-      const url = new URL(window.location.href)
-      const currentColor = url.searchParams.get('color')
-      if (currentColor !== color) {
-        url.searchParams.set('color', color)
-        window.history.replaceState({}, '', url.toString())
+    if (router.isReady && color && name) {
+      const newPath = `/argentina/ticket/${encodeURIComponent(name)}/${color}`
+      if (window.location.pathname !== newPath) {
+        window.history.replaceState({}, '', newPath)
       }
     }
-  }, [color, router.isReady])
+  }, [color, router.isReady, name])
 
   // Update current image when color changes
   useEffect(() => {
@@ -166,10 +145,6 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
     }
   }, [color])
 
-  if (!color) {
-    return null // Don't render anything until we have a color
-  }
-
   return (
     <div
       style={{
@@ -224,11 +199,12 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
             )
           })}
         </div>
-        <div style={{ width: '630px', maxWidth: '100%' }}>
+        <div style={{ width: '630px', maxWidth: '100vw' }}>
           {isLoading ? (
             <div
               style={{
                 width: '100%',
+                maxWidth: '100%',
                 aspectRatio: '1200/630',
                 display: 'flex',
                 alignItems: 'center',
@@ -242,7 +218,7 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
               alt={`${name} - Devconnect ARG Ticket`}
               width="100%"
               height="auto"
-              style={{ aspectRatio: '1200/630' }}
+              style={{ aspectRatio: '1200/630', maxWidth: '100%' }}
             />
           )}
         </div>
@@ -302,8 +278,9 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
 }
 
 const TicketPage = (props: any) => {
-  if (!props.params) return null
-  return <ShareTicket name={props.params.name} />
+  if (!props.params?.slug || props.params.slug.length < 1) return null
+  const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = props.params.slug
+  return <ShareTicket name={name} color={color} />
 }
 
 export async function getStaticPaths() {
