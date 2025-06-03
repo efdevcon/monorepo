@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { colorKeys, colorMap } from 'common/components/ticket'
 import { SEO } from 'common/components/SEO'
-import { SITE_URL } from 'common/constants'
+import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE } from 'common/constants'
 import Link from 'common/components/link/Link'
 import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
@@ -129,10 +129,13 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
     }
   }, [name, mounted])
 
-  const twitterShare = `I'm going to Devconnect ARG!
-Get your ticket: ${encodeURIComponent(currentUrl)}`
-  const warpcastShare = `I'm going to Devconnect ARG!
-Get your ticket: ${encodeURIComponent(currentUrl)}`
+  const twitterShare = encodeURIComponent(`I'm going to Devconnect ARG!
+
+Get your ${SOCIAL_HANDLE} ticket:`)
+  const warpcastShare = encodeURIComponent(`I'm going to Devconnect ARG!
+
+Get your ${FARCASTE_HANDLE} ticket: ${encodeURIComponent(currentUrl)}`)
+
   const linkedinShare = `I'm going to Devconnect ARG!%0A%0AGet your ticket: ${encodeURIComponent(currentUrl)}`
 
   const colorCode = color ? colorMap[color as keyof typeof colorMap].primary : ''
@@ -253,10 +256,14 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
         <div className="text-center">
           <div className="text-white text-xl font-semibold mb-1">Share on</div>
           <div className="flex items-center gap-4">
-            <a href={`https://x.com/intent/tweet?text=${twitterShare}`} target="_blank">
+            <a href={`https://x.com/intent/tweet?text=${twitterShare}&url=${currentUrl}`} target="_blank">
               <ShareButton platform="twitter" color={colorCode} />
             </a>
-            <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
+            <a
+              href={`https://warpcast.com/~/compose?text=${warpcastShare}&embeds%5B%5D=${currentUrl}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               <ShareButton platform="farcaster" color={colorCode} />
             </a>
             <a onClick={() => setShowInstagramModal(true)} style={{ cursor: 'pointer' }}>
