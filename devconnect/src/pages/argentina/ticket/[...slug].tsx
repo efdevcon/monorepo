@@ -44,7 +44,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
     }
   }, [initialColor, mounted])
 
-  const ticketLink = `/api/ticket/${name}/${color}/false`
+  const ticketLink = `/api/ticket/${name}/${color}/transparent`
   const currentUrl = `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}`
 
   // Update URL without triggering a route change
@@ -60,7 +60,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
   // Update current image when color changes
   useEffect(() => {
     if (color) {
-      const imageUrl = `/api/ticket/${name}/${color}/false`
+      const imageUrl = `/api/ticket/${name}/${color}/transparent`
       setCurrentImage(imageUrl)
     }
   }, [color, name])
@@ -80,7 +80,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
       setIsLoading(true)
       const promises = colorKeys.map(colorKey => {
         return new Promise<void>((resolve, reject) => {
-          const imageUrl = `/api/ticket/${name}/${colorKey}/false`
+          const imageUrl = `/api/ticket/${name}/${colorKey}/transparent`
           if (!imageCache.current[colorKey]) {
             const img = new Image()
             img.onload = () => {
@@ -176,7 +176,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
       <SEO
         title="Devconnect ARG Tickets"
         description="Share your ticket with the world!"
-        imageUrl={`${SITE_URL.replace(/\/$/, '')}${ticketLink?.replace('/false', '/true')}`}
+        imageUrl={`${SITE_URL.replace('/transparent', '/social')}${ticketLink}`}
       />
       <div className="flex-1 flex flex-col items-center justify-center">
         <div
@@ -269,7 +269,57 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
             >
               <ShareButton platform="farcaster" color={colorCode} />
             </a>
-            <a onClick={() => setShowInstagramModal(true)} style={{ cursor: 'pointer' }}>
+            <a
+              onClick={async () => {
+                try {
+                  const response = await fetch(ticketLink?.replace('/transparent', '/instagram'))
+                  const blob = await response.blob()
+                  const url = URL.createObjectURL(blob)
+
+                  // Create canvas and load image
+                  const canvas = document.createElement('canvas')
+                  const ctx = canvas.getContext('2d')
+                  const img = await createImageBitmap(blob)
+
+                  // Set canvas size to match image
+                  canvas.width = img.width
+                  canvas.height = img.height
+
+                  // Draw image to canvas
+                  ctx?.drawImage(img, 0, 0)
+
+                  // Convert to shareable format
+                  const shareBlob = await new Promise<Blob>(resolve => {
+                    canvas.toBlob(blob => {
+                      if (blob) resolve(blob)
+                    }, 'image/png')
+                  })
+
+                  // Check if mobile device
+                  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+                  // Share image if on mobile and sharing is supported
+                  if (isMobile && navigator.share) {
+                    await navigator.share({
+                      files: [new File([shareBlob], 'devconnect-ticket.png', { type: 'image/png' })],
+                    })
+                  } else {
+                    // Fallback to download for desktop or if sharing not supported
+                    const shareUrl = URL.createObjectURL(shareBlob)
+                    const a = document.createElement('a')
+                    a.href = shareUrl
+                    a.download = 'devconnect-ticket.png'
+                    a.click()
+                    URL.revokeObjectURL(shareUrl)
+                  }
+
+                  URL.revokeObjectURL(url)
+                } catch (err) {
+                  console.error('Error sharing image:', err)
+                }
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <ShareButton platform="instagram" color={colorCode} />
             </a>
             <a
@@ -282,87 +332,6 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
           </div>
         </div>
       </div>
-
-      {/* Instagram Share Modal */}
-      {showInstagramModal && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={() => setShowInstagramModal(false)}
-        >
-          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4" onClick={e => e.stopPropagation()}>
-            <h3 className="text-xl font-semibold mb-4">Share on Instagram</h3>
-            <ol className="list-decimal list-inside space-y-3 mb-6 text-black">
-              <li>Download your ticket image by clicking the button below</li>
-              <li>Open Instagram and create a new post or story</li>
-              <li>Upload the downloaded ticket image</li>
-              <li>Add the caption: "I'm going to Devconnect ARG! Get your ticket at devconnect.org"</li>
-              <li>Add relevant hashtags: #DevconnectARG #Ethereum #Web3</li>
-            </ol>
-            <div className="flex justify-end gap-3">
-              <button
-                className="px-4 py-2 text-gray-600 hover:text-gray-800"
-                onClick={() => setShowInstagramModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="px-4 py-2 bg-[#F58A36] text-white rounded hover:bg-[#f5a236]"
-                onClick={async () => {
-                  try {
-                    const response = await fetch(ticketLink)
-                    const blob = await response.blob()
-                    const url = URL.createObjectURL(blob)
-
-                    // Create canvas and load image
-                    const canvas = document.createElement('canvas')
-                    const ctx = canvas.getContext('2d')
-                    const img = await createImageBitmap(blob)
-
-                    // Set canvas size to match image
-                    canvas.width = img.width
-                    canvas.height = img.height
-
-                    // Draw image to canvas
-                    ctx?.drawImage(img, 0, 0)
-
-                    // Convert to shareable format
-                    const shareBlob = await new Promise<Blob>(resolve => {
-                      canvas.toBlob(blob => {
-                        if (blob) resolve(blob)
-                      }, 'image/png')
-                    })
-
-                    // Check if mobile device
-                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-                    // Share image if on mobile and sharing is supported
-                    if (isMobile && navigator.share) {
-                      await navigator.share({
-                        files: [new File([shareBlob], 'devconnect-ticket.png', { type: 'image/png' })],
-                      })
-                    } else {
-                      // Fallback to download for desktop or if sharing not supported
-                      const shareUrl = URL.createObjectURL(shareBlob)
-                      const a = document.createElement('a')
-                      a.href = shareUrl
-                      a.download = 'devconnect-ticket.png'
-                      a.click()
-                      URL.revokeObjectURL(shareUrl)
-                    }
-
-                    URL.revokeObjectURL(url)
-                    setShowInstagramModal(false)
-                  } catch (err) {
-                    console.error('Error sharing image:', err)
-                  }
-                }}
-              >
-                Download Ticket
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   )
 }

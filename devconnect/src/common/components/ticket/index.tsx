@@ -20,11 +20,11 @@ const isLatinOnly = (text: string): boolean => {
 export const Ticket = ({
   name = 'Anon',
   color = 'blue',
-  social = 'false',
+  option = 'social',
 }: {
   name?: string
   color?: string
-  social?: string
+  option?: string
 }) => {
   if (!colorMap[color as keyof typeof colorMap]) {
     return (
@@ -43,6 +43,8 @@ export const Ticket = ({
     )
   }
 
+  const type = option === 'instagram' ? 'vibe' : 'ticket'
+
   return (
     <div
       style={{
@@ -52,7 +54,7 @@ export const Ticket = ({
         position: 'relative',
         top: 0,
         left: 0,
-        backgroundColor: social === 'true' ? '#36364C' : 'transparent',
+        backgroundColor: option === 'social' ? '#36364C' : 'transparent',
       }}
     >
       <img
@@ -60,13 +62,11 @@ export const Ticket = ({
           display: 'flex',
           position: 'absolute',
           top: 0,
-          left: 28.5,
-          width: '1143px',
-          height: '630px',
+          left: option === 'instagram' ? 0 : 28.5,
         }}
-        src={`${SITE_URL}/argentina/${color}-ticket.png`}
-        width={1143}
-        height={630}
+        src={`${SITE_URL}/argentina/${color}-${type}.png`}
+        width={option === 'instagram' ? 1080 : 1143}
+        height={option === 'instagram' ? 1920 : 630}
       />
       <div
         style={{
@@ -75,7 +75,7 @@ export const Ticket = ({
           width: '100%',
           height: '100%',
           position: 'absolute',
-          top: 200,
+          top: option === 'instagram' ? 880 : 200,
           left: 0,
           overflow: 'hidden',
         }}
