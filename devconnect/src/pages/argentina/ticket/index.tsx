@@ -4,6 +4,11 @@ import { useState } from 'react'
 import { colorKeys, colorMap } from 'common/components/ticket'
 import { SEO } from 'common/components/SEO'
 import { SITE_URL } from 'common/constants'
+import Link from 'common/components/link/Link'
+import cn from 'classnames'
+import styles from 'common/components/ticket/styles.module.scss'
+import IconArrowRight from 'assets/icons/arrow_right.svg'
+import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
 
 export const ShareTicket = ({ name }: { name?: string }) => {
   const [color, setColor] = useState('blue')
@@ -14,7 +19,6 @@ export const ShareTicket = ({ name }: { name?: string }) => {
     <div
       style={{
         backgroundImage: `url(/argentina/social-bg-img-${color}.jpg)`,
-        backgroundBlendMode: 'difference',
         backgroundColor: '#74ACDF47',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -29,9 +33,17 @@ export const ShareTicket = ({ name }: { name?: string }) => {
       <SEO
         title="Devconnect ARG Tickets"
         description="Share your ticket with the world!"
-        imageUrl={`${SITE_URL}${ticketLink}&social=true`}
+        imageUrl={`${SITE_URL.replace(/\/$/, '')}${ticketLink}&social=true`}
       />
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '18px',
+        }}
+      >
         Choose your vibe:{' '}
         {colorKeys.map(colorKey => {
           const isSelected = color === colorKey
@@ -40,20 +52,31 @@ export const ShareTicket = ({ name }: { name?: string }) => {
             <button
               key={colorKey}
               onClick={() => setColor(colorKey)}
-              style={{
-                backgroundColor: primaryColor,
-                border: isSelected ? `2px solid white` : '0px',
-                padding: '10px 20px',
-                borderRadius: '5px',
-                margin: '10px',
-              }}
-            ></button>
+              style={{ background: 'none', border: 'none', padding: 0, margin: '10px', cursor: 'pointer' }}
+              aria-label={colorKey}
+            >
+              <ColorButtonSvg color={primaryColor} selected={isSelected} />
+            </button>
           )
         })}
       </div>
       <div style={{ width: '630px', maxWidth: '100%' }}>
         <img src={ticketLink} alt={`${name} - Devconnect ARG Ticket`} width={1200} height={630} />
       </div>
+      <Link href="http://tickets.devconnect.org/">
+        <button
+          className={cn(
+            'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+            styles['tiled-button']
+          )}
+        >
+          <div className="group-hover:translate-y-[3px] transition-transform flex items-center gap-2">
+            {/* TODO: add translation */}
+            Get your ticket
+            <IconArrowRight className="w-4 h-4" />
+          </div>
+        </button>
+      </Link>
     </div>
   )
 }
