@@ -10,7 +10,7 @@ const TicketPage = () => {
 export async function getStaticProps() {
   const name = 'Anon'
   const color = colorKeys[Math.floor(Math.random() * colorKeys.length)]
-  const ticketLink = `/api/ticket/${name}/${color}/true`
+  const ticketLink = `/api/ticket/${name}/${color}/social`
 
   return {
     props: {

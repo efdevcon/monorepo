@@ -356,7 +356,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: any) {
   const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = context.params.slug
-  const ticketLink = `/api/ticket/${name}/${color}/true`
+  const ticketLink = `/api/ticket/${name}/${color}/social`
 
   return {
     props: {
