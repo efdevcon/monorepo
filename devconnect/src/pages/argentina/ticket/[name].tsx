@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { colorKeys, colorMap } from 'common/components/ticket'
 import { SEO } from 'common/components/SEO'
@@ -11,13 +11,93 @@ import IconArrowRight from 'assets/icons/arrow_right.svg'
 import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
 import { ShareButton } from 'common/components/ticket/ShareButton'
 
-const ShareTicket = ({ name }: { name?: string }) => {
+export const ShareTicket = ({ name }: { name?: string }) => {
   const router = useRouter()
-  const queryColor = typeof router.query.color === 'string' ? router.query.color : undefined
-  const [color, setColor] = useState(queryColor || 'blue')
+  const [color, setColor] = useState('blue')
+  const [isLoading, setIsLoading] = useState(true)
+  const imageCache = useRef<{ [key: string]: HTMLImageElement }>({})
+  const hasPreloaded = useRef(false)
+
+  // Initialize color from URL when router is ready
+  useEffect(() => {
+    if (router.isReady) {
+      const queryColor = router.query.color
+      if (typeof queryColor === 'string' && colorKeys.includes(queryColor)) {
+        setColor(queryColor)
+      }
+    }
+  }, [router.isReady, router.query.color])
 
   const ticketLink = `/api/ticket?name=${name}&color=${color}`
   const currentUrl = `https://devconnect.org/argentina/ticket/${name}?color=${color}`
+
+  // Update URL without triggering a route change
+  useEffect(() => {
+    if (router.isReady) {
+      const url = new URL(window.location.href)
+      const currentColor = url.searchParams.get('color')
+      if (currentColor !== color) {
+        url.searchParams.set('color', color)
+        window.history.replaceState({}, '', url.toString())
+      }
+    }
+  }, [color, router.isReady])
+
+  // Preload images for all colors
+  useEffect(() => {
+    let mounted = true
+
+    const preloadImages = async () => {
+      if (hasPreloaded.current) {
+        setIsLoading(false)
+        return
+      }
+
+      setIsLoading(true)
+      const promises = colorKeys.map(colorKey => {
+        return new Promise<void>((resolve, reject) => {
+          const imageUrl = `/api/ticket?name=${name}&color=${colorKey}`
+          if (!imageCache.current[colorKey]) {
+            const img = new Image()
+            img.onload = () => {
+              if (mounted) {
+                imageCache.current[colorKey] = img
+                resolve()
+              }
+            }
+            img.onerror = () => {
+              console.error(`Failed to preload image for color ${colorKey}`)
+              reject()
+            }
+            img.src = imageUrl
+          } else {
+            resolve()
+          }
+        })
+      })
+
+      try {
+        await Promise.all(promises)
+        if (mounted) {
+          hasPreloaded.current = true
+          setIsLoading(false)
+        }
+      } catch (error) {
+        console.error('Error preloading images:', error)
+        if (mounted) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    preloadImages()
+
+    return () => {
+      mounted = false
+      imageCache.current = {}
+      hasPreloaded.current = false
+    }
+  }, [name])
 
   const twitterShare = `I'm going to Devconnect ARG! Get your ticket: ${currentUrl}`
   const warpcastShare = `I'm going to Devconnect ARG! Get your ticket: ${currentUrl}`
@@ -26,14 +106,6 @@ const ShareTicket = ({ name }: { name?: string }) => {
 
   const handleColorChange = (colorKey: string) => {
     setColor(colorKey)
-    router.replace(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, color: colorKey, name },
-      },
-      undefined,
-      { shallow: true }
-    )
   }
 
   return (
@@ -63,6 +135,7 @@ const ShareTicket = ({ name }: { name?: string }) => {
           alignItems: 'center',
           justifyContent: 'center',
           fontSize: '18px',
+          fontWeight: 600,
         }}
       >
         Choose your vibe:{' '}
@@ -82,7 +155,26 @@ const ShareTicket = ({ name }: { name?: string }) => {
         })}
       </div>
       <div style={{ width: '630px', maxWidth: '100%' }}>
-        <img src={ticketLink} alt={`${name} - Devconnect ARG Ticket`} width={1200} height={630} />
+        {isLoading ? (
+          <div
+            style={{
+              width: '100%',
+              aspectRatio: '1200/630',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'transparent',
+            }}
+          ></div>
+        ) : (
+          <img
+            src={imageCache.current[color]?.src}
+            alt={`${name} - Devconnect ARG Ticket`}
+            width="100%"
+            height="auto"
+            style={{ aspectRatio: '1200/630' }}
+          />
+        )}
       </div>
       <div className="flex flex-col mt-10">
         <Link href="http://tickets.devconnect.org/">
@@ -128,9 +220,8 @@ const ShareTicket = ({ name }: { name?: string }) => {
 
 const TicketPage = (props: any) => {
   const router = useRouter()
-  const color = typeof router.query.color === 'string' ? router.query.color : undefined
   if (!props.params) return null
-  return <ShareTicket name={props.params.name} key={color} />
+  return <ShareTicket name={props.params.name} />
 }
 
 export async function getStaticPaths() {
