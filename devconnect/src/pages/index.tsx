@@ -46,7 +46,8 @@ import ScrollVideo from 'common/components/ba/scroll-video'
 import NewSchedule from 'lib/components/event-schedule-new'
 import Venue from 'common/components/ba/venue/venue'
 import { Ticket, ExternalLink } from 'lucide-react'
-import TicketExample from 'assets/images/ba/ticket-example-2.png'
+import HeroText from 'assets/images/ba/header-text-hq.png'
+import TicketExample from 'assets/images/ba/hero-ticket.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -236,31 +237,19 @@ const TicketButton = ({
   return (
     <Link
       href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
-      spanClass={cn('flex flex-col items-end gap-1', className)}
+      className=""
+      spanClass={cn('flex flex-col items-end gap-2 group', className, css['no-underline'])}
     >
-      <p className="bg-[#f2f7fc] rounded-lg px-4 py-2 flex items-center gap-3 self-end">
-        {/* <Ticket className="w-6 h-6 opacity-80" /> */}
-        Devconnect Ticket Sale has begun!
+      <p
+        className={cn(
+          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-2px] will-change-transform transition-all duration-300 rounded-lg px-4 py-2 flex items-center gap-3 self-end',
+          css['no-underline']
+        )}
+      >
+        Tickets now available!
         <ExternalLink className="w-5 h-5 opacity-80" />
       </p>
-      <Image src={TicketExample} alt="Ticket Example" className="w-[400px] translate-x-[2%]" />
-    </Link>
-  )
-
-  return (
-    <Link
-      href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
-      spanClass="flex items-center gap-4"
-      className={cn(
-        '!flex items-center self-start opacity-0 transition-opacity duration-[1500ms] bg-black/80 text-white backdrop-blur-sm rounded-lg px-4 py-2 text-2xl',
-        className,
-        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-        userHasInterruptedPlayback && 'duration-[1000ms]'
-      )}
-    >
-      <Ticket className="w-6 h-6" />
-      Ticket sale is open
-      <Image src={TicketExample} alt="Ticket Example" className="w-6 h-6" />
+      <Image src={TicketExample} alt="Ticket Example" className="w-[400px]" quality={100} />
     </Link>
   )
 }
@@ -350,7 +339,7 @@ const Home: NextPage = (props: any) => {
             </div>
 
             <div
-              className={cn('sticky h-screen flex flex-col items-end justify-end relative top-0 w-full')}
+              className={cn('h-screen flex flex-col items-end justify-end relative top-0 w-full')}
               // style={scrollProgress < 50 ? {} : { opacity: '100%' }}
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
@@ -360,8 +349,36 @@ const Home: NextPage = (props: any) => {
                     userHasInterruptedPlayback={userHasInterruptedPlayback}
                   /> */}
 
-                  <div className={`text-2xl lg:text-4xl flex flex-col -translate-x-[2%]`}>
-                    <Image
+                  <div
+                    className={cn(
+                      `text-2xl flex flex-col mb-8 gap-2 max-w-[700px] text-[#36364C] font-semibold opacity-0 transition-opacity duration-[1500ms]`,
+                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
+                      userHasInterruptedPlayback && 'duration-[1000ms]'
+                    )}
+                  >
+                    <p className={cn('self-start mb-2', css['text-highlight'])}>
+                      17 – 22 November / Buenos Aires, Argentina
+                    </p>
+
+                    <Image src={HeroText} alt="Hero text" className={cn('translate-x-[-2%]')} />
+
+                    <p className={cn('self-start text-lg', css['text-highlight'])}>
+                      Devconnect ARG is a showcase of Ethereum apps and an event to connect, build and accelerate
+                      Ethereum adoption.
+                    </p>
+
+                    <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+                      <button
+                        className={cn(
+                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 py-2 border-[#125181] text-[white] text-xl font-semibold bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                        )}
+                      >
+                        <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                          Get My Ticket
+                        </div>
+                      </button>
+                    </Link>
+                    {/* <Image
                       src={AnnouncementDate}
                       alt="Date"
                       className={cn(
@@ -390,7 +407,7 @@ const Home: NextPage = (props: any) => {
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
                         userHasInterruptedPlayback && 'duration-[1000ms]'
                       )}
-                    />
+                    /> */}
                   </div>
 
                   <div className="flex items-center gap-8">
