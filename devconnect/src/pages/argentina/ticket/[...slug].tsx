@@ -26,6 +26,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
   const [color, setColor] = useState(initialColor)
+  const [showInstagramModal, setShowInstagramModal] = useState(false)
   const imageCache = useRef<{ [key: string]: { src: string; element: HTMLImageElement } }>({})
   const hasPreloaded = useRef(false)
   const [currentImage, setCurrentImage] = useState<string>('')
@@ -258,19 +259,7 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
             <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
               <ShareButton platform="farcaster" color={colorCode} />
             </a>
-            <a
-              onClick={async () => {
-                const response = await fetch(ticketLink)
-                const blob = await response.blob()
-                const url = URL.createObjectURL(blob)
-                const a = document.createElement('a')
-                a.href = url
-                a.download = 'ticket.png'
-                a.click()
-              }}
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a onClick={() => setShowInstagramModal(true)} style={{ cursor: 'pointer' }}>
               <ShareButton platform="instagram" color={colorCode} />
             </a>
             <a
@@ -283,6 +272,48 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
           </div>
         </div>
       </div>
+
+      {/* Instagram Share Modal */}
+      {showInstagramModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          onClick={() => setShowInstagramModal(false)}
+        >
+          <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4" onClick={e => e.stopPropagation()}>
+            <h3 className="text-xl font-semibold mb-4">Share on Instagram</h3>
+            <ol className="list-decimal list-inside space-y-3 mb-6 text-black">
+              <li>Download your ticket image by clicking the button below</li>
+              <li>Open Instagram and create a new post or story</li>
+              <li>Upload the downloaded ticket image</li>
+              <li>Add the caption: "I'm going to Devconnect ARG! Get your ticket at devconnect.org"</li>
+              <li>Add relevant hashtags: #DevconnectARG #Ethereum #Web3</li>
+            </ol>
+            <div className="flex justify-end gap-3">
+              <button
+                className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                onClick={() => setShowInstagramModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-[#F58A36] text-white rounded hover:bg-[#f5a236]"
+                onClick={async () => {
+                  const response = await fetch(ticketLink)
+                  const blob = await response.blob()
+                  const url = URL.createObjectURL(blob)
+                  const a = document.createElement('a')
+                  a.href = url
+                  a.download = 'devconnect-ticket.png'
+                  a.click()
+                  setShowInstagramModal(false)
+                }}
+              >
+                Download Ticket
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
