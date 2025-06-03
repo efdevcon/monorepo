@@ -134,7 +134,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
 Get your ${SOCIAL_HANDLE} ticket:`)
   const warpcastShare = encodeURIComponent(`I'm going to Devconnect ARG!
 
-Get your ${FARCASTE_HANDLE} ticket: ${encodeURIComponent(currentUrl)}`)
+Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
 
   const linkedinShare = `I'm going to Devconnect ARG!%0A%0AGet your ticket: ${encodeURIComponent(currentUrl)}`
 
@@ -256,11 +256,14 @@ Get your ${FARCASTE_HANDLE} ticket: ${encodeURIComponent(currentUrl)}`)
         <div className="text-center">
           <div className="text-white text-xl font-semibold mb-1">Share on</div>
           <div className="flex items-center gap-4">
-            <a href={`https://x.com/intent/tweet?text=${twitterShare}&url=${currentUrl}`} target="_blank">
+            <a
+              href={`https://x.com/intent/tweet?text=${twitterShare}&url=${encodeURIComponent(currentUrl)}`}
+              target="_blank"
+            >
               <ShareButton platform="twitter" color={colorCode} />
             </a>
             <a
-              href={`https://warpcast.com/~/compose?text=${warpcastShare}&embeds%5B%5D=${currentUrl}`}
+              href={`https://farcaster.xyz/~/compose?text=${warpcastShare}&embeds%5B%5D=${currentUrl}`}
               target="_blank"
               rel="noreferrer"
             >
