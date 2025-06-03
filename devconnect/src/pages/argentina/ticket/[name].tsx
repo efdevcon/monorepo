@@ -45,7 +45,12 @@ export const ShareTicket = ({ name }: { name?: string }) => {
   }, [router.isReady, router.query.color])
 
   const ticketLink = color ? `/api/ticket/${name}/${color}/false` : ''
-  const currentUrl = color ? `https://devconnect.org/argentina/ticket/${name}?color=${color}` : ''
+  const currentUrl =
+    color && name
+      ? `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}?color=${color}&r=${Math.random()
+          .toString(36)
+          .substring(2, 8)}`
+      : ''
 
   // Update URL without triggering a route change
   useEffect(() => {
@@ -297,7 +302,6 @@ Get your ticket: ${encodeURIComponent(currentUrl)}`
 }
 
 const TicketPage = (props: any) => {
-  const router = useRouter()
   if (!props.params) return null
   return <ShareTicket name={props.params.name} />
 }
