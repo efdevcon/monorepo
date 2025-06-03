@@ -39,13 +39,20 @@ export default async function handler(req: NextRequest) {
       return new Response('Name is required', { status: 400 })
     }
 
+    // Decode the name parameter to handle non-ASCII characters
+    const decodedName = decodeURIComponent(name)
+
     const { condensedFontData, notoSansData } = await loadFonts()
 
-    console.log('name', name)
-    console.log('color', color)
-    console.log('social', social)
+    console.log('Request details:', {
+      originalName: name,
+      decodedName,
+      color,
+      social,
+      url: req.url,
+    })
 
-    return new ImageResponse(<Ticket name={name} color={color} social={social} />, {
+    return new ImageResponse(<Ticket name={decodedName} color={color} social={social} />, {
       ...size,
       headers: {
         'Cache-Control': 'public, max-age=31536000, immutable',
@@ -68,6 +75,12 @@ export default async function handler(req: NextRequest) {
     })
   } catch (error) {
     console.error('Error generating ticket:', error)
-    return new Response('Error generating ticket', { status: 500 })
+    // Return a more detailed error response
+    return new Response(`Error generating ticket: ${error instanceof Error ? error.message : 'Unknown error'}`, {
+      status: 500,
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    })
   }
 }
