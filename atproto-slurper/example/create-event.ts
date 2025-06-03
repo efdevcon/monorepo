@@ -5,6 +5,16 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const disableInviteCodes = async (pdsService: string) => {
+  const agent = new BskyAgent({ service: pdsService });
+  const result = await agent.api.com.atproto.admin.disableInviteCodes({
+    headers: {
+      Authorization: `Bearer ${process.env.BLUESKY_TOKEN}`,
+    },
+  });
+  return result;
+};
+
 // Function to check if a PDS supports account creation
 const checkPDSCapabilities = async (pdsService: string) => {
   try {
@@ -143,63 +153,70 @@ const createEventBluesky = async (username: string, password: string) => {
 (async () => {
   const customPDS = "https://dcdev4.ticketh.xyz";
 
-  console.log("=== Checking Custom PDS Capabilities ===");
-  const serverInfo = await checkPDSCapabilities(customPDS);
-  const accountInfo = await tryCreateAccount(
-    customPDS,
-    "lasse.dev",
-    "test"
-    // "haha@haha.com"
-  );
-
-  console.log("Account Info:", accountInfo);
-
-  if (serverInfo) {
-    console.log("\n=== Custom PDS Analysis ===");
-    if (serverInfo.inviteCodeRequired) {
-      console.log("❌ This PDS requires an invite code for account creation");
-    } else {
-      console.log("✅ This PDS allows open account creation");
-
-      // You could try creating an account here if you want
-      // const accountResult = await tryCreateAccount(customPDS, "your-test-handle.dcdev4.ticketh.xyz", "your-password");
-    }
-  }
-
-  console.log("\n=== Testing Event Creation ===");
-
-  // Try with your custom PDS first (will likely fail without account)
-  console.log("Creating event on custom PDS...");
-  const customResult = await createEvent(
-    process.env.BLUESKY_HANDLE!, // Your existing Bluesky handle
-    process.env.BLUESKY_PASSWORD!, // Your existing Bluesky password
-    customPDS // Your custom PDS
-  );
-
-  console.log("Custom PDS Result:", customResult);
-
-  // Try with Bluesky's PDS (should work with your existing account)
-  // console.log("\nCreating event on Bluesky PDS...");
-  // const blueskyResult = await createEventBluesky(
-  //   process.env.BLUESKY_HANDLE!,
-  //   process.env.BLUESKY_PASSWORD!
-  // );
-
-  // console.log("Bluesky PDS Result:", blueskyResult);
-
-  console.log("\n=== Summary ===");
-  console.log("Custom PDS:", customResult.success ? "✅ Success" : "❌ Failed");
-  // console.log(
-  //   "Bluesky PDS:",
-  //   blueskyResult.success ? "✅ Success" : "❌ Failed"
-  // );
-
-  if (!customResult.success) {
-    console.log("\n💡 To use your custom PDS, you would need to:");
-    console.log("1. Create an account on that PDS first");
-    console.log("2. Or use account migration to move your existing identity");
-    console.log(
-      "3. Check if the PDS requires invite codes or has other restrictions"
-    );
-  }
+  const disableResult = await disableInviteCodes(customPDS);
+  console.log("Disable Result:", disableResult);
 })();
+
+// (async () => {
+//   const customPDS = "https://dcdev4.ticketh.xyz";
+
+//   console.log("=== Checking Custom PDS Capabilities ===");
+//   const serverInfo = await checkPDSCapabilities(customPDS);
+//   const accountInfo = await tryCreateAccount(
+//     customPDS,
+//     "lasse.dev",
+//     "test"
+//     // "haha@haha.com"
+//   );
+
+//   console.log("Account Info:", accountInfo);
+
+//   if (serverInfo) {
+//     console.log("\n=== Custom PDS Analysis ===");
+//     if (serverInfo.inviteCodeRequired) {
+//       console.log("❌ This PDS requires an invite code for account creation");
+//     } else {
+//       console.log("✅ This PDS allows open account creation");
+
+//       // You could try creating an account here if you want
+//       // const accountResult = await tryCreateAccount(customPDS, "your-test-handle.dcdev4.ticketh.xyz", "your-password");
+//     }
+//   }
+
+//   console.log("\n=== Testing Event Creation ===");
+
+//   // Try with your custom PDS first (will likely fail without account)
+//   console.log("Creating event on custom PDS...");
+//   const customResult = await createEvent(
+//     process.env.BLUESKY_HANDLE!, // Your existing Bluesky handle
+//     process.env.BLUESKY_PASSWORD!, // Your existing Bluesky password
+//     customPDS // Your custom PDS
+//   );
+
+//   console.log("Custom PDS Result:", customResult);
+
+//   // Try with Bluesky's PDS (should work with your existing account)
+//   // console.log("\nCreating event on Bluesky PDS...");
+//   // const blueskyResult = await createEventBluesky(
+//   //   process.env.BLUESKY_HANDLE!,
+//   //   process.env.BLUESKY_PASSWORD!
+//   // );
+
+//   // console.log("Bluesky PDS Result:", blueskyResult);
+
+//   console.log("\n=== Summary ===");
+//   console.log("Custom PDS:", customResult.success ? "✅ Success" : "❌ Failed");
+//   // console.log(
+//   //   "Bluesky PDS:",
+//   //   blueskyResult.success ? "✅ Success" : "❌ Failed"
+//   // );
+
+//   if (!customResult.success) {
+//     console.log("\n💡 To use your custom PDS, you would need to:");
+//     console.log("1. Create an account on that PDS first");
+//     console.log("2. Or use account migration to move your existing identity");
+//     console.log(
+//       "3. Check if the PDS requires invite codes or has other restrictions"
+//     );
+//   }
+// })();
