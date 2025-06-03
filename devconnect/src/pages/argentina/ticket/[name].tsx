@@ -11,6 +11,17 @@ import IconArrowRight from 'assets/icons/arrow_right.svg'
 import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
 import { ShareButton } from 'common/components/ticket/ShareButton'
 
+// Import background images
+import blueBg from '../../../../public/argentina/social-bg-img-blue.jpg'
+import pinkBg from '../../../../public/argentina/social-bg-img-pink.jpg'
+import yellowBg from '../../../../public/argentina/social-bg-img-yellow.jpg'
+
+const backgroundImages = {
+  blue: blueBg,
+  pink: pinkBg,
+  yellow: yellowBg,
+}
+
 export const ShareTicket = ({ name }: { name?: string }) => {
   const router = useRouter()
   const [color, setColor] = useState<string>('')
@@ -123,8 +134,11 @@ export const ShareTicket = ({ name }: { name?: string }) => {
     }
   }, [name, color])
 
-  const twitterShare = `I'm going to Devconnect ARG! Get your ticket: ${currentUrl}`
-  const warpcastShare = `I'm going to Devconnect ARG! Get your ticket: ${currentUrl}`
+  const twitterShare = `I'm going to Devconnect ARG!
+Get your ticket: ${encodeURIComponent(currentUrl)}`
+  const warpcastShare = `I'm going to Devconnect ARG!
+Get your ticket: ${encodeURIComponent(currentUrl)}`
+  const linkedinShare = `I'm going to Devconnect ARG!%0A%0AGet your ticket: ${encodeURIComponent(currentUrl)}`
 
   const colorCode = color ? colorMap[color as keyof typeof colorMap].primary : ''
 
@@ -154,7 +168,7 @@ export const ShareTicket = ({ name }: { name?: string }) => {
   return (
     <div
       style={{
-        backgroundImage: `url(/argentina/social-bg-img-${color}.jpg)`,
+        backgroundImage: `url(${backgroundImages[color as keyof typeof backgroundImages]?.src || ''})`,
         backgroundColor: '#74ACDF47',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
@@ -163,7 +177,6 @@ export const ShareTicket = ({ name }: { name?: string }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
       }}
     >
       <SEO
@@ -171,77 +184,78 @@ export const ShareTicket = ({ name }: { name?: string }) => {
         description="Share your ticket with the world!"
         imageUrl={`${SITE_URL.replace(/\/$/, '')}${ticketLink?.replace('/false', '/true')}`}
       />
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '18px',
-          fontWeight: 600,
-        }}
-      >
-        Choose your vibe:{' '}
-        {colorKeys.map(colorKey => {
-          const isSelected = color === colorKey
-          const primaryColor = colorMap[colorKey as keyof typeof colorMap].primary
-          const isLoaded = !!imageCache.current[colorKey]
-          return (
-            <button
-              key={colorKey}
-              onClick={() => handleColorChange(colorKey)}
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '18px',
+            fontWeight: 600,
+          }}
+        >
+          Choose your vibe:{' '}
+          {colorKeys.map(colorKey => {
+            const isSelected = color === colorKey
+            const primaryColor = colorMap[colorKey as keyof typeof colorMap].primary
+            const isLoaded = !!imageCache.current[colorKey]
+            return (
+              <button
+                key={colorKey}
+                onClick={() => handleColorChange(colorKey)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  padding: 0,
+                  cursor: isLoaded ? 'pointer' : 'not-allowed',
+                  opacity: isLoaded ? 1 : 0.5,
+                }}
+                aria-label={colorKey}
+                disabled={!isLoaded}
+              >
+                <ColorButtonSvg color={primaryColor} selected={isSelected} />
+              </button>
+            )
+          })}
+        </div>
+        <div style={{ width: '630px', maxWidth: '100%' }}>
+          {isLoading ? (
+            <div
               style={{
-                background: 'none',
-                border: 'none',
-                padding: 0,
-                margin: '10px',
-                cursor: isLoaded ? 'pointer' : 'not-allowed',
-                opacity: isLoaded ? 1 : 0.5,
+                width: '100%',
+                aspectRatio: '1200/630',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'transparent',
               }}
-              aria-label={colorKey}
-              disabled={!isLoaded}
+            ></div>
+          ) : (
+            <img
+              src={currentImage || ticketLink}
+              alt={`${name} - Devconnect ARG Ticket`}
+              width="100%"
+              height="auto"
+              style={{ aspectRatio: '1200/630' }}
+            />
+          )}
+        </div>
+        <div className="flex flex-col mt-10">
+          <Link href="http://tickets.devconnect.org/">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
             >
-              <ColorButtonSvg color={primaryColor} selected={isSelected} />
+              <div className="group-hover:translate-y-[3px] transition-transform flex items-center gap-2">
+                Get your ticket
+                <IconArrowRight className="w-4 h-4" />
+              </div>
             </button>
-          )
-        })}
-      </div>
-      <div style={{ width: '630px', maxWidth: '100%' }}>
-        {isLoading ? (
-          <div
-            style={{
-              width: '100%',
-              aspectRatio: '1200/630',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: 'transparent',
-            }}
-          ></div>
-        ) : (
-          <img
-            src={currentImage || ticketLink}
-            alt={`${name} - Devconnect ARG Ticket`}
-            width="100%"
-            height="auto"
-            style={{ aspectRatio: '1200/630' }}
-          />
-        )}
-      </div>
-      <div className="flex flex-col mt-10">
-        <Link href="http://tickets.devconnect.org/">
-          <button
-            className={cn(
-              'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-              styles['tiled-button']
-            )}
-          >
-            <div className="group-hover:translate-y-[3px] transition-transform flex items-center gap-2">
-              Get your ticket
-              <IconArrowRight className="w-4 h-4" />
-            </div>
-          </button>
-        </Link>
+          </Link>
+        </div>
       </div>
       <div className="flex flex-col mt-10">
         <div className="text-center">
@@ -253,11 +267,23 @@ export const ShareTicket = ({ name }: { name?: string }) => {
             <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
               <ShareButton platform="farcaster" color={colorCode} />
             </a>
-            <a href={`https://warpcast.com/~/compose?text=${warpcastShare}`} target="_blank" rel="noreferrer">
+            <a
+              onClick={async () => {
+                const response = await fetch(ticketLink)
+                const blob = await response.blob()
+                const url = URL.createObjectURL(blob)
+                const a = document.createElement('a')
+                a.href = url
+                a.download = 'ticket.png'
+                a.click()
+              }}
+              target="_blank"
+              rel="noreferrer"
+            >
               <ShareButton platform="instagram" color={colorCode} />
             </a>
             <a
-              href={`https://www.linkedin.com/feed/?shareActive&mini=true&text=${warpcastShare}`}
+              href={`https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinShare}`}
               target="_blank"
               rel="noreferrer"
             >
