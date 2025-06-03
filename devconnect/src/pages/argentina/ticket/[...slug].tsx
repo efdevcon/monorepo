@@ -308,14 +308,53 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
               <button
                 className="px-4 py-2 bg-[#F58A36] text-white rounded hover:bg-[#f5a236]"
                 onClick={async () => {
-                  const response = await fetch(ticketLink)
-                  const blob = await response.blob()
-                  const url = URL.createObjectURL(blob)
-                  const a = document.createElement('a')
-                  a.href = url
-                  a.download = 'devconnect-ticket.png'
-                  a.click()
-                  setShowInstagramModal(false)
+                  try {
+                    const response = await fetch(ticketLink)
+                    const blob = await response.blob()
+                    const url = URL.createObjectURL(blob)
+
+                    // Create canvas and load image
+                    const canvas = document.createElement('canvas')
+                    const ctx = canvas.getContext('2d')
+                    const img = await createImageBitmap(blob)
+
+                    // Set canvas size to match image
+                    canvas.width = img.width
+                    canvas.height = img.height
+
+                    // Draw image to canvas
+                    ctx?.drawImage(img, 0, 0)
+
+                    // Convert to shareable format
+                    const shareBlob = await new Promise<Blob>(resolve => {
+                      canvas.toBlob(blob => {
+                        if (blob) resolve(blob)
+                      }, 'image/png')
+                    })
+
+                    // Check if mobile device
+                    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+
+                    // Share image if on mobile and sharing is supported
+                    if (isMobile && navigator.share) {
+                      await navigator.share({
+                        files: [new File([shareBlob], 'devconnect-ticket.png', { type: 'image/png' })],
+                      })
+                    } else {
+                      // Fallback to download for desktop or if sharing not supported
+                      const shareUrl = URL.createObjectURL(shareBlob)
+                      const a = document.createElement('a')
+                      a.href = shareUrl
+                      a.download = 'devconnect-ticket.png'
+                      a.click()
+                      URL.revokeObjectURL(shareUrl)
+                    }
+
+                    URL.revokeObjectURL(url)
+                    setShowInstagramModal(false)
+                  } catch (err) {
+                    console.error('Error sharing image:', err)
+                  }
                 }}
               >
                 Download Ticket
