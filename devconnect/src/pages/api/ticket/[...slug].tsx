@@ -8,7 +8,6 @@ export const runtime = 'edge'
 
 // Image metadata
 export const alt = 'Devconnect ARG Tickets'
-export let size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 // Fonts
@@ -33,7 +32,7 @@ export default async function handler(req: NextRequest) {
   try {
     const url = new URL(req.url)
     const slug = url.pathname.split('/').slice(3) // Remove /api/ticket from the path
-    const [name = 'Anon', color = 'blue', option = 'transparent'] = slug
+    const [name = 'Anon', color = 'blue', option = 'transparent'] = slug.slice(0, 3) // Only take first 3 parameters
 
     if (!name) {
       return new Response('Name is required', { status: 400 })
@@ -57,14 +56,12 @@ export default async function handler(req: NextRequest) {
       url: req.url,
     })
 
-    if (option === 'instagram') {
-      size = { width: 1080, height: 1920 }
-    }
+    const imageSize = option === 'instagram' ? { width: 1080, height: 1920 } : { width: 1200, height: 630 }
 
-    console.log('size', size)
+    console.log('imageSize', imageSize)
 
     return new ImageResponse(<Ticket name={decodedName} color={color} option={option} />, {
-      ...size,
+      ...imageSize,
       headers: {
         'Content-Type': 'image/png',
       },
