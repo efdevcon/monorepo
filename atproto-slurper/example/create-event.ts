@@ -1,18 +1,44 @@
-import { BskyAgent } from "@atproto/api";
+import { AtpAgent, BskyAgent } from "@atproto/api";
 
 // Import the process.env from .env
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const disableInviteCodes = async (pdsService: string) => {
-  const agent = new BskyAgent({ service: pdsService });
-  const result = await agent.api.com.atproto.admin.disableInviteCodes({
-    headers: {
-      Authorization: `Bearer ${process.env.BLUESKY_TOKEN}`,
-    },
-  });
-  return result;
+const createInviteCodes = async (pdsService: string) => {
+  const agent = new AtpAgent({ service: pdsService });
+
+  try {
+    const credentials = Buffer.from(
+      `admin:${process.env.DEVCON_PDS_PASSWORD}`
+    ).toString("base64");
+
+    const result = await agent.api.com.atproto.server.createInviteCodes(
+      {
+        codeCount: 1,
+        useCount: 5,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${credentials}`,
+        },
+        encoding: "application/json",
+      }
+    );
+
+    return result;
+  } catch (error: any) {
+    console.error("Failed to create invite codes:", error.message);
+
+    // If the above fails, you might need to use HTTP Basic auth directly
+    // This is because createInviteCodes requires admin privileges
+    console.log("Note: createInviteCodes requires admin authentication.");
+    console.log("You need to either:");
+    console.log("1. Login with admin credentials first, or");
+    console.log("2. Use HTTP Basic auth with admin token");
+
+    throw error;
+  }
 };
 
 // Function to check if a PDS supports account creation
@@ -153,8 +179,17 @@ const createEventBluesky = async (username: string, password: string) => {
 (async () => {
   const customPDS = "https://dcdev4.ticketh.xyz";
 
-  const disableResult = await disableInviteCodes(customPDS);
-  console.log("Disable Result:", disableResult);
+  console.log("=== Attempting to create invite codes ===");
+
+  try {
+    const result = await createInviteCodes(customPDS);
+
+    console.log(result.data.codes[0]);
+
+    console.log("Create Result (Method 1):", result);
+  } catch (error: any) {
+    console.log("Method 1 failed:", error.message);
+  }
 })();
 
 // (async () => {
