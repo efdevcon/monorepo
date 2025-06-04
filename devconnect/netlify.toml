@@ -21,10 +21,3 @@
   to = "https://devconnect.org/istanbul"
   status = 302
   force = true
-
-[[headers]]
-  for = "/argentina/ticket/*"
-  [headers.values]
-    Content-Encoding = "identity"
-    Vary = "Accept-Encoding"
-    Cache-Control = "public, max-age=0, must-revalidate"
