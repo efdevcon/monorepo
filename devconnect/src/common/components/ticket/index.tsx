@@ -45,6 +45,13 @@ export const Ticket = ({
 
   const type = option === 'instagram' ? 'vibe' : 'ticket'
 
+  console.log('type', type)
+  const width = type === 'ticket' ? 1143 : 1080
+  const height = type === 'ticket' ? 630 : 1920
+
+  console.log('width', width)
+  console.log('height', height)
+
   return (
     <div
       style={{
@@ -65,8 +72,8 @@ export const Ticket = ({
           left: option === 'instagram' ? 0 : 28.5,
         }}
         src={`${SITE_URL}/argentina/${color}-${type}.png`}
-        width={option === 'instagram' ? 1080 : 1143}
-        height={option === 'instagram' ? 1920 : 630}
+        width={width}
+        height={height}
       />
       <div
         style={{

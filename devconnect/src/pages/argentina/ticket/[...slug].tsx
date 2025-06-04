@@ -22,7 +22,15 @@ const backgroundImages = {
   yellow: yellowBg,
 }
 
-export const ShareTicket = ({ name, color: initialColor }: { name: string; color: string }) => {
+export const ShareTicket = ({
+  name,
+  color: initialColor,
+  random,
+}: {
+  name: string
+  color: string
+  random?: string
+}) => {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
   const [color, setColor] = useState(initialColor)
@@ -44,26 +52,28 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
     }
   }, [initialColor, mounted])
 
-  const ticketLink = `/api/ticket/${name}/${color}/transparent`
-  const currentUrl = `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}`
+  const ticketLink = `/api/ticket/${name}/${color}/transparent/${random}`
+  const currentUrl = `https://devconnect.org/argentina/ticket/${encodeURIComponent(name)}/${color}${
+    random ? `/${random}` : ''
+  }`
 
   // Update URL without triggering a route change
   useEffect(() => {
     if (mounted && router.isReady && color && name) {
-      const newPath = `/argentina/ticket/${encodeURIComponent(name)}/${color}`
+      const newPath = `/argentina/ticket/${encodeURIComponent(name)}/${color}${random ? `/${random}` : ''}`
       if (window.location.pathname !== newPath) {
         window.history.replaceState({}, '', newPath)
       }
     }
-  }, [color, router.isReady, name, mounted])
+  }, [color, router.isReady, name, mounted, random])
 
   // Update current image when color changes
   useEffect(() => {
     if (color) {
-      const imageUrl = `/api/ticket/${name}/${color}/transparent`
+      const imageUrl = `/api/ticket/${name}/${color}/transparent/${random}`
       setCurrentImage(imageUrl)
     }
-  }, [color, name])
+  }, [color, name, random])
 
   // Preload images for all colors
   useEffect(() => {
@@ -80,7 +90,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
       setIsLoading(true)
       const promises = colorKeys.map(colorKey => {
         return new Promise<void>((resolve, reject) => {
-          const imageUrl = `/api/ticket/${name}/${colorKey}/transparent`
+          const imageUrl = `/api/ticket/${name}/${colorKey}/transparent/${random}`
           if (!imageCache.current[colorKey]) {
             const img = new Image()
             img.onload = () => {
@@ -127,7 +137,7 @@ export const ShareTicket = ({ name, color: initialColor }: { name: string; color
       isMounted = false
       hasPreloaded.current = false
     }
-  }, [name, mounted])
+  }, [name, mounted, random])
 
   const twitterShare = encodeURIComponent(`I'm going to Devconnect ARG!
 
@@ -176,7 +186,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
       <SEO
         title="Devconnect ARG Tickets"
         description="Share your ticket with the world!"
-        imageUrl={`${SITE_URL.replace('/transparent', '/social')}${ticketLink}`}
+        imageUrl={`${SITE_URL?.replace('/transparent', '/social')}${ticketLink}`}
       />
       <div className="flex-1 flex flex-col items-center justify-center">
         <div
@@ -338,11 +348,15 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
 
 const TicketPage = (props: any) => {
   if (!props.params?.slug || props.params.slug.length < 1) return null
-  const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = props.params.slug
+  const [
+    name,
+    color = colorKeys[Math.floor(Math.random() * colorKeys.length)],
+    random = Math.random().toString(36).substring(2, 8),
+  ] = props.params.slug
   return (
     <>
       <SEO {...props.seo} />
-      <ShareTicket name={name} color={color} />
+      <ShareTicket name={name} color={color} random={random} />
     </>
   )
 }
@@ -355,12 +369,19 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-  const [name, color = colorKeys[Math.floor(Math.random() * colorKeys.length)]] = context.params.slug
-  const ticketLink = `/api/ticket/${name}/${color}/social`
+  const [
+    name,
+    color = colorKeys[Math.floor(Math.random() * colorKeys.length)],
+    random = Math.random().toString(36).substring(2, 8),
+  ] = context.params.slug
+  const ticketLink = `/api/ticket/${name}/${color}/social/${random}`
 
   return {
     props: {
-      params: context.params,
+      params: {
+        ...context.params,
+        slug: [name, color, random],
+      },
       seo: {
         title: `${name}'s Devconnect ARG Ticket`,
         description: `${name} is going to Devconnect ARG! Get your ticket and join the community.`,

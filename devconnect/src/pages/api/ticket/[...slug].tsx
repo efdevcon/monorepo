@@ -61,6 +61,8 @@ export default async function handler(req: NextRequest) {
       size = { width: 1080, height: 1920 }
     }
 
+    console.log('size', size)
+
     return new ImageResponse(<Ticket name={decodedName} color={color} option={option} />, {
       ...size,
       headers: {
