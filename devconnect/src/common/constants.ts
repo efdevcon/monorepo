@@ -7,5 +7,5 @@ export const SITE_URL =
       ? 'https://preview-repo.vercel.app/'
       : 'https://devconnect.org/'
 export const IMAGE_OG = `${SITE_URL}og-argentina.png?reset=1`
-export const SOCIAL_HANDLE = '@EFDevconnect'
+export const SOCIAL_HANDLE = '@EFDevcon'
 export const FARCASTE_HANDLE = '@efdevconnect'
