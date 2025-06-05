@@ -7,7 +7,6 @@ import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE } from 'common/constants'
 import Link from 'common/components/link/Link'
 import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
-import IconArrowRight from 'assets/icons/arrow_right.svg'
 import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
 import { ShareButton } from 'common/components/ticket/ShareButton'
 
@@ -248,15 +247,19 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
         </div>
         <div className="flex flex-col mt-10">
           <Link href="http://tickets.devconnect.org/">
-            <button
-              className={cn(
-                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-                styles['tiled-button']
-              )}
-            >
+            <button className={cn('', styles['tiled-button'])}>
               <div className="group-hover:translate-y-[3px] transition-transform flex items-center gap-2">
                 Get your ticket
-                <IconArrowRight className="w-4 h-4" />
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-4 h-4"
+                >
+                  <path d="M8 0 6.59 1.41 12.17 7H0v2h12.17l-5.58 5.59L8 16l8-8-8-8Z" fill="#242436"></path>
+                </svg>
               </div>
             </button>
           </Link>

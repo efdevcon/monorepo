@@ -1,32 +1,58 @@
 .tiled-button {
+  display: inline-flex;
+    padding: 16px 16px 16px 24px;
+    align-items: center;
+    gap: 8px;
+    background: #F6B40E;
+    box-shadow: 0px 6px 0px 0px #B2820A;
+    border-radius: 0;
   position: relative;
-  overflow: hidden;
+  border: none;
+    outline: none;
+    color: #242436;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
 
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.95;
-    background: linear-gradient(to bottom, #bc932b, #eaed4d);
+  &:hover {
+      background: #EEDD33;
+      box-shadow: 0px 6px 0px 0px #B2820A;
+    }
+  
+    &:focus {
+      &::after {
+        content: '';
+        position: absolute;
+      top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -13px;
+        border-radius: 8px;
+        border: 3px solid #FFF;
+        pointer-events: none;
+        box-sizing: border-box;
+      }
   }
 
-  &:before {
-    content: '';
-    z-index: -2;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/destino/bg-tile-yellow.svg');
-    background-size: 165.5px 95.2px;
-    filter: blur(2px);
-    background-repeat: repeat;
-  }
+    &:active {
+      background: #F6B40E;
+      box-shadow: 0px 3px 0px 0px #644804;
+  
+      &::after {
+        content: none;
+      }
+    }
+    }
+  
+    .share-btn-bg-default {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 8px #0002;
 }
 
 .share-btn-bg-default {
