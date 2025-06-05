@@ -9,6 +9,7 @@ import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
 import { ColorButtonSvg } from 'common/components/ticket/ColorButtonSvg'
 import { ShareButton } from 'common/components/ticket/ShareButton'
+import { TiledButton } from 'common/components/ba/button'
 
 // Import background images
 import blueBg from '../../../../public/argentina/social-bg-img-blue.jpg'
@@ -247,9 +248,8 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
         </div>
         <div className="flex flex-col mt-10">
           <Link href="http://tickets.devconnect.org/">
-            <button className={cn('', styles['tiled-button'])}>
-              <div className="group-hover:translate-y-[3px] transition-transform flex items-center gap-2">
-                Get your ticket
+            <TiledButton
+              icon={
                 <svg
                   width="1em"
                   height="1em"
@@ -260,8 +260,10 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
                 >
                   <path d="M8 0 6.59 1.41 12.17 7H0v2h12.17l-5.58 5.59L8 16l8-8-8-8Z" fill="#242436"></path>
                 </svg>
-              </div>
-            </button>
+              }
+            >
+              Get your ticket
+            </TiledButton>
           </Link>
         </div>
       </div>
