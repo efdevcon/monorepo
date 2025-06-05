@@ -157,7 +157,7 @@ You coming? ${currentUrl}`)
 I’ve just locked in my ticket to the first-ever Ethereum World’s Fair at Devconnect Argentina (17 – 22 Nov, Buenos Aires) 🇦🇷✨
 
 ✅ Ethereum apps take center stage
-✅ Buenos Aires = one of the most crypto-native markets on Earth 
+✅ Buenos Aires is one of the most crypto-native markets on Earth 
 ✅ One intense week to ship, learn, and level-up alongside 10,000+ builders
 
 If you’re serious about taking web3 from concept to concrete, Devconnect ARG is THE place to be.
@@ -369,7 +369,10 @@ You coming?`)
               <ShareButton platform="instagram" color={colorCode} />
             </a>
             <a
-              href={`https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinShare}`}
+              href={`https://www.linkedin.com/feed/?shareActive&mini=true&text=${linkedinShare?.replaceAll(
+                '\n',
+                '%0A'
+              )}`}
               target="_blank"
               rel="noreferrer"
             >
