@@ -139,18 +139,38 @@ export const ShareTicket = ({
     }
   }, [name, mounted, random])
 
-  const twitterShare = encodeURIComponent(`I'm going to Devconnect ARG!
+  const twitterShare =
+    encodeURIComponent(`Just got my ${SOCIAL_HANDLE} ticket for the Ethereum World's Fair. Six days of real apps, stablecoins, onchain identity, DeFi, and more.
 
-Get your ${SOCIAL_HANDLE} ticket:`)
-  const warpcastShare = encodeURIComponent(`I'm going to Devconnect ARG!
+If you’re curious what Ethereum actually does, don't miss Devconnect. Nov 17–22 in Buenos Aires 🇦🇷
 
-Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
+You coming?`)
+  const warpcastShare =
+    encodeURIComponent(`Just got my ${FARCASTE_HANDLE} ticket for the Ethereum World's Fair. Six days of real apps, stablecoins, onchain identity, DeFi, and more.
 
-  const linkedinShare = `I'm going to Devconnect ARG!%0A%0AGet your ticket: ${encodeURIComponent(currentUrl)}`
+If you’re curious what Ethereum actually does, don't miss Devconnect. Nov 17–22 in Buenos Aires 🇦🇷
 
-  const lensShare = encodeURIComponent(`I'm going to Devconnect ARG!
+You coming? ${currentUrl}`)
 
-Get your @devcon ticket: ${currentUrl}`)
+  const linkedinShare = `🚀 Thrilled to share a personal milestone! 🚀
+
+I’ve just locked in my ticket to the first-ever Ethereum World’s Fair at Devconnect Argentina (17 – 22 Nov, Buenos Aires) 🇦🇷✨
+
+✅ Ethereum apps take center stage
+✅ Buenos Aires = one of the most crypto-native markets on Earth 
+✅ One intense week to ship, learn, and level-up alongside 10,000+ builders
+
+If you’re serious about taking web3 from concept to concrete, Devconnect ARG is THE place to be.
+
+See ya in BA!
+${encodeURIComponent(currentUrl)}`
+
+  const lensShare =
+    encodeURIComponent(`Just got my @devcon ticket for the Ethereum World's Fair. Six days of real apps, stablecoins, onchain identity, DeFi, and more.
+
+If you’re curious what Ethereum actually does, don't miss Devconnect. Nov 17–22 in Buenos Aires 🇦🇷
+
+You coming?`)
 
   const colorCode = color ? colorMap[color as keyof typeof colorMap].primary : ''
 
@@ -192,7 +212,7 @@ Get your @devcon ticket: ${currentUrl}`)
         description="Share your ticket with the world!"
         imageUrl={`${SITE_URL?.replace('/transparent', '/social')}${ticketLink}`}
       />
-      <div className="flex-1 flex flex-col items-center justify-center" style={{ marginTop: '110px' }}>
+      <div className="flex-1 flex flex-col items-center justify-center" style={{ marginTop: '157px' }}>
         <div
           style={{
             display: 'flex',
@@ -272,7 +292,7 @@ Get your @devcon ticket: ${currentUrl}`)
         </div>
       </div>
       <div className="flex flex-col mt-10">
-        <div className="text-center">
+        <div className="text-center mb-8">
           <div className="text-white text-xl font-semibold mb-1">Share on</div>
           <div className="flex items-center">
             <a
@@ -288,7 +308,11 @@ Get your @devcon ticket: ${currentUrl}`)
             >
               <ShareButton platform="farcaster" color={colorCode} />
             </a>
-            <a href={`https://hey.xyz/?text=${lensShare}`} target="_blank" rel="noreferrer">
+            <a
+              href={`https://hey.xyz/?text=${lensShare}&url=${encodeURIComponent(currentUrl)}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               <ShareButton platform="lens" color={colorCode} />
             </a>
             <a
