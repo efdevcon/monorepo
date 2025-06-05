@@ -148,6 +148,10 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
 
   const linkedinShare = `I'm going to Devconnect ARG!%0A%0AGet your ticket: ${encodeURIComponent(currentUrl)}`
 
+  const lensShare = encodeURIComponent(`I'm going to Devconnect ARG!
+
+Get your @devcon ticket: ${currentUrl}`)
+
   const colorCode = color ? colorMap[color as keyof typeof colorMap].primary : ''
 
   const handleColorChange = (colorKey: string) => {
@@ -270,7 +274,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
       <div className="flex flex-col mt-10">
         <div className="text-center">
           <div className="text-white text-xl font-semibold mb-1">Share on</div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center">
             <a
               href={`https://x.com/intent/tweet?text=${twitterShare}&url=${encodeURIComponent(currentUrl)}`}
               target="_blank"
@@ -283,6 +287,9 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
               rel="noreferrer"
             >
               <ShareButton platform="farcaster" color={colorCode} />
+            </a>
+            <a href={`https://hey.xyz/?text=${lensShare}`} target="_blank" rel="noreferrer">
+              <ShareButton platform="lens" color={colorCode} />
             </a>
             <a
               onClick={async () => {

@@ -4,9 +4,10 @@ import XTwitterLogo from './Name=X-twitter.svg'
 import FarcasterLogo from './Name=Farcaster.svg'
 import InstagramLogo from './Name=Instagram.svg'
 import LinkedinLogo from './Name=Linkedin.svg'
+import LensLogo from './Name=Lens.svg'
 
 export type ShareButtonVariant = 'default' | 'focused' | 'pressed' | 'hover'
-export type ShareButtonPlatform = 'twitter' | 'farcaster' | 'instagram' | 'linkedin'
+export type ShareButtonPlatform = 'twitter' | 'farcaster' | 'instagram' | 'linkedin' | 'lens'
 
 interface ShareButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ShareButtonVariant
@@ -25,7 +26,7 @@ const bgStyles: Record<string, (color?: string) => React.CSSProperties> = {
     width: 36,
     height: 36,
     background: color || '#74ACDF',
-    boxShadow: '0 4px 12px #0003',
+    boxShadow: '0px 3px 0px 0px #7B7B7B',
   }),
   pressed: (color?: string) => ({
     width: 36,
@@ -49,6 +50,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({ variant = 'default', p
   if (platform === 'farcaster') Logo = FarcasterLogo
   else if (platform === 'instagram') Logo = InstagramLogo
   else if (platform === 'linkedin') Logo = LinkedinLogo
+  else if (platform === 'lens') Logo = LensLogo
 
   let bgStyle = bgStyles['default'](props.color)
   if (buttonVariant === 'hover') bgStyle = bgStyles['hover'](props.color)
