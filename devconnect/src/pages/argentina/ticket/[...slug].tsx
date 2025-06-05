@@ -188,7 +188,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
         description="Share your ticket with the world!"
         imageUrl={`${SITE_URL?.replace('/transparent', '/social')}${ticketLink}`}
       />
-      <div className="flex-1 flex flex-col items-center justify-center">
+      <div className="flex-1 flex flex-col items-center justify-center" style={{ marginTop: '110px' }}>
         <div
           style={{
             display: 'flex',
@@ -223,7 +223,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
             )
           })}
         </div>
-        <div style={{ width: '630px', maxWidth: '100vw' }}>
+        <div style={{ width: '701px', maxWidth: '100vw' }}>
           {isLoading ? (
             <div
               style={{
