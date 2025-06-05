@@ -175,7 +175,7 @@ Get your ${FARCASTE_HANDLE} ticket: ${currentUrl}`)
         backgroundImage: `url(${backgroundImages[color as keyof typeof backgroundImages]?.src || ''})`,
         backgroundColor: '#74ACDF47',
         backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundPosition: color === 'pink' ? 'right' : 'center',
         padding: '20px',
         minHeight: '100vh',
         display: 'flex',
