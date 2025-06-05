@@ -82,7 +82,7 @@ export const Ticket = ({
           width: '100%',
           height: '100%',
           position: 'absolute',
-          top: option === 'instagram' ? 880 : 200,
+          top: option === 'instagram' ? 880 : 222,
           left: 0,
           overflow: 'hidden',
         }}
@@ -91,7 +91,7 @@ export const Ticket = ({
           style={{
             display: 'flex',
             justifyContent: 'center',
-            fontSize: '48px',
+            fontSize: '56px',
             color: '#8855CC',
             fontFamily: isLatinOnly(name) ? 'Roboto Condensed' : 'Noto Sans SC',
           }}
