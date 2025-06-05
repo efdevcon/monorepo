@@ -12,7 +12,7 @@ export const contentType = 'image/png'
 
 // Fonts
 const condensedFontUrl = new URL(`${SITE_URL}/RobotoCondensed-Bold.ttf`, import.meta.url)
-const notoSansUrl = new URL(`${SITE_URL}/NotoSansSC-Regular.ttf`, import.meta.url)
+const notoSansUrl = new URL(`${SITE_URL}/NotoSansSC-Bold.ttf`, import.meta.url)
 let condensedFontData: ArrayBuffer | null = null
 let notoSansData: ArrayBuffer | null = null
 
@@ -76,7 +76,7 @@ export default async function handler(req: NextRequest) {
           name: 'Noto Sans SC',
           data: notoSansData,
           style: 'normal',
-          weight: 400,
+          weight: 700,
         },
       ],
     })
