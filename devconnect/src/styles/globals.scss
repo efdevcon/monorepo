@@ -48,10 +48,10 @@ $max-content-width: $content-width + ($side-gap * 2);
 .section {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(64px, 1fr) minmax(auto, 1680px) minmax(64px, 1fr);
+  grid-template-columns: minmax(64px, 1fr) minmax(auto, var(--content-width, 1680px)) minmax(64px, 1fr);
 
   @media (max-width: $screen-md) {
-    grid-template-columns: minmax(16px, 1fr) minmax(auto, 1680px) minmax(16px, 1fr);
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--content-width, 1680px)) minmax(16px, 1fr);
   }
 
   > * {
@@ -89,7 +89,7 @@ $max-content-width: $content-width + ($side-gap * 2);
   @apply text-3xl;
   font-weight: 700;
   // color: rgb(45, 212, 191) !important;
-  color: #6b9ad3 !important;
+  color: rgba(25, 100, 155, 1) !important;
 
   &.white {
     color: white !important;
@@ -523,10 +523,12 @@ svg.icon {
 $standard-spacing: 2em;
 
 .cms-markdown {
+  line-height: 1.5;
+
   .text-3xl {
     // color: rgb(45, 212, 191) !important;
     font-weight: 700;
-    color: #6b9ad3 !important;
+    color: rgba(25, 100, 155, 1) !important;
     font-family: var(--font-roboto-condensed);
     text-transform: uppercase;
   }
@@ -662,5 +664,30 @@ $border: 1px solid rgb(203 213 225 / 0.5);
     background: white;
     color: black;
     --icon-color: black;
+  }
+}
+
+.animated-background-gradient {
+  --animate-background-gradient: background-gradient;
+  animation: background-gradient 15s linear infinite;
+}
+
+@keyframes background-gradient {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    animationdelay: var(--background-gradient-delay, 0s);
+  }
+  20% {
+    transform: translate(calc(100% * var(--tx-1, 1)), calc(100% * var(--ty-1, 1)));
+  }
+  40% {
+    transform: translate(calc(100% * var(--tx-2, -1)), calc(100% * var(--ty-2, 1)));
+  }
+  60% {
+    transform: translate(calc(100% * var(--tx-3, 1)), calc(100% * var(--ty-3, -1)));
+  }
+  80% {
+    transform: translate(calc(100% * var(--tx-4, -1)), calc(100% * var(--ty-4, -1)));
   }
 }

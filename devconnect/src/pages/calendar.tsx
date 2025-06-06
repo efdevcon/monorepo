@@ -93,7 +93,7 @@ const Argentina = (props: any) => {
   return (
     <>
       <Header active fadeOutOnScroll />
-      <div className="relative h-[24vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden">
+      <div className={cn('relative h-[24vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden')}>
         <Image
           src={Voxel}
           alt="Voxel art background"
@@ -106,6 +106,8 @@ const Argentina = (props: any) => {
             <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>Buenos Aires, ARGENTINA</div>
           </div>
         </div>
+
+        <div className={styles['devconnect-overlay']}></div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
       <div className="flex flex-col text-black">

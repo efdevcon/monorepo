@@ -7,9 +7,6 @@ import HeaderLogo from 'assets/images/header-logo.png'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
 import Link from 'common/components/link/Link'
-import AnnouncementDate from 'assets/images/ba/date.png'
-import ArgentinaWhite from 'assets/images/ba/argentina-white.png'
-import BAWhite from 'assets/images/ba/ba-text-white.png'
 import Modal from 'common/components/modal'
 import { CodeOfConduct } from 'common/components/code-of-conduct/CodeOfConduct'
 import FAQComponent from 'common/components/faq/faq'
@@ -19,35 +16,52 @@ import FooterBackground from 'assets/images/footer-background-triangles.png'
 import Parser from 'rss-parser'
 import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
-import CityScape from 'assets/images/ba/cityscape.png'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
-import { HorizontalScroller } from 'lib/components/horizontal-scroller'
-import PastEventCard from 'lib/components/cards/past-event'
-import istanbulScheduleBackground from 'assets/images/turkeycube.png'
-import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
+// import AnnouncementDate from 'assets/images/ba/date.png'
+// import ArgentinaWhite from 'assets/images/ba/argentina-white.png'
+// import BAWhite from 'assets/images/ba/ba-text-white.png'
+// import CityScape from 'assets/images/ba/cityscape.png'
+// import { HorizontalScroller } from 'lib/components/horizontal-scroller'
+// import PastEventCard from 'lib/components/cards/past-event'
+// import istanbulScheduleBackground from 'assets/images/turkeycube.png'
+// import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
+// import NewSchedule from 'lib/components/event-schedule-new'
+// import { Button } from 'lib/components/button'
+// import ScrollingText from 'lib/components/infinite-scroll/scrolling-text'
+// import AnimatedGradient from 'fancy/components/background/animated-gradient-with-svg'
 import { client } from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import RichText from 'lib/components/tina-cms/RichText'
-import { useScroll } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 import TwitterIcon from 'assets/icons/twitter.svg'
 import TelegramIcon from 'assets/icons/telegram.svg'
 import FarcasterIcon from 'assets/icons/farcaster.svg'
 import MailIcon from 'assets/icons/mail.svg'
 import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
-import { Button } from 'lib/components/button'
 import cn from 'classnames'
-import ScrollingText from 'lib/components/infinite-scroll/scrolling-text'
 import TicketIcon from 'assets/icons/ticket.svg'
 import WorldIcon from 'assets/icons/world.svg'
 import CampaignIcon from 'assets/icons/campaign.svg'
 import PeopleIcon from 'assets/icons/people.svg'
 import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
-import NewSchedule from 'lib/components/event-schedule-new'
 import Venue from 'common/components/ba/venue/venue'
-import { Ticket, ExternalLink } from 'lucide-react'
+import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon } from 'lucide-react'
 import HeroText from 'assets/images/ba/header-text-hq.png'
 import TicketExample from 'assets/images/ba/hero-ticket.png'
+import { ArrowRight } from 'lucide-react'
+import VoxelCard from 'common/components/ba/voxel-card/voxel-card'
+import CoworkingImage from 'assets/images/ba/voxel-cards/co-working-image.png'
+import CommunityImage from 'assets/images/ba/voxel-cards/community-events-image.png'
+import ETHDayImage from 'assets/images/ba/voxel-cards/eth-day-image.png'
+import WorldsFairImage from 'assets/images/ba/voxel-cards/worlds-fair-image.png'
+import HeroImage from 'assets/images/ba/hero.jpg'
+import VideoImage from 'assets/images/ba/video-preview.png'
+import VoxelHeart from 'assets/images/ba/voxel-heart.png'
+import VoxelTV from 'assets/images/ba/voxel-tv.png'
+import VoxelPencil from 'assets/images/ba/voxel-pencil.png'
+import VoxelCalendar from 'assets/images/ba/voxel-calendar.png'
+import VoxelSquares from 'assets/images/ba/voxel-squares.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -237,25 +251,26 @@ const TicketButton = ({
   return (
     <Link
       href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
-      className=""
+      className="pointer-events-auto"
       spanClass={cn('flex flex-col items-end gap-2 group', className, css['no-underline'])}
     >
       <p
         className={cn(
-          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-2px] will-change-transform transition-all duration-300 rounded-lg px-4 py-2 flex items-center gap-3 self-end',
+          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-2px] will-change-transform transition-all duration-300 px-3 py-1 flex items-center gap-2 self-end',
           css['no-underline']
         )}
       >
         Tickets now available!
-        <ExternalLink className="w-5 h-5 opacity-80" />
+        <ExternalLink className="w-4 h-4 opacity-80" />
       </p>
-      <Image src={TicketExample} alt="Ticket Example" className="w-[400px]" quality={100} />
+      <Image src={TicketExample} alt="Ticket Example" className="w-[440px]" quality={100} />
     </Link>
   )
 }
 
 const Home: NextPage = (props: any) => {
   const { data }: { data: any } = useTina(props.cms)
+  const [playerClicked, setPlayerClicked] = useState(false)
   // const { data: translations } = useTina(props.translations)
   // const translations = JSON.parse(translations.data.global_translations)
 
@@ -291,8 +306,8 @@ const Home: NextPage = (props: any) => {
   return (
     <>
       <SEO />
-      <div className={css.container}>
-        <main id="main" className={cn(css.main, 'text-black')}>
+      <div className={css.container} style={{ '--content-width': '1440px' } as any}>
+        <main id="main" className={cn(css.main, 'text-black')} style={{ '--content-width': '1440px' } as any}>
           <div
             id="hero"
             ref={heroRef}
@@ -306,7 +321,16 @@ const Home: NextPage = (props: any) => {
             {/* <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} /> */}
             <Header noGradient active={true} />
 
-            <div className="fixed top-0 w-full">
+            <div
+              className={cn(
+                css['devconnect-overlay'],
+                'z-10 opacity-0 transition-opacity duration-[1500ms]',
+                fadeInArgentina && 'opacity-100',
+                userHasInterruptedPlayback && 'opacity-100'
+              )}
+            ></div>
+
+            <div className="absolute top-0 w-full">
               <ErrorBoundary
                 fallback={<div>There was an error playing the video, it could be due to your browser settings.</div>}
               >
@@ -351,30 +375,30 @@ const Home: NextPage = (props: any) => {
 
                   <div
                     className={cn(
-                      `text-2xl flex flex-col mb-8 gap-2 max-w-[700px] text-[#36364C] font-semibold opacity-0 transition-opacity duration-[1500ms]`,
+                      `text-2xl flex flex-col mb-8 gap-2 max-w-[600px] text-white font-semibold opacity-0 transition-opacity duration-[1500ms]`,
                       (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
                       userHasInterruptedPlayback && 'duration-[1000ms]'
                     )}
                   >
-                    <p className={cn('self-start mb-2', css['text-highlight'])}>
-                      17 – 22 November / Buenos Aires, Argentina
+                    <p className={cn('self-start font-secondary font-normal mb-1', css['text-highlight'])}>
+                      17-22 November / Buenos Aires, Argentina
                     </p>
 
                     <Image src={HeroText} alt="Hero text" className={cn('translate-x-[-2%]')} />
 
-                    <p className={cn('self-start text-lg', css['text-highlight'])}>
+                    <p className={cn('self-start text-xl font-secondary font-normal', css['text-highlight'])}>
                       Devconnect ARG is a showcase of Ethereum apps and an event to connect, build and accelerate
                       Ethereum adoption.
                     </p>
 
-                    <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+                    <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                       <button
                         className={cn(
-                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 py-2 border-[#125181] text-[white] text-xl font-semibold bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
                         )}
                       >
-                        <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                          Get My Ticket
+                        <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                          Get My Ticket <ArrowRight className="w-6 h-6" />
                         </div>
                       </button>
                     </Link>
@@ -445,7 +469,7 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
 
-              <div className={cn('absolute section bottom-4 right-0 z-10')}>
+              <div className={cn('absolute section bottom-4 right-0 z-10 pointer-events-none')}>
                 <div
                   className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[3000ms]', {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
@@ -485,7 +509,7 @@ const Home: NextPage = (props: any) => {
                     </Button>
                   </Link> */}
 
-                  <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/80 rounded-lg p-2 px-3 shadow">
+                  <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/80 rounded-lg p-2 px-3 shadow pointer-events-auto">
                     <p className="text-base">Follow us</p>
                     <a
                       className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
@@ -567,137 +591,446 @@ const Home: NextPage = (props: any) => {
             <Venue />
           </div>
 
-          <div className="section relative bg-white" id="about">
-            <ScrollingText direction="down" color="teal-2" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText>
-            <div className="flex flex-row gap-4 pb-2 flex-wrap lg:flex-nowrap z-[2] border-bottom">
-              <div className="basis-full lg:basis-1/2 shrink-0 text-black flex items-center">
-                <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" />
-              </div>
-              <div className="basis-full lg:basis-[50%] lg:px-8 lg:pr-6 flex flex-col items-center justify-center lg:pt-3 shrink-0">
-                <div className="mb-2 opacity-50 font-secondary bold uppercase pt-6">
-                  {(globalThis as any).translations.catch_the_vibe}
-                </div>
-                <HorizontalScroller>
-                  <div className="flex flex-row items-center justify-center  gap-4 pb-8 pt-0 max-w-full">
-                    <PastEventCard
-                      text="Devconnect IST 2023"
-                      className="w-[205px] lg:w-[300px] !min-h-[auto] !min-w-[auto] select-none"
-                      image={istanbulScheduleBackground}
-                      imageAlt="Istanbul collage"
-                      link="/istanbul"
-                    />
+          <div className="z-10" style={{ background: 'linear-gradient(180deg, #EDF6FF 51.02%, #FFFFFF 100%)' }}>
+            <div className="section relative !overflow-visible" id="about">
+              {/* Squares Bottom Right Blue */}
+              <svg
+                width="154"
+                height="154"
+                viewBox="0 0 154 154"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute bottom-0 right-0 expand"
+              >
+                <g opacity="0.6">
+                  <path d="M105.643 0L154 0V48.3575L105.643 48.3575V0Z" fill="#74ACDF" />
+                  <path d="M52.8212 52.8213H101.179V101.179H52.8212V52.8213Z" fill="#74ACDF" />
+                  <path d="M105.643 52.8213L154 52.8213V101.179H105.643V52.8213Z" fill="#74ACDF" />
+                  <path d="M0 105.643H48.3575L48.3575 154H0L0 105.643Z" fill="#74ACDF" />
+                  <path d="M52.8212 105.643H101.179V154H52.8212L52.8212 105.643Z" fill="#74ACDF" />
+                  <path d="M105.643 105.643H154V154H105.643V105.643Z" fill="#74ACDF" />
+                </g>
+              </svg>
+              {/* Squares Top Right Yellow */}
+              <svg
+                width="154"
+                height="101"
+                viewBox="0 0 154 101"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute top-0 right-0 expand"
+              >
+                <g opacity="0.5">
+                  <path
+                    d="M-2.30481e-06 48.2721L-4.41485e-06 7.62939e-06L48.3575 5.51562e-06L48.3575 48.2721L-2.30481e-06 48.2721Z"
+                    fill="#F6B40E"
+                  />
+                  <path
+                    d="M52.8213 48.2721L52.8213 5.3205e-06L101.179 3.20673e-06L101.179 48.2721L52.8213 48.2721Z"
+                    fill="#F6B40E"
+                  />
+                  <path d="M105.643 101L105.643 52.7279L154 52.7279L154 101L105.643 101Z" fill="#F6B40E" />
+                  <path
+                    d="M105.643 48.2721L105.643 3.01161e-06L154 8.97841e-07L154 48.2721L105.643 48.2721Z"
+                    fill="#F6B40E"
+                  />
+                </g>
+              </svg>
 
-                    <PastEventCard
-                      text="Devconnect AMS 2022"
-                      className="w-[205px] lg:w-[300px] !min-h-[auto] !min-w-[auto] select-none"
-                      image={amsterdamScheduleBackground}
-                      imageAlt="Amsterdam collage"
-                      link="/amsterdam"
+              {/* Squares Bottom Left Pink */}
+              <svg
+                width="101"
+                height="102"
+                viewBox="0 0 101 102"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="absolute bottom-0 left-0 translate-y-[53%] z-10 expand"
+              >
+                <g opacity="0.5">
+                  <path
+                    d="M48.2721 101.179L7.62939e-06 101.179L3.40185e-06 52.8212L48.2721 52.8212L48.2721 101.179Z"
+                    fill="#FF85A6"
+                  />
+                  <path
+                    d="M101 48.3575L52.7279 48.3575L52.7279 -2.62975e-05L101 -3.05176e-05L101 48.3575Z"
+                    fill="#FF85A6"
+                  />
+                  <path
+                    d="M48.2721 48.3575L3.01161e-06 48.3575L-1.21593e-06 -2.16879e-05L48.2721 -2.5908e-05L48.2721 48.3575Z"
+                    fill="#FF85A6"
+                  />
+                </g>
+              </svg>
+
+              {/* <ScrollingText
+              direction="down"
+              color="teal-2"
+              speed="100s"
+              className="!h-[300px] !z-[1] pointer-events-none"
+            ></ScrollingText> */}
+              <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
+                <div className="basis-full lg:basis-[500px] shrink-0 text-black flex gap-8 items-center">
+                  {/* <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" /> */}
+                  <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
+                </div>
+
+                <div className="basis-full lg:basis-auto grow flex justify-end items-center relative p-4 py-8 pr-16">
+                  {/* <AnimatedGradient
+                  colors={['#1B6FAE', '#1B6FAE33', '#1B6FAE66']}
+                  speed={40}
+                  blur="heavy"
+                  className="expand !overflow-visible pointer-events-none"
+                /> */}
+                  <div className="aspect-video bg-white border-2 border-solid border-[white] w-[700px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
+                    <Image
+                      src={VideoImage}
+                      alt="Video Preview"
+                      className={cn(
+                        'w-full h-full object-cover left-0 top-0 absolute expand cursor-pointer',
+                        playerClicked && 'hidden'
+                      )}
+                      onClick={() => {
+                        setPlayerClicked(true)
+                      }}
+                    />
+                    <iframe
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&showinfo=0"
+                      title="YouTube video player"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full "
                     />
                   </div>
-                </HorizontalScroller>
+                </div>
               </div>
+            </div>
+
+            <div className="section relative">
+              <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
+                <div className={`${css['topics']} mt-6 font-secondary`} id="topics-container">
+                  {data.pages.devconnect_themes.map((theme: string, i: number) => {
+                    return (
+                      <Observer
+                        key={i}
+                        activeClassName={css['transformed']}
+                        repeating
+                        observerOptions={{
+                          rootMargin: '-40% 0px -25% 0%',
+                        }}
+                      >
+                        <div className={css['topic']}>
+                          {theme}
+                          {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                        </div>
+                      </Observer>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* <div className="border-bottom py-6 pb-2"></div> */}
             </div>
           </div>
 
-          <div className="section relative bg-white">
-            <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
-            {/* <div className="absolute left-0 right-0 bottom-0">
-              <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
-            </div> */}
+          <div className={cn('section relative mt-12 pb-16', css['gradient-pink'])}>
+            <RichText content={data.pages.event_calendar} className="cms-markdown mt-6 mb-12" />
 
-            <div className={`${css['topics']} mt-4 font-secondary`} id="topics-container">
-              {data.pages.devconnect_themes.map((theme: string, i: number) => {
+            <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
+              {data.pages.what_to_expect.map((item: any, index: number) => {
+                const props = () => {
+                  switch (index) {
+                    case 0:
+                      return {
+                        image: CoworkingImage,
+                        imageAlt: 'Coworking Image',
+                        tag: 'Included in ticket',
+                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                        date: '17—22 November 2025',
+                        location: 'La Rural',
+                      }
+                    case 1:
+                      return {
+                        image: CommunityImage,
+                        imageAlt: 'Community Image',
+                        tag: 'Included in ticket',
+                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                        date: '17-22 November 2025',
+                        location: 'La Rural',
+                      }
+                    case 2:
+                      return {
+                        image: ETHDayImage,
+                        imageAlt: 'ETH Day Image',
+                        tag: 'Included in ticket',
+                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                        date: '17—22 November 2025',
+                        location: 'La Rural',
+                      }
+                    case 3:
+                      return {
+                        image: WorldsFairImage,
+                        imageAlt: 'Worlds Fair Image',
+                        // tag: 'Additional booking required',
+                        // tagClass: 'bg-[rgba(246,180,14,1)] border-b-[rgba(175,128,9,1)]',
+                        tag: 'Included in ticket',
+                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                        date: '15—23 November 2025',
+                        location: 'La Rural',
+                      }
+                    default:
+                      return {
+                        image: CoworkingImage,
+                        imageAlt: 'Coworking Image',
+                        tag: 'Coworking',
+                        tagClass: 'bg-blue-500',
+                      }
+                  }
+                }
+
+                const { date, location, ...cardProps } = props()
+
                 return (
-                  <Observer
-                    key={i}
-                    activeClassName={css['transformed']}
-                    repeating
-                    observerOptions={{
-                      rootMargin: '-40% 0px -25% 0%',
-                    }}
-                  >
-                    <div className={css['topic']}>
-                      {theme}
-                      {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                  <VoxelCard key={index} {...cardProps}>
+                    <div className="flex flex-col pb-4">
+                      <p className="font-semibold pt-4 text-xl font-secondary">{item.title}</p>
+                      <p className="mt-2">{item.description}</p>
+                      <div className="flex items-center gap-4 mt-4">
+                        <div className="flex items-center gap-2 will-transform">
+                          <Calendar color="rgba(116, 172, 223, 1)" />
+                          <p className="will-transform">{date}</p>
+                        </div>
+
+                        <div className="flex items-center gap-2 will-transform">
+                          <MapPin color="rgba(116, 172, 223, 1)" />
+                          <p className="will-transform">{location}</p>
+                        </div>
+                      </div>
                     </div>
-                  </Observer>
+                  </VoxelCard>
                 )
               })}
             </div>
-
-            <div className="border-bottom py-4 pb-8"></div>
           </div>
 
-          <div className="section relative bg-white">
-            {/* <ScrollingText direction="up" color="teal" speed="100s" className="!h-[300px] !z-[1]"></ScrollingText> */}
-            <div className="border-bottom z-[2]">
-              {/* <div className="absolute left-0 right-0 bottom-0">
-                <Image src={CityScape} alt="Buenos Aires inspired Cityscape Background" />
-              </div> */}
-              {/* <RichText content={data.pages.what_to_expect} className="cms-markdown mt-6" /> */}
+          <div className="section relative pb-6 bg-white">
+            {/* <RichText content={data.pages.how_to_contribute} className="cms-markdown mt-6" /> */}
+            {/* <svg
+              width="154"
+              height="154"
+              viewBox="0 0 154 154"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute bottom-0 right-0 expand"
+            >
+              <g opacity="0.6">
+                <path d="M105.643 0L154 0V48.3575L105.643 48.3575V0Z" fill="#74ACDF" />
+                <path d="M52.8212 52.8213H101.179V101.179H52.8212V52.8213Z" fill="#74ACDF" />
+                <path d="M105.643 52.8213L154 52.8213V101.179H105.643V52.8213Z" fill="#74ACDF" />
+                <path d="M0 105.643H48.3575L48.3575 154H0L0 105.643Z" fill="#74ACDF" />
+                <path d="M52.8212 105.643H101.179V154H52.8212L52.8212 105.643Z" fill="#74ACDF" />
+                <path d="M105.643 105.643H154V154H105.643V105.643Z" fill="#74ACDF" />
+              </g>
+            </svg> */}
 
-              <h2 className="text-2xl mb-4 section-header mt-6">Your Devconnect experience</h2>
-              <div className="flex flex-col lg:flex-row gap-4 mt-4 relative pb-5">
-                <div className="basis-full lg:basis-1/2">
-                  <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
-                    {data.pages.what_to_expect.map((item: any, index: number) => {
-                      const IconComponent = () => {
-                        switch (index) {
-                          case 0:
-                            return <CampaignIcon className="!h-14 !w-14 icon mb-1" />
-                          case 1:
-                            return <PeopleIcon className="!h-12 !w-12 icon mb-1" />
-                          case 2:
-                            return <WorldIcon className="!h-11 !w-11 icon mb-2" />
-                          case 3:
-                            return <TicketIcon className="!h-12 !w-12 icon mb-3" />
-                          default:
-                            return <CampaignIcon className="!h-14 !w-14 icon mb-1" />
-                        }
-                      }
+            <div className="flex flex-col gap-8 mt-16">
+              <div>
+                <h1 className="section-header">Contribute and Support</h1>
 
-                      return (
-                        <div
-                          key={index}
-                          className="bg-white border shadow border-[#E6E6E6] border-solid rounded-lg flex flex-col justify-between p-6"
-                        >
-                          <IconComponent />
-                          <div>
-                            <h3 className="text-base font-semibold pt-4">{item.title}</h3>
-                            <p className="text-sm mt-2">{item.description}</p>
-                          </div>
+                <p className="mt-4 text-base/7 max-w-[600px]">
+                  The Ethereum World’s Fair shows what Ethereum can do through real apps, infrastructure, community, and
+                  local momentum. It only works when builders ship, communities show up and connect, and supporters help
+                  bring it all together.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-4 gap-4">
+                {data.pages.what_to_expect.map((item: any, index: number) => {
+                  const indexes = [
+                    {
+                      className: 'border-[rgba(136,85,204,1)] bg-[rgba(136,85,204,0.1)]',
+                      icon: VoxelHeart,
+                      ctaLink: 'https://www.google.com',
+                      ctaText: 'Apply here',
+                    },
+                    {
+                      className: 'border-[rgba(221,102,170,1)] bg-[rgba(221,102,170,0.1)]',
+                      icon: VoxelTV,
+                      ctaLink: 'https://www.google.com',
+                      ctaText: 'Apply here',
+                    },
+                    {
+                      className: 'border-[rgba(170,167,255,1)] bg-[rgba(170,167,255,0.1))]',
+                      icon: VoxelPencil,
+                      ctaLink: 'https://www.google.com',
+                      ctaText: 'Apply here',
+                    },
+                    {
+                      className: 'border-[rgba(238,136,34,1)] bg-[rgba(238,136,34,0.1)]',
+                      icon: VoxelCalendar,
+                      ctaLink: 'https://www.google.com',
+                      ctaText: 'Add your event',
+                    },
+                  ]
+
+                  const { className, icon, ctaLink, ctaText } = indexes[index]
+
+                  return (
+                    <div
+                      className={cn(
+                        'flex flex-col justify-between gap-2 border border-solid border-b-4 py-6 px-4',
+                        className
+                      )}
+                      key={index}
+                    >
+                      <div className="flex flex-col grow gap-4">
+                        <div className="flex shrink-0">
+                          <Image src={icon} alt="Icon" className="w-[64px] h-[64px]" />
                         </div>
-                      )
-                    })}
-                  </div>
-                </div>
+                        <div className="flex flex-col gap-2">
+                          <p className="font-bold text-xl font-secondary">{item.title}</p>
+                          <p className="text-base/6">{item.description}</p>
+                        </div>
+                      </div>
 
-                <div className="basis-full lg:basis-1/2 relative group rounded-lg cursor-pointer transition-all duration-300 overflow-hidden">
-                  <ErrorBoundary
-                    fallback={
-                      <div>There was an error playing the video, it could be due to your browser settings.</div>
-                    }
-                  >
-                    <Voxel />
-                  </ErrorBoundary>
-                </div>
+                      <Link href={ctaLink} className="self-end text-[rgba(27,111,174,1)]">
+                        <div className="flex items-center gap-2 uppercase font-bold">
+                          {ctaText}
+                          <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
+                        </div>
+                      </Link>
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
 
-          <div className="section relative pb-6 bg-white">
-            <RichText content={data.pages.event_calendar} className="cms-markdown mt-6" />
-          </div>
+          <div className={cn('section relative py-16', css['gradient-purple'])}>
+            <svg
+              width="157"
+              height="104"
+              viewBox="0 0 157 104"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute top-0 right-0 expand"
+            >
+              <g opacity="0.5">
+                <rect width="48.6061" height="49.3587" transform="matrix(1 0 0 -1 107.846 103.995)" fill="#FF85A6" />
+                <rect width="48.6061" height="49.3587" transform="matrix(1 0 0 -1 0 49.3535)" fill="#FF85A6" />
+                <rect width="48.6061" height="49.3587" transform="matrix(1 0 0 -1 53.9238 49.3535)" fill="#FF85A6" />
+                <rect width="48.6061" height="49.3587" transform="matrix(1 0 0 -1 107.846 49.3535)" fill="#FF85A6" />
+              </g>
+            </svg>
 
-          <div className="section relative pb-6 bg-white">
-            <div className="border-top">
-              <RichText content={data.pages.how_to_contribute} className="cms-markdown mt-6" />
+            <svg
+              width="104"
+              height="218"
+              viewBox="0 0 104 218"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute bottom-0 right-0 expand"
+            >
+              <g opacity="0.5">
+                <rect y="55.7793" width="49.3029" height="50.3865" fill="#F6B40E" />
+                <rect x="54.6973" y="111.559" width="49.3029" height="50.3865" fill="#F6B40E" />
+                <rect y="167.337" width="49.3029" height="50.3865" fill="#F6B40E" />
+                <rect x="54.6973" width="49.3029" height="50.3865" fill="#F6B40E" />
+              </g>
+            </svg>
+
+            <svg
+              width="140"
+              height="140"
+              viewBox="0 0 140 140"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute bottom-0 left-0 expand"
+            >
+              <g opacity="0.5">
+                <path d="M140 96.0386L140 140L96.0387 140L96.0387 96.0386L140 96.0386Z" fill="#8855CC" />
+                <path d="M91.9807 96.0386L91.9807 140L48.0193 140L48.0193 96.0386L91.9807 96.0386Z" fill="#8855CC" />
+                <path
+                  d="M43.9614 1.14525e-06L43.9614 43.9614L5.24234e-07 43.9614L0 1.66948e-06L43.9614 1.14525e-06Z"
+                  fill="#8855CC"
+                />
+                <path
+                  d="M43.9614 48.0193L43.9614 91.9807L1.09686e-06 91.9807L5.72625e-07 48.0193L43.9614 48.0193Z"
+                  fill="#8855CC"
+                />
+                <path
+                  d="M43.9614 96.0386L43.9614 140L1.66948e-06 140L1.14525e-06 96.0386L43.9614 96.0386Z"
+                  fill="#8855CC"
+                />
+              </g>
+            </svg>
+
+            <svg
+              width="156"
+              height="157"
+              viewBox="0 0 156 157"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute top-0 left-0 expand"
+            >
+              <g opacity="0.5">
+                <path d="M48.9855 156.32L0 156.32L4.28245e-06 107.334L48.9855 107.334L48.9855 156.32Z" fill="#74ACDF" />
+                <path
+                  d="M102.493 102.813L53.5073 102.813L53.5073 53.8271L102.493 53.8271L102.493 102.813Z"
+                  fill="#74ACDF"
+                />
+                <path
+                  d="M48.9855 102.813L4.67775e-06 102.813L8.9602e-06 53.8271L48.9855 53.8271L48.9855 102.813Z"
+                  fill="#74ACDF"
+                />
+                <path d="M156 49.3053L107.015 49.3053L107.015 0.31982L156 0.319824L156 49.3053Z" fill="#74ACDF" />
+                <path
+                  d="M102.493 49.3053L53.5073 49.3053L53.5073 0.319815L102.493 0.31982L102.493 49.3053Z"
+                  fill="#74ACDF"
+                />
+                <path
+                  d="M48.9855 49.3053L9.3555e-06 49.3053L1.3638e-05 0.319811L48.9855 0.319815L48.9855 49.3053Z"
+                  fill="#74ACDF"
+                />
+              </g>
+            </svg>
+
+            <div className="flex justify-between items-center">
+              <div className="max-w-[648px]">
+                <RichText content={data.pages.event_calendar} className="cms-markdown mt-6" />
+
+                <div className="flex gap-4">
+                  <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                    <button
+                      className={cn(
+                        'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                      )}
+                    >
+                      <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                        Get My Ticket <ArrowRight className="w-6 h-6" />
+                      </div>
+                    </button>
+                  </Link>
+
+                  <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                    <button
+                      className={cn(
+                        'mt-6 mb-2 border border-solid border-b-[6px] group px-6 py-2 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-xl bg-[white] hover:bg-[grey]/20 transition-colors hover:border-opacity-0'
+                      )}
+                    >
+                      <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                        View Calendar
+                      </div>
+                    </button>
+                  </Link>
+                </div>
+              </div>
+
+              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[560px] h-[560px] object-cover" />
             </div>
           </div>
 
           <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-6 border-top pb-8">
+            <div className="mt-0 pt-16 pb-8">
               <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
@@ -706,8 +1039,13 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-8 md:pb-12 bg-black/50 overflow-hidden">
-            <div className="pt-6">
+          <div className="section relative pb-8 md:pb-12 bg-black overflow-hidden">
+            <Image
+              src={HeroImage}
+              alt="Hero Image"
+              className="w-full h-full object-cover left-0 top-0 absolute expand opacity-60"
+            />
+            <div className="pt-6 z-10">
               <h1 className="section-header white">Blog Posts</h1>
 
               <BlogReel blogs={props.blogs} />
