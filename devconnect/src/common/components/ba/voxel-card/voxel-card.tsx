@@ -15,11 +15,11 @@ const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, t
   return (
     <div
       className={cn(
-        'relative border border-solid border-b-4 border-b-[rgba(55,54,76,1)] border-box bg-white',
+        'relative border border-solid border-b-[6px] border-b-[rgba(55,54,76,1)] border-box bg-white',
         styles['cut-corner']
       )}
     >
-      <div className="absolute top-[calc(100%-16px)] right-0 w-[16px] border border-solid border-b-4 border-b-[rgba(55,54,76,1)]"></div>
+      <div className="absolute top-[calc(100%-16px)] right-0 w-[16px] border border-solid border-b-[6px] border-b-[rgba(55,54,76,1)]"></div>
       <div className="absolute left-[calc(100%-16px)] h-[16px] bottom-0 border border-solid border-r-1 border-r-[rgba(55,54,76,1)]"></div>
 
       <div className="absolute top-0 right-0">

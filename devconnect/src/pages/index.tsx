@@ -832,7 +832,7 @@ const Home: NextPage = (props: any) => {
               </g>
             </svg> */}
 
-            <div className="flex flex-col gap-8 mt-16">
+            <div className="flex flex-col gap-8 mt-16 mb-12">
               <div>
                 <h1 className="section-header">Contribute and Support</h1>
 
@@ -877,7 +877,7 @@ const Home: NextPage = (props: any) => {
                   return (
                     <div
                       className={cn(
-                        'flex flex-col justify-between gap-2 border border-solid border-b-4 py-6 px-4',
+                        'flex flex-col justify-between gap-2 border border-solid border-b-[6px] p-4',
                         className
                       )}
                       key={index}
@@ -888,7 +888,10 @@ const Home: NextPage = (props: any) => {
                         </div>
                         <div className="flex flex-col gap-2">
                           <p className="font-bold text-xl font-secondary">{item.title}</p>
-                          <p className="text-base/6">{item.description}</p>
+                          <p className="text-base/6">
+                            Supporters help make the week possible. Get a space and the option to showcase your app,
+                            plus flexibility to choose add-ons that match your goals.
+                          </p>
                         </div>
                       </div>
 
@@ -1025,7 +1028,7 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
 
-              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[560px] h-[560px] object-cover" />
+              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[500px] h-[500px] object-contain" />
             </div>
           </div>
 

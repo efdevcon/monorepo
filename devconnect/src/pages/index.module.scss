@@ -1655,31 +1655,21 @@
   position: relative;
   background: radial-gradient(100% 100% at 50% 100%, rgba(255, 133, 166, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%);
 
-  // &::before {
-  //   content: '';
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   background: repeating-linear-gradient(
-  //       0deg,
-  //       rgba(255, 133, 166, 0.2) 0px,
-  //       rgba(255, 133, 166, 0.2) 8px,
-  //       transparent 8px,
-  //       transparent 16px
-  //     ),
-  //     repeating-linear-gradient(
-  //       90deg,
-  //       rgba(255, 133, 166, 0.2) 0px,
-  //       rgba(255, 133, 166, 0.2) 8px,
-  //       transparent 8px,
-  //       transparent 16px
-  //     );
-  //   pointer-events: none;
-  // }
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='32' height='32' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='16' height='16' fill='%23f6c5d2'/%3E%3C/svg%3E");
+    background-size: 32px 32px;
+    mask: radial-gradient(ellipse at 65% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 30%);
+    -webkit-mask: radial-gradient(ellipse at 65% 100%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 30%);
+    pointer-events: none;
+  }
 }
 
 .gradient-purple {
-  background: radial-gradient(100% 100% at 50% 100%, rgba(247, 246, 255, 0.5) 0%, rgba(255, 255, 255, 0.3) 100%);
+  background: radial-gradient(100% 100% at 50% 100%, rgba(247, 246, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%);
 }
