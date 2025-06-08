@@ -464,7 +464,7 @@ const FAQ = (props: any) => {
   const [openFAQ, setOpenFAQ] = useState<string | null>(null)
 
   return (
-    <div className="mt-4 text-slate-900">
+    <div className="text-slate-900">
       <div className="flex flex-col">
         {props.questions?.map(({ question, answer }: { question: string; answer: any }) => {
           const open = question === openFAQ
@@ -473,7 +473,7 @@ const FAQ = (props: any) => {
             <div
               key={question}
               className={cn(
-                'w-full flex flex-col rounded-xl mb-2 border border-solid border-slate-300 transition-all duration-500',
+                'w-full flex flex-col mb-2 border border-solid border-slate-300 transition-all duration-500 will-transform',
                 open ? 'bg-teal-100/30' : ''
               )}
             >
@@ -485,7 +485,7 @@ const FAQ = (props: any) => {
               >
                 <div
                   className={cn(
-                    'flex items-center text-center translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300',
+                    'flex items-center text-center translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300 font-bold',
                     open ? '' : ''
                   )}
                 >
@@ -498,7 +498,7 @@ const FAQ = (props: any) => {
                 <motion.div
                   initial={{ y: '-10%', opacity: 0 }}
                   animate={{ y: '0%', opacity: 1 }}
-                  className="w-full p-4 pt-2"
+                  className="w-full p-4 pt-2 will-transform"
                 >
                   <RichText content={answer} />
                 </motion.div>

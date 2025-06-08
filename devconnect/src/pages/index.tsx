@@ -62,6 +62,8 @@ import VoxelTV from 'assets/images/ba/voxel-tv.png'
 import VoxelPencil from 'assets/images/ba/voxel-pencil.png'
 import VoxelCalendar from 'assets/images/ba/voxel-calendar.png'
 import VoxelSquares from 'assets/images/ba/voxel-squares.png'
+import VoxelBlueEthereum from 'assets/images/ba/voxel-blue-eth.png'
+import EthGlyph from 'assets/images/ba/eth-glyph.png'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -398,7 +400,7 @@ const Home: NextPage = (props: any) => {
                         )}
                       >
                         <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                          Get My Ticket <ArrowRight className="w-6 h-6" />
+                          Get My Ticket <ArrowRight className="w-5 h-5" />
                         </div>
                       </button>
                     </Link>
@@ -1002,17 +1004,17 @@ const Home: NextPage = (props: any) => {
                 <RichText content={data.pages.event_calendar} className="cms-markdown mt-6" />
 
                 <div className="flex gap-4">
-                  <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                  {/* <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                     <button
                       className={cn(
                         'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
                       )}
                     >
                       <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                        Get My Ticket <ArrowRight className="w-6 h-6" />
+                        Get My Ticket <ArrowRight className="w-5 h-5" />
                       </div>
                     </button>
-                  </Link>
+                  </Link> */}
 
                   <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                     <button
@@ -1032,13 +1034,119 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
+          <div className={`section relative overflow-hidden ${css['gradient-blue']}`}>
+            <Image
+              src={VoxelBlueEthereum}
+              alt="Voxel Blue Ethereum"
+              className="absolute top-0 right-0 bottom-0 object-contain h-[130%] translate-y-[-15%]"
+            />
+            <div className="flex justify-center gap-8 items-center py-[48px]">
+              <div className="text-2xl font-secondary font-bold">
+                Experience the city of the future, built on Ethereum
+              </div>
+
+              <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                <button
+                  className={cn(
+                    'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                  )}
+                >
+                  <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                    Get My Ticket <ArrowRight className="w-5 h-5" />
+                  </div>
+                </button>
+              </Link>
+            </div>
+          </div>
+
           <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-16 pb-8">
-              <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
+            <div className="mt-0 pt-16 pb-8 grid grid-cols-2 gap-4">
+              <div className="h-full flex flex-col justify-between gap-4">
+                <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
+                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px]" />
+              </div>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
                 <FAQComponent questions={data.pages.faq} />
               </div>
+            </div>
+          </div>
+
+          <div className={`section relative bg-[rgba(246,180,14,0.05)]`}>
+            <svg
+              width="218"
+              height="104"
+              viewBox="0 0 218 104"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="absolute top-0 right-0"
+            >
+              <g opacity="0.5">
+                <rect
+                  x="55.7773"
+                  y="104.001"
+                  width="49.3029"
+                  height="50.3865"
+                  transform="rotate(-90 55.7773 104.001)"
+                  fill="#74ACDF"
+                />
+                <rect
+                  x="111.557"
+                  y="49.3037"
+                  width="49.3029"
+                  height="50.3865"
+                  transform="rotate(-90 111.557 49.3037)"
+                  fill="#74ACDF"
+                />
+                <rect
+                  x="167.334"
+                  y="104.001"
+                  width="49.3029"
+                  height="50.3865"
+                  transform="rotate(-90 167.334 104.001)"
+                  fill="#74ACDF"
+                />
+                <rect y="49.3027" width="49.3029" height="50.3865" transform="rotate(-90 0 49.3027)" fill="#74ACDF" />
+              </g>
+            </svg>
+
+            <h1 className="section-header mt-16">Bring Argentina Onchain</h1>
+            <p className="mt-4">
+              Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the
+              efforts the local community started years ago.
+            </p>
+
+            <div className="grid grid-cols-2 gap-4 my-16 mt-12">
+              {[
+                {
+                  title: 'What is Devconnect ARG?',
+                  ctaLink: 'https://esp.ethereum.foundation/devcon-grants/apply',
+                  ctaText: 'Learn More',
+                  description:
+                    'Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the efforts the local community started years ago.',
+                },
+                {
+                  title: 'What is Devconnect ARG?',
+                  ctaLink: 'https://esp.ethereum.foundation/devcon-grants/apply',
+                  ctaText: 'Learn More',
+                  description:
+                    'Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the efforts the local community started years ago.',
+                },
+              ].map((item, index) => {
+                return (
+                  <div key={index} className="flex flex-col gap-2 border border-solid border-b-[6px] p-6">
+                    <h2 className="text-2xl font-bold font-secondary">{item.title}</h2>
+                    <p className="text-base/6">{item.description}</p>
+
+                    <Link href={item.ctaLink} className="self-end text-[rgba(27,111,174,1)] mt-3">
+                      <div className="flex items-center gap-2 uppercase font-bold">
+                        {item.ctaText}
+                        <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
+                      </div>
+                    </Link>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
