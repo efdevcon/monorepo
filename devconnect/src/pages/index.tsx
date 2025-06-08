@@ -658,6 +658,26 @@ const Home: NextPage = (props: any) => {
                     switch (index) {
                       case 0:
                         return {
+                          image: WorldsFairImage,
+                          imageWide: WorldsFairImageWide,
+                          imageAlt: 'Worlds Fair Image',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '17—22 November 2025',
+                          location: 'La Rural',
+                        }
+                      case 1:
+                        return {
+                          image: ETHDayImage,
+                          imageWide: ETHDayImageWide,
+                          imageAlt: 'Eth day Image',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '17-22 November 2025',
+                          location: 'La Rural',
+                        }
+                      case 2:
+                        return {
                           image: CoworkingImage,
                           imageWide: CoworkingImageWide,
                           imageAlt: 'Coworking Image',
@@ -666,31 +686,11 @@ const Home: NextPage = (props: any) => {
                           date: '17—22 November 2025',
                           location: 'La Rural',
                         }
-                      case 1:
+                      case 3:
                         return {
                           image: CommunityImage,
                           imageWide: CommunityEventsImageWide,
                           imageAlt: 'Community Image',
-                          tag: 'Included in ticket',
-                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                          date: '17-22 November 2025',
-                          location: 'La Rural',
-                        }
-                      case 2:
-                        return {
-                          image: ETHDayImage,
-                          imageWide: ETHDayImageWide,
-                          imageAlt: 'ETH Day Image',
-                          tag: 'Included in ticket',
-                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                          date: '17—22 November 2025',
-                          location: 'La Rural',
-                        }
-                      case 3:
-                        return {
-                          image: WorldsFairImage,
-                          imageWide: WorldsFairImageWide,
-                          imageAlt: 'Worlds Fair Image',
                           // tag: 'Additional booking required',
                           // tagClass: 'bg-[rgba(246,180,14,1)] border-b-[rgba(175,128,9,1)]',
                           tag: 'Included in ticket',
@@ -977,7 +977,7 @@ const Home: NextPage = (props: any) => {
                 <RichText content={data.pages.worlds_fair_calendar} className="cms-markdown mt-6" />
 
                 <div className="flex gap-4">
-                  <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
+                  <Link href="/calendar" className="pointer-events-auto">
                     <button
                       className={cn(
                         'mt-6 mb-2 border border-solid border-b-[6px] group px-6 py-2 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-xl bg-[white] hover:bg-[rgb(227,241,255,1)] transition-colors hover:border-opacity-0'
