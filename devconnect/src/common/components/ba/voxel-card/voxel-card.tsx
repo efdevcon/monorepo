@@ -2,8 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import cn from 'classnames'
 import styles from './voxel-card.module.scss'
+import { motion, MotionProps } from 'framer-motion'
 
-interface VoxelCardProps {
+interface VoxelCardProps extends MotionProps {
   children: React.ReactNode
   image: any
   imageAlt: string
@@ -11,13 +12,14 @@ interface VoxelCardProps {
   tagClass: string
 }
 
-const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, tagClass }) => {
+const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, tagClass, ...motionProps }) => {
   return (
-    <div
+    <motion.div
       className={cn(
         'relative border border-solid border-b-[6px] border-b-[rgba(55,54,76,1)] border-box bg-white',
         styles['cut-corner']
       )}
+      {...motionProps}
     >
       <div className="absolute top-[calc(100%-16px)] right-0 w-[16px] border border-solid border-b-[6px] border-b-[rgba(55,54,76,1)]"></div>
       <div className="absolute left-[calc(100%-16px)] h-[16px] bottom-0 border border-solid border-r-1 border-r-[rgba(55,54,76,1)]"></div>
@@ -40,7 +42,7 @@ const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, t
 
         <div className="px-[25px] relative flex items-center">{children}</div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

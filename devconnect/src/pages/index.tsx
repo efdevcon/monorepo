@@ -258,11 +258,11 @@ const TicketButton = ({
     >
       <p
         className={cn(
-          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-2px] will-change-transform transition-all duration-300 px-3 py-1 flex items-center gap-2 self-end',
+          'bg-[#f2f7fc] border-2 border-solid border-[#74ACDF] group-hover:translate-y-[-4px] will-change-transform transition-all duration-300 px-3 py-1 flex items-center gap-2 self-end',
           css['no-underline']
         )}
       >
-        Tickets now available!
+        {(globalThis as any).translations.tickets_available}
         <ExternalLink className="w-4 h-4 opacity-80" />
       </p>
       <Image src={TicketExample} alt="Ticket Example" className="w-[440px]" quality={100} />
@@ -309,11 +309,15 @@ const Home: NextPage = (props: any) => {
     <>
       <SEO />
       <div className={css.container} style={{ '--content-width': '1440px' } as any}>
-        <main id="main" className={cn(css.main, 'text-black')} style={{ '--content-width': '1440px' } as any}>
+        <main
+          id="main"
+          className={cn(css.main, 'text-[rgba(54,54,76,1)]')}
+          style={{ '--content-width': '1440px' } as any}
+        >
           <div
             id="hero"
             ref={heroRef}
-            className={cn('w-screen relative text-black bg-[#bbddee] h-[100vh]', css.hero, {
+            className={cn('w-screen relative bg-[#bbddee] h-[100vh]', css.hero, {
               '!h-[100vh]': userHasInterruptedPlayback, // !hasStableConnection,
               [css.gradient]: userHasInterruptedPlayback || fadeInArgentina,
               // 'lg:h-[200vh]': hasStableConnection,
@@ -370,11 +374,6 @@ const Home: NextPage = (props: any) => {
             >
               <div className={cn('section bottom-4 left-0 z-10 -translate-y-4', css.heroImage)}>
                 <div className="flex flex-col gap-0">
-                  {/* <TicketButton
-                    fadeInArgentina={fadeInArgentina}
-                    userHasInterruptedPlayback={userHasInterruptedPlayback}
-                  /> */}
-
                   <div
                     className={cn(
                       `text-2xl flex flex-col mb-8 gap-2 max-w-[600px] text-white font-semibold opacity-0 transition-opacity duration-[1500ms]`,
@@ -389,51 +388,20 @@ const Home: NextPage = (props: any) => {
                     <Image src={HeroText} alt="Hero text" className={cn('translate-x-[-2%]')} />
 
                     <p className={cn('self-start text-xl font-secondary font-normal', css['text-highlight'])}>
-                      Devconnect ARG is a showcase of Ethereum apps and an event to connect, build and accelerate
-                      Ethereum adoption.
+                      {data.pages.what_is_devconnect}
                     </p>
 
                     <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                       <button
                         className={cn(
-                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                          'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
                         )}
                       >
                         <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                          Get My Ticket <ArrowRight className="w-5 h-5" />
+                          {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
                         </div>
                       </button>
                     </Link>
-                    {/* <Image
-                      src={AnnouncementDate}
-                      alt="Date"
-                      className={cn(
-                        'min-w-[340px] w-[47%] scale-[70%] -translate-x-[12.5%] translate-y-[25%] opacity-0 transition-opacity duration-[1500ms]',
-                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-                        userHasInterruptedPlayback && 'duration-[1000ms]'
-                      )}
-                    />
-
-                    <Image
-                      priority
-                      src={ArgentinaWhite}
-                      alt="Argentina text"
-                      className={cn(
-                        'min-w-[340px] w-[47%] mt-1 lg:mt-2 opacity-0 transition-opacity duration-[1500ms]',
-                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-                        userHasInterruptedPlayback && 'duration-[1000ms]'
-                      )}
-                    />
-
-                    <Image
-                      src={BAWhite}
-                      alt="Buenos Aires text"
-                      className={cn(
-                        'min-w-[340px] w-[47%] -translate-y-[55%] -translate-x-[7.5%] scale-[80%] opacity-0 transition-opacity duration-[1500ms]',
-                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-                        userHasInterruptedPlayback && 'duration-[1000ms]'
-                      )}
-                    /> */}
                   </div>
 
                   <div className="flex items-center gap-8">
@@ -445,35 +413,13 @@ const Home: NextPage = (props: any) => {
                         (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
                       )}
                     />
-
-                    {/* <Link
-                      href="https://paragraph.xyz/@efevents"
-                      className={cn(
-                        'opacity-0 transition-opacity duration-[3000ms]',
-                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
-                      )}
-                    >
-                      <Button
-                        color="teal-1"
-                        fat
-                        fill
-                        className={cn(
-                          '!bg-black/80 backdrop-blur-md  border-none border-solid !border-teal-900 flex items-center gap-4',
-                          (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-                          'text-white [text-shadow:0_0_1px_#000,0_0_2px_#000]'
-                        )}
-                      >
-                        <MailIcon className="w-4 h-4" />
-                        Subscribe to our newsletter
-                      </Button>
-                    </Link> */}
                   </div>
                 </div>
               </div>
 
               <div className={cn('absolute section bottom-4 right-0 z-10 pointer-events-none')}>
                 <div
-                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[3000ms]', {
+                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[1500ms]', {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
@@ -485,32 +431,10 @@ const Home: NextPage = (props: any) => {
                 </div>
 
                 <div
-                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[3000ms]', {
+                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[1500ms]', {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
-                  {/* <Link
-                    href="https://paragraph.xyz/@efevents"
-                    className={cn(
-                      'opacity-0 transition-opacity duration-[3000ms]',
-                      (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100'
-                    )}
-                  >
-                    <Button
-                      color="teal-1"
-                      fat
-                      fill
-                      className={cn(
-                        '!bg-black/80 backdrop-blur-sm border-none border-solid !border-teal-900 flex items-center gap-4',
-                        (fadeInArgentina || userHasInterruptedPlayback) && 'opacity-100',
-                        'text-white [text-shadow:0_0_1px_#000,0_0_2px_#000]'
-                      )}
-                    >
-                      <MailIcon className="w-4 h-4" />
-                      Subscribe to our newsletter
-                    </Button>
-                  </Link> */}
-
                   <div className="text-white text-lg flex gap-4 items-center backdrop-blur-sm bg-black/80 rounded-lg p-2 px-3 shadow pointer-events-auto">
                     <p className="text-base">Follow us</p>
                     <a
@@ -547,15 +471,9 @@ const Home: NextPage = (props: any) => {
                     >
                       <MailIcon style={{ fill: 'white' }} />
                     </a>
-
-                    {/* <MailIcon
-                      style={{ fill: 'white', display: 'block', cursor: 'pointer' }}
-                      className="hover:scale-[1.02] transition-all duration-300"
-                      onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
-                    /> */}
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center flex gap-2 text-black  pointer-events-none ">
+                  <div className="absolute bottom-0 right-0 left-0 md:flex justify-center items-center flex gap-2  pointer-events-none ">
                     <div className="flex items-center text-sm gap-1.5">
                       <p className="text-sm font-semibold opacity-100 text-white [text-shadow:0_0_1px_#000,0_0_2px_#000] ">
                         {(globalThis as any).translations.scroll_for_more}
@@ -671,9 +589,19 @@ const Home: NextPage = (props: any) => {
               className="!h-[300px] !z-[1] pointer-events-none"
             ></ScrollingText> */}
               <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
-                <div className="basis-full lg:basis-[500px] shrink-0 text-black flex gap-8 items-center">
+                <div className="basis-full lg:basis-[500px] shrink-0 flex gap-8 flex-col justify-center">
                   {/* <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" /> */}
-                  <RichText content={data.pages.buenos_aires} className="cms-markdown mt-6" />
+                  <h1 className="section-header">{data.pages.why_join_devconnect_arg_title}</h1>
+
+                  {data.pages.why_join_devconnect_arg_list.map((item: any, index: number) => {
+                    return (
+                      <div key={index} className="flex flex-col gap-2 text-lg">
+                        <p className="font-secondary font-bold text-2xl">{item.title}</p>
+                        <p className="text-lg">{item.description}</p>
+                      </div>
+                    )
+                  })}
+                  {/* <RichText content={why_join_devconnect_arg_title} className="cms-markdown mt-6" /> */}
                 </div>
 
                 <div className="basis-full lg:basis-auto grow flex justify-end items-center relative p-4 py-8 pr-16">
@@ -688,19 +616,20 @@ const Home: NextPage = (props: any) => {
                       src={VideoImage}
                       alt="Video Preview"
                       className={cn(
-                        'w-full h-full object-cover left-0 top-0 absolute expand cursor-pointer',
+                        'w-full h-full object-cover left-0 top-0 absolute expand cursor-pointer pointer-events-none',
                         playerClicked && 'hidden'
                       )}
                       onClick={() => {
                         setPlayerClicked(true)
                       }}
                     />
+
                     <iframe
                       src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&showinfo=0"
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full h-full "
+                      className="w-full h-full"
                     />
                   </div>
                 </div>
@@ -735,10 +664,24 @@ const Home: NextPage = (props: any) => {
           </div>
 
           <div className={cn('section relative mt-12 pb-16', css['gradient-pink'])}>
-            <RichText content={data.pages.event_calendar} className="cms-markdown mt-6 mb-12" />
+            <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-12" />
 
-            <div className="grid grid-cols-2 gap-4" style={{ '--icon-color': '#FF85A6' } as any}>
-              {data.pages.what_to_expect.map((item: any, index: number) => {
+            <motion.div
+              className="grid grid-cols-2 gap-4"
+              style={{ '--icon-color': '#FF85A6' } as any}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.2,
+                  },
+                },
+              }}
+            >
+              {data.pages.ethereum_worlds_fair_list.map((item: any, index: number) => {
                 const props = () => {
                   switch (index) {
                     case 0:
@@ -790,9 +733,29 @@ const Home: NextPage = (props: any) => {
                 }
 
                 const { date, location, ...cardProps } = props()
+                const { title, description } = item // props()
 
                 return (
-                  <VoxelCard key={index} {...cardProps}>
+                  <VoxelCard
+                    key={index}
+                    {...cardProps}
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.9,
+                      },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        transition: {
+                          duration: 0.6,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        },
+                      },
+                    }}
+                  >
                     <div className="flex flex-col pb-4">
                       <p className="font-semibold pt-4 text-xl font-secondary">{item.title}</p>
                       <p className="mt-2">{item.description}</p>
@@ -811,42 +774,30 @@ const Home: NextPage = (props: any) => {
                   </VoxelCard>
                 )
               })}
-            </div>
+            </motion.div>
           </div>
 
           <div className="section relative pb-6 bg-white">
-            {/* <RichText content={data.pages.how_to_contribute} className="cms-markdown mt-6" /> */}
-            {/* <svg
-              width="154"
-              height="154"
-              viewBox="0 0 154 154"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="absolute bottom-0 right-0 expand"
-            >
-              <g opacity="0.6">
-                <path d="M105.643 0L154 0V48.3575L105.643 48.3575V0Z" fill="#74ACDF" />
-                <path d="M52.8212 52.8213H101.179V101.179H52.8212V52.8213Z" fill="#74ACDF" />
-                <path d="M105.643 52.8213L154 52.8213V101.179H105.643V52.8213Z" fill="#74ACDF" />
-                <path d="M0 105.643H48.3575L48.3575 154H0L0 105.643Z" fill="#74ACDF" />
-                <path d="M52.8212 105.643H101.179V154H52.8212L52.8212 105.643Z" fill="#74ACDF" />
-                <path d="M105.643 105.643H154V154H105.643V105.643Z" fill="#74ACDF" />
-              </g>
-            </svg> */}
-
             <div className="flex flex-col gap-8 mt-16 mb-12">
               <div>
-                <h1 className="section-header">Contribute and Support</h1>
-
-                <p className="mt-4 text-base/7 max-w-[600px]">
-                  The Ethereum World’s Fair shows what Ethereum can do through real apps, infrastructure, community, and
-                  local momentum. It only works when builders ship, communities show up and connect, and supporters help
-                  bring it all together.
-                </p>
+                <RichText content={data.pages.how_to_contribute} className="cms-markdown" />
               </div>
 
-              <div className="grid grid-cols-4 gap-4">
-                {data.pages.what_to_expect.map((item: any, index: number) => {
+              <motion.div
+                className="grid grid-cols-4 gap-4"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-100px' }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.15,
+                    },
+                  },
+                }}
+              >
+                {data.pages.contribute_and_support_list.map((item: any, index: number) => {
                   const indexes = [
                     {
                       className: 'border-[rgba(136,85,204,1)] bg-[rgba(136,85,204,0.1)]',
@@ -875,25 +826,39 @@ const Home: NextPage = (props: any) => {
                   ]
 
                   const { className, icon, ctaLink, ctaText } = indexes[index]
+                  const { title, description, location, date, tag } = item
 
                   return (
-                    <div
+                    <motion.div
                       className={cn(
                         'flex flex-col justify-between gap-2 border border-solid border-b-[6px] p-4',
                         className
                       )}
                       key={index}
+                      variants={{
+                        hidden: {
+                          opacity: 0,
+                          y: 40,
+                          scale: 0.95,
+                        },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          transition: {
+                            duration: 0.5,
+                            ease: [0.25, 0.46, 0.45, 0.94],
+                          },
+                        },
+                      }}
                     >
                       <div className="flex flex-col grow gap-4">
                         <div className="flex shrink-0">
                           <Image src={icon} alt="Icon" className="w-[64px] h-[64px]" />
                         </div>
                         <div className="flex flex-col gap-2">
-                          <p className="font-bold text-xl font-secondary">{item.title}</p>
-                          <p className="text-base/6">
-                            Supporters help make the week possible. Get a space and the option to showcase your app,
-                            plus flexibility to choose add-ons that match your goals.
-                          </p>
+                          <p className="font-bold text-xl font-secondary">{title}</p>
+                          <p className="text-base/6">{description}</p>
                         </div>
                       </div>
 
@@ -903,10 +868,10 @@ const Home: NextPage = (props: any) => {
                           <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
                         </div>
                       </Link>
-                    </div>
+                    </motion.div>
                   )
                 })}
-              </div>
+              </motion.div>
             </div>
           </div>
 
@@ -1001,36 +966,24 @@ const Home: NextPage = (props: any) => {
 
             <div className="flex justify-between items-center">
               <div className="max-w-[648px]">
-                <RichText content={data.pages.event_calendar} className="cms-markdown mt-6" />
+                <RichText content={data.pages.worlds_fair_calendar} className="cms-markdown mt-6" />
 
                 <div className="flex gap-4">
-                  {/* <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
-                    <button
-                      className={cn(
-                        'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
-                      )}
-                    >
-                      <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                        Get My Ticket <ArrowRight className="w-5 h-5" />
-                      </div>
-                    </button>
-                  </Link> */}
-
                   <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                     <button
                       className={cn(
-                        'mt-6 mb-2 border border-solid border-b-[6px] group px-6 py-2 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-xl bg-[white] hover:bg-[grey]/20 transition-colors hover:border-opacity-0'
+                        'mt-6 mb-2 border border-solid border-b-[6px] group px-6 py-2 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-xl bg-[white] hover:bg-[rgb(227,241,255,1)] transition-colors hover:border-opacity-0'
                       )}
                     >
                       <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                        View Calendar
+                        {(globalThis as any).translations.view_calendar}
                       </div>
                     </button>
                   </Link>
                 </div>
               </div>
 
-              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[500px] h-[500px] object-contain" />
+              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[500px] h-[500px] object-contain mr-12" />
             </div>
           </div>
 
@@ -1041,18 +994,16 @@ const Home: NextPage = (props: any) => {
               className="absolute top-0 right-0 bottom-0 object-contain h-[130%] translate-y-[-15%]"
             />
             <div className="flex justify-center gap-8 items-center py-[48px]">
-              <div className="text-2xl font-secondary font-bold">
-                Experience the city of the future, built on Ethereum
-              </div>
+              <div className="text-2xl font-secondary font-bold">{data.pages.ticket_cta}</div>
 
               <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
                 <button
                   className={cn(
-                    'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[#1B6FAE] transition-colors hover:border-opacity-0'
+                    'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
                   )}
                 >
                   <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                    Get My Ticket <ArrowRight className="w-5 h-5" />
+                    {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
                   </div>
                 </button>
               </Link>
@@ -1060,7 +1011,7 @@ const Home: NextPage = (props: any) => {
           </div>
 
           <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-16 pb-8 grid grid-cols-2 gap-4">
+            <div className="mt-0 pt-16 pb-12 grid grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
                 <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px]" />
@@ -1110,44 +1061,57 @@ const Home: NextPage = (props: any) => {
               </g>
             </svg>
 
-            <h1 className="section-header mt-16">Bring Argentina Onchain</h1>
-            <p className="mt-4">
-              Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the
-              efforts the local community started years ago.
-            </p>
+            <RichText content={data.pages.bring_argentina_onchain} className="cms-markdown mt-16" />
 
-            <div className="grid grid-cols-2 gap-4 my-16 mt-12">
-              {[
-                {
-                  title: 'What is Devconnect ARG?',
-                  ctaLink: 'https://esp.ethereum.foundation/devcon-grants/apply',
-                  ctaText: 'Learn More',
-                  description:
-                    'Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the efforts the local community started years ago.',
+            <motion.div
+              className="grid grid-cols-2 gap-4 my-16 mt-12"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.2,
+                  },
                 },
-                {
-                  title: 'What is Devconnect ARG?',
-                  ctaLink: 'https://esp.ethereum.foundation/devcon-grants/apply',
-                  ctaText: 'Learn More',
-                  description:
-                    'Devconnect ARG wants to accelerate Ethereum adoption in Argentina and across the world – building on the efforts the local community started years ago.',
-                },
-              ].map((item, index) => {
+              }}
+            >
+              {data.pages.bring_argentina_onchain_list.map((item: any, index: number) => {
                 return (
-                  <div key={index} className="flex flex-col gap-2 border border-solid border-b-[6px] p-6">
+                  <motion.div
+                    key={index}
+                    className="flex flex-col gap-2 border border-solid border-b-[6px] p-6"
+                    variants={{
+                      hidden: {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.9,
+                      },
+                      visible: {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        transition: {
+                          duration: 0.6,
+                          ease: [0.25, 0.46, 0.45, 0.94],
+                        },
+                      },
+                    }}
+                  >
                     <h2 className="text-2xl font-bold font-secondary">{item.title}</h2>
                     <p className="text-base/6">{item.description}</p>
 
-                    <Link href={item.ctaLink} className="self-end text-[rgba(27,111,174,1)] mt-3">
+                    <Link href={item.url} className="self-end text-[rgba(27,111,174,1)] mt-3">
                       <div className="flex items-center gap-2 uppercase font-bold">
-                        {item.ctaText}
+                        {item.url_text}
                         <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
                       </div>
                     </Link>
-                  </div>
+                  </motion.div>
                 )
               })}
-            </div>
+            </motion.div>
           </div>
 
           <div className="section relative pb-8 md:pb-12 bg-black overflow-hidden">

@@ -473,25 +473,27 @@ const FAQ = (props: any) => {
             <div
               key={question}
               className={cn(
-                'w-full flex flex-col mb-2 border border-solid border-slate-300 transition-all duration-500 will-transform',
-                open ? 'bg-teal-100/30' : ''
+                'w-full flex flex-col mb-2 border border-solid border-slate-300 transition-transform duration-500 will-transform hover:bg-[rgba(27,111,174,0.1)]',
+                open ? 'bg-[rgba(27,111,174,0.1)] border-b-[4px] border-b-[rgba(27,111,174)]' : ''
               )}
             >
               <button
-                className="p-3 px-4 grow text-base cursor-pointer select-none group flex justify-between items-center"
+                className="p-3 px-4 grow text-base text-start cursor-pointer select-none group flex justify-between gap-4 items-center"
                 onClick={() => setOpenFAQ(open ? null : question)}
                 type="button"
                 aria-expanded={open}
               >
                 <div
                   className={cn(
-                    'flex items-center text-center translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300 font-bold',
+                    'flex  translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300 font-bold',
                     open ? '' : ''
                   )}
                 >
                   {question}
                 </div>
-                {/* <span className="flex opacity-40">{open ? <ChevronUp /> : <ChevronDown />}</span> */}
+                <span className="flex items-center h-full justify-center text-xs shrink-0">
+                  {open ? <ChevronUp /> : <ChevronDown />}
+                </span>
               </button>
 
               {open && (
