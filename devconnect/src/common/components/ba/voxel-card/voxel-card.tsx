@@ -7,12 +7,21 @@ import { motion, MotionProps } from 'framer-motion'
 interface VoxelCardProps extends MotionProps {
   children: React.ReactNode
   image: any
+  imageWide: any
   imageAlt: string
   tag: string
   tagClass: string
 }
 
-const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, tagClass, ...motionProps }) => {
+const VoxelCard: React.FC<VoxelCardProps> = ({
+  children,
+  imageWide,
+  image,
+  imageAlt,
+  tag,
+  tagClass,
+  ...motionProps
+}) => {
   return (
     <motion.div
       className={cn(
@@ -35,12 +44,13 @@ const VoxelCard: React.FC<VoxelCardProps> = ({ children, image, imageAlt, tag, t
         </div>
       </div>
 
-      <div className="flex h-[194px] relative w-full">
-        <div className="aspect-[143/194] relative shrink-0">
-          <Image src={image} alt={imageAlt} fill className="object-cover h-full w-full " />
+      <div className="flex flex-col lg:flex-row relative w-full h-full self-stretch">
+        <div className="w-full lg:max-w-[143px] shrink-0 relative self-stretch">
+          <Image src={image} alt={imageAlt} className="object-cover h-full w-full hidden lg:block" />
+          <Image src={imageWide} alt={imageAlt} className="object-cover h-full w-full block lg:hidden" />
         </div>
 
-        <div className="px-[25px] relative flex items-center">{children}</div>
+        <div className="px-[25px] relative flex items-center py-4">{children}</div>
       </div>
     </motion.div>
   )

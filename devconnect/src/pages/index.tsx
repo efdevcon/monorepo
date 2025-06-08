@@ -17,18 +17,6 @@ import Parser from 'rss-parser'
 import slugify from 'slugify'
 import { BlogPost } from 'types/BlogPost'
 import { BlogReel } from 'common/components/blog-posts/BlogPosts'
-// import AnnouncementDate from 'assets/images/ba/date.png'
-// import ArgentinaWhite from 'assets/images/ba/argentina-white.png'
-// import BAWhite from 'assets/images/ba/ba-text-white.png'
-// import CityScape from 'assets/images/ba/cityscape.png'
-// import { HorizontalScroller } from 'lib/components/horizontal-scroller'
-// import PastEventCard from 'lib/components/cards/past-event'
-// import istanbulScheduleBackground from 'assets/images/turkeycube.png'
-// import amsterdamScheduleBackground from 'assets/images/amsterdam-sched.png'
-// import NewSchedule from 'lib/components/event-schedule-new'
-// import { Button } from 'lib/components/button'
-// import ScrollingText from 'lib/components/infinite-scroll/scrolling-text'
-// import AnimatedGradient from 'fancy/components/background/animated-gradient-with-svg'
 import { client } from '../../tina/__generated__/client'
 import { useTina } from 'tinacms/dist/react'
 import RichText from 'lib/components/tina-cms/RichText'
@@ -39,11 +27,6 @@ import FarcasterIcon from 'assets/icons/farcaster.svg'
 import MailIcon from 'assets/icons/mail.svg'
 import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 import cn from 'classnames'
-import TicketIcon from 'assets/icons/ticket.svg'
-import WorldIcon from 'assets/icons/world.svg'
-import CampaignIcon from 'assets/icons/campaign.svg'
-import PeopleIcon from 'assets/icons/people.svg'
-import Voxel from 'common/components/ba/voxel'
 import ScrollVideo from 'common/components/ba/scroll-video'
 import Venue from 'common/components/ba/venue/venue'
 import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon } from 'lucide-react'
@@ -55,6 +38,10 @@ import CoworkingImage from 'assets/images/ba/voxel-cards/co-working-image.png'
 import CommunityImage from 'assets/images/ba/voxel-cards/community-events-image.png'
 import ETHDayImage from 'assets/images/ba/voxel-cards/eth-day-image.png'
 import WorldsFairImage from 'assets/images/ba/voxel-cards/worlds-fair-image.png'
+import CoworkingImageWide from 'assets/images/ba/voxel-cards/co-working-image-wide.jpg'
+import CommunityEventsImageWide from 'assets/images/ba/voxel-cards/community-events-wide.jpg'
+import ETHDayImageWide from 'assets/images/ba/voxel-cards/eth-day-image-wide.jpg'
+import WorldsFairImageWide from 'assets/images/ba/voxel-cards/worlds-fair-image-wide.jpg'
 import HeroImage from 'assets/images/ba/hero.jpg'
 import VideoImage from 'assets/images/ba/video-preview.png'
 import VoxelHeart from 'assets/images/ba/voxel-heart.png'
@@ -582,15 +569,8 @@ const Home: NextPage = (props: any) => {
                 </g>
               </svg>
 
-              {/* <ScrollingText
-              direction="down"
-              color="teal-2"
-              speed="100s"
-              className="!h-[300px] !z-[1] pointer-events-none"
-            ></ScrollingText> */}
               <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
                 <div className="basis-full lg:basis-[500px] shrink-0 flex gap-8 flex-col justify-center">
-                  {/* <RichText content={data.pages.what_is_devconnect} className="cms-markdown mt-6" /> */}
                   <h1 className="section-header">{data.pages.why_join_devconnect_arg_title}</h1>
 
                   {data.pages.why_join_devconnect_arg_list.map((item: any, index: number) => {
@@ -601,22 +581,15 @@ const Home: NextPage = (props: any) => {
                       </div>
                     )
                   })}
-                  {/* <RichText content={why_join_devconnect_arg_title} className="cms-markdown mt-6" /> */}
                 </div>
 
                 <div className="basis-full lg:basis-auto grow flex justify-end items-center relative p-4 py-8 pr-16">
-                  {/* <AnimatedGradient
-                  colors={['#1B6FAE', '#1B6FAE33', '#1B6FAE66']}
-                  speed={40}
-                  blur="heavy"
-                  className="expand !overflow-visible pointer-events-none"
-                /> */}
                   <div className="aspect-video bg-white border-2 border-solid border-[white] w-[700px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
                     <Image
                       src={VideoImage}
                       alt="Video Preview"
                       className={cn(
-                        'w-full h-full object-cover left-0 top-0 absolute expand cursor-pointer pointer-events-none',
+                        'w-full h-full object-cover left-0 top-0 absolute expand cursor-pointer',
                         playerClicked && 'hidden'
                       )}
                       onClick={() => {
@@ -658,16 +631,14 @@ const Home: NextPage = (props: any) => {
                   })}
                 </div>
               </div>
-
-              {/* <div className="border-bottom py-6 pb-2"></div> */}
             </div>
           </div>
 
           <div className={cn('section relative mt-12 pb-16', css['gradient-pink'])}>
-            <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-12" />
+            <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-6" />
 
             <motion.div
-              className="grid grid-cols-2 gap-4"
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
               style={{ '--icon-color': '#FF85A6' } as any}
               initial="hidden"
               whileInView="visible"
@@ -687,6 +658,7 @@ const Home: NextPage = (props: any) => {
                     case 0:
                       return {
                         image: CoworkingImage,
+                        imageWide: CoworkingImageWide,
                         imageAlt: 'Coworking Image',
                         tag: 'Included in ticket',
                         tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
@@ -696,6 +668,7 @@ const Home: NextPage = (props: any) => {
                     case 1:
                       return {
                         image: CommunityImage,
+                        imageWide: CommunityEventsImageWide,
                         imageAlt: 'Community Image',
                         tag: 'Included in ticket',
                         tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
@@ -705,6 +678,7 @@ const Home: NextPage = (props: any) => {
                     case 2:
                       return {
                         image: ETHDayImage,
+                        imageWide: ETHDayImageWide,
                         imageAlt: 'ETH Day Image',
                         tag: 'Included in ticket',
                         tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
@@ -714,6 +688,7 @@ const Home: NextPage = (props: any) => {
                     case 3:
                       return {
                         image: WorldsFairImage,
+                        imageWide: WorldsFairImageWide,
                         imageAlt: 'Worlds Fair Image',
                         // tag: 'Additional booking required',
                         // tagClass: 'bg-[rgba(246,180,14,1)] border-b-[rgba(175,128,9,1)]',
@@ -725,6 +700,7 @@ const Home: NextPage = (props: any) => {
                     default:
                       return {
                         image: CoworkingImage,
+                        imageWide: CoworkingImageWide,
                         imageAlt: 'Coworking Image',
                         tag: 'Coworking',
                         tagClass: 'bg-blue-500',
@@ -733,7 +709,6 @@ const Home: NextPage = (props: any) => {
                 }
 
                 const { date, location, ...cardProps } = props()
-                const { title, description } = item // props()
 
                 return (
                   <VoxelCard
@@ -759,15 +734,15 @@ const Home: NextPage = (props: any) => {
                     <div className="flex flex-col pb-4">
                       <p className="font-semibold pt-4 text-xl font-secondary">{item.title}</p>
                       <p className="mt-2">{item.description}</p>
-                      <div className="flex items-center gap-4 mt-4">
+                      <div className="flex items-center flex-wrap gap-4 mt-4">
                         <div className="flex items-center gap-2 will-transform">
                           <Calendar color="rgba(116, 172, 223, 1)" />
-                          <p className="will-transform">{date}</p>
+                          <p className="will-transform">{item.date}</p>
                         </div>
 
                         <div className="flex items-center gap-2 will-transform">
                           <MapPin color="rgba(116, 172, 223, 1)" />
-                          <p className="will-transform">{location}</p>
+                          <p className="will-transform">{item.location}</p>
                         </div>
                       </div>
                     </div>
@@ -1064,7 +1039,7 @@ const Home: NextPage = (props: any) => {
             <RichText content={data.pages.bring_argentina_onchain} className="cms-markdown mt-16" />
 
             <motion.div
-              className="grid grid-cols-2 gap-4 my-16 mt-12"
+              className="grid grid-cols-2 gap-4 my-16 mt-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
