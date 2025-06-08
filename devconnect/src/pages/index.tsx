@@ -406,7 +406,7 @@ const Home: NextPage = (props: any) => {
 
               <div className={cn('absolute section bottom-4 right-0 z-10 pointer-events-none')}>
                 <div
-                  className={cn('flex justify-end gap-4 opacity-0 transition-opacity duration-[1500ms]', {
+                  className={cn('hidden xl:flex justify-end gap-4 opacity-0 transition-opacity duration-[1500ms]', {
                     '!opacity-100': fadeInArgentina || userHasInterruptedPlayback,
                   })}
                 >
@@ -460,7 +460,7 @@ const Home: NextPage = (props: any) => {
                     </a>
                   </div>
 
-                  <div className="absolute bottom-0 right-0 left-0 md:flex justify-center items-center flex gap-2  pointer-events-none ">
+                  <div className="absolute bottom-0 right-0 left-0 hidden md:flex justify-center items-center gap-2  pointer-events-none ">
                     <div className="flex items-center text-sm gap-1.5">
                       <p className="text-sm font-semibold opacity-100 text-white [text-shadow:0_0_1px_#000,0_0_2px_#000] ">
                         {(globalThis as any).translations.scroll_for_more}
@@ -494,7 +494,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className="section relative pb-0 bg-[#FAFCFF] overflow-hidden">
+          <div className="section relative bg-[#FAFCFF] overflow-hidden">
             <Venue />
           </div>
 
@@ -551,7 +551,7 @@ const Home: NextPage = (props: any) => {
                 viewBox="0 0 101 102"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute bottom-0 left-0 translate-y-[53%] z-10 expand"
+                className="absolute bottom-0 left-0 translate-y-[53%]  expand"
               >
                 <g opacity="0.5">
                   <path
@@ -570,7 +570,7 @@ const Home: NextPage = (props: any) => {
               </svg>
 
               <div className="flex flex-row gap-4 py-6 flex-wrap lg:justify-between w-full lg:flex-nowrap z-[2] relative overflow-hidden">
-                <div className="basis-full lg:basis-[500px] shrink-0 flex gap-8 flex-col justify-center">
+                <div className="basis-full lg:basis-[500px] mt-8 lg:mt-0 shrink-0 flex gap-8 flex-col justify-center">
                   <h1 className="section-header">{data.pages.why_join_devconnect_arg_title}</h1>
 
                   {data.pages.why_join_devconnect_arg_list.map((item: any, index: number) => {
@@ -583,7 +583,7 @@ const Home: NextPage = (props: any) => {
                   })}
                 </div>
 
-                <div className="basis-full lg:basis-auto grow flex justify-end items-center relative p-4 py-8 pr-16">
+                <div className="basis-full lg:basis-auto grow flex justify-end items-center relative lg:p-4 py-8 lg:pr-16">
                   <div className="aspect-video bg-white border-2 border-solid border-[white] w-[700px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
                     <Image
                       src={VideoImage}
@@ -609,7 +609,7 @@ const Home: NextPage = (props: any) => {
               </div>
             </div>
 
-            <div className="section relative">
+            <div className="section relative !hidden lg:grid">
               <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
                 <div className={`${css['topics']} mt-6 font-secondary`} id="topics-container">
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
@@ -634,153 +634,155 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className={cn('section relative mt-12 pb-8', css['gradient-pink'])}>
+          <div className={cn('section relative lg:mt-12 pb-8', css['gradient-pink'])}>
             <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-6" />
 
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 gap-4"
-              style={{ '--icon-color': '#FF85A6' } as any}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              variants={{
-                hidden: {},
-                visible: {
-                  transition: {
-                    staggerChildren: 0.2,
-                  },
-                },
-              }}
-            >
-              {data.pages.ethereum_worlds_fair_list.map((item: any, index: number) => {
-                const props = () => {
-                  switch (index) {
-                    case 0:
-                      return {
-                        image: CoworkingImage,
-                        imageWide: CoworkingImageWide,
-                        imageAlt: 'Coworking Image',
-                        tag: 'Included in ticket',
-                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                        date: '17—22 November 2025',
-                        location: 'La Rural',
-                      }
-                    case 1:
-                      return {
-                        image: CommunityImage,
-                        imageWide: CommunityEventsImageWide,
-                        imageAlt: 'Community Image',
-                        tag: 'Included in ticket',
-                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                        date: '17-22 November 2025',
-                        location: 'La Rural',
-                      }
-                    case 2:
-                      return {
-                        image: ETHDayImage,
-                        imageWide: ETHDayImageWide,
-                        imageAlt: 'ETH Day Image',
-                        tag: 'Included in ticket',
-                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                        date: '17—22 November 2025',
-                        location: 'La Rural',
-                      }
-                    case 3:
-                      return {
-                        image: WorldsFairImage,
-                        imageWide: WorldsFairImageWide,
-                        imageAlt: 'Worlds Fair Image',
-                        // tag: 'Additional booking required',
-                        // tagClass: 'bg-[rgba(246,180,14,1)] border-b-[rgba(175,128,9,1)]',
-                        tag: 'Included in ticket',
-                        tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
-                        date: '15—23 November 2025',
-                        location: 'La Rural',
-                      }
-                    default:
-                      return {
-                        image: CoworkingImage,
-                        imageWide: CoworkingImageWide,
-                        imageAlt: 'Coworking Image',
-                        tag: 'Coworking',
-                        tagClass: 'bg-blue-500',
-                      }
-                  }
-                }
-
-                const { date, location, ...cardProps } = props()
-
-                return (
-                  <VoxelCard
-                    key={index}
-                    {...cardProps}
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 50,
-                        scale: 0.9,
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1,
-                        transition: {
-                          duration: 0.6,
-                          ease: [0.25, 0.46, 0.45, 0.94],
-                        },
-                      },
-                    }}
-                  >
-                    <div className="flex flex-col pb-4">
-                      <p className="font-semibold pt-4 text-xl font-secondary">{item.title}</p>
-                      <p className="mt-2">{item.description}</p>
-                      <div className="flex items-center flex-wrap gap-4 mt-4">
-                        <div className="flex items-center gap-2 will-transform">
-                          <Calendar color="rgba(116, 172, 223, 1)" />
-                          <p className="will-transform">{item.date}</p>
-                        </div>
-
-                        <div className="flex items-center gap-2 will-transform">
-                          <MapPin color="rgba(116, 172, 223, 1)" />
-                          <p className="will-transform">{item.location}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </VoxelCard>
-                )
-              })}
+            <div>
               <motion.div
-                className="flex justify-center space-x-2 col-span-2"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                style={{ '--icon-color': '#FF85A6' } as any}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-100px' }}
                 variants={{
-                  hidden: {
-                    opacity: 0,
-                    y: 50,
-                    scale: 0.9,
-                  },
+                  hidden: {},
                   visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
                     transition: {
-                      duration: 0.6,
-                      ease: [0.25, 0.46, 0.45, 0.94],
+                      staggerChildren: 0.2,
                     },
                   },
                 }}
               >
-                <Link href="https://tickets.devconnect.org/" className="pointer-events-auto mt-6">
-                  <button
-                    className={cn(
-                      'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
-                    )}
-                  >
-                    <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
-                      {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
-                    </div>
-                  </button>
-                </Link>
+                {data.pages.ethereum_worlds_fair_list.map((item: any, index: number) => {
+                  const props = () => {
+                    switch (index) {
+                      case 0:
+                        return {
+                          image: CoworkingImage,
+                          imageWide: CoworkingImageWide,
+                          imageAlt: 'Coworking Image',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '17—22 November 2025',
+                          location: 'La Rural',
+                        }
+                      case 1:
+                        return {
+                          image: CommunityImage,
+                          imageWide: CommunityEventsImageWide,
+                          imageAlt: 'Community Image',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '17-22 November 2025',
+                          location: 'La Rural',
+                        }
+                      case 2:
+                        return {
+                          image: ETHDayImage,
+                          imageWide: ETHDayImageWide,
+                          imageAlt: 'ETH Day Image',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '17—22 November 2025',
+                          location: 'La Rural',
+                        }
+                      case 3:
+                        return {
+                          image: WorldsFairImage,
+                          imageWide: WorldsFairImageWide,
+                          imageAlt: 'Worlds Fair Image',
+                          // tag: 'Additional booking required',
+                          // tagClass: 'bg-[rgba(246,180,14,1)] border-b-[rgba(175,128,9,1)]',
+                          tag: 'Included in ticket',
+                          tagClass: 'bg-[rgba(255,133,166,1)] border-b-[rgba(228,89,127,1)]',
+                          date: '15—23 November 2025',
+                          location: 'La Rural',
+                        }
+                      default:
+                        return {
+                          image: CoworkingImage,
+                          imageWide: CoworkingImageWide,
+                          imageAlt: 'Coworking Image',
+                          tag: 'Coworking',
+                          tagClass: 'bg-blue-500',
+                        }
+                    }
+                  }
+
+                  const { date, location, ...cardProps } = props()
+
+                  return (
+                    <VoxelCard
+                      key={index}
+                      {...cardProps}
+                      variants={{
+                        hidden: {
+                          opacity: 0,
+                          y: 50,
+                          scale: 0.9,
+                        },
+                        visible: {
+                          opacity: 1,
+                          y: 0,
+                          scale: 1,
+                          transition: {
+                            duration: 0.6,
+                            ease: [0.25, 0.46, 0.45, 0.94],
+                          },
+                        },
+                      }}
+                    >
+                      <div className="flex flex-col pb-4">
+                        <p className="font-semibold pt-4 text-xl font-secondary">{item.title}</p>
+                        <p className="mt-2">{item.description}</p>
+                        <div className="flex items-center flex-wrap gap-4 mt-4">
+                          <div className="flex items-center gap-2 will-transform">
+                            <Calendar color="rgba(116, 172, 223, 1)" />
+                            <p className="will-transform">{item.date}</p>
+                          </div>
+
+                          <div className="flex items-center gap-2 will-transform">
+                            <MapPin color="rgba(116, 172, 223, 1)" />
+                            <p className="will-transform">{item.location}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </VoxelCard>
+                  )
+                })}
+                <motion.div
+                  className="flex justify-center space-x-2 col-span-1 md:col-span-2"
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      y: 50,
+                      scale: 0.9,
+                    },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        duration: 0.6,
+                        ease: [0.25, 0.46, 0.45, 0.94],
+                      },
+                    },
+                  }}
+                >
+                  <Link href="https://tickets.devconnect.org/" className="pointer-events-auto mt-6">
+                    <button
+                      className={cn(
+                        'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
+                      )}
+                    >
+                      <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                        {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
+                      </div>
+                    </button>
+                  </Link>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            </div>
           </div>
 
           <div className="section relative pb-6 bg-white">
@@ -790,7 +792,7 @@ const Home: NextPage = (props: any) => {
               </div>
 
               <motion.div
-                className="grid grid-cols-4 gap-4"
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-100px' }}
@@ -881,14 +883,14 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className={cn('section relative py-16', css['gradient-purple'])}>
+          <div className={cn('section relative py-8 lg:py-16', css['gradient-purple'])}>
             <svg
               width="157"
               height="104"
               viewBox="0 0 157 104"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute top-0 right-0 expand"
+              className="absolute top-0 right-0 expand "
             >
               <g opacity="0.5">
                 <rect width="48.6061" height="49.3587" transform="matrix(1 0 0 -1 107.846 103.995)" fill="#FF85A6" />
@@ -904,7 +906,7 @@ const Home: NextPage = (props: any) => {
               viewBox="0 0 104 218"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute bottom-0 right-0 expand"
+              className="absolute bottom-0 right-0 expand hidden lg:block"
             >
               <g opacity="0.5">
                 <rect y="55.7793" width="49.3029" height="50.3865" fill="#F6B40E" />
@@ -920,7 +922,7 @@ const Home: NextPage = (props: any) => {
               viewBox="0 0 140 140"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute bottom-0 left-0 expand"
+              className="absolute bottom-0 left-0 expand hidden lg:block"
             >
               <g opacity="0.5">
                 <path d="M140 96.0386L140 140L96.0387 140L96.0387 96.0386L140 96.0386Z" fill="#8855CC" />
@@ -946,7 +948,7 @@ const Home: NextPage = (props: any) => {
               viewBox="0 0 156 157"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="absolute top-0 left-0 expand"
+              className="absolute top-0 left-0 expand hidden lg:block"
             >
               <g opacity="0.5">
                 <path d="M48.9855 156.32L0 156.32L4.28245e-06 107.334L48.9855 107.334L48.9855 156.32Z" fill="#74ACDF" />
@@ -970,8 +972,8 @@ const Home: NextPage = (props: any) => {
               </g>
             </svg>
 
-            <div className="flex justify-between items-center">
-              <div className="max-w-[648px]">
+            <div className="flex justify-between items-center z-10">
+              <div className="lg:max-w-[648px]">
                 <RichText content={data.pages.worlds_fair_calendar} className="cms-markdown mt-6" />
 
                 <div className="flex gap-4">
@@ -989,11 +991,15 @@ const Home: NextPage = (props: any) => {
                 </div>
               </div>
 
-              <Image src={VoxelSquares} alt="Voxel Squares" className="w-[500px] h-[500px] object-contain mr-12" />
+              <Image
+                src={VoxelSquares}
+                alt="Voxel Squares"
+                className="w-[500px] h-[500px] object-contain mr-12 hidden lg:block"
+              />
             </div>
           </div>
 
-          <div className={`section relative overflow-hidden ${css['gradient-blue']}`}>
+          <div className={`section relative !hidden lg:!grid overflow-hidden ${css['gradient-blue']}`}>
             <Image
               src={VoxelBlueEthereum}
               alt="Voxel Blue Ethereum"
@@ -1017,10 +1023,10 @@ const Home: NextPage = (props: any) => {
           </div>
 
           <div className={`section relative bg-white`}>
-            <div className="mt-0 pt-16 pb-12 grid grid-cols-2 gap-4">
+            <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px]" />
+                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
               </div>
 
               <div className={`${css['accordion']} tab-content`} id="faq">
@@ -1067,10 +1073,10 @@ const Home: NextPage = (props: any) => {
               </g>
             </svg>
 
-            <RichText content={data.pages.bring_argentina_onchain} className="cms-markdown mt-16" />
+            <RichText content={data.pages.bring_argentina_onchain} className="cms-markdown mt-16 z-10" />
 
             <motion.div
-              className="grid grid-cols-2 gap-4 my-16 mt-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 my-16 mt-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}

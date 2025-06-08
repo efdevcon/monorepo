@@ -103,7 +103,7 @@ const Venue: React.FC = () => {
               </span>
             </div>
           </div>
-          <div className="flex flex-col justify-between items-between md:gap-4 gap-2 shrink-0 mr-4 mt-4 md:mt-0 ml-2">
+          <div className="flex flex-col justify-between items-between md:gap-4 gap-2 shrink-0 mr-4 mt-4 md:mt-0 ml-2 mb-4 md:mb-0">
             <div className="flex flex-col justify-center items-center text-right">
               <p className="text-[#575a7b] text-[0.81rem]">BUENOS AIRES, ARGENTINA</p>
               <p className="text-[#f78da7] bold text-xl leading-tight">
