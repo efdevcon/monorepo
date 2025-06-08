@@ -239,7 +239,7 @@ const TicketButton = ({
 }) => {
   return (
     <Link
-      href="https://www.eventbrite.com/e/ethereum-fair-tickets-tickets-1000000000000000000"
+      href="https://tickets.devconnect.org/"
       className="pointer-events-auto"
       spanClass={cn('flex flex-col items-end gap-2 group', className, css['no-underline'])}
     >
@@ -378,7 +378,7 @@ const Home: NextPage = (props: any) => {
                       {data.pages.what_is_devconnect}
                     </p>
 
-                    <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                    <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
                       <button
                         className={cn(
                           'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
@@ -634,7 +634,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className={cn('section relative mt-12 pb-16', css['gradient-pink'])}>
+          <div className={cn('section relative mt-12 pb-8', css['gradient-pink'])}>
             <RichText content={data.pages.ethereum_worlds_fair} className="cms-markdown mt-6 mb-6" />
 
             <motion.div
@@ -749,6 +749,37 @@ const Home: NextPage = (props: any) => {
                   </VoxelCard>
                 )
               })}
+              <motion.div
+                className="flex justify-center space-x-2 col-span-2"
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    y: 50,
+                    scale: 0.9,
+                  },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      duration: 0.6,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    },
+                  },
+                }}
+              >
+                <Link href="https://tickets.devconnect.org/" className="pointer-events-auto mt-6">
+                  <button
+                    className={cn(
+                      'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
+                    )}
+                  >
+                    <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center gap-2">
+                      {(globalThis as any).translations.get_my_ticket} <ArrowRight className="w-5 h-5" />
+                    </div>
+                  </button>
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -944,7 +975,7 @@ const Home: NextPage = (props: any) => {
                 <RichText content={data.pages.worlds_fair_calendar} className="cms-markdown mt-6" />
 
                 <div className="flex gap-4">
-                  <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+                  <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
                     <button
                       className={cn(
                         'mt-6 mb-2 border border-solid border-b-[6px] group px-6 py-2 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-xl bg-[white] hover:bg-[rgb(227,241,255,1)] transition-colors hover:border-opacity-0'
@@ -971,7 +1002,7 @@ const Home: NextPage = (props: any) => {
             <div className="flex justify-center gap-8 items-center py-[48px]">
               <div className="text-2xl font-secondary font-bold">{data.pages.ticket_cta}</div>
 
-              <Link href="https://esp.ethereum.foundation/devcon-grants/apply" className="pointer-events-auto">
+              <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
                 <button
                   className={cn(
                     'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'

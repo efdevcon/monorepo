@@ -80,7 +80,7 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Tickets',
-    url: 'https://devconnect.org/tickets',
+    url: 'https://tickets.devconnect.org/',
   },
   {
     text: 'Calendar',

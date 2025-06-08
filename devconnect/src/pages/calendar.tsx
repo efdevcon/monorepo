@@ -209,7 +209,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
           },
         },
         {
-          property: 'Would you like your event to be live on our website',
+          property: 'Live in Website',
           checkbox: {
             equals: true,
           },
