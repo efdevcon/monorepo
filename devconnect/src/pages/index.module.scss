@@ -130,8 +130,8 @@
   .topic {
     color: rgba(0, 0, 0, 0.1);
     transition: color 0.7s;
-    display: inline;
-    opacity: 1 !important;
+    display: inline-block;
+    // opacity: 1 !important;
 
     &.transformed {
       color: rgba(0, 0, 0, 1);

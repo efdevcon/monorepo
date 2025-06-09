@@ -611,25 +611,50 @@ const Home: NextPage = (props: any) => {
 
             <div className="section relative !hidden lg:!grid">
               <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
-                <div className={`${css['topics']} mt-6 font-secondary`} id="topics-container">
+                <motion.div
+                  className={`${css['topics']} mt-6 font-secondary`}
+                  id="topics-container"
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.3 }}
+                  variants={{
+                    hidden: {},
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.12,
+                      },
+                    },
+                  }}
+                >
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
                     return (
-                      <Observer
+                      <motion.span
                         key={i}
-                        activeClassName={css['transformed']}
-                        repeating
-                        observerOptions={{
-                          rootMargin: '-40% 0px -25% 0%',
+                        className={css['topic']}
+                        style={{ display: 'inline-block', willChange: 'transform' }}
+                        variants={{
+                          hidden: {
+                            opacity: 0,
+                            y: -30,
+                            color: 'rgba(0, 0, 0, 0.1)',
+                          },
+                          visible: {
+                            opacity: 1,
+                            y: 0,
+                            color: 'rgba(0, 0, 0, 1)',
+                            transition: {
+                              duration: 0.3,
+                              ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+                            },
+                          },
                         }}
                       >
-                        <div className={css['topic']}>
-                          {theme}
-                          {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
-                        </div>
-                      </Observer>
+                        {theme}
+                        {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                      </motion.span>
                     )
                   })}
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>

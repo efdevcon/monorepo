@@ -35,6 +35,8 @@ const index: Template = {
       fields: [
         { label: 'title', name: 'title', type: 'string' },
         { label: 'description', name: 'description', type: 'string' },
+        { label: 'location', name: 'location', type: 'string' },
+        { label: 'date', name: 'date', type: 'string' },
       ],
     },
     createRichText('how_to_contribute'),
