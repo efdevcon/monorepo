@@ -3,6 +3,7 @@ import { useCalendarStore } from 'store/calendar'
 import { Client } from '@notionhq/client'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
+import { useTina } from 'tinacms/dist/react'
 import Image from 'next/image'
 import styles from './calendar.module.scss'
 import cn from 'classnames'
@@ -11,9 +12,11 @@ import { formatResult } from 'lib/helpers/notion-normalizer'
 import moment from 'moment'
 import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
+import RichText from 'lib/components/tina-cms/RichText'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
+  const { data }: { data: any } = useTina(props.content)
 
   const coreEvents = [
     {
@@ -117,8 +120,7 @@ const Argentina = (props: any) => {
               <b>November</b> 2025
             </div>
             <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
-              <b>This calendar is a work in progress and will change before Devconnect week.</b> Check back regularly
-              for updates.
+              <RichText content={data.pages.calendar_disclaimer} />
             </div>
           </div>
         </div>
@@ -135,12 +137,7 @@ const Argentina = (props: any) => {
 
         <div className="section mb-8">
           <div className="flex flex-col gap-4 my-4">
-            <div className="text-2xl">
-              <b>Want to be featured on our calendar?</b>
-            </div>
-            <div className="text-sm">
-              Check back soon for more information on how to submit your event to our calendar.
-            </div>
+            <RichText content={data.pages.calendar_how_to_apply} />
           </div>
         </div>
 
@@ -177,7 +174,7 @@ const Argentina = (props: any) => {
 }
 
 export async function getStaticProps({ locale }: { locale: string }) {
-  const path = locale === 'en' ? 'destino_devconnect.mdx' : locale + '/destino_devconnect.mdx'
+  const path = locale === 'en' ? 'calendar.mdx' : locale + '/calendar.mdx'
   const content = await client.queries.pages({ relativePath: path })
   const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })

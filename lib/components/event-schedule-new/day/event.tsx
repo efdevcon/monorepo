@@ -203,16 +203,18 @@ const Event: React.FC<EventProps> = ({
             })}
           >
             {isCoworking && (
-              <Button
-                size="sm"
-                color="blue-1"
-                fill
-                className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
-              >
-                <Ticket className="shrink-0" size={16} />
-                Tickets Available Now
-                <Ticket className="shrink-0" size={16} />
-              </Button>
+              <a href="https://tickets.devcon.org" target="_blank">
+                <Button
+                  size="sm"
+                  color="blue-1"
+                  fill
+                  className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
+                >
+                  <Ticket className="shrink-0" size={16} />
+                  Tickets Available Now
+                  <Ticket className="shrink-0" size={16} />
+                </Button>
+              </a>
             )}
 
             <div
