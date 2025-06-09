@@ -551,7 +551,7 @@ const Home: NextPage = (props: any) => {
                 viewBox="0 0 101 102"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
-                className="absolute bottom-0 left-0 translate-y-[53%]  expand"
+                className="absolute bottom-0 left-0 translate-y-[53%] expand"
               >
                 <g opacity="0.5">
                   <path
