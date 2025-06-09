@@ -609,7 +609,7 @@ const Home: NextPage = (props: any) => {
               </div>
             </div>
 
-            <div className="section relative !hidden lg:grid">
+            <div className="section relative !hidden lg:!grid">
               <div className="max-w-[1300px] flex justify-center items-center mx-auto py-4">
                 <div className={`${css['topics']} mt-6 font-secondary`} id="topics-container">
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
