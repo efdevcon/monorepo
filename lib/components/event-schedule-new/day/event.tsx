@@ -87,7 +87,7 @@ const Event: React.FC<EventProps> = ({
         height: event.spanRows ? `${event.spanRows * 60}px` : "60px",
       }}
       className={cn(
-        `group bg-[#f0faff] cursor-pointer`,
+        `group bg-[#f0faff] cursor-pointerr`,
         "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative rounded-md overflow-hidden hover:border-black transition-all duration-300",
         {
           // "border-l !border-blue-500 border-l-[4px]": isCoworking || isETHDay,
