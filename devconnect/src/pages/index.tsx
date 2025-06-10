@@ -1121,7 +1121,7 @@ const Home: NextPage = (props: any) => {
                 return (
                   <motion.div
                     key={index}
-                    className="flex flex-col gap-2 border border-solid border-b-[6px] p-6 max-w-[400px] grow"
+                    className="flex flex-col gap-2 border border-solid border-b-[6px] p-6 max-w-[400px] grow bg-white"
                     variants={{
                       hidden: {
                         opacity: 0,
