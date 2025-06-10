@@ -221,6 +221,7 @@ You coming?`)
             justifyContent: 'center',
             fontSize: '18px',
             fontWeight: 600,
+            color: 'white',
           }}
         >
           Choose your vibe:{' '}
