@@ -1727,7 +1727,7 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
     <>
       <SEO title="Schedule" description="Devconnect schedule" />
       <Hero
-        className={`${css['hero']} ${props.edition}`}
+        className={`${css['hero']} ${props.edition} wide-layout`}
         autoHeight
         backgroundTitle={(() => {
           if (props.edition === 'istanbul') return 'Istanbul'
@@ -1762,7 +1762,10 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
         </div>
       )} */}
 
-      <div className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}>
+      <div
+        className={`${css['schedule']} ${css[`edition-${props.edition}`]}`}
+        style={{ '--content-width': '1680px' } as React.CSSProperties}
+      >
         <div className="section">
           {props.edition === 'amsterdam' && <Retro content={(data.pages as any)?.amsterdam} edition={props.edition} />}
           {props.edition === 'istanbul' && (

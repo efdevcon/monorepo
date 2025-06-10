@@ -71,7 +71,7 @@ const Venue: React.FC = () => {
             <Image src={LaRuralLogo} alt="La Rural" className="max-w-[400px]" />
           </div>
 
-          <div className="flex-none w-full sm:w-[260px] hidden xl:block ml-8">
+          <div className="flex-none w-full sm:w-[260px] hidden min-[1350px]:block ml-8">
             {/* Venue image */}
             <Image src={LaRuralVenue} alt="La Rural venue" className="w-full" />
           </div>

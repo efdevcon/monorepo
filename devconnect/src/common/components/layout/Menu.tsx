@@ -134,13 +134,18 @@ const menuItems = (pathname: string) => [
         text: 'Amsterdam 2022',
         url: '/amsterdam',
       },
+      {
+        text: 'Devcon',
+        // onlyFooter: true,
+        url: 'https://devcon.org',
+      },
     ],
   },
-  {
-    text: 'Devcon',
-    // onlyFooter: true,
-    url: 'https://devcon.org',
-  },
+  // {
+  //   text: 'Devcon',
+  //   // onlyFooter: true,
+  //   url: 'https://devcon.org',
+  // },
   // {
   //   text: 'DCxPrague',
   //   url: 'https://dcxprague.org/',
@@ -283,7 +288,7 @@ export const FooterMenu = (props: any) => {
       </Popover>
 
       <div className={css['social-media']}>
-        <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevconnect">
+        <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevcon">
           <TwitterIcon style={{ fill: 'white' }} />
         </a>
         <a target="_blank" rel="noreferrer" href="https://t.me/efdevconnect">
