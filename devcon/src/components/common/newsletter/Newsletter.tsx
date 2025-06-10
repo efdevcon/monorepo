@@ -1,65 +1,20 @@
 import React from 'react'
-import { useFormField } from 'hooks/useFormField'
-import css from './newsletter.module.scss'
-import { Alert } from '../alert'
 import { Button } from 'lib/components/button'
-import { EMAIL_DEVCON } from 'utils/constants'
-import { motion } from 'framer-motion'
-
-export interface Result {
-  result: 'success' | 'error'
-  msg: string
-}
+import Link from 'lib/components/link'
 
 interface Props {
   id?: string
 }
 
-const MC_ENDPOINT =
-  'https://ethereum.us7.list-manage.com/subscribe/post-json?u=bfdb1ffb0f71e3a27b9d96aed&amp;id=013a6fa362'
-
 export const Newsletter = (props: Props) => {
-  const emailField = useFormField()
-  const [result, setResult] = React.useState<Result | undefined>(undefined)
-
-  function onDismiss() {
-    setResult(undefined)
-  }
-
   return (
-    <form
-      action="https://login.sendpulse.com/forms/simple/u/eyJ1c2VyX2lkIjo4MjUxNTM4LCJhZGRyZXNzX2Jvb2tfaWQiOjEwNDI3MSwibGFuZyI6ImVuIn0="
-      method="post"
-    >
-      <div>
-        <p className="semi-bold">Subscribe to our newsletter</p>
-        <div>
-          {result ? (
-            <div className={css['alert-container']}>
-              <Alert type={result.result} message={result.msg} dismissable={true} dismissed={onDismiss} />
-            </div>
-          ) : (
-            <>
-              <p>Stay up to date on the latest devcon news and updates.</p>
-              <div className={`${css['container']} flex-col`}>
-                <motion.input
-                  className={`${css['input']} rounded-full p-2.5 px-5 border-solid border border-slate-300`}
-                  type="email"
-                  name="email"
-                  whileFocus={{ boxShadow: '0px 0px 4px 0px black' }}
-                  id={props.id ?? 'newsletter_email'}
-                  placeholder="Enter your email"
-                  {...emailField}
-                />
-                <input type="hidden" name="sender" value={EMAIL_DEVCON} />
-                <Button color="black-1" className="!flex w-full mt-2 !justify-start" fill fat type="submit">
-                  Subscribe to Newsletter
-                </Button>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-    </form>
+    <div>
+      <p className="semi-bold">Subscribe to our newsletter</p>
+      <Link href="https://paragraph.com/@efevents/subscribe">
+        <Button color="black-1" className="!flex w-full mt-2 !justify-start" fill fat type="submit">
+          Subscribe
+        </Button>
+      </Link>
+    </div>
   )
 }
