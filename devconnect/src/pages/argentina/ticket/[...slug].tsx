@@ -150,7 +150,7 @@ You coming?`)
 
 If you’re curious what Ethereum actually does, don't miss Devconnect. Nov 17–22 in Buenos Aires 🇦🇷
 
-You coming? ${currentUrl}`)
+You coming to /devconnect? ${currentUrl}`)
 
   const linkedinShare = `🚀 Thrilled to share a personal milestone! 🚀
 
