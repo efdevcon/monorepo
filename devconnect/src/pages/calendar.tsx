@@ -106,7 +106,7 @@ const Argentina = (props: any) => {
         <div className="section z-10 pb-1">
           <div className="flex justify-between items-end">
             <Image src={PageTitle} alt="Page Title" className={'contain w-[450px] translate-x-[-3%]'} />
-            <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>Buenos Aires, ARGENTINA</div>
+            {/* <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>Buenos Aires, ARGENTINA</div> */}
           </div>
         </div>
 

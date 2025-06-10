@@ -48,9 +48,8 @@ const index: Template = {
       fields: [
         { label: 'title', name: 'title', type: 'string' },
         { label: 'description', name: 'description', type: 'string' },
-        { label: 'location', name: 'location', type: 'string' },
-        { label: 'date', name: 'date', type: 'string' },
-        { label: 'tag', name: 'tag', type: 'string' },
+        { label: 'url', name: 'url', type: 'string' },
+        { label: 'url_text', name: 'url_text', type: 'string' },
       ],
     },
     createRichText('worlds_fair_calendar'),

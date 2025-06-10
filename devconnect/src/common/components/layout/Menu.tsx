@@ -317,7 +317,7 @@ export const Menu = (props: any) => {
         'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
         hasScrolled && 'bg-black/90',
         {
-          '!pointer-events-none': hasScrolled && !props.menuOpen,
+          '!pointer-events-none opacity-0': hasScrolled && !props.menuOpen,
         }
       )}
     >

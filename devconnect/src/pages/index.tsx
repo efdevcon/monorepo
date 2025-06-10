@@ -31,7 +31,7 @@ import ScrollVideo from 'common/components/ba/scroll-video'
 import Venue from 'common/components/ba/venue/venue'
 import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon } from 'lucide-react'
 import HeroText from 'assets/images/ba/header-text-hq.png'
-import TicketExample from 'assets/images/ba/hero-ticket.png'
+import TicketExample from 'assets/images/ba/ticket-hero.png'
 import { ArrowRight } from 'lucide-react'
 import VoxelCard from 'common/components/ba/voxel-card/voxel-card'
 import CoworkingImage from 'assets/images/ba/voxel-cards/co-working-image.png'
@@ -60,10 +60,12 @@ export const Header = ({
   noGradient,
   active,
   fadeOutOnScroll,
+  keepMenuOnScroll,
 }: {
   noGradient?: boolean
   active?: boolean
   fadeOutOnScroll?: boolean
+  keepMenuOnScroll?: boolean
 }) => {
   const { scrollY } = useScroll()
   const [hasScrolled, setHasScrolled] = React.useState(false)
@@ -77,6 +79,8 @@ export const Header = ({
 
   // const hideGradient = hasScrolled || noGradient
 
+  const fadeoutMenu = hasScrolled && fadeOutOnScroll && !keepMenuOnScroll
+
   return (
     <div
       className={cn('section z-[100] transition-opacity opacity-100 duration-[1000ms]', {
@@ -86,10 +90,10 @@ export const Header = ({
       <header
         className={cn(
           css['header'],
-          'py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none transition-all duration-[700ms]',
-          {
-            'opacity-0': hasScrolled && fadeOutOnScroll,
-          }
+          'py-4 fixed top-0 left-0 right-0 w-full z-[100] pointer-events-none transition-all duration-[700ms]'
+          // {
+          //   'opacity-0': hasScrolled && fadeOutOnScroll,
+          // }
         )}
         // style={{ '--display-gradient': hideGradient ? '0%' : '100%' } as any}
       >
@@ -102,6 +106,9 @@ export const Header = ({
                 'transition-all ease duration-500 pointer-events-auto',
                 {
                   '!pointer-events-none': fadeOutOnScroll && hasScrolled && !menuOpen,
+                },
+                {
+                  'opacity-0': hasScrolled && fadeOutOnScroll,
                 }
                 // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
               )}
@@ -113,7 +120,7 @@ export const Header = ({
               />
             </Link>
 
-            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} hasScrolled={hasScrolled && fadeOutOnScroll} />
+            <Menu menuOpen={menuOpen} setMenuOpen={setMenuOpen} hasScrolled={fadeoutMenu} />
           </div>
         </div>
       </header>
@@ -312,7 +319,7 @@ const Home: NextPage = (props: any) => {
             })}
           >
             {/* <Header noGradient active={fadeInArgentina || userHasInterruptedPlayback} /> */}
-            <Header noGradient active={true} />
+            <Header noGradient fadeOutOnScroll keepMenuOnScroll active={true} />
 
             <div
               className={cn(
@@ -428,7 +435,7 @@ const Home: NextPage = (props: any) => {
                       className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                       target="_blank"
                       rel="noreferrer"
-                      href="https://twitter.com/efdevconnect"
+                      href="https://twitter.com/efdevcon"
                     >
                       <TwitterIcon style={{ fill: 'white' }} />
                     </a>
@@ -835,36 +842,28 @@ const Home: NextPage = (props: any) => {
                     {
                       className: 'border-[rgba(136,85,204,1)] bg-[rgba(136,85,204,0.1)]',
                       icon: VoxelHeart,
-                      ctaLink: 'https://www.google.com',
-                      ctaText: 'Apply here',
                     },
                     {
                       className: 'border-[rgba(221,102,170,1)] bg-[rgba(221,102,170,0.1)]',
                       icon: VoxelTV,
-                      ctaLink: 'https://www.google.com',
-                      ctaText: 'Apply here',
                     },
                     {
                       className: 'border-[rgba(170,167,255,1)] bg-[rgba(170,167,255,0.1))]',
                       icon: VoxelPencil,
-                      ctaLink: 'https://www.google.com',
-                      ctaText: 'Apply here',
                     },
                     {
                       className: 'border-[rgba(238,136,34,1)] bg-[rgba(238,136,34,0.1)]',
                       icon: VoxelCalendar,
-                      ctaLink: 'https://www.google.com',
-                      ctaText: 'Add your event',
                     },
                   ]
 
-                  const { className, icon, ctaLink, ctaText } = indexes[index]
-                  const { title, description, location, date, tag } = item
+                  const { className, icon } = indexes[index]
+                  const { title, description, url, url_text } = item
 
                   return (
                     <motion.div
                       className={cn(
-                        'flex flex-col justify-between gap-2 border border-solid border-b-[6px] p-4',
+                        'flex flex-col justify-between gap-2 border border-solid border-b-[6px] p-4 xl:p-5',
                         className
                       )}
                       key={index}
@@ -895,12 +894,16 @@ const Home: NextPage = (props: any) => {
                         </div>
                       </div>
 
-                      <Link href={ctaLink} className="self-end text-[rgba(27,111,174,1)]">
-                        <div className="flex items-center gap-2 uppercase font-bold">
-                          {ctaText}
-                          <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
-                        </div>
-                      </Link>
+                      {url && (
+                        <Link href={url} className="self-end mt-2 font-semibold text-[rgba(27,111,174,1)]">
+                          <div className="flex items-center gap-2 uppercase">
+                            {url_text}
+                            <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
+                          </div>
+                        </Link>
+                      )}
+
+                      {!url && url_text && <div className="self-end mt-2 font-semibold uppercase">{url_text}</div>}
                     </motion.div>
                   )
                 })}
@@ -1101,7 +1104,7 @@ const Home: NextPage = (props: any) => {
             <RichText content={data.pages.bring_argentina_onchain} className="cms-markdown mt-16 z-10" />
 
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 my-16 mt-6"
+              className="flex flex-col md:flex-row gap-4 my-16 mt-6"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
@@ -1118,7 +1121,7 @@ const Home: NextPage = (props: any) => {
                 return (
                   <motion.div
                     key={index}
-                    className="flex flex-col gap-2 border border-solid border-b-[6px] p-6"
+                    className="flex flex-col gap-2 border border-solid border-b-[6px] p-6 max-w-[400px] grow"
                     variants={{
                       hidden: {
                         opacity: 0,
@@ -1139,7 +1142,7 @@ const Home: NextPage = (props: any) => {
                     <h2 className="text-2xl font-bold font-secondary">{item.title}</h2>
                     <p className="text-base/6">{item.description}</p>
 
-                    <Link href={item.url} className="self-end text-[rgba(27,111,174,1)] mt-3">
+                    <Link href={item.url} className="self-end text-[rgba(27,111,174,1)] mt-2">
                       <div className="flex items-center gap-2 uppercase font-bold">
                         {item.url_text}
                         <ArrowRight className="w-5 h-5" color="rgba(27,111,174,1)" />
