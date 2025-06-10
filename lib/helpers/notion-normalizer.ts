@@ -33,7 +33,7 @@ export const notionDatabasePropertyResolver = (property: any, key: any) => {
               textToAppend = chunk.plain_text;
             }
 
-            if (chunk.annotations) {
+            if (chunk.annotations && property.type !== "title") {
               let annotations = "placeholder";
 
               if (chunk.annotations.bold) annotations = `<b>${annotations}</b>`;
