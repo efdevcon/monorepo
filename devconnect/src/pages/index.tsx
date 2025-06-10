@@ -592,7 +592,7 @@ const Home: NextPage = (props: any) => {
 
                 <div className="basis-full lg:basis-auto grow flex justify-end items-center relative lg:p-4 py-8 lg:pr-16">
                   <div className="aspect-video bg-white border-2 border-solid border-[white] w-[700px] shadow-[0_2_4px_0_rgba(5,3,15,0.15)] relative">
-                    <Image
+                    {/* <Image
                       src={VideoImage}
                       alt="Video Preview"
                       className={cn(
@@ -602,10 +602,10 @@ const Home: NextPage = (props: any) => {
                       onClick={() => {
                         setPlayerClicked(true)
                       }}
-                    />
+                    /> */}
 
                     <iframe
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&modestbranding=1&showinfo=0"
+                      src="https://www.youtube.com/embed/6EXTlJr_yjc?modestbranding=1"
                       title="YouTube video player"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
