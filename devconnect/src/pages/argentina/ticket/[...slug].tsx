@@ -210,7 +210,7 @@ You coming?`)
       <SEO
         title="Devconnect ARG Tickets"
         description="Share your ticket with the world!"
-        imageUrl={`${SITE_URL?.replace('/transparent', '/social')}${ticketLink}`}
+        imageUrl={`${SITE_URL?.replace(/\/$/, '')}${ticketLink?.replace('/transparent', '/social')}`}
       />
       <div className="flex-1 flex flex-col items-center justify-center" style={{ marginTop: '157px' }}>
         <div
@@ -221,6 +221,7 @@ You coming?`)
             justifyContent: 'center',
             fontSize: '18px',
             fontWeight: 600,
+            color: 'white',
           }}
         >
           Choose your vibe:{' '}
