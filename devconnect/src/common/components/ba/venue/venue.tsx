@@ -41,7 +41,7 @@ const AddToCalendarButton: React.FC<{ showCalendarModal: boolean; setShowCalenda
   return (
     <AddToCalendarModal open={showCalendarModal} close={() => setShowCalendarModal(false)}>
       <div className="p-6 rounded-lg text-black flex flex-col justify-center items-center gap-4">
-        <p className="">Add to calendar</p>
+        <p className="">{(globalThis as any).translations.add_to_calendar}</p>
 
         <div className="flex flex-col gap-2 relative">
           <a {...calendarData.icsAttributes} className="w-full block">
@@ -71,7 +71,7 @@ const Venue: React.FC = () => {
             <Image src={LaRuralLogo} alt="La Rural" className="max-w-[400px]" />
           </div>
 
-          <div className="flex-none w-full sm:w-[260px] hidden xl:block ml-8">
+          <div className="flex-none w-full sm:w-[260px] hidden min-[1350px]:block ml-8">
             {/* Venue image */}
             <Image src={LaRuralVenue} alt="La Rural venue" className="w-full" />
           </div>
@@ -96,14 +96,14 @@ const Venue: React.FC = () => {
                 href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
                 className="text-[#575a7b] underline font-bold text-sm sm:text-sm"
               >
-                View Map
+                {(globalThis as any).translations.view_map}
               </a>
               <span className="text-[#f78da7] ">
                 <MapPin className="text-black" size={16} />
               </span>
             </div>
           </div>
-          <div className="flex flex-col justify-between items-between md:gap-4 gap-2 shrink-0 mr-4 mt-4 md:mt-0 ml-2">
+          <div className="flex flex-col justify-between items-between md:gap-4 gap-2 shrink-0 mr-4 mt-4 md:mt-0 ml-2 mb-4 md:mb-0">
             <div className="flex flex-col justify-center items-center text-right">
               <p className="text-[#575a7b] text-[0.81rem]">BUENOS AIRES, ARGENTINA</p>
               <p className="text-[#f78da7] bold text-xl leading-tight">
@@ -113,7 +113,7 @@ const Venue: React.FC = () => {
             <div className="ml-auto">
               <Button fat color="teal-1" className="flex items-center gap-3" onClick={() => setShowCalendarModal(true)}>
                 <Calendar size={17} className="translate-y-[-0.5px]" />
-                Add to Calendar
+                {(globalThis as any).translations.add_to_calendar}
               </Button>
             </div>
           </div>

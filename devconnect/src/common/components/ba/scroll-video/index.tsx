@@ -61,6 +61,7 @@ const ScrollVideoComponent = ({
     const checkMobile = () => {
       const isMobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       isMobileRef.current = isMobileCheck
+
       setIsMobile(isMobileCheck)
     }
 
@@ -133,6 +134,88 @@ const ScrollVideoComponent = ({
 
   // Preload images
   useEffect(() => {
+    // For mobile devices, only load and show the last frame
+    if (isMobile) {
+      const lastFrameIndex = (amountOfScreenshots - 1).toString().padStart(3, '0')
+      const screenshotsPath = hostedScreenshotsMobile
+      const prefix = filenamePrefixMobile
+      const lastFrameSrc = `${screenshotsPath}/${prefix}${lastFrameIndex}${extension}`
+
+      // Set loading state to true initially
+      setIsLoading(true)
+      if (onUserPlaybackInterrupt) {
+        onUserPlaybackInterrupt()
+      }
+
+      const lastImg = new Image()
+      lastImg.src = lastFrameSrc
+      lastImg.onload = () => {
+        setFirstImageLoaded(true)
+        setFirstImage(lastImg)
+        setInitialPlayComplete(true)
+        setIsLoading(false) // Set loading to false when done
+
+        // Draw the last frame on the canvas
+        if (canvasRef.current) {
+          const canvas = canvasRef.current
+          const ctx = canvas.getContext('2d')
+          if (ctx) {
+            // Set canvas dimensions to match viewport
+            canvas.width = window.innerWidth
+            canvas.height = window.innerHeight
+
+            // Calculate dimensions to maintain aspect ratio while filling screen
+            const imgAspect = lastImg.width / lastImg.height
+            const canvasAspect = canvas.width / canvas.height
+            const isPortrait = canvasAspect < 1 // Check if device is in portrait mode
+
+            let drawWidth,
+              drawHeight,
+              offsetX = 0,
+              offsetY = 0
+
+            if (canvasAspect > imgAspect) {
+              // Canvas is wider than image aspect ratio
+              drawWidth = canvas.width
+              drawHeight = canvas.width / imgAspect
+              offsetY = (canvas.height - drawHeight) / 2
+            } else {
+              // Canvas is taller than image aspect ratio
+              drawHeight = canvas.height
+              drawWidth = canvas.height * imgAspect
+
+              // For portrait mode, align to the left side instead of center
+              if (isPortrait) {
+                offsetX = 0 // Left-align the image
+              } else {
+                offsetX = (canvas.width - drawWidth) / 2 // Center the image horizontally
+              }
+            }
+
+            // Draw image to fill canvas while maintaining aspect ratio
+            ctx.drawImage(lastImg, offsetX, offsetY, drawWidth, drawHeight)
+          }
+        }
+
+        // Call onPlaybackFinish if provided
+        if (onPlaybackFinish) {
+          onPlaybackFinish()
+        }
+      }
+
+      lastImg.onerror = () => {
+        console.error('Failed to load mobile image:', lastFrameSrc)
+        setIsLoading(false)
+        setInitialPlayComplete(true)
+        if (onPlaybackFinish) {
+          onPlaybackFinish()
+        }
+      }
+
+      return // Exit early for mobile
+    }
+
+    // Desktop logic continues below...
     // Calculate the first frame index based on playback direction
     const firstFrameIndex = playInReverse ? (amountOfScreenshots - 1).toString().padStart(3, '0') : '000'
 
