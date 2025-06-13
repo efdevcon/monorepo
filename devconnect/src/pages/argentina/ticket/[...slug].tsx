@@ -416,9 +416,6 @@ export async function getStaticProps(context: any) {
   ] = context.params.slug
   const ticketLink = `/api/ticket/${name}/${color}/social/${random}`
 
-  // Set Content-Encoding header
-  context.res?.setHeader('Content-Encoding', 'identity')
-
   return {
     props: {
       params: {
