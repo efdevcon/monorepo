@@ -21,9 +21,6 @@
   for = "/api/ticket/*"
   [headers.values]
     Content-Encoding = "identity"
-    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate"
-    Pragma = "no-cache"
-    Expires = "0"
 
 [[redirects]]
   from = "/host"

@@ -5,9 +5,6 @@ export default async (request: Request, context: Context) => {
 
   // Set headers to prevent compression
   response.headers.set('Content-Encoding', 'identity')
-  response.headers.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate')
-  response.headers.set('Pragma', 'no-cache')
-  response.headers.set('Expires', '0')
 
   return response
 } 
