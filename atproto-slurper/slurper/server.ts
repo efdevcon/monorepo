@@ -3,6 +3,9 @@ import { BskyAgent, AppBskyFeedPost } from "@atproto/api";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import WebSocket from "ws";
+import validateRecord from "./validate";
+import { dummyEvent } from "./schema";
+import { api } from "./atproto";
 
 dotenv.config();
 
@@ -105,17 +108,17 @@ async function startFirehose() {
 
     // Subtract a buffer (5 seconds worth of microseconds) to ensure gapless playback
     let cursorForConnection = cursor;
-    if (cursorForConnection) {
-      const cursorValue = BigInt(cursorForConnection);
-      const fiveSecondsInMicroseconds = BigInt(5 * 1000 * 1000);
-      cursorForConnection = String(cursorValue - fiveSecondsInMicroseconds);
-      console.log("Using cursor with 5 second buffer:", cursorForConnection);
-    }
+    // if (cursorForConnection) {
+    //   const cursorValue = BigInt(cursorForConnection);
+    //   const fiveSecondsInMicroseconds = BigInt(5 * 1000 * 1000);
+    //   cursorForConnection = String(cursorValue - fiveSecondsInMicroseconds);
+    //   console.log("Using cursor with 5 second buffer:", cursorForConnection);
+    // }
 
     // Add cursor as a query parameter if it exists
     const wsUrl = cursorForConnection
-      ? `wss://jetstream2.us-east.bsky.network/subscribe?cursor=${cursorForConnection}&wantedCollections=${COLLECTION_NAME}`
-      : `wss://jetstream2.us-east.bsky.network/subscribe?wantedCollections=${COLLECTION_NAME}`;
+      ? `wss://jetstream2.us-east.bsky.network/subscribe?cursor=${cursorForConnection}` // &wantedCollections=${COLLECTION_NAME}`
+      : `wss://jetstream2.us-east.bsky.network/subscribe`; // ?wantedCollections=${COLLECTION_NAME}`;
 
     console.log("Connecting to firehose with URL:", wsUrl);
 
@@ -134,6 +137,8 @@ async function startFirehose() {
     ws.onmessage = async (event: WebSocket.MessageEvent) => {
       try {
         const message = JSON.parse(event.data.toString());
+
+        // console.log("Message received:", message);
 
         // const now = Date.now();
         // if (now - lastLogTime >= 30000) {
@@ -265,8 +270,75 @@ app.get("/all-events", async (req, res) => {
   res.json(data);
 });
 
+app.get("/validate-event", async (req, res) => {
+  // const record = req.body.record;
+
+  const { valid, error } = validateRecord(dummyEvent);
+
+  if (valid) {
+    res.status(200).json({ valid: true });
+  } else {
+    res.status(400).json({ valid: false, error });
+  }
+});
+
+app.get("/submit-event", async (req, res) => {
+  const { valid, error } = validateRecord(req.body);
+
+  res.json({ valid, error });
+
+  if (valid) {
+    res.status(200).json({ valid: true });
+  } else {
+    res.status(400).json({ valid: false, error });
+  }
+});
+
+app.get("/submit-event-to-devcon-pds", async (req, res) => {
+  const { valid, error } = validateRecord(req.body);
+
+  res.json({ valid, error });
+
+  if (valid) {
+    res.status(200).json({ valid: true });
+  } else {
+    res.status(400).json({ valid: false, error });
+  }
+});
+
+// app.get("/add-record-to-devcon-pds", async (req, res) => {
+//   const { valid, error } = validateRecord(req.body);
+
+//   if (valid) {
+//     const result = await api.addRecordToDevconPds(
+//       "https://bsky.social",
+//       process.env.AT_USERNAME!,
+//       process.env.AT_PASSWORD!,
+//       req.body
+//     );
+
+//     res.json({ valid, error });
+//   }
+// });
+
+// app.get("/add-schema", async (req, res) => {
+//   if (valid) {
+//     res.status(200).json({ valid: true });
+//   } else {
+//     res.status(400).json({ valid: false, error });
+//   }
+// });
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
   startFirehose();
 });
+
+/*
+  TODO: 
+    - frontend to submit events
+    - update schema to v1
+    - update validate to v1
+    - 
+*/
