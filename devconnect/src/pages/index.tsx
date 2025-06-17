@@ -108,7 +108,7 @@ export const Header = ({
                   '!pointer-events-none': fadeOutOnScroll && hasScrolled && !menuOpen,
                 },
                 {
-                  'opacity-0': hasScrolled && fadeOutOnScroll,
+                  'opacity-0': hasScrolled && fadeOutOnScroll && !menuOpen,
                 }
                 // hasScrolled && !menuOpen && 'opacity-0 pointer-events-none'
               )}
