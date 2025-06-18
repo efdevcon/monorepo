@@ -19,7 +19,7 @@ export const robotoCondensed = Roboto_Condensed({
   variable: '--font-roboto-condensed',
   weight: ['400', '700'],
 })
-import { init } from '@socialgouv/matomo-next'
+import { init, push } from '@socialgouv/matomo-next'
 import { useDevaBotStore } from 'store/devai'
 const MATOMO_URL = 'https://ethereumfoundation.matomo.cloud'
 const MATOMO_SITE_ID = '29'
@@ -44,7 +44,15 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   React.useEffect(() => {
     if (!matomoAdded && process.env.NODE_ENV === 'production') {
-      init({ url: MATOMO_URL, siteId: MATOMO_SITE_ID })
+      init({
+        url: MATOMO_URL,
+        siteId: MATOMO_SITE_ID,
+        onInitialization: () => {
+          // Set cookie domain for subdomain tracking
+          push(['setCookieDomain', '*.devconnect.org'])
+          push(['setExcludedQueryParams', ['code', 'gist']])
+        },
+      })
       matomoAdded = true
     }
   }, [])
