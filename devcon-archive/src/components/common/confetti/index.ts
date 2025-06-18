@@ -1,1 +1,0 @@
-export { Confetti } from './Confetti'

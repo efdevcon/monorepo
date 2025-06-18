@@ -79,6 +79,14 @@ const menuItems = (pathname: string) => [
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
   },
   {
+    text: 'Tickets',
+    url: 'https://tickets.devconnect.org/',
+  },
+  {
+    text: 'Calendar',
+    url: '/calendar',
+  },
+  {
     text: 'Destino Devconnect',
     customClass: css['destino-rainbow'],
     url: '/destino',
@@ -126,13 +134,18 @@ const menuItems = (pathname: string) => [
         text: 'Amsterdam 2022',
         url: '/amsterdam',
       },
+      {
+        text: 'Devcon',
+        // onlyFooter: true,
+        url: 'https://devcon.org',
+      },
     ],
   },
-  {
-    text: 'Devcon',
-    // onlyFooter: true,
-    url: 'https://devcon.org',
-  },
+  // {
+  //   text: 'Devcon',
+  //   // onlyFooter: true,
+  //   url: 'https://devcon.org',
+  // },
   // {
   //   text: 'DCxPrague',
   //   url: 'https://dcxprague.org/',
@@ -275,7 +288,7 @@ export const FooterMenu = (props: any) => {
       </Popover>
 
       <div className={css['social-media']}>
-        <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevconnect">
+        <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevcon">
           <TwitterIcon style={{ fill: 'white' }} />
         </a>
         <a target="_blank" rel="noreferrer" href="https://t.me/efdevconnect">
@@ -297,22 +310,20 @@ export const FooterMenu = (props: any) => {
 
 export const Menu = (props: any) => {
   const router = useRouter()
-  const { scrollY } = useScroll()
-  const [hasScrolled, setHasScrolled] = React.useState(false)
   const [languageOpen, setLanguageOpen] = React.useState(false)
-  const { visible, toggleVisible } = useDevaBotStore()
-  React.useEffect(() => {
-    return scrollY.onChange(latest => {
-      setHasScrolled(latest > 0)
-    })
-  }, [scrollY])
+  // const { visible, toggleVisible } = useDevaBotStore()
+
+  const hasScrolled = props.hasScrolled
 
   return (
     <div
       className={cn(
         css['menu'],
         'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
-        hasScrolled && 'bg-black/90'
+        hasScrolled && 'bg-black/90',
+        {
+          '!pointer-events-none opacity-0': hasScrolled && !props.menuOpen,
+        }
       )}
     >
       <Mobile menuOpen={props.menuOpen} setMenuOpen={props.setMenuOpen} />

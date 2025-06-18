@@ -1,1 +1,0 @@
-export { EventOverview } from './EventOverview'

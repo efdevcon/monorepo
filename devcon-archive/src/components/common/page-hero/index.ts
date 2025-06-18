@@ -1,1 +1,0 @@
-export { PageHero } from './PageHero'

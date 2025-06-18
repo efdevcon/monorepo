@@ -4,6 +4,10 @@ import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
 import DevaBot from 'lib/components/ai/overlay'
 import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
+import { AccountContextProvider } from 'context/account-context-provider'
+import { Web3Provider } from 'context/web3'
+import { DataProvider } from 'context/data'
+
 export const roboto = Roboto({
   subsets: ['latin'],
   variable: '--font-roboto',
@@ -87,7 +91,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         )}
       </AnimatePresence> */}
 
-      <Component {...pageProps} />
+      <DataProvider>
+        <Web3Provider>
+          <AccountContextProvider>
+            <Component {...pageProps} />
+          </AccountContextProvider>
+        </Web3Provider>
+      </DataProvider>
     </>
   )
 }

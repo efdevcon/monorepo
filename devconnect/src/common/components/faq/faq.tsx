@@ -1,6 +1,3 @@
-import { useTina } from 'tinacms/dist/react'
-import { client } from '../../../../tina/__generated__/client'
-import { PagesQuery, PagesIndex } from '../../../../tina/__generated__/types'
 import ChevronDown from 'assets/icons/chevron-down.svg'
 import ChevronUp from 'assets/icons/chevron-up.svg'
 import RichText from 'lib/components/tina-cms/RichText'
@@ -8,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'common/components/link/Link'
 import cn from 'classnames'
+
 // Exporting to cowork page
 export const FAQDuringEvent = [
   {
@@ -23,8 +21,8 @@ export const FAQDuringEvent = [
               join the Community Hub here
             </Link>
             , after you claimed your ZK ticket for the Cowork or another ZK-ticketed Devconnect event. You find
-            instructions on how to join the chat in the email dispatched to you (search for the subject line “Devconnect
-            Cowork your order.”).
+            instructions on how to join the chat in the email dispatched to you (search for the subject line "Devconnect
+            Cowork your order.").
           </p>
           <p>
             We'll also continue to share updates and what's happening{' '}
@@ -52,7 +50,7 @@ export const FAQDuringEvent = [
           </p>
           <p>
             You find instructions on how to join the chat in the email dispatched to you (search for the subject line
-            “Devconnect Cowork your order.”)
+            "Devconnect Cowork your order.").
           </p>{' '}
         </>
       )
@@ -208,7 +206,7 @@ export const FAQDuringEvent = [
                 Airalo
               </Link>{' '}
               offers a discount for all Devconnect Cowork attendees to receive 20% off their chosen data package with
-              the code “DEVCONNECT” up until 30th November, 2023.
+              the code "DEVCONNECT" up until 30th November, 2023.
             </li>
             <li>
               The local provider{' '}
@@ -462,51 +460,119 @@ const FAQOld = [
 
 const FAQ = (props: any) => {
   const [openFAQ, setOpenFAQ] = useState<string | null>(null)
+  const [showAll, setShowAll] = useState(false)
+
+  const questions = props.questions || []
+  const hasMoreThanFive = questions.length > 5
+  const displayedQuestions = showAll ? questions : questions.slice(0, 5)
 
   return (
-    <div className="mt-4 text-slate-900">
-      <div className="flex flex-col">
-        {props.questions?.map(({ question, answer }: { question: string; answer: any }) => {
-          const open = question === openFAQ
+    <div className="">
+      <motion.div
+        key={showAll ? 'all' : 'limited'}
+        className="flex flex-col"
+        initial="hidden"
+        animate="visible"
+        viewport={{ once: true, margin: '-100px' }}
+        variants={{
+          hidden: {
+            opacity: 0,
+          },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.1,
+            },
+          },
+        }}
+      >
+        <div className="relative">
+          {displayedQuestions.map(({ question, answer }: { question: string; answer: any }, index: number) => {
+            const open = question === openFAQ
+            const isLastVisible = !showAll && hasMoreThanFive && index === 4
 
-          return (
-            <div
-              key={question}
-              className={cn(
-                'w-full flex flex-col rounded-xl mb-2 border border-solid border-slate-300 transition-all duration-500',
-                open ? 'bg-teal-100/30' : ''
-              )}
-            >
-              <button
-                className="p-3 px-4 grow text-base cursor-pointer select-none group flex justify-between items-center"
-                onClick={() => setOpenFAQ(open ? null : question)}
-                type="button"
-                aria-expanded={open}
+            return (
+              <motion.div
+                variants={{
+                  hidden: {
+                    opacity: 0,
+                    x: -50,
+                    scale: 0.9,
+                  },
+                  visible: {
+                    opacity: 1,
+                    scale: 1,
+                    x: 0,
+                    transition: {
+                      duration: 0.3,
+                      ease: [0.25, 0.46, 0.45, 0.94],
+                    },
+                  },
+                }}
+                key={question}
+                className={cn(
+                  'w-full flex flex-col mb-2 border border-solid border-slate-300 hover:bg-[rgba(27,111,174,0.1)] relative',
+                  open ? 'bg-[rgba(27,111,174,0.1)] border-b-[4px] border-b-[rgba(27,111,174)]' : '',
+                  isLastVisible ? 'mask-fade-bottom' : ''
+                )}
+                style={
+                  isLastVisible
+                    ? {
+                        maskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 70%, transparent 100%)',
+                      }
+                    : {}
+                }
               >
-                <div
-                  className={cn(
-                    'flex items-center text-center translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300',
-                    open ? '' : ''
-                  )}
+                <button
+                  className="p-3 px-4 grow text-base text-start cursor-pointer select-none group flex justify-between gap-4 items-center"
+                  onClick={() => setOpenFAQ(open ? null : question)}
+                  type="button"
+                  aria-expanded={open}
                 >
-                  {question}
-                </div>
-                {/* <span className="flex opacity-40">{open ? <ChevronUp /> : <ChevronDown />}</span> */}
-              </button>
+                  <div
+                    className={cn(
+                      'flex  translate-x-0 group-hover:lg:translate-x-2 transition-all duration-300 font-bold',
+                      open ? '' : ''
+                    )}
+                  >
+                    {question}
+                  </div>
+                  <span className="flex items-center h-full justify-center text-xs shrink-0">
+                    {open ? <ChevronUp /> : <ChevronDown />}
+                  </span>
+                </button>
 
-              {open && (
-                <motion.div
-                  initial={{ y: '-10%', opacity: 0 }}
-                  animate={{ y: '0%', opacity: 1 }}
-                  className="w-full p-4 pt-2"
-                >
-                  <RichText content={answer} />
-                </motion.div>
-              )}
+                {open && (
+                  <motion.div
+                    initial={{ y: '-10%', opacity: 0 }}
+                    animate={{ y: '0%', opacity: 1 }}
+                    className="w-full p-4 pt-2 will-transform"
+                  >
+                    <RichText content={answer} />
+                  </motion.div>
+                )}
+              </motion.div>
+            )
+          })}
+
+          {hasMoreThanFive && !showAll && (
+            <div className="relative -mt-12 pt-12 flex justify-center">
+              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+              <button
+                onClick={() => setShowAll(true)}
+                className={cn(
+                  'mb-2 z-10 border border-solid border-b-[3px] group px-3 py-1 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-sm bg-[white] hover:bg-[rgb(227,241,255,1)] transition-colors hover:border-opacity-0'
+                )}
+              >
+                <div className="group-hover:translate-y-[2px] transition-transform uppercase flex items-center gap-2">
+                  View All ({questions.length} questions)
+                </div>
+              </button>
             </div>
-          )
-        })}
-      </div>
+          )}
+        </div>
+      </motion.div>
     </div>
   )
 }

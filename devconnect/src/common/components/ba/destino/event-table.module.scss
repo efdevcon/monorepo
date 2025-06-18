@@ -9,4 +9,21 @@
   --icon-color: white;
   --table-header-color: #f3a24a;
   --table-row-background-even: #36364c;
+  .selected-filter {
+    color: var(--table-header-color) !important;
+      font-weight: bold !important;
+      }
+}
+.row-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+.event-table :global(.table_container__YwIU_) :global(> div:nth-child(2n)) {
+  background: var(--table-row-background-even);
 }

@@ -1,6 +1,26 @@
 [build] 
     ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect ../lib ; fi"
 
+[[edge_functions]]
+  path = "/argentina/ticket/*"
+  function = "ticket"
+
+[[edge_functions]]
+  path = "/api/ticket/*"
+  function = "api-ticket"
+
+[[headers]]
+  for = "/argentina/ticket/*"
+  [headers.values]
+    Content-Encoding = "identity"
+    Cache-Control = "no-store, no-cache, must-revalidate, proxy-revalidate"
+    Pragma = "no-cache"
+    Expires = "0"
+
+[[headers]]
+  for = "/api/ticket/*"
+  [headers.values]
+    Content-Encoding = "identity"
 
 [[redirects]]
   from = "/host"
