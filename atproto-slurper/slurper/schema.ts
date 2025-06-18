@@ -64,196 +64,132 @@ export const schema = {
       },
     },
     organizer: {
-      type: "record",
-      record: {
-        type: "object",
-        required: ["name"],
-        properties: {
-          name: {
-            type: "string",
-            description: "Name of the organizer",
-          },
-          contact: {
-            type: "string",
-            description: "Contact of the organizer (email, twitter, etc.)",
-          },
+      type: "object",
+      required: ["name"],
+      properties: {
+        name: {
+          type: "string",
+          description: "Name of the organizer",
+        },
+        contact: {
+          type: "string",
+          description: "Contact of the organizer (email, twitter, etc.)",
         },
       },
     },
     location: {
-      type: "record",
-      record: {
-        type: "object",
-        required: ["name"],
-        properties: {
-          name: {
-            type: "string",
-            description: "Name of the location",
-          },
-          address: {
-            type: "string",
-            description: "Address of the location",
-          },
+      type: "object",
+      required: ["name"],
+      properties: {
+        name: {
+          type: "string",
+          description: "Name of the location",
+        },
+        address: {
+          type: "string",
+          description: "Address of the location",
         },
       },
     },
     timeslot: {
-      type: "record",
-      record: {
-        type: "object",
-        required: ["start_utc", "end_utc", "title"],
-        properties: {
-          start_utc: {
-            type: "string",
-            format: "datetime",
-            description: "Start of the timeslot",
-          },
-          end_utc: {
-            type: "string",
-            format: "datetime",
-            description: "End of the timeslot",
-          },
-          title: {
-            type: "string",
-            description: "Title of the timeslot",
-          },
-          description: {
-            type: "string",
-            description: "Description of the timeslot",
-          },
-          event_uri: {
-            type: "string",
-            description:
-              "If the timeslot is a more intricate/detailed event that needs more than the basic title and description, this would refer to the atproto record key of that event. The referenced event should follow the same parent schema (org.devcon.event.v1)",
-          },
+      type: "object",
+      required: ["start_utc", "end_utc", "title"],
+      properties: {
+        start_utc: {
+          type: "string",
+          format: "datetime",
+          description: "Start of the timeslot",
+        },
+        end_utc: {
+          type: "string",
+          format: "datetime",
+          description: "End of the timeslot",
+        },
+        title: {
+          type: "string",
+          description: "Title of the timeslot",
+        },
+        description: {
+          type: "string",
+          description: "Description of the timeslot",
+        },
+        event_uri: {
+          type: "string",
+          description:
+            "If the timeslot is a more intricate/detailed event that needs more than the basic title and description, this would refer to the atproto record key of that event. The referenced event should follow the same parent schema (org.devcon.event.v1)",
         },
       },
     },
     metadata: {
-      type: "record",
-      record: {
-        type: "object",
-        description:
-          "Optional fields that can be used to provide less pertinent information about the event",
-        properties: {
-          image_url: {
+      type: "object",
+      description:
+        "Optional fields that can be used to provide less pertinent information about the event",
+      properties: {
+        image_url: {
+          type: "string",
+          description:
+            "Url referencing an image for this event. Image should be .png, squared, and we suggest at least 1024x1024px.",
+        },
+        requires_ticket: {
+          type: "boolean",
+          description: "Whether the event requires tickets",
+        },
+        sold_out: {
+          type: "boolean",
+          description: "Whether the event is sold out",
+        },
+        capacity: {
+          type: "integer",
+          description: "How many people can attend the event",
+        },
+        expertise_level: {
+          type: "string",
+          enum: ["all welcome", "beginner", "intermediate", "expert", "other"],
+          description: "Expertise level of the event",
+        },
+        type: {
+          type: "string",
+          description: "Type of event, e.g. conference, talks, hackathon, etc.",
+        },
+        categories: {
+          type: "array",
+          description:
+            "Categories of the event (e.g. defi, privacy, security, etc.)",
+          items: {
             type: "string",
-            description:
-              "Url referencing an image for this event. Image should be .png, squared, and we suggest at least 1024x1024px.",
-          },
-          requires_ticket: {
-            type: "boolean",
-            description: "Whether the event requires tickets",
-          },
-          sold_out: {
-            type: "boolean",
-            description: "Whether the event is sold out",
-          },
-          capacity: {
-            type: "integer",
-            description: "How many people can attend the event",
-          },
-          expertise_level: {
-            type: "string",
-            enum: [
-              "all welcome",
-              "beginner",
-              "intermediate",
-              "expert",
-              "other",
-            ],
-            description: "Expertise level of the event",
-          },
-          type: {
-            type: "string",
-            description: "Type of event",
-            enum: [
-              "conference",
-              "talks",
-              "hackathon",
-              "lightning talks",
-              "social",
-              "music",
-              "workshop",
-              "panel",
-              "other",
-            ],
-          },
-          categories: {
-            type: "array",
-            description:
-              "Categories of the event (e.g. defi, privacy, security, etc.)",
-            items: {
-              type: "string",
-            },
-          },
-          tags: {
-            type: "array",
-            items: {
-              type: "string",
-            },
-            description:
-              "Useful when other options dont apply or for searching",
-          },
-          website: {
-            type: "string",
-            description: "Website/URL of the event",
-          },
-          socials: {
-            type: "ref",
-            ref: "#socials",
           },
         },
-      },
-    },
-    socials: {
-      type: "record",
-      record: {
-        type: "object",
-        properties: {
-          x_url: {
+        tags: {
+          type: "array",
+          items: {
             type: "string",
-            description: "X/twitter URL of the event",
           },
-          discord_url: {
-            type: "string",
-            description: "Discord URL of the event",
+          description: "Useful when other options dont apply or for searching",
+        },
+        website: {
+          type: "string",
+          description: "Website/URL of the event",
+        },
+        socials: {
+          type: "array",
+          items: {
+            type: "ref",
+            ref: "#social_platform",
           },
-          telegram_url: {
-            type: "string",
-            description: "Telegram URL of the event",
-          },
-          farcaster_url: {
-            type: "string",
-            description: "Farcaster URL of the event",
-          },
-          github_url: {
-            type: "string",
-            description: "Github URL of the event",
-          },
-          other: {
-            type: "array",
-            items: {
-              type: "ref",
-              ref: "#social_platform",
-            },
-            description: "Other social media platforms",
-          },
+          description:
+            "Array of social media platforms with platform name and URL.",
         },
       },
     },
     social_platform: {
-      type: "record",
-      record: {
-        type: "object",
-        required: ["platform", "url"],
-        properties: {
-          platform: {
-            type: "string",
-          },
-          url: {
-            type: "string",
-          },
+      type: "object",
+      required: ["platform", "url"],
+      properties: {
+        platform: {
+          type: "string",
+        },
+        url: {
+          type: "string",
         },
       },
     },
@@ -284,3 +220,62 @@ export const dummyEvent = {
     },
   ],
 };
+
+// export const testSchema = {
+//   $type: "com.atproto.lexicon.schema",
+//   lexicon: 1,
+//   id: "org.devcon.event.test",
+//   defs: {
+//     main: {
+//       type: "record",
+//       key: "tid",
+//       record: {
+//         type: "object",
+//         required: ["title", "start", "end"],
+//         properties: {
+//           createdAt: {
+//             type: "string",
+//             format: "datetime",
+//           },
+//           title: {
+//             type: "string",
+//             description: "Title of the event",
+//           },
+//           description: {
+//             type: "string",
+//             description: "Description of the event",
+//           },
+//           location: {
+//             type: "string",
+//             description: "Location of the event",
+//           },
+//           url: {
+//             type: "string",
+//             description: "URL of the event",
+//           },
+//           start: {
+//             type: "string",
+//             format: "datetime",
+//             description: "Start time of the event",
+//           },
+//           end: {
+//             type: "string",
+//             format: "datetime",
+//             description: "End time of the event",
+//           },
+//         },
+//       },
+//     },
+//   },
+// };
+
+// export const testRecord = {
+//   $type: "org.devcon.event.test",
+//   createdAt: "2024-03-20T10:00:00Z",
+//   title: "My Event",
+//   description: "Event description",
+//   location: "Conference Room A",
+//   url: "https://example.com",
+//   start: "2024-03-20T10:00:00Z",
+//   end: "2024-03-20T12:00:00Z",
+// };

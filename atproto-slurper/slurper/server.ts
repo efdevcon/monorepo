@@ -117,8 +117,8 @@ async function startFirehose() {
 
     // Add cursor as a query parameter if it exists
     const wsUrl = cursorForConnection
-      ? `wss://jetstream2.us-east.bsky.network/subscribe?cursor=${cursorForConnection}` // &wantedCollections=${COLLECTION_NAME}`
-      : `wss://jetstream2.us-east.bsky.network/subscribe`; // ?wantedCollections=${COLLECTION_NAME}`;
+      ? `wss://jetstream2.us-east.bsky.network/subscribe?cursor=${cursorForConnection}&wantedCollections=${COLLECTION_NAME}`
+      : `wss://jetstream2.us-east.bsky.network/subscribe?wantedCollections=${COLLECTION_NAME}`;
 
     console.log("Connecting to firehose with URL:", wsUrl);
 
@@ -332,7 +332,10 @@ app.get("/submit-event-to-devcon-pds", async (req, res) => {
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  startFirehose();
+  // startFirehose();
+
+  const result = validateRecord(dummyEvent);
+  console.log(result);
 });
 
 /*

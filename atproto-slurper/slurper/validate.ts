@@ -5,7 +5,7 @@ import { schema } from "./schema";
 const lexicons = new Lexicons();
 
 // Add your schema to the lexicons
-lexicons.add(schema as LexiconDoc);
+lexicons.add(schema as any);
 
 // Validate a record against your schema
 const validateRecord = (record: any) => {
