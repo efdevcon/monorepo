@@ -160,10 +160,13 @@ async function startFirehose() {
               console.log(message.commit, "message.commit.record");
 
               try {
-                const valid = await validateRecord(message.commit.record);
+                const { valid, error } = await validateRecord(
+                  message.commit.record
+                );
 
                 if (!valid) {
                   console.error("Invalid event:", message.commit.record);
+                  console.error("Error:", error);
                   return;
                 }
 

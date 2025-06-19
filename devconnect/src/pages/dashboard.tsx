@@ -239,13 +239,15 @@ const AdminPage = () => {
           </>
         )}
 
-        <NewSchedule
-          events={formattedEvents}
-          selectedEvent={null}
-          selectedDay={null}
-          setSelectedEvent={() => {}}
-          setSelectedDay={() => {}}
-        />
+        <div className="px-8">
+          <NewSchedule
+            events={formattedEvents}
+            selectedEvent={null}
+            selectedDay={null}
+            setSelectedEvent={() => {}}
+            setSelectedDay={() => {}}
+          />
+        </div>
       </main>
       {/* <Footer /> */}
     </>

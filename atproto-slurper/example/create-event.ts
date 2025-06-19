@@ -98,8 +98,8 @@ const createEvent = async (
   const record = {
     $type: "org.devcon.event.vone",
     start_utc: "2025-11-15T10:00:00Z",
-    end_utc: "2025-11-20T12:00:00Z",
-    title: "Example Devconnect Event",
+    end_utc: "2025-11-16T12:00:00Z",
+    title: "korean basket weaving society",
     description: "Event description",
     organizer: {
       name: "John Doe",
