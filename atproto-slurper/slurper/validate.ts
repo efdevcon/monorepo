@@ -11,7 +11,10 @@ lexicons.add(schema as any);
 const validateRecord = (record: any) => {
   try {
     // This will use the same validation logic as the PDS
-    lexicons.assertValidRecord("org.devcon.event.v1", record.record || record);
+    lexicons.assertValidRecord(
+      "org.devcon.event.vone",
+      record.record || record
+    );
     return { valid: true };
   } catch (error) {
     console.log(error);

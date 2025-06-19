@@ -4,7 +4,7 @@ import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import WebSocket from "ws";
 import validateRecord from "./validate";
-import { dummyEvent } from "./schema";
+import { dummyEvent, schema } from "./schema";
 import { api } from "./atproto";
 
 dotenv.config();
@@ -18,16 +18,10 @@ const supabase = createClient(
   process.env.SUPABASE_KEY!
 );
 
-// Initialize BskyAgent
-const agent = new BskyAgent({
-  service: "https://bsky.social",
-});
-
 // Target lexicon details
-const LEXICON_DID = "did:plc:dhnigydy24fp542wu5sxqy33"; // devcon did
-const COLLECTION_NAME = "org.devcon.event.test";
-const LEXICON_NSID = "com.atproto.lexicon.schema/org.devcon.event.test";
-const FULL_LEXICON_URI = `${LEXICON_DID}/${LEXICON_NSID}`;
+// const LEXICON_DID = "did:plc:dhnigydy24fp542wu5sxqy33"; // devcon did
+const COLLECTION_NAME = "org.devcon.event.vone";
+// const LEXICON_NSID = "com.atproto.lexicon.schema/org.devcon.event.vone";
 
 // Store cursor in memory and sync with Supabase
 let currentCursor: string | undefined;
@@ -108,12 +102,12 @@ async function startFirehose() {
 
     // Subtract a buffer (5 seconds worth of microseconds) to ensure gapless playback
     let cursorForConnection = cursor;
-    // if (cursorForConnection) {
-    //   const cursorValue = BigInt(cursorForConnection);
-    //   const fiveSecondsInMicroseconds = BigInt(5 * 1000 * 1000);
-    //   cursorForConnection = String(cursorValue - fiveSecondsInMicroseconds);
-    //   console.log("Using cursor with 5 second buffer:", cursorForConnection);
-    // }
+    if (cursorForConnection) {
+      const cursorValue = BigInt(cursorForConnection);
+      const fiveSecondsInMicroseconds = BigInt(5 * 1000 * 1000);
+      cursorForConnection = String(cursorValue - fiveSecondsInMicroseconds);
+      console.log("Using cursor with 5 second buffer:", cursorForConnection);
+    }
 
     // Add cursor as a query parameter if it exists
     const wsUrl = cursorForConnection
@@ -267,25 +261,18 @@ app.get("/all-events", async (req, res) => {
   const { data, error } = await supabase
     .from("atproto-events")
     .select("did, record");
-  res.json(data);
+
+  if (error) {
+    res.status(500).json({ error });
+  } else {
+    res.json(data);
+  }
 });
 
 app.get("/validate-event", async (req, res) => {
-  // const record = req.body.record;
+  const record = req.body.record;
 
-  const { valid, error } = validateRecord(dummyEvent);
-
-  if (valid) {
-    res.status(200).json({ valid: true });
-  } else {
-    res.status(400).json({ valid: false, error });
-  }
-});
-
-app.get("/submit-event", async (req, res) => {
-  const { valid, error } = validateRecord(req.body);
-
-  res.json({ valid, error });
+  const { valid, error } = validateRecord(record);
 
   if (valid) {
     res.status(200).json({ valid: true });
@@ -293,55 +280,10 @@ app.get("/submit-event", async (req, res) => {
     res.status(400).json({ valid: false, error });
   }
 });
-
-app.get("/submit-event-to-devcon-pds", async (req, res) => {
-  const { valid, error } = validateRecord(req.body);
-
-  res.json({ valid, error });
-
-  if (valid) {
-    res.status(200).json({ valid: true });
-  } else {
-    res.status(400).json({ valid: false, error });
-  }
-});
-
-// app.get("/add-record-to-devcon-pds", async (req, res) => {
-//   const { valid, error } = validateRecord(req.body);
-
-//   if (valid) {
-//     const result = await api.addRecordToDevconPds(
-//       "https://bsky.social",
-//       process.env.AT_USERNAME!,
-//       process.env.AT_PASSWORD!,
-//       req.body
-//     );
-
-//     res.json({ valid, error });
-//   }
-// });
-
-// app.get("/add-schema", async (req, res) => {
-//   if (valid) {
-//     res.status(200).json({ valid: true });
-//   } else {
-//     res.status(400).json({ valid: false, error });
-//   }
-// });
 
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  // startFirehose();
 
-  const result = validateRecord(dummyEvent);
-  console.log(result);
+  startFirehose();
 });
-
-/*
-  TODO: 
-    - frontend to submit events
-    - update schema to v1
-    - update validate to v1
-    - 
-*/

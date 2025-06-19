@@ -1,8 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import { SEO } from 'common/components/SEO'
-import { Header, Footer } from './index'
 import Head from 'next/head'
 import { supabase } from 'common/supabaseClient'
+import NewSchedule from 'lib/components/event-schedule-new'
+
+const formatATProtoEvent = (atprotoEvent: any) => {
+  // Map timeslots to timeblocks, or fallback to main event time
+  let timeblocks: any[] = []
+  if (Array.isArray(atprotoEvent.timeslots) && atprotoEvent.timeslots.length > 0) {
+    timeblocks = atprotoEvent.timeslots.map((slot: any) => ({
+      start: slot.start_utc,
+      end: slot.end_utc,
+      name: slot.title || undefined,
+    }))
+  } else if (atprotoEvent.start_utc && atprotoEvent.end_utc) {
+    timeblocks = [
+      {
+        start: atprotoEvent.start_utc,
+        end: atprotoEvent.end_utc,
+        name: atprotoEvent.title,
+      },
+    ]
+  }
+
+  return {
+    id: atprotoEvent.id,
+    name: atprotoEvent.title,
+    description: atprotoEvent.description,
+    organizer: atprotoEvent.organizer?.name,
+    difficulty: atprotoEvent.metadata?.expertise_level || 'All Welcome',
+    location: {
+      url: atprotoEvent.metadata?.website || '',
+      text: atprotoEvent.location?.name || '',
+    },
+    timeblocks,
+    priority: atprotoEvent.metadata?.priority || 1,
+    categories: atprotoEvent.metadata?.categories || [],
+    amountPeople: atprotoEvent.metadata?.capacity !== undefined ? String(atprotoEvent.metadata.capacity) : undefined,
+  }
+}
 
 const AdminPage = () => {
   const [user, setUser] = useState<any>(null)
@@ -51,8 +87,6 @@ const AdminPage = () => {
     }
   }, [user])
 
-  console.log(events, 'events')
-
   const handleMagicLink = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -93,6 +127,8 @@ const AdminPage = () => {
     setEvents(data || [])
     setEventsLoading(false)
   }
+
+  const formattedEvents = events.map(formatATProtoEvent)
 
   return (
     <>
@@ -195,6 +231,14 @@ const AdminPage = () => {
             {message && <p style={{ marginTop: 12, color: '#0070f3' }}>{message}</p>}
           </>
         )}
+
+        <NewSchedule
+          events={formattedEvents}
+          selectedEvent={null}
+          selectedDay={null}
+          setSelectedEvent={() => {}}
+          setSelectedDay={() => {}}
+        />
       </main>
       {/* <Footer /> */}
     </>

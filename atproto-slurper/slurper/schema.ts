@@ -1,9 +1,7 @@
-import { LexiconDoc } from "@atproto/lexicon";
-
 export const schema = {
   lexicon: 1,
   $type: "com.atproto.lexicon.schema",
-  id: "org.devcon.event.v1",
+  id: "org.devcon.event.vone",
   defs: {
     main: {
       type: "record",
@@ -197,7 +195,7 @@ export const schema = {
 };
 
 export const dummyEvent = {
-  $type: "org.devcon.event.v1",
+  $type: "org.devcon.event.vone",
   start_utc: "2024-03-20T10:00:00Z",
   end_utc: "2024-03-20T12:00:00Z",
   title: "My Event",

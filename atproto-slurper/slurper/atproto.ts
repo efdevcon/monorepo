@@ -189,6 +189,30 @@ const api = (() => {
     }
   };
 
+  const removeSchema = async (
+    serviceEndpoint: string,
+    username: string,
+    password: string,
+    rkey: string
+  ) => {
+    const { BskyAgent } = require("@atproto/api");
+
+    const agent = new BskyAgent({
+      service: serviceEndpoint,
+    });
+
+    // Log in with credentials
+    await agent.login({ identifier: username, password });
+
+    const response = await agent.com.atproto.repo.deleteRecord({
+      repo: agent.session.did,
+      collection: "com.atproto.lexicon.schema",
+      rkey: rkey,
+    });
+
+    return response;
+  };
+
   const addSchema = async (
     serviceEndpoint: string,
     username: string,
@@ -208,7 +232,7 @@ const api = (() => {
       repo: agent.session.did,
       // $ nslookup -type=TXT _lexicon.lexicon.atproto.com
       collection: "com.atproto.lexicon.schema",
-      rkey: "org.devcon.event.v1",
+      rkey: "org.devcon.event.vone",
       record: schema,
     });
 
@@ -232,7 +256,7 @@ const api = (() => {
 
       const response = await agent.com.atproto.repo.putRecord({
         repo: agent.session.did,
-        collection: "org.devcon.event.v1",
+        collection: "org.devcon.event.vone",
         rkey: record.title.toLowerCase().replace(/ /g, "-"),
         record,
       });
@@ -247,10 +271,21 @@ const api = (() => {
     addSchema: async () => {
       const result = await addSchema(
         "https://bsky.social",
-        process.env.AT_USERNAME!,
-        process.env.AT_PASSWORD!,
+        process.env.BLUESKY_HANDLE!,
+        process.env.BLUESKY_PASSWORD!,
         schema
       );
+
+      return result;
+    },
+    removeSchema: async () => {
+      const result = await removeSchema(
+        "https://bsky.social",
+        process.env.BLUESKY_HANDLE!,
+        process.env.BLUESKY_PASSWORD!,
+        "org.devcon.event.v1"
+      );
+
       return result;
     },
     test: async () => {
