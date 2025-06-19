@@ -86,13 +86,38 @@ const createEvent = async (
   // const customPDS = "https://dcdev4.ticketh.xyz";
 
   // This is your event
+  // const record = {
+  //   title: "Example Devconnect Event",
+  //   start: "2026-01-01T00:00:00Z",
+  //   end: "2026-01-02T00:00:00Z",
+  //   description: "This is an example Devcon/nect event",
+  //   location: "Devcon/nect",
+  //   url: "https://devconnect.org",
+  // };
+
   const record = {
+    $type: "org.devcon.event.vone",
+    start_utc: "2025-11-15T10:00:00Z",
+    end_utc: "2025-11-20T12:00:00Z",
     title: "Example Devconnect Event",
-    start: "2026-01-01T00:00:00Z",
-    end: "2026-01-02T00:00:00Z",
-    description: "This is an example Devcon/nect event",
-    location: "Devcon/nect",
-    url: "https://devconnect.org",
+    description: "Event description",
+    organizer: {
+      name: "John Doe",
+      contact: "john@example.com",
+    },
+    location: {
+      name: "Conference Room A",
+      address: "123 Main St",
+    },
+    // timeslots: [
+    //   {
+    //     start_utc: "2024-03-20T10:00:00Z",
+    //     end_utc: "2024-03-20T11:00:00Z",
+    //     title: "First Session",
+    //     description: "Session description",
+    //     event_uri: "at://did:plc:example/org.devcon.event.v1/123",
+    //   },
+    // ],
   };
 
   // const customResult = await createEvent(

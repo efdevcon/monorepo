@@ -5,6 +5,7 @@ import { supabase } from 'common/supabaseClient'
 import NewSchedule from 'lib/components/event-schedule-new'
 
 const formatATProtoEvent = (atprotoEvent: any) => {
+  console.log(atprotoEvent)
   // Map timeslots to timeblocks, or fallback to main event time
   let timeblocks: any[] = []
   if (Array.isArray(atprotoEvent.timeslots) && atprotoEvent.timeslots.length > 0) {
@@ -73,6 +74,7 @@ const AdminPage = () => {
         const { data, error } = await supabase
           .from('atproto-events')
           .select('id, did, record, show_on_calendar, dont_return_from_api, created_at')
+          .eq('collection', 'org.devcon.event.vone')
           .order('created_at', { ascending: false })
 
         if (error) {
@@ -128,7 +130,12 @@ const AdminPage = () => {
     setEventsLoading(false)
   }
 
-  const formattedEvents = events.map(formatATProtoEvent)
+  const formattedEvents = events.map(event => ({
+    ...formatATProtoEvent(event.record),
+    id: event.id,
+    did: event.did,
+    created_at: event.created_at,
+  }))
 
   return (
     <>

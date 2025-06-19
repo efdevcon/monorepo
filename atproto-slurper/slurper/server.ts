@@ -160,6 +160,13 @@ async function startFirehose() {
               console.log(message.commit, "message.commit.record");
 
               try {
+                const valid = await validateRecord(message.commit.record);
+
+                if (!valid) {
+                  console.error("Invalid event:", message.commit.record);
+                  return;
+                }
+
                 const result = (await saveEvent({
                   rkey: message.commit.rkey,
                   rev: message.commit.rev,
@@ -260,7 +267,8 @@ app.get("/health", (req, res) => {
 app.get("/all-events", async (req, res) => {
   const { data, error } = await supabase
     .from("atproto-events")
-    .select("did, record");
+    .select("did, record")
+    .eq("collection", COLLECTION_NAME);
 
   if (error) {
     res.status(500).json({ error });
