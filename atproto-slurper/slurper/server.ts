@@ -20,7 +20,7 @@ const supabase = createClient(
 
 // Target lexicon details
 // const LEXICON_DID = "did:plc:dhnigydy24fp542wu5sxqy33"; // devcon did
-const COLLECTION_NAME = "org.devcon.event.vone";
+const COLLECTION_NAME = "org.devcon.event";
 // const LEXICON_NSID = "com.atproto.lexicon.schema/org.devcon.event.vone";
 
 // Store cursor in memory and sync with Supabase

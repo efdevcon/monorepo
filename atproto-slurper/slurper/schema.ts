@@ -1,7 +1,7 @@
 export const schema = {
   lexicon: 1,
   $type: "com.atproto.lexicon.schema",
-  id: "org.devcon.event.vone",
+  id: "org.devcon.event",
   defs: {
     main: {
       type: "record",
@@ -14,6 +14,7 @@ export const schema = {
           "title",
           "description",
           "organizer",
+          "main_url",
           "location",
         ],
         properties: {
@@ -54,9 +55,84 @@ export const schema = {
               ref: "#timeslot",
             },
           },
-          metadata: {
-            type: "ref",
-            ref: "#metadata",
+          requires_ticket: {
+            type: "boolean",
+            description: "Whether the event requires tickets",
+          },
+          sold_out: {
+            type: "boolean",
+            description: "Whether the event is sold out",
+          },
+          capacity: {
+            type: "integer",
+            description: "How many people can attend the event",
+          },
+          expertise_level: {
+            type: "string",
+            enum: [
+              "all welcome",
+              "beginner",
+              "intermediate",
+              "expert",
+              "other",
+            ],
+            description: "Expertise level of the event",
+          },
+          type: {
+            type: "string",
+            enum: [
+              "talk",
+              "hackathon",
+              "workshop",
+              "panel",
+              "mixed format",
+              "social",
+              "other",
+            ],
+            description: "Type of event",
+          },
+          categories: {
+            type: "array",
+            description:
+              "Categories of the event (e.g. defi, privacy, security, etc.)",
+            items: {
+              type: "string",
+              enum: [
+                "real world ethereum",
+                "defi",
+                "cypherpunk & privacy",
+                "security",
+                "ai",
+                "protocol",
+                "devex",
+                "usability",
+                "applied cryptography",
+                "coordination",
+                "scalability",
+                "other",
+              ],
+            },
+          },
+          search_tags: {
+            type: "array",
+            items: {
+              type: "string",
+            },
+            description: "Searching tags for the event",
+          },
+          socials: {
+            type: "array",
+            items: {
+              type: "ref",
+              ref: "#social_platform",
+            },
+            description:
+              "Array of social media platforms with platform name and URL.",
+          },
+          image_url: {
+            type: "string",
+            description:
+              "Url referencing an image for this event. Image should be .png, squared, and we suggest at least 1024x1024px.",
           },
         },
       },
@@ -74,6 +150,11 @@ export const schema = {
           description: "Contact of the organizer (email, twitter, etc.)",
         },
       },
+    },
+    main_url: {
+      type: "string",
+      description:
+        "Main web property of the event (e.g. website or twitter profile)",
     },
     location: {
       type: "object",
@@ -118,67 +199,6 @@ export const schema = {
         },
       },
     },
-    metadata: {
-      type: "object",
-      description:
-        "Optional fields that can be used to provide less pertinent information about the event",
-      properties: {
-        image_url: {
-          type: "string",
-          description:
-            "Url referencing an image for this event. Image should be .png, squared, and we suggest at least 1024x1024px.",
-        },
-        requires_ticket: {
-          type: "boolean",
-          description: "Whether the event requires tickets",
-        },
-        sold_out: {
-          type: "boolean",
-          description: "Whether the event is sold out",
-        },
-        capacity: {
-          type: "integer",
-          description: "How many people can attend the event",
-        },
-        expertise_level: {
-          type: "string",
-          enum: ["all welcome", "beginner", "intermediate", "expert", "other"],
-          description: "Expertise level of the event",
-        },
-        type: {
-          type: "string",
-          description: "Type of event, e.g. conference, talks, hackathon, etc.",
-        },
-        categories: {
-          type: "array",
-          description:
-            "Categories of the event (e.g. defi, privacy, security, etc.)",
-          items: {
-            type: "string",
-          },
-        },
-        tags: {
-          type: "array",
-          items: {
-            type: "string",
-          },
-          description: "Useful when other options dont apply or for searching",
-        },
-        website: {
-          type: "string",
-          description: "Website/URL of the event",
-        },
-        socials: {
-          type: "array",
-          items: {
-            type: "ref",
-            ref: "#social_platform",
-          },
-          description:
-            "Array of social media platforms with platform name and URL.",
-        },
-      },
-    },
     social_platform: {
       type: "object",
       required: ["platform", "url"],
@@ -214,7 +234,7 @@ export const dummyEvent = {
       end_utc: "2024-03-20T11:00:00Z",
       title: "First Session",
       description: "Session description",
-      event_uri: "at://did:plc:example/org.devcon.event.v1/123",
+      event_uri: "at://did:plc:example/org.devcon.event/123",
     },
   ],
 };

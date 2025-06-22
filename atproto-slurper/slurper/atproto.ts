@@ -232,7 +232,7 @@ const api = (() => {
       repo: agent.session.did,
       // $ nslookup -type=TXT _lexicon.lexicon.atproto.com
       collection: "com.atproto.lexicon.schema",
-      rkey: "org.devcon.event.vone",
+      rkey: "org.devcon.event",
       record: schema,
     });
 
@@ -256,7 +256,7 @@ const api = (() => {
 
       const response = await agent.com.atproto.repo.putRecord({
         repo: agent.session.did,
-        collection: "org.devcon.event.vone",
+        collection: "org.devcon.event",
         rkey: record.title.toLowerCase().replace(/ /g, "-"),
         record,
       });
@@ -317,18 +317,20 @@ const api = (() => {
 
       // Try with your custom PDS first (will likely fail without account)
       // console.log("Creating event on custom PDS...");
-      const customResult = await createEvent(
-        process.env.BLUESKY_HANDLE || "lasse.dcdev4.ticketh.xyz", // Your existing Bluesky handle
-        process.env.BLUESKY_PASSWORD || "", // Your existing Bluesky password
-        customPDS // Your custom PDS
-      );
+      // const customResult = await createEvent(
+      //   process.env.BLUESKY_HANDLE || "lasse.dcdev4.ticketh.xyz", // Your existing Bluesky handle
+      //   process.env.BLUESKY_PASSWORD || "", // Your existing Bluesky password
+      //   customPDS // Your custom PDS
+      // );
 
-      const blueskyResult = await createEventBluesky(
-        process.env.BLUESKY_HANDLE!,
-        process.env.BLUESKY_PASSWORD!
-      );
+      // console.log("Custom PDS Result:", customResult);
 
-      console.log("Bluesky PDS Result:", blueskyResult);
+      // const blueskyResult = await createEventBluesky(
+      //   process.env.BLUESKY_HANDLE!,
+      //   process.env.BLUESKY_PASSWORD!
+      // );
+
+      // console.log("Bluesky PDS Result:", blueskyResult);
     },
   };
 })();

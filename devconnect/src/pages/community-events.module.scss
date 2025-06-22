@@ -1,0 +1,17 @@
+.gradient {
+  background: linear-gradient(to right, #000000, #000000);
+}
+
+.form {
+  input,
+  textarea,
+  select {
+    &:not([type='checkbox']) {
+      @apply w-full px-3 py-2 border border-solid border-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500;
+
+      &:focus {
+        @apply border-blue-500;
+      }
+    }
+  }
+}

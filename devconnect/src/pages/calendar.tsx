@@ -13,6 +13,8 @@ import moment from 'moment'
 import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
+import Link from 'common/components/link'
+import { Button } from 'lib/components/button'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
@@ -142,30 +144,30 @@ const Argentina = (props: any) => {
         </div>
 
         {/* <div className="text-sm flex flex-col gap-4">
+          <p>
+            <strong>Disclaimer:</strong> This calendar is a work in progress and may change a lot before Devconnect
+            week. Please check back regularly for updates.
+          </p>
+          <div>
             <p>
-              <strong>Disclaimer:</strong> This calendar is a work in progress and may change a lot before Devconnect
-              week. Please check back regularly for updates.
+              <strong>Want to be featured on our calendar?</strong> We encourage event hosts to submit their events to
+              atprotocol adhering to the [devcon.org event record type].{' '}
+              <strong>This is not a guarantee of inclusion as we still curate events,</strong> but is a{' '}
+              <strong>requirement</strong> for community events to be considered on our calendar.
             </p>
-            <div>
-              <p>
-                <strong>Want to be featured on our calendar?</strong> We encourage event hosts to submit their events to
-                atprotocol adhering to the [devcon.org event record type].{' '}
-                <strong>This is not a guarantee of inclusion as we still curate events,</strong> but is a{' '}
-                <strong>requirement</strong> for community events to be considered on our calendar.
-              </p>
-              <p>
-                <strong>How do I submit my event to atprotocol?</strong> ...
-              </p>
-            </div>
             <p>
-              <strong>Want to build a community calendar? </strong> For your convenience, we collect all events
-              submitted to atprotocol and expose them via{' '}
-              <Link indicateExternal className="bold" href="https://at-slurper.onrender.com/all-events">
-                https://at-slurper.onrender.com/all-events
-              </Link>
-              . You can also use atprotocol directly, as all data is public.
+              <strong>How do I submit my event to atprotocol?</strong> ...
             </p>
-          </div> */}
+          </div>
+          <p>
+            <strong>Want to build a community calendar? </strong> For your convenience, we collect all events submitted
+            to atprotocol and expose them via{' '}
+            <Link indicateExternal className="bold" href="https://at-slurper.onrender.com/all-events">
+              https://at-slurper.onrender.com/all-events
+            </Link>
+            . You can also use atprotocol directly, as all data is public.
+          </p>
+        </div> */}
       </div>
 
       <Footer />

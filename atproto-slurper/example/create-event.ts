@@ -23,7 +23,7 @@ const createEventBluesky = async (
     const result = await agent.api.com.atproto.repo.putRecord({
       repo: agent.session.did,
       // Your record must adhere to this schema:
-      collection: "org.devcon.event.vone",
+      collection: "org.devcon.event",
       // Record key - this is effectively the id of your record - it can be whatever you want, as long as it's unique per event
       // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
       rkey: record.title.toLowerCase().replace(/ /g, "-"),
@@ -69,7 +69,7 @@ const createEvent = async (
     const result = await agent.api.com.atproto.repo.putRecord({
       repo: agent.session.did,
       // Your record must adhere to this schema:
-      collection: "org.devcon.event.vone",
+      collection: "org.devcon.event",
       // Record key - this is effectively the id of your record - it can be whatever you want, as long as it's unique per event
       // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
       rkey: record.title.toLowerCase().replace(/ /g, "-"),
@@ -96,10 +96,10 @@ const createEvent = async (
   // };
 
   const record = {
-    $type: "org.devcon.event.vone",
+    $type: "org.devcon.event",
     start_utc: "2025-11-15T10:00:00Z",
     end_utc: "2025-11-16T12:00:00Z",
-    title: "korean basket weaving society",
+    title: "hello hello",
     description: "Event description",
     organizer: {
       name: "John Doe",

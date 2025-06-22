@@ -96,7 +96,7 @@ const AdminPage = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/admin`,
+        emailRedirectTo: `${window.location.origin}/dashboard`,
       },
     })
     if (error) {
@@ -125,17 +125,21 @@ const AdminPage = () => {
     const { data } = await supabase
       .from('atproto-events')
       .select('id, did, record, show_on_calendar, dont_return_from_api, created_at')
+      .eq('collection', 'org.devcon.event.vone')
       .order('created_at', { ascending: false })
     setEvents(data || [])
     setEventsLoading(false)
   }
 
-  const formattedEvents = events.map(event => ({
-    ...formatATProtoEvent(event.record),
-    id: event.id,
-    did: event.did,
-    created_at: event.created_at,
-  }))
+  const formattedEvents = events
+    .map(event => ({
+      ...formatATProtoEvent(event.record),
+      id: event.id,
+      did: event.did,
+      created_at: event.created_at,
+      show_on_calendar: event.show_on_calendar,
+    }))
+    .filter(event => event.show_on_calendar)
 
   return (
     <>
