@@ -5,6 +5,7 @@ import client from '../../tina/__generated__/client'
 import css from './community-events.module.scss'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
 import cn from 'classnames'
+import Link from 'next/link'
 
 interface EventFormData {
   // Required fields
@@ -230,8 +231,47 @@ const CommunityEvents = () => {
   return (
     <div className="flex flex-col justify-between relative">
       <Header active fadeOutOnScroll />
-      <div className="max-w-[600px] mx-auto flex-1 py-24 pb-8 z-10 flex items-center justify-center">
+      <div className="max-w-[600px] mx-auto flex-1 my-32 mt-48 pb-8 z-10 flex items-center justify-center relative">
         <form onSubmit={handleSubmit} className={cn(css.form, '')}>
+          <div className=" bg-white p-6 mb-6 rounded-lg border border-solid border-gray-500 shadow-lg flex flex-col gap-2">
+            <p className="text-gray-800 font-bold text-lg">Submit your event to AT protocol using our helper form</p>
+
+            <p className=" text-gray-800">
+              Submitting your event to AT protocol will let the Devconnect team know about your event, and at the same
+              time, allow others to build community calendars using your event data.
+            </p>
+
+            <p className=" text-gray-800">
+              You will need a{' '}
+              <Link href="https://bsky.app" className="underline font-bold">
+                bluesky account
+              </Link>{' '}
+              (easiest; anyone can do it), or a custom pds server and account details (hardest; for experts).
+            </p>
+
+            <p className=" text-gray-800">
+              If you have any questions, please reach out to us at{' '}
+              <a href="mailto:devconnect@devcon.org">devconnect@devcon.org</a>
+            </p>
+
+            <p className=" text-gray-800 font-semibold mt-4">Why AT protocol?</p>
+
+            <p className=" text-gray-800">
+              AT protocol is a protocol that lets you create and manage your own data. For us, among other things, it
+              presents a way to decentralize the ownership of Devconnect; anyone can submit an event to AT protocol, and
+              anyone will be able to access it - this encourages a community-driven approach to event discovery, where
+              anyone can build their own Devconnect calendar.
+            </p>
+
+            <p className=" text-gray-800 font-semibold mt-4">Can my event be featured on the Devconnect website?</p>
+
+            <p className=" text-gray-800">
+              Submitting your event here is no guarantee that it will be featured on the Devconnect website. We curate
+              events submitted to AT protocol, and we will feature your event if it is a good fit. We encourage anyone
+              to create community calendars that can feature events by the criteria of their choosing.
+            </p>
+          </div>
+
           {/* Required Fields */}
           <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Event Details (Required)</h2>
@@ -652,14 +692,14 @@ const CommunityEvents = () => {
           <div className="py-6">
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg text-xl font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
             >
               Submit Event
             </button>
           </div>
         </form>
       </div>
-      <Image src={Voxel} alt="Voxel" fill className="w-full object-cover top-0 left-0 right-0 bottom-0" />
+      <Image src={Voxel} alt="Voxel" className="object-cover fixed top-0 left-0 w-screen h-screen" />
 
       <Footer />
     </div>
