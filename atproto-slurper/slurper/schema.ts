@@ -16,6 +16,8 @@ export const schema = {
           "organizer",
           "main_url",
           "location",
+          "type",
+          "expertise",
         ],
         properties: {
           start_utc: {
@@ -81,7 +83,9 @@ export const schema = {
           type: {
             type: "string",
             enum: [
-              "talk",
+              "talks",
+              "discussion",
+              "presentation",
               "hackathon",
               "workshop",
               "panel",
@@ -215,11 +219,13 @@ export const schema = {
 };
 
 export const dummyEvent = {
-  $type: "org.devcon.event.vone",
-  start_utc: "2024-03-20T10:00:00Z",
-  end_utc: "2024-03-20T12:00:00Z",
+  $type: "org.devcon.event",
+  start_utc: "2024-03-21T10:00:00Z",
+  end_utc: "2024-03-21T12:00:00Z",
   title: "My Event",
   description: "Event description",
+  expertise: "intermediate",
+  type: "talks",
   organizer: {
     name: "John Doe",
     contact: "john@example.com",

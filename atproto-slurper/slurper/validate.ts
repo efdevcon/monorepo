@@ -17,14 +17,9 @@ const validateRecord = (record: any) => {
     // Validate start and end utc are before and after respectively
     const start = new Date(record.start_utc);
     const end = new Date(record.end_utc);
-    const now = new Date();
-
-    if (start < now) {
-      return { valid: false, error: "Start date must be in the future" };
-    }
 
     if (end < start) {
-      return { valid: false, error: "End date must be after start date" };
+      throw { valid: false, error: "End date must be after start date" };
     }
 
     // Validate timeslots are before and after respectively
@@ -35,15 +30,8 @@ const validateRecord = (record: any) => {
         const start = new Date(timeslot.start_utc);
         const end = new Date(timeslot.end_utc);
 
-        if (start < now) {
-          return {
-            valid: false,
-            error: "Timeslot start date must be in the future",
-          };
-        }
-
         if (end < start) {
-          return {
+          throw {
             valid: false,
             error: "Timeslot end date must be after start date",
           };

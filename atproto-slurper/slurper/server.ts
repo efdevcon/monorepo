@@ -12,6 +12,9 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Add JSON parsing middleware
+app.use(express.json());
+
 // Initialize Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL!,
@@ -21,7 +24,6 @@ const supabase = createClient(
 // Target lexicon details
 // const LEXICON_DID = "did:plc:dhnigydy24fp542wu5sxqy33"; // devcon did
 const COLLECTION_NAME = "org.devcon.event";
-// const LEXICON_NSID = "com.atproto.lexicon.schema/org.devcon.event";
 
 // Store cursor in memory and sync with Supabase
 let currentCursor: string | undefined;
@@ -63,26 +65,83 @@ async function saveCursor(cursor: string) {
 }
 
 async function saveEvent(event: any) {
-  // Prepare the record with the correct field structure
-  const recordData = {
-    rkey: event.rkey,
-    rev: event.rev,
-    record: event.record,
-    message: event.message,
-    collection: event.collection,
-    did: event.did,
-  };
+  try {
+    // First, ensure DID exists in the new atproto_dids table
+    const { error: didError } = await supabase.from("atproto_dids").upsert(
+      {
+        did: event.did,
+        created_at: new Date().toISOString(),
+      },
+      { onConflict: "did" }
+    );
 
-  const { error } = await supabase.from("atproto-events").upsert(recordData, {
-    onConflict: "rkey",
-  });
+    if (didError) {
+      console.error("Error saving DID:", didError);
+      return { error: didError };
+    }
 
-  if (error) {
-    console.error("Error saving event:", error);
+    // Check if record already exists (using DID + rkey combination)
+    const { data: existingRecord, error: selectError } = await supabase
+      .from("atproto_records")
+      .select("id, record_passed_review")
+      .eq("created_by", event.did)
+      .eq("rkey", event.rkey)
+      .single();
+
+    if (selectError && selectError.code !== "PGRST116") {
+      // PGRST116 is "not found"
+      console.error("Error checking existing record:", selectError);
+      return { error: selectError };
+    }
+
+    if (existingRecord) {
+      // Update case: move any existing passed_review to needs_review
+      const { error: updateError } = await supabase
+        .from("atproto_records")
+        .update({
+          record_needs_review: event.record,
+          updated_at: new Date().toISOString(),
+          rev: event.rev,
+          cursor: event.message?.time_us || null,
+        })
+        .eq("id", existingRecord.id);
+
+      if (updateError) {
+        console.error("Error updating record:", updateError);
+        return { error: updateError };
+      }
+
+      console.log(
+        `Updated existing record for DID: ${event.did}, rkey: ${event.rkey}`
+      );
+    } else {
+      // New record: goes straight to needs_review
+      const { error: insertError } = await supabase
+        .from("atproto_records")
+        .insert({
+          created_by: event.did,
+          rkey: event.rkey,
+          rev: event.rev,
+          lexicon: event.collection,
+          cursor: event.message?.time_us || null,
+          record_needs_review: event.record,
+        });
+
+      if (insertError) {
+        console.error("Error inserting new record:", insertError);
+        return { error: insertError };
+      }
+
+      console.log(
+        `Inserted new record for DID: ${event.did}, rkey: ${event.rkey}`
+      );
+    }
+
+    return { success: true };
+  } catch (error) {
+    console.error("Unexpected error in saveEvent:", error);
     return { error };
   }
-
-  return { success: true };
 }
 
 function getRetryDelay() {
@@ -173,9 +232,9 @@ async function startFirehose() {
                 const result = (await saveEvent({
                   rkey: message.commit.rkey,
                   rev: message.commit.rev,
-                  record: message.commit.record,
+                  record_needs_review: message.commit.record,
                   message: message,
-                  collection: message.commit.collection,
+                  lexicon: message.commit.collection,
                   did: message.did,
                 })) as any;
 
@@ -269,9 +328,36 @@ app.get("/health", (req, res) => {
 
 app.get("/all-events", async (req, res) => {
   const { data, error } = await supabase
-    .from("atproto-events")
-    .select("did, record")
-    .eq("collection", COLLECTION_NAME);
+    .from("atproto_records")
+    .select(
+      `
+      id, rkey, created_by, collection, created_at, updated_at,
+      record_passed_review, record_needs_review, show_on_calendar,
+      atproto_dids!created_by(did, alias, is_spammer)
+    `
+    )
+    .eq("lexicon", COLLECTION_NAME);
+
+  if (error) {
+    res.status(500).json({ error });
+  } else {
+    res.json(data);
+  }
+});
+
+// New endpoint for approved events only (for calendar)
+app.get("/calendar-events", async (req, res) => {
+  const { data, error } = await supabase
+    .from("atproto_records")
+    .select(
+      `
+      id, rkey, created_by, record_passed_review,
+      atproto_dids!created_by(did, alias)
+    `
+    )
+    .eq("lexicon", COLLECTION_NAME)
+    .eq("show_on_calendar", true)
+    .not("record_passed_review", "is", null);
 
   if (error) {
     res.status(500).json({ error });
@@ -292,9 +378,15 @@ app.get("/validate-event", async (req, res) => {
   }
 });
 
+app.post("/", (req, res) => {
+  res.send("Hello World");
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
-  startFirehose();
+  // startFirehose();
+
+  api.addSchema();
 });

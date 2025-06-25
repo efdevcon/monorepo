@@ -22,6 +22,8 @@ interface EventFormData {
     name: string
     address?: string
   }
+  type: string
+  expertise_level: string
   // Optional fields (previously in metadata)
   timeslots?: Array<{
     start_utc: string
@@ -34,8 +36,6 @@ interface EventFormData {
   requires_ticket?: boolean
   sold_out?: boolean
   capacity?: number
-  expertise_level?: string
-  type?: string
   categories?: string[]
   search_tags?: string[]
   socials?: Array<{
@@ -59,13 +59,13 @@ const CommunityEvents = () => {
       name: '',
       address: '',
     },
+    type: '',
+    expertise_level: 'all welcome',
     timeslots: [],
     image_url: '',
     requires_ticket: false,
     sold_out: false,
     capacity: undefined,
-    expertise_level: 'all welcome',
-    type: '',
     categories: [],
     search_tags: [],
     socials: [],
@@ -214,10 +214,6 @@ const CommunityEvents = () => {
 
     // Remove empty optional fields
     if (!cleanedData.image_url) delete cleanedData.image_url
-    if (!cleanedData.type) delete cleanedData.type
-    if (!cleanedData.expertise_level || cleanedData.expertise_level === 'all welcome') {
-      cleanedData.expertise_level = 'all welcome' // Keep default
-    }
     if (!cleanedData.categories?.length) delete cleanedData.categories
     if (!cleanedData.search_tags?.length) delete cleanedData.search_tags
     if (!cleanedData.socials?.length) delete cleanedData.socials
@@ -233,15 +229,15 @@ const CommunityEvents = () => {
       <Header active fadeOutOnScroll />
       <div className="max-w-[600px] mx-auto flex-1 my-32 mt-48 pb-8 z-10 flex items-center justify-center relative">
         <form onSubmit={handleSubmit} className={cn(css.form, '')}>
-          <div className=" bg-white p-6 mb-6 rounded-lg border border-solid border-gray-500 shadow-lg flex flex-col gap-2">
+          <div className="bg-white p-6 mb-6 rounded-lg border border-solid border-gray-500 shadow-lg flex flex-col gap-2">
             <p className="text-gray-800 font-bold text-lg">Submit your event to AT protocol using our helper form</p>
 
-            <p className=" text-gray-800">
+            <p className="text-gray-800">
               Submitting your event to AT protocol will let the Devconnect team know about your event, and at the same
               time, allow others to build community calendars using your event data.
             </p>
 
-            <p className=" text-gray-800">
+            <p className="text-gray-800">
               You will need a{' '}
               <Link href="https://bsky.app" className="underline font-bold">
                 bluesky account
@@ -249,23 +245,23 @@ const CommunityEvents = () => {
               (easiest; anyone can do it), or a custom pds server and account details (hardest; for experts).
             </p>
 
-            <p className=" text-gray-800">
+            <p className="text-gray-800">
               If you have any questions, please reach out to us at{' '}
               <a href="mailto:devconnect@devcon.org">devconnect@devcon.org</a>
             </p>
 
-            <p className=" text-gray-800 font-semibold mt-4">Why AT protocol?</p>
+            <p className="text-gray-800 font-semibold mt-4">Why AT protocol?</p>
 
-            <p className=" text-gray-800">
+            <p className="text-gray-800">
               AT protocol is a protocol that lets you create and manage your own data. For us, among other things, it
               presents a way to decentralize the ownership of Devconnect; anyone can submit an event to AT protocol, and
               anyone will be able to access it - this encourages a community-driven approach to event discovery, where
               anyone can build their own Devconnect calendar.
             </p>
 
-            <p className=" text-gray-800 font-semibold mt-4">Can my event be featured on the Devconnect website?</p>
+            <p className="text-gray-800 font-semibold mt-4">Can my event be featured on the Devconnect website?</p>
 
-            <p className=" text-gray-800">
+            <p className="text-gray-800">
               Submitting your event here is no guarantee that it will be featured on the Devconnect website. We curate
               events submitted to AT protocol, and we will feature your event if it is a good fit. We encourage anyone
               to create community calendars that can feature events by the criteria of their choosing.
@@ -287,6 +283,21 @@ const CommunityEvents = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 <p className="text-xs text-gray-500 mt-1">Title of the event</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Main Website/URL *</label>
+                <input
+                  type="url"
+                  required
+                  placeholder="e.g., https://example.com or https://twitter.com/event"
+                  value={formData.main_url}
+                  onChange={e => handleInputChange('main_url', e.target.value)}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Main web property of the event (e.g. website or twitter profile)
+                </p>
               </div>
 
               <div>
@@ -316,21 +327,6 @@ const CommunityEvents = () => {
                   End time of the entire event in UTC (use the 'timeslots' field for granular scheduling)
                 </p>
               </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Main Website/URL *</label>
-                <input
-                  type="url"
-                  required
-                  placeholder="e.g., https://example.com or https://twitter.com/event"
-                  value={formData.main_url}
-                  onChange={e => handleInputChange('main_url', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Main web property of the event (e.g. website or twitter profile)
-                </p>
-              </div>
             </div>
 
             <div className="mt-6">
@@ -343,6 +339,46 @@ const CommunityEvents = () => {
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <p className="text-xs text-gray-500 mt-1">Description of the event</p>
+            </div>
+
+            {/* Event Type and Expertise Level */}
+            <div className="mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Event Type *</label>
+                  <select
+                    required
+                    value={formData.type}
+                    onChange={e => handleInputChange('type', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    <option value="">Select event type</option>
+                    {eventTypes.map(type => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-gray-500 mt-1">Type of event, e.g. conference, talks, hackathon, etc.</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Expertise Level *</label>
+                  <select
+                    required
+                    value={formData.expertise_level}
+                    onChange={e => handleInputChange('expertise_level', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  >
+                    {expertiseLevels.map(level => (
+                      <option key={level} value={level}>
+                        {level}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="text-xs text-gray-500 mt-1">Expertise level of the event</p>
+                </div>
+              </div>
             </div>
 
             {/* Organizer Fields */}
@@ -419,41 +455,7 @@ const CommunityEvents = () => {
 
             {showOptionalSections.optional && (
               <div className="space-y-6 mt-6">
-                {/* Event Details */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Event Type</label>
-                    <select
-                      value={formData.type || ''}
-                      onChange={e => handleInputChange('type', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      <option value="">Select event type</option>
-                      {eventTypes.map(type => (
-                        <option key={type} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                    <p className="text-xs text-gray-500 mt-1">Type of event, e.g. conference, talks, hackathon, etc.</p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">Expertise Level</label>
-                    <select
-                      value={formData.expertise_level || 'all welcome'}
-                      onChange={e => handleInputChange('expertise_level', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    >
-                      {expertiseLevels.map(level => (
-                        <option key={level} value={level}>
-                          {level}
-                        </option>
-                      ))}
-                    </select>
-                    <p className="text-xs text-gray-500 mt-1">Expertise level of the event</p>
-                  </div>
-
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Capacity</label>
                     <input
@@ -481,7 +483,6 @@ const CommunityEvents = () => {
                   </div>
                 </div>
 
-                {/* Categories */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Categories</label>
                   <div className="space-y-2">
@@ -502,7 +503,6 @@ const CommunityEvents = () => {
                   </p>
                 </div>
 
-                {/* Search Tags */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Search Tags (comma-separated)</label>
                   <input
@@ -515,7 +515,6 @@ const CommunityEvents = () => {
                   <p className="text-xs text-gray-500 mt-1">Searching tags for the event</p>
                 </div>
 
-                {/* Ticket Options */}
                 <div className="flex flex-col gap-4">
                   <div className="flex gap-6">
                     <div className="flex flex-col">
@@ -546,7 +545,6 @@ const CommunityEvents = () => {
                   </div>
                 </div>
 
-                {/* Timeslots Section */}
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-medium text-gray-800">Timeslots</h3>
@@ -646,7 +644,6 @@ const CommunityEvents = () => {
                   </div>
                 </div>
 
-                {/* Social Media Links */}
                 <div>
                   <div className="flex justify-between items-center mb-4">
                     <h3 className="font-medium text-gray-800">Social Media Links</h3>

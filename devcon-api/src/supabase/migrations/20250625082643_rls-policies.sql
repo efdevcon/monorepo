@@ -1,0 +1,65 @@
+-- -- Enable RLS on atproto tables
+-- ALTER TABLE atproto_dids ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE atproto_records ENABLE ROW LEVEL SECURITY;
+
+-- -- Allow authorized users to select from atproto_dids
+-- CREATE POLICY "Allow authorized users to select atproto_dids"
+-- ON atproto_dids
+-- FOR SELECT
+-- USING (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- );
+
+-- -- Allow authorized users to update atproto_dids
+-- CREATE POLICY "Allow authorized users to update atproto_dids"
+-- ON atproto_dids
+-- FOR UPDATE
+-- USING (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- )
+-- WITH CHECK (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- );
+
+-- -- Allow authorized users to select from atproto_records
+-- CREATE POLICY "Allow authorized users to select atproto_records"
+-- ON atproto_records
+-- FOR SELECT
+-- USING (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- );
+
+-- -- Allow authorized users to update atproto_records
+-- CREATE POLICY "Allow authorized users to update atproto_records"
+-- ON atproto_records
+-- FOR UPDATE
+-- USING (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- )
+-- WITH CHECK (
+--   auth.email() IN (
+--     '_@ethereum.org',
+--     '_@ethereum.org',
+--     '_@ethereum.org'
+--   )
+-- );

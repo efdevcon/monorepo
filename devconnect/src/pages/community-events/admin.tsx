@@ -72,10 +72,16 @@ const AdminPage = () => {
 
       const fetchEvents = async () => {
         const { data, error } = await supabase
-          .from('atproto-events')
-          .select('id, did, record, show_on_calendar, dont_return_from_api, created_at')
-          .eq('collection', 'org.devcon.event.vone')
-          .order('created_at', { ascending: false })
+          .from('atproto_records')
+          .select(
+            `
+            id, rkey, created_by, created_at, updated_at, show_on_calendar,
+            record_passed_review, record_needs_review, lexicon,
+            atproto_dids!created_by(did, alias, is_spammer, contact)
+          `
+          )
+          .eq('lexicon', 'org.devcon.event')
+          .order('updated_at', { ascending: false })
 
         if (error) {
           setEventsError(error.message)
@@ -96,7 +102,7 @@ const AdminPage = () => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/dashboard`,
+        emailRedirectTo: `${window.location.origin}/community-events/admin`,
       },
     })
     if (error) {
@@ -114,28 +120,96 @@ const AdminPage = () => {
     setLoading(false)
   }
 
+  const handleApprove = async (id: string) => {
+    setEventsLoading(true)
+    try {
+      const response = await fetch(`/admin/approve/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      if (!response.ok) throw new Error('Failed to approve')
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+  const handleReject = async (id: string) => {
+    setEventsLoading(true)
+    try {
+      const response = await fetch(`/admin/reject/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      if (!response.ok) throw new Error('Failed to reject')
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
   const handleToggle = async (id: string, field: string, value: boolean) => {
     setEventsLoading(true)
-    const { error } = await supabase
-      .from('atproto-events')
-      .update({ [field]: value })
-      .eq('id', id)
-    if (error) setEventsError(error.message)
-    // Refetch events to update UI
-    const { data } = await supabase
-      .from('atproto-events')
-      .select('id, did, record, show_on_calendar, dont_return_from_api, created_at')
-      .eq('collection', 'org.devcon.event.vone')
-      .order('created_at', { ascending: false })
-    setEvents(data || [])
+    try {
+      const response = await fetch(`/admin/toggle-calendar/${id}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ show_on_calendar: value }),
+      })
+      if (!response.ok) throw new Error('Failed to toggle')
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
     setEventsLoading(false)
   }
 
   const formattedEvents = events
     .map(event => ({
-      ...formatATProtoEvent(event.record),
+      ...formatATProtoEvent(event.record_passed_review || event.record_needs_review),
       id: event.id,
-      did: event.did,
+      created_by: event.created_by,
       created_at: event.created_at,
       show_on_calendar: event.show_on_calendar,
     }))
@@ -179,24 +253,23 @@ const AdminPage = () => {
                   <thead>
                     <tr>
                       <th style={{ border: '1px solid #ccc', padding: 8 }}>ID</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>DID</th>
                       <th style={{ border: '1px solid #ccc', padding: 8 }}>Created At</th>
                       <th style={{ border: '1px solid #ccc', padding: 8 }}>Record</th>
                       <th style={{ border: '1px solid #ccc', padding: 8 }}>Show on Calendar</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Return from API</th>
+                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Approve</th>
+                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Reject</th>
                     </tr>
                   </thead>
                   <tbody>
                     {events.map(event => (
                       <tr key={event.id}>
                         <td style={{ border: '1px solid #ccc', padding: 8 }}>{event.id}</td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>{event.did}</td>
                         <td style={{ border: '1px solid #ccc', padding: 8 }}>
                           {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
                         </td>
                         <td style={{ border: '1px solid #ccc', padding: 8 }}>
                           <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                            {JSON.stringify(event.record, null, 2)}
+                            {JSON.stringify(event.record_passed_review || event.record_needs_review, null, 2)}
                           </pre>
                         </td>
                         <td style={{ border: '1px solid #ccc', padding: 8 }}>
@@ -207,11 +280,10 @@ const AdminPage = () => {
                           />
                         </td>
                         <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          <input
-                            type="checkbox"
-                            checked={!event.dont_return_from_api}
-                            onChange={e => handleToggle(event.id, 'dont_return_from_api', !e.target.checked)}
-                          />
+                          <button onClick={() => handleApprove(event.id)}>Approve</button>
+                        </td>
+                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
+                          <button onClick={() => handleReject(event.id)}>Reject</button>
                         </td>
                       </tr>
                     ))}
