@@ -53,21 +53,18 @@
     signedsource "^1.0.0"
     yargs "^15.3.1"
 
-"@atproto/api@^0.15.17":
-  version "0.15.17"
-  resolved "https://registry.yarnpkg.com/@atproto/api/-/api-0.15.17.tgz#851f0bb138817509b5d453661eeb694db1f953a8"
-  integrity sha512-spHsfs052kamVX2foY4gz+wc8y4VdteXCG60xpG0pFsXJ47ueLVM8qdT/v9+Ii9FNRAvE+VVcGyAo/94P9Smrw==
+"@atproto/api@^0.3.0":
+  version "0.3.13"
+  resolved "https://registry.yarnpkg.com/@atproto/api/-/api-0.3.13.tgz#e5ccaa83bb909e662286cdf74a77a76de6562a47"
+  integrity sha512-smDlomgipca16G+jKXAZSMfsAmA5wG8WR3Z1dj29ZShVJlhs6+HHdxX7dWVDYEdSeb2rp/wyHN/tQhxGDAkz/g==
   dependencies:
-    "@atproto/common-web" "^0.4.2"
-    "@atproto/lexicon" "^0.4.11"
-    "@atproto/syntax" "^0.4.0"
-    "@atproto/xrpc" "^0.7.0"
-    await-lock "^2.2.2"
-    multiformats "^9.9.0"
+    "@atproto/common-web" "*"
+    "@atproto/uri" "*"
+    "@atproto/xrpc" "*"
     tlds "^1.234.0"
-    zod "^3.23.8"
+    typed-emitter "^2.1.0"
 
-"@atproto/common-web@^0.4.2":
+"@atproto/common-web@*", "@atproto/common-web@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@atproto/common-web/-/common-web-0.4.2.tgz#6e3add6939da93d3dfbc8f87e26dc4f57fad7259"
   integrity sha512-vrXwGNoFGogodjQvJDxAeP3QbGtawgZute2ed1XdRO0wMixLk3qewtikZm06H259QDJVu6voKC5mubml+WgQUw==
@@ -76,6 +73,16 @@
     multiformats "^9.9.0"
     uint8arrays "3.0.0"
     zod "^3.23.8"
+
+"@atproto/common-web@^0.2.3":
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/@atproto/common-web/-/common-web-0.2.4.tgz#a77e0a7f8f025115b3db4f7c530b934b10ab3d82"
+  integrity sha512-6+DOhQcTklFmeiSkZRx6iFeqi4OFtGl4yEDGATk00q4tEcPoPvyOBtYHN6+G9lrfJIfx5RfmggamvXlJv1PxxA==
+  dependencies:
+    graphemer "^1.4.0"
+    multiformats "^9.9.0"
+    uint8arrays "3.0.0"
+    zod "^3.21.4"
 
 "@atproto/lexicon@^0.4.11":
   version "0.4.11"
@@ -88,12 +95,26 @@
     multiformats "^9.9.0"
     zod "^3.23.8"
 
+"@atproto/syntax@^0.1.1":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@atproto/syntax/-/syntax-0.1.5.tgz#85b6488a33da3b864e8ac22a61b5586b271206ee"
+  integrity sha512-pbY5lOnThoAbsmrdbN9LC/dNmckfqODJiX9zjW2t3BIHYFeGBc6w9bK3Vre8A0Hg8yWkQpv6gaBLu+ykgi2DJQ==
+  dependencies:
+    "@atproto/common-web" "^0.2.3"
+
 "@atproto/syntax@^0.4.0":
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@atproto/syntax/-/syntax-0.4.0.tgz#bec71552087bb24c208a06ef418c0040b65542f2"
   integrity sha512-b9y5ceHS8YKOfP3mdKmwAx5yVj9294UN7FG2XzP6V5aKUdFazEYRnR9m5n5ZQFKa3GNvz7de9guZCJ/sUTcOAA==
 
-"@atproto/xrpc@^0.7.0":
+"@atproto/uri@*":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@atproto/uri/-/uri-0.1.1.tgz#5d67621d08ae82ef10963c11c24c9f343d0efacf"
+  integrity sha512-6l5Q0ajGHnecOd2ACuvXVpvZGK7gE+Y78y/oq29WdjWPvTeg7fBzcXlDXcZMOvBqhDJIigmAO2YCKmxqc4wJ1g==
+  dependencies:
+    "@atproto/syntax" "^0.1.1"
+
+"@atproto/xrpc@*":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@atproto/xrpc/-/xrpc-0.7.0.tgz#7d1e497d682431fecd7085d7482e83d8a33821b0"
   integrity sha512-SfhP9dGx2qclaScFDb58Jnrmim5nk4geZXCqg6sB0I/KZhZEkr9iIx1hLCp+sxkIfEsmEJjeWO4B0rjUIJW5cw==
@@ -5849,11 +5870,6 @@ available-typed-arrays@^1.0.7:
   integrity sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==
   dependencies:
     possible-typed-array-names "^1.0.0"
-
-await-lock@^2.2.2:
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/await-lock/-/await-lock-2.2.2.tgz#a95a9b269bfd2f69d22b17a321686f551152bcef"
-  integrity sha512-aDczADvlvTGajTDjcjpJMqRkOF6Qdz3YbPZm/PyW6tKPkx2hlYBzxMhEywM/tU72HrVZjgl5VCdRuMlA7pZ8Gw==
 
 axe-core@^4.6.2:
   version "4.8.2"
@@ -13011,6 +13027,13 @@ run-parallel@^1.1.9:
   dependencies:
     queue-microtask "^1.2.2"
 
+rxjs@^7.5.2:
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-7.8.2.tgz#955bc473ed8af11a002a2be52071bf475638607b"
+  integrity sha512-dhKf903U/PQZY6boNNtAGdWbG85WAbjT/1xYoZIC7FAY0yWapOBQVsVrDl58W86//e1VpMNBtRV4MaXfdMySFA==
+  dependencies:
+    tslib "^2.1.0"
+
 sade@^1.7.3:
   version "1.8.1"
   resolved "https://registry.npmjs.org/sade/-/sade-1.8.1.tgz"
@@ -14421,6 +14444,13 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
+typed-emitter@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/typed-emitter/-/typed-emitter-2.1.0.tgz#ca78e3d8ef1476f228f548d62e04e3d4d3fd77fb"
+  integrity sha512-g/KzbYKbH5C2vPkaXGu8DJlHrGKHLsM25Zg9WuC9pMGfuvT+X25tZQWo5fK1BjBm8+UrVE9LDCvaY0CQk+fXDA==
+  optionalDependencies:
+    rxjs "^7.5.2"
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
@@ -15387,7 +15417,7 @@ zod@^3.14.3, zod@^3.20.2:
   resolved "https://registry.npmjs.org/zod/-/zod-3.24.2.tgz"
   integrity sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ==
 
-zod@^3.23.8:
+zod@^3.21.4, zod@^3.23.8:
   version "3.25.67"
   resolved "https://registry.yarnpkg.com/zod/-/zod-3.25.67.tgz#62987e4078e2ab0f63b491ef0c4f33df24236da8"
   integrity sha512-idA2YXwpCdqUSKRCACDE6ItZD9TZzy3OZMtpfLoh6oPR47lipysRrJfjzMqFxQ3uJuUPyUeWe1r9vLH33xO/Qw==
