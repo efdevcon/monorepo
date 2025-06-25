@@ -1,0 +1,10 @@
+We are building a data ingestion pipeline, "at-slurper", which ingests data from various AT protocol sources, and saves them all into a notion database
+
+We do this because we are a conference organizer that have a need for others to submit their events to be featured on our calendar, and we want them to use AT protocol, and as long as they adhere to the standard,
+we will add their event to our systems
+
+We need:
+    - a list of urls to fetch from, which we will curate 
+    - a converter from AT protocol to our internal Notion database table (fields may differ)
+    - some mechanism to stay up to date (cron job / every 15 min?)
+

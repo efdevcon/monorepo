@@ -1,0 +1,15 @@
+So I'm working with atproto to ingest events that adhere to a specific lexicon:
+
+https://atproto-browser.vercel.app/at/did:plc:dhnigydy24fp542wu5sxqy33/com.atproto.lexicon.schema/org.devcon.event.test
+
+For this, I need two things:
+    - Listen to the firehose
+    - A fallback for people who have PDSs not connected to the firehose - e.g. 
+
+Filter events that match the above lexicon
+
+If they match, save them to supabase
+
+Save the "cursor" in supabase to be able to recover from downtime
+
+
