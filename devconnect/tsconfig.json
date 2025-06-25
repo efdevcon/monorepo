@@ -5,7 +5,7 @@
     "paths": {
       "lib/*": ["../../lib/*"],
       "@/*": ["./../../lib/*"],
-      "atproto-slurper/*": ["./../../atproto-slurper/*"]
+      "atproto-slurper/*": ["../../atproto-slurper/*"]
     }
   },
   "ts-node": {
@@ -14,6 +14,6 @@
       "module": "commonjs"
     }
   },
-  "include": ["next-env.d.ts", "src", "tina"],
+  "include": ["next-env.d.ts", "src", "tina", "atproto-slurper"],
   "exclude": ["node_modules"]
 }
