@@ -109,15 +109,8 @@ const createEvent = async (
       name: "Conference Room A",
       address: "123 Main St",
     },
-    // timeslots: [
-    //   {
-    //     start_utc: "2024-03-20T10:00:00Z",
-    //     end_utc: "2024-03-20T11:00:00Z",
-    //     title: "First Session",
-    //     description: "Session description",
-    //     event_uri: "at://did:plc:example/org.devcon.event.v1/123",
-    //   },
-    // ],
+    expertise: "all welcome",
+    type: "talks",
   };
 
   // const customResult = await createEvent(
