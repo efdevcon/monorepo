@@ -1,6 +1,6 @@
 import { LexiconDoc, Lexicons } from "@atproto/lexicon";
 import { schema } from "./schema";
-import zod from "zod";
+// import zod from "zod";
 
 // Create a Lexicons instance
 const lexicons = new Lexicons();
@@ -40,9 +40,12 @@ const validateRecord = (record: any) => {
     }
 
     return { valid: true };
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    return { valid: false, error };
+    return {
+      valid: false,
+      error: error && error.message ? error.message : error.error,
+    };
   }
 };
 

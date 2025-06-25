@@ -549,7 +549,7 @@ const FAQ = (props: any) => {
                     animate={{ y: '0%', opacity: 1 }}
                     className="w-full p-4 pt-2 will-transform"
                   >
-                    <RichText content={answer} />
+                    {typeof answer !== 'string' ? <RichText content={answer} /> : answer}
                   </motion.div>
                 )}
               </motion.div>

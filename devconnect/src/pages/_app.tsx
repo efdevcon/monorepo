@@ -7,6 +7,7 @@ import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 import { AccountContextProvider } from 'context/account-context-provider'
 import { Web3Provider } from 'context/web3'
 import { DataProvider } from 'context/data'
+import { Toaster } from '@/components/ui/sonner'
 
 export const roboto = Roboto({
   subsets: ['latin'],

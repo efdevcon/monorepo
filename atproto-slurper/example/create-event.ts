@@ -28,6 +28,7 @@ const createEventBluesky = async (
       // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
       rkey: record.title.toLowerCase().replace(/ /g, "-"),
       record,
+      // validate: true,
     });
 
     return { success: true, data: result };
@@ -74,6 +75,7 @@ const createEvent = async (
       // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
       rkey: record.title.toLowerCase().replace(/ /g, "-"),
       record,
+      // validate: true,
     });
 
     return { success: true, data: result };
@@ -99,8 +101,9 @@ const createEvent = async (
     $type: "org.devcon.event",
     start_utc: "2025-11-15T10:00:00Z",
     end_utc: "2025-11-16T12:00:00Z",
-    title: "hello hello",
+    title: "event",
     description: "Event description",
+    main_url: "https://devconnect.org",
     organizer: {
       name: "John Doe",
       contact: "john@example.com",
@@ -109,8 +112,8 @@ const createEvent = async (
       name: "Conference Room A",
       address: "123 Main St",
     },
-    expertise: "all welcome",
-    type: "talks",
+    expertise: "beginner",
+    event_type: "talks",
   };
 
   // const customResult = await createEvent(
@@ -126,5 +129,9 @@ const createEvent = async (
     process.env.BLUESKY_PASSWORD!
   );
 
-  console.log("Bluesky PDS Result:", blueskyResult);
+  const data = `https://atproto-browser.vercel.app/at/${blueskyResult.data?.data.uri
+    .split("at://")
+    .pop()}`;
+
+  console.log("Bluesky PDS Result:", blueskyResult, data);
 })();

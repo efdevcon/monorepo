@@ -101,8 +101,9 @@ async function saveEvent(event: any) {
         .update({
           record_needs_review: event.record,
           updated_at: new Date().toISOString(),
+          message: event.message,
           rev: event.rev,
-          cursor: event.message?.time_us || null,
+          cursor: event.cursor,
         })
         .eq("id", existingRecord.id);
 
@@ -115,6 +116,7 @@ async function saveEvent(event: any) {
         `Updated existing record for DID: ${event.did}, rkey: ${event.rkey}`
       );
     } else {
+      console.log(event.collection);
       // New record: goes straight to needs_review
       const { error: insertError } = await supabase
         .from("atproto_records")
@@ -122,9 +124,10 @@ async function saveEvent(event: any) {
           created_by: event.did,
           rkey: event.rkey,
           rev: event.rev,
-          lexicon: event.collection,
-          cursor: event.message?.time_us || null,
+          lexicon: event.lexicon,
+          cursor: event.cursor,
           record_needs_review: event.record,
+          message: event.message,
         });
 
       if (insertError) {
@@ -216,7 +219,7 @@ async function startFirehose() {
                 operation: message.commit.operation,
               });
 
-              console.log(message.commit, "message.commit.record");
+              console.log(message, "message.commit.record");
 
               try {
                 const { valid, error } = await validateRecord(
@@ -232,9 +235,11 @@ async function startFirehose() {
                 const result = (await saveEvent({
                   rkey: message.commit.rkey,
                   rev: message.commit.rev,
-                  record_needs_review: message.commit.record,
-                  message: message,
+                  record: message.commit.record,
                   lexicon: message.commit.collection,
+                  record_needs_review: message.commit.record,
+                  cursor: message.time_us || null,
+                  message: message,
                   did: message.did,
                 })) as any;
 
@@ -382,9 +387,15 @@ app.post("/", (req, res) => {
   res.send("Hello World");
 });
 
+app.get("/schema", (req, res) => {
+  res.json(schema);
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
   startFirehose();
+
+  // api.addSchema();
 });

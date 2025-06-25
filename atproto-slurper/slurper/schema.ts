@@ -16,7 +16,7 @@ export const schema = {
           "organizer",
           "main_url",
           "location",
-          "type",
+          "event_type",
           "expertise",
         ],
         properties: {
@@ -80,7 +80,7 @@ export const schema = {
             ],
             description: "Expertise level of the event",
           },
-          type: {
+          event_type: {
             type: "string",
             enum: [
               "talks",
@@ -225,7 +225,7 @@ export const dummyEvent = {
   title: "My Event",
   description: "Event description",
   expertise: "intermediate",
-  type: "talks",
+  event_type: "talks",
   organizer: {
     name: "John Doe",
     contact: "john@example.com",
@@ -234,13 +234,13 @@ export const dummyEvent = {
     name: "Conference Room A",
     address: "123 Main St",
   },
-  timeslots: [
-    {
-      start_utc: "2024-03-20T10:00:00Z",
-      end_utc: "2024-03-20T11:00:00Z",
-      title: "First Session",
-      description: "Session description",
-      event_uri: "at://did:plc:example/org.devcon.event/123",
-    },
-  ],
+  // timeslots: [
+  //   {
+  //     start_utc: "2024-03-20T10:00:00Z",
+  //     end_utc: "2024-03-20T11:00:00Z",
+  //     title: "First Session",
+  //     description: "Session description",
+  //     event_uri: "at://did:plc:example/org.devcon.event/123",
+  //   },
+  // ],
 };
