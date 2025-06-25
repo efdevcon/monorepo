@@ -9,7 +9,7 @@ import Link from 'next/link'
 import FAQComponent from 'common/components/faq/faq'
 import CommunityEvent from 'assets/images/ba/community-event-text.png'
 import { AtpAgent } from '@atproto/api'
-import validate from '../../../atproto-slurper/slurper/validate'
+import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
 
