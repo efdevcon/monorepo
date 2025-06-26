@@ -83,8 +83,8 @@ interface EventFormData {
 
 const CommunityEvents = () => {
   const [credentials, setCredentials] = useState({
-    handle: 'a',
-    password: 'a',
+    handle: '',
+    password: '',
   })
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')

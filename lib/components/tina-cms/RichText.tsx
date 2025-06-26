@@ -10,7 +10,7 @@ const EnhancedTinaMarkdown = (props: any) => {
     <TinaMarkdown
       components={{
         TwoColumns,
-        Buttons,
+        Buttons: props.Buttons || Buttons,
         img: (img: any) => {
           return (
             <div className="w-full relative">
@@ -115,13 +115,18 @@ const Buttons = (data: any) => {
 export default ({
   content,
   className,
+  Buttons,
 }: {
   content: TinaMarkdownContent;
   className?: string;
+  Buttons?: any;
 }) => {
   return (
     <div className={cn(css["rich-text"], className)}>
-      <EnhancedTinaMarkdown content={content}></EnhancedTinaMarkdown>
+      <EnhancedTinaMarkdown
+        content={content}
+        Buttons={Buttons}
+      ></EnhancedTinaMarkdown>
     </div>
   );
 };
