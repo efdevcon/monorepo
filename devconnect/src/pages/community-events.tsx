@@ -11,8 +11,9 @@ import CommunityEvent from 'assets/images/ba/community-event-text.png'
 import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
+import { AtpAgent } from '@atproto/api'
 
-// Dynamic import to avoid SSR issues
+// Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
 let oauthClient: any = null
 
@@ -32,16 +33,18 @@ const getOAuthClient = async () => {
   const Client = await loadOAuthClient()
   if (!Client) return null
 
-  // Development mode for localhost (no client metadata hosting required)
-  // if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-  //   return new Client({
-  //     handleResolver: 'https://bsky.social',
-  //     // For localhost development, no client metadata is needed
-  //     clientMetadata: undefined,
-  //   })
-  // }
+  // Development mode for localhost - use the load method for URL format
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
+    console.log('development oauth flow')
+    // Use the load method when providing a client metadata URL
+    return await Client.load({
+      handleResolver: 'https://bsky.social',
+      // Use the special localhost URL format that allows custom redirect URIs
+      clientId: `http://localhost?redirect_uri=${encodeURIComponent('http://127.0.0.1:3000/community-events')}`,
+    })
+  }
 
-  // Option 2: Burn metadata into the application (recommended for performance)
+  // Production mode
   return new Client({
     handleResolver: 'https://bsky.social',
     clientMetadata: {
@@ -66,12 +69,18 @@ const createEventWithOAuth = async (record: any, session: any) => {
   console.log(record, 'record to create')
 
   try {
-    if (!session || !session.agent) {
+    if (!session) {
       throw new Error('No authenticated session available')
     }
 
-    const result = await session.agent.api.com.atproto.repo.putRecord({
-      repo: session.did,
+    console.log(session, 'session')
+
+    // Create an Agent from the OAuth session
+    const agent = AtpAgent(session)
+
+    // Use the agent to make the API call
+    const result = await agent.api.com.atproto.repo.putRecord({
+      repo: session.sub, // Use the session's sub (DID) as the repo
       collection: 'org.devcon.event',
       rkey: record.title.toLowerCase().replace(/ /g, '-'),
       record,
@@ -371,9 +380,23 @@ const CommunityEvents = () => {
           const { session, state } = result
           setOauthSession(session)
 
-          // Fetch user profile
-          const profile = await session.agent.api.app.bsky.actor.getProfile({
-            actor: session.did,
+          // console.log(session, 'session')
+
+          // console.log(result, 'result')
+
+          // const sessionYes = await oauthClient.restore(session.sub)
+
+          // console.log(sessionYes, 'sessionYes')
+
+          // console.log(Agent)
+
+          // Fetch user profile using Agent
+          const agent = new AtpAgent({
+            service: 'https://bsky.social',
+          })
+
+          const profile = await agent.api.app.bsky.actor.getProfile({
+            actor: session.sub,
           })
           setUserProfile(profile.data)
 
