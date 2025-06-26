@@ -336,7 +336,7 @@ app.get("/all-events", async (req, res) => {
     .from("atproto_records")
     .select(
       `
-      id, rkey, created_by, collection, created_at, updated_at,
+      id, rkey, created_by, lexicon, created_at, updated_at,
       record_passed_review, record_needs_review, show_on_calendar,
       atproto_dids!created_by(did, alias, is_spammer)
     `
