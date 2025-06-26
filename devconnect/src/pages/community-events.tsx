@@ -45,7 +45,7 @@ const getOAuthClient = async () => {
   return new Client({
     handleResolver: 'https://bsky.social',
     clientMetadata: {
-      client_id: `https://devconnect.org/atproto-oauth.json`,
+      client_id: `https://devconnect.org/atproto/client.json`,
       client_name: 'Devconnect Community Events',
       client_uri: 'https://devconnect.org',
       logo_uri: `https://devconnect.org/og-argentina.png`,
