@@ -139,7 +139,7 @@ const Argentina = (props: any) => {
         </div>
 
         <div className="section mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-12">
             <RichText content={data.pages.calendar_how_to_apply} Buttons={CMSButtons} />
             <RichText content={data.pages.calendar_community_calendar} Buttons={CMSButtons} />
           </div>

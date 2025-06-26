@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { Footer, Header, withTranslations } from 'pages/index'
 import client from '../../tina/__generated__/client'
@@ -8,35 +8,73 @@ import cn from 'classnames'
 import Link from 'next/link'
 import FAQComponent from 'common/components/faq/faq'
 import CommunityEvent from 'assets/images/ba/community-event-text.png'
-import { AtpAgent } from '@atproto/api'
 import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
 
-const createEventBluesky = async (record: any, username: string, password: string) => {
-  console.log(record, username, password, 'record, username, password')
+// Dynamic import to avoid SSR issues
+let BrowserOAuthClient: any = null
+let oauthClient: any = null
+
+// Load OAuth client only on client side
+const loadOAuthClient = async () => {
+  if (typeof window === 'undefined') return null
+
+  if (!BrowserOAuthClient) {
+    const { BrowserOAuthClient: Client } = await import('@atproto/oauth-client-browser')
+    BrowserOAuthClient = Client
+  }
+
+  return BrowserOAuthClient
+}
+
+const getOAuthClient = async () => {
+  const Client = await loadOAuthClient()
+  if (!Client) return null
+
+  // Development mode for localhost (no client metadata hosting required)
+  // if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
+  //   return new Client({
+  //     handleResolver: 'https://bsky.social',
+  //     // For localhost development, no client metadata is needed
+  //     clientMetadata: undefined,
+  //   })
+  // }
+
+  // Option 2: Burn metadata into the application (recommended for performance)
+  return new Client({
+    handleResolver: 'https://bsky.social',
+    clientMetadata: {
+      client_id: `https://devconnect.org/client-metadata.json`,
+      client_name: 'Devconnect Community Events',
+      client_uri: 'https://devconnect.org',
+      logo_uri: `https://devconnect.org/og-argentina.png`,
+      tos_uri: `https://devconnect.org/terms`,
+      policy_uri: `https://devconnect.org/privacy`,
+      redirect_uris: [`https://devconnect.org/community-events`],
+      scope: 'atproto',
+      grant_types: ['authorization_code', 'refresh_token'],
+      response_types: ['code'],
+      token_endpoint_auth_method: 'none',
+      application_type: 'web',
+      dpop_bound_access_tokens: true,
+    },
+  })
+}
+
+const createEventWithOAuth = async (record: any, session: any) => {
+  console.log(record, 'record to create')
 
   try {
-    // Initialize the agent with Bluesky PDS service
-    const agent = new AtpAgent({
-      service: 'https://bsky.social',
-    })
-
-    await agent.login({ identifier: username, password })
-
-    if (!agent.session?.did) {
-      throw new Error('No session found')
+    if (!session || !session.agent) {
+      throw new Error('No authenticated session available')
     }
 
-    const result = await agent.api.com.atproto.repo.putRecord({
-      repo: agent.session.did,
-      // Your record must adhere to this schema:
+    const result = await session.agent.api.com.atproto.repo.putRecord({
+      repo: session.did,
       collection: 'org.devcon.event',
-      // Record key - this is effectively the id of your record - it can be whatever you want, as long as it's unique per event
-      // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
       rkey: record.title.toLowerCase().replace(/ /g, '-'),
       record,
-      // validate: true,
     })
 
     return { success: true, data: result }
@@ -44,6 +82,7 @@ const createEventBluesky = async (record: any, username: string, password: strin
     return { success: false, error: error.message }
   }
 }
+
 interface EventFormData {
   // Required fields
   start_utc: string
@@ -82,12 +121,12 @@ interface EventFormData {
 }
 
 const CommunityEvents = () => {
-  const [credentials, setCredentials] = useState({
-    handle: '',
-    password: '',
-  })
+  const [oauthSession, setOauthSession] = useState<any>(null)
+  const [isAuthenticating, setIsAuthenticating] = useState(false)
+  const [userProfile, setUserProfile] = useState<any>(null)
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [isClient, setIsClient] = useState(false)
   const [formData, setFormData] = useState<EventFormData>({
     start_utc: '',
     end_utc: '',
@@ -287,14 +326,10 @@ const CommunityEvents = () => {
       return
     }
 
-    const { success: blueskySuccess, error: blueskyError } = await createEventBluesky(
-      cleanedData,
-      credentials.handle,
-      credentials.password
-    )
+    const { success: oauthSuccess, error: oauthError } = await createEventWithOAuth(cleanedData, oauthSession)
 
-    if (!blueskySuccess) {
-      toast.error(blueskyError as string)
+    if (!oauthSuccess) {
+      toast.error(oauthError as string)
 
       return
     }
@@ -302,8 +337,111 @@ const CommunityEvents = () => {
     setSuccess('Event submitted! Check console for data.')
   }
 
-  const showForm = credentials.handle && credentials.password
+  const showForm = oauthSession && userProfile
   const eventPublished = !!success
+
+  // Set client-side flag
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  // Check for existing session on component mount
+  useEffect(() => {
+    if (!isClient) return
+
+    const initializeOAuth = async () => {
+      try {
+        setIsAuthenticating(true)
+
+        // Initialize OAuth client
+        if (!oauthClient) {
+          oauthClient = await getOAuthClient()
+        }
+
+        // Skip if OAuth client couldn't be initialized (SSR or other issues)
+        if (!oauthClient) {
+          console.log('OAuth client not available (likely SSR)')
+          return
+        }
+
+        // Initialize the client (this must be done once when the app loads)
+        const result = await oauthClient.init()
+
+        if (result) {
+          const { session, state } = result
+          setOauthSession(session)
+
+          // Fetch user profile
+          const profile = await session.agent.api.app.bsky.actor.getProfile({
+            actor: session.did,
+          })
+          setUserProfile(profile.data)
+
+          if (state) {
+            console.log(`${session.did} was successfully authenticated (state: ${state})`)
+          } else {
+            console.log(`${session.did} was restored (last active session)`)
+          }
+        }
+      } catch (error) {
+        console.error('OAuth initialization error:', error)
+        setError('Failed to initialize authentication')
+      } finally {
+        setIsAuthenticating(false)
+      }
+    }
+
+    initializeOAuth()
+  }, [isClient])
+
+  const startOAuthFlow = useCallback(async () => {
+    try {
+      setIsAuthenticating(true)
+      setError('')
+
+      // Get handle from user input
+      const handle = prompt('Enter your Bluesky handle (e.g., alice.bsky.social):')
+      if (!handle) {
+        setIsAuthenticating(false)
+        return
+      }
+
+      // Initialize client if not already done
+      if (!oauthClient) {
+        oauthClient = await getOAuthClient()
+      }
+
+      // Check if client is available
+      if (!oauthClient) {
+        throw new Error('OAuth client not available')
+      }
+
+      // Start OAuth flow with the provided handle
+      await oauthClient.signIn(handle, {
+        state: 'community-events-form',
+      })
+
+      // This code will never execute because the user gets redirected
+      console.log('Never executed')
+    } catch (error: any) {
+      console.error('OAuth flow error:', error)
+      setError('Failed to start authentication: ' + error.message)
+      setIsAuthenticating(false)
+    }
+  }, [])
+
+  const signOut = useCallback(async () => {
+    try {
+      if (oauthSession && oauthClient) {
+        await oauthClient.revoke()
+      }
+      setOauthSession(null)
+      setUserProfile(null)
+      setSuccess('')
+    } catch (error) {
+      console.error('Sign out error:', error)
+    }
+  }, [oauthSession])
 
   return (
     <div className="flex flex-col justify-between relative">
@@ -336,10 +474,10 @@ const CommunityEvents = () => {
             <p className="">
               Your event <b>{formData.title}</b> has been published to AT protocol with the handle{' '}
               <Link
-                href={`https://bsky.app/profile/${credentials.handle}`}
+                href={`https://bsky.app/profile/${userProfile?.handle}`}
                 className="underline font-bold generic text-blue-500"
               >
-                {credentials.handle}
+                {userProfile?.handle}
               </Link>
               .
             </p>
@@ -383,33 +521,64 @@ const CommunityEvents = () => {
 
         {!eventPublished && (
           <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mb-6 w-full">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">Credentials (Required)</h2>
+            <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
+              Authentication {oauthSession ? '(Connected)' : '(Required)'}
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Bluesky handle</label>
-                <input
-                  type="text"
-                  required
-                  value={credentials.handle}
-                  onChange={e => setCredentials({ ...credentials, handle: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <p className="text-xs text-gray-500 mt-1">Bluesky handle (e.g. johndoe.bsky.social)</p>
+            {!isClient && (
+              <div className="flex items-center justify-center py-4">
+                <div className="text-gray-600">Loading authentication...</div>
               </div>
+            )}
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                <input
-                  type="password"
-                  required
-                  value={credentials.password}
-                  onChange={e => setCredentials({ ...credentials, password: e.target.value })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                <p className="text-xs text-gray-500 mt-1">Bluesky password</p>
+            {isClient && isAuthenticating && (
+              <div className="flex items-center justify-center py-4">
+                <div className="text-gray-600">Authenticating...</div>
               </div>
-            </div>
+            )}
+
+            {isClient && !oauthSession && !isAuthenticating && (
+              <div className="space-y-4">
+                <p className="text-gray-700">Connect your Bluesky account to submit events to AT Protocol.</p>
+                <button
+                  onClick={startOAuthFlow}
+                  disabled={isAuthenticating}
+                  className={cn(
+                    'px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors',
+                    'disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2'
+                  )}
+                >
+                  {isAuthenticating ? (
+                    'Connecting...'
+                  ) : (
+                    <>
+                      Connect with Bluesky
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
+            {isClient && oauthSession && userProfile && (
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    {userProfile.avatar && (
+                      <img src={userProfile.avatar} alt="Profile" className="w-10 h-10 rounded-full" />
+                    )}
+                    <div>
+                      <p className="font-medium text-gray-800">{userProfile.displayName || userProfile.handle}</p>
+                      <p className="text-sm text-gray-600">@{userProfile.handle}</p>
+                    </div>
+                  </div>
+                  <button onClick={signOut} className="text-red-600 hover:text-red-800 text-sm underline">
+                    Sign Out
+                  </button>
+                </div>
+                <p className="text-sm text-gray-600">✅ Connected and ready to submit events</p>
+              </div>
+            )}
           </div>
         )}
 
