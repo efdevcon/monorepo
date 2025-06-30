@@ -385,7 +385,7 @@ const CommunityEvents = () => {
 
           const agent = new Agent(session)
 
-          console.log(agent, 'agent')
+          console.log(agent, 'agent test github')
 
           // Use session.server directly - it's already an authenticated agent
           const profile = await agent.getProfile({
