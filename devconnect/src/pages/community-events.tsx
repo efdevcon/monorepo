@@ -11,7 +11,8 @@ import CommunityEvent from 'assets/images/ba/community-event-text.png'
 import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
-import { AtpAgent } from '@atproto/api'
+import { Agent } from '@atproto/api'
+// import { BrowserOAuthClient } from '@atproto/oasuth-client-browser'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -55,7 +56,7 @@ const getOAuthClient = async () => {
       tos_uri: `https://devconnect-dev-branch.netlify.app/terms`,
       policy_uri: `https://devconnect-dev-branch.netlify.app/privacy`,
       redirect_uris: [`https://devconnect-dev-branch.netlify.app/community-events`],
-      scope: 'atproto',
+      scope: 'atproto transition:generic',
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],
       token_endpoint_auth_method: 'none',
@@ -73,16 +74,14 @@ const createEventWithOAuth = async (record: any, session: any) => {
       throw new Error('No authenticated session available')
     }
 
-    console.log(session, 'session')
+    const agent = new Agent(session)
 
-    // Create an Agent from the OAuth session
-    const agent = AtpAgent(session)
+    console.log(agent, 'agent')
 
-    // Use the agent to make the API call
     const result = await agent.api.com.atproto.repo.putRecord({
-      repo: session.sub, // Use the session's sub (DID) as the repo
+      repo: session.sub,
       collection: 'org.devcon.event',
-      rkey: record.title.toLowerCase().replace(/ /g, '-'),
+      rkey: record.title.toLowerCase().replace(/[^a-z0-9-]/g, '-'),
       record,
     })
 
@@ -376,34 +375,53 @@ const CommunityEvents = () => {
         // Initialize the client (this must be done once when the app loads)
         const result = await oauthClient.init()
 
+        console.log(result, 'result')
+
         if (result) {
           const { session, state } = result
           setOauthSession(session)
 
-          // console.log(session, 'session')
+          console.log(session, 'session')
 
-          // console.log(result, 'result')
+          const agent = new Agent(session)
 
-          // const sessionYes = await oauthClient.restore(session.sub)
+          console.log(agent, 'agent')
 
-          // console.log(sessionYes, 'sessionYes')
-
-          // console.log(Agent)
-
-          // Fetch user profile using Agent
-          const agent = new AtpAgent({
-            service: 'https://bsky.social',
-          })
-
-          const profile = await agent.api.app.bsky.actor.getProfile({
+          // Use session.server directly - it's already an authenticated agent
+          const profile = await agent.getProfile({
             actor: session.sub,
           })
+
+          console.log(profile, 'profile')
+
+          const result2 = await agent.com.atproto.repo.putRecord({
+            repo: session.sub,
+            collection: 'org.devcon.event',
+            rkey: 'testing',
+            record: {
+              $type: 'org.devcon.event',
+              title: 'testing',
+              description: 'testing',
+              start_utc: '2025-01-01T00:00:00Z',
+              end_utc: '2025-01-01T00:00:00Z',
+            },
+          })
+
+          console.log(result2, 'result2')
+          
+
+
+
+          // const profile = await agent.api.app.bsky.actor.getProfile({
+          //   actor: session.sub,
+          // })
+
           setUserProfile(profile.data)
 
           if (state) {
-            console.log(`${session.did} was successfully authenticated (state: ${state})`)
+            console.log(`${session.sub} was successfully authenticated (state: ${state})`)
           } else {
-            console.log(`${session.did} was restored (last active session)`)
+            console.log(`${session.sub} was restored (last active session)`)
           }
         }
       } catch (error) {
@@ -416,6 +434,8 @@ const CommunityEvents = () => {
 
     initializeOAuth()
   }, [isClient])
+
+  console.log(userProfile, 'userProfile')
 
   const startOAuthFlow = useCallback(async () => {
     try {
