@@ -403,8 +403,6 @@ const CommunityEvents = () => {
     initializeOAuth()
   }, [isClient])
 
-  console.log(userProfile, 'userProfile')
-
   const startOAuthFlow = useCallback(async () => {
     try {
       setIsAuthenticating(true)
@@ -451,6 +449,8 @@ const CommunityEvents = () => {
       setSuccess('')
     } catch (error) {
       console.error('Sign out error:', error)
+    } finally {
+      window.location.reload()
     }
   }, [oauthSession])
 
