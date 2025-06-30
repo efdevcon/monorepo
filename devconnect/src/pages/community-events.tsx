@@ -76,9 +76,7 @@ const createEventWithOAuth = async (record: any, session: any) => {
 
     const agent = new Agent(session)
 
-    console.log(agent, 'agent')
-
-    const result = await agent.api.com.atproto.repo.putRecord({
+    const result = await agent.com.atproto.repo.putRecord({
       repo: session.sub,
       collection: 'org.devcon.event',
       rkey: record.title.toLowerCase().replace(/[^a-z0-9-]/g, '-'),
@@ -375,46 +373,16 @@ const CommunityEvents = () => {
         // Initialize the client (this must be done once when the app loads)
         const result = await oauthClient.init()
 
-        console.log(result, 'result')
-
         if (result) {
           const { session, state } = result
           setOauthSession(session)
 
-          console.log(session, 'session')
-
           const agent = new Agent(session)
-
-          console.log(agent, 'agent test github')
 
           // Use session.server directly - it's already an authenticated agent
           const profile = await agent.getProfile({
             actor: session.sub,
           })
-
-          console.log(profile, 'profile')
-
-          const result2 = await agent.com.atproto.repo.putRecord({
-            repo: session.sub,
-            collection: 'org.devcon.event',
-            rkey: 'testing',
-            record: {
-              $type: 'org.devcon.event',
-              title: 'testing',
-              description: 'testing',
-              start_utc: '2025-01-01T00:00:00Z',
-              end_utc: '2025-01-01T00:00:00Z',
-            },
-          })
-
-          console.log(result2, 'result2')
-          
-
-
-
-          // const profile = await agent.api.app.bsky.actor.getProfile({
-          //   actor: session.sub,
-          // })
 
           setUserProfile(profile.data)
 
