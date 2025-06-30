@@ -6,7 +6,7 @@
   "tos_uri": "https://devconnect-dev-branch.netlify.app/terms",
   "policy_uri": "https://devconnect-dev-branch.netlify.app/privacy",
   "redirect_uris": ["https://devconnect-dev-branch.netlify.app/community-events"],
-  "scope": "atproto",
+  "scope": "atproto transition:generic",
   "grant_types": ["authorization_code", "refresh_token"],
   "response_types": ["code"],
   "token_endpoint_auth_method": "none",
