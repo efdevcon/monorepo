@@ -37,6 +37,26 @@ const validateRecord = (record: any) => {
           };
         }
       }
+
+      // Check for overlapping timeslots
+      if (timeslots.length > 1) {
+        // Sort timeslots by start time
+        const sortedTimeslots = [...timeslots].sort((a, b) => 
+          new Date(a.start_utc).getTime() - new Date(b.start_utc).getTime()
+        );
+
+        for (let i = 1; i < sortedTimeslots.length; i++) {
+          const prevEnd = new Date(sortedTimeslots[i - 1].end_utc);
+          const currentStart = new Date(sortedTimeslots[i].start_utc);
+
+          if (currentStart < prevEnd) {
+            throw {
+              valid: false,
+              error: "Timeslots cannot overlap with each other",
+            };
+          }
+        }
+      }
     }
 
     return { valid: true };

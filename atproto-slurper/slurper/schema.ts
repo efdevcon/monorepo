@@ -48,6 +48,11 @@ export const schema = {
             type: "ref",
             ref: "#location",
           },
+          main_url: {
+            type: "string",
+            description:
+              "Main web property of the event (e.g. website or twitter profile)",
+          },
           timeslots: {
             type: "array",
             description:
@@ -69,7 +74,7 @@ export const schema = {
             type: "integer",
             description: "How many people can attend the event",
           },
-          expertise_level: {
+          expertise: {
             type: "string",
             enum: [
               "all welcome",
@@ -154,11 +159,6 @@ export const schema = {
           description: "Contact of the organizer (email, twitter, etc.)",
         },
       },
-    },
-    main_url: {
-      type: "string",
-      description:
-        "Main web property of the event (e.g. website or twitter profile)",
     },
     location: {
       type: "object",

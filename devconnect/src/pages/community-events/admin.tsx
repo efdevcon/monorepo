@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { supabase } from 'common/supabaseClient'
 import NewSchedule from 'lib/components/event-schedule-new'
 
+// Format Atproto event to our calendar component format
 const formatATProtoEvent = (atprotoEvent: any) => {
   console.log(atprotoEvent)
   // Map timeslots to timeblocks, or fallback to main event time
@@ -49,6 +50,9 @@ const AdminPage = () => {
   const [events, setEvents] = useState<any[]>([])
   const [eventsLoading, setEventsLoading] = useState(false)
   const [eventsError, setEventsError] = useState('')
+  const [expandedDids, setExpandedDids] = useState<Set<string>>(new Set())
+  const [editingDids, setEditingDids] = useState<Set<string>>(new Set())
+  const [editValues, setEditValues] = useState<Record<string, { alias: string; contact: string }>>({})
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -120,71 +124,16 @@ const AdminPage = () => {
     setLoading(false)
   }
 
-  const handleApprove = async (id: string) => {
-    setEventsLoading(true)
-    try {
-      const response = await fetch(`/admin/approve/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      if (!response.ok) throw new Error('Failed to approve')
-
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
-    } catch (error: any) {
-      setEventsError(error.message)
-    }
-    setEventsLoading(false)
-  }
-
-  const handleReject = async (id: string) => {
-    setEventsLoading(true)
-    try {
-      const response = await fetch(`/admin/reject/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      if (!response.ok) throw new Error('Failed to reject')
-
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
-    } catch (error: any) {
-      setEventsError(error.message)
-    }
-    setEventsLoading(false)
-  }
-
   const handleToggle = async (id: string, field: string, value: boolean) => {
     setEventsLoading(true)
     try {
-      const response = await fetch(`/admin/toggle-calendar/${id}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ show_on_calendar: value }),
-      })
-      if (!response.ok) throw new Error('Failed to toggle')
+      // Update directly via Supabase
+      const { error } = await supabase
+        .from('atproto_records')
+        .update({ show_on_calendar: value })
+        .eq('id', id)
+
+      if (error) throw error
 
       // Refetch events
       const { data } = await supabase
@@ -204,6 +153,112 @@ const AdminPage = () => {
     }
     setEventsLoading(false)
   }
+
+
+
+  const toggleDidExpansion = (did: string) => {
+    const newExpandedDids = new Set(expandedDids)
+    if (newExpandedDids.has(did)) {
+      newExpandedDids.delete(did)
+    } else {
+      newExpandedDids.add(did)
+    }
+    setExpandedDids(newExpandedDids)
+  }
+
+  const toggleDidEdit = (did: string, didInfo: any) => {
+    const newEditingDids = new Set(editingDids)
+    if (newEditingDids.has(did)) {
+      newEditingDids.delete(did)
+    } else {
+      newEditingDids.add(did)
+      // Initialize edit values
+      setEditValues(prev => ({
+        ...prev,
+        [did]: {
+          alias: didInfo?.alias || '',
+          contact: didInfo?.contact || ''
+        }
+      }))
+    }
+    setEditingDids(newEditingDids)
+  }
+
+  const handleEditValueChange = (did: string, field: 'alias' | 'contact', value: string) => {
+    setEditValues(prev => ({
+      ...prev,
+      [did]: {
+        ...prev[did],
+        [field]: value
+      }
+    }))
+  }
+
+  const handleSaveDidInfo = async (did: string) => {
+    setEventsLoading(true)
+    try {
+      const values = editValues[did]
+      const { error } = await supabase
+        .from('atproto_dids')
+        .update({
+          alias: values.alias || null,
+          contact: values.contact || null
+        })
+        .eq('did', did)
+
+      if (error) throw error
+
+      // Refetch events to get updated DID info
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      
+      setEvents(data || [])
+      
+      // Exit edit mode
+      const newEditingDids = new Set(editingDids)
+      newEditingDids.delete(did)
+      setEditingDids(newEditingDids)
+      
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+  const handleCancelDidEdit = (did: string) => {
+    const newEditingDids = new Set(editingDids)
+    newEditingDids.delete(did)
+    setEditingDids(newEditingDids)
+    
+    // Remove edit values for this DID
+    const newEditValues = { ...editValues }
+    delete newEditValues[did]
+    setEditValues(newEditValues)
+  }
+
+  // Group events by DID
+  const eventsByDid = events.reduce((acc, event) => {
+    const did = event.atproto_dids?.did || 'unknown'
+    if (!acc[did]) {
+      acc[did] = {
+        didInfo: event.atproto_dids,
+        events: []
+      }
+    }
+    acc[did].events.push(event)
+    return acc
+  }, {} as Record<string, { didInfo: any; events: any[] }>)
+
+  type GroupedEvents = { didInfo: any; events: any[] }
 
   const formattedEvents = events
     .map(event => ({
@@ -218,114 +273,225 @@ const AdminPage = () => {
   return (
     <>
       <SEO title="Admin" description="Admin dashboard for Devconnect" />
-
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      {/* <Header active /> */}
-      <main
-        className="section text-black"
-        style={{
-          minHeight: '60vh',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        {loading ? (
-          <p>Loading...</p>
-        ) : user ? (
-          <>
-            <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Admin Dashboard</h1>
-            <p style={{ color: '#666', fontSize: '1.1rem' }}>Logged in as {user.email}</p>
-            <button onClick={handleLogout} style={{ marginTop: 24, padding: '8px 16px' }}>
-              Log out
-            </button>
-            <div style={{ marginTop: 32, width: '100%' }} className="p-8">
-              <h2 style={{ fontSize: '1.3rem', marginBottom: 12 }}>All Events</h2>
-              {eventsLoading ? (
-                <p>Loading events...</p>
-              ) : eventsError ? (
-                <p style={{ color: 'red' }}>{eventsError}</p>
-              ) : (
-                <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: 12 }}>
-                  <thead>
-                    <tr>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>ID</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Created At</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Record</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Show on Calendar</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Approve</th>
-                      <th style={{ border: '1px solid #ccc', padding: 8 }}>Reject</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {events.map(event => (
-                      <tr key={event.id}>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>{event.id}</td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
-                        </td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          <pre style={{ margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
-                            {JSON.stringify(event.record_passed_review || event.record_needs_review, null, 2)}
-                          </pre>
-                        </td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          <input
-                            type="checkbox"
-                            checked={!!event.show_on_calendar}
-                            onChange={e => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
-                          />
-                        </td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          <button onClick={() => handleApprove(event.id)}>Approve</button>
-                        </td>
-                        <td style={{ border: '1px solid #ccc', padding: 8 }}>
-                          <button onClick={() => handleReject(event.id)}>Reject</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
+      
+      <main className="min-h-screen bg-gray-50">
+        <div className="container mx-auto px-4 py-8">
+          {loading ? (
+            <div className="flex items-center justify-center h-64">
+              <div className="text-lg text-gray-600">Loading...</div>
             </div>
-          </>
-        ) : (
-          <>
-            <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Admin Login</h1>
-            <form
-              onSubmit={handleMagicLink}
-              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12 }}
-            >
-              <input
-                type="email"
-                placeholder="Your email"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                required
-                style={{ padding: '8px', fontSize: '1rem', marginBottom: 8 }}
-              />
-              <button type="submit" style={{ padding: '12px 24px', fontSize: '1.1rem' }} disabled={loading}>
-                Send Magic Link
-              </button>
-            </form>
-            {message && <p style={{ marginTop: 12, color: '#0070f3' }}>{message}</p>}
-          </>
-        )}
+          ) : user ? (
+            <>
+              {/* Header */}
+              <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+                <p className="text-gray-600 mb-4">Logged in as {user.email}</p>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
+                >
+                  Log out
+                </button>
+              </div>
 
-        <div className="px-8">
-          <NewSchedule
-            events={formattedEvents}
-            selectedEvent={null}
-            selectedDay={null}
-            setSelectedEvent={() => {}}
-            setSelectedDay={() => {}}
-          />
+              {/* Events Management */}
+              <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Events by DID</h2>
+                
+                {eventsLoading ? (
+                  <div className="flex items-center justify-center h-32">
+                    <div className="text-gray-600">Loading events...</div>
+                  </div>
+                ) : eventsError ? (
+                  <div className="bg-red-50 border border-red-200 rounded-md p-4">
+                    <p className="text-red-800">{eventsError}</p>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    {Object.entries(eventsByDid).map(([did, groupedData]) => {
+                      const { didInfo, events: didEvents } = groupedData as GroupedEvents
+                      const isEditing = editingDids.has(did)
+                      const editValue = editValues[did]
+                      
+                      return (
+                      <div key={did} className="border border-gray-200 rounded-lg">
+                        {/* DID Header */}
+                        <div className="p-4 bg-gray-50">
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center space-x-3 flex-1">
+                              <button
+                                onClick={() => toggleDidExpansion(did)}
+                                className="text-sm text-gray-500 hover:text-gray-700"
+                              >
+                                {expandedDids.has(did) ? '▼' : '▶'}
+                              </button>
+                              
+                              {isEditing ? (
+                                <div className="flex-1 space-y-2">
+                                  <div className="flex items-center space-x-2">
+                                    <label className="text-sm font-medium text-gray-700 min-w-[60px]">Alias:</label>
+                                    <input
+                                      type="text"
+                                      value={editValue?.alias || ''}
+                                      onChange={(e) => handleEditValueChange(did, 'alias', e.target.value)}
+                                      className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
+                                      placeholder="Enter alias"
+                                    />
+                                  </div>
+                                  <div className="flex items-center space-x-2">
+                                    <label className="text-sm font-medium text-gray-700 min-w-[60px]">Contact:</label>
+                                    <input
+                                      type="text"
+                                      value={editValue?.contact || ''}
+                                      onChange={(e) => handleEditValueChange(did, 'contact', e.target.value)}
+                                      className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
+                                      placeholder="Enter contact info"
+                                    />
+                                  </div>
+                                  <p className="text-xs text-gray-500">{did}</p>
+                                </div>
+                              ) : (
+                                <div>
+                                  <h3 className="font-medium text-gray-900">
+                                    {didInfo?.alias || did}
+                                  </h3>
+                                  <p className="text-sm text-gray-500">
+                                    {did} • {didEvents.length} event{didEvents.length !== 1 ? 's' : ''}
+                                  </p>
+                                  {didInfo?.contact && (
+                                    <p className="text-sm text-gray-600">Contact: {didInfo.contact}</p>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                            
+                            <div className="flex items-center space-x-2">
+                              {didInfo?.is_spammer && (
+                                <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">
+                                  Spammer
+                                </span>
+                              )}
+                              
+                              {isEditing ? (
+                                <div className="flex space-x-2">
+                                  <button
+                                    onClick={() => handleSaveDidInfo(did)}
+                                    className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                                  >
+                                    Save
+                                  </button>
+                                  <button
+                                    onClick={() => handleCancelDidEdit(did)}
+                                    className="px-3 py-1 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition-colors"
+                                  >
+                                    Cancel
+                                  </button>
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={() => toggleDidEdit(did, didInfo)}
+                                  className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+                                >
+                                  Edit
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Events */}
+                        {expandedDids.has(did) && (
+                                                     <div className="divide-y divide-gray-100">
+                             {didEvents.map((event: any) => (
+                               <div key={event.id} className="p-4 ml-6 bg-white">
+                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                                  <div className="lg:col-span-1 text-sm text-gray-500">
+                                    #{event.id}
+                                  </div>
+                                  
+                                  <div className="lg:col-span-2 text-sm text-gray-600">
+                                    {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
+                                  </div>
+                                  
+                                  <div className="lg:col-span-5">
+                                    <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
+                                      <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
+                                        {JSON.stringify(event.record_passed_review || event.record_needs_review, null, 2)}
+                                      </pre>
+                                    </div>
+                                  </div>
+                                  
+                                  <div className="lg:col-span-4 flex items-center">
+                                    <label className="inline-flex items-center">
+                                      <input
+                                        type="checkbox"
+                                        checked={!!event.show_on_calendar}
+                                        onChange={(e) => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
+                                        className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                      />
+                                      <span className="ml-2 text-sm text-gray-600">Show on Calendar</span>
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                                                 )}
+                       </div>
+                       )
+                     })}
+                   </div>
+                )}
+              </div>
+
+              {/* Calendar Preview */}
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Calendar Preview</h2>
+                <NewSchedule
+                  events={formattedEvents}
+                  selectedEvent={null}
+                  selectedDay={null}
+                  setSelectedEvent={() => {}}
+                  setSelectedDay={() => {}}
+                />
+              </div>
+            </>
+          ) : (
+            <div className="max-w-md mx-auto">
+              <div className="bg-white rounded-lg shadow-sm p-8">
+                <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">Admin Login</h1>
+                <form onSubmit={handleMagicLink} className="space-y-4">
+                  <div>
+                    <input
+                      type="email"
+                      placeholder="Your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full px-4 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  >
+                    {loading ? 'Sending...' : 'Send Magic Link'}
+                  </button>
+                </form>
+                {message && (
+                  <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-md">
+                    <p className="text-blue-800">{message}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </main>
-      {/* <Footer /> */}
     </>
   )
 }

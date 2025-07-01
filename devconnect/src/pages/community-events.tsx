@@ -12,7 +12,6 @@ import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
 import { Agent } from '@atproto/api'
-// import { BrowserOAuthClient } from '@atproto/oasuth-client-browser'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -23,6 +22,7 @@ const loadOAuthClient = async () => {
   if (typeof window === 'undefined') return null
 
   if (!BrowserOAuthClient) {
+    // no navigator on server side...
     const { BrowserOAuthClient: Client } = await import('@atproto/oauth-client-browser')
     BrowserOAuthClient = Client
   }
@@ -105,7 +105,7 @@ interface EventFormData {
     address?: string
   }
   event_type: string
-  expertise_level: string
+  expertise: string
   // Optional fields (previously in metadata)
   timeslots?: Array<{
     start_utc: string
@@ -148,7 +148,7 @@ const CommunityEvents = () => {
       address: '',
     },
     event_type: '',
-    expertise_level: 'all welcome',
+    expertise: 'all welcome',
     timeslots: [],
     image_url: '',
     requires_ticket: false,
@@ -693,8 +693,8 @@ const CommunityEvents = () => {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Expertise Level *</label>
                     <select
                       required
-                      value={formData.expertise_level}
-                      onChange={e => handleInputChange('expertise_level', e.target.value)}
+                      value={formData.expertise}
+                      onChange={e => handleInputChange('expertise', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                       {expertiseLevels.map(level => (
