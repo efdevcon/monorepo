@@ -1,5 +1,6 @@
 const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin')
 const path = require('path')
+const CopyPlugin = require('copy-webpack-plugin');
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -56,6 +57,9 @@ module.exports = {
     ],
   },
   webpack: (config, { webpack }) => {
+    const artifactPackageJsonPath = require.resolve('@pcd/proto-pod-gpc-artifacts/package.json');
+    const artifactPath = path.dirname(artifactPackageJsonPath);
+
     return {
       ...config,
       resolve: {
@@ -69,6 +73,15 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
           devMode: process.env.NODE_ENV !== 'production',
+        }),
+        new CopyPlugin({
+          patterns: [
+            { 
+              from: artifactPath, 
+              to: path.join(__dirname, 'public/artifacts'),
+              force: true
+            }
+          ]
         }),
         ...config.plugins,
       ],
@@ -130,6 +143,12 @@ module.exports = {
             test: /\.(glsl|vs|fs|vert|frag)$/,
             exclude: /node_modules/,
             use: ['raw-loader', 'glslify-loader'],
+          },
+          {
+            test: /fastfile/,
+            use: {
+              loader: 'null-loader'
+            }
           },
           ...config.module.rules,
         ],

@@ -1,0 +1,19 @@
+{
+  "name": "@pcd/proto-pod-gpc-artifacts",
+  "version": "0.13.0",
+  "description": "ZK artifacts for proto-pod-gpc family of general purpose circuits.",
+  "license": "GPL-3.0-or-later",
+  "private": false,
+  "files": [
+    "./CHANGELOG.md",
+    "./README.md",
+    "./LICENSE",
+    "proto-pod-gpc_*-vkey.json",
+    "proto-pod-gpc_*-pkey.zkey",
+    "proto-pod-gpc_*.wasm",
+    "circuitParameters.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
