@@ -262,8 +262,8 @@ export interface Event {
       let startDate = moment.utc(formattedEvent['Required event date'].startDate)
       let endDate
 
-      if (formattedEvent['Event date'].endDate) {
-        endDate = moment.utc(formattedEvent['Event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
+      if (formattedEvent['Required event date'].endDate) {
+        endDate = moment.utc(formattedEvent['Required event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
       } else {
         endDate = startDate.format('YYYY-MM-DDTHH:mm:ss[Z]')
       }
