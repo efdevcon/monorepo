@@ -69,7 +69,7 @@ module.exports = {
       plugins: [
         // Only include tz data for the zone we use
         new MomentTimezoneDataPlugin({
-          matchZones: /^Europe\/Istanbul/,
+          matchZones: [/^Europe\/Istanbul/, /^America\/Argentina\/Buenos_Aires/],
         }),
         new webpack.DefinePlugin({
           devMode: process.env.NODE_ENV !== 'production',

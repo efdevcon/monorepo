@@ -18,6 +18,8 @@ export default function Perks() {
     setMounted(true);
   }, []);
 
+  if (!mounted) return null;
+
   return (
     <ParcnetClientProvider
       zapp={{
@@ -28,7 +30,7 @@ export default function Perks() {
         },
       }}
     >
-      {mounted && <Toolbar />}
+      <Toolbar />
 
       <RequestProof />
     </ParcnetClientProvider>
@@ -61,8 +63,6 @@ function RequestProof() {
     if (!proof) return;
 
     const serializedProofResult = serializeProofResult(proof);
-
-    console.log(serializedProofResult, "serializedProofResult");
 
     const res = await fetch("/api/verify", {
       method: "POST",
