@@ -56,11 +56,11 @@ module.exports = {
       'mealmslwugsqqyoesrxd.supabase.co',
     ],
   },
-  webpack: (config, { webpack }) => {
+  webpack: (config, { webpack, isServer }) => {
     const artifactPackageJsonPath = require.resolve('@pcd/proto-pod-gpc-artifacts/package.json');
     const artifactPath = path.dirname(artifactPackageJsonPath);
 
-    return {
+    const newConfig = {
       ...config,
       resolve: {
         ...config.resolve,
@@ -154,6 +154,8 @@ module.exports = {
         ],
       },
     }
+
+    return newConfig;
   },
   env: {
     SUPABASE_URL: process.env.SUPABASE_URL,
