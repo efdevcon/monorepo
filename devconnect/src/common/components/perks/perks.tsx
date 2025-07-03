@@ -1,125 +1,131 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";  
+import { useEffect } from 'react'
 import {
   ClientConnectionState,
   ParcnetClientProvider,
   Toolbar,
   useParcnetClient,
-} from "@parcnet-js/app-connector-react";
-import { useState, useCallback } from "react";
-import { getTicketProofRequest } from "./ticketProof";
-import { ProveResult, serializeProofResult } from "./serialize";
+} from '@parcnet-js/app-connector-react'
+import { useState, useCallback } from 'react'
+import { getDevconTicketProofRequest, getDevconnectTicketProofRequest } from './ticketProof'
+import { ProveResult, serializeProofResult } from './serialize'
+import perksList from './perks-list'
+import { Button } from 'lib/components/button'
 
 export default function Perks() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(false)
+  const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>({})
+  const [devconnectCoupons, setDevconnectCoupons] = useState<Record<string, string>>({})
 
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    setMounted(true)
+  }, [])
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
-    <ParcnetClientProvider
-      zapp={{
-        name: "Devconnect Perks Portal", // update the name of the zapp to something *unique*
-        permissions: { // update permissions based on what you want to collect and prove
-          REQUEST_PROOF: { collections: ["Devcon SEA"] }, // Update this to the collection name you want to use
-          READ_PUBLIC_IDENTIFIERS: {},
-        },
-      }}
-    >
-      <Toolbar />
+    <div className="section my-8">
+      <ParcnetClientProvider
+        zapp={{
+          name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
+          permissions: {
+            // update permissions based on what you want to collect and prove
+            REQUEST_PROOF: { collections: ['Devcon SEA'] }, // Update this to the collection name you want to use
+            READ_PUBLIC_IDENTIFIERS: {},
+          },
+        }}
+      >
+        <Toolbar />
 
-      <RequestProof />
-    </ParcnetClientProvider>
-  );
+        {/* <RequestProof /> */}
+
+        <div className="grid grid-cols-3 gap-4 mt-8">
+          {perksList.map(perk => (
+            <Perk
+              key={perk.name}
+              perk={perk}
+              devconCoupons={devconCoupons}
+              setDevconCoupons={setDevconCoupons}
+              devconnectCoupons={devconnectCoupons}
+              setDevconnectCoupons={setDevconnectCoupons}
+            />
+          ))}
+        </div>
+      </ParcnetClientProvider>
+    </div>
+  )
 }
 
-function RequestProof() {
-  const { z, connectionState } = useParcnetClient();
-  const [proof, setProof] = useState<ProveResult | null>(null);
-  const [verified, setVerified] = useState<boolean | null>(null);
+const Perk = ({
+  perk,
+  devconCoupons,
+  devconnectCoupons,
+  setDevconCoupons,
+  setDevconnectCoupons,
+}: {
+  perk: (typeof perksList)[number]
+  devconCoupons: Record<string, string>
+  devconnectCoupons: Record<string, string>
+  setDevconCoupons: (coupons: Record<string, string>) => void
+  setDevconnectCoupons: (coupons: Record<string, string>) => void
+}) => {
+  const { z, connectionState } = useParcnetClient()
+  const isDevconProof = perk.zupass_proof_id === 'Devcon SEA'
+  const coupons = isDevconProof ? devconCoupons : devconnectCoupons
+  const coupon = coupons[perk.coupon_collection]
 
-  const requestProof = useCallback(async () => {
-    if (connectionState !== ClientConnectionState.CONNECTED) return;
-    const req = getTicketProofRequest();
+  const requestCoupon = useCallback(async () => {
+    if (connectionState !== ClientConnectionState.CONNECTED) return
 
-    console.log(req.schema);
+    const req = isDevconProof ? getDevconTicketProofRequest() : getDevconnectTicketProofRequest()
+
     const res = await z.gpc.prove({
       request: req.schema,
-      collectionIds: ["Devcon SEA"], // Update this to the collection ID you want to use
-    });
+      collectionIds: [perk.zupass_proof_id ?? ''], // Update this to the collection ID you want to use
+    })
 
-    if (res.success) {
-      setProof(res);
+    if (!res.success) return
+
+    const serializedProofResult = serializeProofResult(res)
+
+    const response = await fetch(`/api/coupons/${encodeURIComponent(perk.zupass_proof_id ?? '')}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: serializedProofResult,
+    })
+
+    if (response.ok) {
+      const { coupons } = await response.json()
+
+      if (isDevconProof) {
+        setDevconCoupons(coupons)
+      } else {
+        setDevconnectCoupons(coupons)
+      }
     } else {
-      console.error(res.error);
+      console.error(response.statusText)
     }
-  }, [z]);
-
-  const verifyProof = useCallback(async () => {
-    if (!proof) return;
-
-    const serializedProofResult = serializeProofResult(proof);
-
-    const res = await fetch("/api/verify", {
-      method: "POST",
-      body: JSON.stringify({
-        serializedProofResult,
-      }),
-    });
-
-    if (res.ok) {
-      const data = await res.json();
-      setVerified(data.verified);
-    } else {
-      console.error(res.statusText);
-    }
-  }, [z, proof]);
-
-  if (connectionState !== ClientConnectionState.CONNECTED) return null;
+  }, [z, connectionState])
 
   return (
-    <div className="flex flex-col gap-4 my-8">
-      <div>
-        <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
-          onClick={requestProof}
-        >
-          Request Proof
-        </button>
+    <div className="border border-solid border-gray-700 rounded-lg p-4 flex flex-col justify-between gap-4">
+      <div className="flex flex-col gap-2">
+        <h2 className="text-lg font-bold font-secondary">{perk.name}</h2>
+        <p>{perk.description}</p>
       </div>
-      {proof && (
-        <>
-          <div className="bg-gray-800 p-4 rounded-lg mt-4 overflow-x-auto">
-            <div>Proof received</div>
-            <div>Claimed fields:</div>
-            <div>
-              Name:{" "}
-              {proof.revealedClaims.pods.ticket.entries?.attendeeName.value?.toString()}
-            </div>
-            <div>
-              Email:{" "}
-              {proof.revealedClaims.pods.ticket.entries?.attendeeEmail.value?.toString()}
-            </div>
-            {verified !== null && (
-              <div className={verified ? "text-green-500" : "text-red-500"}>
-                Verified: {verified ? "Yes" : "No"}
-              </div>
-            )}
-            <div className="mt-4">
-              <button
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition duration-300 ease-in-out"
-                onClick={verifyProof}
-              >
-                Verify Proof
-              </button>
-            </div>
-          </div>
-        </>
+      {perk.external ? (
+        <Button color="black-1" onClick={() => window.open(perk.url, '_blank')}>
+          Claim Externally
+        </Button>
+      ) : (
+        <Button color="black-1" onClick={requestCoupon}>
+          Claim Coupon
+        </Button>
       )}
+      {coupon && <div>Coupon: {coupon}</div>}
     </div>
-  );
+  )
 }

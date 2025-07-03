@@ -33,6 +33,7 @@ const PerksPage = (props: any) => {
         <div className={styles['devconnect-overlay']}></div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
+
       <Perks />
 
       <Footer />
