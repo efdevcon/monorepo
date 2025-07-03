@@ -53,6 +53,7 @@ const AdminPage = () => {
   const [expandedDids, setExpandedDids] = useState<Set<string>>(new Set())
   const [editingDids, setEditingDids] = useState<Set<string>>(new Set())
   const [editValues, setEditValues] = useState<Record<string, { alias: string; contact: string }>>({})
+  const [statusFilter, setStatusFilter] = useState<'all' | 'needs_review' | 'changes_need_review' | 'approved'>('all')
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -154,6 +155,40 @@ const AdminPage = () => {
     setEventsLoading(false)
   }
 
+  const handleApprove = async (id: string, recordData: any) => {
+    setEventsLoading(true)
+    try {
+      const { error } = await supabase
+        .from('atproto_records')
+        .update({
+          record_passed_review: recordData,
+          record_needs_review: null
+        })
+        .eq('id', id)
+
+      if (error) throw error
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+
+
 
 
   const toggleDidExpansion = (did: string) => {
@@ -245,8 +280,22 @@ const AdminPage = () => {
     setEditValues(newEditValues)
   }
 
+  // Filter events based on status filter
+  const filteredEvents = events.filter(event => {
+    if (statusFilter === 'needs_review') {
+      return !!event.record_needs_review && !event.record_passed_review
+    }
+    if (statusFilter === 'changes_need_review') {
+      return !!event.record_needs_review && !!event.record_passed_review
+    }
+    if (statusFilter === 'approved') {
+      return !!event.record_passed_review && !event.record_needs_review
+    }
+    return true // 'all'
+  })
+
   // Group events by DID
-  const eventsByDid = events.reduce((acc, event) => {
+  const eventsByDid = filteredEvents.reduce((acc, event) => {
     const did = event.atproto_dids?.did || 'unknown'
     if (!acc[did]) {
       acc[did] = {
@@ -300,6 +349,84 @@ const AdminPage = () => {
               {/* Events Management */}
               <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">Events by DID</h2>
+                
+                                 {/* Summary Stats */}
+                 {!eventsLoading && (
+                   <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-gray-900">{events.length}</div>
+                      <div className="text-sm text-gray-600">Total Events</div>
+                    </div>
+                                         <div className="bg-yellow-50 rounded-lg p-4">
+                       <div className="text-2xl font-bold text-yellow-800">
+                         {events.filter(e => !!e.record_needs_review && !e.record_passed_review).length}
+                       </div>
+                       <div className="text-sm text-yellow-600">Need Review</div>
+                     </div>
+                     <div className="bg-orange-50 rounded-lg p-4">
+                       <div className="text-2xl font-bold text-orange-800">
+                         {events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length}
+                       </div>
+                       <div className="text-sm text-orange-600">Updated Records</div>
+                     </div>
+                                         <div className="bg-green-50 rounded-lg p-4">
+                       <div className="text-2xl font-bold text-green-800">
+                         {events.filter(e => !!e.record_passed_review && !e.record_needs_review).length}
+                       </div>
+                       <div className="text-sm text-green-600">Approved</div>
+                     </div>
+                    <div className="bg-blue-50 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-blue-800">
+                        {events.filter(e => !!e.show_on_calendar).length}
+                      </div>
+                      <div className="text-sm text-blue-600">On Calendar</div>
+                    </div>
+                  </div>
+                                  )}
+                
+                {/* Filter Buttons */}
+                <div className="flex space-x-2 mb-6">
+                  <button
+                    onClick={() => setStatusFilter('all')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      statusFilter === 'all' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    All Events
+                  </button>
+                                     <button
+                     onClick={() => setStatusFilter('needs_review')}
+                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                       statusFilter === 'needs_review' 
+                         ? 'bg-yellow-600 text-white' 
+                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                     }`}
+                   >
+                     Needs Review ({events.filter(e => !!e.record_needs_review && !e.record_passed_review).length})
+                   </button>
+                   <button
+                     onClick={() => setStatusFilter('changes_need_review')}
+                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                       statusFilter === 'changes_need_review' 
+                         ? 'bg-orange-600 text-white' 
+                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                     }`}
+                   >
+                     Updated Records ({events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length})
+                   </button>
+                                     <button
+                     onClick={() => setStatusFilter('approved')}
+                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                       statusFilter === 'approved' 
+                         ? 'bg-green-600 text-white' 
+                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                     }`}
+                   >
+                     Approved ({events.filter(e => !!e.record_passed_review && !e.record_needs_review).length})
+                   </button>
+                </div>
                 
                 {eventsLoading ? (
                   <div className="flex items-center justify-center h-32">
@@ -404,42 +531,115 @@ const AdminPage = () => {
 
                         {/* Events */}
                         {expandedDids.has(did) && (
-                                                     <div className="divide-y divide-gray-100">
-                             {didEvents.map((event: any) => (
-                               <div key={event.id} className="p-4 ml-6 bg-white">
-                                <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-                                  <div className="lg:col-span-1 text-sm text-gray-500">
-                                    #{event.id}
-                                  </div>
-                                  
-                                  <div className="lg:col-span-2 text-sm text-gray-600">
-                                    {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
-                                  </div>
-                                  
-                                  <div className="lg:col-span-5">
-                                    <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
-                                      <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
-                                        {JSON.stringify(event.record_passed_review || event.record_needs_review, null, 2)}
-                                      </pre>
+                          <div className="divide-y divide-gray-100">
+                            {didEvents.map((event: any) => {
+                              const needsReview = !!event.record_needs_review
+                              const isApproved = !!event.record_passed_review
+                              const hasChanges = needsReview && isApproved // Both defined = approved but has changes
+                              const recordData = event.record_passed_review || event.record_needs_review
+                              
+                              return (
+                                <div key={event.id} className={`p-4 ml-6 ${hasChanges ? 'bg-orange-50 border-l-4 border-orange-400' : needsReview ? 'bg-yellow-50 border-l-4 border-yellow-400' : 'bg-white'}`}>
+                                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                                    <div className="lg:col-span-1 text-sm text-gray-500">
+                                      #{event.id}
+                                    </div>
+                                    
+                                    <div className="lg:col-span-2 text-sm text-gray-600">
+                                      {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
+                                      
+                                                                             {/* Status Badge */}
+                                       <div className="mt-1">
+                                         {hasChanges ? (
+                                           <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
+                                             Updated - Needs Review
+                                           </span>
+                                         ) : needsReview ? (
+                                           <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                                             Needs Review
+                                           </span>
+                                         ) : isApproved ? (
+                                           <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                                             ✓ Approved
+                                           </span>
+                                         ) : (
+                                           <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                                             No Data
+                                           </span>
+                                         )}
+                                       </div>
+                                    </div>
+                                    
+                                                                         <div className="lg:col-span-5">
+                                       {hasChanges ? (
+                                         <div className="space-y-2">
+                                           <div className="bg-green-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                                             <div className="text-xs font-medium text-green-800 mb-1">✓ Currently Live (Approved):</div>
+                                             <pre className="text-xs text-green-700 whitespace-pre-wrap break-words">
+                                               {JSON.stringify(event.record_passed_review, null, 2)}
+                                             </pre>
+                                           </div>
+                                           <div className="bg-orange-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                                             <div className="text-xs font-medium text-orange-800 mb-1">📝 Latest Update (Needs Review):</div>
+                                             <pre className="text-xs text-orange-700 whitespace-pre-wrap break-words">
+                                               {JSON.stringify(event.record_needs_review, null, 2)}
+                                             </pre>
+                                           </div>
+                                         </div>
+                                       ) : (
+                                         <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
+                                           <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
+                                             {JSON.stringify(recordData, null, 2)}
+                                           </pre>
+                                         </div>
+                                       )}
+                                     </div>
+                                    
+                                    <div className="lg:col-span-4 space-y-2">
+                                                                                                                    {/* Review Actions */}
+                                       {needsReview && (
+                                         <div className="flex space-x-2 mb-2">
+                                           <button
+                                             onClick={() => handleApprove(event.id, event.record_needs_review)}
+                                             className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                                           >
+                                             {hasChanges ? 'Approve Changes' : 'Approve'}
+                                           </button>
+                                         </div>
+                                       )}
+                                      
+                                                                             {/* Calendar Toggle */}
+                                       <label className="inline-flex items-center">
+                                         <input
+                                           type="checkbox"
+                                           checked={!!event.show_on_calendar}
+                                           disabled={!isApproved}
+                                           onChange={(e) => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
+                                           className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                         />
+                                         <span className={`ml-2 text-sm ${isApproved ? 'text-gray-600' : 'text-gray-400'}`}>
+                                           Show on Calendar
+                                         </span>
+                                       </label>
+                                       
+                                       {!isApproved && (
+                                         <p className="text-xs text-gray-500 mt-1">
+                                           {needsReview ? 'Approve record first' : 'No approved version available'}
+                                         </p>
+                                       )}
+                                       
+                                       {hasChanges && (
+                                         <p className="text-xs text-gray-500 mt-1">
+                                           ℹ️ Using currently approved version for calendar
+                                         </p>
+                                       )}
                                     </div>
                                   </div>
-                                  
-                                  <div className="lg:col-span-4 flex items-center">
-                                    <label className="inline-flex items-center">
-                                      <input
-                                        type="checkbox"
-                                        checked={!!event.show_on_calendar}
-                                        onChange={(e) => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
-                                        className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                                      />
-                                      <span className="ml-2 text-sm text-gray-600">Show on Calendar</span>
-                                    </label>
-                                  </div>
                                 </div>
-                              </div>
-                            ))}
+                              )
+                            })}
                           </div>
-                                                 )}
+                        )}
                        </div>
                        )
                      })}

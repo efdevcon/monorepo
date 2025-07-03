@@ -120,10 +120,16 @@ interface EventFormData {
   capacity?: number
   categories?: string[]
   search_tags?: string[]
-  socials?: Array<{
-    platform: string
-    url: string
-  }>
+  socials?: {
+    x_url?: string
+    farcaster_url?: string
+    discord_url?: string
+    telegram_url?: string
+    youtube_url?: string
+    github_url?: string
+    bluesky_url?: string
+    lens_url?: string
+  }
 }
 
 const CommunityEvents = () => {
@@ -156,7 +162,16 @@ const CommunityEvents = () => {
     capacity: undefined,
     categories: [],
     search_tags: [],
-    socials: [],
+    socials: {
+      x_url: '',
+      farcaster_url: '',
+      discord_url: '',
+      telegram_url: '',
+      youtube_url: '',
+      github_url: '',
+      bluesky_url: '',
+      lens_url: '',
+    },
   })
 
   const [showOptionalSections, setShowOptionalSections] = useState({
@@ -253,24 +268,13 @@ const CommunityEvents = () => {
     }))
   }
 
-  const addSocial = () => {
+  const updateSocial = (field: string, value: string) => {
     setFormData(prev => ({
       ...prev,
-      socials: [...(prev.socials || []), { platform: '', url: '' }],
-    }))
-  }
-
-  const removeSocial = (index: number) => {
-    setFormData(prev => ({
-      ...prev,
-      socials: prev.socials?.filter((_, i) => i !== index),
-    }))
-  }
-
-  const updateSocial = (index: number, field: string, value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      socials: prev.socials?.map((social, i) => (i === index ? { ...social, [field]: value } : social)),
+      socials: {
+        ...prev.socials,
+        [field]: value,
+      },
     }))
   }
 
@@ -317,8 +321,15 @@ const CommunityEvents = () => {
     if (!cleanedData.image_url) delete cleanedData.image_url
     if (!cleanedData.categories?.length) delete cleanedData.categories
     if (!cleanedData.search_tags?.length) delete cleanedData.search_tags
-    if (!cleanedData.socials?.length) delete cleanedData.socials
     if (!cleanedData.capacity) delete cleanedData.capacity
+
+    // Remove empty social URLs
+    if (cleanedData.socials) {
+      const hasAnySocials = Object.values(cleanedData.socials).some(url => url && url.trim() !== '')
+      if (!hasAnySocials) {
+        delete cleanedData.socials
+      }
+    }
 
     console.log('Event data to submit:', cleanedData)
     // TODO: Submit to your API/backend
@@ -981,39 +992,93 @@ const CommunityEvents = () => {
                   <div>
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="font-medium text-gray-800">Social Media Links</h3>
-                      <button type="button" onClick={addSocial} className="text-blue-600 hover:text-blue-800 text-sm">
-                        + Add Social
-                      </button>
                     </div>
                     <p className="text-sm text-gray-600 mb-4">
-                      Array of social media platforms with platform name and URL
+                      Social media platforms of the organizer
                     </p>
 
-                    {formData.socials?.map((social, index) => (
-                      <div key={index} className="flex gap-4 mb-3">
-                        <input
-                          type="text"
-                          placeholder="Platform (e.g., Twitter, Discord)"
-                          value={social.platform}
-                          onChange={e => updateSocial(index, 'platform', e.target.value)}
-                          className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Twitter/X URL</label>
                         <input
                           type="url"
-                          placeholder="URL"
-                          value={social.url}
-                          onChange={e => updateSocial(index, 'url', e.target.value)}
-                          className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          placeholder="https://twitter.com/username"
+                          value={formData.socials?.x_url || ''}
+                          onChange={e => updateSocial('x_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
-                        <button
-                          type="button"
-                          onClick={() => removeSocial(index)}
-                          className="text-red-600 hover:text-red-800 px-3"
-                        >
-                          Remove
-                        </button>
                       </div>
-                    ))}
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Farcaster URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://farcaster.xyz/username"
+                          value={formData.socials?.farcaster_url || ''}
+                          onChange={e => updateSocial('farcaster_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Discord URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://discord.gg/invite"
+                          value={formData.socials?.discord_url || ''}
+                          onChange={e => updateSocial('discord_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Telegram URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://t.me/username"
+                          value={formData.socials?.telegram_url || ''}
+                          onChange={e => updateSocial('telegram_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">YouTube URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://youtube.com/@username"
+                          value={formData.socials?.youtube_url || ''}
+                          onChange={e => updateSocial('youtube_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">GitHub URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://github.com/username"
+                          value={formData.socials?.github_url || ''}
+                          onChange={e => updateSocial('github_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Bluesky URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://bsky.app/profile/username"
+                          value={formData.socials?.bluesky_url || ''}
+                          onChange={e => updateSocial('bluesky_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Lens URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://lens.xyz/username"
+                          value={formData.socials?.lens_url || ''}
+                          onChange={e => updateSocial('lens_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               )}

@@ -130,13 +130,9 @@ export const schema = {
             description: "Searching tags for the event",
           },
           socials: {
-            type: "array",
-            items: {
-              type: "ref",
-              ref: "#social_platform",
-            },
-            description:
-              "Array of social media platforms with platform name and URL.",
+            type: "ref",
+            ref: "#social_platform",
+            description: "Social media platforms of the organizer",
           },
           image_url: {
             type: "string",
@@ -205,13 +201,38 @@ export const schema = {
     },
     social_platform: {
       type: "object",
-      required: ["platform", "url"],
       properties: {
-        platform: {
+        x_url: {
           type: "string",
+          description: "Twitter of the organizer",
         },
-        url: {
+        farcaster_url: {
           type: "string",
+          description: "Farcaster of the organizer",
+        },
+        discord_url: {
+          type: "string",
+          description: "Discord of the organizer",
+        },
+        telegram_url: {
+          type: "string",
+          description: "Telegram of the organizer",
+        },
+        youtube_url: {
+          type: "string",
+          description: "Youtube of the organizer",
+        },
+        github_url: {
+          type: "string",
+          description: "Github of the organizer",
+        },
+        bluesky_url: {
+          type: "string",
+          description: "Bluesky of the organizer",
+        },
+        lens_url: {
+          type: "string",
+          description: "Lens of the organizer",
         },
       },
     },
