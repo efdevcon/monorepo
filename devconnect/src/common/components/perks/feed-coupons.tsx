@@ -1,27 +1,40 @@
 import React, { useState } from 'react'
+import { supabase } from 'common/supabaseClient'
 
 interface CouponFeedProps {
-  onCouponsLoaded?: (coupons: Record<string, string[]>) => void
+  onCouponsUploaded?: (count: number) => void
 }
 
-const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsLoaded }) => {
+/* 
+  1) Add CSV file to public folder
+  2) Update url in coupon object
+  3) Update collection name in coupon object
+  4) Update zk_proof_id to match the proof ID used in perks system
+*/
+
+const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsUploaded }) => {
   const [loading, setLoading] = useState(false)
-  const [coupons, setCoupons] = useState<Record<string, string[]>>({})
   const [error, setError] = useState<string | null>(null)
+  const [success, setSuccess] = useState<string | null>(null)
 
-  const couponUrl = '/dont-push-coupons/devcon-sea-attendee.csv'
+  const couponToUpload = {
+    url: '/dont-push-coupons/devcon-sea-attendee.csv',
+    collection: 'devcon-sea-attendee',
+    zk_proof_id: 'Devcon SEA', // Must match the proof ID used in the perks system
+  }
 
-  const feedCoupons = async () => {
+  const uploadCoupons = async () => {
     setLoading(true)
     setError(null)
+    setSuccess(null)
 
     try {
-      console.log('Fetching coupons from:', couponUrl)
+      console.log('Fetching coupons from:', couponToUpload.url)
 
-      const response = await fetch(couponUrl)
+      const response = await fetch(couponToUpload.url)
 
       if (!response.ok) {
-        throw new Error(`Failed to fetch coupons: ${response.status} ${response.statusText}`)
+        throw new Error(`Failed to fetch CSV file: ${response.status} ${response.statusText}`)
       }
 
       const fileContent = await response.text()
@@ -32,21 +45,53 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsLoaded }) => {
         .map((line: string) => line.trim())
         .filter((line: string) => line.length > 0)
 
-      // Use filename without extension as key
-      const collectionName = 'devcon-sea-attendee'
-      const loadedCoupons = { [collectionName]: lines }
+      if (lines.length === 0) {
+        throw new Error('No valid coupon codes found in CSV file')
+      }
 
-      setCoupons(loadedCoupons)
-      console.log(`Loaded ${lines.length} coupons for collection: ${collectionName}`)
-      console.log('Coupons:', loadedCoupons)
+      // Upsert coupons into Supabase (only insert new ones, ignore duplicates)
+      const couponRecords = lines.map(line => ({
+        collection: couponToUpload.collection,
+        zk_proof_id: couponToUpload.zk_proof_id,
+        value: line,
+        claimed_by: null,
+        claimed_date: null,
+      }))
+
+      const { data, error: upsertError } = await supabase
+        .from('coupons')
+        .upsert(couponRecords, {
+          onConflict: 'collection,value',
+          ignoreDuplicates: true,
+        })
+        .select()
+
+      if (upsertError) {
+        throw new Error(`Failed to upsert coupons: ${upsertError.message}`)
+      }
+
+      const newCouponsCount = data?.length || 0
+      const skippedCount = lines.length - newCouponsCount
+
+      console.log(`Successfully processed ${lines.length} coupons: ${newCouponsCount} new, ${skippedCount} existing`)
+
+      if (newCouponsCount > 0 && skippedCount > 0) {
+        setSuccess(
+          `Successfully uploaded ${newCouponsCount} new coupons to the database! (${skippedCount} already existed and were skipped)`
+        )
+      } else if (newCouponsCount > 0) {
+        setSuccess(`Successfully uploaded ${newCouponsCount} new coupons to the database!`)
+      } else {
+        setSuccess(`All ${lines.length} coupons already exist in the database. No new coupons were added.`)
+      }
 
       // Call the callback if provided
-      if (onCouponsLoaded) {
-        onCouponsLoaded(loadedCoupons)
+      if (onCouponsUploaded) {
+        onCouponsUploaded(newCouponsCount)
       }
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error occurred'
-      console.error('Error loading coupons:', errorMessage)
+      console.error('Error uploading coupons:', errorMessage)
       setError(errorMessage)
     } finally {
       setLoading(false)
@@ -54,14 +99,26 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsLoaded }) => {
   }
 
   return (
-    <div className="coupon-feed">
+    <div className="coupon-feed bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mb-6">
+      <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">Upload Coupons to Database</h2>
+
       <div className="mb-4">
+        <p className="text-sm text-gray-600 mb-2">
+          Collection: <span className="font-mono text-blue-600">{couponToUpload.collection}</span>
+        </p>
+        <p className="text-sm text-gray-600 mb-2">
+          ZK Proof ID: <span className="font-mono text-blue-600">{couponToUpload.zk_proof_id}</span>
+        </p>
+        <p className="text-sm text-gray-600 mb-4">
+          Source: <span className="font-mono text-blue-600">{couponToUpload.url}</span>
+        </p>
+
         <button
-          onClick={feedCoupons}
+          onClick={uploadCoupons}
           disabled={loading}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          {loading ? 'Loading Coupons...' : 'Load Coupons'}
+          {loading ? 'Uploading Coupons...' : 'Upload Coupons to Database'}
         </button>
       </div>
 
@@ -71,23 +128,9 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsLoaded }) => {
         </div>
       )}
 
-      {Object.keys(coupons).length > 0 && (
-        <div className="coupon-results">
-          <h3 className="text-lg font-semibold mb-2">Loaded Coupons:</h3>
-          {Object.entries(coupons).map(([collection, codes]) => (
-            <div key={collection} className="mb-4">
-              <h4 className="font-medium text-gray-700 mb-1">
-                {collection} ({codes.length} coupons)
-              </h4>
-              <div className="max-h-40 overflow-y-auto bg-gray-50 p-2 rounded border">
-                {codes.map((code, index) => (
-                  <div key={index} className="text-sm font-mono text-gray-600">
-                    {code}
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
+      {success && (
+        <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+          <strong>Success:</strong> {success}
         </div>
       )}
     </div>

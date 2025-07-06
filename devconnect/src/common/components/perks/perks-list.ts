@@ -1,6 +1,6 @@
 const perks = [
   {
-    coupon_collection: 'Devcon SEA Attendee Discount',
+    coupon_collection: 'devcon-sea-attendee',
     name: 'Devcon SEA Attendee Discount',
     description: 'If you attended Devcon SEA, you can get a discount on your Devconnect ARG ticket.',
     image: 'https://devcon.org/images/devcon-sea.png',

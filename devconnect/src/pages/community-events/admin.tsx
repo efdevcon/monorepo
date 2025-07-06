@@ -3,6 +3,7 @@ import { SEO } from 'common/components/SEO'
 import Head from 'next/head'
 import { supabase } from 'common/supabaseClient'
 import NewSchedule from 'lib/components/event-schedule-new'
+import FeedCoupons from 'common/components/perks/feed-coupons'
 
 // Format Atproto event to our calendar component format
 const formatATProtoEvent = (atprotoEvent: any) => {
@@ -129,10 +130,7 @@ const AdminPage = () => {
     setEventsLoading(true)
     try {
       // Update directly via Supabase
-      const { error } = await supabase
-        .from('atproto_records')
-        .update({ show_on_calendar: value })
-        .eq('id', id)
+      const { error } = await supabase.from('atproto_records').update({ show_on_calendar: value }).eq('id', id)
 
       if (error) throw error
 
@@ -162,7 +160,7 @@ const AdminPage = () => {
         .from('atproto_records')
         .update({
           record_passed_review: recordData,
-          record_needs_review: null
+          record_needs_review: null,
         })
         .eq('id', id)
 
@@ -187,10 +185,6 @@ const AdminPage = () => {
     setEventsLoading(false)
   }
 
-
-
-
-
   const toggleDidExpansion = (did: string) => {
     const newExpandedDids = new Set(expandedDids)
     if (newExpandedDids.has(did)) {
@@ -212,8 +206,8 @@ const AdminPage = () => {
         ...prev,
         [did]: {
           alias: didInfo?.alias || '',
-          contact: didInfo?.contact || ''
-        }
+          contact: didInfo?.contact || '',
+        },
       }))
     }
     setEditingDids(newEditingDids)
@@ -224,8 +218,8 @@ const AdminPage = () => {
       ...prev,
       [did]: {
         ...prev[did],
-        [field]: value
-      }
+        [field]: value,
+      },
     }))
   }
 
@@ -237,7 +231,7 @@ const AdminPage = () => {
         .from('atproto_dids')
         .update({
           alias: values.alias || null,
-          contact: values.contact || null
+          contact: values.contact || null,
         })
         .eq('did', did)
 
@@ -255,14 +249,13 @@ const AdminPage = () => {
         )
         .eq('lexicon', 'org.devcon.event')
         .order('updated_at', { ascending: false })
-      
+
       setEvents(data || [])
-      
+
       // Exit edit mode
       const newEditingDids = new Set(editingDids)
       newEditingDids.delete(did)
       setEditingDids(newEditingDids)
-      
     } catch (error: any) {
       setEventsError(error.message)
     }
@@ -273,7 +266,7 @@ const AdminPage = () => {
     const newEditingDids = new Set(editingDids)
     newEditingDids.delete(did)
     setEditingDids(newEditingDids)
-    
+
     // Remove edit values for this DID
     const newEditValues = { ...editValues }
     delete newEditValues[did]
@@ -300,7 +293,7 @@ const AdminPage = () => {
     if (!acc[did]) {
       acc[did] = {
         didInfo: event.atproto_dids,
-        events: []
+        events: [],
       }
     }
     acc[did].events.push(event)
@@ -325,7 +318,7 @@ const AdminPage = () => {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      
+
       <main className="min-h-screen bg-gray-50">
         <div className="container mx-auto px-4 py-8">
           {loading ? (
@@ -346,35 +339,37 @@ const AdminPage = () => {
                 </button>
               </div>
 
+              {process.env.NODE_ENV === 'development' && <FeedCoupons />}
+
               {/* Events Management */}
               <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">Events by DID</h2>
-                
-                                 {/* Summary Stats */}
-                 {!eventsLoading && (
-                   <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+
+                {/* Summary Stats */}
+                {!eventsLoading && (
+                  <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
                     <div className="bg-gray-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-gray-900">{events.length}</div>
                       <div className="text-sm text-gray-600">Total Events</div>
                     </div>
-                                         <div className="bg-yellow-50 rounded-lg p-4">
-                       <div className="text-2xl font-bold text-yellow-800">
-                         {events.filter(e => !!e.record_needs_review && !e.record_passed_review).length}
-                       </div>
-                       <div className="text-sm text-yellow-600">Need Review</div>
-                     </div>
-                     <div className="bg-orange-50 rounded-lg p-4">
-                       <div className="text-2xl font-bold text-orange-800">
-                         {events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length}
-                       </div>
-                       <div className="text-sm text-orange-600">Updated Records</div>
-                     </div>
-                                         <div className="bg-green-50 rounded-lg p-4">
-                       <div className="text-2xl font-bold text-green-800">
-                         {events.filter(e => !!e.record_passed_review && !e.record_needs_review).length}
-                       </div>
-                       <div className="text-sm text-green-600">Approved</div>
-                     </div>
+                    <div className="bg-yellow-50 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-yellow-800">
+                        {events.filter(e => !!e.record_needs_review && !e.record_passed_review).length}
+                      </div>
+                      <div className="text-sm text-yellow-600">Need Review</div>
+                    </div>
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-orange-800">
+                        {events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length}
+                      </div>
+                      <div className="text-sm text-orange-600">Updated Records</div>
+                    </div>
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <div className="text-2xl font-bold text-green-800">
+                        {events.filter(e => !!e.record_passed_review && !e.record_needs_review).length}
+                      </div>
+                      <div className="text-sm text-green-600">Approved</div>
+                    </div>
                     <div className="bg-blue-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-blue-800">
                         {events.filter(e => !!e.show_on_calendar).length}
@@ -382,52 +377,50 @@ const AdminPage = () => {
                       <div className="text-sm text-blue-600">On Calendar</div>
                     </div>
                   </div>
-                                  )}
-                
+                )}
+
                 {/* Filter Buttons */}
                 <div className="flex space-x-2 mb-6">
                   <button
                     onClick={() => setStatusFilter('all')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                      statusFilter === 'all' 
-                        ? 'bg-blue-600 text-white' 
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                      statusFilter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
                     All Events
                   </button>
-                                     <button
-                     onClick={() => setStatusFilter('needs_review')}
-                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                       statusFilter === 'needs_review' 
-                         ? 'bg-yellow-600 text-white' 
-                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                     }`}
-                   >
-                     Needs Review ({events.filter(e => !!e.record_needs_review && !e.record_passed_review).length})
-                   </button>
-                   <button
-                     onClick={() => setStatusFilter('changes_need_review')}
-                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                       statusFilter === 'changes_need_review' 
-                         ? 'bg-orange-600 text-white' 
-                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                     }`}
-                   >
-                     Updated Records ({events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length})
-                   </button>
-                                     <button
-                     onClick={() => setStatusFilter('approved')}
-                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
-                       statusFilter === 'approved' 
-                         ? 'bg-green-600 text-white' 
-                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                     }`}
-                   >
-                     Approved ({events.filter(e => !!e.record_passed_review && !e.record_needs_review).length})
-                   </button>
+                  <button
+                    onClick={() => setStatusFilter('needs_review')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      statusFilter === 'needs_review'
+                        ? 'bg-yellow-600 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    Needs Review ({events.filter(e => !!e.record_needs_review && !e.record_passed_review).length})
+                  </button>
+                  <button
+                    onClick={() => setStatusFilter('changes_need_review')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      statusFilter === 'changes_need_review'
+                        ? 'bg-orange-600 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    Updated Records ({events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length})
+                  </button>
+                  <button
+                    onClick={() => setStatusFilter('approved')}
+                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                      statusFilter === 'approved'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
+                  >
+                    Approved ({events.filter(e => !!e.record_passed_review && !e.record_needs_review).length})
+                  </button>
                 </div>
-                
+
                 {eventsLoading ? (
                   <div className="flex items-center justify-center h-32">
                     <div className="text-gray-600">Loading events...</div>
@@ -442,208 +435,219 @@ const AdminPage = () => {
                       const { didInfo, events: didEvents } = groupedData as GroupedEvents
                       const isEditing = editingDids.has(did)
                       const editValue = editValues[did]
-                      
-                      return (
-                      <div key={did} className="border border-gray-200 rounded-lg">
-                        {/* DID Header */}
-                        <div className="p-4 bg-gray-50">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center space-x-3 flex-1">
-                              <button
-                                onClick={() => toggleDidExpansion(did)}
-                                className="text-sm text-gray-500 hover:text-gray-700"
-                              >
-                                {expandedDids.has(did) ? '▼' : '▶'}
-                              </button>
-                              
-                              {isEditing ? (
-                                <div className="flex-1 space-y-2">
-                                  <div className="flex items-center space-x-2">
-                                    <label className="text-sm font-medium text-gray-700 min-w-[60px]">Alias:</label>
-                                    <input
-                                      type="text"
-                                      value={editValue?.alias || ''}
-                                      onChange={(e) => handleEditValueChange(did, 'alias', e.target.value)}
-                                      className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
-                                      placeholder="Enter alias"
-                                    />
-                                  </div>
-                                  <div className="flex items-center space-x-2">
-                                    <label className="text-sm font-medium text-gray-700 min-w-[60px]">Contact:</label>
-                                    <input
-                                      type="text"
-                                      value={editValue?.contact || ''}
-                                      onChange={(e) => handleEditValueChange(did, 'contact', e.target.value)}
-                                      className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
-                                      placeholder="Enter contact info"
-                                    />
-                                  </div>
-                                  <p className="text-xs text-gray-500">{did}</p>
-                                </div>
-                              ) : (
-                                <div>
-                                  <h3 className="font-medium text-gray-900">
-                                    {didInfo?.alias || did}
-                                  </h3>
-                                  <p className="text-sm text-gray-500">
-                                    {did} • {didEvents.length} event{didEvents.length !== 1 ? 's' : ''}
-                                  </p>
-                                  {didInfo?.contact && (
-                                    <p className="text-sm text-gray-600">Contact: {didInfo.contact}</p>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                            
-                            <div className="flex items-center space-x-2">
-                              {didInfo?.is_spammer && (
-                                <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">
-                                  Spammer
-                                </span>
-                              )}
-                              
-                              {isEditing ? (
-                                <div className="flex space-x-2">
-                                  <button
-                                    onClick={() => handleSaveDidInfo(did)}
-                                    className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
-                                  >
-                                    Save
-                                  </button>
-                                  <button
-                                    onClick={() => handleCancelDidEdit(did)}
-                                    className="px-3 py-1 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition-colors"
-                                  >
-                                    Cancel
-                                  </button>
-                                </div>
-                              ) : (
-                                <button
-                                  onClick={() => toggleDidEdit(did, didInfo)}
-                                  className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
-                                >
-                                  Edit
-                                </button>
-                              )}
-                            </div>
-                          </div>
-                        </div>
 
-                        {/* Events */}
-                        {expandedDids.has(did) && (
-                          <div className="divide-y divide-gray-100">
-                            {didEvents.map((event: any) => {
-                              const needsReview = !!event.record_needs_review
-                              const isApproved = !!event.record_passed_review
-                              const hasChanges = needsReview && isApproved // Both defined = approved but has changes
-                              const recordData = event.record_passed_review || event.record_needs_review
-                              
-                              return (
-                                <div key={event.id} className={`p-4 ml-6 ${hasChanges ? 'bg-orange-50 border-l-4 border-orange-400' : needsReview ? 'bg-yellow-50 border-l-4 border-yellow-400' : 'bg-white'}`}>
-                                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
-                                    <div className="lg:col-span-1 text-sm text-gray-500">
-                                      #{event.id}
+                      return (
+                        <div key={did} className="border border-gray-200 rounded-lg">
+                          {/* DID Header */}
+                          <div className="p-4 bg-gray-50">
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center space-x-3 flex-1">
+                                <button
+                                  onClick={() => toggleDidExpansion(did)}
+                                  className="text-sm text-gray-500 hover:text-gray-700"
+                                >
+                                  {expandedDids.has(did) ? '▼' : '▶'}
+                                </button>
+
+                                {isEditing ? (
+                                  <div className="flex-1 space-y-2">
+                                    <div className="flex items-center space-x-2">
+                                      <label className="text-sm font-medium text-gray-700 min-w-[60px]">Alias:</label>
+                                      <input
+                                        type="text"
+                                        value={editValue?.alias || ''}
+                                        onChange={e => handleEditValueChange(did, 'alias', e.target.value)}
+                                        className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
+                                        placeholder="Enter alias"
+                                      />
                                     </div>
-                                    
-                                    <div className="lg:col-span-2 text-sm text-gray-600">
-                                      {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
-                                      
-                                                                             {/* Status Badge */}
-                                       <div className="mt-1">
-                                         {hasChanges ? (
-                                           <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
-                                             Updated - Needs Review
-                                           </span>
-                                         ) : needsReview ? (
-                                           <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
-                                             Needs Review
-                                           </span>
-                                         ) : isApproved ? (
-                                           <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
-                                             ✓ Approved
-                                           </span>
-                                         ) : (
-                                           <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
-                                             No Data
-                                           </span>
-                                         )}
-                                       </div>
+                                    <div className="flex items-center space-x-2">
+                                      <label className="text-sm font-medium text-gray-700 min-w-[60px]">Contact:</label>
+                                      <input
+                                        type="text"
+                                        value={editValue?.contact || ''}
+                                        onChange={e => handleEditValueChange(did, 'contact', e.target.value)}
+                                        className="px-2 py-1 border border-gray-300 rounded text-sm flex-1"
+                                        placeholder="Enter contact info"
+                                      />
                                     </div>
-                                    
-                                                                         <div className="lg:col-span-5">
-                                       {hasChanges ? (
-                                         <div className="space-y-2">
-                                           <div className="bg-green-50 rounded-md p-3 max-h-32 overflow-y-auto">
-                                             <div className="text-xs font-medium text-green-800 mb-1">✓ Currently Live (Approved):</div>
-                                             <pre className="text-xs text-green-700 whitespace-pre-wrap break-words">
-                                               {JSON.stringify(event.record_passed_review, null, 2)}
-                                             </pre>
-                                           </div>
-                                           <div className="bg-orange-50 rounded-md p-3 max-h-32 overflow-y-auto">
-                                             <div className="text-xs font-medium text-orange-800 mb-1">📝 Latest Update (Needs Review):</div>
-                                             <pre className="text-xs text-orange-700 whitespace-pre-wrap break-words">
-                                               {JSON.stringify(event.record_needs_review, null, 2)}
-                                             </pre>
-                                           </div>
-                                         </div>
-                                       ) : (
-                                         <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
-                                           <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
-                                             {JSON.stringify(recordData, null, 2)}
-                                           </pre>
-                                         </div>
-                                       )}
-                                     </div>
-                                    
-                                    <div className="lg:col-span-4 space-y-2">
-                                                                                                                    {/* Review Actions */}
-                                       {needsReview && (
-                                         <div className="flex space-x-2 mb-2">
-                                           <button
-                                             onClick={() => handleApprove(event.id, event.record_needs_review)}
-                                             className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
-                                           >
-                                             {hasChanges ? 'Approve Changes' : 'Approve'}
-                                           </button>
-                                         </div>
-                                       )}
-                                      
-                                                                             {/* Calendar Toggle */}
-                                       <label className="inline-flex items-center">
-                                         <input
-                                           type="checkbox"
-                                           checked={!!event.show_on_calendar}
-                                           disabled={!isApproved}
-                                           onChange={(e) => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
-                                           className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
-                                         />
-                                         <span className={`ml-2 text-sm ${isApproved ? 'text-gray-600' : 'text-gray-400'}`}>
-                                           Show on Calendar
-                                         </span>
-                                       </label>
-                                       
-                                       {!isApproved && (
-                                         <p className="text-xs text-gray-500 mt-1">
-                                           {needsReview ? 'Approve record first' : 'No approved version available'}
-                                         </p>
-                                       )}
-                                       
-                                       {hasChanges && (
-                                         <p className="text-xs text-gray-500 mt-1">
-                                           ℹ️ Using currently approved version for calendar
-                                         </p>
-                                       )}
+                                    <p className="text-xs text-gray-500">{did}</p>
+                                  </div>
+                                ) : (
+                                  <div>
+                                    <h3 className="font-medium text-gray-900">{didInfo?.alias || did}</h3>
+                                    <p className="text-sm text-gray-500">
+                                      {did} • {didEvents.length} event{didEvents.length !== 1 ? 's' : ''}
+                                    </p>
+                                    {didInfo?.contact && (
+                                      <p className="text-sm text-gray-600">Contact: {didInfo.contact}</p>
+                                    )}
+                                  </div>
+                                )}
+                              </div>
+
+                              <div className="flex items-center space-x-2">
+                                {didInfo?.is_spammer && (
+                                  <span className="px-2 py-1 bg-red-100 text-red-800 text-xs rounded-full">
+                                    Spammer
+                                  </span>
+                                )}
+
+                                {isEditing ? (
+                                  <div className="flex space-x-2">
+                                    <button
+                                      onClick={() => handleSaveDidInfo(did)}
+                                      className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                                    >
+                                      Save
+                                    </button>
+                                    <button
+                                      onClick={() => handleCancelDidEdit(did)}
+                                      className="px-3 py-1 bg-gray-600 text-white text-sm rounded-md hover:bg-gray-700 transition-colors"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                ) : (
+                                  <button
+                                    onClick={() => toggleDidEdit(did, didInfo)}
+                                    className="px-3 py-1 bg-blue-600 text-white text-sm rounded-md hover:bg-blue-700 transition-colors"
+                                  >
+                                    Edit
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Events */}
+                          {expandedDids.has(did) && (
+                            <div className="divide-y divide-gray-100">
+                              {didEvents.map((event: any) => {
+                                const needsReview = !!event.record_needs_review
+                                const isApproved = !!event.record_passed_review
+                                const hasChanges = needsReview && isApproved // Both defined = approved but has changes
+                                const recordData = event.record_passed_review || event.record_needs_review
+
+                                return (
+                                  <div
+                                    key={event.id}
+                                    className={`p-4 ml-6 ${
+                                      hasChanges
+                                        ? 'bg-orange-50 border-l-4 border-orange-400'
+                                        : needsReview
+                                        ? 'bg-yellow-50 border-l-4 border-yellow-400'
+                                        : 'bg-white'
+                                    }`}
+                                  >
+                                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-start">
+                                      <div className="lg:col-span-1 text-sm text-gray-500">#{event.id}</div>
+
+                                      <div className="lg:col-span-2 text-sm text-gray-600">
+                                        {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
+
+                                        {/* Status Badge */}
+                                        <div className="mt-1">
+                                          {hasChanges ? (
+                                            <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
+                                              Updated - Needs Review
+                                            </span>
+                                          ) : needsReview ? (
+                                            <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
+                                              Needs Review
+                                            </span>
+                                          ) : isApproved ? (
+                                            <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
+                                              ✓ Approved
+                                            </span>
+                                          ) : (
+                                            <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                                              No Data
+                                            </span>
+                                          )}
+                                        </div>
+                                      </div>
+
+                                      <div className="lg:col-span-5">
+                                        {hasChanges ? (
+                                          <div className="space-y-2">
+                                            <div className="bg-green-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                                              <div className="text-xs font-medium text-green-800 mb-1">
+                                                ✓ Currently Live (Approved):
+                                              </div>
+                                              <pre className="text-xs text-green-700 whitespace-pre-wrap break-words">
+                                                {JSON.stringify(event.record_passed_review, null, 2)}
+                                              </pre>
+                                            </div>
+                                            <div className="bg-orange-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                                              <div className="text-xs font-medium text-orange-800 mb-1">
+                                                📝 Latest Update (Needs Review):
+                                              </div>
+                                              <pre className="text-xs text-orange-700 whitespace-pre-wrap break-words">
+                                                {JSON.stringify(event.record_needs_review, null, 2)}
+                                              </pre>
+                                            </div>
+                                          </div>
+                                        ) : (
+                                          <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
+                                            <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
+                                              {JSON.stringify(recordData, null, 2)}
+                                            </pre>
+                                          </div>
+                                        )}
+                                      </div>
+
+                                      <div className="lg:col-span-4 space-y-2">
+                                        {/* Review Actions */}
+                                        {needsReview && (
+                                          <div className="flex space-x-2 mb-2">
+                                            <button
+                                              onClick={() => handleApprove(event.id, event.record_needs_review)}
+                                              className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
+                                            >
+                                              {hasChanges ? 'Approve Changes' : 'Approve'}
+                                            </button>
+                                          </div>
+                                        )}
+
+                                        {/* Calendar Toggle */}
+                                        <label className="inline-flex items-center">
+                                          <input
+                                            type="checkbox"
+                                            checked={!!event.show_on_calendar}
+                                            disabled={!isApproved}
+                                            onChange={e => handleToggle(event.id, 'show_on_calendar', e.target.checked)}
+                                            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                          />
+                                          <span
+                                            className={`ml-2 text-sm ${isApproved ? 'text-gray-600' : 'text-gray-400'}`}
+                                          >
+                                            Show on Calendar
+                                          </span>
+                                        </label>
+
+                                        {!isApproved && (
+                                          <p className="text-xs text-gray-500 mt-1">
+                                            {needsReview ? 'Approve record first' : 'No approved version available'}
+                                          </p>
+                                        )}
+
+                                        {hasChanges && (
+                                          <p className="text-xs text-gray-500 mt-1">
+                                            ℹ️ Using currently approved version for calendar
+                                          </p>
+                                        )}
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        )}
-                       </div>
-                       )
-                     })}
-                   </div>
+                                )
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </div>
                 )}
               </div>
 
@@ -669,7 +673,7 @@ const AdminPage = () => {
                       type="email"
                       placeholder="Your email"
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={e => setEmail(e.target.value)}
                       required
                       className="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />

@@ -9,6 +9,14 @@ import path from 'path'
 // @ts-ignore ffjavascript does not have types
 import { getCurveFromName } from 'ffjavascript'
 import perksList from 'common/components/perks/perks-list'
+import { createClient } from '@supabase/supabase-js'
+
+const supabaseAdmin = createClient(process.env.SUPABASE_URL || '', process.env.SUPABASE_KEY || '', {
+  auth: {
+    autoRefreshToken: false,
+    persistSession: false,
+  },
+})
 
 const GPC_ARTIFACTS_PATH = path.join(process.cwd(), 'public/artifacts')
 
@@ -24,10 +32,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Proof ID is required' })
   }
 
-  const perks = perksList.filter(perk => perk.zupass_proof_id === proofId)
+  const { collection } = req.body
 
-  if (!perks.length) {
-    return res.status(400).json({ error: 'Perks not found for proof ID' })
+  if (!collection) {
+    return res.status(400).json({ error: 'Collection is required' })
+  }
+
+  const perk = perksList.find(perk => perk.zupass_proof_id === proofId && perk.coupon_collection === collection)
+
+  if (!perk) {
+    return res.status(400).json({ error: 'Perk not found for proof ID and collection' })
   }
 
   const serializedProofResult = JSON.stringify(req.body)
@@ -61,16 +75,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   //   console.log(result, 'result')
 
   if (result === true) {
-    // Generate coupon code based on the collection
-    const coupons = getCoupons(proofId, revealedClaims.owner?.nullifierHashV4?.toString() ?? '')
+    // Claim single coupon from Supabase based on the proof ID, collection, and nullifier
+    const nullifierHash = revealedClaims.owner?.nullifierHashV4?.toString() ?? ''
 
-    console.log(`Verified proof: ${proofId}`)
+    try {
+      const result = await claimSingleCoupon(proofId, collection, nullifierHash)
 
-    return res.status(200).json({
-      verified: true,
-      coupons,
-      ticket_type: proofId,
-    })
+      console.log(`Verified proof: ${proofId}, claimed coupon for collection: ${collection}`)
+
+      return res.status(200).json({
+        verified: true,
+        coupon: result.coupon,
+        coupon_status: result.status,
+        collection: collection,
+        ticket_type: proofId,
+      })
+    } catch (error) {
+      console.error('Error claiming coupon:', error)
+      return res.status(500).json({
+        verified: true,
+        error: 'Failed to claim coupon',
+        collection: collection,
+        ticket_type: proofId,
+      })
+    }
   }
 
   return res.status(400).json({
@@ -79,24 +107,83 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   })
 }
 
-// Mock database of coupons
-function getCoupons(proofId: string, nullifierHashV4: string) {
-  const coupons = perksList.filter(perk => perk.zupass_proof_id === proofId)
+// Claim single coupon from Supabase
+async function claimSingleCoupon(
+  proofId: string,
+  collection: string,
+  nullifierHash: string
+): Promise<{
+  coupon: string | null
+  status: { success: boolean; error?: string }
+}> {
+  // First, check if user already has claimed a coupon for this specific collection
+  const { data: existingCoupon, error: checkError } = await supabaseAdmin
+    .from('coupons')
+    .select('value')
+    .eq('zk_proof_id', proofId)
+    .eq('collection', collection)
+    .eq('claimed_by', nullifierHash)
+    .maybeSingle()
 
-  return coupons.reduce((lookup, perk) => {
-    lookup[perk.coupon_collection] = generateCouponCode(perk.coupon_collection)
-    return lookup
-  }, {} as Record<string, string>)
-}
+  if (checkError) {
+    throw new Error(`Failed to check existing coupon: ${checkError.message}`)
+  }
 
-function generateCouponCode(collection: string): string {
-  // Generate a unique coupon code based on collection and timestamp
-  const timestamp = Date.now().toString(36)
-  const collectionPrefix = collection
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, '')
-    .substring(0, 4)
-  const randomSuffix = Math.random().toString(36).substring(2, 8).toUpperCase()
+  // If user already has this coupon, return it
+  if (existingCoupon) {
+    return {
+      coupon: existingCoupon.value,
+      status: { success: true },
+    }
+  }
 
-  return `${collectionPrefix}-${timestamp}-${randomSuffix}`
+  // Otherwise, claim new coupon for this specific collection
+  const { data: availableCoupon, error: findError } = await supabaseAdmin
+    .from('coupons')
+    .select('id, value')
+    .eq('collection', collection)
+    .eq('zk_proof_id', proofId)
+    .is('claimed_by', null)
+    .order('created_at', { ascending: true })
+    .limit(1)
+    .maybeSingle()
+
+  if (findError) {
+    console.error(`Failed to find available coupon for collection ${collection}:`, findError)
+    return {
+      coupon: null,
+      status: { success: false, error: 'Database error occurred' },
+    }
+  }
+
+  if (!availableCoupon) {
+    console.warn(`No available coupons for collection: ${collection}`)
+    return {
+      coupon: null,
+      status: { success: false, error: 'All coupons claimed.' },
+    }
+  }
+
+  // Then, claim the specific coupon by ID
+  const { error: claimError } = await supabaseAdmin
+    .from('coupons')
+    .update({
+      claimed_by: nullifierHash,
+      claimed_date: new Date().toISOString(),
+    })
+    .eq('id', availableCoupon.id)
+    .is('claimed_by', null) // Double-check it's still available
+
+  if (claimError) {
+    console.error(`Failed to claim coupon ${availableCoupon.id}:`, claimError)
+    return {
+      coupon: null,
+      status: { success: false, error: 'Database error occurred' },
+    }
+  }
+
+  return {
+    coupon: availableCoupon.value,
+    status: { success: true },
+  }
 }
