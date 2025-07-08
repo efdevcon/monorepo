@@ -191,6 +191,7 @@ export default function Perks() {
           >
             {perksList.map((perk, index) => (
               <Perk
+                key={perk.name}
                 perk={perk}
                 devconCoupons={devconCoupons}
                 setDevconCoupons={setDevconCoupons}

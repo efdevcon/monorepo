@@ -47,7 +47,7 @@ const perks: Perk[] = [
 //     url: 'https://faucet.sepolia.devconnect.org',
 //   },
   {
-    coupon_collection: 'Devconnect ARG E-sim',
+    coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',
     description: 'Contact us to create your own perk offering.',
     // requires: 'Devconnect ticket',
