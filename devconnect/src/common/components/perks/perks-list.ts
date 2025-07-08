@@ -4,7 +4,20 @@ import CommunityImage from 'assets/images/ba/voxel-cards/community-events-image.
 import ETHDayImage from 'assets/images/ba/voxel-cards/eth-day-image.png'
 import WorldsFairImage from 'assets/images/ba/voxel-cards/worlds-fair-image.png'
 
-const perks = [
+type Perk = {
+  coupon_collection: string
+  name: string
+  description: string
+  requires?: string
+  issuer: string
+  image: any
+  zupass_proof_id?: string
+  external?: boolean
+  url?: string
+  anchor?: string
+}
+
+const perks: Perk[] = [
   {
     coupon_collection: 'devcon-sea-attendee',
     name: 'Devcon SEA Attendee Discount',
@@ -14,25 +27,25 @@ const perks = [
     image: DevconSeaAttendee,
     zupass_proof_id: 'Devcon SEA',
   },
-  {
-    coupon_collection: 'Devconnect ARG E-sim',
-    name: 'Devconnect ARG E-sim',
-    description: 'If you hold a Devconnect ticket, you can get a discount on an e-sim.',
-    requires: 'Devconnect ticket',
-    issuer: 'Devconnect Team',
-    image: CoworkingImage,
-    zupass_proof_id: 'Devconnect ARG',
-  },
-  {
-    coupon_collection: 'Sepolia Faucet',
-    name: 'Sepolia Faucet',
-    description: 'If you hold a Devconnect ticket, you can claim some free Sepolia ETH.',
-    requires: 'Devconnect ticket',
-    issuer: 'Devconnect Team',
-    image: CommunityImage,
-    external: true,
-    url: 'https://faucet.sepolia.devconnect.org',
-  },
+//   {
+//     coupon_collection: 'Devconnect ARG E-sim',
+//     name: 'Devconnect ARG E-sim',
+//     description: 'If you hold a Devconnect ticket, you can get a discount on an e-sim.',
+//     requires: 'Devconnect ticket',
+//     issuer: 'Devconnect Team',
+//     image: CoworkingImage,
+//     zupass_proof_id: 'Devconnect ARG',
+//   },
+//   {
+//     coupon_collection: 'Sepolia Faucet',
+//     name: 'Sepolia Faucet',
+//     description: 'If you hold a Devconnect ticket, you can claim some free Sepolia ETH.',
+//     requires: 'Devconnect ticket',
+//     issuer: 'Devconnect Team',
+//     image: CommunityImage,
+//     external: true,
+//     url: 'https://faucet.sepolia.devconnect.org',
+//   },
   {
     coupon_collection: 'Devconnect ARG E-sim',
     name: 'Create Your Own Perk',
@@ -40,6 +53,7 @@ const perks = [
     // requires: 'Devconnect ticket',
     issuer: 'YOUR BRAND',
     image: WorldsFairImage,
+    anchor: '#yourperk',
     // zupass_proof_id: 'Devconnect ARG',
   },
 ]
