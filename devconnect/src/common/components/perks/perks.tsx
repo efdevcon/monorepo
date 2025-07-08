@@ -381,6 +381,7 @@ const Perk = ({
               onClick={e => {
                 e.preventDefault()
                 if (!perk.anchor) return
+
                 const targetId = perk.anchor.startsWith('#') ? perk.anchor.slice(1) : perk.anchor
                 const targetElement = document.getElementById(targetId)
                 if (targetElement) {
