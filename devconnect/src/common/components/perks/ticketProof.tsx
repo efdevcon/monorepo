@@ -11,9 +11,10 @@ export function getDevconTicketProofRequest() {
       },
     ],
     fieldsToReveal: {
-      attendeeEmail: true,
-      attendeeName: true,
-      eventId: true,
+      // attendeeEmail: true,
+      // attendeeName: true,
+      // eventId: true,
+      ticketId: true,
     },
     externalNullifier: {
       type: 'string',
@@ -31,9 +32,10 @@ export function getDevconnectTicketProofRequest() {
       },
     ],
     fieldsToReveal: {
-      attendeeEmail: true,
-      attendeeName: true,
-      eventId: true,
+      // attendeeEmail: true,
+      // attendeeName: true,
+      // eventId: true,
+      ticketId: true,
     },
     externalNullifier: {
       type: 'string',

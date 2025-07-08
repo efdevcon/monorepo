@@ -72,11 +72,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     GPC_ARTIFACTS_PATH
   )
 
-  //   console.log(result, 'result')
-
   if (result === true) {
     // Claim single coupon from Supabase based on the proof ID, collection, and nullifier
-    const nullifierHash = revealedClaims.owner?.nullifierHashV4?.toString() ?? ''
+    // Note: this is no longer a nullifier hash, but a ticket ID, to allow for leniency in case someone resets their zupass account and gets a new nullifier
+    const nullifierHash = revealedClaims.pods.ticket?.entries?.ticketId.value?.toString() ?? '' // revealedClaims.owner?.nullifierHashV4?.toString() ?? ''
 
     try {
       const result = await claimSingleCoupon(proofId, collection, nullifierHash)

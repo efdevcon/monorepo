@@ -99,7 +99,7 @@ const Argentina = (props: any) => {
   return (
     <>
       <Header active fadeOutOnScroll />
-      <div className={cn('relative h-[24vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden')}>
+      <div className={cn('relative h-[28vh] w-full text-black bg-black flex flex-col justify-end overflow-hidden')}>
         <Image
           src={Voxel}
           alt="Voxel art background"

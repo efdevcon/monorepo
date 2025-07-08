@@ -1,15 +1,20 @@
 import React from 'react'
 import ShareIcon from 'assets/icons/share.svg'
+import { Copy } from 'lucide-react'
 import Tooltip from '../tooltip'
 
 type ShareProps = {
   url?: string
   onShare?: () => any
   children?: React.ReactNode
+  useCopyIcon?: boolean
+  copyIconSize?: number
 }
 
-export const CopyToClipboard = ({ url, onShare, children }: ShareProps) => {
+export const CopyToClipboard = ({ url, onShare, children, useCopyIcon = false, copyIconSize = 16 }: ShareProps) => {
   const [clicked, setClicked] = React.useState(false)
+
+  const defaultIcon = useCopyIcon ? <Copy size={copyIconSize} /> : <ShareIcon />
 
   return (
     // @ts-ignore
@@ -35,7 +40,7 @@ export const CopyToClipboard = ({ url, onShare, children }: ShareProps) => {
           }
         }}
       >
-        {children || <ShareIcon />}
+        {children || defaultIcon}
       </div>
     </Tooltip>
   )
