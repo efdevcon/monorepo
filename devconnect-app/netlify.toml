@@ -1,0 +1,7 @@
+[build]
+    ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect-app ../lib ; fi"
+    command = "yarn build"
+    publish = ".next"
+
+[[plugins]]
+    package = "@netlify/plugin-nextjs"
