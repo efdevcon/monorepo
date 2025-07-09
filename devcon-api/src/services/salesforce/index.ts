@@ -21,7 +21,10 @@ export const fetchFromSalesforce = async () => {
     // Query for PGR_Destino_Devconnect filtered leads
     // const query = encodeURIComponent(`SELECT FIELDS(ALL) FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`)
     const query = encodeURIComponent(
-      `SELECT Name, Id, LastModifiedDate, Sponsorship_Link__c, Target_Audience__c, Sponsorship_Details__c, Twitter_Handle__c, Type_of_Event__c, Sponsorship_Date__c, Event_Location__c FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' AND StageName = 'Awarded'`
+      `SELECT Name, Id, LastModifiedDate, Sponsorship_Link__c, Target_Audience__c, Sponsorship_Details__c, Twitter_Handle__c, Type_of_Event__c, Sponsorship_Date__c, Event_Location__c 
+   FROM Opportunity 
+   WHERE (Proactive_Community_Grants_Round__c = 'Destino Devconnect' AND StageName = 'Awarded') 
+      OR (Proactive_Community_Grants_Round__c = '10 Years of Ethereum Meet Ups' AND Region__c = 'Central & South America')`
     )
 
     const response = await fetch(`${instance_url}/services/data/v59.0/query?q=${query}`, {
