@@ -29,10 +29,10 @@ export default function Button({
   };
 
   const stateClasses = {
-    default: '',
-    hover: 'hover:opacity-90',
+    default: 'cursor-pointer',
+    hover: 'hover:opacity-90 cursor-pointer',
     active:
-      'active:transform active:translate-y-1 active:shadow-[0px_2px_0px_0px_rgba(18,81,129,1.00)]',
+      'active:transform active:translate-y-1 active:shadow-[0px_2px_0px_0px_rgba(18,81,129,1.00)] cursor-pointer',
     disabled: 'opacity-50 cursor-not-allowed',
   };
 

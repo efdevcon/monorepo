@@ -28,12 +28,18 @@ export default function HomePage() {
                 {account.address.slice(-4)}
               </p>
             </div>
-            <button
-              onClick={logout}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Logout
-            </button>
+            <div className="flex flex-col gap-2">
+              {/* Reown's built-in disconnect button */}
+              <w3m-button balance="hide" />
+
+              {/* Custom logout button */}
+              <button
+                onClick={logout}
+                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         ) : (
           <div className="space-y-4">

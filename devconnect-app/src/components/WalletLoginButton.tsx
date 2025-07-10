@@ -45,10 +45,10 @@ export function WalletLoginButton({ onError }: Props) {
         message = createSiweMessage({
           address: address,
           chainId: 1,
-          domain: 'app.devcon.org',
+          domain: 'app.devconnect.org',
           nonce: nonce,
           statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
-          uri: 'https://app.devcon.org/',
+          uri: 'https://app.devconnect.org/',
           version: '1',
         })
         
@@ -86,10 +86,10 @@ export function WalletLoginButton({ onError }: Props) {
   }
 
   const connectWeb3AndLogin = async () => {
-    if (!address) {
-      await open()
-    }
-    setLoginWeb3Trigger(Date.now())
+    // Always open the wallet selection modal first
+    await open();
+    // Then trigger the login process
+    setLoginWeb3Trigger(Date.now());
   }
 
   return (
