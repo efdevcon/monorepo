@@ -21,8 +21,9 @@ import PerksTextTop from './images/perks-text-top.png'
 import PerksTextBottom from './images/perks-text-bottom.png'
 import VerifiedSquares from './images/squares/verified.png'
 import { CopyToClipboard } from '../copy-to-clipboard/CopyToClipboard'
-import { Copy } from 'lucide-react'
+import { Copy, ArrowUpRight, Info } from 'lucide-react'
 import { motion } from 'framer-motion'
+import Tooltip from '../tooltip'
 
 // Animation variants for staggered animation
 const containerVariants = {
@@ -168,9 +169,25 @@ export default function Perks() {
           <motion.div variants={connectorVariants} initial="hidden" animate="visible">
             <div className={cn(css.connector, 'flex items-center w-[775px] max-w-[100%] mx-auto')}>
               <div className="p-5 flex justify-center items-center flex-wrap w-full gap-4 lg:gap-8 z-10">
-                <p className="">
-                  To check your Perk eligibility, connect your <b>Zupass account</b>
-                </p>
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-1.5">
+                    <div>
+                      To check your eligibility, connect your <b>Zupass account</b>
+                    </div>
+                    <Tooltip
+                      arrow={false}
+                      title="Zupass is a data wallet that allows you to prove possession of your ticket without revealing details about who you are."
+                      className="shrink-0 inline-flex items-center justify-center"
+                    >
+                      <div className="flex items-center justify-center shrink-0">
+                        <Info size={18} />
+                      </div>
+                    </Tooltip>{' '}
+                  </div>
+                  <p className="text-xs text-[#4B4B66]">
+                    Sign up/log in with the email you used to purchase your Devcon/nect ticket.
+                  </p>
+                </div>
                 <Toolbar />
               </div>
             </div>
@@ -337,99 +354,168 @@ const Perk = ({
     setDevconnectStatus,
   ])
 
+  const isCreateYourOwnPerk = !!perk.anchor
+  const isConnected = connectionState === ClientConnectionState.CONNECTED
+
   return (
-    <motion.div variants={itemVariants} className="border border-solid border-gray-700 flex flex-col">
-      <div className="flex flex-col gap-2 aspect-[316/278] relative">
+    <motion.div
+      variants={itemVariants}
+      className={cn('border border-solid border-gray-700 flex relative flex-col group/perk')}
+    >
+      <div
+        className={cn(
+          'absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover/perk:opacity-70 transition-opacity duration-500 z-10 flex items-center justify-center',
+          (isCreateYourOwnPerk || isConnected) && 'hidden'
+        )}
+      ></div>
+
+      <div
+        className={cn(
+          'absolute top-0 left-0 w-full h-full opacity-0 group-hover/perk:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center',
+          (isCreateYourOwnPerk || isConnected) && 'hidden'
+        )}
+      >
+        <div className="text-white text-center text-lg font-bold font-secondary mx-4">
+          Connect your Zupass to check your eligibility
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2 aspect-[316/250] relative">
         <Image src={perk.image} alt={perk.name} className="w-full object-cover h-full absolute top-0 left-0" />
         <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2>
         <p className="">{perk.description}</p>
-        <Image
-          src={NeutralSquares}
-          alt="Neutral Squares"
-          className="w-full object-cover h-auto absolute bottom-0 left-0 right-0 mb-[2.5px]"
-        />
-        {/* <Image
-          src={VerifiedSquares}
-          alt="Verified Squares"
-          className="w-full object-cover h-auto absolute top-0 left-0"
-        /> */}
+
+        {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
+          <div className="absolute top-4 left-4 ">
+            <div className="bg-gray-200 text-gray-800 text-xs px-2 py-1">Not Connected</div>
+          </div>
+        )}
+
+        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
+          <div className="absolute top-4 left-4 ">
+            <div className="bg-[#9BEFA0] text-green-800 text-xs px-2 py-1 font-bold border border-black border-solid">
+              Connected
+            </div>
+          </div>
+        )}
+
+        {perk.anchor && (
+          <div
+            className="absolute top-4 right-4 cursor-pointer"
+            onClick={() => {
+              if (!perk.anchor) return
+
+              const targetId = perk.anchor.startsWith('#') ? perk.anchor.slice(1) : perk.anchor
+              const targetElement = document.getElementById(targetId)
+              if (targetElement) {
+                targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start',
+                })
+              }
+            }}
+          >
+            <div className="bg-white text-gray-800 text-xs px-2 py-1 font-bold border border-black border-solid flex items-center gap-1">
+              Contact us
+              <ArrowUpRight size={13} />
+            </div>
+          </div>
+        )}
+
+        {!isCreateYourOwnPerk && connectionState === ClientConnectionState.CONNECTED ? (
+          <Image
+            src={VerifiedSquares}
+            alt="Verified Squares"
+            className="w-full object-cover h-auto absolute bottom-0 left-0 right-0 mb-[2.5px]"
+          />
+        ) : (
+          <Image
+            src={NeutralSquares}
+            alt="Neutral Squares"
+            className="w-full object-cover h-auto absolute bottom-0 left-0 right-0 mb-[2.5px]"
+          />
+        )}
+
+        {/* <div className="absolute left-auto right-auto bottom-2 w-full flex items-center justify-center">
+
+        </div> */}
       </div>
 
-      <div className="p-6 flex items-center text-center justify-center flex-col gap-2 relative bg-white grow">
+      <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow">
         {/* {perk.external && (
           <Button color="black-1" onClick={() => window.open(perk.url, '_blank')}>
             Claim Externally
           </Button>
         )} */}
 
-        <div className="flex flex-col items-center justify-center h-full gap-2">
+        <div className="flex flex-col items-center justify-center gap-2">
           <div className="text-sm text-[#4B4B66] tracking-widest font-secondary uppercase">{perk.issuer}</div>
 
           <div className="text-lg leading-tight font-bold">{perk.description}</div>
 
+          {/* {perk.anchor && (
+            <div className="text-sm text-[#4B4B66] mt-0.5">
+              <Button
+                color=""
+                size="sm"
+                onClick={(e: any) => {
+                  e.preventDefault()
+                  if (!perk.anchor) return
+
+                  const targetId = perk.anchor.startsWith('#') ? perk.anchor.slice(1) : perk.anchor
+                  const targetElement = document.getElementById(targetId)
+                  if (targetElement) {
+                    targetElement.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    })
+                  }
+                }}
+              >
+                More Info
+              </Button>
+            </div>
+          )} */}
+
+          {connectionState === ClientConnectionState.CONNECTED && (
+            <>
+              {!coupon && !couponStatus && !perk.external && (
+                <>
+                  {!perk.external && perk.zupass_proof_id && (
+                    <Button color="black-1" size="sm" className="my-0.5" onClick={requestCoupon}>
+                      Claim Coupon
+                    </Button>
+                  )}
+                </>
+              )}
+
+              {coupon && (
+                <div className="p-2 py-1.5 bg-green-100 border border-green-300 rounded text-green-800 text-sm flex items-center justify-center gap-2">
+                  <div>
+                    <strong>Coupon:</strong>&nbsp;{coupon}
+                  </div>
+
+                  <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
+                    <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center">
+                      <Copy size={14} />
+                    </div>
+                  </CopyToClipboard>
+                </div>
+              )}
+              {couponStatus && !couponStatus.success && (
+                <div className="p-2 bg-red-100 border border-red-300 rounded text-red-800 text-sm text-center">
+                  {couponStatus.error}
+                </div>
+              )}
+            </>
+          )}
+
           {perk.requires && (
-            <div className="text-sm text-[#4B4B66]">
+            <div className="text-xs text-[#4B4B66]">
               <b>Requires:</b> {perk.requires} POD
             </div>
           )}
         </div>
-
-        {perk.anchor && (
-          <div className="text-sm text-[#4B4B66]">
-            <a
-              href={perk.anchor}
-              className="text-sm text-[#4B4B66] hover:text-[#2A2A3A] transition-colors duration-200"
-              onClick={e => {
-                e.preventDefault()
-                if (!perk.anchor) return
-
-                const targetId = perk.anchor.startsWith('#') ? perk.anchor.slice(1) : perk.anchor
-                const targetElement = document.getElementById(targetId)
-                if (targetElement) {
-                  targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start',
-                  })
-                }
-              }}
-            >
-              Contact Us
-            </a>
-          </div>
-        )}
-
-        {connectionState === ClientConnectionState.CONNECTED && (
-          <>
-            {!coupon && !couponStatus && !perk.external && (
-              <>
-                {!perk.external && perk.zupass_proof_id && (
-                  <Button color="black-1" onClick={requestCoupon}>
-                    Claim Coupon
-                  </Button>
-                )}
-              </>
-            )}
-
-            {coupon && (
-              <div className="p-2 bg-green-100 border border-green-300 rounded text-green-800 text-sm flex items-center justify-center gap-2">
-                <div>
-                  <strong>Coupon:</strong>&nbsp;{coupon}
-                </div>
-
-                <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
-                  <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center">
-                    <Copy size={14} />
-                  </div>
-                </CopyToClipboard>
-              </div>
-            )}
-            {couponStatus && !couponStatus.success && (
-              <div className="p-2 bg-red-100 border border-red-300 rounded text-red-800 text-sm text-center">
-                {couponStatus.error}
-              </div>
-            )}
-          </>
-        )}
       </div>
     </motion.div>
   )

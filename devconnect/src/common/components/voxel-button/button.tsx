@@ -4,16 +4,18 @@ import Link from 'next/link'
 const Button = ({ color, fill, disabled, fat, ...props }: any) => {
   const computedColor = (() => {
     // TODO: add more colors
-    if (color === 'blue-1') return 'border-[#125181] bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)]'
+    if (color === 'blue-1') return 'border-[#125181] bg-[#1B6FAE] text-white hover:bg-[rgba(60,138,197,1)]'
+    if (color === 'white-1') return 'border-gray-300 bg-white text-black hover:bg-gray-50'
 
-    return 'border-[#125181] bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)]'
+    return 'border-[#125181] bg-[#1B6FAE] text-white hover:bg-[rgba(60,138,197,1)]'
   })()
 
   // TODO: implement sizes
   const size = (() => {
     if (fat) return 'px-4 py-2'
+    if (props.size === 'sm') return 'px-4 py-1 text-sm'
 
-    return 'px-2 py-1'
+    return 'px-8 py-2'
   })()
 
   return (
@@ -21,7 +23,8 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       {...props}
       className={cn(
         computedColor,
-        'border-solid border-b-[6px] group px-8 py-2 text-[white] text-lg transition-colors hover:border-opacity-0 flex items-center justify-center',
+        'border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:border-opacity-0 flex items-center justify-center',
+        size,
         props.className
       )}
     >
