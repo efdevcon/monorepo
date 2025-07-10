@@ -24,6 +24,7 @@ import { CopyToClipboard } from '../copy-to-clipboard/CopyToClipboard'
 import { Copy, ArrowUpRight, Info } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Tooltip from '../tooltip'
+import InfiniteScroller from 'lib/components/infinite-scroll'
 
 // Animation variants for staggered animation
 const containerVariants = {
@@ -145,11 +146,13 @@ export default function Perks() {
   return (
     <>
       <div className="section py-8 pt-10 relative">
-        <Image
-          src={PerksTextTop}
-          alt="Perks Text Top"
-          className="w-auto object-cover h-auto absolute top-0 left-0 expand"
-        />
+        <InfiniteScroller>
+          <Image
+            src={PerksTextTop}
+            alt="Perks Text Top"
+            className="w-auto object-cover h-auto absolute top-0 left-0 expand"
+          />
+        </InfiniteScroller>
         <Image
           src={PerksTextBottom}
           alt="Perks Text Bottom"
