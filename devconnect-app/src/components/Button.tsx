@@ -7,6 +7,8 @@ interface ButtonProps {
   state?: 'default' | 'hover' | 'active' | 'disabled';
   onClick?: () => void;
   className?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props?: any;
 }
 
 export default function Button({
@@ -16,6 +18,7 @@ export default function Button({
   state = 'default',
   onClick,
   className = '',
+  props,
 }: ButtonProps) {
   const baseClasses =
     'self-stretch p-4 rounded-[1px] inline-flex justify-center items-center gap-2';
@@ -44,6 +47,7 @@ export default function Button({
       className={`${baseClasses} ${typeClasses[type]} ${stateClasses[state]} ${className}`}
       onClick={onClick}
       disabled={state === 'disabled'}
+      {...props}
     >
       <div className={textClasses}>{children}</div>
     </button>

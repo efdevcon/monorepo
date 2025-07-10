@@ -1,29 +1,56 @@
-import Image from 'next/image';
+'use client';
 
-import Button from '@/components/Button';
+import { useAccountContext } from '@/context/account-context';
+import WalletLoginButton from '@/components/WalletLoginButton';
 
-export default function Home() {
+export default function HomePage() {
+  const { account, loading, logout } = useAccountContext();
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white text-xl">Loading...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <div>
-          <div
-            className="w-80 px-6 pt-6 pb-7 rounded-[1px] shadow-[0px_8px_0px_0px_rgba(54,54,76,1.00)] outline outline-1 outline-offset-[-0.50px] outline-white inline-flex flex-col justify-center items-center gap-4"
-            style={{
-              background: 'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF'
-            }}
-          >
-            <div className="self-stretch flex flex-col justify-start items-start gap-3">
-              <Image src="/images/devonnect-arg-pathfinder.png" alt="Logo" width={240} height={240} />
-              <div className="self-stretch justify-start text-gray-700 text-lg font-normal font-['Roboto'] leading-relaxed">
-                Your companion for Devconnect ARG, the first Ethereum World’s
-                Fair.
-              </div>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="bg-black/50 backdrop-blur-sm p-8 rounded-lg text-white max-w-md w-full">
+        <h1 className="text-2xl font-bold mb-6 text-center">Devconnect App</h1>
+
+        {account ? (
+          <div className="space-y-4">
+            <div className="text-center">
+              <p className="text-lg mb-2">Welcome!</p>
+              <p className="text-sm text-gray-300 mb-4">
+                Connected: {account.address.slice(0, 6)}...
+                {account.address.slice(-4)}
+              </p>
             </div>
-            <Button type="Primary">Get started</Button>
+            <button
+              onClick={logout}
+              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Logout
+            </button>
           </div>
-        </div>
-      </main>
+        ) : (
+          <div className="space-y-4">
+            <p className="text-center text-gray-300 mb-4">
+              Connect your wallet to get started
+            </p>
+            <WalletLoginButton
+              onError={(error) => {
+                if (error && error.trim() !== '') {
+                  console.error('Login error:', error);
+                  alert(error);
+                }
+              }}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

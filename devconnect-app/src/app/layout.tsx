@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { Web3Provider } from '@/context/web3';
+import { AccountContextProvider } from '@/context/account-context-provider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -15,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Devconnect App',
   description:
-    'Your companion for Devconnect ARG, the first Ethereum World’s Fair.',
+    "Your companion for Devconnect ARG, the first Ethereum World's Fair.",
 };
 
 export default function RootLayout({
@@ -34,7 +36,9 @@ export default function RootLayout({
           backgroundRepeat: 'no-repeat',
         }}
       >
-          {children}
+        <Web3Provider>
+          <AccountContextProvider>{children}</AccountContextProvider>
+        </Web3Provider>
       </body>
     </html>
   );
