@@ -430,6 +430,7 @@ const Perk = ({
             <div className="flex flex-col gap-2">
               {perk.urls.map(url => (
                 <Link
+                  key={url.url}
                   href={url.url}
                   className="bg-white text-gray-800 text-sm px-2 py-1 self-end font-bold border border-black border-solid flex items-center gap-1 transform hover:bg-gray-100 transition-colors duration-300 will-change-transform will-transform"
                 >
