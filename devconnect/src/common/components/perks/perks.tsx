@@ -21,9 +21,10 @@ import PerksTextTop from './images/perks-text-top.png'
 import PerksTextBottom from './images/perks-text-bottom.png'
 import VerifiedSquares from './images/squares/verified.png'
 import { CopyToClipboard } from '../copy-to-clipboard/CopyToClipboard'
-import { Copy, ArrowUpRight, Info } from 'lucide-react'
+import { Copy, ArrowUpRight, ArrowDown, Info } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Tooltip from '../tooltip'
+import Link from 'common/components/link'
 import InfiniteScroller from 'lib/components/infinite-scroll'
 
 // Animation variants for staggered animation
@@ -145,19 +146,17 @@ export default function Perks() {
 
   return (
     <>
-      <div className="section py-8 pt-10 relative">
-        <InfiniteScroller>
-          <Image
-            src={PerksTextTop}
-            alt="Perks Text Top"
-            className="w-auto object-cover h-auto absolute top-0 left-0 expand"
-          />
-        </InfiniteScroller>
-        <Image
-          src={PerksTextBottom}
-          alt="Perks Text Bottom"
-          className="w-auto object-cover h-auto absolute bottom-0 right-0 expand"
-        />
+      <div className="section pb-0 pt-10 relative">
+        <div className="absolute top-1 left-0 w-full h-full expand">
+          <InfiniteScroller nDuplications={10} speed="75s">
+            <Image src={PerksTextTop} alt="Perks Text Top" className="block w-[250px] object-cover h-auto mr-8" />
+          </InfiniteScroller>
+        </div>
+        <div className="absolute bottom-2 right-0 w-full  expand">
+          <InfiniteScroller nDuplications={10} reverse speed="75s">
+            <Image src={PerksTextBottom} alt="Perks Text Bottom" className="block w-[250px] object-cover h-auto mr-8" />
+          </InfiniteScroller>
+        </div>
         <ParcnetClientProvider
           zapp={{
             name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
@@ -172,17 +171,17 @@ export default function Perks() {
           <motion.div variants={connectorVariants} initial="hidden" animate="visible">
             <div className={cn(css.connector, 'flex items-center w-[775px] max-w-[100%] mx-auto')}>
               <div className="p-5 flex justify-center items-center flex-wrap w-full gap-4 lg:gap-8 z-10">
-                <div className="flex flex-col gap-0.5">
-                  <div className="flex items-center gap-1.5">
+                <div className="flex flex-col gap-2 md:gap-0.5 text-center md:text-left">
+                  <div className="flex items-center gap-1.5 ">
                     <div>
                       To check your eligibility, connect your <b>Zupass account</b>
                     </div>
                     <Tooltip
                       arrow={false}
                       title="Zupass is a data wallet that allows you to prove possession of your ticket without revealing details about who you are."
-                      className="shrink-0 inline-flex items-center justify-center"
+                      className="shrink-0 inline-flex items-center justify-center hidden md:flex"
                     >
-                      <div className="flex items-center justify-center shrink-0">
+                      <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
                         <Info size={18} />
                       </div>
                     </Tooltip>{' '}
@@ -231,9 +230,9 @@ export default function Perks() {
         </ParcnetClientProvider>
       </div>
       <div className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C]')} id="yourperk">
-        <div className={cn(css['bottom-section'], 'section py-24')}>
+        <div className={cn(css['bottom-section'], 'section py-16')}>
           <motion.div
-            className="grid grid-cols-[60%_40%] gap-4 max-w-[1000px] mx-auto z-10"
+            className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-4 max-w-[1000px] mx-auto z-10"
             variants={bottomSectionVariants}
             initial="hidden"
             whileInView="visible"
@@ -253,7 +252,7 @@ export default function Perks() {
               </p>
               <Button className="self-start mt-3">Complete Notion Form</Button>
             </motion.div>
-            <motion.div className="flex justify-center items-center" variants={rightColumnVariants}>
+            <motion.div className="justify-center hidden md:flex items-center" variants={rightColumnVariants}>
               <Image src={EthGlyphGif} alt="Ethereum Glyph" width={200} height={200} />
             </motion.div>
           </motion.div>
@@ -358,6 +357,7 @@ const Perk = ({
   ])
 
   const isCreateYourOwnPerk = !!perk.anchor
+  const isExternalPerk = !!perk.external
   const isConnected = connectionState === ClientConnectionState.CONNECTED
 
   return (
@@ -368,14 +368,14 @@ const Perk = ({
       <div
         className={cn(
           'absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover/perk:opacity-70 transition-opacity duration-500 z-10 flex items-center justify-center',
-          (isCreateYourOwnPerk || isConnected) && 'hidden'
+          (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
         )}
       ></div>
 
       <div
         className={cn(
           'absolute top-0 left-0 w-full h-full opacity-0 group-hover/perk:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center',
-          (isCreateYourOwnPerk || isConnected) && 'hidden'
+          (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
         )}
       >
         <div className="text-white text-center text-lg font-bold font-secondary mx-4">
@@ -388,15 +388,15 @@ const Perk = ({
         <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2>
         <p className="">{perk.description}</p>
 
-        {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
+        {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
           <div className="absolute top-4 left-4 ">
-            <div className="bg-gray-200 text-gray-800 text-xs px-2 py-1">Not Connected</div>
+            <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1">Not Connected</div>
           </div>
         )}
 
-        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
+        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
           <div className="absolute top-4 left-4 ">
-            <div className="bg-[#9BEFA0] text-green-800 text-xs px-2 py-1 font-bold border border-black border-solid">
+            <div className="bg-[#9BEFA0] text-gray-800 text-sm px-2 py-1 font-bold border border-black border-solid">
               Connected
             </div>
           </div>
@@ -418,14 +418,32 @@ const Perk = ({
               }
             }}
           >
-            <div className="bg-white text-gray-800 text-xs px-2 py-1 font-bold border border-black border-solid flex items-center gap-1">
+            <div className="bg-white text-gray-800 text-sm px-2 py-1 font-bold border border-black border-solid flex items-center gap-1 transform hover:bg-gray-100 transition-colors duration-300 will-change-transform will-transform">
               Contact us
-              <ArrowUpRight size={13} />
+              <ArrowDown size={13} />
             </div>
           </div>
         )}
 
-        {!isCreateYourOwnPerk && connectionState === ClientConnectionState.CONNECTED ? (
+        {perk.urls && (
+          <div className="absolute top-4 right-4 cursor-pointer">
+            <div className="flex flex-col gap-2">
+              {perk.urls.map(url => (
+                <Link
+                  href={url.url}
+                  className="bg-white text-gray-800 text-sm px-2 py-1 self-end font-bold border border-black border-solid flex items-center gap-1 transform hover:bg-gray-100 transition-colors duration-300 will-change-transform will-transform"
+                >
+                  <div className="flex items-center gap-1">
+                    {url.text}
+                    <ArrowUpRight size={16} />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!isCreateYourOwnPerk && !isExternalPerk && connectionState === ClientConnectionState.CONNECTED ? (
           <Image
             src={VerifiedSquares}
             alt="Verified Squares"
