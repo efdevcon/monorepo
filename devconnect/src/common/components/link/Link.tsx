@@ -72,11 +72,13 @@ const WrappedLink = React.forwardRef(
     // One caveat to this approach is that you could link to a devcon.org page via a FQDN, and it would be detected as external:
     // Make sure to always use relative links for internal navigation
     const isExternal = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/)
+    // HACK: allow tickets.devconnect.org to be internal to avoid breaking ticket funnel
+    const isSubdomain = href.startsWith('https://tickets.devconnect.org')
 
     // External links have no use of next Link component
     if (isExternal) {
       return (
-        <a href={href} ref={ref} {...linkAttributes} target="_blank" rel="noopener noreferrer">
+        <a href={href} ref={ref} {...linkAttributes} target={isSubdomain ? undefined : '_blank'} rel="noopener noreferrer">
           <span className={cn(css['link'], spanClass)} data-type="link-text">
             {children}
           </span>
