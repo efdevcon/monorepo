@@ -26,6 +26,7 @@ import { motion } from 'framer-motion'
 import Tooltip from '../tooltip'
 import Link from 'common/components/link'
 import InfiniteScroller from 'lib/components/infinite-scroll'
+import ZupassPodViewer from './ZupassPodViewer'
 
 // Animation variants for staggered animation
 const containerVariants = {
@@ -157,6 +158,7 @@ export default function Perks() {
             <Image src={PerksTextBottom} alt="Perks Text Bottom" className="block w-[250px] object-cover h-auto mr-8" />
           </InfiniteScroller>
         </div>
+        <ZupassPodViewer />
         <ParcnetClientProvider
           zapp={{
             name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
