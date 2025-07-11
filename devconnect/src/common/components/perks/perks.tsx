@@ -162,7 +162,7 @@ export default function Perks() {
             name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
             permissions: {
               // update permissions based on what you want to collect and prove
-              REQUEST_PROOF: { collections: ['Devcon SEA'] }, // Update this to the collection name you want to use
+              REQUEST_PROOF: { collections: ['Devcon SEA', 'Devconnect ARG'] }, // Update this to the collection name you want to use
               READ_PUBLIC_IDENTIFIERS: {},
             },
           }}
@@ -534,7 +534,7 @@ const Perk = ({
 
           {perk.requires && (
             <div className="text-xs text-[#4B4B66]">
-              <b>Requires:</b> {perk.requires} POD
+              <b>Requires:</b> {perk.requires}
             </div>
           )}
         </div>
