@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion'
+import cn from 'classnames'
 
 interface PodTicket {
   attendeeName?: string;
@@ -47,6 +49,46 @@ interface ZupassPodViewerProps {
   podData?: PodData | string;
   className?: string;
 }
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.25, 0.1, 0.25, 1],
+      delay: 0.1,
+    },
+  },
+};
 
 const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = '' }) => {
   const [pod, setPod] = useState<PodData | null>(null);
@@ -104,14 +146,14 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
 
   const formatBoolean = (value: boolean): JSX.Element => {
     return (
-      <span className={`inline-block px-2 py-1 rounded text-sm font-semibold ${
-        value 
-          ? 'bg-green-100 text-green-800' 
-          : 'bg-red-100 text-red-800'
-      }`}>
+      <span
+        className={`inline-block px-2 py-1 rounded text-sm font-semibold ${
+          value ? 'bg-[#9BEFA0] text-gray-800 border border-black border-solid' : 'bg-gray-200 text-gray-800'
+        }`}
+      >
         {value ? 'Yes' : 'No'}
       </span>
-    );
+    )
   };
 
   const formatField = (label: string, value: any, isId = false): JSX.Element => {
@@ -136,19 +178,19 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
       }
       displayValue = (
         <div className="text-center my-5">
-          <img 
-            src={imageUrl} 
-            alt={label} 
-            className="max-w-full h-auto rounded-lg shadow-lg my-4" 
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
+          <img
+            src={imageUrl}
+            alt={label}
+            className="max-w-full h-auto rounded-lg shadow-lg my-4"
+            onError={e => {
+              const target = e.target as HTMLImageElement
+              target.style.display = 'none'
             }}
           />
-          <div className="mt-2 text-sm text-gray-600">
-            <a 
-              href={imageUrl} 
-              target="_blank" 
+          <div className="mt-2 text-sm text-[#4B4B66]">
+            <a
+              href={imageUrl}
+              target="_blank"
               rel="noopener noreferrer"
               className="text-blue-600 hover:text-blue-800 underline"
             >
@@ -156,19 +198,15 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
             </a>
           </div>
         </div>
-      );
+      )
     }
     
     return (
       <div className="flex mb-3 items-start" key={label}>
-        <div className="font-semibold text-gray-600 min-w-[200px] flex-shrink-0">
-          {label}:
-        </div>
-        <div className="text-gray-800 break-all flex-1">
-          {displayValue}
-        </div>
+        <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0">{label}:</div>
+        <div className="text-gray-800 break-all flex-1">{displayValue}</div>
       </div>
-    );
+    )
   };
 
   const renderSection = (title: string, data: Record<string, any>): JSX.Element | null => {
@@ -189,13 +227,17 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
     }
     
     return (
-      <div className="mb-6 p-5 border border-gray-200 rounded-lg bg-gray-50" key={title}>
-        <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-blue-500">
+      <motion.div
+        variants={itemVariants}
+        className="mb-6 p-5 border border-gray-200 rounded-lg bg-white shadow-sm"
+        key={title}
+      >
+        <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-[#C6E1F9] font-secondary">
           {title}
         </h2>
         {fields}
-      </div>
-    );
+      </motion.div>
+    )
   };
 
   const downloadPod = (): void => {
@@ -268,102 +310,130 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
 
   if (error) {
     return (
-      <div className={`max-w-4xl mx-auto p-5 bg-gray-100 ${className}`}>
-        <div className="bg-white rounded-xl p-8 shadow-md">
-          <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
+      <motion.div
+        className={cn('max-w-4xl mx-auto p-5', className)}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="bg-white rounded-xl p-8 shadow-md border border-gray-200" variants={itemVariants}>
+          <motion.h1
+            className="text-4xl font-bold text-gray-800 text-center mb-8 font-secondary"
+            variants={titleVariants}
+          >
             🎫 Zupass POD Viewer
-          </h1>
-          <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">Error</h2>
+          </motion.h1>
+          <motion.div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg" variants={itemVariants}>
+            <h2 className="text-xl font-semibold mb-2 font-secondary">Error</h2>
             <p className="mb-3">{error}</p>
             {error.includes('URL-encoded') && (
               <p className="mb-3">
-                Use <code className="bg-gray-100 px-2 py-1 rounded">encodeURIComponent(JSON.stringify(podObject))</code> before adding to URL.
+                Use <code className="bg-gray-100 px-2 py-1 rounded">encodeURIComponent(JSON.stringify(podObject))</code>{' '}
+                before adding to URL.
               </p>
             )}
-            <div className="mt-4">
-              <button 
-                onClick={showExample} 
-                className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer relative z-10"
+            <motion.div className="mt-4" variants={itemVariants}>
+              <button
+                onClick={showExample}
+                className="inline-block bg-[#9BEFA0] hover:bg-[#8BDF90] text-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer border border-black border-solid transform hover:scale-105 transition-transform duration-300"
                 type="button"
               >
                 🎫 View Demo
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    )
   }
 
   if (!pod) {
     return (
-      <div className={`max-w-4xl mx-auto p-5 bg-gray-100 ${className}`}>
-        <div className="bg-white rounded-xl p-8 shadow-md">
-          <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
+      <motion.div
+        className={cn('max-w-4xl mx-auto p-5', className)}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div className="bg-white rounded-xl p-8 shadow-md border border-gray-200" variants={itemVariants}>
+          <motion.h1
+            className="text-4xl font-bold text-gray-800 text-center mb-8 font-secondary"
+            variants={titleVariants}
+          >
             🎫 Zupass POD Viewer
-          </h1>
-          <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg">
-            <h2 className="text-xl font-semibold mb-2">No POD Data Found</h2>
+          </motion.h1>
+          <motion.div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg" variants={itemVariants}>
+            <h2 className="text-xl font-semibold mb-2 font-secondary">No POD Data Found</h2>
             <p className="mb-3">Please provide a POD object as a prop or URL parameter.</p>
             <p className="mb-3">Example: ?pod={encodeURIComponent('{"id":"...","claim":{...}}')}</p>
             <p className="mb-3 font-semibold">Note: The JSON must be URL-encoded when passed as a parameter.</p>
-            <div className="mt-4">
-              <button 
-                onClick={showExample} 
-                className="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer relative z-10"
+            <motion.div className="mt-4" variants={itemVariants}>
+              <button
+                onClick={showExample}
+                className="inline-block bg-[#9BEFA0] hover:bg-[#8BDF90] text-gray-800 px-6 py-3 rounded-lg font-semibold transition-colors cursor-pointer border border-black border-solid transform hover:scale-105 transition-transform duration-300"
                 type="button"
               >
                 🎫 View Demo
               </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    )
   }
 
   return (
-    <div className={`max-w-4xl mx-auto p-5 bg-gray-100 ${className}`}>
-      <div className="bg-white rounded-xl p-8 shadow-md">
-        <h1 className="text-4xl font-bold text-gray-800 text-center mb-8">
+    <motion.div
+      className={cn('max-w-4xl mx-auto p-5', className)}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div className="bg-white rounded-xl p-8 shadow-md border border-gray-200" variants={itemVariants}>
+        <motion.h1
+          className="text-4xl font-bold text-gray-800 text-center mb-8 font-secondary"
+          variants={titleVariants}
+        >
           🎫 Zupass POD Viewer
-        </h1>
-        
-        <div>
+        </motion.h1>
+
+        <motion.div variants={containerVariants}>
           {/* POD ID */}
           {pod.id && (
-            <div className="mb-6 p-5 border border-gray-200 rounded-lg bg-gray-50">
-              <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-blue-500">
+            <motion.div
+              variants={itemVariants}
+              className="mb-6 p-5 border border-gray-200 rounded-lg bg-white shadow-sm"
+            >
+              <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-[#C6E1F9] font-secondary">
                 POD Information
               </h2>
               {formatField('POD ID', pod.id, true)}
               {formatField('Type', pod.type || 'N/A')}
-            </div>
+            </motion.div>
           )}
-          
+
           {/* Claim section (excluding nested objects) */}
           {pod.claim && renderSection('Claim Information', pod.claim)}
-          
+
           {/* Ticket details (nested in claim) */}
           {pod.claim && pod.claim.ticket && renderSection('Ticket Details', pod.claim.ticket)}
-          
+
           {/* Proof section */}
           {pod.proof && renderSection('Proof', pod.proof)}
-          
+
           {/* Download button */}
-          <div className="text-center mt-8 relative z-20">
-            <button 
-              onClick={downloadPod} 
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors relative z-20"
+          <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
+            <button
+              onClick={downloadPod}
+              className="inline-block bg-[#C6E1F9] hover:bg-[#B6D1E9] text-[#36364C] px-6 py-3 rounded-lg font-semibold transition-colors border border-black border-solid transform hover:scale-105 transition-transform duration-300 relative z-20"
             >
               📥 Download POD as JSON
             </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
+  )
 };
 
 export default ZupassPodViewer; 
