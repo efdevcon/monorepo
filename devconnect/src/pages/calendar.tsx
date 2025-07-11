@@ -189,7 +189,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     database_id: '1f5638cdc41580be9117f4963f021d8b',
     sorts: [
       {
-        property: 'Required event date',
+        property: 'Requested event date',
         direction: 'ascending',
       },
       // {
@@ -200,7 +200,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     filter: {
       and: [
         {
-          property: 'Required event date',
+          property: 'Requested event date',
           date: {
             is_not_empty: true,
           },
@@ -216,7 +216,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
   }
 
   let notionEvents: any = { results: [] }
-  
+
   try {
     notionEvents = await notion.databases.query(query as any)
   } catch (error) {
@@ -261,12 +261,12 @@ export interface Event {
 
     const timeblocks = []
 
-    if (formattedEvent['Required event date']) {
-      let startDate = moment.utc(formattedEvent['Required event date'].startDate)
+    if (formattedEvent['Requested event date']) {
+      let startDate = moment.utc(formattedEvent['Requested event date'].startDate)
       let endDate
 
-      if (formattedEvent['Required event date'].endDate) {
-        endDate = moment.utc(formattedEvent['Required event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
+      if (formattedEvent['Requested event date'].endDate) {
+        endDate = moment.utc(formattedEvent['Requested event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
       } else {
         endDate = startDate.format('YYYY-MM-DDTHH:mm:ss[Z]')
       }
@@ -282,7 +282,7 @@ export interface Event {
       name: formattedEvent['Event name'] || '',
       description: formattedEvent['Description'] || '',
       capacity: formattedEvent['Capacity'] || '',
-      startDate: formattedEvent['Required event date'],
+      startDate: formattedEvent['Requested event date'],
       // size: formattedEvent['Size'],
       location: formattedEvent['Location'] || { text: 'TBD', url: '' },
       timeblocks: timeblocks,
