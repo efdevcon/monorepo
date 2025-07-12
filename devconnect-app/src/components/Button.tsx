@@ -2,9 +2,9 @@ import React from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
-  type?: 'Primary' | 'Secondary';
+  type?: 'Primary' | 'Secondary' | 'Text';
   icon?: boolean;
-  state?: 'default' | 'hover' | 'active' | 'disabled';
+  disabled?: boolean;
   onClick?: () => void;
   className?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,41 +15,55 @@ export default function Button({
   children,
   type = 'Primary',
   icon = false,
-  state = 'default',
+  disabled = false,
   onClick,
   className = '',
   props,
 }: ButtonProps) {
   const baseClasses =
-    'self-stretch p-4 rounded-[1px] inline-flex justify-center items-center gap-2';
+    'px-8 py-4 rounded-[1px] inline-flex justify-center items-center gap-2 font-bold text-base transition-all duration-150 cursor-pointer focus:outline-none';
 
   const typeClasses = {
-    Primary: 'bg-sky-700 shadow-[0px_6px_0px_0px_rgba(18,81,129,1.00)]',
-    Secondary: 'bg-gray-500 shadow-[0px_6px_0px_0px_rgba(75,85,99,1.00)]',
-  };
-
-  const stateClasses = {
-    default: 'cursor-pointer',
-    hover: 'hover:opacity-90 cursor-pointer',
-    active:
-      'active:transform active:translate-y-1 active:shadow-[0px_2px_0px_0px_rgba(18,81,129,1.00)] cursor-pointer',
-    disabled: 'opacity-50 cursor-not-allowed',
+    Primary: `
+      bg-[#1b6fae] text-white shadow-[0px_6px_0px_0px_rgba(18,81,129,1.00)]
+      hover:bg-[#3c8ac5] 
+      active:bg-[#1b6fae] active:shadow-[0px_3px_0px_0px_rgba(11,54,87,1.00)] active:translate-y-[3px] active:ring-0
+      focus:ring-[3px] focus:ring-[#36364c]
+      disabled:bg-gray-300 disabled:text-gray-500 disabled:shadow-none disabled:cursor-not-allowed
+    `,
+    Secondary: `
+      bg-white text-[#36364c] shadow-[0px_6px_0px_0px_rgba(75,75,102,1.00)] outline outline-1 outline-offset-[-1px] outline-[#4b4b66]
+      hover:bg-[#e3f1ff] 
+      active:bg-white active:shadow-[0px_3px_0px_0px_rgba(43,43,63,1.00)] active:translate-y-[3px] active:ring-0
+      focus:ring-[3px] focus:ring-[#36364c]
+      disabled:bg-gray-100 disabled:text-gray-400 disabled:shadow-none disabled:cursor-not-allowed
+    `,
+    Text: `
+      bg-transparent text-[#1b6fae]
+      hover:text-[#3b8cc9] 
+      active:text-[#0b3657] active:ring-0
+      focus:ring-[3px] focus:ring-[#36364c] focus:rounded-sm
+      disabled:text-gray-400 disabled:cursor-not-allowed
+    `,
   };
 
   const textClasses =
-    "text-center justify-start text-white text-base font-bold font-['Roboto'] leading-none";
+    type === 'Text' ? 'leading-normal' : 'leading-none text-center';
 
   return (
     <button
       data-icon={icon}
-      data-state={state}
       data-type={type}
-      className={`${baseClasses} ${typeClasses[type]} ${stateClasses[state]} ${className}`}
+      className={`${baseClasses} ${typeClasses[type]} ${className}`}
       onClick={onClick}
-      disabled={state === 'disabled'}
+      disabled={disabled}
+      style={{
+        fontFamily: 'Roboto',
+        fontWeight: 'bold',
+      }}
       {...props}
     >
-      <div className={textClasses}>{children}</div>
+      <div className={`justify-start ${textClasses}`}>{children}</div>
     </button>
   );
 }

@@ -95,15 +95,16 @@ export function WalletLoginButton({ onError }: Props) {
   return (
     <Button
       className="w-full plain mt-4"
+      type="Primary"
       onClick={() => {
         setTimeout(() => {
-          connectWeb3AndLogin()
-        }, 0)
+          connectWeb3AndLogin();
+        }, 0);
       }}
     >
       {state || 'Continue With Ethereum'}
     </Button>
-  )
+  );
 }
 
 export default WalletLoginButton
