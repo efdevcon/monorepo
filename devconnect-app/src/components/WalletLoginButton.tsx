@@ -29,18 +29,21 @@ export function WalletLoginButton({ onError }: Props) {
   const { account, loginWeb3 } = useAccountContext()
   const [state, setState] = useState('')
   const [loginWeb3Trigger, setLoginWeb3Trigger] = useState(0)
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     async function loginWithWallet() {
       if (!address || loginWeb3Trigger === 0) {
-        return
+        return;
       }
 
-      const nonce = generateNonce()
-      let message = ''
+      const nonce = generateNonce();
+      let message = '';
 
       try {
-        setState('Sign Message')
+        setState('Sign Message');
+        setLoading(true);
 
         message = createSiweMessage({
           address: address,
@@ -50,57 +53,76 @@ export function WalletLoginButton({ onError }: Props) {
           statement: `Sign this message to prove you have access to this wallet. This won't cost you anything.`,
           uri: 'https://app.devconnect.org/',
           version: '1',
-        })
-        
-        console.log('Created SIWE message:', message)
-        
-        const signature = await signMessageAsync({ message })
-        console.log('Signature received:', signature)
-        
+        });
+
+        console.log('Created SIWE message:', message);
+
+        const signature = await signMessageAsync({ message });
+        console.log('Signature received:', signature);
+
         // Just save the address locally, skip API call
-        const result = await loginWeb3(address)
-        console.log('Login result:', result)
-        
+        const result = await loginWeb3(address);
+        console.log('Login result:', result);
+
         // Clear any previous errors since login was successful
-        onError?.('')
-        
+        onError?.('');
+        setSuccess(true);
+        setTimeout(() => setSuccess(false), 1500);
       } catch (error) {
-        console.error('Login error details:', error)
+        console.error('Login error details:', error);
         if (error instanceof Error) {
-          onError?.(`Login failed: ${error.message}`)
+          onError?.(`Login failed: ${error.message}`);
         } else {
-          onError?.('Unable to sign message')
+          onError?.('Unable to sign message');
         }
       } finally {
-        setState('')
+        setState('');
+        setLoading(false);
       }
     }
 
     if (address && loginWeb3Trigger > 0) {
-      loginWithWallet()
+      loginWithWallet();
     }
-  }, [address, loginWeb3Trigger, loginWeb3, signMessageAsync, onError])
+  }, [address, loginWeb3Trigger, loginWeb3, signMessageAsync, onError]);
 
   if (account) {
-    return null
+    return null;
   }
+
+  if (loading)
+    return (
+      <Button className="w-full plain mt-4" type="Primary" disabled>
+        Signing in...
+      </Button>
+    );
+
+  if (success)
+    return (
+      <Button className="w-full plain mt-4" type="Primary" disabled>
+        Signed in!
+      </Button>
+    );
 
   const connectWeb3AndLogin = async () => {
     // Always open the wallet selection modal first
     await open();
     // Then trigger the login process
     setLoginWeb3Trigger(Date.now());
-  }
+  };
 
   return (
     <Button
       className="w-full plain mt-4"
       type="Primary"
       onClick={() => {
-        setTimeout(() => {
-          connectWeb3AndLogin();
-        }, 0);
+        if (!loading) {
+          setTimeout(() => {
+            connectWeb3AndLogin();
+          }, 0);
+        }
       }}
+      disabled={loading}
     >
       {state || 'Continue With Ethereum'}
     </Button>

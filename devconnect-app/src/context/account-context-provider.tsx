@@ -3,18 +3,23 @@
 import React, { ReactNode, useEffect, useState } from 'react'
 import { AccountContext, AccountContextType, UserAccount } from './account-context'
 import { useAppKit, useDisconnect } from '@reown/appkit/react';
+import { useAccount } from 'wagmi';
 
 interface AccountContextProviderProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const ACCOUNT_STORAGE_KEY = 'devconnect_account';
 
-export const AccountContextProvider = ({ children }: AccountContextProviderProps) => {
-  const { close } = useAppKit()
+export const AccountContextProvider = ({
+  children,
+}: AccountContextProviderProps) => {
+  const { close } = useAppKit();
   const { disconnect } = useDisconnect();
   const [loading, setLoading] = useState(true);
   const [account, setAccount] = useState<UserAccount | null>(null);
+  const { address, isConnected } = useAccount();
+  const wasConnected = React.useRef(false);
 
   // Load account from localStorage on mount
   useEffect(() => {
@@ -31,6 +36,26 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    // If wallet is connected and SIWE account exists, but addresses don't match, clear SIWE state
+    if (
+      isConnected &&
+      account &&
+      address &&
+      account.address.toLowerCase() !== address.toLowerCase()
+    ) {
+      logout();
+    }
+    // If wallet was previously connected and is now disconnected, clear SIWE state
+    if (wasConnected.current && !isConnected && account) {
+      logout();
+      wasConnected.current = false;
+    }
+    if (isConnected) {
+      wasConnected.current = true;
+    }
+  }, [isConnected, account, address, logout]);
 
   async function loginWeb3(address: string): Promise<UserAccount | null> {
     try {
@@ -53,8 +78,8 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       console.log('Account state updated successfully');
       return userAccount;
     } catch (error) {
-      console.error('Login failed:', error)
-      throw error // Re-throw to let the component handle it
+      console.error('Login failed:', error);
+      throw error; // Re-throw to let the component handle it
     }
   }
 
@@ -103,13 +128,13 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       console.log('Logout completed successfully');
       return true;
     } catch (error) {
-      console.error('Logout failed:', error)
+      console.error('Logout failed:', error);
       // Even if there's an error, we should still clear the state
       localStorage.removeItem(ACCOUNT_STORAGE_KEY);
-      setAccount(null)
-      setLoading(false)
+      setAccount(null);
+      setLoading(false);
     }
-    return false
+    return false;
   }
 
   async function getAccount(): Promise<UserAccount | null> {
@@ -127,12 +152,12 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
       setLoading(false);
       return null;
     } catch (error) {
-      console.error('Get account failed:', error)
+      console.error('Get account failed:', error);
     }
 
-    setAccount(null)
-    setLoading(false)
-    return null
+    setAccount(null);
+    setLoading(false);
+    return null;
   }
 
   const contextValue: AccountContextType = {
@@ -141,11 +166,11 @@ export const AccountContextProvider = ({ children }: AccountContextProviderProps
     loginWeb3,
     logout,
     getAccount,
-  }
+  };
 
   return (
     <AccountContext.Provider value={contextValue}>
       {children}
     </AccountContext.Provider>
-  )
-}
+  );
+};
