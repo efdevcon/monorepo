@@ -64,6 +64,31 @@ async function saveCursor(cursor: string) {
   }
 }
 
+async function deleteEvent(event: any) {
+  try {
+    console.log("Deleting record:", event);
+
+    const { error } = await supabase
+      .from("atproto_records")
+      .delete()
+      .eq("rkey", event.rkey)
+      .eq("created_by", event.did);
+
+    if (error) {
+      console.error("Error deleting record:", error);
+      return { error };
+    }
+
+    console.log(
+      `Successfully deleted record for DID: ${event.did}, rkey: ${event.rkey}`
+    );
+    return { success: true };
+  } catch (error) {
+    console.error("Unexpected error in deleteEvent:", error);
+    return { error };
+  }
+}
+
 async function saveEvent(event: any) {
   try {
     // First, ensure DID exists in the new atproto_dids table
@@ -197,7 +222,11 @@ async function startFirehose() {
         // console.log("Message received:", message);
 
         // const now = Date.now();
-        // if (now - lastLogTime >= 30000) {
+        // if (
+        //   now - lastLogTime >= 30000 &&
+        //   message.kind === "commit" &&
+        //   message.commit.operation === "delete"
+        // ) {
         //   // Check if 30 seconds have passed
         //   console.log("Message received:", {
         //     timestamp: new Date().toISOString(),
@@ -222,30 +251,43 @@ async function startFirehose() {
               console.log(message, "message.commit.record");
 
               try {
-                const { valid, error } = await validateRecord(
-                  message.commit.record
-                );
+                if (message.commit.operation === "delete") {
+                  console.log("Deleting record:", message.commit.record);
 
-                if (!valid) {
-                  console.error("Invalid event:", message.commit.record);
-                  console.error("Error:", error);
-                  return;
-                }
+                  const result = await deleteEvent({
+                    rkey: message.commit.rkey,
+                    did: message.did,
+                  });
 
-                const result = (await saveEvent({
-                  rkey: message.commit.rkey,
-                  rev: message.commit.rev,
-                  record: message.commit.record,
-                  lexicon: message.commit.collection,
-                  record_needs_review: message.commit.record,
-                  cursor: message.time_us || null,
-                  message: message,
-                  did: message.did,
-                })) as any;
+                  if (result && result.error) {
+                    console.error("Error deleting event:", result.error);
+                  }
+                } else {
+                  const { valid, error } = await validateRecord(
+                    message.commit.record
+                  );
 
-                if (result && result.error) {
-                  console.error("Error saving event:", result.error);
-                  throw new Error(result.error.message);
+                  if (!valid) {
+                    console.error("Invalid event:", message.commit.record);
+                    console.error("Error:", error);
+                    return;
+                  }
+
+                  const result = (await saveEvent({
+                    rkey: message.commit.rkey,
+                    rev: message.commit.rev,
+                    record: message.commit.record,
+                    lexicon: message.commit.collection,
+                    record_needs_review: message.commit.record,
+                    cursor: message.time_us || null,
+                    message: message,
+                    did: message.did,
+                  })) as any;
+
+                  if (result && result.error) {
+                    console.error("Error saving event:", result.error);
+                    throw new Error(result.error.message);
+                  }
                 }
 
                 await saveCursor(message.time_us);
