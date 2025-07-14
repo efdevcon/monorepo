@@ -8,7 +8,7 @@
     "build": "tinacms build && cd ../lib && yarn && cd ../atproto-slurper/slurper && yarn && cd ../../devconnect && next build",
     "start": "next start",
     "ai-content-sync": "ts-node src/ai/sync-vector-store",
-    "ai-translations": "ts-node src/ai/translate",
+    "ai-translations": "ts-node src/ai/translate.ts",
     "lint": "next lint"
   },
   "dependencies": {
