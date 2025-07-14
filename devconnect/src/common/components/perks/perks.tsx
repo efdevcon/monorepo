@@ -158,7 +158,7 @@ export default function Perks() {
             <Image src={PerksTextBottom} alt="Perks Text Bottom" className="block w-[250px] object-cover h-auto mr-8" />
           </InfiniteScroller>
         </div>
-        <ZupassPodViewer />
+
         <ParcnetClientProvider
           zapp={{
             name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
@@ -296,6 +296,8 @@ const Perk = ({
     if (connectionState !== ClientConnectionState.CONNECTED) return
 
     const req = isDevconProof ? getDevconTicketProofRequest() : getDevconnectTicketProofRequest()
+
+    console.log('requestCoupon', req, perk.zupass_proof_id)
 
     const res = await z.gpc.prove({
       request: req.schema,

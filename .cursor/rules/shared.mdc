@@ -1,12 +1,20 @@
 ---
-description: 
-globs: 
+description:
+globs:
 ---
+
+General guidelines:
+
+- Plan and confirm with the user before executing
+- Stay focused. Do not "go rogue", if you want to fix things that weren't asked, ask the user first.
+
 TypeScript Conventions:
+
 - Use interfaces over types when possible
 - Avoid enums, use const objects instead
 
 Code Style:
+
 - Use functional programming patterns
 - Avoid side effects where possible
 - Use small, reusable pure functions
