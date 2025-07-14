@@ -26,7 +26,9 @@ import { motion } from 'framer-motion'
 import Tooltip from '../tooltip'
 import Link from 'common/components/link'
 import InfiniteScroller from 'lib/components/infinite-scroll'
-import ZupassPodViewer from './ZupassPodViewer'
+import RichText from 'lib/components/tina-cms/RichText'
+import { CMSButtons } from 'common/components/voxel-button/button'
+import { useTina } from 'tinacms/dist/react'
 
 // Animation variants for staggered animation
 const containerVariants = {
@@ -132,7 +134,9 @@ const rightColumnVariants = {
   },
 }
 
-export default function Perks() {
+export default function Perks(props: any) {
+  const { data }: { data: any } = useTina(props.content)
+
   const [mounted, setMounted] = useState(false)
   const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>({})
   const [devconnectCoupons, setDevconnectCoupons] = useState<Record<string, string>>({})
@@ -176,11 +180,11 @@ export default function Perks() {
                 <div className="flex flex-col gap-2 md:gap-0.5 text-center md:text-left">
                   <div className="flex items-center gap-1.5 ">
                     <div>
-                      To check your eligibility, connect your <b>Zupass account</b>
+                      <RichText content={data.pages.perks_explainer} />
                     </div>
                     <Tooltip
                       arrow={false}
-                      title="Zupass is a data wallet that allows you to prove possession of your ticket without revealing details about who you are."
+                      title={data.pages.zupass_explainer}
                       className="shrink-0 inline-flex items-center justify-center hidden md:flex"
                     >
                       <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
@@ -189,7 +193,7 @@ export default function Perks() {
                     </Tooltip>{' '}
                   </div>
                   <p className="text-xs text-[#4B4B66]">
-                    Sign up/log in with the email you used to purchase your Devcon/nect ticket.
+                    <RichText content={data.pages.perks_explainer_2} />
                   </p>
                 </div>
                 <Toolbar />
@@ -232,7 +236,7 @@ export default function Perks() {
         </ParcnetClientProvider>
       </div>
       <div className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C]')} id="yourperk">
-        <div className={cn(css['bottom-section'], 'section py-16')}>
+        <div className={cn(css['bottom-section'], 'section py-10 md:py-24')}>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-4 max-w-[1000px] mx-auto z-10"
             variants={bottomSectionVariants}
@@ -241,18 +245,7 @@ export default function Perks() {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.div className="flex flex-col justify-center items-center gap-3" variants={leftColumnVariants}>
-              <p className="text-3xl font-secondary font-bold mb-3">
-                Got an incredible offer for attendees of Devconnect Argentina?
-              </p>
-              <p className="text-base/7">
-                Get your brand in front of an audience of 15K+ by offering a perk for those attending Devconnect
-                Argentina.
-              </p>
-              <p className="text-base/7">
-                The ticket ownership proving process is permissionless and ensures fair and equal distribution of your
-                offer to real humans only.
-              </p>
-              <Button className="self-start mt-3">Complete Notion Form</Button>
+              <RichText content={data.pages.perks_create_your_own_perk} Buttons={CMSButtons} />
             </motion.div>
             <motion.div className="justify-center hidden md:flex items-center" variants={rightColumnVariants}>
               <Image src={EthGlyphGif} alt="Ethereum Glyph" width={200} height={200} />
@@ -394,7 +387,9 @@ const Perk = ({
 
         {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
           <div className="absolute top-4 left-4 ">
-            <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1">Not Connected</div>
+            <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1 border border-black border-solid font-bold">
+              Not Connected
+            </div>
           </div>
         )}
 
@@ -436,7 +431,7 @@ const Perk = ({
                 <Link
                   key={url.url}
                   href={url.url}
-                  className="bg-white text-gray-800 text-sm px-2 py-1 self-end font-bold border border-black border-solid flex items-center gap-1 transform hover:bg-gray-100 transition-colors duration-300 will-change-transform will-transform"
+                  className="bg-[#1B6FAE] text-white text-sm px-2 py-1 self-end font-bold border border-black border-solid flex items-center gap-1 transform transition-colors duration-300 will-change-transform will-transform"
                 >
                   <div className="flex items-center gap-1">
                     {url.text}

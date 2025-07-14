@@ -3,6 +3,7 @@ import index from './templates/index'
 import pastEditions from './templates/past-editions'
 import destinoDevconnect from './templates/destino-devconnect'
 import calendar from './templates/calendar'
+import perks from './templates/perks'
 // Your hosting provider likely exposes this as an environment variable
 const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
@@ -37,7 +38,7 @@ const pagesConfig = {
   label: 'Pages',
   path: 'cms/pages',
   format: 'mdx',
-  templates: [index, pastEditions, destinoDevconnect, calendar],
+  templates: [index, pastEditions, destinoDevconnect, calendar, perks],
   ui: {
     router: ({ document }: { document: any }) => {
       const filename = document._sys.filename

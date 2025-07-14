@@ -13,8 +13,6 @@ import moment from 'moment'
 import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
-import Link from 'common/components/link'
-import { Button } from 'lib/components/button'
 import { CMSButtons } from 'common/components/voxel-button/button'
 
 const Argentina = (props: any) => {

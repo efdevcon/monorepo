@@ -1,19 +1,14 @@
 import React from 'react'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
-import { useTina } from 'tinacms/dist/react'
 import Image from 'next/image'
 import styles from './calendar.module.scss'
 import cn from 'classnames'
-// import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-car.jpg'
-import RichText from 'lib/components/tina-cms/RichText'
 import Perks from 'common/components/perks/perks'
 import PageTitle from 'assets/images/perks-voxel.png'
 
 const PerksPage = (props: any) => {
-  // const { data }: { data: any } = useTina(props.content)
-
   return (
     <>
       <Header active fadeOutOnScroll keepMenuOnScroll />
@@ -35,7 +30,7 @@ const PerksPage = (props: any) => {
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
 
-      <Perks />
+      <Perks content={props.content} />
 
       <Footer />
     </>
@@ -43,8 +38,8 @@ const PerksPage = (props: any) => {
 }
 
 export async function getStaticProps({ locale }: { locale: string }) {
-  // const path = locale === 'en' ? 'perks.mdx' : locale + '/perks.mdx'
-  // const content = await client.queries.pages({ relativePath: path })
+  const path = locale === 'en' ? 'perks.mdx' : locale + '/perks.mdx'
+  const content = await client.queries.pages({ relativePath: path })
   const translationPath = locale === 'en' ? 'global.json' : locale + '/global.json'
   const translations = await client.queries.global_translations({ relativePath: translationPath })
 
@@ -52,7 +47,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
     props: {
       translations,
       locale,
-      // content
+      content,
     },
   }
 }
