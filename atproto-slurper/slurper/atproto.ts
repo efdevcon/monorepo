@@ -11,7 +11,12 @@ const dids = [
 ];
 
 const api = (() => {
-  const createEventBluesky = async (username: string, password: string) => {
+  const createEventBluesky = async (
+    username: string,
+    password: string,
+    eventData: any,
+    rkey?: string
+  ) => {
     try {
       // Initialize the agent with Bluesky PDS service
       const agent = new BskyAgent({
@@ -25,22 +30,15 @@ const api = (() => {
       }
 
       // This is your event
-      const record = {
-        title: "Example Devconnect Event",
-        start: "2026-01-01T00:00:00Z",
-        end: "2026-01-02T00:00:00Z",
-        description: "This is an example Devcon/nect event",
-        location: "Devcon/nect",
-        url: "https://devconnect.org",
-      };
+      const record = eventData;
 
       const result = await agent.api.com.atproto.repo.putRecord({
         repo: agent.session.did,
         // Your record must adhere to this schema:
-        collection: "org.devcon.event.test",
+        collection: "org.devcon.event",
         // Record key - this is effectively the id of your record - it can be whatever you want, as long as it's unique per event
         // Sidenote: to update the record, you can use the same rkey and it will update the existing record.
-        rkey: record.title.toLowerCase().replace(/ /g, "-"),
+        rkey: rkey || record.title.toLowerCase().replace(/ /g, "-"),
         record,
       });
 
@@ -268,6 +266,7 @@ const api = (() => {
   };
 
   return {
+    createEventBluesky,
     addSchema: async () => {
       const result = await addSchema(
         "https://bsky.social",

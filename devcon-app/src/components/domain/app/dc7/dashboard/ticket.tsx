@@ -44,7 +44,7 @@ const SwagCard = ({ title, qr, image, className }: SwagCardProps) => {
         setQRVisible(!QRVisible)
       }}
       className={cn(
-        'rounded-2xl shrink-0 bg-white border border-solid border-[#E4E6EB] rounded-2xl overflow-hidden group relative cursor-pointer',
+        'shrink-0 bg-white border border-solid border-[#E4E6EB] rounded-2xl overflow-hidden group relative cursor-pointer',
         className
       )}
     >
@@ -73,7 +73,7 @@ const SwagCard = ({ title, qr, image, className }: SwagCardProps) => {
           alt={title}
           className="aspect-[4/2.5] w-full object-cover group-hover:scale-105 transition-all duration-500 cursor-pointer"
         />
-        <div className="flex flex justify-between items-center p-3 gap-2 bg-white relative">
+        <div className="flex justify-between items-center p-3 gap-2 bg-white relative">
           <p className="font-semibold text-sm  text-[#28262EB2]">{title}</p>
           <QRIcon className="icon text-xl shrink-0" style={{ '--color-icon': '#28262EB2' }} />
         </div>

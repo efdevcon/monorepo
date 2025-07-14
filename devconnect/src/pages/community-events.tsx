@@ -12,6 +12,9 @@ import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
 import { Agent } from '@atproto/api'
+import Button from 'common/components/voxel-button/button'
+import { schema } from 'atproto-slurper/slurper/schema'
+import { supabase } from 'common/supabaseClient'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -139,71 +142,89 @@ const CommunityEvents = () => {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [isClient, setIsClient] = useState(false)
-  const [formData, setFormData] = useState<EventFormData>({
-    start_utc: '',
-    end_utc: '',
-    title: '',
-    description: '',
-    main_url: '',
-    organizer: {
-      name: '',
-      contact: '',
-    },
-    location: {
-      name: '',
-      address: '',
-    },
-    event_type: '',
-    expertise: 'all welcome',
-    timeslots: [],
-    image_url: '',
-    requires_ticket: false,
-    sold_out: false,
-    capacity: undefined,
-    categories: [],
-    search_tags: [],
-    socials: {
-      x_url: '',
-      farcaster_url: '',
-      discord_url: '',
-      telegram_url: '',
-      youtube_url: '',
-      github_url: '',
-      bluesky_url: '',
-      lens_url: '',
-    },
-  })
+  // Supabase auth state
+  const [supabaseUser, setSupabaseUser] = useState<any>(null)
+  const [magicLinkMessage, setMagicLinkMessage] = useState('')
+  const [formData, setFormData] = useState<EventFormData>(
+    process.env.NODE_ENV === 'development'
+      ? {
+          start_utc: '2024-12-15T10:00:00Z',
+          end_utc: '2024-12-15T18:00:00Z',
+          title: 'Test Web3 Workshop',
+          description:
+            'An interactive workshop exploring the latest developments in Web3 technology, smart contracts, and decentralized applications. Perfect for developers looking to expand their blockchain knowledge.',
+          main_url: 'https://example.com/test-workshop',
+          organizer: {
+            name: 'Test Organizer',
+            contact: 'test@example.com',
+          },
+          location: {
+            name: 'Innovation Hub Buenos Aires',
+            address: '123 Test Street, Buenos Aires, Argentina',
+          },
+          event_type: 'workshop',
+          expertise: 'intermediate',
+          timeslots: [],
+          image_url: 'https://example.com/workshop-image.png',
+          requires_ticket: false,
+          sold_out: false,
+          capacity: 50,
+          categories: ['devex', 'protocol'],
+          search_tags: ['web3', 'blockchain', 'ethereum', 'smart-contracts'],
+          socials: {
+            x_url: 'https://twitter.com/testorganizer',
+            farcaster_url: '',
+            discord_url: 'https://discord.gg/testweb3',
+            telegram_url: '',
+            youtube_url: '',
+            github_url: 'https://github.com/testorganizer',
+            bluesky_url: '',
+            lens_url: '',
+          },
+        }
+      : {
+          start_utc: '',
+          end_utc: '',
+          title: '',
+          description: '',
+          main_url: '',
+          organizer: {
+            name: '',
+            contact: '',
+          },
+          location: {
+            name: '',
+            address: '',
+          },
+          event_type: '',
+          expertise: 'all welcome',
+          timeslots: [],
+          image_url: '',
+          requires_ticket: false,
+          sold_out: false,
+          capacity: undefined,
+          categories: [],
+          search_tags: [],
+          socials: {
+            x_url: '',
+            farcaster_url: '',
+            discord_url: '',
+            telegram_url: '',
+            youtube_url: '',
+            github_url: '',
+            bluesky_url: '',
+            lens_url: '',
+          },
+        }
+  )
 
   const [showOptionalSections, setShowOptionalSections] = useState({
     optional: false,
   })
 
-  const expertiseLevels = ['all welcome', 'beginner', 'intermediate', 'expert', 'other']
-  const eventTypes = [
-    'talks',
-    'discussion',
-    'presentation',
-    'hackathon',
-    'workshop',
-    'panel',
-    'mixed format',
-    'social',
-    'other',
-  ]
-  const eventCategories = [
-    'real world ethereum',
-    'defi',
-    'cypherpunk & privacy',
-    'security',
-    'ai',
-    'protocol',
-    'devex',
-    'usability',
-    'applied cryptography',
-    'coordination',
-    'scalability',
-    'other',
-  ]
+  const eventTypes = schema.defs.main.record.properties.event_type.enum
+  const expertiseLevels = schema.defs.main.record.properties.expertise.enum
+  const eventCategories = schema.defs.main.record.properties.categories.items.enum
 
   // Helper functions for datetime conversion
   const formatDateTimeForInput = (isoString: string): string => {
@@ -343,26 +364,133 @@ const CommunityEvents = () => {
       return
     }
 
-    const { success: oauthSuccess, error: oauthError } = await createEventWithOAuth(cleanedData, oauthSession)
+    // Use OAuth session if available, otherwise this would be a Supabase-only submission
+    if (oauthSession) {
+      const { success: oauthSuccess, error: oauthError } = await createEventWithOAuth(cleanedData, oauthSession)
 
-    if (!oauthSuccess) {
-      toast.error(oauthError as string)
+      if (!oauthSuccess) {
+        toast.error(oauthError as string)
+        return
+      }
+    } else {
+      const url =
+        process.env.NODE_ENV === 'development'
+          ? 'http://localhost:4000/event/create'
+          : 'https://at-slurper.onrender.com/event/create'
 
-      return
+      let token = typeof window !== 'undefined' ? localStorage.getItem('sb-mealmslwugsqqyoesrxd-auth-token') : null
+
+      if (token) {
+        token = JSON.parse(token).access_token
+      }
+
+      if (!token) {
+        toast.error('Authentication error.')
+
+        return
+      }
+
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(cleanedData),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        toast.success('Event submitted successfully!')
+        console.log('Event submitted:', data)
+      } else {
+        toast.error('Event submission failed:', data)
+        console.error('Event submission failed:', data)
+
+        return
+      }
     }
 
     setSuccess('Event submitted! Check console for data.')
   }
 
-  const showForm = oauthSession && userProfile
+  // Check if user is authenticated (either method)
+  const isAuthenticated = !!(oauthSession || supabaseUser)
+  const currentUserProfile =
+    userProfile ||
+    (supabaseUser
+      ? {
+          handle: '',
+          email: supabaseUser.email,
+          displayName: supabaseUser.email,
+        }
+      : null)
+  const showForm = isAuthenticated && currentUserProfile
   const eventPublished = !!success
+
+  // Magic link authentication
+  const startMagicLink = useCallback(async () => {
+    try {
+      setIsAuthenticating(true)
+      setError('')
+      setMagicLinkMessage('')
+
+      // Get email from user input
+      const email = prompt('Enter your email address:')
+      if (!email) {
+        setIsAuthenticating(false)
+        return
+      }
+
+      // Send magic link
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: {
+          emailRedirectTo: `${window.location.origin}/community-events`,
+        },
+      })
+
+      if (error) {
+        setError('Failed to send magic link: ' + error.message)
+      } else {
+        setMagicLinkMessage('Check your email for the magic link!')
+      }
+    } catch (error: any) {
+      setError('Failed to send magic link: ' + error.message)
+    } finally {
+      setIsAuthenticating(false)
+    }
+  }, [])
 
   // Set client-side flag
   useEffect(() => {
     setIsClient(true)
   }, [])
 
-  // Check for existing session on component mount
+  // Supabase auth state listener
+  useEffect(() => {
+    if (!isClient) return
+
+    const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setSupabaseUser(session?.user ?? null)
+      if (session?.user) {
+        setMagicLinkMessage('')
+        setError('')
+      }
+    })
+
+    // Check initial session
+    supabase.auth.getUser().then(({ data }) => {
+      setSupabaseUser(data.user ?? null)
+    })
+
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
+  }, [isClient])
+
+  // Check for existing OAuth session on component mount
   useEffect(() => {
     if (!isClient) return
 
@@ -452,18 +580,25 @@ const CommunityEvents = () => {
 
   const signOut = useCallback(async () => {
     try {
+      // Sign out from both services
       if (oauthSession && oauthClient) {
         await oauthClient.revoke()
       }
+      if (supabaseUser) {
+        await supabase.auth.signOut()
+      }
+
       setOauthSession(null)
       setUserProfile(null)
+      setSupabaseUser(null)
       setSuccess('')
+      setMagicLinkMessage('')
     } catch (error) {
       console.error('Sign out error:', error)
     } finally {
       window.location.reload()
     }
-  }, [oauthSession])
+  }, [oauthSession, supabaseUser])
 
   return (
     <div className="flex flex-col justify-between relative">
@@ -494,7 +629,7 @@ const CommunityEvents = () => {
           <div className="bg-white p-6 mb-6 rounded-lg border border-solid border-gray-500 shadow-lg flex flex-col gap-2 w-full">
             <p className=" font-bold text-2xl font-secondary mb-1">Event submitted!</p>
             <p className="">
-              Your event <b>{formData.title}</b> has been published to AT protocol with the handle{' '}
+              Your event <b>{formData.title}</b> has been published{' '}
               <Link
                 href={`https://bsky.app/profile/${userProfile?.handle}`}
                 className="underline font-bold generic text-blue-500"
@@ -544,7 +679,7 @@ const CommunityEvents = () => {
         {!eventPublished && (
           <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mb-6 w-full">
             <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
-              Authentication {oauthSession ? '(Connected)' : '(Required)'}
+              Authentication {isAuthenticated ? '(Connected)' : '(Required)'}
             </h2>
 
             {!isClient && (
@@ -559,39 +694,72 @@ const CommunityEvents = () => {
               </div>
             )}
 
-            {isClient && !oauthSession && !isAuthenticating && (
+            {isClient && !isAuthenticated && !isAuthenticating && (
               <div className="space-y-4">
-                <p className="text-gray-700">Connect your Bluesky account to submit events to AT Protocol.</p>
-                <button
-                  onClick={startOAuthFlow}
-                  disabled={isAuthenticating}
-                  className={cn(
-                    'px-6 py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors',
-                    'disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2'
-                  )}
-                >
-                  {isAuthenticating ? (
-                    'Connecting...'
-                  ) : (
-                    <>
-                      Connect with Bluesky
-                      <ArrowRight className="w-4 h-4" />
-                    </>
-                  )}
-                </button>
+                <p className="text-gray-700">
+                  <b>Login with Email</b> or connect your <b>Bluesky account</b> to submit events to AT Protocol.
+                </p>
+
+                {magicLinkMessage && (
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-md">
+                    <p className="text-blue-800">{magicLinkMessage}</p>
+                  </div>
+                )}
+
+                <div className="flex gap-2">
+                  <Button
+                    onClick={startMagicLink}
+                    disabled={isAuthenticating}
+                    size="sm"
+                    className={cn('', 'disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2')}
+                  >
+                    {isAuthenticating ? (
+                      'Sending...'
+                    ) : (
+                      <>
+                        Login with Email
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+                  <Button
+                    onClick={startOAuthFlow}
+                    disabled={isAuthenticating}
+                    size="sm"
+                    className={cn('', 'disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2')}
+                  >
+                    {isAuthenticating ? (
+                      'Connecting...'
+                    ) : (
+                      <>
+                        Connect with Bluesky
+                        <ArrowRight className="w-4 h-4" />
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
             )}
 
-            {isClient && oauthSession && userProfile && (
+            {isClient && isAuthenticated && currentUserProfile && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {userProfile.avatar && (
-                      <img src={userProfile.avatar} alt="Profile" className="w-10 h-10 rounded-full" />
+                    {currentUserProfile.avatar && (
+                      <img src={currentUserProfile.avatar} alt="Profile" className="w-10 h-10 rounded-full" />
                     )}
                     <div>
-                      <p className="font-medium text-gray-800">{userProfile.displayName || userProfile.handle}</p>
-                      <p className="text-sm text-gray-600">@{userProfile.handle}</p>
+                      <p className="font-medium text-gray-800">
+                        {currentUserProfile.displayName || currentUserProfile.handle || currentUserProfile.email}
+                      </p>
+                      {currentUserProfile.handle && (
+                        <p className="text-sm text-gray-600">
+                          {currentUserProfile.handle ? `@${currentUserProfile.handle}` : currentUserProfile.email}
+                        </p>
+                      )}
+                      <p className="text-xs text-gray-500">
+                        {oauthSession ? 'Connected via Bluesky' : 'Connected via Email'}
+                      </p>
                     </div>
                   </div>
                   <button onClick={signOut} className="text-red-600 hover:text-red-800 text-sm underline">
@@ -993,9 +1161,7 @@ const CommunityEvents = () => {
                     <div className="flex justify-between items-center mb-4">
                       <h3 className="font-medium text-gray-800">Social Media Links</h3>
                     </div>
-                    <p className="text-sm text-gray-600 mb-4">
-                      Social media platforms of the organizer
-                    </p>
+                    <p className="text-sm text-gray-600 mb-4">Social media platforms of the organizer</p>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
@@ -1090,7 +1256,7 @@ const CommunityEvents = () => {
                 'mt-6 mb-2 w-full border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-lg bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
               )}
             >
-              <div className="group-hover:translate-y-[3px] transition-transform uppercase flex items-center justify-center gap-2">
+              <div className="group-hover:translate-y-[3px] transition-transform flex items-center justify-center gap-2">
                 Submit Event <ArrowRight className="w-4 h-4" />
               </div>
             </button>
