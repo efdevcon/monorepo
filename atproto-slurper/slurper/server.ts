@@ -3,23 +3,81 @@ import { BskyAgent, AppBskyFeedPost } from "@atproto/api";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import WebSocket from "ws";
+import { createHash } from "crypto";
 import validateRecord from "./validate";
 import { dummyEvent, schema } from "./schema";
 import { api } from "./atproto";
-
+// @ts-ignore
+import cors from "cors";
 dotenv.config();
+
+// Utility function to hash emails deterministically
+function hashEmail(email: string): string {
+  // Create a deterministic hash using SHA-256
+  const hash = createHash("sha256");
+  hash.update(email);
+
+  // Get the full hash and truncate to 16 characters for shorter, more manageable length
+  // 16 chars gives us 64 bits of entropy, which is still very secure for this use case
+  return hash.digest("hex").substring(0, 16);
+}
+
+// Extend Express Request interface to include user property
+declare global {
+  namespace Express {
+    interface Request {
+      user?: any;
+    }
+  }
+}
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Add JSON parsing middleware
 app.use(express.json());
+app.use(cors());
 
 // Initialize Supabase client
 const supabase = createClient(
   process.env.SUPABASE_URL!,
   process.env.SUPABASE_KEY!
 );
+
+// Add middleware to verify Supabase JWT tokens
+const verifySupabaseToken = async (
+  req: express.Request,
+  res: express.Response,
+  next: express.NextFunction
+) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ error: "No authorization token provided" });
+    }
+
+    const token = authHeader.substring(7);
+
+    // Verify the session with Supabase
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(token);
+
+    console.log(authError, user);
+
+    if (authError || !user) {
+      return res.status(401).json({ error: "Invalid or expired token" });
+    }
+
+    // Add user to request object
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error("Auth verification error:", error);
+    return res.status(500).json({ error: "Authentication error" });
+  }
+};
 
 // Target lexicon details
 // const LEXICON_DID = "did:plc:dhnigydy24fp542wu5sxqy33"; // devcon did
@@ -373,7 +431,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.get("/all-events", async (req, res) => {
+app.get("/events", async (req, res) => {
   const { data, error } = await supabase
     .from("atproto_records")
     .select(
@@ -385,11 +443,32 @@ app.get("/all-events", async (req, res) => {
     )
     .eq("lexicon", COLLECTION_NAME);
 
+  const formatted = {
+    events: data?.map((rawEvent) => {
+      const event =
+        rawEvent.record_needs_review || rawEvent.record_passed_review;
+
+      return {
+        created_by: rawEvent.created_by,
+        created_at: rawEvent.created_at,
+        updated_at: rawEvent.updated_at,
+        ...event,
+      };
+    }),
+  };
+
   if (error) {
     res.status(500).json({ error });
   } else {
-    res.json(data);
+    res.json(formatted);
   }
+});
+
+app.post("/events", async (req, res) => {
+  const { data, error } = await supabase
+    .from("atproto_records")
+    .insert(req.body)
+    .select();
 });
 
 // New endpoint for approved events only (for calendar)
@@ -425,13 +504,56 @@ app.get("/validate-event", async (req, res) => {
   }
 });
 
-app.post("/", (req, res) => {
-  res.send("Hello World");
-});
-
 app.get("/schema", (req, res) => {
   res.json(schema);
 });
+
+// New authenticated endpoint for creating events
+app.post(
+  "/event/create",
+  verifySupabaseToken,
+  async (req: express.Request, res: express.Response) => {
+    try {
+      const eventData = req.body;
+
+      console.log("Event data:", eventData);
+
+      if (!eventData) {
+        return res.status(400).json({ error: "No event data provided" });
+      }
+
+      // Validate the event data
+      const { valid, error: validationError } = validateRecord(eventData);
+      if (!valid) {
+        return res.status(400).json({ error: validationError });
+      }
+
+      // Get the authenticated user
+      const user = req.user as any;
+      const userEmailHash = hashEmail(user.email);
+
+      const rkey = `${userEmailHash}-${eventData.title
+        .toLowerCase()
+        .replace(/ /g, "-")}`;
+
+      const result = await api.createEventBluesky(
+        process.env.BLUESKY_DEVCONNECT_HANDLE!,
+        process.env.BLUESKY_DEVCONNECT_PASSWORD!,
+        eventData,
+        rkey
+      );
+
+      if (!result.success) {
+        return res.status(400).json({ error: result.error });
+      }
+
+      return res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Error in create event endpoint:", error);
+      return res.status(500).json({ error: "Internal server error" });
+    }
+  }
+);
 
 // Start the server
 app.listen(port, () => {
