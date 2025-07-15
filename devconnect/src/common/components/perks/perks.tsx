@@ -393,47 +393,55 @@ const Perk = ({
   const coupon = coupons[perk.coupon_collection]
 
   const [couponStatus, setCouponStatus] = useState<{ success: boolean; error?: string } | null>(null)
+  const [fetchingCoupon, setFetchingCoupon] = useState(false)
 
   const verified = isDevconProof ? tickets?.devcon : tickets?.devconnect
 
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return
+    if (fetchingCoupon) return
     if (!verified) return
 
-    console.log('verified', serializePodData(verified))
+    setFetchingCoupon(true)
+    setCouponStatus(null)
 
-    const response = await fetch(`/api/coupons/${encodeURIComponent(perk.coupon_collection)}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: serializePodData(verified),
-    })
+    try {
+      console.log('verified', serializePodData(verified))
 
-    if (!response.ok) {
-      console.error(response.statusText)
-      return
-    }
-
-    const { coupon, coupon_status, ticket_type } = await response.json()
-
-    // const status = {
-    //   success: coupon_status,
-    //   error: coupon_status ? null : 'Failed to claim coupon',
-    // }
-
-    setCouponStatus(coupon_status)
-
-    if (ticket_type === 'Devcon SEA') {
-      setDevconCoupons({
-        ...devconCoupons,
-        [perk.coupon_collection]: coupon,
+      const response = await fetch(`/api/coupons/${encodeURIComponent(perk.coupon_collection)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: serializePodData(verified),
       })
-    } else {
-      setDevconnectCoupons({
-        ...devconnectCoupons,
-        [perk.coupon_collection]: coupon,
-      })
+
+      if (!response.ok) {
+        console.error(response.statusText)
+        setCouponStatus({ success: false, error: 'Failed to claim coupon' })
+        return
+      }
+
+      const { coupon, coupon_status, ticket_type } = await response.json()
+
+      setCouponStatus(coupon_status)
+
+      if (ticket_type === 'Devcon SEA') {
+        setDevconCoupons({
+          ...devconCoupons,
+          [perk.coupon_collection]: coupon,
+        })
+      } else {
+        setDevconnectCoupons({
+          ...devconnectCoupons,
+          [perk.coupon_collection]: coupon,
+        })
+      }
+    } catch (error) {
+      console.error('Error claiming coupon:', error)
+      setCouponStatus({ success: false, error: 'Failed to claim coupon' })
+    } finally {
+      setFetchingCoupon(false)
     }
   }, [
     verified,
@@ -667,7 +675,7 @@ const Perk = ({
                 <>
                   {!perk.external && perk.zupass_proof_id && verified && (
                     <Button color="black-1" size="sm" className="my-0.5" onClick={requestCoupon}>
-                      Claim Coupon
+                      {fetchingCoupon ? 'Fetching Coupon...' : 'Claim Coupon'}
                     </Button>
                   )}
                 </>
