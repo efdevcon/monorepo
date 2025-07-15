@@ -4,45 +4,33 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
 import cn from 'classnames'
 
-interface PodTicket {
-  attendeeName?: string;
-  attendeeEmail?: string;
-  eventName?: string;
-  ticketName?: string;
-  ticketSecret?: string;
-  ticketId?: string;
-  eventId?: string;
-  productId?: string;
-  timestampConsumed?: number;
-  timestampSigned?: number;
-  owner?: string;
-  imageUrl?: string;
-  eventStartDate?: string;
-  eventLocation?: string;
-  isAddOn?: boolean;
-  isConsumed?: boolean;
-  isRevoked?: boolean;
-  ticketCategory?: number;
-  [key: string]: any;
-}
-
-interface PodClaim {
-  ticket?: PodTicket;
-  signerPublicKey?: string;
-  [key: string]: any;
-}
-
-interface PodProof {
-  signature?: string;
+// Remove old interfaces and define new ones for the new structure
+interface PodEntries {
+  attendeeEmail: string;
+  attendeeName: string;
+  eventId: string;
+  eventLocation: string;
+  eventName: string;
+  eventStartDate: string;
+  imageUrl: string;
+  isAddOn: boolean;
+  isConsumed: boolean;
+  isRevoked: boolean;
+  productId: string;
+  ticketCategory: number;
+  ticketId: string;
+  ticketName: string;
+  ticketSecret: string;
+  timestampConsumed: number;
+  timestampSigned: number;
   [key: string]: any;
 }
 
 interface PodData {
-  id?: string;
-  claim?: PodClaim;
-  proof?: PodProof;
-  type?: string;
-  [key: string]: any;
+  entries: PodEntries
+  signature: string
+  signerPublicKey: string
+  [key: string]: any
 }
 
 interface ZupassPodViewerProps {
@@ -242,65 +230,58 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
 
   const downloadPod = (): void => {
     if (!pod) {
-      alert('No POD data found');
-      return;
+      alert('No POD data found')
+      return
     }
-    let filename = 'pod-data.json';
-    if (typeof pod.id === 'string' && pod.id.length > 0) {
-      filename = `pod-${pod.id.substring(0, 8)}.json`;
+    let filename = 'pod-data.json'
+    if (typeof pod.entries.ticketId === 'string' && pod.entries.ticketId.length > 0) {
+      filename = `pod-${pod.entries.ticketId.substring(0, 8)}.json`
     }
-    let podString = '';
+    let podString = ''
     try {
-      podString = JSON.stringify(pod, null, 2);
+      podString = JSON.stringify(pod, null, 2)
     } catch (err) {
-      alert('Error serializing POD data: ' + (err instanceof Error ? err.message : 'Unknown error'));
-      return;
+      alert('Error serializing POD data: ' + (err instanceof Error ? err.message : 'Unknown error'))
+      return
     }
     try {
-      const blob = new Blob([podString], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
+      const blob = new Blob([podString], { type: 'application/json' })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = filename
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
     } catch (error) {
-      alert('Error downloading POD: ' + (error instanceof Error ? error.message : 'Unknown error'));
+      alert('Error downloading POD: ' + (error instanceof Error ? error.message : 'Unknown error'))
     }
-  };
+  }
 
   const showExample = (): void => {
     const examplePod: PodData = {
-      "id": "demo-pod-id-1234567890abcdef",
-      "claim": {
-        "ticket": {
-          "attendeeName": "Demo User",
-          "attendeeEmail": "demo.user@example.com",
-          "eventName": "Devcon 7",
-          "ticketName": "Demo Ticket",
-          "ticketSecret": "demo-secret-1234",
-          "ticketId": "demo-ticket-id-5678",
-          "eventId": "5074edf5-f079-4099-b036-22223c0c6995",
-          "productId": "08482abb-8767-47aa-be47-2691032403b6",
-          "timestampConsumed": 1731295434188,
-          "timestampSigned": 1750679115735,
-          "owner": "demoOwnerPublicKey1234567890",
-          "imageUrl": "/images/devcon/devcon-landscape.webp",
-          "eventStartDate": "2024-11-09T08:00:00.000",
-          "eventLocation": "Bangkok, Thailand",
-          "isAddOn": false,
-          "isConsumed": true,
-          "isRevoked": false,
-          "ticketCategory": 4
-        },
-        "signerPublicKey": "demoSignerPublicKey0987654321"
+      entries: {
+        attendeeEmail: "demo.user@example.com",
+        attendeeName: "Demo User",
+        eventId: "5074edf5-f079-4099-b036-22223c0c6995",
+        eventLocation: "Bangkok, Thailand",
+        eventName: "Devcon 7",
+        eventStartDate: "2024-11-09T08:00:00.000",
+        imageUrl: "/images/devcon/devcon-landscape.webp",
+        isAddOn: false,
+        isConsumed: true,
+        isRevoked: false,
+        productId: "08482abb-8767-47aa-be47-2691032403b6",
+        ticketCategory: 4,
+        ticketId: "demo-ticket-id-5678",
+        ticketName: "Demo Ticket",
+        ticketSecret: "demo-secret-1234",
+        timestampConsumed: 1731295434188,
+        timestampSigned: 1750679115735
       },
-      "proof": {
-        "signature": "demo-signature-abcdef1234567890"
-      },
-      "type": "pod-ticket-pcd"
+      signature: "demo-signature-abcdef1234567890",
+      signerPublicKey: "demoSignerPublicKey0987654321"
     };
     
     const encodedPod = encodeURIComponent(JSON.stringify(examplePod));
@@ -382,6 +363,9 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
     )
   }
 
+  // Update UI rendering logic for new structure
+  // Remove claim, ticket, proof, type, id, etc. Only use entries, signature, signerPublicKey
+
   return (
     <motion.div
       className={cn('max-w-4xl mx-auto p-5', className)}
@@ -398,28 +382,17 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
         </motion.h1>
 
         <motion.div variants={containerVariants}>
-          {/* POD ID */}
-          {pod.id && (
-            <motion.div
-              variants={itemVariants}
-              className="mb-6 p-5 border border-gray-200 rounded-lg bg-white shadow-sm"
-            >
-              <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-[#C6E1F9] font-secondary">
-                POD Information
-              </h2>
-              {formatField('POD ID', pod.id, true)}
-              {formatField('Type', pod.type || 'N/A')}
-            </motion.div>
-          )}
+          {/* Entries section */}
+          {pod.entries && renderSection('Ticket Details', pod.entries)}
 
-          {/* Claim section (excluding nested objects) */}
-          {pod.claim && renderSection('Claim Information', pod.claim)}
-
-          {/* Ticket details (nested in claim) */}
-          {pod.claim && pod.claim.ticket && renderSection('Ticket Details', pod.claim.ticket)}
-
-          {/* Proof section */}
-          {pod.proof && renderSection('Proof', pod.proof)}
+          {/* Signature and Signer Public Key */}
+          <motion.div variants={itemVariants} className="mb-6 p-5 border border-gray-200 rounded-lg bg-white shadow-sm">
+            <h2 className="text-xl font-semibold text-gray-800 mt-0 mb-4 pb-2 border-b-2 border-[#C6E1F9] font-secondary">
+              Signature Info
+            </h2>
+            {formatField('Signature', pod.signature, true)}
+            {formatField('Signer Public Key', pod.signerPublicKey, true)}
+          </motion.div>
 
           {/* Download button */}
           <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
