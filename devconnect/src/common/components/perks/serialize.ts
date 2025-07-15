@@ -8,6 +8,7 @@ import {
   revealedClaimsFromJSON,
   GPCProof,
 } from "@pcd/gpc";
+import { PODData } from "@parcnet-js/podspec";
 
 export type ProveResult = Extract<
   Awaited<ReturnType<ParcnetAPI["gpc"]["prove"]>>,
@@ -39,4 +40,41 @@ export function deserializeProofResult(result: string): {
     revealedClaims: revealedClaimsFromJSON(proofResult.serializedRevealedClaims),
     proof: proofResult.proof,
   };
+}
+
+/**
+ * Serialize POD data for transmission to the server
+ * @param podData - The POD data to serialize
+ * @returns A JSON string representing the POD data
+ */
+export function serializePodData(podData: PODData): string {
+  return JSON.stringify(podData, (key, value) => {
+    if (typeof value === 'bigint') {
+      return value.toString()
+    }
+    return value
+  });
+}
+
+/**
+ * Deserialize POD data from server response
+ * @param serializedPodData - The serialized POD data string
+ * @returns The deserialized POD data
+ */
+export function deserializePodData(serializedPodData: string): PODData {
+  return JSON.parse(serializedPodData, (key, value) => {
+    // Check if this is a POD entry with type information
+    if (value && typeof value === 'object' && 'type' in value && 'value' in value) {
+      const entry = value as { type: string; value: any }
+      
+      // Convert value back to BigInt based on the type
+      if (entry.type === 'int' && typeof entry.value === 'string') {
+        return {
+          ...entry,
+          value: BigInt(entry.value)
+        }
+      }
+    }
+    return value
+  });
 }

@@ -9,7 +9,7 @@ import {
 } from '@parcnet-js/app-connector-react'
 import { useState, useCallback } from 'react'
 import { getDevconTicketProofRequest, getDevconnectTicketProofRequest } from './ticketProof'
-import { ProveResult, serializeProofResult } from './serialize'
+import { ProveResult, serializeProofResult, serializePodData } from './serialize'
 import perksList from './perks-list'
 import Button from 'common/components/voxel-button/button'
 import css from './perks.module.scss'
@@ -29,6 +29,29 @@ import InfiniteScroller from 'lib/components/infinite-scroll'
 import RichText from 'lib/components/tina-cms/RichText'
 import { CMSButtons } from 'common/components/voxel-button/button'
 import { useTina } from 'tinacms/dist/react'
+import { pod, PODData } from '@parcnet-js/podspec'
+import { POD } from '@pcd/pod'
+
+// HOC to wrap ParcnetClientProvider
+const withParcnetProvider = <P extends object>(Component: React.ComponentType<P>) => {
+  return function WrappedComponent(props: P) {
+    return (
+      <ParcnetClientProvider
+        zapp={{
+          name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
+          permissions: {
+            // update permissions based on what you want to collect and prove
+            REQUEST_PROOF: { collections: ['Devcon SEA', 'Devconnect ARG'] }, // Update this to the collection name you want to use
+            READ_PUBLIC_IDENTIFIERS: {},
+            READ_POD: { collections: ['Devcon SEA', 'Devconnect ARG'] },
+          },
+        }}
+      >
+        <Component {...props} />
+      </ParcnetClientProvider>
+    )
+  }
+}
 
 // Animation variants for staggered animation
 const containerVariants = {
@@ -134,20 +157,103 @@ const rightColumnVariants = {
   },
 }
 
-export default function Perks(props: any) {
+function Perks(props: any) {
   const { data }: { data: any } = useTina(props.content)
+  const { z, connectionState } = useParcnetClient()
 
   const [mounted, setMounted] = useState(false)
   const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>({})
   const [devconnectCoupons, setDevconnectCoupons] = useState<Record<string, string>>({})
   const [devconStatus, setDevconStatus] = useState<Record<string, { success: boolean; error?: string }>>({})
   const [devconnectStatus, setDevconnectStatus] = useState<Record<string, { success: boolean; error?: string }>>({})
+  const [tickets, setTickets] = useState<{ devcon: PODData; devconnect: PODData } | null>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Function to verify POD signature
+  const verifyPodSignature = (podData: PODData): boolean => {
+    try {
+      // Convert PODData to the format expected by POD.load()
+      // POD.load expects (entries, signature, signerPublicKey)
+      const pod = POD.load(podData.entries, podData.signature, podData.signerPublicKey)
+
+      // Verify the signature
+      const isValid = pod.verifySignature()
+
+      console.log(`POD signature verification for ${podData.entries.ticketId?.value || 'unknown'}:`, isValid)
+
+      return isValid
+    } catch (error) {
+      console.error('Error verifying POD signature:', error)
+      return false
+    }
+  }
+
+  const fetchPods = async () => {
+    const queryDevcon = pod({
+      entries: {
+        eventId: {
+          type: 'string',
+          isMemberOf: [{ type: 'string', value: '5074edf5-f079-4099-b036-22223c0c6995' }],
+        },
+      },
+    })
+
+    const queryDevconnect = pod({
+      entries: {
+        eventId: {
+          type: 'string',
+          isMemberOf: [{ type: 'string', value: '1f36ddce-e538-4c7a-9f31-6a4b2221ecac' }],
+        },
+      },
+    })
+
+    console.log('queryDevcon', queryDevcon)
+    console.log('queryDevconnect', queryDevconnect)
+
+    // @ts-ignore
+    const pods = await z.pod.collection('Devcon SEA').query(queryDevcon)
+    // @ts-ignore
+    const podsDevconnect = await z.pod.collection('Devconnect ARG').query(queryDevconnect)
+
+    // NOT swag tickets
+    const devconTickets = pods.filter(
+      (pod: PODData) => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0)
+    )
+
+    // NOT swag tickets
+    const devconnectTickets = podsDevconnect.filter(
+      (pod: PODData) => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0)
+    )
+
+    // Verify signatures for all tickets
+    const verifiedDevconTickets = devconTickets.filter((ticket: PODData) => verifyPodSignature(ticket))
+    const verifiedDevconnectTickets = devconnectTickets.filter((ticket: PODData) => verifyPodSignature(ticket))
+
+    const tickets = {
+      devcon: verifiedDevconTickets[0],
+      devconnect: verifiedDevconnectTickets[0],
+    }
+
+    setTickets(tickets)
+
+    console.log('devconTickets (all):', devconTickets)
+    console.log('devconTickets (verified):', verifiedDevconTickets)
+    console.log('devconnectTickets (all):', devconnectTickets)
+    console.log('devconnectTickets (verified):', verifiedDevconnectTickets)
+  }
+
+  useEffect(() => {
+    if (connectionState === ClientConnectionState.CONNECTED) {
+      fetchPods()
+    }
+  }, [connectionState, z])
+
   if (!mounted) return null
+
+  console.log('data', data)
 
   return (
     <>
@@ -163,77 +269,67 @@ export default function Perks(props: any) {
           </InfiniteScroller>
         </div>
 
-        <ParcnetClientProvider
-          zapp={{
-            name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
-            permissions: {
-              // update permissions based on what you want to collect and prove
-              REQUEST_PROOF: { collections: ['Devcon SEA', 'Devconnect ARG'] }, // Update this to the collection name you want to use
-              READ_PUBLIC_IDENTIFIERS: {},
-            },
-          }}
-        >
-          {/* <RequestProof /> */}
-          <motion.div variants={connectorVariants} initial="hidden" animate="visible">
-            <div className={cn(css.connector, 'flex items-center w-[775px] max-w-[100%] mx-auto')}>
-              <div className="p-5 flex justify-center items-center flex-wrap w-full gap-4 lg:gap-8 z-10">
-                <div className="flex flex-col gap-2 md:gap-0.5 text-center md:text-left">
-                  <div className="flex items-center gap-1.5 ">
-                    <div>
-                      <RichText content={data.pages.perks_explainer} />
-                    </div>
-                    <Tooltip
-                      arrow={false}
-                      title={data.pages.zupass_explainer}
-                      className="shrink-0 inline-flex items-center justify-center hidden md:flex"
-                    >
-                      <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
-                        <Info size={18} />
-                      </div>
-                    </Tooltip>{' '}
+        {/* <RequestProof /> */}
+        <motion.div variants={connectorVariants} initial="hidden" animate="visible">
+          <div className={cn(css.connector, 'flex items-center w-[775px] max-w-[100%] mx-auto')}>
+            <div className="p-5 flex justify-center items-center flex-wrap w-full gap-4 lg:gap-8 z-10">
+              <div className="flex flex-col gap-2 md:gap-0.5 text-center md:text-left">
+                <div className="flex items-center gap-1.5 ">
+                  <div>
+                    <RichText content={data.pages.perks_explainer} />
                   </div>
-                  <p className="text-xs text-[#4B4B66]">
-                    <RichText content={data.pages.perks_explainer_2} />
-                  </p>
+                  <Tooltip
+                    arrow={false}
+                    title={data.pages.zupass_explainer}
+                    className="shrink-0 inline-flex items-center justify-center hidden md:flex"
+                  >
+                    <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
+                      <Info size={18} />
+                    </div>
+                  </Tooltip>{' '}
                 </div>
-                <Toolbar />
+                <p className="text-xs text-[#4B4B66]">
+                  <RichText content={data.pages.perks_explainer_2} />
+                </p>
               </div>
+              <Toolbar />
             </div>
-          </motion.div>
-          <motion.div
-            className="text-3xl mt-7 font-secondary"
-            variants={titleVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <span className="font-semibold">Devconnect Perks</span> ({perksList.length})
-          </motion.div>
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 mb-16"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            {perksList.map((perk, index) => (
-              <Perk
-                key={perk.name}
-                perk={perk}
-                devconCoupons={devconCoupons}
-                setDevconCoupons={setDevconCoupons}
-                devconnectCoupons={devconnectCoupons}
-                setDevconnectCoupons={setDevconnectCoupons}
-                devconStatus={devconStatus}
-                setDevconStatus={setDevconStatus}
-                devconnectStatus={devconnectStatus}
-                setDevconnectStatus={setDevconnectStatus}
-              />
-            ))}
-          </motion.div>
+          </div>
+        </motion.div>
+        <motion.div
+          className="text-3xl mt-7 font-secondary"
+          variants={titleVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <span className="font-semibold">Devconnect Perks</span> ({perksList.length})
+        </motion.div>
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-6 mb-16"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {perksList.map((perk, index) => (
+            <Perk
+              key={perk.name}
+              perk={perk}
+              tickets={tickets}
+              devconCoupons={devconCoupons}
+              setDevconCoupons={setDevconCoupons}
+              devconnectCoupons={devconnectCoupons}
+              setDevconnectCoupons={setDevconnectCoupons}
+              // devconStatus={devconStatus}
+              // setDevconStatus={setDevconStatus}
+              // devconnectStatus={devconnectStatus}
+              // setDevconnectStatus={setDevconnectStatus}
+            />
+          ))}
+        </motion.div>
 
-          {/* <div className="">
-          Showing 4 out of 4 
-        </div> */}
-        </ParcnetClientProvider>
+        {/* <div className="">
+        Showing 4 out of 4 
+      </div> */}
       </div>
       <div className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C]')} id="yourperk">
         <div className={cn(css['bottom-section'], 'section py-10 md:py-24')}>
@@ -257,101 +353,163 @@ export default function Perks(props: any) {
   )
 }
 
+// Export the wrapped component
+export default withParcnetProvider(Perks)
+
+// Utility function to handle BigInt serialization
+const serializeWithBigInt = (obj: any): string => {
+  return JSON.stringify(obj, (key, value) => {
+    if (typeof value === 'bigint') {
+      return value.toString()
+    }
+    return value
+  })
+}
+
 const Perk = ({
   perk,
   devconCoupons,
   devconnectCoupons,
+  tickets,
   setDevconCoupons,
   setDevconnectCoupons,
-  devconStatus,
-  setDevconStatus,
-  devconnectStatus,
-  setDevconnectStatus,
-}: {
+}: // devconStatus,
+// setDevconStatus,
+// devconnectStatus,
+// setDevconnectStatus,
+{
   perk: (typeof perksList)[number]
   devconCoupons: Record<string, string>
   devconnectCoupons: Record<string, string>
+  tickets: { devcon: PODData; devconnect: PODData } | null
   setDevconCoupons: (coupons: Record<string, string>) => void
   setDevconnectCoupons: (coupons: Record<string, string>) => void
-  devconStatus: Record<string, { success: boolean; error?: string }>
-  setDevconStatus: (status: Record<string, { success: boolean; error?: string }>) => void
-  devconnectStatus: Record<string, { success: boolean; error?: string }>
-  setDevconnectStatus: (status: Record<string, { success: boolean; error?: string }>) => void
+  // devconStatus: Record<string, { success: boolean; error?: string }>
+  // devconnectStatus: Record<string, { success: boolean; error?: string }>
 }) => {
-  const { z, connectionState } = useParcnetClient()
+  const { connectionState } = useParcnetClient()
   const isDevconProof = perk.zupass_proof_id === 'Devcon SEA'
   const coupons = isDevconProof ? devconCoupons : devconnectCoupons
   const coupon = coupons[perk.coupon_collection]
-  const status = isDevconProof ? devconStatus : devconnectStatus
-  const couponStatus = status[perk.coupon_collection]
+
+  const [couponStatus, setCouponStatus] = useState<{ success: boolean; error?: string } | null>(null)
+
+  const verified = isDevconProof ? tickets?.devcon : tickets?.devconnect
 
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return
+    if (!verified) return
 
-    const req = isDevconProof ? getDevconTicketProofRequest() : getDevconnectTicketProofRequest()
+    console.log('verified', serializePodData(verified))
 
-    console.log('requestCoupon', req, perk.zupass_proof_id)
-
-    const res = await z.gpc.prove({
-      request: req.schema,
-      collectionIds: [perk.zupass_proof_id ?? ''], // Update this to the collection ID you want to use
-    })
-
-    if (!res.success) return
-
-    const serializedProofResult = serializeProofResult(res)
-
-    const response = await fetch(`/api/coupons/${encodeURIComponent(perk.zupass_proof_id ?? '')}`, {
+    const response = await fetch(`/api/coupons/${encodeURIComponent(perk.coupon_collection)}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        ...JSON.parse(serializedProofResult),
-        collection: perk.coupon_collection,
-      }),
+      body: serializePodData(verified),
     })
 
-    if (response.ok) {
-      const { coupon, coupon_status, collection } = await response.json()
-
-      if (isDevconProof) {
-        setDevconCoupons({
-          ...devconCoupons,
-          [collection]: coupon,
-        })
-        setDevconStatus({
-          ...devconStatus,
-          [collection]: coupon_status,
-        })
-      } else {
-        setDevconnectCoupons({
-          ...devconnectCoupons,
-          [collection]: coupon,
-        })
-        setDevconnectStatus({
-          ...devconnectStatus,
-          [collection]: coupon_status,
-        })
-      }
-    } else {
+    if (!response.ok) {
       console.error(response.statusText)
+      return
+    }
+
+    const { coupon, coupon_status, ticket_type } = await response.json()
+
+    // const status = {
+    //   success: coupon_status,
+    //   error: coupon_status ? null : 'Failed to claim coupon',
+    // }
+
+    setCouponStatus(coupon_status)
+
+    if (ticket_type === 'Devcon SEA') {
+      setDevconCoupons({
+        ...devconCoupons,
+        [perk.coupon_collection]: coupon,
+      })
+    } else {
+      setDevconnectCoupons({
+        ...devconnectCoupons,
+        [perk.coupon_collection]: coupon,
+      })
     }
   }, [
-    z,
+    verified,
     connectionState,
-    isDevconProof,
-    perk.zupass_proof_id,
-    perk.coupon_collection,
     devconCoupons,
-    devconStatus,
     devconnectCoupons,
-    devconnectStatus,
     setDevconCoupons,
-    setDevconStatus,
     setDevconnectCoupons,
-    setDevconnectStatus,
+    perk.coupon_collection,
   ])
+
+  // const requestCoupon = useCallback(async () => {
+  //   if (connectionState !== ClientConnectionState.CONNECTED) return
+
+  //   const req = isDevconProof ? getDevconTicketProofRequest() : getDevconnectTicketProofRequest()
+
+  //   const res = await z.gpc.prove({
+  //     request: req.schema,
+  //     collectionIds: [perk.zupass_proof_id ?? ''], // Update this to the collection ID you want to use
+  //   })
+
+  //   if (!res.success) return
+
+  //   const serializedProofResult = serializeProofResult(res)
+
+  //   const response = await fetch(`/api/coupons/${encodeURIComponent(perk.zupass_proof_id ?? '')}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       ...JSON.parse(serializedProofResult),
+  //       collection: perk.coupon_collection,
+  //     }),
+  //   })
+
+  //   if (response.ok) {
+  //     const { coupon, coupon_status, collection } = await response.json()
+
+  //     if (isDevconProof) {
+  //       setDevconCoupons({
+  //         ...devconCoupons,
+  //         [collection]: coupon,
+  //       })
+  //       setDevconStatus({
+  //         ...devconStatus,
+  //         [collection]: coupon_status,
+  //       })
+  //     } else {
+  //       setDevconnectCoupons({
+  //         ...devconnectCoupons,
+  //         [collection]: coupon,
+  //       })
+  //       setDevconnectStatus({
+  //         ...devconnectStatus,
+  //         [collection]: coupon_status,
+  //       })
+  //     }
+  //   } else {
+  //     console.error(response.statusText)
+  //   }
+  // }, [
+  //   z,
+  //   connectionState,
+  //   isDevconProof,
+  //   perk.zupass_proof_id,
+  //   perk.coupon_collection,
+  //   devconCoupons,
+  //   devconStatus,
+  //   devconnectCoupons,
+  //   devconnectStatus,
+  //   setDevconCoupons,
+  //   setDevconStatus,
+  //   setDevconnectCoupons,
+  //   setDevconnectStatus,
+  // ])
 
   const isCreateYourOwnPerk = !!perk.anchor
   const isExternalPerk = !!perk.external
@@ -395,8 +553,13 @@ const Perk = ({
 
         {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
           <div className="absolute top-4 left-4 ">
-            <div className="bg-[#9BEFA0] text-gray-800 text-sm px-2 py-1 font-bold border border-black border-solid">
-              Connected
+            <div
+              className={cn(
+                'text-sm px-2 py-1 font-bold border border-black border-solid',
+                verified ? 'bg-[#9BEFA0] text-gray-800' : 'bg-gray-200 text-red-800'
+              )}
+            >
+              {verified ? 'Ticket Verified' : 'No Ticket'}
             </div>
           </div>
         )}
@@ -462,7 +625,7 @@ const Perk = ({
         </div> */}
       </div>
 
-      <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow">
+      <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow px-2 overflow-hidden">
         {/* {perk.external && (
           <Button color="black-1" onClick={() => window.open(perk.url, '_blank')}>
             Claim Externally
@@ -502,7 +665,7 @@ const Perk = ({
             <>
               {!coupon && !couponStatus && !perk.external && (
                 <>
-                  {!perk.external && perk.zupass_proof_id && (
+                  {!perk.external && perk.zupass_proof_id && verified && (
                     <Button color="black-1" size="sm" className="my-0.5" onClick={requestCoupon}>
                       Claim Coupon
                     </Button>
@@ -511,16 +674,26 @@ const Perk = ({
               )}
 
               {coupon && (
-                <div className="p-2 py-1.5 bg-green-100 border border-green-300 rounded text-green-800 text-sm flex items-center justify-center gap-2">
-                  <div>
-                    <strong>Coupon:</strong>&nbsp;{coupon}
-                  </div>
-
-                  <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
-                    <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center">
-                      <Copy size={14} />
+                <div className="p-2 py-1.5 bg-green-100 border max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-2">
+                  {coupon.startsWith('https://') ? (
+                    <div className="shrink">
+                      <a href={coupon} target="_blank" rel="noopener noreferrer">
+                        {coupon}
+                      </a>
                     </div>
-                  </CopyToClipboard>
+                  ) : (
+                    <div className="shrink">
+                      <strong>Coupon:</strong>&nbsp;{coupon}
+                    </div>
+                  )}
+
+                  <div className="">
+                    <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
+                      <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
+                        <Copy size={14} />
+                      </div>
+                    </CopyToClipboard>
+                  </div>
                 </div>
               )}
               {couponStatus && !couponStatus.success && (
