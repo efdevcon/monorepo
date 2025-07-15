@@ -191,8 +191,8 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
     }
     
     return (
-      <div className="flex mb-3 items-start" key={label}>
-        <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0">{label}:</div>
+      <div className="flex mb-3 items-start flex-col sm:flex-row" key={label}>
+        <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0 mb-1 sm:mb-0">{label}:</div>
         <div className="text-gray-800 break-all flex-1">{displayValue}</div>
       </div>
     )
