@@ -221,7 +221,14 @@ export async function getStaticProps({ locale }: { locale: string }) {
     },
   }
 
-  const notionEvents = await notion.databases.query(query as any)
+  let notionEvents: any = { results: [] }
+
+  try {
+    notionEvents = await notion.databases.query(query as any)
+  } catch (error) {
+    console.error('Failed to fetch events from Notion:', error)
+    // Continue with empty events array if Notion API fails
+  }
 
   /*
 export interface Event {
@@ -255,7 +262,7 @@ export interface Event {
 
   // console.log(notionEvents)
 
-  const events = notionEvents.results.map(event => {
+  const events = notionEvents.results.map((event: any) => {
     const formattedEvent = formatResult(event)
 
     const timeblocks = []

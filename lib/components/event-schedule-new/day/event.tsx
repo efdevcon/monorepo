@@ -203,7 +203,7 @@ const Event: React.FC<EventProps> = ({
             })}
           >
             {isCoworking && (
-              <a href="https://tickets.devconnect.org" target="_blank">
+              <a href="https://tickets.devconnect.org">
                 <Button
                   size="sm"
                   color="blue-1"
