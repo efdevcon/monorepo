@@ -164,8 +164,6 @@ function Perks(props: any) {
   const [mounted, setMounted] = useState(false)
   const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>({})
   const [devconnectCoupons, setDevconnectCoupons] = useState<Record<string, string>>({})
-  const [devconStatus, setDevconStatus] = useState<Record<string, { success: boolean; error?: string }>>({})
-  const [devconnectStatus, setDevconnectStatus] = useState<Record<string, { success: boolean; error?: string }>>({})
   const [tickets, setTickets] = useState<{ devcon: PODData; devconnect: PODData } | null>(null)
 
   useEffect(() => {
@@ -210,9 +208,6 @@ function Perks(props: any) {
       },
     })
 
-    console.log('queryDevcon', queryDevcon)
-    console.log('queryDevconnect', queryDevconnect)
-
     // @ts-ignore
     const pods = await z.pod.collection('Devcon SEA').query(queryDevcon)
     // @ts-ignore
@@ -253,8 +248,6 @@ function Perks(props: any) {
 
   if (!mounted) return null
 
-  console.log('data', data)
-
   return (
     <>
       <div className="section pb-0 pt-10 relative">
@@ -269,7 +262,6 @@ function Perks(props: any) {
           </InfiniteScroller>
         </div>
 
-        {/* <RequestProof /> */}
         <motion.div variants={connectorVariants} initial="hidden" animate="visible">
           <div className={cn(css.connector, 'flex items-center w-[775px] max-w-[100%] mx-auto')}>
             <div className="p-5 flex justify-center items-center flex-wrap w-full gap-4 lg:gap-8 z-10">
@@ -319,10 +311,6 @@ function Perks(props: any) {
               setDevconCoupons={setDevconCoupons}
               devconnectCoupons={devconnectCoupons}
               setDevconnectCoupons={setDevconnectCoupons}
-              // devconStatus={devconStatus}
-              // setDevconStatus={setDevconStatus}
-              // devconnectStatus={devconnectStatus}
-              // setDevconnectStatus={setDevconnectStatus}
             />
           ))}
         </motion.div>
@@ -356,16 +344,6 @@ function Perks(props: any) {
 // Export the wrapped component
 export default withParcnetProvider(Perks)
 
-// Utility function to handle BigInt serialization
-const serializeWithBigInt = (obj: any): string => {
-  return JSON.stringify(obj, (key, value) => {
-    if (typeof value === 'bigint') {
-      return value.toString()
-    }
-    return value
-  })
-}
-
 const Perk = ({
   perk,
   devconCoupons,
@@ -373,19 +351,13 @@ const Perk = ({
   tickets,
   setDevconCoupons,
   setDevconnectCoupons,
-}: // devconStatus,
-// setDevconStatus,
-// devconnectStatus,
-// setDevconnectStatus,
-{
+}: {
   perk: (typeof perksList)[number]
   devconCoupons: Record<string, string>
   devconnectCoupons: Record<string, string>
   tickets: { devcon: PODData; devconnect: PODData } | null
   setDevconCoupons: (coupons: Record<string, string>) => void
   setDevconnectCoupons: (coupons: Record<string, string>) => void
-  // devconStatus: Record<string, { success: boolean; error?: string }>
-  // devconnectStatus: Record<string, { success: boolean; error?: string }>
 }) => {
   const { connectionState } = useParcnetClient()
   const isDevconProof = perk.zupass_proof_id === 'Devcon SEA'
@@ -602,7 +574,7 @@ const Perk = ({
                 <Link
                   key={url.url}
                   href={url.url}
-                  className="bg-[#1B6FAE] text-white text-sm px-2 py-1 self-end font-bold border border-black border-solid flex items-center gap-1 transform transition-colors duration-300 will-change-transform will-transform"
+                  className="bg-[#1B6FAE] text-white text-sm px-2 py-1 self-end font-bold border border-gray-700 border-solid flex items-center gap-1 transform transition-colors duration-300 will-change-transform will-transform"
                 >
                   <div className="flex items-center gap-1">
                     {url.text}
@@ -627,47 +599,13 @@ const Perk = ({
             className="w-full object-cover h-auto absolute bottom-0 left-0 right-0 mb-[2.5px]"
           />
         )}
-
-        {/* <div className="absolute left-auto right-auto bottom-2 w-full flex items-center justify-center">
-
-        </div> */}
       </div>
 
       <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow px-2 overflow-hidden">
-        {/* {perk.external && (
-          <Button color="black-1" onClick={() => window.open(perk.url, '_blank')}>
-            Claim Externally
-          </Button>
-        )} */}
-
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="text-sm text-[#4B4B66] tracking-widest font-secondary uppercase">{perk.issuer}</div>
 
           <div className="text-lg leading-tight font-bold">{perk.description}</div>
-
-          {/* {perk.anchor && (
-            <div className="text-sm text-[#4B4B66] mt-0.5">
-              <Button
-                color=""
-                size="sm"
-                onClick={(e: any) => {
-                  e.preventDefault()
-                  if (!perk.anchor) return
-
-                  const targetId = perk.anchor.startsWith('#') ? perk.anchor.slice(1) : perk.anchor
-                  const targetElement = document.getElementById(targetId)
-                  if (targetElement) {
-                    targetElement.scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })
-                  }
-                }}
-              >
-                More Info
-              </Button>
-            </div>
-          )} */}
 
           {connectionState === ClientConnectionState.CONNECTED && (
             <>
@@ -682,7 +620,7 @@ const Perk = ({
               )}
 
               {coupon && (
-                <div className="p-2 py-1.5 bg-green-100 border max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-2">
+                <div className="p-2 py-2 bg-green-100 border font-bold max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
                   {coupon.startsWith('https://') ? (
                     <div className="shrink">
                       <a href={coupon} target="_blank" rel="noopener noreferrer">

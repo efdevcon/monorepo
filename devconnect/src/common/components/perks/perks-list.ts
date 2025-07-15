@@ -52,6 +52,20 @@ const perks: Perk[] = [
       url: 'https://devconnect-hoodi-faucet.pk910.de/',
     }],
   },
+    {
+    coupon_collection: 'Devconnect ARG Telegram Chat',
+    name: 'Devconnect ARG Telegram Chat',
+    description: 'Join the Devconnect ARG Telegram Chat',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Devconnect Team',
+    image: CoworkingImage,
+    external: true,
+    urls: [{
+      text: 'Telegram Chat',
+      url: 'https://t.me/zucat_bot',
+    }],
+    // zupass_proof_id: 'Devconnect ARG',
+  },
   {
     coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',
