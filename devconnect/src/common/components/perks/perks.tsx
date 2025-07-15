@@ -614,7 +614,7 @@ const Perk = ({
           </div>
         )}
 
-        {!isCreateYourOwnPerk && !isExternalPerk && connectionState === ClientConnectionState.CONNECTED ? (
+        {!isCreateYourOwnPerk && !isExternalPerk && connectionState === ClientConnectionState.CONNECTED && verified ? (
           <Image
             src={VerifiedSquares}
             alt="Verified Squares"
