@@ -82,10 +82,10 @@ const menuItems = (pathname: string) => [
     text: 'Tickets',
     url: 'https://tickets.devconnect.org/',
   },
-  {
-    text: 'Perks',
-    url: '/perks',
-  },
+  // {
+  //   text: 'Perks',
+  //   url: '/perks',
+  // },
   {
     text: 'Calendar',
     url: '/calendar',

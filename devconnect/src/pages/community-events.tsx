@@ -651,12 +651,17 @@ const CommunityEvents = () => {
               and makes your event data available for others in the community to build their own community calendars
             </p>
 
-            <p className="text-gray-800 mb-3">
-              <b>To submit your event, you will need a</b>{' '}
+            <p className="text-gray-800 mb-2">
+              If you sign in with email, we will post your event data to AT protocol on your behalf when you submit this
+              form. After submitting, you can edit by submitting again with the same credentials and event title.
+            </p>
+            <p className="text-gray-800 mb-2 text-sm italic">
+              Optional: we also allow you to connect your{' '}
               <Link href="https://bsky.app" className="underline font-bold generic text-blue-500">
                 Bluesky account
               </Link>{' '}
-              (easiest; anyone can do it), or a custom pds server and account details (hardest; for experts).
+              and post to your existing bluesky pds, or use a custom pds server and account details (harder; for
+              experts).
             </p>
 
             <FAQComponent
@@ -664,7 +669,7 @@ const CommunityEvents = () => {
                 {
                   question: 'Why AT protocol?',
                   answer:
-                    'AT protocol is a protocol that lets you create and manage your own data. For us, among other things, it presents a way to decentralize the ownership of Devconnect; anyone can submit an event to AT protocol, and anyone will be able to access it - this encourages a community-driven approach to event discovery, where anyone can build their own Devconnect calendar.',
+                    'AT protocol is an open protocol that lets its users create and manage their own data. For us, among other things, it presents a way to decentralize the ownership of Devconnect; anyone can submit an event to AT protocol, and anyone will be able to access it - this encourages a community-driven approach to event discovery, where anyone can build their own Devconnect calendar.',
                 },
                 {
                   question: 'Can my event be featured on the Devconnect website?',
