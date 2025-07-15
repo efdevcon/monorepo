@@ -4,6 +4,7 @@ import { useAccountContext } from '@/context/account-context';
 import WalletLoginButton from '@/components/WalletLoginButton';
 import { useDisconnect } from 'wagmi';
 import { useAccount } from 'wagmi';
+import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 
 export default function HomePage() {
   const { account, loading } = useAccountContext();
@@ -40,6 +41,7 @@ export default function HomePage() {
               >
                 Disconnect
               </button>
+              <Zkp2pOnrampQRCode address={account.address} />
             </div>
           </div>
         ) : isConnected ? (
