@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
 import cn from 'classnames'
+import { Download } from 'lucide-react'
 
 // Remove old interfaces and define new ones for the new structure
 interface PodEntries {
@@ -341,8 +342,9 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
             className="text-4xl font-bold text-gray-800 text-center mb-8 font-secondary"
             variants={titleVariants}
           >
-            🎫 Zupass POD Viewer
+            Devcon SEA Zupass POD 🎫
           </motion.h1>
+          <h2 className="text-xl font-semibold mb-2 font-secondary">No POD Data Found</h2>
           <motion.div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg" variants={itemVariants}>
             <h2 className="text-xl font-semibold mb-2 font-secondary">No POD Data Found</h2>
             <p className="mb-3">Please provide a POD object as a prop or URL parameter.</p>
@@ -373,17 +375,38 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
       initial="hidden"
       animate="visible"
     >
-      <motion.div className="bg-white rounded-xl p-8 shadow-md border border-gray-200" variants={itemVariants}>
+      <motion.div
+        style={{
+          borderRadius: '1px',
+          border: '1px solid var(--Primary-light-blue, #74ACDF)',
+          background: 'linear-gradient(180deg, #F7FBFF -6.53%, #C4DDF4 100%)',
+          padding: '2rem',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1)'
+        }}
+        className={cn('max-w-4xl mx-auto', className)}
+        variants={itemVariants}
+      >
         <motion.h1
           className="text-4xl font-bold text-gray-800 text-center mb-8 font-secondary"
           variants={titleVariants}
         >
-          🎫 Zupass POD Viewer
+          Devcon SEA Zupass POD 🎫
         </motion.h1>
 
+          {/* Download button */}
+          <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
+            <button
+              onClick={downloadPod}
+              className="inline-block bg-[#C6E1F9] hover:bg-[#B6D1E9] text-[#36364C] px-6 py-3 rounded-lg font-semibold transition-colors border border-black border-solid transform hover:scale-105 transition-transform duration-300 relative z-20"
+            >
+              Download POD (.json)
+              <Download className="inline-block w-5 h-5 mr-2 align-middle" />
+            </button>
+          </motion.div>
+          <hr className="my-8" />
         <motion.div variants={containerVariants}>
           {/* Entries section */}
-          {pod.entries && renderSection('Ticket Details', pod.entries)}
+          {pod.entries && renderSection('Zupass POD Data', pod.entries)}
 
           {/* Signature and Signer Public Key */}
           <motion.div variants={itemVariants} className="mb-6 p-5 border border-gray-200 rounded-lg bg-white shadow-sm">
@@ -394,15 +417,6 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
             {formatField('Signer Public Key', pod.signerPublicKey, true)}
           </motion.div>
 
-          {/* Download button */}
-          <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
-            <button
-              onClick={downloadPod}
-              className="inline-block bg-[#C6E1F9] hover:bg-[#B6D1E9] text-[#36364C] px-6 py-3 rounded-lg font-semibold transition-colors border border-black border-solid transform hover:scale-105 transition-transform duration-300 relative z-20"
-            >
-              📥 Download POD as JSON
-            </button>
-          </motion.div>
         </motion.div>
       </motion.div>
     </motion.div>
