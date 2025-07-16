@@ -59,7 +59,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Programme',
-    href: '/programme/',
+    href: '/programme',
     icon: ProgrammeIcon,
     backgroundColor: 'rgba(254, 232, 244, 0.75)',
     tabItems: [
@@ -76,7 +76,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Profile',
-    href: '/profile/',
+    href: '/profile',
     icon: ProfileIcon,
     backgroundColor: 'rgba(247, 231, 255, 0.75)',
     tabItems: [
