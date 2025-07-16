@@ -176,7 +176,7 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
               target.style.display = 'none'
             }}
           />
-          <div className="mt-2 text-sm text-[#4B4B66]">
+          {/* <div className="mt-2 text-sm text-[#4B4B66]">
             <a
               href={imageUrl}
               target="_blank"
@@ -185,14 +185,14 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
             >
               View full size
             </a>
-          </div>
+          </div> */}
         </div>
       )
     }
     
     return (
-      <div className="flex mb-3 items-start" key={label}>
-        <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0">{label}:</div>
+      <div className="flex mb-3 items-start flex-col sm:flex-row" key={label}>
+        <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0 mb-1 sm:mb-0">{label}:</div>
         <div className="text-gray-800 break-all flex-1">{displayValue}</div>
       </div>
     )
@@ -395,16 +395,21 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
 
           {/* Download button */}
           <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
-            <button
+            <div
+              className="size- px-8 py-4 bg-white shadow-[0px_4px_0px_0px_rgba(75,75,102,1.00)] outline outline-1 outline-offset-[-1px] outline-[#4b4b66] inline-flex justify-center items-center gap-2 cursor-pointer select-none"
               onClick={downloadPod}
-              className="inline-block bg-[#C6E1F9] hover:bg-[#B6D1E9] text-[#36364C] px-6 py-3 rounded-lg font-semibold transition-colors border border-black border-solid transform hover:scale-105 transition-transform duration-300 relative z-20"
+              role="button"
+              tabIndex={0}
+              onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') downloadPod(); }}
             >
-              Download POD (.json)
-              <Download className="inline-block w-5 h-5 mr-2 align-middle" />
-            </button>
+              <div className="text-center justify-start text-[#36364c] text-base font-bold font-['Roboto'] leading-none">Download POD (.json)</div>
+              <div className="size-5 flex items-center justify-center">
+                <Download className="w-[15px] h-[15px] text-[#36364c]" />
+              </div>
+            </div>
           </motion.div>
-          <hr className="my-8" />
-        <motion.div variants={containerVariants}>
+          <div className="my-8 self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-[#b5b5c8]" />
+        <motion.div variants={containerVariants} className="pt-8  ">
           {/* Entries section */}
           {pod.entries && renderSection('Zupass POD Data', pod.entries)}
 
