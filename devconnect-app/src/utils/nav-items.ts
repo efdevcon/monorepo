@@ -4,18 +4,52 @@ import WalletIcon from '@/components/icons/WalletIcon';
 import ProgrammeIcon from '@/components/icons/ProgrammeIcon';
 import ProfileIcon from '@/components/icons/ProfileIcon';
 
-export const NAV_ITEMS = [
+export type TabItem = {
+  label: string;
+};
+
+export type NavItem = {
+  label: string;
+  href: string;
+  icon: React.ComponentType<{ active: boolean }>;
+  backgroundColor: string;
+  tabItems?: TabItem[];
+};
+
+export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Home',
-    href: '/',
+    href: '/home',
     icon: HomeIcon,
     backgroundColor: 'rgba(232, 243, 254, 0.75)',
+    tabItems: [
+      {
+        label: 'Dashboard',
+      },
+      {
+        label: 'Wallet',
+      },
+      {
+        label: 'Connections',
+      },
+    ],
   },
   {
     label: 'Quests',
     href: '/quests',
     icon: QuestIcon,
     backgroundColor: 'rgba(255, 248, 222, 0.75)',
+    tabItems: [
+      {
+        label: 'Quests',
+      },
+      {
+        label: 'Rewards',
+      },
+      {
+        label: 'Leaderboard',
+      },
+    ],
   },
   {
     label: 'Wallet',
@@ -25,14 +59,35 @@ export const NAV_ITEMS = [
   },
   {
     label: 'Programme',
-    href: '/programme',
+    href: '/programme/',
     icon: ProgrammeIcon,
     backgroundColor: 'rgba(254, 232, 244, 0.75)',
+    tabItems: [
+      {
+        label: 'Programme',
+      },
+      {
+        label: 'World’s Fair',
+      },
+      {
+        label: 'Favorites',
+      }
+    ],
   },
   {
     label: 'Profile',
-    href: '/profile',
+    href: '/profile/',
     icon: ProfileIcon,
     backgroundColor: 'rgba(247, 231, 255, 0.75)',
+    tabItems: [
+      {
+        label: 'Profile',
+      },
+      {
+        label: 'Settings',
+      },
+    ],
   },
-]; 
+];
+
+export const navItems = NAV_ITEMS.map(({ label, backgroundColor }) => ({ label, backgroundColor })); 
