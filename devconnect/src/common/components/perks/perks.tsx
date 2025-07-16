@@ -319,7 +319,10 @@ function Perks(props: any) {
         Showing 4 out of 4 
       </div> */}
       </div>
-      <div className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C]')} id="yourperk">
+      <div
+        className={cn('flex justify-between items-center bg-[#C6E1F9] text-[#36364C] overflow-hidden')}
+        id="yourperk"
+      >
         <div className={cn(css['bottom-section'], 'section py-10 md:py-24')}>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-4 max-w-[1000px] mx-auto z-10"
