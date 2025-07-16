@@ -501,18 +501,18 @@ const Perk = ({
   return (
     <motion.div
       variants={itemVariants}
-      className={cn('border border-solid border-gray-700 flex relative flex-col group/perk')}
+      className={cn(css.perk, 'border border-solid border-gray-700 flex relative flex-col group/perk')}
     >
       <div
         className={cn(
-          'absolute top-0 left-0 w-full h-full bg-black opacity-0 group-hover/perk:opacity-70 transition-opacity duration-500 z-10 flex items-center justify-center',
+          'absolute top-0 z-[11] left-0 w-full h-full bg-black opacity-0 group-hover/perk:opacity-70 transition-opacity duration-500 z-10 flex items-center justify-center',
           (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
         )}
       ></div>
 
       <div
         className={cn(
-          'absolute top-0 left-0 w-full h-full opacity-0 group-hover/perk:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center',
+          'absolute top-0 z-[11] left-0 w-full h-full opacity-0 group-hover/perk:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center',
           (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
         )}
       >
@@ -527,7 +527,7 @@ const Perk = ({
         <p className="">{perk.description}</p>
 
         {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
-          <div className="absolute top-4 left-4 ">
+          <div className="absolute top-4 left-4 z-10">
             <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1 border border-black border-solid font-bold">
               Not Connected
             </div>
@@ -535,7 +535,7 @@ const Perk = ({
         )}
 
         {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
-          <div className="absolute top-4 left-4 ">
+          <div className="absolute top-4 left-4 z-10">
             <div
               className={cn(
                 'text-sm px-2 py-1 font-bold border border-black border-solid',
@@ -549,7 +549,7 @@ const Perk = ({
 
         {perk.anchor && (
           <div
-            className="absolute top-4 right-4 cursor-pointer"
+            className="absolute top-4 right-4 cursor-pointer z-10"
             onClick={() => {
               if (!perk.anchor) return
 
@@ -571,7 +571,7 @@ const Perk = ({
         )}
 
         {perk.urls && (
-          <div className="absolute top-4 right-4 cursor-pointer">
+          <div className="absolute top-4 right-4 cursor-pointer z-10">
             <div className="flex flex-col gap-2">
               {perk.urls.map(url => (
                 <Link
