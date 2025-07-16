@@ -19,7 +19,7 @@ export type NavItem = {
 export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Home',
-    href: '/home',
+    href: '/',
     icon: HomeIcon,
     backgroundColor: 'rgba(232, 243, 254, 0.75)',
     tabItems: [
