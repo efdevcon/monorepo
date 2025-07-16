@@ -25,23 +25,29 @@ export default function MobileBottomNav() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center bg-white border-t border-gray-200"
+      className="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center bg-white border-t border-gray-200 pb-[34px] pt-[4px]"
       style={{
         background: 'rgba(255,255,255,0.95)',
         backdropFilter: 'blur(8px)',
       }}
     >
       {NAV_ITEMS.map((item) => {
-        const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href));
+        const isActive =
+          pathname === item.href ||
+          (item.href !== '/' && pathname.startsWith(item.href));
         const Icon = item.icon;
         return (
           <a
             key={item.href}
             href={item.href}
-            className={`flex flex-col items-center text-xs transition-colors ${isActive ? 'text-blue-600' : 'text-gray-700'}`}
+            className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors ${isActive ? 'text-[#232336] font-semibold' : 'text-[#4b4b66] font-normal'}`}
           >
-            <Icon active={isActive} />
-            <span className={isActive ? 'font-semibold' : ''}>{item.label}</span>
+            <span className="size-7 flex items-center justify-center overflow-hidden">
+              <Icon active={isActive} />
+            </span>
+            <span className="text-[10px] leading-[10px] font-['Roboto']">
+              {item.label}
+            </span>
           </a>
         );
       })}
