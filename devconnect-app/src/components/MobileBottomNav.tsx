@@ -3,44 +3,7 @@
 import React from 'react';
 import { useAccountContext } from '@/context/account-context';
 import { usePathname } from 'next/navigation';
-import HomeIcon from './icons/HomeIcon';
-import QuestIcon from './icons/QuestIcon';
-import WalletIcon from './icons/WalletIcon';
-import ProgrammeIcon from './icons/ProgrammeIcon';
-import ProfileIcon from './icons/ProfileIcon';
-
-const NAV_ITEMS = [
-  {
-    label: 'Home',
-    href: '/',
-    icon: HomeIcon,
-    backgroundColor: 'rgba(232, 243, 254, 0.75)',
-  },
-  {
-    label: 'Quests',
-    href: '/quests',
-    icon: QuestIcon,
-    backgroundColor: 'rgba(255, 248, 222, 0.75)',
-  },
-  {
-    label: 'Wallet',
-    href: '/wallet',
-    icon: WalletIcon,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  },
-  {
-    label: 'Programme',
-    href: '/programme',
-    icon: ProgrammeIcon,
-    backgroundColor: 'rgba(254, 232, 244, 0.75)',
-  },
-  {
-    label: 'Profile',
-    href: '/profile',
-    icon: ProfileIcon,
-    backgroundColor: 'rgba(247, 231, 255, 0.75)',
-  },
-];
+import { NAV_ITEMS } from '@/utils/nav-items';
 
 export default function MobileBottomNav() {
   const { account } = useAccountContext();
