@@ -55,7 +55,7 @@ const perks: Perk[] = [
     name: 'Testnet Faucet',
     description: 'Free Sepolia and Hoodi ETH.',
     requires: 'Devconnect ARG ticket',
-    issuer: 'Devconnect Team',
+    issuer: 'ethPandaOps',
     image: CommunityImage,
     external: true,
     urls: [{
