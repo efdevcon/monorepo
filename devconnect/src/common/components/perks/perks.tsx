@@ -621,7 +621,7 @@ const Perk = ({
                   )}
 
                   {perk.external && verified && (
-                    <div className="flex gap-1">
+                    <div className="flex gap-2">
                       {perk.urls &&
                         perk.urls.map(url => (
                           <Button

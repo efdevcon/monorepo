@@ -37,6 +37,20 @@ const perks: Perk[] = [
   //   zupass_proof_id: 'Devconnect ARG',
   // },
   {
+    coupon_collection: 'Devconnect ARG Telegram Chat',
+    name: 'Devconnect ARG Telegram Chat',
+    description: 'Join the Devconnect ARG Telegram Chat',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Devconnect Team',
+    image: CoworkingImage,
+    external: true,
+    urls: [{
+      text: 'Telegram Chat',
+      url: 'https://t.me/zucat_bot',
+    }],
+    zupass_proof_id: 'Devconnect ARG',
+  },
+  {
     coupon_collection: 'test-net-faucet',
     name: 'Testnet Faucet',
     description: 'Free Sepolia and Hoodi ETH.',
@@ -53,20 +67,7 @@ const perks: Perk[] = [
     }],
     zupass_proof_id: 'Devconnect ARG',
   },
-    {
-    coupon_collection: 'Devconnect ARG Telegram Chat',
-    name: 'Devconnect ARG Telegram Chat',
-    description: 'Join the Devconnect ARG Telegram Chat',
-    requires: 'Devconnect ARG ticket',
-    issuer: 'Devconnect Team',
-    image: CoworkingImage,
-    external: true,
-    urls: [{
-      text: 'Telegram Chat',
-      url: 'https://t.me/zucat_bot',
-    }],
-    zupass_proof_id: 'Devconnect ARG',
-  },
+
   {
     coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',
