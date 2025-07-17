@@ -534,7 +534,7 @@ const Perk = ({
           </div>
         )}
 
-        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
+        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
           <div className="absolute top-4 left-4 z-10">
             <div
               className={cn(
@@ -570,7 +570,7 @@ const Perk = ({
           </div>
         )}
 
-        {perk.urls && (
+        {perk.urls && !verified && (
           <div className="absolute top-4 right-4 cursor-pointer z-10">
             <div className="flex flex-col gap-2">
               {perk.urls.map(url => (
@@ -589,7 +589,7 @@ const Perk = ({
           </div>
         )}
 
-        {!isCreateYourOwnPerk && !isExternalPerk && connectionState === ClientConnectionState.CONNECTED && verified ? (
+        {!isCreateYourOwnPerk && connectionState === ClientConnectionState.CONNECTED && verified ? (
           <Image
             src={VerifiedSquares}
             alt="Verified Squares"
@@ -612,12 +612,29 @@ const Perk = ({
 
           {connectionState === ClientConnectionState.CONNECTED && (
             <>
-              {!coupon && !couponStatus && !perk.external && (
+              {!coupon && !couponStatus && (
                 <>
-                  {!perk.external && perk.zupass_proof_id && verified && (
+                  {perk.zupass_proof_id && verified && !perk.external && (
                     <Button color="black-1" size="sm" className="my-0.5" onClick={requestCoupon}>
                       {fetchingCoupon ? 'Fetching Coupon...' : 'Claim Coupon'}
                     </Button>
+                  )}
+
+                  {perk.external && verified && (
+                    <div className="flex gap-1">
+                      {perk.urls &&
+                        perk.urls.map(url => (
+                          <Button
+                            color="black-1"
+                            size="sm"
+                            className="my-0.5"
+                            onClick={() => window.open(url.url, '_blank')}
+                          >
+                            {url.text}
+                            <ArrowUpRight size={16} />
+                          </Button>
+                        ))}
+                    </div>
                   )}
                 </>
               )}

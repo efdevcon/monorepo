@@ -51,6 +51,7 @@ const perks: Perk[] = [
       text: 'Hoodi Faucet',
       url: 'https://devconnect-hoodi-faucet.pk910.de/',
     }],
+    zupass_proof_id: 'Devconnect ARG',
   },
     {
     coupon_collection: 'Devconnect ARG Telegram Chat',
@@ -64,7 +65,7 @@ const perks: Perk[] = [
       text: 'Telegram Chat',
       url: 'https://t.me/zucat_bot',
     }],
-    // zupass_proof_id: 'Devconnect ARG',
+    zupass_proof_id: 'Devconnect ARG',
   },
   {
     coupon_collection: 'create-your-own',
@@ -74,7 +75,7 @@ const perks: Perk[] = [
     issuer: 'YOUR BRAND',
     image: WorldsFairImage,
     anchor: '#yourperk',
-    // zupass_proof_id: 'Devconnect ARG',
+
   },
 ]
 
