@@ -305,7 +305,10 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
           >
             🎫 Zupass POD Viewer
           </motion.h1>
-          <motion.div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg" variants={itemVariants}>
+          <motion.div
+            className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg overflow-hidden"
+            variants={itemVariants}
+          >
             <h2 className="text-xl font-semibold mb-2 font-secondary">Error</h2>
             <p className="mb-3">{error}</p>
             {error.includes('URL-encoded') && (
