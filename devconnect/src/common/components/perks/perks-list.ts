@@ -53,7 +53,7 @@ const perks: Perk[] = [
   {
     coupon_collection: 'test-net-faucet',
     name: 'Testnet Faucet',
-    description: 'Free Sepolia and Hoodi ETH.',
+    description: 'Free Sepolia and Hoodi ETH',
     requires: 'Devconnect ARG ticket',
     issuer: 'ethPandaOps',
     image: CommunityImage,
@@ -71,7 +71,7 @@ const perks: Perk[] = [
   {
     coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',
-    description: 'Contact us to create your own perk offering.',
+    description: 'Contact us to create your own perk offering',
     requires: 'An amazing perk 🦄',
     issuer: 'YOUR BRAND',
     image: WorldsFairImage,
