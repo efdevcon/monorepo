@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { Web3Provider } from '@/context/web3';
 import { AccountContextProvider } from '@/context/account-context-provider';
+import MobileBottomNav from '@/components/MobileBottomNav';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -37,7 +38,10 @@ export default function RootLayout({
         }}
       >
         <Web3Provider>
-          <AccountContextProvider>{children}</AccountContextProvider>
+          <AccountContextProvider>
+            {children}
+            <MobileBottomNav />
+          </AccountContextProvider>
         </Web3Provider>
       </body>
     </html>
