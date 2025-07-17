@@ -46,7 +46,7 @@ const perks: Perk[] = [
     external: true,
     urls: [{
       text: 'Telegram Chat',
-      url: 'https://t.me/zucat_bot',
+      url: 'https://t.me/zucat_bot?text=%2Fstart',
     }],
     zupass_proof_id: 'Devconnect ARG',
   },
