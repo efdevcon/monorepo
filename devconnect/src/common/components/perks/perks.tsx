@@ -542,7 +542,7 @@ const Perk = ({
                 verified ? 'bg-[#9BEFA0] text-gray-800' : 'bg-gray-200 text-red-800'
               )}
             >
-              {verified ? 'Ticket Verified' : 'No Ticket'}
+              {verified ? 'Ticket Verified' : 'Missing Ticket'}
             </div>
           </div>
         )}
