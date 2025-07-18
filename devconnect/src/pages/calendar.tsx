@@ -27,7 +27,7 @@ const Argentina = (props: any) => {
       name: `Ethereum World's Fair & Coworking Space`,
       description: 'Open coworking space for developers, builders, and researchers to collaborate throughout the week.',
       organizer: 'Ethereum Foundation',
-      difficulty: 'All Welcome',
+      difficulty: 'all welcome',
       isCoreEvent: true,
       timeblocks: [
         {
@@ -48,37 +48,37 @@ const Argentina = (props: any) => {
         text: 'Innovation Hub',
       },
     },
-    // {
-    //   id: 'event-001',
-    //   priority: 2,
-    //   spanRows: 3,
-    //   name: 'ETH Day',
-    //   description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
-    //   organizer: 'Ethereum Foundation',
-    //   difficulty: 'All Welcome',
-    //   isFairEvent: true,
-    //   timeblocks: [
-    //     {
-    //       start: '2025-11-17T10:00:00Z',
-    //       end: '2025-11-17T12:00:00Z',
-    //     },
-    //   ],
-    //   location: {
-    //     url: 'https://example.com/venue1',
-    //     text: 'Main Conference Hall',
-    //   },
-    //   // timeblocks: [
-    //   //   {
-    //   //     start: '2025-11-17T10:00:00Z',
-    //   //     end: '2025-11-17T12:00:00Z',
-    //   //   },
-    //   // ],
-    //   // priority: 1,
-    //   // categories: ['Education', 'Blockchain', 'Workshop'],
-    // },
+    {
+      id: 'event-001',
+      priority: 2,
+      spanRows: 3,
+      name: 'ETH Day',
+      description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
+      organizer: 'EF team',
+      difficulty: 'all welcome',
+      isFairEvent: true,
+      timeblocks: [
+        {
+          start: '2025-11-17T10:00:00Z',
+          end: '2025-11-17T12:00:00Z',
+        },
+      ],
+      location: {
+        url: 'https://example.com/venue1',
+        text: 'Main Conference Hall',
+      },
+      // timeblocks: [
+      //   {
+      //     start: '2025-11-17T10:00:00Z',
+      //     end: '2025-11-17T12:00:00Z',
+      //   },
+      // ],
+      // priority: 1,
+      // categories: ['Education', 'Blockchain', 'Workshop'],
+    },
   ]
 
-  const events = [...props.events, ...coreEvents].map(event => {
+  const events = props.events.map((event: any) => {
     const overrides = {} as any
 
     if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
@@ -137,14 +137,14 @@ const Argentina = (props: any) => {
         </div>
 
         <div className="section mb-8">
-          <div className="text-center text-lg">
+          {/* <div className="text-center text-lg">
             Stay tuned for details on how to submit your event to the calendar - we will be accepting submissions very
             soon!
-          </div>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-12">
+          </div> */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-12">
             <RichText content={data.pages.calendar_how_to_apply} Buttons={CMSButtons} />
             <RichText content={data.pages.calendar_community_calendar} Buttons={CMSButtons} />
-          </div> */}
+          </div>
         </div>
 
         {/* <div className="text-sm flex flex-col gap-4">
@@ -262,17 +262,25 @@ export interface Event {
 
   // console.log(notionEvents)
 
-  const events = notionEvents.results.map((event: any) => {
-    const formattedEvent = formatResult(event)
+  const atprotoEvents = await fetch(
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:4000/calendar-events'
+      : 'https://at-slurper.onrender.com/calendar-events'
+  )
+  const atprotoEventsData = await atprotoEvents.json()
+  // console.log(atprotoEventsData)
+
+  const formattedAtprotoEvents = atprotoEventsData.map((event: any) => {
+    const record = event.record_passed_review
 
     const timeblocks = []
 
-    if (formattedEvent['Requested event date']) {
-      let startDate = moment.utc(formattedEvent['Requested event date'].startDate)
+    if (record.start_utc) {
+      let startDate = moment.utc(record.start_utc)
       let endDate
 
-      if (formattedEvent['Requested event date'].endDate) {
-        endDate = moment.utc(formattedEvent['Requested event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
+      if (record.end_utc) {
+        endDate = moment.utc(record.end_utc).format('YYYY-MM-DDTHH:mm:ss[Z]')
       } else {
         endDate = startDate.format('YYYY-MM-DDTHH:mm:ss[Z]')
       }
@@ -283,26 +291,74 @@ export interface Event {
       })
     }
 
+    const manualOverrides = {} as any
+
+    if (event.id.toString() === '23') {
+      manualOverrides.priority = 1
+      manualOverrides.spanRows = 2
+    }
+
+    if (event.id.toString() === '22') {
+      manualOverrides.priority = 2
+      manualOverrides.spanRows = 3
+    }
+
     return {
       id: event.id,
-      name: formattedEvent['Event name'] || '',
-      description: formattedEvent['Description'] || '',
-      capacity: formattedEvent['Capacity'] || '',
-      startDate: formattedEvent['Requested event date'],
-      // size: formattedEvent['Size'],
-      location: formattedEvent['Location'] || { text: 'TBD', url: '' },
+      name: record.title,
+      description: record.description,
+      startDate: record.start_utc,
+      endDate: record.end_utc,
+      location: record.location.name,
+      difficulty: record.expertise,
+      organizer: record.organizer.name,
       timeblocks: timeblocks,
-      difficulty: 'Beginner',
-      organizer: formattedEvent['Organization'] || '',
+      ...manualOverrides,
+      // difficulty: record.difficulty,
     }
   })
+
+  // const events = notionEvents.results.map((event: any) => {
+  //   const formattedEvent = formatResult(event)
+
+  //   const timeblocks = []
+
+  //   if (formattedEvent['Requested event date']) {
+  //     let startDate = moment.utc(formattedEvent['Requested event date'].startDate)
+  //     let endDate
+
+  //     if (formattedEvent['Requested event date'].endDate) {
+  //       endDate = moment.utc(formattedEvent['Requested event date'].endDate).format('YYYY-MM-DDTHH:mm:ss[Z]')
+  //     } else {
+  //       endDate = startDate.format('YYYY-MM-DDTHH:mm:ss[Z]')
+  //     }
+
+  //     timeblocks.push({
+  //       start: startDate.format('YYYY-MM-DDTHH:mm:ss[Z]'),
+  //       end: endDate,
+  //     })
+  //   }
+
+  //   return {
+  //     id: event.id,
+  //     name: formattedEvent['Event name'] || '',
+  //     description: formattedEvent['Description'] || '',
+  //     capacity: formattedEvent['Capacity'] || '',
+  //     startDate: formattedEvent['Requested event date'],
+  //     // size: formattedEvent['Size'],
+  //     location: formattedEvent['Location'] || { text: 'TBD', url: '' },
+  //     timeblocks: timeblocks,
+  //     difficulty: 'Beginner',
+  //     organizer: formattedEvent['Organization'] || '',
+  //   }
+  // })
 
   return {
     props: {
       translations,
       locale,
       content,
-      events,
+      events: formattedAtprotoEvents,
     },
     revalidate: 1 * 60 * 60, // 60 minutes, in seconds
   }

@@ -67,16 +67,17 @@ const Event: React.FC<EventProps> = ({
 
   // Determine CSS class based on difficulty
   const difficultyClass =
-    event.difficulty === "Beginner" || event.difficulty === "All Welcome"
+    event.difficulty === "beginner" || event.difficulty === "all welcome"
       ? "bg-green-300"
-      : event.difficulty === "Intermediate"
+      : event.difficulty === "intermediate"
       ? "bg-yellow-300"
       : "bg-red-300";
 
-  const isCoworking = event.isCoreEvent; // event.name.includes("Coworking");
-  const isETHDay = event.isFairEvent; // event.name.includes("ETH Day");
+  const isCoworking = event.id.toString() === "23"; // event.isCoreEvent; // event.name.includes("Coworking");
+  const isETHDay = event.id.toString() === "22"; // event.isFairEvent; // event.name.includes("ETH Day");
 
-  const isCoreEvent = event.isCoreEvent || event.isFairEvent;
+  const isCoreEvent =
+    event.id.toString() === "23" || event.id.toString() === "22"; // event.isCoreEvent || event.isFairEvent;
 
   let eventName = event.name;
 
@@ -236,7 +237,8 @@ const Event: React.FC<EventProps> = ({
                 className={`rounded text-[10px] ${difficultyClass} px-2 py-0.5 flex gap-1.5 items-center relative`}
               >
                 <div className="line-clamp-1 w-full grow">
-                  {event.difficulty}
+                  {event.difficulty.charAt(0).toUpperCase() +
+                    event.difficulty.slice(1)}
                 </div>
               </div>
 

@@ -639,6 +639,7 @@ const CommunityEvents = () => {
               .
             </p>
             <p>You can edit it at any time by republishing with the same credentials and event title.</p>
+            <Button onClick={() => setSuccess('')}>Submit another event</Button>
           </div>
         )}
 

@@ -525,6 +525,7 @@ app.post(
       // Validate the event data
       const { valid, error: validationError } = validateRecord(eventData);
       if (!valid) {
+        console.error("Invalid event data:", validationError);
         return res.status(400).json({ error: validationError });
       }
 
@@ -544,6 +545,7 @@ app.post(
       );
 
       if (!result.success) {
+        console.error("Error creating event:", result.error);
         return res.status(400).json({ error: result.error });
       }
 
@@ -559,6 +561,6 @@ app.post(
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
-  startFirehose();
+  // startFirehose();
 });
 // api.addSchema();

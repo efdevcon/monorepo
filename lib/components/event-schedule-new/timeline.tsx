@@ -69,8 +69,8 @@ const TimelineEvent = ({
       ? "bg-yellow-300"
       : "bg-red-300";
 
-  const isCoworking = event.name.includes("Coworking");
-  const isETHDay = event.name.includes("ETH Day");
+  const isCoworking = event.id.toString() === "23"; // event.name.includes("Coworking");
+  const isETHDay = event.id.toString() === "22"; // event.name.includes("ETH Day");
 
   // Use timeblock name if available, otherwise use event name
   const displayName = timeblock.name || event.name;
