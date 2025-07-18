@@ -81,12 +81,12 @@ const dummyQuests: Quest[] = [
 
 export default function QuestsTab() {
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3 items-center">
+    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
       <QuestRecap quests={dummyQuests} />
       {dummyQuests.map((quest) => (
         <QuestItem key={quest.quest_id} quest={quest} />
       ))}
-      <div className="w-[95px] h-0 border border-[#d2d2de] my-4" />
+      <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />
       <QuestReward />
     </div>
   );

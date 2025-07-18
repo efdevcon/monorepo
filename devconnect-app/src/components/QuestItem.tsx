@@ -80,8 +80,14 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
 
       {/* Points badge */}
       <div
-        className={`size- p-1 left-[${quest.number >= 3 ? '300' : '292'}px] top-[8px] absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
+        className={`size- p-1 left-[8px] top-[8px] absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
       >
+        {/* Lock icon for locked quests */}
+        {quest.status === 'locked' && quest.number === 6 && (
+          <div className="size- p-1 bg-[#4b4b66] rounded-[1px] inline-flex justify-center items-center gap-1 mr-1">
+            <LockIcon size="md" />
+          </div>
+        )}
         <StarIcon isCompleted={quest.status === 'completed'} size="md" />
         <div
           className={`justify-start ${styles.points} text-${quest.number >= 3 ? 'xs' : 'sm'} font-black font-['Unibody_8_Pro'] leading-${quest.number >= 3 ? '3' : '[14px]'}`}
@@ -116,13 +122,6 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
               />
             </svg>
           </div>
-        </div>
-      )}
-
-      {/* Lock icon for locked quests */}
-      {quest.status === 'locked' && quest.number === 6 && (
-        <div className="size- p-1 left-[276px] top-[8px] absolute bg-[#4b4b66] rounded-[1px] inline-flex justify-center items-center gap-1">
-          <LockIcon size="md" />
         </div>
       )}
 
