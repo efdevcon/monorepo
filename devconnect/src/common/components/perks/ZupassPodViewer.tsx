@@ -90,6 +90,7 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
 
   useEffect(() => {
     if (podData) {
+      console.log('podData', podData)
       try {
         // Handle both string and object inputs
         const parsedPod = typeof podData === 'string' ? JSON.parse(podData) : podData;
@@ -105,20 +106,34 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
       const podParam = urlParams.get('pod');
       
       if (podParam) {
+        console.log('podParam', podParam)
+        // Check if the pod parameter contains the placeholder
+        if (podParam?.includes('pod_encoded')) {
+          setError(
+            "We apologize, we sent the wrong link in the email. We'll follow up with the correct link in the next few days."
+          )
+          setPod(null)
+          return
+        }
+
         try {
           // First try to parse as-is (in case it's already decoded)
-          const parsedPod = JSON.parse(podParam);
-          setPod(parsedPod);
-          setError(null);
+          const parsedPod = JSON.parse(podParam)
+          setPod(parsedPod)
+          setError(null)
         } catch (e1) {
           try {
             // If that fails, try URL decoding first
-            const parsedPod = JSON.parse(decodeURIComponent(podParam));
-            setPod(parsedPod);
-            setError(null);
+            const parsedPod = JSON.parse(decodeURIComponent(podParam))
+            setPod(parsedPod)
+            setError(null)
           } catch (e2) {
-            setError(`Error parsing POD data: ${e2 instanceof Error ? e2.message : 'Unknown error'}. The JSON must be properly URL-encoded.`);
-            setPod(null);
+            setError(
+              `Error parsing POD data: ${
+                e2 instanceof Error ? e2.message : 'Unknown error'
+              }. The JSON must be properly URL-encoded.`
+            )
+            setPod(null)
           }
         }
       } else {
@@ -305,7 +320,10 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
           >
             🎫 Zupass POD Viewer
           </motion.h1>
-          <motion.div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg" variants={itemVariants}>
+          <motion.div
+            className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-lg overflow-hidden"
+            variants={itemVariants}
+          >
             <h2 className="text-xl font-semibold mb-2 font-secondary">Error</h2>
             <p className="mb-3">{error}</p>
             {error.includes('URL-encoded') && (
