@@ -28,6 +28,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Progressive Web App */}
+        <link
+          rel="manifest"
+          href="/manifest.json"
+          crossOrigin="use-credentials"
+        />
+        <link rel="apple-touch-icon" href="/app-icon.png" />
+        <meta name="apple-mobile-web-app-title" content="Devconnect" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="application-name" content="Devconnect" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="theme-color" content="#fbf5ee" />
+        <meta name="msapplication-navbutton-color" content="#fbf5ee" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
         style={{
