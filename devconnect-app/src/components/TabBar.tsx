@@ -12,7 +12,10 @@ export default function TabBar({ navItem, activeIndex, onTabClick }: TabBarProps
   const tabItems = navItem.tabItems || [];
   const bgColor = navItem.backgroundColor || '#e8f3fb';
   return (
-    <div className="p-1 inline-flex justify-center items-center rounded" style={{ background: bgColor }}>
+    <div
+      className="mt-3 p-1 inline-flex justify-center items-center rounded"
+      style={{ background: bgColor }}
+    >
       {tabItems.map((item, idx) => (
         <button
           key={item.label}
@@ -31,7 +34,7 @@ export default function TabBar({ navItem, activeIndex, onTabClick }: TabBarProps
         >
           <div
             className={
-              'text-center justify-center text-sm font-medium font-[\'Roboto\'] leading-tight ' +
+              "text-center justify-center text-sm font-medium font-['Roboto'] leading-tight " +
               (idx === activeIndex ? 'text-[#232336]' : 'text-[#4b4b66]')
             }
           >
