@@ -553,6 +553,6 @@ app.post(
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
-  // startFirehose();
+  startFirehose();
 });
 // api.addSchema();
