@@ -20,16 +20,24 @@ export default function TabbedSection({ navLabel, children }: TabbedSectionProps
 
   return (
     <>
-      <TabBar navItem={navItem} activeIndex={tabIndex} onTabClick={(_, idx) => setTabIndex(idx)} />
+      <TabBar
+        navItem={navItem}
+        activeIndex={tabIndex}
+        onTabClick={(_, idx) => setTabIndex(idx)}
+      />
       <SwipeableViews
         index={tabIndex}
         onChangeIndex={setTabIndex}
         enableMouseEvents
         resistance
-        style={{ width: '100%' }}
+        style={{
+          width: '100%',
+          minHeight: 'calc(100vh - 182px)',
+          paddingBottom: '88px',
+        }}
       >
         {tabItems.map((tab, idx) => (
-          <div key={tab.label} style={{ width: '100%', minHeight: '100vh' }} className="py-8 text-center">
+          <div key={tab.label} className="w-full py-8 text-center">
             {children(idx, tab)}
           </div>
         ))}

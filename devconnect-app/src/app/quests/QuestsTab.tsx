@@ -1,6 +1,8 @@
 'use client';
 
 import QuestItem, { Quest } from '@/components/QuestItem';
+import QuestRecap from '@/components/QuestRecap';
+import QuestReward from '@/components/QuestReward';
 
 const dummyQuests: Quest[] = [
   {
@@ -79,10 +81,13 @@ const dummyQuests: Quest[] = [
 
 export default function QuestsTab() {
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
+    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3 items-center">
+      <QuestRecap quests={dummyQuests} />
       {dummyQuests.map((quest) => (
         <QuestItem key={quest.quest_id} quest={quest} />
       ))}
+      <div className="w-[95px] h-0 border border-[#d2d2de] my-4" />
+      <QuestReward />
     </div>
   );
 }
