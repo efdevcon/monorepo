@@ -431,7 +431,7 @@ app.get("/health", (req, res) => {
   });
 });
 
-app.get("/events", async (req, res) => {
+app.get("/all-events", async (req, res) => {
   const { data, error } = await supabase
     .from("atproto_records")
     .select(
@@ -463,14 +463,6 @@ app.get("/events", async (req, res) => {
     res.json(formatted);
   }
 });
-
-app.post("/events", async (req, res) => {
-  const { data, error } = await supabase
-    .from("atproto_records")
-    .insert(req.body)
-    .select();
-});
-
 // New endpoint for approved events only (for calendar)
 app.get("/calendar-events", async (req, res) => {
   const { data, error } = await supabase
