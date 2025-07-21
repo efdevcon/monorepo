@@ -11,10 +11,11 @@ import CommunityEvent from 'assets/images/ba/community-event-text.png'
 import validate from 'atproto-slurper/slurper/validate'
 import { Toaster, toast } from '@/components/ui/sonner'
 import { ArrowRight } from 'lucide-react'
-import { Agent } from '@atproto/api'
+import atpAgent, { Agent, AtpAgent } from '@atproto/api'
 import Button from 'common/components/voxel-button/button'
 import { schema } from 'atproto-slurper/slurper/schema'
 import { supabase } from 'common/supabaseClient'
+import { Sha256 } from '@aws-crypto/sha256-browser'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -135,6 +136,78 @@ interface EventFormData {
   }
 }
 
+const defaultFormData =
+  process.env.NODE_ENV === 'development'
+    ? {
+        start_utc: '2024-12-15T10:00:00Z',
+        end_utc: '2024-12-15T18:00:00Z',
+        title: 'Test Web3 Workshop',
+        description:
+          'An interactive workshop exploring the latest developments in Web3 technology, smart contracts, and decentralized applications. Perfect for developers looking to expand their blockchain knowledge.',
+        main_url: 'https://example.com/test-workshop',
+        organizer: {
+          name: 'Test Organizer',
+          contact: 'test@example.com',
+        },
+        location: {
+          name: 'Innovation Hub Buenos Aires',
+          address: '123 Test Street, Buenos Aires, Argentina',
+        },
+        event_type: 'workshop',
+        expertise: 'intermediate',
+        timeslots: [],
+        image_url: 'https://example.com/workshop-image.png',
+        requires_ticket: false,
+        sold_out: false,
+        capacity: 50,
+        categories: ['devex', 'protocol'],
+        search_tags: ['web3', 'blockchain', 'ethereum', 'smart-contracts'],
+        socials: {
+          x_url: 'https://twitter.com/testorganizer',
+          farcaster_url: '',
+          discord_url: 'https://discord.gg/testweb3',
+          telegram_url: '',
+          youtube_url: '',
+          github_url: 'https://github.com/testorganizer',
+          bluesky_url: '',
+          lens_url: '',
+        },
+      }
+    : {
+        start_utc: '',
+        end_utc: '',
+        title: '',
+        description: '',
+        main_url: '',
+        organizer: {
+          name: '',
+          contact: '',
+        },
+        location: {
+          name: '',
+          address: '',
+        },
+        event_type: '',
+        expertise: 'all welcome',
+        timeslots: [],
+        image_url: '',
+        requires_ticket: false,
+        sold_out: false,
+        capacity: undefined,
+        categories: [],
+        search_tags: [],
+        socials: {
+          x_url: '',
+          farcaster_url: '',
+          discord_url: '',
+          telegram_url: '',
+          youtube_url: '',
+          github_url: '',
+          bluesky_url: '',
+          lens_url: '',
+        },
+      }
+
 const CommunityEvents = () => {
   const [oauthSession, setOauthSession] = useState<any>(null)
   const [isAuthenticating, setIsAuthenticating] = useState(false)
@@ -142,81 +215,13 @@ const CommunityEvents = () => {
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [isClient, setIsClient] = useState(false)
+  const [existingRecords, setExistingRecords] = useState<any[]>([])
+  const [selectedRecord, setSelectedRecord] = useState<string>('')
   // Supabase auth state
   const [supabaseUser, setSupabaseUser] = useState<any>(null)
   const [magicLinkMessage, setMagicLinkMessage] = useState('')
-  const [formData, setFormData] = useState<EventFormData>(
-    process.env.NODE_ENV === 'development'
-      ? {
-          start_utc: '2024-12-15T10:00:00Z',
-          end_utc: '2024-12-15T18:00:00Z',
-          title: 'Test Web3 Workshop',
-          description:
-            'An interactive workshop exploring the latest developments in Web3 technology, smart contracts, and decentralized applications. Perfect for developers looking to expand their blockchain knowledge.',
-          main_url: 'https://example.com/test-workshop',
-          organizer: {
-            name: 'Test Organizer',
-            contact: 'test@example.com',
-          },
-          location: {
-            name: 'Innovation Hub Buenos Aires',
-            address: '123 Test Street, Buenos Aires, Argentina',
-          },
-          event_type: 'workshop',
-          expertise: 'intermediate',
-          timeslots: [],
-          image_url: 'https://example.com/workshop-image.png',
-          requires_ticket: false,
-          sold_out: false,
-          capacity: 50,
-          categories: ['devex', 'protocol'],
-          search_tags: ['web3', 'blockchain', 'ethereum', 'smart-contracts'],
-          socials: {
-            x_url: 'https://twitter.com/testorganizer',
-            farcaster_url: '',
-            discord_url: 'https://discord.gg/testweb3',
-            telegram_url: '',
-            youtube_url: '',
-            github_url: 'https://github.com/testorganizer',
-            bluesky_url: '',
-            lens_url: '',
-          },
-        }
-      : {
-          start_utc: '',
-          end_utc: '',
-          title: '',
-          description: '',
-          main_url: '',
-          organizer: {
-            name: '',
-            contact: '',
-          },
-          location: {
-            name: '',
-            address: '',
-          },
-          event_type: '',
-          expertise: 'all welcome',
-          timeslots: [],
-          image_url: '',
-          requires_ticket: false,
-          sold_out: false,
-          capacity: undefined,
-          categories: [],
-          search_tags: [],
-          socials: {
-            x_url: '',
-            farcaster_url: '',
-            discord_url: '',
-            telegram_url: '',
-            youtube_url: '',
-            github_url: '',
-            bluesky_url: '',
-            lens_url: '',
-          },
-        }
-  )
+  const [formData, setFormData] = useState<EventFormData>(defaultFormData)
+  const [isEditing, setIsEditing] = useState(false)
 
   const [showOptionalSections, setShowOptionalSections] = useState({
     optional: false,
@@ -322,6 +327,55 @@ const CommunityEvents = () => {
         categories: newCategories,
       }
     })
+  }
+
+  const handleRecordSelection = (recordIndex: string) => {
+    setSelectedRecord(recordIndex)
+
+    if (recordIndex === '') {
+      // Reset to empty form or development defaults
+      setFormData(defaultFormData)
+      return
+    }
+
+    const selectedRecordData = existingRecords[parseInt(recordIndex)]
+    if (selectedRecordData) {
+      // Map the record data to form data, ensuring we have all required fields
+      setFormData({
+        start_utc: selectedRecordData.start_utc || '',
+        end_utc: selectedRecordData.end_utc || '',
+        title: selectedRecordData.title || '',
+        description: selectedRecordData.description || '',
+        main_url: selectedRecordData.main_url || '',
+        organizer: {
+          name: selectedRecordData.organizer?.name || '',
+          contact: selectedRecordData.organizer?.contact || '',
+        },
+        location: {
+          name: selectedRecordData.location?.name || '',
+          address: selectedRecordData.location?.address || '',
+        },
+        event_type: selectedRecordData.event_type || '',
+        expertise: selectedRecordData.expertise || 'all welcome',
+        timeslots: selectedRecordData.timeslots || [],
+        image_url: selectedRecordData.image_url || '',
+        requires_ticket: selectedRecordData.requires_ticket || false,
+        sold_out: selectedRecordData.sold_out || false,
+        capacity: selectedRecordData.capacity || undefined,
+        categories: selectedRecordData.categories || [],
+        search_tags: selectedRecordData.search_tags || [],
+        socials: {
+          x_url: selectedRecordData.socials?.x_url || '',
+          farcaster_url: selectedRecordData.socials?.farcaster_url || '',
+          discord_url: selectedRecordData.socials?.discord_url || '',
+          telegram_url: selectedRecordData.socials?.telegram_url || '',
+          youtube_url: selectedRecordData.socials?.youtube_url || '',
+          github_url: selectedRecordData.socials?.github_url || '',
+          bluesky_url: selectedRecordData.socials?.bluesky_url || '',
+          lens_url: selectedRecordData.socials?.lens_url || '',
+        },
+      })
+    }
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -591,7 +645,10 @@ const CommunityEvents = () => {
       setOauthSession(null)
       setUserProfile(null)
       setSupabaseUser(null)
+      setExistingRecords([])
+      setSelectedRecord('')
       setSuccess('')
+      setFormData(defaultFormData)
       setMagicLinkMessage('')
     } catch (error) {
       console.error('Sign out error:', error)
@@ -599,6 +656,59 @@ const CommunityEvents = () => {
       window.location.reload()
     }
   }, [oauthSession, supabaseUser])
+
+  // Fetch events from AT protocol if logged in
+  useEffect(() => {
+    const fetchEvents = async () => {
+      if (!userProfile && !supabaseUser) return
+
+      const agent = new AtpAgent({ service: 'https://bsky.social' })
+
+      let events: any[] = []
+
+      // If user is logged in with email, hash the email to get the prefix specific to that user (need it to filter out other users' events)
+      if (supabaseUser) {
+        const did = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+        const email = supabaseUser.email
+        const hash = new Sha256()
+        hash.update(email)
+        const result = await hash.digest()
+        const userID = Array.from(result)
+          .map(b => b.toString(16).padStart(2, '0'))
+          .join('')
+          .substring(0, 16)
+
+        const response = await agent.com.atproto.repo.listRecords({
+          repo: did,
+          collection: 'org.devcon.event',
+        })
+
+        events = response.data.records
+          .filter((record: any) => {
+            const rkey = record.uri.split('/').pop()
+            const rkeyExpected = `${userID}-${record.value.title.toLowerCase().replace(/ /g, '-')}`
+
+            return rkey === rkeyExpected
+          })
+          .map((record: any) => record.value)
+      }
+
+      if (userProfile) {
+        const did = userProfile?.did
+
+        const response = await agent.com.atproto.repo.listRecords({
+          repo: did,
+          collection: 'org.devcon.event',
+        })
+
+        events = response.data.records.map((record: any) => record.value)
+      }
+
+      setExistingRecords(events)
+    }
+
+    fetchEvents()
+  }, [userProfile, supabaseUser])
 
   return (
     <div className="flex flex-col justify-between relative">
@@ -772,7 +882,29 @@ const CommunityEvents = () => {
                     Sign Out
                   </button>
                 </div>
-                <p className="text-sm text-gray-600">✅ Connected and ready to submit events</p>
+
+                {existingRecords.length > 0 && (
+                  <div className="mt-4">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">Previously submitted events:</label>
+                    <select
+                      value={selectedRecord}
+                      onChange={e => handleRecordSelection(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      <option value="">No Selection</option>
+                      {existingRecords.map((record, index) => (
+                        <option key={index} value={index.toString()}>
+                          {record.title} - {new Date(record.start_utc).toLocaleDateString()}
+                        </option>
+                      ))}
+                    </select>
+                    <p className="text-xs text-gray-500 mt-1">
+                      Select an existing event to edit, or keep "Create New Event" to start fresh
+                    </p>
+                  </div>
+                )}
+
+                <p className="text-sm text-gray-600 mt-4">✅ Connected and ready to submit events</p>
               </div>
             )}
           </div>
@@ -792,9 +924,16 @@ const CommunityEvents = () => {
                     required
                     value={formData.title}
                     onChange={e => handleInputChange('title', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    disabled={selectedRecord !== ''}
+                    className={`w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 ${
+                      selectedRecord !== '' ? 'bg-gray-100 cursor-not-allowed opacity-75' : ''
+                    }`}
                   />
-                  <p className="text-xs text-gray-500 mt-1">Title of the event</p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {selectedRecord !== ''
+                      ? 'Title cannot be changed when editing existing events (used as unique identifier)'
+                      : 'Title of the event'}
+                  </p>
                 </div>
 
                 <div>
