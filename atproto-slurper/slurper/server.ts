@@ -22,6 +22,58 @@ function hashEmail(email: string): string {
   return hash.digest("hex").substring(0, 16);
 }
 
+// Deep equality comparison function
+function deepEqual(obj1: any, obj2: any): boolean {
+  // Check for strict equality (handles primitives and same reference)
+  if (obj1 === obj2) {
+    return true;
+  }
+
+  // Check for null/undefined
+  if (obj1 == null || obj2 == null) {
+    return obj1 === obj2;
+  }
+
+  // Check if both are objects
+  if (typeof obj1 !== "object" || typeof obj2 !== "object") {
+    return false;
+  }
+
+  // Check for arrays
+  if (Array.isArray(obj1) !== Array.isArray(obj2)) {
+    return false;
+  }
+
+  if (Array.isArray(obj1)) {
+    if (obj1.length !== obj2.length) {
+      return false;
+    }
+    for (let i = 0; i < obj1.length; i++) {
+      if (!deepEqual(obj1[i], obj2[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  // Compare object keys
+  const keys1 = Object.keys(obj1);
+  const keys2 = Object.keys(obj2);
+
+  if (keys1.length !== keys2.length) {
+    return false;
+  }
+
+  // Check each key exists in both objects and values are equal
+  for (const key of keys1) {
+    if (!(key in obj2) || !deepEqual(obj1[key], obj2[key])) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 // Extend Express Request interface to include user property
 declare global {
   namespace Express {
@@ -177,6 +229,11 @@ async function saveEvent(event: any) {
       return { error: selectError };
     }
 
+    if (deepEqual(event.record, existingRecord?.record_passed_review)) {
+      console.log("Record is the same, skipping update");
+      return { success: true };
+    }
+
     if (existingRecord) {
       // Update case: move any existing passed_review to needs_review
       const { error: updateError } = await supabase
@@ -185,6 +242,7 @@ async function saveEvent(event: any) {
           record_needs_review: event.record,
           updated_at: new Date().toISOString(),
           message: event.message,
+          reviewed: false,
           rev: event.rev,
           cursor: event.cursor,
         })
@@ -340,6 +398,7 @@ async function startFirehose() {
                     cursor: message.time_us || null,
                     message: message,
                     did: message.did,
+                    reviewed: false,
                   })) as any;
 
                   if (result && result.error) {

@@ -55,6 +55,8 @@ const AdminPage = () => {
   const [editingDids, setEditingDids] = useState<Set<string>>(new Set())
   const [editValues, setEditValues] = useState<Record<string, { alias: string; contact: string }>>({})
   const [statusFilter, setStatusFilter] = useState<'all' | 'needs_review' | 'changes_need_review' | 'approved'>('all')
+  const [editingComments, setEditingComments] = useState<Set<string>>(new Set())
+  const [commentValues, setCommentValues] = useState<Record<string, string>>({})
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -82,7 +84,7 @@ const AdminPage = () => {
           .select(
             `
             id, rkey, created_by, created_at, updated_at, show_on_calendar,
-            record_passed_review, record_needs_review, lexicon,
+            record_passed_review, record_needs_review, lexicon, comments, reviewed,
             atproto_dids!created_by(did, alias, is_spammer, contact)
           `
           )
@@ -273,10 +275,104 @@ const AdminPage = () => {
     setEditValues(newEditValues)
   }
 
+  const handleToggleReviewed = async (id: string, value: boolean) => {
+    setEventsLoading(true)
+    try {
+      const { error } = await supabase.from('atproto_records').update({ reviewed: value }).eq('id', id)
+
+      if (error) throw error
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+  const toggleCommentEdit = (eventId: string, currentComment: string) => {
+    const newEditingComments = new Set(editingComments)
+    if (newEditingComments.has(eventId)) {
+      newEditingComments.delete(eventId)
+    } else {
+      newEditingComments.add(eventId)
+      setCommentValues(prev => ({
+        ...prev,
+        [eventId]: currentComment || '',
+      }))
+    }
+    setEditingComments(newEditingComments)
+  }
+
+  const handleCommentChange = (eventId: string, value: string) => {
+    setCommentValues(prev => ({
+      ...prev,
+      [eventId]: value,
+    }))
+  }
+
+  const handleSaveComment = async (eventId: string) => {
+    setEventsLoading(true)
+    try {
+      const comment = commentValues[eventId]
+      const { error } = await supabase
+        .from('atproto_records')
+        .update({ comments: comment || null })
+        .eq('id', eventId)
+
+      if (error) throw error
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+
+      setEvents(data || [])
+
+      // Exit edit mode
+      const newEditingComments = new Set(editingComments)
+      newEditingComments.delete(eventId)
+      setEditingComments(newEditingComments)
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+  const handleCancelCommentEdit = (eventId: string) => {
+    const newEditingComments = new Set(editingComments)
+    newEditingComments.delete(eventId)
+    setEditingComments(newEditingComments)
+
+    // Remove comment values for this event
+    const newCommentValues = { ...commentValues }
+    delete newCommentValues[eventId]
+    setCommentValues(newCommentValues)
+  }
+
   // Filter events based on status filter
   const filteredEvents = events.filter(event => {
     if (statusFilter === 'needs_review') {
-      return !!event.record_needs_review && !event.record_passed_review
+      return !!event.record_needs_review && !event.record_passed_review && !event.reviewed
     }
     if (statusFilter === 'changes_need_review') {
       return !!event.record_needs_review && !!event.record_passed_review
@@ -354,7 +450,7 @@ const AdminPage = () => {
                     </div>
                     <div className="bg-yellow-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-yellow-800">
-                        {events.filter(e => !!e.record_needs_review && !e.record_passed_review).length}
+                        {events.filter(e => !!e.record_needs_review && !e.record_passed_review && !e.reviewed).length}
                       </div>
                       <div className="text-sm text-yellow-600">Need Review</div>
                     </div>
@@ -397,7 +493,8 @@ const AdminPage = () => {
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
-                    Needs Review ({events.filter(e => !!e.record_needs_review && !e.record_passed_review).length})
+                    Needs Review (
+                    {events.filter(e => !!e.record_needs_review && !e.record_passed_review && !e.reviewed).length})
                   </button>
                   <button
                     onClick={() => setStatusFilter('changes_need_review')}
@@ -528,6 +625,7 @@ const AdminPage = () => {
                                 const isApproved = !!event.record_passed_review
                                 const hasChanges = needsReview && isApproved // Both defined = approved but has changes
                                 const recordData = event.record_passed_review || event.record_needs_review
+                                const isEditingComment = editingComments.has(event.id)
 
                                 return (
                                   <div
@@ -547,7 +645,7 @@ const AdminPage = () => {
                                         {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
 
                                         {/* Status Badge */}
-                                        <div className="mt-1">
+                                        <div className="mt-1 space-y-1">
                                           {hasChanges ? (
                                             <span className="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full">
                                               Updated - Needs Review
@@ -564,6 +662,15 @@ const AdminPage = () => {
                                             <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
                                               No Data
                                             </span>
+                                          )}
+
+                                          {/* Reviewed Badge */}
+                                          {event.reviewed && (
+                                            <div>
+                                              <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
+                                                ✓ Reviewed
+                                              </span>
+                                            </div>
                                           )}
                                         </div>
                                       </div>
@@ -597,7 +704,7 @@ const AdminPage = () => {
                                         )}
                                       </div>
 
-                                      <div className="lg:col-span-4 space-y-2">
+                                      <div className="lg:col-span-4 space-y-2 space-x-4">
                                         {/* Review Actions */}
                                         {needsReview && (
                                           <div className="flex space-x-2 mb-2">
@@ -609,6 +716,17 @@ const AdminPage = () => {
                                             </button>
                                           </div>
                                         )}
+
+                                        {/* Reviewed Checkbox */}
+                                        <label className="inline-flex items-center">
+                                          <input
+                                            type="checkbox"
+                                            checked={!!event.reviewed}
+                                            onChange={e => handleToggleReviewed(event.id, e.target.checked)}
+                                            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                          />
+                                          <span className="ml-2 text-sm text-gray-600">Reviewed</span>
+                                        </label>
 
                                         {/* Calendar Toggle */}
                                         <label className="inline-flex items-center">
@@ -637,6 +755,54 @@ const AdminPage = () => {
                                             ℹ️ Using currently approved version for calendar
                                           </p>
                                         )}
+
+                                        {/* Comments Section */}
+                                        <div className="mt-4 pt-3 border-t border-gray-200">
+                                          <div className="flex items-center justify-between mb-2">
+                                            <h4 className="text-sm font-medium text-gray-700">Comments</h4>
+                                            {!isEditingComment && (
+                                              <button
+                                                onClick={() => toggleCommentEdit(event.id, event.comments)}
+                                                className="text-xs text-blue-600 hover:text-blue-800"
+                                              >
+                                                {event.comments ? 'Edit' : 'Add Comment'}
+                                              </button>
+                                            )}
+                                          </div>
+
+                                          {isEditingComment ? (
+                                            <div className="space-y-2">
+                                              <textarea
+                                                value={commentValues[event.id] || ''}
+                                                onChange={e => handleCommentChange(event.id, e.target.value)}
+                                                placeholder="Add your comments here..."
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm resize-vertical min-h-[80px]"
+                                              />
+                                              <div className="flex space-x-2">
+                                                <button
+                                                  onClick={() => handleSaveComment(event.id)}
+                                                  className="px-3 py-1 bg-blue-600 text-white text-xs rounded-md hover:bg-blue-700 transition-colors"
+                                                >
+                                                  Save
+                                                </button>
+                                                <button
+                                                  onClick={() => handleCancelCommentEdit(event.id)}
+                                                  className="px-3 py-1 bg-gray-600 text-white text-xs rounded-md hover:bg-gray-700 transition-colors"
+                                                >
+                                                  Cancel
+                                                </button>
+                                              </div>
+                                            </div>
+                                          ) : event.comments ? (
+                                            <div className="bg-gray-50 rounded-md p-3">
+                                              <p className="text-sm text-gray-700 whitespace-pre-wrap">
+                                                {event.comments}
+                                              </p>
+                                            </div>
+                                          ) : (
+                                            <p className="text-xs text-gray-500 italic">No comments yet</p>
+                                          )}
+                                        </div>
                                       </div>
                                     </div>
                                   </div>
