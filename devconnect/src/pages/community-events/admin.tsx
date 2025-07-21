@@ -163,6 +163,7 @@ const AdminPage = () => {
         .update({
           record_passed_review: recordData,
           record_needs_review: null,
+          reviewed: true,
         })
         .eq('id', id)
 
@@ -621,7 +622,7 @@ const AdminPage = () => {
                           {expandedDids.has(did) && (
                             <div className="divide-y divide-gray-100">
                               {didEvents.map((event: any) => {
-                                const needsReview = !!event.record_needs_review
+                                const needsReview = !!event.record_needs_review && !event.reviewed
                                 const isApproved = !!event.record_passed_review
                                 const hasChanges = needsReview && isApproved // Both defined = approved but has changes
                                 const recordData = event.record_passed_review || event.record_needs_review
@@ -659,16 +660,18 @@ const AdminPage = () => {
                                               ✓ Approved
                                             </span>
                                           ) : (
-                                            <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
-                                              No Data
-                                            </span>
+                                            <>
+                                              {/* <span className="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">
+                                              No Data 
+                                            </span> */}
+                                            </>
                                           )}
 
                                           {/* Reviewed Badge */}
                                           {event.reviewed && (
                                             <div>
                                               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
-                                                ✓ Reviewed
+                                                Has been reviewed
                                               </span>
                                             </div>
                                           )}
@@ -706,7 +709,7 @@ const AdminPage = () => {
 
                                       <div className="lg:col-span-4 space-y-2 space-x-4">
                                         {/* Review Actions */}
-                                        {needsReview && (
+                                        {(hasChanges || !isApproved) && (
                                           <div className="flex space-x-2 mb-2">
                                             <button
                                               onClick={() => handleApprove(event.id, event.record_needs_review)}
@@ -746,7 +749,9 @@ const AdminPage = () => {
 
                                         {!isApproved && (
                                           <p className="text-xs text-gray-500 mt-1">
-                                            {needsReview ? 'Approve record first' : 'No approved version available'}
+                                            {needsReview
+                                              ? 'Approve record first'
+                                              : 'Only approved records can be shown on calendar'}
                                           </p>
                                         )}
 
