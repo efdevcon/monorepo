@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import type { NavItem, TabItem } from '@/utils/nav-items';
+import type { NavItem, TabItem } from '@/config/nav-items';
 
 interface TabBarProps {
   navItem: NavItem;

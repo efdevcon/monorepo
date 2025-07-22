@@ -10,8 +10,8 @@ import { toast } from 'sonner';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import { Button } from '@/components/ui/button';
 
-import { verifySignatureFormat, truncateSignature } from '@/utils/signature';
-import { APP_NAME, APP_DESCRIPTION } from '@/config/appkit';
+import { verifySignature, truncateSignature } from '@/utils/signature';
+import { APP_NAME, APP_DESCRIPTION } from '@/config/config';
 
 export default function HomePage() {
   const { open } = useAppKit();
@@ -42,11 +42,15 @@ export default function HomePage() {
 
       // Show notification with signature and verification
       const signature = result;
-      const isValidFormat = verifySignatureFormat(signature);
+      const isValidFormat = await verifySignature({
+        address,
+        message,
+        signature,
+      });
       const truncatedSig = truncateSignature(signature);
 
       toast.success(
-        `Signature: ${truncatedSig}\nFormat Valid: ${isValidFormat ? '✓' : '✗'}`
+        `Signature: ${truncatedSig}\nIs valid: ${isValidFormat ? '✓' : '✗'}`
       );
     } catch (err) {
       console.error('Sign message failed:', err);

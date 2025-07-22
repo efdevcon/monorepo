@@ -3,7 +3,7 @@
 import React from 'react';
 import { useAccount } from 'wagmi';
 import { usePathname } from 'next/navigation';
-import { NAV_ITEMS } from '@/utils/nav-items';
+import { NAV_ITEMS } from '@/config/nav-items';
 
 export default function MobileBottomNav() {
   const { isConnected } = useAccount();

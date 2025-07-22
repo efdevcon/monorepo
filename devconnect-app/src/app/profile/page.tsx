@@ -3,7 +3,7 @@ import PageLayout from '@/components/PageLayout';
 import TabbedSection from '@/components/TabbedSection';
 import ProfileTab from './ProfileTab';
 import SettingsTab from './SettingsTab';
-import { NAV_ITEMS } from '@/utils/nav-items';
+import { NAV_ITEMS } from '@/config/nav-items';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/profile');
 const navLabel = navItem?.label || 'Profile';

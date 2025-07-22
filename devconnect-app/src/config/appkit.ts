@@ -8,8 +8,8 @@ import { CreateConnectorFn } from "wagmi";
 import { QueryClient } from "@tanstack/react-query";
 import { base } from "wagmi/chains";
 
-export const APP_NAME = "Devconnect App";
-export const APP_DESCRIPTION = "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
+import { APP_NAME, APP_DESCRIPTION } from './config';
+
 export const chains = [base] as const;
 
 export const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
@@ -27,8 +27,8 @@ const queryClient = new QueryClient({
 });
 
 const metadata = {
-  name: "Devconnect App",
-  description: "Your companion for Devconnect ARG, the first Ethereum World's Fair.",
+  name: APP_NAME,
+  description: APP_DESCRIPTION,
   url: "https://devconnect.org",
   icons: ["https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg"],
 };
@@ -36,7 +36,7 @@ const metadata = {
 const connector = paraConnector({
   para: para,
   chains: [base],
-  appName: "Devconnect App",
+  appName: APP_NAME,
   logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
   queryClient,
   oAuthMethods: [] as OAuthMethod[],

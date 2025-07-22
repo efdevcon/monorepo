@@ -67,7 +67,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Programme',
       },
       {
-        label: 'World’s Fair',
+        label: 'World\'s Fair',
       },
       {
         label: 'Favorites',

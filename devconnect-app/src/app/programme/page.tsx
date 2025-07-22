@@ -4,7 +4,7 @@ import TabbedSection from '@/components/TabbedSection';
 import ProgrammeTab from './ProgrammeTab';
 import WorldsFairTab from './WorldsFairTab';
 import FavoritesTab from './FavoritesTab';
-import { NAV_ITEMS } from '@/utils/nav-items';
+import { NAV_ITEMS } from '@/config/nav-items';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/programme');
 const navLabel = navItem?.label || 'Programme';

@@ -1,6 +1,6 @@
 'use client';
 import TabBar from './TabBar';
-import { NAV_ITEMS, TabItem } from '@/utils/nav-items';
+import { NAV_ITEMS, TabItem } from '@/config/nav-items';
 import SwipeableViews from 'react-swipeable-views';
 import { useState } from 'react';
 

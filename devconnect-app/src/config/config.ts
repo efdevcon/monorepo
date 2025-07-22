@@ -18,4 +18,4 @@ export const APP_CONFIG = {
 
 // AppKit specific constants
 export const APP_NAME = "Devconnect App";
-export const APP_DESCRIPTION = "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
+export const APP_DESCRIPTION = "Your companion for Devconnect ARG, the first Ethereum World's Fair."; 

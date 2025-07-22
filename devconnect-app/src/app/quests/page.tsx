@@ -4,7 +4,7 @@ import TabbedSection from '@/components/TabbedSection';
 import QuestsTab from './QuestsTab';
 import RewardsTab from './RewardsTab';
 import LeaderboardTab from './LeaderboardTab';
-import { NAV_ITEMS } from '@/utils/nav-items';
+import { NAV_ITEMS } from '@/config/nav-items';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
