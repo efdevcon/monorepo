@@ -14,4 +14,8 @@ export const APP_CONFIG = {
     process.env.NEXT_PUBLIC_PARA_API_KEY?.startsWith('prod_')
       ? 'PROD'
       : 'BETA',
-}
+};
+
+// AppKit specific constants
+export const APP_NAME = "Devconnect App";
+export const APP_DESCRIPTION = "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
