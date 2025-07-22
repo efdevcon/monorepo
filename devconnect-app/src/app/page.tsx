@@ -4,8 +4,10 @@ import {
   useAppKit,
   useAppKitAccount,
   useDisconnect,
+  useAppKitProvider,
 } from '@reown/appkit/react';
 import { useSignMessage } from 'wagmi';
+import { useLogout } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import { Button } from '@/components/ui/button';
@@ -18,6 +20,39 @@ export default function HomePage() {
   const { isConnected, address } = useAppKitAccount();
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
+  const { walletProvider } = useAppKitProvider('eip155');
+  const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
+  console.log('embeddedWalletInfo', walletProvider);
+
+  const handleDisconnect = async () => {
+    try {
+      // Check if the wallet is Para
+      if (
+        walletProvider &&
+        typeof walletProvider === 'object' &&
+        'para' in walletProvider
+      ) {
+        console.log('Logging out from Para wallet');
+        await logoutAsync({
+          clearPregenWallets: false, // Keep pre-generated wallets
+        });
+        console.log('Para logout completed, now disconnecting');
+        disconnect();
+        toast.success(
+          'Successfully logged out from Para wallet and disconnected'
+        );
+      } else {
+        // Use regular disconnect for other wallets
+        console.log('Disconnecting from regular wallet');
+        disconnect();
+        toast.success('Successfully disconnected');
+      }
+    } catch (err) {
+      console.error('Logout/Disconnect failed:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      toast.error(`Logout failed: ${errorMessage}`);
+    }
+  };
 
   const handleSign = async () => {
     if (!address) {
@@ -98,8 +133,12 @@ export default function HomePage() {
                 Open Account Modal
               </Button>
               {address && (
-                <Button variant="destructive" onClick={() => disconnect()}>
-                  Disconnect
+                <Button
+                  variant="destructive"
+                  onClick={handleDisconnect}
+                  disabled={isParaLoggingOut}
+                >
+                  {isParaLoggingOut ? 'Logging out...' : 'Disconnect'}
                 </Button>
               )}
               {address && <Zkp2pOnrampQRCode address={address} />}
