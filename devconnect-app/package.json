@@ -8,11 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "postinstall": "yarn setup-para"
   },
   "dependencies": {
-    "@reown/appkit": "^1.7.13",
-    "@reown/appkit-adapter-wagmi": "^1.7.13",
+    "@getpara/evm-wallet-connectors": "2.0.0-alpha.27",
+    "@getpara/react-sdk": "2.0.0-alpha.27",
     "@tanstack/react-query": "^5.82.0",
     "@yudiel/react-qr-scanner": "^2.3.1",
     "next": "15.3.5",
@@ -20,8 +22,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-swipeable-views": "^0.14.0",
-    "viem": "^2.31.7",
-    "wagmi": "^2.15.6"
+    "viem": "^2.33.0",
+    "wagmi": "^2.16.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

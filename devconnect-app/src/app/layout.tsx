@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import { Web3Provider } from '@/context/web3';
-import { AccountContextProvider } from '@/context/account-context-provider';
+import '@getpara/react-sdk/styles.css';
+import { QueryProvider } from '@/context/QueryProvider';
+import { ParaProvider } from '@/context/ParaProvider';
 import MobileBottomNav from '@/components/MobileBottomNav';
 
 const geistSans = Geist({
@@ -54,12 +55,12 @@ export default function RootLayout({
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <Web3Provider>
-          <AccountContextProvider>
+        <QueryProvider>
+          <ParaProvider>
             {children}
             <MobileBottomNav />
-          </AccountContextProvider>
-        </Web3Provider>
+          </ParaProvider>
+        </QueryProvider>
       </body>
     </html>
   );

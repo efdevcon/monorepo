@@ -2,7 +2,7 @@
 
 import React, { ReactNode, useEffect, useState } from 'react'
 import { AccountContext, AccountContextType, UserAccount } from './account-context'
-import { useAppKit, useDisconnect } from '@reown/appkit/react';
+import { useDisconnect } from 'wagmi';
 import { useAccount } from 'wagmi';
 
 interface AccountContextProviderProps {
@@ -11,10 +11,7 @@ interface AccountContextProviderProps {
 
 const ACCOUNT_STORAGE_KEY = 'devconnect_account';
 
-export const AccountContextProvider = ({
-  children,
-}: AccountContextProviderProps) => {
-  const { close } = useAppKit();
+export const AccountContextProvider = ({ children }: AccountContextProviderProps) => {
   const { disconnect } = useDisconnect();
   const [loading, setLoading] = useState(true);
   const [account, setAccount] = useState<UserAccount | null>(null);
@@ -55,7 +52,7 @@ export const AccountContextProvider = ({
     if (isConnected) {
       wasConnected.current = true;
     }
-  }, [isConnected, account, address, logout]);
+  }, [isConnected, account, address]);
 
   async function loginWeb3(address: string): Promise<UserAccount | null> {
     try {
@@ -87,10 +84,10 @@ export const AccountContextProvider = ({
     try {
       console.log('Logout called');
 
-      // Use Reown's native disconnect with proper error handling
+      // Use Wagmi's native disconnect with proper error handling
       try {
         await disconnect();
-        console.log('Reown disconnect successful');
+        console.log('Wagmi disconnect successful');
       } catch (error) {
         // Check if it's the wallet_revokePermissions error
         const errorObj = error as { message?: string; code?: number };
@@ -102,18 +99,9 @@ export const AccountContextProvider = ({
             'Wallet revoke permissions not supported (this is normal for some wallets)'
           );
         } else {
-          console.warn('Reown disconnect failed:', error);
+          console.warn('Wagmi disconnect failed:', error);
         }
         // Continue with logout even if disconnect fails
-      }
-
-      // Close the AppKit modal
-      try {
-        await close();
-        console.log('AppKit close successful');
-      } catch (closeError) {
-        console.warn('AppKit close failed:', closeError);
-        // Continue with logout even if close fails
       }
 
       // Clear localStorage
