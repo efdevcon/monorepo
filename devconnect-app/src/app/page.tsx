@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import {
   useAccount,
   useModal,
@@ -9,8 +8,9 @@ import {
   useSignMessage,
 } from '@getpara/react-sdk';
 import { useSignMessage as useWagmiSignMessage } from 'wagmi';
+import { toast } from 'sonner';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
-import { Notification } from '@/components/Notification';
+import { Button } from '@/components/ui/button';
 import { verifySignatureFormat, truncateSignature } from '@/utils/signature';
 
 export default function HomePage() {
@@ -22,16 +22,6 @@ export default function HomePage() {
   const { signMessageAsync: wagmiSignMessageAsync, isPending: isWagmiSigning } =
     useWagmiSignMessage();
 
-  const [notification, setNotification] = useState<{
-    message: string;
-    type: 'success' | 'error' | 'info';
-    isVisible: boolean;
-  }>({
-    message: '',
-    type: 'info',
-    isVisible: false,
-  });
-
   const isConnected = account?.isConnected;
   const address = wallet?.address;
 
@@ -41,19 +31,17 @@ export default function HomePage() {
         clearPregenWallets: false, // Keep pre-generated wallets
       });
       console.log('Successfully logged out');
+      toast.success('Successfully logged out');
     } catch (err) {
       console.error('Logout failed:', err);
+      toast.error('Logout failed');
     }
   };
 
   const handleSign = async () => {
     if (!wallet) {
       console.error('No wallet available');
-      setNotification({
-        message: 'No wallet available',
-        type: 'error',
-        isVisible: true,
-      });
+      toast.error('No wallet available');
       return;
     }
 
@@ -80,11 +68,9 @@ export default function HomePage() {
         const isValidFormat = verifySignatureFormat(signature);
         const truncatedSig = truncateSignature(signature);
 
-        setNotification({
-          message: `Signature: ${truncatedSig}\nFormat Valid: ${isValidFormat ? '✓' : '✗'}`,
-          type: 'success',
-          isVisible: true,
-        });
+        toast.success(
+          `Signature: ${truncatedSig}\nFormat Valid: ${isValidFormat ? '✓' : '✗'}`
+        );
         return;
       }
 
@@ -104,20 +90,14 @@ export default function HomePage() {
         const isValidFormat = verifySignatureFormat(signature);
         const truncatedSig = truncateSignature(signature);
 
-        setNotification({
-          message: `Signature: ${truncatedSig}\nFormat Valid: ${isValidFormat ? '✓' : '✗'}`,
-          type: 'success',
-          isVisible: true,
-        });
+        toast.success(
+          `Signature: ${truncatedSig}\nFormat Valid: ${isValidFormat ? '✓' : '✗'}`
+        );
       }
     } catch (err) {
       console.error('Sign message failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-      setNotification({
-        message: `Signing failed: ${errorMessage}`,
-        type: 'error',
-        isVisible: true,
-      });
+      toast.error(`Signing failed: ${errorMessage}`);
     }
   };
 
@@ -135,12 +115,9 @@ export default function HomePage() {
             <p className="text-center text-gray-300 mb-4">
               Connect your wallet to get started
             </p>
-            <button
-              onClick={() => openModal()}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
-            >
+            <Button onClick={() => openModal()} className="w-full" size="lg">
               Connect Wallet
-            </button>
+            </Button>
           </div>
         ) : (
           <div className="space-y-4">
@@ -149,34 +126,28 @@ export default function HomePage() {
               <p className="text-sm text-gray-300 mb-4">Connected: {address}</p>
             </div>
             <div className="flex flex-col gap-2">
-              <button
+              <Button
                 onClick={handleSign}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                className="w-full"
+                size="lg"
                 disabled={isSigning || isWagmiSigning}
               >
                 {isSigning || isWagmiSigning ? 'Signing...' : 'Sign Message'}
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={handleLogout}
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded cursor-pointer"
+                variant="destructive"
+                className="w-full"
+                size="lg"
                 disabled={isPending}
               >
                 {isPending ? 'Logging out...' : 'Logout'}
-              </button>
+              </Button>
               {address && <Zkp2pOnrampQRCode address={address} />}
             </div>
           </div>
         )}
       </div>
-
-      <Notification
-        message={notification.message}
-        type={notification.type}
-        isVisible={notification.isVisible}
-        onClose={() =>
-          setNotification((prev) => ({ ...prev, isVisible: false }))
-        }
-      />
     </div>
   );
 }

@@ -5,6 +5,7 @@ import '@getpara/react-sdk/styles.css';
 import { QueryProvider } from '@/context/QueryProvider';
 import { ParaProvider } from '@/context/ParaProvider';
 import MobileBottomNav from '@/components/MobileBottomNav';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -59,6 +60,7 @@ export default function RootLayout({
           <ParaProvider>
             {children}
             <MobileBottomNav />
+            <Toaster />
           </ParaProvider>
         </QueryProvider>
       </body>
