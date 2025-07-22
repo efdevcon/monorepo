@@ -1,6 +1,10 @@
 'use client';
 
-import { useAppKit, useAppKitAccount } from '@reown/appkit/react';
+import {
+  useAppKit,
+  useAppKitAccount,
+  useDisconnect,
+} from '@reown/appkit/react';
 import { useSignMessage } from 'wagmi';
 import { toast } from 'sonner';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
@@ -12,6 +16,7 @@ import { APP_NAME, APP_DESCRIPTION } from '@/config/appkit';
 export default function HomePage() {
   const { open } = useAppKit();
   const { isConnected, address } = useAppKitAccount();
+  const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
 
   const handleSign = async () => {
@@ -27,12 +32,13 @@ export default function HomePage() {
     const message = 'Hello, Devconnect!';
 
     try {
-      console.log('Signing message with wagmi');
+      console.log('Using wagmi for wallet signing');
+
       const result = await signMessageAsync({
         message,
       });
 
-      console.log('Signature result:', result);
+      console.log('Wagmi signature result:', result);
 
       // Show notification with signature and verification
       const signature = result;
@@ -87,6 +93,11 @@ export default function HomePage() {
               >
                 Open Account Modal
               </Button>
+              {address && (
+                <Button variant="destructive" onClick={() => disconnect()}>
+                  Disconnect
+                </Button>
+              )}
               {address && <Zkp2pOnrampQRCode address={address} />}
             </div>
           </div>

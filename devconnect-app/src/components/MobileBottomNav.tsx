@@ -1,15 +1,15 @@
 'use client';
 
 import React from 'react';
-import { useAccount } from '@getpara/react-sdk';
+import { useAccount } from 'wagmi';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/utils/nav-items';
 
 export default function MobileBottomNav() {
-  const { data: account } = useAccount();
+  const { isConnected } = useAccount();
   const pathname = usePathname();
 
-  if (!account?.isConnected) return null;
+  if (!isConnected) return null;
 
   const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 
