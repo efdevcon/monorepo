@@ -1,6 +1,8 @@
 import { useAppKitAccount } from '@reown/appkit/react';
 import { useAccount as useWagmiAccount } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
+import { useSkipped } from '@/context/SkippedContext';
+import { usePathname } from 'next/navigation';
 
 export function useUnifiedConnection() {
   // AppKit connection status
@@ -12,6 +14,12 @@ export function useUnifiedConnection() {
   // Para connection status
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
+
+  // Skipped state from shared context
+  const { isSkipped, setSkipped, clearSkipped } = useSkipped();
+
+  // Current pathname for navigation logic
+  const pathname = usePathname();
 
   // Determine which connection is active
   const isAppKitConnected = appKitAccount?.isConnected;
@@ -58,11 +66,22 @@ export function useUnifiedConnection() {
 
   const activeConnection = getActiveConnection();
 
-  return {
-    // Unified connection status
+  // Show navigation if connected, skipped, or on any page other than homepage
+  const shouldShowNavigation = activeConnection.isConnected || isSkipped || pathname !== '/';
+
+  const result = {
+  // Unified connection status - only for actual wallet connections
     isConnected: activeConnection.isConnected,
     address: activeConnection.address,
     connectionType: activeConnection.type,
+    isSkipped,
+
+    // New property to determine if navigation should be shown
+    shouldShowNavigation,
+
+    // Functions to manage skipped state
+    setSkipped,
+    clearSkipped,
     
     // Individual connection statuses
     isAppKitConnected,
@@ -81,4 +100,14 @@ export function useUnifiedConnection() {
     // Para wallet for signing
     paraWalletData: paraWallet?.data,
   };
+
+  console.log('useUnifiedConnection returning:', {
+    isConnected: result.isConnected,
+    isSkipped: result.isSkipped,
+    shouldShowNavigation: result.shouldShowNavigation,
+    pathname,
+    activeConnectionIsConnected: activeConnection.isConnected
+  });
+
+  return result;
 } 

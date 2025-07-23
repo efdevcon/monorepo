@@ -6,10 +6,18 @@ import { NAV_ITEMS } from '@/config/nav-items';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 export default function MobileBottomNav() {
-  const { isConnected } = useUnifiedConnection();
+  const { shouldShowNavigation } = useUnifiedConnection();
   const pathname = usePathname();
 
-  if (!isConnected) return null;
+  console.log('MobileBottomNav render:', { shouldShowNavigation, pathname });
+
+  // Hide navigation until user connects or skips
+  if (!shouldShowNavigation) {
+    console.log('MobileBottomNav: hiding navigation');
+    return null;
+  }
+
+  console.log('MobileBottomNav: showing navigation');
 
   const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 

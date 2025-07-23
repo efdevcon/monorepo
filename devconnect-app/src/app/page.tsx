@@ -138,10 +138,10 @@ export default function HomePage() {
         {!isConnected ? (
           <CustomConnect />
         ) : (
-          <div className="space-y-4">
+          <div className="bg-white p-4 space-y-4 rounded-lg">
             <div className="text-center">
               <p className="text-lg mb-2">Welcome!</p>
-              <p className="text-sm text-gray-300 mb-4">Connected: {address}</p>
+              <p className="text-sm text-gray-600 mb-4">Connected: {address}</p>
             </div>
             <div className="flex flex-col gap-2">
               <Button

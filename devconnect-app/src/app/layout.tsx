@@ -5,6 +5,7 @@ import '@getpara/react-sdk/styles.css';
 import { AppKitProvider } from '@/context/AppKitProvider';
 import { ParaProvider } from '@/context/ParaProvider';
 import { QueryProvider } from '@/context/QueryProvider';
+import { SkippedProvider } from '@/context/SkippedContext';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { Toaster } from 'sonner';
 
@@ -60,9 +61,11 @@ export default function RootLayout({
         <QueryProvider>
           <ParaProvider>
             <AppKitProvider>
-              {children}
-              <MobileBottomNav />
-              <Toaster />
+              <SkippedProvider>
+                {children}
+                <MobileBottomNav />
+                <Toaster />
+              </SkippedProvider>
             </AppKitProvider>
           </ParaProvider>
         </QueryProvider>
