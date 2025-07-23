@@ -1,3 +1,5 @@
+import { Environment } from "@getpara/react-sdk";
+
 export const APP_CONFIG = {
   NODE_ENV: process.env.NODE_ENV || 'development',
 
@@ -12,8 +14,8 @@ export const APP_CONFIG = {
   PARA_API_KEY: process.env.NEXT_PUBLIC_PARA_API_KEY || '',
   PARA_ENVIRONMENT:
     process.env.NEXT_PUBLIC_PARA_API_KEY?.startsWith('prod_')
-      ? 'PROD'
-      : 'BETA',
+      ? Environment.PROD
+      : Environment.BETA,
 };
 
 // AppKit specific constants

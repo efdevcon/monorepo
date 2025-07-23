@@ -3,7 +3,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import type { OAuthMethod } from "@getpara/react-sdk";
 import { paraConnector } from "@getpara/wagmi-v2-integration";
-import { para } from "@/lib/para/client";
+import { para } from "./para";
 import { CreateConnectorFn } from "wagmi";
 import { QueryClient } from "@tanstack/react-query";
 import { base } from "wagmi/chains";
