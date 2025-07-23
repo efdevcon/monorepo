@@ -13,6 +13,7 @@ import ArrowUpIcon from 'assets/icons/arrow-up.svg'
 import ArrowDropdown from 'assets/icons/arrow-dropdown.svg'
 import GlobeIcon from 'assets/icons/world.svg'
 import { Popover, PopoverTrigger, PopoverContent } from 'lib/components/ui/popover'
+import InstagramIcon from 'assets/icons/instagram.svg'
 import DevconnectLogoText from 'assets/images/istanbul-logo-text.svg'
 // @ts-ignore
 import AnchorLink from 'react-anchor-link-smooth-scroll'
@@ -294,6 +295,9 @@ export const FooterMenu = (props: any) => {
       <div className={css['social-media']}>
         <a target="_blank" rel="noreferrer" href="https://twitter.com/efdevcon">
           <TwitterIcon style={{ fill: 'white' }} />
+        </a>
+        <a target="_blank" rel="noreferrer" href="https://www.instagram.com/efdevcon">
+          <InstagramIcon style={{ fill: 'white' }} />
         </a>
         <a target="_blank" rel="noreferrer" href="https://t.me/efdevconnect">
           <TelegramIcon style={{ fill: 'white' }} />
