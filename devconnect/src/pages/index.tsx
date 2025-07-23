@@ -203,7 +203,12 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   <Link href="https://devcon.org">Devcon</Link>
                   <Link href="mailto:support@devconnect.org">Contact Us</Link>
                   <Link href="https://ethereum.foundation">Ethereum Foundation</Link>
-                  <Link href="/code-of-conduct">Code of Conduct</Link>
+                  <Link href="legal/devconnect-code-of-conduct.pdf" target="_blank">
+                    Code of Conduct
+                  </Link>
+                  <Link href="legal/devconnect-terms-and-conditions.pdf" target="_blank">
+                    Terms and Conditions
+                  </Link>
                   <Link href="https://ethereum.org/en/privacy-policy/">Privacy policy</Link>
                   <Link href="https://ethereum.org/en/terms-of-use/">Terms of use</Link>
                   <Link href="https://ethereum.org/en/cookie-policy/">Cookie policy</Link>
