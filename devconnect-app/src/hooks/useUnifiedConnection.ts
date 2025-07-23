@@ -1,23 +1,17 @@
-import { useAppKitAccount } from '@reown/appkit/react';
-import { useAccount as useWagmiAccount } from 'wagmi';
+import { useAccount as useWagmiAccount, useConnectors } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
-import { useAppKitProvider } from '@reown/appkit/react';
 
 export function useUnifiedConnection() {
-  // AppKit connection status
-  const appKitAccount = useAppKitAccount();
-  
   // Wagmi connection status
   const wagmiAccount = useWagmiAccount();
+  console.log('wagmiAccount', wagmiAccount);
+  const connectors = useConnectors();
   
   // Para connection status
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
-
-  // Get wallet provider to check if it's Para
-  const { walletProvider } = useAppKitProvider('eip155');
 
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
@@ -26,12 +20,17 @@ export function useUnifiedConnection() {
   const pathname = usePathname();
 
   // Determine which connection is active
-  const isAppKitConnected = appKitAccount?.isConnected;
   const isWagmiConnected = wagmiAccount?.isConnected;
   const isParaConnected = paraAccount?.isConnected;
 
-  // Check if the current wallet provider is Para
-  const isPara = !!(walletProvider as { para?: unknown })?.para;
+  console.log('connectors', connectors);
+  // Find the active connector
+  const activeConnector = connectors.find(connector => connector.ready && connector.connected);
+
+  console.log('activeConnector', activeConnector);
+
+  // Check if the current connector is Para
+  const isPara = wagmiAccount.connector?.id === 'para';
 
   // Get the active connection details
   const getActiveConnection = () => {
@@ -53,16 +52,7 @@ export function useUnifiedConnection() {
         account: wagmiAccount,
       };
     }
-    
-    if (isAppKitConnected && appKitAccount?.address) {
-      return {
-        type: 'appkit' as const,
-        address: appKitAccount.address,
-        isConnected: true,
-        account: appKitAccount,
-      };
-    }
-    
+
     return {
       type: 'none' as const,
       address: undefined,
@@ -77,7 +67,7 @@ export function useUnifiedConnection() {
   const shouldShowNavigation = activeConnection.isConnected || isSkipped || pathname !== '/';
 
   const result = {
-  // Unified connection status - only for actual wallet connections
+    // Unified connection status - only for actual wallet connections
     isConnected: activeConnection.isConnected,
     address: activeConnection.address,
     isPara,
@@ -91,12 +81,10 @@ export function useUnifiedConnection() {
     clearSkipped,
     
     // Individual connection statuses
-    isAppKitConnected,
     isWagmiConnected,
     isParaConnected,
     
     // Individual account objects
-    appKitAccount,
     wagmiAccount,
     paraAccount,
     paraWallet,

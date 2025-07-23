@@ -27,6 +27,16 @@ export default function CustomConnect({ onConnect }: CustomConnectProps) {
     if (paraConnector) {
       connect({ connector: paraConnector });
       onConnect?.();
+    } else {
+      console.error('Para connector not found');
+      // Fallback: try to find any connector that might be Para
+      const anyParaConnector = connectors.find((connector) => 
+        connector.id === 'para' || connector.name?.toLowerCase().includes('para')
+      );
+      if (anyParaConnector) {
+        connect({ connector: anyParaConnector });
+        onConnect?.();
+      }
     }
   };
 

@@ -2,9 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
-import { AppKitProvider } from '@/context/AppKitProvider';
-import { ParaProvider } from '@/context/ParaProvider';
-import { QueryProvider } from '@/context/QueryProvider';
+import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { Toaster } from 'sonner';
@@ -58,17 +56,13 @@ export default function RootLayout({
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <QueryProvider>
-          <ParaProvider>
-            <AppKitProvider>
-              <SkippedProvider>
-                {children}
-                <MobileBottomNav />
-                <Toaster />
-              </SkippedProvider>
-            </AppKitProvider>
-          </ParaProvider>
-        </QueryProvider>
+        <UnifiedProvider>
+          <SkippedProvider>
+            {children}
+            <MobileBottomNav />
+            <Toaster />
+          </SkippedProvider>
+        </UnifiedProvider>
       </body>
     </html>
   );

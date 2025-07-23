@@ -1,6 +1,10 @@
 'use client';
 
-import { useAppKit, useDisconnect } from '@reown/appkit/react';
+import {
+  useAppKit,
+  useDisconnect as useAppKitDisconnect,
+} from '@reown/appkit/react';
+import { useDisconnect } from 'wagmi';
 import { useSignMessage } from 'wagmi';
 import { useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
@@ -20,7 +24,8 @@ export default function ConnectedWallet({
   isPara,
 }: ConnectedWalletProps) {
   const { open } = useAppKit();
-  const { disconnect } = useDisconnect();
+  const { disconnect: appKitDisconnect } = useAppKitDisconnect();
+  const { disconnect: wagmiDisconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
@@ -54,7 +59,7 @@ export default function ConnectedWallet({
           clearPregenWallets: false, // Keep pre-generated wallets
         });
         console.log('Para logout completed, now disconnecting');
-        disconnect();
+        wagmiDisconnect();
         toast.success(
           <div className="space-y-2">
             <div className="font-semibold text-green-800">
@@ -77,9 +82,10 @@ export default function ConnectedWallet({
           }
         );
       } else {
-        // Use regular disconnect for AppKit/Wagmi wallets
+        // Use AppKit disconnect for AppKit wallets, wagmi disconnect for others
         console.log('Disconnecting from regular wallet');
-        disconnect();
+        appKitDisconnect();
+        wagmiDisconnect();
         toast.success(
           <div className="space-y-2">
             <div className="font-semibold text-green-800">

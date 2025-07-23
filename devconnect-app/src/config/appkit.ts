@@ -3,8 +3,11 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
 import { base } from "wagmi/chains";
-
-import { APP_NAME, APP_DESCRIPTION } from './config';
+import { injected, metaMask, coinbaseWallet } from "wagmi/connectors";
+import { paraConnector } from "@getpara/wagmi-v2-integration";
+import { para } from "./para";
+import { APP_NAME } from './config';
+import { queryClient } from "@/context/QueryProvider";
 
 export const chains = [base] as const;
 
@@ -16,13 +19,47 @@ if (!projectId) {
 
 const metadata = {
   name: APP_NAME,
-  description: APP_DESCRIPTION,
+  description: "Devconnect App",
   url: "https://devconnect.org",
   icons: ["https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg"],
 };
 
-const connectors: CreateConnectorFn[] = [];
+// Add all connectors to AppKit's wagmi adapter
+const connectors: CreateConnectorFn[] = [
+  // Para connector for email authentication
+  paraConnector({
+    appName: APP_NAME,
+    authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
+    chains: [base],
+    disableEmailLogin: false,
+    disablePhoneLogin: true,
+    logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
+    oAuthMethods: [],
+    onRampTestMode: true,
+    options: {},
+    para,
+    queryClient,
+    recoverySecretStepEnabled: true,
+    theme: {
+      accentColor: "#0066CC",
+      backgroundColor: "#FFFFFF",
+      borderRadius: "none",
+      darkAccentColor: "#4D9FFF",
+      darkBackgroundColor: "#1A1F2B",
+      darkForegroundColor: "#E8EBF2",
+      font: "Inter",
+      foregroundColor: "#2D3648",
+      mode: "light",
+    },
+    twoFactorAuthEnabled: false,
+  }) as CreateConnectorFn,
+  // Injected connectors for regular wallets
+  injected(),
+  metaMask(),
+  coinbaseWallet(),
+];
 
+// Create wagmi adapter with all connectors
 export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
   networks: [base],
@@ -42,12 +79,12 @@ export const appKit = createAppKit({
     emailShowWallets: false,
   },
   themeMode: "light",
-  // enableEIP6963: false,
-  // enableInjected: false,
-  // enableWalletConnect: false,
-  // enableCoinbase: false,
-  // allowUnsupportedChain: false,
-  // allWallets: "HIDE",
+  enableEIP6963: true,
+  enableInjected: true,
+  enableWalletConnect: true,
+  enableCoinbase: true,
+  allowUnsupportedChain: false,
+  allWallets: "SHOW", // Show all available wallets including injected ones
   featuredWalletIds: [
     // Zerion
     'ecc4036f814562b41a5268adc86270fba1365471402006302e70169465b7ac18',

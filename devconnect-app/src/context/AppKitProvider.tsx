@@ -1,34 +1,9 @@
 "use client";
 
-import React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { State, WagmiProvider } from "wagmi";
-import { wagmiAdapter } from "@/config/appkit";
+import React from 'react';
 
-// Setup query client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 60 * 1000,
-    },
-  },
-});
-
-export function AppKitProvider({
-  children,
-  initialState,
-}: {
-  children: React.ReactNode;
-  initialState?: State;
-}) {
-  return (
-    <WagmiProvider 
-      config={wagmiAdapter.wagmiConfig} 
-      initialState={initialState}
-    >
-      <QueryClientProvider client={queryClient}>
-        {children}
-      </QueryClientProvider>
-    </WagmiProvider>
-  );
+// AppKit is initialized via the import in UnifiedProvider
+// This is just a wrapper component for consistency
+export function AppKitProvider({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
 } 
