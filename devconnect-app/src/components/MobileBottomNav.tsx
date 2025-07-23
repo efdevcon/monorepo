@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { useAccount } from 'wagmi';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/nav-items';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 export default function MobileBottomNav() {
-  const { isConnected } = useAccount();
+  const { isConnected } = useUnifiedConnection();
   const pathname = usePathname();
 
   if (!isConnected) return null;

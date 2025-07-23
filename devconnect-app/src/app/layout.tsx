@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
 import { AppKitProvider } from '@/context/AppKitProvider';
+import { ParaProvider } from '@/context/ParaProvider';
+import { QueryProvider } from '@/context/QueryProvider';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { Toaster } from 'sonner';
 
@@ -55,11 +57,15 @@ export default function RootLayout({
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <AppKitProvider>
-          {children}
-          <MobileBottomNav />
-          <Toaster />
-        </AppKitProvider>
+        <QueryProvider>
+          <ParaProvider>
+            <AppKitProvider>
+              {children}
+              <MobileBottomNav />
+              <Toaster />
+            </AppKitProvider>
+          </ParaProvider>
+        </QueryProvider>
       </body>
     </html>
   );

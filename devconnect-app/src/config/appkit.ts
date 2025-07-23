@@ -99,4 +99,5 @@ export const appKit = createAppKit({
     // Coinbase Wallet
     'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa',
   ],
+  excludeWalletIds: ['82061ee410cab0e705cf38830db84ba965effc51a1e1bf43da6d39ff70ae94fb'],
 }); 

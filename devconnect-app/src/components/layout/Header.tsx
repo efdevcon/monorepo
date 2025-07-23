@@ -1,11 +1,12 @@
 "use client";
 
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
-import { formatAddress } from "@/utils/format";
+import { useAppKit } from '@reown/appkit/react';
+import { formatAddress } from '@/utils/format';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 export function Header() {
   const { open } = useAppKit();
-  const { isConnected, address } = useAppKitAccount();
+  const { isConnected, address } = useUnifiedConnection();
 
   return (
     <header className="border-b border-gray-200">
