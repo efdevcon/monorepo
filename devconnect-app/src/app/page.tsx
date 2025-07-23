@@ -23,7 +23,9 @@ export default function HomePage() {
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full">
         {!isConnected ? (
-          <CustomConnect />
+          <div className="m-6">
+            <CustomConnect />
+          </div>
         ) : (
           <ConnectedWallet
             address={address!}

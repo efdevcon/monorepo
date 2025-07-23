@@ -11,7 +11,7 @@ interface CustomConnectProps {
 export default function CustomConnect({ onConnect }: CustomConnectProps) {
   const { open } = useAppKit();
   const { connect, connectors } = useConnect();
-  const { setSkipped } = useUnifiedConnection();
+  const { isSkipped, setSkipped } = useUnifiedConnection();
 
   // Find the Para connector
   const paraConnector = connectors.find((connector) => connector.id === 'para');
@@ -33,10 +33,14 @@ export default function CustomConnect({ onConnect }: CustomConnectProps) {
   const handleSkip = () => {
     console.log('handleSkip called');
     // Set skipped state to allow navigation without connection
-    setSkipped(true);
-    console.log('setSkipped(true) called');
-    onConnect?.();
-    console.log('onConnect callback called');
+    if (!isSkipped) {
+      setSkipped(true);
+      console.log('setSkipped(true) called');
+      onConnect?.();
+      console.log('onConnect callback called');
+    } else {
+      setSkipped(false);
+    }
   };
 
   return (
@@ -118,7 +122,7 @@ export default function CustomConnect({ onConnect }: CustomConnectProps) {
             onClick={handleSkip}
             className="font-['Roboto'] font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
           >
-            Skip for now
+            {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
           </button>
         </div>
       </div>
