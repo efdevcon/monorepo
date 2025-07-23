@@ -1,15 +1,13 @@
 "use client";
 
-import { ParaProvider as Provider } from "@getpara/react-sdk";
-import { Environment } from "@getpara/react-sdk";
-import { base } from "wagmi/chains";
-import { APP_NAME } from '@/config/config';
+import { ParaProvider as Provider } from '@getpara/react-sdk';
+import { base } from 'wagmi/chains';
+import { APP_NAME, APP_CONFIG } from '@/config/config';
 
-const API_KEY = process.env.NEXT_PUBLIC_PARA_API_KEY ?? '';
-const ENVIRONMENT =
-  (process.env.NEXT_PUBLIC_PARA_ENVIRONMENT as Environment) || Environment.BETA;
+const API_KEY = APP_CONFIG.PARA_API_KEY;
+const ENVIRONMENT = APP_CONFIG.PARA_ENVIRONMENT;
 
-if (!API_KEY) {
+if (!API_KEY || !ENVIRONMENT) {
   throw new Error(
     'API key is not defined. Please set NEXT_PUBLIC_PARA_API_KEY in your environment variables.'
   );
@@ -43,7 +41,7 @@ export function ParaProvider({
       paraModalConfig={{
         disableEmailLogin: false,
         disablePhoneLogin: true,
-        authLayout: ['AUTH:FULL'],
+        authLayout: ['AUTH:FULL', 'EXTERNAL:FULL'],
         oAuthMethods: [],
         onRampTestMode: true,
         logo: 'https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg',
