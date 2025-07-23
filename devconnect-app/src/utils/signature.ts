@@ -28,7 +28,7 @@ export async function verifySignature({
   })
 }
 
-export function truncateSignature(signature: string, length: number = 20): string {
-  if (signature.length <= length) return signature;
+export function truncateSignature(signature: string, length: number = 100): string {
+  if (signature.length <= length * 2 + 3) return signature;
   return `${signature.slice(0, length)}...${signature.slice(-length)}`;
-} 
+}
