@@ -2,7 +2,7 @@
 
 import { useAppKit, useDisconnect } from '@reown/appkit/react';
 import { useSignMessage } from 'wagmi';
-import { useLogout } from '@getpara/react-sdk';
+import { useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
@@ -14,11 +14,15 @@ interface ConnectedWalletProps {
   connectionType: 'para' | 'wagmi' | 'appkit';
 }
 
-export default function ConnectedWallet({ address, connectionType }: ConnectedWalletProps) {
+export default function ConnectedWallet({
+  address,
+  connectionType,
+}: ConnectedWalletProps) {
   const { open } = useAppKit();
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
+  const { openModal } = useModal();
 
   const handleDisconnect = async () => {
     try {
@@ -32,7 +36,9 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
         disconnect();
         toast.success(
           <div className="space-y-2">
-            <div className="font-semibold text-green-800">🔓 Successfully Disconnected</div>
+            <div className="font-semibold text-green-800">
+              🔓 Successfully Disconnected
+            </div>
             <div className="text-sm text-green-700">
               Para wallet logged out and disconnected from the application.
             </div>
@@ -53,7 +59,9 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
         disconnect();
         toast.success(
           <div className="space-y-2">
-            <div className="font-semibold text-green-800">🔓 Successfully Disconnected</div>
+            <div className="font-semibold text-green-800">
+              🔓 Successfully Disconnected
+            </div>
             <div className="text-sm text-green-700">
               Wallet disconnected from the application.
             </div>
@@ -96,9 +104,11 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
   };
 
   const handleOpenAccountModal = () => {
-    // For Para wallet, we can't open a modal directly since it's connected through wagmi
-    // For other wallets, use AppKit
-    if (connectionType !== 'para') {
+    if (connectionType === 'para') {
+      console.log('Opening Para account modal');
+      openModal();
+    } else {
+      // Use AppKit for other wallets
       console.log('Opening AppKit account modal');
       open();
     }
@@ -109,9 +119,12 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
       console.error('No address available');
       toast.error(
         <div className="space-y-2">
-          <div className="font-semibold text-red-800">⚠️ No Address Available</div>
+          <div className="font-semibold text-red-800">
+            ⚠️ No Address Available
+          </div>
           <div className="text-sm text-red-700">
-            Please ensure your wallet is properly connected before signing messages.
+            Please ensure your wallet is properly connected before signing
+            messages.
           </div>
         </div>,
         {
@@ -150,7 +163,9 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
 
       toast.success(
         <div className="space-y-2">
-          <div className="font-semibold text-green-800">✅ Message Signed Successfully!</div>
+          <div className="font-semibold text-green-800">
+            ✅ Message Signed Successfully!
+          </div>
           <div className="text-sm text-green-700">
             <div className="font-medium">Signature:</div>
             <div className="font-mono text-xs bg-green-50 p-2 rounded border">
@@ -158,7 +173,9 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
             </div>
           </div>
           <div className="text-sm">
-            <span className={`font-medium ${isValidFormat ? 'text-green-700' : 'text-red-700'}`}>
+            <span
+              className={`font-medium ${isValidFormat ? 'text-green-700' : 'text-red-700'}`}
+            >
               Verification: {isValidFormat ? '✅ Valid' : '❌ Invalid'}
             </span>
           </div>
@@ -214,14 +231,9 @@ export default function ConnectedWallet({ address, connectionType }: ConnectedWa
         >
           {isSigning ? 'Signing...' : 'Sign Message'}
         </Button>
-        <Button
-          onClick={handleOpenAccountModal}
-          className="w-full"
-          size="lg"
-          disabled={connectionType === 'para'}
-        >
+        <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
           {connectionType === 'para'
-            ? 'Para Account Connected'
+            ? 'Open Para Account Modal'
             : 'Open Account Modal'}
         </Button>
         {address && (
