@@ -689,7 +689,14 @@ DO NOT include Event name or event location in the generated image.`
 
         // Save to Supabase
         console.log(`[generateDestinoEvent] Saving event ${event.Id} to database`)
-        const result = await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
+        const result = eventExists ? await supabase.from('destino_events').update(upsert).eq('event_id', event.Id) : await supabase.from('destino_events').upsert(upsert, { defaultToNull: false })
+
+        if (result.error) {
+          console.error(`[generateDestinoEvent] Error saving event ${event.Id} to database:`, result.error)
+
+          throw new Error('Failed to save event to database')
+        }
+
         console.log(`[generateDestinoEvent] Event ${event.Id} saved successfully`)
 
         // If forceImageGeneration is true, return the image URL

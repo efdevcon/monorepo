@@ -7,8 +7,8 @@ import RichText from 'lib/components/tina-cms/RichText'
 import styles from './event-table.module.scss'
 
 function formatHumanReadableDate(startDate: string, endDate: string) {
-  const start = moment(startDate)
-  const end = moment(endDate)
+  const start = moment.utc(startDate)
+  const end = moment.utc(endDate)
 
   if (!start.isValid() && !end.isValid()) {
     return ''
@@ -51,8 +51,8 @@ const tableColumns: Array<TableColumn> = [
       const { date: startDate1 } = a
       const { date: startDate2 } = b
 
-      const start1 = moment(startDate1)
-      const start2 = moment(startDate2)
+      const start1 = moment.utc(startDate1)
+      const start2 = moment.utc(startDate2)
 
       if (a.eventHasPassed && !b.eventHasPassed) {
         return 1
@@ -71,6 +71,12 @@ const tableColumns: Array<TableColumn> = [
       return 0
     },
     render: item => {
+      if (item && item.name && item.name.includes('SUCURSAL')) {
+        console.log(item, 'ITEM')
+        console.log(item.date, 'DATE')
+        console.log(formatHumanReadableDate(item.date, item.date), 'FORMATTED DATE')
+      }
+
       return (
         <p className={`bolda ${item.eventHasPassed ? 'opacity-40' : ''}`}>
           {formatHumanReadableDate(item.date, item.date)}
@@ -146,8 +152,8 @@ const EventsTable = React.memo(({ events, pages }: any) => {
   const [search, setSearch] = React.useState('')
 
   const formattedEvents = events.map((event: any) => {
-    const end = moment(event.date).add(1, 'days')
-    const now = moment()
+    const end = moment.utc(event.date).add(1, 'days')
+    const now = moment.utc()
 
     const eventHasPassed = now.isAfter(end)
 

@@ -16,7 +16,7 @@ export const fetchFromSalesforce = async () => {
 
     const authData = await auth.json()
 
-    const { access_token, instance_url } = authData
+    const { access_token, instance_url } = authData as any
 
     // Query for PGR_Destino_Devconnect filtered leads
     // const query = encodeURIComponent(`SELECT FIELDS(ALL) FROM Opportunity WHERE Proactive_Community_Grants_Round__c = 'Destino Devconnect' LIMIT 5`)
@@ -33,7 +33,7 @@ export const fetchFromSalesforce = async () => {
 
     const responseJson = await response.json()
 
-    const { records } = responseJson
+    const { records } = responseJson as any
 
     // console.log(records, 'RECORDS')
 
