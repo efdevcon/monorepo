@@ -30,6 +30,7 @@ import cn from 'classnames'
 import ScrollVideo from 'common/components/ba/scroll-video'
 import Venue from 'common/components/ba/venue/venue'
 import { Ticket, ExternalLink, Calendar, MapPin, SparklesIcon } from 'lucide-react'
+import InstagramIcon from 'assets/icons/instagram.svg'
 import HeroText from 'assets/images/ba/header-text-hq.png'
 import TicketExample from 'assets/images/ba/ticket-hero.png'
 import { ArrowRight } from 'lucide-react'
@@ -203,10 +204,10 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   <Link href="https://devcon.org">Devcon</Link>
                   <Link href="mailto:support@devconnect.org">Contact Us</Link>
                   <Link href="https://ethereum.foundation">Ethereum Foundation</Link>
-                  <Link href="legal/devconnect-code-of-conduct.pdf" target="_blank">
+                  <Link href="/devconnect-code-of-conduct.pdf" target="_blank">
                     Code of Conduct
                   </Link>
-                  <Link href="legal/devconnect-terms-and-conditions.pdf" target="_blank">
+                  <Link href="/devconnect-terms-and-conditions.pdf" target="_blank">
                     Terms and Conditions
                   </Link>
                   <Link href="https://ethereum.org/en/privacy-policy/">Privacy policy</Link>
@@ -444,6 +445,16 @@ const Home: NextPage = (props: any) => {
                     >
                       <TwitterIcon style={{ fill: 'white' }} />
                     </a>
+
+                    <a
+                      className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
+                      target="_blank"
+                      rel="noreferrer"
+                      href="https://www.instagram.com/efdevcon "
+                    >
+                      <InstagramIcon style={{ fill: 'white' }} />
+                    </a>
+
                     <a
                       className="cursor-pointer flex items-center hover:scale-[1.04] transition-all duration-300"
                       target="_blank"
