@@ -9,14 +9,14 @@ export default function HomePage() {
   const { walletProvider } = useAppKitProvider('eip155');
 
   // Unified connection status
-  const { isConnected, address, connectionType } = useUnifiedConnection();
+  const { isConnected, address, isPara } = useUnifiedConnection();
 
-  console.log('embeddedWalletInfo', walletProvider);
-  console.log('Connection type:', connectionType);
+  console.log('walletProvider', walletProvider);
+  console.log('Is Para wallet:', isPara);
   console.log('Unified connection status:', {
     isConnected,
     address,
-    connectionType,
+    isPara,
   });
 
   return (
@@ -27,10 +27,7 @@ export default function HomePage() {
             <CustomConnect />
           </div>
         ) : (
-          <ConnectedWallet
-            address={address!}
-            connectionType={connectionType as 'para' | 'wagmi' | 'appkit'}
-          />
+          <ConnectedWallet address={address!} isPara={isPara} />
         )}
       </div>
     </div>

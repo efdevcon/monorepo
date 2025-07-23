@@ -3,6 +3,7 @@ import { useAccount as useWagmiAccount } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
+import { useAppKitProvider } from '@reown/appkit/react';
 
 export function useUnifiedConnection() {
   // AppKit connection status
@@ -15,6 +16,9 @@ export function useUnifiedConnection() {
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
 
+  // Get wallet provider to check if it's Para
+  const { walletProvider } = useAppKitProvider('eip155');
+
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
 
@@ -25,6 +29,9 @@ export function useUnifiedConnection() {
   const isAppKitConnected = appKitAccount?.isConnected;
   const isWagmiConnected = wagmiAccount?.isConnected;
   const isParaConnected = paraAccount?.isConnected;
+
+  // Check if the current wallet provider is Para
+  const isPara = !!(walletProvider as { para?: unknown })?.para;
 
   // Get the active connection details
   const getActiveConnection = () => {
@@ -73,7 +80,7 @@ export function useUnifiedConnection() {
   // Unified connection status - only for actual wallet connections
     isConnected: activeConnection.isConnected,
     address: activeConnection.address,
-    connectionType: activeConnection.type,
+    isPara,
     isSkipped,
 
     // New property to determine if navigation should be shown
@@ -106,7 +113,8 @@ export function useUnifiedConnection() {
     isSkipped: result.isSkipped,
     shouldShowNavigation: result.shouldShowNavigation,
     pathname,
-    activeConnectionIsConnected: activeConnection.isConnected
+    activeConnectionIsConnected: activeConnection.isConnected,
+    isPara: result.isPara
   });
 
   return result;

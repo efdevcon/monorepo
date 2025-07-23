@@ -12,12 +12,12 @@ import { verifySignature, truncateSignature } from '@/utils/signature';
 
 interface ConnectedWalletProps {
   address: string;
-  connectionType: 'para' | 'wagmi' | 'appkit';
+  isPara: boolean;
 }
 
 export default function ConnectedWallet({
   address,
-  connectionType,
+  isPara,
 }: ConnectedWalletProps) {
   const { open } = useAppKit();
   const { disconnect } = useDisconnect();
@@ -48,7 +48,7 @@ export default function ConnectedWallet({
   const handleDisconnect = async () => {
     try {
       // Check connection type and handle accordingly
-      if (connectionType === 'para') {
+      if (isPara) {
         console.log('Logging out from Para wallet');
         await logoutAsync({
           clearPregenWallets: false, // Keep pre-generated wallets
@@ -131,7 +131,7 @@ export default function ConnectedWallet({
   };
 
   const handleOpenAccountModal = () => {
-    if (connectionType === 'para') {
+    if (isPara) {
       console.log('Opening Para account modal');
       openModal();
     } else {
@@ -170,7 +170,7 @@ export default function ConnectedWallet({
     }
 
     console.log('Address:', address);
-    console.log('Connection type:', connectionType);
+    console.log('Is Para wallet:', isPara);
 
     // Replace with your message
     const message = 'Hello, Devconnect!';
@@ -179,7 +179,7 @@ export default function ConnectedWallet({
       console.log('Using wagmi for wallet signing');
 
       // Only show interactive toast for non-Para wallets
-      if (connectionType !== 'para') {
+      if (!isPara) {
         // Reset cancel flag and set up abort controller for cancellation
         cancelRef.current = false;
         abortControllerRef.current = new AbortController();
@@ -222,12 +222,12 @@ export default function ConnectedWallet({
       const signature = await signMessageAsync({ message });
 
       // Check if the process was cancelled
-      if (connectionType !== 'para' && cancelRef.current) {
+      if (!isPara && cancelRef.current) {
         throw new Error('Signing cancelled by user');
       }
 
       // Clear the pending state (only if we set it)
-      if (connectionType !== 'para') {
+      if (!isPara) {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -281,7 +281,7 @@ export default function ConnectedWallet({
       );
     } catch (err) {
       // Clear the pending state (only if we set it for non-Para wallets)
-      if (connectionType !== 'para') {
+      if (!isPara) {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -292,7 +292,7 @@ export default function ConnectedWallet({
 
       // Don't show error toast if user cancelled (only for non-Para wallets)
       if (
-        connectionType !== 'para' &&
+        !isPara &&
         (errorMessage.includes('aborted') ||
           errorMessage.includes('cancelled') ||
           errorMessage.includes('Signing cancelled by user'))
@@ -358,12 +358,12 @@ export default function ConnectedWallet({
           className="w-full"
           size="lg"
           disabled={
-            connectionType === 'para'
+            isPara
               ? isSigning
               : isWaitingForSignature || (isSigning && !cancelRef.current)
           }
         >
-          {connectionType === 'para'
+          {isPara
             ? isSigning
               ? 'Signing...'
               : 'Sign Message'
@@ -372,7 +372,7 @@ export default function ConnectedWallet({
               : 'Sign Message'}
         </Button>
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
-          {connectionType === 'para'
+          {isPara
             ? 'Open Para Account Modal'
             : 'Open Account Modal'}
         </Button>
