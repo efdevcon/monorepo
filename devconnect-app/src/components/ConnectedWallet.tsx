@@ -45,6 +45,8 @@ export default function ConnectedWallet({
           </div>,
           {
             duration: 4000,
+            dismissible: true,
+            closeButton: true,
             style: {
               background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
               border: '1px solid #bbf7d0',
@@ -68,6 +70,8 @@ export default function ConnectedWallet({
           </div>,
           {
             duration: 4000,
+            dismissible: true,
+            closeButton: true,
             style: {
               background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
               border: '1px solid #bbf7d0',
@@ -92,6 +96,8 @@ export default function ConnectedWallet({
         </div>,
         {
           duration: 6000,
+          dismissible: true,
+          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
             border: '1px solid #fecaca',
@@ -129,6 +135,8 @@ export default function ConnectedWallet({
         </div>,
         {
           duration: 4000,
+          dismissible: true,
+          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
             border: '1px solid #fecaca',
@@ -182,6 +190,8 @@ export default function ConnectedWallet({
         </div>,
         {
           duration: 5000,
+          dismissible: true,
+          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
             border: '1px solid #bbf7d0',
@@ -205,6 +215,8 @@ export default function ConnectedWallet({
         </div>,
         {
           duration: 6000,
+          dismissible: true,
+          closeButton: true,
           style: {
             background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
             border: '1px solid #fecaca',
