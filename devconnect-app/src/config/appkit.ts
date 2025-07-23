@@ -3,7 +3,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
 import { base } from "wagmi/chains";
-import { injected, metaMask, coinbaseWallet } from "wagmi/connectors";
+import { injected } from "wagmi/connectors";
 import { paraConnector } from "@getpara/wagmi-v2-integration";
 import { para } from "./para";
 import { APP_NAME } from './config';
@@ -55,8 +55,6 @@ const connectors: CreateConnectorFn[] = [
   }) as CreateConnectorFn,
   // Injected connectors for regular wallets
   injected(),
-  metaMask(),
-  coinbaseWallet(),
 ];
 
 // Create wagmi adapter with all connectors

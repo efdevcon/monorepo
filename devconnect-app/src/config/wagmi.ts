@@ -5,7 +5,7 @@ import { para } from "./para";
 import { APP_NAME, APP_CONFIG } from "./config";
 import { queryClient } from "@/context/QueryProvider";
 import { createConfig, CreateConfigParameters, http, cookieStorage, createStorage } from "wagmi";
-import { coinbaseWallet, injected, metaMask } from "wagmi/connectors";
+import { injected } from "wagmi/connectors";
 import { base } from "wagmi/chains";
 
 const WALLET_CONNECT_PROJECT_ID = APP_CONFIG.WC_PROJECT_ID;
@@ -48,8 +48,6 @@ const config = {
     connector,
     // walletConnect removed to prevent conflicts with AppKit
     injected(),
-    metaMask(),
-    coinbaseWallet(),
   ],
   ssr: true,
   storage: createStorage({
