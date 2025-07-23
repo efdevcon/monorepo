@@ -54,7 +54,7 @@ const connector = paraConnector({
   onRampTestMode: true,
   disableEmailLogin: false,
   disablePhoneLogin: true,
-  authLayout: ["AUTH:FULL"],
+  authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
   recoverySecretStepEnabled: true,
   twoFactorAuthEnabled: false,
   options: {},

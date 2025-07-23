@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppKit } from '@reown/appkit/react';
-import { useModal } from '@getpara/react-sdk';
+import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 interface CustomConnectProps {
@@ -10,8 +10,11 @@ interface CustomConnectProps {
 
 export default function CustomConnect({ onConnect }: CustomConnectProps) {
   const { open } = useAppKit();
-  const { openModal } = useModal();
+  const { connect, connectors } = useConnect();
   const { setSkipped } = useUnifiedConnection();
+
+  // Find the Para connector
+  const paraConnector = connectors.find((connector) => connector.id === 'para');
 
   const handleWalletConnect = () => {
     // Use AppKit for wallet connections
@@ -20,9 +23,11 @@ export default function CustomConnect({ onConnect }: CustomConnectProps) {
   };
 
   const handleEmailConnect = () => {
-    // Use Para modal for email authentication
-    openModal();
-    onConnect?.();
+    // Use Para connector through wagmi for email authentication
+    if (paraConnector) {
+      connect({ connector: paraConnector });
+      onConnect?.();
+    }
   };
 
   const handleSkip = () => {

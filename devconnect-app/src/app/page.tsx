@@ -6,11 +6,7 @@ import {
   useAppKitProvider,
 } from '@reown/appkit/react';
 import { useSignMessage } from 'wagmi';
-import {
-  useLogout,
-  useSignMessage as useParaSignMessage,
-  useModal,
-} from '@getpara/react-sdk';
+import { useLogout } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import { Button } from '@/components/ui/button';
@@ -23,15 +19,11 @@ export default function HomePage() {
   const { open } = useAppKit();
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
-  const { signMessageAsync: paraSignMessageAsync, isPending: isParaSigning } =
-    useParaSignMessage();
-  const { openModal } = useModal();
   const { walletProvider } = useAppKitProvider('eip155');
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
 
   // Unified connection status
-  const { isConnected, address, connectionType, paraWalletData } =
-    useUnifiedConnection();
+  const { isConnected, address, connectionType } = useUnifiedConnection();
 
   console.log('embeddedWalletInfo', walletProvider);
   console.log('Connection type:', connectionType);
@@ -68,10 +60,9 @@ export default function HomePage() {
   };
 
   const handleOpenAccountModal = () => {
-    if (connectionType === 'para') {
-      console.log('Opening Para account modal');
-      openModal();
-    } else {
+    // For Para wallet, we can't open a modal directly since it's connected through wagmi
+    // For other wallets, use AppKit
+    if (connectionType !== 'para') {
       console.log('Opening AppKit account modal');
       open();
     }
@@ -91,28 +82,11 @@ export default function HomePage() {
     const message = 'Hello, Devconnect!';
 
     try {
-      let signature: string;
-
-      if (connectionType === 'para' && paraWalletData?.id) {
-        console.log('Using Para wallet for signing');
-        const result = await paraSignMessageAsync({
-          walletId: paraWalletData.id,
-          messageBase64: btoa(message),
-        });
-
-        if ('signature' in result) {
-          signature = result.signature;
-          console.log('Para signature result:', signature);
-        } else {
-          throw new Error('Para signing was denied or failed');
-        }
-      } else {
-        console.log('Using wagmi for wallet signing');
-        signature = await signMessageAsync({
-          message,
-        });
-        console.log('Wagmi signature result:', signature);
-      }
+      console.log('Using wagmi for wallet signing');
+      const signature = await signMessageAsync({
+        message,
+      });
+      console.log('Wagmi signature result:', signature);
 
       // Show notification with signature and verification
       const isValidFormat = await verifySignature({
@@ -148,18 +122,19 @@ export default function HomePage() {
                 onClick={handleSign}
                 className="w-full"
                 size="lg"
-                disabled={isSigning || isParaSigning}
+                disabled={isSigning}
               >
-                {isSigning || isParaSigning ? 'Signing...' : 'Sign Message'}
+                {isSigning ? 'Signing...' : 'Sign Message'}
               </Button>
               <Button
                 onClick={handleOpenAccountModal}
                 // variant="outline"
                 className="w-full"
                 size="lg"
+                disabled={connectionType === 'para'}
               >
                 {connectionType === 'para'
-                  ? 'Open Para Account'
+                  ? 'Para Account Connected'
                   : 'Open Account Modal'}
               </Button>
               {address && (
