@@ -6,6 +6,7 @@ import { useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
+import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
 
@@ -23,6 +24,26 @@ export default function ConnectedWallet({
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
+
+  // State to track if we're waiting for user to sign
+  const [isWaitingForSignature, setIsWaitingForSignature] = useState(false);
+  const abortControllerRef = useRef<AbortController | null>(null);
+  const cancelRef = useRef<boolean>(false);
+
+  const handleCancelSigning = () => {
+    // Set the cancel flag to stop the signing process
+    cancelRef.current = true;
+
+    // Clear the UI state immediately
+    setIsWaitingForSignature(false);
+    toast.dismiss('signing-pending');
+
+    // Abort the signing process if we have an abort controller
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+      abortControllerRef.current = null;
+    }
+  };
 
   const handleDisconnect = async () => {
     try {
@@ -156,9 +177,67 @@ export default function ConnectedWallet({
 
     try {
       console.log('Using wagmi for wallet signing');
-      const signature = await signMessageAsync({
-        message,
-      });
+
+      // Only show interactive toast for non-Para wallets
+      if (connectionType !== 'para') {
+        // Reset cancel flag and set up abort controller for cancellation
+        cancelRef.current = false;
+        abortControllerRef.current = new AbortController();
+        setIsWaitingForSignature(true);
+
+        // Show pending toast with cancel option
+        toast.info(
+          <div className="space-y-3">
+            <div className="font-semibold text-blue-800">
+              🔐 Waiting for Signature
+            </div>
+            <div className="text-sm text-blue-700">
+              Please check your wallet and approve the signature request.
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={handleCancelSigning}
+                className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>,
+          {
+            id: 'signing-pending',
+            duration: Infinity, // Don't auto-dismiss
+            dismissible: false,
+            closeButton: false,
+            style: {
+              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+              border: '1px solid #bfdbfe',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      }
+
+      // Start the signing process with cancellation check
+      const signature = await signMessageAsync({ message });
+
+      // Check if the process was cancelled
+      if (connectionType !== 'para' && cancelRef.current) {
+        throw new Error('Signing cancelled by user');
+      }
+
+      // Clear the pending state (only if we set it)
+      if (connectionType !== 'para') {
+        setIsWaitingForSignature(false);
+        abortControllerRef.current = null;
+        toast.dismiss('signing-pending');
+
+        // If cancelled, don't proceed with success flow
+        if (cancelRef.current) {
+          return;
+        }
+      }
+
       console.log('Wagmi signature result:', signature);
 
       // Show notification with signature and verification
@@ -201,8 +280,47 @@ export default function ConnectedWallet({
         }
       );
     } catch (err) {
+      // Clear the pending state (only if we set it for non-Para wallets)
+      if (connectionType !== 'para') {
+        setIsWaitingForSignature(false);
+        abortControllerRef.current = null;
+        toast.dismiss('signing-pending');
+      }
+
       console.error('Sign message failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+
+      // Don't show error toast if user cancelled (only for non-Para wallets)
+      if (
+        connectionType !== 'para' &&
+        (errorMessage.includes('aborted') ||
+          errorMessage.includes('cancelled') ||
+          errorMessage.includes('Signing cancelled by user'))
+      ) {
+        toast.info(
+          <div className="space-y-2">
+            <div className="font-semibold text-blue-800">
+              ℹ️ Signing Cancelled
+            </div>
+            <div className="text-sm text-blue-700">
+              The signature request was cancelled.
+            </div>
+          </div>,
+          {
+            duration: 3000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+              border: '1px solid #bfdbfe',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+        return;
+      }
+
       toast.error(
         <div className="space-y-2">
           <div className="font-semibold text-red-800">❌ Signing Failed</div>
@@ -239,9 +357,19 @@ export default function ConnectedWallet({
           onClick={handleSign}
           className="w-full"
           size="lg"
-          disabled={isSigning}
+          disabled={
+            connectionType === 'para'
+              ? isSigning
+              : isWaitingForSignature || (isSigning && !cancelRef.current)
+          }
         >
-          {isSigning ? 'Signing...' : 'Sign Message'}
+          {connectionType === 'para'
+            ? isSigning
+              ? 'Signing...'
+              : 'Sign Message'
+            : isWaitingForSignature
+              ? 'Waiting for Signature...'
+              : 'Sign Message'}
         </Button>
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
           {connectionType === 'para'
