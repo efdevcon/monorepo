@@ -285,18 +285,18 @@
       }
 
       .countdown-number {
+        svg {
+          transform: translateY(2px);
+          font-size: 0.9em;
+          margin-right: 0.3em;
+        }
+
         @include extra-large-text;
         font-weight: bold;
         color: #89beeb;
         --icon-color: #89beeb;
         display: flex;
         align-items: center;
-
-        svg {
-          transform: translateY(2px);
-          font-size: 0.9em;
-          margin-right: 0.3em;
-        }
       }
     }
 

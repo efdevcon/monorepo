@@ -3,7 +3,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['src/**/*.{ts,tsx}', '../lib/**/*.{ts,tsx}'],
+  content: ['src/**/*.{ts,tsx}', '../lib/**/*.{ts,tsx}', '!**/node_modules/**'],
   theme: {
     extend: {
       fontFamily: {

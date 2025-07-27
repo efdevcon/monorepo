@@ -1,0 +1,15 @@
+{
+  "name": "devcon-monorepo",
+  "version": "0.0.1",
+  "description": "Devcon Monorepo",
+  "private": true,
+  "scripts": {
+    "dev:devconnect": "pnpm --filter devconnect dev",
+    "build:devconnect": "pnpm --filter devconnect build",
+    "start:devconnect": "pnpm --filter devconnect start",
+    "dev:devconnect-app": "pnpm --filter devconnect-app dev",
+    "build:devconnect-app": "pnpm --filter devconnect-app build",
+    "start:devconnect-app": "pnpm --filter devconnect-app start"
+  },
+  "packageManager": "pnpm@10.13.1"
+}

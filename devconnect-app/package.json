@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "cd ../lib && yarn && cd ../devconnect-app && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "postinstall": "yarn setup-para"
+    "postinstall": "pnpm setup-para"
   },
   "dependencies": {
+    "lib": "workspace:*",
     "@getpara/react-sdk": "2.0.0-alpha.29",
     "@getpara/wagmi-v2-integration": "2.0.0-alpha.29",
     "@reown/appkit": "^1.7.11",

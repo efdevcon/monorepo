@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
+import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider } from 'wagmi';
 import { ParaProvider as ParaSDKProvider } from '@getpara/react-sdk';
 import { base } from 'wagmi/chains';
 import { APP_NAME, APP_CONFIG } from '@/config/config';
@@ -28,11 +28,7 @@ if (!API_KEY || !ENVIRONMENT) {
   );
 }
 
-export function UnifiedProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function UnifiedProvider({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>
@@ -86,4 +82,4 @@ export function UnifiedProvider({
       </QueryClientProvider>
     </WagmiProvider>
   );
-} 
+}

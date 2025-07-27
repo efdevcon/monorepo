@@ -1,6 +1,6 @@
 const MomentTimezoneDataPlugin = require('moment-timezone-data-webpack-plugin')
 const path = require('path')
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 
 /** @type {import('next').NextConfig} */
 module.exports = {
@@ -9,16 +9,11 @@ module.exports = {
     API_BASE_URL: process.env.API_BASE_URL,
     WC_PROJECT_ID: process.env.WC_PROJECT_ID,
   },
-  experimental: {
-    // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
-    externalDir: true,
-  },
   i18n: {
     locales: ['en', 'es', 'pt'],
     defaultLocale: 'en',
     localeDetection: false,
   },
-  // transpilePackages: ['lib'],
   // Add redirects to netlify.toml - netlify doesn't seem to pick up next.config.js redirects
   redirects: () => {
     return [
@@ -44,6 +39,7 @@ module.exports = {
       },
     ]
   },
+  transpilePackages: ['lib'],
   images: {
     domains: [
       'speak.devcon.org',
@@ -57,15 +53,15 @@ module.exports = {
     ],
   },
   webpack: (config, { webpack, isServer }) => {
-    const artifactPackageJsonPath = require.resolve('@pcd/proto-pod-gpc-artifacts/package.json');
-    const artifactPath = path.dirname(artifactPackageJsonPath);
+    const artifactPackageJsonPath = require.resolve('@pcd/proto-pod-gpc-artifacts/package.json')
+    const artifactPath = path.dirname(artifactPackageJsonPath)
 
     const newConfig = {
       ...config,
-      resolve: {
-        ...config.resolve,
-        modules: [path.resolve(__dirname, 'src'), 'node_modules', path.resolve(__dirname, 'node_modules')],
-      },
+      // resolve: {
+      //   ...config.resolve,
+      //   modules: [path.resolve(__dirname, 'src'), 'node_modules', path.resolve(__dirname, 'node_modules')],
+      // },
       plugins: [
         // Only include tz data for the zone we use
         new MomentTimezoneDataPlugin({
@@ -76,12 +72,12 @@ module.exports = {
         }),
         new CopyPlugin({
           patterns: [
-            { 
-              from: artifactPath, 
+            {
+              from: artifactPath,
               to: path.join(__dirname, 'public/artifacts'),
-              force: true
-            }
-          ]
+              force: true,
+            },
+          ],
         }),
         ...config.plugins,
       ],
@@ -147,15 +143,15 @@ module.exports = {
           {
             test: /fastfile/,
             use: {
-              loader: 'null-loader'
-            }
+              loader: 'null-loader',
+            },
           },
           ...config.module.rules,
         ],
       },
     }
 
-    return newConfig;
+    return newConfig
   },
   env: {
     SUPABASE_URL: process.env.SUPABASE_URL,
