@@ -6,10 +6,7 @@ const path = require('path')
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
-    externalDir: true,
-  },
+  transpilePackages: ['lib'],
   reactStrictMode: true,
   staticPageGenerationTimeout: 300,
   images: {
@@ -40,16 +37,6 @@ const nextConfig = {
           'process.env.CONFIG_BUILD_ID': JSON.stringify(buildId),
         }),
       ],
-      resolve: {
-        ...config.resolve,
-        alias: {
-          ...config.resolve.alias,
-          // react: path.resolve(__dirname, 'node_modules/react'),
-          // 'react-dom': path.resolve(__dirname, 'node_modules/react-dom'),
-          // recoil: path.resolve(__dirname, 'node_modules/recoil'),
-        },
-        modules: [path.resolve(__dirname, 'src'), 'node_modules', path.resolve(__dirname, 'node_modules')],
-      },
       module: {
         ...config.module,
         rules: [

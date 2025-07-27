@@ -5,9 +5,7 @@ const nextConfig = {
   optimizeFonts: true,
   poweredByHeader: false,
   trailingSlash: true,
-  experimental: {
-    externalDir: true,
-  },
+  transpilePackages: ["lib"],
   redirects() {
     // Generic page redirects from Gatsby archive are managed here.
     // Session specific redirects are managed as dynamic routes to avoid performance issues.
@@ -107,14 +105,6 @@ const nextConfig = {
           "process.env.CONFIG_BUILD_ID": JSON.stringify(buildId),
         }),
       ],
-      resolve: {
-        ...config.resolve,
-        modules: [
-          path.resolve(__dirname, "node_modules"),
-          path.resolve(__dirname, "src"),
-          "node_modules",
-        ],
-      },
     };
   },
 };

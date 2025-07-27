@@ -5,10 +5,10 @@ import { Menu } from './menu'
 import css from './header.module.scss'
 import { useIsScrolled } from 'hooks/useIsScrolled'
 import HeaderLogo from './HeaderLogo'
-import DevaBot from 'lib/components/ai/overlay'
-import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { appState as appStateAtom } from 'state/main'
+// import DevaBot from 'lib/components/ai/overlay'
+// import { useOnOutsideClick } from 'hooks/useOnOutsideClick'
+// import { useRecoilState, useRecoilValue } from 'recoil'
+// import { appState as appStateAtom } from 'state/main'
 
 type HeaderProps = {
   withStrip?: boolean
@@ -23,10 +23,10 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
   const isScrolled = useIsScrolled()
   const [foldoutOpen, setFoldoutOpen] = React.useState(false)
   const [searchOpen, setSearchOpen] = React.useState(false)
-  useOnOutsideClick(ref, () => setSearchOpen(false))
+  // useOnOutsideClick(ref, () => setSearchOpen(false))
 
-  const [appState, setAppState] = useRecoilState(appStateAtom)
-  const devabotVisible = appState.devabotVisible
+  // const [appState, setAppState] = useRecoilState(appStateAtom)
+  // const devabotVisible = appState.devabotVisible
 
   // Add this line to check for the query parameter
   // const showDevaBot = router.query.showDevaBot === 'true'
@@ -61,7 +61,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
               <HeaderLogo />
             </Link>
 
-            <DevaBot
+            {/* <DevaBot
               botVersion="devcon-website"
               toggled={devabotVisible}
               autoFetchSessions
@@ -69,7 +69,7 @@ export const Header = React.memo(({ withStrip, withHero, className, isApp }: Hea
               defaultPrompt={undefined}
               setDefaultPrompt={() => {}}
               SessionComponent={undefined}
-            />
+            /> */}
 
             <Menu
               isApp={isApp}
