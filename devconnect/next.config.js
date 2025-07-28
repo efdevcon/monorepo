@@ -39,7 +39,7 @@ module.exports = {
       },
     ]
   },
-  transpilePackages: ['lib'],
+  transpilePackages: ['lib', 'atproto-slurper'],
   images: {
     domains: [
       'speak.devcon.org',
