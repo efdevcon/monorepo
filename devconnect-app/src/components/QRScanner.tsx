@@ -19,8 +19,8 @@ const QRScanner: React.FC<QRScannerProps> = ({
 
   const handleScan = (result: string) => {
     setScanResult(result);
-    setOpen(false);
     onScan?.(result);
+    setOpen(false);
   };
 
   const handleClose = () => {
@@ -88,9 +88,13 @@ const QRScanner: React.FC<QRScannerProps> = ({
         </div>
       )}
       {scanResult && (
-        <div className="p-4 bg-gray-100 rounded-md mt-2">
+        <div className="p-4 bg-gray-100 rounded-md mt-4">
           <span className="font-bold text-gray-800">Last scanned QR code:</span>
-          <div className="break-all text-gray-700">{scanResult}</div>
+          <div className="break-all text-blue-500">
+            <a href={scanResult} target="_blank" rel="noopener noreferrer">
+              {scanResult}
+            </a>
+          </div>
         </div>
       )}
     </>
