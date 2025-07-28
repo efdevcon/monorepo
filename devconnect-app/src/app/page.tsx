@@ -1,6 +1,6 @@
 'use client';
 
-import CustomConnect from '@/components/CustomConnect';
+import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
@@ -20,7 +20,7 @@ export default function HomePage() {
       <div className="max-w-md w-full">
         {!isConnected ? (
           <div className="m-6">
-            <CustomConnect />
+            <Onboarding />
           </div>
         ) : (
           <ConnectedWallet address={address!} isPara={isPara} />
