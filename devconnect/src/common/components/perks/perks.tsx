@@ -22,7 +22,7 @@ import PerksTextBottom from './images/perks-text-bottom.png'
 import VerifiedSquares from './images/squares/verified.png'
 import { CopyToClipboard } from '../copy-to-clipboard/CopyToClipboard'
 import { Copy, ArrowUpRight, ArrowDown, Info } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, cubicBezier } from 'framer-motion'
 import Tooltip from '../tooltip'
 import Link from 'common/components/link'
 import InfiniteScroller from 'lib/components/infinite-scroll'
@@ -77,7 +77,7 @@ const itemVariants = {
     color: 'rgba(0, 0, 0, 1)',
     transition: {
       duration: 1,
-      ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+      ease: cubicBezier(0.25, 0.1, 0.25, 1), // easeOutQuart - much smoother
     },
   },
 }
@@ -90,7 +90,7 @@ const connectorVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
     },
   },
 }
@@ -103,7 +103,7 @@ const titleVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
       delay: 0.3,
     },
   },
@@ -134,7 +134,7 @@ const leftColumnVariants = {
     scale: 1,
     transition: {
       duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
     },
   },
 }
@@ -152,7 +152,7 @@ const rightColumnVariants = {
     scale: 1,
     transition: {
       duration: 0.8,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
     },
   },
 }

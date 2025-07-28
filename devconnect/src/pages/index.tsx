@@ -276,7 +276,7 @@ const Home: NextPage = (props: any) => {
   // const { data: translations } = useTina(props.translations)
   // const translations = JSON.parse(translations.data.global_translations)
 
-  const heroRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLDivElement | null>(null)
   // const [scrollProgress, setScrollProgress] = useState(0)
   // const [fadeInBA, setFadeInBA] = useState(false)
   const [fadeInArgentina, setFadeInArgentina] = useState(false)
@@ -342,7 +342,7 @@ const Home: NextPage = (props: any) => {
               >
                 <ScrollVideo
                   hasStableConnection={true}
-                  containerRef={heroRef}
+                  containerRef={heroRef as any}
                   onPlaybackFinish={useCallback(() => {
                     setPlaybackFinished(true)
                   }, [])}

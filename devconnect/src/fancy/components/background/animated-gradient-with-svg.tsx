@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { RefObject, useMemo, useRef } from 'react'
 import css from './gradient.module.scss'
 import { cn } from '@/shadcn/lib/utils'
 import { useDimensions } from 'hooks/use-debounced-dimensions'
@@ -16,7 +16,7 @@ const randomInt = (min: number, max: number) => {
 
 const AnimatedGradient: React.FC<AnimatedGradientProps> = ({ colors, speed = 5, blur = 'light', className }) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const dimensions = useDimensions(containerRef)
+  const dimensions = useDimensions(containerRef as RefObject<HTMLElement | SVGElement>)
 
   const circleSize = useMemo(() => Math.max(dimensions.width, dimensions.height), [dimensions.width, dimensions.height])
 

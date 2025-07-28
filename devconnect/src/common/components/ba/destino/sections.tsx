@@ -290,8 +290,8 @@ const PlatformGuanaco = ({
           side="top"
           avoidCollisions={false}
           sideOffset={2}
-          onOpenAutoFocus={e => e.preventDefault()}
-          onCloseAutoFocus={e => e.preventDefault()}
+          onOpenAutoFocus={(e: any) => e.preventDefault()}
+          onCloseAutoFocus={(e: any) => e.preventDefault()}
           className={cn('bg-yellow-500 w-auto h-auto z-[11]', styles['popover-animation'])}
         >
           <h3 className="">{guanacoSpeechString}</h3>
@@ -328,8 +328,8 @@ const Platform = ({
     <div className="relative w-full" ref={containerRef}>
       {mounted && (
         <PlatformGuanaco
-          containerRef={containerRef}
-          contentRef={contentRef}
+          containerRef={containerRef as any}
+          contentRef={contentRef as any}
           reverse={reverse}
           sectionId={sectionId}
           isLast={isLast}

@@ -16,7 +16,7 @@ import speaker_applications from './templates/speaker_applications'
 import { filenameToUrl } from '../../lib/cms/filenameToUrl'
 import experiences from './templates/experiences'
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
+const branch = 'dev' // process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
 console.log('TINA branch', branch)
 

@@ -5,7 +5,7 @@ import destinoDevconnect from './templates/destino-devconnect'
 import calendar from './templates/calendar'
 import perks from './templates/perks'
 // Your hosting provider likely exposes this as an environment variable
-const branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
+const branch = 'dev' // process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || 'main'
 
 console.log('TINA branch', branch)
 

@@ -6,6 +6,7 @@ import Image from "next/image";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import useDimensions from "react-cool-dimensions";
 import { computeCalendarRange } from "./calendar.utils";
+// @ts-ignore
 import { useCalendarStore } from "store/calendar";
 import { Star } from "lucide-react";
 // @ts-ignore
@@ -270,7 +271,11 @@ const DayGrid = ({
           })}
         </div>
 
-        <SwipeToScroll speed={1.5} noScrollReset syncElement={scrollSyncRef}>
+        <SwipeToScroll
+          speed={1.5}
+          noScrollReset
+          syncElement={scrollSyncRef as any}
+        >
           <div className={cn("flex", isNativeScroll ? "" : "")}>
             <div
               className={cn(

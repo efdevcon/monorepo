@@ -289,7 +289,7 @@ const NewScheduleIndex = ({
         //   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
         // }}
       >
-        <Timeline events={events} />
+        {/* <Timeline events={events} /> */}
         {/* {selectedDay && <MapComponent />} */}
       </div>
     </div>

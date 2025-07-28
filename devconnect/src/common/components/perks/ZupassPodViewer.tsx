@@ -1,30 +1,30 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, cubicBezier } from 'framer-motion'
 import cn from 'classnames'
 import { Download } from 'lucide-react'
 
 // Remove old interfaces and define new ones for the new structure
 interface PodEntries {
-  attendeeEmail: string;
-  attendeeName: string;
-  eventId: string;
-  eventLocation: string;
-  eventName: string;
-  eventStartDate: string;
-  imageUrl: string;
-  isAddOn: boolean;
-  isConsumed: boolean;
-  isRevoked: boolean;
-  productId: string;
-  ticketCategory: number;
-  ticketId: string;
-  ticketName: string;
-  ticketSecret: string;
-  timestampConsumed: number;
-  timestampSigned: number;
-  [key: string]: any;
+  attendeeEmail: string
+  attendeeName: string
+  eventId: string
+  eventLocation: string
+  eventName: string
+  eventStartDate: string
+  imageUrl: string
+  isAddOn: boolean
+  isConsumed: boolean
+  isRevoked: boolean
+  productId: string
+  ticketCategory: number
+  ticketId: string
+  ticketName: string
+  ticketSecret: string
+  timestampConsumed: number
+  timestampSigned: number
+  [key: string]: any
 }
 
 interface PodData {
@@ -35,8 +35,8 @@ interface PodData {
 }
 
 interface ZupassPodViewerProps {
-  podData?: PodData | string;
-  className?: string;
+  podData?: PodData | string
+  className?: string
 }
 
 // Animation variants
@@ -49,7 +49,7 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-};
+}
 
 const itemVariants = {
   hidden: {
@@ -61,10 +61,10 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
     },
   },
-};
+}
 
 const titleVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -73,38 +73,38 @@ const titleVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: cubicBezier(0.25, 0.1, 0.25, 1),
       delay: 0.1,
     },
   },
-};
+}
 
 const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = '' }) => {
-  const [pod, setPod] = useState<PodData | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [pod, setPod] = useState<PodData | null>(null)
+  const [error, setError] = useState<string | null>(null)
 
   // Debug: Log when component mounts
   useEffect(() => {
-    console.log('ZupassPodViewer mounted');
-  }, []);
+    console.log('ZupassPodViewer mounted')
+  }, [])
 
   useEffect(() => {
     if (podData) {
       console.log('podData', podData)
       try {
         // Handle both string and object inputs
-        const parsedPod = typeof podData === 'string' ? JSON.parse(podData) : podData;
-        setPod(parsedPod);
-        setError(null);
+        const parsedPod = typeof podData === 'string' ? JSON.parse(podData) : podData
+        setPod(parsedPod)
+        setError(null)
       } catch (err) {
-        setError(`Error parsing POD data: ${err instanceof Error ? err.message : 'Unknown error'}`);
-        setPod(null);
+        setError(`Error parsing POD data: ${err instanceof Error ? err.message : 'Unknown error'}`)
+        setPod(null)
       }
     } else {
       // Try to get POD from URL parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const podParam = urlParams.get('pod');
-      
+      const urlParams = new URLSearchParams(window.location.search)
+      const podParam = urlParams.get('pod')
+
       if (podParam) {
         console.log('podParam', podParam)
         // Check if the pod parameter contains the placeholder
@@ -137,18 +137,18 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
           }
         }
       } else {
-        setError('No POD data found. Please provide a POD object as a prop or URL parameter.');
+        setError('No POD data found. Please provide a POD object as a prop or URL parameter.')
       }
     }
-  }, [podData]);
+  }, [podData])
 
   const formatTimestamp = (timestamp: number): string => {
-    if (!timestamp) return 'N/A';
-    const date = new Date(timestamp);
-    return date.toLocaleString();
-  };
+    if (!timestamp) return 'N/A'
+    const date = new Date(timestamp)
+    return date.toLocaleString()
+  }
 
-  const formatBoolean = (value: boolean): JSX.Element => {
+  const formatBoolean = (value: boolean): React.ReactNode => {
     return (
       <span
         className={`inline-block px-2 py-1 rounded text-sm font-semibold ${
@@ -158,27 +158,25 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
         {value ? 'Yes' : 'No'}
       </span>
     )
-  };
+  }
 
-  const formatField = (label: string, value: any, isId = false): JSX.Element => {
-    let displayValue: React.ReactNode = value;
-    
+  const formatField = (label: string, value: any, isId = false): React.ReactNode => {
+    let displayValue: React.ReactNode = value
+
     if (typeof value === 'boolean') {
-      displayValue = formatBoolean(value);
+      displayValue = formatBoolean(value)
     } else if (typeof value === 'number' && label.toLowerCase().includes('timestamp')) {
-      displayValue = formatTimestamp(value);
+      displayValue = formatTimestamp(value)
     } else if (isId) {
       displayValue = (
-        <div className="font-mono text-sm bg-gray-50 p-2 rounded border border-gray-200 break-all">
-          {value}
-        </div>
-      );
+        <div className="font-mono text-sm bg-gray-50 p-2 rounded border border-gray-200 break-all">{value}</div>
+      )
     } else if (label.toLowerCase().includes('image') && typeof value === 'string' && value) {
       // Handle image URLs
-      let imageUrl = value;
+      let imageUrl = value
       if (!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')) {
         // If it's a relative URL, prepend the Zupass domain
-        imageUrl = 'https://zupass.org' + imageUrl;
+        imageUrl = 'https://zupass.org' + imageUrl
       }
       displayValue = (
         <div className="text-center my-5">
@@ -204,32 +202,35 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
         </div>
       )
     }
-    
+
     return (
       <div className="flex mb-3 items-start flex-col sm:flex-row" key={label}>
         <div className="font-semibold text-[#4B4B66] min-w-[200px] flex-shrink-0 mb-1 sm:mb-0">{label}:</div>
         <div className="text-gray-800 break-all flex-1">{displayValue}</div>
       </div>
     )
-  };
+  }
 
-  const renderSection = (title: string, data: Record<string, any>): JSX.Element | null => {
-    if (!data || typeof data !== 'object') return null;
-    
-    const fields: JSX.Element[] = [];
-    
+  const renderSection = (title: string, data: Record<string, any>): React.ReactNode | null => {
+    if (!data || typeof data !== 'object') return null
+
+    const fields: React.ReactNode[] = []
+
     for (const [key, value] of Object.entries(data)) {
-      const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase());
-      const isId = key.toLowerCase().includes('id') || key.toLowerCase().includes('secret') || key.toLowerCase().includes('signature');
-      
+      const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())
+      const isId =
+        key.toLowerCase().includes('id') ||
+        key.toLowerCase().includes('secret') ||
+        key.toLowerCase().includes('signature')
+
       // Skip nested objects - they will be handled separately
       if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-        continue;
+        continue
       }
-      
-      fields.push(formatField(label, value, isId));
+
+      fields.push(formatField(label, value, isId))
     }
-    
+
     return (
       <motion.div
         variants={itemVariants}
@@ -242,7 +243,7 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
         {fields}
       </motion.div>
     )
-  };
+  }
 
   const downloadPod = (): void => {
     if (!pod) {
@@ -278,32 +279,32 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
   const showExample = (): void => {
     const examplePod: PodData = {
       entries: {
-        attendeeEmail: "demo.user@example.com",
-        attendeeName: "Demo User",
-        eventId: "5074edf5-f079-4099-b036-22223c0c6995",
-        eventLocation: "Bangkok, Thailand",
-        eventName: "Devcon 7",
-        eventStartDate: "2024-11-09T08:00:00.000",
-        imageUrl: "/images/devcon/devcon-landscape.webp",
+        attendeeEmail: 'demo.user@example.com',
+        attendeeName: 'Demo User',
+        eventId: '5074edf5-f079-4099-b036-22223c0c6995',
+        eventLocation: 'Bangkok, Thailand',
+        eventName: 'Devcon 7',
+        eventStartDate: '2024-11-09T08:00:00.000',
+        imageUrl: '/images/devcon/devcon-landscape.webp',
         isAddOn: false,
         isConsumed: true,
         isRevoked: false,
-        productId: "08482abb-8767-47aa-be47-2691032403b6",
+        productId: '08482abb-8767-47aa-be47-2691032403b6',
         ticketCategory: 4,
-        ticketId: "demo-ticket-id-5678",
-        ticketName: "Demo Ticket",
-        ticketSecret: "demo-secret-1234",
+        ticketId: 'demo-ticket-id-5678',
+        ticketName: 'Demo Ticket',
+        ticketSecret: 'demo-secret-1234',
         timestampConsumed: 1731295434188,
-        timestampSigned: 1750679115735
+        timestampSigned: 1750679115735,
       },
-      signature: "demo-signature-abcdef1234567890",
-      signerPublicKey: "demoSignerPublicKey0987654321"
-    };
-    
-    const encodedPod = encodeURIComponent(JSON.stringify(examplePod));
-    const demoUrl = `${window.location.origin}${window.location.pathname}?pod=${encodedPod}`;
-    window.location.href = demoUrl;
-  };
+      signature: 'demo-signature-abcdef1234567890',
+      signerPublicKey: 'demoSignerPublicKey0987654321',
+    }
+
+    const encodedPod = encodeURIComponent(JSON.stringify(examplePod))
+    const demoUrl = `${window.location.origin}${window.location.pathname}?pod=${encodedPod}`
+    window.location.href = demoUrl
+  }
 
   if (error) {
     return (
@@ -399,7 +400,7 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
           border: '1px solid var(--Primary-light-blue, #74ACDF)',
           background: 'linear-gradient(180deg, #F7FBFF -6.53%, #C4DDF4 100%)',
           padding: '2rem',
-          boxShadow: '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1)'
+          boxShadow: '0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1)',
         }}
         className={cn('max-w-4xl mx-auto', className)}
         variants={itemVariants}
@@ -411,22 +412,26 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
           Devcon SEA Zupass POD 🎫
         </motion.h1>
 
-          {/* Download button */}
-          <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
-            <div
-              className="size- px-8 py-4 bg-white shadow-[0px_4px_0px_0px_rgba(75,75,102,1.00)] outline outline-1 outline-offset-[-1px] outline-[#4b4b66] inline-flex justify-center items-center gap-2 cursor-pointer select-none"
-              onClick={downloadPod}
-              role="button"
-              tabIndex={0}
-              onKeyPress={e => { if (e.key === 'Enter' || e.key === ' ') downloadPod(); }}
-            >
-              <div className="text-center justify-start text-[#36364c] text-base font-bold font-['Roboto'] leading-none">Download POD (.json)</div>
-              <div className="size-5 flex items-center justify-center">
-                <Download className="w-[15px] h-[15px] text-[#36364c]" />
-              </div>
+        {/* Download button */}
+        <motion.div className="text-center mt-8 relative z-20" variants={itemVariants}>
+          <div
+            className="size- px-8 py-4 bg-white shadow-[0px_4px_0px_0px_rgba(75,75,102,1.00)] outline outline-1 outline-offset-[-1px] outline-[#4b4b66] inline-flex justify-center items-center gap-2 cursor-pointer select-none"
+            onClick={downloadPod}
+            role="button"
+            tabIndex={0}
+            onKeyPress={e => {
+              if (e.key === 'Enter' || e.key === ' ') downloadPod()
+            }}
+          >
+            <div className="text-center justify-start text-[#36364c] text-base font-bold font-['Roboto'] leading-none">
+              Download POD (.json)
             </div>
-          </motion.div>
-          <div className="my-8 self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-[#b5b5c8]" />
+            <div className="size-5 flex items-center justify-center">
+              <Download className="w-[15px] h-[15px] text-[#36364c]" />
+            </div>
+          </div>
+        </motion.div>
+        <div className="my-8 self-stretch h-0 outline outline-1 outline-offset-[-0.50px] outline-[#b5b5c8]" />
         <motion.div variants={containerVariants} className="pt-8  ">
           {/* Entries section */}
           {pod.entries && renderSection('Zupass POD Data', pod.entries)}
@@ -439,11 +444,10 @@ const ZupassPodViewer: React.FC<ZupassPodViewerProps> = ({ podData, className = 
             {formatField('Signature', pod.signature, true)}
             {formatField('Signer Public Key', pod.signerPublicKey, true)}
           </motion.div>
-
         </motion.div>
       </motion.div>
     </motion.div>
   )
-};
+}
 
-export default ZupassPodViewer; 
+export default ZupassPodViewer

@@ -10,7 +10,7 @@ type HeroProps = {
     alt: string
   }
   autoHeight?: boolean
-  children: React.ReactChild | React.ReactChild[]
+  children: React.ReactNode
   className?: string
   backgroundClassName?: string
   backgroundTitle?: string

@@ -38,7 +38,8 @@ export const api = (() => {
       ]
 
       const attachContent = async (vectorStoreName: string) => {
-        const vectorStores = await openai.beta.vectorStores.list()
+        // const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
@@ -80,7 +81,7 @@ export const api = (() => {
           .filter(Boolean) as any // Filter out null values (directories)
 
         // Upload files to vector store
-        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, {
+        await openai.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, {
           files: [...fileStreams, ...knowledgeBaseStreams],
         })
       }
@@ -133,6 +134,7 @@ export const api = (() => {
           },
           { role: 'user', content: content },
         ],
+        // @ts-ignore
         response_format: zodResponseFormat(TranslationSchema, 'output'),
       })
 

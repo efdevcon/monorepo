@@ -3,7 +3,7 @@ import React from 'react'
 // useful: https://wilsotobianco.com/experiments/intersection-observer-playground/
 
 type ObserverProps = {
-  children: React.ReactElement
+  children: React.ReactElement<any>
   activeClassName?: string
   observerOptions?: IntersectionObserverInit
   repeating?: boolean
@@ -44,7 +44,7 @@ const Observer = (props: ObserverProps) => {
     if (props.onVisibilityChange) props.onVisibilityChange(enteredViewPort)
   }, [enteredViewPort, props.onVisibilityChange])
 
-  let className = props.children.props.className
+  let className = (props.children as any).props.className
 
   if (enteredViewPort) {
     if (props.activeClassName) {

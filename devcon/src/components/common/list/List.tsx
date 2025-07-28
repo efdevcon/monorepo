@@ -3,8 +3,8 @@ import css from './list.module.scss'
 
 interface Item {
   id: number | string
-  title: string | React.ReactChild
-  body: string | React.ReactChild
+  title: string | React.ReactNode
+  body: string | React.ReactNode
   indent?: boolean
   active?: boolean
   disabled?: boolean

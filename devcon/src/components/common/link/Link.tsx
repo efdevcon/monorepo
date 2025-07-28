@@ -10,12 +10,13 @@ type LinkProps = {
   children: ReactNode
   indicateExternal?: boolean // Whether or not to add an external link indicator (only applies when the url is external)
   allowDrag?: boolean
-  to: string // Gatsby legacy - can rename to href at some point if we want
+  href?: string
+  to?: string
   [key: string]: any
 }
 
-const Link = React.forwardRef(
-  ({ children, indicateExternal, external, allowDrag, locale, to, ...rest }: LinkProps, ref: any) => {
+const Link = React.forwardRef<any, LinkProps>(
+  ({ children, indicateExternal, external, allowDrag, locale, href, to, ...rest }, ref) => {
     const dragging = React.useRef(false)
 
     const linkAttributes = {

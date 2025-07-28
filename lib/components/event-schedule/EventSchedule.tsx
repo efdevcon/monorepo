@@ -730,7 +730,7 @@ const Timeline = (props: any) => {
   const draggableAttributes = useDraggableLink();
   const router = useRouter();
   // Ref of current active day element (to scroll into view on load)
-  const todayRef = React.useRef<any>();
+  const todayRef = React.useRef<any>(null);
 
   // React.useEffect(() => {
   //   if (todayRef.current) {
@@ -1624,7 +1624,9 @@ const List = (props: any) => {
           <ListDayHeader
             key={index}
             date={day}
-            ref={(el) => (props.accordionRefs.current[day.valueOf()] = el)}
+            ref={(el) =>
+              (props.accordionRefs.current[day.valueOf()] = el as any)
+            }
           >
             {eventsForDay.map((event: any, index: number) => {
               return (

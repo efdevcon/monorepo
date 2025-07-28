@@ -9,7 +9,7 @@ type LinkProps = {
   children: ReactNode;
   indicateExternal?: boolean; // Whether or not to add an external link indicator (if the url is a FQDN)
   allowDrag?: boolean;
-  to: string;
+  href?: string;
   [key: string]: any;
 };
 
@@ -46,18 +46,10 @@ export const useDraggableLink = (thresholdPixels = 5) => {
   };
 };
 
-const WrappedLink = React.forwardRef(
+const WrappedLink = React.forwardRef<any, LinkProps>(
   (
-    {
-      children,
-      indicateExternal,
-      external,
-      allowDrag,
-      onClick,
-      href,
-      ...rest
-    }: LinkProps,
-    ref: any
+    { children, indicateExternal, external, allowDrag, onClick, href, ...rest },
+    ref
   ) => {
     const isMailTo = href.startsWith("mailto:");
     const linkAttributes = {
