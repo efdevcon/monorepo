@@ -1,4 +1,4 @@
-import { useAccount as useWagmiAccount, useConnectors } from 'wagmi';
+import { useAccount as useWagmiAccount } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
@@ -7,7 +7,6 @@ export function useUnifiedConnection() {
   // Wagmi connection status
   const wagmiAccount = useWagmiAccount();
   console.log('wagmiAccount', wagmiAccount);
-  const connectors = useConnectors();
   
   // Para connection status
   const paraAccount = useParaAccount();
@@ -22,12 +21,6 @@ export function useUnifiedConnection() {
   // Determine which connection is active
   const isWagmiConnected = wagmiAccount?.isConnected;
   const isParaConnected = paraAccount?.isConnected;
-
-  console.log('connectors', connectors);
-  // Find the active connector
-  const activeConnector = connectors.find(connector => connector.ready && connector.connected);
-
-  console.log('activeConnector', activeConnector);
 
   // Check if the current connector is Para
   const isPara = wagmiAccount.connector?.id === 'para';
