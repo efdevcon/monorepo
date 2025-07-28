@@ -1,6 +1,6 @@
 import React, { RefObject, useMemo, useRef } from 'react'
 import css from './gradient.module.scss'
-import { cn } from '@/shadcn/lib/utils'
+import { cn } from 'lib/shadcn/lib/utils'
 import { useDimensions } from 'hooks/use-debounced-dimensions'
 
 interface AnimatedGradientProps {
