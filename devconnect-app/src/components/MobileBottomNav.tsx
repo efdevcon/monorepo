@@ -35,18 +35,23 @@ export default function MobileBottomNav() {
           pathname === item.href ||
           (item.href !== '/' && pathname.startsWith(item.href));
         const Icon = item.icon;
+        const isWallet = item.label === 'Wallet';
         return (
           <Link
             key={item.href}
             href={item.href}
             className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors ${isActive ? 'text-[#232336] font-semibold' : 'text-[#4b4b66] font-normal'}`}
           >
-            <span className="size-7 flex items-center justify-center overflow-hidden">
+            <span
+              className={`${isWallet ? 'size-11' : 'size-7'} flex items-center justify-center overflow-hidden`}
+            >
               <Icon active={isActive} />
             </span>
-            <span className="text-[10px] leading-[10px] font-['Roboto']">
-              {item.label}
-            </span>
+            {!isWallet && (
+              <span className="text-[10px] leading-[10px] font-['Roboto']">
+                {item.label}
+              </span>
+            )}
           </Link>
         );
       })}
