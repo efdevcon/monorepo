@@ -41,3 +41,6 @@
   to = "https://devconnect.org/istanbul"
   status = 302
   force = true
+
+[build.environment]
+PNPM_FLAGS = "--shamefully-hoist"
