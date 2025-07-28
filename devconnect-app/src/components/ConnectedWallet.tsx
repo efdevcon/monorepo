@@ -13,6 +13,7 @@ import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
+import LinkTicket from './LinkTicket';
 
 interface ConnectedWalletProps {
   address: string;
@@ -359,6 +360,7 @@ export default function ConnectedWallet({
         <p className="text-sm text-gray-600 mb-4">Connected: {address}</p>
       </div>
       <div className="flex flex-col gap-2">
+        <LinkTicket className="mb-2" />
         <Button
           onClick={handleSign}
           className="w-full"
@@ -378,9 +380,7 @@ export default function ConnectedWallet({
               : 'Sign Message'}
         </Button>
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
-          {isPara
-            ? 'Open Para Account Modal'
-            : 'Open Account Modal'}
+          {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
         {address && (
           <Button

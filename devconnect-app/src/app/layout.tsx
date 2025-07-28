@@ -4,6 +4,7 @@ import './globals.css';
 import '@getpara/react-sdk/styles.css';
 import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
+import { ZupassProvider } from '@/context/ZupassProvider';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
@@ -59,11 +60,13 @@ export default function RootLayout({
       >
         <UnifiedProvider>
           <SkippedProvider>
-            <PWAProvider>
-              {children}
-              <MobileBottomNav />
-              <Toaster />
-            </PWAProvider>
+            <ZupassProvider>
+              <PWAProvider>
+                {children}
+                <MobileBottomNav />
+                <Toaster />
+              </PWAProvider>
+            </ZupassProvider>
           </SkippedProvider>
         </UnifiedProvider>
       </body>
