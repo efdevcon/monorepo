@@ -13,24 +13,32 @@ interface NavigatorStandalone extends Navigator {
 }
 
 const PWAProvider: React.FC<PWAProviderProps> = ({ children }) => {
-  const [, setPwa] = useLocalStorage<boolean | null>('pwa', null)
+  const [pwa, setPwa] = useLocalStorage<boolean | null>('pwa', null);
   const [, setShowInstallPWA] = useLocalStorage('showInstallPWA', false)
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.search.includes('pwa=true')) {
-      setPwa(true)
+    if (
+      (typeof window !== 'undefined' &&
+        window.location.search.includes('pwa=true')) ||
+      pwa === true
+    ) {
+      setPwa(true);
     } else if (typeof window !== 'undefined') {
       // Check if we're in standalone mode (already installed as PWA)
-      const isStandalone = window.matchMedia('(display-mode: standalone)').matches
-      const isIOSStandalone = 'standalone' in window.navigator && (window.navigator as NavigatorStandalone).standalone === true
+      const isStandalone = window.matchMedia(
+        '(display-mode: standalone)'
+      ).matches;
+      const isIOSStandalone =
+        'standalone' in window.navigator &&
+        (window.navigator as NavigatorStandalone).standalone === true;
 
       // If already in PWA mode, set pwa to true
       if (isStandalone || isIOSStandalone) {
-        setPwa(true)
-        setShowInstallPWA(false)
+        setPwa(true);
+        setShowInstallPWA(false);
       } else {
-        setPwa(false)
-        setShowInstallPWA(true)
+        setPwa(false);
+        setShowInstallPWA(true);
       }
     }
   }, [setPwa, setShowInstallPWA])
