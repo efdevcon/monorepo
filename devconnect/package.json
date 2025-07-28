@@ -12,8 +12,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "lib": "workspace:*",
-    "atproto-slurper": "workspace:*",
     "@atproto/api": "0.15.19",
     "@atproto/oauth-client-browser": "^0.3.26",
     "@aws-crypto/sha256-browser": "^5.2.0",
@@ -35,6 +33,7 @@
     "@tanstack/react-query": "^5.59.16",
     "@vercel/og": "^0.6.8",
     "add": "^2.0.6",
+    "atproto-slurper": "workspace:*",
     "autoprefixer": "^10.4.16",
     "cross-env": "^7.0.3",
     "dat.gui": "^0.7.7",
@@ -44,6 +43,7 @@
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
     "gsap": "^3.12.7",
+    "lib": "workspace:*",
     "lucide-react": "^0.479.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.34",
@@ -81,6 +81,7 @@
     "tinacms": "2.8.0",
     "ts-node": "10.9.1",
     "wagmi": "^2.12.25",
+    "yaml": "^2.8.0",
     "yarn": "^1.22.22",
     "zustand": "^5.0.3"
   },
