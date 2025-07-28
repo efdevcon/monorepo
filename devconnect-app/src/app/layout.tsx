@@ -5,6 +5,7 @@ import '@getpara/react-sdk/styles.css';
 import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
 import MobileBottomNav from '@/components/MobileBottomNav';
+import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
 
 const geistSans = Geist({
@@ -58,9 +59,11 @@ export default function RootLayout({
       >
         <UnifiedProvider>
           <SkippedProvider>
-            {children}
-            <MobileBottomNav />
-            <Toaster />
+            <PWAProvider>
+              {children}
+              <MobileBottomNav />
+              <Toaster />
+            </PWAProvider>
           </SkippedProvider>
         </UnifiedProvider>
       </body>
