@@ -73,7 +73,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
       <div className="relative w-full max-w-[474px]">
         {/* Hero Section */}
         <div
-          className="relative w-full aspect-[786/792] bg-cover bg-center bg-no-repeat mb-0"
+          className="relative w-full aspect-[948/808] bg-cover bg-center bg-no-repeat mb-0"
           style={{ backgroundImage: "url('/images/app-install.jpg')" }}
         >
           {/* Header */}
