@@ -1,15 +1,10 @@
-[build.environment]
-  DEPLOY_ID = "$DEPLOY_ID"
-
 [functions]
   directory = ".netlify/functions"
   node_bundler = "esbuild"
-  [functions.environment]
-    DEPLOY_ID = "$DEPLOY_ID"
 
 [build]
     ignore = "if [ ${COMMIT_REF} == ${CACHED_COMMIT_REF} ] ; then false ; else git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ../devconnect-app ../lib ; fi"
-    command = "echo 'export const DEPLOY_ID = \"$DEPLOY_ID\"' > ./src/deploy-id.js && yarn build"
+    command = "chmod +x ./build.sh && ./build.sh && yarn build"
     publish = ".next"
 
 [[plugins]]
