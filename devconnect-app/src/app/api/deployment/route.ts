@@ -17,7 +17,7 @@ export async function GET(request: Request) {
   const response: { deploymentId: string; env?: NodeJS.ProcessEnv } = { deploymentId };
 
   if (secret === process.env.SECRET) {
-    response.env = process.env;
+    // response.env = process.env;
   }
 
   return NextResponse.json(response);
