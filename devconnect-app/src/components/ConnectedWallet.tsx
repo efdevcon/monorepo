@@ -14,6 +14,7 @@ import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 interface ConnectedWalletProps {
   address: string;
@@ -30,6 +31,9 @@ export default function ConnectedWallet({
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
+
+  // Unified connection hook for Para SDK integration
+  const { ensureWagmiConnection } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
   const [isWaitingForSignature, setIsWaitingForSignature] = useState(false);
@@ -184,6 +188,11 @@ export default function ConnectedWallet({
 
     try {
       console.log('Using wagmi for wallet signing');
+
+      // Ensure wagmi is connected if using Para SDK
+      if (isPara) {
+        await ensureWagmiConnection();
+      }
 
       // Only show interactive toast for non-Para wallets
       if (!isPara) {
