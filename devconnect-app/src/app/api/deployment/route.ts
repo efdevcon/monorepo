@@ -4,7 +4,6 @@ export async function GET(request: Request) {
   // Import DEPLOY_ID if available (generated during build)
   let DEPLOY_ID: string | undefined;
   try {
-    // @ts-expect-error - File is generated during build
     const deployIdModule = await import('../../../deploy-id.js');
     DEPLOY_ID = deployIdModule.DEPLOY_ID;
   } catch {
