@@ -1,16 +1,7 @@
 import { NextResponse } from 'next/server';
+import { DEPLOY_ID } from '../../../deploy-id.js';
 
 export async function GET(request: Request) {
-  // Import DEPLOY_ID if available (generated during build)
-  let DEPLOY_ID: string | undefined;
-  try {
-    // @ts-expect-error - File is generated during build
-    const deployIdModule = await import('../../../deploy-id.js');
-    DEPLOY_ID = (deployIdModule as { DEPLOY_ID: string }).DEPLOY_ID;
-  } catch {
-    // File doesn't exist during development
-  }
-
   // Support both Vercel and Netlify deployment IDs
   const deploymentId =
     DEPLOY_ID ||
