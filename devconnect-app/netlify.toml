@@ -3,5 +3,8 @@
     command = "yarn build"
     publish = ".next"
 
+[build.environment]
+  DEPLOY_ID = "${DEPLOY_ID}"
+
 [[plugins]]
     package = "@netlify/plugin-nextjs"

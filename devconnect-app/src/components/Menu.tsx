@@ -6,19 +6,19 @@ import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/nav-items';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
-export default function MobileBottomNav() {
+export default function Menu() {
   const { shouldShowNavigation } = useUnifiedConnection();
   const pathname = usePathname();
 
-  console.log('MobileBottomNav render:', { shouldShowNavigation, pathname });
+  console.log('Menu render:', { shouldShowNavigation, pathname });
 
   // Hide navigation until user connects or skips
   if (!shouldShowNavigation) {
-    console.log('MobileBottomNav: hiding navigation');
+    console.log('Menu: hiding navigation');
     return null;
   }
 
-  console.log('MobileBottomNav: showing navigation');
+  console.log('Menu: showing navigation');
 
   const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 
