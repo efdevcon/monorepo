@@ -29,7 +29,10 @@ export default function NewDeployment() {
     };
 
     // call the api to get the deployment id every 1 minute
-    const interval = setInterval(() => fetchDeploymentId('interval-load'), 6000);
+    const interval = setInterval(
+      () => fetchDeploymentId('interval-load'),
+      60000
+    );
 
     // on first load, fetch the deployment id
     fetchDeploymentId('first-load');

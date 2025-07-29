@@ -6,5 +6,10 @@
 [build.environment]
   DEPLOY_ID = "${DEPLOY_ID}"
 
+[functions]
+  node_bundler = "esbuild"
+  [functions.environment]
+    DEPLOY_ID = "${DEPLOY_ID}"
+
 [[plugins]]
     package = "@netlify/plugin-nextjs"
