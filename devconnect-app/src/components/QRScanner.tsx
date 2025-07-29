@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
 
@@ -17,6 +17,7 @@ const QRScanner: React.FC<QRScannerProps> = ({
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [permissionStatus, setPermissionStatus] = useState<string | null>(null);
+  const scannerRef = useRef<HTMLDivElement>(null);
 
   // Check and monitor camera permission status
   const checkCameraPermission = async () => {
@@ -63,12 +64,30 @@ const QRScanner: React.FC<QRScannerProps> = ({
   };
 
   const handleScan = (result: string) => {
+    stopCamera();
     setScanResult(result);
     onScan?.(result);
     setOpen(false);
   };
 
+  // Function to stop camera stream
+  const stopCamera = () => {
+    if (scannerRef.current) {
+      try {
+        // Access the video element and stop all tracks
+        const videoElement = scannerRef.current.querySelector('video');
+        if (videoElement && videoElement.srcObject) {
+          const stream = videoElement.srcObject as MediaStream;
+          stream.getTracks().forEach((track) => track.stop());
+        }
+      } catch (err) {
+        console.warn('Error stopping camera:', err);
+      }
+    }
+  };
+
   const handleClose = () => {
+    stopCamera();
     setOpen(false);
     onClose?.();
   };
@@ -90,6 +109,15 @@ const QRScanner: React.FC<QRScannerProps> = ({
     if (!open) {
       setError(null);
     }
+  }, [open]);
+
+  // Cleanup camera when component unmounts
+  useEffect(() => {
+    return () => {
+      if (open) {
+        stopCamera();
+      }
+    };
   }, [open]);
 
   return (
@@ -140,7 +168,10 @@ const QRScanner: React.FC<QRScannerProps> = ({
               Scan a QR code
             </span>
             {error && <div className="text-red-400 mb-2">{error}</div>}
-            <div className="w-full flex justify-center items-center">
+            <div
+              className="w-full flex justify-center items-center"
+              ref={scannerRef}
+            >
               <Scanner
                 onScan={(detectedCodes: { rawValue: string }[]) => {
                   if (detectedCodes.length > 0) {
