@@ -1,7 +1,7 @@
 const cache = new Map()
 const baseUrl = process.env.NODE_ENV === 'production' ? 'https://api.devcon.org' : 'http://localhost:4000'
 import moment from 'moment'
-import { Session as SessionType } from '@/types/Session'
+import { Session as SessionType } from 'lib/types/Session'
 const eventName = 'devcon-7'
 
 async function get(slug: string) {
