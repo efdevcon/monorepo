@@ -20,17 +20,23 @@ export function useUnifiedConnection() {
   const pathname = usePathname();
 
   // Determine which connection is active
-  const isParaConnected = paraAccount && paraWallet;
+  console.log('paraAccount', paraAccount);
+  console.log('paraWallet', paraWallet);
+
+  const isParaConnected = paraAccount?.isConnected;
+  console.log('isParaConnected', isParaConnected);
   const isWagmiConnected = wagmiAccount.isConnected;
+  console.log('isWagmiConnected', isWagmiConnected);
 
   // Check if Para SDK is connected (either through wagmi connector or direct Para SDK)
   const isPara = wagmiAccount.connector?.id === 'para'// || isParaConnected;
 
   // Get the active address (prioritize Para SDK address, fallback to wagmi address)
   const address = paraWallet?.data?.address || wagmiAccount.address;
+  console.log('address', address);
   
   // Unified connection status - user is connected if either wagmi or Para SDK is connected
-  const isConnected = (isWagmiConnected || isParaConnected) && address;
+  const isConnected = isPara ? isParaConnected : isWagmiConnected && address;
 
   // Get the active connection details
   const getActiveConnection = () => {
