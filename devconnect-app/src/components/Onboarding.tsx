@@ -3,7 +3,7 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   useSignUpOrLogIn,
   useVerifyNewAccount,
@@ -185,6 +185,75 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     setAuthState(undefined);
     setVerificationCode('');
   };
+
+  // HACK: Hide the w3m-connect-external-widget (Para)
+  useEffect(() => {
+    // Function to hide widget in a given root
+    const hideWidgetInRoot = (root: Document | ShadowRoot) => {
+      const widget = root.querySelector('w3m-connect-external-widget');
+      if (widget) {
+        const style = document.createElement('style');
+        style.textContent = `
+          w3m-connect-external-widget {
+            display: none !important;
+          }
+        `;
+        root.appendChild(style);
+        // console.log('Hid w3m-connect-external-widget');
+        return true;
+      }
+      return false;
+    };
+
+    // Recursive function to traverse DOM and Shadow DOMs
+    const findAndHideWidget = (root: Document | ShadowRoot) => {
+      hideWidgetInRoot(root);
+
+      const elements = root.querySelectorAll('*');
+      for (const element of elements) {
+        if (element.shadowRoot) {
+          findAndHideWidget(element.shadowRoot);
+        }
+      }
+    };
+
+    // Function to hide widget when modal is found
+    const hideWidgetInModal = () => {
+      const modal = document.querySelector('w3m-modal');
+      if (modal && modal.shadowRoot) {
+        findAndHideWidget(modal.shadowRoot);
+      }
+    };
+
+    // Set up observer to detect when w3m-modal appears
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === 'childList') {
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const element = node as Element;
+              if (element.tagName === 'W3M-MODAL') {
+                // Wait a bit for shadow root to be available
+                setTimeout(hideWidgetInModal, 100);
+              }
+            }
+          }
+        }
+      }
+    });
+
+    // Start observing
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // Also check if modal already exists and check periodically for faster detection
+    hideWidgetInModal();
+    const interval = setInterval(hideWidgetInModal, 100);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(interval);
+    };
+  }, []);
 
   // GetStarted Container
   if (showGetStarted) {
