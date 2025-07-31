@@ -9,3 +9,6 @@
 
 [[plugins]]
     package = "@netlify/plugin-nextjs"
+
+[build.environment]
+PNPM_FLAGS = "--filter devconnect-app..."

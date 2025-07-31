@@ -14,3 +14,6 @@
   to = "/"
   status = 301
   force = true
+
+[build.environment]
+PNPM_FLAGS = "--filter archive..."
