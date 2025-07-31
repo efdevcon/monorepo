@@ -20,7 +20,7 @@ if (!projectId) {
 const metadata = {
   name: APP_NAME,
   description: "Devconnect App",
-  url: "https://devconnect.org",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://devconnect.org",
   icons: ["https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg"],
 };
 
