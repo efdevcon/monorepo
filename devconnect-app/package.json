@@ -13,10 +13,10 @@
     "postinstall": "pnpm setup-para"
   },
   "dependencies": {
-    "lib": "workspace:*",
     "@getpara/react-sdk": "2.0.0-alpha.29",
     "@getpara/wagmi-v2-integration": "2.0.0-alpha.29",
     "@netlify/plugin-nextjs": "^5.11.6",
+    "@parcnet-js/app-connector": "^1.1.10",
     "@parcnet-js/app-connector-react": "^1.0.5",
     "@radix-ui/react-slot": "^1.2.3",
     "@reown/appkit": "^1.7.11",
@@ -25,6 +25,7 @@
     "@yudiel/react-qr-scanner": "^2.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "lib": "workspace:*",
     "lucide-react": "^0.525.0",
     "next": "15.4.4",
     "next-themes": "^0.4.6",
