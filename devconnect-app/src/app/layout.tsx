@@ -48,7 +48,17 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#fbf5ee" />
         <meta name="msapplication-navbutton-color" content="#fbf5ee" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        ></meta>
+        <meta name="apple-mobile-web-app-title" content="Devconnect" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
