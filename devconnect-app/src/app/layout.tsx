@@ -4,7 +4,7 @@ import './globals.css';
 import '@getpara/react-sdk/styles.css';
 import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
-import { ZupassProvider } from '@/context/ZupassProvider';
+// import { ZupassProvider } from '@/context/ZupassProvider';
 import Menu from '@/components/Menu';
 import NewDeployment from '@/components/NewDeployment';
 import PWAProvider from '@/components/PWAProvider';
@@ -72,14 +72,14 @@ export default function RootLayout({
         <div className="fullscreen-container h-screen w-screen fixed inset-0 pt-safe pb-safe pl-safe pr-safe">
           <UnifiedProvider>
             <SkippedProvider>
-              <ZupassProvider>
-                <PWAProvider>
-                  {children}
-                  <NewDeployment />
-                  <Menu />
-                  <Toaster />
-                </PWAProvider>
-              </ZupassProvider>
+              {/* <ZupassProvider> */}
+              <PWAProvider>
+                {children}
+                <NewDeployment />
+                <Menu />
+                <Toaster />
+              </PWAProvider>
+              {/* </ZupassProvider> */}
             </SkippedProvider>
           </UnifiedProvider>
         </div>
