@@ -9,10 +9,10 @@
     "resolveJsonModule": true,
     "isolatedModules": false,
     "outDir": "dist",
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
-      "@lib/*": ["./../lib/*"],
-      "@/*": ["./src/*"]
+      "@lib/*": ["../../lib/*"],
+      "@/*": ["./*"]
     },
     "allowJs": true
   },

@@ -26,7 +26,6 @@
           "Default"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -37,7 +36,6 @@
     "/cookies": {
       "get": {
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -51,7 +49,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -355,7 +352,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -372,7 +368,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -389,7 +384,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -406,7 +400,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -423,7 +416,6 @@
           "Account"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -440,7 +432,6 @@
           "DIPs"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -454,7 +445,6 @@
           "DIPs"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -468,7 +458,6 @@
           "Events"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -544,7 +533,11 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/events/{id}/speakers": {
@@ -567,7 +560,11 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/events/{id}/rooms": {
@@ -600,7 +597,6 @@
           "RSS"
         ],
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1116,10 +1112,72 @@
         }
       }
     },
+    "/at-slurper": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/at-slurper/server-lexicons": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/at-slurper/test-pds-oauth-on-behalf-of-user": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/at-slurper/add-schema": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/at-slurper/notion-events": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/at-slurper/notion-events-upsert": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/destino": {
       "get": {
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1179,8 +1237,11 @@
     "{{where{id:data.id}}": {
       "delete": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "/push-subscriptions": {
@@ -1287,7 +1348,6 @@
       },
       "get": {
         "description": "",
-        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -1328,15 +1388,21 @@
     "{{where{endpoint:endpoint}": {
       "delete": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     },
     "{{where{id}}": {
       "delete": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
       }
     }
   }
