@@ -6,7 +6,6 @@ import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
 import MobileBottomNav from '@/components/MobileBottomNav';
 import { Toaster } from 'sonner';
-import { Button } from 'lib/components/button';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

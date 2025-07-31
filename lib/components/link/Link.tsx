@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import { ReactNode, useRef, forwardRef } from "react";
 import NextLink from "next/link";
 import LinkIndicator from "assets/icons/link-indicator.svg";
 import css from "./link.module.scss";
@@ -14,8 +14,8 @@ type LinkProps = {
 };
 
 export const useDraggableLink = (thresholdPixels = 5) => {
-  const mouseDownPosition = React.useRef({ x: 0, y: 0 });
-  const dragging = React.useRef(false);
+  const mouseDownPosition = useRef({ x: 0, y: 0 });
+  const dragging = useRef(false);
 
   const onMouseDown = (e: any) => {
     dragging.current = false;
@@ -46,7 +46,7 @@ export const useDraggableLink = (thresholdPixels = 5) => {
   };
 };
 
-const WrappedLink = React.forwardRef<any, LinkProps>(
+const WrappedLink = forwardRef<any, LinkProps>(
   (
     { children, indicateExternal, external, allowDrag, onClick, href, ...rest },
     ref

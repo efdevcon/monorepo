@@ -40,10 +40,13 @@ export function UnifiedProvider({ children }: { children: React.ReactNode }) {
             }}
             externalWalletConfig={{
               wallets: [],
+              // @ts-ignore
               evmConnector: {
+                // @ts-ignore
                 config: {
                   chains: [base],
                   // Use AppKit's wagmi config for external wallet connections
+                  // @ts-ignore
                   wagmiConfig: wagmiAdapter.wagmiConfig,
                 },
               },

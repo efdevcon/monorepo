@@ -13,7 +13,7 @@ const PriorityNodeModulesResolverPlugin = require('../lib/helpers/custom-module-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@parcnet-js/podspec', '@pcd/pod'],
+  transpilePackages: ['@parcnet-js/podspec', '@pcd/pod', 'lib'],
   staticPageGenerationTimeout: 300,
   images: {
     remotePatterns: [
@@ -32,10 +32,7 @@ const nextConfig = {
       'www.gravatar.com',
     ],
   },
-  experimental: {
-    // Need this for webpack to parse files outside this directory, e.g. from the "lib" folder in the monorepo
-    externalDir: true,
-  },
+
   // sentry: {
   //   hideSourceMaps: true,
   // },
