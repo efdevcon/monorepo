@@ -428,16 +428,27 @@ export function ZupassProvider(props: PropsWithChildren) {
   useEffect(() => {
     async function initContext() {
       try {
-        const context = await init(ref.current as HTMLElement, ZUPASS_URL)
-        const publicKey = localStorage.getItem('zupassPublicKey') || ''
-        setContext(prevContext => ({ ...prevContext, context, publicKey }))
+        // Only initialize if ref.current is available
+        if (!ref.current) {
+          console.log(
+            'ZupassProvider: ref.current is null, skipping initialization'
+          );
+          return;
+        }
+
+        const context = await init(ref.current as HTMLElement, ZUPASS_URL);
+        const publicKey = localStorage.getItem('zupassPublicKey') || '';
+        setContext((prevContext) => ({ ...prevContext, context, publicKey }));
       } catch (error) {
-        console.error('Failed to initialize Zupass context:', error)
+        console.error('Failed to initialize Zupass context:', error);
       }
     }
 
-    initContext()
-  }, [])
+    // Only run initialization if zupass is loaded and ref is available
+    if (zupassLoaded && ref.current) {
+      initContext();
+    }
+  }, [zupassLoaded, ref.current]);
 
   // Sync zupassLoaded state with context
   useEffect(() => {
