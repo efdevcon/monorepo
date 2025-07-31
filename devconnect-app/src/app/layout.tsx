@@ -61,7 +61,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
         style={{
           backgroundImage: "url('/images/midj-epic-city3.png')",
           backgroundSize: 'cover',
@@ -69,18 +69,20 @@ export default function RootLayout({
           backgroundRepeat: 'no-repeat',
         }}
       >
-        <UnifiedProvider>
-          <SkippedProvider>
-            <ZupassProvider>
-              <PWAProvider>
-                {children}
-                <NewDeployment />
-                <Menu />
-                <Toaster />
-              </PWAProvider>
-            </ZupassProvider>
-          </SkippedProvider>
-        </UnifiedProvider>
+        <div className="fullscreen-container">
+          <UnifiedProvider>
+            <SkippedProvider>
+              <ZupassProvider>
+                <PWAProvider>
+                  {children}
+                  <NewDeployment />
+                  <Menu />
+                  <Toaster />
+                </PWAProvider>
+              </ZupassProvider>
+            </SkippedProvider>
+          </UnifiedProvider>
+        </div>
       </body>
     </html>
   );
