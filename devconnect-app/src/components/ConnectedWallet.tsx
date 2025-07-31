@@ -13,6 +13,8 @@ import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
+import LinkTicket from './LinkTicket';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 interface ConnectedWalletProps {
   address: string;
@@ -29,6 +31,9 @@ export default function ConnectedWallet({
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
+
+  // Unified connection hook for Para SDK integration
+  const { ensureWagmiConnection } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
   const [isWaitingForSignature, setIsWaitingForSignature] = useState(false);
@@ -183,6 +188,11 @@ export default function ConnectedWallet({
 
     try {
       console.log('Using wagmi for wallet signing');
+
+      // Ensure wagmi is connected if using Para SDK
+      if (isPara) {
+        await ensureWagmiConnection();
+      }
 
       // Only show interactive toast for non-Para wallets
       if (!isPara) {
@@ -359,6 +369,7 @@ export default function ConnectedWallet({
         <p className="text-sm text-gray-600 mb-4">Connected: {address}</p>
       </div>
       <div className="flex flex-col gap-2">
+        <LinkTicket className="mb-2" />
         <Button
           onClick={handleSign}
           className="w-full"
@@ -378,9 +389,7 @@ export default function ConnectedWallet({
               : 'Sign Message'}
         </Button>
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
-          {isPara
-            ? 'Open Para Account Modal'
-            : 'Open Account Modal'}
+          {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
         {address && (
           <Button

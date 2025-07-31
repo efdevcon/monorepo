@@ -29,6 +29,7 @@ const connectors: CreateConnectorFn[] = [
   // Para connector for email authentication
   paraConnector({
     appName: APP_NAME,
+    nameOverride: "Connect with email via Para",
     authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
     chains: [base],
     disableEmailLogin: false,

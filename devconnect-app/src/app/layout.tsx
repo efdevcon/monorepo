@@ -4,7 +4,10 @@ import './globals.css';
 import '@getpara/react-sdk/styles.css';
 import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
-import MobileBottomNav from '@/components/MobileBottomNav';
+import { ZupassProvider } from '@/context/ZupassProvider';
+import Menu from '@/components/Menu';
+import NewDeployment from '@/components/NewDeployment';
+import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
 
 const geistSans = Geist({
@@ -45,7 +48,17 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="theme-color" content="#fbf5ee" />
         <meta name="msapplication-navbutton-color" content="#fbf5ee" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+        ></meta>
+        <meta name="apple-mobile-web-app-title" content="Devconnect" />
+        <meta name="apple-touch-fullscreen" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative min-h-screen`}
@@ -58,9 +71,14 @@ export default function RootLayout({
       >
         <UnifiedProvider>
           <SkippedProvider>
-            {children}
-            <MobileBottomNav />
-            <Toaster />
+            <ZupassProvider>
+              <PWAProvider>
+                {children}
+                <NewDeployment />
+                <Menu />
+                <Toaster />
+              </PWAProvider>
+            </ZupassProvider>
           </SkippedProvider>
         </UnifiedProvider>
       </body>
