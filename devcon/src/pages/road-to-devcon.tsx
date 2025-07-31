@@ -288,7 +288,7 @@ const Hero = (props: any) => {
 
   useWindowWidth('window-width')
 
-  const firstParallaxGlobe = useRef<any>()
+  const firstParallaxGlobe = useRef<any>(null)
   const firstParallax = useHorizontalParallax(progress => {
     firstParallaxGlobe.current.style.transform = `scale(${110 - progress / 3}%) translateY(5%)`
     firstParallax.targetRef.current.style.transform = `scale(${100 - progress / 3}%) translateX(${
@@ -296,7 +296,7 @@ const Hero = (props: any) => {
     }%) translateY(${progress / 8}%)`
   })
 
-  const secondParallaxCloud = useRef<any>()
+  const secondParallaxCloud = useRef<any>(null)
   const secondParallax = useHorizontalParallax(progress => {
     secondParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
       progress / 10
@@ -306,7 +306,7 @@ const Hero = (props: any) => {
     }%) translateX(-${progress}%) translateY(10%)`
   })
 
-  const thirdParallaxCloud = useRef<any>()
+  const thirdParallaxCloud = useRef<any>(null)
   const thirdParallax = useHorizontalParallax(progress => {
     thirdParallaxCloud.current.style.transform = `scale(${80 + progress / 5}%) translateX(${
       progress / 10
@@ -739,8 +739,8 @@ export default function RoadToDevcon(props: any) {
   const { data: grantsData } = useTina<PagesQuery>(props.grantsCms)
   const pages = data.pages as PagesRoad_To_Devcon
   const grantsPages = grantsData.pages as PagesIndex
-  const controlsRef = useRef<any>()
-  const sections: any = [useRef(), useRef(), useRef(), useRef()]
+  const controlsRef = useRef<any>(null)
+  const sections: any = [useRef(null), useRef(null), useRef(null), useRef(null)]
 
   const goToSection = React.useMemo(() => {
     return (index: number) => {

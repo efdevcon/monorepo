@@ -1,5 +1,6 @@
-import { SigninRedirect } from "components/domain/discounts/redirect";
+// import { SigninRedirect } from "components/domain/discounts/redirect";
 
 export default function SignIn() {
-  return <SigninRedirect />
+  return null
+  // return <SigninRedirect />
 }

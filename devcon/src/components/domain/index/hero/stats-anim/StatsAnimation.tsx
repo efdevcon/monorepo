@@ -6,7 +6,7 @@ import useDimensions from 'react-cool-dimensions'
 const StatsAnimation = () => {
   const [mounted, setMounted] = React.useState(false)
   // const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
-  const renderRef = React.useRef<any>()
+  const renderRef = React.useRef<any>(null)
   const { observe, unobserve, width, height, entry } = useDimensions()
 
   React.useEffect(() => {

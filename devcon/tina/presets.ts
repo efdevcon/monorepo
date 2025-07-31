@@ -64,7 +64,7 @@ const RichTextButtons = {
 }
 
 // Field utilities
-export const createRichText = (name: string, extra?: any): RichTextType => {
+export const createRichText = (name: string, extra?: any): any => {
   return {
     label: name,
     name: name,

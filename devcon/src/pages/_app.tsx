@@ -1,12 +1,12 @@
 import React from 'react'
-import { IntlProvider } from 'next-intl'
+// import { IntlProvider } from 'next-intl'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import 'assets/css/index.scss'
 import { SEO } from 'components/domain/seo'
 import { init } from '@socialgouv/matomo-next'
-import { SessionProvider } from 'next-auth/react'
-import { Web3ModalProvider } from 'context/web3modal'
+// import { SessionProvider } from 'next-auth/react'
+// import { Web3ModalProvider } from 'context/web3modal'
 import { RecoilRoot } from 'recoil'
 // import DevaBot from 'lib/components/ai/overlay'
 import Head from 'next/head'
@@ -32,11 +32,11 @@ function App({ Component, pageProps }: any) {
         <SEO />
 
         {/* <IntlProvider messages={pageProps.messages} locale="en"> */}
-        <SessionProvider session={pageProps.session}>
-          <Web3ModalProvider>
-            <Component {...pageProps} />
-          </Web3ModalProvider>
-        </SessionProvider>
+        {/* <SessionProvider session={pageProps.session}> */}
+        {/* <Web3ModalProvider> */}
+        <Component {...pageProps} />
+        {/* </Web3ModalProvider> */}
+        {/* </SessionProvider> */}
         {/* </IntlProvider> */}
       </RecoilRoot>
     </>
