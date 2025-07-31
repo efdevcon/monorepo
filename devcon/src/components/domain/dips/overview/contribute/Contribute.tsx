@@ -51,7 +51,7 @@ const Thumbnail = ({ contributor, large }: ThumbnailProps) => {
 */
 export const AutoScroller = (props: { contributors: Array<Contributor>; large?: boolean }) => {
   const [containerSize, setContainerSize] = React.useState(0)
-  const cleanupRef = React.useRef<any>()
+  const cleanupRef = React.useRef<any>(null)
 
   const setRef = React.useCallback((node: any) => {
     if (cleanupRef.current) cleanupRef.current()

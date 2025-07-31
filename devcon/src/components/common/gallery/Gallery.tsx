@@ -4,7 +4,7 @@ import ArrowLeft from 'assets/icons/chevron_left.svg'
 import ArrowRight from 'assets/icons/chevron_right.svg'
 
 type GalleryProps = {
-  children: React.ReactChild[]
+  children: React.ReactNode[]
   className?: string
   onChange?: (slideIndex: number) => void
 }

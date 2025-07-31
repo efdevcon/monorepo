@@ -210,13 +210,14 @@ export function Verifier(props: Props) {
             discount.discount > 0 &&
             discount.type === 'ethereum' &&
             session?.type !== 'ethereum' &&
+            // @ts-ignore
             !isConnected && <w3m-button balance="hide" />}
 
           {!voucher &&
             discount &&
             discount.discount > 0 &&
             discount.type === 'ethereum' &&
-            session?.type !== 'ethereum' && 
+            session?.type !== 'ethereum' &&
             isConnected && (
               <button onClick={handleSiweSignIn}>
                 <Button color="green-1" fill fat>

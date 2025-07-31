@@ -6,7 +6,7 @@ import useDimensions from 'react-cool-dimensions'
 type SwipeToScrollProps = {
   noBounds?: boolean
   focusRef?: React.RefObject<HTMLElement>
-  children: React.ReactChild | React.ReactChild[]
+  children: React.ReactNode | React.ReactNode[]
   scrollIndicatorDirections?: {
     ['left']?: boolean
     ['right']?: boolean
@@ -16,7 +16,7 @@ type SwipeToScrollProps = {
 }
 
 const SwipeToScroll = (props: SwipeToScrollProps) => {
-  const el = React.useRef<HTMLDivElement | null>()
+  const el = React.useRef<HTMLDivElement | null>(null)
   const containerEl = React.useRef<HTMLDivElement | null>(null)
   const [maxScroll, setMaxScroll] = React.useState(0)
   const [isNativeScroll, setIsNativeScroll] = React.useState(true)

@@ -200,6 +200,7 @@ const HighlightedSpeakers = ({
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const ref = useRef(null)
+  // @ts-ignore
   const isInView = useInView(ref, { once: true })
   const controls = useAnimation()
 

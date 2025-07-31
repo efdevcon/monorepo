@@ -23,7 +23,7 @@ const StandardError = (props: any) => {
   return <Alert type="error" message={message} />
 }
 
-export const FormDropdown = React.forwardRef(({ control, fieldOptions, ...props }: FormFieldProps, ref: any) => {
+export const FormDropdown = React.forwardRef<any, FormFieldProps>(({ control, fieldOptions, ...props }, ref) => {
   return (
     <Controller
       name={props.fieldKey}
@@ -38,11 +38,11 @@ export const FormDropdown = React.forwardRef(({ control, fieldOptions, ...props 
 
 FormDropdown.displayName = 'FormDropDown'
 
-export const FormInput = React.forwardRef(({ fieldOptions, ...props }: FormFieldProps, ref: any) => {
+export const FormInput = React.forwardRef<any, FormFieldProps>(({ fieldOptions, ...props }, ref) => {
   return <Input {...props} ref={ref} />
 })
 
-export const FormTextArea = React.forwardRef(({ fieldOptions, ...props }: FormFieldProps, ref: any) => {
+export const FormTextArea = React.forwardRef<any, FormFieldProps>(({ fieldOptions, ...props }, ref) => {
   return <TextArea {...props} ref={ref} />
 })
 

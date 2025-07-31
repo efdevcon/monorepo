@@ -24,8 +24,8 @@ type Scene = {
   imageProps: {
     [key: string]: any
   }
-  callToAction: () => JSX.Element
-  content: () => JSX.Element
+  callToAction: () => any
+  content: () => any
 }
 
 type PathSegment = {
@@ -44,10 +44,10 @@ type PageHeroProps = {
   scenes?: Scene[]
   background?: string
   cta?: Array<CTALink>
-  renderCustom?(props?: any): JSX.Element
-  renderCustomBackground?(props?: any): JSX.Element
-  renderCustomNavigation?(props?: any): JSX.Element
-  renderNavigationRight?(props?: any): JSX.Element
+  renderCustom?(props?: any): any
+  renderCustomBackground?(props?: any): any
+  renderCustomNavigation?(props?: any): any
+  renderNavigationRight?(props?: any): any
   navigation?: Array<NavigationLink>
   children?: React.ReactNode
 }

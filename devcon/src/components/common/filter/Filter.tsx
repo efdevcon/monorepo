@@ -300,9 +300,9 @@ type FilterFoldoutProps = {
 export const FilterFoldout = (props: FilterFoldoutProps) => {
   const [open, setOpen] = React.useState(false)
   const [maxHeight, setMaxHeight] = React.useState<number>()
-  const scrollDistanceSinceOpen = React.useRef<number>()
-  const ref = React.useRef<any>()
-  const buttonRef = React.useRef<any>()
+  const scrollDistanceSinceOpen = React.useRef<number | null>(null)
+  const ref = React.useRef<any>(null)
+  const buttonRef = React.useRef<any>(null)
   const { observe } = useDimensions({
     onResize: ({ height }) => {
       const button = buttonRef.current

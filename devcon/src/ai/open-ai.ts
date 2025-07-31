@@ -23,7 +23,7 @@ export const api = (() => {
       ]
 
       const attachContent = async (vectorStoreName: string) => {
-        const vectorStores = await openai.beta.vectorStores.list()
+        const vectorStores = await openai.vectorStores.list()
 
         const vectorStore = vectorStores.data.find((store: any) => store.name === vectorStoreName)
 
@@ -44,7 +44,7 @@ export const api = (() => {
         })
 
         // Upload files to vector store
-        await openai.beta.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
+        await openai.vectorStores.fileBatches.uploadAndPoll(vectorStore.id, { files: fileStreams })
       }
 
       for (const vectorStoreName of targetVectorStores) {
