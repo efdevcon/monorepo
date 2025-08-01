@@ -9,7 +9,7 @@ import { injected } from "wagmi/connectors";
 import { base } from "wagmi/chains";
 
 const WALLET_CONNECT_PROJECT_ID = APP_CONFIG.WC_PROJECT_ID;
-const BASE_RPC_URL = process.env.NEXT_PUBLIC_BASE_RPC_URL || "https://mainnet.base.org";
+const BASE_RPC_URL = APP_CONFIG.BASE_RPC_URL;
 
 if (!WALLET_CONNECT_PROJECT_ID) {
   throw new Error("NEXT_PUBLIC_WC_PROJECT_ID is not set");

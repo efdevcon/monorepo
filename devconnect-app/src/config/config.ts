@@ -16,6 +16,8 @@ export const APP_CONFIG = {
     process.env.NEXT_PUBLIC_PARA_API_KEY?.startsWith('prod_')
       ? Environment.PROD
       : Environment.BETA,
+
+  BASE_RPC_URL: `https://base-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` || "https://mainnet.base.org",
 };
 
 // AppKit specific constants
