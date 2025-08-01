@@ -1,3 +1,21 @@
-export default function ProgrammeTab() {
-  return <div className="py-8 text-center">Programme main content here</div>;
-} 
+'use client';
+
+import NewSchedule from 'lib/components/event-schedule-new';
+
+interface ProgrammeTabProps {
+  atprotoEvents?: any[];
+}
+
+export default function ProgrammeTab({
+  atprotoEvents = [],
+}: ProgrammeTabProps) {
+  return (
+    <NewSchedule
+      selectedEvent={null}
+      selectedDay={null}
+      setSelectedEvent={() => {}}
+      setSelectedDay={() => {}}
+      events={atprotoEvents}
+    />
+  );
+}

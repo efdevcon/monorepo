@@ -220,6 +220,8 @@ const SwipeToScroll = forwardRef(
     const bind = useDrag(({ down, delta }) => {
       const scrollContainer = el.current!;
 
+      console.log("delta", delta);
+
       const speed = props.speed || 1.5;
 
       lastX.current = Math.min(
@@ -251,7 +253,7 @@ const SwipeToScroll = forwardRef(
     let scrollContainerClass = "h-full select-none";
 
     if (isNativeScroll)
-      scrollContainerClass += " overflow-x-auto !translate-x-0";
+      scrollContainerClass += ` overflow-x-auto ${css["no-transform"]}`;
 
     return (
       <div
