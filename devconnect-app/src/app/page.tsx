@@ -331,6 +331,7 @@ Issued At: ${issuedAt}`;
           fontFamily: 'Arial, sans-serif',
           maxWidth: '400px',
           margin: '0 auto',
+          backgroundColor: 'white',
         }}
       >
         <div style={{ textAlign: 'center', marginBottom: '30px' }}>
@@ -377,6 +378,7 @@ Issued At: ${issuedAt}`;
           fontFamily: 'Arial, sans-serif',
           maxWidth: '400px',
           margin: '0 auto',
+          backgroundColor: 'white',
         }}
       >
         <div
@@ -477,6 +479,7 @@ Issued At: ${issuedAt}`;
           fontFamily: 'Arial, sans-serif',
           maxWidth: '400px',
           margin: '0 auto',
+          backgroundColor: 'white',
         }}
       >
         <div
@@ -569,6 +572,7 @@ Issued At: ${issuedAt}`;
         fontFamily: 'Arial, sans-serif',
         maxWidth: '400px',
         margin: '0 auto',
+        backgroundColor: 'white',
       }}
     >
       <div style={{ marginBottom: '20px' }}>
