@@ -28,19 +28,19 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [isResent, setIsResent] = useState(false);
 
   // Para authentication hooks
-  const { mutateAsync: signUpOrLogIn, isPending: isSigningUp } =
+  const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
     useSignUpOrLogIn();
-  const { mutateAsync: verifyNewAccount, isPending: isVerifying } =
+  const { verifyNewAccountAsync: verifyNewAccount, isPending: isVerifying } =
     useVerifyNewAccount();
-  const { mutateAsync: resendVerificationCode, isPending: isResending } =
+  const { resendVerificationCodeAsync: resendVerificationCode, isPending: isResending } =
     useResendVerificationCode();
-  const { mutateAsync: waitForLogin, isPending: isWaitingForLogin } =
+  const { waitForLoginAsync: waitForLogin, isPending: isWaitingForLogin } =
     useWaitForLogin();
-  const { mutateAsync: waitForWalletCreation, isPending: isWaitingForWallet } =
+  const { waitForWalletCreationAsync: waitForWalletCreation, isPending: isWaitingForWallet } =
     useWaitForWalletCreation();
 
   // Find the Para connector for wagmi
-  const paraConnector = connectors.find((connector) => connector.id === 'para');
+  const paraConnector = connectors.find((connector: any) => connector.id === 'para');
 
   const handleGetStarted = () => {
     setShowGetStarted(false);
@@ -80,7 +80,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   const handleResendCode = async () => {
     try {
-      await resendVerificationCode();
+      await resendVerificationCode({});
       setIsResent(true);
       setTimeout(() => setIsResent(false), 3000);
     } catch (error) {
