@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
 
@@ -8,11 +8,7 @@ interface QRScannerProps {
   buttonLabel?: string;
 }
 
-const QRScanner: React.FC<QRScannerProps> = ({
-  onScan,
-  onClose,
-  buttonLabel,
-}) => {
+const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
   const [open, setOpen] = useState(false);
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -20,7 +16,7 @@ const QRScanner: React.FC<QRScannerProps> = ({
   const scannerRef = useRef<HTMLDivElement>(null);
 
   // Check and monitor camera permission status
-  const checkCameraPermission = async () => {
+  const checkCameraPermission = useCallback(async () => {
     if (navigator.permissions && navigator.permissions.query) {
       try {
         const permission = await navigator.permissions.query({
@@ -43,12 +39,12 @@ const QRScanner: React.FC<QRScannerProps> = ({
     }
     setPermissionStatus('unknown');
     return 'unknown';
-  };
+  }, [error]);
 
   // Initialize permission check on component mount
   useEffect(() => {
     checkCameraPermission();
-  }, []);
+  }, [checkCameraPermission]);
 
   // Handle opening the scanner
   const handleOpenScanner = async () => {

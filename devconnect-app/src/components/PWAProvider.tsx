@@ -12,9 +12,9 @@ interface NavigatorStandalone extends Navigator {
   standalone?: boolean
 }
 
-const PWAProvider: React.FC<PWAProviderProps> = ({ children }) => {
+const PWAProvider = ({ children }: PWAProviderProps) => {
   const [pwa, setPwa] = useLocalStorage<boolean | null>('pwa', null);
-  const [, setShowInstallPWA] = useLocalStorage('showInstallPWA', false)
+  const [, setShowInstallPWA] = useLocalStorage('showInstallPWA', false);
 
   useEffect(() => {
     if (
@@ -41,14 +41,14 @@ const PWAProvider: React.FC<PWAProviderProps> = ({ children }) => {
         setShowInstallPWA(true);
       }
     }
-  }, [setPwa, setShowInstallPWA])
+  }, [setPwa, setShowInstallPWA, pwa]);
 
   return (
     <>
       {children}
       <InstallPWA />
     </>
-  )
-}
+  );
+};
 
 export default PWAProvider 

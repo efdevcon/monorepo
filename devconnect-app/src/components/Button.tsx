@@ -7,7 +7,6 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props?: any;
 }
 
@@ -48,35 +47,19 @@ export default function Button({
     type === 'Text' ? 'leading-normal' : 'leading-none text-center';
 
   return (
-    <>
-      <button
-        data-icon={icon}
-        data-type={type}
-        className={`relative custom-focus-ring ${baseClasses} ${typeClasses[type]} ${className}`}
-        onClick={onClick}
-        disabled={disabled}
-        style={{
-          fontFamily: 'Roboto',
-          fontWeight: 'bold',
-        }}
-        {...props}
-      >
-        <div className={`justify-start ${textClasses}`}>{children}</div>
-      </button>
-      <style jsx>{`
-        .custom-focus-ring:focus::after {
-          content: '';
-          position: absolute;
-          inset: -8px -8px -13px -8px;
-          border-radius: 4px;
-          border: 3px solid #36364c;
-          pointer-events: none;
-          z-index: 1;
-        }
-        .custom-focus-ring:active:focus::after {
-          display: none;
-        }
-      `}</style>
-    </>
+    <button
+      data-icon={icon}
+      data-type={type}
+      className={`relative ${baseClasses} ${typeClasses[type]} ${className} focus:ring-2 focus:ring-[#36364c] focus:ring-offset-2 focus:ring-offset-white`}
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        fontFamily: 'Roboto',
+        fontWeight: 'bold',
+      }}
+      {...props}
+    >
+      <div className={`justify-start ${textClasses}`}>{children}</div>
+    </button>
   );
 }

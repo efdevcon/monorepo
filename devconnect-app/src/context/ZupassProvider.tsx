@@ -134,21 +134,21 @@ const defaultZupassContext: ZupassContext = {
   VerifyProof: () => Promise.resolve(false),
 }
 
-const ZupassContext = createContext<ZupassContext>(defaultZupassContext)
+const ZupassContext = createContext<any>(defaultZupassContext);
 
 export const useZupass = () => {
-  const context = useContext(ZupassContext)
+  const context = useContext(ZupassContext);
   if (!context) {
-    throw new Error('useZupass must be used within a ZupassProvider')
+    throw new Error('useZupass must be used within a ZupassProvider');
   }
 
-  return context
-}
+  return context;
+};
 
 export function ZupassProvider(props: PropsWithChildren) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [zupassLoaded, setZupassLoaded] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const ref = useRef<HTMLDivElement>(null);
+  const [zupassLoaded, setZupassLoaded] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [context, setContext] = useState<ZupassContext>({
     loading: false,
     error: '',
@@ -162,75 +162,88 @@ export function ZupassProvider(props: PropsWithChildren) {
     GetCollectibles,
     RequestProof,
     VerifyProof,
-  })
+  });
 
   // Load Zupass modules on mount
   useEffect(() => {
-    console.log('ZupassProvider: Starting module load...')
-    loadZupassModules().then((success) => {
-      console.log('ZupassProvider: Module load result:', success)
-      console.log('ZupassProvider: Setting zupassLoaded to:', success)
-      setZupassLoaded(success)
-      setLoading(false)
-      setContext(prevContext => {
-        console.log('ZupassProvider: Updating context with zupassLoaded:', success)
-        return { 
-          ...prevContext, 
-          zupassLoaded: success,
-          loading: false 
-        }
+    console.log('ZupassProvider: Starting module load...');
+    loadZupassModules()
+      .then((success) => {
+        console.log('ZupassProvider: Module load result:', success);
+        console.log('ZupassProvider: Setting zupassLoaded to:', success);
+        setZupassLoaded(success);
+        setLoading(false);
+        setContext((prevContext) => {
+          console.log(
+            'ZupassProvider: Updating context with zupassLoaded:',
+            success
+          );
+          return {
+            ...prevContext,
+            zupassLoaded: success,
+            loading: false,
+          };
+        });
       })
-    }).catch((error) => {
-      console.error('ZupassProvider: Error loading modules:', error)
-      setZupassLoaded(false)
-      setLoading(false)
-    })
-  }, [])
+      .catch((error) => {
+        console.error('ZupassProvider: Error loading modules:', error);
+        setZupassLoaded(false);
+        setLoading(false);
+      });
+  }, []);
 
   async function Connect(_onboard: boolean) {
-    setContext(prevContext => ({ ...prevContext, loading: true }))
+    setContext((prevContext) => ({ ...prevContext, loading: true }));
 
-    console.log('Connecting to Zupass...', ZUPASS_URL, _onboard)
-    
+    console.log('Connecting to Zupass...', ZUPASS_URL, _onboard);
+
     try {
-      let initContext = context.context
+      let initContext = context.context;
       if (!initContext) {
-        console.log('Initializing Zupass context...')
-        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
-        setContext(prevContext => ({ ...prevContext, context: initContext }))
+        console.log('Initializing Zupass context...');
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL);
+        setContext((prevContext) => ({ ...prevContext, context: initContext }));
       }
 
-      console.log('Connecting to Zupass with doConnect...')
-      const zupass = await doConnect(ZAPP, initContext)
-      const publicKey = await zupass.identity.getPublicKey()
-      console.log('Zupass connected successfully, public key:', publicKey)
+      console.log('Connecting to Zupass with doConnect...');
+      const zupass = await doConnect(ZAPP, initContext);
+      const publicKey = await zupass.identity.getPublicKey();
+      console.log('Zupass connected successfully, public key:', publicKey);
 
       if (_onboard) {
-        console.log('Onboarding mode - retrieving ticket...')
-        const ticket = await getRealTicketFromZupass(zupass)
+        console.log('Onboarding mode - retrieving ticket...');
+        const ticket = await getRealTicketFromZupass(zupass);
         if (ticket) {
-          const pod = POD.load(ticket.entries, ticket.signature, ticket.signerPublicKey)
-          console.log('Ticket POD loaded and verified:', pod.verifySignature())
-          localStorage.setItem('zupassTicket', JSON.stringify(mapToTicket(ticket)))
+          const pod = POD.load(
+            ticket.entries,
+            ticket.signature,
+            ticket.signerPublicKey
+          );
+          console.log('Ticket POD loaded and verified:', pod.verifySignature());
+          localStorage.setItem(
+            'zupassTicket',
+            JSON.stringify(mapToTicket(ticket))
+          );
         }
       }
 
-      localStorage.setItem('zupassPublicKey', publicKey)
-      setContext(prevContext => ({ 
-        ...prevContext, 
-        loading: false, 
-        error: '', 
+      localStorage.setItem('zupassPublicKey', publicKey);
+      setContext((prevContext) => ({
+        ...prevContext,
+        loading: false,
+        error: '',
         publicKey,
-        connectionState: 'CONNECTED'
-      }))
-      
+        connectionState: 'CONNECTED',
+      }));
+
       toast.success(
         <div className="space-y-2">
           <div className="font-semibold text-green-800">
             ✅ Zupass Connected Successfully!
           </div>
           <div className="text-sm text-green-700">
-            Your Zupass account has been connected and real ticket data has been imported.
+            Your Zupass account has been connected and real ticket data has been
+            imported.
           </div>
         </div>,
         {
@@ -244,14 +257,20 @@ export function ZupassProvider(props: PropsWithChildren) {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           },
         }
-      )
+      );
     } catch (error) {
-      console.error('Error connecting to Zupass', error)
-      setContext(prevContext => ({ ...prevContext, loading: false, error: 'Error connecting to Zupass' }))
-      
+      console.error('Error connecting to Zupass', error);
+      setContext((prevContext) => ({
+        ...prevContext,
+        loading: false,
+        error: 'Error connecting to Zupass',
+      }));
+
       toast.error(
         <div className="space-y-2">
-          <div className="font-semibold text-red-800">❌ Zupass Connection Failed</div>
+          <div className="font-semibold text-red-800">
+            ❌ Zupass Connection Failed
+          </div>
           <div className="text-sm text-red-700">
             <div className="font-medium">Error:</div>
             <div className="bg-red-50 p-2 rounded border text-red-600">
@@ -270,13 +289,13 @@ export function ZupassProvider(props: PropsWithChildren) {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
           },
         }
-      )
+      );
     }
   }
 
   async function RequestProof() {
     if (!zupassLoaded) {
-      throw new Error('Zupass modules not loaded')
+      throw new Error('Zupass modules not loaded');
     }
 
     try {
@@ -292,14 +311,14 @@ export function ZupassProvider(props: PropsWithChildren) {
                 attendeeEmail: { value: 'attendee@example.com' },
                 eventId: { value: 'devcon-sea-2024' },
                 ticketType: { value: 'Devcon Attendee' },
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      };
     } catch (error) {
-      console.error('Error requesting proof:', error)
-      throw error
+      console.error('Error requesting proof:', error);
+      throw error;
     }
   }
 
@@ -307,69 +326,73 @@ export function ZupassProvider(props: PropsWithChildren) {
     try {
       // This would be implemented with actual verification logic
       // For now, return true for simulated proofs
-      return proof?.success === true
+      return proof?.success === true;
     } catch (error) {
-      console.error('Error verifying proof:', error)
-      return false
+      console.error('Error verifying proof:', error);
+      return false;
     }
   }
 
   async function GetTicket() {
-    console.log('Getting Devcon ticket', context.publicKey)
+    console.log('Getting Devcon ticket', context.publicKey);
 
     try {
-      let initContext = context.context
+      let initContext = context.context;
       if (!initContext) {
-        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL);
       }
 
-      const zupass = await doConnect(ZAPP, initContext)
-      const ticket = await getRealTicketFromZupass(zupass)
+      const zupass = await doConnect(ZAPP, initContext);
+      const ticket = await getRealTicketFromZupass(zupass);
 
       if (ticket) {
-        const ticketData = mapToTicket(ticket)
-        localStorage.setItem('zupassTicket', JSON.stringify(ticketData))
-        return ticketData
+        const ticketData = mapToTicket(ticket);
+        localStorage.setItem('zupassTicket', JSON.stringify(ticketData));
+        return ticketData;
       }
     } catch (error) {
-      console.error('[ZUPASS] Error getting ticket', error)
+      console.error('[ZUPASS] Error getting ticket', error);
     }
   }
 
   async function GetSwag() {
-    console.log('Getting Devconnect add-ons')
+    console.log('Getting Devconnect add-ons');
 
     try {
-      let initContext = context.context
+      let initContext = context.context;
       if (!initContext) {
-        initContext = await init(ref.current as HTMLElement, ZUPASS_URL)
+        initContext = await init(ref.current as HTMLElement, ZUPASS_URL);
       }
 
-      const zupass = await doConnect(ZAPP, initContext)
+      const zupass = await doConnect(ZAPP, initContext);
       const query = pod({
         entries: {
           eventId: {
             type: 'string',
-            isMemberOf: [{ type: 'string', value: '1f36ddce-e538-4c7a-9f31-6a4b2221ecac' }], // Devconnect ARG event ID
+            isMemberOf: [
+              { type: 'string', value: '1f36ddce-e538-4c7a-9f31-6a4b2221ecac' },
+            ], // Devconnect ARG event ID
           },
         },
-      })
+      });
 
-      const pods = await zupass.pod.collection('Devconnect ARG').query(query)
-      const addons = pods.filter(pod => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1))
-      const swag = addons.map(mapToTicket) || []
+      const pods = await zupass.pod.collection('Devconnect ARG').query(query);
+      const addons = pods.filter(
+        (pod) => pod.entries.isAddOn && pod.entries.isAddOn.value === BigInt(1)
+      );
+      const swag = addons.map(mapToTicket) || [];
 
-      localStorage.setItem('zupassSwag', JSON.stringify(swag))
-      return swag
+      localStorage.setItem('zupassSwag', JSON.stringify(swag));
+      return swag;
     } catch (error) {
-      console.error('[ZUPASS] Error getting add-ons', error)
+      console.error('[ZUPASS] Error getting add-ons', error);
     }
 
-    return []
+    return [];
   }
 
   async function GetCollectibles() {
-    console.log('Getting Meerkat collectibles')
+    console.log('Getting Meerkat collectibles');
 
     try {
       // Simulate getting collectibles
@@ -383,29 +406,35 @@ export function ZupassProvider(props: PropsWithChildren) {
           signature: 'collectible-signature-1',
           signerPublicKey: 'collectible-signer-1',
         },
-      ] as Collectible[]
+      ] as Collectible[];
 
-      localStorage.setItem('zupassCollectibles', JSON.stringify(collectibles))
-      return collectibles
+      localStorage.setItem('zupassCollectibles', JSON.stringify(collectibles));
+      return collectibles;
     } catch (error) {
-      console.error('[ZUPASS] Error getting collectibles', error)
+      console.error('[ZUPASS] Error getting collectibles', error);
     }
 
-    return []
+    return [];
   }
 
-  async function getRealTicketFromZupass(zupass: ParcnetAPI): Promise<PODData | undefined> {
+  async function getRealTicketFromZupass(
+    zupass: ParcnetAPI
+  ): Promise<PODData | undefined> {
     const query = pod({
       entries: {
         eventId: {
           type: 'string',
-          isMemberOf: [{ type: 'string', value: '1f36ddce-e538-4c7a-9f31-6a4b2221ecac' }], // Devconnect ARG event ID
+          isMemberOf: [
+            { type: 'string', value: '1f36ddce-e538-4c7a-9f31-6a4b2221ecac' },
+          ], // Devconnect ARG event ID
         },
       },
-    })
+    });
 
-    const pods = await zupass.pod.collection('Devconnect ARG').query(query)
-    return pods.find(pod => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0))
+    const pods = await zupass.pod.collection('Devconnect ARG').query(query);
+    return pods.find(
+      (pod) => !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0)
+    );
   }
 
   function mapToTicket(pod: PODData): Ticket {
@@ -420,10 +449,8 @@ export function ZupassProvider(props: PropsWithChildren) {
       isRevoked: pod.entries.isRevoked.value === BigInt(1),
       signature: pod.signature,
       signerPublicKey: pod.signerPublicKey,
-    } as Ticket
+    } as Ticket;
   }
-
-
 
   useEffect(() => {
     async function initContext() {
@@ -448,12 +475,12 @@ export function ZupassProvider(props: PropsWithChildren) {
     if (zupassLoaded && ref.current) {
       initContext();
     }
-  }, [zupassLoaded, ref.current]);
+  }, [zupassLoaded]);
 
   // Sync zupassLoaded state with context
   useEffect(() => {
-    setContext(prevContext => ({ ...prevContext, zupassLoaded }))
-  }, [zupassLoaded])
+    setContext((prevContext) => ({ ...prevContext, zupassLoaded }));
+  }, [zupassLoaded]);
 
   if (loading) {
     return (
@@ -462,30 +489,36 @@ export function ZupassProvider(props: PropsWithChildren) {
           <div className="text-lg font-semibold mb-2">Loading Zupass...</div>
         </div>
       </div>
-    )
+    );
   }
 
   if (!zupassLoaded) {
     // Instead of blocking the entire app, just log a warning and continue
-    console.warn('Zupass modules not loaded - using fallback mode')
+    console.warn('Zupass modules not loaded - using fallback mode');
+    const Provider = ZupassContext.Provider as any;
     return (
-      <ZupassContext.Provider value={{
-        ...context,
-        zupassLoaded: false,
-        loading: false,
-        error: 'Zupass modules not available - using fallback mode'
-      }}>
+      <Provider
+        value={
+          {
+            ...context,
+            zupassLoaded: false,
+            loading: false,
+            error: 'Zupass modules not available - using fallback mode',
+          } as any
+        }
+      >
         <div ref={ref} className="" />
         {props.children}
-      </ZupassContext.Provider>
-    )
+      </Provider>
+    );
   }
 
+  const Provider = ZupassContext.Provider as any;
   return (
-    <ZupassContext.Provider value={context}>
+    <Provider value={context as any}>
       <div ref={ref} className="" />
       {props.children}
       {/* Zupass dialog will be loaded here */}
-    </ZupassContext.Provider>
-  )
+    </Provider>
+  );
 } 

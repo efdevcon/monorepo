@@ -345,7 +345,8 @@ Issued At: ${issuedAt}`;
             Devconnect ARG Pathfinder
           </h1>
           <p style={{ color: '#666', fontSize: '16px' }}>
-            Your companion for Devconnect ARG, the first Ethereum World's Fair.
+            Your companion for Devconnect ARG, the first Ethereum World&apos;s
+            Fair.
           </p>
         </div>
 
@@ -446,7 +447,7 @@ Issued At: ${issuedAt}`;
 
         <div style={{ textAlign: 'center', marginTop: '20px' }}>
           <p style={{ fontSize: '14px', color: '#666' }}>
-            Didn't receive a code?
+            Didn&apos;t receive a code?
           </p>
           <button
             onClick={handleResendCode}
@@ -582,7 +583,7 @@ Issued At: ${issuedAt}`;
           Connect to start exploring
         </h1>
         <p style={{ color: '#666', fontSize: '14px' }}>
-          Choose how you'd like to connect to the Devconnect ARG.
+          Choose how you&apos;d like to connect to the Devconnect ARG.
         </p>
       </div>
 
@@ -734,8 +735,8 @@ Issued At: ${issuedAt}`;
             <p
               style={{ color: '#666', fontSize: '14px', marginBottom: '15px' }}
             >
-              Quick start with email — we'll create a wallet for you behind the
-              scenes.
+              Quick start with email — we&apos;ll create a wallet for you behind
+              the scenes.
             </p>
 
             <input

@@ -5,9 +5,9 @@ import '@getpara/react-sdk/styles.css';
 import { SkippedProvider } from '@/context/SkippedContext';
 import Menu from '@/components/Menu';
 import NewDeployment from '@/components/NewDeployment';
-import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
+import PWAProvider from '@/components/PWAProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

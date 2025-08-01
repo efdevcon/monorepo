@@ -5,7 +5,7 @@ interface Zkp2pOnrampQRCodeProps {
   address: string;
 }
 
-const Zkp2pOnrampQRCode: React.FC<Zkp2pOnrampQRCodeProps> = ({ address }) => {
+const Zkp2pOnrampQRCode = ({ address }: Zkp2pOnrampQRCodeProps) => {
   const [open, setOpen] = useState(false);
   const callbackUrl = `https://${window.location.host}/api/quest/?quest=zkp2p&address=${address}`;
   const zkp2pUrl =
@@ -31,7 +31,7 @@ const Zkp2pOnrampQRCode: React.FC<Zkp2pOnrampQRCodeProps> = ({ address }) => {
         >
           <div
             className="bg-gray-900 rounded-lg p-6 flex flex-col items-center relative min-w-[260px]"
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl font-bold"

@@ -28,7 +28,7 @@ if (!API_KEY || !ENVIRONMENT) {
   );
 }
 
-export function UnifiedProvider({ children }: { children: React.ReactNode }) {
+export function UnifiedProvider({ children }: { children: any }) {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>

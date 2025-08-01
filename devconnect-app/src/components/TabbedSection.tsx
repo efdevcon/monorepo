@@ -1,7 +1,7 @@
 'use client';
 import TabBar from './TabBar';
 import { NAV_ITEMS, TabItem } from '@/config/nav-items';
-import SwipeableViews from 'react-swipeable-views';
+import SwipeableViews from 'react-swipeable-views-react-18-fix';
 import { useState } from 'react';
 
 interface TabbedSectionProps {
