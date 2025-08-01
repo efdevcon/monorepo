@@ -9,6 +9,7 @@ import Menu from '@/components/Menu';
 import NewDeployment from '@/components/NewDeployment';
 import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
+import { Providers } from './providers';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -70,16 +71,18 @@ export default function RootLayout({
         }}
       >
         <div className="fullscreen-container h-screen w-screen fixed inset-0 pt-safe pb-safe pl-safe pr-safe">
-          <UnifiedProvider>
-            <SkippedProvider>
-              <PWAProvider>
+          {/* <UnifiedProvider> */}
+          <SkippedProvider>
+            <PWAProvider>
+              <Providers>
                 {children}
                 <NewDeployment />
                 <Menu />
                 <Toaster />
-              </PWAProvider>
-            </SkippedProvider>
-          </UnifiedProvider>
+              </Providers>
+            </PWAProvider>
+          </SkippedProvider>
+          {/* </UnifiedProvider> */}
         </div>
       </body>
     </html>

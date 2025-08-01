@@ -54,7 +54,7 @@ const connectors: CreateConnectorFn[] = [
     },
     twoFactorAuthEnabled: false,
   }) as CreateConnectorFn,
-  // Injected connectors for regular wallets
+  // Add injected connector explicitly
   injected(),
 ];
 
@@ -78,12 +78,12 @@ export const appKit = createAppKit({
     emailShowWallets: false,
   },
   themeMode: "light",
-  enableEIP6963: true,
+  enableEIP6963: true, // Enable EIP6963 for better injected wallet detection
   enableInjected: true,
   enableWalletConnect: true,
   enableCoinbase: true,
-  allowUnsupportedChain: false,
-  allWallets: "SHOW", // Show all available wallets including injected ones
+  allowUnsupportedChain: true,
+  allWallets: "SHOW", // Show all wallets including injected ones
   featuredWalletIds: [
     // Zerion
     'ecc4036f814562b41a5268adc86270fba1365471402006302e70169465b7ac18',
