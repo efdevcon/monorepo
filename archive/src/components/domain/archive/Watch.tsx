@@ -22,7 +22,7 @@ type WatchProps = {};
 
 export const Watch = (props: WatchProps) => {
   const [gridViewEnabled, setGridViewEnabled] = React.useState(true);
-  const videoContainerElement = React.useRef<any>();
+  const videoContainerElement = React.useRef<any>(null);
   const [from, setFrom] = useState(0);
   const defaultPageSize = 12;
   const filterState = useVideoFilter();

@@ -31,8 +31,8 @@ export const CollapsedSectionContent = (props: any) => {
   const [contentHeight, setContentHeight] = React.useState(
     props.open ? "auto" : "0px"
   );
-  const ref = React.useRef<any>();
-  const locked = React.useRef<any>();
+  const ref = React.useRef<any>(null);
+  const locked = React.useRef<any>(null);
   const mounting = React.useRef<any>(true);
 
   React.useEffect(() => {

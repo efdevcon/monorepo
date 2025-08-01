@@ -3,7 +3,7 @@ import { Link } from "@/components/common/link";
 import css from "./button.module.scss";
 
 export const Button = (props: any) => {
-  const buttonRef = React.useRef<HTMLDivElement>();
+  const buttonRef = React.useRef<HTMLDivElement>(null);
   const [x, setX] = React.useState(0);
   const [y, setY] = React.useState(0);
 

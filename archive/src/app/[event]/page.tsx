@@ -1,12 +1,6 @@
 import { redirect } from "next/navigation";
 
-type Props = {
-  params: {
-    event: string;
-  };
-};
-
-export default function Index({ params }: Props) {
+export default function Index({ params }: any) {
   const { event } = params;
   redirect(`/watch?event=${event}`);
 }

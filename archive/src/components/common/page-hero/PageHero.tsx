@@ -25,8 +25,8 @@ type CTALink = {
 
 type Scene = {
   session: any;
-  callToAction: () => JSX.Element;
-  content: () => JSX.Element;
+  callToAction: () => React.ReactNode;
+  content: () => React.ReactNode;
 };
 
 type PathSegment = {
@@ -44,7 +44,7 @@ type PageHeroProps = {
   scenes?: Scene[];
   background?: string;
   cta?: Array<CTALink>;
-  renderCustom?(props?: any): JSX.Element;
+  renderCustom?(props?: any): React.ReactNode;
   navigation?: Array<NavigationLink>;
   children?: React.ReactNode;
 };

@@ -12,18 +12,12 @@ type LinkProps = {
   [key: string]: any;
 };
 
-export const Link = React.forwardRef(
+export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   (
-    {
-      children,
-      indicateExternal,
-      external,
-      allowDrag,
-      href,
-      ...rest
-    }: LinkProps,
+    { children, indicateExternal, external, allowDrag, href, ...rest },
     ref: any
   ) => {
+    // @ts-ignore
     const isMailTo = href.startsWith("mailto:");
     const dragging = React.useRef(false);
 

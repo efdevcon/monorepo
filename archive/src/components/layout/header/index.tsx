@@ -12,7 +12,7 @@ export function Header() {
   const ref = useRef(null);
   const [foldoutOpen, setFoldoutOpen] = React.useState(false);
   const [searchOpen, setSearchOpen] = React.useState(false);
-  useOnOutsideClick(ref, () => setSearchOpen(false));
+  useOnOutsideClick(ref as any, () => setSearchOpen(false));
 
   const searchActive = searchOpen && !foldoutOpen;
 

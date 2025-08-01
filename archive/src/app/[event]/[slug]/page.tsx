@@ -1,14 +1,7 @@
 import { Video } from "@/components/domain/archive";
 import { getRelatedSessions, getSessionBySlug } from "@/services/devcon";
 
-type Props = {
-  params: {
-    event: string;
-    slug: string;
-  };
-};
-
-export default async function Index({ params }: Props) {
+export default async function Index({ params }: any) {
   const { event, slug } = params;
 
   const session = await getSessionBySlug(

@@ -13,7 +13,7 @@ interface Props {
 }
 
 const Clock = (props: any) => {
-  const animationEl = React.useRef<any>();
+  const animationEl = React.useRef<any>(null);
 
   React.useEffect(() => {
     const handler = () => {

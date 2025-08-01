@@ -10,7 +10,7 @@ import css from "./slider.module.scss";
 export const useSlider = (settings: any) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const [cardsPerSlide, setCardsPerSlide] = React.useState(0);
-  const sliderRef = React.useRef<SlickSlider>();
+  const sliderRef = React.useRef<SlickSlider>(null);
 
   const nCards = (() => {
     var counter = 0;
