@@ -1,7 +1,19 @@
 @import 'tailwindcss';
 @import "tw-animate-css";
+@source "../../../lib/**/*.{ts,tsx}";
 
 @custom-variant dark (&:is(.dark *));
+
+@custom-variant mouse-only {
+  @media screen and (pointer: fine) {
+    @slot;
+  }
+}
+@custom-variant touch-only {
+  @media screen and (pointer: coarse) {
+    @slot;
+  }
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -53,6 +65,7 @@ html {
   touch-action: manipulation;
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
+  --content-width: 1680px;
 }
 
 /* Hide scrollbars for webkit browsers */
@@ -178,4 +191,26 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+.section {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(64px, 1fr) minmax(auto, var(--content-width, 1440px)) minmax(64px, 1fr);
+
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--content-width, 1440px)) minmax(16px, 1fr);
+  }
+
+  > * {
+    grid-column: 2 / 3;
+  }
+
+  > .expand {
+    grid-column: 1 / 4;
+  }
+
+  > .expand-right {
+    grid-column: 2 / 4;
+  }
 }
