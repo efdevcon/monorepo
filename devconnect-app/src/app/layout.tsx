@@ -2,14 +2,12 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
-import { UnifiedProvider } from '@/context/UnifiedProvider';
 import { SkippedProvider } from '@/context/SkippedContext';
-import { ZupassProvider } from '@/context/ZupassProvider';
 import Menu from '@/components/Menu';
 import NewDeployment from '@/components/NewDeployment';
 import PWAProvider from '@/components/PWAProvider';
 import { Toaster } from 'sonner';
-import { Providers } from './providers';
+import { WalletsProviders } from '@/context/WalletProviders';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -71,18 +69,16 @@ export default function RootLayout({
         }}
       >
         <div className="fullscreen-container h-screen w-screen fixed inset-0 pt-safe pb-safe pl-safe pr-safe">
-          {/* <UnifiedProvider> */}
           <SkippedProvider>
             <PWAProvider>
-              <Providers>
+              <WalletsProviders>
                 {children}
                 <NewDeployment />
                 <Menu />
                 <Toaster />
-              </Providers>
+              </WalletsProviders>
             </PWAProvider>
           </SkippedProvider>
-          {/* </UnifiedProvider> */}
         </div>
       </body>
     </html>
