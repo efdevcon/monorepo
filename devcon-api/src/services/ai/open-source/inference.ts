@@ -43,7 +43,7 @@ export const infer = async (query: string, context: string, messages: any) => {
     }),
   })
 
-  const json = await response.json()
+  const json = await response.json() as any
 
   // const decoded = tokenizer.decode(json[0].generated_text)
 

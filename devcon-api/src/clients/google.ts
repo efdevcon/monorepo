@@ -34,7 +34,7 @@ export async function AuthenticateServiceAccount(scopes: string[]) {
     scopes: scopes,
   })
 
-  google.options({ auth })
+  google.options({ auth: auth as any })
 
   return google
 }
