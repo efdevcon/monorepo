@@ -15,6 +15,7 @@ import { useState, useRef } from 'react';
 import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { ZupassProvider } from '@/context/ZupassProvider';
 
 interface ConnectedWalletProps {
   address: string;
@@ -369,7 +370,9 @@ export default function ConnectedWallet({
         <p className="text-sm text-gray-600 mb-4">Connected: {address}</p>
       </div>
       <div className="flex flex-col gap-2">
-        <LinkTicket className="mb-2" />
+        <ZupassProvider>
+          <LinkTicket className="mb-2" />
+        </ZupassProvider>
         <Button
           onClick={handleSign}
           className="w-full"

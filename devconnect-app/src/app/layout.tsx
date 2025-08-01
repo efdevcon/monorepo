@@ -72,14 +72,12 @@ export default function RootLayout({
         <div className="fullscreen-container h-screen w-screen fixed inset-0 pt-safe pb-safe pl-safe pr-safe">
           <UnifiedProvider>
             <SkippedProvider>
-              <ZupassProvider>
-                <PWAProvider>
-                  {children}
-                  <NewDeployment />
-                  <Menu />
-                  <Toaster />
-                </PWAProvider>
-              </ZupassProvider>
+              <PWAProvider>
+                {children}
+                <NewDeployment />
+                <Menu />
+                <Toaster />
+              </PWAProvider>
             </SkippedProvider>
           </UnifiedProvider>
         </div>
