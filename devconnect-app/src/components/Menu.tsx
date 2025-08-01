@@ -15,7 +15,7 @@ export default function Menu() {
   // Hide navigation until user connects or skips
   if (!shouldShowNavigation) {
     console.log('Menu: hiding navigation');
-    return null;
+    // return null;
   }
 
   console.log('Menu: showing navigation');
