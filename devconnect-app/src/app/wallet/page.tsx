@@ -5,9 +5,11 @@ import { QRCodeSVG } from 'qrcode.react';
 import ManualPaymentModal from '@/components/ManualPaymentModal';
 import { Button } from '@/components/ui/button';
 import { CreditCard } from 'lucide-react';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 export default function WalletPage() {
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
+  const { isPara } = useUnifiedConnection();
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-black">
@@ -66,6 +68,7 @@ export default function WalletPage() {
       <ManualPaymentModal
         isOpen={isManualPaymentOpen}
         onClose={() => setIsManualPaymentOpen(false)}
+        isPara={Boolean(isPara)}
       />
     </div>
   );
