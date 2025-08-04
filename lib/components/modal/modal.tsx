@@ -1,7 +1,7 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import css from "./modal.module.scss";
-import IconClose from "assets/icons/cross.svg";
+import { X } from "lucide-react";
 import { motion } from "framer-motion";
 
 type ModalContentProps = {
@@ -37,7 +37,7 @@ export const ModalContent = (props: ModalContentProps) => {
   return (
     <motion.div
       className={className}
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent) => {
         e.stopPropagation();
       }}
       initial={{ opacity: 0.8, scale: 0.7 }}
@@ -48,7 +48,7 @@ export const ModalContent = (props: ModalContentProps) => {
           className="absolute right-0 top-0 flex p-3 cursor-pointer z-10"
           onClick={props.close}
         >
-          <IconClose className={`text-xs icon`} />
+          <X className="h-4 w-4" />
         </div>
       )}
 
@@ -68,7 +68,7 @@ export const Modal = (props: ModalProps): any => {
     <motion.div
       className={className}
       data-type="modal-portal"
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent) => {
         e.stopPropagation();
         props.close();
       }}

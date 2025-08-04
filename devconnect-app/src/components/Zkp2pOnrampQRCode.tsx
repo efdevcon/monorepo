@@ -19,7 +19,7 @@ const Zkp2pOnrampQRCode = ({ address }: Zkp2pOnrampQRCodeProps) => {
   return (
     <>
       <button
-        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2 cursor-pointer"
         onClick={() => setOpen(true)}
       >
         Onramp via ZKP2P
@@ -34,7 +34,7 @@ const Zkp2pOnrampQRCode = ({ address }: Zkp2pOnrampQRCodeProps) => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl font-bold"
+              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl font-bold cursor-pointer"
               onClick={() => setOpen(false)}
               aria-label="Close"
             >
