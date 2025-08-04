@@ -223,7 +223,7 @@ export default function ConnectedWallet({
             <div className="flex gap-2">
               <button
                 onClick={handleCancelSigning}
-                className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors"
+                className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -481,7 +481,7 @@ export default function ConnectedWallet({
         {siweEnabled && siweState !== 'success' && (
           <Button
             onClick={handleSiweVerification}
-            className="w-full"
+            className="w-full cursor-pointer"
             size="lg"
             variant={siweState === 'error' ? 'destructive' : 'default'}
             disabled={siweState === 'signing'}
@@ -496,7 +496,7 @@ export default function ConnectedWallet({
 
         <Button
           onClick={handleSign}
-          className="w-full"
+          className="w-full cursor-pointer"
           size="lg"
           disabled={
             isPara
@@ -513,7 +513,11 @@ export default function ConnectedWallet({
               : 'Sign Message'}
         </Button>
 
-        <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
+        <Button
+          onClick={handleOpenAccountModal}
+          className="w-full cursor-pointer"
+          size="lg"
+        >
           {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
 
@@ -522,6 +526,7 @@ export default function ConnectedWallet({
         {address && (
           <Button
             variant="destructive"
+            className="w-full cursor-pointer"
             onClick={handleDisconnect}
             disabled={isParaLoggingOut}
           >

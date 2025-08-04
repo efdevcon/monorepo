@@ -4,9 +4,9 @@ const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
 export async function POST(request: NextRequest) {
   try {
-    const { address } = await request.json();
+    const { address, network = 'base' } = await request.json();
     
-    console.log('Portfolio API called for address:', address);
+    console.log('Portfolio API called for address:', address, 'network:', network);
 
     if (!address) {
       return NextResponse.json(
@@ -21,6 +21,16 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Network configuration
+    const networkConfig = {
+      mainnet: { chainId: 1, network: 'ETHEREUM_MAINNET' },
+      'op-mainnet': { chainId: 10, network: 'OPTIMISM_MAINNET' },
+      base: { chainId: 8453, network: 'BASE_MAINNET' },
+      arbitrum: { chainId: 42161, network: 'ARBITRUM_MAINNET' }
+    };
+
+    const selectedNetwork = networkConfig[network as keyof typeof networkConfig] || networkConfig.base;
 
     const headers = {
       'Content-Type': 'application/json',
@@ -65,7 +75,7 @@ export async function POST(request: NextRequest) {
         query: portfolioQuery,
         variables: {
           addresses: [address],
-          chainIds: [8453], // Base Mainnet
+          chainIds: [selectedNetwork.chainId],
         },
       }),
     });
@@ -116,7 +126,7 @@ export async function POST(request: NextRequest) {
           perspective: 'Signer',
           first: 10,
           filters: {
-            network: 'BASE_MAINNET'
+            network: selectedNetwork.network
           }
         },
       }),
