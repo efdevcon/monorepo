@@ -169,38 +169,42 @@ export async function POST(request: NextRequest) {
       // Create USDC contract instance for simulation
       const usdcContract = createUSDCContract(dummyWallet);
 
-      // Simulate the transaction
-      const simulationData = usdcContract.interface.encodeFunctionData('transferWithAuthorization', [
-        from,
-        to,
-        value,
-        validAfter,
-        validBefore,
-        nonce,
-        v,
-        r,
-        s
-      ]);
+      // Estimate gas for the transaction
+      let gasEstimate: bigint;
+      try {
+        gasEstimate = await usdcContract.transferWithAuthorization.estimateGas(
+          from,
+          to,
+          value,
+          validAfter,
+          validBefore,
+          nonce,
+          v,
+          r,
+          s
+        );
+        console.log(`Simulation - Estimated gas: ${gasEstimate.toString()}`);
+      } catch (gasError) {
+        console.error('Simulation - Gas estimation failed:', gasError);
+        return NextResponse.json({
+          error: 'Transaction would fail - gas estimation failed',
+          details: gasError instanceof Error ? gasError.message : 'Unable to estimate gas',
+          possibleCauses: [
+            'Insufficient USDC balance',
+            'Invalid signature',
+            'Nonce already used',
+            'Authorization expired'
+          ]
+        }, { status: 400 });
+      }
 
-      // Estimate gas
-      const gasEstimate = await usdcContract.transferWithAuthorization.estimateGas(
-        from,
-        to,
-        value,
-        validAfter,
-        validBefore,
-        nonce,
-        v,
-        r,
-        s
-      );
-
-      // Get current gas price
+      // Get current gas price data
       const feeData = await provider.getFeeData();
-      const gasPrice = feeData.gasPrice || ethers.parseUnits('0.1', 'gwei');
+      const maxFeePerGas = feeData.maxFeePerGas || ethers.parseUnits('0.1', 'gwei');
+      const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas || ethers.parseUnits('0.05', 'gwei');
 
-      // Calculate estimated cost
-      const estimatedCost = gasEstimate * gasPrice;
+      // Calculate estimated cost using max fee per gas
+      const estimatedCost = gasEstimate * maxFeePerGas;
 
       console.log(`Simulation completed - Estimated gas: ${gasEstimate.toString()}`);
       console.log(`Estimated cost: ${ethers.formatEther(estimatedCost)} ETH`);
@@ -212,7 +216,7 @@ export async function POST(request: NextRequest) {
           hash: '0x' + '0'.repeat(64), // Dummy hash for simulation
           blockNumber: 0,
           gasUsed: gasEstimate.toString(),
-          effectiveGasPrice: gasPrice.toString(),
+          effectiveGasPrice: maxFeePerGas.toString(),
           status: 'simulation'
         },
         transfer: {
@@ -230,7 +234,7 @@ export async function POST(request: NextRequest) {
         simulationDetails: {
           estimatedGas: gasEstimate.toString(),
           estimatedCost: ethers.formatEther(estimatedCost),
-          gasPrice: ethers.formatUnits(gasPrice, 'gwei') + ' gwei',
+          gasPrice: ethers.formatUnits(maxFeePerGas, 'gwei') + ' gwei',
           success: true,
           message: 'Transaction simulation successful - ready to execute with private key'
         },
@@ -248,7 +252,47 @@ export async function POST(request: NextRequest) {
     // Create USDC contract instance with relayer wallet
     const usdcContract = createUSDCContract(relayerWallet);
 
-    // Execute transferWithAuthorization
+    // Estimate gas for the transaction
+    let gasEstimate: bigint;
+    try {
+      gasEstimate = await usdcContract.transferWithAuthorization.estimateGas(
+        from,
+        to,
+        value,
+        validAfter,
+        validBefore,
+        nonce,
+        v,
+        r,
+        s
+      );
+      console.log(`Estimated gas: ${gasEstimate.toString()}`);
+    } catch (gasError) {
+      console.error('Gas estimation failed:', gasError);
+      return NextResponse.json({
+        error: 'Transaction would fail - gas estimation failed',
+        details: gasError instanceof Error ? gasError.message : 'Unable to estimate gas',
+        possibleCauses: [
+          'Insufficient USDC balance',
+          'Invalid signature',
+          'Nonce already used',
+          'Authorization expired'
+        ]
+      }, { status: 400 });
+    }
+
+    // Add 20% buffer to gas estimate
+    const gasLimit = (gasEstimate * BigInt(120)) / BigInt(100);
+    console.log(`Using gas limit: ${gasLimit.toString()} (estimated: ${gasEstimate.toString()})`);
+
+    // Get current gas price data
+    const feeData = await provider.getFeeData();
+    const maxFeePerGas = feeData.maxFeePerGas || ethers.parseUnits('0.1', 'gwei');
+    const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas || ethers.parseUnits('0.05', 'gwei');
+
+    console.log(`Gas pricing - Max Fee: ${ethers.formatUnits(maxFeePerGas, 'gwei')} gwei, Priority Fee: ${ethers.formatUnits(maxPriorityFeePerGas, 'gwei')} gwei`);
+
+    // Execute transferWithAuthorization with optimized gas settings
     const tx = await usdcContract.transferWithAuthorization(
       from,
       to,
@@ -260,9 +304,9 @@ export async function POST(request: NextRequest) {
       r,
       s,
       {
-        gasLimit: 200000, // Set reasonable gas limit
-        maxFeePerGas: ethers.parseUnits('0.1', 'gwei'), // 0.1 gwei max fee
-        maxPriorityFeePerGas: ethers.parseUnits('0.05', 'gwei') // 0.05 gwei priority fee
+        gasLimit,
+        maxFeePerGas,
+        maxPriorityFeePerGas
       }
     );
 
