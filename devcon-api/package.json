@@ -33,7 +33,7 @@
     "db:studio": "prisma studio",
     "db:studio:account": "prisma studio --schema src/db/account.prisma",
     "swagger:generate": "ts-node ./src/swagger/generate.ts",
-    "postinstall": "pnpm swagger:generate && pnpm db:generate",
+    "postinstall_probablynotneeded": "pnpm swagger:generate && pnpm db:generate",
     "ai-schedule-sync": "ts-node src/services/ai/open-ai/sync-vector-store",
     "ai-create-assistants": "ts-node src/services/ai/open-ai/create-assistants.ts",
     "ai-create-vector-stores": "ts-node src/services/ai/open-ai/create-vector-stores.ts"
