@@ -1,13 +1,18 @@
-import { useAccount as useWagmiAccount, useConnect } from 'wagmi';
+import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState, useRef } from 'react';
 
 export function useUnifiedConnection() {
+  // SIWE configuration - set to false to disable SIWE verification
+  const SIWE_ENABLED = false;
+
   // Wagmi connection status
   const wagmiAccount = useWagmiAccount();
   const { connect, connectors } = useConnect();
-  console.log('wagmiAccount', wagmiAccount);
+  const { disconnect } = useDisconnect();
+  const { signMessageAsync, isPending: isSigning } = useSignMessage();
   
   // Para connection status
   const paraAccount = useParaAccount();
@@ -19,6 +24,17 @@ export function useUnifiedConnection() {
   // Current pathname for navigation logic
   const pathname = usePathname();
 
+  // SIWE state for wallet-based login
+  const [siweState, setSiweState] = useState<
+    'idle' | 'signing' | 'success' | 'error'
+  >('idle');
+  const [siweMessage, setSiweMessage] = useState('');
+  const [siweSignature, setSiweSignature] = useState('');
+
+  // Use refs to track latest state
+  const connectionStateRef = useRef({ isConnected: wagmiAccount.isConnected, address: wagmiAccount.address });
+  connectionStateRef.current = { isConnected: wagmiAccount.isConnected, address: wagmiAccount.address };
+
   // Determine which connection is active
   console.log('paraAccount', paraAccount);
   console.log('paraWallet', paraWallet);
@@ -29,14 +45,53 @@ export function useUnifiedConnection() {
   console.log('isWagmiConnected', isWagmiConnected);
 
   // Check if Para SDK is connected (either through wagmi connector or direct Para SDK)
-  const isPara = wagmiAccount.connector?.id === 'para'// || isParaConnected;
+  const isPara = wagmiAccount.connector?.id === 'para' || isParaConnected;
 
   // Get the active address (prioritize Para SDK address, fallback to wagmi address)
   const address = paraWallet?.data?.address || wagmiAccount.address;
   console.log('address', address);
   
+  // Consider user connected only after SIWE verification (if enabled)
+  const isFullyConnected = SIWE_ENABLED
+    ? (isPara ? isParaConnected : isWagmiConnected) && siweState === 'success'
+    : (isPara ? isParaConnected : isWagmiConnected);
+
   // Unified connection status - user is connected if either wagmi or Para SDK is connected
   const isConnected = isPara ? isParaConnected : isWagmiConnected && address;
+
+  // Find the Para connector for wagmi
+  const paraConnector = connectors.find(
+    (connector: any) =>
+      connector.id === 'para' ||
+      connector.id === 'getpara' ||
+      connector.name?.toLowerCase().includes('para')
+  );
+
+  // Monitor connection state changes
+  useEffect(() => {
+    console.log('Connection state changed:', {
+      isConnected,
+      address,
+      connector: connectors.find((c) => c.ready),
+      timestamp: new Date().toISOString(),
+    });
+  }, [isConnected, address, connectors]);
+
+  // Monitor Para connector specifically
+  useEffect(() => {
+    if (paraConnector) {
+      console.log('Para connector found:', {
+        id: paraConnector.id,
+        name: paraConnector.name,
+        ready: paraConnector.ready,
+      });
+    } else {
+      console.log(
+        'Para connector not found. Available connectors:',
+        connectors.map((c) => ({ id: c.id, name: c.name, ready: c.ready }))
+      );
+    }
+  }, [paraConnector, connectors]);
 
   // Get the active connection details
   const getActiveConnection = () => {
@@ -72,18 +127,98 @@ export function useUnifiedConnection() {
   // Show navigation if connected, skipped, or on any page other than homepage
   const shouldShowNavigation = activeConnection.isConnected || isSkipped || pathname !== '/';
 
+  // Generate SIWE message
+  const generateSiweMessage = (address: string) => {
+    const domain = window.location.host;
+    const uri = window.location.origin;
+    const issuedAt = new Date().toISOString();
+    const nonce = Math.random().toString(36).substring(2, 15);
+
+    const message = `${domain} wants you to sign in with your Ethereum account:
+${address}
+
+Sign in with Ethereum to the app.
+
+URI: ${uri}
+Version: 1
+Chain ID: 8453
+Nonce: ${nonce}
+Issued At: ${issuedAt}`;
+
+    return { message, nonce };
+  };
+
+  // Handle SIWE sign-in
+  const handleSiweSignIn = async () => {
+    if (!SIWE_ENABLED) {
+      console.log('SIWE is disabled, skipping verification');
+      return true;
+    }
+
+    if (!address) {
+      console.error('No address available for SIWE');
+      return false;
+    }
+
+    try {
+      setSiweState('signing');
+      const { message, nonce } = generateSiweMessage(address);
+      setSiweMessage(message);
+
+      console.log('Signing SIWE message:', message);
+      const signature = await signMessageAsync({ message });
+
+      setSiweSignature(signature);
+      setSiweState('success');
+      console.log('SIWE signature:', signature);
+
+      // Here you would typically send the signature to your backend for verification
+      // For now, we'll just show success
+      return true;
+    } catch (error) {
+      console.error('SIWE sign-in failed:', error);
+      setSiweState('error');
+      return false;
+    }
+  };
+
   // Force wagmi Para connector connection
   const forceWagmiParaConnection = async () => {
-    const paraConnector = connectors.find((connector) => connector.id === 'para');
     if (!paraConnector) {
-      console.error('Para connector not found');
+      console.error(
+        'Para connector not found. Available connectors:',
+        connectors.map((c: any) => ({ id: c.id, name: c.name }))
+      );
       return false;
     }
 
     try {
       console.log('Forcing wagmi Para connector connection...');
+      console.log('Para connector state before connection:', {
+        id: paraConnector.id,
+        name: paraConnector.name,
+        ready: paraConnector.ready,
+      });
+
       await connect({ connector: paraConnector });
       console.log('Wagmi Para connector connected successfully');
+
+      // Check connection status after a delay using refs
+      setTimeout(() => {
+        const currentState = connectionStateRef.current;
+        console.log('Checking connection status after Para auth...');
+        console.log('Current address:', currentState.address);
+        console.log('Current isConnected:', currentState.isConnected);
+
+        // If still not connected, try to reconnect
+        if (!currentState.isConnected) {
+          console.log('Still not connected, attempting to reconnect...');
+          connect({ connector: paraConnector });
+        } else {
+          console.log('✅ Connection successful!');
+        }
+      }, 2000); // Increased delay to allow for state updates
+
       return true;
     } catch (error) {
       console.error('Failed to connect wagmi Para connector:', error);
@@ -100,6 +235,21 @@ export function useUnifiedConnection() {
     return true;
   };
 
+
+
+  // Handle sign message
+  const handleSignMessage = async () => {
+    try {
+      console.log('Signing message: hello world!');
+      const signature = await signMessageAsync({ message: 'hello world!' });
+      console.log('Message signed successfully:', signature);
+      return signature;
+    } catch (error) {
+      console.error('Failed to sign message:', error);
+      throw error;
+    }
+  };
+
   // Determine if user should be redirected to onboarding
   const shouldRedirectToOnboarding = () => {
     // Don't redirect if user has skipped
@@ -108,8 +258,8 @@ export function useUnifiedConnection() {
     // Don't redirect on onboarding page itself
     if (pathname === '/onboarding') return false;
 
-    // Don't redirect if connected via any method
-    if (isWagmiConnected || isParaConnected) return false;
+    // Don't redirect if fully connected (including SIWE verification)
+    if (isFullyConnected) return false;
 
     // Redirect if not connected and not on onboarding
     return true;
@@ -118,9 +268,10 @@ export function useUnifiedConnection() {
   return {
     // Unified connection status (for parent components)
     isConnected,
+    isFullyConnected,
     address,
 
-  // Individual connection states
+    // Individual connection states
     isWagmiConnected,
     isParaConnected,
     isPara,
@@ -134,6 +285,13 @@ export function useUnifiedConnection() {
     // Para wallet for signing
     paraWalletData: paraWallet?.data,
 
+    // SIWE state
+    siweState,
+    siweMessage,
+    siweSignature,
+    isSigning,
+    siweEnabled: SIWE_ENABLED,
+
     // Skipped state
     isSkipped,
     setSkipped,
@@ -142,9 +300,15 @@ export function useUnifiedConnection() {
     // Connection utilities
     forceWagmiParaConnection,
     ensureWagmiConnection,
+    handleSiweSignIn,
+    handleSignMessage,
+    disconnect,
 
     // Navigation logic
     shouldRedirectToOnboarding,
     shouldShowNavigation,
+
+    // Para connector for external use
+    paraConnector,
   };
 } 

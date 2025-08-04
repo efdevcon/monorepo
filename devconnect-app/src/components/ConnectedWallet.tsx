@@ -34,7 +34,15 @@ export default function ConnectedWallet({
   const { openModal } = useModal();
 
   // Unified connection hook for Para SDK integration
-  const { ensureWagmiConnection } = useUnifiedConnection();
+  const {
+    ensureWagmiConnection,
+    isFullyConnected,
+    siweState,
+    siweEnabled,
+    handleSiweSignIn,
+    handleSignMessage: hookSignMessage,
+    disconnect: hookDisconnect,
+  } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
   const [isWaitingForSignature, setIsWaitingForSignature] = useState(false);
@@ -363,16 +371,128 @@ export default function ConnectedWallet({
     }
   };
 
+  // Handle SIWE verification
+  const handleSiweVerification = async () => {
+    try {
+      const success = await handleSiweSignIn();
+      if (success) {
+        toast.success(
+          <div className="space-y-2">
+            <div className="font-semibold text-green-800">
+              ✅ SIWE Verification Successful!
+            </div>
+            <div className="text-sm text-green-700">
+              Your wallet has been verified with Sign-In with Ethereum.
+            </div>
+          </div>,
+          {
+            duration: 4000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              border: '1px solid #bbf7d0',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      } else {
+        toast.error(
+          <div className="space-y-2">
+            <div className="font-semibold text-red-800">
+              ❌ SIWE Verification Failed
+            </div>
+            <div className="text-sm text-red-700">
+              Please try again or check your wallet connection.
+            </div>
+          </div>,
+          {
+            duration: 4000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+              border: '1px solid #fecaca',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.error('SIWE verification failed:', error);
+      toast.error(
+        <div className="space-y-2">
+          <div className="font-semibold text-red-800">
+            ❌ SIWE Verification Error
+          </div>
+          <div className="text-sm text-red-700">
+            An unexpected error occurred during verification.
+          </div>
+        </div>,
+        {
+          duration: 4000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+            border: '1px solid #fecaca',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    }
+  };
+
   return (
     <div className="bg-white p-4 space-y-4 rounded-lg">
       <div className="text-center">
         <p className="text-lg mb-2">Welcome!</p>
         <p className="text-sm text-gray-600 mb-4">Connected: {address}</p>
+
+        {/* Connection Status */}
+        <div className="text-xs text-gray-500 mb-2">
+          <div>Connection Type: {isPara ? 'Para' : 'Standard'}</div>
+          <div>Fully Connected: {isFullyConnected ? '✅ Yes' : '❌ No'}</div>
+          {siweEnabled && (
+            <div>
+              SIWE Status:{' '}
+              {siweState === 'success'
+                ? '✅ Verified'
+                : siweState === 'signing'
+                  ? '⏳ Signing...'
+                  : siweState === 'error'
+                    ? '❌ Failed'
+                    : '⏸️ Pending'}
+            </div>
+          )}
+        </div>
       </div>
+
       <div className="flex flex-col gap-2">
         <ZupassProvider>
           <LinkTicket className="mb-2" />
         </ZupassProvider>
+
+        {/* SIWE Verification Button (only show if SIWE is enabled and not verified) */}
+        {siweEnabled && siweState !== 'success' && (
+          <Button
+            onClick={handleSiweVerification}
+            className="w-full"
+            size="lg"
+            variant={siweState === 'error' ? 'destructive' : 'default'}
+            disabled={siweState === 'signing'}
+          >
+            {siweState === 'signing'
+              ? 'Signing SIWE Message...'
+              : siweState === 'error'
+                ? '❌ SIWE Failed - Try Again'
+                : '🔐 Complete Sign-In with Ethereum'}
+          </Button>
+        )}
+
         <Button
           onClick={handleSign}
           className="w-full"
@@ -391,9 +511,11 @@ export default function ConnectedWallet({
               ? 'Waiting for Signature...'
               : 'Sign Message'}
         </Button>
+
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
           {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
+
         {address && (
           <Button
             variant="destructive"
@@ -403,6 +525,7 @@ export default function ConnectedWallet({
             {isParaLoggingOut ? 'Logging out...' : 'Disconnect'}
           </Button>
         )}
+
         {address && <Zkp2pOnrampQRCode address={address} />}
       </div>
     </div>
