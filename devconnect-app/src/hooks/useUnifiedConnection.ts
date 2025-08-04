@@ -51,7 +51,7 @@ export function useUnifiedConnection() {
   
   // Check if Para SDK is connected (either through wagmi connector or direct Para SDK)
   // Prioritize Para SDK connection state, with wagmi connector as secondary indicator
-  const isPara = paraSDKConnected || wagmiParaConnected;
+  const isPara: boolean = Boolean(paraSDKConnected || wagmiParaConnected);
   
   console.log('Para detection details:', {
     wagmiParaConnector,
