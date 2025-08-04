@@ -10,7 +10,7 @@
     "url": "https://github.com/efdevcon/monorepo/tree/main/devcon-api"
   },
   "scripts": {
-    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
+    "build": "pnpm swagger:generate && pnpm db:generate && tsc --project tsconfig.json && tsc-alias -p tsconfig.json",
     "postbuild": "node -e \"const fs = require('fs-extra'); fs.copySync('public', 'dist/devcon-api/public', { overwrite: true }); fs.copySync('data', 'dist/devcon-api/data', { overwrite: true });\"",
     "start": "NODE_PATH=./dist node ./dist/devcon-api/src/index",
     "dev:generate": "pnpm swagger:generate && pnpm db:generate && nodemon ./src/index.ts",
