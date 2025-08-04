@@ -156,8 +156,8 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
         Portfolio
       </Button>
 
-      <Modal open={isOpen} close={handleCloseModal}>
-        <ModalContent className="min-w-[100vw] max-w-2xl max-h-[80vh] overflow-y-auto p-6">
+      <Modal open={isOpen} close={handleCloseModal} className="p-0">
+        <ModalContent className="w-[100vw] max-w-xl max-h-[80vh] overflow-y-auto p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <TrendingUp className="h-5 w-5" />
