@@ -6,12 +6,11 @@ import { Button } from '@/components/ui/button';
 import { X, Wallet } from 'lucide-react';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { usePaymentTransaction } from '@/hooks/usePaymentTransaction';
-import RecipientStep from '@/components/payment/RecipientStep';
-import AmountStep from '@/components/payment/AmountStep';
+import PaymentForm from '@/components/payment/PaymentForm';
 import PreviewStep from '@/components/payment/PreviewStep';
 import StatusStep from '@/components/payment/StatusStep';
 
-type PaymentStep = 'recipient' | 'amount' | 'preview' | 'status';
+type PaymentStep = 'form' | 'preview' | 'status';
 
 interface ManualPaymentModalProps {
   isOpen: boolean;
@@ -24,7 +23,7 @@ export default function ManualPaymentModal({
   onClose,
   isPara = false,
 }: ManualPaymentModalProps) {
-  const [currentStep, setCurrentStep] = useState<PaymentStep>('recipient');
+  const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
   const [paymentData, setPaymentData] = useState<{
     recipient: string;
     amount: string;
@@ -52,28 +51,33 @@ export default function ManualPaymentModal({
   // Reset when modal opens
   useEffect(() => {
     if (isOpen) {
-      setCurrentStep('recipient');
+      setCurrentStep('form');
       setPaymentData({ recipient: '', amount: '0.01' });
       resetTransaction();
     }
   }, [isOpen]); // Remove resetTransaction from dependencies
 
-  const handleRecipientNext = useCallback((recipient: string) => {
-    setPaymentData((prev) => ({ ...prev, recipient }));
-    setCurrentStep('amount');
-  }, []);
-
-  const handleAmountNext = useCallback((amount: string) => {
-    setPaymentData((prev) => ({ ...prev, amount }));
+  const handleFormSubmit = useCallback((recipient: string, amount: string) => {
+    setPaymentData({ recipient, amount });
     setCurrentStep('preview');
   }, []);
 
-  const handleAmountBack = useCallback(() => {
-    setCurrentStep('recipient');
-  }, []);
+  const handleDirectSend = useCallback(
+    async (recipient: string, amount: string) => {
+      setPaymentData({ recipient, amount });
+      setCurrentStep('status');
+      try {
+        await sendTransaction(recipient, amount);
+      } catch (error) {
+        console.error('Transaction failed:', error);
+        // Error will be handled by the StatusStep component
+      }
+    },
+    [sendTransaction]
+  );
 
   const handlePreviewBack = useCallback(() => {
-    setCurrentStep('amount');
+    setCurrentStep('form');
   }, []);
 
   const handlePreviewConfirm = useCallback(async () => {
@@ -202,18 +206,14 @@ export default function ManualPaymentModal({
         </div>
 
         {/* Step Content */}
-        {currentStep === 'recipient' && (
-          <RecipientStep
-            onNext={handleRecipientNext}
-            initialValue={paymentData.recipient}
-          />
-        )}
-
-        {currentStep === 'amount' && (
-          <AmountStep
-            onNext={handleAmountNext}
-            onBack={handleAmountBack}
-            initialValue={paymentData.amount}
+        {currentStep === 'form' && (
+          <PaymentForm
+            onSendPayment={handleFormSubmit}
+            onDirectSend={handleDirectSend}
+            initialRecipient={paymentData.recipient}
+            initialAmount={paymentData.amount}
+            isPending={isPending}
+            showPreview={false}
           />
         )}
 

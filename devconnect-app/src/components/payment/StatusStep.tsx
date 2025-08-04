@@ -300,14 +300,19 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
             Your USDC transfer has been completed successfully.
           </p>
         </div>
-        
+
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
           <div className="text-sm text-green-700">
             <div className="font-medium">Transaction Details:</div>
             <div className="mt-2 space-y-1">
               <div>Amount: {amount} USDC</div>
               <div>Network: Base</div>
-              <div>From: {connectedAddress ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}` : 'Unknown'}</div>
+              <div>
+                From:{' '}
+                {connectedAddress
+                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
+                  : 'Unknown'}
+              </div>
               <div>Status: Confirmed</div>
               {txHash && (
                 <div className="pt-2">
@@ -318,9 +323,6 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
                     className="text-blue-600 hover:text-blue-800 underline flex items-center gap-1"
                   >
                     View Transaction
-                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
                   </a>
                 </div>
               )}
