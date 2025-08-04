@@ -84,7 +84,7 @@ const AdminPage = () => {
           .select(
             `
             id, rkey, created_by, created_at, updated_at, show_on_calendar,
-            record_passed_review, record_needs_review, lexicon, comments, reviewed,
+            record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
             atproto_dids!created_by(did, alias, is_spammer, contact)
           `
           )
@@ -142,7 +142,34 @@ const AdminPage = () => {
         .select(
           `
           id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon,
+          record_passed_review, record_needs_review, lexicon, is_core_event,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+      setEvents(data || [])
+    } catch (error: any) {
+      setEventsError(error.message)
+    }
+    setEventsLoading(false)
+  }
+
+  const handleToggleCoreEvent = async (id: string, field: string, value: boolean) => {
+    setEventsLoading(true)
+    try {
+      // Update directly via Supabase
+      const { error } = await supabase.from('atproto_records').update({ is_core_event: value }).eq('id', id)
+
+      if (error) throw error
+
+      // Refetch events
+      const { data } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon, is_core_event, reviewed,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -174,8 +201,8 @@ const AdminPage = () => {
         .from('atproto_records')
         .select(
           `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon,
+          id, rkey, created_by, created_at, updated_at, show_on_calendar, is_core_event,
+          record_passed_review, record_needs_review, lexicon, reviewed,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -245,8 +272,8 @@ const AdminPage = () => {
         .from('atproto_records')
         .select(
           `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon,
+          id, rkey, created_by, created_at, updated_at, show_on_calendar, is_core_event,
+          record_passed_review, record_needs_review, lexicon, reviewed,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -289,7 +316,7 @@ const AdminPage = () => {
         .select(
           `
           id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, comments, reviewed,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -340,7 +367,7 @@ const AdminPage = () => {
         .select(
           `
           id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, comments, reviewed,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -406,6 +433,7 @@ const AdminPage = () => {
       created_by: event.created_by,
       created_at: event.created_at,
       show_on_calendar: event.show_on_calendar,
+      is_core_event: event.is_core_event,
     }))
     .filter(event => event.show_on_calendar)
 
@@ -707,10 +735,10 @@ const AdminPage = () => {
                                         )}
                                       </div>
 
-                                      <div className="lg:col-span-4 space-y-2 space-x-4">
+                                      <div className="lg:col-span-4 gap-2 flex flex-col">
                                         {/* Review Actions */}
                                         {(hasChanges || !isApproved) && (
-                                          <div className="flex space-x-2 mb-2">
+                                          <div className="flex mb-2">
                                             <button
                                               onClick={() => handleApprove(event.id, event.record_needs_review)}
                                               className="px-3 py-1 bg-green-600 text-white text-sm rounded-md hover:bg-green-700 transition-colors"
@@ -731,6 +759,34 @@ const AdminPage = () => {
                                           <span className="ml-2 text-sm text-gray-600">Reviewed</span>
                                         </label>
 
+                                        {/* Core Event Toggle */}
+
+                                        <label className="inline-flex items-center">
+                                          <input
+                                            type="checkbox"
+                                            checked={!!event.is_core_event}
+                                            disabled={!isApproved}
+                                            onChange={e =>
+                                              handleToggleCoreEvent(event.id, 'is_core_event', e.target.checked)
+                                            }
+                                            className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                                          />
+                                          <span
+                                            className={`ml-2 text-sm ${isApproved ? 'text-gray-600' : 'text-gray-400'}`}
+                                          >
+                                            Core Event
+                                          </span>
+                                          {!isApproved && (
+                                            <p className="text-xs text-gray-500 mx-1">
+                                              (
+                                              {needsReview
+                                                ? 'Approve record first'
+                                                : 'Only approved records can be shown on calendar'}
+                                              )
+                                            </p>
+                                          )}
+                                        </label>
+
                                         {/* Calendar Toggle */}
                                         <label className="inline-flex items-center">
                                           <input
@@ -745,15 +801,24 @@ const AdminPage = () => {
                                           >
                                             Show on Calendar
                                           </span>
+                                          {!isApproved && (
+                                            <p className="text-xs text-gray-500 mx-1">
+                                              (
+                                              {needsReview
+                                                ? 'Approve record first'
+                                                : 'Only approved records can be shown on calendar'}
+                                              )
+                                            </p>
+                                          )}
                                         </label>
 
-                                        {!isApproved && (
+                                        {/* {!isApproved && (
                                           <p className="text-xs text-gray-500 mt-1">
                                             {needsReview
                                               ? 'Approve record first'
                                               : 'Only approved records can be shown on calendar'}
                                           </p>
-                                        )}
+                                        )} */}
 
                                         {hasChanges && (
                                           <p className="text-xs text-gray-500 mt-1">
