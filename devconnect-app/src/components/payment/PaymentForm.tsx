@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Copy, DollarSign, Send } from 'lucide-react';
 import { toast } from 'sonner';
@@ -26,6 +26,12 @@ export default function PaymentForm({
   const [amount, setAmount] = useState(initialAmount);
   const [isRecipientValid, setIsRecipientValid] = useState(false);
   const [isAmountValid, setIsAmountValid] = useState(true);
+
+  // Validate initial values on mount and when initial values change
+  useEffect(() => {
+    setIsRecipientValid(validateAddress(initialRecipient));
+    setIsAmountValid(validateAmount(initialAmount));
+  }, [initialRecipient, initialAmount]);
 
   const validateAddress = (address: string) => {
     const addressRegex = /^0x[a-fA-F0-9]{40}$/;
@@ -67,7 +73,7 @@ export default function PaymentForm({
       toast.error('Please enter a valid amount');
       return;
     }
-    
+
     if (onDirectSend && !showPreview) {
       onDirectSend(recipient.trim(), amount);
     } else {
@@ -143,7 +149,7 @@ export default function PaymentForm({
               className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
           </div>
-          
+
           {/* Quick Amount Buttons */}
           <div className="mt-2">
             <p className="text-sm text-gray-600 mb-2">Quick amounts:</p>

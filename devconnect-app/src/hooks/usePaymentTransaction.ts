@@ -40,12 +40,37 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
   const [txStatus, setTxStatus] = useState<TransactionStatus>('idle');
   const [txError, setTxError] = useState<string>('');
   const [txHash, setTxHash] = useState<string | null>(null);
+  const [isSimulation, setIsSimulation] = useState<boolean>(false);
+  const [simulationDetails, setSimulationDetails] = useState<{
+    estimatedGas: string;
+    estimatedCost: string;
+    gasPrice: string;
+    success: boolean;
+    message: string;
+  } | null>(null);
+
+  // Helper function to detect user rejection errors
+  const isUserRejectionError = (error: any): boolean => {
+    if (!error) return false;
+
+    const errorMessage = error.message || '';
+    const errorCode = error.code;
+
+    return (
+      errorMessage.includes('User denied') ||
+      errorMessage.includes('User rejected') ||
+      errorMessage.includes('User cancelled') ||
+      errorMessage.includes('User denied transaction signature') ||
+      errorCode === 4001 ||
+      errorCode === '4001'
+    );
+  };
 
   // Wallet connection hooks
   const { address: connectedAddress, isConnected } = useAccount();
   
   // Contract write hooks for regular wallets
-  const { writeContract, isPending: isWritePending, data: hash } = useWriteContract();
+  const { writeContract, isPending: isWritePending, data: hash, error: writeError } = useWriteContract();
   
   // Transaction receipt hook
   const { isLoading: isConfirming, isSuccess, isError } = useWaitForTransactionReceipt({
@@ -59,6 +84,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     setTxStatus('idle');
     setTxError('');
     setTxHash(null);
+    setIsSimulation(false);
+    setSimulationDetails(null);
   };
 
   const sendRegularTransaction = async (recipient: string, amount: string) => {
@@ -73,6 +100,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       const amountNumber = parseFloat(amount);
       const amountWei = BigInt(Math.floor(amountNumber * Math.pow(10, USDC_DECIMALS)));
       
+      console.log('Initiating regular transaction...');
+
       // Write the contract transaction
       writeContract({
         address: USDC_CONTRACT_ADDRESS,
@@ -81,11 +110,21 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         args: [recipient as `0x${string}`, amountWei],
       });
       
+      console.log('writeContract called successfully');
+
     } catch (error) {
-      console.error('Regular transfer failed:', error);
+      console.error('Regular transfer failed (caught in try-catch):', error);
       setTxStatus('error');
-      setTxError(error instanceof Error ? error.message : 'Failed to initiate transfer');
-      throw error;
+
+      // Handle user rejection specifically
+      if (isUserRejectionError(error)) {
+        setTxError('Transaction was cancelled by user');
+      } else if (error instanceof Error) {
+        setTxError(error.message);
+      } else {
+        setTxError('Failed to initiate transfer');
+      }
+      // Don't re-throw the error - let the UI handle it
     }
   };
 
@@ -146,19 +185,36 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       }
 
       const executeData = await executeResponse.json();
-      setTxHash(executeData.transaction?.hash || null);
-      setTxStatus('confirming');
 
-      // For now, we'll simulate confirmation since we're using mock responses
-      setTimeout(() => {
+      // Check if this is a simulation response
+      if (executeData.simulation) {
+        setIsSimulation(true);
+        setSimulationDetails(executeData.simulationDetails);
         setTxStatus('confirmed');
-      }, 2000);
+      } else {
+      // Real transaction
+        setTxHash(executeData.transaction?.hash || null);
+        setTxStatus('confirming');
+
+        // For now, we'll simulate confirmation since we're using mock responses
+        setTimeout(() => {
+          setTxStatus('confirmed');
+        }, 2000);
+      }
 
     } catch (error) {
       console.error('Para transfer failed:', error);
       setTxStatus('error');
-      setTxError(error instanceof Error ? error.message : 'Failed to process Para transfer');
-      throw error;
+
+      // Handle user rejection specifically
+      if (isUserRejectionError(error)) {
+        setTxError('Transaction was cancelled by user');
+      } else if (error instanceof Error) {
+        setTxError(error.message);
+      } else {
+        setTxError('Failed to process Para transfer');
+      }
+      // Don't re-throw the error - let the UI handle it
     }
   };
 
@@ -171,7 +227,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       }
     } catch (error) {
       console.error('Transaction failed:', error);
-      throw error;
+      // Don't re-throw - errors are already handled in the individual functions
     }
   };
 
@@ -183,9 +239,27 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   }, [isSuccess, hash, txStatus]);
 
+  // Handle write contract errors (user rejections, etc.)
+  useEffect(() => {
+    if (writeError && txStatus !== 'error') {
+      console.error('Write contract error:', writeError);
+      setTxStatus('error');
+
+      if (isUserRejectionError(writeError)) {
+        setTxError('Transaction was cancelled by user');
+      } else if (writeError instanceof Error) {
+        setTxError(writeError.message);
+      } else {
+        setTxError('Transaction failed');
+      }
+    }
+  }, [writeError, txStatus]);
+
   useEffect(() => {
     if (isError && txStatus !== 'error') {
       setTxStatus('error');
+      // Note: For regular transactions, the error handling is done in the writeContract call
+      // This useEffect handles blockchain-level errors
       setTxError('Transaction failed on blockchain');
     }
   }, [isError, txStatus]);
@@ -195,6 +269,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     txStatus,
     txError,
     txHash,
+    isSimulation,
+    simulationDetails,
     resetTransaction,
     isConnected,
     connectedAddress,

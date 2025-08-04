@@ -37,48 +37,57 @@ interface StatusStepProps {
   amount: string;
   connectedAddress?: string;
   txHash?: string | null;
+  isSimulation?: boolean;
+  simulationDetails?: {
+    estimatedGas: string;
+    estimatedCost: string;
+    gasPrice: string;
+    success: boolean;
+    message: string;
+  } | null;
   onDone: () => void;
+  onTryAgain?: () => void;
 }
 
 const getParaSteps = (isPara: boolean) => {
   if (isPara) {
     return [
       {
-        id: "preparing",
-        label: "Preparing Authorization",
+        id: 'preparing',
+        label: 'Preparing Authorization',
         icon: <Settings className="w-4 h-4" />,
       },
       {
-        id: "signing",
-        label: "Signing Authorization",
+        id: 'signing',
+        label: 'Signing Authorization',
         icon: <Pen className="w-4 h-4" />,
       },
       {
-        id: "executing",
-        label: "Executing Transfer",
+        id: 'executing',
+        label: 'Executing Transfer',
         icon: <Radio className="w-4 h-4" />,
       },
       {
-        id: "confirming",
-        label: "Confirming",
+        id: 'confirming',
+        label: 'Confirming',
         icon: <Clock className="w-4 h-4" />,
       },
       {
-        id: "confirmed",
-        label: "Confirmed",
+        id: 'confirmed',
+        label: 'Confirmed',
         icon: <CheckCircle className="w-4 h-4" />,
       },
     ];
   } else {
     return [
       {
-        id: "transfer",
-        label: "Transfer",
+        id: 'transfer',
+        label: 'Transfer',
         icon: <Radio className="w-4 h-4" />,
       },
       {
-        id: "confirmed",
-        label: "Confirmed",
+        id: 'confirmed',
+        label: 'Confirmed',
         icon: <CheckCircle className="w-4 h-4" />,
       },
     ];
@@ -87,179 +96,190 @@ const getParaSteps = (isPara: boolean) => {
 
 const getStatusBadge = (status: TransactionStatusBadge) => {
   switch (status) {
-    case "completed":
+    case 'completed':
       return (
         <Badge className="bg-[#3ea331] hover:bg-[#3ea331] text-white text-xs px-2 py-1 rounded-full">
           Completed
         </Badge>
       );
-    case "in-progress":
+    case 'in-progress':
       return (
         <Badge className="bg-[#f01888] hover:bg-[#f01888] text-white text-xs px-2 py-1 rounded-full">
           In Progress
         </Badge>
       );
-    case "failed":
+    case 'failed':
       return (
         <Badge className="bg-[#dc2626] hover:bg-[#dc2626] text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
           <AlertTriangle className="w-3 h-3" />
           Failed
         </Badge>
       );
-    case "pending":
+    case 'pending':
       return null;
   }
 };
 
 const getStepLineColor = (status: TransactionStatusBadge, isLast: boolean) => {
-  if (isLast) return "transparent";
+  if (isLast) return 'transparent';
 
   switch (status) {
-    case "completed":
-      return "#3ea331";
-    case "in-progress":
-      return "#f01888";
-    case "failed":
-      return "#dc2626";
-    case "pending":
-      return "#363636";
+    case 'completed':
+      return '#3ea331';
+    case 'in-progress':
+      return '#f01888';
+    case 'failed':
+      return '#dc2626';
+    case 'pending':
+      return '#363636';
   }
 };
 
 const getStepIconColor = (status: TransactionStatusBadge) => {
   switch (status) {
-    case "completed":
-      return "text-[#3ea331]";
-    case "in-progress":
-      return "text-[#f01888]";
-    case "failed":
-      return "text-[#dc2626]";
-    case "pending":
-      return "text-[#a28495]";
+    case 'completed':
+      return 'text-[#3ea331]';
+    case 'in-progress':
+      return 'text-[#f01888]';
+    case 'failed':
+      return 'text-[#dc2626]';
+    case 'pending':
+      return 'text-[#a28495]';
   }
 };
 
 const getStepIcon = (step: any, status: TransactionStatusBadge) => {
-  if (status === "in-progress") {
+  if (status === 'in-progress') {
     return <Loader2 className="w-4 h-4 animate-spin text-[#f01888]" />;
   }
   return step.icon;
 };
 
 const mapTxStatusToTransactionState = (
-  txStatus: string, 
-  txError: string, 
+  txStatus: string,
+  txError: string,
   isPara: boolean
 ): TransactionState => {
   if (isPara) {
     const stepIndexMap: Record<string, number> = {
-      "preparing": 0,
-      "signing": 1,
-      "executing": 2,
-      "confirming": 3,
-      "confirmed": 4
+      preparing: 0,
+      signing: 1,
+      executing: 2,
+      confirming: 3,
+      confirmed: 4,
     };
 
     switch (txStatus) {
-      case "idle":
+      case 'idle':
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "preparing":
+      case 'preparing':
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "signing":
+      case 'signing':
         return {
           currentStepIndex: 1,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "executing":
+      case 'executing':
         return {
           currentStepIndex: 2,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "confirming":
+      case 'confirming':
         return {
           currentStepIndex: 3,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "confirmed":
+      case 'confirmed':
         return {
           currentStepIndex: 4,
-          overallStatus: "completed"
+          overallStatus: 'completed',
         };
-      case "error":
+      case 'error':
         // Determine which step failed based on error message
         let failedStepIndex = 0;
-        if (txError.toLowerCase().includes("sign")) {
+        if (txError.toLowerCase().includes('sign')) {
           failedStepIndex = 1;
-        } else if (txError.toLowerCase().includes("execute")) {
+        } else if (txError.toLowerCase().includes('execute')) {
           failedStepIndex = 2;
-        } else if (txError.toLowerCase().includes("confirm")) {
+        } else if (txError.toLowerCase().includes('confirm')) {
           failedStepIndex = 3;
         }
-        
+
         return {
           currentStepIndex: failedStepIndex,
-          overallStatus: "failed",
+          overallStatus: 'failed',
           failedStepIndex,
-          errorMessage: txError
+          errorMessage: txError,
         };
       default:
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
     }
   } else {
     // Simplified flow for regular transactions
     switch (txStatus) {
-      case "idle":
+      case 'idle':
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "pending":
-      case "preparing":
-      case "signing":
-      case "broadcasting":
+      case 'pending':
+      case 'preparing':
+      case 'signing':
+      case 'broadcasting':
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "confirming":
+      case 'confirming':
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
-      case "confirmed":
+      case 'confirmed':
         return {
           currentStepIndex: 1,
-          overallStatus: "completed"
+          overallStatus: 'completed',
         };
-      case "error":
+      case 'error':
         return {
           currentStepIndex: 0,
-          overallStatus: "failed",
+          overallStatus: 'failed',
           failedStepIndex: 0,
-          errorMessage: txError
+          errorMessage: txError,
         };
       default:
         return {
           currentStepIndex: 0,
-          overallStatus: "processing"
+          overallStatus: 'processing',
         };
     }
   }
 };
 
-export default function StatusStep({ txStatus, txError, isPara, amount, connectedAddress, txHash, onDone }: StatusStepProps) {
+export default function StatusStep({
+  txStatus,
+  txError,
+  isPara,
+  amount,
+  connectedAddress,
+  txHash,
+  isSimulation,
+  simulationDetails,
+  onDone,
+  onTryAgain,
+}: StatusStepProps) {
   const [transactionState, setTransactionState] = useState<TransactionState>({
     currentStepIndex: 0,
-    overallStatus: "processing",
+    overallStatus: 'processing',
   });
 
   // Sync internal state with received txStatus
@@ -272,19 +292,25 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
 
   const generateSteps = (): TransactionStep[] => {
     return initialSteps.map((step, index) => {
-      let status: TransactionStatusBadge = "pending";
+      let status: TransactionStatusBadge = 'pending';
 
-      if (transactionState.overallStatus === "failed" && transactionState.failedStepIndex === index) {
-        status = "failed";
+      if (
+        transactionState.overallStatus === 'failed' &&
+        transactionState.failedStepIndex === index
+      ) {
+        status = 'failed';
       } else if (index < transactionState.currentStepIndex) {
-        status = "completed";
-      } else if (index === transactionState.currentStepIndex && transactionState.overallStatus === "processing") {
-        status = "in-progress";
-      } else if (transactionState.overallStatus === "completed") {
-        status = "completed";
+        status = 'completed';
+      } else if (
+        index === transactionState.currentStepIndex &&
+        transactionState.overallStatus === 'processing'
+      ) {
+        status = 'in-progress';
+      } else if (transactionState.overallStatus === 'completed') {
+        status = 'completed';
       }
 
-      return {...step, status};
+      return { ...step, status };
     });
   };
 
@@ -299,6 +325,24 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
           <p className="text-sm text-gray-600">
             Your USDC transfer has been completed successfully.
           </p>
+          {isPara && isSimulation && (
+            <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              Simulation Mode
+            </div>
+          )}
         </div>
 
         <div className="bg-green-50 border border-green-200 rounded-lg p-4">
@@ -313,8 +357,8 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
                   ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
                   : 'Unknown'}
               </div>
-              <div>Status: Confirmed</div>
-              {txHash && (
+              <div>Status: {isSimulation ? 'Simulation' : 'Confirmed'}</div>
+              {txHash && !isSimulation && (
                 <div className="pt-2">
                   <a
                     href={`https://basescan.org/tx/${txHash}`}
@@ -324,6 +368,11 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
                   >
                     View Transaction
                   </a>
+                </div>
+              )}
+              {isPara && isSimulation && (
+                <div className="pt-2 text-orange-600 text-xs">
+                  ⚠️ This is a simulation - no actual transaction was sent
                 </div>
               )}
             </div>
@@ -340,31 +389,125 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
     );
   }
 
-  if (txStatus === 'error') {
+  if (isPara && isSimulation && simulationDetails) {
     return (
       <div className="space-y-6">
         <div className="text-center">
-          <AlertTriangle className="h-16 w-16 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold mb-2">Payment Failed</h2>
+          <div className="h-16 w-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg
+              className="h-8 w-8 text-orange-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <h2 className="text-xl font-semibold mb-2">Simulation Successful!</h2>
           <p className="text-sm text-gray-600">
-            There was an error processing your payment.
+            Transaction simulation completed successfully.
           </p>
         </div>
-        
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <div className="text-sm text-red-700">
-            <div className="font-medium">Error Details:</div>
-            <div className="mt-2">
-              {transactionState.errorMessage || 'Unknown error occurred'}
+
+        <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+          <div className="text-sm text-orange-700">
+            <div className="font-medium">Simulation Details:</div>
+            <div className="mt-2 space-y-1">
+              <div>Amount: {amount} USDC</div>
+              <div>Network: Base</div>
+              <div>
+                From:{' '}
+                {connectedAddress
+                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
+                  : 'Unknown'}
+              </div>
+              <div>Estimated Gas: {simulationDetails.estimatedGas}</div>
+              <div>Estimated Cost: {simulationDetails.estimatedCost} ETH</div>
+              <div>Gas Price: {simulationDetails.gasPrice}</div>
+              <div>Status: Simulation</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+          <div className="text-sm text-yellow-700">
+            <div className="font-medium">Note:</div>
+            <div className="mt-1">
+              This is a simulation. To execute the actual transaction, configure
+              the PRIVATE_KEY environment variable.
             </div>
           </div>
         </div>
 
         <Button
           onClick={onDone}
-          className="w-full bg-red-600 hover:bg-red-700 text-white"
+          className="w-full bg-orange-600 hover:bg-orange-700 text-white"
         >
-          Close
+          Done
+        </Button>
+      </div>
+    );
+  }
+
+  if (txStatus === 'error') {
+    const isUserCancellation =
+      txError.includes('cancelled by user') ||
+      txError.includes('User denied') ||
+      txError.includes('User rejected');
+
+    return (
+      <div className="space-y-6">
+        <div className="text-center">
+          <AlertTriangle className="h-16 w-16 text-red-500 mx-auto mb-4" />
+          <h2 className="text-xl font-semibold mb-2">
+            {isUserCancellation ? 'Payment Cancelled' : 'Payment Failed'}
+          </h2>
+          <p className="text-sm text-gray-600">
+            {isUserCancellation
+              ? 'You cancelled the transaction in your wallet.'
+              : 'There was an error processing your payment.'}
+          </p>
+          {isPara && isSimulation && (
+            <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+              <svg
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              Simulation Mode
+            </div>
+          )}
+        </div>
+
+        {!isUserCancellation && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <div className="text-sm text-red-700">
+              <div className="font-medium">Error Details:</div>
+              <div className="mt-2">
+                {transactionState.errorMessage || 'Unknown error occurred'}
+              </div>
+            </div>
+          </div>
+        )}
+
+        <Button
+          onClick={isUserCancellation && onTryAgain ? onTryAgain : onDone}
+          className={`w-full ${isUserCancellation ? 'bg-gray-600 hover:bg-gray-700' : 'bg-red-600 hover:bg-red-700'} text-white`}
+        >
+          {isUserCancellation ? 'Try Again' : 'Close'}
         </Button>
       </div>
     );
@@ -375,8 +518,28 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
       <div className="text-center">
         <h2 className="text-xl font-semibold mb-2">Processing Payment</h2>
         <p className="text-sm text-gray-600">
-          {isPara ? 'Processing your authorization and transfer...' : 'Processing your transaction...'}
+          {isPara
+            ? 'Processing your authorization and transfer...'
+            : 'Processing your transaction...'}
         </p>
+        {isPara && isSimulation && (
+          <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Simulation Mode
+          </div>
+        )}
       </div>
 
       <div className="space-y-0">
@@ -384,7 +547,7 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
           const isLast = index === steps.length - 1;
           const lineColor = getStepLineColor(step.status, isLast);
           const iconColor = getStepIconColor(step.status);
-          
+
           return (
             <div key={step.id} className="relative">
               <div className="flex items-center gap-4 py-4">
@@ -398,9 +561,9 @@ export default function StatusStep({ txStatus, txError, isPara, amount, connecte
               </div>
 
               {!isLast && (
-                <div 
-                  className="absolute left-2 top-12 w-px h-4" 
-                  style={{ backgroundColor: lineColor }} 
+                <div
+                  className="absolute left-2 top-12 w-px h-4"
+                  style={{ backgroundColor: lineColor }}
                 />
               )}
             </div>

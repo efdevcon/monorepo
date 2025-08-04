@@ -150,45 +150,153 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // For now, we'll return a mock response since we don't have a relayer set up
-    // In production, you would use a relayer wallet to execute the transaction
-    console.log(`Would execute USDC transfer: ${from} -> ${to}, ${formatUSDCAmount(value)} USDC`);
-    console.log(`Transfer parameters:`, {
+    // Get private key from environment
+    const privateKey = process.env.PRIVATE_KEY;
+
+    if (!privateKey) {
+      // Simulation mode - no private key available
+      console.log('No private key available, generating simulation transaction');
+
+      // Create provider for simulation
+      const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+
+      // Create a dummy wallet for simulation (this won't actually execute)
+      const dummyWallet = new ethers.Wallet(ethers.hexlify(ethers.randomBytes(32)), provider);
+
+      console.log(`Simulation mode - Dummy wallet address: ${dummyWallet.address}`);
+      console.log(`Simulating USDC transfer: ${from} -> ${to}, ${formatUSDCAmount(value)} USDC`);
+
+      // Create USDC contract instance for simulation
+      const usdcContract = createUSDCContract(dummyWallet);
+
+      // Simulate the transaction
+      const simulationData = usdcContract.interface.encodeFunctionData('transferWithAuthorization', [
+        from,
+        to,
+        value,
+        validAfter,
+        validBefore,
+        nonce,
+        v,
+        r,
+        s
+      ]);
+
+      // Estimate gas
+      const gasEstimate = await usdcContract.transferWithAuthorization.estimateGas(
+        from,
+        to,
+        value,
+        validAfter,
+        validBefore,
+        nonce,
+        v,
+        r,
+        s
+      );
+
+      // Get current gas price
+      const feeData = await provider.getFeeData();
+      const gasPrice = feeData.gasPrice || ethers.parseUnits('0.1', 'gwei');
+
+      // Calculate estimated cost
+      const estimatedCost = gasEstimate * gasPrice;
+
+      console.log(`Simulation completed - Estimated gas: ${gasEstimate.toString()}`);
+      console.log(`Estimated cost: ${ethers.formatEther(estimatedCost)} ETH`);
+
+      return NextResponse.json({
+        success: true,
+        simulation: true,
+        transaction: {
+          hash: '0x' + '0'.repeat(64), // Dummy hash for simulation
+          blockNumber: 0,
+          gasUsed: gasEstimate.toString(),
+          effectiveGasPrice: gasPrice.toString(),
+          status: 'simulation'
+        },
+        transfer: {
+          from,
+          to,
+          amount: {
+            wei: value.toString(),
+            formatted: formatUSDCAmount(value)
+          }
+        },
+        relayer: {
+          address: dummyWallet.address,
+          gasSponsored: true
+        },
+        simulationDetails: {
+          estimatedGas: gasEstimate.toString(),
+          estimatedCost: ethers.formatEther(estimatedCost),
+          gasPrice: ethers.formatUnits(gasPrice, 'gwei') + ' gwei',
+          success: true,
+          message: 'Transaction simulation successful - ready to execute with private key'
+        },
+        timestamp: new Date().toISOString()
+      });
+    }
+
+    // Real execution mode - private key available
+    const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+    const relayerWallet = new ethers.Wallet(privateKey, provider);
+
+    console.log(`Relayer wallet address: ${relayerWallet.address}`);
+    console.log(`Executing USDC transfer: ${from} -> ${to}, ${formatUSDCAmount(value)} USDC`);
+
+    // Create USDC contract instance with relayer wallet
+    const usdcContract = createUSDCContract(relayerWallet);
+
+    // Execute transferWithAuthorization
+    const tx = await usdcContract.transferWithAuthorization(
       from,
       to,
-      value: value.toString(),
+      value,
       validAfter,
       validBefore,
       nonce,
       v,
-      r: r.slice(0, 10) + '...',
-      s: s.slice(0, 10) + '...'
-    });
+      r,
+      s,
+      {
+        gasLimit: 200000, // Set reasonable gas limit
+        maxFeePerGas: ethers.parseUnits('0.1', 'gwei'), // 0.1 gwei max fee
+        maxPriorityFeePerGas: ethers.parseUnits('0.05', 'gwei') // 0.05 gwei priority fee
+      }
+    );
 
-    // Mock successful response
+    console.log(`Transaction sent: ${tx.hash}`);
+
+    // Wait for transaction to be mined
+    const receipt = await tx.wait();
+
+    console.log(`Transaction confirmed in block ${receipt?.blockNumber}`);
+    console.log(`Gas used: ${receipt?.gasUsed?.toString()}`);
+
     return NextResponse.json({
       success: true,
+      simulation: false,
       transaction: {
-        hash: '0x' + '0'.repeat(64), // Mock hash
-        blockNumber: 0,
-        gasUsed: '0',
-        effectiveGasPrice: '0',
-        status: 'pending'
+        hash: tx.hash,
+        blockNumber: receipt?.blockNumber || 0,
+        gasUsed: receipt?.gasUsed?.toString() || '0',
+        effectiveGasPrice: receipt?.effectiveGasPrice?.toString() || '0',
+        status: receipt?.status === 1 ? 'success' : 'failed'
       },
       transfer: {
         from,
         to,
         amount: {
-          wei: value.toString(), // Convert BigInt to string
+          wei: value.toString(),
           formatted: formatUSDCAmount(value)
         }
       },
       relayer: {
-        address: '0x' + '0'.repeat(40), // Mock relayer address
+        address: relayerWallet.address,
         gasSponsored: true
       },
-      timestamp: new Date().toISOString(),
-      note: 'This is a mock response. In production, a relayer would execute the actual transaction.'
+      timestamp: new Date().toISOString()
     });
 
   } catch (error) {

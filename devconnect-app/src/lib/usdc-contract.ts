@@ -126,9 +126,19 @@ export async function isNonceUsed(from: string, nonce: string): Promise<boolean>
     const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
     const contract = createUSDCContract(provider);
     
-    // Check authorization state (if nonce is used, it should return true)
-    const isUsed = await contract.authorizationState(from, from, nonce);
-    return isUsed;
+    // For USDC transferWithAuthorization, we need to check if the authorization has been used
+    // The authorization state is tracked by the contract internally
+    // We'll try to call a view function to check, but if it fails, we'll let the contract handle it
+    try {
+      // Try to check authorization state - this might not work for all USDC implementations
+      const isUsed = await contract.authorizationState(from, from, nonce);
+      return isUsed;
+    } catch (authError) {
+      console.log('Authorization state check failed, letting contract handle validation');
+      // If the authorization state check fails, we'll let the contract handle the validation
+      // The transferWithAuthorization call will revert if the nonce has already been used
+      return false;
+    }
   } catch (error) {
     console.error('Error checking nonce usage:', error);
     // If we can't check, assume it's not used to be safe

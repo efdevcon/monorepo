@@ -31,6 +31,9 @@ export default function ManualPaymentModal({
     recipient: '',
     amount: '0.01',
   });
+  const [isSystemSimulationMode, setIsSystemSimulationMode] = useState<
+    boolean | null
+  >(null);
 
   const productUrl =
     'https://www.pagar.simplefi.tech/6603276727aaa6386588474d/products/688ba8db51fc6c100f32cd63';
@@ -44,9 +47,34 @@ export default function ManualPaymentModal({
     txStatus,
     txError,
     txHash,
+    isSimulation,
+    simulationDetails,
     resetTransaction,
     isPending,
   } = usePaymentTransaction({ isPara });
+
+                // Check simulation mode when modal opens (only for Para wallets)
+              const checkSimulationMode = useCallback(async () => {
+                if (!isPara) {
+                  setIsSystemSimulationMode(false); // Standard wallets don't use simulation
+                  return;
+                }
+
+                try {
+                  const response = await fetch('/api/base/check-simulation-mode');
+                  const data = await response.json();
+
+                  if (data.success) {
+                    setIsSystemSimulationMode(data.isSimulationMode);
+                  } else {
+                    console.error('Failed to check simulation mode:', data.error);
+                    setIsSystemSimulationMode(true); // Default to simulation mode on error
+                  }
+                } catch (error) {
+                  console.error('Error checking simulation mode:', error);
+                  setIsSystemSimulationMode(true); // Default to simulation mode on error
+                }
+              }, [isPara]);
 
   // Reset when modal opens
   useEffect(() => {
@@ -54,8 +82,9 @@ export default function ManualPaymentModal({
       setCurrentStep('form');
       setPaymentData({ recipient: '', amount: '0.01' });
       resetTransaction();
+      checkSimulationMode();
     }
-  }, [isOpen]); // Remove resetTransaction from dependencies
+  }, [isOpen, checkSimulationMode]); // Remove resetTransaction from dependencies
 
   const handleFormSubmit = useCallback((recipient: string, amount: string) => {
     setPaymentData({ recipient, amount });
@@ -66,12 +95,8 @@ export default function ManualPaymentModal({
     async (recipient: string, amount: string) => {
       setPaymentData({ recipient, amount });
       setCurrentStep('status');
-      try {
-        await sendTransaction(recipient, amount);
-      } catch (error) {
-        console.error('Transaction failed:', error);
-        // Error will be handled by the StatusStep component
-      }
+      await sendTransaction(recipient, amount);
+      // Error handling is done through txStatus and txError state
     },
     [sendTransaction]
   );
@@ -81,18 +106,21 @@ export default function ManualPaymentModal({
   }, []);
 
   const handlePreviewConfirm = useCallback(async () => {
-    try {
-      setCurrentStep('status');
-      await sendTransaction(paymentData.recipient, paymentData.amount);
-    } catch (error) {
-      console.error('Transaction failed:', error);
-      // Error will be handled by the StatusStep component
-    }
+    setCurrentStep('status');
+    await sendTransaction(paymentData.recipient, paymentData.amount);
+    // Error handling is done through txStatus and txError state
   }, [sendTransaction, paymentData.recipient, paymentData.amount]);
 
   const handleStatusDone = useCallback(() => {
     onClose();
   }, [onClose]);
+
+  const handleTryAgain = useCallback(() => {
+    // Go back to form step with preserved data
+    setCurrentStep('form');
+    // Reset transaction state to allow retry
+    resetTransaction();
+  }, [resetTransaction]);
 
   const handleClose = useCallback(() => {
     // Don't allow closing during transaction processing
@@ -109,10 +137,36 @@ export default function ManualPaymentModal({
     <Modal open={isOpen} close={handleClose} className="p-0">
       <ModalContent className="w-[100vw] max-w-xl max-h-[80vh] overflow-y-auto p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold flex items-center gap-2">
-            <Wallet className="h-5 w-5" />
-            Manual Payment
-          </h2>
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <Wallet className="h-5 w-5" />
+              Manual Payment
+            </h2>
+                         {isPara && isSystemSimulationMode === null && (
+               <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                 <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
+                 Checking...
+               </div>
+             )}
+             {isPara && isSystemSimulationMode && (
+               <div className="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+                 <svg
+                   className="h-3 w-3"
+                   fill="none"
+                   stroke="currentColor"
+                   viewBox="0 0 24 24"
+                 >
+                   <path
+                     strokeLinecap="round"
+                     strokeLinejoin="round"
+                     strokeWidth={2}
+                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                   />
+                 </svg>
+                 Simulation
+               </div>
+             )}
+          </div>
 
           <button
             onClick={handleClose}
@@ -140,6 +194,15 @@ export default function ManualPaymentModal({
               {isConnected ? 'Wallet Connected' : 'Wallet Not Connected'}
             </h3>
           </div>
+                     {isPara && isSystemSimulationMode && (
+             <div className="mt-2 p-2 bg-orange-50 border border-orange-200 rounded text-xs text-orange-700">
+               <div className="font-medium">System Mode:</div>
+               <div>
+                 ⚠️ Simulation mode - transactions will not be executed on
+                 blockchain
+               </div>
+             </div>
+           )}
           {isConnected ? (
             <div className="space-y-2">
               <p className="text-sm text-green-700">
@@ -236,7 +299,10 @@ export default function ManualPaymentModal({
             amount={paymentData.amount}
             connectedAddress={connectedAddress}
             txHash={txHash}
+            isSimulation={isSimulation}
+            simulationDetails={simulationDetails}
             onDone={handleStatusDone}
+            onTryAgain={handleTryAgain}
           />
         )}
       </ModalContent>
