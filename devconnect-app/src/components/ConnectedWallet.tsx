@@ -14,6 +14,7 @@ import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
+import PortfolioModal from './PortfolioModal';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { ZupassProvider } from '@/context/ZupassProvider';
 
@@ -515,6 +516,8 @@ export default function ConnectedWallet({
         <Button onClick={handleOpenAccountModal} className="w-full" size="lg">
           {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
+
+        {address && <PortfolioModal address={address} />}
 
         {address && (
           <Button
