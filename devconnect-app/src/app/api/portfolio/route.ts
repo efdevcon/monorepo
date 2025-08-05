@@ -102,7 +102,6 @@ export async function POST(request: NextRequest) {
                 interpretation {
                   processedDescription
                   description
-                  
                 }
                 transaction {
                   hash

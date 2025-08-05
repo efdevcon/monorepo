@@ -44,8 +44,24 @@ export function useUnifiedConnection() {
   const isWagmiConnected = wagmiAccount.isConnected;
   console.log('isWagmiConnected', isWagmiConnected);
 
+  // Enhanced Para detection logic with fallback mechanisms
+  const wagmiParaConnector = wagmiAccount.connector?.id === 'para' || wagmiAccount.connector?.id === 'getpara';
+  const paraSDKConnected = isParaConnected && paraWallet?.data?.address;
+  const wagmiParaConnected = isWagmiConnected && wagmiParaConnector;
+  
   // Check if Para SDK is connected (either through wagmi connector or direct Para SDK)
-  const isPara = wagmiAccount.connector?.id === 'para' || isParaConnected;
+  // Prioritize Para SDK connection state, with wagmi connector as secondary indicator
+  const isPara: boolean = Boolean(paraSDKConnected || wagmiParaConnected);
+  
+  console.log('Para detection details:', {
+    wagmiParaConnector,
+    paraSDKConnected,
+    wagmiParaConnected,
+    isPara,
+    paraAccountAddress: paraWallet?.data?.address,
+    wagmiAddress: wagmiAccount.address,
+    wagmiConnectorId: wagmiAccount.connector?.id
+  });
 
   // Get the active address (prioritize Para SDK address, fallback to wagmi address)
   const address = paraWallet?.data?.address || wagmiAccount.address;
@@ -53,11 +69,14 @@ export function useUnifiedConnection() {
   
   // Consider user connected only after SIWE verification (if enabled)
   const isFullyConnected = SIWE_ENABLED
-    ? (isPara ? isParaConnected : isWagmiConnected) && siweState === 'success'
-    : (isPara ? isParaConnected : isWagmiConnected);
+    ? (isPara ? (paraSDKConnected || wagmiParaConnected) : isWagmiConnected) && siweState === 'success'
+    : (isPara ? (paraSDKConnected || wagmiParaConnected) : isWagmiConnected);
 
   // Unified connection status - user is connected if either wagmi or Para SDK is connected
-  const isConnected = isPara ? isParaConnected : isWagmiConnected && address;
+  // For Para wallets, check both Para SDK and wagmi Para connections
+  const isConnected = isPara 
+    ? (paraSDKConnected || wagmiParaConnected) && address
+    : isWagmiConnected && address;
 
   // Find the Para connector for wagmi
   const paraConnector = connectors.find(
@@ -73,9 +92,12 @@ export function useUnifiedConnection() {
       isConnected,
       address,
       connector: connectors.find((c) => c.ready),
+      isPara,
+      paraSDKConnected,
+      wagmiParaConnected,
       timestamp: new Date().toISOString(),
     });
-  }, [isConnected, address, connectors]);
+  }, [isConnected, address, connectors, isPara, paraSDKConnected, wagmiParaConnected]);
 
   // Monitor Para connector specifically
   useEffect(() => {
@@ -93,6 +115,40 @@ export function useUnifiedConnection() {
     }
   }, [paraConnector, connectors]);
 
+  // Monitor Para connection state and auto-recover if needed
+  useEffect(() => {
+    console.log('Para connection monitoring:', {
+      paraSDKConnected,
+      wagmiParaConnected,
+      isPara,
+      paraAccountAddress: paraWallet?.data?.address,
+      wagmiAddress: wagmiAccount.address,
+    });
+
+    // If Para SDK is connected but wagmi isn't, try to force connection
+    if (paraSDKConnected && !wagmiParaConnected) {
+      console.log('Para SDK connected but wagmi not connected, attempting auto-recovery...');
+      
+      // Add a small delay to allow for state propagation
+      const timer = setTimeout(async () => {
+        try {
+          await forceWagmiParaConnection();
+        } catch (error) {
+          console.error('Auto-recovery of wagmi Para connection failed:', error);
+        }
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+
+    // If wagmi Para is connected but Para SDK isn't, this might be a timing issue
+    // Para SDK should catch up automatically, but we can log this for debugging
+    if (wagmiParaConnected && !paraSDKConnected) {
+      console.log('Wagmi Para connected but Para SDK not connected - this might be a timing issue');
+      console.log('Para SDK should catch up automatically, but monitoring for issues...');
+    }
+  }, [paraSDKConnected, wagmiParaConnected, paraWallet?.data?.address, wagmiAccount.address]);
+
   // Get the active connection details
   const getActiveConnection = () => {
     if (isParaConnected && paraWallet?.data?.address) {
@@ -102,6 +158,16 @@ export function useUnifiedConnection() {
         isConnected: true,
         account: paraAccount,
         wallet: paraWallet.data,
+      };
+    }
+    
+    if (wagmiParaConnected && wagmiAccount?.address) {
+      return {
+        type: 'para' as const,
+        address: wagmiAccount.address,
+        isConnected: true,
+        account: wagmiAccount,
+        wallet: paraWallet?.data,
       };
     }
     
@@ -200,6 +266,12 @@ Issued At: ${issuedAt}`;
         ready: paraConnector.ready,
       });
 
+      // Check if already connected
+      if (wagmiParaConnected) {
+        console.log('Wagmi Para connector already connected');
+        return true;
+      }
+
       await connect({ connector: paraConnector });
       console.log('Wagmi Para connector connected successfully');
 
@@ -235,6 +307,34 @@ Issued At: ${issuedAt}`;
     return true;
   };
 
+  // Manual recovery function for Para connection issues
+  const recoverParaConnection = async () => {
+    console.log('Manual Para connection recovery initiated...');
+    
+    // If Para SDK is connected but wagmi isn't, try to force connection
+    if (paraSDKConnected && !wagmiParaConnected) {
+      console.log('Attempting to recover wagmi Para connection...');
+      return await forceWagmiParaConnection();
+    }
+    
+    // If wagmi Para is connected but Para SDK isn't, this might be a timing issue
+    // We can try to trigger a reconnection or wait for Para SDK to catch up
+    if (wagmiParaConnected && !paraSDKConnected) {
+      console.log('Wagmi Para connected but Para SDK not connected - this is likely a timing issue');
+      console.log('Para SDK should catch up automatically. If not, try refreshing the page.');
+      return true; // Consider this a successful state since we have a valid connection
+    }
+    
+    // If neither is connected but we have Para account data, try to reconnect
+    if (!paraSDKConnected && !wagmiParaConnected && paraAccount) {
+      console.log('Attempting to reconnect Para SDK...');
+      // This would require additional Para SDK reconnection logic
+      return false;
+    }
+    
+    console.log('No recovery needed or recovery not possible');
+    return false;
+  };
 
 
   // Handle sign message
@@ -275,6 +375,8 @@ Issued At: ${issuedAt}`;
     isWagmiConnected,
     isParaConnected,
     isPara,
+    paraSDKConnected,
+    wagmiParaConnected,
     wagmiAccount,
     paraAccount,
     paraWallet,
@@ -303,6 +405,7 @@ Issued At: ${issuedAt}`;
     handleSiweSignIn,
     handleSignMessage,
     disconnect,
+    recoverParaConnection,
 
     // Navigation logic
     shouldRedirectToOnboarding,
