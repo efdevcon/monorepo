@@ -150,12 +150,18 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // Get private key from environment
+    // Get private key from environment and check wallet authorization
     const privateKey = process.env.PRIVATE_KEY;
+    const requiredSponsorAddress = '0x20c85697e4789d7a1570e78688567160426d4cdd';
 
-    if (!privateKey) {
-      // Simulation mode - no private key available
-      console.log('No private key available, generating simulation transaction');
+    // Check if we have private key and the 'from' address matches required sponsor
+    const hasPrivateKey = !!privateKey;
+    const isCorrectWallet = from.toLowerCase() === requiredSponsorAddress.toLowerCase();
+
+    if (!hasPrivateKey || !isCorrectWallet) {
+      // Simulation mode - either no private key or unauthorized wallet
+      const reason = !hasPrivateKey ? 'no private key available' : 'wallet not authorized';
+      console.log(`${reason}, generating simulation transaction`);
 
       // Create provider for simulation
       const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
@@ -209,6 +215,10 @@ export async function POST(request: NextRequest) {
       console.log(`Simulation completed - Estimated gas: ${gasEstimate.toString()}`);
       console.log(`Estimated cost: ${ethers.formatEther(estimatedCost)} ETH`);
 
+      const simulationReason = !hasPrivateKey
+        ? 'No PRIVATE_KEY configured'
+        : `Wallet ${from} is not authorized. Only ${requiredSponsorAddress} can execute real transactions.`;
+
       return NextResponse.json({
         success: true,
         simulation: true,
@@ -236,7 +246,11 @@ export async function POST(request: NextRequest) {
           estimatedCost: ethers.formatEther(estimatedCost),
           gasPrice: ethers.formatUnits(maxFeePerGas, 'gwei') + ' gwei',
           success: true,
-          message: 'Transaction simulation successful - ready to execute with private key'
+          message: `Transaction simulation successful - ${simulationReason}`,
+          reason: simulationReason,
+          hasPrivateKey,
+          isCorrectWallet,
+          requiredSponsorAddress
         },
         timestamp: new Date().toISOString()
       });

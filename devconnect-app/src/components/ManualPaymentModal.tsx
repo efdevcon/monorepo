@@ -65,7 +65,11 @@ export default function ManualPaymentModal({
     }
 
     try {
-      const response = await fetch('/api/base/check-simulation-mode');
+      // Pass the connected wallet address to check if it's authorized
+      const walletParam = connectedAddress ? `?wallet=${connectedAddress}` : '';
+      const response = await fetch(
+        `/api/base/check-simulation-mode${walletParam}`
+      );
       const data = await response.json();
 
       if (data.success) {
@@ -78,7 +82,7 @@ export default function ManualPaymentModal({
       console.error('Error checking simulation mode:', error);
       setIsSystemSimulationMode(true); // Default to simulation mode on error
     }
-  }, [isPara]);
+  }, [isPara, connectedAddress]);
 
   // Reset when modal opens
   useEffect(() => {
@@ -167,7 +171,7 @@ export default function ManualPaymentModal({
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                Simulation
+                Simulation Mode
               </div>
             )}
           </div>
@@ -205,6 +209,19 @@ export default function ManualPaymentModal({
                 ⚠️ Simulation mode - transactions will not be executed on
                 blockchain
               </div>
+              {connectedAddress && (
+                <div className="mt-1 text-orange-600">
+                  <div>
+                    Connected wallet: {connectedAddress.slice(0, 6)}...
+                    {connectedAddress.slice(-4)}
+                  </div>
+                  <div>Required sponsor: 0x20c8...4cdd</div>
+                  <div>
+                    Only the authorized sponsor wallet can execute real
+                    transactions
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {isConnected ? (
