@@ -31,24 +31,29 @@ import { CMSButtons } from 'common/components/voxel-button/button'
 import { useTina } from 'tinacms/dist/react'
 import { pod, PODData } from '@parcnet-js/podspec'
 import { POD } from '@pcd/pod'
+import { WalletProvider } from './wallet-provider'
+import { WalletConnection } from './wallet-connection'
+import { useAccount, useSignMessage } from 'wagmi'
 
 // HOC to wrap ParcnetClientProvider
 const withParcnetProvider = <P extends object>(Component: React.ComponentType<P>) => {
   return function WrappedComponent(props: P) {
     return (
-      <ParcnetClientProvider
-        zapp={{
-          name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
-          permissions: {
-            // update permissions based on what you want to collect and prove
-            REQUEST_PROOF: { collections: ['Devcon SEA', 'Devconnect ARG'] }, // Update this to the collection name you want to use
-            READ_PUBLIC_IDENTIFIERS: {},
-            READ_POD: { collections: ['Devcon SEA', 'Devconnect ARG'] },
-          },
-        }}
-      >
-        <Component {...props} />
-      </ParcnetClientProvider>
+      <WalletProvider>
+        <ParcnetClientProvider
+          zapp={{
+            name: 'Devconnect Perks Portal', // update the name of the zapp to something *unique*
+            permissions: {
+              // update permissions based on what you want to collect and prove
+              REQUEST_PROOF: { collections: ['Devcon SEA', 'Devconnect ARG'] }, // Update this to the collection name you want to use
+              READ_PUBLIC_IDENTIFIERS: {},
+              READ_POD: { collections: ['Devcon SEA', 'Devconnect ARG'] },
+            },
+          }}
+        >
+          <Component {...props} />
+        </ParcnetClientProvider>
+      </WalletProvider>
     )
   }
 }
@@ -280,9 +285,9 @@ function Perks(props: any) {
                     </div>
                   </Tooltip>{' '}
                 </div>
-                <p className="text-xs text-[#4B4B66]">
+                <div className="text-xs text-[#4B4B66]">
                   <RichText content={data.pages.perks_explainer_2} />
-                </p>
+                </div>
               </div>
               <Toolbar />
             </div>
@@ -366,11 +371,70 @@ const Perk = ({
   const isDevconProof = perk.zupass_proof_id === 'Devcon SEA'
   const coupons = isDevconProof ? devconCoupons : devconnectCoupons
   const coupon = coupons[perk.coupon_collection]
+  const { address } = useAccount()
+  const { signMessageAsync } = useSignMessage()
 
   const [couponStatus, setCouponStatus] = useState<{ success: boolean; error?: string } | null>(null)
   const [fetchingCoupon, setFetchingCoupon] = useState(false)
 
   const verified = isDevconProof ? tickets?.devcon : tickets?.devconnect
+
+  useEffect(() => {
+    setCouponStatus(null)
+  }, [address, connectionState])
+
+  const requestCouponWalletProof = useCallback(async () => {
+    if (fetchingCoupon || !address) return
+
+    setFetchingCoupon(true)
+    setCouponStatus(null)
+
+    // Request to sign a message that will be verified on the backend to prove ownership of the wallet
+    let signature = ''
+
+    try {
+      signature = await signMessageAsync({ message: 'I own this wallet and want to prove it.' })
+      console.log('signature', signature)
+    } catch (error) {
+      console.error('Error signing message:', error)
+      setCouponStatus({ success: false, error: 'Failed to sign message' })
+      return
+    }
+
+    try {
+      const response = await fetch(`/api/coupons/${encodeURIComponent(perk.coupon_collection)}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          signature,
+          address,
+        }),
+      })
+
+      if (!response.ok) {
+        const { error } = await response.json()
+        setCouponStatus({ success: false, error: error || 'Failed to claim coupon' })
+        return
+      }
+
+      const { coupon, coupon_status, ticket_type } = await response.json()
+
+      setCouponStatus(coupon_status)
+
+      // Just assign the coupon to the devconnect coupons - doesn't really matter - cba refactoring for just this case
+      setDevconnectCoupons({
+        ...devconnectCoupons,
+        [perk.coupon_collection]: coupon,
+      })
+    } catch (error) {
+      console.error('Error claiming coupon:', error)
+      setCouponStatus({ success: false, error: 'Failed to claim coupon' })
+    } finally {
+      setFetchingCoupon(false)
+    }
+  }, [address, fetchingCoupon, devconnectCoupons, setDevconnectCoupons, perk.coupon_collection])
 
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return
@@ -497,6 +561,7 @@ const Perk = ({
   const isCreateYourOwnPerk = !!perk.anchor
   const isExternalPerk = !!perk.external
   const isConnected = connectionState === ClientConnectionState.CONNECTED
+  const walletConnected = address && address.length > 0 && perk.wallet_proof
 
   return (
     <motion.div
@@ -526,15 +591,18 @@ const Perk = ({
         <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2>
         <p className="">{perk.description}</p>
 
-        {connectionState !== ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !isExternalPerk && (
-          <div className="absolute top-4 left-4 z-10">
-            <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1 border border-black border-solid font-bold">
-              Not Connected
+        {connectionState !== ClientConnectionState.CONNECTED &&
+          !isCreateYourOwnPerk &&
+          !isExternalPerk &&
+          !perk.no_status && (
+            <div className="absolute top-4 left-4 z-10">
+              <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1 border border-black border-solid font-bold">
+                Not Connected
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && (
+        {connectionState === ClientConnectionState.CONNECTED && !isCreateYourOwnPerk && !perk.no_status && (
           <div className="absolute top-4 left-4 z-10">
             <div
               className={cn(
@@ -567,6 +635,12 @@ const Perk = ({
               Contact us
               <ArrowDown size={13} />
             </div>
+          </div>
+        )}
+
+        {perk.wallet_proof && (
+          <div className="absolute top-4 right-4 cursor-pointer z-10">
+            <WalletConnection />
           </div>
         )}
 
@@ -610,12 +684,17 @@ const Perk = ({
 
           <div className="text-lg leading-tight font-bold">{perk.description}</div>
 
-          {connectionState === ClientConnectionState.CONNECTED && (
+          {(connectionState === ClientConnectionState.CONNECTED || walletConnected) && (
             <>
               {!coupon && !couponStatus && (
                 <>
-                  {perk.zupass_proof_id && verified && !perk.external && (
-                    <Button color="black-1" size="sm" className="my-0.5" onClick={requestCoupon}>
+                  {(walletConnected || (perk.zupass_proof_id && verified && !perk.external)) && (
+                    <Button
+                      color="black-1"
+                      size="sm"
+                      className="my-0.5"
+                      onClick={perk.wallet_proof ? requestCouponWalletProof : requestCoupon}
+                    >
                       {fetchingCoupon ? 'Fetching Coupon...' : 'Claim Coupon'}
                     </Button>
                   )}
@@ -639,36 +718,37 @@ const Perk = ({
                   )}
                 </>
               )}
-
-              {coupon && (
-                <div className="p-2 py-2 bg-green-100 border font-bold max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
-                  {coupon.startsWith('https://') ? (
-                    <div className="shrink">
-                      <a href={coupon} target="_blank" rel="noopener noreferrer">
-                        {coupon}
-                      </a>
-                    </div>
-                  ) : (
-                    <div className="shrink">
-                      <strong>Coupon:</strong>&nbsp;{coupon}
-                    </div>
-                  )}
-
-                  <div className="">
-                    <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
-                      <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
-                        <Copy size={14} />
-                      </div>
-                    </CopyToClipboard>
-                  </div>
-                </div>
-              )}
-              {couponStatus && !couponStatus.success && (
-                <div className="p-2 bg-red-100 border border-red-300 rounded text-red-800 text-sm text-center">
-                  {couponStatus.error}
-                </div>
-              )}
             </>
+          )}
+
+          {coupon && (
+            <div className="p-2 py-2 bg-green-100 border font-bold max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
+              {coupon.startsWith('https://') ? (
+                <div className="shrink">
+                  <a href={coupon} target="_blank" rel="noopener noreferrer">
+                    {coupon}
+                  </a>
+                </div>
+              ) : (
+                <div className="shrink">
+                  <strong>Coupon:</strong>&nbsp;{coupon}
+                </div>
+              )}
+
+              <div className="">
+                <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
+                  <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
+                    <Copy size={14} />
+                  </div>
+                </CopyToClipboard>
+              </div>
+            </div>
+          )}
+
+          {couponStatus && !couponStatus.success && (
+            <div className="p-2 bg-red-100 border border-red-300 rounded text-red-800 text-sm text-center">
+              {couponStatus.error}
+            </div>
           )}
 
           {perk.requires && (

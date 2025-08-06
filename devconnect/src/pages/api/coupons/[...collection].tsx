@@ -12,6 +12,7 @@ import perksList from 'common/components/perks/perks-list'
 import { createClient } from '@supabase/supabase-js'
 import { POD } from '@pcd/pod'
 import { PODData } from '@parcnet-js/podspec'
+import { proveWalletOwnership } from './wallet-proof'
 
 const verifyPodSignature = (podData: PODData): boolean => {
   try {
@@ -56,6 +57,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (!perk) {
     return res.status(400).json({ error: 'Perk not found' })
+  }
+
+  if (collection === 'protocol-guild-free-ticket') {
+    try {
+      const { signature, address } = req.body
+
+      console.log('signature', signature)
+      console.log('address', address)
+
+      const { success, error } = await proveWalletOwnership(signature, address)
+
+      if (!success) {
+        return res.status(400).json({ error: error })
+      }
+
+      const coupon = await claimSingleCoupon('PG Wallet Ownership', collection, address)
+
+      return res.status(200).json({
+        coupon: coupon.coupon,
+        coupon_status: coupon.status,
+        collection,
+        ticket_type: perk.zupass_proof_id,
+      })
+    } catch (error) {
+      console.error('Error verifying wallet ownership:', error)
+      return res.status(400).json({ error: 'Could not verify wallet ownership' })
+    }
   }
 
   const pod = deserializePodData(JSON.stringify(req.body))
@@ -204,19 +232,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 async function claimSingleCoupon(
   proofId: string,
   collection: string,
-  nullifierHash: string
+  claimedBy: string
 ): Promise<{
   coupon: string | null
   status: { success: boolean; error?: string }
 }> {
-  console.log('claimSingleCoupon', proofId, collection, nullifierHash)
+  console.log('claimSingleCoupon', proofId, collection, claimedBy)
   // First, check if user already has claimed a coupon for this specific collection
   const { data: existingCoupon, error: checkError } = await supabaseAdmin
     .from('coupons')
     .select('value')
     .eq('zk_proof_id', proofId)
     .eq('collection', collection)
-    .eq('claimed_by', nullifierHash)
+    .eq('claimed_by', claimedBy)
     .maybeSingle()
 
   if (checkError) {
@@ -262,7 +290,7 @@ async function claimSingleCoupon(
   const { error: claimError } = await supabaseAdmin
     .from('coupons')
     .update({
-      claimed_by: nullifierHash,
+      claimed_by: claimedBy,
       claimed_date: new Date().toISOString(),
     })
     .eq('id', availableCoupon.id)

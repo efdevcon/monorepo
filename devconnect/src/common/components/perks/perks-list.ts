@@ -3,6 +3,7 @@ import CoworkingImage from 'assets/images/ba/voxel-cards/co-working-image.png'
 import CommunityImage from 'assets/images/ba/voxel-cards/community-events-image.png'
 import ETHDayImage from 'assets/images/ba/voxel-cards/eth-day-image.png'
 import WorldsFairImage from 'assets/images/ba/voxel-cards/worlds-fair-image.png'
+import CoreDevsImage from './images/pg.png'
 
 type Perk = {
   coupon_collection: string
@@ -15,6 +16,8 @@ type Perk = {
   external?: boolean
   urls?: { text: string; url: string }[]
   anchor?: string
+  no_status?: boolean
+  wallet_proof?: boolean
 }
 
 const perks: Perk[] = [
@@ -66,6 +69,21 @@ const perks: Perk[] = [
       url: 'https://devconnect-hoodi-faucet.pk910.de/',
     }],
     zupass_proof_id: 'Devconnect ARG',
+  },
+
+  {
+    coupon_collection: 'protocol-guild-free-ticket',
+    // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field
+    zupass_proof_id: 'PG Wallet Ownership',
+    name: 'Core Devs / Protocol Guild free ticket',
+    description: 'Core Devs / Protocol Guild free ticket',
+    requires: 'Whitelisted address',
+    issuer: 'Devconnect Team',
+    image: CoreDevsImage,
+    // Just bypass the connection requirement by calling it external (even if it isn't)
+    external: true,
+    no_status: true,
+    wallet_proof: true
   },
 
   {
