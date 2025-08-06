@@ -188,6 +188,8 @@ const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
                     objectFit: 'cover',
                   },
                 }}
+                // TEMP: Disable sound
+                sound={false}
               />
             </div>
           </div>
