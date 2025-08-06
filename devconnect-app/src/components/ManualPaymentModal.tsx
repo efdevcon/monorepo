@@ -94,6 +94,21 @@ export default function ManualPaymentModal({
     }
   }, [isOpen, checkSimulationMode, initialRecipient, initialAmount]); // Remove resetTransaction from dependencies
 
+  // Update payment data when initial values change (from QR scanner)
+  useEffect(() => {
+    console.log('Modal received new initial values:', {
+      initialRecipient,
+      initialAmount,
+    });
+    if (isOpen && (initialRecipient || initialAmount)) {
+      console.log('Updating payment data with QR scanner data');
+      setPaymentData({
+        recipient: initialRecipient || paymentData.recipient,
+        amount: initialAmount || paymentData.amount,
+      });
+    }
+  }, [isOpen, initialRecipient, initialAmount]);
+
   const handleFormSubmit = useCallback((recipient: string, amount: string) => {
     setPaymentData({ recipient, amount });
     setCurrentStep('preview');

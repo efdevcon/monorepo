@@ -194,6 +194,7 @@ export default function WalletPage() {
     const parsedData = parseEIP681Url(value);
 
     if (parsedData) {
+      console.log('QR Scanner parsed data:', parsedData);
       setPrefilledPaymentData(parsedData);
       setIsManualPaymentOpen(true);
     } else {
@@ -245,6 +246,8 @@ export default function WalletPage() {
 
   const eip681Url = generateEIP681Url(paymentRequest);
   const transaction = paymentRequest.transactions?.[0];
+
+  console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-black pt-8">
@@ -323,6 +326,7 @@ export default function WalletPage() {
 
       {/* Manual Payment Modal */}
       <ManualPaymentModal
+        key={`${prefilledPaymentData.recipient}-${prefilledPaymentData.amount}`}
         isOpen={isManualPaymentOpen}
         onClose={() => setIsManualPaymentOpen(false)}
         isPara={Boolean(isPara)}
