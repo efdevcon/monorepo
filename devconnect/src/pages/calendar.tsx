@@ -298,7 +298,7 @@ export interface Event {
       manualOverrides.spanRows = 2
     }
 
-    if (event.id.toString() === '22') {
+    if (event.id.toString() === '29') {
       manualOverrides.priority = 2
       manualOverrides.spanRows = 3
     }

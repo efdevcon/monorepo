@@ -6,7 +6,7 @@ import {
 } from '@reown/appkit/react';
 import { useDisconnect } from 'wagmi';
 import { useSignMessage } from 'wagmi';
-import { useLogout, useModal } from '@getpara/react-sdk';
+import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
@@ -43,6 +43,9 @@ export default function ConnectedWallet({
     handleSiweSignIn,
     handleSignMessage: hookSignMessage,
     disconnect: hookDisconnect,
+    recoverParaConnection,
+    paraSDKConnected,
+    wagmiParaConnected,
   } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
@@ -159,6 +162,13 @@ export default function ConnectedWallet({
       // Use AppKit for other wallets
       console.log('Opening AppKit account modal');
       open();
+    }
+  };
+
+  const handleShowRecoverySecret = () => {
+    if (isPara) {
+      console.log('Opening Para recovery secret modal');
+      openModal({ step: ModalStep.SECRET });
     }
   };
 
@@ -469,6 +479,19 @@ export default function ConnectedWallet({
                     : '⏸️ Pending'}
             </div>
           )}
+          {/* Debug information for Para connections */}
+          {isPara && (
+            <>
+              <div>
+                Para SDK:{' '}
+                {paraSDKConnected ? '✅ Connected' : '❌ Disconnected'}
+              </div>
+              <div>
+                Wagmi Para:{' '}
+                {wagmiParaConnected ? '✅ Connected' : '❌ Disconnected'}
+              </div>
+            </>
+          )}
         </div>
       </div>
 
@@ -520,6 +543,38 @@ export default function ConnectedWallet({
         >
           {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
         </Button>
+
+        {/* Show Recovery Secret button - only for Para wallets */}
+        {isPara && (
+          <Button
+            onClick={handleShowRecoverySecret}
+            className="w-full cursor-pointer"
+            size="lg"
+            variant="outline"
+          >
+            🔐 Show Recovery Secret
+          </Button>
+        )}
+
+        {/* Debug button for connection issues */}
+        {!isPara && (paraSDKConnected || wagmiParaConnected) && (
+          <Button
+            onClick={async () => {
+              console.log('Connection debug info:', {
+                isPara,
+                paraSDKConnected,
+                wagmiParaConnected,
+                address,
+              });
+              await recoverParaConnection();
+            }}
+            className="w-full cursor-pointer"
+            size="lg"
+            variant="secondary"
+          >
+            🔧 Fix Para Detection
+          </Button>
+        )}
 
         {address && <PortfolioModal address={address} />}
 

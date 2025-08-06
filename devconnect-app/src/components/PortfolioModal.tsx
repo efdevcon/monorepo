@@ -156,39 +156,13 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
         Portfolio
       </Button>
 
-      <Modal open={isOpen} close={handleCloseModal}>
-        <ModalContent className="min-w-[80vw] max-w-2xl max-h-[80vh] overflow-y-auto p-6">
+      <Modal open={isOpen} close={handleCloseModal} className="p-0">
+        <ModalContent className="w-[100vw] max-w-xl max-h-[80vh] overflow-y-auto p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-4">
-              <h2 className="text-xl font-semibold flex items-center gap-2">
-                <TrendingUp className="h-5 w-5" />
-                Portfolio Overview
-              </h2>
-
-              {/* Network Selector */}
-              <div className="flex gap-2">
-                {Object.entries(NETWORKS).map(([key, network]) => (
-                  <button
-                    key={key}
-                    onClick={() => {
-                      const newNetwork = key as NetworkKey;
-                      setSelectedNetwork(newNetwork);
-                      // Clear data when switching networks
-                      setPortfolioData(null);
-                      setError(null);
-                    }}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                      selectedNetwork === key
-                        ? 'bg-gray-800 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    <span className="text-xs">{network.icon}</span>
-                    <span>{network.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+            <h2 className="text-xl font-semibold flex items-center gap-2">
+              <TrendingUp className="h-5 w-5" />
+              Portfolio Overview
+            </h2>
 
             <button
               onClick={handleCloseModal}
@@ -196,6 +170,32 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
             >
               <X className="h-4 w-4" />
             </button>
+          </div>
+
+          {/* Network Selector */}
+          <div className="mb-4">
+            <div className="flex flex-wrap gap-2">
+              {Object.entries(NETWORKS).map(([key, network]) => (
+                <button
+                  key={key}
+                  onClick={() => {
+                    const newNetwork = key as NetworkKey;
+                    setSelectedNetwork(newNetwork);
+                    // Clear data when switching networks
+                    setPortfolioData(null);
+                    setError(null);
+                  }}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    selectedNetwork === key
+                      ? 'bg-gray-800 text-white shadow-lg'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  <span className="text-xs">{network.icon}</span>
+                  <span>{network.name}</span>
+                </button>
+              ))}
+            </div>
           </div>
 
           {isLoading && (
