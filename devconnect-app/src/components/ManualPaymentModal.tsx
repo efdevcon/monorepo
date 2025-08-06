@@ -16,20 +16,24 @@ interface ManualPaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
   isPara?: boolean;
+  initialRecipient?: string;
+  initialAmount?: string;
 }
 
 export default function ManualPaymentModal({
   isOpen,
   onClose,
   isPara = false,
+  initialRecipient = '',
+  initialAmount = '0.01',
 }: ManualPaymentModalProps) {
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
   const [paymentData, setPaymentData] = useState<{
     recipient: string;
     amount: string;
   }>({
-    recipient: '',
-    amount: '0.01',
+    recipient: initialRecipient,
+    amount: initialAmount,
   });
   const [isSystemSimulationMode, setIsSystemSimulationMode] = useState<
     boolean | null
@@ -53,38 +57,38 @@ export default function ManualPaymentModal({
     isPending,
   } = usePaymentTransaction({ isPara });
 
-                // Check simulation mode when modal opens (only for Para wallets)
-              const checkSimulationMode = useCallback(async () => {
-                if (!isPara) {
-                  setIsSystemSimulationMode(false); // Standard wallets don't use simulation
-                  return;
-                }
+  // Check simulation mode when modal opens (only for Para wallets)
+  const checkSimulationMode = useCallback(async () => {
+    if (!isPara) {
+      setIsSystemSimulationMode(false); // Standard wallets don't use simulation
+      return;
+    }
 
-                try {
-                  const response = await fetch('/api/base/check-simulation-mode');
-                  const data = await response.json();
+    try {
+      const response = await fetch('/api/base/check-simulation-mode');
+      const data = await response.json();
 
-                  if (data.success) {
-                    setIsSystemSimulationMode(data.isSimulationMode);
-                  } else {
-                    console.error('Failed to check simulation mode:', data.error);
-                    setIsSystemSimulationMode(true); // Default to simulation mode on error
-                  }
-                } catch (error) {
-                  console.error('Error checking simulation mode:', error);
-                  setIsSystemSimulationMode(true); // Default to simulation mode on error
-                }
-              }, [isPara]);
+      if (data.success) {
+        setIsSystemSimulationMode(data.isSimulationMode);
+      } else {
+        console.error('Failed to check simulation mode:', data.error);
+        setIsSystemSimulationMode(true); // Default to simulation mode on error
+      }
+    } catch (error) {
+      console.error('Error checking simulation mode:', error);
+      setIsSystemSimulationMode(true); // Default to simulation mode on error
+    }
+  }, [isPara]);
 
   // Reset when modal opens
   useEffect(() => {
     if (isOpen) {
       setCurrentStep('form');
-      setPaymentData({ recipient: '', amount: '0.01' });
+      setPaymentData({ recipient: initialRecipient, amount: initialAmount });
       resetTransaction();
       checkSimulationMode();
     }
-  }, [isOpen, checkSimulationMode]); // Remove resetTransaction from dependencies
+  }, [isOpen, checkSimulationMode, initialRecipient, initialAmount]); // Remove resetTransaction from dependencies
 
   const handleFormSubmit = useCallback((recipient: string, amount: string) => {
     setPaymentData({ recipient, amount });
@@ -142,30 +146,30 @@ export default function ManualPaymentModal({
               <Wallet className="h-5 w-5" />
               Manual Payment
             </h2>
-                         {isPara && isSystemSimulationMode === null && (
-               <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                 <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
-                 Checking...
-               </div>
-             )}
-             {isPara && isSystemSimulationMode && (
-               <div className="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
-                 <svg
-                   className="h-3 w-3"
-                   fill="none"
-                   stroke="currentColor"
-                   viewBox="0 0 24 24"
-                 >
-                   <path
-                     strokeLinecap="round"
-                     strokeLinejoin="round"
-                     strokeWidth={2}
-                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                   />
-                 </svg>
-                 Simulation
-               </div>
-             )}
+            {isPara && isSystemSimulationMode === null && (
+              <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
+                Checking...
+              </div>
+            )}
+            {isPara && isSystemSimulationMode && (
+              <div className="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                Simulation
+              </div>
+            )}
           </div>
 
           <button
@@ -194,15 +198,15 @@ export default function ManualPaymentModal({
               {isConnected ? 'Wallet Connected' : 'Wallet Not Connected'}
             </h3>
           </div>
-                     {isPara && isSystemSimulationMode && (
-             <div className="mt-2 p-2 bg-orange-50 border border-orange-200 rounded text-xs text-orange-700">
-               <div className="font-medium">System Mode:</div>
-               <div>
-                 ⚠️ Simulation mode - transactions will not be executed on
-                 blockchain
-               </div>
-             </div>
-           )}
+          {isPara && isSystemSimulationMode && (
+            <div className="mt-2 p-2 bg-orange-50 border border-orange-200 rounded text-xs text-orange-700">
+              <div className="font-medium">System Mode:</div>
+              <div>
+                ⚠️ Simulation mode - transactions will not be executed on
+                blockchain
+              </div>
+            </div>
+          )}
           {isConnected ? (
             <div className="space-y-2">
               <p className="text-sm text-green-700">
