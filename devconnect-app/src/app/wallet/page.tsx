@@ -204,7 +204,7 @@ export default function WalletPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
         <h1 className="text-white text-2xl mb-4">Wallet</h1>
         <div className="text-white">Loading payment request...</div>
       </div>
@@ -213,7 +213,7 @@ export default function WalletPage() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
         <h1 className="text-white text-2xl mb-4">Wallet</h1>
         <div className="text-red-400 mb-4">Error: {error}</div>
         <div className="flex gap-2">
@@ -236,7 +236,7 @@ export default function WalletPage() {
 
   if (!paymentRequest) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
         <h1 className="text-white text-2xl mb-4">Wallet</h1>
         <div className="text-white">No payment request available</div>
       </div>
@@ -247,7 +247,7 @@ export default function WalletPage() {
   const transaction = paymentRequest.transactions?.[0];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black">
+    <div className="min-h-screen flex flex-col items-center bg-black pt-8">
       <h1 className="text-white text-2xl mb-4">Wallet</h1>
       <div className="flex flex-col items-center justify-center mt-6">
         <QRScanner

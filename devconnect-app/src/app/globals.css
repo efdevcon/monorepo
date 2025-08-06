@@ -9,6 +9,7 @@
     @slot;
   }
 }
+
 @custom-variant touch-only {
   @media screen and (pointer: coarse) {
     @slot;
@@ -174,19 +175,15 @@ body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
   overscroll-behavior-y: contain;
 }
 
 .fullscreen-container {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 100%;
-  height: 100dvh;
-  width: 100vw;
-  inset: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
@@ -202,15 +199,15 @@ body {
     grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--content-width, 1440px)) minmax(16px, 1fr);
   }
 
-  > * {
+  >* {
     grid-column: 2 / 3;
   }
 
-  > .expand {
+  >.expand {
     grid-column: 1 / 4;
   }
 
-  > .expand-right {
+  >.expand-right {
     grid-column: 2 / 4;
   }
 }

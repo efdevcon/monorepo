@@ -32,7 +32,7 @@ export default function TabbedSection({ navLabel, children }: TabbedSectionProps
         resistance
         style={{
           width: '100%',
-          minHeight: 'calc(100vh - 182px)',
+          minHeight: 'auto',
           paddingBottom: '88px',
         }}
       >

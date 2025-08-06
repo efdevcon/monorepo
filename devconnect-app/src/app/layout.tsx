@@ -103,9 +103,10 @@ export default function RootLayout({
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          backgroundAttachment: 'fixed',
         }}
       >
-        <div className="fullscreen-container h-screen w-screen fixed inset-0 pt-safe pb-safe pl-safe pr-safe">
+        <div className="fullscreen-container">
           <SkippedProvider>
             <PWAProvider>
               <WalletsProviders>
