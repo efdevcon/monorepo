@@ -8,7 +8,8 @@ import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
-import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
+// Remove config import to avoid Para SDK import in server component
+// import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,7 +32,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const image = APP_CONFIG.SOCIAL_IMAGE;
+  // Define values inline to avoid Para SDK import
+  const APP_NAME = 'Devconnect App';
+  const APP_DESCRIPTION =
+    "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
+  const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
+
   return (
     <html lang="en">
       <head>
