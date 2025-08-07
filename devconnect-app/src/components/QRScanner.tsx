@@ -146,7 +146,7 @@ const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
       )}
       {open && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          className="fixed inset-0 z-51 flex items-center justify-center bg-black bg-opacity-70"
           onClick={handleClose}
         >
           <div
@@ -177,15 +177,21 @@ const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
                 }}
                 onError={handleError}
                 constraints={{ facingMode: 'environment' }}
+                formats={['qr_code']}
+                allowMultiple={true}
+                components={{
+                  onOff: true,
+                  finder: true,
+                  torch: false,
+                  zoom: false,
+                }}
                 styles={{
                   container: {
-                    width: '100%',
-                    height: '300px',
+                    backgroundColor: 'transparent',
+                    height: 'calc(100dvh - 90px)',
                   },
                   video: {
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
+                    borderRadius: '10px',
                   },
                 }}
                 // TEMP: Disable sound

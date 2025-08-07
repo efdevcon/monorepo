@@ -205,18 +205,18 @@ export default function WalletPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
-        <h1 className="text-white text-2xl mb-4">Wallet</h1>
-        <div className="text-white">Loading payment request...</div>
+      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
+        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <div className="text-black">Loading payment request...</div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
-        <h1 className="text-white text-2xl mb-4">Wallet</h1>
-        <div className="text-red-400 mb-4">Error: {error}</div>
+      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
+        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <div className="text-red-600 mb-4">Error: {error}</div>
         <div className="flex gap-2">
           <Button
             onClick={() => fetchPaymentRequest()}
@@ -237,9 +237,9 @@ export default function WalletPage() {
 
   if (!paymentRequest) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-black pt-8">
-        <h1 className="text-white text-2xl mb-4">Wallet</h1>
-        <div className="text-white">No payment request available</div>
+      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
+        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <div className="text-black">No payment request available</div>
       </div>
     );
   }
@@ -250,9 +250,9 @@ export default function WalletPage() {
   console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-black pt-8">
-      <h1 className="text-white text-2xl mb-4">Wallet</h1>
-      <div className="flex flex-col items-center justify-center mt-6">
+    <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8 mt-4 rounded-lg">
+      <h1 className="text-black text-2xl">Payment</h1>
+      <div className="flex flex-col items-center justify-center mt-4">
         <QRScanner
           buttonLabel="Scan Payment QR Code"
           onScan={handleQRScan}
@@ -267,7 +267,7 @@ export default function WalletPage() {
       <div className="mt-6">
         <Button
           variant="outline"
-          className="w-full flex items-center gap-2 cursor-pointer bg-white text-black hover:bg-gray-100"
+          className="w-full flex items-center gap-2 cursor-pointer text-black"
           onClick={() => setIsManualPaymentOpen(true)}
         >
           <CreditCard className="h-4 w-4" />
@@ -281,9 +281,9 @@ export default function WalletPage() {
           <QRCodeSVG
             value={eip681Url}
             title={'Payment QR Code'}
-            size={180}
-            bgColor={'#000000'}
-            fgColor={'#ffffff'}
+            size={240}
+            bgColor={'#ffffff'}
+            fgColor={'#000000'}
             level={'H'}
             imageSettings={{
               src: 'https://www.pagar.simplefi.tech/icon.png',
@@ -296,7 +296,7 @@ export default function WalletPage() {
             }}
           />
         )}
-        <p className="text-white text-sm mt-2 text-center">
+        <p className="text-black text-sm mt-2 text-center">
           Amount: ${paymentRequest.amount} {paymentRequest.currency}
           <br />
           Address: {transaction?.address || 'N/A'}
@@ -317,7 +317,7 @@ export default function WalletPage() {
             onClick={() => {
               window.open(`${paymentRequest.checkout_url}/process`, '_blank');
             }}
-            className="text-blue-400 hover:text-blue-300 underline mt-2 cursor-pointer"
+            className="text-blue-600 hover:text-blue-700 underline mt-2 cursor-pointer"
           >
             Checkout link
           </button>
