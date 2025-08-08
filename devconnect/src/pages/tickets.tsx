@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'common/components/link'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
@@ -9,6 +9,11 @@ import VoxelCar from 'assets/images/ba/voxel-car.jpg'
 import PageTitle from 'assets/images/ba/subpage_devconnect_ticketing_2x.webp'
 
 const Tickets = (props: any) => {
+  useEffect(() => {
+    // Redirect to external tickets page
+    window.location.href = 'https://tickets.devconnect.org/'
+  }, [])
+
   return (
     <>
       <Header active />
@@ -28,7 +33,7 @@ const Tickets = (props: any) => {
         </div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
-      <div className="section">Tickets omg</div>
+      <div className="section">Tickets</div>
       <Footer />
     </>
   )
