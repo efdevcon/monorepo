@@ -111,8 +111,8 @@ export default function RootLayout({
             <PWAProvider>
               <WalletsProviders>
                 {children}
-                <NewDeployment />
                 <Menu />
+                <NewDeployment />
                 <Toaster />
               </WalletsProviders>
             </PWAProvider>

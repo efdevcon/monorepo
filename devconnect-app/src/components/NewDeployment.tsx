@@ -62,15 +62,65 @@ export default function NewDeployment() {
 
   return (
     <nav
-    className="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center bg-white border-t border-gray-200 h-[90px] pb-[34px] pt-[4px]"
-    style={{
-      background: selectedItem?.backgroundColor,
-      backdropFilter: 'blur(8px)',
-    }}
+      className="fixed bottom-0 left-0 right-0 z-51 flex justify-around items-center bg-white border-t border-gray-200 h-[90px] pb-[34px] pt-[4px]"
+      style={{
+        background: selectedItem?.backgroundColor,
+        backdropFilter: 'blur(8px)',
+      }}
     >
       <div className="flex items-center gap-2 justify-center flex-1 py-1">
         <span className="size-7 flex items-center justify-center overflow-hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"/><rect x="48" y="48" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="144" y="48" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="48" y="144" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/><rect x="144" y="144" width="64" height="64" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <rect width="256" height="256" fill="none" />
+            <rect
+              x="48"
+              y="48"
+              width="64"
+              height="64"
+              rx="8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            />
+            <rect
+              x="144"
+              y="48"
+              width="64"
+              height="64"
+              rx="8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            />
+            <rect
+              x="48"
+              y="144"
+              width="64"
+              height="64"
+              rx="8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            />
+            <rect
+              x="144"
+              y="144"
+              width="64"
+              height="64"
+              rx="8"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="16"
+            />
+          </svg>
         </span>
         <span className="text-[14px] leading-[14px] font-['Roboto'] text-[#4b4b66] font-semibold">
           New app version available!
