@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import QRScanner from '@/components/QRScanner';
-import { QRCodeSVG } from 'qrcode.react';
 import ManualPaymentModal from '@/components/ManualPaymentModal';
 import { Button } from '@/components/ui/button';
 import { CreditCard } from 'lucide-react';
@@ -25,11 +24,12 @@ interface PaymentRequest {
 const PAYMENT_REQUEST_KEY = 'devconnect_payment_request';
 const PAYMENT_REQUEST_EXPIRY_KEY = 'devconnect_payment_request_expiry';
 
-export default function WalletPage() {
+export default function ScanPage() {
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [prefilledPaymentData, setPrefilledPaymentData] = useState<{
     recipient: string;
     amount: string;
+    orderId?: string;
   }>({
     recipient: '',
     amount: '0.01',
@@ -149,29 +149,17 @@ export default function WalletPage() {
     fetchPaymentRequest();
   }, []);
 
-  // Generate EIP-681 URL from payment request data
-  const generateEIP681Url = (paymentData: PaymentRequest) => {
-    if (!paymentData.transactions || paymentData.transactions.length === 0) {
-      return null;
-    }
-
-    const transaction = paymentData.transactions[0];
-    const amountInWei = Math.floor(paymentData.amount * 1000000); // USDC has 6 decimals
-    const usdcContractAddress = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; // USDC on Base
-
-    return `ethereum:${usdcContractAddress}@${transaction.chain_id}/transfer?address=${transaction.address}&uint256=${amountInWei}`;
-  };
-
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
     try {
       // Parse the EIP-681 URL format: ethereum:contract@chainId/function?params
+      // Updated to handle optional orderId parameter
       const match = url.match(
-        /^ethereum:([^@]+)@(\d+)\/transfer\?address=([^&]+)&uint256=(\d+)$/
+        /^ethereum:([^@]+)@(\d+)\/transfer\?address=([^&]+)&uint256=(\d+)(?:&orderId=(\d+))?$/
       );
 
       if (match) {
-        const [, contractAddress, chainId, recipientAddress, amountWei] = match;
+        const [, contractAddress, chainId, recipientAddress, amountWei, orderId] = match;
 
         // Convert wei back to USDC (6 decimals)
         const amountInUSDC = parseInt(amountWei) / 1000000;
@@ -179,6 +167,7 @@ export default function WalletPage() {
         return {
           recipient: recipientAddress,
           amount: amountInUSDC.toString(),
+          orderId: orderId || undefined,
         };
       }
 
@@ -206,7 +195,7 @@ export default function WalletPage() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <h1 className="text-black text-2xl mb-4">Scan</h1>
         <div className="text-black">Loading payment request...</div>
       </div>
     );
@@ -215,7 +204,7 @@ export default function WalletPage() {
   if (error) {
     return (
       <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <h1 className="text-black text-2xl mb-4">Scan</h1>
         <div className="text-red-600 mb-4">Error: {error}</div>
         <div className="flex gap-2">
           <Button
@@ -238,33 +227,31 @@ export default function WalletPage() {
   if (!paymentRequest) {
     return (
       <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Wallet</h1>
+        <h1 className="text-black text-2xl mb-4">Scan</h1>
         <div className="text-black">No payment request available</div>
       </div>
     );
   }
 
-  const eip681Url = generateEIP681Url(paymentRequest);
-  const transaction = paymentRequest.transactions?.[0];
-
   console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
     <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8 mt-4 rounded-lg">
-      <h1 className="text-black text-2xl">Payment</h1>
+      <h1 className="text-black text-2xl">Scan</h1>
       <div className="flex flex-col items-center justify-center mt-4">
         <QRScanner
           buttonLabel="Scan Payment QR Code"
           onScan={handleQRScan}
           onClose={() => {
             console.log('close');
-            window.open(paymentRequest.checkout_url, '_blank');
+            // window.open(paymentRequest.checkout_url, '_blank');
           }}
+          autoOpen={true}
         />
       </div>
 
       {/* Manual Payment Button */}
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <Button
           variant="outline"
           className="w-full flex items-center gap-2 cursor-pointer text-black"
@@ -273,55 +260,9 @@ export default function WalletPage() {
           <CreditCard className="h-4 w-4" />
           Pay
         </Button>
-      </div>
-
-      <div className="flex flex-col items-center justify-center mt-6">
-        {/* Generate a QR Code with EIP-681 payment request */}
-        {eip681Url && (
-          <QRCodeSVG
-            value={eip681Url}
-            title={'Payment QR Code'}
-            size={240}
-            bgColor={'#ffffff'}
-            fgColor={'#000000'}
-            level={'H'}
-            imageSettings={{
-              src: 'https://www.pagar.simplefi.tech/icon.png',
-              x: undefined,
-              y: undefined,
-              height: 24,
-              width: 24,
-              opacity: 1,
-              excavate: true,
-            }}
-          />
-        )}
-        <p className="text-black text-sm mt-2 text-center">
-          Amount: ${paymentRequest.amount} {paymentRequest.currency}
-          <br />
-          Address: {transaction?.address || 'N/A'}
-          <br />
-          Chain: Base ({transaction?.chain_id || 'N/A'})
-          <br />
-          Order ID: {paymentRequest.order_id}
-          <br />
-          <Button
-            variant="outline"
-            onClick={() => fetchPaymentRequest(true)}
-            className="text-black cursor-pointer"
-          >
-            New order
-          </Button>
-          <br />
-          <button
-            onClick={() => {
-              window.open(`${paymentRequest.checkout_url}/process`, '_blank');
-            }}
-            className="text-blue-600 hover:text-blue-700 underline mt-2 cursor-pointer"
-          >
-            Checkout link
-          </button>
-        </p>
+      </div> */}
+      <div className="mt-6">
+        <a href='/pos' target="_blank" className="text-blue-600 underline">POS Terminal</a>
       </div>
 
       {/* Manual Payment Modal */}
@@ -332,6 +273,7 @@ export default function WalletPage() {
         isPara={Boolean(isPara)}
         initialRecipient={prefilledPaymentData.recipient}
         initialAmount={prefilledPaymentData.amount}
+        orderId={prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()}
       />
     </div>
   );

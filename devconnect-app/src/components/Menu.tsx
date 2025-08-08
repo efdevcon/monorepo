@@ -18,6 +18,12 @@ export default function Menu() {
   //   return null;
   // }
 
+  // Hide navigation on POS page
+  if (pathname === '/pos') {
+    console.log('Menu: hiding navigation on POS page');
+    return null;
+  }
+
   console.log('Menu: showing navigation');
 
   const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
@@ -35,7 +41,7 @@ export default function Menu() {
           pathname === item.href ||
           (item.href !== '/' && pathname.startsWith(item.href));
         const Icon = item.icon;
-        const isWallet = item.label === 'Wallet';
+        const isScan = item.label === 'Scan';
         return (
           <Link
             key={item.href}
@@ -43,11 +49,11 @@ export default function Menu() {
             className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors ${isActive ? 'text-[#232336] font-semibold' : 'text-[#4b4b66] font-normal'}`}
           >
             <span
-              className={`${isWallet ? 'size-11' : 'size-7'} flex items-center justify-center overflow-hidden`}
+              className={`${isScan ? 'size-11' : 'size-7'} flex items-center justify-center overflow-hidden`}
             >
               <Icon active={isActive} />
             </span>
-            {!isWallet && (
+            {!isScan && (
               <span className="text-[10px] leading-[10px] font-['Roboto']">
                 {item.label}
               </span>

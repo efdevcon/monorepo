@@ -18,6 +18,7 @@ interface ManualPaymentModalProps {
   isPara?: boolean;
   initialRecipient?: string;
   initialAmount?: string;
+  orderId?: string;
 }
 
 export default function ManualPaymentModal({
@@ -26,6 +27,7 @@ export default function ManualPaymentModal({
   isPara = false,
   initialRecipient = '',
   initialAmount = '0.01',
+  orderId,
 }: ManualPaymentModalProps) {
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
   const [paymentData, setPaymentData] = useState<{
@@ -163,7 +165,7 @@ export default function ManualPaymentModal({
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Wallet className="h-5 w-5" />
-              Manual Payment
+              Payment
             </h2>
             {isPara && isSystemSimulationMode === null && (
               <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
@@ -263,46 +265,30 @@ export default function ManualPaymentModal({
           )}
         </div>
 
-        {/* Product Link */}
-        <div className="bg-gradient-to-r from-green-200 to-blue-200 rounded-lg p-4 mb-6">
-          <div className="flex items-center gap-2 mb-2">
-            <svg
-              className="h-5 w-5 text-green-600"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-            <h3 className="font-semibold text-lg">Product</h3>
+        {/* Order ID */}
+        {orderId && (
+          <div className="bg-gradient-to-r from-blue-200 to-purple-200 rounded-lg p-4 mb-6">
+            <div className="flex items-center gap-2 mb-2">
+              <svg
+                className="h-5 w-5 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              <h3 className="font-semibold text-lg">Order Information</h3>
+            </div>
+            <div className="text-blue-800 font-mono text-lg">
+              Order ID: {orderId}
+            </div>
           </div>
-          <a
-            href={productUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-600 hover:text-blue-800 underline flex items-center gap-2"
-          >
-            View Product Details
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-        </div>
+        )}
 
         {/* Step Content */}
         {currentStep === 'form' && (

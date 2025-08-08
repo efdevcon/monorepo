@@ -52,8 +52,8 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Wallet',
-    href: '/wallet',
+    label: 'Scan',
+    href: '/scan',
     icon: WalletIcon,
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },

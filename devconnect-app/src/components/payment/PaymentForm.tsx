@@ -122,11 +122,11 @@ export default function PaymentForm({
               Please enter a valid 0x address (42 characters)
             </p>
           )}
-          {isRecipientValid && (
+          {/* {isRecipientValid && (
             <p className="text-sm text-green-600 mt-1">
               ✅ Valid address: {recipient.slice(0, 6)}...{recipient.slice(-4)}
             </p>
-          )}
+          )} */}
         </div>
 
         {/* Amount Input */}
@@ -151,7 +151,7 @@ export default function PaymentForm({
           </div>
 
           {/* Quick Amount Buttons */}
-          <div className="mt-2">
+          {/* <div className="mt-2">
             <p className="text-sm text-gray-600 mb-2">Quick amounts:</p>
             <div className="flex flex-wrap gap-2">
               {quickAmounts.map((quickAmount) => (
@@ -168,18 +168,18 @@ export default function PaymentForm({
                 </button>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {amount && !isAmountValid && (
             <p className="text-sm text-red-600 mt-1">
               Please enter a valid amount between 0.01 and 1000 USDC
             </p>
           )}
-          {isAmountValid && amount && (
+          {/* {isAmountValid && amount && (
             <p className="text-sm text-green-600 mt-1">
               ✅ Amount: {amount} USDC
             </p>
-          )}
+          )} */}
         </div>
       </div>
 

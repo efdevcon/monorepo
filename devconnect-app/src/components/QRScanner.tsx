@@ -6,9 +6,15 @@ interface QRScannerProps {
   onScan?: (result: string) => void;
   onClose?: () => void;
   buttonLabel?: string;
+  autoOpen?: boolean;
 }
 
-const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
+const QRScanner = ({
+  onScan,
+  onClose,
+  buttonLabel,
+  autoOpen = false,
+}: QRScannerProps) => {
   const [open, setOpen] = useState(false);
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -45,6 +51,13 @@ const QRScanner = ({ onScan, onClose, buttonLabel }: QRScannerProps) => {
   useEffect(() => {
     checkCameraPermission();
   }, [checkCameraPermission]);
+
+  // Auto-open scanner if autoOpen prop is true
+  useEffect(() => {
+    if (autoOpen) {
+      handleOpenScanner();
+    }
+  }, [autoOpen]);
 
   // Handle opening the scanner
   const handleOpenScanner = async () => {
