@@ -30,6 +30,8 @@ export default function ScanPage() {
     recipient: string;
     amount: string;
     orderId?: string;
+    orderStatus?: string;
+    orderStatusDetail?: string;
   }>({
     recipient: '',
     amount: '0.01',
@@ -225,6 +227,35 @@ export default function ScanPage() {
     }
   };
 
+  // Function to fetch order status details before opening manual payment
+  const fetchOrderStatusDetails = async () => {
+    try {
+      // Use the current payment request ID if available
+      if (paymentRequest?.id) {
+        const paymentDetails = await fetchPaymentDetails(paymentRequest.id);
+        console.log('Order status details fetched:', paymentDetails);
+
+        // Update prefilled payment data with status information
+        if (
+          paymentDetails.transactions &&
+          paymentDetails.transactions.length > 0
+        ) {
+          const transaction = paymentDetails.transactions[0];
+          setPrefilledPaymentData({
+            recipient: transaction.address,
+            amount: paymentDetails.amount.toString(),
+            orderId: paymentDetails.order_id?.toString(),
+            orderStatus: paymentDetails.status,
+            orderStatusDetail: paymentDetails.status_detail,
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching order status details:', error);
+      // Continue with manual payment even if status fetch fails
+    }
+  };
+
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
     console.log('QR Scanner received value:', value);
@@ -262,6 +293,8 @@ export default function ScanPage() {
             recipient: transaction.address,
             amount: paymentDetails.amount.toString(),
             orderId: paymentDetails.order_id?.toString(),
+            orderStatus: paymentDetails.status,
+            orderStatusDetail: paymentDetails.status_detail,
           });
 
           setIsManualPaymentOpen(true);
@@ -326,7 +359,7 @@ export default function ScanPage() {
   console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
-    <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8 mt-4 rounded-lg">
+    <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8">
       <h1 className="text-black text-2xl">Scan</h1>
       <div className="flex flex-col items-center justify-center mt-4">
         <QRScanner
@@ -341,16 +374,19 @@ export default function ScanPage() {
       </div>
 
       {/* Manual Payment Button */}
-      {/* <div className="mt-6">
-        <Button
+      <div className="mt-6">
+        {/* <Button
           variant="outline"
           className="w-full flex items-center gap-2 cursor-pointer text-black"
-          onClick={() => setIsManualPaymentOpen(true)}
+          onClick={async () => {
+            await fetchOrderStatusDetails();
+            setIsManualPaymentOpen(true);
+          }}
         >
           <CreditCard className="h-4 w-4" />
-          Pay
-        </Button>
-      </div> */}
+          Re-open last payment
+        </Button> */}
+      </div>
       <div className="mt-6">
         <a href="/pos" target="_blank" className="text-blue-600 underline">
           POS Terminal
@@ -368,6 +404,8 @@ export default function ScanPage() {
         orderId={
           prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()
         }
+        orderStatus={prefilledPaymentData.orderStatus}
+        orderStatusDetail={prefilledPaymentData.orderStatusDetail}
       />
     </div>
   );

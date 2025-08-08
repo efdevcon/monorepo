@@ -19,6 +19,8 @@ interface ManualPaymentModalProps {
   initialRecipient?: string;
   initialAmount?: string;
   orderId?: string;
+  orderStatus?: string;
+  orderStatusDetail?: string;
 }
 
 export default function ManualPaymentModal({
@@ -28,6 +30,8 @@ export default function ManualPaymentModal({
   initialRecipient = '',
   initialAmount = '0.01',
   orderId,
+  orderStatus,
+  orderStatusDetail,
 }: ManualPaymentModalProps) {
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
   const [paymentData, setPaymentData] = useState<{
@@ -159,8 +163,8 @@ export default function ManualPaymentModal({
   }, [txStatus, onClose]);
 
   return (
-    <Modal open={isOpen} close={handleClose} className="p-0">
-      <ModalContent className="w-[100vw] max-w-xl max-h-[80vh] overflow-y-auto p-6">
+    <Modal open={isOpen} close={handleClose} className="!p-0">
+      <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
@@ -284,14 +288,50 @@ export default function ManualPaymentModal({
               </svg>
               <h3 className="font-semibold text-lg">Order Information</h3>
             </div>
-            <div className="text-blue-800 font-mono text-lg">
+            <div className="text-blue-800 font-mono text-lg mb-2">
               Order ID: {orderId}
             </div>
+            {/* {orderStatus && txStatus !== 'confirmed' && (
+              <div className="flex items-center gap-2">
+                <div
+                  className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${
+                    orderStatus === 'approved'
+                      ? 'bg-green-100 text-green-800'
+                      : orderStatus === 'pending'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : orderStatus === 'rejected' ||
+                            orderStatus === 'cancelled'
+                          ? 'bg-red-100 text-red-800'
+                          : 'bg-gray-100 text-gray-800'
+                  }`}
+                >
+                  <div
+                    className={`w-2 h-2 rounded-full ${
+                      orderStatus === 'approved'
+                        ? 'bg-green-500'
+                        : orderStatus === 'pending'
+                          ? 'bg-yellow-500'
+                          : orderStatus === 'rejected' ||
+                              orderStatus === 'cancelled'
+                            ? 'bg-red-500'
+                            : 'bg-gray-500'
+                    }`}
+                  ></div>
+                  {orderStatus === 'approved' ? 'Already Paid' : `Status: ${orderStatus.charAt(0).toUpperCase() + orderStatus.slice(1)}`}
+                </div>
+                {orderStatusDetail && (
+                  <div className="text-xs text-blue-700 bg-blue-50 px-2 py-1 rounded">
+                    {orderStatusDetail.charAt(0).toUpperCase() +
+                      orderStatusDetail.slice(1)}
+                  </div>
+                )}
+              </div>
+            )} */}
           </div>
         )}
 
         {/* Step Content */}
-        {currentStep === 'form' && (
+        {currentStep === 'form' && orderStatus !== 'approved' && (
           <PaymentForm
             onSendPayment={handleFormSubmit}
             onDirectSend={handleDirectSend}
@@ -300,6 +340,38 @@ export default function ManualPaymentModal({
             isPending={isPending}
             showPreview={false}
           />
+        )}
+
+        {currentStep === 'form' && orderStatus === 'approved' && (
+          <div className="text-center py-8">
+            <div className="mb-4">
+              <svg
+                className="h-16 w-16 text-green-500 mx-auto mb-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <h3 className="text-xl font-semibold text-green-700 mb-2">
+                Payment Already Completed
+              </h3>
+              <p className="text-gray-600 mb-6">
+                This order has already been paid and approved.
+              </p>
+            </div>
+            <Button
+              onClick={handleClose}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Close
+            </Button>
+          </div>
         )}
 
         {currentStep === 'preview' && (

@@ -99,15 +99,15 @@ export default function PaymentForm({
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Recipient Address
           </label>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={recipient}
-              onChange={(e) => handleRecipientChange(e.target.value)}
-              placeholder="Enter 0x address..."
-              autoComplete="off"
-              className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+          <input
+            type="text"
+            value={recipient}
+            onChange={(e) => handleRecipientChange(e.target.value)}
+            placeholder="Enter 0x address..."
+            autoComplete="off"
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-2 text-[12.5px]"
+          />
+          <div className="flex justify-end">
             <Button
               onClick={handlePaste}
               variant="outline"

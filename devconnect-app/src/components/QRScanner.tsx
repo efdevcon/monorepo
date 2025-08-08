@@ -214,7 +214,7 @@ const QRScanner = ({
           </div>
         </div>
       )}
-      {scanResult && (
+      {/* {scanResult && (
         <div className="p-4 bg-gray-100 rounded-md mt-4">
           <span className="font-bold text-gray-800">Last scanned QR code:</span>
           <div className="break-all text-blue-500">
@@ -223,7 +223,7 @@ const QRScanner = ({
             </a>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
