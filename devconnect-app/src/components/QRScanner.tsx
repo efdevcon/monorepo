@@ -163,7 +163,7 @@ const QRScanner = ({
           onClick={handleClose}
         >
           <div
-            className="bg-gray-900 rounded-lg p-6 flex flex-col items-center relative min-w-[260px]"
+            className="w-full h-full bg-gray-900 pt-6 flex flex-col items-center relative min-w-[260px]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -201,10 +201,10 @@ const QRScanner = ({
                 styles={{
                   container: {
                     backgroundColor: 'transparent',
-                    height: 'calc(100dvh - 90px)',
+                    height: 'calc(100dvh)',
                   },
                   video: {
-                    borderRadius: '10px',
+                    borderRadius: '0',
                   },
                 }}
                 // TEMP: Disable sound

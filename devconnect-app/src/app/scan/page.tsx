@@ -159,7 +159,14 @@ export default function ScanPage() {
       );
 
       if (match) {
-        const [, contractAddress, chainId, recipientAddress, amountWei, orderId] = match;
+        const [
+          ,
+          contractAddress,
+          chainId,
+          recipientAddress,
+          amountWei,
+          orderId,
+        ] = match;
 
         // Convert wei back to USDC (6 decimals)
         const amountInUSDC = parseInt(amountWei) / 1000000;
@@ -178,18 +185,101 @@ export default function ScanPage() {
     }
   };
 
-  // Handle QR code scan
-  const handleQRScan = (value: string) => {
-    const parsedData = parseEIP681Url(value);
+  // Function to parse manual checkout URL and extract payment request ID
+  const parseManualUrl = (url: string) => {
+    try {
+      // Parse manual URL format: https://www.pagar.simplefi.tech/merchant_id/payment/payment_request_id
+      const match = url.match(
+        /^https:\/\/www\.pagar\.simplefi\.tech\/[^\/]+\/payment\/([a-f0-9]+)$/
+      );
 
-    if (parsedData) {
-      console.log('QR Scanner parsed data:', parsedData);
-      setPrefilledPaymentData(parsedData);
-      setIsManualPaymentOpen(true);
-    } else {
-      // If not an EIP-681 URL, try to open it as a regular link
-      window.open(value, '_blank');
+      if (match) {
+        const [, paymentRequestId] = match;
+        return paymentRequestId;
+      }
+
+      return null;
+    } catch (error) {
+      console.error('Error parsing manual URL:', error);
+      return null;
     }
+  };
+
+  // Function to fetch payment details from payment-status API
+  const fetchPaymentDetails = async (paymentRequestId: string) => {
+    try {
+      const response = await fetch(`/api/payment-status/${paymentRequestId}`);
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        );
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching payment details:', error);
+      throw error;
+    }
+  };
+
+  // Handle QR code scan
+  const handleQRScan = async (value: string) => {
+    console.log('QR Scanner received value:', value);
+
+    // First, try to parse as EIP-681 URL
+    const eip681Data = parseEIP681Url(value);
+    if (eip681Data) {
+      console.log('QR Scanner parsed EIP-681 data:', eip681Data);
+      setPrefilledPaymentData(eip681Data);
+      setIsManualPaymentOpen(true);
+      return;
+    }
+
+    // Then, try to parse as manual URL
+    const paymentRequestId = parseManualUrl(value);
+    if (paymentRequestId) {
+      console.log(
+        'QR Scanner parsed manual URL, payment request ID:',
+        paymentRequestId
+      );
+
+      try {
+        // Fetch payment details from the API
+        const paymentDetails = await fetchPaymentDetails(paymentRequestId);
+        console.log('Payment details fetched:', paymentDetails);
+
+        // Extract transaction data from the first transaction
+        if (
+          paymentDetails.transactions &&
+          paymentDetails.transactions.length > 0
+        ) {
+          const transaction = paymentDetails.transactions[0];
+
+          setPrefilledPaymentData({
+            recipient: transaction.address,
+            amount: paymentDetails.amount.toString(),
+            orderId: paymentDetails.order_id?.toString(),
+          });
+
+          setIsManualPaymentOpen(true);
+          return;
+        } else {
+          console.error('No transactions found in payment details');
+        }
+      } catch (error) {
+        console.error('Error processing manual URL:', error);
+        // Fall back to opening the URL in a new tab
+        window.open(value, '_blank');
+        return;
+      }
+    }
+
+    // If neither EIP-681 nor manual URL, try to open as a regular link
+    console.log('Opening as regular link:', value);
+    window.open(value, '_blank');
   };
 
   if (isLoading) {
@@ -262,7 +352,9 @@ export default function ScanPage() {
         </Button>
       </div> */}
       <div className="mt-6">
-        <a href='/pos' target="_blank" className="text-blue-600 underline">POS Terminal</a>
+        <a href="/pos" target="_blank" className="text-blue-600 underline">
+          POS Terminal
+        </a>
       </div>
 
       {/* Manual Payment Modal */}
@@ -273,7 +365,9 @@ export default function ScanPage() {
         isPara={Boolean(isPara)}
         initialRecipient={prefilledPaymentData.recipient}
         initialAmount={prefilledPaymentData.amount}
-        orderId={prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()}
+        orderId={
+          prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()
+        }
       />
     </div>
   );

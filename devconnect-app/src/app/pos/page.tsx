@@ -27,6 +27,9 @@ export default function POSPage() {
   );
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [qrCodeFormat, setQrCodeFormat] = useState<'manual' | 'eip681'>(
+    'manual'
+  );
 
   // Get cached payment request from localStorage
   const getCachedPaymentRequest = (): PaymentRequest | null => {
@@ -122,15 +125,27 @@ export default function POSPage() {
     if (!paymentData.transactions || paymentData.transactions.length === 0) {
       return null;
     }
+    console.log('paymentData', paymentData);
 
     const transaction = paymentData.transactions[0];
     const amountInWei = Math.floor(paymentData.amount * 1000000); // USDC has 6 decimals
     const usdcContractAddress = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913'; // USDC on Base
 
     // Include order ID as a custom parameter
-    const orderIdParam = paymentData.order_id ? `&orderId=${paymentData.order_id}` : '';
+    // const orderIdParam = paymentData.order_id
+    //   ? `&orderId=${paymentData.order_id}`
+    //   : '';
 
-    return `ethereum:${usdcContractAddress}@${transaction.chain_id}/transfer?address=${transaction.address}&uint256=${amountInWei}${orderIdParam}`;
+    return `ethereum:${usdcContractAddress}@${transaction.chain_id}/transfer?address=${transaction.address}&uint256=${amountInWei}`;
+  };
+
+  // Generate QR code value based on selected format
+  const generateQrCodeValue = (paymentData: PaymentRequest) => {
+    if (qrCodeFormat === 'manual') {
+      return paymentData.checkout_url;
+    } else {
+      return generateEIP681Url(paymentData);
+    }
   };
 
   if (isLoading) {
@@ -174,21 +189,51 @@ export default function POSPage() {
     );
   }
 
-  const eip681Url = generateEIP681Url(paymentRequest);
+  const qrCodeValue = generateQrCodeValue(paymentRequest);
   const transaction = paymentRequest.transactions?.[0];
 
   return (
-    <div className="max-w-6xl mx-auto bg-white p-8 mt-4 rounded-lg shadow-lg">
-      <h1 className="text-black text-3xl font-bold text-center mb-8">POS Terminal</h1>
-      
+    <div className="h-fit min-h-screen w-screen bg-[#a969fe] p-8">
+      <h1 className="text-black text-3xl font-bold text-center mb-8">
+        POS Terminal
+      </h1>
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Left Column - QR Code */}
         <div className="flex flex-col items-center justify-center">
           <h2 className="text-black text-xl font-semibold mb-4">Scan to Pay</h2>
-          {eip681Url && (
+
+          {/* QR Code Format Toggle */}
+          <div className="mb-4 flex items-center gap-4">
+            <label className="text-black text-sm font-medium">QR Format:</label>
+            <div className="flex bg-white rounded-lg p-1 border border-gray-300">
+              <button
+                onClick={() => setQrCodeFormat('manual')}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                  qrCodeFormat === 'manual'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                Manual
+              </button>
+              <button
+                onClick={() => setQrCodeFormat('eip681')}
+                className={`px-3 py-1 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                  qrCodeFormat === 'eip681'
+                    ? 'bg-blue-600 text-white'
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
+                EIP-681
+              </button>
+            </div>
+          </div>
+
+          {qrCodeValue && (
             <div className="bg-white p-6 rounded-xl shadow-md border border-gray-200">
               <QRCodeSVG
-                value={eip681Url}
+                value={qrCodeValue}
                 title={'Payment QR Code'}
                 size={280}
                 bgColor={'#ffffff'}
@@ -210,43 +255,45 @@ export default function POSPage() {
 
         {/* Right Column - Payment Information */}
         <div className="flex flex-col justify-center">
-          <h2 className="text-black text-xl font-semibold mb-6">Payment Details</h2>
+          <h2 className="text-black text-xl font-semibold mb-6">
+            Payment Details
+          </h2>
           <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
             <div className="space-y-4">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-600 font-medium">Order ID:</span>
+                <span className="text-black font-bold text-lg">
+                  {paymentRequest.order_id}
+                </span>
+              </div>
+
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">Amount:</span>
                 <span className="text-black font-bold text-lg">
                   ${paymentRequest.amount} {paymentRequest.currency}
                 </span>
               </div>
-              
+
               <div className="flex justify-between items-start">
                 <span className="text-gray-600 font-medium">Address:</span>
                 <span className="text-black font-mono font-bold text-sm break-all text-right max-w-[75%]">
                   {transaction?.address || 'N/A'}
                 </span>
               </div>
-              
+
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">Chain:</span>
                 <span className="text-black font-semibold">
                   Base ({transaction?.chain_id || 'N/A'})
                 </span>
               </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="text-gray-600 font-medium">Order ID:</span>
-                <span className="text-black font-semibold">
-                  {paymentRequest.order_id}
-                </span>
-              </div>
             </div>
-            
+
             <div className="mt-6 pt-4 border-t border-gray-200">
               <Button
                 variant="outline"
                 onClick={() => fetchPaymentRequest(true)}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white hover:text-white font-semibold py-3 cursor-pointer"
               >
                 Generate New Order
               </Button>
@@ -258,7 +305,9 @@ export default function POSPage() {
       {/* Checkout iframe */}
       {paymentRequest.checkout_url && (
         <div className="w-full mt-8">
-          <h3 className="text-black text-xl font-semibold mb-4">Payment status</h3>
+          <h3 className="text-black text-xl font-semibold mb-4 text-center">
+            Payment status
+          </h3>
           <div className="w-full max-w-[899px] h-96 border border-gray-300 rounded-xl overflow-hidden shadow-md mx-auto">
             <iframe
               src={`${paymentRequest.checkout_url}/process`}
