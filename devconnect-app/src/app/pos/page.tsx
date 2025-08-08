@@ -306,7 +306,7 @@ export default function POSPage() {
       {paymentRequest.checkout_url && (
         <div className="w-full mt-8">
           <h3 className="text-black text-xl font-semibold mb-4 text-center">
-            Payment status
+            SimpleFi Payment status
           </h3>
           <div className="w-full max-w-[899px] h-96 border border-gray-300 rounded-xl overflow-hidden shadow-md mx-auto">
             <iframe
