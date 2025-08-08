@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { payment_request_id: string } }
+  { params }: { params: Promise<{ payment_request_id: string }> }
 ) {
   try {
     const SIMPLEFI_API_AUTHORIZATION_BEARER = process.env.SIMPLEFI_API_AUTHORIZATION_BEARER;
@@ -14,7 +14,7 @@ export async function GET(
       );
     }
 
-    const { payment_request_id } = params;
+    const { payment_request_id } = await params;
 
     if (!payment_request_id) {
       return NextResponse.json(
