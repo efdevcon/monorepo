@@ -586,7 +586,7 @@ app.post(
 
       const rkey = `${userEmailHash}-${eventData.title
         .toLowerCase()
-        .replace(/ /g, "-")}`;
+        .replace(/[^a-z0-9-]/g, "-")}`;
 
       const result = await api.createEventBluesky(
         process.env.BLUESKY_DEVCONNECT_HANDLE!,
