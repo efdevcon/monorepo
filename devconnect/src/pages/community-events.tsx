@@ -686,7 +686,7 @@ const CommunityEvents = () => {
         events = response.data.records
           .filter((record: any) => {
             const rkey = record.uri.split('/').pop()
-            const rkeyExpected = `${userID}-${record.value.title.toLowerCase().replace(/ /g, '-')}`
+            const rkeyExpected = `${userID}-${record.value.title.toLowerCase().replace(/[^a-z0-9-]/g, '-')}`
 
             return rkey === rkeyExpected
           })
