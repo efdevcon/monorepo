@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "lib/components/button";
 import cn from "classnames";
 import { ListFilter, Search } from "lucide-react";
+import { Input } from "tinacms";
 
 const venueEvents = [
   { color: "bg-[rgba(255,133,166,1)]", label: "Cowork" },
@@ -40,8 +41,14 @@ const ActionBar = ({
         ))}
       </div>
       <div className="flex items-center justify-end grow gap-2">
-        <Search size={13} />
-        Search
+        <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
+          <Search size={15} color="rgba(124, 124, 153, 1)" />
+          <input
+            className="grow border-none outline-none bg-transparen ml-0.5"
+            placeholder="Search events or organizers"
+            type="text"
+          />
+        </div>
       </div>
     </div>
   );

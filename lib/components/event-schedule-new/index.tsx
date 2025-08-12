@@ -10,10 +10,8 @@ import { format, parseISO } from "date-fns";
 // import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
 import Timeline from "./timeline";
-// import MapComponent from './map'
-import ActionBar from "./action-bar";
 
-type ScheduleProps = {
+export type ScheduleProps = {
   isCommunityCalendar?: boolean;
   selectedEvent: EventType | null;
   selectedDay: string | null;
@@ -187,8 +185,6 @@ const NewScheduleIndex = ({
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      <ActionBar isCommunityCalendar={isCommunityCalendar} />
-
       <SwipeToScroll noBounds>
         <div className="text-black flex">
           <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>

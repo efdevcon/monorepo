@@ -88,9 +88,7 @@ export default async function ProgrammePage() {
 
   return (
     <div className="flex w-full flex-col overflow-hidden ">
-      <div className="section overflow-visible mt-8 touch-only:!contents">
-        <ProgrammeTab atprotoEvents={atprotoEvents} />
-      </div>
+      <ProgrammeTab atprotoEvents={atprotoEvents} />
     </div>
     // <PageLayout title={title}>
     //   <TabbedSection navLabel={navLabel}>

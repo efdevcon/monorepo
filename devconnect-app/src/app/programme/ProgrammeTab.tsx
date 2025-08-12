@@ -1,6 +1,7 @@
 'use client';
 
-import NewScheduleIndex from 'lib/components/event-schedule-new';
+import CalendarLayout from 'lib/components/event-schedule-new/layout';
+import { useCalendarStore } from './tmp-state';
 
 interface ProgrammeTabProps {
   atprotoEvents?: any[];
@@ -9,12 +10,16 @@ interface ProgrammeTabProps {
 export default function ProgrammeTab({
   atprotoEvents = [],
 }: ProgrammeTabProps) {
+  const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } =
+    useCalendarStore();
+
   return (
-    <NewScheduleIndex
-      selectedEvent={null}
-      selectedDay={null}
-      setSelectedEvent={() => {}}
-      setSelectedDay={() => {}}
+    <CalendarLayout
+      isCommunityCalendar={false}
+      selectedEvent={selectedEvent}
+      selectedDay={selectedDay}
+      setSelectedEvent={setSelectedEvent}
+      setSelectedDay={setSelectedDay}
       events={atprotoEvents}
     />
   );

@@ -15,7 +15,7 @@ import Image from "next/image";
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
 import ethDayImage from "./ethday.jpg";
-import DevconnectCubeLogo from "assets/images/ba/cube-logo.png";
+import DevconnectCubeLogo from "../images/cube-logo.png";
 import {
   Dialog,
   DialogContent,
@@ -30,7 +30,6 @@ import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
 import VoxelButton from "lib/components/voxel-button/button";
-import { diff } from "util";
 
 type EventProps = {
   event: EventType;
@@ -124,7 +123,7 @@ const Event: React.FC<EventProps> = ({
     ? `${eventStartTime}–${eventEndTime}, ${eventStartDate}`
     : `${eventStartTime}, ${eventStartDate} – ${eventEndTime}, ${eventEndDate}`;
 
-  console.log(event);
+  // console.log(event);
 
   return (
     <div

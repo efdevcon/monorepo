@@ -22,6 +22,12 @@ const DialogOverlay = React.forwardRef<
       className
     )}
     {...props}
+    onClick={(e) => {
+      e.stopPropagation();
+      if (props.onClick) {
+        props.onClick(e);
+      }
+    }}
   />
 ));
 DialogOverlay.displayName = DialogPrimitive.Overlay.displayName;

@@ -14,6 +14,7 @@ import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
 import { CMSButtons } from 'common/components/voxel-button/button'
+import CalendarLayout from 'lib/components/event-schedule-new/layout'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
@@ -57,26 +58,14 @@ const Argentina = (props: any) => {
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
       <div className="flex flex-col text-black">
-        <div className="section">
-          <div className="flex justify-between gap-4 my-6">
-            <div className="text-3xl hidden md:block font-secondary">
-              <b>Argentina 2025</b> — Schedule
-            </div>
-            <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
-              <RichText content={data.pages.calendar_disclaimer} />
-            </div>
-          </div>
-        </div>
-
-        <div className="section overflow-visible touch-only:contents">
-          <NewSchedule
-            events={events}
-            selectedEvent={selectedEvent}
-            selectedDay={selectedDay}
-            setSelectedEvent={setSelectedEvent}
-            setSelectedDay={setSelectedDay}
-          />
-        </div>
+        <CalendarLayout
+          events={events}
+          isCommunityCalendar={false}
+          selectedEvent={selectedEvent}
+          selectedDay={selectedDay}
+          setSelectedEvent={setSelectedEvent}
+          setSelectedDay={setSelectedDay}
+        />
 
         <div className="section mb-8">
           {/* <div className="text-center text-lg">
