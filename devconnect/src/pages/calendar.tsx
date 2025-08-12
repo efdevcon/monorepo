@@ -8,7 +8,7 @@ import Image from 'next/image'
 import styles from './calendar.module.scss'
 import cn from 'classnames'
 import NewSchedule from 'lib/components/event-schedule-new'
-import { formatResult } from 'lib/helpers/notion-normalizer'
+// import { formatResult } from 'lib/helpers/notion-normalizer'
 import moment from 'moment'
 import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
@@ -19,80 +19,22 @@ const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const { data }: { data: any } = useTina(props.content)
 
-  const coreEvents = [
-    {
-      id: 'event-000',
-      priority: 1,
-      spanRows: 2,
-      name: `Ethereum World's Fair & Coworking Space`,
-      description: 'Open coworking space for developers, builders, and researchers to collaborate throughout the week.',
-      organizer: 'Ethereum Foundation',
-      difficulty: 'all welcome',
-      isCoreEvent: true,
-      timeblocks: [
-        {
-          start: '2025-11-17T09:00:00Z',
-          end: '2025-11-22T18:00:00Z',
-        },
-        {
-          start: '2025-11-20T09:00:00Z',
-          end: '2025-11-20T18:00:00Z',
-        },
-        {
-          start: '2025-11-22T09:00:00Z',
-          end: '2025-11-22T18:00:00Z',
-        },
-      ],
-      location: {
-        url: 'https://example.com/coworking',
-        text: 'Innovation Hub',
-      },
-    },
-    {
-      id: 'event-001',
-      priority: 2,
-      spanRows: 3,
-      name: 'ETH Day',
-      description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
-      organizer: 'EF team',
-      difficulty: 'all welcome',
-      isFairEvent: true,
-      timeblocks: [
-        {
-          start: '2025-11-17T10:00:00Z',
-          end: '2025-11-17T12:00:00Z',
-        },
-      ],
-      location: {
-        url: 'https://example.com/venue1',
-        text: 'Main Conference Hall',
-      },
-      // timeblocks: [
-      //   {
-      //     start: '2025-11-17T10:00:00Z',
-      //     end: '2025-11-17T12:00:00Z',
-      //   },
-      // ],
-      // priority: 1,
-      // categories: ['Education', 'Blockchain', 'Workshop'],
-    },
-  ]
+  const events = props.events
+  // const events = props.events.map((event: any) => {
+  //   const overrides = {} as any
 
-  const events = props.events.map((event: any) => {
-    const overrides = {} as any
+  //   if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
+  //     overrides.name = 'ETH Day'
+  //     overrides.isFairEvent = true
+  //     overrides.spanRows = 3
+  //   }
 
-    if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
-      overrides.name = 'ETH Day'
-      overrides.isFairEvent = true
-      overrides.spanRows = 3
-    }
-
-    return {
-      ...event,
-      ...overrides,
-      onClick: () => {},
-    }
-  })
+  //   return {
+  //     ...event,
+  //     ...overrides,
+  //     onClick: () => {},
+  //   }
+  // })
 
   return (
     <>
@@ -263,7 +205,7 @@ export interface Event {
   // console.log(notionEvents)
 
   const atprotoEvents = await fetch(
-    process.env.NODE_ENV === 'development'
+    false // process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/calendar-events'
       : 'https://at-slurper.onrender.com/calendar-events'
   )
@@ -293,15 +235,15 @@ export interface Event {
 
     const manualOverrides = {} as any
 
-    if (event.id.toString() === '23') {
-      manualOverrides.priority = 1
-      manualOverrides.spanRows = 2
-    }
+    // if (event.id.toString() === '23') {
+    //   manualOverrides.priority = 1
+    //   manualOverrides.spanRows = 2
+    // }
 
-    if (event.id.toString() === '29') {
-      manualOverrides.priority = 2
-      manualOverrides.spanRows = 3
-    }
+    // if (event.id.toString() === '29') {
+    //   manualOverrides.priority = 2
+    //   manualOverrides.spanRows = 3
+    // }
 
     return {
       id: event.id,
@@ -313,6 +255,7 @@ export interface Event {
       difficulty: record.expertise,
       organizer: record.organizer.name,
       timeblocks: timeblocks,
+      event_type: record.event_type,
       ...manualOverrides,
       // difficulty: record.difficulty,
     }

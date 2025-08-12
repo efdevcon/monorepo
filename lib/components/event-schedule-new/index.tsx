@@ -11,9 +11,10 @@ import { format, parseISO } from "date-fns";
 import cn from "classnames";
 import Timeline from "./timeline";
 // import MapComponent from './map'
-import { Button } from "lib/components/button";
+import ActionBar from "./action-bar";
 
 type ScheduleProps = {
+  isCommunityCalendar?: boolean;
   selectedEvent: EventType | null;
   selectedDay: string | null;
   setSelectedEvent: (event: EventType | null) => void;
@@ -151,6 +152,7 @@ const NewScheduleIndex = ({
   setSelectedEvent,
   setSelectedDay,
   events,
+  isCommunityCalendar = false,
 }: ScheduleProps) => {
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
@@ -165,7 +167,10 @@ const NewScheduleIndex = ({
   // Format date for display
   const formatDateHeader = (dateStr: string) => {
     const date = parseISO(dateStr);
-    return format(date, "EEE, MMM d");
+    return {
+      day: format(date, "EEE"),
+      date: format(date, "MMM d"),
+    };
   };
 
   // Define shared column template for consistent alignment
@@ -182,19 +187,12 @@ const NewScheduleIndex = ({
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      {/* <div className="flex justify-between gap-4">
-        <div className="text-lg font-bold">Devconnect 2025 Buenos Aires</div>
-        <div className="flex gap-2 items-center">
-          <div className="text-sm text-gray-500">Filter Goes here</div>
-          <Button variant="secondary">Login with Zupass</Button>
-        </div>
-      </div> */}
-      <SwipeToScroll>
+      <ActionBar isCommunityCalendar={isCommunityCalendar} />
+
+      <SwipeToScroll noBounds>
         <div className="text-black flex">
           <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-          {/* Unified Calendar Grid with aligned header and content */}
           <div className="w-full">
-            {/* Grid container with header and content in one cohesive grid */}
             <div
               className="grid"
               style={{
@@ -205,10 +203,10 @@ const NewScheduleIndex = ({
               {/* Header row with dates */}
               <div className="contents relative">
                 {eventRange.map((date) => (
-                  <h2
+                  <div
                     key={date}
                     className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 rounded-md mb-0.5",
+                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
@@ -222,8 +220,11 @@ const NewScheduleIndex = ({
                     //   }
                     // }}
                   >
-                    {formatDateHeader(date)}
-                  </h2>
+                    <div className="text-center flex justify-between">
+                      <div className="">{formatDateHeader(date).day}</div>
+                      <div className="">{formatDateHeader(date).date}</div>
+                    </div>
+                  </div>
                 ))}
               </div>
 
@@ -261,14 +262,10 @@ const NewScheduleIndex = ({
                       }
                       selectedEvent={selectedEvent}
                       setSelectedEvent={setSelectedEvent}
-                      // isCoworking={placement.event.name.includes('Coworking')}
-                      // isMultiDay={placement.gridPosition.duration > 1}
-                      // timeblock={placement.timeblock}
                     />
                   </div>
                 ))}
 
-                {/* If no events are scheduled, show message */}
                 {eventPlacements.length === 0 && (
                   <div
                     className="text-gray-400 py-3 text-center"

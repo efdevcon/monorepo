@@ -5,18 +5,20 @@ export interface Event {
   isCoreEvent?: boolean;
   description: string;
   organizer: string;
-  difficulty: string;
+  difficulty: string | any;
   amountPeople?: string;
   spanRows?: number;
   onClick?: () => void;
-  location: {
-    url: string;
-    text: string;
-    coordinates?: {
-      lat: number;
-      lng: number;
-    };
-  };
+  location:
+    | {
+        url: string;
+        text: string;
+        coordinates?: {
+          lat: number;
+          lng: number;
+        };
+      }
+    | string;
   timeblocks: {
     start: string;
     end: string;
@@ -24,5 +26,6 @@ export interface Event {
     location?: string;
   }[];
   priority: number;
+  event_type: string | any;
   categories: string[];
 }

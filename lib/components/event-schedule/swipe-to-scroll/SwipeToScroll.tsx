@@ -220,8 +220,6 @@ const SwipeToScroll = forwardRef(
     const bind = useDrag(({ down, delta }) => {
       const scrollContainer = el.current!;
 
-      console.log("delta", delta);
-
       const speed = props.speed || 1.5;
 
       lastX.current = Math.min(
