@@ -16,10 +16,10 @@ interface QuestRecapProps {
 const QuestRecap = ({ quests }: QuestRecapProps) => {
   return (
     <div className="w-full flex justify-center items-center gap-2 mb-6">
-      {quests.map((quest) => (
-        <SmallStarIcon 
-          key={quest.quest_id} 
-          isCompleted={quest.status === 'completed'} 
+      {quests.map((quest, index) => (
+        <SmallStarIcon
+          key={quest.quest_id || `quest-${index}`}
+          isCompleted={quest.status === 'completed'}
         />
       ))}
     </div>

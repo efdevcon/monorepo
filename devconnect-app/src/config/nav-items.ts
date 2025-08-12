@@ -41,7 +41,22 @@ export const NAV_ITEMS: NavItem[] = [
     backgroundColor: 'rgba(255, 248, 222, 0.75)',
     tabItems: [
       {
-        label: 'Quests',
+        label: 'Onboarding Level 1',
+      },
+      {
+        label: 'Onboarding Level 2',
+      },
+      {
+        label: 'Onboarding Level 3',
+      },
+      {
+        label: 'DeFi',
+      },
+      {
+        label: 'L2s',
+      },
+      {
+        label: 'Social',
       },
       {
         label: 'Rewards',

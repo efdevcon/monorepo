@@ -8,7 +8,6 @@ import ChevronIcon from '@/components/icons/ChevronIcon';
 interface Quest {
   number: number;
   quest_id: string;
-  type: string;
   title: string;
   description?: string;
   points: number;
@@ -60,27 +59,34 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
     >
       <div className="w-full flex flex-col justify-start items-start gap-1">
         <div
-          className={`w-full justify-start text-[11px] font-medium font-['Roboto'] leading-[14.30px] tracking-wide ${
+          className={`text-[11px] font-medium font-['Roboto'] leading-[14.30px] tracking-wide ${
             quest.status === 'completed' ? 'text-[#199821]' : 'text-[#4b4b66]'
           }`}
         >
-          {quest.number === 6
-            ? 'FINAL QUEST'
-            : `QUEST ${quest.type.toUpperCase()}`}
+          {`QUEST ${quest.number}`}
         </div>
-        <div className="w-full justify-start text-[#232336] text-lg font-bold font-['Roboto'] leading-normal">
+        <div className="text-[#232336] text-lg font-bold font-['Roboto'] leading-normal">
           {quest.title}
         </div>
-        {isExpanded && quest.description && (
-          <div className="w-full justify-start text-[#232336] text-sm font-normal font-['Roboto'] leading-[21px] mt-2">
-            {quest.description}
-          </div>
-        )}
+      </div>
+      {isExpanded && quest.description && (
+        <div className="w-full justify-start text-[#232336] text-sm font-normal font-['Roboto'] leading-[21px] mt-2">
+          {quest.description}
+        </div>
+      )}
+
+      {/* Expand/collapse indicator */}
+      <div className="absolute right-[16px] top-[56px]">
+        <ChevronIcon
+          isExpanded={isExpanded}
+          size="md"
+          color={quest.status === 'completed' ? '#232336' : '#4b4b66'}
+        />
       </div>
 
       {/* Points badge */}
       <div
-        className={`size- p-1 left-[8px] top-[8px] absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
+        className={`size- p-1 right-4 top-4 absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
       >
         {/* Lock icon for locked quests */}
         {quest.status === 'locked' && quest.number === 6 && (
@@ -124,15 +130,6 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
           </div>
         </div>
       )}
-
-      {/* Expand/collapse indicator */}
-      <div className="absolute right-4 top-4">
-        <ChevronIcon
-          isExpanded={isExpanded}
-          size="md"
-          color={quest.status === 'completed' ? '#232336' : '#4b4b66'}
-        />
-      </div>
     </div>
   );
 };
