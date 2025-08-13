@@ -10,11 +10,25 @@ const Layout = (props: CalendarLayoutProps) => {
   return (
     <div className="section overflow-visible touch-only:contents">
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex justify-between gap-4 my-6">
+        <div className="flex justify-between gap-4 mt-4 mb-1">
           <div className="text-3xl hidden md:block font-secondary">
-            <b>Argentina 2025</b> — Schedule
+            {props.isCommunityCalendar ? (
+              <div className="flex flex-col">
+                <b>Community Calendar</b>
+                <div className="text-base font-secondary">
+                  Events held around Buenos Aires
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                <b>Devconnect ARG schedule </b>
+                <div className="text-base font-secondary">
+                  Events held within La Rural (ticket required)
+                </div>
+              </div>
+            )}
           </div>
-          <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
+          <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C] self-center">
             This calendar is a work in progress and will change before
             Devconnect week. <b>Check back regularly for updates.</b>
             {/* <RichText content={data.pages.calendar_disclaimer} /> */}

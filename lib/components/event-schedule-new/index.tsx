@@ -10,6 +10,8 @@ import { format, parseISO } from "date-fns";
 // import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
 import Timeline from "./timeline";
+import NoEventsImage from "./images/404.png";
+import Image from "next/image";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -264,10 +266,21 @@ const NewScheduleIndex = ({
 
                 {eventPlacements.length === 0 && (
                   <div
-                    className="text-gray-400 py-3 text-center"
+                    className="text-gray-400 py-3 text-center flex flex-col justify-center items-center"
                     style={{ gridColumn: `1 / span ${eventRange.length}` }}
                   >
-                    No events scheduled
+                    <Image
+                      src={NoEventsImage}
+                      alt="No events scheduled"
+                      className="w-full h-full object-contain max-w-[500px] mx-4 my-4 mt-2"
+                    />
+                    <div className="text-gray-400 py-3 text-center flex justify-center items-center">
+                      {events.length === 0
+                        ? isCommunityCalendar
+                          ? "Community events coming soon!"
+                          : "No events match this filter"
+                        : ""}
+                    </div>
                   </div>
                 )}
               </div>
