@@ -67,7 +67,7 @@ const Argentina = (props: any) => {
         />
 
         <div className="section">
-          <Separator className="my-4" />
+          <Separator className="my-8 mt-12" />
         </div>
 
         <CalendarLayout

@@ -185,48 +185,48 @@ const NewScheduleIndex = ({
     return placement.datesCovered.includes(hoveredDate);
   };
 
+  // <div className="flex flex-col gap-4 w-full">
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <SwipeToScroll noBounds>
-        <div className="text-black flex">
-          <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-          <div className="w-full">
-            <div
-              className="grid"
-              style={{
-                gridTemplateColumns: columnTemplate,
-                gridTemplateRows: "auto 1fr",
-              }}
-            >
-              {/* Header row with dates */}
-              <div className="contents relative">
-                {eventRange.map((date) => (
-                  <div
-                    key={date}
-                    className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
-                      selectedDay === date && "!bg-slate-100 !opacity-100",
-                      selectedDay !== null && "opacity-20"
-                    )}
-                    onMouseEnter={() => setHoveredDate(date)}
-                    onMouseLeave={() => setHoveredDate(null)}
-                    // onClick={() => {
-                    //   if (selectedDay !== date) {
-                    //     setSelectedDay(date);
-                    //   } else {
-                    //     setSelectedDay(null);
-                    //   }
-                    // }}
-                  >
-                    <div className="text-center flex justify-between">
-                      <div className="">{formatDateHeader(date).day}</div>
-                      <div className="">{formatDateHeader(date).date}</div>
-                    </div>
+    <SwipeToScroll noBounds>
+      <div className="text-black flex">
+        <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
+        <div className="w-full">
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: columnTemplate,
+              gridTemplateRows: "auto 1fr",
+            }}
+          >
+            {/* Header row with dates */}
+            <div className="contents relative">
+              {eventRange.map((date) => (
+                <div
+                  key={date}
+                  className={cn(
+                    "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
+                    selectedDay === date && "!bg-slate-100 !opacity-100",
+                    selectedDay !== null && "opacity-20"
+                  )}
+                  onMouseEnter={() => setHoveredDate(date)}
+                  onMouseLeave={() => setHoveredDate(null)}
+                  // onClick={() => {
+                  //   if (selectedDay !== date) {
+                  //     setSelectedDay(date);
+                  //   } else {
+                  //     setSelectedDay(null);
+                  //   }
+                  // }}
+                >
+                  <div className="text-center flex justify-between">
+                    <div className="">{formatDateHeader(date).day}</div>
+                    <div className="">{formatDateHeader(date).date}</div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
 
-              {/* <div
+            {/* <div
                 className="left-0 z-[9] top-[100%] mt-2"
                 style={{
                   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
@@ -236,70 +236,69 @@ const NewScheduleIndex = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-              {/* Calendar body */}
-              <div className={cn("contents", selectedDay && "hidden")}>
-                {/* Place all events in the grid */}
-                {eventPlacements.map((placement, idx) => (
-                  <div
-                    key={`event-${placement.event.id}-${idx}`}
-                    style={{
-                      gridRow: `${placement.gridPosition.row + 1} / span ${
-                        placement.gridPosition.rowSpan
-                      }`,
-                      gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
-                    }}
-                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}
-                  >
-                    <Event
-                      event={placement.event}
-                      duration={placement.gridPosition.duration}
-                      className={
-                        isEventHighlighted(placement)
-                          ? "!border-neutral-500"
-                          : ""
-                      }
-                      selectedEvent={selectedEvent}
-                      setSelectedEvent={setSelectedEvent}
-                    />
-                  </div>
-                ))}
+            {/* Calendar body */}
+            <div className={cn("contents", selectedDay && "hidden")}>
+              {/* Place all events in the grid */}
+              {eventPlacements.map((placement, idx) => (
+                <div
+                  key={`event-${placement.event.id}-${idx}`}
+                  style={{
+                    gridRow: `${placement.gridPosition.row + 1} / span ${
+                      placement.gridPosition.rowSpan
+                    }`,
+                    gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
+                  }}
+                  className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}
+                >
+                  <Event
+                    event={placement.event}
+                    duration={placement.gridPosition.duration}
+                    className={
+                      isEventHighlighted(placement) ? "!border-neutral-500" : ""
+                    }
+                    selectedEvent={selectedEvent}
+                    setSelectedEvent={setSelectedEvent}
+                  />
+                </div>
+              ))}
 
-                {eventPlacements.length === 0 && (
-                  <div
-                    className="text-gray-400 py-3 text-center flex flex-col justify-center items-center"
-                    style={{ gridColumn: `1 / span ${eventRange.length}` }}
-                  >
-                    <Image
-                      src={NoEventsImage}
-                      alt="No events scheduled"
-                      className="w-full h-full object-contain max-w-[500px] mx-4 my-4 mt-2"
-                    />
-                    <div className="text-gray-400 py-3 text-center flex justify-center items-center">
-                      {events.length === 0
-                        ? isCommunityCalendar
-                          ? "Community events coming soon!"
-                          : "No events match this filter"
-                        : ""}
-                    </div>
+              {eventPlacements.length === 0 && (
+                <div
+                  className="text-gray-400 py-3 text-center flex flex-col justify-center items-center"
+                  style={{ gridColumn: `1 / span ${eventRange.length}` }}
+                >
+                  <Image
+                    src={NoEventsImage}
+                    alt="No events scheduled"
+                    className="w-full h-full object-contain max-w-[500px] mx-4 my-4 mt-2"
+                  />
+                  <div className="text-gray-400 py-3 text-center flex justify-center items-center">
+                    {events.length === 0
+                      ? isCommunityCalendar
+                        ? "Community events coming soon!"
+                        : "No events match this filter"
+                      : ""}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
-      </SwipeToScroll>
-
-      <div
-        className="left-0 z-[9] top-[100%] mt-2 w-full"
-        // style={{
-        //   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
-        // }}
-      >
-        {/* <Timeline events={events} /> */}
-        {/* {selectedDay && <MapComponent />} */}
       </div>
-    </div>
+    </SwipeToScroll>
   );
+
+  /* 
+     <div
+        className="left-0 z-[9] top-[100%] mt-2 w-full"
+        style={{
+          gridColumn: `1 / span ${eventRange.length}`, // Span all columns
+        }}
+      >
+        <Timeline events={events} /> 
+        {selectedDay && <MapComponent />} 
+      </div>
+    </div>  */
 };
 
 export default NewScheduleIndex;

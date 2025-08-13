@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import NewSchedule, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
+import { Filter, FilterSummary, useFilters } from "./filter";
+import filterCss from "./filter.module.scss";
 
 type CalendarLayoutProps = ScheduleProps & {
   isCommunityCalendar: boolean;
 };
 
 const Layout = (props: CalendarLayoutProps) => {
+  const { filterOpen, setFilterOpen, filteredEvents, filterableValues } =
+    useFilters(props.events);
+
   return (
     <div className="section overflow-visible touch-only:contents">
       <div className="flex flex-col gap-4 w-full">
@@ -35,9 +40,35 @@ const Layout = (props: CalendarLayoutProps) => {
           </div>
         </div>
 
-        <ActionBar isCommunityCalendar={props.isCommunityCalendar} />
+        <ActionBar
+          isCommunityCalendar={props.isCommunityCalendar}
+          filterOpen={filterOpen}
+          setFilterOpen={setFilterOpen}
+          filterableValues={filterableValues}
+        />
 
-        <NewSchedule {...props} />
+        <div className="relative flex">
+          {filterOpen && (
+            <>
+              <div className="relative shrink-0 z-10 w-[min(315px,100%)] h-full mr-3">
+                <Filter
+                  events={props.events}
+                  filterOpen={filterOpen}
+                  filterableValues={filterableValues}
+                  setFilterOpen={setFilterOpen}
+                  // {...filterAttributes}
+                  // edition={props.edition}
+                  // favorites={favorites}
+                />
+              </div>
+              <div className={filterCss["fade"]} />
+            </>
+          )}
+
+          <div className="grow">
+            <NewSchedule {...props} />
+          </div>
+        </div>
       </div>
     </div>
   );
