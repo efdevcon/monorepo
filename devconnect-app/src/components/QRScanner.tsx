@@ -159,26 +159,17 @@ const QRScanner = ({
       )}
       {open && (
         <div
-          className="fixed inset-0 z-51 flex items-center justify-center bg-black bg-opacity-70"
+          className="fixed inset-0 z-40 flex items-center justify-center bg-black bg-opacity-70"
+          style={{ height: 'calc(100vh - 91px)' }}
           onClick={handleClose}
         >
           <div
-            className="w-full h-full bg-gray-900 pt-6 flex flex-col items-center relative min-w-[260px]"
+            className="w-full h-full bg-gray-900 flex flex-col items-center relative min-w-[260px]"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              className="absolute top-2 right-2 text-gray-400 hover:text-white text-2xl font-bold"
-              onClick={handleClose}
-              aria-label="Close"
-            >
-              ×
-            </button>
-            <span className="mb-2 text-center text-white font-semibold">
-              Scan a QR code
-            </span>
-            {error && <div className="text-red-400 mb-2">{error}</div>}
+            {error && <div className="text-red-400 mt-2 mb-2">{error}</div>}
             <div
-              className="w-full flex justify-center items-center"
+              className="w-full flex-1 flex justify-center items-center overflow-hidden"
               ref={scannerRef}
             >
               <Scanner
@@ -201,7 +192,7 @@ const QRScanner = ({
                 styles={{
                   container: {
                     backgroundColor: 'transparent',
-                    height: 'calc(100dvh)',
+                    height: '100%',
                   },
                   video: {
                     borderRadius: '0',
@@ -210,6 +201,18 @@ const QRScanner = ({
                 // TEMP: Disable sound
                 sound={false}
               />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 flex justify-between items-center bg-gray-900">
+              <span className="text-center text-white font-semibold">
+                Scan booth check-in or payment QR code
+              </span>
+              <button
+                className="text-gray-400 hover:text-white text-2xl font-bold"
+                onClick={handleClose}
+                aria-label="Close"
+              >
+                ×
+              </button>
             </div>
           </div>
         </div>

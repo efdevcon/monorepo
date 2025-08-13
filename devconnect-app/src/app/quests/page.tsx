@@ -67,11 +67,9 @@ export default function QuestsPage() {
 
     // Debug: Check what's in localStorage
     const cachedQuests = localStorage.getItem('quests-data');
-    console.log('Cached quests:', cachedQuests);
-    console.log('apiQuests from hook:', apiQuests);
   }, [apiQuests]);
 
-  // Fetch quests from API only if no cached data
+  // Fetch quests from API on first load
   useEffect(() => {
     const fetchQuests = async () => {
       try {
@@ -100,13 +98,9 @@ export default function QuestsPage() {
       }
     };
 
-    // Only fetch if we don't have cached data
-    if (apiQuests.length === 0) {
-      fetchQuests();
-    } else {
-      setLoading(false); // We have cached data, so not loading
-    }
-  }, [apiQuests.length]);
+    // Always fetch on first load
+    fetchQuests();
+  }, []); // Empty dependency array to only fetch once on mount
 
   // Function to update quest status
   const updateQuestStatus = (

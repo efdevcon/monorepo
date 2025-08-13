@@ -60,7 +60,6 @@ export default function QuestsTab({
   onSwitchToTab,
   numberOfTabs,
 }: QuestsTabProps) {
-  console.log('numberOfTabs', numberOfTabs);
   // Transform API quests to component quests with status from props
   const componentQuests: ExtendedQuest[] = apiQuests.map((apiQuest) => {
     const savedState = questStates[apiQuest.id];
