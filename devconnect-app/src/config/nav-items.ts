@@ -79,7 +79,7 @@ export const NAV_ITEMS: NavItem[] = [
     backgroundColor: 'rgba(254, 232, 244, 0.75)',
     tabItems: [
       {
-        label: 'Programme',
+        label: 'Schedule',
       },
       {
         label: 'World\'s Fair',

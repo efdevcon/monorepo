@@ -10,6 +10,7 @@ interface TabbedSectionProps {
   maxVisibleTabs?: number; // Maximum tabs to show before scrolling
   onTabChange?: (tabIndex: number) => void; // Callback when tab changes
   onTabIndexChange?: (setTabIndex: (index: number) => void) => void; // Callback to expose setTabIndex
+  disableSwipe?: boolean; // Disable swipe functionality
 }
 
 export default function TabbedSection({
@@ -18,6 +19,7 @@ export default function TabbedSection({
   maxVisibleTabs = 6,
   onTabChange,
   onTabIndexChange,
+  disableSwipe = false,
 }: TabbedSectionProps) {
   const navItem = NAV_ITEMS.find((item) => item.label === navLabel);
   const tabItems = navItem?.tabItems || [];
@@ -38,10 +40,13 @@ export default function TabbedSection({
   }, [tabItems.length, maxVisibleTabs]);
 
   // Handle tab index changes - use useCallback to prevent unnecessary re-renders
-  const handleTabChange = useCallback((newIndex: number) => {
-    setTabIndex(newIndex);
-    onTabChange?.(newIndex);
-  }, [onTabChange]);
+  const handleTabChange = useCallback(
+    (newIndex: number) => {
+      setTabIndex(newIndex);
+      onTabChange?.(newIndex);
+    },
+    [onTabChange]
+  );
 
   if (!navItem || tabItems.length === 0) {
     return null;
@@ -172,27 +177,50 @@ export default function TabbedSection({
       )}
 
       {/* Enhanced SwipeableViews with better performance */}
-      <SwipeableViews
-        index={tabIndex}
-        onChangeIndex={handleTabChange}
-        enableMouseEvents
-        resistance
-        style={{
-          width: '100%',
-          minHeight: 'auto',
-          paddingBottom: '88px',
-        }}
-      >
-        {tabItems.map((tab, idx) => (
-          <div
-            key={tab.label}
-            className="w-full py-8 text-center"
-            data-tab-index={idx}
-          >
-            {children(idx, tab)}
-          </div>
-        ))}
-      </SwipeableViews>
+      {disableSwipe ? (
+        // Static view when swipe is disabled
+        <div
+          style={{
+            width: '100%',
+            minHeight: 'auto',
+            paddingBottom: '88px',
+          }}
+        >
+          {tabItems.map((tab, idx) => (
+            <div
+              key={tab.label}
+              className="w-full py-8 text-center"
+              data-tab-index={idx}
+              style={{ display: idx === tabIndex ? 'block' : 'none' }}
+            >
+              {children(idx, tab)}
+            </div>
+          ))}
+        </div>
+      ) : (
+        // SwipeableViews when swipe is enabled
+        <SwipeableViews
+          index={tabIndex}
+          onChangeIndex={handleTabChange}
+          enableMouseEvents
+          resistance
+          style={{
+            width: '100%',
+            minHeight: 'auto',
+            paddingBottom: '88px',
+          }}
+        >
+          {tabItems.map((tab, idx) => (
+            <div
+              key={tab.label}
+              className="w-full py-8 text-center"
+              data-tab-index={idx}
+            >
+              {children(idx, tab)}
+            </div>
+          ))}
+        </SwipeableViews>
+      )}
 
       {/* Keyboard navigation hint for many tabs */}
       {/* {tabItems.length > 4 && (
