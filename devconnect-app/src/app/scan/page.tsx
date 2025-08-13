@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import QRScanner from '@/components/QRScanner';
 import ManualPaymentModal from '@/components/ManualPaymentModal';
 import { Button } from '@/components/ui/button';
-import { CreditCard } from 'lucide-react';
+import { CreditCard, Search } from 'lucide-react';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 interface PaymentRequest {
@@ -26,6 +26,11 @@ const PAYMENT_REQUEST_EXPIRY_KEY = 'devconnect_payment_request_expiry';
 
 export default function ScanPage() {
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
+  const [manualPaymentRequestId, setManualPaymentRequestId] = useState('');
+  const [isLoadingManualPayment, setIsLoadingManualPayment] = useState(false);
+  const [manualPaymentError, setManualPaymentError] = useState<string | null>(
+    null
+  );
   const [prefilledPaymentData, setPrefilledPaymentData] = useState<{
     recipient: string;
     amount: string;
@@ -315,6 +320,54 @@ export default function ScanPage() {
     window.open(value, '_blank');
   };
 
+  // Function to handle manual payment request ID submission
+  const handleManualPaymentRequest = async () => {
+    if (!manualPaymentRequestId.trim()) {
+      setManualPaymentError('Please enter a payment request ID');
+      return;
+    }
+
+    try {
+      setIsLoadingManualPayment(true);
+      setManualPaymentError(null);
+
+      const paymentDetails = await fetchPaymentDetails(
+        manualPaymentRequestId.trim()
+      );
+      console.log('Manual payment details fetched:', paymentDetails);
+
+      // Extract transaction data from the first transaction
+      if (
+        paymentDetails.transactions &&
+        paymentDetails.transactions.length > 0
+      ) {
+        const transaction = paymentDetails.transactions[0];
+
+        setPrefilledPaymentData({
+          recipient: transaction.address,
+          amount: paymentDetails.amount.toString(),
+          orderId: paymentDetails.order_id?.toString(),
+          orderStatus: paymentDetails.status,
+          orderStatusDetail: paymentDetails.status_detail,
+        });
+
+        setIsManualPaymentOpen(true);
+        setManualPaymentRequestId(''); // Clear the input after successful fetch
+      } else {
+        setManualPaymentError('No transactions found for this payment request');
+      }
+    } catch (error) {
+      console.error('Error processing manual payment request:', error);
+      setManualPaymentError(
+        error instanceof Error
+          ? error.message
+          : 'Failed to fetch payment details'
+      );
+    } finally {
+      setIsLoadingManualPayment(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex flex-col items-center bg-white pt-8">
@@ -361,7 +414,45 @@ export default function ScanPage() {
   return (
     <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8">
       <h1 className="text-black text-2xl">Scan</h1>
-      <div className="flex flex-col items-center justify-center mt-4">
+
+      {/* Manual Payment Request ID Input */}
+      <div className="w-full mt-6 p-4 border border-gray-200 rounded-lg">
+        <h2 className="text-lg font-medium text-black mb-3">
+          Manual Payment Request
+        </h2>
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Enter payment request ID"
+            value={manualPaymentRequestId}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setManualPaymentRequestId(e.target.value)
+            }
+            className="flex-1 h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+              if (e.key === 'Enter') {
+                handleManualPaymentRequest();
+              }
+            }}
+          />
+          <Button
+            onClick={handleManualPaymentRequest}
+            disabled={isLoadingManualPayment}
+            className="bg-blue-600 hover:bg-blue-700"
+          >
+            {isLoadingManualPayment ? (
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            ) : (
+              <Search className="h-4 w-4" />
+            )}
+          </Button>
+        </div>
+        {manualPaymentError && (
+          <div className="text-red-600 text-sm mt-2">{manualPaymentError}</div>
+        )}
+      </div>
+
+      <div className="flex flex-col items-center justify-center mt-6">
         <QRScanner
           buttonLabel="Scan Payment QR Code"
           onScan={handleQRScan}

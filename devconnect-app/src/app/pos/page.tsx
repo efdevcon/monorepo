@@ -268,6 +268,13 @@ export default function POSPage() {
               </div>
 
               <div className="flex justify-between items-center">
+                <span className="text-gray-600 font-medium">Payment ID:</span>
+                <span className="text-black font-bold text-lg">
+                  {paymentRequest.id}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">Amount:</span>
                 <span className="text-black font-bold text-lg">
                   ${paymentRequest.amount} {paymentRequest.currency}
