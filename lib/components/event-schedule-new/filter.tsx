@@ -17,6 +17,7 @@ export const useFilters = (events: any[]) => {
   const [showOnlyDomainSpecific, setShowOnlyDomainSpecific] = useState(false);
   const [showFavorites, setShowFavorites] = useState(false);
   const [textSearch, setTextSearch] = useState("");
+  const [typeFilter, setTypeFilter] = useState([]);
 
   // // Localstorage sync here
   // React.useEffect(() => {
@@ -44,8 +45,46 @@ export const useFilters = (events: any[]) => {
     });
   });
 
-  const filteredEvents = events.filter((event) => {
-    // return event.categoryFilter.includes(categoryFilter);
+  const filteredEvents = events.filter((event: any) => {
+    // if (
+    //   hideSoldOut &&
+    //   ["sold out", "applications closed"].includes(
+    //     event["Attend"] && event["Attend"].toLowerCase()
+    //   )
+    // ) {
+    //   return false;
+    // }
+
+    if (
+      textSearch.length > 0 &&
+      !event.Name.toLowerCase().includes(textSearch.toLowerCase())
+    )
+      return false;
+
+    // Difficulty filter
+    if (difficultyFilter.length > 0) {
+      // @ts-ignore
+      const difficultyMatch = difficultyFilter.includes(event["difficulty"]);
+
+      if (!difficultyMatch) return false;
+    }
+
+    // Event type filter
+    if (typeFilter.length > 0) {
+      // @ts-ignore
+      const typeMatch = typeFilter.includes(event["event_type"]);
+
+      if (!typeMatch) return false;
+    }
+
+    // Categories filter
+    if (categoryFilter.length > 0) {
+      const categoryMatch = categoryFilter.some((category: any) =>
+        event["categories"].includes(category)
+      );
+
+      if (!categoryMatch) return false;
+    }
 
     return true;
   });
@@ -56,6 +95,7 @@ export const useFilters = (events: any[]) => {
     filteredEvents,
     filterableValues,
     keysToFilterOn,
+    setTextSearch,
   };
 };
 

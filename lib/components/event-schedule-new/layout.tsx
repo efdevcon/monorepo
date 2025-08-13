@@ -9,8 +9,13 @@ type CalendarLayoutProps = ScheduleProps & {
 };
 
 const Layout = (props: CalendarLayoutProps) => {
-  const { filterOpen, setFilterOpen, filteredEvents, filterableValues } =
-    useFilters(props.events);
+  const {
+    filterOpen,
+    setFilterOpen,
+    filteredEvents,
+    filterableValues,
+    keysToFilterOn,
+  } = useFilters(props.events);
 
   return (
     <div className="section overflow-visible touch-only:contents">
@@ -54,6 +59,7 @@ const Layout = (props: CalendarLayoutProps) => {
                 <Filter
                   events={props.events}
                   filterOpen={filterOpen}
+                  keysToFilterOn={keysToFilterOn}
                   filterableValues={filterableValues}
                   setFilterOpen={setFilterOpen}
                   // {...filterAttributes}
