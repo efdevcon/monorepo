@@ -103,7 +103,7 @@ export default function TabbedSection({
             <button
               onClick={() => handleTabChange(Math.max(0, tabIndex - 1))}
               disabled={tabIndex === 0}
-              className="absolute left-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
+              className="absolute left-1 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
               aria-label="Previous tab"
             >
               <svg
@@ -124,7 +124,7 @@ export default function TabbedSection({
                 handleTabChange(Math.min(tabItems.length - 1, tabIndex + 1))
               }
               disabled={tabIndex === tabItems.length - 1}
-              className="absolute right-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
+              className="absolute right-1 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
               aria-label="Next tab"
             >
               <svg
