@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "lib/components/button";
 import cn from "classnames";
 import { ListFilter, Search } from "lucide-react";
-import { Input } from "tinacms";
 import { FilterSummary } from "./filter";
 
 const venueEvents = [
@@ -19,10 +17,12 @@ const ActionBar = ({
   isCommunityCalendar,
   filterOpen,
   setFilterOpen,
+  filterableValues,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
   setFilterOpen: (open: boolean) => void;
+  filterableValues: any;
 }) => {
   const categories = isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;

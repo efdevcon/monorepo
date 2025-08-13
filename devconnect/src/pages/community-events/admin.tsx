@@ -40,6 +40,7 @@ const formatATProtoEvent = (atprotoEvent: any) => {
     priority: atprotoEvent.metadata?.priority || 1,
     categories: atprotoEvent.metadata?.categories || [],
     amountPeople: atprotoEvent.metadata?.capacity !== undefined ? String(atprotoEvent.metadata.capacity) : undefined,
+    event_type: atprotoEvent.event_type,
   }
 }
 
