@@ -161,7 +161,8 @@ const QuestItem = ({
   const handleCheckInScan = (scannedCode: string) => {
     console.log('scannedCode', scannedCode);
     console.log('quest.boothCode', quest.boothCode);
-    if (scannedCode === quest.boothCode) {
+    const code = scannedCode.includes('/booth/') ? scannedCode.split('/booth/')[1] : scannedCode;
+    if (code === quest.boothCode) {
       // Update quest state to checked in
       if (quest.state.isCheckedIn !== true) {
         // Update the quest state to mark as checked in
