@@ -590,6 +590,9 @@ export default function ConnectedWallet({
         )}
 
         {address && <Zkp2pOnrampQRCode address={address} />}
+        <a href="/map" className="text-sm text-blue-500 m-auto">
+          Fullscreen Map
+        </a>
       </div>
     </div>
   );
