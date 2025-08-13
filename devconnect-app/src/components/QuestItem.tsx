@@ -5,15 +5,21 @@ import { toast } from 'sonner';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
+import QRScanner from '@/components/QRScanner';
 import type { ComponentQuest } from '@/types';
 import { executeQuestAction } from '@/utils/quest-actions';
 
 interface QuestItemProps {
   quest: ComponentQuest;
   onQuestComplete?: (questId: string) => void;
+  onQuestCheckIn?: (questId: string) => void;
 }
 
-const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
+const QuestItem = ({
+  quest,
+  onQuestComplete,
+  onQuestCheckIn,
+}: QuestItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExecutingAction, setIsExecutingAction] = useState(false);
 
@@ -33,6 +39,13 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
           points: 'text-[#f6b40e]',
         };
       case 'locked':
+        return {
+          container:
+            'bg-[#f5f5f9] outline outline-1 outline-offset-[-1px] outline-[#dfdfeb]',
+          badge: 'bg-[#4b4b66] rounded-[1px]',
+          points: 'text-[#f6b40e]',
+        };
+      default:
         return {
           container:
             'bg-[#f5f5f9] outline outline-1 outline-offset-[-1px] outline-[#dfdfeb]',
@@ -145,6 +158,66 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
     }
   };
 
+  const handleCheckInScan = (scannedCode: string) => {
+    console.log('scannedCode', scannedCode);
+    console.log('quest.boothCode', quest.boothCode);
+    if (scannedCode === quest.boothCode) {
+      // Update quest state to checked in
+      if (quest.state.isCheckedIn !== true) {
+        // Update the quest state to mark as checked in
+        onQuestCheckIn?.(quest.id);
+
+        toast.success(
+          <div className="space-y-2">
+            <div className="font-semibold text-green-800">
+              ✅ Check-in Successful!
+            </div>
+            <div className="text-sm text-green-700">
+              {quest.name} - You have been checked in successfully.
+            </div>
+          </div>,
+          {
+            duration: 4000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              border: '1px solid #bbf7d0',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      }
+    } else {
+      toast.error(
+        <div className="space-y-2">
+          <div className="font-semibold text-red-800">
+            ❌ Invalid Check-in Code
+          </div>
+          <div className="text-sm text-red-700">
+            The scanned QR code does not match the expected booth code.
+          </div>
+        </div>,
+        {
+          duration: 4000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+            border: '1px solid #fecaca',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    }
+  };
+
+  const handleCheckInClose = () => {
+    // No need to manage isCheckingIn state since QRScanner handles its own open/close
+  };
+
   return (
     <div
       className={`w-full p-4 relative ${styles.container} rounded-[1px] flex flex-col justify-start items-start gap-2 cursor-pointer transition-all duration-200 min-h-[80px] ${
@@ -202,32 +275,50 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
       {/* Action button - only show when expanded */}
       {isExpanded && (
         <div
-          className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 cursor-pointer transition-all duration-200 ${
-            quest.state.status === 'active'
-              ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
-              : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
-          } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
-          onClick={(e) => {
-            e.stopPropagation(); // Prevent triggering the parent click handler
-            handleQuestAction();
-          }}
+          onClick={(e) => e.stopPropagation()}
+          className="w-full flex flex-col justify-start items-start gap-2"
         >
-          <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
-            {isExecutingAction ? 'Executing...' : quest.button || 'TODO'}
-          </div>
-          <div className="size-5 relative overflow-hidden">
-            <svg
-              width="21"
-              height="20"
-              viewBox="0 0 21 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.7004 13.6V11.2H9.30039V13.6H11.7004ZM6.90039 13.6V16H9.30039V13.6H6.90039ZM9.30039 8.8H11.7004V6.4H9.30039V8.8ZM14.1004 8.8H11.7004V11.2H14.1004V8.8ZM9.30039 6.4V4H6.90039V6.4H9.30039Z"
-                fill="white"
-              />
-            </svg>
+          {/* Check-in button */}
+          {quest.boothCode && !quest.state.isCheckedIn ? (
+            <QRScanner
+              onScan={handleCheckInScan}
+              onClose={handleCheckInClose}
+              buttonLabel={'Booth Check In'}
+              autoOpen={false}
+            />
+          ) : quest.boothCode && quest.state.isCheckedIn ? (
+            <div className="text-center">
+              Booth Checked In ✅
+            </div>
+          ) : null}
+          <div
+            className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 cursor-pointer transition-all duration-200 ${
+              quest.state.status === 'active'
+                ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
+                : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
+            } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
+            onClick={(e) => {
+              e.stopPropagation(); // Prevent triggering the parent click handler
+              handleQuestAction();
+            }}
+          >
+            <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
+              {isExecutingAction ? 'Executing...' : quest.button || 'TODO'}
+            </div>
+            <div className="size-5 relative overflow-hidden">
+              <svg
+                width="21"
+                height="20"
+                viewBox="0 0 21 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M11.7004 13.6V11.2H9.30039V13.6H11.7004ZM6.90039 13.6V16H9.30039V13.6H6.90039ZM9.30039 8.8H11.7004V6.4H9.30039V8.8ZM14.1004 8.8H11.7004V11.2H14.1004V8.8ZM9.30039 6.4V4H6.90039V6.4H9.30039Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
           </div>
         </div>
       )}

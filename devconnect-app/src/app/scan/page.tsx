@@ -263,6 +263,13 @@ export default function ScanPage() {
 
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
+
+    if (value?.includes('/booth/')) {
+      // redirect to booth page
+      window.location.href = value;
+      return;
+    }
+
     console.log('QR Scanner received value:', value);
 
     // First, try to parse as EIP-681 URL
@@ -275,7 +282,9 @@ export default function ScanPage() {
     }
 
     // Then, try to parse as manual URL
-    const paymentRequestId = parseManualUrl(value);
+    const paymentRequestId = value.startsWith('https://')
+      ? parseManualUrl(value)
+      : value;
     if (paymentRequestId) {
       console.log(
         'QR Scanner parsed manual URL, payment request ID:',

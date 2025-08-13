@@ -9,13 +9,21 @@ import type { Quest as ApiQuest, ComponentQuest } from '@/types';
 // Quest states type
 type QuestStates = Record<
   string,
-  { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+  {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+    isCheckedIn?: boolean;
+  }
 >;
 
 // Transform API quest data to match the ComponentQuest interface
 const transformApiQuestToComponentQuest = (
   apiQuest: ApiQuest,
-  questState: { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+  questState: {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+    isCheckedIn?: boolean;
+  }
 ): ComponentQuest => {
   return {
     ...apiQuest,
@@ -29,7 +37,8 @@ interface QuestsTabProps {
   updateQuestStatus: (
     questId: string,
     status: 'completed' | 'active' | 'locked',
-    is_locked: boolean
+    is_locked: boolean,
+    isCheckedIn?: boolean
   ) => void;
   loading: boolean;
   error: string | null;
@@ -53,6 +62,7 @@ export default function QuestsTab({
     const savedState = questStates[apiQuest.id] || {
       status: 'locked' as const,
       is_locked: true,
+      isCheckedIn: false,
     };
 
     return transformApiQuestToComponentQuest(apiQuest, savedState);
@@ -61,6 +71,11 @@ export default function QuestsTab({
   // Handle quest completion
   const handleQuestComplete = (questId: string) => {
     updateQuestStatus(questId, 'completed', false);
+  };
+
+  // Handle quest check-in
+  const handleQuestCheckIn = (questId: string) => {
+    updateQuestStatus(questId, 'active', false, true);
   };
 
   // Handle reset all quest states
@@ -95,6 +110,7 @@ export default function QuestsTab({
           key={quest.id || `quest-item-${index}`}
           quest={quest}
           onQuestComplete={handleQuestComplete}
+          onQuestCheckIn={handleQuestCheckIn}
         />
       ))}
       <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />

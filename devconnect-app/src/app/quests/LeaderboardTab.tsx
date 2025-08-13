@@ -9,13 +9,21 @@ import type { Quest as ApiQuest, ComponentQuest } from '@/types';
 // Quest states type
 type QuestStates = Record<
   string,
-  { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+  {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+    isCheckedIn?: boolean;
+  }
 >;
 
 // Transform API quest data to match the ComponentQuest interface
 const transformApiQuestToComponentQuest = (
   apiQuest: ApiQuest,
-  questState: { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+  questState: {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+    isCheckedIn?: boolean;
+  }
 ): ComponentQuest => {
   return {
     ...apiQuest,
@@ -39,10 +47,11 @@ export default function LeaderboardTab() {
   useEffect(() => {
     if (apiQuests.length > 0) {
       const transformedQuests: ComponentQuest[] = apiQuests.map((apiQuest) => {
-        const savedState = questStates[apiQuest.id] || {
-          status: 'locked' as const,
-          is_locked: true,
-        };
+            const savedState = questStates[apiQuest.id] || {
+              status: 'locked' as const,
+              is_locked: true,
+              isCheckedIn: false,
+            };
 
         return transformApiQuestToComponentQuest(apiQuest, savedState);
       });

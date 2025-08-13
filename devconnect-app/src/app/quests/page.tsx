@@ -17,7 +17,11 @@ const title = navLabel;
 // Quest states type
 type QuestStates = Record<
   string,
-  { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+  {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+    isCheckedIn?: boolean;
+  }
 >;
 
 // Category-based tab configuration
@@ -112,11 +116,17 @@ export default function QuestsPage() {
   const updateQuestStatus = (
     questId: string,
     status: 'completed' | 'active' | 'locked',
-    is_locked: boolean
+    is_locked: boolean,
+    isCheckedIn?: boolean
   ) => {
     setQuestStates((prev) => ({
       ...prev,
-      [questId]: { status, is_locked },
+      [questId]: {
+        ...prev[questId],
+        status,
+        is_locked,
+        ...(isCheckedIn !== undefined && { isCheckedIn }),
+      },
     }));
   };
 

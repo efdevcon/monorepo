@@ -116,5 +116,6 @@ export interface ComponentQuest extends Quest {
   state: {
     status: 'completed' | 'active' | 'locked';
     is_locked: boolean;
+    isCheckedIn?: boolean;
   };
 }
