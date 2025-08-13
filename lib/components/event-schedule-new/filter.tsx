@@ -7,17 +7,18 @@ export const useFilters = (events: any[]) => {
   //   const [selectedFilter, setSelectedFilter] = useState<string>("");
 
   const [filterOpen, setFilterOpen] = useState(false);
-  const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const keysToFilterOn = ["event_type", "difficulty", "categories"];
   const [categoryFilter, setCategoryFilter] = useState<any>([]);
-  const [statusFilter, setStatusFilter] = useState<any>([]);
   const [difficultyFilter, setDifficultyFilter] = useState([]);
   const filterableValues = {} as { [key: string]: Set<string> };
-  const [hideSoldOut, setHideSoldOut] = useState(false);
-  const [showOnlyDomainSpecific, setShowOnlyDomainSpecific] = useState(false);
-  const [showFavorites, setShowFavorites] = useState(false);
   const [textSearch, setTextSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState([]);
+
+  //   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
+  //   const [statusFilter, setStatusFilter] = useState<any>([]);
+  //   const [hideSoldOut, setHideSoldOut] = useState(false);
+  //   const [showOnlyDomainSpecific, setShowOnlyDomainSpecific] = useState(false);
+  //   const [showFavorites, setShowFavorites] = useState(false);
 
   // // Localstorage sync here
   // React.useEffect(() => {
@@ -45,6 +46,8 @@ export const useFilters = (events: any[]) => {
     });
   });
 
+  console.log(difficultyFilter);
+
   const filteredEvents = events.filter((event: any) => {
     // if (
     //   hideSoldOut &&
@@ -57,7 +60,7 @@ export const useFilters = (events: any[]) => {
 
     if (
       textSearch.length > 0 &&
-      !event.Name.toLowerCase().includes(textSearch.toLowerCase())
+      !event.name.toLowerCase().includes(textSearch.toLowerCase())
     )
       return false;
 
@@ -95,6 +98,7 @@ export const useFilters = (events: any[]) => {
     filteredEvents,
     filterableValues,
     keysToFilterOn,
+    textSearch,
     setTextSearch,
   };
 };

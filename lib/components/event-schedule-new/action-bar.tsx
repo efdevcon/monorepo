@@ -18,11 +18,15 @@ const ActionBar = ({
   filterOpen,
   setFilterOpen,
   filterableValues,
+  textSearch,
+  setTextSearch,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
   setFilterOpen: (open: boolean) => void;
   filterableValues: any;
+  textSearch: string;
+  setTextSearch: (search: string) => void;
 }) => {
   const categories = isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
@@ -58,6 +62,8 @@ const ActionBar = ({
             className="grow border-none outline-none bg-transparen ml-0.5"
             placeholder="Search events or organizers"
             type="text"
+            value={textSearch}
+            onChange={(e) => setTextSearch(e.target.value)}
           />
         </div>
       </div>
