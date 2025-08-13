@@ -3,6 +3,7 @@
 import QuestItem, { Quest } from '@/components/QuestItem';
 import QuestRecap from '@/components/QuestRecap';
 import QuestReward from '@/components/QuestReward';
+import QuestLeaderboard from '@/components/QuestLeaderboard';
 import type { Quest as ApiQuest } from '@/types';
 
 // Extended Quest interface that includes status and is_locked
@@ -45,6 +46,8 @@ interface QuestsTabProps {
   loading: boolean;
   error: string | null;
   category?: string;
+  onSwitchToTab?: (tabIndex: number) => void;
+  numberOfTabs: number;
 }
 
 export default function QuestsTab({
@@ -54,7 +57,10 @@ export default function QuestsTab({
   loading,
   error,
   category,
+  onSwitchToTab,
+  numberOfTabs,
 }: QuestsTabProps) {
+  console.log('numberOfTabs', numberOfTabs);
   // Transform API quests to component quests with status from props
   const componentQuests: ExtendedQuest[] = apiQuests.map((apiQuest) => {
     const savedState = questStates[apiQuest.id];
@@ -93,7 +99,24 @@ export default function QuestsTab({
         />
       ))}
       <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />
-      <QuestReward />
+      <div
+        className="w-full cursor-pointer hover:opacity-80 transition-opacity"
+        onClick={() => {
+          // load rewards tab (second to last tab)
+          onSwitchToTab?.(numberOfTabs - 2);
+        }}
+      >
+        <QuestReward />
+      </div>
+      <div
+        className="w-full cursor-pointer hover:opacity-80 transition-opacity"
+        onClick={() => {
+          // load leaderboard tab (last tab)
+          onSwitchToTab?.(numberOfTabs - 1);
+        }}
+      >
+        <QuestLeaderboard />
+      </div>
     </div>
   );
 }

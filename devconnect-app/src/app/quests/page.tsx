@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import PageLayout from '@/components/PageLayout';
 import TabbedSection from '@/components/TabbedSection';
@@ -48,6 +48,9 @@ export default function QuestsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
+  const [setTabIndex, setSetTabIndex] = useState<
+    ((index: number) => void) | null
+  >(null);
 
   // Local storage for quests data
   const [apiQuests, setApiQuests] = useLocalStorage<ApiQuest[]>(
@@ -117,6 +120,24 @@ export default function QuestsPage() {
     }));
   };
 
+  // Function to switch to any tab - use useCallback to prevent unnecessary re-renders
+  const switchToTab = useCallback(
+    (tabIndex: number) => {
+      if (setTabIndex) {
+        setTabIndex(tabIndex);
+      }
+    },
+    [setTabIndex]
+  );
+
+  // Stable callback for setting the tab index function
+  const handleTabIndexChange = useCallback(
+    (setTabIndexFn: (index: number) => void) => {
+      setSetTabIndex(() => setTabIndexFn);
+    },
+    []
+  );
+
   // Show loading only if not client-side yet
   if (!isClient) {
     return (
@@ -130,7 +151,11 @@ export default function QuestsPage() {
 
   return (
     <PageLayout title={title}>
-      <TabbedSection navLabel={navLabel} maxVisibleTabs={4}>
+      <TabbedSection
+        navLabel={navLabel}
+        maxVisibleTabs={4}
+        onTabIndexChange={handleTabIndexChange}
+      >
         {(tabIndex, tabItem) => {
           // Map tab index to the appropriate component
           if (tabIndex < 6) {
@@ -147,6 +172,8 @@ export default function QuestsPage() {
                   loading={loading && apiQuests.length === 0} // Only show loading if no cached data
                   error={error}
                   category={category}
+                  onSwitchToTab={switchToTab}
+                  numberOfTabs={CATEGORY_TABS.length}
                 />
               );
             }

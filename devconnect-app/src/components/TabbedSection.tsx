@@ -2,18 +2,22 @@
 import TabBar from './TabBar';
 import { NAV_ITEMS, TabItem } from '@/config/nav-items';
 import SwipeableViews from 'react-swipeable-views-react-18-fix';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 interface TabbedSectionProps {
   navLabel: string;
   children: (tabIndex: number, tabItem: TabItem) => React.ReactNode;
   maxVisibleTabs?: number; // Maximum tabs to show before scrolling
+  onTabChange?: (tabIndex: number) => void; // Callback when tab changes
+  onTabIndexChange?: (setTabIndex: (index: number) => void) => void; // Callback to expose setTabIndex
 }
 
 export default function TabbedSection({
   navLabel,
   children,
   maxVisibleTabs = 6,
+  onTabChange,
+  onTabIndexChange,
 }: TabbedSectionProps) {
   const navItem = NAV_ITEMS.find((item) => item.label === navLabel);
   const tabItems = navItem?.tabItems || [];
@@ -21,10 +25,23 @@ export default function TabbedSection({
   const [showScrollArrows, setShowScrollArrows] = useState(false);
   const tabBarRef = useRef<HTMLDivElement>(null);
 
+  // Expose setTabIndex to parent component - only call once on mount
+  useEffect(() => {
+    if (onTabIndexChange) {
+      onTabIndexChange(setTabIndex);
+    }
+  }, []); // Empty dependency array to only call once
+
   // Check if we need scroll arrows based on tab count
   useEffect(() => {
     setShowScrollArrows(tabItems.length > maxVisibleTabs);
   }, [tabItems.length, maxVisibleTabs]);
+
+  // Handle tab index changes - use useCallback to prevent unnecessary re-renders
+  const handleTabChange = useCallback((newIndex: number) => {
+    setTabIndex(newIndex);
+    onTabChange?.(newIndex);
+  }, [onTabChange]);
 
   if (!navItem || tabItems.length === 0) {
     return null;
@@ -35,19 +52,19 @@ export default function TabbedSection({
     switch (event.key) {
       case 'ArrowLeft':
         event.preventDefault();
-        setTabIndex((prev) => Math.max(0, prev - 1));
+        handleTabChange(Math.max(0, tabIndex - 1));
         break;
       case 'ArrowRight':
         event.preventDefault();
-        setTabIndex((prev) => Math.min(tabItems.length - 1, prev + 1));
+        handleTabChange(Math.min(tabItems.length - 1, tabIndex + 1));
         break;
       case 'Home':
         event.preventDefault();
-        setTabIndex(0);
+        handleTabChange(0);
         break;
       case 'End':
         event.preventDefault();
-        setTabIndex(tabItems.length - 1);
+        handleTabChange(tabItems.length - 1);
         break;
     }
   };
@@ -73,16 +90,20 @@ export default function TabbedSection({
   }, [tabIndex]);
 
   return (
-    <div className="w-full" onKeyDown={handleKeyDown} tabIndex={0}>
+    <div
+      className="w-full max-w-2xl mx-auto"
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+    >
       {/* Enhanced TabBar with scrolling support */}
       <div className="relative">
         {showScrollArrows && (
           <>
             {/* Left scroll arrow */}
             <button
-              onClick={() => setTabIndex((prev) => Math.max(0, prev - 1))}
+              onClick={() => handleTabChange(Math.max(0, tabIndex - 1))}
               disabled={tabIndex === 0}
-              className="absolute left-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all"
+              className="absolute left-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
               aria-label="Previous tab"
             >
               <svg
@@ -100,10 +121,10 @@ export default function TabbedSection({
             {/* Right scroll arrow */}
             <button
               onClick={() =>
-                setTabIndex((prev) => Math.min(tabItems.length - 1, prev + 1))
+                handleTabChange(Math.min(tabItems.length - 1, tabIndex + 1))
               }
               disabled={tabIndex === tabItems.length - 1}
-              className="absolute right-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full shadow-md flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all"
+              className="absolute right-0 top-3 z-10 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full border border-gray-400 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/90 transition-all cursor-pointer"
               aria-label="Next tab"
             >
               <svg
@@ -122,12 +143,12 @@ export default function TabbedSection({
 
         <div
           ref={tabBarRef}
-          className={`${showScrollArrows ? 'mx-10' : ''} overflow-x-auto scrollbar-hide`}
+          className={`${showScrollArrows ? 'mx-10' : 'flex'} overflow-x-auto scrollbar-hide`}
         >
           <TabBar
             navItem={navItem}
             activeIndex={tabIndex}
-            onTabClick={(_, idx) => setTabIndex(idx)}
+            onTabClick={(_, idx) => handleTabChange(idx)}
             showScrollArrows={showScrollArrows}
           />
         </div>
@@ -140,9 +161,10 @@ export default function TabbedSection({
             {tabItems.map((_, idx) => (
               <div
                 key={idx}
-                className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                className={`w-2 h-2 rounded-full transition-all duration-200 cursor-pointer ${
                   idx === tabIndex ? 'bg-blue-500' : 'bg-gray-300'
                 }`}
+                onClick={() => handleTabChange(idx)}
               />
             ))}
           </div>
@@ -152,7 +174,7 @@ export default function TabbedSection({
       {/* Enhanced SwipeableViews with better performance */}
       <SwipeableViews
         index={tabIndex}
-        onChangeIndex={setTabIndex}
+        onChangeIndex={handleTabChange}
         enableMouseEvents
         resistance
         style={{
@@ -173,13 +195,13 @@ export default function TabbedSection({
       </SwipeableViews>
 
       {/* Keyboard navigation hint for many tabs */}
-      {tabItems.length > 4 && (
+      {/* {tabItems.length > 4 && (
         <div className="text-center text-xs text-gray-500 mt-2 px-4">
           <span>
             Use ← → arrow keys to navigate, Home/End for first/last tab
           </span>
         </div>
-      )}
+      )} */}
     </div>
   );
 } 

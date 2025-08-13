@@ -21,7 +21,7 @@ export default function TabBar({
   return (
     <div
       className={`mt-3 p-1 inline-flex justify-center items-center rounded ${
-        showScrollArrows ? 'min-w-full' : ''
+        showScrollArrows ? 'min-w-full' : 'mx-auto'
       }`}
       style={{ background: bgColor }}
     >
@@ -46,7 +46,9 @@ export default function TabBar({
           <div
             className={
               "text-center justify-center text-sm font-medium font-['Roboto'] leading-tight " +
-              (idx === activeIndex ? 'text-[#232336]' : 'text-[#4b4b66]')
+              (idx === activeIndex
+                ? 'text-[#232336]'
+                : 'text-[#4b4b66] cursor-pointer')
             }
           >
             {item.label}
