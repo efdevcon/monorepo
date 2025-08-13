@@ -1,13 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import { toast } from 'sonner';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
 import type { ComponentQuest } from '@/types';
+import { executeQuestAction } from '@/utils/quest-actions';
 
-const QuestItem = ({ quest }: { quest: ComponentQuest }) => {
+interface QuestItemProps {
+  quest: ComponentQuest;
+  onQuestComplete?: (questId: string) => void;
+}
+
+const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isExecutingAction, setIsExecutingAction] = useState(false);
 
   const getStatusStyles = () => {
     switch (quest.state.status) {
@@ -38,6 +46,103 @@ const QuestItem = ({ quest }: { quest: ComponentQuest }) => {
 
   const handleClick = () => {
     setIsExpanded(!isExpanded);
+  };
+
+  const handleQuestAction = async () => {
+    if (isExecutingAction) return;
+
+    setIsExecutingAction(true);
+
+    try {
+      console.log(
+        `Executing quest action: ${quest.conditionType} with values: ${quest.conditionValues}`
+      );
+
+      const result = await executeQuestAction(
+        quest.conditionType,
+        quest.conditionValues
+      );
+
+      if (result) {
+        // Update quest state to completed
+        onQuestComplete?.(quest.id);
+
+        toast.success(
+          <div className="space-y-2">
+            <div className="font-semibold text-green-800">
+              ✅ Quest Action Successful!
+            </div>
+            <div className="text-sm text-green-700">
+              {quest.name} - Action completed successfully.
+            </div>
+          </div>,
+          {
+            duration: 4000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              border: '1px solid #bbf7d0',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      } else {
+        toast.error(
+          <div className="space-y-2">
+            <div className="font-semibold text-red-800">
+              ❌ Quest Action Failed
+            </div>
+            <div className="text-sm text-red-700">
+              {quest.name} - Action could not be completed. Please try again.
+            </div>
+          </div>,
+          {
+            duration: 4000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+              border: '1px solid #fecaca',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.error('Quest action execution failed:', error);
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+
+      toast.error(
+        <div className="space-y-2">
+          <div className="font-semibold text-red-800">
+            ❌ Quest Action Error
+          </div>
+          <div className="text-sm text-red-700">
+            <div className="font-medium">Error:</div>
+            <div className="bg-red-50 p-2 rounded border text-red-600">
+              {errorMessage}
+            </div>
+          </div>
+        </div>,
+        {
+          duration: 6000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+            border: '1px solid #fecaca',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    } finally {
+      setIsExecutingAction(false);
+    }
   };
 
   return (
@@ -95,16 +200,20 @@ const QuestItem = ({ quest }: { quest: ComponentQuest }) => {
       </div>
 
       {/* Action button - only show when expanded */}
-      {isExpanded && quest.button && (
+      {isExpanded && (
         <div
-          className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 ${
+          className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 cursor-pointer transition-all duration-200 ${
             quest.state.status === 'active'
-              ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)]'
-              : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)]'
-          }`}
+              ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
+              : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
+          } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering the parent click handler
+            handleQuestAction();
+          }}
         >
           <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
-            {quest.button}
+            {isExecutingAction ? 'Executing...' : quest.button || 'TODO'}
           </div>
           <div className="size-5 relative overflow-hidden">
             <svg

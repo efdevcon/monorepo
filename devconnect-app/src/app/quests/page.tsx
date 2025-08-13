@@ -58,8 +58,11 @@ export default function QuestsPage() {
     []
   );
 
-  // Regular state for quest status and locked state
-  const [questStates, setQuestStates] = useState<QuestStates>({});
+  // Local storage for quest status and locked state
+  const [questStates, setQuestStates] = useLocalStorage<QuestStates>(
+    'quest-states',
+    {}
+  );
 
   // Ensure client-side rendering to prevent hydration mismatch
   useEffect(() => {
@@ -67,7 +70,10 @@ export default function QuestsPage() {
 
     // Debug: Check what's in localStorage
     const cachedQuests = localStorage.getItem('quests-data');
-  }, [apiQuests]);
+    const cachedStates = localStorage.getItem('quest-states');
+    console.log('Cached quests:', cachedQuests);
+    console.log('Cached quest states:', cachedStates);
+  }, [apiQuests, questStates]);
 
   // Fetch quests from API on first load
   useEffect(() => {

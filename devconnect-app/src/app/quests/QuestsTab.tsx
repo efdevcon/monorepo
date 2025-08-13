@@ -58,6 +58,19 @@ export default function QuestsTab({
     return transformApiQuestToComponentQuest(apiQuest, savedState);
   });
 
+  // Handle quest completion
+  const handleQuestComplete = (questId: string) => {
+    updateQuestStatus(questId, 'completed', false);
+  };
+
+  // Handle reset all quest states
+  const handleResetStates = () => {
+    // Reset all quests to locked state
+    apiQuests.forEach((quest) => {
+      updateQuestStatus(quest.id, 'locked', true);
+    });
+  };
+
   if (loading && apiQuests.length === 0) {
     return (
       <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
@@ -76,9 +89,13 @@ export default function QuestsTab({
 
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
-      <QuestRecap quests={componentQuests} />
+      <QuestRecap quests={componentQuests} onResetStates={handleResetStates} />
       {componentQuests.map((quest, index) => (
-        <QuestItem key={quest.id || `quest-item-${index}`} quest={quest} />
+        <QuestItem
+          key={quest.id || `quest-item-${index}`}
+          quest={quest}
+          onQuestComplete={handleQuestComplete}
+        />
       ))}
       <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />
       <div
