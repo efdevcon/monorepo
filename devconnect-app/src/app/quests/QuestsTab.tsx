@@ -1,17 +1,10 @@
 'use client';
 
-import QuestItem, { Quest } from '@/components/QuestItem';
+import QuestItem from '@/components/QuestItem';
 import QuestRecap from '@/components/QuestRecap';
 import QuestReward from '@/components/QuestReward';
 import QuestLeaderboard from '@/components/QuestLeaderboard';
-import type { Quest as ApiQuest } from '@/types';
-
-// Extended Quest interface that includes status and is_locked
-interface ExtendedQuest extends Omit<Quest, 'quest_id'> {
-  quest_id: string;
-  status: 'completed' | 'active' | 'locked';
-  is_locked: boolean;
-}
+import type { Quest as ApiQuest, ComponentQuest } from '@/types';
 
 // Quest states type
 type QuestStates = Record<
@@ -19,19 +12,14 @@ type QuestStates = Record<
   { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
 >;
 
-// Transform API quest data to match the component's Quest interface
+// Transform API quest data to match the ComponentQuest interface
 const transformApiQuestToComponentQuest = (
-  apiQuest: ApiQuest
-): ExtendedQuest => {
+  apiQuest: ApiQuest,
+  questState: { status: 'completed' | 'active' | 'locked'; is_locked: boolean }
+): ComponentQuest => {
   return {
-    number: apiQuest.order,
-    quest_id: apiQuest.id,
-    title: apiQuest.name,
-    description: apiQuest.instructions,
-    points: apiQuest.points,
-    action: apiQuest.button,
-    status: 'locked' as const, // Default status, will be overridden by props
-    is_locked: true, // Default locked state, will be overridden by props
+    ...apiQuest,
+    state: questState,
   };
 };
 
@@ -61,15 +49,13 @@ export default function QuestsTab({
   numberOfTabs,
 }: QuestsTabProps) {
   // Transform API quests to component quests with status from props
-  const componentQuests: ExtendedQuest[] = apiQuests.map((apiQuest) => {
-    const savedState = questStates[apiQuest.id];
-    const transformedQuest = transformApiQuestToComponentQuest(apiQuest);
-
-    return {
-      ...transformedQuest,
-      status: savedState?.status || 'locked',
-      is_locked: savedState?.is_locked ?? true,
+  const componentQuests: ComponentQuest[] = apiQuests.map((apiQuest) => {
+    const savedState = questStates[apiQuest.id] || {
+      status: 'locked' as const,
+      is_locked: true,
     };
+
+    return transformApiQuestToComponentQuest(apiQuest, savedState);
   });
 
   if (loading && apiQuests.length === 0) {
@@ -92,10 +78,7 @@ export default function QuestsTab({
     <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
       <QuestRecap quests={componentQuests} />
       {componentQuests.map((quest, index) => (
-        <QuestItem
-          key={quest.quest_id || `quest-item-${index}`}
-          quest={quest}
-        />
+        <QuestItem key={quest.id || `quest-item-${index}`} quest={quest} />
       ))}
       <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />
       <div

@@ -4,23 +4,13 @@ import { useState } from 'react';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
+import type { ComponentQuest } from '@/types';
 
-interface Quest {
-  number: number;
-  quest_id: string;
-  title: string;
-  description?: string;
-  points: number;
-  action?: string;
-  status: 'completed' | 'active' | 'locked';
-  is_locked: boolean;
-}
-
-const QuestItem = ({ quest }: { quest: Quest }) => {
+const QuestItem = ({ quest }: { quest: ComponentQuest }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const getStatusStyles = () => {
-    switch (quest.status) {
+    switch (quest.state.status) {
       case 'completed':
         return {
           container: 'bg-[#eaf9eb]',
@@ -60,18 +50,20 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
       <div className="w-full flex flex-col justify-start items-start gap-1">
         <div
           className={`text-[11px] font-medium font-['Roboto'] leading-[14.30px] tracking-wide ${
-            quest.status === 'completed' ? 'text-[#199821]' : 'text-[#4b4b66]'
+            quest.state.status === 'completed'
+              ? 'text-[#199821]'
+              : 'text-[#4b4b66]'
           }`}
         >
-          {`QUEST ${quest.number}`}
+          {`QUEST ${quest.order}`}
         </div>
         <div className="text-[#232336] text-lg font-bold font-['Roboto'] leading-normal">
-          {quest.title}
+          {quest.name}
         </div>
       </div>
-      {isExpanded && quest.description && (
+      {isExpanded && quest.instructions && (
         <div className="w-full justify-start text-[#232336] text-sm font-normal font-['Roboto'] leading-[21px] mt-2">
-          {quest.description}
+          {quest.instructions}
         </div>
       )}
 
@@ -80,7 +72,7 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
         <ChevronIcon
           isExpanded={isExpanded}
           size="md"
-          color={quest.status === 'completed' ? '#232336' : '#4b4b66'}
+          color={quest.state.status === 'completed' ? '#232336' : '#4b4b66'}
         />
       </div>
 
@@ -89,30 +81,30 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
         className={`size- p-1 right-4 top-4 absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
       >
         {/* Lock icon for locked quests */}
-        {quest.status === 'locked' && quest.number === 6 && (
+        {quest.state.status === 'locked' && quest.order === 6 && (
           <div className="size- p-1 bg-[#4b4b66] rounded-[1px] inline-flex justify-center items-center gap-1 mr-1">
             <LockIcon size="md" />
           </div>
         )}
-        <StarIcon isCompleted={quest.status === 'completed'} size="md" />
+        <StarIcon isCompleted={quest.state.status === 'completed'} size="md" />
         <div
-          className={`justify-start ${styles.points} text-${quest.number >= 3 ? 'xs' : 'sm'} font-black font-['Unibody_8_Pro'] leading-${quest.number >= 3 ? '3' : '[14px]'}`}
+          className={`justify-start ${styles.points} text-${quest.order >= 3 ? 'xs' : 'sm'} font-black font-['Unibody_8_Pro'] leading-${quest.order >= 3 ? '3' : '[14px]'}`}
         >
           {quest.points}
         </div>
       </div>
 
       {/* Action button - only show when expanded */}
-      {isExpanded && quest.action && (
+      {isExpanded && quest.button && (
         <div
           className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 ${
-            quest.status === 'active'
+            quest.state.status === 'active'
               ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)]'
               : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)]'
           }`}
         >
           <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
-            {quest.action}
+            {quest.button}
           </div>
           <div className="size-5 relative overflow-hidden">
             <svg
@@ -134,5 +126,4 @@ const QuestItem = ({ quest }: { quest: Quest }) => {
   );
 };
 
-export default QuestItem;
-export type { Quest }; 
+export default QuestItem; 

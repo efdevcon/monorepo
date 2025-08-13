@@ -9,5 +9,6 @@ export type {
   QuestConditionType,
   QuestCategory,
   QuestGroup,
-  QuestDifficulty
+  QuestDifficulty,
+  ComponentQuest
 } from './quest';

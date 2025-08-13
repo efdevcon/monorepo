@@ -108,3 +108,13 @@ export interface Quest {
   /** Position coordinates (e.g., "200,500") */
   position: string;
 }
+
+/**
+ * Component Quest interface that extends ApiQuest with state management
+ */
+export interface ComponentQuest extends Quest {
+  state: {
+    status: 'completed' | 'active' | 'locked';
+    is_locked: boolean;
+  };
+}
