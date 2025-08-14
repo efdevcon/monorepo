@@ -25,6 +25,7 @@ import cn from 'classnames'
 import { useScroll } from 'framer-motion'
 import { useDevaBotStore } from 'store/devai'
 import MailIcon from 'assets/icons/mail.svg'
+import { TICKETS_URL } from 'common/constants'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -81,7 +82,7 @@ const menuItems = (pathname: string) => [
   },
   {
     text: 'Tickets',
-    url: 'https://tickets.devconnect.org/',
+    url: TICKETS_URL,
   },
   {
     text: 'Perks',

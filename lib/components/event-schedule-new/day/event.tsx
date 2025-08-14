@@ -204,7 +204,7 @@ const Event: React.FC<EventProps> = ({
             })}
           >
             {isCoworking && (
-              <a href="https://tickets.devconnect.org">
+              <a href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website">
                 <Button
                   size="sm"
                   color="blue-1"

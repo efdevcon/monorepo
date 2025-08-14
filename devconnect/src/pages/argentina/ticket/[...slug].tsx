@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { colorKeys, colorMap } from 'common/components/ticket'
 import { SEO } from 'common/components/SEO'
-import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE } from 'common/constants'
+import { FARCASTE_HANDLE, SITE_URL, SOCIAL_HANDLE, TICKETS_URL } from 'common/constants'
 import Link from 'common/components/link/Link'
 import cn from 'classnames'
 import styles from 'common/components/ticket/styles.module.scss'
@@ -272,7 +272,7 @@ You coming?`)
           )}
         </div>
         <div className="flex flex-col mt-10">
-          <Link href="http://tickets.devconnect.org/">
+          <Link href={TICKETS_URL}>
             <TiledButton
               icon={
                 <svg
