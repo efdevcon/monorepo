@@ -15,8 +15,9 @@ const Layout = (props: CalendarLayoutProps) => {
     filteredEvents,
     filterableValues,
     keysToFilterOn,
-    textSearch,
-    setTextSearch,
+    filter,
+    setFilter,
+    resetFilter,
   } = useFilters(props.events);
 
   return (
@@ -52,8 +53,9 @@ const Layout = (props: CalendarLayoutProps) => {
           filterOpen={filterOpen}
           setFilterOpen={setFilterOpen}
           filterableValues={filterableValues}
-          textSearch={textSearch}
-          setTextSearch={setTextSearch}
+          setFilter={setFilter}
+          resetFilter={resetFilter}
+          filter={filter}
         />
 
         <div className="relative flex">
@@ -66,6 +68,8 @@ const Layout = (props: CalendarLayoutProps) => {
                   keysToFilterOn={keysToFilterOn}
                   filterableValues={filterableValues}
                   setFilterOpen={setFilterOpen}
+                  filter={filter}
+                  setFilter={setFilter}
                   // {...filterAttributes}
                   // edition={props.edition}
                   // favorites={favorites}
