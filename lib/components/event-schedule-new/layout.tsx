@@ -18,6 +18,7 @@ const Layout = (props: CalendarLayoutProps) => {
     filter,
     setFilter,
     resetFilter,
+    filterActive,
   } = useFilters(props.events);
 
   return (
@@ -53,6 +54,7 @@ const Layout = (props: CalendarLayoutProps) => {
           filterOpen={filterOpen}
           setFilterOpen={setFilterOpen}
           filterableValues={filterableValues}
+          filterActive={filterActive}
           setFilter={setFilter}
           resetFilter={resetFilter}
           filter={filter}

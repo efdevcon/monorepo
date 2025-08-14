@@ -19,6 +19,13 @@ export const useFilters = (events: any[]) => {
 
   const [filter, setFilterState] = useState<any>(defaultFilter);
 
+  // Compute if any filter is active (differs from default)
+  const filterActive =
+    // filter.name !== defaultFilter.name ||
+    filter.category.length !== defaultFilter.category.length ||
+    filter.difficulty.length !== defaultFilter.difficulty.length ||
+    filter.event_type.length !== defaultFilter.event_type.length;
+
   // Function to handle filter updates with toggle behavior for arrays
   const setFilter = (filterKey: string, nextValue: any) => {
     setFilterState((prevFilter: any) => {
@@ -108,6 +115,7 @@ export const useFilters = (events: any[]) => {
     filter,
     setFilter,
     resetFilter,
+    filterActive,
   };
 };
 

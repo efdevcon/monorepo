@@ -21,6 +21,7 @@ const ActionBar = ({
   setFilter,
   resetFilter,
   filter,
+  filterActive,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
@@ -29,6 +30,7 @@ const ActionBar = ({
   setFilter: (filterKey: string, nextValue: any) => void;
   filter: any;
   resetFilter: () => void;
+  filterActive: boolean;
 }) => {
   const categories = isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
@@ -37,13 +39,16 @@ const ActionBar = ({
     <div className="flex justify-between items-center w-full gap-4">
       <div className="flex items-center gap-2">
         <button
-          className="flex items-center gap-2 text-sm font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2"
+          className={cn(
+            "flex items-center gap-2 text-sm font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2 transition-colors duration-300",
+            (filterActive || filterOpen) && "bg-blue-50"
+          )}
           onClick={() => setFilterOpen(!filterOpen)}
         >
-          <ListFilter size={13} className={filterOpen ? "rotate-90" : ""} />
+          <ListFilter size={13} />
           Filter
         </button>
-        <FilterSummary filter={filter} />
+        {filterActive && <FilterSummary filter={filter} />}
       </div>
 
       <div className="flex items-center gap-4">
@@ -57,6 +62,7 @@ const ActionBar = ({
           </div>
         ))}
       </div>
+
       <div className="flex items-center justify-end grow gap-2">
         <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
           <Search size={15} color="rgba(124, 124, 153, 1)" />
