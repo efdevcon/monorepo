@@ -111,45 +111,28 @@ export const useFilters = (events: any[]) => {
   };
 };
 
-export const FilterSummary = () => {
+export const FilterSummary = ({ filter }: { filter: any }) => {
+  const computeFilterShorthand = (key: string, filters: string[]) => {
+    if (filters.length === 0) return null;
+    if (filters.length === 1) return filters[0];
+    return `${key} (${filters.length})`;
+  };
+
+  const filterSummary =
+    [
+      computeFilterShorthand("Categories", filter.category),
+      computeFilterShorthand("Difficulty", filter.difficulty),
+      computeFilterShorthand("Event Type", filter.event_type),
+      filter.name ? `Search: "${filter.name}"` : null,
+    ]
+      .filter((val) => !!val)
+      .map((val) => uppercaseFirstLetter(val as string))
+      .join(", ") || "None";
+
   return (
     <div className={filterCss["active-filters"]}>
       <p className="small-text">Active filter:</p>
-      <p className="bold tiny-text">
-        Filter summary (...)
-        {/* {(() => {
-          const {
-            categoryFilter,
-            difficultyFilter,
-            statusFilter,
-            hideSoldOut,
-            showFavorites,
-            showOnlyDomainSpecific,
-          } = filterAttributes;
-
-          const computeFilterShorthand = (key: string, filters: string[]) => {
-            if (filters.length === 0) return;
-            if (filters.length === 1) return filters[0];
-
-            return `${key} (${filters.length})`;
-          };
-
-          return (
-            [
-              computeFilterShorthand("Categories", categoryFilter),
-              computeFilterShorthand("Experience", difficultyFilter),
-              showFavorites ? "Favorites" : null,
-              computeFilterShorthand("Status", statusFilter),
-              hideSoldOut ? "Not sold out" : null,
-              ,
-              showOnlyDomainSpecific ? "Ecosystem" : null,
-              ,
-            ]
-              .filter((val) => !!val)
-              .join(", ") || "None"
-          );
-        })()} */}
-      </p>
+      <p className="bold tiny-text">{filterSummary}</p>
     </div>
   );
 };
@@ -179,8 +162,6 @@ export const Filter = ({
 }) => {
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
-  console.log(filterableValuesKeys, "hello keys");
-
   return (
     <div className={cn(filterCss["filter-foldout"], "w-64 p-4")}>
       <div className="flex flex-col gap-4 w-full">
@@ -192,14 +173,12 @@ export const Filter = ({
             <Badge
               className="text-sm font-normal cursor-pointer select-none h-6 flex items-center justify-center"
               onClick={resetFilter}
-              // variant="secondary"
             >
               Reset
             </Badge>
             <Badge
               className="text-sm font-medium cursor-pointer h-6 w-6 p-0 flex items-center justify-center"
               onClick={() => setFilterOpen(false)}
-              // variant="secondary"
             >
               <X size={16} />
             </Badge>
@@ -234,11 +213,7 @@ export const Filter = ({
                       )}
                       onClick={() => setFilter(filterStateKey, value)}
                     >
-                      <Checkbox
-                        checked={isSelected}
-                        className="mb-0.5"
-                        // onCheckedChange={() => setFilter(filterStateKey, value)}
-                      />
+                      <Checkbox checked={isSelected} className="mb-0.5" />
                       {uppercaseFirstLetter(value)}
                     </div>
                   );

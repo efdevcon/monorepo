@@ -43,7 +43,7 @@ const ActionBar = ({
           <ListFilter size={13} className={filterOpen ? "rotate-90" : ""} />
           Filter
         </button>
-        <FilterSummary />
+        <FilterSummary filter={filter} />
       </div>
 
       <div className="flex items-center gap-4">
