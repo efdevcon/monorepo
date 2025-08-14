@@ -70,6 +70,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   setFilterOpen={setFilterOpen}
                   filter={filter}
                   setFilter={setFilter}
+                  resetFilter={resetFilter}
                   // {...filterAttributes}
                   // edition={props.edition}
                   // favorites={favorites}

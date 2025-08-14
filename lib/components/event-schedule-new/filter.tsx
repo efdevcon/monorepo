@@ -1,6 +1,8 @@
 import { useState } from "react";
 import filterCss from "./filter.module.scss";
 import cn from "classnames";
+import { Checkbox } from "lib/components/ui/checkbox";
+import { Badge } from "lib/components/ui/badge";
 import { X } from "lucide-react";
 
 export const useFilters = (events: any[]) => {
@@ -152,6 +154,10 @@ export const FilterSummary = () => {
   );
 };
 
+const uppercaseFirstLetter = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 export const Filter = ({
   filterOpen,
   setFilterOpen,
@@ -160,6 +166,7 @@ export const Filter = ({
   keysToFilterOn,
   filter,
   setFilter,
+  resetFilter,
 }: {
   filterOpen: boolean;
   setFilterOpen: (open: boolean) => void;
@@ -168,6 +175,7 @@ export const Filter = ({
   keysToFilterOn: string[];
   filter: any;
   setFilter: (filterKey: string, nextValue: any) => void;
+  resetFilter: () => void;
 }) => {
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
@@ -177,29 +185,39 @@ export const Filter = ({
     <div className={cn(filterCss["filter-foldout"], "w-64 p-4")}>
       <div className="flex flex-col gap-4 w-full">
         <div className="flex justify-between items-center w-full">
-          <div className="text-sm font-medium">Refine your search</div>
-          <div
-            className="text-sm font-medium cursor-pointer"
-            onClick={() => setFilterOpen(false)}
-          >
-            <X size={16} />
+          <div className="text-sm font-medium underline">
+            Refine your search
+          </div>
+          <div className="flex items-center gap-2">
+            <Badge
+              className="text-sm font-normal cursor-pointer select-none h-6 flex items-center justify-center"
+              onClick={resetFilter}
+              // variant="secondary"
+            >
+              Reset
+            </Badge>
+            <Badge
+              className="text-sm font-medium cursor-pointer h-6 w-6 p-0 flex items-center justify-center"
+              onClick={() => setFilterOpen(false)}
+              // variant="secondary"
+            >
+              <X size={16} />
+            </Badge>
           </div>
         </div>
         {filterableValuesKeys.map((key) => {
           const valuesForFilter = Array.from(filterableValues[key]);
-          console.log(valuesForFilter, "hello values");
-          // Map event property keys to filter state keys
           const filterStateKey = key === "categories" ? "category" : key;
           const activeFilters = filter[filterStateKey] || [];
 
           if (valuesForFilter.length === 0) return null;
 
           return (
-            <div key={key}>
+            <div key={key} className="flex flex-col gap-2">
               <div className="text-sm font-medium capitalize">
                 {key.replace("_", " ")}
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-0.5">
                 {Array.from(valuesForFilter).map((value: any) => {
                   const isSelected = Array.isArray(activeFilters)
                     ? activeFilters.includes(value)
@@ -209,14 +227,19 @@ export const Filter = ({
                     <div
                       key={value}
                       className={cn(
-                        "text-sm cursor-pointer px-2 py-1 rounded transition-colors select-none",
+                        "text-sm cursor-pointer py-0.5 rounded transition-colors select-none flex items-center gap-2",
                         isSelected
                           ? "bg-blue-100 text-blue-800 font-medium"
                           : "hover:bg-gray-100"
                       )}
                       onClick={() => setFilter(filterStateKey, value)}
                     >
-                      {value}
+                      <Checkbox
+                        checked={isSelected}
+                        className="mb-0.5"
+                        // onCheckedChange={() => setFilter(filterStateKey, value)}
+                      />
+                      {uppercaseFirstLetter(value)}
                     </div>
                   );
                 })}
