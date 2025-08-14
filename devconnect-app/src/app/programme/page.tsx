@@ -21,7 +21,7 @@ export default function ProgrammePage() {
     <PageLayout title={title}>
       <TabbedSection
         navLabel={navLabel}
-        disableSwipe={currentTabIndex === 0}
+        disableSwipe={currentTabIndex < 2}
         onTabChange={setCurrentTabIndex}
       >
         {(tabIndex, tabItem) => {
