@@ -36,7 +36,7 @@ const ActionBar = ({
   const hasLoggedInUser = true;
 
   return (
-    <div className="flex justify-between items-center w-full gap-4">
+    <div className="flex justify-between items-center w-full gap-6">
       <div className="flex items-center gap-2">
         <button
           className={cn(

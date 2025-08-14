@@ -73,6 +73,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   filter={filter}
                   setFilter={setFilter}
                   resetFilter={resetFilter}
+                  filterActive={filterActive}
                   // {...filterAttributes}
                   // edition={props.edition}
                   // favorites={favorites}

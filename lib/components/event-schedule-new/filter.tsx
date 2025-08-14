@@ -158,6 +158,7 @@ export const Filter = ({
   filter,
   setFilter,
   resetFilter,
+  filterActive,
 }: {
   filterOpen: boolean;
   setFilterOpen: (open: boolean) => void;
@@ -167,6 +168,7 @@ export const Filter = ({
   filter: any;
   setFilter: (filterKey: string, nextValue: any) => void;
   resetFilter: () => void;
+  filterActive: boolean;
 }) => {
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
@@ -178,12 +180,14 @@ export const Filter = ({
             Refine your search
           </div>
           <div className="flex items-center gap-2">
-            <Badge
-              className="text-sm font-normal cursor-pointer select-none h-6 flex items-center justify-center"
-              onClick={resetFilter}
-            >
-              Reset
-            </Badge>
+            {filterActive && (
+              <Badge
+                className="text-sm font-normal cursor-pointer select-none h-6 flex items-center justify-center"
+                onClick={resetFilter}
+              >
+                Reset
+              </Badge>
+            )}
             <Badge
               className="text-sm font-medium cursor-pointer h-6 w-6 p-0 flex items-center justify-center"
               onClick={() => setFilterOpen(false)}
