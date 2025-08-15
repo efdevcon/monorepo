@@ -52,6 +52,7 @@ import VoxelCalendar from 'assets/images/ba/voxel-calendar.png'
 import VoxelSquares from 'assets/images/ba/voxel-squares.png'
 import VoxelBlueEthereum from 'assets/images/ba/voxel-blue-eth.png'
 import EthGlyph from 'assets/images/ba/eth-glyph.png'
+import { TICKETS_URL } from 'common/constants'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -252,7 +253,7 @@ const TicketButton = ({
 }) => {
   return (
     <Link
-      href="https://tickets.devconnect.org/"
+      href={TICKETS_URL}
       className="pointer-events-auto"
       spanClass={cn('flex flex-col items-end gap-2 group', className, css['no-underline'])}
     >
@@ -391,7 +392,7 @@ const Home: NextPage = (props: any) => {
                       {data.pages.what_is_devconnect}
                     </p>
 
-                    <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
+                    <Link href={TICKETS_URL} className="pointer-events-auto">
                       <button
                         className={cn(
                           'mt-6 mb-2 border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
@@ -817,7 +818,7 @@ const Home: NextPage = (props: any) => {
                     },
                   }}
                 >
-                  <Link href="https://tickets.devconnect.org/" className="pointer-events-auto mt-6">
+                  <Link href={TICKETS_URL} className="pointer-events-auto mt-6">
                     <button
                       className={cn(
                         'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'
@@ -1052,7 +1053,7 @@ const Home: NextPage = (props: any) => {
             <div className="flex justify-center gap-8 items-center py-[48px]">
               <div className="text-2xl font-secondary font-bold">{data.pages.ticket_cta}</div>
 
-              <Link href="https://tickets.devconnect.org/" className="pointer-events-auto">
+              <Link href={TICKETS_URL} className="pointer-events-auto">
                 <button
                   className={cn(
                     'relative border-solid border-b-[6px] group px-8 pr-6 py-2 border-[#125181] text-[white] text-xl bg-[#1B6FAE] hover:bg-[rgba(60,138,197,1)] transition-colors hover:border-opacity-0'

@@ -1,7 +1,7 @@
 'use client';
 
-import WorldsFairTab from '../programme/WorldsFairTab';
+import EventMap from '@/components/EventMap';
 
 export default function MapPage() {
-  return <WorldsFairTab fullHeight />;
+  return <EventMap />;
 }

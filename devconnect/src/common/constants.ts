@@ -9,3 +9,4 @@ export const SITE_URL =
 export const IMAGE_OG = `${SITE_URL}og-argentina.png?reset=1`
 export const SOCIAL_HANDLE = '@EFDevcon'
 export const FARCASTE_HANDLE = '@devcon'
+export const TICKETS_URL = 'https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website'

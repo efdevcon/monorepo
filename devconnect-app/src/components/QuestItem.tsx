@@ -5,21 +5,15 @@ import { toast } from 'sonner';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
-import QRScanner from '@/components/QRScanner';
 import type { ComponentQuest } from '@/types';
 import { executeQuestAction } from '@/utils/quest-actions';
 
 interface QuestItemProps {
   quest: ComponentQuest;
   onQuestComplete?: (questId: string) => void;
-  onQuestCheckIn?: (questId: string) => void;
 }
 
-const QuestItem = ({
-  quest,
-  onQuestComplete,
-  onQuestCheckIn,
-}: QuestItemProps) => {
+const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isExecutingAction, setIsExecutingAction] = useState(false);
 
@@ -158,67 +152,6 @@ const QuestItem = ({
     }
   };
 
-  const handleCheckInScan = (scannedCode: string) => {
-    console.log('scannedCode', scannedCode);
-    console.log('quest.boothCode', quest.boothCode);
-    const code = scannedCode.includes('/booth/') ? scannedCode.split('/booth/')[1] : scannedCode;
-    if (code === quest.boothCode) {
-      // Update quest state to checked in
-      if (quest.state.isCheckedIn !== true) {
-        // Update the quest state to mark as checked in
-        onQuestCheckIn?.(quest.id);
-
-        toast.success(
-          <div className="space-y-2">
-            <div className="font-semibold text-green-800">
-              ✅ Check-in Successful!
-            </div>
-            <div className="text-sm text-green-700">
-              {quest.name} - You have been checked in successfully.
-            </div>
-          </div>,
-          {
-            duration: 4000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-              border: '1px solid #bbf7d0',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
-      }
-    } else {
-      toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">
-            ❌ Invalid Check-in Code
-          </div>
-          <div className="text-sm text-red-700">
-            The scanned QR code does not match the expected booth code.
-          </div>
-        </div>,
-        {
-          duration: 4000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
-    }
-  };
-
-  const handleCheckInClose = () => {
-    // No need to manage isCheckingIn state since QRScanner handles its own open/close
-  };
-
   return (
     <div
       className={`w-full p-4 relative ${styles.container} rounded-[1px] flex flex-col justify-start items-start gap-2 cursor-pointer transition-all duration-200 min-h-[80px] ${
@@ -279,19 +212,6 @@ const QuestItem = ({
           onClick={(e) => e.stopPropagation()}
           className="w-full flex flex-col justify-start items-start gap-2"
         >
-          {/* Check-in button */}
-          {quest.boothCode && !quest.state.isCheckedIn ? (
-            <QRScanner
-              onScan={handleCheckInScan}
-              onClose={handleCheckInClose}
-              buttonLabel={'Booth Check In'}
-              autoOpen={false}
-            />
-          ) : quest.boothCode && quest.state.isCheckedIn ? (
-            <div className="text-center">
-              Booth Checked In ✅
-            </div>
-          ) : null}
           <div
             className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 cursor-pointer transition-all duration-200 ${
               quest.state.status === 'active'

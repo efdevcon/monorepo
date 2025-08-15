@@ -95,10 +95,7 @@ export interface Quest {
   
   /** Unique quest identifier */
   id: string;
-  
-  /** Booth check-in code for physical verification */
-  boothCode: string;
-  
+
   /** URL to the quest logo/image */
   logoLink: string;
   

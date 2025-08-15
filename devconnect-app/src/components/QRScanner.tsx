@@ -215,7 +215,7 @@ const QRScanner = ({
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gray-900">
                 <div className="flex justify-between items-center mb-3">
                   <span className="text-center text-white font-semibold">
-                    Scan booth check-in or payment QR code
+                    Scan payment QR code
                   </span>
                   <button
                     className="text-gray-400 hover:text-white text-2xl font-bold"

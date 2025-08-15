@@ -73,11 +73,6 @@ export default function QuestsTab({
     updateQuestStatus(questId, 'completed', false);
   };
 
-  // Handle quest check-in
-  const handleQuestCheckIn = (questId: string) => {
-    updateQuestStatus(questId, 'active', false, true);
-  };
-
   // Handle reset all quest states
   const handleResetStates = () => {
     // Reset all quests to locked state
@@ -110,7 +105,6 @@ export default function QuestsTab({
           key={quest.id || `quest-item-${index}`}
           quest={quest}
           onQuestComplete={handleQuestComplete}
-          onQuestCheckIn={handleQuestCheckIn}
         />
       ))}
       <div className="w-[95px] h-0 border border-[#d2d2de] my-4 mx-auto" />

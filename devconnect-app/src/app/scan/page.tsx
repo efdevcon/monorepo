@@ -264,12 +264,6 @@ export default function ScanPage() {
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
 
-    if (value?.includes('/booth/')) {
-      // redirect to booth page
-      window.location.href = value;
-      return;
-    }
-
     console.log('QR Scanner received value:', value);
 
     // First, try to parse as EIP-681 URL

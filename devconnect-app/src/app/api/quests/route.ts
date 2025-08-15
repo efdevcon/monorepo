@@ -44,7 +44,6 @@ export async function GET(request: NextRequest) {
         conditionType: properties['Condition type']?.select?.name || '',
         conditionValues: properties['Condition values']?.rich_text?.[0]?.plain_text || '',
         id: properties.ID?.unique_id?.prefix + properties.ID?.unique_id?.number || '',
-        boothCode: properties['Booth check-in code']?.rich_text?.[0]?.plain_text || '',
         logoLink: properties['Logo Link']?.files?.[0]?.file?.url || '',
         poapImageLink: properties['POAP image link']?.files?.[0]?.file?.url || '',
         position: properties.Position?.rich_text?.[0]?.plain_text || '',

@@ -70,7 +70,7 @@ const WrappedLink = React.forwardRef<any, LinkProps>(
     // Make sure to always use relative links for internal navigation
     const isExternal = href.match(/^([a-z0-9]*:|.{0})\/\/.*$/)
     // HACK: allow tickets.devconnect.org to be internal to avoid breaking ticket funnel
-    const isSubdomain = href.startsWith('https://tickets.devconnect.org')
+    // const isSubdomain = href.startsWith('https://tickets.devconnect.org')
 
     // External links have no use of next Link component
     if (isExternal) {
@@ -79,7 +79,8 @@ const WrappedLink = React.forwardRef<any, LinkProps>(
           href={href}
           ref={ref}
           {...linkAttributes}
-          target={isSubdomain ? undefined : '_blank'}
+          // target={isSubdomain ? undefined : '_blank'}
+          target="_blank"
           rel="noopener noreferrer"
         >
           <span className={cn(css['link'], spanClass)} data-type="link-text">
