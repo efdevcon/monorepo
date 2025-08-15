@@ -679,7 +679,7 @@ const Perk = ({
       </div>
 
       <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow px-2 overflow-hidden">
-        <div className="flex flex-col items-center justify-center gap-2">
+        <div className="flex flex-col items-center justify-center gap-2 max-w-[100%]">
           <div className="text-sm text-[#4B4B66] tracking-widest font-secondary uppercase">{perk.issuer}</div>
 
           <div className="text-lg leading-tight font-bold">{perk.description}</div>
@@ -722,15 +722,18 @@ const Perk = ({
           )}
 
           {coupon && (
-            <div className="p-2 py-2 bg-green-100 border font-bold max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
+            <div className="p-2 py-2 bg-green-100 border font-bold max-w-[95%] overflow-hidden text-ellipsis border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
               {perk.instructions && <div className="text-xs text-[#4B4B66]">{perk.instructions}</div>}
 
               {coupon.startsWith('https://') ? (
-                <div className="shrink">
-                  <a href={coupon} target="_blank" rel="noopener noreferrer">
-                    {coupon}
-                  </a>
-                </div>
+                <a
+                  href={coupon}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink text-ellipsis overflow-hidden line-clamp-3"
+                >
+                  {coupon}
+                </a>
               ) : (
                 <div className="shrink">
                   <strong>Coupon:</strong>&nbsp;{coupon}

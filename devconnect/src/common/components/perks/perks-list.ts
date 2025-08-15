@@ -109,23 +109,30 @@ const perks: Perk[] = [
   //   external: true, // or false if embedded, if false, need CSV of coupons
   // },
 
+    // Edge city
+    {
+      coupon_collection: 'edgy-city-patagonia-2025',
+      name: 'Edge City Patagonia 2025',
+      requires: 'Devconnect ARG ticket',
+      description: '20% off Edge City Patagonia (Oct18 - Nov15)',
+      issuer: 'Edge City',
+      image: EdgeCityImage,
+      zupass_proof_id: 'Devconnect ARG',
+      global_coupon: 'ECP25-DEVCONNECT20',
+      instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
+    },
+
   // EtherFI travel
-  // {
-  //   coupon_collection: 'etherfi-travel-2025',
-  //   name: 'ether.fi Travel',
-  //   requires: 'Devconnect ARG ticket',
-  //   urls: [
-  //     {
-  //       text: 'ether.fi',
-  //       url: 'http://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
-  //     }
-  //   ],
-  //   description: '60% off Hotels in Buenos + 5% back',
-  //   issuer: 'ether.fi',
-  //   image: EtherfiImage,
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   external: true,
-  // },
+  {
+    coupon_collection: 'etherfi-travel-2025',
+    name: 'ether.fi Travel',
+    requires: 'Devconnect ARG ticket',
+    description: 'Up to 60% off Hotels in Buenos Aires',
+    issuer: 'ether.fi',
+    image: EtherfiImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks'
+  },
 
 
   // Block travel
@@ -133,19 +140,6 @@ const perks: Perk[] = [
 
   // Ready
   // Not ready (lol) yet 
-
-  // Edge city
-  {
-    coupon_collection: 'edgy-city-patagonia-2025',
-    name: 'Edge City Patagonia 2025',
-    requires: 'Devconnect ARG ticket',
-    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
-    issuer: 'Edge City',
-    image: EdgeCityImage,
-    zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'ECP25-DEVCONNECT20',
-    instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
-  },
 
   // Betrusty
   {
