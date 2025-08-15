@@ -723,6 +723,8 @@ const Perk = ({
 
           {coupon && (
             <div className="p-2 py-2 bg-green-100 border font-bold max-w-[90%] border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
+              {perk.instructions && <div className="text-xs text-[#4B4B66]">{perk.instructions}</div>}
+
               {coupon.startsWith('https://') ? (
                 <div className="shrink">
                   <a href={coupon} target="_blank" rel="noopener noreferrer">

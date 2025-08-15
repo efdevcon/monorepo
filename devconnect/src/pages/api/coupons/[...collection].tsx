@@ -132,6 +132,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Ticket ID is required' })
   }
 
+  if (perk.global_coupon) {
+    return res.status(200).json({
+      coupon: perk.global_coupon,
+      coupon_status: { success: true },
+      collection,
+      ticket_type: perk.zupass_proof_id,
+    })
+  }
+
   const coupon = await claimSingleCoupon(perk.zupass_proof_id ?? '', collection, ticketId)
 
   return res.status(200).json({

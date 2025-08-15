@@ -4,6 +4,9 @@ import CommunityImage from 'assets/images/ba/voxel-cards/community-events-image.
 import ETHDayImage from 'assets/images/ba/voxel-cards/eth-day-image.png'
 import WorldsFairImage from 'assets/images/ba/voxel-cards/worlds-fair-image.png'
 import CoreDevsImage from './images/pg.png'
+import EtherfiImage from './images/etherfi.png'
+import EdgeCityImage from './images/edgecity.png'
+import BeTrustyImage from './images/betrusty.jpg'
 
 type Perk = {
   coupon_collection: string
@@ -18,6 +21,8 @@ type Perk = {
   anchor?: string
   no_status?: boolean
   wallet_proof?: boolean
+  global_coupon?: string
+  instructions?: string
 }
 
 const perks: Perk[] = [
@@ -85,6 +90,85 @@ const perks: Perk[] = [
     no_status: true,
     wallet_proof: true
   },
+  
+  // ... Info needed for each new perk
+  // {
+  //   coupon_collection: '...',
+  //   name: '...',
+  //   requires: 'Devconnect ARG ticket',
+  //   urls: [
+  //     {
+  //       text: '...',
+  //       url: '...',
+  //     }
+  //   ],
+  //   description: '...',
+  //   issuer: '...',
+  //   image: '...',
+  //   zupass_proof_id: 'Devconnect ARG',
+  //   external: true, // or false if embedded, if false, need CSV of coupons
+  // },
+
+  // EtherFI travel
+  // {
+  //   coupon_collection: 'etherfi-travel-2025',
+  //   name: 'ether.fi Travel',
+  //   requires: 'Devconnect ARG ticket',
+  //   urls: [
+  //     {
+  //       text: 'ether.fi',
+  //       url: 'http://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
+  //     }
+  //   ],
+  //   description: '60% off Hotels in Buenos + 5% back',
+  //   issuer: 'ether.fi',
+  //   image: EtherfiImage,
+  //   zupass_proof_id: 'Devconnect ARG',
+  //   external: true,
+  // },
+
+
+  // Block travel
+  // TBD / postponed
+
+  // Ready
+  // Not ready (lol) yet 
+
+  // Edge city
+  {
+    coupon_collection: 'edgy-city-patagonia-2025',
+    name: 'Edge City Patagonia 2025',
+    requires: 'Devconnect ARG ticket',
+    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
+    issuer: 'Edge City',
+    image: EdgeCityImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'ECP25-DEVCONNECT20',
+    instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
+  },
+
+  // Betrusty
+  {
+    coupon_collection: 'betrusty-devconnect-2025',
+    name: 'Be Trusty',
+    requires: 'Devconnect ARG ticket',
+    urls: [
+      {
+        text: 'Betrusty',
+        url: 'https://devconnect.betrusty.io/search',
+      }
+    ],
+    description: 'Rent with Crypto in Buenos Aires - 0% Commission',
+    issuer: 'Be Trusty',
+    image: BeTrustyImage,
+    zupass_proof_id: 'Devconnect ARG',
+    external: true,
+  },
+
+  // Adevar Labs
+
+
+  // ETHday???
 
   {
     coupon_collection: 'create-your-own',
@@ -94,7 +178,6 @@ const perks: Perk[] = [
     issuer: 'YOUR BRAND',
     image: WorldsFairImage,
     anchor: '#yourperk',
-
   },
 ]
 
