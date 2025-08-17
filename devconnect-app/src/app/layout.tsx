@@ -8,6 +8,7 @@ import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
+import Auth from '@/components/Auth';
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
 
@@ -107,17 +108,19 @@ export default function RootLayout({
         }}
       >
         <div className="fullscreen-container">
-          <SkippedProvider>
-            <PWAProvider>
-              <WalletsProviders>
-                {children}
-                <Menu />
-                <NewDeployment />
-                <Toaster />
-              </WalletsProviders>
-            </PWAProvider>
-          </SkippedProvider>
+          <Auth>
+            <SkippedProvider>
+              <PWAProvider>
+                <WalletsProviders>
+                  {children}
+                  <Menu />
+                  <NewDeployment />
+                </WalletsProviders>
+              </PWAProvider>
+            </SkippedProvider>
+          </Auth>
         </div>
+        <Toaster />
       </body>
     </html>
   );

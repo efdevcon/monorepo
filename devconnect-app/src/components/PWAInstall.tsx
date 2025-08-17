@@ -1,24 +1,31 @@
-'use client'
+'use client';
 
-import React, { useEffect, useState } from 'react'
-import { useLocalStorage } from 'usehooks-ts'
-import { Button } from '@/components/ui/button'
+import React, { useEffect, useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import { Button } from '@/components/ui/button';
 import CloseIcon from '@/components/icons/CloseIcon';
 
 interface InstallPWAProps {
-  onClose?: () => void
+  onClose?: () => void;
 }
 
 interface BeforeInstallPromptEvent extends Event {
-  prompt(): Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+  prompt(): Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 }
 
 const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
-  const [showPopup, setShowPopup] = useState(false)
-  const [showInstallPWA, setShowInstallPWA] = useLocalStorage('showInstallPWA', false)
-  const [pwa] = useLocalStorage<boolean | null>('pwa', null)
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
+  const [showPopup, setShowPopup] = useState(false);
+  const [showInstallPWA, setShowInstallPWA] = useLocalStorage(
+    'showInstallPWA',
+    false
+  );
+  const [pwa] = useLocalStorage<boolean | null>('pwa', null);
+  const [lastShownTimestamp, setLastShownTimestamp] = useLocalStorage<
+    number | null
+  >('pwaPopupLastShown', null);
+  const [deferredPrompt, setDeferredPrompt] =
+    useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
@@ -31,9 +38,16 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     const userAgent = window.navigator.userAgent.toLowerCase();
     setIsIOS(/iphone|ipad|ipod/.test(userAgent));
 
-    // Only show PWA prompt if not already installed and showInstallPWA is true
-    if (pwa === false && showInstallPWA === true) {
+    // Check if 24 hours have passed since last shown
+    const now = Date.now();
+    const oneDayInMs = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    const canShowToday =
+      !lastShownTimestamp || now - lastShownTimestamp >= oneDayInMs;
+
+    // Only show PWA prompt if not already installed, showInstallPWA is true, and it hasn't been shown today
+    if (pwa === false && showInstallPWA === true && canShowToday) {
       setShowPopup(true);
+      setLastShownTimestamp(now); // Update the timestamp when showing
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -44,7 +58,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
         handleBeforeInstallPrompt
       );
     };
-  }, [pwa, showInstallPWA]);
+  }, [pwa, showInstallPWA, lastShownTimestamp, setLastShownTimestamp]);
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
@@ -167,6 +181,6 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
       </div>
     </div>
   );
-}
+};
 
-export default InstallPWA 
+export default InstallPWA;

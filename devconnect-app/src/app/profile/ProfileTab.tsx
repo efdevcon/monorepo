@@ -1,3 +1,18 @@
+import { useUser } from '@/hooks/useUser';
+
 export default function ProfileTab() {
-  return <div className="py-8 text-center">Profile main content here</div>;
-} 
+  const { user, signOut, error } = useUser();
+
+  return (
+    <div className="py-8 text-center">
+      <div>{user?.email}</div>
+      <button
+        onClick={signOut}
+        className="bg-blue-500 text-white p-2 rounded-md"
+      >
+        Sign out
+      </button>
+      {error && <div>{error}</div>}
+    </div>
+  );
+}

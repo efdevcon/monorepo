@@ -12,6 +12,7 @@ import {
   useWaitForWalletCreation,
   type AuthState,
 } from '@getpara/react-sdk';
+import { useUser } from '@/hooks/useUser';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -26,21 +27,28 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
+  const { user } = useUser();
 
   // Para authentication hooks
   const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
     useSignUpOrLogIn();
   const { verifyNewAccountAsync: verifyNewAccount, isPending: isVerifying } =
     useVerifyNewAccount();
-  const { resendVerificationCodeAsync: resendVerificationCode, isPending: isResending } =
-    useResendVerificationCode();
+  const {
+    resendVerificationCodeAsync: resendVerificationCode,
+    isPending: isResending,
+  } = useResendVerificationCode();
   const { waitForLoginAsync: waitForLogin, isPending: isWaitingForLogin } =
     useWaitForLogin();
-  const { waitForWalletCreationAsync: waitForWalletCreation, isPending: isWaitingForWallet } =
-    useWaitForWalletCreation();
+  const {
+    waitForWalletCreationAsync: waitForWalletCreation,
+    isPending: isWaitingForWallet,
+  } = useWaitForWalletCreation();
 
   // Find the Para connector for wagmi
-  const paraConnector = connectors.find((connector: any) => connector.id === 'para');
+  const paraConnector = connectors.find(
+    (connector: any) => connector.id === 'para'
+  );
 
   const handleGetStarted = () => {
     setShowGetStarted(false);
@@ -277,7 +285,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             </div>
 
             {/* Description */}
-            <div className="font-['Roboto'] font-normal text-[#36364c] text-[18px] leading-[1.4] tracking-[-0.2px]">
+            <div className="font-normal text-[#36364c] text-[18px] leading-[1.4] tracking-[-0.2px]">
               Your companion for{' '}
               <span className="text-[#36364c]">Devconnect ARG</span>, the first
               Ethereum World&apos;s Fair.
@@ -290,8 +298,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           onClick={handleGetStarted}
           className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
         >
-          <span className="font-['Roboto'] font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-            Get started
+          <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+            Get started {user?.email}
           </span>
         </button>
       </div>
@@ -323,7 +331,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
-            <div className="font-['Roboto'] font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
+            <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
               Check your email
             </div>
             <div className="overflow-clip relative shrink-0 size-5">
@@ -362,10 +370,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
               {/* Email sent message */}
               <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
-                <div className="font-['Roboto'] font-normal text-[#36364c] text-[14px] w-full">
+                <div className="font-normal text-[#36364c] text-[14px] w-full">
                   We&apos;ve sent a verification code to
                 </div>
-                <div className="font-['Roboto'] font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
+                <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
                   {email}
                 </div>
               </div>
@@ -379,7 +387,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                         <input
                           type="text"
                           maxLength={1}
-                          className="w-full h-full text-center text-[20px] font-['Roboto'] font-normal text-[#36364c] bg-transparent border-none outline-none"
+                          className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                           value={verificationCode[index] || ''}
                           onChange={(e) => {
                             const newCode = verificationCode.split('');
@@ -401,7 +409,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                         <input
                           type="text"
                           maxLength={1}
-                          className="w-full h-full text-center text-[20px] font-['Roboto'] font-normal text-[#36364c] bg-transparent border-none outline-none"
+                          className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                           value={verificationCode[index] || ''}
                           onChange={(e) => {
                             const newCode = verificationCode.split('');
@@ -421,7 +429,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 disabled={verificationCode.length !== 6 || isVerifying}
                 className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span className="font-['Roboto'] font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                   {isVerifying ? 'Verifying...' : 'Verify Code'}
                 </span>
               </button>
@@ -429,13 +437,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
             {/* Resend code */}
             <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
-              <div className="font-['Roboto'] font-normal text-[#4b4b66] text-[12px] w-full">
+              <div className="font-normal text-[#4b4b66] text-[12px] w-full">
                 Didn&apos;t receive a code?
               </div>
               <button
                 onClick={handleResendCode}
                 disabled={isResending}
-                className="font-['Roboto'] font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
+                className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
               >
                 {isResending
                   ? 'Sending...'
@@ -449,15 +457,15 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
         {/* Footer */}
         <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-          <p className="font-['Roboto'] font-normal text-[12px] text-center leading-[1.4]">
+          <p className="font-normal text-[12px] text-center leading-[1.4]">
             <span className="text-[#4b4b66]">
               By logging in, you agree to our{' '}
             </span>
-            <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+            <span className="underline font-bold text-[#1b6fae]">
               Terms and Conditions
             </span>
             <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+            <span className="underline font-bold text-[#1b6fae]">
               Privacy Policy
             </span>
             <span className="text-[#4b4b66]">.</span>
@@ -492,7 +500,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
-            <div className="font-['Roboto'] font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
+            <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
               {authState.stage === 'signup' ? 'Create Account' : 'Sign In'}
             </div>
             <div className="overflow-clip relative shrink-0 size-5"></div>
@@ -510,7 +518,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 disabled={isWaitingForLogin || isWaitingForWallet}
                 className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
               >
-                <span className="font-['Roboto'] font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                   {isWaitingForLogin || isWaitingForWallet
                     ? 'Setting up...'
                     : 'Continue with Passkey'}
@@ -528,7 +536,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 disabled={isWaitingForLogin || isWaitingForWallet}
                 className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
               >
-                <span className="font-['Roboto'] font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+                <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
                   {isWaitingForLogin || isWaitingForWallet
                     ? 'Setting up...'
                     : 'Continue with Password'}
@@ -540,15 +548,15 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
         {/* Footer */}
         <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-          <p className="font-['Roboto'] font-normal text-[12px] text-center leading-[1.4]">
+          <p className="font-normal text-[12px] text-center leading-[1.4]">
             <span className="text-[#4b4b66]">
               By logging in, you agree to our{' '}
             </span>
-            <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+            <span className="underline font-bold text-[#1b6fae]">
               Terms and Conditions
             </span>
             <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+            <span className="underline font-bold text-[#1b6fae]">
               Privacy Policy
             </span>
             <span className="text-[#4b4b66]">.</span>
@@ -569,17 +577,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
           {/* Title Container */}
           <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
-            <h1 className="font-['Roboto'] font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
+            <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
               Connect to start exploring
             </h1>
 
             {/* Connect Wallet Container */}
             <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
               <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-                <h2 className="font-['Roboto'] font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+                <h2 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
                   Connect using Ethereum
                 </h2>
-                <p className="font-['Roboto'] font-normal text-[14px] w-full leading-[1.3]">
+                <p className="font-normal text-[14px] w-full leading-[1.3]">
                   Already onchain? Connect and set forth!
                 </p>
               </div>
@@ -589,7 +597,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 onClick={handleWalletConnect}
                 className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
               >
-                <span className="font-['Roboto'] font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
                   Connect with a wallet
                 </span>
               </button>
@@ -602,7 +610,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
             </div>
             <div className="bg-[#e9f2fa] flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <span className="font-['Roboto'] font-normal text-[#4b4b66] text-[12px] text-center leading-none">
+              <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
                 OR
               </span>
             </div>
@@ -613,10 +621,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
           <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
             <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-              <h3 className="font-['Roboto'] font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+              <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
                 New to Ethereum? Connect using Email
               </h3>
-              <p className="font-['Roboto'] font-normal text-[14px] w-full leading-[1.3]">
+              <p className="font-normal text-[14px] w-full leading-[1.3]">
                 Quick start with email — we&apos;ll create a wallet for you
                 behind the scenes.
               </p>
@@ -655,7 +663,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               disabled={!email || !email.includes('@') || isSigningUp}
               className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="font-['Roboto'] font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+              <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
                 {isSigningUp ? 'Sending...' : 'Connect with email'}
               </span>
             </button>
@@ -664,7 +672,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Skip for now */}
           <button
             onClick={isSkipped ? handleReset : handleSkip}
-            className="font-['Roboto'] font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+            className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
           >
             {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
           </button>
@@ -673,15 +681,15 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
       {/* Footer */}
       <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-        <p className="font-['Roboto'] font-normal text-[12px] text-center leading-[1.4]">
+        <p className="font-normal text-[12px] text-center leading-[1.4]">
           <span className="text-[#4b4b66]">
             By logging in, you agree to our{' '}
           </span>
-          <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+          <span className="underline font-bold text-[#1b6fae]">
             Terms and Conditions
           </span>
           <span className="text-[#4b4b66]"> and </span>
-          <span className="underline font-['Roboto'] font-bold text-[#1b6fae]">
+          <span className="underline font-bold text-[#1b6fae]">
             Privacy Policy
           </span>
           <span className="text-[#4b4b66]">.</span>
@@ -689,4 +697,4 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       </div>
     </div>
   );
-} 
+}
