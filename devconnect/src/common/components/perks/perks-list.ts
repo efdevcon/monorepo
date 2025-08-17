@@ -52,10 +52,12 @@ const perks: Perk[] = [
     issuer: 'Devconnect Team',
     image: CoworkingImage,
     external: true,
-    urls: [{
-      text: 'Telegram Chat',
-      url: 'https://t.me/DevconPodBot?text=%2Fstart',
-    }],
+    urls: [
+      {
+        text: 'Telegram Chat',
+        url: 'https://t.me/DevconPodBot?text=%2Fstart',
+      },
+    ],
     zupass_proof_id: 'Devconnect ARG',
   },
   {
@@ -66,13 +68,16 @@ const perks: Perk[] = [
     issuer: 'ethPandaOps',
     image: CommunityImage,
     external: true,
-    urls: [{
-      text: 'Sepolia Faucet',
-      url: 'https://devconnect-sepolia-faucet.pk910.de/',
-    }, {
-      text: 'Hoodi Faucet',
-      url: 'https://devconnect-hoodi-faucet.pk910.de/',
-    }],
+    urls: [
+      {
+        text: 'Sepolia Faucet',
+        url: 'https://devconnect-sepolia-faucet.pk910.de/',
+      },
+      {
+        text: 'Hoodi Faucet',
+        url: 'https://devconnect-hoodi-faucet.pk910.de/',
+      },
+    ],
     zupass_proof_id: 'Devconnect ARG',
   },
 
@@ -88,9 +93,9 @@ const perks: Perk[] = [
     // Just bypass the connection requirement by calling it external (even if it isn't)
     external: true,
     no_status: true,
-    wallet_proof: true
+    wallet_proof: true,
   },
-  
+
   // ... Info needed for each new perk
   // {
   //   coupon_collection: '...',
@@ -109,37 +114,36 @@ const perks: Perk[] = [
   //   external: true, // or false if embedded, if false, need CSV of coupons
   // },
 
-    // Edge city
-    {
-      coupon_collection: 'edgy-city-patagonia-2025',
-      name: 'Edge City Patagonia 2025',
-      requires: 'Devconnect ARG ticket',
-      description: '20% off Edge City Patagonia (Oct18 - Nov15)',
-      issuer: 'Edge City',
-      image: EdgeCityImage,
-      zupass_proof_id: 'Devconnect ARG',
-      global_coupon: 'ECP25-DEVCONNECT20',
-      instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
-    },
+  // Edge city
+  {
+    coupon_collection: 'edgy-city-patagonia-2025',
+    name: 'Edge City Patagonia 2025',
+    requires: 'Devconnect ARG ticket',
+    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
+    issuer: 'Edge City',
+    image: EdgeCityImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'ECP25-DEVCONNECT20',
+    instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
+  },
 
   // EtherFI travel
   {
     coupon_collection: 'etherfi-travel-2025',
     name: 'ether.fi Travel',
     requires: 'Devconnect ARG ticket',
-    description: 'Up to 60% off Hotels in Buenos Aires',
+    description: 'Unlock Ether.fi Travel - Up to 60% off Hotels in Buenos Aires',
     issuer: 'ether.fi',
     image: EtherfiImage,
     zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks'
+    global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
   },
-
 
   // Block travel
   // TBD / postponed
 
   // Ready
-  // Not ready (lol) yet 
+  // Not ready (lol) yet
 
   // Betrusty
   {
@@ -150,7 +154,7 @@ const perks: Perk[] = [
       {
         text: 'Betrusty',
         url: 'https://devconnect.betrusty.io/search',
-      }
+      },
     ],
     description: 'Rent with Crypto in Buenos Aires - 0% Commission',
     issuer: 'Be Trusty',
@@ -160,7 +164,6 @@ const perks: Perk[] = [
   },
 
   // Adevar Labs
-
 
   // ETHday???
 
