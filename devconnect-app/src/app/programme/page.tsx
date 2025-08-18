@@ -70,6 +70,8 @@ async function getAtprotoEvents() {
         difficulty: record.expertise,
         organizer: record.organizer.name,
         timeblocks: timeblocks,
+        eventType: record.event_type,
+        isCoreEvent: event.is_core_event || false,
         ...manualOverrides,
         // difficulty: record.difficulty,
       };

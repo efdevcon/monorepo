@@ -38,62 +38,55 @@ const DifficultyTag = ({
 };
 
 type EventType =
-  | "real world ethereum"
-  | "defi"
-  | "cypherpunk & privacy"
-  | "security"
-  | "ai"
-  | "protocol"
-  | "devex"
-  | "usability"
-  | "applied cryptography"
-  | "coordination"
-  | "scalability"
+  | "talks"
+  | "discussion"
+  | "presentation"
+  | "hackathon"
+  | "workshop"
+  | "panel"
+  | "mixed format"
+  | "social"
   | "other";
 
 const TypeTag = ({
-  category = "other",
+  category,
   size = "sm",
 }: {
   category?: EventType;
   size?: "sm" | "md";
 }) => {
   const typeColorMap = {
-    "real world ethereum": "bg-green-500",
-    defi: "bg-yellow-500",
-    "cypherpunk & privacy": "bg-red-500",
-    security: "bg-blue-500",
-    ai: "bg-purple-500",
-    protocol: "bg-orange-500",
-    devex: "bg-pink-500",
-    usability: "bg-teal-500",
-    "applied cryptography": "bg-indigo-500",
-    coordination: "bg-lime-500",
-    scalability: "bg-cyan-500",
+    talks: "border border-solid border-[rgba(100,100,100,1)]",
+    discussion: "border border-solid border-[rgba(100,100,100,1)]",
+    presentation: "border border-solid border-[rgba(100,100,100,1)]",
+    hackathon: "border border-solid border-[rgba(100,100,100,1)]",
+    workshop: "border border-solid border-[rgba(100,100,100,1)]",
+    panel: "border border-solid border-[rgba(100,100,100,1)]",
+    "mixed format": "border border-solid border-[rgba(100,100,100,1)]",
+    social: "border border-solid border-[rgba(100,100,100,1)]",
     other: "border border-solid border-[rgba(100,100,100,1)]",
-    "all welcome": "bg-blue-500",
   };
 
   const typeTextMap = {
-    "real world ethereum": "Real World Ethereum",
-    defi: "DeFi",
-    "cypherpunk & privacy": "Cypherpunk & Privacy",
-    security: "Security",
-    ai: "AI",
-    protocol: "Protocol",
-    devex: "Devex",
-    usability: "Usability",
-    "applied cryptography": "Applied Cryptography",
-    coordination: "Coordination",
-    scalability: "Scalability",
+    talks: "Talks",
+    discussion: "Discussion",
+    presentation: "Presentation",
+    hackathon: "Hackathon",
+    workshop: "Workshop",
+    panel: "Panel",
+    "mixed format": "Mixed Format",
+    social: "Social",
     other: "Other",
-    "all welcome": "All Welcome",
   };
 
   const sizeMap = {
     sm: "text-[10px]",
     md: "text-[12px]",
   };
+
+  if (!category) {
+    return null;
+  }
 
   return (
     <div

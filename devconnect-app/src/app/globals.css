@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 @source "../../../lib/**/*.{ts,tsx}";
 
 @custom-variant dark (&:is(.dark *));
@@ -172,7 +172,8 @@ html {
 
 body {
   margin: 0;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
   width: 100vw;
   height: 100vh;
   min-height: 100vh;
@@ -193,21 +194,27 @@ body {
 .section {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(64px, 1fr) minmax(auto, var(--content-width, 1440px)) minmax(64px, 1fr);
+  grid-template-columns: minmax(64px, 1fr) minmax(
+      auto,
+      var(--content-width, 1440px)
+    ) minmax(64px, 1fr);
 
   @media (max-width: 1024px) {
-    grid-template-columns: minmax(16px, 1fr) minmax(auto, var(--content-width, 1440px)) minmax(16px, 1fr);
+    grid-template-columns: minmax(16px, 1fr) minmax(
+        auto,
+        var(--content-width, 1440px)
+      ) minmax(16px, 1fr);
   }
 
-  >* {
+  > * {
     grid-column: 2 / 3;
   }
 
-  >.expand {
+  > .expand {
     grid-column: 1 / 4;
   }
 
-  >.expand-right {
+  > .expand-right {
     grid-column: 2 / 4;
   }
 }

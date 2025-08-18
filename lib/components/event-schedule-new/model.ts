@@ -26,6 +26,6 @@ export interface Event {
     location?: string;
   }[];
   priority: number;
-  event_type: string | any;
+  eventType: string | any;
   categories: string[];
 }

@@ -496,7 +496,7 @@ app.get("/all-events", async (req, res) => {
     .select(
       `
       id, rkey, created_by, lexicon, created_at, updated_at,
-      record_passed_review, record_needs_review, show_on_calendar,
+      record_passed_review, record_needs_review, show_on_calendar, is_core_event,
       atproto_dids!created_by(did, alias, is_spammer)
     `
     )
@@ -528,7 +528,7 @@ app.get("/calendar-events", async (req, res) => {
     .from("atproto_records")
     .select(
       `
-      id, rkey, created_by, record_passed_review,
+      id, rkey, created_by, record_passed_review, is_core_event,
       atproto_dids!created_by(did, alias)
     `
     )

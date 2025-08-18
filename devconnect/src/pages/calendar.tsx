@@ -14,6 +14,8 @@ import RichText from 'lib/components/tina-cms/RichText'
 import { CMSButtons } from 'common/components/voxel-button/button'
 import CalendarLayout from 'lib/components/event-schedule-new/layout'
 import { Separator } from 'lib/components/ui/separator'
+import { record } from 'zod'
+import { makeConsoleLogger } from '@notionhq/client/build/src/logging'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
@@ -58,7 +60,7 @@ const Argentina = (props: any) => {
       </div>
       <div className="flex flex-col text-black mt-6">
         <CalendarLayout
-          events={events}
+          events={events.filter((event: any) => event.isCoreEvent)}
           isCommunityCalendar={false}
           selectedEvent={selectedEvent}
           selectedDay={selectedDay}
@@ -71,7 +73,7 @@ const Argentina = (props: any) => {
         </div>
 
         <CalendarLayout
-          events={[]}
+          events={events.filter((event: any) => !event.isCoreEvent)}
           isCommunityCalendar
           selectedEvent={selectedEvent}
           selectedDay={selectedDay}
@@ -206,7 +208,7 @@ export interface Event {
   // console.log(notionEvents)
 
   const atprotoEvents = await fetch(
-    false // process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'development'
       ? 'http://localhost:4000/calendar-events'
       : 'https://at-slurper.onrender.com/calendar-events'
   )
@@ -236,16 +238,6 @@ export interface Event {
 
     const manualOverrides = {} as any
 
-    // if (event.id.toString() === '23') {
-    //   manualOverrides.priority = 1
-    //   manualOverrides.spanRows = 2
-    // }
-
-    // if (event.id.toString() === '29') {
-    //   manualOverrides.priority = 2
-    //   manualOverrides.spanRows = 3
-    // }
-
     return {
       id: event.id,
       name: record.title,
@@ -256,9 +248,9 @@ export interface Event {
       difficulty: record.expertise,
       organizer: record.organizer.name,
       timeblocks: timeblocks,
-      event_type: record.event_type,
+      eventType: record.event_type,
+      isCoreEvent: event.is_core_event || false,
       ...manualOverrides,
-      // difficulty: record.difficulty,
     }
   })
 

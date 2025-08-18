@@ -3,19 +3,21 @@ import filterCss from "./filter.module.scss";
 import cn from "classnames";
 import { Checkbox } from "lib/components/ui/checkbox";
 import { Badge } from "lib/components/ui/badge";
-import { X } from "lucide-react";
+import { X, Search } from "lucide-react";
 
 export const useFilters = (events: any[]) => {
   const [filterOpen, setFilterOpen] = useState(false);
-  const keysToFilterOn = ["event_type", "difficulty", "categories"];
+  const keysToFilterOn = ["eventType", "difficulty", "categories"];
   const filterableValues = {} as { [key: string]: Set<string> };
 
   const defaultFilter = {
     category: [],
     difficulty: [],
-    event_type: [],
+    eventType: [],
     name: "",
   };
+
+  console.log(events, "events");
 
   const [filter, setFilterState] = useState<any>(defaultFilter);
 
@@ -24,7 +26,7 @@ export const useFilters = (events: any[]) => {
     // filter.name !== defaultFilter.name ||
     filter.category.length !== defaultFilter.category.length ||
     filter.difficulty.length !== defaultFilter.difficulty.length ||
-    filter.event_type.length !== defaultFilter.event_type.length;
+    filter.eventType.length !== defaultFilter.eventType.length;
 
   // Function to handle filter updates with toggle behavior for arrays
   const setFilter = (filterKey: string, nextValue: any) => {
@@ -90,8 +92,8 @@ export const useFilters = (events: any[]) => {
     }
 
     // Event type filter
-    if (filter.event_type.length > 0) {
-      const typeMatch = filter.event_type.includes(event["event_type"]);
+    if (filter.eventType.length > 0) {
+      const typeMatch = filter.eventType.includes(event["eventType"]);
       if (!typeMatch) return false;
     }
 
@@ -130,7 +132,7 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
     [
       computeFilterShorthand("Categories", filter.category),
       computeFilterShorthand("Difficulty", filter.difficulty),
-      computeFilterShorthand("Event Type", filter.event_type),
+      computeFilterShorthand("Event Type", filter.eventType),
       filter.name ? `Search: "${filter.name}"` : null,
     ]
       .filter((val) => !!val)
@@ -143,6 +145,14 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
       <p className="bold tiny-text">{filterSummary}</p>
     </div>
   );
+};
+
+const filterKeyToLabel = (key: string) => {
+  if (key === "eventType") return "Event Type";
+  if (key === "difficulty") return "Difficulty";
+  if (key === "category") return "Category";
+  if (key === "name") return "Search";
+  return key;
 };
 
 const uppercaseFirstLetter = (str: string) => {
@@ -173,7 +183,7 @@ export const Filter = ({
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
   return (
-    <div className={cn(filterCss["filter-foldout"], "w-64 p-4")}>
+    <div className={cn(filterCss["filter-foldout"])}>
       <div className="flex flex-col gap-4 w-full">
         <div className="flex justify-between items-center w-full">
           <div className="text-sm font-medium underline">
@@ -196,9 +206,23 @@ export const Filter = ({
             </Badge>
           </div>
         </div>
+
+        <div className="flex items-center justify-end grow gap-2 shrink-0">
+          <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
+            <Search size={15} color="rgba(124, 124, 153, 1)" />
+            <input
+              className="grow border-none outline-none bg-transparen ml-0.5"
+              placeholder="Search events or organizers"
+              type="text"
+              value={filter.name}
+              onChange={(e: any) => setFilter("name", e.target.value)}
+            />
+          </div>
+        </div>
+
         {filterableValuesKeys.map((key) => {
           const valuesForFilter = Array.from(filterableValues[key]);
-          const filterStateKey = key === "categories" ? "category" : key;
+          const filterStateKey = key;
           const activeFilters = filter[filterStateKey] || [];
 
           if (valuesForFilter.length === 0) return null;
@@ -206,7 +230,7 @@ export const Filter = ({
           return (
             <div key={key} className="flex flex-col gap-2">
               <div className="text-sm font-medium capitalize">
-                {key.replace("_", " ")}
+                {filterKeyToLabel(key)}
               </div>
               <div className="flex flex-col gap-0.5">
                 {Array.from(valuesForFilter).map((value: any) => {

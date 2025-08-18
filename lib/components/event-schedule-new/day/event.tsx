@@ -66,7 +66,6 @@ const Event: React.FC<EventProps> = ({
   const userIsLoggedIn = true;
   const draggableLink = useDraggableLink();
 
-  // const { selectedEvent, setSelectedEvent } = useCalendarStore();
   // Get the first timeblock for display
   const timeblock = event.timeblocks[0];
   const eventClassName = className || "";
@@ -80,31 +79,30 @@ const Event: React.FC<EventProps> = ({
   const endTime = formatTime(timeblock.end);
   const durationString = `${startTime} - ${endTime}`;
 
-  // Determine CSS class based on difficulty
-  const difficultyClass =
-    event.difficulty === "beginner" || event.difficulty === "all welcome"
-      ? "bg-[#f0faff] hover:bg-[#d9e8f0] !border-[#74ACDF] border-l-[4px]"
-      : event.difficulty === "intermediate"
-      ? "bg-[#FFD700] hover:bg-[#FFD700] !border-[#FFD700] border-l-[4px]"
-      : "bg-[#FF0000] hover:bg-[#FF0000] !border-[#FF0000] border-l-[4px]";
+  // Type of event and resulting customization class
+  const typeClass = (() => {
+    const isCoreEvent = event.isCoreEvent;
+    const isCowork = event.id.toString() === "23";
+    const isCommunityEvent = !isCoreEvent;
 
-  const isCoworking = event.id.toString() === "23"; // event.isCoreEvent; // event.name.includes("Coworking");
-  const isETHDay = event.id.toString() === "29"; // event.isFairEvent; // event.name.includes("ETH Day");
+    if (isCowork) {
+      return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
+    } else if (isCoreEvent) {
+      return "bg-[rgba(116,172,223,0.05)] hover:bg-[rgba(116,172,223,0.1)] !border-[rgba(116,172,223,1)] border-l-[4px]";
+    } else if (isCommunityEvent) {
+      return "bg-[rgba(136,85,204,0.05)] hover:bg-[rgba(136,85,204,0.1)] !border-[rgba(136,85,204,1)] border-l-[4px]";
+    }
+
+    return "";
+  })();
+
+  const isCoworking = event.id.toString() === "23";
+  const isETHDay = event.id.toString() === "29";
 
   const isCoreEvent =
-    event.id.toString() === "23" || event.id.toString() === "22"; // event.isCoreEvent || event.isFairEvent;
+    event.id.toString() === "23" || event.id.toString() === "29";
 
   let eventName = event.name;
-
-  // const difficultyColor = (() => {
-  //   if (event.difficulty === "beginner" || event.difficulty === "all welcome") {
-  //     return "#74ACDF";
-  //   } else if (event.difficulty === "intermediate") {
-  //     return "#FFD700";
-  //   } else if (event.difficulty === "advanced") {
-  //     return "#FF0000";
-  //   }
-  // })();
 
   const eventStartTime = format(parseISO(event.timeblocks[0].start), "HH:mm");
   const eventEndTime = format(parseISO(event.timeblocks[0].end), "HH:mm");
@@ -123,22 +121,17 @@ const Event: React.FC<EventProps> = ({
     ? `${eventStartTime}–${eventEndTime}, ${eventStartDate}`
     : `${eventStartTime}, ${eventStartDate} – ${eventEndTime}, ${eventEndDate}`;
 
-  // console.log(event);
-
   return (
     <div
       style={{
         // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
-        height: event.spanRows ? `${event.spanRows * 60}px` : "auto",
+        height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
       }}
       className={cn(
         `group cursor-pointer`,
         "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
-        difficultyClass,
-
+        typeClass,
         eventClassName
-        // isCoreEvent && !isETHDay && !isCoworking && "bg-blue border-solid",
-        // selectedEvent?.id === event.id && "border-black"
       )}
       {...draggableLink}
       onClick={(e) => {
@@ -153,36 +146,14 @@ const Event: React.FC<EventProps> = ({
         }
       }}
     >
-      {/* {isCoworking && (
-        <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 w-[80%] bg-gradient-to-r from-white to-transparent z-10"></div>
-          <Image
-            src={coworkingImage}
-            alt="Coworking"
-            className="w-[100%] h-full object-end position-end object-cover"
-          />
-        </div>
-      )} */}
-
-      {/* {isETHDay && (
-        <div className="absolute left-[0%] top-0 right-0 bottom-0 overflow-hidden">
-          <div className="absolute left-0 top-0 bottom-0 h-[70%] w-full bg-gradient-to-b from-white to-transparent z-10"></div>
-          <Image
-            src={ethDayImage}
-            alt="ETH Day"
-            className="w-[100%] h-full object-cover"
-          />
-        </div>
-      )} */}
-
       <Dialog
         open={selectedEvent?.id === event.id}
         onOpenChange={() => setSelectedEvent(null)}
       >
         <DialogContent
           className={cn(
-            "w-[auto] max-w-[1000px] min-w-[550px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white",
-            difficultyClass
+            "max-w-[95vw] w-[450px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000]",
+            typeClass
           )}
         >
           <Image
@@ -202,7 +173,12 @@ const Event: React.FC<EventProps> = ({
                 {event.organizer}
               </div>
 
-              <div className="text-lg font-bold">{event.name}</div>
+              <DialogTitle asChild>
+                <div className="text-lg font-bold tracking-normal leading-tight">
+                  {event.name}
+                </div>
+              </DialogTitle>
+              {/* <div className="text-lg font-bold">{event.name}</div> */}
 
               <div className="text-sm">{eventTimeString}</div>
 
@@ -257,16 +233,18 @@ const Event: React.FC<EventProps> = ({
                 color="blue-1"
                 size="sm"
                 fill
-                className="shrink-0  mt-4 self-start"
+                className="shrink-0  mt-2 self-start"
               >
                 Visit Website
                 <ArrowUpRight className="w-4 h-4 mb-0.5" />
               </VoxelButton>
 
-              <div className="flex gap-2 justify-between mt-4">
-                {event.event_type && (
+              <Separator className="my-3" />
+
+              <div className="flex gap-2 justify-between">
+                {event.eventType && (
                   <div className="text-sm">
-                    <TypeTag category={event.event_type} />
+                    <TypeTag category={event.eventType} />
                   </div>
                 )}
 
@@ -295,10 +273,17 @@ const Event: React.FC<EventProps> = ({
               "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
             )}
           >
-            {isCoreEvent && (
+            {isCoworking && (
               <Image
                 src={DevconnectCubeLogo}
                 alt="Devconnect Cube"
+                className="w-[26px] object-contain"
+              />
+            )}
+            {isETHDay && (
+              <Image
+                src={ethDayImage}
+                alt="ETH Day"
                 className="w-[26px] object-contain"
               />
             )}
@@ -308,7 +293,7 @@ const Event: React.FC<EventProps> = ({
             </div>
           </div>
 
-          <div className="line-clamp-1 mt-2 text-xs uppercase font-medium">
+          <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
             {event.organizer}
           </div>
 
@@ -348,7 +333,7 @@ const Event: React.FC<EventProps> = ({
                 { "!justify-end": isCoworking }
               )}
             >
-              <TypeTag category={event.event_type} size="sm" />
+              <TypeTag category={event.eventType} size="sm" />
 
               {/* {event.organizer && (
                 <div

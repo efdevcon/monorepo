@@ -36,11 +36,11 @@ const ActionBar = ({
   const hasLoggedInUser = true;
 
   return (
-    <div className="flex justify-between items-center w-full gap-6">
-      <div className="flex items-center gap-2">
+    <div className="flex justify-between items-center min-w-full gap-6 overflow-x-auto">
+      <div className="flex items-center gap-2 shrink-0">
         <button
           className={cn(
-            "flex items-center gap-2 text-sm font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2 transition-colors duration-300",
+            "flex items-center gap-2 text-sm font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2 transition-colors duration-300 shrink-0",
             (filterActive || filterOpen) && "bg-blue-50"
           )}
           onClick={() => setFilterOpen(!filterOpen)}
@@ -51,7 +51,7 @@ const ActionBar = ({
         {filterActive && <FilterSummary filter={filter} />}
       </div>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 shrink-0">
         {categories.map((category) => (
           <div
             key={category.label}
@@ -63,7 +63,7 @@ const ActionBar = ({
         ))}
       </div>
 
-      <div className="flex items-center justify-end grow gap-2">
+      <div className="flex items-center justify-end grow gap-2 shrink-0">
         <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
           <Search size={15} color="rgba(124, 124, 153, 1)" />
           <input
