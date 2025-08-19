@@ -169,8 +169,24 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
         >
           {`QUEST ${quest.order}`}
         </div>
-        <div className="text-[#232336] text-lg font-bold font-['Roboto'] leading-normal">
-          {quest.name}
+        <div className="w-full flex items-center gap-3">
+          {/* Quest logo */}
+          {quest.logoLink && (
+            <div className="size-8 rounded-[1px] overflow-hidden bg-white flex-shrink-0">
+              <img
+                src={quest.logoLink}
+                alt={`${quest.name} logo`}
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+            </div>
+          )}
+          <div className="text-[#232336] text-lg font-bold font-['Roboto'] leading-normal">
+            {quest.name}
+          </div>
         </div>
       </div>
       {isExpanded && quest.instructions && (
@@ -188,57 +204,102 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
         />
       </div>
 
-      {/* Points badge */}
-      <div
-        className={`size- p-1 right-4 top-4 absolute ${styles.badge} inline-flex justify-center items-center gap-1`}
-      >
+      {/* Quest images */}
+      <div className="absolute right-10 top-2 flex items-center gap-2">
         {/* Lock icon for locked quests */}
         {quest.state.status === 'locked' && quest.order === 6 && (
-          <div className="size- p-1 bg-[#4b4b66] rounded-[1px] inline-flex justify-center items-center gap-1 mr-1">
-            <LockIcon size="md" />
+          <div className="size-6 p-1 bg-[#4b4b66] rounded-[1px] inline-flex justify-center items-center">
+            <LockIcon size="sm" />
           </div>
         )}
-        <StarIcon isCompleted={quest.state.status === 'completed'} size="md" />
-        <div
-          className={`justify-start ${styles.points} text-${quest.order >= 3 ? 'xs' : 'sm'} font-black font-['Unibody_8_Pro'] leading-${quest.order >= 3 ? '3' : '[14px]'}`}
-        >
-          {quest.points}
-        </div>
+
+        {/* POAP image */}
+        {quest.poapImageLink && (
+          <div className="size-16">
+            <img
+              src={quest.poapImageLink}
+              alt={`${quest.name} POAP`}
+              className="w-full h-full rounded-full overflow-hidden object-cover border-2 border-gray-200"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
+            />
+          </div>
+        )}
       </div>
 
-      {/* Action button - only show when expanded */}
+      {/* Action buttons - only show when expanded */}
       {isExpanded && (
         <div
           onClick={(e) => e.stopPropagation()}
           className="w-full flex flex-col justify-start items-start gap-2"
         >
-          <div
-            className={`w-full pl-6 pr-4 py-4 flex justify-center items-center gap-1 mt-2 cursor-pointer transition-all duration-200 ${
-              quest.state.status === 'active'
-                ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
-                : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
-            } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation(); // Prevent triggering the parent click handler
-              handleQuestAction();
-            }}
-          >
-            <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
-              {isExecutingAction ? 'Executing...' : quest.button || 'TODO'}
+          <div className="w-full flex gap-2 mt-2">
+            {/* Learn More button */}
+            <div
+              className="flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 bg-[#6b7280] shadow-[inset_0px_6px_0px_0px_rgba(107,114,128,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(75,85,99,1.00)] hover:bg-[#4b5563]"
+              onClick={(e) => {
+                e.stopPropagation();
+                // TODO: Add learn more functionality
+                console.log('Learn more clicked for quest:', quest.name);
+              }}
+            >
+              <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
+                Learn More
+              </div>
             </div>
-            <div className="size-5 relative overflow-hidden">
-              <svg
-                width="21"
-                height="20"
-                viewBox="0 0 21 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.7004 13.6V11.2H9.30039V13.6H11.7004ZM6.90039 13.6V16H9.30039V13.6H6.90039ZM9.30039 8.8H11.7004V6.4H9.30039V8.8ZM14.1004 8.8H11.7004V11.2H14.1004V8.8ZM9.30039 6.4V4H6.90039V6.4H9.30039Z"
-                  fill="white"
-                />
-              </svg>
+
+            {/* Action button */}
+            <div
+              className={`flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 ${
+                quest.state.status === 'completed'
+                  ? 'bg-[#199821] shadow-[inset_0px_6px_0px_0px_rgba(38,184,38,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(25,152,33,1.00)] hover:bg-[#15801a]'
+                  : quest.state.status === 'active'
+                    ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
+                    : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
+              } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering the parent click handler
+                handleQuestAction();
+              }}
+            >
+              <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
+                {isExecutingAction
+                  ? 'Executing...'
+                  : quest.state.status === 'completed'
+                    ? 'Verified'
+                    : quest.button || 'TODO'}
+              </div>
+              <div className="size-5 relative overflow-hidden">
+                {quest.state.status === 'completed' ? (
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                      fill="white"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    width="21"
+                    height="20"
+                    viewBox="0 0 21 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M11.7004 13.6V11.2H9.30039V13.6H11.7004ZM6.90039 13.6V16H9.30039V13.6H6.90039ZM9.30039 8.8H11.7004V6.4H9.30039V8.8ZM14.1004 8.8H11.7004V11.2H14.1004V8.8ZM9.30039 6.4V4H6.90039V6.4H9.30039Z"
+                      fill="white"
+                    />
+                  </svg>
+                )}
+              </div>
             </div>
           </div>
         </div>
