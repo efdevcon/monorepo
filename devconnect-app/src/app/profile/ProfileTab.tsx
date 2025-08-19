@@ -1,7 +1,7 @@
 import { useUser } from '@/hooks/useUser';
 
 export default function ProfileTab() {
-  const { user, signOut, error } = useUser();
+  const { user, signOut, error, hasInitialized } = useUser();
 
   return (
     <div className="py-8 text-center">
@@ -12,7 +12,7 @@ export default function ProfileTab() {
       >
         Sign out
       </button>
-      {error && <div>{error}</div>}
+      {error && hasInitialized && <div>{error}</div>}
     </div>
   );
 }

@@ -1,8 +1,10 @@
 'use client';
 import { useUser } from '@/hooks/useUser';
+import { useState } from 'react';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
-  const { user, loading, error, sendMagicLink } = useUser();
+  const { user, loading, error, hasInitialized, sendMagicLink } = useUser();
+  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
 
   if (loading)
     return (
@@ -19,20 +21,49 @@ export default function Auth({ children }: { children: React.ReactNode }) {
         <div className="max-w-[500px] mx-auto bg-white box-border flex flex-col gap-4 items-center justify-center pb-7 pt-6 px-6 relative rounded-[1px] w-full">
           {/* Main border with shadow */}
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+          <h1 className="text-[#36364c] text-[24px] font-bold text-center">Account login</h1>
+
+          {/* Email Input */}
+          <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
+            <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
+            <div className="basis-0 box-border content-stretch flex flex-row gap-2 grow items-center justify-start min-h-px min-w-px overflow-clip p-0 relative self-stretch shrink-0">
+              <div className="overflow-clip relative shrink-0 size-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#7c7c99"
+                  strokeWidth="2"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
+              />
+            </div>
+          </div>
 
           {/* Get Started Button */}
           <button
             onClick={async () => {
-              await sendMagicLink();
+              await sendMagicLink(email);
             }}
-            className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
+            disabled={!email || !email.includes('@')}
+            className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
               Log in
             </span>
           </button>
 
-          {error && <div className="text-red-500 text-[14px]">{error}</div>}
+          {error && hasInitialized && <div className="text-red-500 text-[14px]">{error}</div>}
         </div>
       </div>
     </div>

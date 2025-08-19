@@ -18,7 +18,8 @@ export type UseUserResult = {
   user: User | null
   loading: string | false
   error: string | null
-  sendMagicLink: (redirectTo?: string) => Promise<void>
+  hasInitialized: boolean
+  sendMagicLink: (email?: string, redirectTo?: string) => Promise<void>
   signOut: () => Promise<void>
   supabase: SupabaseClient | null
 }
@@ -27,6 +28,7 @@ export function useUser(): UseUserResult {
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState<string | false>('Initializing...')
   const [error, setError] = useState<string | null>(null)
+  const [hasInitialized, setHasInitialized] = useState(false)
 
   useEffect(() => {
     if (!supabase) {
@@ -41,6 +43,7 @@ export function useUser(): UseUserResult {
       
       setUser(newUser)
       setLoading(false)
+      setHasInitialized(true)
       
       // Toast notifications for auth state changes
       if (event === 'SIGNED_IN' && isNowSignedIn && !wasSignedIn) {
@@ -55,11 +58,31 @@ export function useUser(): UseUserResult {
     // Check initial session
     supabase.auth.getUser().then(({ data, error }: { data: { user: User | null }; error: AuthError | null }) => {
       if (error) {
-        setError(error.message)
-        toast.error(`Authentication error: ${error.message}`)
+        // Only show errors for actual authentication failures, not missing sessions
+        // Common "no session" errors that we should ignore:
+        const ignoreErrors = [
+          'Invalid JWT',
+          'JWT expired',
+          'Auth session missing',
+          'No user found',
+          'User not found'
+        ]
+
+        const shouldIgnore = ignoreErrors.some(ignoreError =>
+          error.message.includes(ignoreError)
+        )
+
+        if (!shouldIgnore) {
+          setError(error.message)
+          // Only show toast errors after initialization to avoid showing errors on page load
+          if (hasInitialized) {
+            toast.error(`Authentication error: ${error.message}`)
+          }
+        }
       }
       setUser(data.user ?? null)
       setLoading(false)
+      setHasInitialized(true)
     })
 
     return () => {
@@ -67,11 +90,8 @@ export function useUser(): UseUserResult {
     }
   }, [])
 
-  const sendMagicLink = async (redirectTo?: string) => {
-      
-      
-      try {
-        const email = prompt('Enter your email')
+  const sendMagicLink = async (email?: string, redirectTo?: string) => {
+    try {
         if (!email) throw new Error('Email is required')
         if (!supabase) throw new Error('Supabase not initialized')
         setLoading('Sending magic link...')
@@ -127,6 +147,7 @@ export function useUser(): UseUserResult {
     user,
     loading,
     error,
+    hasInitialized,
     sendMagicLink,
     signOut,
     supabase,
