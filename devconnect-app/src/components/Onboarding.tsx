@@ -385,36 +385,153 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     <div key={index} className="relative shrink-0 size-10">
                       <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
                         <input
+                          ref={(el) => {
+                            if (el) {
+                              // Store ref for focus management
+                              (el as any)._index = index;
+                            }
+                          }}
                           type="text"
                           maxLength={1}
                           className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                           value={verificationCode[index] || ''}
                           onChange={(e) => {
+                            const value = e.target.value;
                             const newCode = verificationCode.split('');
-                            newCode[index] = e.target.value;
-                            setVerificationCode(newCode.join(''));
+                            newCode[index] = value;
+                            const updatedCode = newCode.join('');
+                            setVerificationCode(updatedCode);
+
+                            // Move focus to next input if character entered
+                            if (value && index < 5) {
+                              const target = e.target as HTMLInputElement;
+                              const nextInput =
+                                target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                  'input'
+                                ) ||
+                                target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                  'input'
+                                );
+                              if (nextInput) {
+                                (nextInput as HTMLInputElement).focus();
+                              }
+                            }
+                          }}
+                          onKeyDown={(e) => {
+                            // Handle backspace to move to previous input
+                            if (
+                              e.key === 'Backspace' &&
+                              !verificationCode[index] &&
+                              index > 0
+                            ) {
+                              const target = e.target as HTMLInputElement;
+                              const prevInput =
+                                target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                  'input'
+                                ) ||
+                                target.parentElement?.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                  'input'
+                                );
+                              if (prevInput) {
+                                (prevInput as HTMLInputElement).focus();
+                              }
+                            }
+                          }}
+                          onPaste={(e) => {
+                            e.preventDefault();
+                            const pastedData = e.clipboardData.getData('text');
+                            const digits = pastedData
+                              .replace(/\D/g, '')
+                              .slice(0, 6);
+
+                            if (digits.length === 6) {
+                              setVerificationCode(digits);
+                              // Focus the last input after paste
+                              const inputs =
+                                document.querySelectorAll('input[type="text"]');
+                              const lastInput = inputs[
+                                inputs.length - 1
+                              ] as HTMLInputElement;
+                              if (lastInput) {
+                                lastInput.focus();
+                              }
+                            }
                           }}
                         />
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="relative shrink-0 size-6">
-                  <div className="w-1 h-1 bg-[#d6d6d6] rounded-full"></div>
-                </div>
                 <div className="flex flex-row gap-1 items-center justify-start">
                   {[3, 4, 5].map((index) => (
                     <div key={index} className="relative shrink-0 size-10">
                       <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
                         <input
+                          ref={(el) => {
+                            if (el) {
+                              // Store ref for focus management
+                              (el as any)._index = index;
+                            }
+                          }}
                           type="text"
                           maxLength={1}
                           className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                           value={verificationCode[index] || ''}
                           onChange={(e) => {
+                            const value = e.target.value;
                             const newCode = verificationCode.split('');
-                            newCode[index] = e.target.value;
-                            setVerificationCode(newCode.join(''));
+                            newCode[index] = value;
+                            const updatedCode = newCode.join('');
+                            setVerificationCode(updatedCode);
+
+                            // Move focus to next input if character entered
+                            if (value && index < 5) {
+                              const target = e.target as HTMLInputElement;
+                              const nextInput =
+                                target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                  'input'
+                                );
+                              if (nextInput) {
+                                (nextInput as HTMLInputElement).focus();
+                              }
+                            }
+                          }}
+                          onKeyDown={(e) => {
+                            // Handle backspace to move to previous input
+                            if (
+                              e.key === 'Backspace' &&
+                              !verificationCode[index] &&
+                              index > 0
+                            ) {
+                              const target = e.target as HTMLInputElement;
+                              const prevInput =
+                                target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                  'input'
+                                );
+                              if (prevInput) {
+                                (prevInput as HTMLInputElement).focus();
+                              }
+                            }
+                          }}
+                          onPaste={(e) => {
+                            e.preventDefault();
+                            const pastedData = e.clipboardData.getData('text');
+                            const digits = pastedData
+                              .replace(/\D/g, '')
+                              .slice(0, 6);
+
+                            if (digits.length === 6) {
+                              setVerificationCode(digits);
+                              // Focus the last input after paste
+                              const inputs =
+                                document.querySelectorAll('input[type="text"]');
+                              const lastInput = inputs[
+                                inputs.length - 1
+                              ] as HTMLInputElement;
+                              if (lastInput) {
+                                lastInput.focus();
+                              }
+                            }
                           }}
                         />
                       </div>
