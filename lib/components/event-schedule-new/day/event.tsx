@@ -15,6 +15,7 @@ import Image from "next/image";
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
 import ethDayImage from "./ethday.jpg";
+import Link from "lib/components/link/Link";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import {
   Dialog,
@@ -38,22 +39,49 @@ type EventProps = {
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType | null) => void;
 };
-const formatTime = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
+
+const formatTime = (isoString: string) => {
+  return format(parseISO(isoString), "HH:mm");
 };
 
-const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
+const computeEventTimeString = (event: EventType): string[] => {
+  // the "> 1" is on purpose
+  const hasTimeblocks = event.timeblocks.length > 1;
+
+  let formattedTimeblocks: string[] = [];
+
+  if (!hasTimeblocks) {
+    const startDate = parseISO(event.timeblocks[0].start);
+    const endDate = parseISO(event.timeblocks[0].end);
+    const startDateFormatted = format(startDate, "MMM dd");
+    const endDateFormatted = format(endDate, "MMM dd");
+    const startTime = formatTime(event.timeblocks[0].start);
+    const endTime = formatTime(event.timeblocks[0].end);
+    const isMultiDay =
+      format(startDate, "yyyy-MM-dd") !== format(endDate, "yyyy-MM-dd");
+
+    if (isMultiDay) {
+      return [
+        `${startDateFormatted} — ${endDateFormatted}, ${startTime} — ${endTime} `,
+      ];
+    }
+
+    return [`${startDateFormatted}, ${startTime} to ${endTime}`];
+  } else {
+    formattedTimeblocks = event.timeblocks
+      .slice()
+      .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
+      .map((timeblock) => {
+        const startDate = format(parseISO(timeblock.start), "MMM dd");
+        const endDate = format(parseISO(timeblock.end), "MMM dd");
+        const startTime = formatTime(timeblock.start);
+        const endTime = formatTime(timeblock.end);
+
+        return `${startDate} — ${endDate}, ${startTime} — ${endTime}`;
+      });
+  }
+
+  return formattedTimeblocks;
 };
 
 const Event: React.FC<EventProps> = ({
@@ -65,19 +93,7 @@ const Event: React.FC<EventProps> = ({
 }) => {
   const userIsLoggedIn = true;
   const draggableLink = useDraggableLink();
-
-  // Get the first timeblock for display
-  const timeblock = event.timeblocks[0];
   const eventClassName = className || "";
-
-  // Format the start and end times
-  const formatTime = (isoString: string) => {
-    return format(parseISO(isoString), "h:mm a");
-  };
-
-  const startTime = formatTime(timeblock.start);
-  const endTime = formatTime(timeblock.end);
-  const durationString = `${startTime} - ${endTime}`;
 
   // Type of event and resulting customization class
   const typeClass = (() => {
@@ -99,27 +115,9 @@ const Event: React.FC<EventProps> = ({
   const isCoworking = event.id.toString() === "23";
   const isETHDay = event.id.toString() === "29";
 
-  const isCoreEvent =
-    event.id.toString() === "23" || event.id.toString() === "29";
+  const isCoreEvent = event.isCoreEvent;
 
   let eventName = event.name;
-
-  const eventStartTime = format(parseISO(event.timeblocks[0].start), "HH:mm");
-  const eventEndTime = format(parseISO(event.timeblocks[0].end), "HH:mm");
-  const eventStartDate = format(
-    parseISO(event.timeblocks[0].start),
-    "MMM dd"
-  ).toUpperCase();
-  const eventEndDate = format(
-    parseISO(event.timeblocks[0].end),
-    "MMM dd"
-  ).toUpperCase();
-
-  // Check if start and end are on the same day
-  const isSameDay = eventStartDate === eventEndDate;
-  const eventTimeString = isSameDay
-    ? `${eventStartTime}–${eventEndTime}, ${eventStartDate}`
-    : `${eventStartTime}, ${eventStartDate} – ${eventEndTime}, ${eventEndDate}`;
 
   return (
     <div
@@ -152,7 +150,7 @@ const Event: React.FC<EventProps> = ({
       >
         <DialogContent
           className={cn(
-            "max-w-[95vw] w-[450px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000]",
+            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000]",
             typeClass
           )}
         >
@@ -161,28 +159,27 @@ const Event: React.FC<EventProps> = ({
             alt={event.name}
             className="w-full h-full object-cover aspect-[390/160]"
           />
-
-          {/* <DialogHeader>
-          
-            <DialogTitle>{event.name}</DialogTitle>
-          </DialogHeader> */}
           <div className="p-4 pt-0" draggable="false">
             <div className="flex flex-col text-[rgba(36,36,54,1)]">
               <div className="text-sm text-[rgba(94,144,189,1)] uppercase font-secondary">
-                {isCoreEvent ? "Core Event" : "Community Event"} by{" "}
-                {event.organizer}
+                <div>{isCoreEvent ? "Core Event" : "Community Event"}</div>
               </div>
 
               <DialogTitle asChild>
-                <div className="text-lg font-bold tracking-normal leading-tight">
+                <div className="text-xl font-bold tracking-normal leading-tight mt-1">
                   {event.name}
                 </div>
               </DialogTitle>
-              {/* <div className="text-lg font-bold">{event.name}</div> */}
 
-              <div className="text-sm">{eventTimeString}</div>
+              {event.organizer && (
+                <div className="text-xs">hosted by {event.organizer}</div>
+              )}
 
-              <Separator className="my-2" />
+              <div className="text-[rgba(75,75,102,1)] mt-2">
+                {computeEventTimeString(event).join(", ")}
+              </div>
+
+              <Separator className="my-3" />
 
               <div className="text-sm flex gap-2 mb-2">
                 <div className="flex justify-center gap-1">
@@ -198,8 +195,11 @@ const Event: React.FC<EventProps> = ({
                 )}
               </div>
 
-              {/* <div className="text-sm">
-                {event.timeblocks.map((timeblock, index) => (
+              {/* <div className="text-sm"> */}
+              {/* {computeEventTimeString(event).map((timeblock, index) => (
+                  <div key={index}>{timeblock}</div>
+                ))} */}
+              {/* {computeEventTimeString(event).map((timeblock, index) => (
                   <div
                     key={index}
                     className="mb-2 border-b last:border-b-0 pb-2"
@@ -224,20 +224,22 @@ const Event: React.FC<EventProps> = ({
                       </div>
                     )}
                   </div>
-                ))}
-              </div> */}
+                ))} */}
+              {/* </div> */}
 
               <div className="text-sm">{event.description}</div>
 
-              <VoxelButton
-                color="blue-1"
-                size="sm"
-                fill
-                className="shrink-0  mt-2 self-start"
-              >
-                Visit Website
-                <ArrowUpRight className="w-4 h-4 mb-0.5" />
-              </VoxelButton>
+              <Link href={event.eventLink}>
+                <VoxelButton
+                  color="blue-1"
+                  size="sm"
+                  fill
+                  className="shrink-0  mt-2 self-start"
+                >
+                  Visit Website
+                  <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                </VoxelButton>
+              </Link>
 
               <Separator className="my-3" />
 
@@ -289,7 +291,9 @@ const Event: React.FC<EventProps> = ({
             )}
             <div className="flex flex-col">
               {eventName}
-              <div className="text-xs text-gray-600">{eventTimeString}</div>
+              <div className="text-xs text-gray-600">
+                {computeEventTimeString(event).join(", ")}
+              </div>
             </div>
           </div>
 

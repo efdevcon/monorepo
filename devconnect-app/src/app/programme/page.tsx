@@ -72,6 +72,7 @@ async function getAtprotoEvents() {
         timeblocks: timeblocks,
         eventType: record.event_type,
         isCoreEvent: event.is_core_event || false,
+        eventLink: record.main_url,
         ...manualOverrides,
         // difficulty: record.difficulty,
       };
