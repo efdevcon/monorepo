@@ -19,7 +19,8 @@ export type UseUserResult = {
   loading: string | false
   error: string | null
   hasInitialized: boolean
-  sendMagicLink: (email?: string, redirectTo?: string) => Promise<void>
+  sendOtp: (email?: string) => Promise<void>
+  verifyOtp: (email: string, token: string) => Promise<void>
   signOut: () => Promise<void>
   supabase: SupabaseClient | null
 }
@@ -90,19 +91,17 @@ export function useUser(): UseUserResult {
     }
   }, [])
 
-  const sendMagicLink = async (email?: string, redirectTo?: string) => {
+  const sendOtp = async (email?: string) => {
     try {
         if (!email) throw new Error('Email is required')
         if (!supabase) throw new Error('Supabase not initialized')
-        setLoading('Sending magic link...')
+      setLoading('Sending OTP...')
         setError(null)
 
-        const redirect = redirectTo ?? (typeof window !== "undefined" ? window.location.href : undefined)
-        
-        const { error } = await supabase.auth.signInWithOtp({
+      const { data, error } = await supabase.auth.signInWithOtp({
           email,
           options: {
-            emailRedirectTo: redirect,
+            shouldCreateUser: true,
           },
         })
         
@@ -110,11 +109,39 @@ export function useUser(): UseUserResult {
           throw error
         }
         
-        toast.success('Magic link sent! Check your email.')
+      toast.success('OTP sent! Check your email.')
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error)
+      setError(errorMessage)
+      toast.error(`Failed to send OTP: ${errorMessage}`)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const verifyOtp = async (email: string, token: string) => {
+    try {
+      if (!email) throw new Error('Email is required')
+      if (!token) throw new Error('OTP is required')
+      if (!supabase) throw new Error('Supabase not initialized')
+      setLoading('Verifying OTP...')
+      setError(null)
+
+      const { error } = await supabase.auth.verifyOtp({
+        email,
+        token,
+        type: 'email',
+      })
+
+      if (error) {
+        throw error
+      }
+
+      toast.success('OTP verified successfully!')
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : String(error)
         setError(errorMessage)
-        toast.error(`Failed to send magic link: ${errorMessage}`)
+      toast.error(`Failed to verify OTP: ${errorMessage}`)
     } finally {
         setLoading(false)
     }
@@ -148,7 +175,8 @@ export function useUser(): UseUserResult {
     loading,
     error,
     hasInitialized,
-    sendMagicLink,
+    sendOtp,
+    verifyOtp,
     signOut,
     supabase,
   }
