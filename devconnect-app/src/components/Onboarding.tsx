@@ -28,7 +28,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
-  const { user } = useUser();
+  const { user, signOut } = useUser();
   const { openModal } = useModal();
 
   // Para authentication hooks
@@ -191,6 +191,20 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     setVerificationCode('');
   };
 
+  const handleLogout = async () => {
+    try {
+      await signOut();
+      // Reset the onboarding state after logout
+      setShowGetStarted(true);
+      setSkipped(false);
+      setAuthState(undefined);
+      setEmail('');
+      setVerificationCode('');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  };
+
   const handleBack = () => {
     setAuthState(undefined);
     setVerificationCode('');
@@ -304,6 +318,18 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             Get started {user?.email}
           </span>
         </button>
+
+        {/* Logout Button - Only show when user is logged in */}
+        {user && (
+          <button
+            onClick={handleLogout}
+            className="bg-white flex flex-row gap-2 items-center justify-center p-[12px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_2px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors"
+          >
+            <span className="font-bold text-[#36364c] text-[14px] text-center tracking-[-0.1px] leading-none">
+              Logout
+            </span>
+          </button>
+        )}
       </div>
     );
   }
@@ -805,6 +831,16 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           >
             {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
           </button>
+
+          {/* Logout Button - Only show when user is logged in */}
+          {user && (
+            <button
+              onClick={handleLogout}
+              className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
 
