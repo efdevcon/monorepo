@@ -25,11 +25,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { isSkipped, setSkipped } = useUnifiedConnection();
   const [showGetStarted, setShowGetStarted] = useState(true);
   const [authState, setAuthState] = useState<AuthState | undefined>();
-  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
+  const { user, signOut } = useUser();
+  const [email, setEmail] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
-  const { user, signOut } = useUser();
   const { openModal } = useModal();
+
+  useEffect(() => {
+    if (user?.email && email === '') {
+      setEmail(user.email);
+    }
+  }, [user?.email]);
 
   // Para authentication hooks
   const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
@@ -315,7 +321,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
         >
           <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-            Get started {user?.email}
+            Get started
           </span>
         </button>
 
