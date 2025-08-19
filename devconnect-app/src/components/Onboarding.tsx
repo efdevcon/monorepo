@@ -11,6 +11,7 @@ import {
   useWaitForLogin,
   useWaitForWalletCreation,
   type AuthState,
+  useModal,
 } from '@getpara/react-sdk';
 import { useUser } from '@/hooks/useUser';
 
@@ -28,6 +29,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const { user } = useUser();
+  const { openModal } = useModal();
 
   // Para authentication hooks
   const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
@@ -784,6 +786,16 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 {isSigningUp ? 'Sending...' : 'Connect with email'}
               </span>
             </button>
+
+            {/* Direct Authentication Button */}
+            <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
+              <button
+                className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none"
+                onClick={() => openModal()}
+              >
+                Connect with Para Modal
+              </button>
+            </div>
           </div>
 
           {/* Skip for now */}
