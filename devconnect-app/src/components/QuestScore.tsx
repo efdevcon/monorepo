@@ -48,7 +48,7 @@ const QuestScore = ({ quests, onResetStates }: QuestScoreProps) => {
   return (
     <div className="w-full flex flex-col items-center gap-4 mb-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
       {/* Score Display */}
-      <div className="flex items-center gap-3">
+      {/* <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
           <StarIcon isCompleted={true} size="md" />
           <span className="text-2xl font-bold text-blue-800">
@@ -58,7 +58,7 @@ const QuestScore = ({ quests, onResetStates }: QuestScoreProps) => {
         <span className="text-gray-500 text-lg">
           / {totalPossiblePoints} points
         </span>
-      </div>
+      </div> */}
 
       {/* Progress Bar */}
       <div className="w-full max-w-xs">
@@ -67,7 +67,7 @@ const QuestScore = ({ quests, onResetStates }: QuestScoreProps) => {
           <span>{completionPercentage}%</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-2">
-          <div 
+          <div
             className="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${completionPercentage}%` }}
           />

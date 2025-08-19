@@ -25,7 +25,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
           {/* Main border with shadow */}
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
           <h1 className="text-[#36364c] text-[24px] font-bold text-center">
-            OTP Login
+            Account Login
           </h1>
 
           {/* Email Input */}
