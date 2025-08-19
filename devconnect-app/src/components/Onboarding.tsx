@@ -332,7 +332,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             className="bg-white flex flex-row gap-2 items-center justify-center p-[12px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_2px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors"
           >
             <span className="font-bold text-[#36364c] text-[14px] text-center tracking-[-0.1px] leading-none">
-              Logout
+              Account logout
             </span>
           </button>
         )}
@@ -844,7 +844,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               onClick={handleLogout}
               className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
             >
-              Logout
+              Account logout
             </button>
           )}
         </div>
