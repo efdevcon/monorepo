@@ -101,7 +101,10 @@ export function useUser(): UseUserResult {
       const { data, error } = await supabase.auth.signInWithOtp({
           email,
           options: {
-            shouldCreateUser: true,
+            // OTP and magic link share an email template on supabase, but we need to render two different emails depending on which one we are using
+            // There is no way to send in custom data to the email template, other than the redirect url - luckily the OTP flow does not use the redirect url anyway, so we can set it and use it as a conditional to render the OTP email instead of the magic link email
+            // TL:DR; do not touch/change this redirect url unless you know what you are doing, it has to match exactly
+            emailRedirectTo: 'https://app.devconnect.org' 
           },
         })
         
