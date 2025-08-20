@@ -23,9 +23,9 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events);
 
   return (
-    <div className="section overflow-visible touch-only:contents">
-      <div className="flex flex-col gap-4 w-full">
-        <div className="mouse-only:contents section">
+    <div className="section overflow-visible touch-only:!contents">
+      <div className="flex flex-col gap-4 w-full bg-white">
+        <div className="mouse-only:!contents section">
           <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-4 md:mb-1 mb-4">
             <div className="text-3xl font-secondary shrink-0">
               {props.isCommunityCalendar ? (

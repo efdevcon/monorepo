@@ -1,6 +1,6 @@
 import { ReactNode, useRef, forwardRef } from "react";
 import NextLink from "next/link";
-import LinkIndicator from "assets/icons/link-indicator.svg";
+import LinkIndicator from "lib/assets/icons/link-indicator.svg";
 import css from "./link.module.scss";
 // @ts-ignore
 import AnchorLink from "react-anchor-link-smooth-scroll";
