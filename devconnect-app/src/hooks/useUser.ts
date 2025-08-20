@@ -30,6 +30,7 @@ export function useUser(): UseUserResult {
   const [loading, setLoading] = useState<string | false>('Initializing...')
   const [error, setError] = useState<string | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
+  const [lastToastUserId, setLastToastUserId] = useState<string | null>(null)
 
   useEffect(() => {
     if (!supabase) {
@@ -47,10 +48,13 @@ export function useUser(): UseUserResult {
       setHasInitialized(true)
       
       // Toast notifications for auth state changes
-      if (event === 'SIGNED_IN' && isNowSignedIn && !wasSignedIn) {
+      // Only show toast if this is an actual state change and we haven't already shown a toast for this user
+      if (event === 'SIGNED_IN' && isNowSignedIn && !wasSignedIn && hasInitialized && newUser?.id !== lastToastUserId) {
         toast.success('Successfully signed in!')
-      } else if (event === 'SIGNED_OUT' && !isNowSignedIn && wasSignedIn) {
+        setLastToastUserId(newUser?.id ?? null)
+      } else if (event === 'SIGNED_OUT' && !isNowSignedIn && wasSignedIn && hasInitialized) {
         toast.success('Successfully signed out!')
+        setLastToastUserId(null)
       } else if (event === 'TOKEN_REFRESHED') {
         // Silently handle token refresh, no toast needed
       }
@@ -82,6 +86,10 @@ export function useUser(): UseUserResult {
         }
       }
       setUser(data.user ?? null)
+      // Set the last toast user ID to prevent showing sign-in toast on initial load
+      if (data.user?.id) {
+        setLastToastUserId(data.user.id)
+      }
       setLoading(false)
       setHasInitialized(true)
     })
