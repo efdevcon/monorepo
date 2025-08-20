@@ -60,5 +60,6 @@ export const useDraggableLink = (thresholdPixels = 5) => {
     onClickCapture,
     onClick: onClickCapture,
     draggable: false,
+    dragging,
   };
 };

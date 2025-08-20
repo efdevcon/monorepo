@@ -1,0 +1,42 @@
+.fade {
+  height: 100%;
+  position: absolute;
+  z-index: 4;
+  top: -1px;
+  width: 100vw;
+  left: min(315px, 100%);
+  right: 0px;
+  transform: translateX(-100%);
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.2));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  @media (max-width: 1024px) {
+    display: none;
+  }
+}
+
+.filter-foldout {
+  position: sticky;
+  top: 4px;
+  display: flex;
+  align-self: flex-start;
+  border: 1px solid var(--primary-text-inactive, rgba(224, 224, 235, 1));
+  background: white;
+  z-index: 7;
+  flex-shrink: 0;
+  margin-right: 8px;
+  width: min(315px, 100%);
+  padding: 16px;
+
+  @media (max-width: 1024px) {
+    position: absolute;
+    top: 0px;
+    margin-right: 0px;
+    margin-left: 64px;
+  }
+
+  @media (max-width: 768px) {
+    margin-left: 16px;
+  }
+}

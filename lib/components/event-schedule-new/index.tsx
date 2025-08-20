@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
 import Event from "./day/event";
-import { dummyEvents } from "./dummy-data";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import { Event as EventType } from "./model";
@@ -10,10 +9,11 @@ import { format, parseISO } from "date-fns";
 // import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
 import Timeline from "./timeline";
-// import MapComponent from './map'
-import { Button } from "lib/components/button";
+import NoEventsImage from "./images/404.png";
+import Image from "next/image";
 
-type ScheduleProps = {
+export type ScheduleProps = {
+  isCommunityCalendar?: boolean;
   selectedEvent: EventType | null;
   selectedDay: string | null;
   setSelectedEvent: (event: EventType | null) => void;
@@ -151,6 +151,7 @@ const NewScheduleIndex = ({
   setSelectedEvent,
   setSelectedDay,
   events,
+  isCommunityCalendar = false,
 }: ScheduleProps) => {
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
@@ -165,12 +166,15 @@ const NewScheduleIndex = ({
   // Format date for display
   const formatDateHeader = (dateStr: string) => {
     const date = parseISO(dateStr);
-    return format(date, "EEE, MMM d");
+    return {
+      day: format(date, "EEE"),
+      date: format(date, "MMM d"),
+    };
   };
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(155px, 1fr))`;
+  const columnTemplate = `repeat(${eventRange.length}, minmax(205px, 1fr))`;
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {
@@ -180,23 +184,16 @@ const NewScheduleIndex = ({
     return placement.datesCovered.includes(hoveredDate);
   };
 
+  // <div className="flex flex-col gap-4 w-full">
   return (
-    <div className="flex flex-col gap-4 w-full">
-      {/* <div className="flex justify-between gap-4">
-        <div className="text-lg font-bold">Devconnect 2025 Buenos Aires</div>
-        <div className="flex gap-2 items-center">
-          <div className="text-sm text-gray-500">Filter Goes here</div>
-          <Button variant="secondary">Login with Zupass</Button>
-        </div>
-      </div> */}
-      <SwipeToScroll>
+    <>
+      <SwipeToScroll noBounds>
         <div className="text-black flex">
+          {/* padding hack for mobile */}
           <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-          {/* Unified Calendar Grid with aligned header and content */}
-          <div className="w-full">
-            {/* Grid container with header and content in one cohesive grid */}
+          <div className="w-full flex">
             <div
-              className="grid"
+              className="grid shrink-0"
               style={{
                 gridTemplateColumns: columnTemplate,
                 gridTemplateRows: "auto 1fr",
@@ -205,10 +202,10 @@ const NewScheduleIndex = ({
               {/* Header row with dates */}
               <div className="contents relative">
                 {eventRange.map((date) => (
-                  <h2
+                  <div
                     key={date}
                     className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 rounded-md mb-0.5",
+                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
@@ -222,8 +219,11 @@ const NewScheduleIndex = ({
                     //   }
                     // }}
                   >
-                    {formatDateHeader(date)}
-                  </h2>
+                    <div className="text-center flex justify-between">
+                      <div className="">{formatDateHeader(date).day}</div>
+                      <div className="">{formatDateHeader(date).date}</div>
+                    </div>
+                  </div>
                 ))}
               </div>
 
@@ -237,9 +237,7 @@ const NewScheduleIndex = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-              {/* Calendar body */}
               <div className={cn("contents", selectedDay && "hidden")}>
-                {/* Place all events in the grid */}
                 {eventPlacements.map((placement, idx) => (
                   <div
                     key={`event-${placement.event.id}-${idx}`}
@@ -261,39 +259,48 @@ const NewScheduleIndex = ({
                       }
                       selectedEvent={selectedEvent}
                       setSelectedEvent={setSelectedEvent}
-                      // isCoworking={placement.event.name.includes('Coworking')}
-                      // isMultiDay={placement.gridPosition.duration > 1}
-                      // timeblock={placement.timeblock}
                     />
                   </div>
                 ))}
-
-                {/* If no events are scheduled, show message */}
-                {eventPlacements.length === 0 && (
-                  <div
-                    className="text-gray-400 py-3 text-center"
-                    style={{ gridColumn: `1 / span ${eventRange.length}` }}
-                  >
-                    No events scheduled
-                  </div>
-                )}
               </div>
             </div>
+            <div className="w-4 md:w-0 h-[1px] shrink-0"></div>
           </div>
         </div>
       </SwipeToScroll>
-
-      <div
-        className="left-0 z-[9] top-[100%] mt-2 w-full"
-        // style={{
-        //   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
-        // }}
-      >
-        {/* <Timeline events={events} /> */}
-        {/* {selectedDay && <MapComponent />} */}
-      </div>
-    </div>
+      {eventPlacements.length === 0 && (
+        <div
+          className="text-gray-400 py-3 text-center flex flex-col justify-center items-center"
+          style={{ gridColumn: `1 / -1` }}
+        >
+          <Image
+            src={NoEventsImage}
+            alt="No events scheduled"
+            className="h-full object-contain w-[500px] max-w-[calc(100%-32px)] mx-4 my-4 mt-2"
+          />
+          <div className="text-gray-400 py-3 text-center flex justify-center items-center">
+            {events.length === 0
+              ? isCommunityCalendar
+                ? "Community events coming soon!"
+                : "No events match this filter"
+              : ""}
+          </div>
+        </div>
+      )}
+    </>
   );
+
+  /* 
+     <div
+        className="left-0 z-[9] top-[100%] mt-2 w-full"
+        style={{
+          gridColumn: `1 / span ${eventRange.length}`, // Span all columns
+        }}
+      >
+        <Timeline events={events} /> 
+        {selectedDay && <MapComponent />} 
+      </div>
+    </div>  */
 };
 
 export default NewScheduleIndex;

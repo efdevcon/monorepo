@@ -396,6 +396,7 @@ const Timeline = ({ events }: { events: Event[] }) => {
 
     // Add event-level locations
     events.forEach((event) => {
+      // @ts-ignore
       uniqueLocations.add(event.location.text);
 
       // Add timeblock-specific locations if they exist
@@ -414,6 +415,7 @@ const Timeline = ({ events }: { events: Event[] }) => {
     event: Event,
     timeblock: Event["timeblocks"][0]
   ): string => {
+    // @ts-ignore
     return timeblock.location || event.location.text;
   };
 

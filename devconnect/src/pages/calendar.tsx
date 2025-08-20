@@ -7,92 +7,36 @@ import { useTina } from 'tinacms/dist/react'
 import Image from 'next/image'
 import styles from './calendar.module.scss'
 import cn from 'classnames'
-import NewSchedule from 'lib/components/event-schedule-new'
-import { formatResult } from 'lib/helpers/notion-normalizer'
 import moment from 'moment'
 import PageTitle from 'assets/images/ba/subpage_event_calendar_2x.webp'
 import Voxel from 'assets/images/ba/voxel-0.jpg'
 import RichText from 'lib/components/tina-cms/RichText'
 import { CMSButtons } from 'common/components/voxel-button/button'
+import CalendarLayout from 'lib/components/event-schedule-new/layout'
+import { Separator } from 'lib/components/ui/separator'
+import { record } from 'zod'
+import { makeConsoleLogger } from '@notionhq/client/build/src/logging'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const { data }: { data: any } = useTina(props.content)
 
-  const coreEvents = [
-    {
-      id: 'event-000',
-      priority: 1,
-      spanRows: 2,
-      name: `Ethereum World's Fair & Coworking Space`,
-      description: 'Open coworking space for developers, builders, and researchers to collaborate throughout the week.',
-      organizer: 'Ethereum Foundation',
-      difficulty: 'all welcome',
-      isCoreEvent: true,
-      timeblocks: [
-        {
-          start: '2025-11-17T09:00:00Z',
-          end: '2025-11-22T18:00:00Z',
-        },
-        {
-          start: '2025-11-20T09:00:00Z',
-          end: '2025-11-20T18:00:00Z',
-        },
-        {
-          start: '2025-11-22T09:00:00Z',
-          end: '2025-11-22T18:00:00Z',
-        },
-      ],
-      location: {
-        url: 'https://example.com/coworking',
-        text: 'Innovation Hub',
-      },
-    },
-    {
-      id: 'event-001',
-      priority: 2,
-      spanRows: 3,
-      name: 'ETH Day',
-      description: 'A beginner-friendly workshop covering blockchain fundamentals and use cases.',
-      organizer: 'EF team',
-      difficulty: 'all welcome',
-      isFairEvent: true,
-      timeblocks: [
-        {
-          start: '2025-11-17T10:00:00Z',
-          end: '2025-11-17T12:00:00Z',
-        },
-      ],
-      location: {
-        url: 'https://example.com/venue1',
-        text: 'Main Conference Hall',
-      },
-      // timeblocks: [
-      //   {
-      //     start: '2025-11-17T10:00:00Z',
-      //     end: '2025-11-17T12:00:00Z',
-      //   },
-      // ],
-      // priority: 1,
-      // categories: ['Education', 'Blockchain', 'Workshop'],
-    },
-  ]
+  const events = props.events
+  // const events = props.events.map((event: any) => {
+  //   const overrides = {} as any
 
-  const events = props.events.map((event: any) => {
-    const overrides = {} as any
+  //   if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
+  //     overrides.name = 'ETH Day'
+  //     overrides.isFairEvent = true
+  //     overrides.spanRows = 3
+  //   }
 
-    if (event.id === '1f5638cd-c415-809b-8fbd-ec8c4ba7f5b9') {
-      overrides.name = 'ETH Day'
-      overrides.isFairEvent = true
-      overrides.spanRows = 3
-    }
-
-    return {
-      ...event,
-      ...overrides,
-      onClick: () => {},
-    }
-  })
+  //   return {
+  //     ...event,
+  //     ...overrides,
+  //     onClick: () => {},
+  //   }
+  // })
 
   return (
     <>
@@ -114,34 +58,35 @@ const Argentina = (props: any) => {
         <div className={styles['devconnect-overlay']}></div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
-      <div className="flex flex-col text-black">
+      <div className="flex flex-col text-black mt-6">
+        <CalendarLayout
+          events={events.filter((event: any) => event.isCoreEvent)}
+          isCommunityCalendar={false}
+          selectedEvent={selectedEvent}
+          selectedDay={selectedDay}
+          setSelectedEvent={setSelectedEvent}
+          setSelectedDay={setSelectedDay}
+        />
+
         <div className="section">
-          <div className="flex justify-between gap-4 my-6">
-            <div className="text-3xl hidden md:block font-secondary">
-              <b>Argentina 2025</b> — Schedule
-            </div>
-            <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C]">
-              <RichText content={data.pages.calendar_disclaimer} />
-            </div>
-          </div>
+          <Separator className="my-8 mt-12" />
         </div>
 
-        <div className="section overflow-visible touch-only:contents">
-          <NewSchedule
-            events={events}
-            selectedEvent={selectedEvent}
-            selectedDay={selectedDay}
-            setSelectedEvent={setSelectedEvent}
-            setSelectedDay={setSelectedDay}
-          />
-        </div>
+        <CalendarLayout
+          events={events.filter((event: any) => !event.isCoreEvent)}
+          isCommunityCalendar
+          selectedEvent={selectedEvent}
+          selectedDay={selectedDay}
+          setSelectedEvent={setSelectedEvent}
+          setSelectedDay={setSelectedDay}
+        />
 
         <div className="section mb-8">
           {/* <div className="text-center text-lg">
             Stay tuned for details on how to submit your event to the calendar - we will be accepting submissions very
             soon!
           </div> */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-4 md:p-12">
             <RichText content={data.pages.calendar_how_to_apply} Buttons={CMSButtons} />
             <RichText content={data.pages.calendar_community_calendar} Buttons={CMSButtons} />
           </div>
@@ -293,16 +238,6 @@ export interface Event {
 
     const manualOverrides = {} as any
 
-    if (event.id.toString() === '23') {
-      manualOverrides.priority = 1
-      manualOverrides.spanRows = 2
-    }
-
-    if (event.id.toString() === '29') {
-      manualOverrides.priority = 2
-      manualOverrides.spanRows = 3
-    }
-
     return {
       id: event.id,
       name: record.title,
@@ -313,8 +248,10 @@ export interface Event {
       difficulty: record.expertise,
       organizer: record.organizer.name,
       timeblocks: timeblocks,
+      eventType: record.event_type,
+      isCoreEvent: event.is_core_event || false,
+      eventLink: record.main_url,
       ...manualOverrides,
-      // difficulty: record.difficulty,
     }
   })
 

@@ -40,6 +40,7 @@ const formatATProtoEvent = (atprotoEvent: any) => {
     priority: atprotoEvent.metadata?.priority || 1,
     categories: atprotoEvent.metadata?.categories || [],
     amountPeople: atprotoEvent.metadata?.capacity !== undefined ? String(atprotoEvent.metadata.capacity) : undefined,
+    event_type: atprotoEvent.event_type,
   }
 }
 
@@ -434,6 +435,8 @@ const AdminPage = () => {
       created_at: event.created_at,
       show_on_calendar: event.show_on_calendar,
       is_core_event: event.is_core_event,
+      eventType: event.record_passed_review?.event_type,
+      eventLink: event.record_passed_review?.main_url,
     }))
     .filter(event => event.show_on_calendar)
 
