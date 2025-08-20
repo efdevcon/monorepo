@@ -36,11 +36,12 @@ const connectors: CreateConnectorFn[] = [
     disablePhoneLogin: true,
     logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
     oAuthMethods: [],
-    onRampTestMode: true,
+    onRampTestMode: false,
     options: {},
     para,
     queryClient,
-    recoverySecretStepEnabled: true,
+    // TEMP: disable recovery secret step
+    // recoverySecretStepEnabled: true,
     theme: {
       accentColor: "#0066CC",
       backgroundColor: "#FFFFFF",
