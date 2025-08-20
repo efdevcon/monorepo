@@ -37,14 +37,14 @@ export const useMapFilters = () => {
     return !activeFilters.has(category);
   };
 
-  // Toggle filter
+  // Toggle filter - only one filter active at a time
   const toggleFilter = (category: string) => {
-    const newFilters = new Set(activeFilters);
-    if (newFilters.has(category)) {
-      newFilters.delete(category);
-    } else {
+    const newFilters = new Set<string>();
+    if (!activeFilters.has(category)) {
+    // If category is not active, make it the only active one
       newFilters.add(category);
     }
+    // If category is already active, deselect it (empty set)
     setActiveFilters(newFilters);
   };
 

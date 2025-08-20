@@ -1,543 +1,459 @@
-import React from 'react';
-import { Users, Utensils, Coffee, Cpu, Microscope, Palette, ShoppingBag, LogIn, DoorOpen, Briefcase, DollarSign } from 'lucide-react';
+import React, { useEffect } from 'react';
 import { POI } from '@/data/poiData';
-import { filterCategories } from '@/data/filterCategories';
 
 interface EventMapSVGProps {
   svgRef: React.RefObject<SVGSVGElement | null>;
-  transform: { x: number; y: number; scale: number };
   activeFilters: Set<string>;
   selectedPOI: POI | null;
-  onSVGElementClick: (elementId: string, e?: React.MouseEvent | React.TouchEvent) => void;
-  shouldDimCategory: (category: string) => boolean;
-  getCategoryFilter: (category: string) => string;
-  renderIcon: (IconComponent: React.ComponentType<any>, x: number, y: number, baseSize?: number) => React.JSX.Element;
+  onSVGElementClick: (
+    elementId: string,
+    e?: React.MouseEvent | React.TouchEvent
+  ) => void;
 }
 
 export const EventMapSVG: React.FC<EventMapSVGProps> = ({
   svgRef,
-  transform,
   activeFilters,
   onSVGElementClick,
-  shouldDimCategory,
-  getCategoryFilter,
-  renderIcon,
 }) => {
+  // Smart highlighting logic using svgRef - only one district at a time
+  useEffect(() => {
+    const svgElement = svgRef.current;
+    if (!svgElement) return;
+
+    // Remove all highlight classes first
+    svgElement.querySelectorAll('[id]').forEach((element) => {
+      element.classList.remove('highlighted', 'dimmed');
+    });
+
+    // If no filters active, show everything normally
+    if (activeFilters.size === 0) return;
+
+    // Get the first (and only) active filter
+    const activeFilter = Array.from(activeFilters)[0];
+    if (!activeFilter) return;
+
+    // Get all elements with IDs
+    const allElements = svgElement.querySelectorAll('[id]');
+
+    allElements.forEach((element) => {
+      const elementId = element.id;
+
+      // Check if this element belongs to the active category
+      // Only highlight individual elements (defi-pancake-swap, defi-lido, etc.)
+      // but NOT the district group element itself (defi, fnb, cowork, etc.)
+      const isActive =
+        elementId.startsWith(activeFilter + '-') ||
+        (elementId.startsWith(activeFilter) && elementId !== activeFilter);
+
+      // Check if this is a district group element or the main container
+      const isDistrictGroup = ['event-map-svg-test', 'defi', 'fnb', 'cowork', 'biotech', 'hardware', 'social', 'coffee', 'toilets', 'art', 'swag', 'entrance'].includes(elementId);
+
+      if (isActive) {
+        element.classList.add('highlighted');
+      } else if (!isDistrictGroup) {
+        // Only dim non-district elements
+        element.classList.add('dimmed');
+      }
+      // District group elements remain at normal opacity
+    });
+  }, [activeFilters, svgRef]);
+
   return (
-    <svg
-      ref={svgRef}
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 614.01 771"
-      className="w-full h-full"
-      style={{ minWidth: '614px', minHeight: '771px' }}
-    >
-      {/* Filter definitions for category highlights */}
-      <defs>
-        <filter id="cowork-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-          <feMerge>
-            <feMergeNode in="coloredBlur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="defi-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#3b82f6" flood-opacity="0.4" />
-        </filter>
-        <filter id="biotech-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#9333ea" flood-opacity="0.4" />
-        </filter>
-        <filter id="hardware-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#f97316" flood-opacity="0.4" />
-        </filter>
-        <filter id="social-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#06b6d4" flood-opacity="0.4" />
-        </filter>
-        <filter id="coffee-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ef4444" flood-opacity="0.4" />
-        </filter>
-        <filter id="fnb-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#ec4899" flood-opacity="0.4" />
-        </filter>
-        <filter id="toilets-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#6b7280" flood-opacity="0.4" />
-        </filter>
-        <filter id="art-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#eab308" flood-opacity="0.4" />
-        </filter>
-        <filter id="swag-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#6366f1" flood-opacity="0.4" />
-        </filter>
-        <filter id="entrance-glow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#14b8a6" flood-opacity="0.4" />
-        </filter>
-      </defs>
-
-      {/* Walls - always visible */}
-      <g id="walls_" data-name="walls ">
-        <path
-          id="interior-wall-1"
-          d="M109,769h502.63l-48.92-261.76,1.97-.37,49.33,264.13H107v-54H13v-2h94v-241h2v295ZM58,568h-2v-94h2v94ZM468,7l83.9,437.15-1.96.38L466.38,9h-138.38v-2h140ZM58,338h-2V63H0v-2h58v277ZM275,9H109v329h-2V9H14v-2h261v2Z"
-        />
-      </g>
-
-      {/* Swag */}
-      <g
-        id="swag_"
-        data-name="swag/"
+    <>
+      <style>
+        {`
+          .highlighted {
+            opacity: 1 !important;
+            transition: all 0.3s ease;
+          }
+          
+          .dimmed {
+            opacity: 0.4;
+            transition: all 0.3s ease;
+          }
+          
+          [id]:hover {
+            opacity: 1 !important;
+            cursor: pointer;
+          }
+        `}
+      </style>
+      <svg
+        ref={svgRef}
+        width="1200"
+        height="800"
+        viewBox="0 0 1200 800"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
         style={{
-          opacity: shouldDimCategory('swag') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('swag'),
+          cursor: 'pointer',
+        }}
+        onClick={(e) => {
+          const target = e.target as SVGElement;
+          if (target.id) {
+            onSVGElementClick(target.id, e);
+          }
         }}
       >
-        <rect
-          id="swag"
-          x="175"
-          y="706"
-          width="67"
-          height="62"
-          fill="#e0af7d"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('swag', e)}
-          onTouchEnd={(e) => onSVGElementClick('swag', e)}
-        />
-        {!shouldDimCategory('swag') && renderIcon(ShoppingBag, 208.5, 737, 18)}
-      </g>
-
-      {/* Art Exhibition */}
-      <g
-        id="art-exhbition_"
-        data-name="art-exhbition "
-        style={{
-          opacity: shouldDimCategory('art-exhbition') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('art-exhbition'),
-        }}
-      >
-        <rect
-          id="art-exhibit-1"
-          x="376.65"
-          y="22.12"
-          width="94"
-          height="99.37"
-          transform="translate(-5.91 82.46) rotate(-11.04)"
-          fill="#eddab6"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('art-exhibit-1', e)}
-          onTouchEnd={(e) => onSVGElementClick('art-exhibit-1', e)}
-        />
-        {!shouldDimCategory('art-exhbition') && renderIcon(Palette, 424, 72, 20)}
-      </g>
-
-      {/* Toilets */}
-      <g
-        id="toilets_"
-        data-name="toilets "
-        style={{
-          opacity: shouldDimCategory('toilets') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('toilets'),
-        }}
-      >
-        <rect
-          id="toilet-mf"
-          x="556.7"
-          y="294.77"
-          width="22"
-          height="22"
-          transform="translate(-43.9 101.52) rotate(-9.84)"
-          fill="blue"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('toilet-mf', e)}
-          onTouchEnd={(e) => onSVGElementClick('toilet-mf', e)}
-        />
-        {!shouldDimCategory('toilets') && renderIcon(Users, 567.7, 305.77, 12)}
-
-        <rect
-          id="toilet-dis"
-          x="561.7"
-          y="319.77"
-          width="22"
-          height="22"
-          transform="translate(-48.1 102.74) rotate(-9.84)"
-          fill="blue"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('toilet-dis', e)}
-          onTouchEnd={(e) => onSVGElementClick('toilet-dis', e)}
-        />
-        {!shouldDimCategory('toilets') && renderIcon(Users, 572.7, 330.77, 12)}
-      </g>
-
-      {/* Food & Beverage */}
-      <g
-        id="fnb_"
-        data-name="fnb "
-        style={{
-          opacity: shouldDimCategory('fnb') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('fnb'),
-        }}
-      >
-        <rect
-          id="fnb-4"
-          x="27"
-          y="662"
-          width="28"
-          height="48"
-          fill="#ff85a6"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('fnb-4', e)}
-          onTouchEnd={(e) => onSVGElementClick('fnb-4', e)}
-        />
-        {!shouldDimCategory('fnb') && renderIcon(Utensils, 41, 686, 16)}
-
-        <rect
-          id="fnb-3"
-          x="27"
-          y="569"
-          width="28"
-          height="88"
-          fill="#ff85a6"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('fnb-3', e)}
-          onTouchEnd={(e) => onSVGElementClick('fnb-3', e)}
-        />
-        {!shouldDimCategory('fnb') && renderIcon(Utensils, 41, 613, 18)}
-
-        <rect
-          id="fnb-2"
-          x="27"
-          y="183"
-          width="28"
-          height="40"
-          fill="#ff85a6"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('fnb-2', e)}
-          onTouchEnd={(e) => onSVGElementClick('fnb-2', e)}
-        />
-        {!shouldDimCategory('fnb') && renderIcon(Utensils, 41, 203, 14)}
-
-        <rect
-          id="fnb-1"
-          x="20"
-          y="70"
-          width="34"
-          height="40"
-          fill="#ff85a6"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('fnb-1', e)}
-          onTouchEnd={(e) => onSVGElementClick('fnb-1', e)}
-        />
-        {!shouldDimCategory('fnb') && renderIcon(Utensils, 37, 90, 16)}
-      </g>
-
-      {/* DeFi */}
-      <g
-        id="defi"
-        style={{
-          opacity: shouldDimCategory('defi') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('defi'),
-        }}
-      >
-        <rect
-          id="defi-1"
-          x="162.37"
-          y="301.9"
-          width="104.4"
-          height="52.2"
-          fill="#74acdf"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('defi-district', e)}
-          onTouchEnd={(e) => onSVGElementClick('defi-district', e)}
-        />
-        {!shouldDimCategory('defi') && renderIcon(DollarSign, 214.57, 328, 18)}
-      </g>
-
-      {/* BioTech */}
-      <g
-        id="biotech_"
-        data-name="biotech /"
-        style={{
-          opacity: shouldDimCategory('biotech') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('biotech'),
-        }}
-      >
-        <rect
-          id="biotech-1"
-          x="162.37"
-          y="193.4"
-          width="104.4"
-          height="52.2"
-          fill="#74acdf"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('biotech-district', e)}
-          onTouchEnd={(e) => onSVGElementClick('biotech-district', e)}
-        />
-        {!shouldDimCategory('biotech') && renderIcon(Microscope, 214.57, 219.5, 18)}
-      </g>
-
-      {/* Hardware */}
-      <g
-        id="hardware"
-        style={{
-          opacity: shouldDimCategory('hardware') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('hardware'),
-        }}
-      >
-        <rect
-          id="hardware-1"
-          x="162.37"
-          y="486"
-          width="104.4"
-          height="52.2"
-          fill="#74acdf"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('hardware-district', e)}
-          onTouchEnd={(e) => onSVGElementClick('hardware-district', e)}
-        />
-        {!shouldDimCategory('hardware') && renderIcon(Cpu, 214.57, 512.1, 18)}
-      </g>
-
-      {/* Coffee */}
-      <g
-        id="coffee"
-        style={{
-          opacity: shouldDimCategory('coffee') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('coffee'),
-        }}
-      >
-        <rect
-          id="coffee-3"
-          x="328"
-          y="236"
-          width="27"
-          height="27"
-          fill="#f50b0b"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coffee-stations', e)}
-          onTouchEnd={(e) => onSVGElementClick('coffee-stations', e)}
-        />
-        {!shouldDimCategory('coffee') && renderIcon(Coffee, 341.5, 249.5, 12)}
-
-        <rect
-          id="coffee-2"
-          x="328"
-          y="236"
-          width="27"
-          height="27"
-          fill="#f50b0b"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coffee-stations', e)}
-          onTouchEnd={(e) => onSVGElementClick('coffee-stations', e)}
-        />
-        {!shouldDimCategory('coffee') && renderIcon(Coffee, 341.5, 249.5, 12)}
-
-        <rect
-          id="coffee-1"
-          x="328"
-          y="459"
-          width="27"
-          height="27"
-          fill="#f50b0b"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coffee-stations', e)}
-          onTouchEnd={(e) => onSVGElementClick('coffee-stations', e)}
-        />
-        {!shouldDimCategory('coffee') && renderIcon(Coffee, 341.5, 472.5, 12)}
-      </g>
-
-      {/* Coworking */}
-      <g
-        id="cowork"
-        style={{
-          opacity: shouldDimCategory('cowork') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('cowork'),
-        }}
-      >
-        <rect
-          id="cowork-8"
-          x="146"
-          y="104"
-          width="100"
-          height="34"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 196, 121, 16)}
-
-        <rect
-          id="cowork-7"
-          x="328"
-          y="206"
-          width="27"
-          height="27"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 341.5, 219.5, 12)}
-
-        <rect
-          id="cowork-6"
-          x="321"
-          y="266"
-          width="41"
-          height="42"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 341.5, 287, 14)}
-
-        <rect
-          id="cowork-5"
-          x="321"
-          y="328"
-          width="41"
-          height="42"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 341.5, 349, 14)}
-
-        <rect
-          id="cowork-4"
-          x="328"
-          y="429"
-          width="28"
-          height="27"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 342, 442.5, 12)}
-
-        <rect
-          id="cowork-3"
-          x="328"
-          y="520"
-          width="28"
-          height="27"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 342, 533.5, 12)}
-
-        <rect
-          id="cowork-2"
-          x="410.65"
-          y="457.07"
-          width="100.63"
-          height="33.17"
-          transform="translate(-82.04 96.85) rotate(-11.02)"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 461, 473.6, 16)}
-
-        <rect
-          id="cowork-1"
-          x="468"
-          y="653"
-          width="102"
-          height="34"
-          fill="#aaeba1"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('coworking-area', e)}
-          onTouchEnd={(e) => onSVGElementClick('coworking-area', e)}
-        />
-        {!shouldDimCategory('cowork') && renderIcon(Briefcase, 519, 670, 16)}
-      </g>
-
-      {/* Entrances */}
-      <g
-        id="entrance_"
-        data-name="entrance "
-        style={{
-          opacity: shouldDimCategory('entrance') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('entrance'),
-        }}
-      >
-        <rect
-          id="entrance-east"
-          x="555.81"
-          y="441.76"
-          width="34.18"
-          height="62.65"
-          transform="translate(-80.55 119.49) rotate(-11.13)"
-          fill="#e5ec10"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('entrance-east', e)}
-          onTouchEnd={(e) => onSVGElementClick('entrance-east', e)}
-        />
-        {!shouldDimCategory('entrance') && renderIcon(DoorOpen, 573, 473, 14)}
-
-        <rect
-          id="entrance-north"
-          x="275"
-          y="0"
-          width="53"
-          height="17"
-          fill="#e5ec10"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('entrance-north', e)}
-          onTouchEnd={(e) => onSVGElementClick('entrance-north', e)}
-        />
-        {!shouldDimCategory('entrance') && renderIcon(DoorOpen, 301.5, 8.5, 12)}
-
-        <rect
-          id="entrance-west"
-          x="56"
-          y="338"
-          width="53"
-          height="136"
-          fill="#e5ec10"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('entrance-west', e)}
-          onTouchEnd={(e) => onSVGElementClick('entrance-west', e)}
-        />
-        {!shouldDimCategory('entrance') && renderIcon(DoorOpen, 82.5, 406, 18)}
-      </g>
-
-      {/* Social District */}
-      <g
-        id="social"
-        style={{
-          opacity: shouldDimCategory('social') ? 0.5 : 1,
-          transition: 'opacity 0.3s ease',
-          filter: getCategoryFilter('social'),
-        }}
-      >
-        <rect
-          id="social-1"
-          x="162.37"
-          y="600.77"
-          width="104.4"
-          height="52.2"
-          fill="#74acdf"
-          className="cursor-pointer hover:opacity-80 transition-opacity"
-          onClick={(e) => onSVGElementClick('social-district', e)}
-          onTouchEnd={(e) => onSVGElementClick('social-district', e)}
-        />
-        {!shouldDimCategory('social') && renderIcon(Users, 214.57, 626.87, 18)}
-      </g>
-    </svg>
+        <g id="event-map-svg-test">
+          <g id="defi">
+            <path
+              id="defi-pancake-swap"
+              d="M500.5 632L520.5 597L537.5 607L517.5 642L500.5 632Z"
+              fill="#EE8822"
+            />
+            <path
+              id="defi-lido"
+              d="M416 596L433.5 586L453.5 621L436.5 631L416 596Z"
+              fill="#EE8822"
+            />
+            <path
+              id="defi-yearn"
+              d="M481.5 610L504 623L494 641L471 628L481.5 610Z"
+              fill="#74ACDF"
+            />
+            <rect
+              id="defi-aave"
+              x="434"
+              y="548"
+              width="68"
+              height="34"
+              fill="#74ACDF"
+            />
+            <rect
+              id="defi-uniswap"
+              x="503"
+              y="568"
+              width="33"
+              height="14"
+              fill="#EE8822"
+            />
+            <rect
+              id="defi-compound"
+              x="459"
+              y="620.579"
+              width="33"
+              height="14"
+              transform="rotate(-60 459 620.579)"
+              fill="#EE8822"
+            />
+            <path
+              id="defi-makerdao"
+              d="M503 621L482 583.5H524.5L503 621Z"
+              fill="#74ACDF"
+            />
+            <path
+              id="defi-curve"
+              d="M457 619.5L436 582H478.5L457 619.5Z"
+              fill="#74ACDF"
+            />
+          </g>
+          <g id="fnb">
+            <rect
+              id="fnb-1"
+              x="287"
+              y="676"
+              width="28"
+              height="48"
+              fill="#FF85A6"
+            />
+            <rect
+              id="fnb-2"
+              x="287"
+              y="583"
+              width="28"
+              height="88"
+              fill="#FF85A6"
+            />
+            <rect
+              id="fnb-3"
+              x="287"
+              y="197"
+              width="28"
+              height="40"
+              fill="#FF85A6"
+            />
+            <rect
+              id="fnb-4"
+              x="280"
+              y="84"
+              width="34"
+              height="40"
+              fill="#FF85A6"
+            />
+          </g>
+          <g id="cowork">
+            <rect
+              id="cowork-1"
+              x="406"
+              y="118"
+              width="100"
+              height="34"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-2"
+              x="588"
+              y="220"
+              width="27"
+              height="27"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-3"
+              x="581"
+              y="280"
+              width="41"
+              height="42"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-4"
+              x="581"
+              y="342"
+              width="41"
+              height="42"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-5"
+              x="588"
+              y="443"
+              width="28"
+              height="27"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-6"
+              x="588"
+              y="534"
+              width="28"
+              height="27"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-7"
+              x="668.435"
+              y="480.944"
+              width="100.626"
+              height="33.1673"
+              transform="rotate(-11.0247 668.435 480.944)"
+              fill="#AAEBA1"
+            />
+            <rect
+              id="cowork-8"
+              x="728"
+              y="667"
+              width="102"
+              height="34"
+              fill="#AAEBA1"
+            />
+          </g>
+          <rect
+            id="coffee-1"
+            x="588"
+            y="250"
+            width="27"
+            height="27"
+            fill="#F50B0B"
+          />
+          <g id="coffee">
+            <rect
+              id="coffee-1_2"
+              x="588"
+              y="250"
+              width="27"
+              height="27"
+              fill="#F50B0B"
+            />
+            <rect
+              id="coffee-2"
+              x="588"
+              y="473"
+              width="27"
+              height="27"
+              fill="#F50B0B"
+            />
+          </g>
+          <g id="biotech">
+            <path
+              id="biotech-3-mile"
+              d="M500.5 270L520.5 235L537.5 245L517.5 280L500.5 270Z"
+              fill="#EE8822"
+            />
+            <path
+              id="biotech-fukushima"
+              d="M416 234L433.5 224L453.5 259L436.5 269L416 234Z"
+              fill="#EE8822"
+            />
+            <path
+              id="biotech-chernobyl"
+              d="M481.5 248L504 261L494 279L471 266L481.5 248Z"
+              fill="#74ACDF"
+            />
+            <rect
+              id="biotech-horde"
+              x="434"
+              y="186"
+              width="68"
+              height="34"
+              fill="#74ACDF"
+            />
+            <rect
+              id="biotech-covenant"
+              x="503"
+              y="206"
+              width="33"
+              height="14"
+              fill="#EE8822"
+            />
+            <rect
+              id="biotech-doom"
+              x="459"
+              y="258.579"
+              width="33"
+              height="14"
+              transform="rotate(-60 459 258.579)"
+              fill="#EE8822"
+            />
+            <path
+              id="biotech-unreal"
+              d="M503 259L482 221.5H524.5L503 259Z"
+              fill="#74ACDF"
+            />
+            <path
+              id="biotech-black-mesa"
+              d="M457 257.5L436 220H478.5L457 257.5Z"
+              fill="#74ACDF"
+            />
+          </g>
+          <g id="hardware">
+            <path
+              id="hardware-waymo"
+              d="M453 340L433 375L416 365L436 330L453 340Z"
+              fill="#EE8822"
+            />
+            <path
+              id="hardware-golem"
+              d="M537.5 376L520 386L500 351L517 341L537.5 376Z"
+              fill="#EE8822"
+            />
+            <path
+              id="hardware-tesla"
+              d="M472 362L449.5 349L459.5 331L482.5 344L472 362Z"
+              fill="#74ACDF"
+            />
+            <path
+              id="hardware-ocean"
+              d="M519.5 424L451.5 424L451.5 390L519.5 390V424Z"
+              fill="#74ACDF"
+            />
+            <rect
+              id="hardware-render"
+              x="450.5"
+              y="404"
+              width="33"
+              height="14"
+              transform="rotate(180 450.5 404)"
+              fill="#EE8822"
+            />
+            <rect
+              id="hardware-akash"
+              x="494.5"
+              y="351.421"
+              width="33"
+              height="14"
+              transform="rotate(120 494.5 351.421)"
+              fill="#EE8822"
+            />
+            <path
+              id="hardware-helium-iot"
+              d="M450.5 351L471.5 388.5L429 388.5L450.5 351Z"
+              fill="#74ACDF"
+            />
+            <path
+              id="hardware-bittensor"
+              d="M496.5 352.5L517.5 390H475L496.5 352.5Z"
+              fill="#74ACDF"
+            />
+          </g>
+          <g id="swag">
+            <rect
+              id="swag-1"
+              x="435"
+              y="720"
+              width="67"
+              height="62"
+              fill="#E0AF7D"
+            />
+          </g>
+          <g id="art">
+            <rect
+              id="art-exhibition"
+              x="628"
+              y="46.0083"
+              width="94"
+              height="99.3731"
+              transform="rotate(-11.0449 628 46.0083)"
+              fill="#EDDAB6"
+            />
+          </g>
+          <g id="toilets">
+            <rect
+              id="toilet-mf-1"
+              x="815"
+              y="310.761"
+              width="22"
+              height="22"
+              transform="rotate(-9.84437 815 310.761)"
+              fill="#0000FF"
+            />
+            <rect
+              id="toilet-dis-1"
+              x="820"
+              y="335.761"
+              width="22"
+              height="22"
+              transform="rotate(-9.84437 820 335.761)"
+              fill="#0000FF"
+            />
+          </g>
+          <path
+            id="boundary-walls"
+            d="M369 783H871.626L822.703 521.243L824.669 520.874L874 785H367V731H273V729H367V488H369V783ZM318 582H316V488H318V582ZM728 21L811.9 458.147L809.937 458.526L726.384 23H588V21H728ZM318 352H316V77H260V75H318V352ZM535 23H369V352H367V23H274V21H535V23Z"
+            fill="black"
+          />
+          <g id="entrance">
+            <rect
+              id="entrance-2"
+              x="843.638"
+              y="453.016"
+              width="62.6483"
+              height="34.1834"
+              transform="rotate(78.8677 843.638 453.016)"
+              fill="#E5EC10"
+            />
+            <rect
+              id="entrance-3"
+              x="535"
+              y="14"
+              width="53"
+              height="17"
+              fill="#E5EC10"
+            />
+            <rect
+              id="entrance-1"
+              x="369"
+              y="352"
+              width="136"
+              height="53"
+              transform="rotate(90 369 352)"
+              fill="#E5EC10"
+            />
+          </g>
+        </g>
+      </svg>
+    </>
   );
 };

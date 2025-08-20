@@ -72,43 +72,11 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         return; // Don't handle tap if we were panning
       }
     }
-
+    
     const poi = pois.find((p) => p.id === elementId);
     if (poi) {
       handlePOIClick(poi);
     }
-  };
-
-  // Helper function to render Lucide icons as SVG elements with dynamic sizing
-  const renderIcon = (
-    IconComponent: React.ComponentType<any>,
-    x: number,
-    y: number,
-    baseSize: number = 16
-  ) => {
-    // Larger icons when zoomed out for better visibility - minimum 14px, maximum 32px
-    const scaleFactor = transform.scale < 1 ? 1.2 : transform.scale * 0.8;
-    const size = Math.max(
-      14,
-      Math.min(32, baseSize * Math.max(0.8, scaleFactor))
-    );
-    return (
-      <foreignObject
-        x={x - size / 2}
-        y={y - size / 2}
-        width={size}
-        height={size}
-        className="pointer-events-none"
-      >
-        <IconComponent
-          size={size}
-          className="text-gray-800"
-          style={{
-            fontWeight: 'bold',
-          }}
-        />
-      </foreignObject>
-    );
   };
 
   // Function to focus on a specific district
@@ -144,7 +112,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         setSelectedPOI(poi);
       }
     }
-
+    
     // Handle focus district from navigation with a small delay to ensure SVG is rendered
     if (focusDistrict) {
       setTimeout(() => {
@@ -191,7 +159,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       </div>
 
       {/* Map Container */}
-      <div
+      <div 
         className="flex-1 relative overflow-hidden bg-gradient-to-br from-white to-slate-100 cursor-move touch-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
@@ -211,13 +179,9 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         >
           <EventMapSVG
             svgRef={svgRef}
-            transform={transform}
             activeFilters={activeFilters}
             selectedPOI={selectedPOI}
             onSVGElementClick={handleSVGElementClick}
-            shouldDimCategory={shouldDimCategory}
-            getCategoryFilter={getCategoryFilter}
-            renderIcon={renderIcon}
           />
         </div>
 
