@@ -93,7 +93,9 @@ const Layout = (props: CalendarLayoutProps) => {
             </>
           )}
 
-          <div className="grow">
+          <div className="grow relative">
+            {/* white gradient to indicate more events on the right for mobile */}
+            <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
             <NewSchedule {...props} events={filteredEvents} />
           </div>
         </div>

@@ -189,10 +189,11 @@ const NewScheduleIndex = ({
     <>
       <SwipeToScroll noBounds>
         <div className="text-black flex">
+          {/* padding hack for mobile */}
           <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-          <div className="w-full">
+          <div className="w-full flex">
             <div
-              className="grid"
+              className="grid shrink-0"
               style={{
                 gridTemplateColumns: columnTemplate,
                 gridTemplateRows: "auto 1fr",
@@ -263,6 +264,7 @@ const NewScheduleIndex = ({
                 ))}
               </div>
             </div>
+            <div className="w-4 md:w-0 h-[1px] shrink-0"></div>
           </div>
         </div>
       </SwipeToScroll>
@@ -274,7 +276,7 @@ const NewScheduleIndex = ({
           <Image
             src={NoEventsImage}
             alt="No events scheduled"
-            className="w-full h-full object-contain max-w-[500px] mx-4 my-4 mt-2"
+            className="h-full object-contain w-[500px] max-w-[calc(100%-32px)] mx-4 my-4 mt-2"
           />
           <div className="text-gray-400 py-3 text-center flex justify-center items-center">
             {events.length === 0

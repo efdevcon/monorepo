@@ -51,7 +51,7 @@ const ActionBar = ({
         {filterActive && <FilterSummary filter={filter} />}
       </div>
 
-      <div className="flex items-center gap-4 shrink-0">
+      <div className="flex items-center gap-4 shrink-0 grow lg:grow-0">
         {categories.map((category) => (
           <div
             key={category.label}
@@ -63,7 +63,7 @@ const ActionBar = ({
         ))}
       </div>
 
-      <div className="flex items-center justify-end grow gap-2 shrink-0">
+      <div className="items-center justify-end grow gap-2 shrink-0 hidden lg:flex">
         <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
           <Search size={15} color="rgba(124, 124, 153, 1)" />
           <input
