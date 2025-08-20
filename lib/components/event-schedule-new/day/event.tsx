@@ -235,7 +235,7 @@ const Event: React.FC<EventProps> = ({
 
               <div className="text-sm">{event.description}</div>
 
-              <Link href={event.eventLink} className="self-start">
+              {/* <Link href={event.eventLink} className="self-start">
                 <VoxelButton
                   color="blue-1"
                   size="sm"
@@ -245,7 +245,7 @@ const Event: React.FC<EventProps> = ({
                   Visit Website
                   <ArrowUpRight className="w-4 h-4 mb-0.5" />
                 </VoxelButton>
-              </Link>
+              </Link> */}
 
               <Separator className="my-3" />
 
