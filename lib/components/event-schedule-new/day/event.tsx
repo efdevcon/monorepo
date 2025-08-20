@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  PenLine,
-  Star,
-  MapPin,
-  Ticket,
-  Users,
-  ArrowUpRight,
-} from "lucide-react";
+import { MapPin, Ticket, Users, ArrowUpRight, X } from "lucide-react";
 import { Event as EventType } from "../model";
 import { format, parseISO } from "date-fns";
 import cn from "classnames";
@@ -17,15 +10,7 @@ import coworkingImage from "./cowork.webp";
 import ethDayImage from "./ethday.jpg";
 import Link from "lib/components/link/Link";
 import DevconnectCubeLogo from "../images/cube-logo.png";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "lib/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Button } from "lib/components/button";
 import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
@@ -92,7 +77,8 @@ const Event: React.FC<EventProps> = ({
   setSelectedEvent,
 }) => {
   const userIsLoggedIn = true;
-  const draggableLink = useDraggableLink();
+  const draggableLink1 = useDraggableLink();
+  const draggableLink2 = useDraggableLink();
   const eventClassName = className || "";
 
   // Type of event and resulting customization class
@@ -114,7 +100,6 @@ const Event: React.FC<EventProps> = ({
 
   const isCoworking = event.id.toString() === "23";
   const isETHDay = event.id.toString() === "29";
-
   const isCoreEvent = event.isCoreEvent;
 
   let eventName = event.name;
@@ -131,9 +116,9 @@ const Event: React.FC<EventProps> = ({
         typeClass,
         eventClassName
       )}
-      {...draggableLink}
+      {...draggableLink1}
       onClick={(e) => {
-        const result = draggableLink.onClick(e);
+        const result = draggableLink1.onClick(e);
 
         if (!result) return;
 
@@ -154,17 +139,33 @@ const Event: React.FC<EventProps> = ({
       >
         <DialogContent
           className={cn(
-            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000]",
+            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000] gap-0 flex flex-col shrink-0",
             typeClass
           )}
-          {...draggableLink}
         >
-          <Image
-            src={coworkingImage}
-            alt={event.name}
-            className="w-full h-full object-cover aspect-[390/160]"
-          />
-          <div className="p-4 pt-0" draggable="false">
+          <div className="absolute top-4 right-4 z-10">
+            <div
+              className="bg-white p-1.5 cursor-pointer border border-solid border-neutral-400"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedEvent(null);
+              }}
+            >
+              <X className="w-3.5 h-3.5" />
+            </div>
+          </div>
+
+          {isCoworking && (
+            <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+              <Image
+                src={coworkingImage}
+                alt={event.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          <div className="p-4 shrink-0">
             <div className="flex flex-col text-[rgba(36,36,54,1)]">
               <div className="text-sm text-[rgba(94,144,189,1)] uppercase font-secondary">
                 <div>{isCoreEvent ? "Core Event" : "Community Event"}</div>
@@ -234,7 +235,7 @@ const Event: React.FC<EventProps> = ({
 
               <div className="text-sm">{event.description}</div>
 
-              <Link href={event.eventLink}>
+              <Link href={event.eventLink} className="self-start">
                 <VoxelButton
                   color="blue-1"
                   size="sm"
@@ -248,7 +249,7 @@ const Event: React.FC<EventProps> = ({
 
               <Separator className="my-3" />
 
-              <div className="flex gap-2 justify-between">
+              <div className="flex gap-2 justify-between shrink-0">
                 {event.eventType && (
                   <div className="text-sm">
                     <TypeTag category={event.eventType} />

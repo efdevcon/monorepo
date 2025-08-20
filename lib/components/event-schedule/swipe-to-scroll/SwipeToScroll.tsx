@@ -253,12 +253,26 @@ const SwipeToScroll = forwardRef(
     if (isNativeScroll)
       scrollContainerClass += ` overflow-x-auto ${css["no-transform"]}`;
 
+    console.log(bind(), "bind");
+
+    const listeners = bind();
+
     return (
       <div
-        {...bind()}
+        {...listeners}
         ref={containerEl}
         className={className}
         data-type="swipe-to-scroll-container"
+        onPointerDown={(e: any) => {
+          // Check if the click happens inside an element with event-dialog parent - don't want to drag in the background when the dialog is open
+          if (e.target.closest("[data-state='open']")) {
+            return;
+          } else {
+            if (listeners?.onPointerDown) {
+              listeners.onPointerDown(e);
+            }
+          }
+        }}
       >
         <div
           ref={(element) => {
