@@ -172,6 +172,13 @@ export default function ConnectedWallet({
     }
   };
 
+  const handleShowAddFunds = () => {
+    if (isPara) {
+      console.log('Opening Para add funds modal');
+      openModal({ step: ModalStep.ADD_FUNDS_BUY });
+    }
+  };
+
   const handleSign = async () => {
     if (!address) {
       console.error('No address available');
@@ -553,6 +560,18 @@ export default function ConnectedWallet({
             variant="outline"
           >
             🔐 Show Recovery Secret
+          </Button>
+        )}
+
+        {/* Show Add Funds button - only for Para wallets */}
+        {isPara && (
+          <Button
+            onClick={handleShowAddFunds}
+            className="w-full cursor-pointer"
+            size="lg"
+            variant="outline"
+          >
+            💰 Add Funds
           </Button>
         )}
 
