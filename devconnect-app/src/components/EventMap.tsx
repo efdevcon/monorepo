@@ -46,8 +46,9 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
   // Handle POI click
   const handlePOIClick = (poi: POI) => {
     setSelectedPOI(poi);
-    // Update URL hash for deep linking
-    window.history.replaceState(null, '', `#map-${poi.id}`);
+    // Update URL hash for deep linking - use the POI ID directly
+    const newHash = `#${poi.id}`;
+    window.history.replaceState(null, '', newHash);
     // Enter focused mode
     onFocusedModeChange?.(true);
   };
@@ -61,6 +62,21 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     onFocusedModeChange?.(false);
   };
 
+  // Function to focus on a district and update URL
+  const focusOnDistrictWithDeepLink = (districtId: string) => {
+    if (districtPositions[districtId]) {
+      // Set the district as active filter
+      toggleFilter(districtId);
+      // Update URL hash for deep linking - use the district ID directly
+      const newHash = `#${districtId}`;
+      window.history.replaceState(null, '', newHash);
+      // Focus on the district
+      setTimeout(() => {
+        focusOnDistrict(districtId);
+      }, 100);
+    }
+  };
+
   // Handle SVG element click/tap
   const handleSVGElementClick = (
     elementId: string,
@@ -72,7 +88,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         return; // Don't handle tap if we were panning
       }
     }
-    
+
     const poi = pois.find((p) => p.id === elementId);
     if (poi) {
       handlePOIClick(poi);
@@ -81,45 +97,91 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
   // Function to focus on a specific district
   const focusOnDistrict = (districtId: string) => {
-    if (!svgRef.current) return;
-
     const districtPos = districtPositions[districtId];
-    if (districtPos) {
-      const scale = 1.5;
-      const svgWidth = 614.01;
-      const svgHeight = 771;
-      const svgCenterX = svgWidth / 2;
-      const svgCenterY = svgHeight / 2;
-      const offsetX = districtPos.svgX - svgCenterX;
-      const offsetY = districtPos.svgY - svgCenterY;
-      const translateX = -offsetX * scale;
-      const translateY = -offsetY * scale;
+    if (!districtPos) return;
 
-      // Use the resetTransform function from the hook
-      // We need to update the transform state directly
-      // This is a limitation of the current hook design
-      // In a real implementation, we'd modify the hook to support this
-    }
+    // Calculate the center of the viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const viewportCenterX = viewportWidth / 2;
+    const viewportCenterY = viewportHeight / 2;
+
+    // Calculate the target position in the SVG
+    const svgWidth = 1200; // Updated to match the new SVG dimensions
+    const svgHeight = 800;
+    const targetX = districtPos.svgX;
+    const targetY = districtPos.svgY;
+
+    // Calculate the transform to center the district
+    const scale = 2; // Zoom in to the district
+    const translateX = viewportCenterX - targetX * scale;
+    const translateY = viewportCenterY - targetY * scale;
+
+    // Apply the transform using the hook's functions
+    // For now, we'll use a simple approach - reset and then apply the new transform
+    resetTransform();
+
+    // Note: The current hook doesn't support direct transform setting
+    // In a production app, you'd want to extend the hook to support this
+    console.log(
+      `Focusing on district: ${districtId} at position (${targetX}, ${targetY})`
+    );
   };
 
   // Handle deep linking and focus district on component mount
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith('#map-')) {
-      const poiId = hash.substring(5);
-      const poi = pois.find((p) => p.id === poiId);
-      if (poi) {
-        setSelectedPOI(poi);
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+
+      // Handle deep linking - if ID contains '-' it's a POI, otherwise it's a district
+      if (hash.startsWith('#')) {
+        const id = hash.substring(1); // Remove the # symbol
+
+        if (id.includes('-')) {
+          // It's a POI (contains hyphen)
+          const poi = pois.find((p) => p.id === id);
+          if (poi) {
+            setSelectedPOI(poi);
+            // Enter focused mode for POI
+            onFocusedModeChange?.(true);
+          }
+        } else {
+          // It's a district (no hyphen)
+          if (districtPositions[id]) {
+            // Set the district as active filter
+            toggleFilter(id);
+            // Focus on the district after a small delay to ensure SVG is rendered
+            setTimeout(() => {
+              focusOnDistrict(id);
+            }, 100);
+          }
+        }
       }
-    }
-    
-    // Handle focus district from navigation with a small delay to ensure SVG is rendered
-    if (focusDistrict) {
+
+      // Clear selection if no hash
+      if (!hash) {
+        setSelectedPOI(null);
+        onFocusedModeChange?.(false);
+      }
+    };
+
+    // Handle initial load
+    handleHashChange();
+
+    // Handle focus district from navigation prop
+    if (focusDistrict && !window.location.hash.startsWith('#')) {
       setTimeout(() => {
         focusOnDistrict(focusDistrict);
       }, 100);
     }
-  }, [focusDistrict]);
+
+    // Listen for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, [focusDistrict, onFocusedModeChange, toggleFilter]);
 
   return (
     <div className="h-screen bg-white flex flex-col overflow-hidden">

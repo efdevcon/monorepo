@@ -13,137 +13,297 @@ export interface POI {
 }
 
 export const pois: POI[] = [
-  // Coworking Area
+  // DeFi District - Individual Companies
   { 
-    id: 'coworking-area', name: 'Coworking Area', category: 'cowork', 
-    description: 'Flexible workspace for developers, entrepreneurs, and remote workers', 
-    capacity: '200+ people', 
-    amenities: ['WiFi', 'Power Outlets', 'Printing', 'Meeting Rooms', 'Phone Booths', 'Whiteboards', 'Coffee Station'],
-    companyDescription: 'Dedicated space for collaborative or solo work. Find your perfect spot whether you need focused work time, team collaboration, or networking opportunities — open all day.'
+    id: 'defi-pancake-swap', name: 'PancakeSwap', category: 'defi',
+    description: 'Decentralized exchange and automated market maker',
+    amenities: ['DEX Trading', 'Yield Farming', 'Lottery', 'NFT Marketplace'],
+    companyDescription: 'Leading decentralized exchange on BNB Chain with innovative DeFi products.'
   },
-  
-  // DeFi District
   { 
-    id: 'defi-district', name: 'DeFi District', category: 'defi', 
-    description: 'Decentralized Finance companies and protocols showcase', 
-    currentEvent: 'DeFi Innovation Showcase - All Day', capacity: '400 people',
-    amenities: ['Protocol Demos', 'Trading Simulators', 'Developer Workshops', 'Yield Farming'],
-    heroImage: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=800&auto=format&fit=crop',
-    companyDescription: 'Explore the future of decentralized finance with leading protocols and innovative companies.',
-    companies: ['Uniswap Labs', 'Aave Protocol', 'Compound Finance', 'MakerDAO', 'Curve Finance', 'Synthetix Network', '1inch Network', 'Balancer Protocol']
+    id: 'defi-lido', name: 'Lido Finance', category: 'defi',
+    description: 'Liquid staking solution for Ethereum',
+    amenities: ['Liquid Staking', 'Staking Rewards', 'DeFi Integration'],
+    companyDescription: 'Secure liquid staking protocol enabling staking without lockups.'
   },
-  
-  // Biotech District
   { 
-    id: 'biotech-district', name: 'Biotech District', category: 'biotech', 
-    description: 'Blockchain and biotechnology innovation showcase', 
-    currentEvent: 'BioTech Innovation Summit - All Day', capacity: '320 people', 
-    amenities: ['DNA Sequencing', 'Medical Research', 'Health Data Privacy', 'Clinical Trials'],
-    heroImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=800&auto=format&fit=crop',
-    companyDescription: 'Discover the intersection of blockchain and biotechnology with leading research organizations and healthcare innovators.',
-    companies: ['GenomicsDAO', 'HealthBlocks', 'PharmaChain', 'BioLedger', 'MedToken', 'LifeDAO', 'DNAVault', 'BioMarket']
+    id: 'defi-yearn', name: 'Yearn Finance', category: 'defi',
+    description: 'Automated yield farming and DeFi aggregation',
+    amenities: ['Yield Optimization', 'Vault Strategies', 'Risk Management'],
+    companyDescription: 'Automated yield farming protocol optimizing DeFi returns.'
   },
-  
-  // Hardware District
   { 
-    id: 'hardware-district', name: 'Hardware District', category: 'hardware', 
-    description: 'Blockchain hardware and infrastructure showcase', 
-    currentEvent: 'Hardware Innovation Expo - All Day', capacity: '200 people', 
-    amenities: ['Hardware Wallets', 'IoT Devices', 'Mining Equipment', 'Security Solutions'],
-    heroImage: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop&q=80',
-    companyDescription: 'Experience cutting-edge blockchain hardware and infrastructure solutions from industry leaders.',
-    companies: ['Helium Network', 'Filecoin Station', 'Raspberry Pi Foundation', 'Ledger', 'Trezor', 'GridPlus', 'Oasis Labs', 'Ethereum Foundation']
+    id: 'defi-aave', name: 'Aave Protocol', category: 'defi',
+    description: 'Decentralized lending and borrowing platform',
+    amenities: ['Lending', 'Borrowing', 'Flash Loans', 'Staking'],
+    companyDescription: 'Leading decentralized lending protocol with innovative flash loan technology.'
   },
-  
-  // Social District
   { 
-    id: 'social-district', name: 'Social District', category: 'social', 
-    description: 'Social media and community platforms on blockchain', 
-    currentEvent: 'Web3 Social Summit - All Day', capacity: '300 people', 
-    amenities: ['Social Platforms', 'Creator Tools', 'Community Governance', 'Content Monetization'],
-    heroImage: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=800&auto=format&fit=crop',
-    companyDescription: 'Explore the future of decentralized social media and community-driven platforms.',
-    companies: ['Lens Protocol', 'Farcaster', 'Mirror', 'Rally', 'Audius', 'BitClout', 'Steemit', 'Minds']
+    id: 'defi-uniswap', name: 'Uniswap', category: 'defi',
+    description: 'Decentralized exchange protocol',
+    amenities: ['DEX Trading', 'Liquidity Provision', 'Governance'],
+    companyDescription: 'Pioneering decentralized exchange with automated market making.'
   },
-  
-  // Coffee Stations
   { 
-    id: 'coffee-stations', name: 'Coffee Station', category: 'coffee', 
-    description: 'Premium coffee and refreshments throughout the venue', 
-    capacity: 'Multiple locations', 
-    amenities: ['Espresso', 'Cold Brew', 'Tea Selection', 'Pastries', 'Energy Drinks', 'Crypto Payments'],
-    companyDescription: 'One of many delicious coffee stations located throughout the venue, serving premium caffeinated beverages and light snacks. Perfect for networking breaks and staying energized during the event.'
+    id: 'defi-compound', name: 'Compound Finance', category: 'defi',
+    description: 'Algorithmic interest rate protocol',
+    amenities: ['Lending', 'Borrowing', 'Interest Rates', 'Governance'],
+    companyDescription: 'Algorithmic interest rate protocol for lending and borrowing.'
   },
-  
+  {
+    id: 'defi-makerdao', name: 'MakerDAO', category: 'defi',
+    description: 'Decentralized stablecoin and lending platform',
+    amenities: ['DAI Stablecoin', 'CDP Vaults', 'Governance', 'Collateralization'],
+    companyDescription: 'Decentralized organization behind the DAI stablecoin and lending platform.'
+  },
+  {
+    id: 'defi-curve', name: 'Curve Finance', category: 'defi',
+    description: 'Stablecoin exchange and yield farming',
+    amenities: ['Stablecoin Trading', 'Yield Farming', 'Liquidity Pools'],
+    companyDescription: 'Efficient stablecoin exchange with low slippage and high yields.'
+  },
+
   // Food & Beverage
   { 
     id: 'fnb-1', name: 'Asado Express', category: 'fnb', 
     description: 'Traditional Argentine grilled meats and empanadas', 
     amenities: ['Asado BBQ', 'Fresh Empanadas', 'Chimichurri', 'Choripán'],
-    companyDescription: 'Authentic Argentine asado experience featuring premium grilled meats, homemade empanadas, and traditional chimichurri sauce.'
+    companyDescription: 'Authentic Argentine asado experience featuring premium grilled meats.'
   },
   { 
     id: 'fnb-2', name: 'Porteño Bites', category: 'fnb', 
     description: 'Buenos Aires street food and milanesas', 
     amenities: ['Milanesas', 'Provoleta', 'Medialunas', 'Mate Tea'],
-    companyDescription: 'Classic Buenos Aires comfort food including crispy milanesas, grilled provoleta cheese, and fresh medialunas with authentic mate tea.'
+    companyDescription: 'Classic Buenos Aires comfort food including crispy milanesas.'
   },
   { 
     id: 'fnb-3', name: 'Dulce & Salado', category: 'fnb', 
     description: 'Argentine pastries and alfajores', 
     amenities: ['Alfajores', 'Facturas', 'Dulce de Leche', 'Cortado Coffee'],
-    companyDescription: 'Traditional Argentine bakery specializing in alfajores, fresh facturas, and artisanal dulce de leche treats paired with perfect cortado coffee.'
+    companyDescription: 'Traditional Argentine bakery specializing in alfajores and facturas.'
   },
   { 
     id: 'fnb-4', name: 'Tokyo Ramen Bar', category: 'fnb', 
     description: 'Authentic Japanese ramen and gyoza', 
     amenities: ['Tonkotsu Ramen', 'Miso Ramen', 'Gyoza', 'Japanese Beer'],
-    companyDescription: 'Authentic Japanese ramen experience with rich tonkotsu and miso broths, handmade gyoza, and imported Japanese beverages.'
+    companyDescription: 'Authentic Japanese ramen experience with rich broths and handmade gyoza.'
   },
-  
-  // Toilets
-  { 
-    id: 'toilet-mf', name: 'Main Facilities', category: 'toilets', 
-    description: 'Primary restroom facilities', 
-    amenities: ['Accessibility Compliant', 'Baby Changing', 'Hand Sanitizer', 'Contactless Features'],
-    companyDescription: 'Modern, accessible restroom facilities with contactless technology and sustainability features.'
+
+  // Coworking Areas
+  {
+    id: 'cowork-1', name: 'Main Coworking Space', category: 'cowork',
+    description: 'Primary flexible workspace area',
+    amenities: ['WiFi', 'Power Outlets', 'Meeting Rooms', 'Phone Booths'],
+    companyDescription: 'Spacious coworking area with modern amenities for productive work.'
+  },
+  {
+    id: 'cowork-2', name: 'Quiet Zone', category: 'cowork',
+    description: 'Silent workspace for focused work',
+    amenities: ['Soundproofing', 'Individual Desks', 'Natural Light', 'Coffee Station'],
+    companyDescription: 'Dedicated quiet space for deep work and concentration.'
+  },
+  {
+    id: 'cowork-3', name: 'Collaboration Hub', category: 'cowork',
+    description: 'Team workspace with whiteboards',
+    amenities: ['Whiteboards', 'Projector', 'Team Tables', 'Brainstorming Area'],
+    companyDescription: 'Dynamic space designed for team collaboration and creative sessions.'
+  },
+  {
+    id: 'cowork-4', name: 'Innovation Lab', category: 'cowork',
+    description: 'Advanced workspace with prototyping tools',
+    amenities: ['3D Printer', 'Prototyping Tools', 'VR Setup', 'Workshop Area'],
+    companyDescription: 'Cutting-edge workspace with tools for prototyping and innovation.'
+  },
+  {
+    id: 'cowork-5', name: 'Meeting Pods', category: 'cowork',
+    description: 'Private meeting spaces',
+    amenities: ['Video Conferencing', 'Whiteboards', 'Privacy', 'Comfortable Seating'],
+    companyDescription: 'Private meeting pods for confidential discussions and presentations.'
+  },
+  {
+    id: 'cowork-6', name: 'Lounge Area', category: 'cowork',
+    description: 'Relaxed workspace with comfortable seating',
+    amenities: ['Comfortable Chairs', 'Coffee Tables', 'Casual Atmosphere', 'Networking Space'],
+    companyDescription: 'Casual workspace perfect for networking and informal meetings.'
+  },
+  {
+    id: 'cowork-7', name: 'Conference Room', category: 'cowork',
+    description: 'Large meeting and presentation space',
+    amenities: ['Projector', 'Audio System', 'Large Table', 'Presentation Equipment'],
+    companyDescription: 'Professional conference room for large meetings and presentations.'
+  },
+  {
+    id: 'cowork-8', name: 'Outdoor Workspace', category: 'cowork',
+    description: 'Open-air workspace with natural light',
+    amenities: ['Natural Light', 'Fresh Air', 'Outdoor Seating', 'WiFi'],
+    companyDescription: 'Unique outdoor workspace combining productivity with natural surroundings.'
+  },
+
+  // Coffee Stations
+  {
+    id: 'coffee-1', name: 'Coffee Station', category: 'coffee',
+    description: 'Premium coffee and refreshments',
+    amenities: ['Espresso', 'Cold Brew', 'Tea Selection', 'Pastries'],
+    companyDescription: 'Premium coffee station serving artisanal beverages and light snacks.'
+  },
+  {
+    id: 'coffee-1_2', name: 'Coffee Station 2', category: 'coffee',
+    description: 'Additional coffee and refreshment station',
+    amenities: ['Espresso', 'Cold Brew', 'Tea Selection', 'Pastries'],
+    companyDescription: 'Second coffee station for convenient access throughout the venue.'
+  },
+  {
+    id: 'coffee-2', name: 'Coffee Station 3', category: 'coffee',
+    description: 'Third coffee and refreshment station',
+    amenities: ['Espresso', 'Cold Brew', 'Tea Selection', 'Pastries'],
+    companyDescription: 'Third coffee station ensuring no long waits for caffeine.'
+  },
+
+  // BioTech District - Individual Companies
+  {
+    id: 'biotech-3-mile', name: '3 Mile Labs', category: 'biotech',
+    description: 'Biotechnology research and development',
+    amenities: ['Research Labs', 'DNA Sequencing', 'Clinical Trials', 'Data Analysis'],
+    companyDescription: 'Cutting-edge biotechnology research facility focusing on genetic engineering.'
+  },
+  {
+    id: 'biotech-fukushima', name: 'Fukushima BioTech', category: 'biotech',
+    description: 'Environmental biotechnology solutions',
+    amenities: ['Environmental Testing', 'Bioremediation', 'Research Labs', 'Consulting'],
+    companyDescription: 'Specialized in environmental biotechnology and sustainable solutions.'
+  },
+  {
+    id: 'biotech-chernobyl', name: 'Chernobyl Research', category: 'biotech',
+    description: 'Radiation biology and medical research',
+    amenities: ['Radiation Research', 'Medical Studies', 'Safety Protocols', 'Data Collection'],
+    companyDescription: 'Leading research in radiation biology and medical applications.'
+  },
+  {
+    id: 'biotech-horde', name: 'Horde Biotech', category: 'biotech',
+    description: 'Collaborative biotechnology platform',
+    amenities: ['Collaborative Research', 'Data Sharing', 'Open Source', 'Community Labs'],
+    companyDescription: 'Decentralized biotechnology research platform fostering collaboration.'
+  },
+  {
+    id: 'biotech-covenant', name: 'Covenant Health', category: 'biotech',
+    description: 'Healthcare biotechnology solutions',
+    amenities: ['Healthcare Research', 'Drug Development', 'Clinical Trials', 'Patient Care'],
+    companyDescription: 'Healthcare-focused biotechnology company developing innovative treatments.'
+  },
+  {
+    id: 'biotech-doom', name: 'Doom Labs', category: 'biotech',
+    description: 'Advanced biotechnology research',
+    amenities: ['Advanced Research', 'AI Integration', 'Automation', 'Innovation'],
+    companyDescription: 'Pioneering advanced biotechnology research with AI integration.'
+  },
+  {
+    id: 'biotech-unreal', name: 'Unreal Biotech', category: 'biotech',
+    description: 'Virtual reality in biotechnology',
+    amenities: ['VR Research', '3D Modeling', 'Simulation', 'Training'],
+    companyDescription: 'Revolutionary biotechnology research using virtual reality technology.'
+  },
+  {
+    id: 'biotech-black-mesa', name: 'Black Mesa Research', category: 'biotech',
+    description: 'Experimental biotechnology research',
+    amenities: ['Experimental Research', 'Advanced Labs', 'Innovation', 'Breakthrough Science'],
+    companyDescription: 'Experimental biotechnology research facility pushing scientific boundaries.'
+  },
+
+  // Hardware District - Individual Companies
+  {
+    id: 'hardware-waymo', name: 'Waymo Hardware', category: 'hardware',
+    description: 'Autonomous vehicle hardware solutions',
+    amenities: ['Sensor Systems', 'AI Hardware', 'Vehicle Integration', 'Testing'],
+    companyDescription: 'Leading autonomous vehicle hardware and sensor technology.'
+  },
+  {
+    id: 'hardware-golem', name: 'Golem Network', category: 'hardware',
+    description: 'Decentralized computing network',
+    amenities: ['Computing Power', 'Distributed Network', 'Rendering', 'AI Training'],
+    companyDescription: 'Decentralized computing network for distributed processing power.'
+  },
+  {
+    id: 'hardware-tesla', name: 'Tesla Hardware', category: 'hardware',
+    description: 'Electric vehicle and energy hardware',
+    amenities: ['EV Hardware', 'Battery Technology', 'Solar Panels', 'Energy Storage'],
+    companyDescription: 'Innovative hardware solutions for electric vehicles and renewable energy.'
+  },
+  {
+    id: 'hardware-ocean', name: 'Ocean Protocol', category: 'hardware',
+    description: 'Data hardware and infrastructure',
+    amenities: ['Data Hardware', 'IoT Devices', 'Blockchain Integration', 'Data Markets'],
+    companyDescription: 'Hardware infrastructure for decentralized data markets and IoT.'
+  },
+  {
+    id: 'hardware-render', name: 'Render Network', category: 'hardware',
+    description: 'Decentralized rendering hardware',
+    amenities: ['GPU Rendering', 'Distributed Computing', '3D Graphics', 'Animation'],
+    companyDescription: 'Decentralized GPU rendering network for 3D graphics and animation.'
+  },
+  {
+    id: 'hardware-akash', name: 'Akash Network', category: 'hardware',
+    description: 'Decentralized cloud computing hardware',
+    amenities: ['Cloud Computing', 'Server Infrastructure', 'Deployment', 'Scaling'],
+    companyDescription: 'Decentralized cloud computing platform with global server infrastructure.'
+  },
+  {
+    id: 'hardware-helium-iot', name: 'Helium IoT', category: 'hardware',
+    description: 'IoT hardware and network infrastructure',
+    amenities: ['IoT Devices', 'Network Infrastructure', 'LoRaWAN', 'Mining'],
+    companyDescription: 'Decentralized IoT network with hardware mining and connectivity.'
   },
   { 
-    id: 'toilet-dis', name: 'Accessible Facilities', category: 'toilets', 
-    description: 'Fully accessible restroom facilities', 
-    amenities: ['Wheelchair Accessible', 'Special Needs Support', 'Emergency Call System'],
-    companyDescription: 'Specially designed accessible facilities ensuring comfort and independence for all users.'
+    id: 'hardware-bittensor', name: 'Bittensor Hardware', category: 'hardware',
+    description: 'AI and machine learning hardware',
+    amenities: ['AI Hardware', 'Machine Learning', 'Neural Networks', 'Computing'],
+    companyDescription: 'Specialized hardware for AI and machine learning applications.'
   },
-  
-  // Other areas
+
+  // Swag Store
   { 
-    id: 'art-exhibit-1', name: 'Artist Collective Gallery', category: 'art-exhbition', 
+    id: 'swag-1', name: 'Ethereum Store', category: 'swag',
+    description: 'Official Ethereum merchandise and collectibles',
+    amenities: ['Limited Editions', 'NFT Collectibles', 'Apparel', 'Accessories'],
+    companyDescription: 'The official Ethereum merchandise store featuring exclusive items.'
+  },
+
+  // Art Exhibition
+  { 
+    id: 'art-exhibition', name: 'Artist Collective Gallery', category: 'art', 
     description: 'Curated digital art and NFT exhibitions', 
     amenities: ['NFT Displays', 'Artist Talks', 'Digital Art', 'Collector Meetups'],
     companyDescription: 'Discover beautiful works by emerging artists from Argentina and around the world.'
   },
+
+  // Toilets
   { 
-    id: 'swag', name: 'Ethereum Store', category: 'swag', 
-    description: 'Official Ethereum merchandise and collectibles', 
-    amenities: ['Limited Editions', 'NFT Collectibles', 'Apparel', 'Accessories'],
-    companyDescription: 'The official Ethereum merchandise store featuring exclusive items and limited edition collectibles.'
+    id: 'toilet-mf-1', name: 'Main Facilities', category: 'toilets',
+    description: 'Primary restroom facilities',
+    amenities: ['Accessibility Compliant', 'Baby Changing', 'Hand Sanitizer', 'Contactless Features'],
+    companyDescription: 'Modern, accessible restroom facilities with contactless technology.'
   },
-  
+  {
+    id: 'toilet-dis-1', name: 'Accessible Facilities', category: 'toilets',
+    description: 'Fully accessible restroom facilities',
+    amenities: ['Wheelchair Accessible', 'Special Needs Support', 'Emergency Call System'],
+    companyDescription: 'Specially designed accessible facilities ensuring comfort and independence.'
+  },
+
   // Entrances
   { 
-    id: 'entrance-north', name: 'North Entrance', category: 'entrance', 
+    id: 'entrance-1', name: 'West Entrance', category: 'entrance', 
     description: 'Main venue entrance and reception area', 
     amenities: ['Information Desk', 'Security Check', 'Welcome Area', 'Directions'],
     companyDescription: 'Primary entrance to the venue with information services and visitor assistance.'
   },
   { 
-    id: 'entrance-west', name: 'West Entrance', category: 'entrance', 
+    id: 'entrance-2', name: 'East Entrance', category: 'entrance', 
     description: 'Alternative venue entrance', 
     amenities: ['Information Desk', 'Security Check', 'Welcome Area', 'Directions'],
     companyDescription: 'Secondary entrance to the venue with information services and visitor assistance.'
   },
   { 
-    id: 'entrance-east', name: 'East Entrance', category: 'entrance', 
+    id: 'entrance-3', name: 'North Entrance', category: 'entrance', 
     description: 'Side venue entrance', 
     amenities: ['Information Desk', 'Security Check', 'Welcome Area', 'Directions'],
     companyDescription: 'Additional entrance to the venue with information services and visitor assistance.'
