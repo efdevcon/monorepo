@@ -241,12 +241,32 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
               className="flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 bg-[#6b7280] shadow-[inset_0px_6px_0px_0px_rgba(107,114,128,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(75,85,99,1.00)] hover:bg-[#4b5563]"
               onClick={(e) => {
                 e.stopPropagation();
-                // TODO: Add learn more functionality
-                console.log('Learn more clicked for quest:', quest.name);
+                // Generate deep link to map based on category and name
+                const generateDeepLink = () => {
+                  const category = quest.category?.toLowerCase();
+                  const name = quest.name?.toLowerCase().replace(/\s+/g, '-');
+
+                  if (category && name) {
+                    return `/map#${category}-${name}`;
+                  }
+                  return null;
+                };
+
+                const deepLink = generateDeepLink();
+                if (deepLink) {
+                  // Navigate to the map page with the deep link
+                  window.location.href = deepLink;
+                  console.log('Navigating to map:', deepLink);
+                } else {
+                  console.log(
+                    'Could not generate deep link for quest:',
+                    quest.name
+                  );
+                }
               }}
             >
               <div className="text-center text-white text-sm font-bold font-['Roboto'] uppercase leading-[14px]">
-                Learn More
+                View on Map
               </div>
             </div>
 

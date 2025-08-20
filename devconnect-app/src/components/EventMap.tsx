@@ -221,7 +221,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       </div>
 
       {/* Map Container */}
-      <div 
+      <div
         className="flex-1 relative overflow-hidden bg-gradient-to-br from-white to-slate-100 cursor-move touch-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
