@@ -65,6 +65,8 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
         {`
           .highlighted {
             opacity: 1 !important;
+            stroke: black !important;
+            stroke-width: 2px !important;
             transition: all 0.3s ease;
           }
           
