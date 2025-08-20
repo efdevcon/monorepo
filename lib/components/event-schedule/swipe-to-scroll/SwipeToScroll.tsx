@@ -253,8 +253,6 @@ const SwipeToScroll = forwardRef(
     if (isNativeScroll)
       scrollContainerClass += ` overflow-x-auto ${css["no-transform"]}`;
 
-    console.log(bind(), "bind");
-
     const listeners = bind();
 
     return (

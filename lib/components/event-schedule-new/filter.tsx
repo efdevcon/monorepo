@@ -17,8 +17,6 @@ export const useFilters = (events: any[]) => {
     name: "",
   };
 
-  console.log(events, "events");
-
   const [filter, setFilterState] = useState<any>(defaultFilter);
 
   // Compute if any filter is active (differs from default)
