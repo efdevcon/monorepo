@@ -146,13 +146,18 @@ const Event: React.FC<EventProps> = ({
     >
       <Dialog
         open={selectedEvent?.id === event.id}
-        onOpenChange={() => setSelectedEvent(null)}
+        onOpenChange={(open) => {
+          if (!open) {
+            setSelectedEvent(null);
+          }
+        }}
       >
         <DialogContent
           className={cn(
             "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000]",
             typeClass
           )}
+          {...draggableLink}
         >
           <Image
             src={coworkingImage}
@@ -351,10 +356,10 @@ const Event: React.FC<EventProps> = ({
               <DifficultyTag difficulty={event.difficulty} size="sm" />
 
               {/* <div
-              className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
-            >
-              {event.amountPeople}
-            </div> */}
+                className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
+              >
+                {event.amountPeople}
+              </div> */}
               {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
               <Star className="text-black shrink-0" size={11} />
               RSVP

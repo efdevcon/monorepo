@@ -236,9 +236,7 @@ const NewScheduleIndex = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-              {/* Calendar body */}
               <div className={cn("contents", selectedDay && "hidden")}>
-                {/* Place all events in the grid */}
                 {eventPlacements.map((placement, idx) => (
                   <div
                     key={`event-${placement.event.id}-${idx}`}
