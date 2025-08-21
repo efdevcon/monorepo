@@ -652,30 +652,32 @@ const Home: NextPage = (props: any) => {
                 >
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
                     return (
-                      <motion.span
-                        key={i}
-                        className={css['topic']}
-                        style={{ display: 'inline-block', willChange: 'transform' }}
-                        variants={{
-                          hidden: {
-                            opacity: 0,
-                            y: -30,
-                            color: 'rgba(0, 0, 0, 0.1)',
-                          },
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            color: 'rgba(0, 0, 0, 1)',
-                            transition: {
-                              duration: 0.3,
-                              ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+                      <>
+                        <motion.span
+                          key={i}
+                          className={css['topic']}
+                          style={{ display: 'inline-block', willChange: 'transform' }}
+                          variants={{
+                            hidden: {
+                              opacity: 0,
+                              y: -30,
+                              color: 'rgba(0, 0, 0, 0.1)',
                             },
-                          },
-                        }}
-                      >
-                        {theme}
-                        {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
-                      </motion.span>
+                            visible: {
+                              opacity: 1,
+                              y: 0,
+                              color: 'rgba(0, 0, 0, 1)',
+                              transition: {
+                                duration: 0.3,
+                                ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+                              },
+                            },
+                          }}
+                        >
+                          {theme}
+                          {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                        </motion.span>{' '}
+                      </>
                     )
                   })}
                 </motion.div>
