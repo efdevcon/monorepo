@@ -54,16 +54,24 @@ export const POIModal: React.FC<POIModalProps> = ({
           className={`flex items-center justify-between p-4 ${selectedPOI.heroImage ? '' : 'border-b'}`}
         >
           <div className="flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${getPOIColor(selectedPOI.category)}`}>
-              {filterCategories.find((f) => f.key === selectedPOI.category)?.icon &&
+            <div
+              className={`p-2 rounded-lg ${getPOIColor(selectedPOI.category)}`}
+            >
+              {filterCategories.find((f) => f.key === selectedPOI.category)
+                ?.icon &&
                 React.createElement(
-                  filterCategories.find((f) => f.key === selectedPOI.category)!.icon,
+                  filterCategories.find((f) => f.key === selectedPOI.category)!
+                    .icon,
                   { className: 'h-5 w-5' }
                 )}
             </div>
             <div>
-              <h2 className="text-lg font-bold text-gray-900">{selectedPOI.name}</h2>
-              <p className="text-sm text-gray-600 capitalize">{selectedPOI.category}</p>
+              <h2 className="text-lg font-bold text-gray-900">
+                {selectedPOI.name}
+              </h2>
+              <p className="text-sm text-gray-600 capitalize">
+                {selectedPOI.category}
+              </p>
             </div>
           </div>
           {!selectedPOI.heroImage && (
@@ -82,14 +90,18 @@ export const POIModal: React.FC<POIModalProps> = ({
           {selectedPOI.companyDescription && (
             <div className="bg-gray-50 p-3 rounded-lg">
               <h4 className="font-medium text-gray-900 mb-2">About</h4>
-              <p className="text-sm text-gray-700">{selectedPOI.companyDescription}</p>
+              <p className="text-sm text-gray-700">
+                {selectedPOI.companyDescription}
+              </p>
             </div>
           )}
 
           {/* Companies List for Districts */}
           {selectedPOI.companies && (
             <div className="bg-blue-50 p-3 rounded-lg">
-              <h4 className="font-medium text-gray-900 mb-2">Companies Showcasing</h4>
+              <h4 className="font-medium text-gray-900 mb-2">
+                Companies Showcasing
+              </h4>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1">
                 {selectedPOI.companies.map((company, index) => (
                   <div key={index} className="text-sm text-gray-700">
@@ -104,9 +116,35 @@ export const POIModal: React.FC<POIModalProps> = ({
           {selectedPOI.currentEvent && (
             <div className="bg-blue-50 p-3 rounded-lg">
               <h4 className="font-medium text-blue-900 mb-1">Current Event</h4>
-              <p className="text-sm text-blue-700">{selectedPOI.currentEvent}</p>
+              <p className="text-sm text-blue-700">
+                {selectedPOI.currentEvent}
+              </p>
             </div>
           )}
+
+          {/* View Related Quest Button */}
+          <div className="border-t pt-4">
+            <a
+              href={`/quests#${selectedPOI.id}`}
+              className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
+              onClick={onClose}
+            >
+              <svg
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+              View Related Quest
+            </a>
+          </div>
         </div>
       </div>
     </div>
