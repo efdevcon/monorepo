@@ -10,7 +10,7 @@ import { computeCalendarRange } from "./calendar.utils";
 import { useCalendarStore } from "store/calendar";
 import { Star } from "lucide-react";
 // @ts-ignore
-import coworkingImage from "./day/cowork.webp";
+import coworkingImage from "./event/cowork.webp";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 
 const width = 80;

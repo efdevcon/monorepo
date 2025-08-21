@@ -16,6 +16,7 @@ import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
 import VoxelButton from "lib/components/voxel-button/button";
+import ZupassConnection from "../zupass/zupass";
 
 type EventProps = {
   event: EventType;
@@ -255,6 +256,8 @@ const Event: React.FC<EventProps> = ({
               </Link> */}
 
               <Separator className="my-3" />
+
+              <ZupassConnection eventId={event.id} />
 
               <div className="flex gap-2 justify-between shrink-0">
                 {event.eventType && (
