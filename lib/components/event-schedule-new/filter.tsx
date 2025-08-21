@@ -153,7 +153,10 @@ const filterKeyToLabel = (key: string) => {
   return key;
 };
 
-const uppercaseFirstLetter = (str: string) => {
+const uppercaseFirstLetter = (str: any) => {
+  if (typeof str !== 'string') {
+    return String(str);
+  }
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
@@ -248,7 +251,7 @@ export const Filter = ({
                       onClick={() => setFilter(filterStateKey, value)}
                     >
                       <Checkbox checked={isSelected} className="mb-0.5" />
-                      {uppercaseFirstLetter(value)}
+                      {typeof value === 'string' ? uppercaseFirstLetter(value) : String(value)}
                     </div>
                   );
                 })}
