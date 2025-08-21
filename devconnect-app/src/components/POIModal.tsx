@@ -61,6 +61,7 @@ export const POIModal: React.FC<POIModalProps> = ({
     return (
       <div
         ref={tooltipRef}
+        data-tooltip
         className="absolute z-60 pointer-events-none"
         style={{
           left: position?.x || 0,
@@ -120,6 +121,7 @@ export const POIModal: React.FC<POIModalProps> = ({
   return (
     <div
       ref={tooltipRef}
+      data-tooltip
       className="absolute inset-0 bg-black/60 z-60 flex items-center justify-center p-4"
       onClick={() => setIsExpanded(false)}
     >

@@ -21,6 +21,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     y: number;
   } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  const mapContainerRef = useRef<HTMLDivElement>(null);
 
   // Custom hooks
   const {
@@ -92,7 +93,12 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
   // Handle closing POI modal
   const closePOIModal = () => {
-    // Clear URL hash - the deep linking logic will handle state updates
+    // Clear the selected POI state to hide the tooltip first
+    setSelectedPOI(null);
+    setPoiPosition(null);
+    // Exit focused mode
+    onFocusedModeChange?.(false);
+    // Clear URL hash after state is cleared to prevent race conditions
     window.history.replaceState(null, '', window.location.pathname);
   };
 
@@ -113,12 +119,13 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
   // Handle map container click to close tooltip
   const handleMapContainerClick = (e: React.MouseEvent) => {
-    // Check if the clicked element is a POI
+    // Check if the clicked element is a POI or part of the tooltip
     const target = e.target as HTMLElement;
     const isPOI = pois.some((poi) => target.id === poi.id);
+    const isTooltip = target.closest('[data-tooltip]') !== null;
 
-    // Close tooltip if clicking anywhere that's not a POI
-    if (!isPOI) {
+    // Close tooltip if clicking anywhere that's not a POI or tooltip
+    if (!isPOI && !isTooltip) {
       closePOIModal();
     }
   };
@@ -199,10 +206,10 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
             Math.abs(x - poiPosition.x) > 5 || Math.abs(y - poiPosition.y) > 5;
 
           if (positionChanged) {
-            console.log('POI position recalculated after transform:', {
-              poiId: selectedPOI.id,
-              center: { x, y },
-            });
+            // console.log('POI position recalculated after transform:', {
+            //   poiId: selectedPOI.id,
+            //   center: { x, y },
+            // });
 
             setPoiPosition({ x, y });
           }
@@ -210,6 +217,32 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       }
     }
   }, [transform, selectedPOI]);
+
+  // Handle escape key to close POI modal
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && selectedPOI) {
+        closePOIModal();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [selectedPOI]);
+
+  // Add wheel event listener with passive: false to allow preventDefault
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container) return;
+
+    const wheelHandler = (e: WheelEvent) => {
+      e.preventDefault();
+      handleWheel(e as any);
+    };
+
+    container.addEventListener('wheel', wheelHandler, { passive: false });
+    return () => container.removeEventListener('wheel', wheelHandler);
+  }, [handleWheel]);
 
   // Handle deep linking and focus district on component mount
   useEffect(() => {
@@ -270,8 +303,8 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         }
       }
 
-      // Clear selection if no hash
-      if (!hash) {
+      // Clear selection if no hash (but only if we're not already clearing)
+      if (!hash && selectedPOI !== null) {
         setSelectedPOI(null);
         setPoiPosition(null);
         onFocusedModeChange?.(false);
@@ -340,7 +373,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseUp}
-        onWheel={handleWheel}
+        ref={mapContainerRef}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
