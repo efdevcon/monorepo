@@ -14,3 +14,9 @@ export const useCalendarStore = create<CalendarStore>((set: any) => ({
   setSelectedEvent: (event: Event | null) => set({ selectedEvent: event }),
   setSelectedDay: (day: string | null) => set({ selectedDay: day }),
 }));
+
+// Ensure the store is properly initialized for SSR
+if (typeof window !== 'undefined') {
+  // Client-side only: ensure store is initialized
+  useCalendarStore.getState();
+}
