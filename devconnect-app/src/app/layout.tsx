@@ -39,6 +39,9 @@ export default function RootLayout({
     "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
   const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
 
+  // Check if Supabase is configured
+  const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
   return (
     <html lang="en">
       <head>
@@ -108,7 +111,19 @@ export default function RootLayout({
         }}
       >
         <div className="fullscreen-container">
-          <Auth>
+          {hasSupabase ? (
+            <Auth>
+              <SkippedProvider>
+                <PWAProvider>
+                  <WalletsProviders>
+                    {children}
+                    <Menu />
+                    <NewDeployment />
+                  </WalletsProviders>
+                </PWAProvider>
+              </SkippedProvider>
+            </Auth>
+          ) : (
             <SkippedProvider>
               <PWAProvider>
                 <WalletsProviders>
@@ -118,7 +133,7 @@ export default function RootLayout({
                 </WalletsProviders>
               </PWAProvider>
             </SkippedProvider>
-          </Auth>
+          )}
         </div>
         <Toaster />
       </body>
