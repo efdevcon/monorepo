@@ -81,7 +81,7 @@ const Argentina = (props: any) => {
           setSelectedDay={setSelectedDay}
         />
 
-        <div className="section mb-8">
+        <div className="section mb-8 mt-12">
           {/* <div className="text-center text-lg">
             Stay tuned for details on how to submit your event to the calendar - we will be accepting submissions very
             soon!
