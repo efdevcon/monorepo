@@ -1,18 +1,17 @@
 // import { useState } from 'react';
 // import PageLayout from '@/components/PageLayout';
 // import TabbedSection from '@/components/TabbedSection';
-import ScheduleTab from './ScheduleTab';
+import ProgrammeTab from './ScheduleTab';
 // import WorldsFairTab from './WorldsFairTab';
 // import FavoritesTab from './FavoritesTab';
 import { NAV_ITEMS } from '@/config/nav-items';
 import moment from 'moment';
-import ProgrammeTab from './ScheduleTab';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/programme');
 const navLabel = navItem?.label || 'Programme';
 const title = navLabel;
 
-const tabComponents = [ScheduleTab]; // , WorldsFairTab, FavoritesTab];
+const tabComponents = [ProgrammeTab]; // , WorldsFairTab, FavoritesTab];
 
 export default async function ProgrammePage() {
   const atprotoEvents = await getAtprotoEvents();

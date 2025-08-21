@@ -1,6 +1,6 @@
 'use client';
 import { useUser } from '@/hooks/useUser';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
@@ -9,13 +9,21 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Skip authentication for /map /quests /programme pages
   if (
-    pathname === '/map' ||
-    pathname === '/quests' ||
-    pathname === '/programme'
+    mounted && (
+      pathname === '/map' ||
+      pathname === '/quests' ||
+      pathname === '/programme'
+    )
   ) {
     return children;
   }

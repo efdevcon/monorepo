@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NewSchedule, { ScheduleProps } from "./index";
+import NewScheduleIndex, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
 import filterCss from "./filter.module.scss";
@@ -96,7 +96,7 @@ const Layout = (props: CalendarLayoutProps) => {
           <div className="grow relative">
             {/* white gradient to indicate more events on the right for mobile */}
             <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
-            <NewSchedule {...props} events={filteredEvents} />
+            <NewScheduleIndex {...props} events={filteredEvents} />
           </div>
         </div>
       </div>
