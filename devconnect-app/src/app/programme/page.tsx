@@ -86,19 +86,17 @@ async function getAtprotoEvents() {
 
       return {
         id: event.id,
-        name: record.title || 'Untitled Event',
-        description: record.description || '',
+        name: record.title,
+        description: record.description,
         startDate: record.start_utc,
         endDate: record.end_utc,
-        location: record.location?.name || 'Unknown Location',
-        difficulty: record.expertise || 'Beginner',
-        organizer: record.organizer?.name || 'Unknown Organizer',
+        location: record.location.name,
+        difficulty: record.expertise,
+        organizer: record.organizer.name,
         timeblocks: timeblocks,
-        eventType: record.event_type || 'Other',
+        eventType: record.event_type,
         isCoreEvent: event.is_core_event || false,
-        eventLink: record.main_url || '',
-        categories: [], // Add empty categories array to prevent filter errors
-        priority: 0, // Add default priority
+        eventLink: record.main_url,
         ...manualOverrides,
       };
     });
