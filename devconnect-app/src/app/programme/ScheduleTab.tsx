@@ -1,17 +1,17 @@
 'use client';
 
-import CalendarLayout from 'lib/components/event-schedule-new/layout';
+import { Layout as CalendarLayout } from 'lib/components/event-schedule-new/layout';
 import { useCalendarStore } from './tmp-state';
 
-interface ProgrammeTabProps {
+interface ScheduleTabProps {
   atprotoEvents?: any[];
 }
 
-export default function ProgrammeTab({
-  atprotoEvents = [],
-}: ProgrammeTabProps) {
+export default function ScheduleTab({ atprotoEvents = [] }: ScheduleTabProps) {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } =
     useCalendarStore();
+
+  console.log(CalendarLayout, 'CalendarLayout');
 
   return (
     <CalendarLayout
