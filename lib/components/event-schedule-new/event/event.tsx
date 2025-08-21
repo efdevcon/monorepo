@@ -46,12 +46,14 @@ const computeEventTimeString = (event: EventType): string[] => {
       format(startDate, "yyyy-MM-dd") !== format(endDate, "yyyy-MM-dd");
 
     if (isMultiDay) {
+      // TODO BRING BACK TIME WHEN WE HAVE IT
       return [
-        `${startDateFormatted} — ${endDateFormatted}, ${startTime} — ${endTime} `,
+        `${startDateFormatted} — ${endDateFormatted}`, //, ${startTime} — ${endTime} `,
       ];
     }
 
-    return [`${startDateFormatted}, ${startTime} to ${endTime}`];
+    // TODO BRING BACK TIME WHEN WE HAVE IT
+    return [`${startDateFormatted}`]; // , ${startTime} to ${endTime}`];
   } else {
     formattedTimeblocks = event.timeblocks
       .slice()
@@ -62,7 +64,7 @@ const computeEventTimeString = (event: EventType): string[] => {
         const startTime = formatTime(timeblock.start);
         const endTime = formatTime(timeblock.end);
 
-        return `${startDate} — ${endDate}, ${startTime} — ${endTime}`;
+        return `${startDate} — ${endDate}`; // , ${startTime} — ${endTime}`;
       });
   }
 
@@ -102,8 +104,6 @@ const Event: React.FC<EventProps> = ({
   const isCoreEvent = event.isCoreEvent;
 
   let eventName = event.name;
-
-  console.log(selectedEvent, "selectedEvent");
 
   return (
     <div

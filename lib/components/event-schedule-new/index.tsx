@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
-import Event from "./day/event";
+import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import { Event as EventType } from "./model";
