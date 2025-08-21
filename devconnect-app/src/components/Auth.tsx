@@ -1,6 +1,7 @@
 'use client';
 import { useUser } from '@/hooks/useUser';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, loading, error, hasInitialized, sendOtp, verifyOtp } =
@@ -8,6 +9,16 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const pathname = usePathname();
+
+  // Skip authentication for /map /quests /programme pages
+  if (
+    pathname === '/map' ||
+    pathname === '/quests' ||
+    pathname === '/programme'
+  ) {
+    return children;
+  }
 
   if (loading)
     return (

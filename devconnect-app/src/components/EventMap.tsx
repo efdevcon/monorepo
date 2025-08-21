@@ -16,6 +16,10 @@ interface EventMapProps {
 
 const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
   const [selectedPOI, setSelectedPOI] = useState<POI | null>(null);
+  const [poiPosition, setPoiPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
 
   // Custom hooks
@@ -44,8 +48,41 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
   } = useMapFilters();
 
   // Handle POI click
-  const handlePOIClick = (poi: POI) => {
+  const handlePOIClick = (
+    poi: POI,
+    event?: React.MouseEvent | React.TouchEvent
+  ) => {
     setSelectedPOI(poi);
+
+    // Calculate position from SVG element center relative to map container
+    const svgElement = document.getElementById(poi.id);
+    if (svgElement && svgRef.current) {
+      const mapContainer = svgRef.current.closest('.relative') as HTMLElement;
+      const svgRect = svgElement.getBoundingClientRect();
+
+      if (mapContainer) {
+        const containerRect = mapContainer.getBoundingClientRect();
+
+        // Calculate center of the SVG element relative to map container
+        const x = svgRect.left + svgRect.width / 2 - containerRect.left;
+        const y = svgRect.top + svgRect.height / 2 - containerRect.top;
+
+        console.log('POI position calculated:', {
+          poiId: poi.id,
+          svgRect: {
+            left: svgRect.left,
+            top: svgRect.top,
+            width: svgRect.width,
+            height: svgRect.height,
+          },
+          containerRect: { left: containerRect.left, top: containerRect.top },
+          center: { x, y },
+        });
+
+        setPoiPosition({ x, y });
+      }
+    }
+
     // Update URL hash for deep linking - use the POI ID directly
     const newHash = `#${poi.id}`;
     window.history.replaceState(null, '', newHash);
@@ -55,11 +92,8 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
   // Handle closing POI modal
   const closePOIModal = () => {
-    setSelectedPOI(null);
-    // Clear URL hash
+    // Clear URL hash - the deep linking logic will handle state updates
     window.history.replaceState(null, '', window.location.pathname);
-    // Exit focused mode
-    onFocusedModeChange?.(false);
   };
 
   // Function to focus on a district and update URL
@@ -77,6 +111,18 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     }
   };
 
+  // Handle map container click to close tooltip
+  const handleMapContainerClick = (e: React.MouseEvent) => {
+    // Check if the clicked element is a POI
+    const target = e.target as HTMLElement;
+    const isPOI = pois.some((poi) => target.id === poi.id);
+
+    // Close tooltip if clicking anywhere that's not a POI
+    if (!isPOI) {
+      closePOIModal();
+    }
+  };
+
   // Handle SVG element click/tap
   const handleSVGElementClick = (
     elementId: string,
@@ -89,9 +135,14 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       }
     }
 
+    // Only handle clicks on actual POI elements
     const poi = pois.find((p) => p.id === elementId);
     if (poi) {
-      handlePOIClick(poi);
+      handlePOIClick(poi, e);
+      // Stop propagation to prevent map container click
+      if (e) {
+        e.stopPropagation();
+      }
     }
   };
 
@@ -128,6 +179,38 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     );
   };
 
+  // Recalculate POI position when transform changes
+  useEffect(() => {
+    if (selectedPOI && poiPosition) {
+      const svgElement = document.getElementById(selectedPOI.id);
+      if (svgElement && svgRef.current) {
+        const mapContainer = svgRef.current.closest('.relative') as HTMLElement;
+        const svgRect = svgElement.getBoundingClientRect();
+
+        if (mapContainer) {
+          const containerRect = mapContainer.getBoundingClientRect();
+
+          // Calculate center of the SVG element relative to map container
+          const x = svgRect.left + svgRect.width / 2 - containerRect.left;
+          const y = svgRect.top + svgRect.height / 2 - containerRect.top;
+
+          // Only update if position has actually changed significantly
+          const positionChanged =
+            Math.abs(x - poiPosition.x) > 5 || Math.abs(y - poiPosition.y) > 5;
+
+          if (positionChanged) {
+            console.log('POI position recalculated after transform:', {
+              poiId: selectedPOI.id,
+              center: { x, y },
+            });
+
+            setPoiPosition({ x, y });
+          }
+        }
+      }
+    }
+  }, [transform, selectedPOI]);
+
   // Handle deep linking and focus district on component mount
   useEffect(() => {
     const handleHashChange = () => {
@@ -140,8 +223,37 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         if (id.includes('-')) {
           // It's a POI (contains hyphen)
           const poi = pois.find((p) => p.id === id);
-          if (poi) {
+          if (poi && selectedPOI?.id !== poi.id) {
             setSelectedPOI(poi);
+
+            // Calculate position for tooltip (same logic as handlePOIClick)
+            setTimeout(() => {
+              const svgElement = document.getElementById(poi.id);
+              if (svgElement && svgRef.current) {
+                const mapContainer = svgRef.current.closest(
+                  '.relative'
+                ) as HTMLElement;
+                const svgRect = svgElement.getBoundingClientRect();
+
+                if (mapContainer) {
+                  const containerRect = mapContainer.getBoundingClientRect();
+
+                  // Calculate center of the SVG element relative to map container
+                  const x =
+                    svgRect.left + svgRect.width / 2 - containerRect.left;
+                  const y =
+                    svgRect.top + svgRect.height / 2 - containerRect.top;
+
+                  console.log('Deep link POI position calculated:', {
+                    poiId: poi.id,
+                    center: { x, y },
+                  });
+
+                  setPoiPosition({ x, y });
+                }
+              }
+            }, 100); // Small delay to ensure SVG is rendered
+
             // Enter focused mode for POI
             onFocusedModeChange?.(true);
           }
@@ -161,6 +273,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       // Clear selection if no hash
       if (!hash) {
         setSelectedPOI(null);
+        setPoiPosition(null);
         onFocusedModeChange?.(false);
       }
     };
@@ -181,7 +294,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     return () => {
       window.removeEventListener('hashchange', handleHashChange);
     };
-  }, [focusDistrict, onFocusedModeChange, toggleFilter]);
+  }, [focusDistrict, onFocusedModeChange, toggleFilter, selectedPOI]);
 
   return (
     <div className="h-screen bg-white flex flex-col overflow-hidden">
@@ -231,6 +344,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
+        onClick={handleMapContainerClick}
         style={{ touchAction: 'none' }}
       >
         <div
@@ -274,14 +388,15 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
             ⌂
           </Button>
         </div>
-      </div>
 
-      {/* POI Detail Modal */}
-      <POIModal
-        selectedPOI={selectedPOI}
-        onClose={closePOIModal}
-        getPOIColor={getPOIColor}
-      />
+        {/* POI Detail Modal */}
+        <POIModal
+          selectedPOI={selectedPOI}
+          onClose={closePOIModal}
+          getPOIColor={getPOIColor}
+          position={poiPosition || undefined}
+        />
+      </div>
     </div>
   );
 };

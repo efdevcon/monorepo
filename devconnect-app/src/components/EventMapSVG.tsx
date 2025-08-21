@@ -14,6 +14,7 @@ interface EventMapSVGProps {
 export const EventMapSVG: React.FC<EventMapSVGProps> = ({
   svgRef,
   activeFilters,
+  selectedPOI,
   onSVGElementClick,
 }) => {
   // Smart highlighting logic using svgRef - only one district at a time
@@ -23,16 +24,15 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
 
     // Remove all highlight classes first
     svgElement.querySelectorAll('[id]').forEach((element) => {
-      element.classList.remove('highlighted', 'dimmed');
+      element.classList.remove('highlighted', 'dimmed', 'selected-poi');
     });
 
-    // If no filters active, show everything normally
-    if (activeFilters.size === 0) return;
+    // If no filters active and no POI selected, show everything normally
+    if (activeFilters.size === 0 && !selectedPOI) return;
 
     // Get the first (and only) active filter
     const activeFilter = Array.from(activeFilters)[0];
-    if (!activeFilter) return;
-
+    
     // Get all elements with IDs
     const allElements = svgElement.querySelectorAll('[id]');
 
@@ -46,10 +46,16 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
         elementId.startsWith(activeFilter + '-') ||
         (elementId.startsWith(activeFilter) && elementId !== activeFilter);
 
+      // Check if this is the selected POI
+      const isSelectedPOI = selectedPOI && elementId === selectedPOI.id;
+
       // Check if this is a district group element or the main container
       const isDistrictGroup = ['event-map-svg-test', 'defi', 'fnb', 'cowork', 'biotech', 'hardware', 'social', 'coffee', 'toilets', 'art', 'swag', 'entrance'].includes(elementId);
 
-      if (isActive) {
+      if (isSelectedPOI) {
+        // Selected POI gets highest priority highlighting
+        element.classList.add('selected-poi');
+      } else if (isActive) {
         element.classList.add('highlighted');
       } else if (!isDistrictGroup) {
         // Only dim non-district elements
@@ -57,7 +63,7 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
       }
       // District group elements remain at normal opacity
     });
-  }, [activeFilters, svgRef]);
+  }, [activeFilters, selectedPOI, svgRef]);
 
   return (
     <>
@@ -67,6 +73,14 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
             opacity: 1 !important;
             stroke: black !important;
             stroke-width: 2px !important;
+            transition: all 0.3s ease;
+          }
+          
+          .selected-poi {
+            opacity: 1 !important;
+            stroke: #3b82f6 !important;
+            stroke-width: 3px !important;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6)) !important;
             transition: all 0.3s ease;
           }
           
