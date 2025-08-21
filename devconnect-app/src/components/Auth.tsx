@@ -17,14 +17,9 @@ export default function Auth({ children }: { children: React.ReactNode }) {
     setMounted(true);
   }, []);
 
-  // Skip authentication for /map /quests /programme pages
-  if (
-    mounted && (
-      pathname === '/map' ||
-      pathname === '/quests' ||
-      pathname === '/programme'
-    )
-  ) {
+  // Skip authentication
+  const authSkipPaths = ['/map', '/quests', '/programme', '/scan', '/pos'];
+  if (authSkipPaths.includes(pathname)) {
     return children;
   }
 
