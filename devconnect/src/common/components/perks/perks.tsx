@@ -588,8 +588,8 @@ const Perk = ({
 
       <div className="flex flex-col gap-2 aspect-[316/250] relative">
         <Image src={perk.image} alt={perk.name} className="w-full object-cover h-full absolute top-0 left-0" />
-        <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2>
-        <p className="">{perk.description}</p>
+        {/* <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2> */}
+        {/* <p className="">{perk.description}</p> */}
 
         {connectionState !== ClientConnectionState.CONNECTED &&
           !isCreateYourOwnPerk &&

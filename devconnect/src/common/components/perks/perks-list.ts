@@ -7,6 +7,8 @@ import CoreDevsImage from './images/pg.png'
 import EtherfiImage from './images/etherfi.png'
 import EdgeCityImage from './images/edgecity.png'
 import BeTrustyImage from './images/betrusty.jpg'
+import RoamlessImage from './images/roamless-banner.png'
+import AlephImage from './images/aleph.png'
 
 type Perk = {
   coupon_collection: string
@@ -35,15 +37,6 @@ const perks: Perk[] = [
     image: DevconSeaAttendee,
     zupass_proof_id: 'Devcon SEA',
   },
-  // {
-  //   coupon_collection: 'Devconnect ARG E-sim',
-  //   name: 'Devconnect ARG E-sim',
-  //   description: 'E-sim by Roamless. Get 10% off.',
-  //   requires: 'Devconnect ARG ticket',
-  //   issuer: 'Roamless',
-  //   image: CoworkingImage,
-  //   zupass_proof_id: 'Devconnect ARG',
-  // },
   {
     coupon_collection: 'Devconnect ARG Telegram Chat',
     name: 'Devconnect ARG Telegram Chat',
@@ -61,41 +54,15 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devconnect ARG',
   },
   {
-    coupon_collection: 'test-net-faucet',
-    name: 'Testnet Faucet',
-    description: 'Free Sepolia and Hoodi ETH',
+    coupon_collection: 'roamless-e-sim-2025',
+    name: 'Devconnect ARG E-sim',
+    description: 'E-sim discounts by Roamless',
     requires: 'Devconnect ARG ticket',
-    issuer: 'ethPandaOps',
-    image: CommunityImage,
-    external: true,
-    urls: [
-      {
-        text: 'Sepolia Faucet',
-        url: 'https://devconnect-sepolia-faucet.pk910.de/',
-      },
-      {
-        text: 'Hoodi Faucet',
-        url: 'https://devconnect-hoodi-faucet.pk910.de/',
-      },
-    ],
+    issuer: 'Roamless',
+    image: RoamlessImage,
+    instructions: 'Use the code at checkout at https://roamless.com',
     zupass_proof_id: 'Devconnect ARG',
   },
-
-  {
-    coupon_collection: 'protocol-guild-free-ticket',
-    // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field
-    zupass_proof_id: 'PG Wallet Ownership',
-    name: 'Core Devs / Protocol Guild free ticket',
-    description: 'Core Devs / Protocol Guild free ticket',
-    requires: 'Whitelisted address',
-    issuer: 'Devconnect Team',
-    image: CoreDevsImage,
-    // Just bypass the connection requirement by calling it external (even if it isn't)
-    external: true,
-    no_status: true,
-    wallet_proof: true,
-  },
-
   // ... Info needed for each new perk
   // {
   //   coupon_collection: '...',
@@ -162,11 +129,49 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devconnect ARG',
     external: true,
   },
-
-  // Adevar Labs
-
-  // ETHday???
-
+  {
+    coupon_collection: 'aleph-devconnect-2025',
+    name: 'Aleph Cloud',
+    description: 'Cloud service credits by Aleph Cloud',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Aleph Cloud',
+    image: AlephImage,
+    zupass_proof_id: 'Devconnect ARG',
+  },
+  {
+    coupon_collection: 'test-net-faucet',
+    name: 'Testnet Faucet',
+    description: 'Free Sepolia and Hoodi ETH',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'ethPandaOps',
+    image: CommunityImage,
+    external: true,
+    urls: [
+      {
+        text: 'Sepolia Faucet',
+        url: 'https://devconnect-sepolia-faucet.pk910.de/',
+      },
+      {
+        text: 'Hoodi Faucet',
+        url: 'https://devconnect-hoodi-faucet.pk910.de/',
+      },
+    ],
+    zupass_proof_id: 'Devconnect ARG',
+  },
+  {
+    coupon_collection: 'protocol-guild-free-ticket',
+    // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field
+    zupass_proof_id: 'PG Wallet Ownership',
+    name: 'Core Devs / Protocol Guild free ticket',
+    description: 'Core Devs / Protocol Guild free ticket',
+    requires: 'Whitelisted address',
+    issuer: 'Devconnect Team',
+    image: CoreDevsImage,
+    // Just bypass the connection requirement by calling it external (even if it isn't)
+    external: true,
+    no_status: true,
+    wallet_proof: true,
+  },
   {
     coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',
@@ -176,6 +181,7 @@ const perks: Perk[] = [
     image: WorldsFairImage,
     anchor: '#yourperk',
   },
+  
 ]
 
 export default perks
