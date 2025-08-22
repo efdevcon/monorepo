@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Ticket, Users, ArrowUpRight, X } from "lucide-react";
+import { MapPin, Ticket, Users, X } from "lucide-react";
 import { Event as EventType } from "../model";
 import { format, parseISO } from "date-fns";
 import cn from "classnames";
@@ -8,15 +8,14 @@ import Image from "next/image";
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
 import ethDayImage from "./ethday.jpg";
-import Link from "lib/components/link/Link";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Button } from "lib/components/button";
 import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
-import VoxelButton from "lib/components/voxel-button/button";
 import ZupassConnection from "../zupass/zupass";
+import { eventShops } from "../zupass/event-shops-list";
 
 type EventProps = {
   event: EventType;
@@ -104,8 +103,6 @@ const Event: React.FC<EventProps> = ({
 
   let eventName = event.name;
 
-  console.log(selectedEvent, "selectedEvent");
-
   return (
     <div
       style={{
@@ -142,7 +139,7 @@ const Event: React.FC<EventProps> = ({
       >
         <DialogContent
           className={cn(
-            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000] gap-0 flex flex-col shrink-0",
+            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[9998] gap-0 flex flex-col shrink-0",
             typeClass
           )}
           onInteractOutside={(e) => {
@@ -257,7 +254,15 @@ const Event: React.FC<EventProps> = ({
 
               <Separator className="my-3" />
 
-              <ZupassConnection eventId={event.id} />
+              {eventShops.some(
+                (shop) => shop.supabase_id === event.id.toString()
+              ) && (
+                <>
+                  <ZupassConnection eventId={event.id} />
+
+                  <Separator className="my-4" />
+                </>
+              )}
 
               <div className="flex gap-2 justify-between shrink-0">
                 {event.eventType && (
@@ -272,8 +277,6 @@ const Event: React.FC<EventProps> = ({
                   </div>
                 )}
               </div>
-
-              {/* <div className="text-sm">{event.organizer}</div> */}
             </div>
           </div>
         </DialogContent>

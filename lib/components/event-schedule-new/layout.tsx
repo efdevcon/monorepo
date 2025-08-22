@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import NewSchedule, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
 import filterCss from "./filter.module.scss";
 import Link from "lib/components/link/Link";
+import { withParcnetProvider } from "./zupass/zupass";
 
 type CalendarLayoutProps = ScheduleProps & {
   isCommunityCalendar: boolean;
@@ -104,4 +105,4 @@ const Layout = (props: CalendarLayoutProps) => {
   );
 };
 
-export default Layout;
+export default withParcnetProvider(Layout);

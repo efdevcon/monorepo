@@ -1,18 +1,19 @@
 import { deserializeProofResult, deserializePodData } from '../../../common/components/perks/serialize'
-import {
-  getDevconTicketProofRequest,
-  getDevconnectTicketProofRequest,
-} from '../../../common/components/perks/ticketProof'
-import { gpcVerify } from '@pcd/gpc'
+// import {
+//   getDevconTicketProofRequest,
+//   getDevconnectTicketProofRequest,
+// } from '../../../common/components/perks/ticketProof'
+// import { gpcVerify } from '@pcd/gpc'
 import { NextApiRequest, NextApiResponse } from 'next'
-import path from 'path'
+// import path from 'path'
 // @ts-ignore ffjavascript does not have types
-import { getCurveFromName } from 'ffjavascript'
+// import { getCurveFromName } from 'ffjavascript'
 import perksList from 'common/components/perks/perks-list'
 import { createClient } from '@supabase/supabase-js'
 import { POD } from '@pcd/pod'
 import { PODData } from '@parcnet-js/podspec'
 import { proveWalletOwnership } from './wallet-proof'
+import { eventShops } from 'lib/components/event-schedule-new/zupass/event-shops-list'
 
 const verifyPodSignature = (podData: PODData): boolean => {
   try {
@@ -39,7 +40,7 @@ const supabaseAdmin = createClient(process.env.SUPABASE_URL || '', process.env.S
   },
 })
 
-const GPC_ARTIFACTS_PATH = path.join(process.cwd(), 'public/artifacts')
+// const GPC_ARTIFACTS_PATH = path.join(process.cwd(), 'public/artifacts')
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
@@ -53,10 +54,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(400).json({ error: 'Collection is required' })
   }
 
-  const perk = perksList.find(perk => perk.coupon_collection === collection)
+  const perk =
+    perksList.find(perk => perk.coupon_collection === collection) ||
+    eventShops.find(event => event.coupon_collection === collection)
 
   if (!perk) {
-    return res.status(400).json({ error: 'Perk not found' })
+    return res.status(400).json({ error: 'Perk or gated event not found' })
   }
 
   if (collection === 'protocol-guild-free-ticket') {

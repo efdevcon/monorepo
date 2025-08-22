@@ -80,7 +80,6 @@ const perks: Perk[] = [
     ],
     zupass_proof_id: 'Devconnect ARG',
   },
-
   {
     coupon_collection: 'protocol-guild-free-ticket',
     // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field
@@ -95,25 +94,6 @@ const perks: Perk[] = [
     no_status: true,
     wallet_proof: true,
   },
-
-  // ... Info needed for each new perk
-  // {
-  //   coupon_collection: '...',
-  //   name: '...',
-  //   requires: 'Devconnect ARG ticket',
-  //   urls: [
-  //     {
-  //       text: '...',
-  //       url: '...',
-  //     }
-  //   ],
-  //   description: '...',
-  //   issuer: '...',
-  //   image: '...',
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   external: true, // or false if embedded, if false, need CSV of coupons
-  // },
-
   // Edge city
   {
     coupon_collection: 'edgy-city-patagonia-2025',
@@ -126,7 +106,6 @@ const perks: Perk[] = [
     global_coupon: 'ECP25-DEVCONNECT20',
     instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
   },
-
   // EtherFI travel
   {
     coupon_collection: 'etherfi-travel-2025',
@@ -138,12 +117,6 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devconnect ARG',
     global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
   },
-
-  // Block travel
-  // TBD / postponed
-
-  // Ready
-  // Not ready (lol) yet
 
   // Betrusty
   {
@@ -162,11 +135,6 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devconnect ARG',
     external: true,
   },
-
-  // Adevar Labs
-
-  // ETHday???
-
   {
     coupon_collection: 'create-your-own',
     name: 'Create Your Own Perk',

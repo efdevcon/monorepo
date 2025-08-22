@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
+import { useSearchParams } from "next/navigation";
 import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
@@ -153,6 +154,7 @@ const NewScheduleIndex = ({
   events,
   isCommunityCalendar = false,
 }: ScheduleProps) => {
+  const searchParams = useSearchParams();
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
   // const [events] = useState<EventType[]>(dummyEvents);
@@ -183,6 +185,23 @@ const NewScheduleIndex = ({
     // Check if any of the dates covered by this event match the hovered date
     return placement.datesCovered.includes(hoveredDate);
   };
+
+  // Can consider moving this into the schedule component
+  useEffect(() => {
+    const eventParam = searchParams.get("event");
+
+    if (eventParam && events.length > 0) {
+      // Try to find event by id or name (converted to slug format)
+      const targetEvent = events.find(
+        (event) => event.id.toString() === eventParam.toString()
+      );
+
+      if (targetEvent) {
+        setSelectedEvent(targetEvent);
+        return;
+      }
+    }
+  }, [searchParams.get("event")]);
 
   // <div className="flex flex-col gap-4 w-full">
   return (

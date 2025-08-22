@@ -1,32 +1,24 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import {
   ClientConnectionState,
+  ParcnetClientContext,
   ParcnetClientProvider,
-  Toolbar,
   useParcnetClient,
 } from "@parcnet-js/app-connector-react";
 import { useState, useCallback } from "react";
-// import { getDevconTicketProofRequest, getDevconnectTicketProofRequest } from './ticketProof'
-// import { ProveResult, serializeProofResult } from './serialize'
-
-// Serialize POD data for transmission to the server
-function serializePodData(podData: any): string {
-  return JSON.stringify(podData, (key, value) => {
-    if (typeof value === "bigint") {
-      return value.toString();
-    }
-    return value;
-  });
-}
-import { motion, cubicBezier } from "framer-motion";
+import Tooltip from "lib/components/tooltip";
+import { SquareArrowOutUpRight } from "lucide-react";
+import VoxelButton from "lib/components/voxel-button/button";
+import { serializePodData } from "./serialize";
 import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
-import { eventShops } from "./event-shops";
+import { eventShops } from "./event-shops-list";
+import { Info } from "lucide-react";
 
 // HOC to wrap ParcnetClientProvider
-const withParcnetProvider = <P extends object>(
+export const withParcnetProvider = <P extends object>(
   Component: React.ComponentType<P>
 ) => {
   return function WrappedComponent(props: P) {
@@ -36,9 +28,9 @@ const withParcnetProvider = <P extends object>(
           name: "Devconnect Perks Portal", // update the name of the zapp to something *unique*
           permissions: {
             // update permissions based on what you want to collect and prove
-            REQUEST_PROOF: { collections: ["Devcon SEA", "Devconnect ARG"] }, // Update this to the collection name you want to use
+            REQUEST_PROOF: { collections: ["Devconnect ARG"] }, // Update this to the collection name you want to use
             READ_PUBLIC_IDENTIFIERS: {},
-            READ_POD: { collections: ["Devcon SEA", "Devconnect ARG"] },
+            READ_POD: { collections: ["Devconnect ARG"] },
           },
         }}
       >
@@ -50,6 +42,7 @@ const withParcnetProvider = <P extends object>(
 
 function ZupassConnection(props: any) {
   const { z, connectionState } = useParcnetClient();
+  const [initialConnectAttempted, setInitialConnectAttempted] = useState(false);
 
   const [mounted, setMounted] = useState(false);
   const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>(
@@ -59,13 +52,37 @@ function ZupassConnection(props: any) {
     Record<string, string>
   >({});
   const [tickets, setTickets] = useState<{
-    devcon: PODData;
+    // devcon: PODData;
     devconnect: PODData;
   } | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    if (initialConnectAttempted) return;
+
+    const initialConnect = () => {
+      setInitialConnectAttempted(true);
+
+      const connectedInThePast = localStorage.getItem("zupassConnected");
+
+      if (
+        z &&
+        connectionState === ClientConnectionState.DISCONNECTED &&
+        connectedInThePast
+      ) {
+        try {
+          z.connect();
+        } catch (error) {
+          console.error("Error auto connecting to Zupass:", error);
+        }
+      }
+    };
+
+    initialConnect();
+  }, [z, connectionState]);
 
   // Function to verify POD signature
   const verifyPodSignature = (podData: PODData): boolean => {
@@ -96,16 +113,16 @@ function ZupassConnection(props: any) {
   };
 
   const fetchPods = async () => {
-    const queryDevcon = pod({
-      entries: {
-        eventId: {
-          type: "string",
-          isMemberOf: [
-            { type: "string", value: "5074edf5-f079-4099-b036-22223c0c6995" },
-          ],
-        },
-      },
-    });
+    // const queryDevcon = pod({
+    //   entries: {
+    //     eventId: {
+    //       type: "string",
+    //       isMemberOf: [
+    //         { type: "string", value: "5074edf5-f079-4099-b036-22223c0c6995" },
+    //       ],
+    //     },
+    //   },
+    // });
 
     const queryDevconnect = pod({
       entries: {
@@ -119,17 +136,17 @@ function ZupassConnection(props: any) {
     });
 
     // @ts-ignore
-    const pods = await z.pod.collection("Devcon SEA").query(queryDevcon);
+    // const pods = await z.pod.collection("Devcon SEA").query(queryDevcon);
     // @ts-ignore
     const podsDevconnect = await z.pod
       .collection("Devconnect ARG")
       .query(queryDevconnect);
 
     // NOT swag tickets
-    const devconTickets = pods.filter(
-      (pod: PODData) =>
-        !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0)
-    );
+    // const devconTickets = pods.filter(
+    //   (pod: PODData) =>
+    //     !pod.entries.isAddOn || pod.entries.isAddOn?.value === BigInt(0)
+    // );
 
     // NOT swag tickets
     const devconnectTickets = podsDevconnect.filter(
@@ -138,22 +155,24 @@ function ZupassConnection(props: any) {
     );
 
     // Verify signatures for all tickets
-    const verifiedDevconTickets = devconTickets.filter((ticket: PODData) =>
-      verifyPodSignature(ticket)
-    );
+    // const verifiedDevconTickets = devconTickets.filter((ticket: PODData) =>
+    //   verifyPodSignature(ticket)
+    // );
     const verifiedDevconnectTickets = devconnectTickets.filter(
       (ticket: PODData) => verifyPodSignature(ticket)
     );
 
     const tickets = {
-      devcon: verifiedDevconTickets[0],
+      // devcon: verifiedDevconTickets[0],
       devconnect: verifiedDevconnectTickets[0],
     };
 
     setTickets(tickets);
 
-    console.log("devconTickets (all):", devconTickets);
-    console.log("devconTickets (verified):", verifiedDevconTickets);
+    localStorage.setItem("zupassConnected", "true");
+
+    // console.log("devconTickets (all):", devconTickets);
+    // console.log("devconTickets (verified):", verifiedDevconTickets);
     console.log("devconnectTickets (all):", devconnectTickets);
     console.log("devconnectTickets (verified):", verifiedDevconnectTickets);
   };
@@ -166,11 +185,18 @@ function ZupassConnection(props: any) {
 
   if (!mounted) return null;
 
+  const findShopById = (id: string) => {
+    return eventShops.find((shop) => shop.supabase_id === id);
+  };
+
+  const shop = findShopById(props.eventId.toString());
+
+  if (!shop) return null;
+
   return (
     <div className="flex flex-col gap-4">
-      <Toolbar />
       <EventVoucher
-        eventId="5074edf5-f079-4099-b036-22223c0c6995"
+        couponCollection={shop.coupon_collection}
         tickets={tickets}
         devconnectCoupons={devconnectCoupons}
         devconCoupons={devconCoupons}
@@ -181,25 +207,31 @@ function ZupassConnection(props: any) {
   );
 }
 
-// Export the wrapped component
-export default withParcnetProvider(ZupassConnection);
+export default ZupassConnection;
 
 const EventVoucher = ({
-  eventId,
+  couponCollection,
   tickets,
   devconnectCoupons,
   devconCoupons,
   setDevconnectCoupons,
   setDevconCoupons,
 }: {
-  eventId: string;
-  tickets: { devcon: PODData; devconnect: PODData } | null;
+  couponCollection: string;
+  tickets: {
+    // devcon: PODData;
+    devconnect: PODData;
+  } | null;
   devconnectCoupons: Record<string, string>;
   devconCoupons: Record<string, string>;
   setDevconnectCoupons: (coupons: Record<string, string>) => void;
   setDevconCoupons: (coupons: Record<string, string>) => void;
 }) => {
-  const { connectionState } = useParcnetClient();
+  const { connectionState, z } = useParcnetClient();
+  const ctx = useContext(ParcnetClientContext);
+  const disconnect = ctx?.disconnect;
+
+  const [couponFetchingComplete, setCouponFetchingComplete] = useState(false);
   const [couponStatus, setCouponStatus] = useState<{
     success: boolean;
     error?: string;
@@ -207,9 +239,15 @@ const EventVoucher = ({
   const [fetchingCoupon, setFetchingCoupon] = useState(false);
 
   const ticketVerified = !!tickets?.devconnect;
-  const couponCollection = eventShops.find(
-    (shop) => shop.id === eventId
-  )?.coupon_collection;
+  const connected = connectionState === ClientConnectionState.CONNECTED;
+  const connectedWithNoTicket = connected && !ticketVerified;
+  const connectedWithTicket = connected && ticketVerified;
+  const connectedWithCoupon = connectedWithTicket && couponStatus?.success;
+  const coupon = devconnectCoupons[couponCollection];
+  const couponFetchedButNoCoupon =
+    connected && couponFetchingComplete && !coupon;
+
+  console.log(coupon, "coupon");
 
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return;
@@ -220,8 +258,6 @@ const EventVoucher = ({
     setCouponStatus(null);
 
     try {
-      console.log("verified", serializePodData(tickets?.devconnect));
-
       const response = await fetch(
         `/api/coupons/${encodeURIComponent(couponCollection || "")}`,
         {
@@ -259,6 +295,7 @@ const EventVoucher = ({
       setCouponStatus({ success: false, error: "Failed to claim coupon" });
     } finally {
       setFetchingCoupon(false);
+      setCouponFetchingComplete(true);
     }
   }, [
     ticketVerified,
@@ -270,45 +307,81 @@ const EventVoucher = ({
     couponCollection,
   ]);
 
-  const isConnected = connectionState === ClientConnectionState.CONNECTED;
-
-  const ticketId = tickets?.devconnect?.entries?.ticketId?.value || "";
-  const truncatedTicketId =
-    typeof ticketId === "string"
-      ? `${ticketId.slice(0, 8)}...${ticketId.slice(-6)}`
-      : ticketId?.toString?.()?.slice(0, 14) || "";
+  useEffect(() => {
+    if (
+      connectionState === ClientConnectionState.CONNECTED &&
+      !fetchingCoupon &&
+      !couponFetchingComplete
+    ) {
+      requestCoupon();
+    }
+  }, [connectionState, fetchingCoupon, ticketVerified]);
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-sm">
+    <div className="w-full max-w-md mx-auto flex gap-2 flex-col">
       {/* Header */}
-      <div className="flex items-center gap-2 mb-6">
-        <div className="w-5 h-5 rounded-full bg-blue-100 flex items-center justify-center">
-          <span className="text-xs text-blue-600">ℹ</span>
-        </div>
+      <div className="flex items-center gap-2">
         <h1 className="text-lg font-semibold text-gray-900">Book this event</h1>
+        <Tooltip
+          arrow={false}
+          title={
+            "This event is happening inside the main Devconnect venue; that means you will need a Devconnect ticket to attend. Connect with zupass below to verify ticket ownership."
+          }
+          className="shrink-0 inline-flex items-center justify-center hidden md:flex"
+        >
+          <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
+            <Info size={18} />
+          </div>
+        </Tooltip>{" "}
       </div>
 
-      {/* Steps */}
-      <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         {/* Step 1 - Verify Devconnect ticket */}
-        <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
-            <div className="w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center text-sm font-medium">
-              1
-            </div>
+        <div className="flex flex-col">
+          <div className="text-sm text-gray-600 mb-1">
+            1. Verify Devconnect ticket
           </div>
-          <div className="flex-1">
-            <div className="text-sm text-gray-600 mb-1">
-              Verify Devconnect ticket
-            </div>
-            <div className="bg-blue-50 text-blue-700 px-3 py-2 rounded-lg text-sm font-mono border border-blue-200">
-              {truncatedTicketId || "UfpxAqtc...n/xxl0oc"}
-            </div>
+
+          <div className="mt-1 text-center flex flex-col items-start">
+            <VoxelButton
+              size="sm"
+              className="outline-none"
+              color={
+                connectionState === ClientConnectionState.CONNECTED
+                  ? "green-1"
+                  : "blue-1"
+              }
+              onClick={() => {
+                if (connectionState === ClientConnectionState.DISCONNECTED) {
+                  z.connect();
+                } else {
+                  const prompt = confirm(
+                    "Are you sure you want to disconnect? You will need to reconnect to verify your ticket."
+                  );
+
+                  if (prompt) {
+                    localStorage.removeItem("zupassConnected");
+
+                    // TODO: Also remove all local storage in the zupass local storage since it seems to "remember" the connection, making it impossible to reconnect with a different email
+                    disconnect?.();
+                  }
+                }
+              }}
+            >
+              <div className="flex items-center justify-center gap-2">
+                {connectionState === ClientConnectionState.CONNECTING &&
+                  "Connecting..."}
+                {connectionState === ClientConnectionState.CONNECTED &&
+                  "Connected"}
+                {connectionState === ClientConnectionState.DISCONNECTED &&
+                  "Connect Zupass"}
+              </div>
+            </VoxelButton>
           </div>
         </div>
 
         {/* Arrow */}
-        <div className="flex justify-center">
+        <div className="justify-center self-center hidden sm:flex">
           <svg
             className="w-5 h-5 text-gray-400"
             fill="none"
@@ -325,76 +398,66 @@ const EventVoucher = ({
         </div>
 
         {/* Step 2 - Get event ticket */}
-        <div className="flex items-center gap-4">
-          <div className="flex-shrink-0">
-            <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
-                ticketVerified
-                  ? "bg-green-500 text-white"
-                  : "bg-gray-200 text-gray-500"
-              }`}
-            >
-              2
-            </div>
+        <div className="flex flex-col ">
+          <div className="text-sm text-gray-600 mb-1">
+            <div className="text-sm text-gray-600">2. Get event ticket</div>
           </div>
-          <div className="flex-1">
-            <div className="text-sm text-gray-600 mb-2">Get event ticket</div>
-            <button
-              onClick={requestCoupon}
-              disabled={!ticketVerified || fetchingCoupon}
-              className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                ticketVerified && !fetchingCoupon
-                  ? "bg-green-600 hover:bg-green-700 text-white"
-                  : "bg-gray-100 text-gray-400 cursor-not-allowed"
-              }`}
+          <div className="mt-1 text-center flex sm:flex-col items-start items-center gap-2 sm:gap-0">
+            <VoxelButton
+              disabled={!connectedWithCoupon}
+              className={`outline-none`}
+              size="sm"
+              onClick={() => {
+                if (connectedWithCoupon) {
+                  window.open(coupon, "_blank");
+                }
+              }}
             >
               {fetchingCoupon ? (
-                <div className="flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Getting tickets...
-                </div>
+                "Getting voucher..."
               ) : (
                 <>
-                  Get tickets
-                  <svg
-                    className="w-4 h-4 ml-1 inline"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
+                  Get ticket
+                  <SquareArrowOutUpRight size={16} />
                 </>
               )}
-            </button>
+            </VoxelButton>
           </div>
         </div>
       </div>
 
-      {/* Status Messages */}
-      {couponStatus && (
-        <div
-          className={`mt-4 p-3 rounded-lg text-sm ${
-            couponStatus.success
-              ? "bg-green-50 text-green-700 border border-green-200"
-              : "bg-red-50 text-red-700 border border-red-200"
-          }`}
-        >
-          {couponStatus.success
-            ? "✅ Coupon claimed successfully!"
-            : `❌ ${couponStatus.error}`}
+      {connectedWithTicket && !couponFetchedButNoCoupon && (
+        <div className="text-sm font-semibold text-gray-600 mt-1">
+          You have a valid Devconnect ticket!
         </div>
       )}
 
-      {!isConnected && (
-        <div className="mt-4 p-3 bg-yellow-50 text-yellow-700 rounded-lg text-sm border border-yellow-200">
-          ⚠️ Please connect your wallet to continue
+      {couponFetchedButNoCoupon && (
+        <div className="text-sm font-semibold text-gray-600 mt-1">
+          We have verified your ticket, but there are currently no more vouchers
+          for this event.
         </div>
+      )}
+
+      {connectedWithNoTicket && (
+        <>
+          <div className="text-sm font-semibold text-gray-600 mt-1">
+            You need a Devconnect ticket to attend this event.
+          </div>
+          <VoxelButton
+            size="sm"
+            className=""
+            onClick={() => {
+              window.open("https://tickets.devconnect.org", "_blank");
+            }}
+          >
+            Buy Devconnect ticket <SquareArrowOutUpRight size={16} />
+          </VoxelButton>
+          <div className="text-xs font-semibold text-gray-600 mt-1">
+            If you already have a Devconnect ticket, make sure to connect with
+            the exact email you used to purchase your ticket.
+          </div>
+        </>
       )}
     </div>
   );

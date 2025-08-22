@@ -164,16 +164,37 @@ const rightColumnVariants = {
 
 function Perks(props: any) {
   const { data }: { data: any } = useTina(props.content)
-  const { z, connectionState } = useParcnetClient()
+  const { z, connectionState, ...rest } = useParcnetClient()
 
   const [mounted, setMounted] = useState(false)
   const [devconCoupons, setDevconCoupons] = useState<Record<string, string>>({})
   const [devconnectCoupons, setDevconnectCoupons] = useState<Record<string, string>>({})
   const [tickets, setTickets] = useState<{ devcon: PODData; devconnect: PODData } | null>(null)
+  const [initialConnectAttempted, setInitialConnectAttempted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    if (initialConnectAttempted) return
+
+    const initialConnect = () => {
+      setInitialConnectAttempted(true)
+
+      const connectedInThePast = localStorage.getItem('zupassConnected')
+
+      if (z && connectionState === ClientConnectionState.DISCONNECTED && connectedInThePast) {
+        try {
+          z.connect()
+        } catch (error) {
+          console.error('Error auto connecting to Zupass:', error)
+        }
+      }
+    }
+
+    initialConnect()
+  }, [z, connectionState])
 
   // Function to verify POD signature
   const verifyPodSignature = (podData: PODData): boolean => {
@@ -238,6 +259,8 @@ function Perks(props: any) {
     }
 
     setTickets(tickets)
+
+    localStorage.setItem('zupassConnected', 'true')
 
     console.log('devconTickets (all):', devconTickets)
     console.log('devconTickets (verified):', verifiedDevconTickets)

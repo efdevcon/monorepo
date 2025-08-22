@@ -14,8 +14,6 @@ import RichText from 'lib/components/tina-cms/RichText'
 import { CMSButtons } from 'common/components/voxel-button/button'
 import CalendarLayout from 'lib/components/event-schedule-new/layout'
 import { Separator } from 'lib/components/ui/separator'
-import { record } from 'zod'
-import { makeConsoleLogger } from '@notionhq/client/build/src/logging'
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()

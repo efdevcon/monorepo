@@ -18,9 +18,9 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsUploaded }) => {
   const [success, setSuccess] = useState<string | null>(null)
 
   const couponToUpload = {
-    url: '/dont-push-coupons/pg-coupons.csv',
-    collection: 'protocol-guild-free-ticket',
-    zk_proof_id: 'PG Wallet Ownership', // Must match the proof ID used in the perks system
+    url: '/dont-push-coupons/test-zupass-gating.csv',
+    collection: 'test-pretix-shop-main-venue',
+    zk_proof_id: 'Devconnect ARG', // Must match the proof ID used in the perks system
   }
 
   const uploadCoupons = async () => {
