@@ -124,25 +124,24 @@ const Event: React.FC<EventProps> = ({
         if (event.onClick) {
           event.onClick();
         } else if (!selectedEvent) {
-          console.log("setting selected event");
           setSelectedEvent(event);
         }
       }}
     >
-      <Dialog
-        open={selectedEvent?.id === event.id}
-        // onOpenChange={(open) => {
-        //   if (!open) {
-        //     setSelectedEvent(null);
-        //   }
-        // }}
-      >
+      <Dialog open={selectedEvent?.id === event.id}>
         <DialogContent
           className={cn(
             "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[9998] gap-0 flex flex-col shrink-0",
             typeClass
           )}
           onInteractOutside={(e) => {
+            // If the zupass dialog is open, don't close the event dialog
+            const zupassOpen = document.querySelector(".parcnet-dialog");
+
+            if (zupassOpen) {
+              return;
+            }
+
             e.stopPropagation();
             e.preventDefault();
             setSelectedEvent(null);

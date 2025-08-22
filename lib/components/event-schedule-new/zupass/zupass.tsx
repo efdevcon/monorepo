@@ -249,6 +249,8 @@ const EventVoucher = ({
 
   console.log(coupon, "coupon");
 
+  console.log(connectionState, "connectionState");
+
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return;
     if (fetchingCoupon) return;
@@ -375,6 +377,8 @@ const EventVoucher = ({
                   "Connected"}
                 {connectionState === ClientConnectionState.DISCONNECTED &&
                   "Connect Zupass"}
+                {connectionState === ClientConnectionState.ERROR &&
+                  "Connection Failed"}
               </div>
             </VoxelButton>
           </div>
