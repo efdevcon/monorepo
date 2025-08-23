@@ -56,7 +56,7 @@ const perks: Perk[] = [
   {
     coupon_collection: 'roamless-e-sim-2025',
     name: 'Devconnect ARG E-sim',
-    description: 'E-sim discounts by Roamless',
+    description: 'Free eSIM & Data for Argentina by Roamless',
     requires: 'Devconnect ARG ticket',
     issuer: 'Roamless',
     image: RoamlessImage,
