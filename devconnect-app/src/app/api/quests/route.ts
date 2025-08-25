@@ -72,6 +72,10 @@ export async function GET(request: NextRequest) {
         return '';
       };
 
+      // remove 1., 2., 3. from category
+      const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
+      const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
+
       return {
         name: getPropertyValue('Name'),
         order: getPropertyValue('Order'),
@@ -84,7 +88,7 @@ export async function GET(request: NextRequest) {
         button: getPropertyValue('Button'),
         conditionType: getPropertyValue('Condition type'),
         conditionValues: getPropertyValue('Quest condition values'),
-        id: getPropertyValue('ID'),
+        id: category + '-' + name,
         logoLink: getPropertyValue('Logo'),
         poapImageLink: getPropertyValue('POAP image'),
         websiteLink: getPropertyValue('Website link'),
