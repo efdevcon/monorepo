@@ -5,43 +5,44 @@ import { useRouter } from 'next/router';
 
 // Dynamic field interface based on API response
 interface DynamicField {
-  name: string;
-  value: string;
-  type: 'text' | 'email' | 'file' | 'url';
-  mode: 'edit' | 'read';
+  name: string
+  value: string
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
+  mode: 'edit' | 'read'
+  description?: string
 }
 
 // Sub-item interface for org forms
 interface SubItem {
-  id: string;
-  completionPercentage: number;
-  status: string;
+  id: string
+  completionPercentage: number
+  status: string
 }
 
 // Notification interface
 interface Notification {
-  id: string;
-  type: 'success' | 'error';
-  message: string;
+  id: string
+  type: 'success' | 'error'
+  message: string
 }
 
 // File upload state interface
 interface FileUploadState {
   [fieldName: string]: {
-    file: File | null;
-    preview: string | null;
-    isDragOver: boolean;
-  };
+    file: File | null
+    preview: string | null
+    isDragOver: boolean
+  }
 }
 
 export default function UpdatePage({ params }: { params?: { name: string; id: string } }) {
-  const router = useRouter();
-  const [data, setData] = useState<Record<string, string>>({});
-  const [fields, setFields] = useState<DynamicField[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [notifications, setNotifications] = useState<Notification[]>([]);
-  const [fileUploads, setFileUploads] = useState<FileUploadState>({});
+  const router = useRouter()
+  const [data, setData] = useState<Record<string, string>>({})
+  const [fields, setFields] = useState<DynamicField[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  const [notifications, setNotifications] = useState<Notification[]>([])
+  const [fileUploads, setFileUploads] = useState<FileUploadState>({})
   const [subItems, setSubItems] = useState<SubItem[]>([])
   const [subItemsLoading, setSubItemsLoading] = useState(false)
   const [orgPageName, setOrgPageName] = useState<string>('')
@@ -234,6 +235,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         value: field.value,
         type: field.type,
         mode: field.mode,
+        description: field.description,
       }))
 
       setFields(dynamicFields)
@@ -478,6 +480,18 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                   </span>
                 )}
               </label>
+              {field.description && (
+                <p
+                  style={{
+                    fontSize: '0.85rem',
+                    color: '#666',
+                    margin: '0 0 0.5rem 0',
+                    fontStyle: 'italic',
+                  }}
+                >
+                  {field.description}
+                </p>
+              )}
               {field.mode === 'read' ? (
                 // Read-only display
                 <div
@@ -737,13 +751,40 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                     </button>
                   )}
                 </div>
+              ) : field.type === 'text' ? (
+                // Textarea for text fields
+                <textarea
+                  id={field.name}
+                  name={field.name}
+                  defaultValue={field.value || ''}
+                  rows={4}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    border: '1px solid #ddd',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    boxSizing: 'border-box',
+                    transition: 'border-color 0.2s ease',
+                    resize: 'vertical',
+                    fontFamily: 'inherit',
+                    minHeight: '100px',
+                  }}
+                  onFocus={e => {
+                    e.target.style.borderColor = '#007bff'
+                    e.target.style.outline = 'none'
+                  }}
+                  onBlur={e => {
+                    e.target.style.borderColor = '#ddd'
+                  }}
+                />
               ) : (
-                // Regular input field
+                // Regular input field for other types
                 <input
                   id={field.name}
                   name={field.name}
                   type={(() => {
-                    const fieldType = field.type as 'text' | 'email' | 'file' | 'url'
+                    const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
                     switch (fieldType) {
                       case 'file':
                         return 'url'
@@ -751,6 +792,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         return 'email'
                       case 'url':
                         return 'url'
+                      case 'title':
+                      case 'select':
                       default:
                         return 'text'
                     }
@@ -826,6 +869,18 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                 >
                   {field.name.replace(/([A-Z])/g, ' $1').trim()}
                 </label>
+                {field.description && (
+                  <p
+                    style={{
+                      fontSize: '0.85rem',
+                      color: '#666',
+                      margin: '0 0 0.5rem 0',
+                      fontStyle: 'italic',
+                    }}
+                  >
+                    {field.description}
+                  </p>
+                )}
                 <div
                   style={{
                     width: '100%',

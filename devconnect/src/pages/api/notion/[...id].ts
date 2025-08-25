@@ -32,7 +32,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -42,6 +42,10 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | null {
       return 'file';
     case 'url':
       return 'url';
+    case 'title':
+      return 'title';
+    case 'select':
+      return 'select';
     default:
       return null;
   }
@@ -78,12 +82,24 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       return res.status(400).json({ error: 'Invalid page object' });
     }
     
+    // Get database schema to access field descriptions
+    let databaseSchema: any = null;
+    if (page.parent && page.parent.type === 'database_id') {
+      try {
+        const database = await notion.databases.retrieve({ database_id: page.parent.database_id });
+        databaseSchema = database;
+      } catch (err) {
+        // Continue without database schema if it fails
+      }
+    }
+
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select';
       mode: 'edit' | 'read';
       order: number;
+      description?: string;
     }> = [];
 
     // Find all properties that start with "[edit]" or "[read]"
@@ -120,6 +136,25 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             }
           }
           break;
+        case 'title':
+          if (property.type === 'title') {
+            fieldValue = property.title?.[0]?.plain_text || '';
+          }
+          break;
+        case 'select':
+          if (property.type === 'select') {
+            fieldValue = property.select?.name || '';
+          }
+          break;
+      }
+
+      // Extract description from database schema if available
+      let description: string | undefined;
+      if (databaseSchema && databaseSchema.properties && databaseSchema.properties[propertyName]) {
+        const propertySchema = databaseSchema.properties[propertyName];
+        if (propertySchema.description) {
+          description = propertySchema.description;
+        }
       }
 
       // Add field to array with order
@@ -128,7 +163,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         value: fieldValue,
         type: fieldType,
         mode: mode,
-        order: order
+        order: order,
+        description: description
       });
     }
     
@@ -181,6 +217,12 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
         case 'file':
           updates[propertyName] = { files: value ? [{ name: 'External File', external: { url: value } }] : [] };
           break;
+        // case 'title':
+        //   updates[propertyName] = { title: value ? [{ text: { content: value } }] : [] };
+        //   break;
+        // case 'select':
+        //   updates[propertyName] = { select: value ? { name: value } : null };
+        //   break;
       }
     }
 
