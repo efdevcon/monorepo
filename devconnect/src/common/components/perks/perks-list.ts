@@ -61,7 +61,7 @@ const perks: Perk[] = [
     requires: 'Devconnect ARG ticket',
     issuer: 'Devconnect Team',
     image: CoworkingImage,
-    instructions: 'Follow the instructions at the following link to join:',
+    instructions: 'Follow the instructions at the following link:',
     external: true,
     urls: [
       {
