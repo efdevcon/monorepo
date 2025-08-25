@@ -8,7 +8,7 @@ import EtherfiImage from './images/etherfi.png'
 import EdgeCityImage from './images/edgecity.png'
 import BeTrustyImage from './images/betrusty.jpg'
 import RoamlessImage from './images/roamless-banner.png'
-import AlephImage from './images/aleph.png'
+import AlephImage from './images/aleph-updated.png'
 import PrecogImage from './images/precog.png'
 
 type Perk = {
@@ -39,12 +39,29 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devcon SEA',
   },
   {
+    coupon_collection: 'roamless-e-sim-2025',
+    name: 'Devconnect ARG E-sim',
+    description: 'Free eSIM & Data for Argentina by Roamless',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Roamless',
+    image: RoamlessImage,
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Roamless',
+        url: 'https://roamless.com',
+      },
+    ],
+    zupass_proof_id: 'Devconnect ARG',
+  },
+  {
     coupon_collection: 'Devconnect ARG Telegram Chat',
     name: 'Devconnect ARG Telegram Chat',
     description: 'Join the Devconnect ARG Telegram Chat',
     requires: 'Devconnect ARG ticket',
     issuer: 'Devconnect Team',
     image: CoworkingImage,
+    instructions: 'Follow the instructions at the following link to join:',
     external: true,
     urls: [
       {
@@ -52,100 +69,6 @@ const perks: Perk[] = [
         url: 'https://t.me/DevconPodBot?text=%2Fstart',
       },
     ],
-    zupass_proof_id: 'Devconnect ARG',
-  },
-  {
-    coupon_collection: 'roamless-e-sim-2025',
-    name: 'Devconnect ARG E-sim',
-    description: 'Free eSIM & Data for Argentina by Roamless',
-    requires: 'Devconnect ARG ticket',
-    issuer: 'Roamless',
-    image: RoamlessImage,
-    instructions: 'Use the code at checkout at https://roamless.com',
-    zupass_proof_id: 'Devconnect ARG',
-  },
-  // ... Info needed for each new perk
-  // {
-  //   coupon_collection: '...',
-  //   name: '...',
-  //   requires: 'Devconnect ARG ticket',
-  //   urls: [
-  //     {
-  //       text: '...',
-  //       url: '...',
-  //     }
-  //   ],
-  //   description: '...',
-  //   issuer: '...',
-  //   image: '...',
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   external: true, // or false if embedded, if false, need CSV of coupons
-  // },
-
-  // Edge city
-  {
-    coupon_collection: 'edgy-city-patagonia-2025',
-    name: 'Edge City Patagonia 2025',
-    requires: 'Devconnect ARG ticket',
-    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
-    issuer: 'Edge City',
-    image: EdgeCityImage,
-    zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'ECP25-DEVCONNECT20',
-    instructions: 'Use the code at checkout at https://www.edgecity.live/patagonia',
-  },
-
-  // EtherFI travel
-  {
-    coupon_collection: 'etherfi-travel-2025',
-    name: 'ether.fi Travel',
-    requires: 'Devconnect ARG ticket',
-    description: 'Unlock Ether.fi Travel - Up to 60% off Hotels in Buenos Aires',
-    issuer: 'ether.fi',
-    image: EtherfiImage,
-    zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
-  },
-  {
-    coupon_collection: 'betrusty-devconnect-2025',
-    name: 'Be Trusty',
-    requires: 'Devconnect ARG ticket',
-    urls: [
-      {
-        text: 'Betrusty',
-        url: 'https://devconnect.betrusty.io/search',
-      },
-    ],
-    description: 'Rent with Crypto in Buenos Aires - 0% Commission',
-    issuer: 'Be Trusty',
-    image: BeTrustyImage,
-    zupass_proof_id: 'Devconnect ARG',
-    external: true,
-  },
-  {
-    coupon_collection: 'precog-2025',
-    name: 'Precog',
-    requires: 'Devconnect ARG ticket',
-    description: 'Get MATE tokens, earn by predicting and redeem for prizes!',
-    issuer: 'Precog',
-    image: PrecogImage,
-    zupass_proof_id: 'Devconnect ARG',
-    external: true,
-    // global_coupon: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
-    urls: [
-      {
-        text: 'Precog',
-        url: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
-      },
-    ],
-  },
-  {
-    coupon_collection: 'aleph-devconnect-2025',
-    name: 'Aleph Cloud',
-    description: 'Cloud service credits by Aleph Cloud',
-    requires: 'Devconnect ARG ticket',
-    issuer: 'Aleph Cloud',
-    image: AlephImage,
     zupass_proof_id: 'Devconnect ARG',
   },
   {
@@ -166,6 +89,86 @@ const perks: Perk[] = [
         url: 'https://devconnect-hoodi-faucet.pk910.de/',
       },
     ],
+    zupass_proof_id: 'Devconnect ARG',
+  },
+  // Edge city
+  {
+    coupon_collection: 'edgy-city-patagonia-2025',
+    name: 'Edge City Patagonia 2025',
+    requires: 'Devconnect ARG ticket',
+    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
+    issuer: 'Edge City',
+    image: EdgeCityImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'ECP25-DEVCONNECT20',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Edge City Patagonia',
+        url: 'https://www.edgecity.live/patagonia',
+      },
+    ],
+  },
+
+  // EtherFI travel
+  {
+    coupon_collection: 'etherfi-travel-2025',
+    name: 'ether.fi Travel',
+    requires: 'Devconnect ARG ticket',
+    description: 'Unlock Ether.fi Travel - Up to 60% off Hotels in Buenos Aires',
+    issuer: 'ether.fi',
+    image: EtherfiImage,
+    instructions: 'Special rates available when following the link:',
+    zupass_proof_id: 'Devconnect ARG',
+    urls: [
+      {
+        text: 'Visit Ether.fi',
+        url: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
+      },
+    ],
+    global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
+  },
+  {
+    coupon_collection: 'betrusty-devconnect-2025',
+    name: 'BeTrusty',
+    requires: 'Devconnect ARG ticket',
+    urls: [
+      {
+        text: 'Visit Betrusty',
+        url: 'https://devconnect.betrusty.io/search',
+      },
+    ],
+    description: 'Rent with Crypto in Buenos Aires - 0% Commission',
+    issuer: 'BeTrusty',
+    image: BeTrustyImage,
+    instructions: 'Verify your ticket at checkout to claim your discount:',
+    zupass_proof_id: 'Devconnect ARG',
+    external: true,
+  },
+  {
+    coupon_collection: 'precog-2025',
+    name: 'Precog',
+    requires: 'Devconnect ARG ticket',
+    description: 'Get MATE tokens, earn by predicting and redeem for prizes!',
+    issuer: 'Precog',
+    image: PrecogImage,
+    zupass_proof_id: 'Devconnect ARG',
+    external: true,
+    // global_coupon: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+    urls: [
+      {
+        text: 'Visit Precog',
+        url: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+      },
+    ],
+  },
+  {
+    coupon_collection: 'aleph-devconnect-2025',
+    name: 'Aleph Cloud',
+    description: 'Cloud service credits by Aleph Cloud',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Aleph Cloud',
+    image: AlephImage,
     zupass_proof_id: 'Devconnect ARG',
   },
   {
