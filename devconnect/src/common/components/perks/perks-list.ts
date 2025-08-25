@@ -9,6 +9,7 @@ import EdgeCityImage from './images/edgecity.png'
 import BeTrustyImage from './images/betrusty.jpg'
 import RoamlessImage from './images/roamless-banner.png'
 import AlephImage from './images/aleph.png'
+import PrecogImage from './images/precog.png'
 
 type Perk = {
   coupon_collection: string
@@ -105,14 +106,6 @@ const perks: Perk[] = [
     zupass_proof_id: 'Devconnect ARG',
     global_coupon: 'https://travel.ether.fi/?utm_source=devconnect&utm_medium=affiliate&utm_campaign=perks',
   },
-
-  // Block travel
-  // TBD / postponed
-
-  // Ready
-  // Not ready (lol) yet
-
-  // Betrusty
   {
     coupon_collection: 'betrusty-devconnect-2025',
     name: 'Be Trusty',
@@ -128,6 +121,16 @@ const perks: Perk[] = [
     image: BeTrustyImage,
     zupass_proof_id: 'Devconnect ARG',
     external: true,
+  },
+  {
+    coupon_collection: 'precog-2025',
+    name: 'Precog',
+    requires: 'Devconnect ARG ticket',
+    description: 'MATE tokens to bet on Prediction Markets',
+    issuer: 'Precog',
+    image: PrecogImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
   },
   {
     coupon_collection: 'aleph-devconnect-2025',
