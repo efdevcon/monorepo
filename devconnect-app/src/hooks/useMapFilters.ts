@@ -15,7 +15,6 @@ export const useMapFilters = () => {
     if (!activeFilters.has(category)) return 'none';
 
     const filterMap: Record<string, string> = {
-      cowork: 'url(#cowork-glow)',
       defi: 'url(#defi-glow)',
       biotech: 'url(#biotech-glow)',
       hardware: 'url(#hardware-glow)',
@@ -23,7 +22,7 @@ export const useMapFilters = () => {
       coffee: 'url(#coffee-glow)',
       fnb: 'url(#fnb-glow)',
       toilets: 'url(#toilets-glow)',
-      'art-exhbition': 'url(#art-glow)',
+      art: 'url(#art-glow)',
       swag: 'url(#swag-glow)',
       entrance: 'url(#entrance-glow)',
     };
