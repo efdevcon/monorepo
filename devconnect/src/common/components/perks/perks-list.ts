@@ -126,11 +126,18 @@ const perks: Perk[] = [
     coupon_collection: 'precog-2025',
     name: 'Precog',
     requires: 'Devconnect ARG ticket',
-    description: 'MATE tokens to bet on Prediction Markets',
+    description: 'Get MATE tokens, earn by predicting and redeem for prizes!',
     issuer: 'Precog',
     image: PrecogImage,
     zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+    external: true,
+    // global_coupon: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+    urls: [
+      {
+        text: 'Precog',
+        url: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+      },
+    ],
   },
   {
     coupon_collection: 'aleph-devconnect-2025',
