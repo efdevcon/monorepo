@@ -22,7 +22,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let pageDetails: any;
     try {
       pageDetails = await notion.pages.retrieve({ page_id: pageId });
+      // console.log(`[API Call] Retrieved page details for ${pageId}:`, {
+      //   pageName: pageDetails.properties?.['Projects / Events / Hubs Name']?.title?.[0]?.plain_text || 'Unknown',
+      //   propertiesCount: Object.keys(pageDetails.properties || {}).length,
+      //   hasRelations: Object.values(pageDetails.properties || {}).some((prop: any) => prop?.type === 'relation')
+      // });
+      // console.log(JSON.stringify(pageDetails, null, 2));
     } catch (pageErr) {
+      console.error(`[API Call] Failed to retrieve page details for ${pageId}:`, pageErr);
       return res.status(500).json({ error: 'Failed to retrieve page details' });
     }
 
@@ -36,26 +43,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let subItems: any[] = [];
 
-    // First try to get sub-items from relation properties
+    // Get sub-items from relation properties (excluding Quest)
     for (const [propertyName, property] of relationProperties) {
-      try {
+      // Skip the Quest property
+      if (propertyName === 'Quest') {
+        // console.log(`[API Call] Skipping Quest property`);
+        continue;
+      }
+
+      // Process Sub-item property with individual page retrievals for detailed data
+      if (propertyName === 'Sub-item') {
         const propertyData = property as any;
         if (propertyData.relation && propertyData.relation.length > 0) {
+          // console.log(`[API Call] Processing ${propertyData.relation.length} sub-items with detailed data`);
+
           const relatedPages = await Promise.all(
             propertyData.relation.map(async (relation: any) => {
               try {
                 const page = await notion.pages.retrieve({ page_id: relation.id });
                 const pageData = page as any;
-                
+
                 // Calculate completion percentage for edit fields
                 const properties = pageData.properties || {};
                 const editFields = Object.entries(properties).filter(([key, value]: [string, any]) => {
                   return key.includes('[edit]');
                 });
-                
+
                 const completedFields = editFields.filter(([key, value]: [string, any]) => {
                   if (!value) return false;
-                  
+
                   switch (value.type) {
                     case 'rich_text':
                       return value.rich_text && value.rich_text.length > 0;
@@ -69,20 +85,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                       return false;
                   }
                 });
-                
-                const completionPercentage = editFields.length > 0 
+
+                const completionPercentage = editFields.length > 0
                   ? Math.round((completedFields.length / editFields.length) * 100)
                   : 0;
-                
+
                 // Get status
                 const status = pageData.properties?.Status?.status?.name || 'No Status';
-                
+
+                // console.log(`[API Call] Retrieved sub-item ${relation.id}:`, {
+                //   pageName: pageData.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
+                //   editFieldsCount: editFields.length,
+                //   completedFieldsCount: completedFields.length,
+                //   completionPercentage,
+                //   status
+                // });
+
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage,
                   status
                 };
               } catch (err) {
+                // console.error(`[API Call] Failed to retrieve sub-item ${relation.id}:`, err);
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage: 0,
@@ -91,75 +116,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               }
             })
           );
-          
+
           subItems = [...subItems, ...relatedPages];
         }
-      } catch (err) {
-        // Continue to next property
       }
     }
 
-    // If no sub-items found in relations, try child pages
-    if (subItems.length === 0) {
-      const response = await notion.blocks.children.list({
-        block_id: pageId,
-        page_size: 100
-      });
+    // console.log(`[API Call] Final result for ${pageId}:`, {
+    //   pageName: pageName || 'Organization',
+    //   totalSubItems: subItems.length,
+    //   subItemsWithData: subItems.filter(item => item.completionPercentage > 0 || item.status !== 'No Status').length
+    // });
 
-      const pageBlocks = response.results.filter((block: any) => block.type === 'child_page');
-      
-      subItems = await Promise.all(
-        pageBlocks.map(async (block: any) => {
-          try {
-            const page = await notion.pages.retrieve({ page_id: block.id });
-            const pageData = page as any;
-            
-            // Calculate completion percentage for edit fields
-            const properties = pageData.properties || {};
-            const editFields = Object.entries(properties).filter(([key, value]: [string, any]) => {
-              return key.includes('[edit]');
-            });
-            
-            const completedFields = editFields.filter(([key, value]: [string, any]) => {
-              if (!value) return false;
-              
-              switch (value.type) {
-                case 'rich_text':
-                  return value.rich_text && value.rich_text.length > 0;
-                case 'email':
-                  return value.email && value.email.trim() !== '';
-                case 'url':
-                  return value.url && value.url.trim() !== '';
-                case 'files':
-                  return value.files && value.files.length > 0;
-                default:
-                  return false;
-              }
-            });
-            
-            const completionPercentage = editFields.length > 0 
-              ? Math.round((completedFields.length / editFields.length) * 100)
-              : 0;
-            
-            // Get status
-            const status = pageData.properties?.Status?.status?.name || 'No Status';
-            
-            return {
-              id: block.id?.replace(/-/g, ''),
-              completionPercentage,
-              status
-            };
-          } catch (err) {
-            return {
-              id: block.id?.replace(/-/g, ''),
-              completionPercentage: 0,
-              status: 'No Status'
-            };
-          }
-        })
-      );
-    }
-    
     return res.status(200).json({ 
       children: subItems,
       count: subItems.length,
