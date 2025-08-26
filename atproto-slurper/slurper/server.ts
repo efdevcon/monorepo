@@ -565,9 +565,13 @@ app.post(
   verifySupabaseToken,
   async (req: express.Request, res: express.Response) => {
     try {
-      const eventData = req.body;
+      const { event: eventData, contact } = req.body;
 
-      console.log("Event data:", eventData);
+      console.log("Event data:", eventData, contact);
+
+      if (!contact) {
+        return res.status(400).json({ error: "No contact provided" });
+      }
 
       if (!eventData) {
         return res.status(400).json({ error: "No event data provided" });
@@ -594,6 +598,22 @@ app.post(
         eventData,
         rkey
       );
+
+      const { error: contactError } = await supabase
+        .from("atproto_records_contacts")
+        .upsert({
+          rkey,
+          email: contact,
+        },
+        { onConflict: "rkey" }
+      );
+
+      if (contactError) {
+        console.error(
+          "Error saving contact, but continuing anyway:",
+          contactError
+        );
+      }
 
       if (!result.success) {
         console.error("Error creating event:", result.error);

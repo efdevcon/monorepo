@@ -7,7 +7,6 @@ import FeedCoupons from 'common/components/perks/feed-coupons'
 
 // Format Atproto event to our calendar component format
 const formatATProtoEvent = (atprotoEvent: any) => {
-  console.log(atprotoEvent)
   // Map timeslots to timeblocks, or fallback to main event time
   let timeblocks: any[] = []
   if (Array.isArray(atprotoEvent.timeslots) && atprotoEvent.timeslots.length > 0) {
@@ -59,6 +58,51 @@ const AdminPage = () => {
   const [editingComments, setEditingComments] = useState<Set<string>>(new Set())
   const [commentValues, setCommentValues] = useState<Record<string, string>>({})
 
+  const fetchEvents = async () => {
+    try {
+      setEventsLoading(true)
+      setEventsError('')
+
+      const { data, error } = await supabase
+        .from('atproto_records')
+        .select(
+          `
+          id, rkey, created_by, created_at, updated_at, show_on_calendar,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
+          atproto_dids!created_by(did, alias, is_spammer, contact)
+        `
+        )
+        .eq('lexicon', 'org.devcon.event')
+        .order('updated_at', { ascending: false })
+
+      const { data: contacts, error: error2 } = await supabase.from('atproto_records_contacts').select(
+        `
+          rkey, email
+        `
+      )
+
+      const mergedData = (() => {
+        if (data && contacts) {
+          return data.map(event => ({
+            ...event,
+            contact: contacts.find(contact => contact.rkey === event.rkey)?.email,
+          }))
+        }
+        return data || []
+      })()
+
+      if (error) {
+        throw error
+      } else {
+        setEvents(mergedData)
+      }
+    } catch (error: any) {
+      setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
+    }
+  }
+
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null)
@@ -75,33 +119,7 @@ const AdminPage = () => {
   }, [])
 
   useEffect(() => {
-    if (user) {
-      setEventsLoading(true)
-      setEventsError('')
-
-      const fetchEvents = async () => {
-        const { data, error } = await supabase
-          .from('atproto_records')
-          .select(
-            `
-            id, rkey, created_by, created_at, updated_at, show_on_calendar,
-            record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
-            atproto_dids!created_by(did, alias, is_spammer, contact)
-          `
-          )
-          .eq('lexicon', 'org.devcon.event')
-          .order('updated_at', { ascending: false })
-
-        if (error) {
-          setEventsError(error.message)
-        } else {
-          setEvents(data || [])
-        }
-        setEventsLoading(false)
-      }
-
-      fetchEvents()
-    }
+    if (user) fetchEvents()
   }, [user])
 
   const handleMagicLink = async (e: React.FormEvent) => {
@@ -131,56 +149,36 @@ const AdminPage = () => {
 
   const handleToggle = async (id: string, field: string, value: boolean) => {
     setEventsLoading(true)
+
     try {
       // Update directly via Supabase
       const { error } = await supabase.from('atproto_records').update({ show_on_calendar: value }).eq('id', id)
 
       if (error) throw error
 
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, is_core_event,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
+      await fetchEvents()
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const handleToggleCoreEvent = async (id: string, field: string, value: boolean) => {
     setEventsLoading(true)
+
     try {
       // Update directly via Supabase
       const { error } = await supabase.from('atproto_records').update({ is_core_event: value }).eq('id', id)
 
       if (error) throw error
 
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, is_core_event, reviewed,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
+      await fetchEvents()
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const handleApprove = async (id: string, recordData: any) => {
@@ -197,23 +195,12 @@ const AdminPage = () => {
 
       if (error) throw error
 
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar, is_core_event,
-          record_passed_review, record_needs_review, lexicon, reviewed,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
+      await fetchEvents()
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const toggleDidExpansion = (did: string) => {
@@ -268,20 +255,7 @@ const AdminPage = () => {
 
       if (error) throw error
 
-      // Refetch events to get updated DID info
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar, is_core_event,
-          record_passed_review, record_needs_review, lexicon, reviewed,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-
-      setEvents(data || [])
+      await fetchEvents()
 
       // Exit edit mode
       const newEditingDids = new Set(editingDids)
@@ -289,8 +263,9 @@ const AdminPage = () => {
       setEditingDids(newEditingDids)
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const handleCancelDidEdit = (did: string) => {
@@ -306,28 +281,18 @@ const AdminPage = () => {
 
   const handleToggleReviewed = async (id: string, value: boolean) => {
     setEventsLoading(true)
+
     try {
       const { error } = await supabase.from('atproto_records').update({ reviewed: value }).eq('id', id)
 
       if (error) throw error
 
-      // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-      setEvents(data || [])
+      await fetchEvents()
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const toggleCommentEdit = (eventId: string, currentComment: string) => {
@@ -363,19 +328,7 @@ const AdminPage = () => {
       if (error) throw error
 
       // Refetch events
-      const { data } = await supabase
-        .from('atproto_records')
-        .select(
-          `
-          id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
-          atproto_dids!created_by(did, alias, is_spammer, contact)
-        `
-        )
-        .eq('lexicon', 'org.devcon.event')
-        .order('updated_at', { ascending: false })
-
-      setEvents(data || [])
+      await fetchEvents()
 
       // Exit edit mode
       const newEditingComments = new Set(editingComments)
@@ -383,8 +336,9 @@ const AdminPage = () => {
       setEditingComments(newEditingComments)
     } catch (error: any) {
       setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
     }
-    setEventsLoading(false)
   }
 
   const handleCancelCommentEdit = (eventId: string) => {
@@ -409,6 +363,7 @@ const AdminPage = () => {
     if (statusFilter === 'approved') {
       return !!event.record_passed_review && !event.record_needs_review
     }
+
     return true // 'all'
   })
 
@@ -486,12 +441,12 @@ const AdminPage = () => {
                       </div>
                       <div className="text-sm text-yellow-600">Need Review</div>
                     </div>
-                    <div className="bg-orange-50 rounded-lg p-4">
+                    {/* <div className="bg-orange-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-orange-800">
                         {events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length}
                       </div>
                       <div className="text-sm text-orange-600">Updated Records</div>
-                    </div>
+                    </div> */}
                     <div className="bg-green-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-green-800">
                         {events.filter(e => !!e.record_passed_review && !e.record_needs_review).length}
@@ -515,7 +470,7 @@ const AdminPage = () => {
                       statusFilter === 'all' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
-                    All Events
+                    All Events (including "reviewed")
                   </button>
                   <button
                     onClick={() => setStatusFilter('needs_review')}
@@ -525,10 +480,10 @@ const AdminPage = () => {
                         : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                     }`}
                   >
-                    Needs Review (
+                    New and updated events (
                     {events.filter(e => !!e.record_needs_review && !e.record_passed_review && !e.reviewed).length})
                   </button>
-                  <button
+                  {/* <button
                     onClick={() => setStatusFilter('changes_need_review')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                       statusFilter === 'changes_need_review'
@@ -537,7 +492,7 @@ const AdminPage = () => {
                     }`}
                   >
                     Updated Records ({events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length})
-                  </button>
+                  </button> */}
                   <button
                     onClick={() => setStatusFilter('approved')}
                     className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
@@ -676,6 +631,14 @@ const AdminPage = () => {
                                       <div className="lg:col-span-2 text-sm text-gray-600">
                                         {event.created_at ? new Date(event.created_at).toLocaleString() : ''}
 
+                                        {/* Contact Email */}
+                                        {event.contact && (
+                                          <div className="mt-1">
+                                            <span className="text-xs text-blue-600 font-medium">Contact: </span>
+                                            <span className="text-xs text-gray-700">{event.contact}</span>
+                                          </div>
+                                        )}
+
                                         {/* Status Badge */}
                                         <div className="mt-1 space-y-1">
                                           {hasChanges ? (
@@ -684,7 +647,7 @@ const AdminPage = () => {
                                             </span>
                                           ) : needsReview ? (
                                             <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full">
-                                              Needs Review
+                                              Not Reviewed
                                             </span>
                                           ) : isApproved ? (
                                             <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full">
@@ -699,13 +662,13 @@ const AdminPage = () => {
                                           )}
 
                                           {/* Reviewed Badge */}
-                                          {event.reviewed && (
+                                          {/* {event.reviewed && (
                                             <div>
                                               <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">
                                                 Has been reviewed
                                               </span>
                                             </div>
-                                          )}
+                                          )} */}
                                         </div>
                                       </div>
 
@@ -759,7 +722,9 @@ const AdminPage = () => {
                                             onChange={e => handleToggleReviewed(event.id, e.target.checked)}
                                             className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                                           />
-                                          <span className="ml-2 text-sm text-gray-600">Reviewed</span>
+                                          <span className="ml-2 text-sm text-gray-600">
+                                            Reviewed (removes event from "new and updated" list)
+                                          </span>
                                         </label>
 
                                         {/* Core Event Toggle */}
