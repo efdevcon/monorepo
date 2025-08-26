@@ -53,7 +53,7 @@ const getOAuthClient = async () => {
   return new Client({
     handleResolver: 'https://bsky.social',
     clientMetadata: {
-      client_id: `https://devconnect.org/atproto/client.json`,
+      client_id: 'https://devconnect.org/atproto/client.json',
       client_name: 'Devconnect Community Events',
       client_uri: 'https://devconnect.org',
       logo_uri: `https://devconnect.org/og-argentina.png`,
@@ -666,9 +666,11 @@ const CommunityEvents = () => {
 
       let events: any[] = []
 
+      const devconnectDid = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+
       // If user is logged in with email, hash the email to get the prefix specific to that user (need it to filter out other users' events)
       if (supabaseUser) {
-        const did = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+        const did = devconnectDid
         const email = supabaseUser.email
         const hash = new Sha256()
         hash.update(email)
@@ -701,7 +703,26 @@ const CommunityEvents = () => {
           collection: 'org.devcon.event',
         })
 
-        events = response.data.records.map((record: any) => record.value)
+        events = response.data.records
+          .filter((record: any) => {
+            // If the user is not our internally owned did, just return everything
+            if (did !== devconnectDid) {
+              return true
+            }
+
+            // example: c7730c507a50c8ab-zktls-day
+            const rkey = record.uri.split('/').pop()
+
+            // Insanely ridiculous heuristic to filter out events that are not directly submitted by us (via our email submission flow)
+            // Return true for events that do NOT start with hash-dash pattern
+            // Hash pattern: exactly 16 characters with at least one number, followed by a dash
+            const hashDashPattern = /^.{16}-/
+            const hasNumber = /\d/
+            const prefix = rkey.substring(0, 16)
+            const isHashPattern = hashDashPattern.test(rkey) && hasNumber.test(prefix)
+            return !isHashPattern
+          })
+          .map((record: any) => record.value)
       }
 
       setExistingRecords(events)
