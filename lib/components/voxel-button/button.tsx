@@ -8,7 +8,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
     // TODO: add more colors
     if (color === "blue-1") return defaultColor;
     if (color === "green-1")
-      return "border-[#195a20] bg-[#16a34a] text-white hover:bg-[rgba(34,197,94,1)]";
+      return "border-[#0D5424] bg-[#127331] text-white hover:bg-[#127331]";
     if (color === "red-1")
       return "border-[#991b1b] bg-[#dc2626] text-white hover:bg-[rgba(239,68,68,1)]";
     if (color === "white-1")

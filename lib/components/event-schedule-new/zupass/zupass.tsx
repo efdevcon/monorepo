@@ -15,7 +15,7 @@ import { serializePodData } from "./serialize";
 import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
 import { eventShops } from "./event-shops-list";
-import { Info } from "lucide-react";
+import { Info, ArrowRight } from "lucide-react";
 
 // HOC to wrap ParcnetClientProvider
 export const withParcnetProvider = <P extends object>(
@@ -60,29 +60,30 @@ function ZupassConnection(props: any) {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (initialConnectAttempted) return;
+  // Not sure if we should enable auto-connect - the popup is too aggressive
+  // useEffect(() => {
+  //   if (initialConnectAttempted) return;
 
-    const initialConnect = () => {
-      setInitialConnectAttempted(true);
+  //   const initialConnect = () => {
+  //     setInitialConnectAttempted(true);
 
-      const connectedInThePast = localStorage.getItem("zupassConnected");
+  //     const connectedInThePast = localStorage.getItem("zupassConnected");
 
-      if (
-        z &&
-        connectionState === ClientConnectionState.DISCONNECTED &&
-        connectedInThePast
-      ) {
-        try {
-          z.connect();
-        } catch (error) {
-          console.error("Error auto connecting to Zupass:", error);
-        }
-      }
-    };
+  //     if (
+  //       z &&
+  //       connectionState === ClientConnectionState.DISCONNECTED &&
+  //       connectedInThePast
+  //     ) {
+  //       try {
+  //         z.connect();
+  //       } catch (error) {
+  //         console.error("Error auto connecting to Zupass:", error);
+  //       }
+  //     }
+  //   };
 
-    initialConnect();
-  }, [z, connectionState]);
+  //   initialConnect();
+  // }, [z, connectionState]);
 
   // Function to verify POD signature
   const verifyPodSignature = (podData: PODData): boolean => {
@@ -340,14 +341,14 @@ const EventVoucher = ({
       <div className="flex flex-col sm:flex-row gap-4">
         {/* Step 1 - Verify Devconnect ticket */}
         <div className="flex flex-col">
-          <div className="text-sm text-gray-600 mb-1">
+          <div className="text-xs text-[#4B4B66] mb-1">
             1. Verify Devconnect ticket
           </div>
 
           <div className="mt-1 text-center flex flex-col items-start">
             <VoxelButton
               size="sm"
-              className="outline-none"
+              className="outline-none  w-[150px]"
               color={
                 connectionState === ClientConnectionState.CONNECTED
                   ? "green-1"
@@ -386,30 +387,16 @@ const EventVoucher = ({
 
         {/* Arrow */}
         <div className="justify-center self-center hidden sm:flex">
-          <svg
-            className="w-5 h-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
+          <ArrowRight size={20} />
         </div>
 
         {/* Step 2 - Get event ticket */}
         <div className="flex flex-col ">
-          <div className="text-sm text-gray-600 mb-1">
-            <div className="text-sm text-gray-600">2. Get event ticket</div>
-          </div>
+          <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-start items-center gap-2 sm:gap-0">
             <VoxelButton
               disabled={!connectedWithCoupon}
-              className={`outline-none`}
+              className={`outline-none w-[150px]`}
               size="sm"
               onClick={() => {
                 if (connectedWithCoupon) {
@@ -422,7 +409,7 @@ const EventVoucher = ({
               ) : (
                 <>
                   Get ticket
-                  <SquareArrowOutUpRight size={16} />
+                  <SquareArrowOutUpRight size={15} />
                 </>
               )}
             </VoxelButton>
@@ -457,9 +444,16 @@ const EventVoucher = ({
           >
             Buy Devconnect ticket <SquareArrowOutUpRight size={16} />
           </VoxelButton>
-          <div className="text-xs font-semibold text-gray-600 mt-1">
-            If you already have a Devconnect ticket, make sure to connect with
-            the exact email you used to purchase your ticket.
+          <div className="text-[11px] text-[#4B4B66] mt-1">
+            If you have a Devconnect ticket, connect to Zupass using the same
+            email used to purchase your ticket. Still having issues? Reach out
+            to us at{" "}
+            <a
+              href="mailto:support@devconnect.org"
+              className="underline text-teal-800"
+            >
+              support@devconnect.org
+            </a>
           </div>
         </>
       )}
