@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { POI } from '@/data/poiData';
+import { QuestPOI } from '@/hooks/useQuestPOIs';
 
 interface EventMapSVGProps {
   svgRef: React.RefObject<SVGSVGElement | null>;
   activeFilters: Set<string>;
-  selectedPOI: POI | null;
+  selectedPOI: QuestPOI | null;
   onSVGElementClick: (
     elementId: string,
     e?: React.MouseEvent | React.TouchEvent
@@ -32,7 +32,7 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
 
     // Get the first (and only) active filter
     const activeFilter = Array.from(activeFilters)[0];
-    
+
     // Get all elements with IDs
     const allElements = svgElement.querySelectorAll('[id]');
 
@@ -40,17 +40,28 @@ export const EventMapSVG: React.FC<EventMapSVGProps> = ({
       const elementId = element.id;
 
       // Check if this element belongs to the active category
-      // Only highlight individual elements (defi-pancake-swap, defi-lido, etc.)
-      // but NOT the district group element itself (defi, fnb, cowork, etc.)
+      // For quest-based POIs, we'll use the category directly
       const isActive =
-        elementId.startsWith(activeFilter + '-') ||
-        (elementId.startsWith(activeFilter) && elementId !== activeFilter);
+        elementId === activeFilter || elementId.startsWith(activeFilter + '-');
 
       // Check if this is the selected POI
       const isSelectedPOI = selectedPOI && elementId === selectedPOI.id;
 
       // Check if this is a district group element or the main container
-      const isDistrictGroup = ['event-map-svg-test', 'defi', 'fnb', 'cowork', 'biotech', 'hardware', 'social', 'coffee', 'toilets', 'art', 'swag', 'entrance'].includes(elementId);
+      const isDistrictGroup = [
+        'event-map-svg-test',
+        'defi',
+        'fnb',
+        'cowork',
+        'biotech',
+        'hardware',
+        'social',
+        'coffee',
+        'toilets',
+        'art',
+        'swag',
+        'entrance',
+      ].includes(elementId);
 
       if (isSelectedPOI) {
         // Selected POI gets highest priority highlighting

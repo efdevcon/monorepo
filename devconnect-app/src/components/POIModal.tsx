@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
-import { POI } from '@/data/poiData';
+import { QuestPOI } from '@/hooks/useQuestPOIs';
 import { filterCategories } from '@/data/filterCategories';
 
 interface POIModalProps {
-  selectedPOI: POI | null;
+  selectedPOI: QuestPOI | null;
   onClose: () => void;
   getPOIColor: (category: string) => string;
   position?: { x: number; y: number };
@@ -100,7 +100,7 @@ export const POIModal: React.FC<POIModalProps> = ({
                 {selectedPOI.name}
               </h3>
               <p className="text-xs text-white capitalize">
-                {selectedPOI.category}
+                {selectedPOI.questCategory}
               </p>
             </div>
             {/* Quest indicator */}
@@ -195,7 +195,7 @@ export const POIModal: React.FC<POIModalProps> = ({
                 {selectedPOI.name}
               </h2>
               <p className="text-sm text-gray-600 capitalize">
-                {selectedPOI.category}
+                {selectedPOI.questCategory}
               </p>
             </div>
           </div>
@@ -238,11 +238,31 @@ export const POIModal: React.FC<POIModalProps> = ({
           )}
 
           {/* Current Event */}
-          {selectedPOI.currentEvent && (
+          {/* {selectedPOI.currentEvent && (
             <div className="bg-blue-50 p-3 rounded-lg">
               <h4 className="font-medium text-blue-900 mb-1">Current Event</h4>
               <p className="text-sm text-blue-700">
                 {selectedPOI.currentEvent}
+              </p>
+            </div>
+          )} */}
+
+          {/* Website Link */}
+          {selectedPOI?.websiteLink && (
+            <div className="bg-blue-50 p-3 rounded-lg">
+              <h4 className="font-medium text-blue-900 mb-1">Website</h4>
+              <p className="text-sm text-blue-700 cursor-pointer">
+                {selectedPOI.websiteLink}
+              </p>
+            </div>
+          )}
+
+          {/* Social Link */}
+          {selectedPOI?.socialLink && (
+            <div className="bg-blue-50 p-3 rounded-lg">
+              <h4 className="font-medium text-blue-900 mb-1">Social</h4>
+              <p className="text-sm text-blue-700 cursor-pointer">
+                {selectedPOI.socialLink}
               </p>
             </div>
           )}
@@ -250,7 +270,7 @@ export const POIModal: React.FC<POIModalProps> = ({
           {/* View Related Quest Button */}
           <div className="border-t pt-4">
             <a
-              href={`/quests#${selectedPOI.id}`}
+              href={`/quests#${selectedPOI.questId}`}
               className="inline-flex items-center justify-center w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors"
               onClick={() => {
                 setIsExpanded(false);
@@ -270,7 +290,7 @@ export const POIModal: React.FC<POIModalProps> = ({
                   d="M9 5l7 7-7 7"
                 />
               </svg>
-              View Related Quest
+              View Quest Details
             </a>
           </div>
         </div>

@@ -30,23 +30,70 @@ export async function GET(request: NextRequest) {
     // Transform Notion response to quest format
     const quests = response.results.map((page: any) => {
       const properties = page.properties;
-      
+
+      // console.log(properties);
+
+      // Helper function to get property value, trying both clean and prefixed names
+      const getPropertyValue = (propertyName: string, fallbackName?: string) => {
+        // Try the clean name first, then look for prefixed versions
+        let property = properties[propertyName as keyof typeof properties];
+
+        if (!property && fallbackName) {
+          property = properties[fallbackName as keyof typeof properties];
+        }
+
+        // If still not found, try to find a prefixed version
+        if (!property) {
+          const prefixedKeys = Object.keys(properties).filter(key =>
+            key.includes(propertyName) || (fallbackName && key.includes(fallbackName))
+          );
+          if (prefixedKeys.length > 0) {
+            property = properties[prefixedKeys[0] as keyof typeof properties];
+          }
+        }
+
+        if (!property) return '';
+
+        if (property.type === 'title') {
+          return property.title?.[0]?.plain_text || '';
+        } else if (property.type === 'rich_text') {
+          return property.rich_text?.[0]?.plain_text || '';
+        } else if (property.type === 'select') {
+          return property.select?.name || '';
+        } else if (property.type === 'number') {
+          return property.number || 0;
+        } else if (property.type === 'url') {
+          return property.url || '';
+        } else if (property.type === 'files') {
+          return property.files?.[0]?.file?.url || property.files?.[0]?.external?.url || '';
+        } else if (property.type === 'unique_id') {
+          return property.unique_id?.prefix + property.unique_id?.number || '';
+        }
+        return '';
+      };
+
+      // remove 1., 2., 3. from category
+      const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
+      const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
+
       return {
-        name: properties.Name?.title?.[0]?.plain_text || '',
-        order: properties.Order?.number || 0,
-        points: properties.Points?.number || 0,
-        category: properties.Category?.select?.name || '',
-        group: properties.Group?.select?.name || '',
-        difficulty: properties.Difficulty?.select?.name || '',
-        instructions: properties.Instructions?.rich_text?.[0]?.plain_text || '',
-        action: properties.Action?.select?.name || '',
-        button: properties.Button?.rich_text?.[0]?.plain_text || '',
-        conditionType: properties['Condition type']?.select?.name || '',
-        conditionValues: properties['Condition values']?.rich_text?.[0]?.plain_text || '',
-        id: properties.ID?.unique_id?.prefix + properties.ID?.unique_id?.number || '',
-        logoLink: properties['Logo Link']?.files?.[0]?.file?.url || properties['Logo Link']?.files?.[0]?.external?.url || '',
-        poapImageLink: properties['POAP image link']?.files?.[0]?.file?.url || properties['POAP image link']?.files?.[0]?.external?.url || '',
-        position: properties.Position?.rich_text?.[0]?.plain_text || '',
+        name: getPropertyValue('Name'),
+        order: getPropertyValue('Order'),
+        points: getPropertyValue('Points'),
+        category: getPropertyValue('District'),
+        group: getPropertyValue('Group'),
+        difficulty: getPropertyValue('Difficulty'),
+        instructions: getPropertyValue('Quest instructions'),
+        action: getPropertyValue('Action'),
+        button: getPropertyValue('Button'),
+        conditionType: getPropertyValue('Condition type'),
+        conditionValues: getPropertyValue('Quest condition values'),
+        id: category + '-' + name,
+        logoLink: getPropertyValue('Logo'),
+        poapImageLink: getPropertyValue('POAP image'),
+        websiteLink: getPropertyValue('Website link'),
+        socialLink: getPropertyValue('Social link'),
+        projectDescription: getPropertyValue('Project description'),
       };
     });
 

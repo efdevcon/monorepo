@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
-import { POI, pois } from '@/data/poiData';
 import { filterCategories } from '@/data/filterCategories';
 import { districtPositions } from '@/data/districtPositions';
 import { EventMapSVG } from './EventMapSVG';
 import { POIModal } from './POIModal';
 import { useMapInteraction } from '@/hooks/useMapInteraction';
 import { useMapFilters } from '@/hooks/useMapFilters';
+import { useQuestPOIs, QuestPOI } from '@/hooks/useQuestPOIs';
 
 interface EventMapProps {
   onFocusedModeChange?: (focused: boolean) => void;
@@ -15,7 +15,8 @@ interface EventMapProps {
 }
 
 const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
-  const [selectedPOI, setSelectedPOI] = useState<POI | null>(null);
+  const pois = useQuestPOIs();
+  const [selectedPOI, setSelectedPOI] = useState<QuestPOI | null>(null);
   const [poiPosition, setPoiPosition] = useState<{
     x: number;
     y: number;
@@ -50,7 +51,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
   // Handle POI click
   const handlePOIClick = (
-    poi: POI,
+    poi: QuestPOI,
     event?: React.MouseEvent | React.TouchEvent
   ) => {
     setSelectedPOI(poi);
@@ -135,6 +136,12 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     elementId: string,
     e?: React.MouseEvent | React.TouchEvent
   ) => {
+    console.log('SVG element clicked:', elementId);
+    console.log(
+      'Available POIs:',
+      pois.map((p) => ({ id: p.id, name: p.name }))
+    );
+
     // For touch events, only handle if it wasn't a pan gesture
     if (e && 'touches' in e) {
       if (hasMoved || isPanning) {
@@ -145,11 +152,14 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
     // Only handle clicks on actual POI elements
     const poi = pois.find((p) => p.id === elementId);
     if (poi) {
+      console.log('Found POI for click:', poi);
       handlePOIClick(poi, e);
       // Stop propagation to prevent map container click
       if (e) {
         e.stopPropagation();
       }
+    } else {
+      console.log('No POI found for element ID:', elementId);
     }
   };
 
@@ -253,53 +263,47 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
       if (hash.startsWith('#')) {
         const id = hash.substring(1); // Remove the # symbol
 
-        if (id.includes('-')) {
-          // It's a POI (contains hyphen)
-          const poi = pois.find((p) => p.id === id);
-          if (poi && selectedPOI?.id !== poi.id) {
-            setSelectedPOI(poi);
+        // Check if it's a quest ID (from quests page)
+        const quest = pois.find((p) => p.questId === id || p.id === id);
+        if (quest && selectedPOI?.id !== quest.id) {
+          setSelectedPOI(quest);
 
-            // Calculate position for tooltip (same logic as handlePOIClick)
-            setTimeout(() => {
-              const svgElement = document.getElementById(poi.id);
-              if (svgElement && svgRef.current) {
-                const mapContainer = svgRef.current.closest(
-                  '.relative'
-                ) as HTMLElement;
-                const svgRect = svgElement.getBoundingClientRect();
+          // Calculate position for tooltip (same logic as handlePOIClick)
+          setTimeout(() => {
+            const svgElement = document.getElementById(quest.id);
+            if (svgElement && svgRef.current) {
+              const mapContainer = svgRef.current.closest(
+                '.relative'
+              ) as HTMLElement;
+              const svgRect = svgElement.getBoundingClientRect();
 
-                if (mapContainer) {
-                  const containerRect = mapContainer.getBoundingClientRect();
+              if (mapContainer) {
+                const containerRect = mapContainer.getBoundingClientRect();
 
-                  // Calculate center of the SVG element relative to map container
-                  const x =
-                    svgRect.left + svgRect.width / 2 - containerRect.left;
-                  const y =
-                    svgRect.top + svgRect.height / 2 - containerRect.top;
+                // Calculate center of the SVG element relative to map container
+                const x = svgRect.left + svgRect.width / 2 - containerRect.left;
+                const y = svgRect.top + svgRect.height / 2 - containerRect.top;
 
-                  console.log('Deep link POI position calculated:', {
-                    poiId: poi.id,
-                    center: { x, y },
-                  });
+                console.log('Deep link quest position calculated:', {
+                  questId: quest.id,
+                  center: { x, y },
+                });
 
-                  setPoiPosition({ x, y });
-                }
+                setPoiPosition({ x, y });
               }
-            }, 100); // Small delay to ensure SVG is rendered
+            }
+          }, 100); // Small delay to ensure SVG is rendered
 
-            // Enter focused mode for POI
-            onFocusedModeChange?.(true);
-          }
-        } else {
-          // It's a district (no hyphen)
-          if (districtPositions[id]) {
-            // Set the district as active filter
-            toggleFilter(id);
-            // Focus on the district after a small delay to ensure SVG is rendered
-            setTimeout(() => {
-              focusOnDistrict(id);
-            }, 100);
-          }
+          // Enter focused mode for quest
+          onFocusedModeChange?.(true);
+        } else if (districtPositions[id]) {
+          // It's a district
+          // Set the district as active filter
+          toggleFilter(id);
+          // Focus on the district after a small delay to ensure SVG is rendered
+          setTimeout(() => {
+            focusOnDistrict(id);
+          }, 100);
         }
       }
 
@@ -368,7 +372,7 @@ const EventMap = ({ onFocusedModeChange, focusDistrict }: EventMapProps) => {
 
       {/* Map Container */}
       <div
-        className="flex-1 relative overflow-hidden bg-gradient-to-br from-white to-slate-100 cursor-move touch-none"
+        className="flex-1 relative overflow-hidden bg-gradient-to-br from-white to-slate-100 touch-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}

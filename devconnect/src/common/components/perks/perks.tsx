@@ -370,7 +370,6 @@ const Perk = ({
   const { connectionState } = useParcnetClient()
   const isDevconProof = perk.zupass_proof_id === 'Devcon SEA'
   const coupons = isDevconProof ? devconCoupons : devconnectCoupons
-  const coupon = coupons[perk.coupon_collection]
   const { address } = useAccount()
   const { signMessageAsync } = useSignMessage()
 
@@ -378,6 +377,7 @@ const Perk = ({
   const [fetchingCoupon, setFetchingCoupon] = useState(false)
 
   const verified = isDevconProof ? tickets?.devcon : tickets?.devconnect
+  const coupon = verified && perk.global_coupon ? perk.global_coupon : coupons[perk.coupon_collection]
 
   useEffect(() => {
     setCouponStatus(null)
@@ -571,14 +571,14 @@ const Perk = ({
       <div
         className={cn(
           'absolute top-0 z-[11] left-0 w-full h-full bg-black opacity-0 group-hover/perk:opacity-70 transition-opacity duration-500 z-10 flex items-center justify-center',
-          (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
+          (isCreateYourOwnPerk || isConnected || perk.wallet_proof) && 'hidden'
         )}
       ></div>
 
       <div
         className={cn(
           'absolute top-0 z-[11] left-0 w-full h-full opacity-0 group-hover/perk:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center',
-          (isCreateYourOwnPerk || isConnected || isExternalPerk) && 'hidden'
+          (isCreateYourOwnPerk || isConnected || perk.wallet_proof) && 'hidden'
         )}
       >
         <div className="text-white text-center text-lg font-bold font-secondary mx-4">
@@ -588,12 +588,12 @@ const Perk = ({
 
       <div className="flex flex-col gap-2 aspect-[316/250] relative">
         <Image src={perk.image} alt={perk.name} className="w-full object-cover h-full absolute top-0 left-0" />
-        <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2>
-        <p className="">{perk.description}</p>
+        {/* <h2 className="text-lg font-bold font-secondary ">{perk.name}</h2> */}
+        {/* <p className="">{perk.description}</p> */}
 
         {connectionState !== ClientConnectionState.CONNECTED &&
           !isCreateYourOwnPerk &&
-          !isExternalPerk &&
+          // !isExternalPerk &&
           !perk.no_status && (
             <div className="absolute top-4 left-4 z-10">
               <div className="bg-gray-200 text-gray-800 text-sm px-2 py-1 border border-black border-solid font-bold">
@@ -644,7 +644,7 @@ const Perk = ({
           </div>
         )}
 
-        {perk.urls && !verified && (
+        {/* {perk.urls && !verified && (
           <div className="absolute top-4 right-4 cursor-pointer z-10">
             <div className="flex flex-col gap-2">
               {perk.urls.map(url => (
@@ -661,9 +661,12 @@ const Perk = ({
               ))}
             </div>
           </div>
-        )}
+        )} */}
 
-        {!isCreateYourOwnPerk && connectionState === ClientConnectionState.CONNECTED && verified ? (
+        {!isCreateYourOwnPerk &&
+        !perk.wallet_proof &&
+        connectionState === ClientConnectionState.CONNECTED &&
+        verified ? (
           <Image
             src={VerifiedSquares}
             alt="Verified Squares"
@@ -679,7 +682,7 @@ const Perk = ({
       </div>
 
       <div className="p-6 flex items-center text-center justify-center flex-col relative bg-white gap-3 grow px-2 overflow-hidden">
-        <div className="flex flex-col items-center justify-center gap-2 max-w-[100%]">
+        <div className="flex flex-col items-center justify-center gap-2 max-w-[100%] mx-2">
           <div className="text-sm text-[#4B4B66] tracking-widest font-secondary uppercase">{perk.issuer}</div>
 
           <div className="text-lg leading-tight font-bold">{perk.description}</div>
@@ -692,14 +695,14 @@ const Perk = ({
                     <Button
                       color="black-1"
                       size="sm"
-                      className="my-0.5"
+                      className="my-0.5 w-full mx-2"
                       onClick={perk.wallet_proof ? requestCouponWalletProof : requestCoupon}
                     >
                       {fetchingCoupon ? 'Fetching Coupon...' : 'Claim Coupon'}
                     </Button>
                   )}
 
-                  {perk.external && verified && (
+                  {/* {perk.external && verified && (
                     <div className="flex gap-2">
                       {perk.urls &&
                         perk.urls.map(url => (
@@ -715,7 +718,7 @@ const Perk = ({
                           </Button>
                         ))}
                     </div>
-                  )}
+                  )} */}
                 </>
               )}
             </>
@@ -723,30 +726,77 @@ const Perk = ({
 
           {coupon && (
             <div className="p-2 py-2 bg-green-100 border font-bold max-w-[95%] overflow-hidden text-ellipsis border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5">
-              {perk.instructions && <div className="text-xs text-[#4B4B66]">{perk.instructions}</div>}
+              <>
+                {perk.instructions && (
+                  <div className="text-xs text-[#4B4B66] w-full text-center">{perk.instructions}</div>
+                )}
 
-              {coupon.startsWith('https://') ? (
-                <a
-                  href={coupon}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="shrink text-ellipsis overflow-hidden line-clamp-3"
-                >
-                  {coupon}
-                </a>
-              ) : (
-                <div className="shrink">
-                  <strong>Coupon:</strong>&nbsp;{coupon}
-                </div>
-              )}
+                {coupon.startsWith('https://') && (
+                  <a
+                    href={coupon}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink text-ellipsis overflow-hidden line-clamp-3"
+                  >
+                    {coupon}
+                  </a>
+                )}
 
-              <div className="">
-                <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
-                  <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
-                    <Copy size={14} />
+                {!coupon.startsWith('https://') && (
+                  <div className="shrink">
+                    <strong>Coupon:</strong>&nbsp;{coupon}
                   </div>
-                </CopyToClipboard>
-              </div>
+                )}
+
+                {!coupon.startsWith('https://') && (
+                  <div className="">
+                    <CopyToClipboard url={coupon} useCopyIcon={true} copyIconSize={14}>
+                      <div className="hover:text-green-600 transition-colors p-1 flex items-center justify-center shrink-0">
+                        <Copy size={14} />
+                      </div>
+                    </CopyToClipboard>
+                  </div>
+                )}
+
+                {coupon.startsWith('https://') && (
+                  <Link href={coupon} className="my-0.5 w-full">
+                    <Button size="sm" className="my-0.5 w-full">
+                      <div className="flex items-center gap-1">
+                        {(perk.urls && perk.urls?.[0]?.text) || 'Redeem'}
+                        <ArrowUpRight size={16} />
+                      </div>
+                    </Button>
+                  </Link>
+                )}
+
+                {!coupon.startsWith('https://') && (
+                  <Link href={perk.urls?.[0]?.url ?? ''} className="my-0.5 w-full">
+                    <Button size="sm" className="my-0.5 w-full">
+                      <div className="flex items-center gap-1">
+                        {perk.urls?.[0]?.text}
+                        <ArrowUpRight size={16} />
+                      </div>
+                    </Button>
+                  </Link>
+                )}
+              </>
+            </div>
+          )}
+
+          {verified && isExternalPerk && !perk.wallet_proof && (
+            <div className="p-2 py-2 bg-green-100 border font-bold max-w-[95%] overflow-hidden text-ellipsis border-green-300 rounded text-green-800 text-sm flex flex-wrap items-center justify-center gap-0.5 w-full">
+              <div className="text-xs text-[#4B4B66]">{perk.instructions || 'Verify your ticket here:'}</div>
+
+              {perk.urls?.map((url, index) => (
+                <Link key={url.url || index} href={url.url ?? ''} className="my-0.5 w-full">
+                  <Button size="sm" className="my-0.5 w-full">
+                    <div className="flex items-center gap-1">
+                      {url.text}
+                      <ArrowUpRight size={16} />
+                    </div>
+                  </Button>
+                </Link>
+              ))}
             </div>
           )}
 

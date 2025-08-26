@@ -221,6 +221,7 @@ const CommunityEvents = () => {
   const [supabaseUser, setSupabaseUser] = useState<any>(null)
   const [magicLinkMessage, setMagicLinkMessage] = useState('')
   const [formData, setFormData] = useState<EventFormData>(defaultFormData)
+  const [contact, setContact] = useState('')
   const [isEditing, setIsEditing] = useState(false)
 
   const [showOptionalSections, setShowOptionalSections] = useState({
@@ -446,7 +447,10 @@ const CommunityEvents = () => {
 
       const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(cleanedData),
+        body: JSON.stringify({
+          event: cleanedData,
+          contact,
+        }),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -459,7 +463,7 @@ const CommunityEvents = () => {
         toast.success('Event submitted successfully!')
         console.log('Event submitted:', data)
       } else {
-        toast.error('Event submission failed:', data)
+        toast.error('Event submission failed:' + data.error ? data.error : 'Unknown error')
         console.error('Event submission failed:', data)
 
         return
@@ -1071,7 +1075,7 @@ const CommunityEvents = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Contact (Email, Twitter, etc.)
+                      Public Contact (Email, Twitter, etc.)
                     </label>
                     <input
                       type="text"
@@ -1414,6 +1418,24 @@ const CommunityEvents = () => {
                   </div>
                 </div>
               )}
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mt-6 w-full">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
+                Where should we contact you about your listing? *
+              </h2>
+              <input
+                type="email"
+                placeholder="example@email.com"
+                value={contact}
+                onChange={e => setContact(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p className="mt-2 text-xs">
+                To answer any questions we may have about your event after submission, please specify an email we can
+                reach you at. This email can only be seen by the Devconnect team, and will not be made public. If you
+                wish to add a public contact, do so in the form above under Organizer Information.
+              </p>
             </div>
 
             <button
