@@ -1,6 +1,6 @@
 'use client';
 
-import { Layout as CalendarLayout } from 'lib/components/event-schedule-new/layout';
+import Layout from 'lib/components/event-schedule-new/layout';
 import { useCalendarStore } from './tmp-state';
 
 interface ScheduleTabProps {
@@ -11,10 +11,10 @@ export default function ScheduleTab({ atprotoEvents = [] }: ScheduleTabProps) {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } =
     useCalendarStore();
 
-  console.log(CalendarLayout, 'CalendarLayout');
+  console.log(Layout, 'Layout');
 
   return (
-    <CalendarLayout
+    <Layout
       isCommunityCalendar={false}
       selectedEvent={selectedEvent}
       selectedDay={selectedDay}
