@@ -40,10 +40,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   <b>Devconnect ARG schedule </b>
                   <div className="text-base font-secondary">
                     Events held within La Rural (
-                    <Link
-                      href="https://tickets.devconnect.org"
-                      indicateExternal
-                    >
+                    <Link href="https://tickets.devconnect.org">
                       ticket required
                     </Link>
                     )
@@ -84,9 +81,6 @@ const Layout = (props: CalendarLayoutProps) => {
                   setFilter={setFilter}
                   resetFilter={resetFilter}
                   filterActive={filterActive}
-                  // {...filterAttributes}
-                  // edition={props.edition}
-                  // favorites={favorites}
                 />
               </div>
               <div className={filterCss["fade"]} />
