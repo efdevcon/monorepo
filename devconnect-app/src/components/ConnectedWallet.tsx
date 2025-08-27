@@ -10,6 +10,8 @@ import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
+import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
+import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
 import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
@@ -177,6 +179,74 @@ export default function ConnectedWallet({
       console.log('Opening Para add funds modal');
       openModal({ step: ModalStep.ADD_FUNDS_BUY });
     }
+  };
+
+  const handleShowMoonPayAddFunds = () => {
+    // MoonPay integration URL with dynamic wallet address
+    const currentDomain = window.location.origin;
+    const moonPayUrl = `https://buy-sandbox.moonpay.com/?apiKey=pk_test_oxQY1qdAGKlItZrVIRQ9qpNwpfAPHjQ&theme=dark&defaultCurrencyCode=usdc&baseCurrencyAmount=20&colorCode=%237d01ff&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=moonpay&confirm=true')}`;
+
+    console.log('Opening MoonPay onramp:', moonPayUrl);
+
+    // Open MoonPay in a new window/tab
+    window.open(moonPayUrl, '_blank', 'noopener,noreferrer');
+
+    toast.info(
+      <div className="space-y-2">
+        <div className="font-semibold text-blue-800">
+          🌙 MoonPay Onramp Opened
+        </div>
+        <div className="text-sm text-blue-700">
+          MoonPay has been opened in a new tab. Complete your purchase to add
+          funds to your wallet.
+        </div>
+      </div>,
+      {
+        duration: 4000,
+        dismissible: true,
+        closeButton: true,
+        style: {
+          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+          border: '1px solid #bfdbfe',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        },
+      }
+    );
+  };
+
+  const handleShowTransakAddFunds = () => {
+    // Transak integration URL with dynamic wallet address
+    const currentDomain = window.location.origin;
+    const transakUrl = `https://global-stg.transak.com/?environment=STAGING&defaultFiatAmount=5&defaultFiatCurrency=USD&defaultCryptoCurrency=USDC&network=ethereum&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=transak&confirm=true')}&productsAvailed=BUY&theme=dark&colorMode=DARK`;
+
+    console.log('Opening Transak onramp:', transakUrl);
+
+    // Open Transak in a new window/tab
+    window.open(transakUrl, '_blank', 'noopener,noreferrer');
+
+    toast.info(
+      <div className="space-y-2">
+        <div className="font-semibold text-blue-800">
+          🔄 Transak Onramp Opened
+        </div>
+        <div className="text-sm text-blue-700">
+          Transak has been opened in a new tab. Complete your purchase to add
+          funds to your wallet.
+        </div>
+      </div>,
+      {
+        duration: 4000,
+        dismissible: true,
+        closeButton: true,
+        style: {
+          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+          border: '1px solid #bfdbfe',
+          borderRadius: '8px',
+          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+        },
+      }
+    );
   };
 
   const handleSign = async () => {
@@ -503,9 +573,9 @@ export default function ConnectedWallet({
       </div>
 
       <div className="flex flex-col gap-2">
-        <ZupassProvider>
+        {/* <ZupassProvider>
           <LinkTicket className="mb-2" />
-        </ZupassProvider>
+        </ZupassProvider> */}
 
         {/* SIWE Verification Button (only show if SIWE is enabled and not verified) */}
         {siweEnabled && siweState !== 'success' && (
@@ -571,9 +641,85 @@ export default function ConnectedWallet({
             size="lg"
             variant="outline"
           >
-            💰 Add Funds
+            💰 Add Funds with Para
           </Button>
         )}
+
+        <div className="flex flex-row gap-2 items-center">
+          <Button
+            onClick={handleShowMoonPayAddFunds}
+            className="cursor-pointer"
+            size="lg"
+            variant="outline"
+          >
+            💰 Add Funds with Moonpay
+          </Button>
+          <a
+            href="https://dev.moonpay.com/v1.0/docs/credit-cards-testing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            staging details
+          </a>
+        </div>
+
+        <div className="flex flex-row gap-2 items-center">
+          <Button
+            onClick={handleShowTransakAddFunds}
+            className="cursor-pointer"
+            size="lg"
+            variant="outline"
+          >
+            🔄 Add Funds with Transak
+          </Button>
+          <a
+            href="https://docs.transak.com/docs/test-credentials"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            staging details
+          </a>
+        </div>
+
+        <div className="flex flex-row gap-2 items-center">
+          <CoinbaseOnrampButton
+            address={address}
+            className="cursor-pointer"
+            size="lg"
+            w="100%"
+          />
+          ‼️ [PROD]
+          <a
+            href="https://docs.cdp.coinbase.com/onramp-&-offramp/onramp-apis/generating-onramp-url"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            docs
+          </a>
+        </div>
+
+        <div className="flex flex-row gap-2 items-center">
+          <CoinbaseOneClickBuyButton
+            address={address}
+            presetCryptoAmount={1}
+            defaultAsset="USDC"
+            className="cursor-pointer"
+            size="lg"
+            w="100%"
+          />
+          ‼️ [PROD]
+          <a
+            href="https://docs.cdp.coinbase.com/onramp-&-offramp/onramp-apis/one-click-buy-url"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            docs
+          </a>
+        </div>
 
         {/* Debug button for connection issues */}
         {!isPara && (paraSDKConnected || wagmiParaConnected) && (
