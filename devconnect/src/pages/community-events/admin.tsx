@@ -381,7 +381,13 @@ const AdminPage = () => {
   // Filter events based on status filter
   const filteredEvents = events.filter(event => {
     if (statusFilter === 'needs_review') {
-      return !!event.record_needs_review && !event.record_passed_review && !event.reviewed
+      const hasUpdate = event.record_needs_review && event.record_passed_review
+      const isNew = event.record_needs_review
+
+      if ((isNew || hasUpdate) && !event.reviewed) {
+        return true
+      }
+      return false
     }
     if (statusFilter === 'changes_need_review') {
       return !!event.record_needs_review && !!event.record_passed_review
@@ -463,16 +469,21 @@ const AdminPage = () => {
                     </div>
                     <div className="bg-yellow-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-yellow-800">
-                        {events.filter(e => !!e.record_needs_review && !e.record_passed_review && !e.reviewed).length}
+                        {
+                          events.filter(e => {
+                            const hasUpdate = e.record_needs_review && e.record_passed_review
+                            const isNew = e.record_needs_review
+
+                            if ((isNew || hasUpdate) && !e.reviewed) {
+                              return true
+                            }
+                            return false
+                          }).length
+                        }
                       </div>
                       <div className="text-sm text-yellow-600">Need Review</div>
                     </div>
-                    {/* <div className="bg-orange-50 rounded-lg p-4">
-                      <div className="text-2xl font-bold text-orange-800">
-                        {events.filter(e => !!e.record_needs_review && !!e.record_passed_review).length}
-                      </div>
-                      <div className="text-sm text-orange-600">Updated Records</div>
-                    </div> */}
+
                     <div className="bg-green-50 rounded-lg p-4">
                       <div className="text-2xl font-bold text-green-800">
                         {events.filter(e => !!e.record_passed_review && !e.record_needs_review).length}
@@ -507,7 +518,18 @@ const AdminPage = () => {
                     }`}
                   >
                     New and updated events (
-                    {events.filter(e => !!e.record_needs_review && !e.record_passed_review && !e.reviewed).length})
+                    {
+                      events.filter(e => {
+                        const hasUpdate = e.record_needs_review && e.record_passed_review
+                        const isNew = e.record_needs_review
+
+                        if ((isNew || hasUpdate) && !e.reviewed) {
+                          return true
+                        }
+                        return false
+                      }).length
+                    }
+                    )
                   </button>
                   {/* <button
                     onClick={() => setStatusFilter('changes_need_review')}
