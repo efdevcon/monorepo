@@ -4,6 +4,7 @@ import Head from 'next/head'
 import { supabase } from 'common/supabaseClient'
 import NewSchedule from 'lib/components/event-schedule-new'
 import FeedCoupons from 'common/components/perks/feed-coupons'
+import { Dialog, DialogContent } from 'lib/components/ui/dialog'
 
 // Format Atproto event to our calendar component format
 const formatATProtoEvent = (atprotoEvent: any) => {
@@ -57,6 +58,15 @@ const AdminPage = () => {
   const [statusFilter, setStatusFilter] = useState<'all' | 'needs_review' | 'changes_need_review' | 'approved'>('all')
   const [editingComments, setEditingComments] = useState<Set<string>>(new Set())
   const [commentValues, setCommentValues] = useState<Record<string, string>>({})
+  const [expandedJson, setExpandedJson] = useState<{
+    isOpen: boolean
+    title: string
+    data: any
+  }>({
+    isOpen: false,
+    title: '',
+    data: null,
+  })
 
   const fetchEvents = async () => {
     try {
@@ -352,6 +362,22 @@ const AdminPage = () => {
     setCommentValues(newCommentValues)
   }
 
+  const handleExpandJson = (title: string, data: any) => {
+    setExpandedJson({
+      isOpen: true,
+      title,
+      data,
+    })
+  }
+
+  const handleCloseJsonDialog = () => {
+    setExpandedJson({
+      isOpen: false,
+      title: '',
+      data: null,
+    })
+  }
+
   // Filter events based on status filter
   const filteredEvents = events.filter(event => {
     if (statusFilter === 'needs_review') {
@@ -639,6 +665,15 @@ const AdminPage = () => {
                                           </div>
                                         )}
 
+                                        {!event.contact && recordData.organizer && recordData.organizer.contact && (
+                                          <div className="mt-1">
+                                            <span className="text-xs text-blue-600 font-medium">Contact: </span>
+                                            <span className="text-xs text-gray-700">
+                                              {recordData.organizer.contact}
+                                            </span>
+                                          </div>
+                                        )}
+
                                         {/* Status Badge */}
                                         <div className="mt-1 space-y-1">
                                           {hasChanges ? (
@@ -675,17 +710,43 @@ const AdminPage = () => {
                                       <div className="lg:col-span-5">
                                         {hasChanges ? (
                                           <div className="space-y-2">
-                                            <div className="bg-green-50 rounded-md p-3 max-h-32 overflow-y-auto">
-                                              <div className="text-xs font-medium text-green-800 mb-1">
-                                                ✓ Currently Live (Approved):
+                                            <div className="bg-green-50 rounded-md p-3 max-h-32 overflow-y-auto relative">
+                                              <div className="flex items-center justify-between mb-1">
+                                                <div className="text-xs font-medium text-green-800">
+                                                  ✓ Currently Live (Approved):
+                                                </div>
+                                                <button
+                                                  onClick={() =>
+                                                    handleExpandJson(
+                                                      'Currently Live (Approved)',
+                                                      event.record_passed_review
+                                                    )
+                                                  }
+                                                  className="text-xs text-green-600 hover:text-green-800 underline"
+                                                >
+                                                  Expand
+                                                </button>
                                               </div>
                                               <pre className="text-xs text-green-700 whitespace-pre-wrap break-words">
                                                 {JSON.stringify(event.record_passed_review, null, 2)}
                                               </pre>
                                             </div>
-                                            <div className="bg-orange-50 rounded-md p-3 max-h-32 overflow-y-auto">
-                                              <div className="text-xs font-medium text-orange-800 mb-1">
-                                                📝 Latest Update (Needs Review):
+                                            <div className="bg-orange-50 rounded-md p-3 max-h-32 overflow-y-auto relative">
+                                              <div className="flex items-center justify-between mb-1">
+                                                <div className="text-xs font-medium text-orange-800">
+                                                  📝 Latest Update (Needs Review):
+                                                </div>
+                                                <button
+                                                  onClick={() =>
+                                                    handleExpandJson(
+                                                      'Latest Update (Needs Review)',
+                                                      event.record_needs_review
+                                                    )
+                                                  }
+                                                  className="text-xs text-orange-600 hover:text-orange-800 underline"
+                                                >
+                                                  Expand
+                                                </button>
                                               </div>
                                               <pre className="text-xs text-orange-700 whitespace-pre-wrap break-words">
                                                 {JSON.stringify(event.record_needs_review, null, 2)}
@@ -693,7 +754,16 @@ const AdminPage = () => {
                                             </div>
                                           </div>
                                         ) : (
-                                          <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto">
+                                          <div className="bg-gray-50 rounded-md p-3 max-h-40 overflow-y-auto relative">
+                                            <div className="flex items-center justify-between mb-2">
+                                              <div className="text-xs font-medium text-gray-700">Event Data:</div>
+                                              <button
+                                                onClick={() => handleExpandJson('Event Data', recordData)}
+                                                className="text-xs text-gray-600 hover:text-gray-800 underline"
+                                              >
+                                                Expand
+                                              </button>
+                                            </div>
                                             <pre className="text-xs text-gray-700 whitespace-pre-wrap break-words">
                                               {JSON.stringify(recordData, null, 2)}
                                             </pre>
@@ -866,6 +936,25 @@ const AdminPage = () => {
                   setSelectedDay={() => {}}
                 />
               </div>
+
+              {/* JSON Expansion Dialog */}
+              <Dialog open={expandedJson.isOpen} onOpenChange={handleCloseJsonDialog}>
+                <DialogContent className="max-w-4xl max-h-[80vh] overflow-auto">
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-lg font-semibold text-gray-900">{expandedJson.title}</h3>
+                      <button onClick={handleCloseJsonDialog} className="text-gray-400 hover:text-gray-600">
+                        ✕
+                      </button>
+                    </div>
+                    <div className="flex-1 overflow-auto bg-gray-50 rounded-md p-4">
+                      <pre className="text-sm text-gray-700 whitespace-pre-wrap break-words">
+                        {JSON.stringify(expandedJson.data, null, 2)}
+                      </pre>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
             </>
           ) : (
             <div className="max-w-md mx-auto">
