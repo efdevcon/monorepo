@@ -109,6 +109,32 @@ export async function POST(request: NextRequest) {
                   network
                 }
               }
+              ... on ActivityTimelineEventDelta {
+                transactionHash
+                transactionBlockTimestamp
+                network
+                subject
+                from {
+                  address
+                  isContract
+                }
+                to {
+                  address
+                  isContract
+                }
+                fungibleCount
+                fungibleDeltas {
+                  amount
+                  amountRaw
+                  token {
+                    address
+                    decimals
+                    symbol
+                    name
+                    imageUrlV2
+                  }
+                }
+              }
             }
           }
         }
@@ -122,16 +148,58 @@ export async function POST(request: NextRequest) {
         query: activityQuery,
         variables: {
           subjects: [address],
-          perspective: 'Signer',
-          first: 10,
+          perspective: 'All',
+          first: 20,
           filters: {
-            network: selectedNetwork.network
+            chainIds: [selectedNetwork.chainId]
           }
         },
       }),
     });
 
     const activityResult = await activityResponse.json();
+
+    // console.log('Activity result:', JSON.stringify(activityResult, null, 2));
+
+    // Process the transaction data to create descriptions and apply the "Received" to "Sent" replacement
+    if (activityResult.data?.transactionHistoryV2?.edges) {
+      activityResult.data.transactionHistoryV2.edges.forEach((edge: any) => {
+        const node = edge.node;
+
+        // Create description from the transaction data using fungibleDeltas
+        if (node.fungibleDeltas && node.fungibleDeltas.length > 0) {
+          const tokenInfo = node.fungibleDeltas[0];
+          const symbol = tokenInfo.token?.symbol || 'Unknown Token';
+          const amount = Math.abs(tokenInfo.amount);
+
+          // Check if this is a sponsored transaction (from the sponsor address)
+          if (node.from?.address === '0x4319981de8f8027cb9aedad8a770d658e9eb28ca') {
+            // This is a sponsored send transaction
+            node.interpretation = {
+              processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
+            };
+          } else {
+            if (node.from?.address?.toLowerCase() === address.toLowerCase()) {
+              node.interpretation = {
+                processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
+              };
+            } else {
+              node.interpretation = {
+                processedDescription: `Received ${amount.toFixed(4)} ${symbol}`
+              };
+            }
+          }
+
+          // Add transaction data in the format expected by the frontend
+          node.transaction = {
+            hash: node.transactionHash,
+            timestamp: node.transactionBlockTimestamp,
+            network: node.network
+          };
+        }
+      });
+    }
+    // console.log('Processed edges:', activityResult.data?.transactionHistoryV2?.edges);
 
     if (activityResult.errors) {
       console.error('Zapper activity API error:', activityResult.errors);
