@@ -70,6 +70,20 @@ html {
   /* font-family: var(--font-geist-sans); */
 }
 
+/* Prevent zooming on input focus for iOS */
+input, textarea, select {
+  font-size: 16px !important;
+  transform: scale(1);
+  -webkit-transform: scale(1);
+}
+
+/* Additional iOS zoom prevention */
+@media screen and (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
 /* Hide scrollbars for webkit browsers */
 ::-webkit-scrollbar {
   display: none;
