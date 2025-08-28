@@ -182,6 +182,8 @@ function Perks(props: any) {
       // POD.load expects (entries, signature, signerPublicKey)
       const pod = POD.load(podData.entries, podData.signature, podData.signerPublicKey)
 
+      console.log(pod, 'pod')
+
       // Verify the signature
       const isValid = pod.verifySignature()
 

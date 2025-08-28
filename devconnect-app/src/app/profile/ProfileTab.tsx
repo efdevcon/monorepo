@@ -2,12 +2,14 @@
 
 import { useUser } from '@/hooks/useUser';
 import { useEffect, useState } from 'react';
+import QRCode from 'qrcode';
 
 interface Ticket {
-  ticketId: string;
+  secret: string;
   attendeeName: string | null;
   attendeeEmail: string;
   price: string;
+  itemName: string;
 }
 
 interface Order {
@@ -22,6 +24,7 @@ export default function ProfileTab() {
   const [tickets, setTickets] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
   const [ticketError, setTicketError] = useState<string | null>(null);
+  const [qrCodes, setQrCodes] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
     async function fetchTickets() {
@@ -49,7 +52,31 @@ export default function ProfileTab() {
         }
 
         const data = await response.json();
-        setTickets(data.tickets || []);
+        const ticketsData = data.tickets || [];
+        setTickets(ticketsData);
+        
+        // Generate QR codes for each ticket
+        const newQrCodes: { [key: string]: string } = {};
+        for (const order of ticketsData) {
+          for (const ticket of order.tickets) {
+            if (ticket.secret) {
+              try {
+                const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+                  width: 200,
+                  margin: 1,
+                  color: {
+                    dark: '#000000',
+                    light: '#FFFFFF'
+                  }
+                });
+                newQrCodes[ticket.secret] = qrDataUrl;
+              } catch (qrErr) {
+                console.error('Error generating QR code:', qrErr);
+              }
+            }
+          }
+        }
+        setQrCodes(newQrCodes);
       } catch (err) {
         console.error('Error fetching tickets:', err);
         setTicketError(err instanceof Error ? err.message : 'Failed to load tickets');
@@ -98,22 +125,39 @@ export default function ProfileTab() {
                   </div>
                 </div>
                 
-                <div className="space-y-2">
+                <div className="space-y-4">
                   {order.tickets.map((ticket, idx) => (
-                    <div key={ticket.ticketId || idx} className="bg-gray-50 p-3 rounded">
-                      <div className="text-sm">
-                        <div className="font-medium">
-                          {ticket.attendeeName || 'No name provided'}
+                    <div key={ticket.secret || idx} className="bg-gray-50 p-4 rounded-lg">
+                      <div className="flex gap-4">
+                        <div className="flex-1">
+                          <div className="font-medium text-lg">
+                            {ticket.attendeeName || 'No name provided'}
+                          </div>
+                          <div className="text-gray-600 text-sm mt-1">
+                            {ticket.attendeeEmail}
+                          </div>
+                          <div className="text-gray-600 text-sm">
+                            {ticket.itemName}
+                          </div>
+                          <div className="text-gray-600 text-sm">
+                            Price: {ticket.price}
+                          </div>
+                          {ticket.secret && (
+                            <div className="text-xs text-gray-500 mt-2 font-mono break-all">
+                              {ticket.secret}
+                            </div>
+                          )}
                         </div>
-                        <div className="text-gray-600">
-                          {ticket.attendeeEmail}
-                        </div>
-                        <div className="text-gray-600">
-                          Price: {ticket.price}
-                        </div>
-                        {ticket.ticketId && (
-                          <div className="text-xs text-gray-500 mt-1">
-                            ID: {ticket.ticketId}
+                        {ticket.secret && qrCodes[ticket.secret] && (
+                          <div className="flex-shrink-0">
+                            <img 
+                              src={qrCodes[ticket.secret]} 
+                              alt="Ticket QR Code" 
+                              className="w-32 h-32 border-2 border-gray-300 rounded"
+                            />
+                            <div className="text-xs text-center text-gray-500 mt-1">
+                              Scan at venue
+                            </div>
                           </div>
                         )}
                       </div>

@@ -10,8 +10,6 @@ export async function GET(request: NextRequest) {
     return authResult.error
   }
 
-  console.log(authResult, 'authResult')
-
   const userEmail = authResult.user.email
   
   if (!userEmail) {
