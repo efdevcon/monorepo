@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
 import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
+import RipioOnrampButton from '@/components/RipioOnrampButton';
 import { useState, useRef } from 'react';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
@@ -680,6 +681,25 @@ export default function ConnectedWallet({
             className="text-blue-500"
           >
             staging details
+          </a>
+        </div>
+
+        <div className="flex flex-row gap-2 items-center">
+          <RipioOnrampButton
+            address={address}
+            className="cursor-pointer"
+            size="lg"
+            variant="outline"
+          >
+            🚀 Add Funds with Ripio
+          </RipioOnrampButton>
+          <a
+            href="https://b2b-widget-onramp.sandbox.ripio.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            sandbox
           </a>
         </div>
 

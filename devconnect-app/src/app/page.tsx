@@ -16,17 +16,25 @@ export default function HomePage() {
   });
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-md w-full">
-        {!isConnected ? (
-          <div className="m-6">
-            <Onboarding />
+    <>
+      {!isConnected ? (
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="max-w-md w-full">
+            <div className="m-6">
+              <Onboarding />
+            </div>
           </div>
-        ) : (
-          <ConnectedWallet address={address!} isPara={isPara} />
+        </div>
+              ) : (
+          <div className="min-h-screen bg-white w-full absolute top-0 left-0">
+            <div className="w-full flex flex-col items-center py-8 pb-20">
+              <div className="max-w-md w-full">
+                <ConnectedWallet address={address!} isPara={isPara} />
+              </div>
+            </div>
+          </div>
         )}
-      </div>
-    </div>
+    </>
   );
 }
 
