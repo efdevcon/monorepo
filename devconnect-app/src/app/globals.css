@@ -84,6 +84,31 @@ input, textarea, select {
   }
 }
 
+/* Prevent zooming on any interactive elements */
+button, a, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* Prevent zooming on the entire page */
+html, body {
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection in inputs only */
+input, textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 /* Hide scrollbars for webkit browsers */
 ::-webkit-scrollbar {
   display: none;
@@ -222,6 +247,15 @@ body {
   height: 100vh;
   min-height: 100vh;
   overscroll-behavior-y: contain;
+  /* Prevent zooming */
+  touch-action: manipulation;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Prevent iOS Safari zoom */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .fullscreen-container {
