@@ -110,7 +110,7 @@ export default function RootLayout({
           backgroundAttachment: 'fixed',
         }}
       >
-        <div className="fullscreen-container">
+        <div className="fullscreen-container flex flex-col justify-center">
           {hasSupabase ? (
             <Auth>
               <SkippedProvider>
