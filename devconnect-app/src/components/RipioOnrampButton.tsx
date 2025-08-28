@@ -4,6 +4,15 @@ import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { toast } from 'sonner';
 
+// Generate a valid UUID v4 (required by Ripio API)
+function generateUUID(): string {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+
 interface RipioOnrampButtonProps {
   address: string;
   className?: string;
@@ -80,21 +89,18 @@ export default function RipioOnrampButton({
     setIsLoading(true);
 
     try {
-      // Generate a unique external reference for this session
-      const externalRef = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      // Generate a unique external reference for this session (must be UUID v4 for Ripio API)
+      const externalRef = generateUUID();
       
       // Generate authentication token
       const authToken = await generateAuthToken(externalRef);
 
-      // Build the Ripio widget URL with parameters
-      const currentDomain = window.location.origin;
-      const redirectUrl = `${currentDomain}/onramp?type=ripio&confirm=true`;
-      
+      // Build the Ripio widget URL with parameters (as per official docs)
       const widgetUrl = new URL(RIPIO_CONFIG.widgetUrl);
       widgetUrl.searchParams.set('_to', authToken);
       widgetUrl.searchParams.set('_addr', address);
-      widgetUrl.searchParams.set('_net', 'ETHEREUM');
-      widgetUrl.searchParams.set('_amount', '1000'); // Default amount in ARS
+      widgetUrl.searchParams.set('_net', 'ETHEREUM_SEPOLIA');
+      widgetUrl.searchParams.set('_amount', '2100'); // Default amount in ARS
       widgetUrl.searchParams.set('_crypto', 'USDT');
       widgetUrl.searchParams.set('_tracking_session', externalRef);
 

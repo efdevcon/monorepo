@@ -5,7 +5,7 @@ const RIPIO_CONFIG = {
   clientId: process.env.RIPIO_CLIENT_ID || 'your_client_id_here',
   clientSecret: process.env.RIPIO_CLIENT_SECRET || 'your_client_secret_here',
   baseUrl: process.env.RIPIO_ENV === 'production' 
-    ? 'https://b2b-widget-onramp-api.ripio.com' 
+    ? 'https://b2b-widget-onramp-api.ripio.com'
     : 'https://b2b-widget-onramp-api.sandbox.ripio.com',
 };
 
@@ -20,20 +20,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create Basic Auth header with Base64 encoded credentials
-    const credentials = `${RIPIO_CONFIG.clientId}:${RIPIO_CONFIG.clientSecret}`;
-    const base64Credentials = Buffer.from(credentials).toString('base64');
+    // Create username as client_id:external_ref (as per Ripio docs)
+    const username = `${RIPIO_CONFIG.clientId}:${externalRef}`;
 
-    // Make request to Ripio OAuth2 token endpoint
+    // Make request to Ripio auth endpoint
     const formData = new URLSearchParams();
-    formData.append('grant_type', 'client_credentials');
-    formData.append('client_id', RIPIO_CONFIG.clientId);
-    formData.append('client_secret', RIPIO_CONFIG.clientSecret);
+    formData.append('username', username);
+    formData.append('password', RIPIO_CONFIG.clientSecret);
 
-    const response = await fetch(`${RIPIO_CONFIG.baseUrl}/oauth2/token/`, {
+    const response = await fetch(`${RIPIO_CONFIG.baseUrl}/api/v1/auth`, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${base64Credentials}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: formData,
@@ -54,7 +51,7 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
 
     // Validate the response
-    if (!data.access_token) {
+    if (!data.succeed || !data.token) {
       return NextResponse.json(
         { error: 'Invalid response from Ripio API' },
         { status: 500 }
@@ -63,10 +60,9 @@ export async function POST(request: NextRequest) {
 
     // Return the access token and related info
     return NextResponse.json({
-      access_token: data.access_token,
-      expires_in: data.expires_in,
+      access_token: data.token,
       token_type: data.token_type,
-      scope: data.scope,
+      succeed: data.succeed,
     });
 
   } catch (error) {
