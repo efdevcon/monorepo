@@ -30,7 +30,7 @@ const connectors: CreateConnectorFn[] = [
   // Para connector for email authentication
   paraConnector({
     appName: APP_NAME,
-    nameOverride: "Connect with email via Para",
+    nameOverride: "Email (Para)",
     // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
     authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
     chains: [base, optimism, arbitrum],

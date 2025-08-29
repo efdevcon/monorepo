@@ -31,40 +31,43 @@ interface ConnectedWalletProps {
 
 export default function ConnectedWallet({
   address,
-  isPara,
+  isPara: propIsPara,
 }: ConnectedWalletProps) {
   const { open } = useAppKit();
   const { disconnect: appKitDisconnect } = useAppKitDisconnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
-  const { signMessageAsync, isPending: isSigning } = useSignMessage();
+  const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
   // const account = useAccount();
   const connections = useConnectorClient();
   const { connect, connectors: allConnectors } = useConnect();
 
-  // console.log('account', account);
-  console.log('connections', connections);
-  console.log('all connectors', allConnectors);
-
   // Unified connection hook for Para SDK integration
   const {
-    ensureWagmiConnection,
-    isFullyConnected,
+    isConnected,
+    address: hookAddress,
+    isPara,
+    wagmiAccount,
+    isWagmiConnected,
+    paraAccount,
+    paraWallet,
+    isParaConnected,
+    connectors,
+    switchableConnectors,
+    paraConnector,
+    primaryConnector,
+    primaryConnectorId,
+    switchPrimaryConnector,
+    handleSwitchAccount,
+    handleConnectToWallet: hookConnectToWallet,
+    handleSignMessage: hookSignMessage,
+    isSigning,
     siweState,
     siweEnabled,
     handleSiweSignIn,
-    handleSignMessage: hookSignMessage,
     disconnect: hookDisconnect,
-    recoverParaConnection,
-    paraSDKConnected,
-    wagmiParaConnected,
-    selectedAccount,
-    selectedAccountType,
-    switchableConnectors,
-    handleSwitchAccount,
-    handleConnectToWallet: hookConnectToWallet,
-    wagmiAccount,
+    ensureParaWagmiConnection,
   } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
@@ -412,26 +415,17 @@ export default function ConnectedWallet({
     }
 
     console.log('Address:', address);
-    console.log('Selected Account Type:', selectedAccountType);
+    console.log('Primary Connector ID:', primaryConnectorId);
     console.log('Is Para wallet:', isPara);
 
     // Replace with your message
     const message = 'Hello, Devconnect!';
 
-    // Determine the actual account type to use for signing
-    const signingAccountType = selectedAccountType || (isPara ? 'para' : 'wagmi');
-    console.log('Signing with account type:', signingAccountType);
-
     try {
-      console.log('Using wagmi for wallet signing');
-
-      // Ensure wagmi is connected if using Para SDK
-      if (signingAccountType === 'para') {
-        await ensureWagmiConnection();
-      }
+      console.log('Using primary connector for signing:', primaryConnector?.id);
 
       // Only show interactive toast for non-Para wallets
-      if (signingAccountType !== 'para') {
+      if (!isPara) {
         // Reset cancel flag and set up abort controller for cancellation
         cancelRef.current = false;
         abortControllerRef.current = new AbortController();
@@ -470,43 +464,27 @@ export default function ConnectedWallet({
         );
       }
 
-      // Start the signing process with cancellation check
-      // Use the correct connector for signing based on the selected account type
+      // Start the signing process using the primary connector
       let signature;
-      
-      // Find the active connector based on the selected account type
-      let activeConnector = null;
-      
-      if (signingAccountType === 'para') {
-        // For Para, find the Para connector
-        activeConnector = switchableConnectors?.find(c => c.id === 'para' || c.id === 'getpara');
-        console.log('Para signing - found connector:', activeConnector?.id);
+
+      if (primaryConnector) {
+        console.log('Signing with primary connector:', primaryConnector.id);
+        signature = await signMessageAsync({
+          message,
+          connector: primaryConnector,
+        });
       } else {
-        // For other wallets, find the current active connector
-        activeConnector = switchableConnectors?.find(c => 
-          c.id === wagmiAccount.connector?.id || 
-          (c.id === 'injected' && wagmiAccount.connector?.id === 'injected') ||
-          (c.id === 'walletConnect' && wagmiAccount.connector?.id === 'walletConnect') ||
-          (c.id === 'coinbaseWalletSDK' && wagmiAccount.connector?.id === 'coinbaseWallet')
-        );
-        console.log('Standard wallet signing - found connector:', activeConnector?.id, 'wagmi connector:', wagmiAccount.connector?.id);
-      }
-      
-      if (activeConnector) {
-        console.log('Signing with connector:', activeConnector.id);
-        signature = await signMessageAsync({ message, connector: activeConnector });
-      } else {
-        console.log('No specific connector found, using default signing');
+        console.log('No primary connector found, using default signing');
         signature = await signMessageAsync({ message });
       }
 
       // Check if the process was cancelled
-      if (signingAccountType !== 'para' && cancelRef.current) {
+      if (!isPara && cancelRef.current) {
         throw new Error('Signing cancelled by user');
       }
 
       // Clear the pending state (only if we set it)
-      if (signingAccountType !== 'para') {
+      if (!isPara) {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -518,7 +496,12 @@ export default function ConnectedWallet({
       }
 
       console.log('Wagmi signature result:', signature);
-      console.log('Verifying signature for address:', address, 'with account type:', signingAccountType);
+      console.log(
+        'Verifying signature for address:',
+        address,
+        'with primary connector:',
+        primaryConnector?.id
+      );
 
       // Show notification with signature and verification
       const isValidFormat = await verifySignature({
@@ -534,7 +517,10 @@ export default function ConnectedWallet({
             ✅ Message Signed Successfully!
           </div>
           <div className="text-sm text-green-700">
-            <div className="font-medium">Account Type: {signingAccountType}</div>
+            <div className="font-medium">
+              Primary Connector:{' '}
+              {primaryConnector?.name || primaryConnector?.id}
+            </div>
             <div className="font-medium">Signature:</div>
             <div className="font-mono text-xs bg-green-50 p-2 rounded border">
               {truncatedSig}
@@ -562,7 +548,7 @@ export default function ConnectedWallet({
       );
     } catch (err) {
       // Clear the pending state (only if we set it for non-Para wallets)
-      if (signingAccountType !== 'para') {
+      if (!isPara) {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -573,7 +559,7 @@ export default function ConnectedWallet({
 
       // Don't show error toast if user cancelled (only for non-Para wallets)
       if (
-        signingAccountType !== 'para' &&
+        !isPara &&
         (errorMessage.includes('aborted') ||
           errorMessage.includes('cancelled') ||
           errorMessage.includes('Signing cancelled by user'))
@@ -710,20 +696,11 @@ export default function ConnectedWallet({
 
         {/* Connection Status */}
         <div className="text-xs text-gray-500 mb-2">
-          <div>
-            Connection Type:{' '}
-            {selectedAccountType
-              ? selectedAccountType === 'para'
-                ? 'Para'
-                : 'Standard'
-              : isPara
-                ? 'Para'
-                : 'Standard'}
-          </div>
-          <div>Fully Connected: {isFullyConnected ? '✅ Yes' : '❌ No'}</div>
-          {selectedAccount && (
+          <div>Connection Type: {isPara ? 'Para' : 'Standard'}</div>
+          <div>Connected: {isConnected ? '✅ Yes' : '❌ No'}</div>
+          {primaryConnectorId && (
             <div className="text-green-600 font-medium">
-              Selected Account: {selectedAccount} ({selectedAccountType})
+              Primary Connector: {primaryConnector?.name || primaryConnectorId}
             </div>
           )}
           {siweEnabled && (
@@ -739,16 +716,14 @@ export default function ConnectedWallet({
             </div>
           )}
           {/* Debug information for Para connections */}
-          {(selectedAccountType === 'para' ||
-            (!selectedAccountType && isPara)) && (
+          {isPara && (
             <>
               <div>
-                Para SDK:{' '}
-                {paraSDKConnected ? '✅ Connected' : '❌ Disconnected'}
+                Para SDK: {isParaConnected ? '✅ Connected' : '❌ Disconnected'}
               </div>
               <div>
                 Wagmi Para:{' '}
-                {wagmiParaConnected ? '✅ Connected' : '❌ Disconnected'}
+                {isWagmiConnected ? '✅ Connected' : '❌ Disconnected'}
               </div>
             </>
           )}
@@ -766,13 +741,8 @@ export default function ConnectedWallet({
             </h3>
             <div className="space-y-2">
               {switchableConnectors.map((connector: any) => {
-                // Check if this connector is currently selected
-                const isSelected =
-                  selectedAccount &&
-                  (connector.id === 'para' || connector.id === 'getpara'
-                    ? selectedAccountType === 'para'
-                    : selectedAccountType === 'wagmi' &&
-                      wagmiAccount.address === selectedAccount);
+                // Check if this connector is currently the primary connector
+                const isSelected = connector.id === primaryConnectorId;
 
                 return (
                   <Button
@@ -975,22 +945,85 @@ export default function ConnectedWallet({
         </div>
 
         {/* Debug button for connection issues */}
-        {!isPara && (paraSDKConnected || wagmiParaConnected) && (
+        {!isPara && isParaConnected && (
           <Button
             onClick={async () => {
               console.log('Connection debug info:', {
                 isPara,
-                paraSDKConnected,
-                wagmiParaConnected,
+                isParaConnected,
+                isWagmiConnected,
                 address,
               });
-              await recoverParaConnection();
+              // No more recovery function needed with new logic
+              console.log('Para detection is now handled automatically');
             }}
             className="w-full cursor-pointer"
             size="lg"
             variant="secondary"
           >
-            🔧 Fix Para Detection
+            🔧 Para Connection Info
+          </Button>
+        )}
+
+        {/* Para Wagmi Connection Recovery Button */}
+        {isPara && isParaConnected && !isWagmiConnected && (
+          <Button
+            onClick={async () => {
+              console.log('Attempting to restore Para wagmi connection...');
+              const success = await ensureParaWagmiConnection();
+              if (success) {
+                toast.success(
+                  <div className="space-y-2">
+                    <div className="font-semibold text-green-800">
+                      ✅ Para Connection Restored
+                    </div>
+                    <div className="text-sm text-green-700">
+                      Para is now properly connected to wagmi.
+                    </div>
+                  </div>,
+                  {
+                    duration: 3000,
+                    dismissible: true,
+                    closeButton: true,
+                    style: {
+                      background:
+                        'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+                      border: '1px solid #bbf7d0',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    },
+                  }
+                );
+              } else {
+                toast.error(
+                  <div className="space-y-2">
+                    <div className="font-semibold text-red-800">
+                      ❌ Connection Failed
+                    </div>
+                    <div className="text-sm text-red-700">
+                      Failed to restore Para wagmi connection.
+                    </div>
+                  </div>,
+                  {
+                    duration: 4000,
+                    dismissible: true,
+                    closeButton: true,
+                    style: {
+                      background:
+                        'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+                      border: '1px solid #fecaca',
+                      borderRadius: '8px',
+                      boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                    },
+                  }
+                );
+              }
+            }}
+            className="w-full cursor-pointer"
+            size="lg"
+            variant="secondary"
+          >
+            🔧 Restore Para Wagmi Connection
           </Button>
         )}
 
