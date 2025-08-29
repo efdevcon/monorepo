@@ -16,6 +16,7 @@ import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
 import VoxelButton from "lib/components/voxel-button/button";
+import { convert } from "html-to-text";
 
 type EventProps = {
   event: EventType;
@@ -240,7 +241,7 @@ const Event: React.FC<EventProps> = ({
                 ))} */}
               {/* </div> */}
 
-              <div className="text-sm">{event.description}</div>
+              <div className="text-sm">{convert(event.description)}</div>
 
               {/* <Link href={event.eventLink} className="self-start">
                 <VoxelButton
