@@ -32,7 +32,7 @@ const connectors: CreateConnectorFn[] = [
     appName: APP_NAME,
     nameOverride: "Email (Para)",
     // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
-    authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
+    authLayout: ["AUTH:FULL"],
     chains: [base, optimism, arbitrum],
     disableEmailLogin: false,
     disablePhoneLogin: true,

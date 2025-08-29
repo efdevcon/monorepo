@@ -1,8 +1,8 @@
-import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount } from 'wagmi';
+import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount, useConnections } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { appKit } from '@/config/appkit';
 
 export function useUnifiedConnection() {
@@ -15,10 +15,12 @@ export function useUnifiedConnection() {
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { connectors: switchableConnectors, switchAccount } = useSwitchAccount();
+  const connections = useConnections(); // Added to track all active connections
 
   // Para SDK hooks - for Para-specific functionality
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
+  const { disconnect: paraDisconnect } = useDisconnect();
 
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
@@ -32,11 +34,13 @@ export function useUnifiedConnection() {
   // Primary connector state - this determines which connector is active for signing
   const [primaryConnectorId, setPrimaryConnectorId] = useState<string | null>(null);
 
-  // Find the Para connector (always required)
-  const paraConnector = connectors.find(c => c.id === 'para' || c.id === 'getpara');
+  // Memoized Para connector
+  const paraConnector = useMemo(() => connectors.find(c => c.id === 'para' || c.id === 'getpara'), [connectors]);
 
-  // Find the current primary connector
-  const primaryConnector = connectors.find(c => c.id === primaryConnectorId) || paraConnector;
+  // console.log('connectors', connectors);
+
+  // Current primary connector
+  const primaryConnector = useMemo(() => connectors.find(c => c.id === primaryConnectorId) || paraConnector, [connectors, primaryConnectorId, paraConnector]);
 
   // Determine connection status
   const isWagmiConnected = wagmiAccount.isConnected;
@@ -59,25 +63,16 @@ export function useUnifiedConnection() {
     }
   }, [paraConnector, primaryConnectorId]);
 
-  // Ensure Para is connected to wagmi when Para SDK is connected
+  // Sync Para connection to Wagmi
   useEffect(() => {
-    if (isParaConnected && !isWagmiConnected && paraConnector) {
-      console.log('Para SDK connected but wagmi not connected, connecting Para to wagmi...');
-
-      // Connect Para connector to wagmi
-      const connectParaToWagmi = async () => {
-        try {
-          await connect({ connector: paraConnector });
-          console.log('Para successfully connected to wagmi');
-        } catch (error) {
-          console.error('Failed to connect Para to wagmi:', error);
-        }
-      };
-
-      // Small delay to allow for state propagation
-      setTimeout(connectParaToWagmi, 500);
+    if (isParaConnected && paraConnector) {
+      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
+      if (!isParaWagmiConnected) {
+        console.log('Para SDK connected but not in Wagmi connections, connecting Para to wagmi...');
+        connect({ connector: paraConnector });
+      }
     }
-  }, [isParaConnected, isWagmiConnected, paraConnector, connect]);
+  }, [isParaConnected, paraConnector, connect, connections]);
 
   // Monitor connection state changes
   useEffect(() => {
@@ -102,10 +97,15 @@ export function useUnifiedConnection() {
         throw new Error(`Connector ${connectorId} not found`);
       }
 
-      // If switching to a different connector, connect to it first
-      if (connectorId !== wagmiAccount.connector?.id) {
+      // Check if already connected
+      const isAlreadyConnected = connections.some(conn => conn.connector.id === connectorId);
+
+      if (!isAlreadyConnected) {
         console.log('Connecting to new connector:', connectorId);
         await connect({ connector });
+      } else if (connectorId !== wagmiAccount.connector?.id) {
+        console.log('Switching to existing connector:', connectorId);
+        await switchAccount({ connector });
       }
 
       // Set as primary
@@ -163,12 +163,13 @@ export function useUnifiedConnection() {
     }
 
     try {
-      if (isParaConnected && !isWagmiConnected) {
+      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
+      if (isParaConnected && !isParaWagmiConnected) {
         console.log('Ensuring Para is connected to wagmi...');
         await connect({ connector: paraConnector });
         console.log('Para successfully connected to wagmi');
         return true;
-      } else if (isWagmiConnected) {
+      } else if (isParaWagmiConnected) {
         console.log('Para is already connected to wagmi');
         return true;
       } else {
@@ -190,6 +191,9 @@ export function useUnifiedConnection() {
       // Disconnect from wagmi
       await disconnect();
 
+      // Optionally disconnect Para SDK if method exists (assuming it does; adjust as needed)
+      paraDisconnect();
+
       console.log('Disconnected and cleared primary connector');
     } catch (error) {
       console.error('Disconnect failed:', error);
@@ -206,16 +210,18 @@ export function useUnifiedConnection() {
 
       console.log('Signing message with primary connector:', primaryConnector.id);
 
-      // If Para is the primary connector, ensure it's connected to wagmi
-      if (primaryConnector.id === 'para' || primaryConnector.id === 'getpara') {
+      // Ensure primary is active
+      if (primaryConnector.id !== wagmiAccount.connector?.id) {
+        await switchPrimaryConnector(primaryConnector.id);
+      }
+
+      // If Para is the primary connector, ensure it's connected
+      if (isPara) {
         await ensureParaWagmiConnection();
       }
 
-      // Sign using the primary connector
-      const signature = await signMessageAsync({
-        message,
-        connector: primaryConnector
-      });
+      // Sign using the active connector (no 'connector' param needed)
+      const signature = await signMessageAsync({ message });
 
       console.log('Message signed successfully with connector:', primaryConnector.id);
       return signature;
@@ -260,6 +266,7 @@ export function useUnifiedConnection() {
     const uri = window.location.origin;
     const issuedAt = new Date().toISOString();
     const nonce = Math.random().toString(36).substring(2, 15);
+    const chainId = wagmiAccount.chainId ?? 8453; // Dynamic chain ID, fallback to 8453
 
     const message = `${domain} wants you to sign in with your Ethereum account:
 ${address}
@@ -268,7 +275,7 @@ Sign in with Ethereum to the app.
 
 URI: ${uri}
 Version: 1
-Chain ID: 8453
+Chain ID: ${chainId}
 Nonce: ${nonce}
 Issued At: ${issuedAt}`;
 
@@ -296,11 +303,11 @@ Issued At: ${issuedAt}`;
     wagmiAccount,
     isWagmiConnected,
 
-      // Para state
-  paraAccount,
-  paraWallet,
-  isParaConnected,
-  paraEmail: paraAccount?.embedded?.email || null,
+    // Para state
+    paraAccount,
+    paraWallet,
+    isParaConnected,
+    paraEmail: paraAccount?.embedded?.email || null,
 
     // Connectors
     connectors,
@@ -340,4 +347,4 @@ Issued At: ${issuedAt}`;
     shouldRedirectToOnboarding,
     shouldShowNavigation,
   };
-} 
+}
