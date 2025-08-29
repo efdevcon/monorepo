@@ -296,10 +296,11 @@ Issued At: ${issuedAt}`;
     wagmiAccount,
     isWagmiConnected,
 
-    // Para state
-    paraAccount,
-    paraWallet,
-    isParaConnected,
+      // Para state
+  paraAccount,
+  paraWallet,
+  isParaConnected,
+  paraEmail: paraAccount?.embedded?.email || null,
 
     // Connectors
     connectors,

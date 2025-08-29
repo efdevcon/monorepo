@@ -26,22 +26,15 @@ import { ZupassProvider } from '@/context/ZupassProvider';
 
 interface ConnectedWalletProps {
   address: string;
-  isPara: boolean;
 }
 
-export default function ConnectedWallet({
-  address,
-  isPara: propIsPara,
-}: ConnectedWalletProps) {
+export default function ConnectedWallet({ address }: ConnectedWalletProps) {
   const { open } = useAppKit();
   const { disconnect: appKitDisconnect } = useAppKitDisconnect();
   const { disconnect: wagmiDisconnect } = useDisconnect();
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
-  // const account = useAccount();
-  const connections = useConnectorClient();
-  const { connect, connectors: allConnectors } = useConnect();
 
   // Unified connection hook for Para SDK integration
   const {
@@ -68,6 +61,7 @@ export default function ConnectedWallet({
     handleSiweSignIn,
     disconnect: hookDisconnect,
     ensureParaWagmiConnection,
+    paraEmail,
   } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
@@ -727,6 +721,7 @@ export default function ConnectedWallet({
               </div>
             </>
           )}
+          {paraEmail && <div>Email: {paraEmail}</div>}
           {/* <div>
             Wagmi accounts:{' '}
             {JSON.stringify(connectors?.map((connector) => connector.address))}
