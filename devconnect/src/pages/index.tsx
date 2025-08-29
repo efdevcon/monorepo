@@ -1070,13 +1070,17 @@ const Home: NextPage = (props: any) => {
           </div>
 
           <div className={`section relative bg-white`}>
+            <div
+              className="absolute top-[-50px] left-0 w-full h-[1px] bg-black pointer-events-none opacity-0"
+              id="faq"
+            ></div>
             <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
                 <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
               </div>
 
-              <div className={`${css['accordion']} tab-content`} id="faq">
+              <div className={`${css['accordion']} tab-content`}>
                 <FAQComponent questions={data.pages.faq} />
               </div>
             </div>

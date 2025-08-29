@@ -279,11 +279,7 @@ const NewScheduleIndex = ({
             className="h-full object-contain w-[500px] max-w-[calc(100%-32px)] mx-4 my-4 mt-2"
           />
           <div className="text-gray-400 py-3 text-center flex justify-center items-center">
-            {events.length === 0
-              ? isCommunityCalendar
-                ? "Community events coming soon!"
-                : "No events match this filter"
-              : ""}
+            {events.length === 0 && "No events match this filter"}
           </div>
         </div>
       )}
