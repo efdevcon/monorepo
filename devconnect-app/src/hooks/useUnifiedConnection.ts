@@ -5,6 +5,84 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useMemo, useState, useRef } from 'react';
 import { appKit } from '@/config/appkit';
 
+// Global initialization flags shared across all hook instances
+// This prevents multiple instances from competing during initialization
+let globalInitialized = false;
+let globalHasSetPrimaryConnector = false;
+
+// Constants for localStorage persistence
+const PRIMARY_CONNECTOR_KEY = 'devconnect_primary_connector';
+const PRIMARY_CONNECTOR_TIMESTAMP_KEY = 'devconnect_primary_connector_timestamp';
+const CONNECTOR_EXPIRY_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
+
+// Utility functions for localStorage persistence
+const savePrimaryConnectorToStorage = (connectorId: string | null) => {
+  try {
+    if (typeof window !== 'undefined') {
+      if (connectorId) {
+        localStorage.setItem(PRIMARY_CONNECTOR_KEY, connectorId);
+        localStorage.setItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY, Date.now().toString());
+        console.log('💾 [STORAGE] Saved primary connector to localStorage:', connectorId);
+      } else {
+        localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
+        localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+        console.log('💾 [STORAGE] Cleared primary connector from localStorage');
+      }
+    }
+  } catch (error) {
+    console.error('Failed to save primary connector to localStorage:', error);
+  }
+};
+
+const loadPrimaryConnectorFromStorage = (availableConnectors?: readonly any[]): string | null => {
+  try {
+    if (typeof window !== 'undefined') {
+      const savedConnector = localStorage.getItem(PRIMARY_CONNECTOR_KEY);
+      const savedTimestamp = localStorage.getItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+      
+      if (savedConnector && savedTimestamp) {
+        const timestamp = parseInt(savedTimestamp);
+        const now = Date.now();
+        
+        // Check if the saved connector is still valid (not expired)
+        if (now - timestamp < CONNECTOR_EXPIRY_TIME) {
+          // If connectors list is provided, validate that the saved connector is still available
+          if (availableConnectors && availableConnectors.length > 0) {
+            const isConnectorAvailable = availableConnectors.some(
+              conn => conn.id === savedConnector
+            );
+            
+            if (!isConnectorAvailable) {
+              console.log('💾 [STORAGE] Saved connector no longer available, clearing:', savedConnector);
+              localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
+              localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+              return null;
+            }
+          }
+          
+          console.log('💾 [STORAGE] Loaded primary connector from localStorage:', savedConnector);
+          return savedConnector;
+        } else {
+          // Clear expired data
+          localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
+          localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+          console.log('💾 [STORAGE] Cleared expired primary connector from localStorage');
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load primary connector from localStorage:', error);
+    // Clear potentially corrupted data
+    try {
+      localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
+      localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+    } catch (clearError) {
+      console.error('Failed to clear corrupted localStorage data:', clearError);
+    }
+  }
+  return null;
+};
+
 export function useUnifiedConnection() {
   // SIWE configuration - set to false to disable SIWE verification
   const SIWE_ENABLED = false;
@@ -32,8 +110,44 @@ export function useUnifiedConnection() {
   const [siweSignature, setSiweSignature] = useState('');
 
   // Primary connector state - this determines which connector is active for signing
-  const [primaryConnectorId, setPrimaryConnectorId] = useState<string | null>(null);
-  const hasSetPrimaryConnector = useRef(false);
+  // Initialize with saved value from localStorage if available
+  const [primaryConnectorId, _setPrimaryConnectorId] = useState<string | null>(() => {
+    // Only try to load from localStorage on the client side
+    if (typeof window !== 'undefined') {
+      const saved = loadPrimaryConnectorFromStorage();
+      if (saved) {
+        console.log('🔄 [INIT] Initializing with saved primary connector:', saved);
+        // Set global flags since we're restoring from storage
+        globalInitialized = true;
+        globalHasSetPrimaryConnector = true;
+        return saved;
+      }
+    }
+    return null;
+  });
+  // Note: Using global flags instead of per-instance refs to prevent multiple hook instances from competing
+  const intendedPrimaryConnector = useRef<string | null>(primaryConnectorId);
+
+  // Wrapper to log all setPrimaryConnectorId calls and persist to localStorage
+  const setPrimaryConnectorId = (value: string | null) => {
+    console.log('🔧 [SET_PRIMARY] Setting primaryConnectorId:', {
+      from: primaryConnectorId,
+      to: value,
+      intended: intendedPrimaryConnector.current,
+      stack: new Error().stack?.split('\n')[2]?.trim()
+    });
+
+    // Update the intended value immediately
+    intendedPrimaryConnector.current = value;
+
+    // Only update state if it's actually different
+    if (primaryConnectorId !== value) {
+      _setPrimaryConnectorId(value);
+      
+      // Persist to localStorage for page refresh restoration
+      savePrimaryConnectorToStorage(value);
+    }
+  };
 
     // Memoized Para connector
   const paraConnector = useMemo(() => connectors.find(c => c.id === 'para' || c.id === 'getpara'), [connectors]);
@@ -65,80 +179,110 @@ export function useUnifiedConnection() {
   }, [connectors, primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
 
   // The primary connection is always wagmi-based
-  const isConnected = isWagmiConnected && wagmiAccount.address;
+  const isConnected = isWagmiConnected && !!wagmiAccount.address;
   
-  // Get the active address (always from wagmi)
-  const address = wagmiAccount.address;
+  // Get the active address (only when actually connected)
+  const address = isConnected ? wagmiAccount.address : undefined;
 
   // Determine if Para is the primary connector
   const isPara = useMemo(() => {
-    // If we have a primary connector ID, check if it's Para
+    // Primary source of truth: if we have a primary connector ID, use that
     if (primaryConnectorId) {
       return primaryConnectorId === 'para' || primaryConnectorId === 'getpara';
     }
     
-    // If no primary connector is set, check current wagmi connection
+    // Secondary: check current wagmi connection
     if (wagmiAccount.connector) {
       const connectorId = wagmiAccount.connector.id;
       return connectorId === 'para' || connectorId === 'getpara';
     }
     
-    // Only consider Para as primary if it's connected and no wagmi connection exists
-    return paraConnector && isParaConnected && !wagmiAccount.connector;
-  }, [primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
+    // Fallback: only if Para is connected and no other connection exists
+    return false; // Be more conservative to avoid inconsistencies
+  }, [primaryConnectorId, wagmiAccount.connector]);
 
-  // Set initial primary connector when Para is available
+  // Consolidated primary connector management - handles both initialization and restoration
   useEffect(() => {
-    if (paraConnector && !primaryConnectorId) {
-      setPrimaryConnectorId(paraConnector.id);
-      console.log('Setting Para as primary connector');
-    }
-  }, [paraConnector, primaryConnectorId]);
-
-  // Sync external wallet connection state to primary connector
-  useEffect(() => {
-    // If we have a wagmi connection but no primary connector set, set it
-    if (wagmiAccount.connector && !primaryConnectorId) {
-      const connectorId = wagmiAccount.connector.id;
-      // Don't auto-set Para as primary if user explicitly connected to external wallet
-      if (connectorId !== 'para' && connectorId !== 'getpara') {
-        setPrimaryConnectorId(connectorId);
-        console.log('Setting external wallet as primary connector:', connectorId);
-      }
-    }
-  }, [wagmiAccount.connector, primaryConnectorId]);
-
-  // Consolidated primary connector management
-  useEffect(() => {
-    // If we already have a primary connector set, don't change it
-    if (primaryConnectorId || hasSetPrimaryConnector.current) {
+    // Skip if already initialized globally to prevent multiple hook instances from competing
+    if (globalInitialized) {
       return;
     }
 
-    // Priority 1: Restore from existing wagmi connection (for page refresh)
-    if (wagmiAccount.connector) {
+    // Priority 1: Restore from localStorage (highest priority for user preference persistence)
+    const savedConnector = loadPrimaryConnectorFromStorage(connectors);
+    if (savedConnector && !primaryConnectorId && !intendedPrimaryConnector.current) {
+      console.log('🔄 [INIT] Restoring primary connector from localStorage:', savedConnector, {
+        globalInitialized,
+        globalHasSetPrimaryConnector,
+        currentPrimaryConnectorId: primaryConnectorId,
+        intendedPrimaryConnector: intendedPrimaryConnector.current
+      });
+
+      // Set global flags IMMEDIATELY to prevent race conditions across hook instances
+      globalInitialized = true;
+      globalHasSetPrimaryConnector = true;
+      intendedPrimaryConnector.current = savedConnector;
+
+      setPrimaryConnectorId(savedConnector);
+      return;
+    }
+
+    // Priority 2: Restore from existing wagmi connection (for page refresh without localStorage)
+    if (wagmiAccount.connector && !primaryConnectorId && !intendedPrimaryConnector.current) {
       const connectorId = wagmiAccount.connector.id;
+      console.log('🔄 [INIT] Restoring primary connector from wagmi connection:', connectorId, {
+        globalInitialized,
+        globalHasSetPrimaryConnector,
+        currentPrimaryConnectorId: primaryConnectorId,
+        intendedPrimaryConnector: intendedPrimaryConnector.current
+      });
+
+      // Set global flags IMMEDIATELY to prevent race conditions across hook instances
+      globalInitialized = true;
+      globalHasSetPrimaryConnector = true;
+      intendedPrimaryConnector.current = connectorId;
+
       setPrimaryConnectorId(connectorId);
-      hasSetPrimaryConnector.current = true;
-      console.log('Restoring primary connector from wagmi connection:', connectorId);
       return;
     }
 
-    // Priority 2: Set Para as primary only if no wagmi connection exists
-    if (paraConnector && !wagmiAccount.connector) {
+    // Priority 3: Set Para as primary only if no wagmi connection exists and no primary connector is set
+    if (paraConnector && !wagmiAccount.connector && !primaryConnectorId && !intendedPrimaryConnector.current && !globalHasSetPrimaryConnector) {
+      console.log('🔄 [INIT] Setting Para as primary connector (no existing wagmi connection)', {
+        globalInitialized,
+        globalHasSetPrimaryConnector,
+        currentPrimaryConnectorId: primaryConnectorId,
+        intendedPrimaryConnector: intendedPrimaryConnector.current
+      });
+
+      // Set global flags IMMEDIATELY to prevent race conditions across hook instances
+      globalInitialized = true;
+      globalHasSetPrimaryConnector = true;
+      intendedPrimaryConnector.current = paraConnector.id;
+
       setPrimaryConnectorId(paraConnector.id);
-      hasSetPrimaryConnector.current = true;
-      console.log('Setting Para as primary connector (no existing wagmi connection)');
       return;
     }
-  }, [wagmiAccount.connector, paraConnector, primaryConnectorId]);
 
-  // Reset the ref when primary connector changes (allows for updates when needed)
-  useEffect(() => {
-    if (primaryConnectorId) {
-      hasSetPrimaryConnector.current = false;
+    // Mark as initialized globally even if no connector is set to prevent repeated attempts
+    if (connectors.length > 0) {
+      globalInitialized = true;
     }
-  }, [primaryConnectorId]);
+  }, [wagmiAccount.connector, paraConnector, connectors.length]);
+
+  // Note: Removed the effect that reset hasSetPrimaryConnector.current when primaryConnectorId becomes null
+  // This was causing interference with the restoration process
+
+  // Reset global initialization flags only when explicitly disconnecting (not during page refresh)
+  useEffect(() => {
+    // Only reset if we were previously connected and now both are null AND we're not connected at all
+    // This prevents reset during page refresh when values are temporarily null
+    if (!wagmiAccount.connector && !primaryConnectorId && !wagmiAccount.isConnecting && !wagmiAccount.isReconnecting && !wagmiAccount.isConnected) {
+      globalInitialized = false;
+      globalHasSetPrimaryConnector = false;
+      intendedPrimaryConnector.current = null;
+    }
+  }, [wagmiAccount.connector, primaryConnectorId, wagmiAccount.isConnecting, wagmiAccount.isReconnecting, wagmiAccount.isConnected]);
 
   // Sync Para connection to Wagmi
   useEffect(() => {
@@ -151,26 +295,32 @@ export function useUnifiedConnection() {
     }
   }, [isParaConnected, paraConnector, connect, connections]);
 
-  // Monitor connection state changes
+  // Monitor connection state changes (reduced logging)
   useEffect(() => {
-    console.log('Connection state:', {
-      isConnected,
-      address,
-      primaryConnectorId,
-      isPara,
-      wagmiConnector: wagmiAccount.connector?.id,
-      paraConnected: isParaConnected
-    });
-  }, [isConnected, address, primaryConnectorId, isPara, wagmiAccount.connector?.id, isParaConnected]);
+    // Only log when there are meaningful changes
+    if (isConnected && address) {
+      console.log('Connection state:', {
+        isConnected,
+        address,
+        primaryConnectorId,
+        isPara,
+        wagmiConnector: wagmiAccount.connector?.id
+      });
+    }
+  }, [isConnected, address, primaryConnectorId, isPara, wagmiAccount.connector?.id]);
 
-  // Log primary connector changes
+  // Log primary connector changes (only when it actually changes)
+  const prevPrimaryConnectorId = useRef<string | null>(null);
   useEffect(() => {
-    console.log('Primary connector changed:', {
-      from: null,
-      to: primaryConnectorId,
-      currentWagmiConnector: wagmiAccount.connector?.id,
-      isPara
-    });
+    if (primaryConnectorId !== prevPrimaryConnectorId.current) {
+      console.log('Primary connector changed:', {
+        from: prevPrimaryConnectorId.current,
+        to: primaryConnectorId,
+        currentWagmiConnector: wagmiAccount.connector?.id,
+        isPara
+      });
+      prevPrimaryConnectorId.current = primaryConnectorId;
+    }
   }, [primaryConnectorId, wagmiAccount.connector?.id, isPara]);
 
   // Handle switching primary connector
@@ -209,13 +359,15 @@ export function useUnifiedConnection() {
   // Handle account switching within the same connector
   const handleSwitchAccount = async (connector: any) => {
     try {
-      console.log('Switching account within connector:', connector.id);
-      await switchAccount({ connector });
+      console.log('🔄 [SWITCH] Switching account within connector:', connector.id, {
+        currentPrimaryConnectorId: primaryConnectorId,
+        currentWagmiConnector: wagmiAccount.connector?.id
+      });
 
-      // Update primary connector if this is a different connector type
-      if (connector.id !== primaryConnectorId) {
-        setPrimaryConnectorId(connector.id);
-      }
+      // Always set the primary connector before switching to ensure consistency
+      setPrimaryConnectorId(connector.id);
+
+      await switchAccount({ connector });
 
       return true;
     } catch (error) {
@@ -272,14 +424,22 @@ export function useUnifiedConnection() {
   // Enhanced disconnect function
   const handleDisconnect = async () => {
     try {
-      // Clear primary connector
-      setPrimaryConnectorId(null);
-
-      // Disconnect from wagmi
+      // Disconnect from wagmi first
       await disconnect();
 
       // Optionally disconnect Para SDK if method exists (assuming it does; adjust as needed)
       paraDisconnect();
+
+      // Clear primary connector after successful disconnect
+      setPrimaryConnectorId(null);
+
+      // Reset global initialization flags to allow fresh start
+      globalInitialized = false;
+      globalHasSetPrimaryConnector = false;
+      intendedPrimaryConnector.current = null;
+
+      // Clear localStorage to ensure clean state
+      savePrimaryConnectorToStorage(null);
 
       console.log('Disconnected and cleared primary connector');
     } catch (error) {
