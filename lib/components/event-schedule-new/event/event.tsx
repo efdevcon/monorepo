@@ -243,17 +243,19 @@ const Event: React.FC<EventProps> = ({
 
               <div className="text-sm">{convert(event.description)}</div>
 
-              {/* <Link href={event.eventLink} className="self-start">
-                <VoxelButton
-                  color="blue-1"
-                  size="sm"
-                  fill
-                  className="shrink-0  mt-2 self-start"
-                >
-                  Visit Website
-                  <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                </VoxelButton>
-              </Link> */}
+              {event.eventLink !== "https://devconnect.org/calendar" && (
+                <Link href={event.eventLink} className="self-start">
+                  <VoxelButton
+                    color="blue-1"
+                    size="sm"
+                    fill
+                    className="shrink-0  mt-2 self-start"
+                  >
+                    Visit Site
+                    <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                  </VoxelButton>
+                </Link>
+              )}
 
               <Separator className="my-3" />
 

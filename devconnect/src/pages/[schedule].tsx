@@ -2324,7 +2324,7 @@ export async function getStaticProps({ locale, params }: { locale: string; param
 
 export const getStaticPaths = async ({ locales }: { locales: string[] }) => {
   const paths = locales.flatMap(locale => [
-    { params: { schedule: 'schedule' }, locale },
+    // { params: { schedule: 'schedule' }, locale },
     { params: { schedule: 'amsterdam' }, locale },
     { params: { schedule: 'istanbul' }, locale },
   ])

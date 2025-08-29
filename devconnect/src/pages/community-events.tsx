@@ -977,7 +977,7 @@ const CommunityEvents = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time (UTC) *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time*</label>
                   <input
                     type="datetime-local"
                     required
@@ -986,12 +986,12 @@ const CommunityEvents = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    Start time of the entire event in UTC (use the 'timeslots' field for granular scheduling)
+                    Start time of the entire event (use the 'timeslots' field for granular scheduling)
                   </p>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time (UTC) *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time *</label>
                   <input
                     type="datetime-local"
                     required
@@ -1000,7 +1000,7 @@ const CommunityEvents = () => {
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    End time of the entire event in UTC (use the 'timeslots' field for granular scheduling)
+                    End time of the entire event (use the 'timeslots' field for granular scheduling)
                   </p>
                 </div>
               </div>
