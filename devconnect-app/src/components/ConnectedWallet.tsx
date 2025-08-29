@@ -4,7 +4,7 @@ import {
   useAppKit,
   useDisconnect as useAppKitDisconnect,
 } from '@reown/appkit/react';
-import { useDisconnect } from 'wagmi';
+import { useConnectors, useDisconnect } from 'wagmi';
 import { useSignMessage } from 'wagmi';
 import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
@@ -14,6 +14,9 @@ import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
 import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
 import RipioOnrampButton from '@/components/RipioOnrampButton';
 import { useState, useRef } from 'react';
+import { useAccount, useConnect, useSwitchAccount } from 'wagmi';
+import { appKit } from '@/config/appkit';
+import { useConnectorClient } from 'wagmi';
 
 import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
@@ -36,6 +39,13 @@ export default function ConnectedWallet({
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
+  // const account = useAccount();
+  const connections = useConnectorClient();
+  const { connect, connectors: allConnectors } = useConnect();
+
+  // console.log('account', account);
+  console.log('connections', connections);
+  console.log('all connectors', allConnectors);
 
   // Unified connection hook for Para SDK integration
   const {
@@ -49,6 +59,12 @@ export default function ConnectedWallet({
     recoverParaConnection,
     paraSDKConnected,
     wagmiParaConnected,
+    selectedAccount,
+    selectedAccountType,
+    switchableConnectors,
+    handleSwitchAccount,
+    handleConnectToWallet: hookConnectToWallet,
+    wagmiAccount,
   } = useUnifiedConnection();
 
   // State to track if we're waiting for user to sign
@@ -68,6 +84,117 @@ export default function ConnectedWallet({
     if (abortControllerRef.current) {
       abortControllerRef.current.abort();
       abortControllerRef.current = null;
+    }
+  };
+
+  const handleConnectToWallet = async (connector: any) => {
+    try {
+      console.log('Connecting to wallet:', connector);
+
+      // If we're currently connected to Para and trying to connect to a different wallet,
+      // we need to disconnect first and then connect to the new wallet
+      if (isPara && connector.id !== 'para' && connector.id !== 'getpara') {
+        console.log('Disconnecting from Para to connect to:', connector.name);
+
+        // Show connecting toast
+        toast.info(
+          <div className="space-y-2">
+            <div className="font-semibold text-blue-800">
+              🔄 Switching Wallets
+            </div>
+            <div className="text-sm text-blue-700">
+              Disconnecting from Para and connecting to {connector.name}...
+            </div>
+          </div>,
+          {
+            duration: 3000,
+            dismissible: false,
+            closeButton: false,
+            style: {
+              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+              border: '1px solid #bfdbfe',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+
+        // Disconnect from current Para connection (without showing success toast)
+        await handleDisconnectSilently();
+
+        // Longer delay to ensure disconnection is complete
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+      }
+
+      // Use the unified connection hook's function to connect
+      const success = await hookConnectToWallet(connector);
+
+      if (success) {
+        toast.success(
+          <div className="space-y-2">
+            <div className="font-semibold text-green-800">
+              ✅ Connected Successfully
+            </div>
+            <div className="text-sm text-green-700">
+              Successfully connected to {connector.name}.
+            </div>
+          </div>,
+          {
+            duration: 3000,
+            dismissible: true,
+            closeButton: true,
+            style: {
+              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+              border: '1px solid #bbf7d0',
+              borderRadius: '8px',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+            },
+          }
+        );
+      }
+    } catch (error) {
+      console.error('Failed to connect to wallet:', error);
+      toast.error(
+        <div className="space-y-2">
+          <div className="font-semibold text-red-800">❌ Connection Failed</div>
+          <div className="text-sm text-red-700">
+            Failed to connect to {connector.name}. Please try again.
+          </div>
+        </div>,
+        {
+          duration: 4000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+            border: '1px solid #fecaca',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    }
+  };
+
+  const handleDisconnectSilently = async () => {
+    try {
+      // Check connection type and handle accordingly
+      if (isPara) {
+        console.log('Silently logging out from Para wallet');
+        await logoutAsync({
+          clearPregenWallets: false, // Keep pre-generated wallets
+        });
+        console.log('Para logout completed, now disconnecting');
+        wagmiDisconnect();
+      } else {
+        // Use AppKit disconnect for AppKit wallets, wagmi disconnect for others
+        console.log('Silently disconnecting from regular wallet');
+        appKitDisconnect();
+        wagmiDisconnect();
+      }
+    } catch (err) {
+      console.error('Silent logout/disconnect failed:', err);
+      throw err;
     }
   };
 
@@ -161,10 +288,16 @@ export default function ConnectedWallet({
     if (isPara) {
       console.log('Opening Para account modal');
       openModal();
+      // openModal({ step: ModalStep.EX_WALLET_MORE });
+      // open({ view: 'Account' });
+      // open({ view: 'Connect' });
     } else {
       // Use AppKit for other wallets
       console.log('Opening AppKit account modal');
-      open();
+      // open();
+      // openModal({ step: ModalStep.EX_WALLET_MORE });
+      open({ view: 'Account' });
+      // open({ view: 'Connect' });
     }
   };
 
@@ -279,21 +412,26 @@ export default function ConnectedWallet({
     }
 
     console.log('Address:', address);
+    console.log('Selected Account Type:', selectedAccountType);
     console.log('Is Para wallet:', isPara);
 
     // Replace with your message
     const message = 'Hello, Devconnect!';
 
+    // Determine the actual account type to use for signing
+    const signingAccountType = selectedAccountType || (isPara ? 'para' : 'wagmi');
+    console.log('Signing with account type:', signingAccountType);
+
     try {
       console.log('Using wagmi for wallet signing');
 
       // Ensure wagmi is connected if using Para SDK
-      if (isPara) {
+      if (signingAccountType === 'para') {
         await ensureWagmiConnection();
       }
 
       // Only show interactive toast for non-Para wallets
-      if (!isPara) {
+      if (signingAccountType !== 'para') {
         // Reset cancel flag and set up abort controller for cancellation
         cancelRef.current = false;
         abortControllerRef.current = new AbortController();
@@ -333,15 +471,42 @@ export default function ConnectedWallet({
       }
 
       // Start the signing process with cancellation check
-      const signature = await signMessageAsync({ message });
+      // Use the correct connector for signing based on the selected account type
+      let signature;
+      
+      // Find the active connector based on the selected account type
+      let activeConnector = null;
+      
+      if (signingAccountType === 'para') {
+        // For Para, find the Para connector
+        activeConnector = switchableConnectors?.find(c => c.id === 'para' || c.id === 'getpara');
+        console.log('Para signing - found connector:', activeConnector?.id);
+      } else {
+        // For other wallets, find the current active connector
+        activeConnector = switchableConnectors?.find(c => 
+          c.id === wagmiAccount.connector?.id || 
+          (c.id === 'injected' && wagmiAccount.connector?.id === 'injected') ||
+          (c.id === 'walletConnect' && wagmiAccount.connector?.id === 'walletConnect') ||
+          (c.id === 'coinbaseWalletSDK' && wagmiAccount.connector?.id === 'coinbaseWallet')
+        );
+        console.log('Standard wallet signing - found connector:', activeConnector?.id, 'wagmi connector:', wagmiAccount.connector?.id);
+      }
+      
+      if (activeConnector) {
+        console.log('Signing with connector:', activeConnector.id);
+        signature = await signMessageAsync({ message, connector: activeConnector });
+      } else {
+        console.log('No specific connector found, using default signing');
+        signature = await signMessageAsync({ message });
+      }
 
       // Check if the process was cancelled
-      if (!isPara && cancelRef.current) {
+      if (signingAccountType !== 'para' && cancelRef.current) {
         throw new Error('Signing cancelled by user');
       }
 
       // Clear the pending state (only if we set it)
-      if (!isPara) {
+      if (signingAccountType !== 'para') {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -353,6 +518,7 @@ export default function ConnectedWallet({
       }
 
       console.log('Wagmi signature result:', signature);
+      console.log('Verifying signature for address:', address, 'with account type:', signingAccountType);
 
       // Show notification with signature and verification
       const isValidFormat = await verifySignature({
@@ -368,6 +534,7 @@ export default function ConnectedWallet({
             ✅ Message Signed Successfully!
           </div>
           <div className="text-sm text-green-700">
+            <div className="font-medium">Account Type: {signingAccountType}</div>
             <div className="font-medium">Signature:</div>
             <div className="font-mono text-xs bg-green-50 p-2 rounded border">
               {truncatedSig}
@@ -395,7 +562,7 @@ export default function ConnectedWallet({
       );
     } catch (err) {
       // Clear the pending state (only if we set it for non-Para wallets)
-      if (!isPara) {
+      if (signingAccountType !== 'para') {
         setIsWaitingForSignature(false);
         abortControllerRef.current = null;
         toast.dismiss('signing-pending');
@@ -406,7 +573,7 @@ export default function ConnectedWallet({
 
       // Don't show error toast if user cancelled (only for non-Para wallets)
       if (
-        !isPara &&
+        signingAccountType !== 'para' &&
         (errorMessage.includes('aborted') ||
           errorMessage.includes('cancelled') ||
           errorMessage.includes('Signing cancelled by user'))
@@ -543,8 +710,22 @@ export default function ConnectedWallet({
 
         {/* Connection Status */}
         <div className="text-xs text-gray-500 mb-2">
-          <div>Connection Type: {isPara ? 'Para' : 'Standard'}</div>
+          <div>
+            Connection Type:{' '}
+            {selectedAccountType
+              ? selectedAccountType === 'para'
+                ? 'Para'
+                : 'Standard'
+              : isPara
+                ? 'Para'
+                : 'Standard'}
+          </div>
           <div>Fully Connected: {isFullyConnected ? '✅ Yes' : '❌ No'}</div>
+          {selectedAccount && (
+            <div className="text-green-600 font-medium">
+              Selected Account: {selectedAccount} ({selectedAccountType})
+            </div>
+          )}
           {siweEnabled && (
             <div>
               SIWE Status:{' '}
@@ -558,7 +739,8 @@ export default function ConnectedWallet({
             </div>
           )}
           {/* Debug information for Para connections */}
-          {isPara && (
+          {(selectedAccountType === 'para' ||
+            (!selectedAccountType && isPara)) && (
             <>
               <div>
                 Para SDK:{' '}
@@ -570,7 +752,50 @@ export default function ConnectedWallet({
               </div>
             </>
           )}
+          {/* <div>
+            Wagmi accounts:{' '}
+            {JSON.stringify(connectors?.map((connector) => connector.address))}
+          </div> */}
         </div>
+
+        {/* Switch Account Section */}
+        {switchableConnectors && switchableConnectors.length > 0 && (
+          <div className="border-t pt-4">
+            <h3 className="text-sm font-medium text-gray-700 mb-2">
+              Switch Account
+            </h3>
+            <div className="space-y-2">
+              {switchableConnectors.map((connector: any) => {
+                // Check if this connector is currently selected
+                const isSelected =
+                  selectedAccount &&
+                  (connector.id === 'para' || connector.id === 'getpara'
+                    ? selectedAccountType === 'para'
+                    : selectedAccountType === 'wagmi' &&
+                      wagmiAccount.address === selectedAccount);
+
+                return (
+                  <Button
+                    key={connector.id}
+                    onClick={() => handleSwitchAccount(connector)}
+                    className={`w-full cursor-pointer ${
+                      isSelected
+                        ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
+                        : ''
+                    }`}
+                    size="sm"
+                    variant={isSelected ? 'default' : 'outline'}
+                  >
+                    {connector.name}
+                    {isSelected && (
+                      <span className="ml-2 text-green-600">✓</span>
+                    )}
+                  </Button>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-2">
@@ -620,6 +845,14 @@ export default function ConnectedWallet({
           size="lg"
         >
           {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
+        </Button>
+
+        <Button
+          onClick={() => open({ view: 'Connect' })}
+          className="w-full cursor-pointer"
+          size="lg"
+        >
+          Connect external wallet
         </Button>
 
         {/* Show Recovery Secret button - only for Para wallets */}

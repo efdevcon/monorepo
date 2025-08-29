@@ -1,8 +1,9 @@
-import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage } from 'wagmi';
+import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount } from 'wagmi';
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
+import { appKit } from '@/config/appkit';
 
 export function useUnifiedConnection() {
   // SIWE configuration - set to false to disable SIWE verification
@@ -13,7 +14,30 @@ export function useUnifiedConnection() {
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
-  
+  const { connectors: switchableConnectors, switchAccount } = useSwitchAccount();
+  const providers = appKit?.getProvider('eip155');
+  console.log('providers', providers);
+  console.log('connectors', connectors);
+  // console.log('adapters ddd', appKit.chainAdapters?.eip155?.connectors);
+  console.log('connections', appKit.chainAdapters?.eip155?.connections);
+  //   [
+  //     {
+  //       "accounts": [
+  //           {
+  //               "address": "0x20C85697E4789D7A1570e78688567160426d4cDD"
+  //           }
+  //       ],
+  //       "connectorId": "para"
+  //   },
+  //   {
+  //       "accounts": [
+  //           {
+  //               "address": "0xBD19a3F0A9CaCE18513A1e2863d648D13975CB30"
+  //           }
+  //       ],
+  //       "connectorId": "io.zerion.wallet"
+  //   }
+  // ]
   // Para connection status
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
@@ -30,6 +54,10 @@ export function useUnifiedConnection() {
   >('idle');
   const [siweMessage, setSiweMessage] = useState('');
   const [siweSignature, setSiweSignature] = useState('');
+
+  // Account switching state
+  const [selectedAccount, setSelectedAccount] = useState<string | null>(null);
+  const [selectedAccountType, setSelectedAccountType] = useState<'para' | 'wagmi' | null>(null);
 
   // Use refs to track latest state
   const connectionStateRef = useRef({ isConnected: wagmiAccount.isConnected, address: wagmiAccount.address });
@@ -51,7 +79,10 @@ export function useUnifiedConnection() {
   
   // Check if Para SDK is connected (either through wagmi connector or direct Para SDK)
   // Prioritize Para SDK connection state, with wagmi connector as secondary indicator
-  const isPara: boolean = Boolean(paraSDKConnected || wagmiParaConnected);
+  // But if a specific account type is selected, use that instead
+  const isPara: boolean = selectedAccountType
+    ? selectedAccountType === 'para'
+    : Boolean(paraSDKConnected || wagmiParaConnected);
   
   console.log('Para detection details:', {
     wagmiParaConnector,
@@ -63,9 +94,11 @@ export function useUnifiedConnection() {
     wagmiConnectorId: wagmiAccount.connector?.id
   });
 
-  // Get the active address (prioritize Para SDK address, fallback to wagmi address)
-  const address = paraWallet?.data?.address || wagmiAccount.address;
+  // Get the active address based on selected account type
+  const address = selectedAccount || (isPara ? paraWallet?.data?.address : wagmiAccount.address) || wagmiAccount.address;
   console.log('address', address);
+  console.log('selectedAccount', selectedAccount);
+  console.log('selectedAccountType', selectedAccountType);
   
   // Consider user connected only after SIWE verification (if enabled)
   const isFullyConnected = SIWE_ENABLED
@@ -121,9 +154,17 @@ export function useUnifiedConnection() {
       paraSDKConnected,
       wagmiParaConnected,
       isPara,
+      selectedAccountType,
       paraAccountAddress: paraWallet?.data?.address,
       wagmiAddress: wagmiAccount.address,
     });
+
+    // Only auto-recover Para connection if no specific account type is selected
+    // or if Para is the selected account type
+    if (selectedAccountType && selectedAccountType !== 'para') {
+      console.log('Non-Para account selected, skipping Para auto-recovery');
+      return;
+    }
 
     // If Para SDK is connected but wagmi isn't, try to force connection
     if (paraSDKConnected && !wagmiParaConnected) {
@@ -147,7 +188,7 @@ export function useUnifiedConnection() {
       console.log('Wagmi Para connected but Para SDK not connected - this might be a timing issue');
       console.log('Para SDK should catch up automatically, but monitoring for issues...');
     }
-  }, [paraSDKConnected, wagmiParaConnected, paraWallet?.data?.address, wagmiAccount.address]);
+  }, [paraSDKConnected, wagmiParaConnected, selectedAccountType, paraWallet?.data?.address, wagmiAccount.address]);
 
   // Get the active connection details
   const getActiveConnection = () => {
@@ -300,6 +341,12 @@ Issued At: ${issuedAt}`;
 
   // Auto-connect wagmi if Para SDK is connected but wagmi isn't
   const ensureWagmiConnection = async () => {
+    // Only force Para connection if no specific account type is selected or if Para is selected
+    if (selectedAccountType && selectedAccountType !== 'para') {
+      console.log('Non-Para account selected, skipping Para connection enforcement');
+      return true;
+    }
+
     if (isParaConnected && !isWagmiConnected) {
       console.log('Para SDK connected but wagmi not connected, forcing connection...');
       return await forceWagmiParaConnection();
@@ -311,6 +358,12 @@ Issued At: ${issuedAt}`;
   const recoverParaConnection = async () => {
     console.log('Manual Para connection recovery initiated...');
     
+    // Only recover Para connection if no specific account type is selected or if Para is selected
+    if (selectedAccountType && selectedAccountType !== 'para') {
+      console.log('Non-Para account selected, skipping Para connection recovery');
+      return true;
+    }
+
     // If Para SDK is connected but wagmi isn't, try to force connection
     if (paraSDKConnected && !wagmiParaConnected) {
       console.log('Attempting to recover wagmi Para connection...');
@@ -336,6 +389,85 @@ Issued At: ${issuedAt}`;
     return false;
   };
 
+  // Handle account switching
+  const handleSwitchAccount = async (connector: any) => {
+    try {
+      console.log('Switching to account:', connector);
+
+      // Use wagmi's switchAccount function
+      await switchAccount({ connector });
+
+      // Update the selected account to the new account's address
+      // We need to wait for the account to be switched and get the new address
+      setTimeout(() => {
+        const newAddress = wagmiAccount.address;
+        if (newAddress && newAddress !== selectedAccount) {
+          console.log('Account switched to:', newAddress);
+          setSelectedAccount(newAddress);
+
+          // Determine the account type based on the connector
+          const accountType = connector.id === 'para' || connector.id === 'getpara' ? 'para' : 'wagmi';
+          setSelectedAccountType(accountType);
+          console.log('Account type set to:', accountType);
+        }
+      }, 1000);
+
+      return true;
+    } catch (error) {
+      console.error('Failed to switch account:', error);
+      return false;
+    }
+  };
+
+  // Handle connecting to a new wallet
+  const handleConnectToWallet = async (connector: any) => {
+    try {
+      console.log('Connecting to wallet:', connector);
+
+      // Connect to the selected wallet
+      await connect({ connector });
+
+      // Wait for the connection to be established and get the new address
+      // Use a promise-based approach for better timing control
+      return new Promise((resolve) => {
+        const checkConnection = () => {
+          const newAddress = wagmiAccount.address;
+          if (newAddress && newAddress !== selectedAccount) {
+            console.log('Connected to wallet:', connector.name, 'with address:', newAddress);
+            setSelectedAccount(newAddress);
+
+            // Determine the account type based on the connector
+            const accountType = connector.id === 'para' || connector.id === 'getpara' ? 'para' : 'wagmi';
+            setSelectedAccountType(accountType);
+            console.log('Account type set to:', accountType);
+            resolve(true);
+          } else {
+            // Check again after a short delay
+            setTimeout(checkConnection, 200);
+          }
+        };
+
+        // Start checking for connection
+        setTimeout(checkConnection, 500);
+
+        // Timeout after 10 seconds
+        setTimeout(() => {
+          console.log('Connection timeout for:', connector.name);
+          resolve(false);
+        }, 10000);
+      });
+    } catch (error) {
+      console.error('Failed to connect to wallet:', error);
+      return false;
+    }
+  };
+
+  // Clear selected account (useful for disconnecting)
+  const clearSelectedAccount = () => {
+    setSelectedAccount(null);
+    setSelectedAccountType(null);
+  };
+
 
   // Handle sign message
   const handleSignMessage = async () => {
@@ -346,6 +478,17 @@ Issued At: ${issuedAt}`;
       return signature;
     } catch (error) {
       console.error('Failed to sign message:', error);
+      throw error;
+    }
+  };
+
+  // Enhanced disconnect function that clears selected account
+  const handleDisconnect = async () => {
+    try {
+      clearSelectedAccount();
+      await disconnect();
+    } catch (error) {
+      console.error('Disconnect failed:', error);
       throw error;
     }
   };
@@ -399,12 +542,20 @@ Issued At: ${issuedAt}`;
     setSkipped,
     clearSkipped,
 
+    // Account switching
+    selectedAccount,
+    selectedAccountType,
+    switchableConnectors,
+    handleSwitchAccount,
+    handleConnectToWallet,
+    clearSelectedAccount,
+
     // Connection utilities
     forceWagmiParaConnection,
     ensureWagmiConnection,
     handleSiweSignIn,
     handleSignMessage,
-    disconnect,
+    disconnect: handleDisconnect,
     recoverParaConnection,
 
     // Navigation logic
