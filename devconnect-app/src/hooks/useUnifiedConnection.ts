@@ -2,7 +2,7 @@ import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessag
 import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { appKit } from '@/config/appkit';
 
 export function useUnifiedConnection() {
@@ -33,11 +33,16 @@ export function useUnifiedConnection() {
 
   // Primary connector state - this determines which connector is active for signing
   const [primaryConnectorId, setPrimaryConnectorId] = useState<string | null>(null);
+  const hasSetPrimaryConnector = useRef(false);
 
-  // Memoized Para connector
+    // Memoized Para connector
   const paraConnector = useMemo(() => connectors.find(c => c.id === 'para' || c.id === 'getpara'), [connectors]);
 
   // console.log('connectors', connectors);
+
+  // Determine connection status
+  const isWagmiConnected = wagmiAccount.isConnected;
+  const isParaConnected = paraAccount?.isConnected && paraWallet?.data?.address;
 
   // Current primary connector
   const primaryConnector = useMemo(() => {
@@ -45,19 +50,19 @@ export function useUnifiedConnection() {
     if (primaryConnectorId) {
       return connectors.find(c => c.id === primaryConnectorId);
     }
-
+    
     // If no primary connector is set, try to determine from current wagmi connection
     if (wagmiAccount.connector) {
       return wagmiAccount.connector;
     }
-
-    // Fallback to Para connector if available
-    return paraConnector;
-  }, [connectors, primaryConnectorId, wagmiAccount.connector, paraConnector]);
-
-  // Determine connection status
-  const isWagmiConnected = wagmiAccount.isConnected;
-  const isParaConnected = paraAccount?.isConnected && paraWallet?.data?.address;
+    
+    // Only fallback to Para connector if it's actually connected and no other connection exists
+    if (paraConnector && isParaConnected && !wagmiAccount.connector) {
+      return paraConnector;
+    }
+    
+    return null;
+  }, [connectors, primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
 
   // The primary connection is always wagmi-based
   const isConnected = isWagmiConnected && wagmiAccount.address;
@@ -71,15 +76,15 @@ export function useUnifiedConnection() {
     if (primaryConnectorId) {
       return primaryConnectorId === 'para' || primaryConnectorId === 'getpara';
     }
-
+    
     // If no primary connector is set, check current wagmi connection
     if (wagmiAccount.connector) {
       const connectorId = wagmiAccount.connector.id;
       return connectorId === 'para' || connectorId === 'getpara';
     }
-
-    // Fallback to checking if Para connector is available and connected
-    return paraConnector && isParaConnected;
+    
+    // Only consider Para as primary if it's connected and no wagmi connection exists
+    return paraConnector && isParaConnected && !wagmiAccount.connector;
   }, [primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
 
   // Set initial primary connector when Para is available
@@ -102,6 +107,38 @@ export function useUnifiedConnection() {
       }
     }
   }, [wagmiAccount.connector, primaryConnectorId]);
+
+  // Consolidated primary connector management
+  useEffect(() => {
+    // If we already have a primary connector set, don't change it
+    if (primaryConnectorId || hasSetPrimaryConnector.current) {
+      return;
+    }
+
+    // Priority 1: Restore from existing wagmi connection (for page refresh)
+    if (wagmiAccount.connector) {
+      const connectorId = wagmiAccount.connector.id;
+      setPrimaryConnectorId(connectorId);
+      hasSetPrimaryConnector.current = true;
+      console.log('Restoring primary connector from wagmi connection:', connectorId);
+      return;
+    }
+
+    // Priority 2: Set Para as primary only if no wagmi connection exists
+    if (paraConnector && !wagmiAccount.connector) {
+      setPrimaryConnectorId(paraConnector.id);
+      hasSetPrimaryConnector.current = true;
+      console.log('Setting Para as primary connector (no existing wagmi connection)');
+      return;
+    }
+  }, [wagmiAccount.connector, paraConnector, primaryConnectorId]);
+
+  // Reset the ref when primary connector changes (allows for updates when needed)
+  useEffect(() => {
+    if (primaryConnectorId) {
+      hasSetPrimaryConnector.current = false;
+    }
+  }, [primaryConnectorId]);
 
   // Sync Para connection to Wagmi
   useEffect(() => {
