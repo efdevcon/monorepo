@@ -742,7 +742,14 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
                 return (
                   <Button
                     key={connector.id}
-                    onClick={() => handleSwitchAccount(connector)}
+                    onClick={() => {
+                      console.log('Switch account button clicked:', {
+                        connectorId: connector.id,
+                        connectorName: connector.name,
+                        currentPrimaryConnectorId: primaryConnectorId
+                      });
+                      handleSwitchAccount(connector);
+                    }}
                     className={`w-full cursor-pointer ${
                       isSelected
                         ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
