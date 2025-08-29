@@ -174,7 +174,7 @@ const NewScheduleIndex = ({
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(205px, 1fr))`;
+  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 230px))`;
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {
@@ -247,7 +247,7 @@ const NewScheduleIndex = ({
                       }`,
                       gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
                     }}
-                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}
+                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
                   >
                     <Event
                       event={placement.event}

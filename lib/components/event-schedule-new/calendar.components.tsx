@@ -1,6 +1,11 @@
 import React from "react";
 
-type Difficulty = "beginner" | "intermediate" | "advanced" | "all welcome";
+type Difficulty =
+  | "beginner"
+  | "intermediate"
+  | "expert"
+  | "all welcome"
+  | "other";
 
 const DifficultyTag = ({
   difficulty,
@@ -11,16 +16,18 @@ const DifficultyTag = ({
 }) => {
   const difficultyColorMap = {
     beginner: "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
-    intermediate: "bg-yellow-500",
-    advanced: "bg-red-500",
-    "all welcome": "bg-blue-500",
+    intermediate: "text-[rgba(180,83,9,1)] border-[rgba(180,83,9,1)]",
+    expert: "text-[rgba(153,27,27,1)] border-[rgba(153,27,27,1)]",
+    "all welcome": "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
+    other: "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
   };
 
   const difficultyTextMap = {
     beginner: "Beginner",
     intermediate: "Intermediate",
-    advanced: "Advanced",
+    expert: "Expert",
     "all welcome": "All Welcome",
+    other: "All Welcome",
   };
 
   const sizeMap = {
