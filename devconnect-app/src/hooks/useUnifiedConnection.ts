@@ -10,6 +10,15 @@ import { appKit } from '@/config/appkit';
 // Simple global state for cross-instance sync
 let globalPrimaryConnectorId: string | null = null;
 let userIntentTimestamp = 0; // Track when user explicitly chooses a connector
+
+// Initialize user intent timestamp immediately from localStorage
+if (typeof window !== 'undefined') {
+  const savedTimestamp = localStorage.getItem('devconnect_user_intent_timestamp');
+  if (savedTimestamp) {
+    userIntentTimestamp = parseInt(savedTimestamp);
+    console.log('🔄 [GLOBAL_INIT] Loaded user intent timestamp from localStorage:', userIntentTimestamp);
+  }
+}
 let cachedStorageValue: string | null | undefined = undefined; // Cache localStorage result
 let hasResetAfterDisconnect = false; // Prevent multiple reset calls
 
@@ -49,6 +58,7 @@ let hasInitialized = false;
 // Constants for localStorage persistence
 const PRIMARY_CONNECTOR_KEY = 'devconnect_primary_connector';
 const PRIMARY_CONNECTOR_TIMESTAMP_KEY = 'devconnect_primary_connector_timestamp';
+const USER_INTENT_TIMESTAMP_KEY = 'devconnect_user_intent_timestamp';
 const CONNECTOR_EXPIRY_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
 
 // Utility functions for localStorage persistence
@@ -72,6 +82,33 @@ const savePrimaryConnectorToStorage = (connectorId: string | null) => {
   }
 };
 
+const saveUserIntentTimestamp = (timestamp: number) => {
+  try {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(USER_INTENT_TIMESTAMP_KEY, timestamp.toString());
+      console.log('💾 [STORAGE] Saved user intent timestamp:', timestamp);
+    }
+  } catch (error) {
+    console.error('Failed to save user intent timestamp to localStorage:', error);
+  }
+};
+
+const loadUserIntentTimestamp = (): number => {
+  try {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem(USER_INTENT_TIMESTAMP_KEY);
+      if (saved) {
+        const timestamp = parseInt(saved);
+        console.log('💾 [STORAGE] Loaded user intent timestamp:', timestamp);
+        return timestamp;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load user intent timestamp from localStorage:', error);
+  }
+  return 0; // Default to 0 if not found
+};
+
 const loadPrimaryConnectorFromStorage = (availableConnectors?: readonly any[]): string | null => {
   try {
     if (typeof window !== 'undefined') {
@@ -86,12 +123,35 @@ const loadPrimaryConnectorFromStorage = (availableConnectors?: readonly any[]): 
         if (now - timestamp < CONNECTOR_EXPIRY_TIME) {
           // If connectors list is provided, validate that the saved connector is still available
           if (availableConnectors && availableConnectors.length > 0) {
-            const isConnectorAvailable = availableConnectors.some(
+            let isConnectorAvailable = availableConnectors.some(
               conn => conn.id === savedConnector
             );
-            
+
+            // If exact match not found, try alternative matching for known cases
+            if (!isConnectorAvailable) {
+              // Special handling for Zerion wallet
+              if (savedConnector.toLowerCase().includes('zerion')) {
+                const alternativeConnector = availableConnectors.find(
+                  conn => conn.id === 'injected' ||
+                         conn.name?.toLowerCase().includes('zerion') ||
+                         conn.name?.toLowerCase().includes('metamask')
+                );
+                if (alternativeConnector) {
+                  console.log('💾 [STORAGE] Found alternative connector for Zerion wallet:', alternativeConnector.id, 'updating stored value');
+                  // Update the stored connector to use the correct ID
+                  localStorage.setItem(PRIMARY_CONNECTOR_KEY, alternativeConnector.id);
+                  localStorage.setItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY, Date.now().toString());
+                  // Update the cache to reflect the change
+                  cachedStorageValue = alternativeConnector.id;
+                  console.log('💾 [STORAGE] Updated stored connector to:', alternativeConnector.id);
+                  return alternativeConnector.id;
+                }
+              }
+            }
+
             if (!isConnectorAvailable) {
               console.log('💾 [STORAGE] Saved connector no longer available, clearing:', savedConnector);
+              console.log('💾 [STORAGE] Available connectors:', availableConnectors.map(c => ({ id: c.id, name: c.name })));
               localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
               localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
               return null;
@@ -181,11 +241,20 @@ export function useUnifiedConnection() {
 
   // Simple wrapper to set primary connector
   const setPrimaryConnectorId = (value: string | null, isUserIntent = false) => {
+    console.log('🔄 [SET_CONNECTOR] Setting primary connector:', {
+      value,
+      isUserIntent,
+      previousTimestamp: userIntentTimestamp,
+      currentTime: Date.now()
+    });
+
     _setPrimaryConnectorId(value);
     setGlobalPrimaryConnectorId(value);
 
     if (isUserIntent) {
       userIntentTimestamp = Date.now();
+      saveUserIntentTimestamp(userIntentTimestamp);
+      console.log('🔄 [SET_CONNECTOR] Updated user intent timestamp:', userIntentTimestamp);
     }
   };
 
@@ -319,7 +388,15 @@ export function useUnifiedConnection() {
     if (wagmiAccount.isConnected && wagmiAccount.connector?.id === 'para' && primaryConnectorId !== 'para') {
       // Don't auto-switch if user recently chose a different connector (within 5 seconds)
       const timeSinceUserIntent = Date.now() - userIntentTimestamp;
-      if (timeSinceUserIntent < 5000) {
+      console.log('🔄 [PARA_DETECT] Checking user intent:', {
+        currentTime: Date.now(),
+        userIntentTimestamp,
+        timeSinceUserIntent,
+        primaryConnectorId,
+        wagmiConnector: wagmiAccount.connector?.id
+      });
+
+      if (timeSinceUserIntent < 30000) { // 30 seconds to respect user intent
         console.log('🔄 [PARA_DETECT] Skipping Para auto-switch due to recent user intent:', {
           timeSinceUserIntent,
           userChose: primaryConnectorId
@@ -336,10 +413,46 @@ export function useUnifiedConnection() {
   useEffect(() => {
     if (!primaryConnectorId || connectors.length === 0) return;
 
-    const targetConnector = connectors.find(c => c.id === primaryConnectorId);
+    let targetConnector = connectors.find(c => c.id === primaryConnectorId);
+
+    // If exact match not found, try to find by name or partial match
     if (!targetConnector) {
-      console.log('🔄 [RECONNECT] Primary connector not available:', primaryConnectorId, 'available connectors:', connectors.map(c => c.id));
-      return;
+      console.log('🔄 [RECONNECT] Primary connector not found by ID:', primaryConnectorId, 'trying alternative matches...');
+
+      // Try to find by name (case insensitive)
+      targetConnector = connectors.find(c =>
+        c.name?.toLowerCase().includes('zerion') ||
+        primaryConnectorId.toLowerCase().includes(c.name?.toLowerCase() || '')
+      );
+
+      // If found by name, update the primary connector ID to use the correct connector ID
+      if (targetConnector && targetConnector.id !== primaryConnectorId) {
+        console.log('🔄 [RECONNECT] Found connector by name, updating primary connector from', primaryConnectorId, 'to', targetConnector.id);
+        setPrimaryConnectorId(targetConnector.id, false);
+        return; // Exit and let the next effect run with the correct connector ID
+      }
+
+      // If still not found and primaryConnectorId contains 'zerion', try 'injected' connector
+      if (!targetConnector && primaryConnectorId.toLowerCase().includes('zerion')) {
+        targetConnector = connectors.find(c => c.id === 'injected');
+        if (targetConnector) {
+          console.log('🔄 [RECONNECT] Using injected connector for Zerion wallet, updating primary connector');
+          // Update the primary connector ID to use the correct connector
+          setPrimaryConnectorId(targetConnector.id, false);
+          return; // Exit and let the next effect run with the correct connector ID
+        }
+      }
+
+      // If still not found, log and clear the invalid connector
+      if (!targetConnector) {
+        console.warn('🔄 [RECONNECT] No suitable connector found for:', primaryConnectorId, 'clearing saved connector');
+        console.log('🔄 [RECONNECT] Available connectors:', connectors.map(c => ({ id: c.id, name: c.name })));
+
+        // Clear the invalid saved connector
+        savePrimaryConnectorToStorage(null);
+        setPrimaryConnectorId(null);
+        return;
+      }
     }
 
     // Small delay to allow everything to initialize properly and prevent immediate reconnection after disconnect
@@ -646,6 +759,9 @@ export function useUnifiedConnection() {
       try {
         // Set disconnect flag to prevent immediate reconnection
         hasResetAfterDisconnect = true;
+        // Clear user intent timestamp since user is disconnecting
+        userIntentTimestamp = 0;
+        saveUserIntentTimestamp(0);
         setPrimaryConnectorId(null);
         disconnectResults.cleanup = true;
         console.log('🔌 [UNIFIED_DISCONNECT] State cleanup successful');
