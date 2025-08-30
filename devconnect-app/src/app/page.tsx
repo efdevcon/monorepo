@@ -1,44 +1,39 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 export default function HomePage() {
-  // Unified connection status
-  const { isConnected, address, isPara, wagmiAccount } = useUnifiedConnection();
+  // Unified connection status - trust the unified hook completely
+  const { isConnected, address, isPara } = useUnifiedConnection();
 
-  console.log('Is Para wallet:', isPara);
-  console.log('Unified connection status:', {
-    isConnected,
-    address,
-    isPara,
+  // Reduced logging - only log when connection state actually changes
+  const prevConnectionState = useRef<{
+    isConnected: boolean;
+    address: string | undefined;
+    isPara: boolean;
+  }>({
+    isConnected: false,
+    address: undefined,
+    isPara: false,
   });
+  useEffect(() => {
+    const currentState = { isConnected, address, isPara };
+    const hasChanged =
+      JSON.stringify(currentState) !==
+      JSON.stringify(prevConnectionState.current);
 
-  // More stable condition: check if we have a wagmi connection OR if we're connected
-  // This prevents showing Onboarding during connection restoration
-  const hasConnection = address || (wagmiAccount.isConnected && wagmiAccount.address);
-  
-  // Show loading during initial connection check (when wagmi is still connecting/reconnecting)
-  const isInitializing = wagmiAccount.isConnecting || wagmiAccount.isReconnecting;
-
-  // Show loading state during initialization to prevent component switching
-  if (isInitializing) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="max-w-md w-full">
-          <div className="m-6 text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600">Checking connection...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    if (hasChanged) {
+      console.log('🔗 [PAGE] Connection state changed:', currentState);
+      prevConnectionState.current = currentState;
+    }
+  }, [isConnected, address, isPara]);
 
   return (
     <>
-      {!hasConnection ? (
+      {!isConnected || !address ? (
         <div className="min-h-screen flex items-center justify-center">
           <div className="max-w-md w-full">
             <div className="m-6">
@@ -50,7 +45,7 @@ export default function HomePage() {
         <div className="min-h-screen bg-white w-full absolute top-0 left-0">
           <div className="w-full flex flex-col items-center py-8 pb-20">
             <div className="max-w-md w-full">
-              <ConnectedWallet address={address || wagmiAccount.address!} />
+              <ConnectedWallet address={address} />
             </div>
           </div>
         </div>

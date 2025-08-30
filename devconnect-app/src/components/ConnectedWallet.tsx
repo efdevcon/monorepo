@@ -24,6 +24,67 @@ import PortfolioModal from './PortfolioModal';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { ZupassProvider } from '@/context/ZupassProvider';
 
+// Toast utility functions to reduce overload and improve UX
+const showSuccessToast = (title: string, message?: string, duration = 3000) => {
+  toast.success(
+    <div className="space-y-1">
+      <div className="font-semibold text-green-800">{title}</div>
+      {message && <div className="text-sm text-green-700">{message}</div>}
+    </div>,
+    {
+      duration,
+      dismissible: true,
+      closeButton: true,
+      style: {
+        background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+        border: '1px solid #bbf7d0',
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      },
+    }
+  );
+};
+
+const showErrorToast = (title: string, message?: string, duration = 4000) => {
+  toast.error(
+    <div className="space-y-1">
+      <div className="font-semibold text-red-800">{title}</div>
+      {message && <div className="text-sm text-red-700">{message}</div>}
+    </div>,
+    {
+      duration,
+      dismissible: true,
+      closeButton: true,
+      style: {
+        background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+        border: '1px solid #fecaca',
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      },
+    }
+  );
+};
+
+const showInfoToast = (title: string, message?: string, duration = 3000) => {
+  toast.info(
+    <div className="space-y-1">
+      <div className="font-semibold text-blue-800">{title}</div>
+      {message && <div className="text-sm text-blue-700">{message}</div>}
+    </div>,
+    {
+      duration,
+      dismissible: true,
+      closeButton: true,
+      style: {
+        background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
+        border: '1px solid #bfdbfe',
+        borderRadius: '8px',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      },
+    }
+  );
+};
+
 interface ConnectedWalletProps {
   address: string;
 }
@@ -64,24 +125,44 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
     paraEmail,
   } = useUnifiedConnection();
 
-  // State to track if we're waiting for user to sign
-  const [isWaitingForSignature, setIsWaitingForSignature] = useState(false);
-  const abortControllerRef = useRef<AbortController | null>(null);
-  const cancelRef = useRef<boolean>(false);
+  // Simplified signing state management
+  const [signingState, setSigningState] = useState<
+    'idle' | 'waiting' | 'signing' | 'completed' | 'cancelled' | 'error'
+  >('idle');
+  const signingControllerRef = useRef<{
+    abortController: AbortController | null;
+    cancelled: boolean;
+  }>({
+    abortController: null,
+    cancelled: false,
+  });
+
+  const resetSigningState = () => {
+    setSigningState('idle');
+    signingControllerRef.current = {
+      abortController: null,
+      cancelled: false,
+    };
+    toast.dismiss('signing-pending');
+  };
 
   const handleCancelSigning = () => {
-    // Set the cancel flag to stop the signing process
-    cancelRef.current = true;
+    console.log('🔏 [SIGNING] User cancelled signing process');
 
-    // Clear the UI state immediately
-    setIsWaitingForSignature(false);
+    // Mark as cancelled
+    signingControllerRef.current.cancelled = true;
+    setSigningState('cancelled');
+
+    // Abort any ongoing operations
+    if (signingControllerRef.current.abortController) {
+      signingControllerRef.current.abortController.abort();
+    }
+
+    // Clean up UI state
     toast.dismiss('signing-pending');
 
-    // Abort the signing process if we have an abort controller
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-      abortControllerRef.current = null;
-    }
+    // Reset after a short delay
+    setTimeout(resetSigningState, 1000);
   };
 
   const handleConnectToWallet = async (connector: any) => {
@@ -127,157 +208,73 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
       const success = await hookConnectToWallet(connector);
 
       if (success) {
-        toast.success(
-          <div className="space-y-2">
-            <div className="font-semibold text-green-800">
-              ✅ Connected Successfully
-            </div>
-            <div className="text-sm text-green-700">
-              Successfully connected to {connector.name}.
-            </div>
-          </div>,
-          {
-            duration: 3000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-              border: '1px solid #bbf7d0',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
+        showSuccessToast(
+          '✅ Connected Successfully',
+          `Connected to ${connector.name}`
         );
       }
     } catch (error) {
       console.error('Failed to connect to wallet:', error);
-      toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">❌ Connection Failed</div>
-          <div className="text-sm text-red-700">
-            Failed to connect to {connector.name}. Please try again.
-          </div>
-        </div>,
-        {
-          duration: 4000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
+      showErrorToast(
+        '❌ Connection Failed',
+        `Failed to connect to ${connector.name}`
       );
     }
   };
 
   const handleDisconnectSilently = async () => {
     try {
-      // Check connection type and handle accordingly
+      console.log(
+        '🔌 [SILENT_DISCONNECT] Starting silent disconnect process, isPara:',
+        isPara
+      );
+
+      // Handle Para logout first if needed
       if (isPara) {
-        console.log('Silently logging out from Para wallet');
+        console.log(
+          '🔌 [SILENT_DISCONNECT] Silently logging out from Para wallet'
+        );
         await logoutAsync({
           clearPregenWallets: false, // Keep pre-generated wallets
         });
-        console.log('Para logout completed, now disconnecting');
-        wagmiDisconnect();
-      } else {
-        // Use AppKit disconnect for AppKit wallets, wagmi disconnect for others
-        console.log('Silently disconnecting from regular wallet');
-        appKitDisconnect();
-        wagmiDisconnect();
+        console.log('🔌 [SILENT_DISCONNECT] Para logout completed');
       }
+
+      // Use the unified disconnect function which handles all cleanup
+      await hookDisconnect();
+
+      console.log('🔌 [SILENT_DISCONNECT] Silent disconnect completed');
     } catch (err) {
-      console.error('Silent logout/disconnect failed:', err);
+      console.error('🔌 [SILENT_DISCONNECT] Silent disconnect failed:', err);
       throw err;
     }
   };
 
   const handleDisconnect = async () => {
     try {
-      // Check connection type and handle accordingly
+      console.log(
+        '🔌 [DISCONNECT] Starting disconnect process, isPara:',
+        isPara
+      );
+
+      // Handle Para logout first if needed
       if (isPara) {
-        console.log('Logging out from Para wallet');
+        console.log('🔌 [DISCONNECT] Logging out from Para wallet first');
         await logoutAsync({
           clearPregenWallets: false, // Keep pre-generated wallets
         });
-        console.log('Para logout completed, now disconnecting');
-        wagmiDisconnect();
-        toast.success(
-          <div className="space-y-2">
-            <div className="font-semibold text-green-800">
-              🔓 Successfully Disconnected
-            </div>
-            <div className="text-sm text-green-700">
-              Para wallet logged out and disconnected from the application.
-            </div>
-          </div>,
-          {
-            duration: 4000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-              border: '1px solid #bbf7d0',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
-      } else {
-        // Use AppKit disconnect for AppKit wallets, wagmi disconnect for others
-        console.log('Disconnecting from regular wallet');
-        appKitDisconnect();
-        wagmiDisconnect();
-        toast.success(
-          <div className="space-y-2">
-            <div className="font-semibold text-green-800">
-              🔓 Successfully Disconnected
-            </div>
-            <div className="text-sm text-green-700">
-              Wallet disconnected from the application.
-            </div>
-          </div>,
-          {
-            duration: 4000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-              border: '1px solid #bbf7d0',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
+        console.log('🔌 [DISCONNECT] Para logout completed');
       }
+
+      // Use the unified disconnect function which handles all cleanup
+      await hookDisconnect();
+
+      // Show simple success toast
+      showSuccessToast('🔓 Disconnected', 'Wallet disconnected successfully');
     } catch (err) {
-      console.error('Logout/Disconnect failed:', err);
+      console.error('🔌 [DISCONNECT] Disconnect failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
-      toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">❌ Disconnect Failed</div>
-          <div className="text-sm text-red-700">
-            <div className="font-medium">Error:</div>
-            <div className="bg-red-50 p-2 rounded border text-red-600">
-              {errorMessage}
-            </div>
-          </div>
-        </div>,
-        {
-          duration: 6000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
+      showErrorToast('❌ Disconnect Failed', errorMessage);
     }
   };
 
@@ -322,28 +319,7 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
     // Open MoonPay in a new window/tab
     window.open(moonPayUrl, '_blank', 'noopener,noreferrer');
 
-    toast.info(
-      <div className="space-y-2">
-        <div className="font-semibold text-blue-800">
-          🌙 MoonPay Onramp Opened
-        </div>
-        <div className="text-sm text-blue-700">
-          MoonPay has been opened in a new tab. Complete your purchase to add
-          funds to your wallet.
-        </div>
-      </div>,
-      {
-        duration: 4000,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    showInfoToast('🌙 MoonPay Opened', 'Complete your purchase in the new tab');
   };
 
   const handleShowTransakAddFunds = () => {
@@ -356,76 +332,40 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
     // Open Transak in a new window/tab
     window.open(transakUrl, '_blank', 'noopener,noreferrer');
 
-    toast.info(
-      <div className="space-y-2">
-        <div className="font-semibold text-blue-800">
-          🔄 Transak Onramp Opened
-        </div>
-        <div className="text-sm text-blue-700">
-          Transak has been opened in a new tab. Complete your purchase to add
-          funds to your wallet.
-        </div>
-      </div>,
-      {
-        duration: 4000,
-        dismissible: true,
-        closeButton: true,
-        style: {
-          background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-          border: '1px solid #bfdbfe',
-          borderRadius: '8px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        },
-      }
-    );
+    showInfoToast('🔄 Transak Opened', 'Complete your purchase in the new tab');
   };
 
   const handleSign = async () => {
     if (!address) {
-      console.error('No address available');
+      console.error('🔏 [SIGNING] No address available');
       toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">
-            ⚠️ No Address Available
-          </div>
-          <div className="text-sm text-red-700">
-            Please ensure your wallet is properly connected before signing
-            messages.
-          </div>
-        </div>,
-        {
-          duration: 4000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
+        'Please ensure your wallet is properly connected before signing messages.'
       );
       return;
     }
 
-    console.log('Address:', address);
-    console.log('Primary Connector ID:', primaryConnectorId);
-    console.log('Is Para wallet:', isPara);
+    if (signingState !== 'idle') {
+      console.warn('🔏 [SIGNING] Signing already in progress:', signingState);
+      return;
+    }
 
-    // Replace with your message
     const message = 'Hello, Devconnect!';
 
     try {
-      console.log('Using primary connector for signing:', primaryConnector?.id);
+      console.log('🔏 [SIGNING] Starting signing process with:', {
+        address,
+        primaryConnectorId,
+        isPara,
+        message: message.substring(0, 50) + '...',
+      });
 
-      // Only show interactive toast for non-Para wallets
+      setSigningState('waiting');
+
+      // Setup abort controller for cancellation
+      signingControllerRef.current.abortController = new AbortController();
+
+      // Show pending toast for non-Para wallets
       if (!isPara) {
-        // Reset cancel flag and set up abort controller for cancellation
-        cancelRef.current = false;
-        abortControllerRef.current = new AbortController();
-        setIsWaitingForSignature(true);
-
-        // Show pending toast with cancel option
         toast.info(
           <div className="space-y-3">
             <div className="font-semibold text-blue-800">
@@ -434,18 +374,16 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
             <div className="text-sm text-blue-700">
               Please check your wallet and approve the signature request.
             </div>
-            <div className="flex gap-2">
-              <button
-                onClick={handleCancelSigning}
-                className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors cursor-pointer"
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              onClick={handleCancelSigning}
+              className="px-3 py-1 bg-red-100 hover:bg-red-200 text-red-700 rounded text-sm font-medium transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
           </div>,
           {
             id: 'signing-pending',
-            duration: Infinity, // Don't auto-dismiss
+            duration: Infinity,
             dismissible: false,
             closeButton: false,
             style: {
@@ -458,46 +396,37 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
         );
       }
 
-      // Start the signing process using the primary connector
-      let signature;
+      // Check for cancellation before starting
+      if (signingControllerRef.current.cancelled) {
+        throw new Error('Signing cancelled by user');
+      }
 
+      setSigningState('signing');
+
+      // Perform the signing
+      let signature;
       if (primaryConnector) {
-        console.log('Signing with primary connector:', primaryConnector.id);
+        console.log(
+          '🔏 [SIGNING] Using primary connector:',
+          primaryConnector.id
+        );
         signature = await signMessageAsync({
           message,
           connector: primaryConnector,
         });
       } else {
-        console.log('No primary connector found, using default signing');
+        console.log('🔏 [SIGNING] No primary connector, using default');
         signature = await signMessageAsync({ message });
       }
 
-      // Check if the process was cancelled
-      if (!isPara && cancelRef.current) {
+      // Check if cancelled during signing
+      if (signingControllerRef.current.cancelled) {
         throw new Error('Signing cancelled by user');
       }
 
-      // Clear the pending state (only if we set it)
-      if (!isPara) {
-        setIsWaitingForSignature(false);
-        abortControllerRef.current = null;
-        toast.dismiss('signing-pending');
+      setSigningState('completed');
 
-        // If cancelled, don't proceed with success flow
-        if (cancelRef.current) {
-          return;
-        }
-      }
-
-      console.log('Wagmi signature result:', signature);
-      console.log(
-        'Verifying signature for address:',
-        address,
-        'with primary connector:',
-        primaryConnector?.id
-      );
-
-      // Show notification with signature and verification
+      // Verify signature
       const isValidFormat = await verifySignature({
         address,
         message,
@@ -505,146 +434,46 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
       });
       const truncatedSig = truncateSignature(signature);
 
-      toast.success(
-        <div className="space-y-2">
-          <div className="font-semibold text-green-800">
-            ✅ Message Signed Successfully!
-          </div>
-          <div className="text-sm text-green-700">
-            <div className="font-medium">
-              Primary Connector:{' '}
-              {primaryConnector?.name || primaryConnector?.id}
-            </div>
-            <div className="font-medium">Signature:</div>
-            <div className="font-mono text-xs bg-green-50 p-2 rounded border">
-              {truncatedSig}
-            </div>
-          </div>
-          <div className="text-sm">
-            <span
-              className={`font-medium ${isValidFormat ? 'text-green-700' : 'text-red-700'}`}
-            >
-              Verification: {isValidFormat ? '✅ Valid' : '❌ Invalid'}
-            </span>
-          </div>
-        </div>,
-        {
-          duration: 5000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-            border: '1px solid #bbf7d0',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
+      console.log('🔏 [SIGNING] Signing completed successfully:', {
+        valid: isValidFormat,
+        signatureLength: signature.length,
+      });
+
+      // Show success toast
+      showSuccessToast(
+        '✅ Message Signed!',
+        `Using ${primaryConnector?.name || 'wallet'}`,
+        3000
       );
+
+      // Reset state after success
+      setTimeout(resetSigningState, 1000);
     } catch (err) {
-      // Clear the pending state (only if we set it for non-Para wallets)
-      if (!isPara) {
-        setIsWaitingForSignature(false);
-        abortControllerRef.current = null;
-        toast.dismiss('signing-pending');
-      }
-
-      console.error('Sign message failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      console.error('🔏 [SIGNING] Signing failed:', errorMessage);
 
-      // Don't show error toast if user cancelled (only for non-Para wallets)
+      // Handle cancellation vs actual errors
       if (
-        !isPara &&
-        (errorMessage.includes('aborted') ||
-          errorMessage.includes('cancelled') ||
-          errorMessage.includes('Signing cancelled by user'))
+        signingControllerRef.current.cancelled ||
+        errorMessage.includes('cancelled') ||
+        errorMessage.includes('aborted')
       ) {
-        toast.info(
-          <div className="space-y-2">
-            <div className="font-semibold text-blue-800">
-              ℹ️ Signing Cancelled
-            </div>
-            <div className="text-sm text-blue-700">
-              The signature request was cancelled.
-            </div>
-          </div>,
-          {
-            duration: 3000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)',
-              border: '1px solid #bfdbfe',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
-        return;
-      }
-
-      toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">❌ Signing Failed</div>
-          <div className="text-sm text-red-700">
-            <div className="font-medium">Error:</div>
-            <div className="bg-red-50 p-2 rounded border text-red-600">
-              {errorMessage}
-            </div>
-          </div>
-        </div>,
-        {
-          duration: 6000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
-    }
-  };
-
-  // Handle SIWE verification
-  const handleSiweVerification = async () => {
-    try {
-      const success = await handleSiweSignIn();
-      if (success) {
-        toast.success(
-          <div className="space-y-2">
-            <div className="font-semibold text-green-800">
-              ✅ SIWE Verification Successful!
-            </div>
-            <div className="text-sm text-green-700">
-              Your wallet has been verified with Sign-In with Ethereum.
-            </div>
-          </div>,
-          {
-            duration: 4000,
-            dismissible: true,
-            closeButton: true,
-            style: {
-              background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-              border: '1px solid #bbf7d0',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            },
-          }
-        );
+        setSigningState('cancelled');
+        toast.info('ℹ️ Signing Cancelled', { duration: 3000 });
       } else {
+        setSigningState('error');
         toast.error(
           <div className="space-y-2">
-            <div className="font-semibold text-red-800">
-              ❌ SIWE Verification Failed
-            </div>
+            <div className="font-semibold text-red-800">❌ Signing Failed</div>
             <div className="text-sm text-red-700">
-              Please try again or check your wallet connection.
+              <div className="font-medium">Error:</div>
+              <div className="bg-red-50 p-2 rounded border text-red-600">
+                {errorMessage}
+              </div>
             </div>
           </div>,
           {
-            duration: 4000,
+            duration: 6000,
             dismissible: true,
             closeButton: true,
             style: {
@@ -656,29 +485,30 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           }
         );
       }
+
+      // Reset state after error
+      setTimeout(resetSigningState, 2000);
+    }
+  };
+
+  // Handle SIWE verification
+  const handleSiweVerification = async () => {
+    try {
+      const success = await handleSiweSignIn();
+      if (success) {
+        showSuccessToast(
+          '✅ SIWE Verified',
+          'Sign-In with Ethereum successful'
+        );
+      } else {
+        showErrorToast(
+          '❌ SIWE Failed',
+          'Please try again or check your wallet'
+        );
+      }
     } catch (error) {
       console.error('SIWE verification failed:', error);
-      toast.error(
-        <div className="space-y-2">
-          <div className="font-semibold text-red-800">
-            ❌ SIWE Verification Error
-          </div>
-          <div className="text-sm text-red-700">
-            An unexpected error occurred during verification.
-          </div>
-        </div>,
-        {
-          duration: 4000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
-            border: '1px solid #fecaca',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
+      showErrorToast('❌ SIWE Error', 'An unexpected error occurred');
     }
   };
 
@@ -746,7 +576,7 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
                       console.log('Switch account button clicked:', {
                         connectorId: connector.id,
                         connectorName: connector.name,
-                        currentPrimaryConnectorId: primaryConnectorId
+                        currentPrimaryConnectorId: primaryConnectorId,
                       });
                       handleSwitchAccount(connector);
                     }}
@@ -797,18 +627,28 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           className="w-full cursor-pointer"
           size="lg"
           disabled={
-            isPara
-              ? isSigning
-              : isWaitingForSignature || (isSigning && !cancelRef.current)
+            signingState !== 'idle' &&
+            signingState !== 'completed' &&
+            signingState !== 'error' &&
+            signingState !== 'cancelled'
           }
         >
-          {isPara
-            ? isSigning
-              ? 'Signing...'
-              : 'Sign Message'
-            : isWaitingForSignature
-              ? 'Waiting for Signature...'
-              : 'Sign Message'}
+          {(() => {
+            switch (signingState) {
+              case 'waiting':
+                return 'Waiting for Signature...';
+              case 'signing':
+                return 'Signing...';
+              case 'completed':
+                return '✅ Signed!';
+              case 'cancelled':
+                return '❌ Cancelled';
+              case 'error':
+                return '❌ Error - Try Again';
+              default:
+                return 'Sign Message';
+            }
+          })()}
         </Button>
 
         <Button
