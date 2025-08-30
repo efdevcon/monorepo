@@ -9,10 +9,20 @@ import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 export default function Menu() {
   const { shouldShowNavigation } = useUnifiedConnection();
   const pathname = usePathname();
+  const hasLoggedHidden = React.useRef(false);
+
+  // Only log once when navigation becomes hidden to avoid spam
+  React.useEffect(() => {
+    if (!shouldShowNavigation && !hasLoggedHidden.current) {
+      console.log('Menu: hiding navigation');
+      hasLoggedHidden.current = true;
+    } else if (shouldShowNavigation) {
+      hasLoggedHidden.current = false; // Reset when navigation becomes visible
+    }
+  }, [shouldShowNavigation]);
 
   // Hide navigation until user connects or skips
   if (!shouldShowNavigation) {
-    console.log('Menu: hiding navigation');
     return null;
   }
 
