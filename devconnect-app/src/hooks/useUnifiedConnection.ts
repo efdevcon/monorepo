@@ -763,6 +763,7 @@ export function useUnifiedConnection() {
         userIntentTimestamp = 0;
         saveUserIntentTimestamp(0);
         setPrimaryConnectorId(null);
+        localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
         disconnectResults.cleanup = true;
         console.log('🔌 [UNIFIED_DISCONNECT] State cleanup successful');
       } catch (cleanupError) {
