@@ -4,7 +4,6 @@ import {
   useAppKit,
   useDisconnect as useAppKitDisconnect,
 } from '@reown/appkit/react';
-import { useConnectors, useDisconnect } from 'wagmi';
 import { useSignMessage } from 'wagmi';
 import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
 import { toast } from 'sonner';
@@ -91,8 +90,6 @@ interface ConnectedWalletProps {
 
 export default function ConnectedWallet({ address }: ConnectedWalletProps) {
   const { open } = useAppKit();
-  const { disconnect: appKitDisconnect } = useAppKitDisconnect();
-  const { disconnect: wagmiDisconnect } = useDisconnect();
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();

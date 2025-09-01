@@ -1,5 +1,5 @@
 import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount, useConnections } from 'wagmi';
-import { useAccount as useParaAccount, useWallet as useParaWallet } from '@getpara/react-sdk';
+import { useAccount as useParaAccount, useLogout, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
@@ -127,30 +127,9 @@ const loadPrimaryConnectorFromStorage = (availableConnectors?: readonly any[]): 
               conn => conn.id === savedConnector
             );
 
-            // If exact match not found, try alternative matching for known cases
-            if (!isConnectorAvailable) {
-              // Special handling for Zerion wallet
-              if (savedConnector.toLowerCase().includes('zerion')) {
-                const alternativeConnector = availableConnectors.find(
-                  conn => conn.id === 'injected' ||
-                         conn.name?.toLowerCase().includes('zerion') ||
-                         conn.name?.toLowerCase().includes('metamask')
-                );
-                if (alternativeConnector) {
-                  console.log('💾 [STORAGE] Found alternative connector for Zerion wallet:', alternativeConnector.id, 'updating stored value');
-                  // Update the stored connector to use the correct ID
-                  localStorage.setItem(PRIMARY_CONNECTOR_KEY, alternativeConnector.id);
-                  localStorage.setItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY, Date.now().toString());
-                  // Update the cache to reflect the change
-                  cachedStorageValue = alternativeConnector.id;
-                  console.log('💾 [STORAGE] Updated stored connector to:', alternativeConnector.id);
-                  return alternativeConnector.id;
-                }
-              }
-            }
-
             if (!isConnectorAvailable) {
               console.log('💾 [STORAGE] Saved connector no longer available, clearing:', savedConnector);
+              alert('Saved connector no longer available, clearing: ' + savedConnector);
               console.log('💾 [STORAGE] Available connectors:', availableConnectors.map(c => ({ id: c.id, name: c.name })));
               localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
               localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
@@ -188,6 +167,8 @@ export function useUnifiedConnection() {
   // Wagmi hooks - this is our primary connection layer
   const wagmiAccount = useWagmiAccount();
   const { connect, connectors } = useConnect();
+  // console.log('wagmiAccount', wagmiAccount);
+  // console.log('connectors', connectors);
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
   const { connectors: switchableConnectors, switchAccount } = useSwitchAccount();
@@ -196,7 +177,7 @@ export function useUnifiedConnection() {
   // Para SDK hooks - for Para-specific functionality
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
-  const { disconnect: paraDisconnect } = useDisconnect();
+  const { logout } = useLogout();
 
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
@@ -278,9 +259,9 @@ export function useUnifiedConnection() {
     }
 
     // Only fallback to Para connector if it's actually connected and no other connection exists
-    if (paraConnector && isParaConnected && !wagmiAccount.connector) {
-      return paraConnector;
-    }
+    // if (paraConnector && isParaConnected && !wagmiAccount.connector) {
+    //   return paraConnector;
+    // }
 
     return null;
   }, [connectors, primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
@@ -304,10 +285,19 @@ export function useUnifiedConnection() {
       };
     }
 
-    // If we have a wagmi connection but it doesn't match primary connector, don't use it
+    // If we have a wagmi connection but it doesn't match primary connector, switch wagmi to match primary
     if (primaryConnectorId && wagmiAccount.connector && wagmiAccount.connector.id !== primaryConnectorId) {
+      console.log('🔄 [AUTO_SWITCH] Wagmi connection mismatch, switching wagmi from', wagmiAccount.connector.id, 'to primary connector:', primaryConnectorId);
+      // Switch wagmi connection to match primary connector
+      const targetConnector = connectors.find(c => c.id === primaryConnectorId);
+      if (targetConnector) {
+        // Use setTimeout to avoid calling connect during render
+        setTimeout(() => {
+          connect({ connector: targetConnector });
+        }, 0);
+      }
       return {
-        isConnected: false,
+        isConnected: false, // Temporarily disconnected while switching
         address: undefined
       };
     }
@@ -381,33 +371,33 @@ export function useUnifiedConnection() {
   }, [isParaConnected, wagmiAccount.isConnected, wagmiAccount.connector?.id, connectors, primaryConnectorId]);
 
   // Simple Para auto-detection after init (respect user intent)
-  useEffect(() => {
-    if (!primaryConnectorId) return;
+  // useEffect(() => {
+  //   if (!primaryConnectorId) return;
 
-    // If Para connects later, switch to it (but respect user intent)
-    if (wagmiAccount.isConnected && wagmiAccount.connector?.id === 'para' && primaryConnectorId !== 'para') {
-      // Don't auto-switch if user recently chose a different connector (within 5 seconds)
-      const timeSinceUserIntent = Date.now() - userIntentTimestamp;
-      console.log('🔄 [PARA_DETECT] Checking user intent:', {
-        currentTime: Date.now(),
-        userIntentTimestamp,
-        timeSinceUserIntent,
-        primaryConnectorId,
-        wagmiConnector: wagmiAccount.connector?.id
-      });
+  //   // If Para connects later, switch to it (but respect user intent)
+  //   if (wagmiAccount.isConnected && wagmiAccount.connector?.id === 'para' && primaryConnectorId !== 'para') {
+  //     // Don't auto-switch if user recently chose a different connector (within 5 seconds)
+  //     const timeSinceUserIntent = Date.now() - userIntentTimestamp;
+  //     console.log('🔄 [PARA_DETECT] Checking user intent:', {
+  //       currentTime: Date.now(),
+  //       userIntentTimestamp,
+  //       timeSinceUserIntent,
+  //       primaryConnectorId,
+  //       wagmiConnector: wagmiAccount.connector?.id
+  //     });
 
-      if (timeSinceUserIntent < 30000) { // 30 seconds to respect user intent
-        console.log('🔄 [PARA_DETECT] Skipping Para auto-switch due to recent user intent:', {
-          timeSinceUserIntent,
-          userChose: primaryConnectorId
-        });
-        return;
-      }
+  //     if (timeSinceUserIntent < 30000) { // 30 seconds to respect user intent
+  //       console.log('🔄 [PARA_DETECT] Skipping Para auto-switch due to recent user intent:', {
+  //         timeSinceUserIntent,
+  //         userChose: primaryConnectorId
+  //       });
+  //       return;
+  //     }
 
-      console.log('🔄 [PARA_DETECT] Para connected later, switching to it (auto)');
-      setPrimaryConnectorId('para'); // Auto-detection, not user intent
-    }
-  }, [wagmiAccount.isConnected, wagmiAccount.connector?.id, primaryConnectorId]);
+  // console.log('🔄 [PARA_DETECT] Para connected later, switching to it (auto)');
+  // setPrimaryConnectorId('para'); // Auto-detection, not user intent
+  //   }
+  // }, [wagmiAccount.isConnected, wagmiAccount.connector?.id, primaryConnectorId]);
 
   // Reconnection for primary connector - handle both connected and disconnected states
   useEffect(() => {
@@ -465,8 +455,8 @@ export function useUnifiedConnection() {
 
       // If we're connected to the wrong connector, switch to the right one
       if (wagmiAccount.isConnected && wagmiAccount.connector?.id !== primaryConnectorId && !wagmiAccount.isConnecting) {
-        console.log('🔄 [RECONNECT] Switching from', wagmiAccount.connector?.id, 'to primary connector:', primaryConnectorId);
-        connect({ connector: targetConnector });
+        // console.log('🔄 [RECONNECT] Switching from', wagmiAccount.connector?.id, 'to primary connector:', primaryConnectorId);
+        // connect({ connector: targetConnector });
       }
       // If we're not connected at all but have a primary connector, try to connect
       else if (!wagmiAccount.isConnected && !wagmiAccount.isConnecting && !wagmiAccount.isReconnecting) {
@@ -527,6 +517,17 @@ export function useUnifiedConnection() {
       }
     }
   }, [primaryConnectorId, isParaConnected, paraConnector, connections]);
+
+  // Ensure Para stays connected to Wagmi even when not primary (for seamless switching)
+  useEffect(() => {
+    if (isParaConnected && paraConnector && primaryConnectorId !== 'para') {
+      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
+      if (!isParaWagmiConnected) {
+        console.log('🔗 [PARA_SYNC] Para SDK connected but not in Wagmi (not primary), syncing for seamless switching...');
+        connect({ connector: paraConnector });
+      }
+    }
+  }, [isParaConnected, paraConnector, primaryConnectorId, connections]);
 
   // Monitor connection state changes (reduced logging)
   const lastLoggedState = React.useRef<string | null>(null);
@@ -743,7 +744,7 @@ export function useUnifiedConnection() {
       if (isPara) {
         console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting Para SDK');
         try {
-          paraDisconnect();
+          logout();
           disconnectResults.para = true;
           console.log('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect successful');
         } catch (paraError) {
