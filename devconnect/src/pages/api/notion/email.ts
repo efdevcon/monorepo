@@ -108,7 +108,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log('Triggering accreditation email...')
       
       // Call the account API to send the accreditation email
-      const response = await fetch(`${process.env.API_BASE_URL}/account/accreditation/email?apiKey=${process.env.API_KEYS || ''}`, {
+      const response = await fetch(`${process.env.API_BASE_URL}/account/accreditation/email?apiKey=${process.env.DEVCON_API_KEY || ''}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json'
