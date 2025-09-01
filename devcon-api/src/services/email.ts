@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer'
 import { SERVER_CONFIG } from '@/utils/config'
 import emailTemplates from './email-templates.json'
 
-type EmailTemplates = 'default-email' | 'email-cta'
+type EmailTemplates = 'default-email' | 'email-cta' | 'accreditation-confirmation'
 
 const transporter = nodemailer.createTransport({
   host: SERVER_CONFIG.SMTP_SERVICE,
@@ -22,6 +22,9 @@ export async function sendMail(to: string, template: EmailTemplates, subject: st
   if (template === 'email-cta') {
     text = replace(emailTemplates.ctaEmail.text.join('\n'), properties)
     html = replace(emailTemplates.ctaEmail.html, properties).replace(/(?:\r\n|\r|\n)/g, '<br>')
+  } else if (template === 'accreditation-confirmation') {
+    text = replace(emailTemplates.accreditationConfirmation.text.join('\n'), properties)
+    html = replace(emailTemplates.accreditationConfirmation.html, properties).replace(/(?:\r\n|\r|\n)/g, '<br>')
   }
 
   const response = await transporter.sendMail({
@@ -33,6 +36,25 @@ export async function sendMail(to: string, template: EmailTemplates, subject: st
   })
 
   return response.accepted.length > 0
+}
+
+// Example usage for accreditation confirmation
+export async function sendAccreditationConfirmationEmail(
+  to: string,
+  name: string,
+  insuranceLink: string
+) {
+  const properties = {
+    Name: name,
+    InsuranceLink: insuranceLink
+  }
+
+  return sendMail(
+    to,
+    'accreditation-confirmation',
+    '🎉 Your Accreditation Has Been Confirmed!',
+    properties
+  )
 }
 
 function replace(template: string, data: any) {
