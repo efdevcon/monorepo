@@ -284,14 +284,15 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
       openModal();
       // openModal({ step: ModalStep.EX_WALLET_MORE });
       // open({ view: 'Account' });
+      // openModal({ step: ModalStep.ADD_FUNDS_BUY });
       // open({ view: 'Connect' });
     } else {
       // Use AppKit for other wallets
       console.log('Opening AppKit account modal');
-      // open();
-      // openModal({ step: ModalStep.EX_WALLET_MORE });
-      open({ view: 'Account' });
-      // open({ view: 'Connect' });
+      // openModal();
+      // openModal({ step: ModalStep.ADD_FUNDS_BUY });
+      // open({ view: 'OnRampProviders' });
+      open();
     }
   };
 
@@ -651,12 +652,22 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           })()}
         </Button>
 
+        {isPara && (
+          <Button
+            onClick={handleOpenAccountModal}
+            className="w-full cursor-pointer"
+            size="lg"
+          >
+            {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
+          </Button>
+        )}
+
         <Button
-          onClick={handleOpenAccountModal}
+          onClick={() => open()}
           className="w-full cursor-pointer"
           size="lg"
         >
-          {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
+          Wallet Connect Modal
         </Button>
 
         <Button

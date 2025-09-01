@@ -80,8 +80,8 @@ export const appKit = createAppKit({
     email: false,
     socials: false,
     emailShowWallets: false,
-    onramp: false,
-    swaps: false,
+    onramp: true,
+    swaps: true,
     // allWallets: true,
     // multiWallet: true,
     // networkSwitch: true,
@@ -92,7 +92,7 @@ export const appKit = createAppKit({
   enableInjected: true,
   enableWalletConnect: true,
   enableCoinbase: true,
-  // allowUnsupportedChain: true,
+  allowUnsupportedChain: true,
   // multiWallet: true,
   allWallets: "SHOW", // Show all wallets including injected ones
   featuredWalletIds: [
