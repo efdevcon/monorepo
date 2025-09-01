@@ -91,7 +91,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   : 0;
 
                 // Get status
-                const status = pageData.properties?.Status?.status?.name || 'No Status';
+                const status = pageData.properties?.['[config] Status']?.status?.name?.replace('[lock] ', '') || 'No Status';
 
                 // console.log(`[API Call] Retrieved sub-item ${relation.id}:`, {
                 //   pageName: pageData.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
