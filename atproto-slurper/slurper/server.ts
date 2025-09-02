@@ -528,7 +528,7 @@ app.get("/calendar-events", async (req, res) => {
     .from("atproto_records")
     .select(
       `
-      id, rkey, created_by, record_passed_review, is_core_event,
+      id, rkey, created_by, record_passed_review, is_core_event, admin_override,
       atproto_dids!created_by(did, alias)
     `
     )
@@ -539,11 +539,21 @@ app.get("/calendar-events", async (req, res) => {
   if (error) {
     res.status(500).json({ error });
   } else {
-    res.json(data);
+    const formatted = data?.map((rawEvent) => {
+      return {
+        ...rawEvent,
+        record_passed_review: {
+          ...rawEvent.record_passed_review,
+          ...rawEvent.admin_override,
+        },
+      };
+    });
+
+    res.json(formatted);
   }
 });
 
-app.get("/validate-event", async (req, res) => {
+app.post("/validate-event", async (req, res) => {
   const record = req.body.record;
 
   const { valid, error } = validateRecord(record);

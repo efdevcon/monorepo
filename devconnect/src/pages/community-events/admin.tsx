@@ -5,42 +5,45 @@ import { supabase } from 'common/supabaseClient'
 import NewSchedule from 'lib/components/event-schedule-new'
 import FeedCoupons from 'common/components/perks/feed-coupons'
 import { Dialog, DialogContent } from 'lib/components/ui/dialog'
+import { toast } from 'sonner'
 
 // Format Atproto event to our calendar component format
-const formatATProtoEvent = (atprotoEvent: any) => {
+const formatATProtoEvent = (atprotoEvent: any, override: any) => {
+  const final = override ? { ...atprotoEvent, ...override } : atprotoEvent
+
   // Map timeslots to timeblocks, or fallback to main event time
   let timeblocks: any[] = []
-  if (Array.isArray(atprotoEvent.timeslots) && atprotoEvent.timeslots.length > 0) {
-    timeblocks = atprotoEvent.timeslots.map((slot: any) => ({
+  if (Array.isArray(final.timeslots) && final.timeslots.length > 0) {
+    timeblocks = final.timeslots.map((slot: any) => ({
       start: slot.start_utc,
       end: slot.end_utc,
       name: slot.title || undefined,
     }))
-  } else if (atprotoEvent.start_utc && atprotoEvent.end_utc) {
+  } else if (final.start_utc && final.end_utc) {
     timeblocks = [
       {
-        start: atprotoEvent.start_utc,
-        end: atprotoEvent.end_utc,
-        name: atprotoEvent.title,
+        start: final.start_utc,
+        end: final.end_utc,
+        name: final.title,
       },
     ]
   }
 
   return {
-    id: atprotoEvent.id,
-    name: atprotoEvent.title,
-    description: atprotoEvent.description,
-    organizer: atprotoEvent.organizer?.name,
-    difficulty: atprotoEvent.metadata?.expertise_level || 'All Welcome',
+    id: final.id,
+    name: final.title,
+    description: final.description,
+    organizer: final.organizer?.name,
+    difficulty: final.metadata?.expertise_level || 'All Welcome',
     location: {
-      url: atprotoEvent.metadata?.website || '',
-      text: atprotoEvent.location?.name || '',
+      url: final.metadata?.website || '',
+      text: final.location?.name || '',
     },
     timeblocks,
-    priority: atprotoEvent.metadata?.priority || 1,
-    categories: atprotoEvent.metadata?.categories || [],
-    amountPeople: atprotoEvent.metadata?.capacity !== undefined ? String(atprotoEvent.metadata.capacity) : undefined,
-    event_type: atprotoEvent.event_type,
+    priority: final.metadata?.priority || 1,
+    categories: final.metadata?.categories || [],
+    amountPeople: final.metadata?.capacity !== undefined ? String(final.metadata.capacity) : undefined,
+    event_type: final.event_type,
   }
 }
 
@@ -67,6 +70,8 @@ const AdminPage = () => {
     title: '',
     data: null,
   })
+  const [editingAdminOverride, setEditingAdminOverride] = useState<Set<string>>(new Set())
+  const [adminOverrideValues, setAdminOverrideValues] = useState<Record<string, string>>({})
 
   const fetchEvents = async () => {
     try {
@@ -78,7 +83,7 @@ const AdminPage = () => {
         .select(
           `
           id, rkey, created_by, created_at, updated_at, show_on_calendar,
-          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event,
+          record_passed_review, record_needs_review, lexicon, comments, reviewed, is_core_event, admin_override,
           atproto_dids!created_by(did, alias, is_spammer, contact)
         `
         )
@@ -362,6 +367,122 @@ const AdminPage = () => {
     setCommentValues(newCommentValues)
   }
 
+  const toggleAdminOverrideEdit = (id: string, currentValue: any) => {
+    const newEditingAdminOverride = new Set(editingAdminOverride)
+    if (newEditingAdminOverride.has(id)) {
+      newEditingAdminOverride.delete(id)
+    } else {
+      newEditingAdminOverride.add(id)
+      setAdminOverrideValues(prev => ({
+        ...prev,
+        [id]: currentValue ? JSON.stringify(currentValue, null, 2) : '',
+      }))
+    }
+    setEditingAdminOverride(newEditingAdminOverride)
+  }
+
+  const handleAdminOverrideChange = (id: string, value: string) => {
+    setAdminOverrideValues(prev => ({
+      ...prev,
+      [id]: value,
+    }))
+  }
+
+  const handleSaveAdminOverride = async (id: string) => {
+    setEventsLoading(true)
+    try {
+      let jsonValue = null
+      if (adminOverrideValues[id]) {
+        try {
+          jsonValue = JSON.parse(adminOverrideValues[id])
+        } catch (e) {
+          throw new Error('Invalid JSON format')
+        }
+      }
+
+      // Get the current event to merge with admin override
+      const currentEvent = events.find(e => e.id === id)
+      if (!currentEvent) {
+        throw new Error('Event not found')
+      }
+
+      // Get the base record data (prefer approved version if it exists)
+      const baseRecord = currentEvent.record_passed_review || currentEvent.record_needs_review
+
+      // Merge the base record with admin override for validation
+      const mergedRecord = jsonValue ? { ...baseRecord, ...jsonValue } : baseRecord
+
+      const validationUrl = process.env.NEXT_PUBLIC_VALIDATION_URL || 'http://localhost:4000/validate-event'
+
+      // Validate the merged record using the validation endpoint at the same base URL
+      const validationResponse = await fetch(validationUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ record: mergedRecord }),
+      })
+
+      const validationResult = await validationResponse.json()
+
+      console.log('Validation result:', validationResult)
+
+      if (!validationResult.valid) {
+        throw new Error(`Validation failed: ${validationResult.error || 'Invalid event data'}`)
+      }
+
+      // If validation passes, save the admin override
+      const { error } = await supabase.from('atproto_records').update({ admin_override: jsonValue }).eq('id', id)
+
+      if (error) throw error
+
+      await fetchEvents()
+
+      // Exit edit mode
+      const newEditingAdminOverride = new Set(editingAdminOverride)
+      newEditingAdminOverride.delete(id)
+      setEditingAdminOverride(newEditingAdminOverride)
+    } catch (error: any) {
+      alert(error.message)
+      // setEventsError(error.message)
+    } finally {
+      setEventsLoading(false)
+    }
+  }
+
+  const handleCancelAdminOverrideEdit = (id: string) => {
+    const newEditingAdminOverride = new Set(editingAdminOverride)
+    newEditingAdminOverride.delete(id)
+    setEditingAdminOverride(newEditingAdminOverride)
+
+    // Remove edit values for this event
+    const newAdminOverrideValues = { ...adminOverrideValues }
+    delete newAdminOverrideValues[id]
+    setAdminOverrideValues(newAdminOverrideValues)
+  }
+
+  const handleRemoveAdminOverride = async (id: string) => {
+    if (!confirm('Are you sure you want to remove the admin override?')) {
+      return
+    }
+
+    setEventsLoading(true)
+    try {
+      // Set admin_override to null to remove it
+      const { error } = await supabase.from('atproto_records').update({ admin_override: null }).eq('id', id)
+
+      if (error) throw error
+
+      await fetchEvents()
+
+      toast.success('Admin override removed successfully')
+    } catch (error: any) {
+      alert(`Failed to remove admin override: ${error.message}`)
+    } finally {
+      setEventsLoading(false)
+    }
+  }
+
   const handleExpandJson = (title: string, data: any) => {
     setExpandedJson({
       isOpen: true,
@@ -416,7 +537,7 @@ const AdminPage = () => {
 
   const formattedEvents = events
     .map(event => ({
-      ...formatATProtoEvent(event.record_passed_review || event.record_needs_review),
+      ...formatATProtoEvent(event.record_passed_review || event.record_needs_review, event.admin_override),
       id: event.id,
       created_by: event.created_by,
       created_at: event.created_at,
@@ -661,6 +782,7 @@ const AdminPage = () => {
                                 const hasChanges = needsReview && isApproved // Both defined = approved but has changes
                                 const recordData = event.record_passed_review || event.record_needs_review
                                 const isEditingComment = editingComments.has(event.id)
+                                const isEditingOverride = editingAdminOverride.has(event.id)
 
                                 return (
                                   <div
@@ -931,6 +1053,66 @@ const AdminPage = () => {
                                             </div>
                                           ) : (
                                             <p className="text-xs text-gray-500 italic">No comments yet</p>
+                                          )}
+                                        </div>
+
+                                        {/* Admin Override Section */}
+                                        <div className="mt-4 pt-3 border-t border-gray-200">
+                                          <div className="flex items-center justify-between mb-2">
+                                            <h4 className="text-sm font-medium text-gray-700">Admin Override (JSON)</h4>
+                                            {!isEditingOverride && (
+                                              <div className="flex space-x-2">
+                                                <button
+                                                  onClick={() =>
+                                                    toggleAdminOverrideEdit(event.id, event.admin_override)
+                                                  }
+                                                  className="text-xs text-blue-600 hover:text-blue-800"
+                                                >
+                                                  {event.admin_override ? 'Edit' : 'Add Override'}
+                                                </button>
+                                                {event.admin_override && (
+                                                  <button
+                                                    onClick={() => handleRemoveAdminOverride(event.id)}
+                                                    className="text-xs text-red-600 hover:text-red-800"
+                                                  >
+                                                    Remove Override
+                                                  </button>
+                                                )}
+                                              </div>
+                                            )}
+                                          </div>
+
+                                          {isEditingOverride ? (
+                                            <div className="space-y-2">
+                                              <textarea
+                                                value={adminOverrideValues[event.id] || ''}
+                                                onChange={e => handleAdminOverrideChange(event.id, e.target.value)}
+                                                placeholder='Enter JSON object, e.g. {"priority": 10, "featured": true}'
+                                                className="w-full px-3 py-2 border border-gray-300 rounded-md text-sm resize-vertical min-h-[120px] font-mono"
+                                              />
+                                              <div className="flex space-x-2">
+                                                <button
+                                                  onClick={() => handleSaveAdminOverride(event.id)}
+                                                  className="px-3 py-1 bg-blue-600 text-white text-xs rounded-md hover:bg-blue-700 transition-colors"
+                                                >
+                                                  Save
+                                                </button>
+                                                <button
+                                                  onClick={() => handleCancelAdminOverrideEdit(event.id)}
+                                                  className="px-3 py-1 bg-gray-600 text-white text-xs rounded-md hover:bg-gray-700 transition-colors"
+                                                >
+                                                  Cancel
+                                                </button>
+                                              </div>
+                                            </div>
+                                          ) : event.admin_override ? (
+                                            <div className="bg-yellow-50 rounded-md p-3 max-h-32 overflow-y-auto">
+                                              <pre className="text-xs text-yellow-700 whitespace-pre-wrap break-words font-mono">
+                                                {JSON.stringify(event.admin_override, null, 2)}
+                                              </pre>
+                                            </div>
+                                          ) : (
+                                            <p className="text-xs text-gray-500 italic">No admin override set</p>
                                           )}
                                         </div>
                                       </div>
