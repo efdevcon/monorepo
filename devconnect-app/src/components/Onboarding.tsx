@@ -113,6 +113,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     try {
       console.log('Forcing wagmi Para connector connection...');
       await connect({ connector: paraConnector });
+
+      // Set Para as primary connector (user intent since they just completed Para auth)
+      console.log('Setting Para as primary connector after Para auth');
+      // Note: We can't directly call setPrimaryConnectorId here because this is in Onboarding component
+      // The unified connection hook will detect this and set it as primary
       console.log('Wagmi Para connector connected successfully');
     } catch (error) {
       console.error('Failed to connect wagmi Para connector:', error);

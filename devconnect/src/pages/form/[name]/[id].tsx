@@ -7,9 +7,17 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status'
   mode: 'edit' | 'read'
   description?: string
+}
+
+// Config interface for API response
+interface ConfigResponse {
+  fields: DynamicField[]
+  config: {
+    isLocked: boolean
+  }
 }
 
 // Sub-item interface for org forms
@@ -46,6 +54,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [subItems, setSubItems] = useState<SubItem[]>([])
   const [subItemsLoading, setSubItemsLoading] = useState(false)
   const [orgPageName, setOrgPageName] = useState<string>('')
+  const [isLocked, setIsLocked] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
   // Get params from either props or router query
@@ -217,10 +227,13 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     try {
       const res = await fetch(`/api/notion/${pageId}`)
       if (!res.ok) throw new Error('Failed to fetch data')
-      const responseData = await res.json()
+      const responseData: ConfigResponse = await res.json()
 
       // Handle new flat array API response format
       const apiFields = responseData.fields || []
+
+      // Set locked status from config
+      setIsLocked(responseData.config?.isLocked || false)
 
       // Convert to data object for backward compatibility
       const allData: Record<string, string> = {}
@@ -269,9 +282,22 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   }, [pageId, pageName, params, router.query, router.isReady])
 
   // Handle form submission
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const formData = new FormData(e.currentTarget)
+
     if (!pageId) {
       addNotification('error', 'Invalid page ID')
+      setIsSubmitting(false)
+      return
+    }
+
+    // Prevent submission if form is locked
+    if (isLocked) {
+      addNotification('error', 'Form is locked and cannot be updated')
+      setIsSubmitting(false)
       return
     }
 
@@ -312,6 +338,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               updates[field.name] = uploadData.url
             } catch (error) {
               addNotification('error', `Failed to upload ${field.name}: ${error}`)
+              setIsSubmitting(false)
               return
             }
           } else {
@@ -333,12 +360,14 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         body: JSON.stringify(updates),
       })
       if (!res.ok) throw new Error('Failed to update')
-      addNotification('success', 'Page updated successfully!')
+      addNotification('success', 'Form updated successfully!')
 
       // Refetch data to show updated values
       await fetchData()
     } catch (err) {
       addNotification('error', 'Error updating page. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -445,6 +474,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         >
           {pageName === 'org'
             ? 'Accreditation links for your organization'
+            : isLocked
+            ? 'Form is locked - view only'
             : fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
             ? 'Update your information'
             : 'Submit your information'}
@@ -453,152 +484,215 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
       {/* Form */}
       {pageName !== 'org' && (
-        <form action={handleSubmit} style={{ marginBottom: '2rem' }}>
-          {fields.map(field => (
-            <div key={field.name} style={{ marginBottom: '1.5rem' }}>
-              <label
-                htmlFor={field.name}
-                style={{
-                  display: 'block',
-                  marginBottom: '0.5rem',
-                  fontWeight: '500',
-                  color: field.mode === 'read' ? '#666' : '#333',
-                  fontSize: '0.95rem',
-                }}
-              >
-                {field.name.replace(/([A-Z])/g, ' $1').trim()}
-                {field.mode === 'read' && (
-                  <span
+        <>
+          {/* Locked Form Message */}
+          {isLocked && (
+            <div
+              style={{
+                backgroundColor: '#fff3cd',
+                border: '1px solid #ffeaa7',
+                borderRadius: '6px',
+                padding: '1rem',
+                marginBottom: '1.5rem',
+                textAlign: 'center',
+              }}
+            >
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🔒</div>
+              <p style={{ margin: '0', fontSize: '1rem', color: '#856404', fontWeight: '500' }}>
+                This form is currently locked and cannot be updated.
+              </p>
+              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#856404' }}>
+                All fields are now read-only.
+              </p>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} style={{ marginBottom: '2rem' }}>
+            {fields.map(field => (
+              <div key={field.name} style={{ marginBottom: '1.5rem' }}>
+                <label
+                  htmlFor={field.name}
+                  style={{
+                    display: 'block',
+                    marginBottom: '0.5rem',
+                    fontWeight: '500',
+                    color: field.mode === 'read' ? '#666' : '#333',
+                    fontSize: '0.95rem',
+                  }}
+                >
+                  {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                  {field.mode === 'read' && (
+                    <span
+                      style={{
+                        fontSize: '0.8rem',
+                        color: '#999',
+                        marginLeft: '0.5rem',
+                        fontStyle: 'italic',
+                      }}
+                    >
+                      (read-only)
+                    </span>
+                  )}
+                </label>
+                {field.description && (
+                  <p
                     style={{
-                      fontSize: '0.8rem',
-                      color: '#999',
-                      marginLeft: '0.5rem',
+                      fontSize: '0.85rem',
+                      color: '#666',
+                      margin: '0 0 0.5rem 0',
                       fontStyle: 'italic',
                     }}
                   >
-                    (read-only)
-                  </span>
+                    {field.description}
+                  </p>
                 )}
-              </label>
-              {field.description && (
-                <p
-                  style={{
-                    fontSize: '0.85rem',
-                    color: '#666',
-                    margin: '0 0 0.5rem 0',
-                    fontStyle: 'italic',
-                  }}
-                >
-                  {field.description}
-                </p>
-              )}
-              {field.mode === 'read' ? (
-                // Read-only display
-                <div
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '1rem',
-                    backgroundColor: '#f8f9fa',
-                    color: '#666',
-                    minHeight: '2.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  {field.type === 'file' && field.value ? (
-                    <div style={{ width: '100%' }}>
-                      {isImageUrl(field.value) ? (
-                        <img
-                          src={field.value}
-                          alt="File preview"
-                          style={{
-                            maxWidth: '100%',
-                            maxHeight: '200px',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        />
-                      ) : isPdfUrl(field.value) ? (
-                        <div
-                          style={{
-                            width: '100%',
-                            height: '300px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                            overflow: 'hidden',
-                          }}
-                        >
-                          <iframe
-                            src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              border: 'none',
-                            }}
-                            title="PDF Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div
-                          style={{
-                            padding: '1rem',
-                            backgroundColor: '#e9ecef',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        >
-                          📄 {getFileNameFromUrl(field.value)}
-                        </div>
-                      )}
-                      <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                        {getFileNameFromUrl(field.value)}
-                      </p>
-                    </div>
-                  ) : (
-                    field.value
-                  )}
-                </div>
-              ) : field.type === 'file' ? (
-                // File upload with drag and drop
-                <div>
+                {field.mode === 'read' ? (
+                  // Read-only display
                   <div
                     style={{
                       width: '100%',
-                      padding: '1rem',
-                      border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
+                      padding: '0.75rem',
+                      border: '1px solid #e0e0e0',
                       borderRadius: '6px',
-                      backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
-                      textAlign: 'center',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                      minHeight: '120px',
+                      fontSize: '1rem',
+                      backgroundColor: '#f8f9fa',
+                      color: '#666',
+                      minHeight: '2.5rem',
                       display: 'flex',
-                      flexDirection: 'column',
                       alignItems: 'center',
-                      justifyContent: 'center',
                     }}
-                    onDragOver={e => handleDragOver(e, field.name)}
-                    onDragLeave={e => handleDragLeave(e, field.name)}
-                    onDrop={e => handleDrop(e, field.name)}
-                    onClick={() => fileInputRefs.current[field.name]?.click()}
                   >
-                    {fileUploads[field.name]?.preview ? (
-                      // Show preview
+                    {field.type === 'file' && field.value ? (
                       <div style={{ width: '100%' }}>
-                        {(() => {
-                          const preview = fileUploads[field.name]?.preview
-                          const isImage = preview && isImageUrl(preview)
-                          const isBlob = preview?.startsWith('blob:')
-                          console.log('Preview rendering for field:', field.name, { preview, isImage, isBlob })
+                        {isImageUrl(field.value) ? (
+                          <img
+                            src={field.value}
+                            alt="File preview"
+                            style={{
+                              maxWidth: '100%',
+                              maxHeight: '200px',
+                              borderRadius: '4px',
+                              marginBottom: '0.5rem',
+                            }}
+                          />
+                        ) : isPdfUrl(field.value) ? (
+                          <div
+                            style={{
+                              width: '100%',
+                              height: '300px',
+                              border: '1px solid #ddd',
+                              borderRadius: '4px',
+                              marginBottom: '0.5rem',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <iframe
+                              src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                border: 'none',
+                              }}
+                              title="PDF Preview"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            style={{
+                              padding: '1rem',
+                              backgroundColor: '#e9ecef',
+                              borderRadius: '4px',
+                              marginBottom: '0.5rem',
+                            }}
+                          >
+                            📄 {getFileNameFromUrl(field.value)}
+                          </div>
+                        )}
+                        <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
+                          {getFileNameFromUrl(field.value)}
+                        </p>
+                      </div>
+                    ) : (
+                      field.value
+                    )}
+                  </div>
+                ) : field.type === 'file' ? (
+                  // File upload with drag and drop
+                  <div>
+                    <div
+                      style={{
+                        width: '100%',
+                        padding: '1rem',
+                        border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
+                        borderRadius: '6px',
+                        backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
+                        textAlign: 'center',
+                        cursor: 'pointer',
+                        transition: 'all 0.2s ease',
+                        minHeight: '120px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                      onDragOver={e => handleDragOver(e, field.name)}
+                      onDragLeave={e => handleDragLeave(e, field.name)}
+                      onDrop={e => handleDrop(e, field.name)}
+                      onClick={() => fileInputRefs.current[field.name]?.click()}
+                    >
+                      {fileUploads[field.name]?.preview ? (
+                        // Show preview
+                        <div style={{ width: '100%' }}>
+                          {(() => {
+                            const preview = fileUploads[field.name]?.preview
+                            const isImage = preview && isImageUrl(preview)
+                            const isBlob = preview?.startsWith('blob:')
+                            console.log('Preview rendering for field:', field.name, { preview, isImage, isBlob })
 
-                          // For blob URLs (new uploads), show the blob preview
-                          if (isBlob && fileUploads[field.name]?.file && preview) {
-                            const file = fileUploads[field.name].file
-                            if (file?.type.startsWith('image/')) {
+                            // For blob URLs (new uploads), show the blob preview
+                            if (isBlob && fileUploads[field.name]?.file && preview) {
+                              const file = fileUploads[field.name].file
+                              if (file?.type.startsWith('image/')) {
+                                return (
+                                  <img
+                                    src={preview}
+                                    alt="Preview"
+                                    style={{
+                                      maxWidth: '100%',
+                                      maxHeight: '200px',
+                                      borderRadius: '4px',
+                                      marginBottom: '0.5rem',
+                                    }}
+                                  />
+                                )
+                              } else if (file?.type === 'application/pdf') {
+                                return (
+                                  <div
+                                    style={{
+                                      width: '100%',
+                                      height: '300px',
+                                      border: '1px solid #ddd',
+                                      borderRadius: '4px',
+                                      marginBottom: '0.5rem',
+                                      overflow: 'hidden',
+                                    }}
+                                  >
+                                    <iframe
+                                      src={`${preview}#toolbar=0&navpanes=0&scrollbar=0`}
+                                      style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        border: 'none',
+                                      }}
+                                      title="PDF Preview"
+                                    />
+                                  </div>
+                                )
+                              }
+                            }
+
+                            // For existing file URLs, show the actual file
+                            if (isImage && preview) {
                               return (
                                 <img
                                   src={preview}
@@ -611,7 +705,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                   }}
                                 />
                               )
-                            } else if (file?.type === 'application/pdf') {
+                            }
+
+                            // For PDF files, show PDF preview
+                            if (isPdfUrl(preview!)) {
                               return (
                                 <div
                                   style={{
@@ -635,220 +732,190 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                 </div>
                               )
                             }
-                          }
 
-                          // For existing file URLs, show the actual file
-                          if (isImage && preview) {
-                            return (
-                              <img
-                                src={preview}
-                                alt="Preview"
-                                style={{
-                                  maxWidth: '100%',
-                                  maxHeight: '200px',
-                                  borderRadius: '4px',
-                                  marginBottom: '0.5rem',
-                                }}
-                              />
-                            )
-                          }
-
-                          // For PDF files, show PDF preview
-                          if (isPdfUrl(preview!)) {
+                            // For other files, show file icon
                             return (
                               <div
                                 style={{
-                                  width: '100%',
-                                  height: '300px',
-                                  border: '1px solid #ddd',
+                                  padding: '1rem',
+                                  backgroundColor: '#e9ecef',
                                   borderRadius: '4px',
                                   marginBottom: '0.5rem',
-                                  overflow: 'hidden',
                                 }}
                               >
-                                <iframe
-                                  src={`${preview}#toolbar=0&navpanes=0&scrollbar=0`}
-                                  style={{
-                                    width: '100%',
-                                    height: '100%',
-                                    border: 'none',
-                                  }}
-                                  title="PDF Preview"
-                                />
+                                📄 {preview ? getFileNameFromUrl(preview) : 'File'}
                               </div>
                             )
-                          }
-
-                          // For other files, show file icon
-                          return (
-                            <div
-                              style={{
-                                padding: '1rem',
-                                backgroundColor: '#e9ecef',
-                                borderRadius: '4px',
-                                marginBottom: '0.5rem',
-                              }}
-                            >
-                              📄 {preview ? getFileNameFromUrl(preview) : 'File'}
-                            </div>
-                          )
-                        })()}
-                        <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                          {fileUploads[field.name]?.preview
-                            ? getFileNameFromUrl(fileUploads[field.name].preview!)
-                            : 'File uploaded'}
-                        </p>
-                        <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                          Click or drag to replace
-                        </p>
-                      </div>
-                    ) : (
-                      // Show upload prompt
-                      <div>
-                        <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📁</div>
-                        <p style={{ margin: '0', fontSize: '1rem', color: '#666' }}>
-                          Drag and drop a file here, or click to select
-                        </p>
-                        <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                          Supports: Images, PDFs, Text files (max 20MB)
-                        </p>
-                      </div>
+                          })()}
+                          <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
+                            {fileUploads[field.name]?.preview
+                              ? getFileNameFromUrl(fileUploads[field.name].preview!)
+                              : 'File uploaded'}
+                          </p>
+                          <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
+                            Click or drag to replace
+                          </p>
+                        </div>
+                      ) : (
+                        // Show upload prompt
+                        <div>
+                          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📁</div>
+                          <p style={{ margin: '0', fontSize: '1rem', color: '#666' }}>
+                            Drag and drop a file here, or click to select
+                          </p>
+                          <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
+                            Supports: Images, PDFs, Text files (max 20MB)
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <input
+                      ref={el => {
+                        fileInputRefs.current[field.name] = el
+                      }}
+                      type="file"
+                      accept="image/*,.pdf,.txt"
+                      style={{ display: 'none' }}
+                      onChange={e => {
+                        const file = e.target.files?.[0]
+                        if (file) handleFileSelect(field.name, file)
+                      }}
+                    />
+                    {fileUploads[field.name]?.file && (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setFileUploads(prev => ({
+                            ...prev,
+                            [field.name]: { file: null, preview: null, isDragOver: false },
+                          }))
+                        }}
+                        style={{
+                          marginTop: '0.5rem',
+                          padding: '0.25rem 0.5rem',
+                          backgroundColor: '#dc3545',
+                          color: 'white',
+                          border: 'none',
+                          borderRadius: '4px',
+                          fontSize: '0.8rem',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Remove file
+                      </button>
                     )}
                   </div>
-                  <input
-                    ref={el => {
-                      fileInputRefs.current[field.name] = el
+                ) : field.type === 'text' ? (
+                  // Textarea for text fields
+                  <textarea
+                    id={field.name}
+                    name={field.name}
+                    defaultValue={field.value || ''}
+                    rows={4}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      boxSizing: 'border-box',
+                      transition: 'border-color 0.2s ease',
+                      resize: 'vertical',
+                      fontFamily: 'inherit',
+                      minHeight: '100px',
                     }}
-                    type="file"
-                    accept="image/*,.pdf,.txt"
-                    style={{ display: 'none' }}
-                    onChange={e => {
-                      const file = e.target.files?.[0]
-                      if (file) handleFileSelect(field.name, file)
+                    onFocus={e => {
+                      e.target.style.borderColor = '#007bff'
+                      e.target.style.outline = 'none'
+                    }}
+                    onBlur={e => {
+                      e.target.style.borderColor = '#ddd'
                     }}
                   />
-                  {fileUploads[field.name]?.file && (
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setFileUploads(prev => ({
-                          ...prev,
-                          [field.name]: { file: null, preview: null, isDragOver: false },
-                        }))
-                      }}
-                      style={{
-                        marginTop: '0.5rem',
-                        padding: '0.25rem 0.5rem',
-                        backgroundColor: '#dc3545',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: '4px',
-                        fontSize: '0.8rem',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      Remove file
-                    </button>
-                  )}
-                </div>
-              ) : field.type === 'text' ? (
-                // Textarea for text fields
-                <textarea
-                  id={field.name}
-                  name={field.name}
-                  defaultValue={field.value || ''}
-                  rows={4}
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '6px',
-                    fontSize: '1rem',
-                    boxSizing: 'border-box',
-                    transition: 'border-color 0.2s ease',
-                    resize: 'vertical',
-                    fontFamily: 'inherit',
-                    minHeight: '100px',
-                  }}
-                  onFocus={e => {
-                    e.target.style.borderColor = '#007bff'
-                    e.target.style.outline = 'none'
-                  }}
-                  onBlur={e => {
-                    e.target.style.borderColor = '#ddd'
-                  }}
-                />
-              ) : (
-                // Regular input field for other types
-                <input
-                  id={field.name}
-                  name={field.name}
-                  type={(() => {
-                    const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
-                    switch (fieldType) {
-                      case 'file':
-                        return 'url'
-                      case 'email':
-                        return 'email'
-                      case 'url':
-                        return 'url'
-                      case 'title':
-                      case 'select':
-                      default:
-                        return 'text'
-                    }
-                  })()}
-                  defaultValue={field.value || ''}
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #ddd',
-                    borderRadius: '6px',
-                    fontSize: '1rem',
-                    boxSizing: 'border-box',
-                    transition: 'border-color 0.2s ease',
-                  }}
-                  onFocus={e => {
-                    e.target.style.borderColor = '#007bff'
-                    e.target.style.outline = 'none'
-                  }}
-                  onBlur={e => {
-                    e.target.style.borderColor = '#ddd'
-                  }}
-                />
-              )}
-            </div>
-          ))}
+                ) : (
+                  // Regular input field for other types
+                  <input
+                    id={field.name}
+                    name={field.name}
+                    type={(() => {
+                      const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
+                      switch (fieldType) {
+                        case 'file':
+                          return 'url'
+                        case 'email':
+                          return 'email'
+                        case 'url':
+                          return 'url'
+                        case 'title':
+                        case 'select':
+                        default:
+                          return 'text'
+                      }
+                    })()}
+                    defaultValue={field.value || ''}
+                    style={{
+                      width: '100%',
+                      padding: '0.75rem',
+                      border: '1px solid #ddd',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      boxSizing: 'border-box',
+                      transition: 'border-color 0.2s ease',
+                    }}
+                    onFocus={e => {
+                      e.target.style.borderColor = '#007bff'
+                      e.target.style.outline = 'none'
+                    }}
+                    onBlur={e => {
+                      e.target.style.borderColor = '#ddd'
+                    }}
+                  />
+                )}
+              </div>
+            ))}
 
-          {/* Submit Button */}
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button
-              type="submit"
-              style={{
-                backgroundColor: '#007bff',
-                color: 'white',
-                border: 'none',
-                padding: '0.75rem 2rem',
-                borderRadius: '6px',
-                fontSize: '1rem',
-                fontWeight: '500',
-                cursor: 'pointer',
-                transition: 'background-color 0.2s ease',
-                minWidth: '120px',
-              }}
-              onMouseEnter={e => {
-                ;(e.target as HTMLButtonElement).style.backgroundColor = '#0056b3'
-              }}
-              onMouseLeave={e => {
-                ;(e.target as HTMLButtonElement).style.backgroundColor = '#007bff'
-              }}
-            >
-              {fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
-                ? 'Update'
-                : 'Submit'}
-            </button>
-          </div>
-        </form>
+            {/* Submit Button - Only show if form is not locked */}
+            {!isLocked && (
+              <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+                <button
+                  type="submit"
+                  style={{
+                    backgroundColor: isSubmitting ? '#6c757d' : '#007bff',
+                    color: 'white',
+                    border: 'none',
+                    padding: '0.75rem 2rem',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                    transition: 'background-color 0.2s ease',
+                    minWidth: '120px',
+                    opacity: isSubmitting ? 0.7 : 1,
+                  }}
+                  onMouseEnter={e => {
+                    if (!isSubmitting) {
+                      ;(e.target as HTMLButtonElement).style.backgroundColor = '#0056b3'
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (!isSubmitting) {
+                      ;(e.target as HTMLButtonElement).style.backgroundColor = '#007bff'
+                    }
+                  }}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting
+                    ? 'Submitting...'
+                    : fields
+                        .filter(field => field.mode === 'edit')
+                        .some(field => field.value && field.value.trim() !== '')
+                    ? 'Update'
+                    : 'Submit'}
+                </button>
+              </div>
+            )}
+          </form>
+        </>
       )}
 
       {/* Read-only Information Display for Org Forms */}
@@ -1006,7 +1073,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         color: '#666',
                       }}
                     >
-                      ({item.completionPercentage}% complete, {item.status})
+                      Completion: {item.completionPercentage}% | Status: {item.status}
                     </span>
                   </li>
                 ))}

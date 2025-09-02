@@ -8,31 +8,37 @@ interface FieldConfig {
   type: 'text' | 'email' | 'file' | 'url';
 }
 
-// Helper function to extract field name from "[edit] fieldname" or "[read] fieldname" format
-function extractFieldName(propertyName: string): { name: string | null; mode: 'edit' | 'read' | null; order: number } {
-  // Handle numbered prefixes like "1.[read]" or "2.[edit]"
+// Helper function to extract field name from "[edit] fieldname", "[read] fieldname", or "[config] fieldname" format
+function extractFieldName(propertyName: string): { name: string | null; mode: 'edit' | 'read' | 'config' | null; order: number } {
+// Handle numbered prefixes like "1.[read]", "2.[edit]", or "3.[config]"
   const numberedEditMatch = propertyName.match(/^(\d+)\.\[edit\]\s*(.+)$/);
   const numberedReadMatch = propertyName.match(/^(\d+)\.\[read\]\s*(.+)$/);
+  const numberedConfigMatch = propertyName.match(/^(\d+)\.\[config\]\s*(.+)$/);
   
   // Handle regular prefixes without numbers
   const editMatch = propertyName.match(/^\[edit\]\s*(.+)$/);
   const readMatch = propertyName.match(/^\[read\]\s*(.+)$/);
+  const configMatch = propertyName.match(/^\[config\]\s*(.+)$/);
   
   if (numberedEditMatch) {
     return { name: numberedEditMatch[2].trim(), mode: 'edit', order: parseInt(numberedEditMatch[1]) };
   } else if (numberedReadMatch) {
     return { name: numberedReadMatch[2].trim(), mode: 'read', order: parseInt(numberedReadMatch[1]) };
+  } else if (numberedConfigMatch) {
+    return { name: numberedConfigMatch[2].trim(), mode: 'config', order: parseInt(numberedConfigMatch[1]) };
   } else if (editMatch) {
     return { name: editMatch[1].trim(), mode: 'edit', order: 999 }; // Default high order for non-numbered
   } else if (readMatch) {
     return { name: readMatch[1].trim(), mode: 'read', order: 999 }; // Default high order for non-numbered
+  } else if (configMatch) {
+    return { name: configMatch[1].trim(), mode: 'config', order: 999 }; // Default high order for non-numbered
   }
   
   return { name: null, mode: null, order: 999 };
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -46,6 +52,8 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'title';
     case 'select':
       return 'select';
+    case 'status':
+      return 'status';
     default:
       return null;
   }
@@ -96,21 +104,64 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
     }> = [];
 
-    // Find all properties that start with "[edit]" or "[read]"
+    // Check if any [config] field contains [lock] to determine if all fields should be read-only
+    let isLocked = false;
+    const configFields: Array<{ name: string; value: string; order: number }> = [];
+
+    // First pass: collect config fields and check for lock
     for (const [propertyName, property] of Object.entries(page.properties)) {
       const { name: fieldName, mode, order } = extractFieldName(propertyName);
-      if (!fieldName || !mode) continue;
+      if (!fieldName || mode !== 'config') continue;
+
+
 
       const fieldType = getFieldType(property);
       if (!fieldType) continue;
 
       let fieldValue = '';
+      const propertyAny = property as any;
+
+      switch (fieldType) {
+        case 'text':
+          if (property.type === 'rich_text') {
+            fieldValue = property.rich_text?.[0]?.plain_text || '';
+          }
+          break;
+        case 'select':
+          if (property.type === 'select') {
+            fieldValue = property.select?.name || '';
+          }
+          break;
+        case 'status':
+          if (propertyAny.type === 'status') {
+            fieldValue = propertyAny.status?.name || '';
+          }
+          break;
+      }
+
+      configFields.push({ name: fieldName, value: fieldValue, order });
+      // Check if this config field contains [lock]
+      if (fieldValue.includes('[lock]')) {
+        isLocked = true;
+      }
+    }
+
+    // Second pass: collect all [edit] and [read] fields
+    for (const [propertyName, property] of Object.entries(page.properties)) {
+      const { name: fieldName, mode, order } = extractFieldName(propertyName);
+      if (!fieldName || (mode !== 'edit' && mode !== 'read')) continue;
+
+      const fieldType = getFieldType(property);
+      if (!fieldType) continue;
+
+      let fieldValue = '';
+      const propertyAny = property as any;
 
       switch (fieldType) {
         case 'text':
@@ -146,6 +197,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             fieldValue = property.select?.name || '';
           }
           break;
+        case 'status':
+          if (propertyAny.type === 'status') {
+            fieldValue = propertyAny.status?.name || '';
+          }
+          break;
       }
 
       // Extract description from database schema if available
@@ -157,12 +213,15 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         }
       }
 
+      // If locked, force all fields to read mode
+      const finalMode = isLocked ? 'read' : mode;
+
       // Add field to array with order
       fields.push({
         name: fieldName,
         value: fieldValue,
         type: fieldType,
-        mode: mode,
+        mode: finalMode,
         order: order,
         description: description
       });
@@ -171,8 +230,13 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     // Sort fields by order
     fields.sort((a, b) => a.order - b.order);
     
-    // Return flat array of fields
-    return res.status(200).json({ fields });
+    // Return flat array of fields with config information
+    return res.status(200).json({
+      fields,
+      config: {
+        isLocked
+      }
+    });
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch page data' });
   }
@@ -190,6 +254,70 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
     
     if (page.object !== 'page' || !('properties' in page)) {
       return res.status(400).json({ error: 'Invalid page object' });
+    }
+
+    // Check if any [config] field contains [lock] to prevent updates
+    let isLocked = false;
+    for (const [propertyName, property] of Object.entries(page.properties)) {
+      const { name: fieldName, mode } = extractFieldName(propertyName);
+      if (!fieldName || mode !== 'config') continue;
+
+      const fieldType = getFieldType(property);
+      if (!fieldType) continue;
+
+      let fieldValue = '';
+      const propertyAny = property as any;
+      switch (fieldType) {
+        case 'text':
+          if (property.type === 'rich_text') {
+            fieldValue = property.rich_text?.[0]?.plain_text || '';
+          }
+          break;
+        case 'email':
+          if (property.type === 'email') {
+            fieldValue = property.email || '';
+          }
+          break;
+        case 'url':
+          if (property.type === 'url') {
+            fieldValue = property.url || '';
+          }
+          break;
+        case 'file':
+          if (property.type === 'files') {
+            const file = property.files?.[0];
+            if (file && file.type === 'external') {
+              fieldValue = file.external.url || '';
+            }
+          }
+          break;
+        case 'title':
+          if (property.type === 'title') {
+            fieldValue = property.title?.[0]?.plain_text || '';
+          }
+          break;
+        case 'select':
+          if (property.type === 'select') {
+            fieldValue = property.select?.name || '';
+          }
+          break;
+        case 'status':
+          if (propertyAny.type === 'status') {
+            fieldValue = propertyAny.status?.name || '';
+          }
+          break;
+      }
+
+      // Check if this config field contains [lock]
+      if (fieldValue.includes('[lock]')) {
+        isLocked = true;
+        break;
+      }
+    }
+
+    // If locked, reject all update requests
+    if (isLocked) {
+      return res.status(403).json({ error: 'Page is locked and cannot be updated' });
     }
 
     // Find all properties that start with "[edit]" and update them (ignore [read] fields)
