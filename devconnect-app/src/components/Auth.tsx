@@ -2,11 +2,15 @@
 import { useUser } from '@/hooks/useUser';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useLocalStorage } from 'usehooks-ts';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, loading, error, hasInitialized, sendOtp, verifyOtp } =
     useUser();
-  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
+  const [email, setEmail] = useLocalStorage(
+    'email',
+    process.env.NEXT_PUBLIC_EMAIL || ''
+  );
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -18,14 +22,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Skip authentication
-  const authSkipPaths = [
-    '/map',
-    '/quests',
-    '/programme',
-    '/scan',
-    '/pos',
-    '/para',
-  ];
+  const authSkipPaths = ['/pos', '/para'];
   if (authSkipPaths.includes(pathname)) {
     return children;
   }

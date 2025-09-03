@@ -19,7 +19,7 @@ interface Order {
   tickets: Ticket[];
 }
 
-export default function ProfileTab() {
+export default function TicketTab() {
   const { user, signOut, error, hasInitialized, supabase } = useUser();
   const [tickets, setTickets] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
