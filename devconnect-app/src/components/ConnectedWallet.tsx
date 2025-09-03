@@ -84,11 +84,7 @@ const showInfoToast = (title: string, message?: string, duration = 3000) => {
   );
 };
 
-interface ConnectedWalletProps {
-  address: string;
-}
-
-export default function ConnectedWallet({ address }: ConnectedWalletProps) {
+export default function ConnectedWallet() {
   const { open } = useAppKit();
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
@@ -97,7 +93,7 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
   // Unified connection hook for Para SDK integration
   const {
     isConnected,
-    address: hookAddress,
+    address,
     isPara,
     wagmiAccount,
     isWagmiConnected,

@@ -4,10 +4,12 @@ import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useUser } from '@/hooks/useUser';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
   const { isConnected, address, isPara } = useUnifiedConnection();
+  const { user } = useUser();
 
   // Only log significant connection changes to avoid spam
   const lastLoggedState = useRef<string | null>(null);
@@ -28,7 +30,7 @@ export default function HomePage() {
 
   return (
     <>
-      {!isConnected || !address ? (
+      {!address ? (
         <div
           className="min-h-screen flex items-center justify-center p-4 grow "
           style={{
@@ -44,20 +46,9 @@ export default function HomePage() {
           </div>
         </div>
       ) : (
-        <div
-          className="min-h-screen bg-white grow"
-          style={{
-            backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            backgroundAttachment: 'fixed',
-          }}
-        >
-          <div className="w-full flex flex-col items-center py-8 pb-20 px-4">
-            <div className="max-w-md w-full">
-              <ConnectedWallet address={address} />
-            </div>
+        <div className="w-full flex flex-col items-center py-8 pb-20 px-4">
+          <div className="max-w-md w-full">
+            <ConnectedWallet />
           </div>
         </div>
       )}

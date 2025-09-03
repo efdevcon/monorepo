@@ -5,7 +5,7 @@ import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atp
 async function getAtprotoEvents() {
   try {
     const atprotoEvents = await fetch(
-      process.env.NODE_ENV === 'development'
+      process.env.NODE_ENV === 'development' && !process.env.FORCE_PROD_ENV
         ? 'http://localhost:4000/calendar-events'
         : 'https://at-slurper.onrender.com/calendar-events'
     );

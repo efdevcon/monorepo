@@ -825,14 +825,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             </button>
 
             {/* Direct Authentication Button */}
-            <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
+            {/* <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
               <button
                 className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none"
                 onClick={() => openModal()}
               >
                 Connect with Para Modal
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Skip for now */}
