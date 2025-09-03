@@ -91,7 +91,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Wallet',
     href: '/',
     icon: WalletIcon,
-    backgroundColor: 'rgba(136, 85, 204, 0.15)',
+    backgroundColor: 'rgba(204, 186, 229, 0.75)',
     tabItems: [
       {
         label: 'Wallet',
