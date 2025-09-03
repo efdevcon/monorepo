@@ -9,7 +9,7 @@ interface PageLayoutProps {
 
 export default function PageLayout({ title, children }: PageLayoutProps) {
   return (
-    <div className="min-h-[100vh] bg-white flex flex-col">
+    <div className="min-h-[100vh] flex flex-col" data-type="layout">
       <div
         data-page="Header"
         className="w-full shrink-0 pb-3 relative border-b-[0.50px] backdrop-blur-xs inline-flex flex-col justify-center items-center gap-5 overflow-hidden shadow-[0px_2px_8px_0px_rgba(54,54,76,0.25)]"

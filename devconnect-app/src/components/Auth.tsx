@@ -2,11 +2,15 @@
 import { useUser } from '@/hooks/useUser';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { useLocalStorage } from 'usehooks-ts';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, loading, error, hasInitialized, sendOtp, verifyOtp } =
     useUser();
-  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
+  const [email, setEmail] = useLocalStorage(
+    'email',
+    process.env.NEXT_PUBLIC_EMAIL || ''
+  );
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -18,14 +22,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Skip authentication
-  const authSkipPaths = [
-    '/map',
-    '/quests',
-    '/programme',
-    '/scan',
-    '/pos',
-    '/para',
-  ];
+  const authSkipPaths = ['/pos', '/para'];
   if (authSkipPaths.includes(pathname)) {
     return children;
   }
@@ -40,7 +37,16 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   if (user) return children;
 
   return (
-    <div className="section h-screen">
+    <div
+      className="section h-screen"
+      style={{
+        backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="flex flex-col gap-4 items-center justify-center h-full">
         <div className="max-w-[500px] mx-auto bg-white box-border flex flex-col gap-4 items-center justify-center pb-7 pt-6 px-6 relative rounded-[1px] w-full">
           {/* Main border with shadow */}

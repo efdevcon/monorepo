@@ -1,8 +1,9 @@
 import HomeIcon from '@/components/icons/HomeIcon';
 import QuestIcon from '@/components/icons/QuestIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
+import ScanIcon from '@/components/icons/ScanIcon';
 import ProgrammeIcon from '@/components/icons/ProgrammeIcon';
-import ProfileIcon from '@/components/icons/ProfileIcon';
+import MapIcon from '@/components/icons/MapIcon';
 
 export type TabItem = {
   label: string;
@@ -18,9 +19,23 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'Home',
-    href: '/',
-    icon: HomeIcon,
+    label: 'World\'s Fair',
+    href: '/programme',
+    icon: ProgrammeIcon,
+    backgroundColor: 'rgba(254, 232, 244, 0.75)',
+    tabItems: [
+      {
+        label: 'Devconnect',
+      },
+      {
+        label: 'Community',
+      }
+    ],
+  },
+  {
+    label: 'Map',
+    href: '/map',
+    icon: MapIcon,
     backgroundColor: 'rgba(232, 243, 254, 0.75)',
     tabItems: [
       {
@@ -33,6 +48,12 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Connections',
       },
     ],
+  },
+  {
+    label: 'Scan',
+    href: '/scan',
+    icon: ScanIcon,
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   {
     label: 'Quests',
@@ -67,42 +88,36 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Scan',
-    href: '/scan',
+    label: 'Wallet',
+    href: '/',
     icon: WalletIcon,
-    backgroundColor: 'rgba(255, 255, 255, 0.95)',
-  },
-  {
-    label: 'Programme',
-    href: '/programme',
-    icon: ProgrammeIcon,
-    backgroundColor: 'rgba(254, 232, 244, 0.75)',
+    backgroundColor: 'rgba(136, 85, 204, 0.15)',
     tabItems: [
       {
-        label: 'Schedule',
+        label: 'Wallet',
       },
       {
-        label: 'World\'s Fair',
+        label: 'Tickets',
       },
-      {
-        label: 'Favorites',
-      }
+      // {
+      //   label: 'Profile',
+      // },
     ],
   },
-  {
-    label: 'Profile',
-    href: '/profile',
-    icon: ProfileIcon,
-    backgroundColor: 'rgba(247, 231, 255, 0.75)',
-    tabItems: [
-      {
-        label: 'Profile',
-      },
-      {
-        label: 'Settings',
-      },
-    ],
-  },
+  // {
+  //   label: 'Profile',
+  //   href: '/profile',
+  //   icon: ProfileIcon,
+  //   backgroundColor: 'rgba(247, 231, 255, 0.75)',
+  //   tabItems: [
+  //     {
+  //       label: 'Profile',
+  //     },
+  //     {
+  //       label: 'Settings',
+  //     },
+  //   ],
+  // },
 ];
 
 export const navItems = NAV_ITEMS.map(({ label, backgroundColor }) => ({ label, backgroundColor })); 

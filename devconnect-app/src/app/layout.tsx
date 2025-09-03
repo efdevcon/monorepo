@@ -101,7 +101,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased relative flex flex-col`}
       >
-        <div className="flex flex-col grow">
+        <div className="flex flex-col grow relative">
           {hasSupabase ? (
             <Auth>
               <SkippedProvider>
