@@ -728,9 +728,8 @@ async function RecommendedSessions(req: Request, res: Response) {
 }
 
 async function SendAccreditationEmail(req: Request, res: Response) {
-  // #swagger.tags = ['Account']
-  // Private route: requires apiKey
   // #swagger.ignore = true
+  // Private route: requires apiKey
 
   const { email, name, insuranceLink } = req.body
 

@@ -18,7 +18,14 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   }, []);
 
   // Skip authentication
-  const authSkipPaths = ['/map', '/quests', '/programme', '/scan', '/pos'];
+  const authSkipPaths = [
+    '/map',
+    '/quests',
+    '/programme',
+    '/scan',
+    '/pos',
+    '/para',
+  ];
   if (authSkipPaths.includes(pathname)) {
     return children;
   }
