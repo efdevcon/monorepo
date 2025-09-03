@@ -97,6 +97,9 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Wallet',
       },
       {
+        label: 'Onramp',
+      },
+      {
         label: 'Tickets',
       },
       // {
