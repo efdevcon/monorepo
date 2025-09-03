@@ -16,6 +16,9 @@ import Button from 'common/components/voxel-button/button'
 import { schema } from 'atproto-slurper/slurper/schema'
 import { supabase } from 'common/supabaseClient'
 import { Sha256 } from '@aws-crypto/sha256-browser'
+import moment from 'moment'
+import NewSchedule from 'lib/components/event-schedule-new'
+import { atprotoToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -222,7 +225,8 @@ const CommunityEvents = () => {
   const [magicLinkMessage, setMagicLinkMessage] = useState('')
   const [formData, setFormData] = useState<EventFormData>(defaultFormData)
   const [contact, setContact] = useState('')
-  const [isEditing, setIsEditing] = useState(false)
+
+  const [previewSelectedEvent, setPreviewSelectedEvent] = useState<any>(null)
 
   const [showOptionalSections, setShowOptionalSections] = useState({
     optional: false,
@@ -977,7 +981,7 @@ const CommunityEvents = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time*</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time (in UTC) *</label>
                   <input
                     type="datetime-local"
                     required
@@ -985,13 +989,18 @@ const CommunityEvents = () => {
                     onChange={e => handleInputChange('start_utc', formatDateTimeFromInput(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Start time of the entire event (use the 'timeslots' field for granular scheduling)
-                  </p>
+                  {formData.start_utc && (
+                    <p className="text-sm  mt-1">
+                      <span className="font-medium">Argentina time:</span>{' '}
+                      {formData.start_utc
+                        ? moment.utc(formData.start_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                        : ''}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time (in UTC) *</label>
                   <input
                     type="datetime-local"
                     required
@@ -999,9 +1008,14 @@ const CommunityEvents = () => {
                     onChange={e => handleInputChange('end_utc', formatDateTimeFromInput(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    End time of the entire event (use the 'timeslots' field for granular scheduling)
-                  </p>
+                  {formData.end_utc && (
+                    <p className="text-sm  mt-1">
+                      <span className="font-medium">Argentina time:</span>{' '}
+                      {formData.end_utc
+                        ? moment.utc(formData.end_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                        : ''}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -1156,10 +1170,7 @@ const CommunityEvents = () => {
                         onChange={e => handleInputChange('image_url', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Url referencing an image for this event. Image should be .png, squared, and we suggest at least
-                        1024x1024px.
-                      </p>
+                      <p className="text-xs text-gray-500 mt-1">Url referencing a banner image for this event.</p>
                     </div>
                   </div>
 
@@ -1255,7 +1266,9 @@ const CommunityEvents = () => {
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Start Time (UTC) *</label>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Start Time (in UTC) *
+                              </label>
                               <input
                                 type="datetime-local"
                                 required
@@ -1265,11 +1278,20 @@ const CommunityEvents = () => {
                                 }
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               />
-                              <p className="text-xs text-gray-500 mt-1">Start of the timeslot in UTC</p>
+                              {slot.start_utc && (
+                                <p className="text-sm  mt-1">
+                                  <span className="font-medium">Argentina time:</span>{' '}
+                                  {slot.start_utc
+                                    ? moment.utc(slot.start_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                                    : ''}
+                                </p>
+                              )}
                             </div>
 
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">End Time (UTC) *</label>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                End Time (in UTC) *
+                              </label>
                               <input
                                 type="datetime-local"
                                 required
@@ -1279,7 +1301,14 @@ const CommunityEvents = () => {
                                 }
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               />
-                              <p className="text-xs text-gray-500 mt-1">End of the timeslot in UTC</p>
+                              {slot.end_utc && (
+                                <p className="text-sm  mt-1">
+                                  <span className="font-medium">Argentina time:</span>{' '}
+                                  {slot.end_utc
+                                    ? moment.utc(slot.end_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                                    : ''}
+                                </p>
+                              )}
                             </div>
                           </div>
 
@@ -1436,6 +1465,22 @@ const CommunityEvents = () => {
                 reach you at. This email can only be seen by the Devconnect team, and will not be made public. If you
                 wish to add a public contact, do so in the form above under Organizer Information.
               </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mt-6 overflow-auto">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
+                Preview of your event on the calendar
+              </h2>
+
+              <NewSchedule
+                events={[atprotoToCalendarFormat({ ...formData, id: 'preview-event', showTimeOfDay: true })]}
+                selectedEvent={previewSelectedEvent}
+                selectedDay={null}
+                setSelectedEvent={setPreviewSelectedEvent}
+                setSelectedDay={() => {}}
+              />
+
+              {/* <p className="text-xs text-gray-500 mt-1">The preview is draggable if your event spans multiple days.</p> */}
             </div>
 
             <button

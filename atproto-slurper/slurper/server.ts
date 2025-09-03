@@ -540,10 +540,55 @@ app.get("/calendar-events", async (req, res) => {
     res.status(500).json({ error });
   } else {
     const formatted = data?.map((rawEvent) => {
+      let recordPassedReview = rawEvent.record_passed_review
+      // const devconnectFormSubmissionsDid = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+      // // @ts-ignore
+      // const currentDid = rawEvent.atproto_dids.did 
+
+      // const isDevconnectFormSubmission = currentDid === devconnectFormSubmissionsDid
+
+      // // Helper function to convert Argentina time to UTC (subtract 3 hours)
+      // const convertArgentinaToUtc = (timestamp: string) => {
+      //   const date = new Date(timestamp);
+      //   date.setHours(date.getHours() - 3);
+      //   return date.toISOString();
+      // }
+
+      // const tmpFixTimezone = (event: any) => {
+      //   // If event is from Devconnect submission form, then convert from Argentina time back to UTC time (subtract 3 hours)
+      //   // This is because the form is UTC, but people have been entering the time in Argentina time, and so this is now the de facto standard
+      //   // Had to change the form to not say UTC as well, which is unfortunate - anyway, the fix for now is to convert from Argentina time back to UTC time for events through the form - this needs to be fixed for future editions if we still use atprotocol.
+      //   let fixedEvent = event
+        
+      //   if (isDevconnectFormSubmission) {
+      //     if (event.timeblocks) {
+      //       fixedEvent.timeblocks = event.timeblocks.map((timeblock: any) => {
+      //         timeblock.start_utc = convertArgentinaToUtc(timeblock.start_utc)
+      //         timeblock.end_utc = convertArgentinaToUtc(timeblock.end_utc)
+      //         return timeblock
+      //       })
+      //     }
+
+      //     if (fixedEvent.start_utc) {
+      //       fixedEvent.start_utc = convertArgentinaToUtc(fixedEvent.start_utc)
+      //     }
+      //     if (fixedEvent.end_utc) {
+      //       fixedEvent.end_utc = convertArgentinaToUtc(fixedEvent.end_utc)
+      //     }
+
+      //     return fixedEvent
+      //   }
+
+      //   return event
+      // }
+
+      // // Apply timezone fix
+      // const fixedRecord = tmpFixTimezone(recordPassedReview);
+
       return {
         ...rawEvent,
         record_passed_review: {
-          ...rawEvent.record_passed_review,
+          ...recordPassedReview,
           ...rawEvent.admin_override,
         },
       };

@@ -51,6 +51,12 @@ module.exports = {
       'www.gravatar.com',
       'mealmslwugsqqyoesrxd.supabase.co',
     ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*',
+      },
+    ],
   },
   webpack: (config, { webpack, isServer }) => {
     const artifactPackageJsonPath = require.resolve('@pcd/proto-pod-gpc-artifacts/package.json')
