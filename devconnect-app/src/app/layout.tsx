@@ -99,16 +99,9 @@ export default function RootLayout({
         <meta name="twitter:image" content={image} key="tw_image" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative`}
-        style={{
-          backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundAttachment: 'fixed',
-        }}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased relative flex flex-col`}
       >
-        <div className="fullscreen-container flex flex-col justify-center">
+        <div className="flex flex-col grow">
           {hasSupabase ? (
             <Auth>
               <SkippedProvider>

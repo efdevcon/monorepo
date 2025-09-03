@@ -18,14 +18,25 @@ export default function HomePage() {
         isConnected,
         hasAddress: !!address,
         isPara,
-        address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : undefined
+        address: address
+          ? `${address.slice(0, 6)}...${address.slice(-4)}`
+          : undefined,
       });
       lastLoggedState.current = stateKey;
     }
   }, [isConnected, address, isPara]);
 
   return (
-    <>
+    <div
+      className="flex flex-col grow items-center justify-center h-full"
+      style={{
+        backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       {!isConnected || !address ? (
         <div className="min-h-screen flex items-center justify-center p-4">
           <div className="max-w-md w-full">
@@ -41,6 +52,6 @@ export default function HomePage() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
