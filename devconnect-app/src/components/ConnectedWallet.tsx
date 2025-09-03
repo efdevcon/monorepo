@@ -596,12 +596,23 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
             </div>
           </div>
         )}
+        <div className="flex flex-row gap-2 items-center border-t pt-4">
+          <Button
+            onClick={() => open({ view: 'Connect' })}
+            className="w-full cursor-pointer"
+            size="lg"
+          >
+            Connect external wallet
+          </Button>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 border-t pt-4">
         {/* <ZupassProvider>
           <LinkTicket className="mb-2" />
         </ZupassProvider> */}
+
+        {address && <PortfolioModal address={address} />}
 
         {/* SIWE Verification Button (only show if SIWE is enabled and not verified) */}
         {siweEnabled && siweState !== 'success' && (
@@ -649,16 +660,6 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           })()}
         </Button>
 
-        {isPara && (
-          <Button
-            onClick={handleOpenAccountModal}
-            className="w-full cursor-pointer"
-            size="lg"
-          >
-            {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
-          </Button>
-        )}
-
         <Button
           onClick={() => open()}
           className="w-full cursor-pointer"
@@ -667,39 +668,43 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           Wallet Connect Modal
         </Button>
 
-        <Button
-          onClick={() => open({ view: 'Connect' })}
-          className="w-full cursor-pointer"
-          size="lg"
-        >
-          Connect external wallet
-        </Button>
+        <div className="flex flex-col gap-2 items-center border-t pt-4">
+          {isPara && (
+            <Button
+              onClick={handleOpenAccountModal}
+              className="w-full cursor-pointer"
+              size="lg"
+            >
+              {isPara ? 'Open Para Account Modal' : 'Open Account Modal'}
+            </Button>
+          )}
 
-        {/* Show Recovery Secret button - only for Para wallets */}
-        {isPara && (
-          <Button
-            onClick={handleShowRecoverySecret}
-            className="w-full cursor-pointer"
-            size="lg"
-            variant="outline"
-          >
-            🔐 Show Recovery Secret
-          </Button>
-        )}
+          {/* Show Recovery Secret button - only for Para wallets */}
+          {isPara && isParaConnected && (
+            <Button
+              onClick={handleShowRecoverySecret}
+              className="w-full cursor-pointer"
+              size="lg"
+              variant="outline"
+            >
+              🔐 Show Recovery Secret
+            </Button>
+          )}
 
-        {/* Show Add Funds button - only for Para wallets */}
-        {isPara && (
-          <Button
-            onClick={handleShowAddFunds}
-            className="w-full cursor-pointer"
-            size="lg"
-            variant="outline"
-          >
-            💰 Add Funds with Para
-          </Button>
-        )}
+          {/* Show Add Funds button - only for Para wallets */}
+          {isPara && isParaConnected && (
+            <Button
+              onClick={handleShowAddFunds}
+              className="w-full cursor-pointer"
+              size="lg"
+              variant="outline"
+            >
+              💰 Add Funds with Para
+            </Button>
+          )}
+        </div>
 
-        <div className="flex flex-row gap-2 items-center">
+        {/* <div className="flex flex-row gap-2 items-center">
           <Button
             onClick={handleShowMoonPayAddFunds}
             className="cursor-pointer"
@@ -716,9 +721,9 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           >
             staging details
           </a>
-        </div>
+        </div> */}
 
-        <div className="flex flex-row gap-2 items-center">
+        {/* <div className="flex flex-row gap-2 items-center">
           <Button
             onClick={handleShowTransakAddFunds}
             className="cursor-pointer"
@@ -735,9 +740,9 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           >
             staging details
           </a>
-        </div>
+        </div> */}
 
-        <div className="flex flex-row gap-2 items-center">
+        {/* <div className="flex flex-row gap-2 items-center">
           <RipioOnrampButton
             address={address}
             className="cursor-pointer"
@@ -792,10 +797,10 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           >
             docs
           </a>
-        </div>
+        </div> */}
 
         {/* Debug button for connection issues */}
-        {!isPara && isParaConnected && (
+        {/* {!isPara && isParaConnected && (
           <Button
             onClick={async () => {
               console.log('Connection debug info:', {
@@ -813,7 +818,7 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           >
             🔧 Para Connection Info
           </Button>
-        )}
+        )} */}
 
         {/* Para Wagmi Connection Recovery Button */}
         {isPara && isParaConnected && !isWagmiConnected && (
@@ -877,23 +882,23 @@ export default function ConnectedWallet({ address }: ConnectedWalletProps) {
           </Button>
         )}
 
-        {address && <PortfolioModal address={address} />}
+        <div className="flex flex-row gap-2 items-center border-t pt-4">
+          {address && (
+            <Button
+              variant="destructive"
+              className="w-full cursor-pointer"
+              onClick={handleDisconnect}
+              disabled={isParaLoggingOut}
+            >
+              {isParaLoggingOut ? 'Logging out...' : 'Disconnect'}
+            </Button>
+          )}
+        </div>
 
-        {address && (
-          <Button
-            variant="destructive"
-            className="w-full cursor-pointer"
-            onClick={handleDisconnect}
-            disabled={isParaLoggingOut}
-          >
-            {isParaLoggingOut ? 'Logging out...' : 'Disconnect'}
-          </Button>
-        )}
-
-        {address && <Zkp2pOnrampQRCode address={address} />}
-        <a href="/map" className="text-sm text-blue-500 m-auto">
+        {/* {address && <Zkp2pOnrampQRCode address={address} />} */}
+        {/* <a href="/map" className="text-sm text-blue-500 m-auto">
           Fullscreen Map
-        </a>
+        </a> */}
       </div>
     </div>
   );
