@@ -9,10 +9,10 @@ interface PageLayoutProps {
 
 export default function PageLayout({ title, children }: PageLayoutProps) {
   return (
-    <div className="min-h-100vh bg-white flex flex-col items-center">
+    <div className="min-h-[100vh] flex flex-col" data-type="layout">
       <div
         data-page="Header"
-        className="w-full max-w-2xl pb-3 relative border-b-[0.50px] backdrop-blur-xs inline-flex flex-col justify-center items-center gap-5 overflow-hidden shadow-[0px_2px_8px_0px_rgba(54,54,76,0.25)]"
+        className="w-full shrink-0 pb-3 relative border-b-[0.50px] backdrop-blur-xs inline-flex flex-col justify-center items-center gap-5 overflow-hidden shadow-[0px_2px_8px_0px_rgba(54,54,76,0.25)]"
         style={{
           background: `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
             radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.20) 0%, rgba(36, 36, 54, 0.00) 100%),
@@ -32,9 +32,9 @@ export default function PageLayout({ title, children }: PageLayoutProps) {
           </div>
         </div>
       </div>
-      <div className="flex-1 w-full flex flex-col items-center justify-start">
+      <div className="w-full flex flex-col items-center justify-start grow">
         {children}
       </div>
     </div>
   );
-} 
+}

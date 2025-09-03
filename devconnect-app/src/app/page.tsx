@@ -15,6 +15,7 @@ const tabComponents = [WalletTab, OnrampTab, TicketTab];
 
 export default function HomePage() {
   const { address } = useUnifiedConnection();
+
   if (!address) {
     return <WalletTab />;
   }

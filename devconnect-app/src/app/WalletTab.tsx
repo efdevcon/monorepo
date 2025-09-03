@@ -18,7 +18,9 @@ export default function HomePage() {
         isConnected,
         hasAddress: !!address,
         isPara,
-        address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : undefined
+        address: address
+          ? `${address.slice(0, 6)}...${address.slice(-4)}`
+          : undefined,
       });
       lastLoggedState.current = stateKey;
     }
@@ -27,13 +29,31 @@ export default function HomePage() {
   return (
     <>
       {!isConnected || !address ? (
-        <div className="min-h-screen flex items-center justify-center p-4">
+        <div
+          className="min-h-screen flex items-center justify-center p-4 grow "
+          style={{
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+          }}
+        >
           <div className="max-w-md w-full">
             <Onboarding />
           </div>
         </div>
       ) : (
-        <div className="min-h-screen bg-white">
+        <div
+          className="min-h-screen bg-white grow"
+          style={{
+            backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundAttachment: 'fixed',
+          }}
+        >
           <div className="w-full flex flex-col items-center py-8 pb-20 px-4">
             <div className="max-w-md w-full">
               <ConnectedWallet address={address} />

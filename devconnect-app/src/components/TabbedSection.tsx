@@ -95,13 +95,9 @@ export default function TabbedSection({
   }, [tabIndex]);
 
   return (
-    <div
-      className="w-full max-w-2xl mx-auto"
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-    >
+    <div className="section mx-auto" onKeyDown={handleKeyDown} tabIndex={0}>
       {/* Enhanced TabBar with scrolling support */}
-      <div className="relative">
+      <div className="relative max-w-2xl mx-auto">
         {showScrollArrows && (
           <>
             {/* Left scroll arrow */}
@@ -232,4 +228,4 @@ export default function TabbedSection({
       )} */}
     </div>
   );
-} 
+}

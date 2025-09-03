@@ -37,7 +37,16 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   if (user) return children;
 
   return (
-    <div className="section h-screen">
+    <div
+      className="section h-screen"
+      style={{
+        backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="flex flex-col gap-4 items-center justify-center h-full">
         <div className="max-w-[500px] mx-auto bg-white box-border flex flex-col gap-4 items-center justify-center pb-7 pt-6 px-6 relative rounded-[1px] w-full">
           {/* Main border with shadow */}
