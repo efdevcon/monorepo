@@ -17,6 +17,7 @@ interface ConfigResponse {
   fields: DynamicField[]
   config: {
     isLocked: boolean
+    isOk?: boolean
   }
 }
 
@@ -56,6 +57,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [subItemsLoading, setSubItemsLoading] = useState(false)
   const [orgPageName, setOrgPageName] = useState<string>('')
   const [isLocked, setIsLocked] = useState(false)
+  const [isOk, setIsOk] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
@@ -235,6 +237,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
       // Set locked status from config
       setIsLocked(responseData.config?.isLocked || false)
+      setIsOk(responseData.config?.isOk || false)
 
       // Convert to data object for backward compatibility
       const allData: Record<string, string> = {}
@@ -482,7 +485,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           {pageName === 'org'
             ? 'Accreditation links for your organization'
             : isLocked
-            ? 'Form is locked - view only'
+            ? 'Form is locked 🔒 - view only'
             : fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
             ? 'Update your information'
             : 'Submit your information'}
@@ -496,20 +499,33 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           {isLocked && (
             <div
               style={{
-                backgroundColor: '#fff3cd',
-                border: '1px solid #ffeaa7',
+                backgroundColor: isOk ? '#d4edda' : '#fff3cd',
+                border: `1px solid ${isOk ? '#c3e6cb' : '#ffeaa7'}`,
                 borderRadius: '6px',
                 padding: '1rem',
                 marginBottom: '1.5rem',
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🔒</div>
-              <p style={{ margin: '0', fontSize: '1rem', color: '#856404', fontWeight: '500' }}>
-                This form is currently locked and cannot be updated.
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{isOk ? '✅' : '🔒'}</div>
+              <p
+                style={{
+                  margin: '0',
+                  fontSize: '1rem',
+                  color: isOk ? '#155724' : '#856404',
+                  fontWeight: '500',
+                }}
+              >
+                {isOk ? 'Accreditation redeemed' : 'This form is currently locked and cannot be updated.'}
               </p>
-              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#856404' }}>
-                All fields are now read-only.
+              <p
+                style={{
+                  margin: '0.5rem 0 0 0',
+                  fontSize: '0.9rem',
+                  color: isOk ? '#155724' : '#856404',
+                }}
+              >
+                {isOk ? '' : 'All fields are now read-only.'}
               </p>
             </div>
           )}
@@ -615,8 +631,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             📄 {getFileNameFromUrl(field.value)}
                           </div>
                         )}
-                        <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                          {getFileNameFromUrl(field.value)}
+                        <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+                          <a
+                            href={field.value}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#007bff',
+                              textDecoration: 'none',
+                            }}
+                            onClick={e => e.stopPropagation()}
+                            onMouseEnter={e => {
+                              e.currentTarget.style.textDecoration = 'underline'
+                            }}
+                            onMouseLeave={e => {
+                              e.currentTarget.style.textDecoration = 'none'
+                            }}
+                          >
+                            📎 {getFileNameFromUrl(field.value)}
+                          </a>
                         </p>
                       </div>
                     ) : field.type === 'checkbox' ? (
@@ -761,11 +794,6 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                               </div>
                             )
                           })()}
-                          <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                            {fileUploads[field.name]?.preview
-                              ? getFileNameFromUrl(fileUploads[field.name].preview!)
-                              : 'File uploaded'}
-                          </p>
                           <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
                             Click or drag to replace
                           </p>
@@ -817,6 +845,30 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       >
                         Remove file
                       </button>
+                    )}
+                    {/* File link outside the draggable area */}
+                    {fileUploads[field.name]?.preview && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <a
+                          href={fileUploads[field.name].preview!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: '#007bff',
+                            textDecoration: 'none',
+                            fontSize: '0.9rem',
+                          }}
+                          onClick={e => e.stopPropagation()}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.textDecoration = 'underline'
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.textDecoration = 'none'
+                          }}
+                        >
+                          📎 {getFileNameFromUrl(fileUploads[field.name].preview!)}
+                        </a>
+                      </div>
                     )}
                   </div>
                 ) : field.type === 'text' ? (
@@ -1056,8 +1108,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                               📄 {getFileNameFromUrl(field.value)}
                             </div>
                           )}
-                          <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                            {getFileNameFromUrl(field.value)}
+                          <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                              }}
+                              onClick={e => e.stopPropagation()}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              📎 {getFileNameFromUrl(field.value)}
+                            </a>
                           </p>
                         </div>
                       ) : field.type === 'checkbox' ? (

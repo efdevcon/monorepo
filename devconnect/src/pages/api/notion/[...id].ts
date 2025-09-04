@@ -114,6 +114,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
 
     // Check if any [config] field contains [lock] to determine if all fields should be read-only
     let isLocked = false;
+    let isOk = false;
     const configFields: Array<{ name: string; value: string; order: number }> = [];
 
     // First pass: collect config fields and check for lock
@@ -156,6 +157,9 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       // Check if this config field contains [lock]
       if (fieldValue.includes('[lock]')) {
         isLocked = true;
+      }
+      if (fieldValue.includes('[ok]')) {
+        isOk = true;
       }
     }
 
@@ -246,7 +250,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     return res.status(200).json({
       fields,
       config: {
-        isLocked
+        isLocked,
+        isOk
       }
     });
   } catch (error) {
