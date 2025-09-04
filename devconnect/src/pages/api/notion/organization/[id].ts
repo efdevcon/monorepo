@@ -81,6 +81,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                       return value.url && value.url.trim() !== '';
                     case 'files':
                       return value.files && value.files.length > 0;
+                    case 'checkbox':
+                      return value.checkbox === true;
                     default:
                       return false;
                   }

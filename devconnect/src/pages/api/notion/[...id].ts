@@ -38,7 +38,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -54,6 +54,8 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'select';
     case 'status':
       return 'status';
+    case 'checkbox':
+      return 'checkbox';
     default:
       return null;
   }
@@ -104,7 +106,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
@@ -141,6 +143,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         case 'status':
           if (propertyAny.type === 'status') {
             fieldValue = propertyAny.status?.name || '';
+          }
+          break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
           }
           break;
       }
@@ -200,6 +207,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         case 'status':
           if (propertyAny.type === 'status') {
             fieldValue = propertyAny.status?.name || '';
+          }
+          break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
           }
           break;
       }
@@ -306,6 +318,11 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
             fieldValue = propertyAny.status?.name || '';
           }
           break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
+          }
+          break;
       }
 
       // Check if this config field contains [lock]
@@ -344,6 +361,9 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
           break;
         case 'file':
           updates[propertyName] = { files: value ? [{ name: 'External File', external: { url: value } }] : [] };
+          break;
+        case 'checkbox':
+          updates[propertyName] = { checkbox: value === 'true' || value === true };
           break;
         // case 'title':
         //   updates[propertyName] = { title: value ? [{ text: { content: value } }] : [] };

@@ -76,6 +76,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         } else if (valueAny.type === 'status') {
           extractedValue = valueAny.status?.name || '';
           console.log('Extracted (status):', extractedValue);
+        } else if (valueAny.type === 'checkbox') {
+          extractedValue = valueAny.checkbox ? 'true' : 'false';
+          console.log('Extracted (checkbox):', extractedValue);
         }
         
         extractedProperties[key] = extractedValue;

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox'
   mode: 'edit' | 'read'
   description?: string
 }
@@ -347,8 +347,14 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           }
         } else {
           // Handle regular fields
-          const value = formData.get(field.name) as string
-          updates[field.name] = value || ''
+          if (field.type === 'checkbox') {
+            // For checkboxes, check if the checkbox is checked
+            const isChecked = formData.get(field.name) === 'on'
+            updates[field.name] = isChecked ? 'true' : 'false'
+          } else {
+            const value = formData.get(field.name) as string
+            updates[field.name] = value || ''
+          }
         }
       }
     }
@@ -612,6 +618,13 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                           {getFileNameFromUrl(field.value)}
                         </p>
                       </div>
+                    ) : field.type === 'checkbox' ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                        <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                          {field.value === 'true' ? 'Yes' : 'No'}
+                        </span>
+                      </div>
                     ) : (
                       field.value
                     )}
@@ -832,6 +845,32 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       e.target.style.borderColor = '#ddd'
                     }}
                   />
+                ) : field.type === 'checkbox' ? (
+                  // Checkbox input
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <input
+                      id={field.name}
+                      name={field.name}
+                      type="checkbox"
+                      defaultChecked={field.value === 'true'}
+                      style={{
+                        width: '18px',
+                        height: '18px',
+                        cursor: 'pointer',
+                      }}
+                    />
+                    <label
+                      htmlFor={field.name}
+                      style={{
+                        fontSize: '0.9rem',
+                        color: '#666',
+                        cursor: 'pointer',
+                        userSelect: 'none',
+                      }}
+                    >
+                      {field.description || 'Check to confirm'}
+                    </label>
+                  </div>
                 ) : (
                   // Regular input field for other types
                   <input
@@ -1011,6 +1050,11 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
                         {getFileNameFromUrl(field.value)}
                       </p>
+                    </div>
+                  ) : field.type === 'checkbox' ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                      <span style={{ fontSize: '0.9rem', color: '#666' }}>{field.value === 'true' ? 'Yes' : 'No'}</span>
                     </div>
                   ) : (
                     field.value || 'No value'
