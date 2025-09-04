@@ -418,7 +418,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       style={{
         maxWidth: '600px',
         margin: '0 auto',
-        paddingTop: '2rem',
+        padding: '1rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}
     >
