@@ -82,7 +82,7 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
     const updatedAt = event.updated_at;
     // Need people to update their timeslots after the changes made on this date, so we will not show it until they have edited their event
     const updatedAfterSep3 = moment
-      .utc(normalizeTimestamp(updatedAt))
+      .utc(updatedAt)
       .isAfter(moment.utc("2025-09-03T17:30:00.000Z"));
 
     return atprotoToCalendarFormat({

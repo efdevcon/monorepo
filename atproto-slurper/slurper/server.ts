@@ -528,7 +528,7 @@ app.get("/calendar-events", async (req, res) => {
     .from("atproto_records")
     .select(
       `
-      id, rkey, created_by, record_passed_review, is_core_event, admin_override,
+      id, rkey, created_by, record_passed_review, is_core_event, admin_override, updated_at,
       atproto_dids!created_by(did, alias)
     `
     )
@@ -540,10 +540,10 @@ app.get("/calendar-events", async (req, res) => {
     res.status(500).json({ error });
   } else {
     const formatted = data?.map((rawEvent) => {
-      let recordPassedReview = rawEvent.record_passed_review
+      let recordPassedReview = rawEvent.record_passed_review;
       // const devconnectFormSubmissionsDid = 'did:plc:l26dgtpir4fydulvmuoee2sn'
       // // @ts-ignore
-      // const currentDid = rawEvent.atproto_dids.did 
+      // const currentDid = rawEvent.atproto_dids.did
 
       // const isDevconnectFormSubmission = currentDid === devconnectFormSubmissionsDid
 
@@ -559,7 +559,7 @@ app.get("/calendar-events", async (req, res) => {
       //   // This is because the form is UTC, but people have been entering the time in Argentina time, and so this is now the de facto standard
       //   // Had to change the form to not say UTC as well, which is unfortunate - anyway, the fix for now is to convert from Argentina time back to UTC time for events through the form - this needs to be fixed for future editions if we still use atprotocol.
       //   let fixedEvent = event
-        
+
       //   if (isDevconnectFormSubmission) {
       //     if (event.timeblocks) {
       //       fixedEvent.timeblocks = event.timeblocks.map((timeblock: any) => {
@@ -656,12 +656,13 @@ app.post(
 
       const { error: contactError } = await supabase
         .from("atproto_records_contacts")
-        .upsert({
-          rkey,
-          email: contact,
-        },
-        { onConflict: "rkey" }
-      );
+        .upsert(
+          {
+            rkey,
+            email: contact,
+          },
+          { onConflict: "rkey" }
+        );
 
       if (contactError) {
         console.error(
