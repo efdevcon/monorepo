@@ -133,39 +133,8 @@ const Event: React.FC<EventProps> = ({
   const timeOfDay = computeEventTimeString(event);
 
   return (
-    <div
-      style={{
-        // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
-        height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
-      }}
-      className={cn(
-        `group cursor-pointer`,
-        "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
-        typeClass,
-        eventClassName
-      )}
-      {...draggableLink1}
-      onClick={(e) => {
-        const result = draggableLink1.onClick(e);
-
-        if (!result) return;
-
-        if (event.onClick) {
-          event.onClick();
-        } else if (!selectedEvent) {
-          console.log("setting selected event");
-          setSelectedEvent(event);
-        }
-      }}
-    >
-      <Dialog
-        open={selectedEvent?.id === event.id}
-        // onOpenChange={(open) => {
-        //   if (!open) {
-        //     setSelectedEvent(null);
-        //   }
-        // }}
-      >
+    <>
+      <Dialog open={selectedEvent?.id === event.id}>
         <DialogContent
           className={cn(
             "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[10000000] gap-0 flex flex-col shrink-0",
@@ -265,38 +234,6 @@ const Event: React.FC<EventProps> = ({
                 )}
               </div>
 
-              {/* <div className="text-sm"> */}
-              {/* {computeEventTimeString(event).map((timeblock, index) => (
-                  <div key={index}>{timeblock}</div>
-                ))} */}
-              {/* {computeEventTimeString(event).map((timeblock, index) => (
-                  <div
-                    key={index}
-                    className="mb-2 border-b last:border-b-0 pb-2"
-                  >
-                    <div className="font-medium text-gray-700">
-                      {formatDate(timeblock.start)}
-                    </div>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <span>
-                        {formatTime(timeblock.start)} -{" "}
-                        {formatTime(timeblock.end)}
-                      </span>
-                      {timeblock.name && (
-                        <span className="text-gray-600">
-                          • {timeblock.name}
-                        </span>
-                      )}
-                    </div>
-                    {timeblock.location && (
-                      <div className="text-gray-500 text-xs mt-0.5">
-                        📍 {timeblock.location}
-                      </div>
-                    )}
-                  </div>
-                ))} */}
-              {/* </div> */}
-
               <div className="text-sm">{convert(event.description)}</div>
 
               {event.eventLink !== "https://devconnect.org/calendar" && (
@@ -328,93 +265,109 @@ const Event: React.FC<EventProps> = ({
                   </div>
                 )}
               </div>
-
-              {/* <div className="text-sm">{event.organizer}</div> */}
             </div>
           </div>
         </DialogContent>
       </Dialog>
 
-      <div className="flex h-full z-10">
-        {/* <div className="flex flex-col mr-2 items-center shrink-0">
-          <div className="text-[10px]">{startTime}</div>
-          <div className="min-h-[10px] grow border-solid border-l border-l-neutral-400 self-center my-1"></div>
-          <div className="text-[10px]">{endTime}</div>
-        </div> */}
-        <div className="flex flex-col grow justify-between items-stretch">
-          <div
-            className={cn(
-              "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
-            )}
-          >
-            {isCoworking && (
-              <Image
-                src={DevconnectCubeLogo}
-                alt="Devconnect Cube"
-                className="w-[26px] object-contain"
-              />
-            )}
-            {isETHDay && (
-              <Image
-                src={ethDayImage}
-                alt="ETH Day"
-                className="w-[26px] object-contain"
-              />
-            )}
-            <div className="flex flex-col w-full">
-              {eventName}
-              <div className="flex gap-4 justify-between w-full">
-                {timeOfDay.map((time, index) => (
-                  <div key={index} className="text-xs text-gray-600">
-                    {time}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+      <div
+        style={{
+          // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
+          height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
+        }}
+        className={cn(
+          `group cursor-pointer`,
+          "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
+          typeClass,
+          eventClassName
+        )}
+        {...draggableLink1}
+        onClick={(e) => {
+          const result = draggableLink1.onClick(e);
 
-          <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
-            {event.organizer}
-          </div>
+          if (!result) return;
 
-          {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
-
-          <Separator className="my-1.5" />
-
-          <div
-            className={cn("flex gap-4 justify-end", {
-              "justify-between": !isCoworking,
-            })}
-          >
-            {isCoworking && (
-              <a
-                href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                <Button
-                  size="sm"
-                  color="blue-1"
-                  fill
-                  className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
-                >
-                  <Ticket className="shrink-0" size={16} />
-                  Tickets Available Now
-                  <Ticket className="shrink-0" size={16} />
-                </Button>
-              </a>
-            )}
-
+          if (event.onClick) {
+            event.onClick();
+          } else if (!selectedEvent) {
+            console.log("setting selected event");
+            setSelectedEvent(event);
+          }
+        }}
+      >
+        <div className="flex h-full z-10">
+          <div className="flex flex-col grow justify-between items-stretch">
             <div
               className={cn(
-                "flex gap-2 grow items-end justify-between text-[9px]",
-                { "!justify-end": isCoworking }
+                "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
               )}
             >
-              <TypeTag category={event.eventType} size="sm" />
+              {isCoworking && (
+                <Image
+                  src={DevconnectCubeLogo}
+                  alt="Devconnect Cube"
+                  className="w-[26px] object-contain"
+                />
+              )}
+              {isETHDay && (
+                <Image
+                  src={ethDayImage}
+                  alt="ETH Day"
+                  className="w-[26px] object-contain"
+                />
+              )}
+              <div className="flex flex-col w-full">
+                {eventName}
+                <div className="flex gap-4 justify-between w-full">
+                  {timeOfDay.map((time, index) => (
+                    <div key={index} className="text-xs text-gray-600">
+                      {time}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-              {/* {event.organizer && (
+            <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
+              {event.organizer}
+            </div>
+
+            <Separator className="my-1.5" />
+
+            <div
+              className={cn("flex gap-4 justify-end", {
+                "justify-between": !isCoworking,
+              })}
+            >
+              {isCoworking && (
+                <a
+                  href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <Button
+                    size="sm"
+                    color="blue-1"
+                    fill
+                    className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
+                  >
+                    <Ticket className="shrink-0" size={16} />
+                    Tickets Available Now
+                    <Ticket className="shrink-0" size={16} />
+                  </Button>
+                </a>
+              )}
+
+              <div
+                className={cn(
+                  "flex gap-2 grow items-end justify-between text-[9px]",
+                  { "!justify-end": isCoworking }
+                )}
+              >
+                <TypeTag category={event.eventType} size="sm" />
+
+                {/* {event.organizer && (
                 <div
                   className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
                 >
@@ -423,22 +376,23 @@ const Event: React.FC<EventProps> = ({
                 </div>
               )} */}
 
-              <DifficultyTag difficulty={event.difficulty} size="sm" />
+                <DifficultyTag difficulty={event.difficulty} size="sm" />
 
-              {/* <div
+                {/* <div
                 className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
               >
                 {event.amountPeople}
               </div> */}
-              {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
+                {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
               <Star className="text-black shrink-0" size={11} />
               RSVP
             </div> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

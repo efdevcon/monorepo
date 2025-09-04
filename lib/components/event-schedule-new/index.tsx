@@ -151,13 +151,8 @@ const NewScheduleIndex = ({
   setSelectedEvent,
   setSelectedDay,
   events,
-  isCommunityCalendar = false,
 }: ScheduleProps) => {
-  // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
-  // const [events] = useState<EventType[]>(dummyEvents);
-  // const [events] = useState<EventType[]>(events);
-  // Add state to track which date is being hovered
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
 
   // Compute event placements for the unified grid
@@ -209,8 +204,8 @@ const NewScheduleIndex = ({
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
-                    onMouseEnter={() => setHoveredDate(date)}
-                    onMouseLeave={() => setHoveredDate(null)}
+                    // onMouseEnter={() => setHoveredDate(date)}
+                    // onMouseLeave={() => setHoveredDate(null)}
                     // onClick={() => {
                     //   if (selectedDay !== date) {
                     //     setSelectedDay(date);
