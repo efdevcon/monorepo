@@ -25,6 +25,7 @@ interface SubItem {
   id: string
   completionPercentage: number
   status: string
+  accreditationStatus: string
 }
 
 // Notification interface
@@ -414,7 +415,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       style={{
         maxWidth: '600px',
         margin: '0 auto',
-        padding: '2rem',
+        paddingTop: '2rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}
     >
@@ -960,108 +961,120 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       {/* Read-only Information Display for Org Forms */}
       {pageName === 'org' && (
         <div style={{ marginBottom: '2rem' }}>
-          {fields
-            .filter(field => field.mode === 'read')
-            .map(field => (
-              <div key={field.name} style={{ marginBottom: '1.5rem' }}>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontWeight: '500',
-                    color: '#666',
-                    fontSize: '0.95rem',
-                  }}
-                >
-                  {field.name.replace(/([A-Z])/g, ' $1').trim()}
-                </label>
-                {field.description && (
-                  <p
-                    style={{
-                      fontSize: '0.85rem',
-                      color: '#666',
-                      margin: '0 0 0.5rem 0',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    {field.description}
-                  </p>
-                )}
-                <div
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '1rem',
-                    backgroundColor: '#f8f9fa',
-                    color: '#666',
-                    minHeight: '2.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  {field.type === 'file' && field.value ? (
-                    <div style={{ width: '100%' }}>
-                      {isImageUrl(field.value) ? (
-                        <img
-                          src={field.value}
-                          alt="File preview"
-                          style={{
-                            maxWidth: '100%',
-                            maxHeight: '200px',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        />
-                      ) : isPdfUrl(field.value) ? (
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              backgroundColor: 'white',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              overflow: 'hidden',
+            }}
+          >
+            <tbody>
+              {fields
+                .filter(field => field.mode === 'read')
+                .map(field => (
+                  <tr key={field.name} style={{ borderBottom: '1px solid #e9ecef' }}>
+                    <td
+                      style={{
+                        padding: '1rem',
+                        fontWeight: '500',
+                        color: '#333',
+                        backgroundColor: '#f8f9fa',
+                        width: '30%',
+                        verticalAlign: 'top',
+                        borderRight: '1px solid #e9ecef',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                      {field.description && (
                         <div
                           style={{
-                            width: '100%',
-                            height: '300px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                            overflow: 'hidden',
+                            fontSize: '0.8rem',
+                            color: '#666',
+                            marginTop: '0.25rem',
+                            fontStyle: 'italic',
                           }}
                         >
-                          <iframe
-                            src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              border: 'none',
-                            }}
-                            title="PDF Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div
-                          style={{
-                            padding: '1rem',
-                            backgroundColor: '#e9ecef',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        >
-                          📄 {getFileNameFromUrl(field.value)}
+                          {field.description}
                         </div>
                       )}
-                      <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                        {getFileNameFromUrl(field.value)}
-                      </p>
-                    </div>
-                  ) : field.type === 'checkbox' ? (
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
-                      <span style={{ fontSize: '0.9rem', color: '#666' }}>{field.value === 'true' ? 'Yes' : 'No'}</span>
-                    </div>
-                  ) : (
-                    field.value || 'No value'
-                  )}
-                </div>
-              </div>
-            ))}
+                    </td>
+                    <td
+                      style={{
+                        padding: '1rem',
+                        color: '#666',
+                        verticalAlign: 'top',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {field.type === 'file' && field.value ? (
+                        <div style={{ width: '100%' }}>
+                          {isImageUrl(field.value) ? (
+                            <img
+                              src={field.value}
+                              alt="File preview"
+                              style={{
+                                maxWidth: '100%',
+                                maxHeight: '200px',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            />
+                          ) : isPdfUrl(field.value) ? (
+                            <div
+                              style={{
+                                width: '100%',
+                                height: '300px',
+                                border: '1px solid #ddd',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                                overflow: 'hidden',
+                              }}
+                            >
+                              <iframe
+                                src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  border: 'none',
+                                }}
+                                title="PDF Preview"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                padding: '1rem',
+                                backgroundColor: '#e9ecef',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            >
+                              📄 {getFileNameFromUrl(field.value)}
+                            </div>
+                          )}
+                          <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
+                            {getFileNameFromUrl(field.value)}
+                          </p>
+                        </div>
+                      ) : field.type === 'checkbox' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                          <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                            {field.value === 'true' ? 'Yes' : 'No'}
+                          </span>
+                        </div>
+                      ) : (
+                        field.value || 'No value'
+                      )}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       )}
 
@@ -1080,48 +1093,210 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               Loading...
             </div>
           ) : subItems.length > 0 ? (
-            <div style={{ textAlign: 'center' }}>
-              <ul
+            <div style={{ width: '100%', overflowX: 'auto' }}>
+              <table
                 style={{
-                  listStyle: 'none',
-                  padding: '0',
-                  margin: '0',
-                  textAlign: 'left',
-                  display: 'inline-block',
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  backgroundColor: 'white',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  overflow: 'hidden',
                 }}
               >
-                {subItems.map((item: SubItem, index: number) => (
-                  <li key={item.id} style={{ marginBottom: '0.5rem' }}>
-                    <a
-                      href={`/form/accreditation/${item.id}`}
+                <thead>
+                  <tr style={{ backgroundColor: '#f8f9fa' }}>
+                    <th
                       style={{
-                        color: '#007bff',
-                        textDecoration: 'none',
-                        fontSize: '1rem',
-                        display: 'inline-block',
-                        padding: '0.25rem 0',
+                        padding: '1rem',
+                        textAlign: 'left',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Accreditation
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Completion
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Status
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Accreditation Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subItems.map((item: SubItem, index: number) => (
+                    <tr
+                      key={item.id}
+                      style={{
+                        borderBottom: '1px solid #e9ecef',
+                        transition: 'background-color 0.2s ease',
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.textDecoration = 'underline'
+                        e.currentTarget.style.backgroundColor = '#f8f9fa'
                       }}
                       onMouseLeave={e => {
-                        e.currentTarget.style.textDecoration = 'none'
+                        e.currentTarget.style.backgroundColor = 'white'
                       }}
                     >
-                      Accreditation {index + 1}
-                    </a>
-                    <span
-                      style={{
-                        marginLeft: '0.5rem',
-                        fontSize: '0.9rem',
-                        color: '#666',
-                      }}
-                    >
-                      Completion: {item.completionPercentage}% | Status: {item.status}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <a
+                          href={`/form/accreditation/${item.id}`}
+                          style={{
+                            color: '#007bff',
+                            textDecoration: 'none',
+                            fontSize: '1rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.textDecoration = 'underline'
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.textDecoration = 'none'
+                          }}
+                        >
+                          Accreditation {index + 1}
+                        </a>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '60px',
+                              height: '8px',
+                              backgroundColor: '#e9ecef',
+                              borderRadius: '4px',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: `${item.completionPercentage}%`,
+                                height: '100%',
+                                backgroundColor:
+                                  item.completionPercentage === 100
+                                    ? '#28a745'
+                                    : item.completionPercentage >= 50
+                                    ? '#ffc107'
+                                    : '#dc3545',
+                                transition: 'width 0.3s ease',
+                              }}
+                            />
+                          </div>
+                          <span
+                            style={{
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color:
+                                item.completionPercentage === 100
+                                  ? '#28a745'
+                                  : item.completionPercentage >= 50
+                                  ? '#856404'
+                                  : '#dc3545',
+                            }}
+                          >
+                            {item.completionPercentage}%
+                          </span>
+                        </div>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: item.status.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.status.includes('✅') ? '#155724' : '#6c757d',
+                          }}
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: item.accreditationStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.accreditationStatus.includes('✅') ? '#155724' : '#6c757d',
+                          }}
+                        >
+                          {item.accreditationStatus}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           ) : (
             <div

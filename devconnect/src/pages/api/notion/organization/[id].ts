@@ -94,6 +94,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 // Get status
                 const status = pageData.properties?.['[config] Status']?.status?.name?.replace('[lock] ', '') || 'No Status';
+                // Get accreditation status
+                const accreditationStatus = pageData.properties?.['[config] Accreditation Status']?.status?.name?.replace('[ok] ', '') || 'No Accreditation Status';
 
                 // console.log(`[API Call] Retrieved sub-item ${relation.id}:`, {
                 //   pageName: pageData.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
@@ -106,14 +108,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage,
-                  status
+                  status,
+                  accreditationStatus
                 };
               } catch (err) {
                 // console.error(`[API Call] Failed to retrieve sub-item ${relation.id}:`, err);
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage: 0,
-                  status: 'No Status'
+                  status: 'No Status',
+                  accreditationStatus: 'No Accreditation Status'
                 };
               }
             })
