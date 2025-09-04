@@ -93,7 +93,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   : 0;
 
                 // Get status
-                const status = pageData.properties?.['[config] Status']?.status?.name?.replace('[lock] ', '') || 'No Status';
+                const submissionStatus = pageData.properties?.['[config] Submission Status']?.status?.name?.replace('[lock] ', '') || 'No Status';
                 // Get accreditation status
                 const accreditationStatus = pageData.properties?.['[config] Accreditation Status']?.status?.name?.replace('[ok] ', '') || 'No Accreditation Status';
 
@@ -108,7 +108,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage,
-                  status,
+                  submissionStatus: submissionStatus,
                   accreditationStatus
                 };
               } catch (err) {
@@ -116,7 +116,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage: 0,
-                  status: 'No Status',
+                  submissionStatus: 'No Status',
                   accreditationStatus: 'No Accreditation Status'
                 };
               }

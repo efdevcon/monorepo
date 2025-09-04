@@ -25,7 +25,7 @@ interface ConfigResponse {
 interface SubItem {
   id: string
   completionPercentage: number
-  status: string
+  submissionStatus: string
   accreditationStatus: string
 }
 
@@ -1209,7 +1209,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         fontSize: '0.9rem',
                       }}
                     >
-                      Status
+                      Submission Status
                     </th>
                     <th
                       style={{
@@ -1333,11 +1333,11 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             fontSize: '0.8rem',
                             fontWeight: '500',
                             whiteSpace: 'nowrap',
-                            backgroundColor: item.status.includes('✅') ? '#d4edda' : '#e9ecef',
-                            color: item.status.includes('✅') ? '#155724' : '#6c757d',
+                            backgroundColor: item.submissionStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.submissionStatus.includes('✅') ? '#155724' : '#6c757d',
                           }}
                         >
-                          {item.status}
+                          {item.submissionStatus}
                         </span>
                       </td>
                       <td
