@@ -41,6 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.body?.data?.properties) {
     console.log('\n=== EXTRACTING PROPERTY VALUES ===');
     const properties = req.body.data.properties;
+    console.log('Properties:', properties);
     
     Object.entries(properties).forEach(([key, value]) => {
       
@@ -79,6 +80,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         } else if (valueAny.type === 'checkbox') {
           extractedValue = valueAny.checkbox ? 'true' : 'false';
           console.log('Extracted (checkbox):', extractedValue);
+        } else if (valueAny.type === 'formula') {
+          // Handle formula properties - extract the actual value based on formula type
+          if (valueAny.formula?.type === 'string') {
+            extractedValue = valueAny.formula.string || '';
+          } else if (valueAny.formula?.type === 'number') {
+            extractedValue = valueAny.formula.number?.toString() || '';
+          } else if (valueAny.formula?.type === 'boolean') {
+            extractedValue = valueAny.formula.boolean ? 'true' : 'false';
+          } else if (valueAny.formula?.type === 'date') {
+            extractedValue = valueAny.formula.date?.start || '';
+          }
+          console.log('Extracted (formula):', extractedValue);
         }
         
         extractedProperties[key] = extractedValue;
@@ -106,7 +119,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   let emailSent = false;
 
   // Check if we have the required data to trigger accreditation email
-  if (cleanedProperties.Name && cleanedProperties.Email && cleanedProperties.Insurance) {
+  if (cleanedProperties.Name && cleanedProperties.Email && cleanedProperties.Accreditation) {
     try {
       console.log('Triggering accreditation email...')
       
@@ -119,7 +132,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         body: JSON.stringify({
           email: cleanedProperties.Email,
           name: cleanedProperties.Name,
-          insuranceLink: cleanedProperties.Insurance
+          // accreditationLink: cleanedProperties.Accreditation
+          accreditationLink: cleanedProperties.Accreditation
         })
       })
       
