@@ -20,11 +20,11 @@ interface TabItem {
 interface PageLayoutProps {
   title: string;
   children?: React.ReactNode;
-  tabs: TabItem[];
+  tabs?: TabItem[];
 }
 
 interface TabsProps {
-  tabs: TabItem[];
+  tabs?: TabItem[];
   activeIndex: number;
   setActiveIndex: (index: number) => void;
 }
@@ -79,7 +79,7 @@ const BackButton = () => {
   );
 };
 
-const Tabs = ({ tabs, activeIndex, setActiveIndex }: TabsProps) => {
+const Tabs = ({ tabs = [], activeIndex, setActiveIndex }: TabsProps) => {
   return (
     <div
       className={`py-4 md:py-2 flex items-center md:rounded overflow-auto w-full`}
@@ -123,7 +123,11 @@ const Tabs = ({ tabs, activeIndex, setActiveIndex }: TabsProps) => {
   );
 };
 
-export default function PageLayout({ title, children, tabs }: PageLayoutProps) {
+export default function PageLayout({
+  title,
+  children,
+  tabs = [],
+}: PageLayoutProps) {
   const pathname = usePathname();
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTab = tabs[activeIndex];
