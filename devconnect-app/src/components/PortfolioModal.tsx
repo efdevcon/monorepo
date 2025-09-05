@@ -38,15 +38,17 @@ interface PortfolioModalProps {
   address: string;
 }
 
-// Network configuration
-const NETWORKS = {
-  mainnet: { name: 'Ethereum', chainId: 1, color: 'bg-gray-500', icon: '⚫' },
-  base: { name: 'Base', chainId: 8453, color: 'bg-blue-500', icon: '🟦' },
-  'op-mainnet': { name: 'Optimism', chainId: 10, color: 'bg-red-500', icon: '🔴' },
-  arbitrum: { name: 'Arbitrum', chainId: 42161, color: 'bg-blue-600', icon: '🔷' }
+import { getNetworkConfig } from '@/config/networks';
+
+// Network configuration mapping
+const NETWORK_MAPPING = {
+  mainnet: 1,
+  base: 8453,
+  'op-mainnet': 10,
+  arbitrum: 42161
 } as const;
 
-type NetworkKey = keyof typeof NETWORKS;
+type NetworkKey = keyof typeof NETWORK_MAPPING;
 
 export default function PortfolioModal({ address }: PortfolioModalProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -175,26 +177,28 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
           {/* Network Selector */}
           <div className="mb-4">
             <div className="flex flex-wrap gap-2">
-              {Object.entries(NETWORKS).map(([key, network]) => (
-                <button
-                  key={key}
-                  onClick={() => {
-                    const newNetwork = key as NetworkKey;
-                    setSelectedNetwork(newNetwork);
-                    // Clear data when switching networks
-                    setPortfolioData(null);
-                    setError(null);
-                  }}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                    selectedNetwork === key
-                      ? 'bg-gray-800 text-white shadow-lg'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  <span className="text-xs">{network.icon}</span>
-                  <span>{network.name}</span>
-                </button>
-              ))}
+              {Object.entries(NETWORK_MAPPING).map(([key, chainId]) => {
+                const network = getNetworkConfig(chainId);
+                return (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      const newNetwork = key as NetworkKey;
+                      setSelectedNetwork(newNetwork);
+                      // Clear data when switching networks
+                      setPortfolioData(null);
+                      setError(null);
+                    }}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
+                      selectedNetwork === key
+                        ? 'bg-gray-800 text-white shadow-lg'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    <span>{network.name}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -288,7 +292,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                       const hash = activity.transaction?.hash;
                       const timestamp = activity.transaction?.timestamp;
                       const network =
-                        NETWORKS[selectedNetwork as NetworkKey].name;
+                        getNetworkConfig(NETWORK_MAPPING[selectedNetwork as NetworkKey]).name;
                       const description =
                         activity.interpretation?.processedDescription;
 

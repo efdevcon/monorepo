@@ -20,6 +20,7 @@ import { useConnectorClient } from 'wagmi';
 import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
 import PortfolioModal from './PortfolioModal';
+import NetworkSwitcher from './NetworkSwitcher';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { ZupassProvider } from '@/context/ZupassProvider';
 
@@ -592,6 +593,11 @@ export default function ConnectedWallet() {
             </div>
           </div>
         )}
+
+        {/* Network Switcher Section */}
+        <div className="border-t pt-4">
+          <NetworkSwitcher />
+        </div>
         <div className="flex flex-row gap-2 items-center border-t pt-4">
           <Button
             onClick={() => open({ view: 'Connect' })}

@@ -38,7 +38,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -54,6 +54,8 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'select';
     case 'status':
       return 'status';
+    case 'checkbox':
+      return 'checkbox';
     default:
       return null;
   }
@@ -104,7 +106,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
@@ -112,6 +114,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
 
     // Check if any [config] field contains [lock] to determine if all fields should be read-only
     let isLocked = false;
+    let isOk = false;
     const configFields: Array<{ name: string; value: string; order: number }> = [];
 
     // First pass: collect config fields and check for lock
@@ -143,12 +146,20 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             fieldValue = propertyAny.status?.name || '';
           }
           break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
+          }
+          break;
       }
 
       configFields.push({ name: fieldName, value: fieldValue, order });
       // Check if this config field contains [lock]
       if (fieldValue.includes('[lock]')) {
         isLocked = true;
+      }
+      if (fieldValue.includes('[ok]')) {
+        isOk = true;
       }
     }
 
@@ -202,6 +213,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             fieldValue = propertyAny.status?.name || '';
           }
           break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
+          }
+          break;
       }
 
       // Extract description from database schema if available
@@ -234,7 +250,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     return res.status(200).json({
       fields,
       config: {
-        isLocked
+        isLocked,
+        isOk
       }
     });
   } catch (error) {
@@ -306,6 +323,11 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
             fieldValue = propertyAny.status?.name || '';
           }
           break;
+        case 'checkbox':
+          if (propertyAny.type === 'checkbox') {
+            fieldValue = propertyAny.checkbox ? 'true' : 'false';
+          }
+          break;
       }
 
       // Check if this config field contains [lock]
@@ -344,6 +366,9 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
           break;
         case 'file':
           updates[propertyName] = { files: value ? [{ name: 'External File', external: { url: value } }] : [] };
+          break;
+        case 'checkbox':
+          updates[propertyName] = { checkbox: value === 'true' || value === true };
           break;
         // case 'title':
         //   updates[propertyName] = { title: value ? [{ text: { content: value } }] : [] };

@@ -2,15 +2,14 @@
 import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
-import { base, optimism, arbitrum } from "wagmi/chains";
-import { base as baseNetwork, optimism as optimismNetwork, arbitrum as arbitrumNetwork } from '@reown/appkit/networks'
+import { mainnet, base, optimism, arbitrum } from '@reown/appkit/networks'
 import { injected } from "wagmi/connectors";
 import { paraConnector } from "@getpara/wagmi-v2-integration";
 import { para } from "./para";
 import { APP_NAME } from './config';
 import { queryClient } from "@/context/QueryProvider";
 
-export const chains = [base] as const;
+export const chains = [mainnet, base, optimism, arbitrum];
 
 export const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
 
@@ -33,7 +32,7 @@ const connectors: CreateConnectorFn[] = [
     nameOverride: "Email (Para)",
     // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
     authLayout: ["AUTH:FULL"],
-    chains: [base, optimism, arbitrum],
+    chains,
     disableEmailLogin: false,
     disablePhoneLogin: true,
     logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
@@ -64,14 +63,15 @@ const connectors: CreateConnectorFn[] = [
 // Create wagmi adapter with all connectors
 export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
-  networks: [baseNetwork, optimismNetwork, arbitrumNetwork],
+  networks: chains,
   projectId,
   connectors,
 });
 
 export const appKit = createAppKit({
   adapters: [wagmiAdapter],
-  networks: [baseNetwork, optimismNetwork, arbitrumNetwork],
+  networks: chains as [typeof base, ...typeof base[]],
+  defaultNetwork: base,
   projectId,
   metadata,
   enableWallets: true,

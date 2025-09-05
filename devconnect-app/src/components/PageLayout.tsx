@@ -82,7 +82,7 @@ const BackButton = () => {
 const Tabs = ({ tabs, activeIndex, setActiveIndex }: TabsProps) => {
   return (
     <div
-      className={`my-4 md:my-2 flex items-center md:rounded overflow-auto w-full`}
+      className={`py-4 md:py-2 flex items-center md:rounded overflow-auto w-full`}
     >
       <div className="flex bg-[#EFEFF5] md:rounded w-[fit-content] shrink-0 flex p-1">
         {tabs.map((tab, idx) => (
@@ -152,7 +152,12 @@ export default function PageLayout({ title, children, tabs }: PageLayoutProps) {
         </div>
 
         {tabs.length > 1 && (
-          <div className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky top-[59px] bg-white rounded-t-sm z-[999998]">
+          <div
+            className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky bg-white md:rounded-t-sm z-[999998]"
+            style={{
+              top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
+            }}
+          >
             <Tabs
               tabs={tabs}
               activeIndex={activeIndex}

@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox'
   mode: 'edit' | 'read'
   description?: string
 }
@@ -17,14 +17,17 @@ interface ConfigResponse {
   fields: DynamicField[]
   config: {
     isLocked: boolean
+    isOk?: boolean
   }
 }
 
 // Sub-item interface for org forms
 interface SubItem {
   id: string
+  name?: string
   completionPercentage: number
-  status: string
+  reviewStatus: string
+  claimStatus: string
 }
 
 // Notification interface
@@ -55,6 +58,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [subItemsLoading, setSubItemsLoading] = useState(false)
   const [orgPageName, setOrgPageName] = useState<string>('')
   const [isLocked, setIsLocked] = useState(false)
+  const [isOk, setIsOk] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
@@ -234,6 +238,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
       // Set locked status from config
       setIsLocked(responseData.config?.isLocked || false)
+      setIsOk(responseData.config?.isOk || false)
 
       // Convert to data object for backward compatibility
       const allData: Record<string, string> = {}
@@ -347,8 +352,14 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           }
         } else {
           // Handle regular fields
-          const value = formData.get(field.name) as string
-          updates[field.name] = value || ''
+          if (field.type === 'checkbox') {
+            // For checkboxes, check if the checkbox is checked
+            const isChecked = formData.get(field.name) === 'on'
+            updates[field.name] = isChecked ? 'true' : 'false'
+          } else {
+            const value = formData.get(field.name) as string
+            updates[field.name] = value || ''
+          }
         }
       }
     }
@@ -406,9 +417,9 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   return (
     <div
       style={{
-        maxWidth: '600px',
+        maxWidth: '700px',
         margin: '0 auto',
-        padding: '2rem',
+        padding: '1rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
       }}
     >
@@ -475,7 +486,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           {pageName === 'org'
             ? 'Accreditation links for your organization'
             : isLocked
-            ? 'Form is locked - view only'
+            ? 'Form is locked 🔒 - view only'
             : fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
             ? 'Update your information'
             : 'Submit your information'}
@@ -489,20 +500,33 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           {isLocked && (
             <div
               style={{
-                backgroundColor: '#fff3cd',
-                border: '1px solid #ffeaa7',
+                backgroundColor: isOk ? '#d4edda' : '#fff3cd',
+                border: `1px solid ${isOk ? '#c3e6cb' : '#ffeaa7'}`,
                 borderRadius: '6px',
                 padding: '1rem',
                 marginBottom: '1.5rem',
                 textAlign: 'center',
               }}
             >
-              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>🔒</div>
-              <p style={{ margin: '0', fontSize: '1rem', color: '#856404', fontWeight: '500' }}>
-                This form is currently locked and cannot be updated.
+              <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>{isOk ? '✅' : '🔒'}</div>
+              <p
+                style={{
+                  margin: '0',
+                  fontSize: '1rem',
+                  color: isOk ? '#155724' : '#856404',
+                  fontWeight: '500',
+                }}
+              >
+                {isOk ? 'Accreditation claimed' : 'This form is currently locked and cannot be updated.'}
               </p>
-              <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#856404' }}>
-                All fields are now read-only.
+              <p
+                style={{
+                  margin: '0.5rem 0 0 0',
+                  fontSize: '0.9rem',
+                  color: isOk ? '#155724' : '#856404',
+                }}
+              >
+                {isOk ? '' : 'All fields are now read-only.'}
               </p>
             </div>
           )}
@@ -608,9 +632,33 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             📄 {getFileNameFromUrl(field.value)}
                           </div>
                         )}
-                        <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                          {getFileNameFromUrl(field.value)}
+                        <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+                          <a
+                            href={field.value}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#007bff',
+                              textDecoration: 'none',
+                            }}
+                            onClick={e => e.stopPropagation()}
+                            onMouseEnter={e => {
+                              e.currentTarget.style.textDecoration = 'underline'
+                            }}
+                            onMouseLeave={e => {
+                              e.currentTarget.style.textDecoration = 'none'
+                            }}
+                          >
+                            📎 {getFileNameFromUrl(field.value)}
+                          </a>
                         </p>
+                      </div>
+                    ) : field.type === 'checkbox' ? (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                        <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                          {field.value === 'true' ? 'Yes' : 'No'}
+                        </span>
                       </div>
                     ) : (
                       field.value
@@ -747,11 +795,6 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                               </div>
                             )
                           })()}
-                          <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                            {fileUploads[field.name]?.preview
-                              ? getFileNameFromUrl(fileUploads[field.name].preview!)
-                              : 'File uploaded'}
-                          </p>
                           <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
                             Click or drag to replace
                           </p>
@@ -804,6 +847,30 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         Remove file
                       </button>
                     )}
+                    {/* File link outside the draggable area */}
+                    {fileUploads[field.name]?.preview && (
+                      <div style={{ marginTop: '0.5rem' }}>
+                        <a
+                          href={fileUploads[field.name].preview!}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            color: '#007bff',
+                            textDecoration: 'none',
+                            fontSize: '0.9rem',
+                          }}
+                          onClick={e => e.stopPropagation()}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.textDecoration = 'underline'
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.textDecoration = 'none'
+                          }}
+                        >
+                          📎 {getFileNameFromUrl(fileUploads[field.name].preview!)}
+                        </a>
+                      </div>
+                    )}
                   </div>
                 ) : field.type === 'text' ? (
                   // Textarea for text fields
@@ -832,6 +899,32 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       e.target.style.borderColor = '#ddd'
                     }}
                   />
+                ) : field.type === 'checkbox' ? (
+                  // Checkbox input
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <input
+                      id={field.name}
+                      name={field.name}
+                      type="checkbox"
+                      defaultChecked={field.value === 'true'}
+                      style={{
+                        width: '18px',
+                        height: '18px',
+                        cursor: 'pointer',
+                      }}
+                    />
+                    <label
+                      htmlFor={field.name}
+                      style={{
+                        fontSize: '0.9rem',
+                        color: '#666',
+                        cursor: 'pointer',
+                        userSelect: 'none',
+                      }}
+                    >
+                      {field.description || 'Check to confirm'}
+                    </label>
+                  </div>
                 ) : (
                   // Regular input field for other types
                   <input
@@ -921,103 +1014,137 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       {/* Read-only Information Display for Org Forms */}
       {pageName === 'org' && (
         <div style={{ marginBottom: '2rem' }}>
-          {fields
-            .filter(field => field.mode === 'read')
-            .map(field => (
-              <div key={field.name} style={{ marginBottom: '1.5rem' }}>
-                <label
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontWeight: '500',
-                    color: '#666',
-                    fontSize: '0.95rem',
-                  }}
-                >
-                  {field.name.replace(/([A-Z])/g, ' $1').trim()}
-                </label>
-                {field.description && (
-                  <p
-                    style={{
-                      fontSize: '0.85rem',
-                      color: '#666',
-                      margin: '0 0 0.5rem 0',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    {field.description}
-                  </p>
-                )}
-                <div
-                  style={{
-                    width: '100%',
-                    padding: '0.75rem',
-                    border: '1px solid #e0e0e0',
-                    borderRadius: '6px',
-                    fontSize: '1rem',
-                    backgroundColor: '#f8f9fa',
-                    color: '#666',
-                    minHeight: '2.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  {field.type === 'file' && field.value ? (
-                    <div style={{ width: '100%' }}>
-                      {isImageUrl(field.value) ? (
-                        <img
-                          src={field.value}
-                          alt="File preview"
-                          style={{
-                            maxWidth: '100%',
-                            maxHeight: '200px',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        />
-                      ) : isPdfUrl(field.value) ? (
+          <table
+            style={{
+              width: '100%',
+              borderCollapse: 'collapse',
+              backgroundColor: 'white',
+              borderRadius: '8px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+              overflow: 'hidden',
+            }}
+          >
+            <tbody>
+              {fields
+                .filter(field => field.mode === 'read')
+                .map(field => (
+                  <tr key={field.name} style={{ borderBottom: '1px solid #e9ecef' }}>
+                    <td
+                      style={{
+                        padding: '1rem',
+                        fontWeight: '500',
+                        color: '#333',
+                        backgroundColor: '#f8f9fa',
+                        width: '30%',
+                        verticalAlign: 'top',
+                        borderRight: '1px solid #e9ecef',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                      {field.description && (
                         <div
                           style={{
-                            width: '100%',
-                            height: '300px',
-                            border: '1px solid #ddd',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                            overflow: 'hidden',
+                            fontSize: '0.8rem',
+                            color: '#666',
+                            marginTop: '0.25rem',
+                            fontStyle: 'italic',
                           }}
                         >
-                          <iframe
-                            src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
-                            style={{
-                              width: '100%',
-                              height: '100%',
-                              border: 'none',
-                            }}
-                            title="PDF Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div
-                          style={{
-                            padding: '1rem',
-                            backgroundColor: '#e9ecef',
-                            borderRadius: '4px',
-                            marginBottom: '0.5rem',
-                          }}
-                        >
-                          📄 {getFileNameFromUrl(field.value)}
+                          {field.description}
                         </div>
                       )}
-                      <p style={{ margin: '0', fontSize: '0.9rem', color: '#666' }}>
-                        {getFileNameFromUrl(field.value)}
-                      </p>
-                    </div>
-                  ) : (
-                    field.value || 'No value'
-                  )}
-                </div>
-              </div>
-            ))}
+                    </td>
+                    <td
+                      style={{
+                        padding: '1rem',
+                        color: '#666',
+                        verticalAlign: 'top',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {field.type === 'file' && field.value ? (
+                        <div style={{ width: '100%' }}>
+                          {isImageUrl(field.value) ? (
+                            <img
+                              src={field.value}
+                              alt="File preview"
+                              style={{
+                                maxWidth: '100%',
+                                maxHeight: '200px',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            />
+                          ) : isPdfUrl(field.value) ? (
+                            <div
+                              style={{
+                                width: '100%',
+                                height: '300px',
+                                border: '1px solid #ddd',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                                overflow: 'hidden',
+                              }}
+                            >
+                              <iframe
+                                src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  border: 'none',
+                                }}
+                                title="PDF Preview"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                padding: '1rem',
+                                backgroundColor: '#e9ecef',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            >
+                              📄 {getFileNameFromUrl(field.value)}
+                            </div>
+                          )}
+                          <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                              }}
+                              onClick={e => e.stopPropagation()}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              📎 {getFileNameFromUrl(field.value)}
+                            </a>
+                          </p>
+                        </div>
+                      ) : field.type === 'checkbox' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                          <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                            {field.value === 'true' ? 'Yes' : 'No'}
+                          </span>
+                        </div>
+                      ) : (
+                        field.value || 'No value'
+                      )}
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
         </div>
       )}
 
@@ -1036,48 +1163,210 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               Loading...
             </div>
           ) : subItems.length > 0 ? (
-            <div style={{ textAlign: 'center' }}>
-              <ul
+            <div style={{ width: '100%', overflowX: 'auto' }}>
+              <table
                 style={{
-                  listStyle: 'none',
-                  padding: '0',
-                  margin: '0',
-                  textAlign: 'left',
-                  display: 'inline-block',
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  backgroundColor: 'white',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  overflow: 'hidden',
                 }}
               >
-                {subItems.map((item: SubItem, index: number) => (
-                  <li key={item.id} style={{ marginBottom: '0.5rem' }}>
-                    <a
-                      href={`/form/accreditation/${item.id}`}
+                <thead>
+                  <tr style={{ backgroundColor: '#f8f9fa' }}>
+                    <th
                       style={{
-                        color: '#007bff',
-                        textDecoration: 'none',
-                        fontSize: '1rem',
-                        display: 'inline-block',
-                        padding: '0.25rem 0',
+                        padding: '1rem',
+                        textAlign: 'left',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Accreditation
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Completion
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Review Status
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Claim Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {subItems.map((item: SubItem, index: number) => (
+                    <tr
+                      key={item.id}
+                      style={{
+                        borderBottom: '1px solid #e9ecef',
+                        transition: 'background-color 0.2s ease',
                       }}
                       onMouseEnter={e => {
-                        e.currentTarget.style.textDecoration = 'underline'
+                        e.currentTarget.style.backgroundColor = '#f8f9fa'
                       }}
                       onMouseLeave={e => {
-                        e.currentTarget.style.textDecoration = 'none'
+                        e.currentTarget.style.backgroundColor = 'white'
                       }}
                     >
-                      Accreditation {index + 1}
-                    </a>
-                    <span
-                      style={{
-                        marginLeft: '0.5rem',
-                        fontSize: '0.9rem',
-                        color: '#666',
-                      }}
-                    >
-                      Completion: {item.completionPercentage}% | Status: {item.status}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <a
+                          href={`/form/accreditation/${item.id}`}
+                          style={{
+                            color: '#007bff',
+                            textDecoration: 'none',
+                            fontSize: '1rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                          }}
+                          onMouseEnter={e => {
+                            e.currentTarget.style.textDecoration = 'underline'
+                          }}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.textDecoration = 'none'
+                          }}
+                        >
+                          {item.name || `Accreditation ${index + 1}`}
+                        </a>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '60px',
+                              height: '8px',
+                              backgroundColor: '#e9ecef',
+                              borderRadius: '4px',
+                              overflow: 'hidden',
+                            }}
+                          >
+                            <div
+                              style={{
+                                width: `${item.completionPercentage}%`,
+                                height: '100%',
+                                backgroundColor:
+                                  item.completionPercentage === 100
+                                    ? '#28a745'
+                                    : item.completionPercentage >= 50
+                                    ? '#ffc107'
+                                    : '#dc3545',
+                                transition: 'width 0.3s ease',
+                              }}
+                            />
+                          </div>
+                          <span
+                            style={{
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color:
+                                item.completionPercentage === 100
+                                  ? '#28a745'
+                                  : item.completionPercentage >= 50
+                                  ? '#856404'
+                                  : '#dc3545',
+                            }}
+                          >
+                            {item.completionPercentage}%
+                          </span>
+                        </div>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: item.reviewStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.reviewStatus.includes('✅') ? '#155724' : '#6c757d',
+                          }}
+                        >
+                          {item.reviewStatus}
+                        </span>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: item.claimStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.claimStatus.includes('✅') ? '#155724' : '#6c757d',
+                          }}
+                        >
+                          {item.claimStatus}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           ) : (
             <div

@@ -731,12 +731,12 @@ async function SendAccreditationEmail(req: Request, res: Response) {
   // #swagger.ignore = true
   // Private route: requires apiKey
 
-  const { email, name, insuranceLink } = req.body
+  const { email, name, accreditationLink } = req.body
 
-  if (!email || !name || !insuranceLink) {
+  if (!email || !name || !accreditationLink) {
     return res.status(400).send({
       code: 400,
-      message: 'Missing required fields: email, name, insuranceLink'
+      message: 'Missing required fields: email, name, accreditationLink'
     })
   }
 
@@ -745,13 +745,13 @@ async function SendAccreditationEmail(req: Request, res: Response) {
     const { sendAccreditationConfirmationEmail } = await import('@/services/email')
 
     // Send the accreditation confirmation email
-    const success = await sendAccreditationConfirmationEmail(email, name, insuranceLink)
+    const success = await sendAccreditationConfirmationEmail(email, name, accreditationLink)
 
     if (success) {
       return res.status(200).send({
         code: 200,
         message: 'Accreditation confirmation email sent successfully',
-        data: { email, name, insuranceLink }
+        data: { email, name, accreditationLink }
       })
     } else {
       return res.status(500).send({

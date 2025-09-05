@@ -42,11 +42,11 @@ export async function sendMail(to: string, template: EmailTemplates, subject: st
 export async function sendAccreditationConfirmationEmail(
   to: string,
   name: string,
-  insuranceLink: string
+  accreditationLink: string
 ) {
   const properties = {
     Name: name,
-    InsuranceLink: insuranceLink
+    AccreditationLink: accreditationLink
   }
 
   return sendMail(
