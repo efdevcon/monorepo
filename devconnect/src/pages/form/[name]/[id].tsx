@@ -24,6 +24,7 @@ interface ConfigResponse {
 // Sub-item interface for org forms
 interface SubItem {
   id: string
+  name?: string
   completionPercentage: number
   reviewStatus: string
   claimStatus: string
@@ -1262,7 +1263,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             e.currentTarget.style.textDecoration = 'none'
                           }}
                         >
-                          Accreditation {index + 1}
+                          {item.name || `Accreditation ${index + 1}`}
                         </a>
                       </td>
                       <td

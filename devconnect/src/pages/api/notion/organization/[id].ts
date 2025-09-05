@@ -69,6 +69,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   return key.includes('[edit]');
                 });
 
+                // Name
+                const nameProperty = Object.entries(properties).find(([key, value]: [string, any]) => {
+                  return key.includes('Name');
+                });
+                const name = (nameProperty?.[1] as any)?.rich_text?.[0]?.plain_text || '';
+
                 const completedFields = editFields.filter(([key, value]: [string, any]) => {
                   if (!value) return false;
 
@@ -107,6 +113,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
                 return {
                   id: relation.id?.replace(/-/g, ''),
+                  name: name,
                   completionPercentage,
                   reviewStatus: reviewStatus,
                   claimStatus
