@@ -92,10 +92,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   ? Math.round((completedFields.length / editFields.length) * 100)
                   : 0;
 
-                // Get status
-                const submissionStatus = pageData.properties?.['[config] Submission Status']?.status?.name?.replace('[lock] ', '') || 'No Status';
-                // Get accreditation status
-                const accreditationStatus = pageData.properties?.['[config] Accreditation Status']?.status?.name?.replace('[ok] ', '') || 'No Accreditation Status';
+                // Get review status
+                const reviewStatus = pageData.properties?.['[config] Review']?.status?.name?.replace('[lock] ', '') || 'No Status';
+                // Get claim status
+                const claimStatus = pageData.properties?.['[config] Claim']?.status?.name?.replace('[ok] ', '') || 'No Status';
 
                 // console.log(`[API Call] Retrieved sub-item ${relation.id}:`, {
                 //   pageName: pageData.properties?.Name?.title?.[0]?.plain_text || 'Unknown',
@@ -108,16 +108,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage,
-                  submissionStatus: submissionStatus,
-                  accreditationStatus
+                  reviewStatus: reviewStatus,
+                  claimStatus
                 };
               } catch (err) {
                 // console.error(`[API Call] Failed to retrieve sub-item ${relation.id}:`, err);
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage: 0,
-                  submissionStatus: 'No Status',
-                  accreditationStatus: 'No Accreditation Status'
+                  reviewStatus: 'No Status',
+                  claimStatus: 'No Status'
                 };
               }
             })

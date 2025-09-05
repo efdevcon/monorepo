@@ -25,8 +25,8 @@ interface ConfigResponse {
 interface SubItem {
   id: string
   completionPercentage: number
-  submissionStatus: string
-  accreditationStatus: string
+  reviewStatus: string
+  claimStatus: string
 }
 
 // Notification interface
@@ -416,7 +416,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   return (
     <div
       style={{
-        maxWidth: '600px',
+        maxWidth: '700px',
         margin: '0 auto',
         padding: '1rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -516,7 +516,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                   fontWeight: '500',
                 }}
               >
-                {isOk ? 'Accreditation redeemed' : 'This form is currently locked and cannot be updated.'}
+                {isOk ? 'Accreditation claimed' : 'This form is currently locked and cannot be updated.'}
               </p>
               <p
                 style={{
@@ -1209,7 +1209,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         fontSize: '0.9rem',
                       }}
                     >
-                      Submission Status
+                      Review Status
                     </th>
                     <th
                       style={{
@@ -1221,7 +1221,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         fontSize: '0.9rem',
                       }}
                     >
-                      Accreditation Status
+                      Claim Status
                     </th>
                   </tr>
                 </thead>
@@ -1333,11 +1333,11 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             fontSize: '0.8rem',
                             fontWeight: '500',
                             whiteSpace: 'nowrap',
-                            backgroundColor: item.submissionStatus.includes('✅') ? '#d4edda' : '#e9ecef',
-                            color: item.submissionStatus.includes('✅') ? '#155724' : '#6c757d',
+                            backgroundColor: item.reviewStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.reviewStatus.includes('✅') ? '#155724' : '#6c757d',
                           }}
                         >
-                          {item.submissionStatus}
+                          {item.reviewStatus}
                         </span>
                       </td>
                       <td
@@ -1355,11 +1355,11 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             fontSize: '0.8rem',
                             fontWeight: '500',
                             whiteSpace: 'nowrap',
-                            backgroundColor: item.accreditationStatus.includes('✅') ? '#d4edda' : '#e9ecef',
-                            color: item.accreditationStatus.includes('✅') ? '#155724' : '#6c757d',
+                            backgroundColor: item.claimStatus.includes('✅') ? '#d4edda' : '#e9ecef',
+                            color: item.claimStatus.includes('✅') ? '#155724' : '#6c757d',
                           }}
                         >
-                          {item.accreditationStatus}
+                          {item.claimStatus}
                         </span>
                       </td>
                     </tr>
