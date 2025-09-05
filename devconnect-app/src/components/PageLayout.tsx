@@ -172,9 +172,11 @@ export default function PageLayout({
 
         {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
         <div className="w-full flex flex-col items-center justify-start grow">
-          {activeTab.component && (
+          {activeTab && activeTab.component && (
             <activeTab.component activeIndex={activeIndex} />
           )}
+
+          {children}
         </div>
       </div>
 
@@ -242,9 +244,11 @@ export default function PageLayout({
                 )}
                 {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
                 <div className="overflow-auto">
-                  {activeTab.component && (
+                  {activeTab && activeTab.component && (
                     <activeTab.component activeIndex={activeIndex} />
                   )}
+
+                  {children}
                 </div>
               </div>
             </div>

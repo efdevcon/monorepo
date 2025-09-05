@@ -52,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
       capable: true,
       statusBarStyle: 'black-translucent',
     },
-    themeColor: '#fbf5ee',
+    // themeColor: '#fbf5ee',
     other: {
       'mobile-web-app-capable': 'yes',
       'apple-touch-fullscreen': 'yes',
@@ -92,10 +92,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   // Constants needed for commented meta tags (now handled by generateMetadata)
-  const APP_NAME = 'Devconnect App';
-  const APP_DESCRIPTION =
-    "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
-  const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
+  // const APP_NAME = 'Devconnect App';
+  // const APP_DESCRIPTION =
+  //   "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
+  // const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
 
   // Check if Supabase is configured
   const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -163,7 +163,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <div className="flex flex-col grow relative min-h-screen"> */}
         {hasSupabase ? (
           <SkippedProvider>
             <PWAProvider>
@@ -183,7 +182,6 @@ export default function RootLayout({
             </PWAProvider>
           </SkippedProvider>
         )}
-        {/* </div> */}
         <Toaster />
       </body>
     </html>

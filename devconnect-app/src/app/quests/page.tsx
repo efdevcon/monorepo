@@ -281,9 +281,6 @@ export default function QuestsPage() {
       label: CATEGORY_TABS[index].label,
       component: ({ activeIndex }: { activeIndex: number }) => {
         const category = CATEGORY_TABS[activeIndex]?.category;
-        // console.log(`quests:tab🔍 activeIndex: ${activeIndex}`),
-
-        console.log(`quests:tab🔍 category: ${category}`);
 
         if (!category) {
           return <div>No category</div>;
