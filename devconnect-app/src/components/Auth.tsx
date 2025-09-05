@@ -1,7 +1,7 @@
 'use client';
 import { useUser } from '@/hooks/useUser';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
@@ -15,6 +15,7 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   const [otpSent, setOtpSent] = useState(false);
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Handle hydration
   useEffect(() => {
@@ -54,7 +55,6 @@ export default function Auth({ children }: { children: React.ReactNode }) {
           <h1 className="text-[#36364c] text-[24px] font-bold text-center">
             Account Login
           </h1>
-
           {/* Email Input */}
           <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
             <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
@@ -81,7 +81,6 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               />
             </div>
           </div>
-
           {/* Send OTP Button */}
           {!otpSent ? (
             <button
@@ -163,10 +162,19 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               </button>
             </>
           )}
-
           {error && hasInitialized && (
             <div className="text-red-500 text-[14px]">{error}</div>
           )}
+          <div className="flex flex-row gap-2 items-center justify-center">
+            <button
+              onClick={() => {
+                localStorage.setItem('loginIsSkipped', 'true');
+                router.push('/');
+              }}
+            >
+              Skip for now
+            </button>{' '}
+          </div>
         </div>
       </div>
     </div>

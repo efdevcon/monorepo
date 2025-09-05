@@ -1,6 +1,6 @@
 'use client';
 
-import { default as Layout } from 'lib/components/event-schedule-new/layout';
+import { default as Layout } from 'lib/components/event-schedule-new/layout-app';
 import { useCalendarStore } from './tmp-state';
 import { Separator } from 'lib/components/ui/separator';
 
@@ -13,7 +13,7 @@ export default function ScheduleTab({ atprotoEvents = [] }: ScheduleTabProps) {
     useCalendarStore();
 
   return (
-    <div className="text-left mt-12">
+    <div className="text-left p-4">
       <Layout
         isCommunityCalendar={false}
         selectedEvent={selectedEvent}

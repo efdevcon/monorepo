@@ -273,10 +273,54 @@ export default function QuestsPage() {
     }
   }, [isClient, setTabIndex, findTabIndexFromHash]);
 
+  // TODO: The tab logic in this component was hard to wrap head around - simplification + alignment with rest of app attempted here but some functionality probably lost
+  // Should consider handling deep linking in a generic manner (isolated to the Tab component, to isolate the complexity) if we want auto tab selection via url / deep linking
+  // Left all code as is for now, although I commented out the previous rendering logic
+  const tabs = [
+    ...Array.from({ length: 6 }, (_, index) => ({
+      label: CATEGORY_TABS[index].label,
+      component: ({ activeIndex }: { activeIndex: number }) => {
+        const category = CATEGORY_TABS[activeIndex]?.category;
+        // console.log(`quests:tab🔍 activeIndex: ${activeIndex}`),
+
+        console.log(`quests:tab🔍 category: ${category}`);
+
+        if (!category) {
+          return <div>No category</div>;
+        }
+
+        const apiQuestsForCategory = apiQuests.filter(
+          (quest) => quest.category === category
+        );
+
+        return (
+          <QuestsTab
+            category={category}
+            numberOfTabs={CATEGORY_TABS.length}
+            apiQuests={apiQuestsForCategory}
+            questStates={questStates}
+            updateQuestStatus={updateQuestStatus}
+            loading={loading}
+            error={error}
+            tabId={CATEGORY_TABS[index].id}
+          />
+        );
+      },
+    })),
+    {
+      label: 'Rewards',
+      component: () => <RewardsTab />,
+    },
+    {
+      label: 'Leaderboard',
+      component: () => <LeaderboardTab />,
+    },
+  ];
+
   // Show loading only if not client-side yet
   if (!isClient) {
     return (
-      <PageLayout title={title}>
+      <PageLayout title={title} tabs={tabs}>
         <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
           <div className="text-center">Loading quests...</div>
         </div>
@@ -285,8 +329,8 @@ export default function QuestsPage() {
   }
 
   return (
-    <PageLayout title={title}>
-      <TabbedSection
+    <PageLayout title={title} tabs={tabs}>
+      {/* <TabbedSection
         navLabel={navLabel}
         maxVisibleTabs={4}
         onTabIndexChange={(setTabIndexFn) => {
@@ -350,7 +394,7 @@ export default function QuestsPage() {
 
           return <div>Not found</div>;
         }}
-      </TabbedSection>
+      </TabbedSection> */}
     </PageLayout>
   );
 }

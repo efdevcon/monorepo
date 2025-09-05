@@ -1,14 +1,13 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
 import { SkippedProvider } from '@/context/SkippedContext';
-import Menu from '@/components/Menu';
 import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
-import Auth from '@/components/Auth';
+
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
 
@@ -22,18 +21,77 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
-export const metadata: Metadata = {
-  title: 'Devconnect App',
-  description:
-    "Your companion for Devconnect ARG, the first Ethereum World's Fair.",
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover', // very  important you know this
 };
+
+export async function generateMetadata(): Promise<Metadata> {
+  const APP_NAME = 'Devconnect App';
+  const APP_DESCRIPTION =
+    "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
+  const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
+
+  return {
+    title: APP_NAME,
+    description: APP_DESCRIPTION,
+    applicationName: 'Devconnect',
+    manifest: '/manifest.json',
+    formatDetection: {
+      telephone: false,
+    },
+    icons: {
+      icon: '/app-icon.png',
+      apple: '/app-icon.png',
+    },
+    appleWebApp: {
+      title: 'Devconnect',
+      capable: true,
+      statusBarStyle: 'black-translucent',
+    },
+    themeColor: '#fbf5ee',
+    other: {
+      'mobile-web-app-capable': 'yes',
+      'apple-touch-fullscreen': 'yes',
+      'msapplication-navbutton-color': '#fbf5ee',
+    } as Record<string, string>,
+    // viewport: {
+    //   width: 'device-width',
+    //   initialScale: 1,
+    //   minimumScale: 1,
+    //   maximumScale: 1,
+    //   userScalable: false,
+    //   viewportFit: 'cover',
+    // },
+    openGraph: {
+      images: [
+        {
+          url: image,
+          width: 1200,
+          height: 630,
+          alt: 'Devconnect Argentina',
+          type: 'image/png',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: APP_NAME,
+      description: APP_DESCRIPTION,
+      images: [image],
+    },
+  };
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Define values inline to avoid Para SDK import
+  // Constants needed for commented meta tags (now handled by generateMetadata)
   const APP_NAME = 'Devconnect App';
   const APP_DESCRIPTION =
     "Your companion for Devconnect ARG, the first Ethereum World's Fair.";
@@ -52,6 +110,9 @@ export default function RootLayout({
           crossOrigin="use-credentials"
         />
         <link rel="apple-touch-icon" href="/app-icon.png" />
+
+        {/* Meta tags now handled by generateMetadata function above */}
+        {/* 
         <meta name="apple-mobile-web-app-title" content="Devconnect" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Devconnect" />
@@ -97,35 +158,32 @@ export default function RootLayout({
           key="tw_description"
         />
         <meta name="twitter:image" content={image} key="tw_image" />
+        */}
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased relative flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col grow relative">
-          {hasSupabase ? (
-            <Auth>
-              <SkippedProvider>
-                <PWAProvider>
-                  <WalletsProviders>
-                    {children}
-                    <Menu />
-                    <NewDeployment />
-                  </WalletsProviders>
-                </PWAProvider>
-              </SkippedProvider>
-            </Auth>
-          ) : (
-            <SkippedProvider>
-              <PWAProvider>
-                <WalletsProviders>
-                  {children}
-                  <Menu />
-                  <NewDeployment />
-                </WalletsProviders>
-              </PWAProvider>
-            </SkippedProvider>
-          )}
-        </div>
+        {/* <div className="flex flex-col grow relative min-h-screen"> */}
+        {hasSupabase ? (
+          <SkippedProvider>
+            <PWAProvider>
+              <WalletsProviders>
+                {children}
+                <NewDeployment />
+              </WalletsProviders>
+            </PWAProvider>
+          </SkippedProvider>
+        ) : (
+          <SkippedProvider>
+            <PWAProvider>
+              <WalletsProviders>
+                {children}
+                <NewDeployment />
+              </WalletsProviders>
+            </PWAProvider>
+          </SkippedProvider>
+        )}
+        {/* </div> */}
         <Toaster />
       </body>
     </html>

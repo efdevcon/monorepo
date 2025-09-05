@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { createClient, type SupabaseClient, type User, type AuthError, type AuthChangeEvent, type Session } from "@supabase/supabase-js"
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 // Initialize Supabase client
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
@@ -31,7 +32,8 @@ export function useUser(): UseUserResult {
   const [error, setError] = useState<string | null>(null)
   const [hasInitialized, setHasInitialized] = useState(false)
   const [lastToastUserId, setLastToastUserId] = useState<string | null>(null)
-
+  const router = useRouter()
+  
   useEffect(() => {
     if (!supabase) {
       setLoading(false)
@@ -170,6 +172,8 @@ export function useUser(): UseUserResult {
         }
 
         setUser(null)
+
+        router.push('/onboarding')
         
         toast.success('Successfully signed out!')
     } catch (error) {

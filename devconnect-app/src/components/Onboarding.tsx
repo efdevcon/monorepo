@@ -4,6 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   useSignUpOrLogIn,
   useVerifyNewAccount,
@@ -30,7 +31,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const { openModal } = useModal();
-
+  const router = useRouter();
   useEffect(() => {
     if (user?.email && email === '') {
       setEmail(user.email);
@@ -188,6 +189,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       setSkipped(true);
       console.log('setSkipped(true) called');
       onConnect?.();
+
+      localStorage.setItem('loginIsSkipped', 'true');
+      router.push('/');
+
       console.log('onConnect callback called');
     } else {
       setSkipped(false);

@@ -32,7 +32,7 @@ export default function HomePage() {
     <>
       {!address ? (
         <div
-          className="min-h-screen flex items-center justify-center p-4 grow "
+          className="min-h-screen h-full flex items-center justify-center p-4 grow "
           style={{
             backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
             backgroundSize: 'cover',

@@ -1,9 +1,10 @@
-import HomeIcon from '@/components/icons/HomeIcon';
+// import HomeIcon from '@/components/icons/HomeIcon';
 import QuestIcon from '@/components/icons/QuestIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
 import ScanIcon from '@/components/icons/ScanIcon';
 import ProgrammeIcon from '@/components/icons/ProgrammeIcon';
-import MapIcon from '@/components/icons/MapIcon';
+// import MapIcon from '@/components/icons/MapIcon';
+import { HomeIcon, MapIcon, AwardIcon, UserIcon } from 'lucide-react';
 
 export type TabItem = {
   label: string;
@@ -11,6 +12,7 @@ export type TabItem = {
 
 export type NavItem = {
   label: string;
+  longLabel?: string;
   href: string;
   icon: React.ComponentType<{ active: boolean }>;
   backgroundColor: string;
@@ -19,36 +21,52 @@ export type NavItem = {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'World\'s Fair',
-    href: '/programme',
-    icon: ProgrammeIcon,
-    backgroundColor: 'rgba(254, 232, 244, 0.75)',
-    tabItems: [
-      {
-        label: 'Devconnect',
-      },
-      {
-        label: 'Community',
-      }
-    ],
-  },
-  {
-    label: 'Map',
-    href: '/map',
-    icon: MapIcon,
-    backgroundColor: 'rgba(232, 243, 254, 0.75)',
+    label: 'Home',
     tabItems: [
       {
         label: 'Dashboard',
       },
+    ],
+    href: '/',
+    icon: HomeIcon as any,
+    backgroundColor: 'rgba(254, 232, 244, 0.75)',
+  },
+  {
+    label: 'World\'s Fair',
+    longLabel: 'Ethereum World\'s Fair',
+    href: '/worlds-fair',
+    // @ts-ignore
+    icon: MapIcon,
+    backgroundColor: 'rgba(254, 232, 244, 0.75)',
+    tabItems: [
       {
-        label: 'Wallet',
+        label: 'Event Schedule',
       },
+      // {
+      //   label: 'Community',
+      // },
       {
-        label: 'Connections',
-      },
+        label: 'Venue Map',
+      }
     ],
   },
+  // {
+  //   label: 'Map',
+  //   href: '/map',
+  //   icon: MapIcon,
+  //   backgroundColor: 'rgba(232, 243, 254, 0.75)',
+  //   tabItems: [
+  //     {
+  //       label: 'Dashboard',
+  //     },
+  //     {
+  //       label: 'Wallet',
+  //     },
+  //     {
+  //       label: 'Connections',
+  //     },
+  //   ],
+  // },
   {
     label: 'Scan',
     href: '/scan',
@@ -58,7 +76,8 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Quests',
     href: '/quests',
-    icon: QuestIcon,
+    // @ts-ignore
+    icon: AwardIcon,
     backgroundColor: 'rgba(255, 248, 222, 0.75)',
     tabItems: [
       {
@@ -88,9 +107,10 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Wallet',
-    href: '/',
-    icon: WalletIcon,
+    label: 'Profile',
+    href: '/profile',
+    // @ts-ignore
+    icon: UserIcon,
     backgroundColor: 'rgba(204, 186, 229, 0.75)',
     tabItems: [
       {
