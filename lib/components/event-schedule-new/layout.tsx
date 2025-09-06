@@ -64,6 +64,7 @@ const Layout = (props: CalendarLayoutProps) => {
             setFilter={setFilter}
             resetFilter={resetFilter}
             filter={filter}
+            events={props.events}
           />
         </div>
 

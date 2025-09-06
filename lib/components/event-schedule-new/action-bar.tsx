@@ -2,6 +2,7 @@ import React from "react";
 import cn from "classnames";
 import { ListFilter, Search } from "lucide-react";
 import { FilterSummary } from "./filter";
+import Export from "./export";
 
 const venueEvents = [
   { color: "bg-[rgba(255,133,166,1)]", label: "Cowork" },
@@ -22,6 +23,7 @@ const ActionBar = ({
   resetFilter,
   filter,
   filterActive,
+  events,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
@@ -31,6 +33,7 @@ const ActionBar = ({
   filter: any;
   resetFilter: () => void;
   filterActive: boolean;
+  events: any[];
 }) => {
   const categories = isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
@@ -64,6 +67,7 @@ const ActionBar = ({
       </div>
 
       <div className="items-center justify-end grow gap-2 shrink-0 hidden lg:flex">
+        {/* <Export events={events} /> */}
         <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
           <Search size={15} color="rgba(124, 124, 153, 1)" />
           <input
