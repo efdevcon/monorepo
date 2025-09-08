@@ -27,22 +27,34 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { isSkipped, setSkipped } = useUnifiedConnection();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut, sendOtp, verifyOtp, loading, error } = useUser();
-  const [email, setEmail] = useLocalStorage(
-    'email',
-    process.env.NEXT_PUBLIC_EMAIL || ''
-  );
+  const [email, setEmail] = useLocalStorage('email', '');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Debug logging to understand email value changes
+  useEffect(() => {
+    if (mounted) {
+      console.log('Onboarding email value changed:', email);
+    }
+  }, [email, mounted]);
+
   useEffect(() => {
     if (user?.email && email === '') {
+      console.log('Setting email from user object:', user.email);
       setEmail(user.email);
     }
-  }, [user?.email]);
+  }, [user?.email, email, setEmail]);
 
   // Auto-submit OTP when 6 digits are entered
   useEffect(() => {
@@ -127,7 +139,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleEmailSubmit = async () => {
+    console.log('handleEmailSubmit called with email:', email);
     if (!email || !email.includes('@')) {
+      console.log(
+        'Email validation failed - email:',
+        email,
+        'isValid:',
+        email && email.includes('@')
+      );
       return;
     }
 
@@ -424,7 +443,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   We&apos;ve sent a verification code to
                 </div>
                 <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {email}
+                  {mounted ? email : ''}
                 </div>
               </div>
 
@@ -756,7 +775,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   We&apos;ve sent a verification code to
                 </div>
                 <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {email}
+                  {mounted ? email : ''}
                 </div>
               </div>
 
@@ -1123,7 +1142,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                value={email}
+                value={mounted ? email : ''}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
               />
@@ -1157,8 +1176,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Continue with Email Button */}
           <button
             onClick={handleEmailSubmit}
-            disabled={!email || !email.includes('@') || isSigningUp}
+            disabled={!mounted || !email || !email.includes('@') || isSigningUp}
             className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title={
+              mounted
+                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUp}`
+                : 'Loading...'
+            }
           >
             <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
               {isSigningUp ? 'Sending...' : 'Continue with Email'}
@@ -1173,8 +1197,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Continue with External Wallet Button */}
           <button
             onClick={handleWalletConnect}
-            disabled={!email || !email.includes('@')}
+            disabled={!mounted || !email || !email.includes('@')}
             className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title={
+              mounted
+                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@')}`
+                : 'Loading...'
+            }
           >
             <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
               Continue with External Wallet
