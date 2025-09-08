@@ -44,6 +44,16 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     }
   }, [user?.email]);
 
+  // Auto-submit OTP when 6 digits are entered
+  useEffect(() => {
+    if (otp && otp.length === 6 && !otpVerified && otpSent) {
+      const timer = setTimeout(() => {
+        handleOtpSubmit();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [otp, otpVerified, otpSent]);
+
   // Para authentication hooks
   const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
     useSignUpOrLogIn();
@@ -372,7 +382,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               </svg>
             </button>
             <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
-            {otpVerified ?  'Connect Wallet' : 'Verify Code'}
+              {otpVerified ? 'Connect Wallet' : 'Verify Code'}
             </div>
             <div className="overflow-clip relative shrink-0 size-5">
               <svg
@@ -436,35 +446,28 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             maxLength={1}
                             className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                             value={otp[index] || ''}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                const newOtp = otp.split('');
-                                newOtp[index] = value;
-                                const updatedOtp = newOtp.join('');
-                                setOtp(updatedOtp);
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const newOtp = otp.split('');
+                              newOtp[index] = value;
+                              const updatedOtp = newOtp.join('');
+                              setOtp(updatedOtp);
 
-                                // Move focus to next input if character entered
-                                if (value && index < 5) {
-                                  const target = e.target as HTMLInputElement;
-                                  const nextInput =
-                                    target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                      'input'
-                                    ) ||
-                                    target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                      'input'
-                                    );
-                                  if (nextInput) {
-                                    (nextInput as HTMLInputElement).focus();
-                                  }
+                              // Move focus to next input if character entered
+                              if (value && index < 5) {
+                                const target = e.target as HTMLInputElement;
+                                const nextInput =
+                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  ) ||
+                                  target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (nextInput) {
+                                  (nextInput as HTMLInputElement).focus();
                                 }
-
-                                // Auto-submit when 6th character is entered (if not already verified)
-                                if (value && updatedOtp.length === 6 && !otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
-                                }
-                              }}
+                              }
+                            }}
                             onKeyDown={(e) => {
                               // Handle backspace to move to previous input
                               if (
@@ -487,7 +490,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             }}
                             onPaste={(e) => {
                               e.preventDefault();
-                              const pastedData = e.clipboardData.getData('text');
+                              const pastedData =
+                                e.clipboardData.getData('text');
                               const digits = pastedData
                                 .replace(/\D/g, '')
                                 .slice(0, 6);
@@ -496,18 +500,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                 setOtp(digits);
                                 // Focus the last input after paste
                                 const inputs =
-                                  document.querySelectorAll('input[type="text"]');
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
                                 const lastInput = inputs[
                                   inputs.length - 1
                                 ] as HTMLInputElement;
                                 if (lastInput) {
                                   lastInput.focus();
-                                }
-                                // Auto-submit after paste (if not already verified)
-                                if (!otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
                                 }
                               }
                             }}
@@ -549,13 +549,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                   (nextInput as HTMLInputElement).focus();
                                 }
                               }
-
-                              // Auto-submit when 6th character is entered (if not already verified)
-                              if (value && updatedOtp.length === 6 && !otpVerified) {
-                                setTimeout(() => {
-                                  handleOtpSubmit();
-                                }, 100);
-                              }
                             }}
                             onKeyDown={(e) => {
                               // Handle backspace to move to previous input
@@ -576,7 +569,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             }}
                             onPaste={(e) => {
                               e.preventDefault();
-                              const pastedData = e.clipboardData.getData('text');
+                              const pastedData =
+                                e.clipboardData.getData('text');
                               const digits = pastedData
                                 .replace(/\D/g, '')
                                 .slice(0, 6);
@@ -585,18 +579,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                 setOtp(digits);
                                 // Focus the last input after paste
                                 const inputs =
-                                  document.querySelectorAll('input[type="text"]');
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
                                 const lastInput = inputs[
                                   inputs.length - 1
                                 ] as HTMLInputElement;
                                 if (lastInput) {
                                   lastInput.focus();
-                                }
-                                // Auto-submit after paste (if not already verified)
-                                if (!otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
                                 }
                               }
                             }}
@@ -775,9 +765,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <div className="flex flex-row gap-1 items-center justify-start">
                   {[0, 1, 2].map((index) => (
                     <div key={index} className="relative shrink-0 size-10">
-                      <div className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                        otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                      }`}>
+                      <div
+                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
+                        }`}
+                      >
                         <input
                           ref={(el) => {
                             if (el) {
@@ -862,9 +854,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <div className="flex flex-row gap-1 items-center justify-start">
                   {[3, 4, 5].map((index) => (
                     <div key={index} className="relative shrink-0 size-10">
-                      <div className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                        otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                      }`}>
+                      <div
+                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
+                        }`}
+                      >
                         <input
                           ref={(el) => {
                             if (el) {
