@@ -38,22 +38,74 @@ interface PortfolioModalProps {
   address: string;
 }
 
-import { getNetworkConfig } from '@/config/networks';
+import { chains, getNetworkConfig, getNetworkLogo } from '@/config/networks';
 
-// Network configuration mapping
-const NETWORK_MAPPING = {
-  mainnet: 1,
-  base: 8453,
-  'op-mainnet': 10,
-  arbitrum: 42161
-} as const;
+// Helper function to get readable network name
+const getReadableNetworkName = (networkName: string): string => {
+  const networkMap: Record<string, string> = {
+    ETHEREUM_MAINNET: 'Ethereum',
+    BASE_MAINNET: 'Base',
+    OPTIMISM_MAINNET: 'Optimism',
+    ARBITRUM_MAINNET: 'Arbitrum',
+    Ethereum: 'Ethereum',
+    Base: 'Base',
+    'OP Mainnet': 'Optimism',
+    'Arbitrum One': 'Arbitrum',
+    // Additional possible formats from Zapper
+    ethereum: 'Ethereum',
+    base: 'Base',
+    optimism: 'Optimism',
+    arbitrum: 'Arbitrum',
+    'Ethereum Mainnet': 'Ethereum',
+    'Base Mainnet': 'Base',
+    'Optimism Mainnet': 'Optimism',
+    'Arbitrum Mainnet': 'Arbitrum',
+  };
 
-type NetworkKey = keyof typeof NETWORK_MAPPING;
+  // Check exact match first
+  if (networkMap[networkName]) {
+    return networkMap[networkName];
+  }
+
+  // Check if network name contains keywords (case insensitive)
+  const lowerName = networkName.toLowerCase();
+  if (lowerName.includes('ethereum') || lowerName.includes('eth')) {
+    return 'Ethereum';
+  }
+  if (lowerName.includes('base')) {
+    return 'Base';
+  }
+  if (lowerName.includes('optimism') || lowerName.includes('op')) {
+    return 'Optimism';
+  }
+  if (lowerName.includes('arbitrum') || lowerName.includes('arb')) {
+    return 'Arbitrum';
+  }
+
+  return networkName;
+};
+
+// Helper function to get network logo by name
+const getNetworkLogoByName = (networkName: string): string | undefined => {
+  const readableName = getReadableNetworkName(networkName);
+
+  // Map readable names back to chain IDs
+  const nameToChainId: Record<string, number> = {
+    Ethereum: 1,
+    Base: 8453,
+    Optimism: 10,
+    Arbitrum: 42161,
+  };
+
+  const chainId = nameToChainId[readableName];
+  return chainId ? getNetworkLogo(chainId) : undefined;
+};
 
 export default function PortfolioModal({ address }: PortfolioModalProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedNetwork, setSelectedNetwork] = useState<NetworkKey>('base');
-  const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(null);
+  const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
+    null
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -82,7 +134,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ address, network: selectedNetwork }),
+        body: JSON.stringify({ address }),
       });
 
       if (!response.ok) {
@@ -106,7 +158,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
     if (isOpen) {
       fetchPortfolioData();
     }
-  }, [isOpen, selectedNetwork]);
+  }, [isOpen]);
 
   const formatUSD = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -174,34 +226,6 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
             </button>
           </div>
 
-          {/* Network Selector */}
-          <div className="mb-4">
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(NETWORK_MAPPING).map(([key, chainId]) => {
-                const network = getNetworkConfig(chainId);
-                return (
-                  <button
-                    key={key}
-                    onClick={() => {
-                      const newNetwork = key as NetworkKey;
-                      setSelectedNetwork(newNetwork);
-                      // Clear data when switching networks
-                      setPortfolioData(null);
-                      setError(null);
-                    }}
-                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                      selectedNetwork === key
-                        ? 'bg-gray-800 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                  >
-                    <span>{network.name}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
           {isLoading && (
             <div className="flex items-center justify-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -231,7 +255,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
               {/* Token Balances */}
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <Coins className="h-4 w-4" />
+                  <Coins className="h-5w-5" />
                   <h3 className="font-semibold">Top Token Balances</h3>
                 </div>
                 <div className="space-y-2">
@@ -242,23 +266,33 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                         className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
                       >
                         <div className="flex items-center gap-3">
-                          {token.imgUrlV2 ? (
-                            <img
-                              src={token.imgUrlV2}
-                              alt={token.symbol}
-                              className="w-6 h-6 rounded-full"
-                            />
-                          ) : (
-                            <div className="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center">
-                              <span className="text-xs font-medium">
-                                {token.symbol[0]}
-                              </span>
-                            </div>
-                          )}
+                          <div className="relative">
+                            {token.imgUrlV2 ? (
+                              <img
+                                src={token.imgUrlV2}
+                                alt={token.symbol}
+                                className="w-8 h-8 rounded-full"
+                              />
+                            ) : (
+                              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
+                                <span className="text-xs font-medium">
+                                  {token.symbol[0]}
+                                </span>
+                              </div>
+                            )}
+                            {/* Network logo overlay */}
+                            {getNetworkLogoByName(token.network.name) && (
+                              <img
+                                src={getNetworkLogoByName(token.network.name)}
+                                alt={getReadableNetworkName(token.network.name)}
+                                className="absolute -top-1 -left-1 w-4 h-4 rounded-full border border-white"
+                              />
+                            )}
+                          </div>
                           <div>
                             <p className="font-medium">{token.symbol}</p>
                             <p className="text-sm text-gray-600">
-                              {token.network.name}
+                              {getReadableNetworkName(token.network.name)}
                             </p>
                           </div>
                         </div>
@@ -291,8 +325,11 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                     portfolioData.recentActivity.map((activity, index) => {
                       const hash = activity.transaction?.hash;
                       const timestamp = activity.transaction?.timestamp;
-                      const network =
-                        getNetworkConfig(NETWORK_MAPPING[selectedNetwork as NetworkKey]).name;
+                      const network = activity.transaction?.network;
+                      const readableNetwork = getReadableNetworkName(
+                        network || ''
+                      );
+                      const networkLogo = getNetworkLogoByName(network || '');
                       const description =
                         activity.interpretation?.processedDescription;
 
@@ -301,17 +338,27 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                           key={`${hash}-${index}`}
                           className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
                           onClick={() => {
-                            if (hash) {
-                              const explorerUrls = {
-                                base: `https://basescan.org/tx/${hash}`,
-                                mainnet: `https://etherscan.io/tx/${hash}`,
-                                'op-mainnet': `https://optimistic.etherscan.io/tx/${hash}`,
-                                arbitrum: `https://arbiscan.io/tx/${hash}`,
+                            if (hash && network) {
+                              // Map readable network name to chain ID
+                              const nameToChainId: Record<string, number> = {
+                                Ethereum: 1,
+                                Base: 8453,
+                                Optimism: 10,
+                                Arbitrum: 42161,
                               };
-                              window.open(
-                                explorerUrls[selectedNetwork],
-                                '_blank'
-                              );
+
+                              const chainId = nameToChainId[readableNetwork];
+                              if (chainId) {
+                                const chain = chains.find(
+                                  (c) => c.id === chainId
+                                );
+                                if (chain?.blockExplorers?.default?.url) {
+                                  window.open(
+                                    `${chain.blockExplorers.default.url}/tx/${hash}`,
+                                    '_blank'
+                                  );
+                                }
+                              }
                             }
                           }}
                         >
@@ -328,9 +375,18 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                                 </p>
                               )}
                               {network && (
-                                <p className="text-xs text-gray-500">
-                                  {network}
-                                </p>
+                                <div className="flex items-center gap-1 mt-1">
+                                  {networkLogo && (
+                                    <img
+                                      src={networkLogo}
+                                      alt={readableNetwork}
+                                      className="w-3 h-3 rounded-full"
+                                    />
+                                  )}
+                                  <p className="text-xs text-gray-500">
+                                    {readableNetwork}
+                                  </p>
+                                </div>
                               )}
                             </div>
                             {timestamp && (
@@ -355,4 +411,4 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
       </Modal>
     </>
   );
- } 
+} 

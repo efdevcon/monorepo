@@ -1,12 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { chains } from '@/config/networks';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
+// Helper function to get readable network name
+const getReadableNetworkName = (networkName: string): string => {
+  const networkMap: Record<string, string> = {
+    'ETHEREUM_MAINNET': 'Ethereum',
+    'BASE_MAINNET': 'Base',
+    'OPTIMISM_MAINNET': 'Optimism',
+    'ARBITRUM_MAINNET': 'Arbitrum',
+    'Ethereum': 'Ethereum',
+    'Base': 'Base',
+    'OP Mainnet': 'Optimism',
+    'Arbitrum One': 'Arbitrum',
+    // Additional possible formats from Zapper
+    'ethereum': 'Ethereum',
+    'base': 'Base',
+    'optimism': 'Optimism',
+    'arbitrum': 'Arbitrum',
+    'Ethereum Mainnet': 'Ethereum',
+    'Base Mainnet': 'Base',
+    'Optimism Mainnet': 'Optimism',
+    'Arbitrum Mainnet': 'Arbitrum',
+  };
+
+  // Check exact match first
+  if (networkMap[networkName]) {
+    return networkMap[networkName];
+  }
+
+  // Check if network name contains keywords (case insensitive)
+  const lowerName = networkName.toLowerCase();
+  if (lowerName.includes('ethereum') || lowerName.includes('eth')) {
+    return 'Ethereum';
+  }
+  if (lowerName.includes('base')) {
+    return 'Base';
+  }
+  if (lowerName.includes('optimism') || lowerName.includes('op')) {
+    return 'Optimism';
+  }
+  if (lowerName.includes('arbitrum') || lowerName.includes('arb')) {
+    return 'Arbitrum';
+  }
+
+  return networkName;
+};
+
 export async function POST(request: NextRequest) {
   try {
-    const { address, network = 'base' } = await request.json();
+    const { address } = await request.json();
     
-    console.log('Portfolio API called for address:', address, 'network:', network);
+    console.log('Portfolio API called for address:', address);
 
     if (!address) {
       return NextResponse.json(
@@ -22,15 +68,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Network configuration
-    const networkConfig = {
-      mainnet: { chainId: 1, network: 'ETHEREUM_MAINNET' },
-      'op-mainnet': { chainId: 10, network: 'OPTIMISM_MAINNET' },
-      base: { chainId: 8453, network: 'BASE_MAINNET' },
-      arbitrum: { chainId: 42161, network: 'ARBITRUM_MAINNET' }
-    };
-
-    const selectedNetwork = networkConfig[network as keyof typeof networkConfig] || networkConfig.base;
+    // Get all chain IDs from the chains configuration
+    const chainIds = chains.map(chain => chain.id);
 
     const headers = {
       'Content-Type': 'application/json',
@@ -75,7 +114,7 @@ export async function POST(request: NextRequest) {
         query: portfolioQuery,
         variables: {
           addresses: [address],
-          chainIds: [selectedNetwork.chainId],
+          chainIds: chainIds,
         },
       }),
     });
@@ -92,7 +131,7 @@ export async function POST(request: NextRequest) {
 
     console.log('Portfolio data fetched successfully');
 
-    // Fetch activity data for Base chain only
+    // Fetch activity data for all chains
     const activityQuery = `
       query TransactionDescriptionExample($subjects: [Address!]!, $perspective: TransactionHistoryV2Perspective, $first: Int, $filters: TransactionHistoryV2FiltersArgs) {
         transactionHistoryV2(subjects: $subjects, perspective: $perspective, first: $first, filters: $filters) {
@@ -151,7 +190,7 @@ export async function POST(request: NextRequest) {
           perspective: 'All',
           first: 20,
           filters: {
-            chainIds: [selectedNetwork.chainId]
+            chainIds: chainIds
           }
         },
       }),
@@ -191,10 +230,13 @@ export async function POST(request: NextRequest) {
           }
 
           // Add transaction data in the format expected by the frontend
+          // Find the chain name for this network and make it readable
+          const chain = chains.find(c => c.id === node.network);
+          const networkName = chain?.name || `Chain ${node.network}`;
           node.transaction = {
             hash: node.transactionHash,
             timestamp: node.transactionBlockTimestamp,
-            network: node.network
+            network: getReadableNetworkName(networkName)
           };
         }
       });
@@ -213,7 +255,14 @@ export async function POST(request: NextRequest) {
     const portfolio = portfolioResult.data.portfolioV2;
     
     // Filter tokens with value >= $0.01 and calculate total from tokens only
-    const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => edge.node) || [];
+    const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => {
+      const token = edge.node;
+      // Update network name to be readable
+      if (token.network?.name) {
+        token.network.name = getReadableNetworkName(token.network.name);
+      }
+      return token;
+    }) || [];
     const filteredTokenBalances = allTokenBalances.filter((token: any) => token.balanceUSD >= 0.01);
     
     const totalValue = filteredTokenBalances.reduce((sum: number, token: any) => sum + token.balanceUSD, 0);
