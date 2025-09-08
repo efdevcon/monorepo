@@ -117,6 +117,8 @@ export default function ConnectedWallet() {
     disconnect: hookDisconnect,
     ensureParaWagmiConnection,
     paraEmail,
+    email,
+    supabaseEmail,
   } = useUnifiedConnection();
 
   // Simplified signing state management
@@ -546,7 +548,7 @@ export default function ConnectedWallet() {
               </div>
             </>
           )}
-          {paraEmail && <div>Email: {paraEmail}</div>}
+          {email && <div>Email: {email}</div>}
           {/* <div>
             Wagmi accounts:{' '}
             {JSON.stringify(connectors?.map((connector) => connector.address))}

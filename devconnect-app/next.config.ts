@@ -22,15 +22,13 @@ const nextConfig: NextConfig = {
         os: false,
         path: false,
       };
-    }
 
-    // Add null-loader for fastfile to prevent fs module issues
-    config.module.rules.push({
-      test: /fastfile/,
-      use: {
-        loader: 'null-loader',
-      },
-    });
+      // Provide a mock fastfile module for client-side builds
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        fastfile: require.resolve('./webpack/fastfile-mock.js'),
+      };
+    }
 
     return config;
   },

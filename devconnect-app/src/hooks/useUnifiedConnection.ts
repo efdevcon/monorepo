@@ -1,9 +1,12 @@
+'use client';
+
 import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount, useConnections } from 'wagmi';
 import { useAccount as useParaAccount, useLogout, useWallet as useParaWallet } from '@getpara/react-sdk';
 import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { appKit } from '@/config/appkit';
+import { useUser } from '@/hooks/useUser';
 
 // Simple state - no complex global management needed
 
@@ -178,6 +181,9 @@ export function useUnifiedConnection() {
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
   const { logout } = useLogout();
+
+  // Supabase auth hook - for email from Supabase authentication
+  const { user: supabaseUser } = useUser();
 
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
@@ -776,6 +782,9 @@ export function useUnifiedConnection() {
 
       if (allSuccessful) {
         console.log('🔌 [UNIFIED_DISCONNECT] All disconnect operations completed successfully');
+        if (typeof window !== 'undefined') {
+          window.location.href = '/onboarding';
+        }
       } else {
         console.warn('🔌 [UNIFIED_DISCONNECT] Some disconnect operations failed:', disconnectResults);
         // Don't throw error if at least wagmi disconnect succeeded (most important)
@@ -897,6 +906,10 @@ Issued At: ${issuedAt}`;
     paraWallet,
     isParaConnected,
     paraEmail: paraAccount?.embedded?.email || null,
+
+    // Supabase auth state
+    supabaseEmail: supabaseUser?.email || null,
+    email: supabaseUser?.email || paraAccount?.embedded?.email || null,
 
     // Connectors
     connectors,
