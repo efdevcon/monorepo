@@ -15,6 +15,7 @@ import {
   useModal,
 } from '@getpara/react-sdk';
 import { useUser } from '@/hooks/useUser';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -26,7 +27,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { isSkipped, setSkipped } = useUnifiedConnection();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut } = useUser();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useLocalStorage(
+    'email',
+    process.env.NEXT_PUBLIC_EMAIL || ''
+  );
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const { openModal } = useModal();
@@ -287,7 +291,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       clearInterval(interval);
     };
   }, []);
-
 
   // Email verification screen
   if (authState?.stage === 'verify') {
@@ -666,137 +669,137 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     );
   }
 
-  // Connection Options Container (existing code)
+  // Get Started Container
   return (
     <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
       {/* Main border with shadow */}
       <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
-      <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
-        {/* Header Container */}
-        <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
-          {/* Title Container */}
-          <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
-            <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
-              Connect to start exploring
-            </h1>
+      <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
+        {/* Header */}
+        <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
+          Get started
+        </h1>
 
-            {/* Connect Wallet Container */}
-            <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
-              <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-                <h2 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
-                  Connect using Ethereum
-                </h2>
-                <p className="font-normal text-[14px] w-full leading-[1.3]">
-                  Already onchain? Connect and set forth!
-                </p>
-              </div>
-
-              {/* Wallet Connect Button */}
-              <button
-                onClick={handleWalletConnect}
-                className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
-              >
-                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                  Connect with a wallet
-                </span>
-              </button>
-            </div>
+        {/* First, enter your email address */}
+        <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+          <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
+            <h2 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+              First, enter your email address
+            </h2>
+            <p className="font-normal text-[14px] w-full leading-[1.3]">
+              We require this to identify your account, and add your ticketing
+              data to the app.
+            </p>
           </div>
 
-          {/* Divider */}
-          <div className="relative w-full">
-            <div className="h-0 relative w-full">
-              <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
-            </div>
-            <div className="bg-[#e9f2fa] flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
-                OR
-              </span>
+          {/* Email Input */}
+          <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
+            <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
+            <div className="basis-0 box-border content-stretch flex flex-row gap-2 grow items-center justify-start min-h-px min-w-px overflow-clip p-0 relative self-stretch shrink-0">
+              <div className="overflow-clip relative shrink-0 size-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#7c7c99"
+                  strokeWidth="2"
+                >
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
+              />
             </div>
           </div>
         </div>
 
-        {/* Connect Email Container */}
-        <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
-            <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-              <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
-                New to Ethereum? Connect using Email
-              </h3>
-              <p className="font-normal text-[14px] w-full leading-[1.3]">
-                Quick start with email — we&apos;ll create a wallet for you
-                behind the scenes.
-              </p>
-            </div>
+        {/* THEN Divider */}
+        <div className="relative w-full">
+          <div className="h-0 relative w-full">
+            <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
+          </div>
+          <div className="bg-white flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
+              THEN
+            </span>
+          </div>
+        </div>
 
-            {/* Email Input */}
-            <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
-              <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
-              <div className="basis-0 box-border content-stretch flex flex-row gap-2 grow items-center justify-start min-h-px min-w-px overflow-clip p-0 relative self-stretch shrink-0">
-                <div className="overflow-clip relative shrink-0 size-4">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#7c7c99"
-                    strokeWidth="2"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </div>
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
-                />
-              </div>
-            </div>
-
-            {/* Email Connect Button */}
-            <button
-              onClick={handleEmailSubmit}
-              disabled={!email || !email.includes('@') || isSigningUp}
-              className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-                {isSigningUp ? 'Sending...' : 'Connect with email'}
-              </span>
-            </button>
-
-            {/* Direct Authentication Button */}
-            {/* <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
-              <button
-                className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none"
-                onClick={() => openModal()}
-              >
-                Connect with Para Modal
-              </button>
-            </div> */}
+        {/* Choose your authentication method */}
+        <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+          <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
+            <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+              Choose your authentication method
+            </h3>
+            <p className="font-normal text-[14px] w-full leading-[1.3]">
+              Provide this to get your ticket data in the app.
+            </p>
           </div>
 
-          {/* Skip for now */}
+          {/* Continue with Email Button */}
           <button
-            onClick={isSkipped ? handleReset : handleSkip}
-            className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+            onClick={handleEmailSubmit}
+            disabled={!email || !email.includes('@') || isSigningUp}
+            className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
+            <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+              {isSigningUp ? 'Sending...' : 'Continue with Email'}
+            </span>
           </button>
 
-          {/* Logout Button - Only show when user is logged in */}
-          {user && (
-            <button
-              onClick={handleLogout}
-              className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
-            >
-              Account logout
-            </button>
-          )}
+          {/* Wallet creation text */}
+          <p className="font-normal text-[#4b4b66] text-[12px] text-left w-full leading-[1.3]">
+            we&apos;ll create a wallet for you behind the scenes
+          </p>
+
+          {/* Continue with External Wallet Button */}
+          <button
+            onClick={handleWalletConnect}
+            className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors"
+          >
+            <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+              Continue with External Wallet
+            </span>
+          </button>
         </div>
+
+        {/* OR Divider */}
+        <div className="relative w-full">
+          <div className="h-0 relative w-full">
+            <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
+          </div>
+          <div className="bg-white flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
+              OR
+            </span>
+          </div>
+        </div>
+
+        {/* Skip for now */}
+        <button
+          onClick={isSkipped ? handleReset : handleSkip}
+          className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+        >
+          {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
+        </button>
+
+        {/* Logout Button - Only show when user is logged in */}
+        {user && (
+          <button
+            onClick={handleLogout}
+            className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+          >
+            Account logout
+          </button>
+        )}
       </div>
 
       {/* Footer */}
