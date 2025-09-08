@@ -330,7 +330,7 @@ const EventVoucher = ({
           title={
             "This event is happening inside the main Devconnect venue; that means you will need a Devconnect ticket to attend. Connect with zupass below to verify ticket ownership."
           }
-          className="shrink-0 inline-flex items-center justify-center hidden md:flex"
+          className="shrink-0 inline-flex items-center justify-center hidden md:flex z-[10000000000000]"
         >
           <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
             <Info size={18} />

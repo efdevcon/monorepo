@@ -137,7 +137,7 @@ const Event: React.FC<EventProps> = ({
   })();
 
   const isCoworking = event.id.toString() === "23";
-  const isETHDay = event.id.toString() === "29";
+  const isETHDay = event.id.toString() === "84";
   const isCoreEvent = event.isCoreEvent;
 
   let eventName = event.name;
