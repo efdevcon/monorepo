@@ -81,8 +81,9 @@ export const atprotoToCalendarFormat = (event: any) => {
     eventLink: event.main_url,
     isCoreEvent: event.isCoreEvent,
     imageUrl: event.image_url || "",
-    showTimeOfDay: event.showTimeOfDay,
+    showTimeOfDay: event.showTimeOfDay ? true : false, // in case its undefined (added field later)
     ticketsAvailable: event.requires_ticket || false,
+    ticketsUrl: event.tickets_url || "",
     xHandle: socials.x_url || "",
     instagramHandle: socials.instagram_url || "",
     farcasterHandle: socials.farcaster_url || "",
@@ -104,7 +105,7 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
       ...record,
       id: event.id,
       isCoreEvent: event.is_core_event,
-      showTimeOfDay: updatedAfterSep3,
+      // showTimeOfDay: updatedAfterSep3,
     });
   });
 

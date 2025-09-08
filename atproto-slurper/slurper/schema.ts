@@ -62,9 +62,17 @@ export const schema = {
               ref: "#timeslot",
             },
           },
+          show_time_of_day: {
+            type: "boolean",
+            description: "Whether the event shows the time of day",
+          },
           requires_ticket: {
             type: "boolean",
             description: "Whether the event requires tickets",
+          },
+          tickets_url: {
+            type: "string",
+            description: "Url of the tickets for the event",
           },
           sold_out: {
             type: "boolean",

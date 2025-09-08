@@ -35,4 +35,5 @@ export interface Event {
   xHandle?: string;
   instagramHandle?: string;
   farcasterHandle?: string;
+  ticketsUrl?: string;
 }

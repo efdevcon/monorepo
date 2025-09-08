@@ -256,20 +256,37 @@ const Event: React.FC<EventProps> = ({
 
               <div className="text-sm">{convert(event.description)}</div>
 
-              <div className="flex justify-between items-center gap-2">
-                {event.eventLink !== "https://devconnect.org/calendar" && (
-                  <Link href={event.eventLink} className="self-start">
-                    <VoxelButton
-                      color="blue-1"
-                      size="sm"
-                      fill
-                      className="shrink-0  mt-2 self-start"
-                    >
-                      Visit Site
-                      <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                    </VoxelButton>
-                  </Link>
-                )}
+              <div className="flex justify-between items-center gap-2 flex-wrap">
+                {}
+                <div className="flex gap-2 items-center">
+                  {event.eventLink !== "https://devconnect.org/calendar" && (
+                    <Link href={event.eventLink} className="self-start">
+                      <VoxelButton
+                        color="blue-1"
+                        size="sm"
+                        fill
+                        className="shrink-0  mt-2 self-start"
+                      >
+                        Visit Site
+                        <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                      </VoxelButton>
+                    </Link>
+                  )}
+
+                  {event.ticketsUrl && (
+                    <Link href={event.ticketsUrl} className="self-start">
+                      <VoxelButton
+                        color="blue-1"
+                        size="sm"
+                        fill
+                        className="shrink-0  mt-2 self-start"
+                      >
+                        Buy Tickets
+                        <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                      </VoxelButton>
+                    </Link>
+                  )}
+                </div>
 
                 <div className="flex gap-1 text-xl mt-2 mr-1">
                   {event.xHandle && (

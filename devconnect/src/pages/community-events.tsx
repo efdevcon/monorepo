@@ -127,6 +127,8 @@ interface EventFormData {
   capacity?: number
   categories?: string[]
   search_tags?: string[]
+  show_time_of_day?: boolean
+  tickets_url?: string
   socials?: {
     x_url?: string
     farcaster_url?: string
@@ -165,6 +167,8 @@ const defaultFormData =
         capacity: 50,
         categories: ['devex', 'protocol'],
         search_tags: ['web3', 'blockchain', 'ethereum', 'smart-contracts'],
+        show_time_of_day: true,
+        tickets_url: 'https://example.com/tickets',
         socials: {
           x_url: 'https://twitter.com/testorganizer',
           farcaster_url: '',
@@ -199,6 +203,8 @@ const defaultFormData =
         capacity: undefined,
         categories: [],
         search_tags: [],
+        show_time_of_day: true,
+        tickets_url: '',
         socials: {
           x_url: '',
           farcaster_url: '',
@@ -369,6 +375,8 @@ const CommunityEvents = () => {
         capacity: selectedRecordData.capacity || undefined,
         categories: selectedRecordData.categories || [],
         search_tags: selectedRecordData.search_tags || [],
+        show_time_of_day: selectedRecordData.show_time_of_day || false,
+        tickets_url: selectedRecordData.tickets_url || '',
         socials: {
           x_url: selectedRecordData.socials?.x_url || '',
           farcaster_url: selectedRecordData.socials?.farcaster_url || '',
@@ -402,6 +410,7 @@ const CommunityEvents = () => {
     if (!cleanedData.categories?.length) delete cleanedData.categories
     if (!cleanedData.search_tags?.length) delete cleanedData.search_tags
     if (!cleanedData.capacity) delete cleanedData.capacity
+    if (!cleanedData.tickets_url) delete cleanedData.tickets_url
 
     // Remove empty social URLs
     if (cleanedData.socials) {
@@ -997,9 +1006,6 @@ const CommunityEvents = () => {
                         : ''}
                     </p>
                   )}
-                  <p className="text-xs text-gray-500 mt-1">
-                    For more granular time management, use the timeslots field below.
-                  </p>
                 </div>
 
                 <div>
@@ -1019,10 +1025,23 @@ const CommunityEvents = () => {
                         : ''}
                     </p>
                   )}
-                  <p className="text-xs text-gray-500 mt-1">
-                    For more granular time management, use the timeslots field below.
-                  </p>
                 </div>
+              </div>
+
+              <div className="mt-4">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    checked={formData.show_time_of_day || false}
+                    onChange={e => handleInputChange('show_time_of_day', e.target.checked)}
+                    className="mr-2"
+                  />
+                  Show time of day in calendar
+                </label>
+                <p className="text-xs text-gray-500 mt-1">
+                  Whether to display start and end times for each day. You can further customize the specific times in
+                  the timeslots field below if your start and end times are different for each day.{' '}
+                </p>
               </div>
 
               <div className="mt-6">
@@ -1215,31 +1234,47 @@ const CommunityEvents = () => {
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <div className="flex gap-6 border-t py-6 border-gray-300 border-b border-solid">
-                      <div className="flex flex-col">
-                        <label className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.requires_ticket || false}
-                            onChange={e => handleInputChange('requires_ticket', e.target.checked)}
-                            className="mr-2"
-                          />
-                          Requires ticket
-                        </label>
-                        <p className="text-xs text-gray-500 mt-1">Whether the event requires tickets</p>
+                    <div className="border-t py-6 border-gray-300 border-b border-solid">
+                      <div className="flex gap-6 flex-wrap mb-4">
+                        <div className="flex flex-col">
+                          <label className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.requires_ticket || false}
+                              onChange={e => handleInputChange('requires_ticket', e.target.checked)}
+                              className="mr-2"
+                            />
+                            Requires ticket
+                          </label>
+                          <p className="text-xs text-gray-500 mt-1">Whether the event requires tickets</p>
+                        </div>
+
+                        <div className="flex flex-col">
+                          <label className="flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={formData.sold_out || false}
+                              onChange={e => handleInputChange('sold_out', e.target.checked)}
+                              className="mr-2"
+                            />
+                            Sold out
+                          </label>
+                          <p className="text-xs text-gray-500 mt-1">Whether the event is sold out</p>
+                        </div>
                       </div>
 
-                      <div className="flex flex-col">
-                        <label className="flex items-center">
-                          <input
-                            type="checkbox"
-                            checked={formData.sold_out || false}
-                            onChange={e => handleInputChange('sold_out', e.target.checked)}
-                            className="mr-2"
-                          />
-                          Sold out
-                        </label>
-                        <p className="text-xs text-gray-500 mt-1">Whether the event is sold out</p>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">Tickets URL</label>
+                        <input
+                          type="url"
+                          placeholder="https://example.com/tickets"
+                          value={formData.tickets_url || ''}
+                          onChange={e => handleInputChange('tickets_url', e.target.value)}
+                          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                          URL where attendees can purchase tickets for the event
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -1479,7 +1514,13 @@ const CommunityEvents = () => {
               </h2>
 
               <NewSchedule
-                events={[atprotoToCalendarFormat({ ...formData, id: 'preview-event', showTimeOfDay: true })]}
+                events={[
+                  atprotoToCalendarFormat({
+                    ...formData,
+                    id: 'preview-event',
+                    showTimeOfDay: formData.show_time_of_day,
+                  }),
+                ]}
                 selectedEvent={previewSelectedEvent}
                 selectedDay={null}
                 setSelectedEvent={setPreviewSelectedEvent}
