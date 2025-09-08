@@ -779,11 +779,11 @@ export function useUnifiedConnection() {
 
       // Evaluate overall success
       const allSuccessful = Object.values(disconnectResults).every(result => result);
+      signOut();
+      console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
 
       if (allSuccessful) {
         console.log('🔌 [UNIFIED_DISCONNECT] All disconnect operations completed successfully');
-        signOut();
-        console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
         if (typeof window !== 'undefined') {
           window.location.href = '/onboarding';
         }
