@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
 import Event from "./event/event";
@@ -11,6 +11,7 @@ import cn from "classnames";
 import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -152,6 +153,8 @@ const NewScheduleIndex = ({
   setSelectedDay,
   events,
 }: ScheduleProps) => {
+  const searchParams = useSearchParams();
+  // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
 
@@ -178,6 +181,23 @@ const NewScheduleIndex = ({
     // Check if any of the dates covered by this event match the hovered date
     return placement.datesCovered.includes(hoveredDate);
   };
+
+  // Can consider moving this into the schedule component
+  useEffect(() => {
+    const eventParam = searchParams.get("event");
+
+    if (eventParam && events.length > 0) {
+      // Try to find event by id or name (converted to slug format)
+      const targetEvent = events.find(
+        (event) => event.id.toString() === eventParam.toString()
+      );
+
+      if (targetEvent) {
+        setSelectedEvent(targetEvent);
+        return;
+      }
+    }
+  }, [searchParams.get("event")]);
 
   // <div className="flex flex-col gap-4 w-full">
   return (

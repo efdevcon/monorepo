@@ -1,4 +1,5 @@
 import React from "react";
+import { TicketIcon } from "lucide-react";
 
 type Difficulty =
   | "beginner"
@@ -100,6 +101,17 @@ const TypeTag = ({
       className={`${typeColorMap[category]} px-2 py-0.5 rounded-full uppercase ${sizeMap[size]}`}
     >
       {typeTextMap[category]}
+    </div>
+  );
+};
+
+export const TicketTag = () => {
+  return (
+    <div
+      className={`px-2 py-0.5 border border-solid border-[rgba(100,100,100,0)] bg-[#1B6FAE] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
+    >
+      <TicketIcon size={13} className="shrink-0" />
+      Tickets Required
     </div>
   );
 };

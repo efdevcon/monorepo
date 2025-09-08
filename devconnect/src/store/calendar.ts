@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { Event } from 'lib/components/event-schedule-new/model'
+import { useEffect } from 'react'
 
 interface CalendarStore {
   selectedEvent: Event | null

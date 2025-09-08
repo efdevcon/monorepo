@@ -194,7 +194,6 @@ const perks: Perk[] = [
     image: WorldsFairImage,
     anchor: '#yourperk',
   },
-  
 ]
 
 export default perks

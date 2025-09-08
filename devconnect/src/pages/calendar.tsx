@@ -17,6 +17,7 @@ import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atp
 
 const Argentina = (props: any) => {
   const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
+  // const [selectedEvent, setSelectedEvent] = useState<any>(null)
   const { data }: { data: any } = useTina(props.content)
 
   const events = props.events
