@@ -5,11 +5,13 @@ import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useUser } from '@/hooks/useUser';
+import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
   const { isConnected, address, isPara } = useUnifiedConnection();
   const { user } = useUser();
+  const router = useRouter();
 
   // Only log significant connection changes to avoid spam
   const lastLoggedState = useRef<string | null>(null);
@@ -27,6 +29,18 @@ export default function HomePage() {
       lastLoggedState.current = stateKey;
     }
   }, [isConnected, address, isPara]);
+
+  useEffect(() => {
+    console.log('🔄 [ONBOARDING] Connection status:', address);
+    if (
+      typeof window !== 'undefined' &&
+      window.location.pathname === '/onboarding' &&
+      address
+    ) {
+      console.log('🔄 [ONBOARDING] Redirecting to profile');
+      router.push('/profile');
+    }
+  }, [address]);
 
   return (
     <>
