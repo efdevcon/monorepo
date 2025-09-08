@@ -31,4 +31,5 @@ export interface Event {
   eventLink: string;
   imageUrl?: string;
   showTimeOfDay?: boolean;
+  ticketsAvailable?: boolean;
 }

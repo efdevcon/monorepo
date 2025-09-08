@@ -71,6 +71,7 @@ export const atprotoToCalendarFormat = (event: any) => {
     isCoreEvent: event.isCoreEvent,
     imageUrl: event.image_url || "",
     showTimeOfDay: event.showTimeOfDay,
+    ticketsAvailable: event.requires_ticket || false,
     ...manualOverrides,
   };
 };

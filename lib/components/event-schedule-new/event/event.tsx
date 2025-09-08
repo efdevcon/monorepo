@@ -21,6 +21,7 @@ import ZupassConnection from "../zupass/zupass";
 import { eventShops } from "../zupass/event-shops-list";
 import VoxelButton from "lib/components/voxel-button/button";
 import { convert } from "html-to-text";
+import { TicketTag } from "../calendar.components";
 
 type EventProps = {
   event: EventType;
@@ -32,6 +33,12 @@ type EventProps = {
 
 const formatTime = (isoString: string) => {
   return moment.utc(isoString).format("HH:mm");
+};
+
+const isMultiDayEvent = (event: EventType) => {
+  const startDate = moment.utc(event.timeblocks[0].start);
+  const endDate = moment.utc(event.timeblocks[0].end);
+  return startDate.format("yyyy-MM-dd") !== endDate.format("yyyy-MM-dd");
 };
 
 const computeEventTimeString = (event: EventType): string[] => {
@@ -133,6 +140,7 @@ const Event: React.FC<EventProps> = ({
   let eventName = event.name;
 
   const timeOfDay = computeEventTimeString(event);
+  const isMultiDay = isMultiDayEvent(event);
 
   return (
     <>
@@ -355,38 +363,38 @@ const Event: React.FC<EventProps> = ({
 
             <div
               className={cn("flex gap-4 justify-end", {
-                "justify-between": !isCoworking,
+                "justify-between": !isCoworking || isMultiDay,
               })}
             >
-              {isCoworking && (
+              {/* {isCoworking && (
                 <a
                   href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
                   onClick={(e) => {
                     e.stopPropagation();
                   }}
                 >
-                  <Button
-                    size="sm"
-                    color="blue-1"
-                    fill
-                    className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
-                  >
-                    <Ticket className="shrink-0" size={16} />
-                    Tickets Available Now
-                    <Ticket className="shrink-0" size={16} />
-                  </Button>
+                  <TicketTag />
                 </a>
               )}
 
+              {event.ticketsAvailable && <TicketTag />} */}
+
               <div
                 className={cn(
-                  "flex gap-2 grow items-end justify-between text-[9px]",
-                  { "!justify-end": isCoworking }
+                  "flex gap-2 grow items-end text-[9px] flex-wrap",
+                  { "justify-between": isMultiDay }
                 )}
               >
-                <TypeTag category={event.eventType} size="sm" />
+                {(event.ticketsAvailable || isCoworking) && (
+                  <>
+                    <TicketTag />
+                  </>
+                )}
 
-                {/* {event.organizer && (
+                <div className="flex gap-2">
+                  <TypeTag category={event.eventType} size="sm" />
+
+                  {/* {event.organizer && (
                 <div
                   className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
                 >
@@ -395,7 +403,8 @@ const Event: React.FC<EventProps> = ({
                 </div>
               )} */}
 
-                <DifficultyTag difficulty={event.difficulty} size="sm" />
+                  <DifficultyTag difficulty={event.difficulty} size="sm" />
+                </div>
 
                 {/* <div
                 className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}

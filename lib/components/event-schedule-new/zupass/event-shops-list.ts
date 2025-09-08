@@ -6,9 +6,9 @@ type EventShop = {
 }
 
 export const eventShops: EventShop[] = [
-  {
-    supabase_id: "23",
-    zupass_proof_id: "Devconnect ARG",
-    coupon_collection: "test-pretix-shop-main-venue",
-  },
+  // {
+  //   supabase_id: "23",
+  //   zupass_proof_id: "Devconnect ARG",
+  //   coupon_collection: "test-pretix-shop-main-venue",
+  // },
 ];
