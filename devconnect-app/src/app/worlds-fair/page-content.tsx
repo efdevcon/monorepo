@@ -3,18 +3,20 @@ import PageLayout from '@/components/PageLayout';
 import ProgrammeTab from './ScheduleTab';
 import WorldsFairTab from './WorldsFairTab';
 import { MapPinIcon, CalendarRangeIcon } from 'lucide-react';
+import { VenueMap } from './venue-map/VenueMap';
 
 const tabs = (atprotoEvents: any[]) => [
+  {
+    label: 'Venue Map',
+    labelIcon: MapPinIcon,
+    component: () => <VenueMap />,
+  },
   {
     label: 'Event Schedule',
     labelIcon: CalendarRangeIcon,
     component: () => <ProgrammeTab atprotoEvents={atprotoEvents} />,
   },
-  {
-    label: 'Venue Map',
-    labelIcon: MapPinIcon,
-    component: () => <WorldsFairTab />,
-  },
+
   // {
   //   label: 'Favorites',
   //   component: () => <FavoritesTab />,
