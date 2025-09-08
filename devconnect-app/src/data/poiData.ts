@@ -8,6 +8,7 @@ export interface POI {
   capacity?: string
   amenities?: string[]
   heroImage?: string
+  logo?: string
   companyDescription?: string
   companies?: string[]
 }
@@ -18,49 +19,65 @@ export const pois: POI[] = [
     id: 'defi-pancake-swap', name: 'PancakeSwap', category: 'defi',
     description: 'Decentralized exchange and automated market maker',
     amenities: ['DEX Trading', 'Yield Farming', 'Lottery', 'NFT Marketplace'],
-    companyDescription: 'Leading decentralized exchange on BNB Chain with innovative DeFi products.'
+    companyDescription: 'Leading decentralized exchange on BNB Chain with innovative DeFi products.',
+    logo: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
   },
   { 
     id: 'defi-lido', name: 'Lido Finance', category: 'defi',
     description: 'Liquid staking solution for Ethereum',
     amenities: ['Liquid Staking', 'Staking Rewards', 'DeFi Integration'],
-    companyDescription: 'Secure liquid staking protocol enabling staking without lockups.'
+    companyDescription: 'Secure liquid staking protocol enabling staking without lockups.',
+    logo: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&h=400&fit=crop'
   },
   { 
     id: 'defi-yearn', name: 'Yearn Finance', category: 'defi',
     description: 'Automated yield farming and DeFi aggregation',
     amenities: ['Yield Optimization', 'Vault Strategies', 'Risk Management'],
-    companyDescription: 'Automated yield farming protocol optimizing DeFi returns.'
+    companyDescription: 'Automated yield farming protocol optimizing DeFi returns.',
+    logo: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
   },
   { 
     id: 'defi-aave', name: 'Aave Protocol', category: 'defi',
     description: 'Decentralized lending and borrowing platform',
     amenities: ['Lending', 'Borrowing', 'Flash Loans', 'Staking'],
-    companyDescription: 'Leading decentralized lending protocol with innovative flash loan technology.'
+    companyDescription: 'Leading decentralized lending protocol with innovative flash loan technology.',
+    logo: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&h=400&fit=crop'
   },
   { 
     id: 'defi-uniswap', name: 'Uniswap', category: 'defi',
     description: 'Decentralized exchange protocol',
     amenities: ['DEX Trading', 'Liquidity Provision', 'Governance'],
-    companyDescription: 'Pioneering decentralized exchange with automated market making.'
+    companyDescription: 'Pioneering decentralized exchange with automated market making.',
+    logo: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
   },
   { 
     id: 'defi-compound', name: 'Compound Finance', category: 'defi',
     description: 'Algorithmic interest rate protocol',
     amenities: ['Lending', 'Borrowing', 'Interest Rates', 'Governance'],
-    companyDescription: 'Algorithmic interest rate protocol for lending and borrowing.'
+    companyDescription: 'Algorithmic interest rate protocol for lending and borrowing.',
+    logo: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&h=400&fit=crop'
   },
   {
     id: 'defi-makerdao', name: 'MakerDAO', category: 'defi',
     description: 'Decentralized stablecoin and lending platform',
     amenities: ['DAI Stablecoin', 'CDP Vaults', 'Governance', 'Collateralization'],
-    companyDescription: 'Decentralized organization behind the DAI stablecoin and lending platform.'
+    companyDescription: 'Decentralized organization behind the DAI stablecoin and lending platform.',
+    logo: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop'
   },
   {
     id: 'defi-curve', name: 'Curve Finance', category: 'defi',
     description: 'Stablecoin exchange and yield farming',
     amenities: ['Stablecoin Trading', 'Yield Farming', 'Liquidity Pools'],
-    companyDescription: 'Efficient stablecoin exchange with low slippage and high yields.'
+    companyDescription: 'Efficient stablecoin exchange with low slippage and high yields.',
+    logo: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1639762681057-408e52192e55?w=800&h=400&fit=crop'
   },
 
   // Food & Beverage
@@ -68,25 +85,33 @@ export const pois: POI[] = [
     id: 'fnb-1', name: 'Asado Express', category: 'fnb', 
     description: 'Traditional Argentine grilled meats and empanadas', 
     amenities: ['Asado BBQ', 'Fresh Empanadas', 'Chimichurri', 'Choripán'],
-    companyDescription: 'Authentic Argentine asado experience featuring premium grilled meats.'
+    companyDescription: 'Authentic Argentine asado experience featuring premium grilled meats.',
+    logo: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&h=400&fit=crop'
   },
   { 
     id: 'fnb-2', name: 'Porteño Bites', category: 'fnb', 
     description: 'Buenos Aires street food and milanesas', 
     amenities: ['Milanesas', 'Provoleta', 'Medialunas', 'Mate Tea'],
-    companyDescription: 'Classic Buenos Aires comfort food including crispy milanesas.'
+    companyDescription: 'Classic Buenos Aires comfort food including crispy milanesas.',
+    logo: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=800&h=400&fit=crop'
   },
   { 
     id: 'fnb-3', name: 'Dulce & Salado', category: 'fnb', 
     description: 'Argentine pastries and alfajores', 
     amenities: ['Alfajores', 'Facturas', 'Dulce de Leche', 'Cortado Coffee'],
-    companyDescription: 'Traditional Argentine bakery specializing in alfajores and facturas.'
+    companyDescription: 'Traditional Argentine bakery specializing in alfajores and facturas.',
+    logo: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800&h=400&fit=crop'
   },
   { 
     id: 'fnb-4', name: 'Tokyo Ramen Bar', category: 'fnb', 
     description: 'Authentic Japanese ramen and gyoza', 
     amenities: ['Tonkotsu Ramen', 'Miso Ramen', 'Gyoza', 'Japanese Beer'],
-    companyDescription: 'Authentic Japanese ramen experience with rich broths and handmade gyoza.'
+    companyDescription: 'Authentic Japanese ramen experience with rich broths and handmade gyoza.',
+    logo: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800&h=400&fit=crop'
   },
 
   // Coworking Areas
@@ -164,49 +189,65 @@ export const pois: POI[] = [
     id: 'biotech-3-mile', name: '3 Mile Labs', category: 'biotech',
     description: 'Biotechnology research and development',
     amenities: ['Research Labs', 'DNA Sequencing', 'Clinical Trials', 'Data Analysis'],
-    companyDescription: 'Cutting-edge biotechnology research facility focusing on genetic engineering.'
+    companyDescription: 'Cutting-edge biotechnology research facility focusing on genetic engineering.',
+    logo: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-fukushima', name: 'Fukushima BioTech', category: 'biotech',
     description: 'Environmental biotechnology solutions',
     amenities: ['Environmental Testing', 'Bioremediation', 'Research Labs', 'Consulting'],
-    companyDescription: 'Specialized in environmental biotechnology and sustainable solutions.'
+    companyDescription: 'Specialized in environmental biotechnology and sustainable solutions.',
+    logo: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-chernobyl', name: 'Chernobyl Research', category: 'biotech',
     description: 'Radiation biology and medical research',
     amenities: ['Radiation Research', 'Medical Studies', 'Safety Protocols', 'Data Collection'],
-    companyDescription: 'Leading research in radiation biology and medical applications.'
+    companyDescription: 'Leading research in radiation biology and medical applications.',
+    logo: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-horde', name: 'Horde Biotech', category: 'biotech',
     description: 'Collaborative biotechnology platform',
     amenities: ['Collaborative Research', 'Data Sharing', 'Open Source', 'Community Labs'],
-    companyDescription: 'Decentralized biotechnology research platform fostering collaboration.'
+    companyDescription: 'Decentralized biotechnology research platform fostering collaboration.',
+    logo: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-covenant', name: 'Covenant Health', category: 'biotech',
     description: 'Healthcare biotechnology solutions',
     amenities: ['Healthcare Research', 'Drug Development', 'Clinical Trials', 'Patient Care'],
-    companyDescription: 'Healthcare-focused biotechnology company developing innovative treatments.'
+    companyDescription: 'Healthcare-focused biotechnology company developing innovative treatments.',
+    logo: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-doom', name: 'Doom Labs', category: 'biotech',
     description: 'Advanced biotechnology research',
     amenities: ['Advanced Research', 'AI Integration', 'Automation', 'Innovation'],
-    companyDescription: 'Pioneering advanced biotechnology research with AI integration.'
+    companyDescription: 'Pioneering advanced biotechnology research with AI integration.',
+    logo: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-unreal', name: 'Unreal Biotech', category: 'biotech',
     description: 'Virtual reality in biotechnology',
     amenities: ['VR Research', '3D Modeling', 'Simulation', 'Training'],
-    companyDescription: 'Revolutionary biotechnology research using virtual reality technology.'
+    companyDescription: 'Revolutionary biotechnology research using virtual reality technology.',
+    logo: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=400&fit=crop'
   },
   {
     id: 'biotech-black-mesa', name: 'Black Mesa Research', category: 'biotech',
     description: 'Experimental biotechnology research',
     amenities: ['Experimental Research', 'Advanced Labs', 'Innovation', 'Breakthrough Science'],
-    companyDescription: 'Experimental biotechnology research facility pushing scientific boundaries.'
+    companyDescription: 'Experimental biotechnology research facility pushing scientific boundaries.',
+    logo: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=100&h=100&fit=crop&crop=center',
+    heroImage: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=400&fit=crop'
   },
 
   // Hardware District - Individual Companies

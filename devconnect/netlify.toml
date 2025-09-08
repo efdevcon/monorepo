@@ -42,5 +42,12 @@
   status = 302
   force = true
 
+# 29 August 2025
+[[redirects]]
+  from = "/schedule"
+  to = "https://devconnect.org/calendar"
+  status = 302
+  force = true
+
 [build.environment]
 PNPM_FLAGS = "--filter devconnect..."

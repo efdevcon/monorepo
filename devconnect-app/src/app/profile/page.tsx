@@ -1,26 +1,55 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import TabbedSection from '@/components/TabbedSection';
-import ProfileTab from './ProfileTab';
-import SettingsTab from './SettingsTab';
 import { NAV_ITEMS } from '@/config/nav-items';
+import Button from 'lib/components/voxel-button/button';
+import WalletTab from '../onboarding/WalletTab';
+import TicketTab from './TicketTab';
+import OnrampTab from './OnrampTab';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/profile');
-const navLabel = navItem?.label || 'Profile';
+const navLabel = navItem?.label || 'Sign up';
 const title = navLabel;
 
-const tabComponents = [ProfileTab, SettingsTab];
+const tabs = [
+  // {
+  //   label: 'Wallet',
+  //   component: () => <WalletTab />,
+  // },
+  {
+    label: 'Ticket',
+    component: () => <TicketTab />,
+  },
+  {
+    label: 'Onramp',
+    component: () => <OnrampTab />,
+  },
+  // () => {
+  //   const router = useRouter();
 
-export default function ProfilePage() {
-  return (
-    <PageLayout title={title}>
-      <TabbedSection navLabel={navLabel}>
-        {(tabIndex) => {
-          const TabComponent =
-            tabComponents[tabIndex] || (() => <div>Not found</div>);
-          return <TabComponent />;
-        }}
-      </TabbedSection>
-    </PageLayout>
-  );
+  //   const handleSkip = () => {
+  //     localStorage.setItem('loginIsSkipped', 'true');
+  //     router.push('/');
+  //   };
+
+  //   return (
+  //     <div className="flex flex-col items-center justify-center h-screen">
+  //       Sign up flow will go here
+  //       <Button
+  //         onClick={handleSkip}
+  //         style={{ marginTop: '20px', display: 'block' }}
+  //       >
+  //         Skip
+  //       </Button>
+  //     </div>
+  //   );
+  // },
+  // WalletTab,
+  // TicketTab,
+  // OnrampTab,
+];
+
+export default function HomePage() {
+  return <PageLayout title={title} tabs={tabs}></PageLayout>;
 }

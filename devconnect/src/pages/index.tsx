@@ -652,30 +652,32 @@ const Home: NextPage = (props: any) => {
                 >
                   {data.pages.devconnect_themes.map((theme: string, i: number) => {
                     return (
-                      <motion.span
-                        key={i}
-                        className={css['topic']}
-                        style={{ display: 'inline-block', willChange: 'transform' }}
-                        variants={{
-                          hidden: {
-                            opacity: 0,
-                            y: -30,
-                            color: 'rgba(0, 0, 0, 0.1)',
-                          },
-                          visible: {
-                            opacity: 1,
-                            y: 0,
-                            color: 'rgba(0, 0, 0, 1)',
-                            transition: {
-                              duration: 0.3,
-                              ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+                      <>
+                        <motion.span
+                          key={i}
+                          className={css['topic']}
+                          style={{ display: 'inline-block', willChange: 'transform' }}
+                          variants={{
+                            hidden: {
+                              opacity: 0,
+                              y: -30,
+                              color: 'rgba(0, 0, 0, 0.1)',
                             },
-                          },
-                        }}
-                      >
-                        {theme}
-                        {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
-                      </motion.span>
+                            visible: {
+                              opacity: 1,
+                              y: 0,
+                              color: 'rgba(0, 0, 0, 1)',
+                              transition: {
+                                duration: 0.3,
+                                ease: [0.25, 0.1, 0.25, 1], // easeOutQuart - much smoother
+                              },
+                            },
+                          }}
+                        >
+                          {theme}
+                          {i < data.pages.devconnect_themes.length - 1 ? ' • ' : ''}
+                        </motion.span>{' '}
+                      </>
                     )
                   })}
                 </motion.div>
@@ -1068,13 +1070,17 @@ const Home: NextPage = (props: any) => {
           </div>
 
           <div className={`section relative bg-white`}>
+            <div
+              className="absolute top-[-50px] left-0 w-full h-[1px] bg-black pointer-events-none opacity-0"
+              id="faq"
+            ></div>
             <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="h-full flex flex-col justify-between gap-4">
                 <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
                 <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
               </div>
 
-              <div className={`${css['accordion']} tab-content`} id="faq">
+              <div className={`${css['accordion']} tab-content`}>
                 <FAQComponent questions={data.pages.faq} />
               </div>
             </div>

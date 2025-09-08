@@ -4,6 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   useSignUpOrLogIn,
   useVerifyNewAccount,
@@ -30,7 +31,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const { openModal } = useModal();
-
+  const router = useRouter();
   useEffect(() => {
     if (user?.email && email === '') {
       setEmail(user.email);
@@ -113,6 +114,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     try {
       console.log('Forcing wagmi Para connector connection...');
       await connect({ connector: paraConnector });
+
+      // Set Para as primary connector (user intent since they just completed Para auth)
+      console.log('Setting Para as primary connector after Para auth');
+      // Note: We can't directly call setPrimaryConnectorId here because this is in Onboarding component
+      // The unified connection hook will detect this and set it as primary
       console.log('Wagmi Para connector connected successfully');
     } catch (error) {
       console.error('Failed to connect wagmi Para connector:', error);
@@ -183,6 +189,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       setSkipped(true);
       console.log('setSkipped(true) called');
       onConnect?.();
+
+      localStorage.setItem('loginIsSkipped', 'true');
+      router.push('/');
+
       console.log('onConnect callback called');
     } else {
       setSkipped(false);
@@ -820,14 +830,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             </button>
 
             {/* Direct Authentication Button */}
-            <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
+            {/* <div className="flex flex-col gap-2 items-start justify-center text-[#242436] text-left w-full cursor-pointer align-center">
               <button
                 className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none"
                 onClick={() => openModal()}
               >
                 Connect with Para Modal
               </button>
-            </div>
+            </div> */}
           </div>
 
           {/* Skip for now */}

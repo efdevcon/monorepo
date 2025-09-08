@@ -60,7 +60,7 @@ export const useFilters = (events: any[]) => {
   events.forEach((event: any) => {
     keysToFilterOn.forEach((key: any) => {
       const value = event[key];
-      if (value) {
+      if (value !== undefined && value !== null) {
         if (!filterableValues[key]) filterableValues[key] = new Set();
 
         if (Array.isArray(value)) {
@@ -79,26 +79,26 @@ export const useFilters = (events: any[]) => {
     // Text search filter
     if (
       filter.name.length > 0 &&
-      !event.name.toLowerCase().includes(filter.name.toLowerCase())
+      !(event.name?.toLowerCase() || '').includes(filter.name.toLowerCase())
     )
       return false;
 
     // Difficulty filter
     if (filter.difficulty.length > 0) {
-      const difficultyMatch = filter.difficulty.includes(event["difficulty"]);
+      const difficultyMatch = filter.difficulty.includes(event["difficulty"] || '');
       if (!difficultyMatch) return false;
     }
 
     // Event type filter
     if (filter.eventType.length > 0) {
-      const typeMatch = filter.eventType.includes(event["eventType"]);
+      const typeMatch = filter.eventType.includes(event["eventType"] || '');
       if (!typeMatch) return false;
     }
 
     // Categories filter
     if (filter.category.length > 0) {
       const categoryMatch = filter.category.some((category: any) =>
-        event["categories"].includes(category)
+        (event["categories"] || []).includes(category)
       );
       if (!categoryMatch) return false;
     }

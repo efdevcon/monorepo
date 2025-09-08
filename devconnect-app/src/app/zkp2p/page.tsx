@@ -23,4 +23,4 @@ export default function Zkp2pScannerPage() {
       </div>
     </PageLayout>
   );
-} 
+}

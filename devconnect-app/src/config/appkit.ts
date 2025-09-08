@@ -2,14 +2,14 @@
 import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
-import { base } from "wagmi/chains";
+import { mainnet, base, optimism, arbitrum } from '@reown/appkit/networks'
 import { injected } from "wagmi/connectors";
 import { paraConnector } from "@getpara/wagmi-v2-integration";
 import { para } from "./para";
 import { APP_NAME } from './config';
 import { queryClient } from "@/context/QueryProvider";
 
-export const chains = [base] as const;
+export const chains = [mainnet, base, optimism, arbitrum];
 
 export const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
 
@@ -29,9 +29,10 @@ const connectors: CreateConnectorFn[] = [
   // Para connector for email authentication
   paraConnector({
     appName: APP_NAME,
-    nameOverride: "Connect with email via Para",
-    authLayout: ["AUTH:FULL", "EXTERNAL:FULL"],
-    chains: [base],
+    nameOverride: "Email (Para)",
+    // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
+    authLayout: ["AUTH:FULL"],
+    chains,
     disableEmailLogin: false,
     disablePhoneLogin: true,
     logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
@@ -62,21 +63,29 @@ const connectors: CreateConnectorFn[] = [
 // Create wagmi adapter with all connectors
 export const wagmiAdapter = new WagmiAdapter({
   ssr: true,
-  networks: [base],
+  networks: chains,
   projectId,
   connectors,
 });
 
 export const appKit = createAppKit({
   adapters: [wagmiAdapter],
-  networks: [base],
+  networks: chains as [typeof base, ...typeof base[]],
+  defaultNetwork: base,
   projectId,
   metadata,
+  enableWallets: true,
   features: {
     analytics: true,
     email: false,
     socials: false,
     emailShowWallets: false,
+    onramp: true,
+    swaps: true,
+    // allWallets: true,
+    // multiWallet: true,
+    // networkSwitch: true,
+    // preferDeepLink: true,
   },
   themeMode: "light",
   enableEIP6963: true, // Enable EIP6963 for better injected wallet detection
@@ -84,6 +93,7 @@ export const appKit = createAppKit({
   enableWalletConnect: true,
   enableCoinbase: true,
   allowUnsupportedChain: true,
+  // multiWallet: true,
   allWallets: "SHOW", // Show all wallets including injected ones
   featuredWalletIds: [
     // Zerion
@@ -95,5 +105,6 @@ export const appKit = createAppKit({
     // Coinbase Wallet
     'fd20dc426fb37566d803205b19bbc1d4096b248ac04548e3cfb6b3a38bd033aa',
   ],
+  // Para
   excludeWalletIds: ['82061ee410cab0e705cf38830db84ba965effc51a1e1bf43da6d39ff70ae94fb'],
 }); 

@@ -1,9 +1,12 @@
-import React from "react";
-import { MapPin, Ticket, Users, X } from "lucide-react";
+import React, { useState, useEffect, useRef } from "react";
+import { MapPin, Ticket, Users, ArrowUpRight, X } from "lucide-react";
 import { Event as EventType } from "../model";
-import { format, parseISO } from "date-fns";
+import moment from "moment";
+// import { format, parseISO } from "date-fns";
+// import { UTCDate } from "@date-fns/utc";
 import cn from "classnames";
 import Image from "next/image";
+import Link from "lib/components/link/Link";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
@@ -16,6 +19,8 @@ import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
 import ZupassConnection from "../zupass/zupass";
 import { eventShops } from "../zupass/event-shops-list";
+import VoxelButton from "lib/components/voxel-button/button";
+import { convert } from "html-to-text";
 
 type EventProps = {
   event: EventType;
@@ -26,7 +31,7 @@ type EventProps = {
 };
 
 const formatTime = (isoString: string) => {
-  return format(parseISO(isoString), "HH:mm");
+  return moment.utc(isoString).format("HH:mm");
 };
 
 const computeEventTimeString = (event: EventType): string[] => {
@@ -36,37 +41,45 @@ const computeEventTimeString = (event: EventType): string[] => {
   let formattedTimeblocks: string[] = [];
 
   if (!hasTimeblocks) {
-    const startDate = parseISO(event.timeblocks[0].start);
-    const endDate = parseISO(event.timeblocks[0].end);
-    const startDateFormatted = format(startDate, "MMM dd");
-    const endDateFormatted = format(endDate, "MMM dd");
+    const startDate = moment.utc(event.timeblocks[0].start);
+    const endDate = moment.utc(event.timeblocks[0].end);
+    const startDateFormatted = startDate.format("MMM DD");
+    const endDateFormatted = endDate.format("MMM DD");
     const startTime = formatTime(event.timeblocks[0].start);
     const endTime = formatTime(event.timeblocks[0].end);
     const isMultiDay =
-      format(startDate, "yyyy-MM-dd") !== format(endDate, "yyyy-MM-dd");
+      startDate.format("yyyy-MM-dd") !== endDate.format("yyyy-MM-dd");
 
     if (isMultiDay) {
-      return [
-        `${startDateFormatted} — ${endDateFormatted}, ${startTime} — ${endTime} `,
+      formattedTimeblocks = [
+        `${startDateFormatted} — ${endDateFormatted}, ${startTime} to ${endTime} every day`,
+      ];
+    } else {
+      formattedTimeblocks = [
+        `${startDateFormatted}, ${startTime} to ${endTime}`,
       ];
     }
-
-    return [`${startDateFormatted}, ${startTime} to ${endTime}`];
   } else {
     formattedTimeblocks = event.timeblocks
       .slice()
       .sort((a, b) => new Date(a.start).getTime() - new Date(b.start).getTime())
       .map((timeblock) => {
-        const startDate = format(parseISO(timeblock.start), "MMM dd");
-        const endDate = format(parseISO(timeblock.end), "MMM dd");
+        const startDate = moment.utc(timeblock.start).format("MMM DD");
+        const endDate = moment.utc(timeblock.end).format("MMM DD");
         const startTime = formatTime(timeblock.start);
         const endTime = formatTime(timeblock.end);
 
-        return `${startDate} — ${endDate}, ${startTime} — ${endTime}`;
+        return `${startDate}, ${startTime} to ${endTime}`; // , ${startTime} — ${endTime}`;
       });
   }
 
-  return formattedTimeblocks;
+  return formattedTimeblocks.map((timeblock) => {
+    if (!event.showTimeOfDay) {
+      return timeblock.split(", ")[0];
+    }
+
+    return timeblock;
+  });
 };
 
 const Event: React.FC<EventProps> = ({
@@ -76,6 +89,22 @@ const Event: React.FC<EventProps> = ({
   selectedEvent,
   setSelectedEvent,
 }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imageRef = useRef<any>(null);
+
+  // Reset image loaded state when imageUrl changes
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [event.imageUrl]);
+
+  // Check if image is already loaded (e.g., cached)
+  useEffect(() => {
+    const img = imageRef.current;
+    if (img?.complete && img?.naturalWidth > 0) {
+      setImageLoaded(true);
+    }
+  }, [event.imageUrl]);
+
   const userIsLoggedIn = true;
   const draggableLink1 = useDraggableLink();
   const eventClassName = className || "";
@@ -103,31 +132,10 @@ const Event: React.FC<EventProps> = ({
 
   let eventName = event.name;
 
+  const timeOfDay = computeEventTimeString(event);
+
   return (
-    <div
-      style={{
-        // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
-        height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
-      }}
-      className={cn(
-        `group cursor-pointer`,
-        "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
-        typeClass,
-        eventClassName
-      )}
-      {...draggableLink1}
-      onClick={(e) => {
-        const result = draggableLink1.onClick(e);
-
-        if (!result) return;
-
-        if (event.onClick) {
-          event.onClick();
-        } else if (!selectedEvent) {
-          setSelectedEvent(event);
-        }
-      }}
-    >
+    <>
       <Dialog open={selectedEvent?.id === event.id}>
         <DialogContent
           className={cn(
@@ -169,6 +177,32 @@ const Event: React.FC<EventProps> = ({
             </div>
           )}
 
+          {event.imageUrl && imageLoaded && (
+            <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+              <img
+                src={event.imageUrl}
+                alt={event.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
+          {/* Load and see if it errors out prior to showing the image */}
+          {event.imageUrl && (
+            <img
+              ref={imageRef}
+              src={event.imageUrl}
+              alt={event.name}
+              className="hidden"
+              onLoad={() => {
+                setImageLoaded(true);
+              }}
+              onError={() => {
+                setImageLoaded(false);
+              }}
+            />
+          )}
+
           <div className="p-4 shrink-0">
             <div className="flex flex-col text-[rgba(36,36,54,1)]">
               <div className="text-sm text-[rgba(94,144,189,1)] uppercase font-secondary">
@@ -185,8 +219,12 @@ const Event: React.FC<EventProps> = ({
                 <div className="text-xs">hosted by {event.organizer}</div>
               )}
 
-              <div className="text-[rgba(75,75,102,1)] mt-2">
-                {computeEventTimeString(event).join(", ")}
+              <div className="flex flex-col mt-2 w-full">
+                {timeOfDay.map((time, index) => (
+                  <div key={index} className="text-xs text-gray-600">
+                    {time}
+                  </div>
+                ))}
               </div>
 
               <Separator className="my-3" />
@@ -205,51 +243,21 @@ const Event: React.FC<EventProps> = ({
                 )}
               </div>
 
-              {/* <div className="text-sm"> */}
-              {/* {computeEventTimeString(event).map((timeblock, index) => (
-                  <div key={index}>{timeblock}</div>
-                ))} */}
-              {/* {computeEventTimeString(event).map((timeblock, index) => (
-                  <div
-                    key={index}
-                    className="mb-2 border-b last:border-b-0 pb-2"
+              <div className="text-sm">{convert(event.description)}</div>
+
+              {event.eventLink !== "https://devconnect.org/calendar" && (
+                <Link href={event.eventLink} className="self-start">
+                  <VoxelButton
+                    color="blue-1"
+                    size="sm"
+                    fill
+                    className="shrink-0  mt-2 self-start"
                   >
-                    <div className="font-medium text-gray-700">
-                      {formatDate(timeblock.start)}
-                    </div>
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <span>
-                        {formatTime(timeblock.start)} -{" "}
-                        {formatTime(timeblock.end)}
-                      </span>
-                      {timeblock.name && (
-                        <span className="text-gray-600">
-                          • {timeblock.name}
-                        </span>
-                      )}
-                    </div>
-                    {timeblock.location && (
-                      <div className="text-gray-500 text-xs mt-0.5">
-                        📍 {timeblock.location}
-                      </div>
-                    )}
-                  </div>
-                ))} */}
-              {/* </div> */}
-
-              <div className="text-sm">{event.description}</div>
-
-              {/* <Link href={event.eventLink} className="self-start">
-                <VoxelButton
-                  color="blue-1"
-                  size="sm"
-                  fill
-                  className="shrink-0  mt-2 self-start"
-                >
-                  Visit Website
-                  <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                </VoxelButton>
-              </Link> */}
+                    Visit Site
+                    <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                  </VoxelButton>
+                </Link>
+              )}
 
               <Separator className="my-3" />
 
@@ -281,82 +289,104 @@ const Event: React.FC<EventProps> = ({
         </DialogContent>
       </Dialog>
 
-      <div className="flex h-full z-10">
-        {/* <div className="flex flex-col mr-2 items-center shrink-0">
-          <div className="text-[10px]">{startTime}</div>
-          <div className="min-h-[10px] grow border-solid border-l border-l-neutral-400 self-center my-1"></div>
-          <div className="text-[10px]">{endTime}</div>
-        </div> */}
-        <div className="flex flex-col grow justify-between items-stretch">
-          <div
-            className={cn(
-              "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
-            )}
-          >
-            {isCoworking && (
-              <Image
-                src={DevconnectCubeLogo}
-                alt="Devconnect Cube"
-                className="w-[26px] object-contain"
-              />
-            )}
-            {isETHDay && (
-              <Image
-                src={ethDayImage}
-                alt="ETH Day"
-                className="w-[26px] object-contain"
-              />
-            )}
-            <div className="flex flex-col">
-              {eventName}
-              <div className="text-xs text-gray-600">
-                {computeEventTimeString(event).join(", ")}
-              </div>
-            </div>
-          </div>
+      <div
+        style={{
+          // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
+          height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
+        }}
+        className={cn(
+          `group cursor-pointer`,
+          "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
+          typeClass,
+          eventClassName
+        )}
+        {...draggableLink1}
+        onClick={(e) => {
+          const result = draggableLink1.onClick(e);
 
-          <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
-            {event.organizer}
-          </div>
+          if (!result) return;
 
-          {/* <div className="text-xs text-gray-600 mt-1">{event.location.text}</div> */}
-
-          <Separator className="my-1.5" />
-
-          <div
-            className={cn("flex gap-4 justify-end", {
-              "justify-between": !isCoworking,
-            })}
-          >
-            {isCoworking && (
-              <a
-                href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                <Button
-                  size="sm"
-                  color="blue-1"
-                  fill
-                  className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
-                >
-                  <Ticket className="shrink-0" size={16} />
-                  Tickets Available Now
-                  <Ticket className="shrink-0" size={16} />
-                </Button>
-              </a>
-            )}
-
+          if (event.onClick) {
+            event.onClick();
+          } else if (!selectedEvent) {
+            console.log("setting selected event");
+            setSelectedEvent(event);
+          }
+        }}
+      >
+        <div className="flex h-full z-10">
+          <div className="flex flex-col grow justify-between items-stretch">
             <div
               className={cn(
-                "flex gap-2 grow items-end justify-between text-[9px]",
-                { "!justify-end": isCoworking }
+                "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
               )}
             >
-              <TypeTag category={event.eventType} size="sm" />
+              {isCoworking && (
+                <Image
+                  src={DevconnectCubeLogo}
+                  alt="Devconnect Cube"
+                  className="w-[26px] object-contain"
+                />
+              )}
+              {isETHDay && (
+                <Image
+                  src={ethDayImage}
+                  alt="ETH Day"
+                  className="w-[26px] object-contain"
+                />
+              )}
+              <div className="flex flex-col w-full">
+                {eventName}
+                <div className="flex gap-4 justify-between w-full">
+                  {timeOfDay.map((time, index) => (
+                    <div key={index} className="text-xs text-gray-600">
+                      {time}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
 
-              {/* {event.organizer && (
+            <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
+              {event.organizer}
+            </div>
+
+            <Separator className="my-1.5" />
+
+            <div
+              className={cn("flex gap-4 justify-end", {
+                "justify-between": !isCoworking,
+              })}
+            >
+              {isCoworking && (
+                <a
+                  href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  <Button
+                    size="sm"
+                    color="blue-1"
+                    fill
+                    className="shrink-0 px-4 py-2 flex text-xs gap-2 items-center"
+                  >
+                    <Ticket className="shrink-0" size={16} />
+                    Tickets Available Now
+                    <Ticket className="shrink-0" size={16} />
+                  </Button>
+                </a>
+              )}
+
+              <div
+                className={cn(
+                  "flex gap-2 grow items-end justify-between text-[9px]",
+                  { "!justify-end": isCoworking }
+                )}
+              >
+                <TypeTag category={event.eventType} size="sm" />
+
+                {/* {event.organizer && (
                 <div
                   className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
                 >
@@ -365,22 +395,23 @@ const Event: React.FC<EventProps> = ({
                 </div>
               )} */}
 
-              <DifficultyTag difficulty={event.difficulty} size="sm" />
+                <DifficultyTag difficulty={event.difficulty} size="sm" />
 
-              {/* <div
+                {/* <div
                 className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
               >
                 {event.amountPeople}
               </div> */}
-              {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
+                {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
               <Star className="text-black shrink-0" size={11} />
               RSVP
             </div> */}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

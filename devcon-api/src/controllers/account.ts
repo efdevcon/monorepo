@@ -11,6 +11,7 @@ import { decryptFile } from '@/utils/encrypt'
 import { parseCSV } from '@/utils/files'
 import { ValidateTicketPod } from '@/utils/zupass'
 import { GenerateRandomUsername, GetEnsAddress, GetEnsAvatar, GetEnsName } from '@/utils/account'
+import { apikeyHandler } from '@/middleware/apikey'
 import dayjs from 'dayjs'
 
 const client = new PrismaClient()
@@ -32,6 +33,7 @@ accountRouter.get(`/account/speakers`, FollowedSpeakers)
 accountRouter.get(`/account/speakers/recommended`, RecommendedSpeakers)
 accountRouter.get(`/account/sessions`, FollowedSessions)
 accountRouter.get(`/account/sessions/recommended`, RecommendedSessions)
+accountRouter.post(`/account/accreditation/email`, apikeyHandler, SendAccreditationEmail)
 
 async function GetAccount(req: Request, res: Response) {
   // #swagger.tags = ['Account']
@@ -723,6 +725,47 @@ async function RecommendedSessions(req: Request, res: Response) {
   const sessions = await GetRecommendedSessions(account.id, true)
 
   return res.status(200).send({ code: 200, message: '', data: sessions })
+}
+
+async function SendAccreditationEmail(req: Request, res: Response) {
+  // #swagger.ignore = true
+  // Private route: requires apiKey
+
+  const { email, name, accreditationLink } = req.body
+
+  if (!email || !name || !accreditationLink) {
+    return res.status(400).send({
+      code: 400,
+      message: 'Missing required fields: email, name, accreditationLink'
+    })
+  }
+
+  try {
+    // Import the email service
+    const { sendAccreditationConfirmationEmail } = await import('@/services/email')
+
+    // Send the accreditation confirmation email
+    const success = await sendAccreditationConfirmationEmail(email, name, accreditationLink)
+
+    if (success) {
+      return res.status(200).send({
+        code: 200,
+        message: 'Accreditation confirmation email sent successfully',
+        data: { email, name, accreditationLink }
+      })
+    } else {
+      return res.status(500).send({
+        code: 500,
+        message: 'Failed to send accreditation email'
+      })
+    }
+  } catch (error) {
+    console.error('Error in SendAccreditationEmail:', error)
+    return res.status(500).send({
+      code: 500,
+      message: 'Internal server error'
+    })
+  }
 }
 
 async function parseProfileData(attendeeEmail: string) {

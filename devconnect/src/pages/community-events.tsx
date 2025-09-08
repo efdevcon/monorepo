@@ -16,6 +16,9 @@ import Button from 'common/components/voxel-button/button'
 import { schema } from 'atproto-slurper/slurper/schema'
 import { supabase } from 'common/supabaseClient'
 import { Sha256 } from '@aws-crypto/sha256-browser'
+import moment from 'moment'
+import NewSchedule from 'lib/components/event-schedule-new'
+import { atprotoToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format'
 
 // Dynamic imports to avoid SSR issues
 let BrowserOAuthClient: any = null
@@ -53,7 +56,7 @@ const getOAuthClient = async () => {
   return new Client({
     handleResolver: 'https://bsky.social',
     clientMetadata: {
-      client_id: `https://devconnect.org/atproto/client.json`,
+      client_id: 'https://devconnect.org/atproto/client.json',
       client_name: 'Devconnect Community Events',
       client_uri: 'https://devconnect.org',
       logo_uri: `https://devconnect.org/og-argentina.png`,
@@ -221,7 +224,9 @@ const CommunityEvents = () => {
   const [supabaseUser, setSupabaseUser] = useState<any>(null)
   const [magicLinkMessage, setMagicLinkMessage] = useState('')
   const [formData, setFormData] = useState<EventFormData>(defaultFormData)
-  const [isEditing, setIsEditing] = useState(false)
+  const [contact, setContact] = useState('')
+
+  const [previewSelectedEvent, setPreviewSelectedEvent] = useState<any>(null)
 
   const [showOptionalSections, setShowOptionalSections] = useState({
     optional: false,
@@ -446,7 +451,10 @@ const CommunityEvents = () => {
 
       const response = await fetch(url, {
         method: 'POST',
-        body: JSON.stringify(cleanedData),
+        body: JSON.stringify({
+          event: cleanedData,
+          contact,
+        }),
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
@@ -459,7 +467,7 @@ const CommunityEvents = () => {
         toast.success('Event submitted successfully!')
         console.log('Event submitted:', data)
       } else {
-        toast.error('Event submission failed:', data)
+        toast.error('Event submission failed:' + data.error ? data.error : 'Unknown error')
         console.error('Event submission failed:', data)
 
         return
@@ -666,9 +674,11 @@ const CommunityEvents = () => {
 
       let events: any[] = []
 
+      const devconnectDid = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+
       // If user is logged in with email, hash the email to get the prefix specific to that user (need it to filter out other users' events)
       if (supabaseUser) {
-        const did = 'did:plc:l26dgtpir4fydulvmuoee2sn'
+        const did = devconnectDid
         const email = supabaseUser.email
         const hash = new Sha256()
         hash.update(email)
@@ -701,7 +711,26 @@ const CommunityEvents = () => {
           collection: 'org.devcon.event',
         })
 
-        events = response.data.records.map((record: any) => record.value)
+        events = response.data.records
+          .filter((record: any) => {
+            // If the user is not our internally owned did, just return everything
+            if (did !== devconnectDid) {
+              return true
+            }
+
+            // example: c7730c507a50c8ab-zktls-day
+            const rkey = record.uri.split('/').pop()
+
+            // Insanely ridiculous heuristic to filter out events that are not directly submitted by us (via our email submission flow)
+            // Return true for events that do NOT start with hash-dash pattern
+            // Hash pattern: exactly 16 characters with at least one number, followed by a dash
+            const hashDashPattern = /^.{16}-/
+            const hasNumber = /\d/
+            const prefix = rkey.substring(0, 16)
+            const isHashPattern = hashDashPattern.test(rkey) && hasNumber.test(prefix)
+            return !isHashPattern
+          })
+          .map((record: any) => record.value)
       }
 
       setExistingRecords(events)
@@ -952,7 +981,7 @@ const CommunityEvents = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time (UTC) *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Start Date & Time (in UTC) *</label>
                   <input
                     type="datetime-local"
                     required
@@ -960,13 +989,18 @@ const CommunityEvents = () => {
                     onChange={e => handleInputChange('start_utc', formatDateTimeFromInput(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    Start time of the entire event in UTC (use the 'timeslots' field for granular scheduling)
-                  </p>
+                  {formData.start_utc && (
+                    <p className="text-sm  mt-1">
+                      <span className="font-medium">Argentina time:</span>{' '}
+                      {formData.start_utc
+                        ? moment.utc(formData.start_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                        : ''}
+                    </p>
+                  )}
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time (UTC) *</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">End Date & Time (in UTC) *</label>
                   <input
                     type="datetime-local"
                     required
@@ -974,9 +1008,14 @@ const CommunityEvents = () => {
                     onChange={e => handleInputChange('end_utc', formatDateTimeFromInput(e.target.value))}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                  <p className="text-xs text-gray-500 mt-1">
-                    End time of the entire event in UTC (use the 'timeslots' field for granular scheduling)
-                  </p>
+                  {formData.end_utc && (
+                    <p className="text-sm  mt-1">
+                      <span className="font-medium">Argentina time:</span>{' '}
+                      {formData.end_utc
+                        ? moment.utc(formData.end_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                        : ''}
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -1050,7 +1089,7 @@ const CommunityEvents = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Contact (Email, Twitter, etc.)
+                      Public Contact (Email, Twitter, etc.)
                     </label>
                     <input
                       type="text"
@@ -1131,10 +1170,7 @@ const CommunityEvents = () => {
                         onChange={e => handleInputChange('image_url', e.target.value)}
                         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                       />
-                      <p className="text-xs text-gray-500 mt-1">
-                        Url referencing an image for this event. Image should be .png, squared, and we suggest at least
-                        1024x1024px.
-                      </p>
+                      <p className="text-xs text-gray-500 mt-1">Url referencing a banner image for this event.</p>
                     </div>
                   </div>
 
@@ -1230,7 +1266,9 @@ const CommunityEvents = () => {
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">Start Time (UTC) *</label>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                Start Time (in UTC) *
+                              </label>
                               <input
                                 type="datetime-local"
                                 required
@@ -1240,11 +1278,20 @@ const CommunityEvents = () => {
                                 }
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               />
-                              <p className="text-xs text-gray-500 mt-1">Start of the timeslot in UTC</p>
+                              {slot.start_utc && (
+                                <p className="text-sm  mt-1">
+                                  <span className="font-medium">Argentina time:</span>{' '}
+                                  {slot.start_utc
+                                    ? moment.utc(slot.start_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                                    : ''}
+                                </p>
+                              )}
                             </div>
 
                             <div>
-                              <label className="block text-sm font-medium text-gray-700 mb-1">End Time (UTC) *</label>
+                              <label className="block text-sm font-medium text-gray-700 mb-1">
+                                End Time (in UTC) *
+                              </label>
                               <input
                                 type="datetime-local"
                                 required
@@ -1254,7 +1301,14 @@ const CommunityEvents = () => {
                                 }
                                 className="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                               />
-                              <p className="text-xs text-gray-500 mt-1">End of the timeslot in UTC</p>
+                              {slot.end_utc && (
+                                <p className="text-sm  mt-1">
+                                  <span className="font-medium">Argentina time:</span>{' '}
+                                  {slot.end_utc
+                                    ? moment.utc(slot.end_utc).subtract(3, 'hours').format('YYYY-MM-DD HH:mm')
+                                    : ''}
+                                </p>
+                              )}
                             </div>
                           </div>
 
@@ -1393,6 +1447,40 @@ const CommunityEvents = () => {
                   </div>
                 </div>
               )}
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mt-6 w-full">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
+                Where should we contact you about your listing? *
+              </h2>
+              <input
+                type="email"
+                placeholder="example@email.com"
+                value={contact}
+                onChange={e => setContact(e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <p className="mt-2 text-xs">
+                To answer any questions we may have about your event after submission, please specify an email we can
+                reach you at. This email can only be seen by the Devconnect team, and will not be made public. If you
+                wish to add a public contact, do so in the form above under Organizer Information.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg border border-solid border-gray-500 shadow-lg mt-6 overflow-auto">
+              <h2 className="text-xl font-semibold text-gray-800 mb-4 font-secondary">
+                Preview of your event on the calendar
+              </h2>
+
+              <NewSchedule
+                events={[atprotoToCalendarFormat({ ...formData, id: 'preview-event', showTimeOfDay: true })]}
+                selectedEvent={previewSelectedEvent}
+                selectedDay={null}
+                setSelectedEvent={setPreviewSelectedEvent}
+                setSelectedDay={() => {}}
+              />
+
+              {/* <p className="text-xs text-gray-500 mt-1">The preview is draggable if your event spans multiple days.</p> */}
             </div>
 
             <button

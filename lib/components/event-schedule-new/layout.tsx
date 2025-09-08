@@ -1,5 +1,5 @@
 import React from "react";
-import NewSchedule, { ScheduleProps } from "./index";
+import NewScheduleIndex, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
 import filterCss from "./filter.module.scss";
@@ -24,7 +24,7 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events);
 
   return (
-    <div className="section overflow-visible touch-only:!contents">
+    <div className="section overflow-visible touch-only:!content text-left">
       <div className="flex flex-col gap-4 w-full bg-white">
         <div className="mouse-only:!contents section">
           <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-4 md:mb-1 mb-4">
@@ -41,10 +41,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   <b>Devconnect ARG schedule </b>
                   <div className="text-base font-secondary">
                     Events held within La Rural (
-                    <Link
-                      href="https://tickets.devconnect.org"
-                      indicateExternal
-                    >
+                    <Link href="https://tickets.devconnect.org">
                       ticket required
                     </Link>
                     )
@@ -68,6 +65,7 @@ const Layout = (props: CalendarLayoutProps) => {
             setFilter={setFilter}
             resetFilter={resetFilter}
             filter={filter}
+            events={props.events}
           />
         </div>
 
@@ -85,9 +83,6 @@ const Layout = (props: CalendarLayoutProps) => {
                   setFilter={setFilter}
                   resetFilter={resetFilter}
                   filterActive={filterActive}
-                  // {...filterAttributes}
-                  // edition={props.edition}
-                  // favorites={favorites}
                 />
               </div>
               <div className={filterCss["fade"]} />
@@ -97,7 +92,7 @@ const Layout = (props: CalendarLayoutProps) => {
           <div className="grow relative">
             {/* white gradient to indicate more events on the right for mobile */}
             <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
-            <NewSchedule {...props} events={filteredEvents} />
+            <NewScheduleIndex {...props} events={filteredEvents} />
           </div>
         </div>
       </div>

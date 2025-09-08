@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { toast } from 'sonner';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
@@ -11,11 +11,30 @@ import { executeQuestAction } from '@/utils/quest-actions';
 interface QuestItemProps {
   quest: ComponentQuest;
   onQuestComplete?: (questId: string) => void;
+  isSelected?: boolean;
+  isExpanded?: boolean;
+  onQuestSelect?: (questId: string, isExpanded: boolean) => void;
 }
 
-const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const QuestItem = ({
+  quest,
+  onQuestComplete,
+  isSelected = false,
+  isExpanded = false,
+  onQuestSelect,
+}: QuestItemProps) => {
   const [isExecutingAction, setIsExecutingAction] = useState(false);
+  const questRef = useRef<HTMLDivElement>(null);
+
+  // Scroll into view when selected
+  useEffect(() => {
+    if (isSelected && questRef.current) {
+      questRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+      });
+    }
+  }, [isSelected]);
 
   const getStatusStyles = () => {
     switch (quest.state.status) {
@@ -52,7 +71,8 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
   const styles = getStatusStyles();
 
   const handleClick = () => {
-    setIsExpanded(!isExpanded);
+    const newExpandedState = !isExpanded;
+    onQuestSelect?.(quest.id, newExpandedState);
   };
 
   const handleQuestAction = async () => {
@@ -154,6 +174,7 @@ const QuestItem = ({ quest, onQuestComplete }: QuestItemProps) => {
 
   return (
     <div
+      ref={questRef}
       className={`w-full p-4 relative ${styles.container} rounded-[1px] flex flex-col justify-start items-start gap-2 cursor-pointer transition-all duration-200 min-h-[80px] ${
         isExpanded ? 'shadow-lg' : 'hover:shadow-md'
       }`}

@@ -82,7 +82,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
   if (!showPopup) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/64 md:items-center">
+    <div className="fixed inset-0 z-[1000000000000000000] flex items-end justify-center bg-black/64 md:items-center">
       {/* Modal Content */}
       <div className="relative w-full max-w-[474px]">
         {/* Hero Section */}

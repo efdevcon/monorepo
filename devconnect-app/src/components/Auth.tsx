@@ -1,13 +1,32 @@
 'use client';
 import { useUser } from '@/hooks/useUser';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useLocalStorage } from 'usehooks-ts';
 
 export default function Auth({ children }: { children: React.ReactNode }) {
   const { user, loading, error, hasInitialized, sendOtp, verifyOtp } =
     useUser();
-  const [email, setEmail] = useState(process.env.NEXT_PUBLIC_EMAIL || '');
+  const [email, setEmail] = useLocalStorage(
+    'email',
+    process.env.NEXT_PUBLIC_EMAIL || ''
+  );
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Skip authentication
+  const authSkipPaths = ['/pos', '/para'];
+  if (authSkipPaths.includes(pathname)) {
+    return children;
+  }
 
   if (loading)
     return (
@@ -19,7 +38,16 @@ export default function Auth({ children }: { children: React.ReactNode }) {
   if (user) return children;
 
   return (
-    <div className="section h-screen">
+    <div
+      className="section h-screen"
+      style={{
+        backgroundImage: `url('${process.env.NEXT_PUBLIC_APP_URL}/images/midj-epic-city3.png')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <div className="flex flex-col gap-4 items-center justify-center h-full">
         <div className="max-w-[500px] mx-auto bg-white box-border flex flex-col gap-4 items-center justify-center pb-7 pt-6 px-6 relative rounded-[1px] w-full">
           {/* Main border with shadow */}
@@ -27,7 +55,6 @@ export default function Auth({ children }: { children: React.ReactNode }) {
           <h1 className="text-[#36364c] text-[24px] font-bold text-center">
             Account Login
           </h1>
-
           {/* Email Input */}
           <div className="bg-[#ffffff] box-border content-stretch flex flex-row items-start justify-start p-[12px] relative rounded-[1px] shrink-0 w-full">
             <div className="absolute border border-solid border-zinc-200 inset-0 pointer-events-none rounded-[1px]" />
@@ -54,7 +81,6 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               />
             </div>
           </div>
-
           {/* Send OTP Button */}
           {!otpSent ? (
             <button
@@ -136,10 +162,19 @@ export default function Auth({ children }: { children: React.ReactNode }) {
               </button>
             </>
           )}
-
           {error && hasInitialized && (
             <div className="text-red-500 text-[14px]">{error}</div>
           )}
+          <div className="flex flex-row gap-2 items-center justify-center">
+            <button
+              onClick={() => {
+                localStorage.setItem('loginIsSkipped', 'true');
+                router.push('/');
+              }}
+            >
+              Skip for now
+            </button>{' '}
+          </div>
         </div>
       </div>
     </div>

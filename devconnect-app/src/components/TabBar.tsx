@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import type { NavItem, TabItem } from '@/config/nav-items';
+import cn from 'classnames';
 
 interface TabBarProps {
   navItem: NavItem;
@@ -16,14 +17,14 @@ export default function TabBar({
   showScrollArrows = false,
 }: TabBarProps) {
   const tabItems = navItem.tabItems || [];
-  const bgColor = navItem.backgroundColor || '#e8f3fb';
+  // const bgColor = navItem.backgroundColor || '#e8f3fb';
 
   return (
     <div
-      className={`mt-3 p-1 inline-flex justify-center items-center rounded ${
-        showScrollArrows ? 'min-w-full' : 'mx-auto'
+      className={`mt-3 p-1 inline-flex justify-center md:justify-start items-center rounded bg-[#EFEFF5] ${
+        showScrollArrows ? 'min-w-full' : 'mx-auto md:mx-0'
       }`}
-      style={{ background: bgColor }}
+      // style={{ background: bgColor }}
     >
       {tabItems.map((item, idx) => (
         <button
@@ -32,8 +33,8 @@ export default function TabBar({
           data-tab-index={idx}
           className={
             idx === activeIndex
-              ? 'px-3 py-1.5 rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] flex justify-center items-center whitespace-nowrap flex-shrink-0'
-              : 'px-3 py-1.5 rounded-xs flex justify-center items-center whitespace-nowrap flex-shrink-0'
+              ? 'cursor-pointer px-3 py-1.5 rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] flex justify-center items-center whitespace-nowrap flex-shrink-0'
+              : 'cursor-pointer px-3 py-1.5 rounded-xs flex justify-center items-center whitespace-nowrap flex-shrink-0'
           }
           style={{
             outline: 'none',
@@ -45,7 +46,7 @@ export default function TabBar({
         >
           <div
             className={
-              "text-center justify-center text-sm font-medium font-['Roboto'] leading-tight " +
+              'text-center justify-center text-sm font-medium leading-tight ' +
               (idx === activeIndex
                 ? 'text-[#232336]'
                 : 'text-[#4b4b66] cursor-pointer')
@@ -57,4 +58,4 @@ export default function TabBar({
       ))}
     </div>
   );
-} 
+}

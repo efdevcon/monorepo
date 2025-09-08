@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
-import { useSearchParams } from "next/navigation";
 import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
@@ -12,6 +11,7 @@ import cn from "classnames";
 import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -152,14 +152,10 @@ const NewScheduleIndex = ({
   setSelectedEvent,
   setSelectedDay,
   events,
-  isCommunityCalendar = false,
 }: ScheduleProps) => {
   const searchParams = useSearchParams();
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
-  // const [events] = useState<EventType[]>(dummyEvents);
-  // const [events] = useState<EventType[]>(events);
-  // Add state to track which date is being hovered
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
 
   // Compute event placements for the unified grid
@@ -176,7 +172,7 @@ const NewScheduleIndex = ({
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(205px, 1fr))`;
+  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 230px))`;
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {
@@ -228,8 +224,8 @@ const NewScheduleIndex = ({
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
-                    onMouseEnter={() => setHoveredDate(date)}
-                    onMouseLeave={() => setHoveredDate(null)}
+                    // onMouseEnter={() => setHoveredDate(date)}
+                    // onMouseLeave={() => setHoveredDate(null)}
                     // onClick={() => {
                     //   if (selectedDay !== date) {
                     //     setSelectedDay(date);
@@ -266,7 +262,7 @@ const NewScheduleIndex = ({
                       }`,
                       gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
                     }}
-                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200`}
+                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
                   >
                     <Event
                       event={placement.event}
@@ -298,11 +294,7 @@ const NewScheduleIndex = ({
             className="h-full object-contain w-[500px] max-w-[calc(100%-32px)] mx-4 my-4 mt-2"
           />
           <div className="text-gray-400 py-3 text-center flex justify-center items-center">
-            {events.length === 0
-              ? isCommunityCalendar
-                ? "Community events coming soon!"
-                : "No events match this filter"
-              : ""}
+            {events.length === 0 && "No events match this filter"}
           </div>
         </div>
       )}

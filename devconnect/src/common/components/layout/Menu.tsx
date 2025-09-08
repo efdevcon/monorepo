@@ -81,6 +81,10 @@ const menuItems = (pathname: string) => [
     url: pathname === '/' ? '#about' : '/', // Smoothscrolling if already on the page, otherwise hard link
   },
   {
+    text: 'FAQ',
+    url: pathname === '/' ? '#faq' : '/#faq', // Smoothscrolling if already on the page, otherwise hard link
+  },
+  {
     text: 'Tickets',
     url: TICKETS_URL,
   },

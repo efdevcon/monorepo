@@ -104,6 +104,12 @@ export interface Quest {
   
   /** Position coordinates (e.g., "200,500") */
   position: string;
+
+  /** URL to the website */
+  websiteLink: string;
+
+  /** URL to the social media */
+  socialLink: string;
 }
 
 /**

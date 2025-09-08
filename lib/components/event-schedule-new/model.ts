@@ -29,4 +29,6 @@ export interface Event {
   eventType: string | any;
   categories: string[];
   eventLink: string;
+  imageUrl?: string;
+  showTimeOfDay?: boolean;
 }
