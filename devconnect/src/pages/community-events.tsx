@@ -997,6 +997,9 @@ const CommunityEvents = () => {
                         : ''}
                     </p>
                   )}
+                  <p className="text-xs text-gray-500 mt-1">
+                    For more granular time management, use the timeslots field below.
+                  </p>
                 </div>
 
                 <div>
@@ -1016,6 +1019,9 @@ const CommunityEvents = () => {
                         : ''}
                     </p>
                   )}
+                  <p className="text-xs text-gray-500 mt-1">
+                    For more granular time management, use the timeslots field below.
+                  </p>
                 </div>
               </div>
 
