@@ -21,6 +21,9 @@ import ZupassConnection from "../zupass/zupass";
 import { eventShops } from "../zupass/event-shops-list";
 import VoxelButton from "lib/components/voxel-button/button";
 import { convert } from "html-to-text";
+import XIcon from "lib/assets/icons/x.svg";
+import FarcasterIcon from "lib/assets/icons/farcaster.svg";
+import InstagramIcon from "lib/assets/icons/instagram.svg";
 import { TicketTag } from "../calendar.components";
 
 type EventProps = {
@@ -253,19 +256,41 @@ const Event: React.FC<EventProps> = ({
 
               <div className="text-sm">{convert(event.description)}</div>
 
-              {event.eventLink !== "https://devconnect.org/calendar" && (
-                <Link href={event.eventLink} className="self-start">
-                  <VoxelButton
-                    color="blue-1"
-                    size="sm"
-                    fill
-                    className="shrink-0  mt-2 self-start"
-                  >
-                    Visit Site
-                    <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                  </VoxelButton>
-                </Link>
-              )}
+              <div className="flex justify-between items-center gap-2">
+                {event.eventLink !== "https://devconnect.org/calendar" && (
+                  <Link href={event.eventLink} className="self-start">
+                    <VoxelButton
+                      color="blue-1"
+                      size="sm"
+                      fill
+                      className="shrink-0  mt-2 self-start"
+                    >
+                      Visit Site
+                      <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                    </VoxelButton>
+                  </Link>
+                )}
+
+                <div className="flex gap-1 text-xl mt-2 mr-1">
+                  {event.xHandle && (
+                    <Link href={`${event.xHandle}`} className="p-1">
+                      <XIcon className="icon self-end" />
+                    </Link>
+                  )}
+
+                  {event.instagramHandle && (
+                    <Link href={`${event.instagramHandle}`} className="p-1">
+                      <InstagramIcon className="icon self-end" />
+                    </Link>
+                  )}
+
+                  {event.farcasterHandle && (
+                    <Link href={`${event.farcasterHandle}`} className="p-1">
+                      <FarcasterIcon className="icon self-end" />
+                    </Link>
+                  )}
+                </div>
+              </div>
 
               <Separator className="my-3" />
 

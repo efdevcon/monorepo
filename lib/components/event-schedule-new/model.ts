@@ -32,4 +32,7 @@ export interface Event {
   imageUrl?: string;
   showTimeOfDay?: boolean;
   ticketsAvailable?: boolean;
+  xHandle?: string;
+  instagramHandle?: string;
+  farcasterHandle?: string;
 }
