@@ -13,10 +13,10 @@ const navLabel = navItem?.label || 'Sign up';
 const title = navLabel;
 
 const tabs = [
-  // {
-  //   label: 'Wallet',
-  //   component: () => <WalletTab />,
-  // },
+  {
+    label: 'Wallet',
+    component: () => <WalletTab />,
+  },
   {
     label: 'Ticket',
     component: () => <TicketTab />,
