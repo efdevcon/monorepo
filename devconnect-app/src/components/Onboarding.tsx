@@ -24,7 +24,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { open } = useAppKit();
   const { connect, connectors } = useConnect();
   const { isSkipped, setSkipped } = useUnifiedConnection();
-  const [showGetStarted, setShowGetStarted] = useState(true);
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut } = useUser();
   const [email, setEmail] = useState('');
@@ -58,10 +57,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const paraConnector = connectors.find(
     (connector: any) => connector.id === 'para'
   );
-
-  const handleGetStarted = () => {
-    setShowGetStarted(false);
-  };
 
   const handleWalletConnect = () => {
     // Use AppKit for wallet connections
@@ -200,7 +195,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleReset = () => {
-    setShowGetStarted(true);
     setSkipped(false);
     setAuthState(undefined);
     setEmail('');
@@ -211,7 +205,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     try {
       await signOut();
       // Reset the onboarding state after logout
-      setShowGetStarted(true);
       setSkipped(false);
       setAuthState(undefined);
       setEmail('');
@@ -295,60 +288,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     };
   }, []);
 
-  // GetStarted Container
-  if (showGetStarted) {
-    return (
-      <div className="bg-white box-border flex flex-col gap-4 items-center justify-center pb-7 pt-6 px-6 relative rounded-[1px] w-full">
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
-
-        <div className="flex flex-col gap-3 items-start justify-start p-0 relative w-full">
-          {/* Title container with rating */}
-          <div className="flex flex-col gap-3 items-start justify-start p-0 relative w-full">
-            <div className="flex flex-col gap-3 items-start justify-start p-0 relative w-full">
-              {/* PATHFINDER WIP title */}
-              <div className="flex items-center justify-start w-full">
-                <img
-                  src="/images/devonnect-arg-pathfinder.png"
-                  alt="Devconnect ARG Pathfinder"
-                  className="h-auto w-full max-w-full"
-                />
-              </div>
-            </div>
-
-            {/* Description */}
-            <div className="font-normal text-[#36364c] text-[18px] leading-[1.4] tracking-[-0.2px]">
-              Your companion for{' '}
-              <span className="text-[#36364c]">Devconnect ARG</span>, the first
-              Ethereum World&apos;s Fair.
-            </div>
-          </div>
-        </div>
-
-        {/* Get Started Button */}
-        <button
-          onClick={handleGetStarted}
-          className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_6px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
-        >
-          <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-            Get started
-          </span>
-        </button>
-
-        {/* Logout Button - Only show when user is logged in */}
-        {user && (
-          <button
-            onClick={handleLogout}
-            className="bg-white flex flex-row gap-2 items-center justify-center p-[12px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_2px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors"
-          >
-            <span className="font-bold text-[#36364c] text-[14px] text-center tracking-[-0.1px] leading-none">
-              Account logout
-            </span>
-          </button>
-        )}
-      </div>
-    );
-  }
 
   // Email verification screen
   if (authState?.stage === 'verify') {

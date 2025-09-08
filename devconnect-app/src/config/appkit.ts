@@ -2,14 +2,14 @@
 import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
-import { mainnet, base, optimism, arbitrum } from '@reown/appkit/networks'
 import { injected } from "wagmi/connectors";
 import { paraConnector } from "@getpara/wagmi-v2-integration";
 import { para } from "./para";
 import { APP_NAME } from './config';
 import { queryClient } from "@/context/QueryProvider";
+import { chains } from './networks';
+import { base } from '@reown/appkit/networks';
 
-export const chains = [mainnet, base, optimism, arbitrum];
 
 export const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
 

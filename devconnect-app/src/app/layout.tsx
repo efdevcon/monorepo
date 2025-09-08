@@ -163,25 +163,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {hasSupabase ? (
-          <SkippedProvider>
-            <PWAProvider>
-              <WalletsProviders>
-                {children}
-                <NewDeployment />
-              </WalletsProviders>
-            </PWAProvider>
-          </SkippedProvider>
-        ) : (
-          <SkippedProvider>
-            <PWAProvider>
-              <WalletsProviders>
-                {children}
-                <NewDeployment />
-              </WalletsProviders>
-            </PWAProvider>
-          </SkippedProvider>
-        )}
+        <SkippedProvider>
+          <PWAProvider>
+            <WalletsProviders>
+              {children}
+              <NewDeployment />
+            </WalletsProviders>
+          </PWAProvider>
+        </SkippedProvider>
         <Toaster />
       </body>
     </html>

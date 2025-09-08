@@ -1,4 +1,6 @@
-import { chains } from './appkit';
+import { mainnet, base, optimism, arbitrum } from '@reown/appkit/networks';
+
+export const chains = [mainnet, base, optimism, arbitrum];
 
 // Zapper network logos (high quality)
 const zapperLogos: Record<number, string> = {
@@ -42,5 +44,3 @@ export const getNetworkLogo = (chainId: number) => {
   return zapperLogos[chainId];
 };
 
-// Export the chains for convenience
-export { chains };
