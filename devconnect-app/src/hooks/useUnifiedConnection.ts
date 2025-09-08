@@ -183,7 +183,7 @@ export function useUnifiedConnection() {
   const { logout } = useLogout();
 
   // Supabase auth hook - for email from Supabase authentication
-  const { user: supabaseUser } = useUser();
+  const { user: supabaseUser, signOut } = useUser();
 
   // Skipped state from shared context
   const { isSkipped, setSkipped, clearSkipped } = useSkipped();
@@ -782,6 +782,8 @@ export function useUnifiedConnection() {
 
       if (allSuccessful) {
         console.log('🔌 [UNIFIED_DISCONNECT] All disconnect operations completed successfully');
+        signOut();
+        console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
         if (typeof window !== 'undefined') {
           window.location.href = '/onboarding';
         }
