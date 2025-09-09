@@ -201,7 +201,7 @@ const NewScheduleIndex = ({
       const targetEvent = events.find(
         (event) =>
           event.id.toString() === eventParam.toString() ||
-          event.rkey.toString() === eventParam.toLowerCase()
+          (event.rkey && event.rkey.toString() === eventParam.toLowerCase())
       );
 
       if (targetEvent) {
