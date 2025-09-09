@@ -1,6 +1,6 @@
 async function testPretixAccess() {
   const apiKey = process.env.PRETIX_API_KEY
-  const baseUrl = process.env.PRETIX_BASE_URL || 'https://arg.ticketh.xyz' // 'https://tickets.devcon.org'
+  const baseUrl = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz' // 'https://tickets.devcon.org'
   const organizerSlug = 'devconnect'
   const eventSlug = 'cowork'
 
@@ -101,7 +101,7 @@ async function testPretixAccess() {
 
 async function discoverPretixSlugs() {
   const apiKey = process.env.PRETIX_API_KEY
-  const baseUrl = process.env.PRETIX_BASE_URL || 'https://arg.ticketh.xyz'
+  const baseUrl = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
 
   if (!apiKey) {
     throw new Error('PRETIX_API_KEY is missing')
@@ -158,7 +158,7 @@ async function discoverPretixSlugs() {
 
 export async function getPaidTicketsByEmail(email: string) {
   const apiKey = process.env.PRETIX_API_KEY
-  const baseUrl = process.env.PRETIX_BASE_URL || 'https://arg.ticketh.xyz'
+  const baseUrl = process.env.PRETIX_BASE_URL || 'https://ticketh.xyz'
   const organizerSlug = 'devconnect'
   const eventSlug = 'cowork'
 

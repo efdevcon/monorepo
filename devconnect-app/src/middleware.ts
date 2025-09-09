@@ -13,19 +13,14 @@ export function middleware(request: NextRequest) {
       return authResult.error
     }
     
-    // Add user info to request headers for the route handler
+    // Create response with custom headers
     const response = NextResponse.next()
-
-    // Set headers with proper encoding for Netlify compatibility
-    response.headers.set('x-user-id', encodeURIComponent(authResult.user.id))
-    response.headers.set('x-user-email', encodeURIComponent(authResult.user.email || ''))
-
-    // Also add as query params as fallback for Netlify
-    const url = new URL(request.url)
-    url.searchParams.set('_user_id', authResult.user.id)
-    url.searchParams.set('_user_email', authResult.user.email || '')
+    response.headers.set('x-user-id', authResult.user.id)
+    response.headers.set('x-user-email', authResult.user.email || '')
     
-    return NextResponse.rewrite(url)
+    console.log('Middleware: Setting headers for user:', authResult.user.email)
+    
+    return response
   })
 }
 
