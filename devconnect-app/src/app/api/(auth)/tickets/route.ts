@@ -1,16 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyAuth } from '../auth'
+import { NextResponse } from 'next/server'
+import { withAuth, type AuthenticatedRequest } from '../withAuth'
 import { getPaidTicketsByEmail } from './pretix'
 
-export async function GET(request: NextRequest) {
-  // Verify authentication
-  const authResult = await verifyAuth(request)
-  
-  if (!authResult.success) {
-    return authResult.error
-  }
-
-  const userEmail = authResult.user.email
+async function getTickets(request: AuthenticatedRequest) {
+  const userEmail = request.user.email
   
   if (!userEmail) {
     return NextResponse.json({ 
@@ -34,3 +27,6 @@ export async function GET(request: NextRequest) {
     }, { status: 500 })
   }
 }
+
+// Export the authenticated handler
+export const GET = withAuth(getTickets)
