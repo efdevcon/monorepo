@@ -1,6 +1,6 @@
 export interface Event {
   id: string;
-  rkey: string;
+  rkey?: string;
   name: string;
   isFairEvent?: boolean;
   isCoreEvent?: boolean;
