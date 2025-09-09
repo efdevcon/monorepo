@@ -248,10 +248,6 @@ const EventVoucher = ({
   const couponFetchedButNoCoupon =
     connected && couponFetchingComplete && !coupon;
 
-  console.log(coupon, "coupon");
-
-  console.log(connectionState, "connectionState");
-
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return;
     if (fetchingCoupon) return;
@@ -352,7 +348,7 @@ const EventVoucher = ({
               color={
                 connectionState === ClientConnectionState.CONNECTED
                   ? "green-1"
-                  : "blue-1"
+                  : "green-1"
               }
               onClick={() => {
                 if (connectionState === ClientConnectionState.DISCONNECTED) {
@@ -430,7 +426,7 @@ const EventVoucher = ({
         </div>
       )}
 
-      {connectedWithNoTicket && (
+      {!connectedWithTicket && !couponFetchedButNoCoupon && (
         <>
           <div className="text-sm font-semibold text-gray-600 mt-1">
             You need a Devconnect ticket to attend this event.

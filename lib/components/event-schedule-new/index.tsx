@@ -199,7 +199,9 @@ const NewScheduleIndex = ({
     if (eventParam && events.length > 0) {
       // Try to find event by id or name (converted to slug format)
       const targetEvent = events.find(
-        (event) => event.id.toString() === eventParam.toString()
+        (event) =>
+          event.id.toString() === eventParam.toString() ||
+          event.rkey.toString() === eventParam.toLowerCase()
       );
 
       if (targetEvent) {

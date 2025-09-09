@@ -71,6 +71,7 @@ export const atprotoToCalendarFormat = (event: any) => {
 
   return {
     id: event.id,
+    rkey: event.rkey,
     name: event.title,
     description: event.description,
     location: event.location.name,
@@ -104,6 +105,7 @@ export const apiResultToCalendarFormat = (atprotoEventsData: any) => {
     return atprotoToCalendarFormat({
       ...record,
       id: event.id,
+      rkey: event.rkey,
       isCoreEvent: event.is_core_event,
       // showTimeOfDay: updatedAfterSep3,
     });
