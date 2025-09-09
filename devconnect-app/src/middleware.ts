@@ -15,10 +15,17 @@ export function middleware(request: NextRequest) {
     
     // Add user info to request headers for the route handler
     const response = NextResponse.next()
-    response.headers.set('x-user-id', authResult.user.id)
-    response.headers.set('x-user-email', authResult.user.email || '')
+
+    // Set headers with proper encoding for Netlify compatibility
+    response.headers.set('x-user-id', encodeURIComponent(authResult.user.id))
+    response.headers.set('x-user-email', encodeURIComponent(authResult.user.email || ''))
+
+    // Also add as query params as fallback for Netlify
+    const url = new URL(request.url)
+    url.searchParams.set('_user_id', authResult.user.id)
+    url.searchParams.set('_user_email', authResult.user.email || '')
     
-    return response
+    return NextResponse.rewrite(url)
   })
 }
 
