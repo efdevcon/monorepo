@@ -12,6 +12,7 @@ import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
+import DevconnectCubeLogo from "./images/cube-logo.png";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -182,6 +183,15 @@ const NewScheduleIndex = ({
     return placement.datesCovered.includes(hoveredDate);
   };
 
+  // Check if date is within November 17-22 range
+  const isDateInDevconnectRange = (dateStr: string) => {
+    const date = parseISO(dateStr);
+    const month = date.getMonth(); // 0-indexed (November = 10)
+    const day = date.getDate();
+
+    return month === 10 && day >= 17 && day <= 22; // November (10) 17-22
+  };
+
   // Can consider moving this into the schedule component
   useEffect(() => {
     const eventParam = searchParams.get("event");
@@ -220,7 +230,7 @@ const NewScheduleIndex = ({
                   <div
                     key={date}
                     className={cn(
-                      "text-sm cursorr-pointer hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
+                      "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
                       selectedDay === date && "!bg-slate-100 !opacity-100",
                       selectedDay !== null && "opacity-20"
                     )}
@@ -234,8 +244,17 @@ const NewScheduleIndex = ({
                     //   }
                     // }}
                   >
-                    <div className="text-center flex justify-between">
-                      <div className="">{formatDateHeader(date).day}</div>
+                    <div className="text-center flex items-center justify-between w-full grow">
+                      <div className="flex gap-2 items-center justify-center h-full">
+                        {isDateInDevconnectRange(date) && (
+                          <Image
+                            src={DevconnectCubeLogo}
+                            alt="Devconnect Cube"
+                            className="w-[26px] object-contain"
+                          />
+                        )}
+                        {formatDateHeader(date).day}{" "}
+                      </div>
                       <div className="">{formatDateHeader(date).date}</div>
                     </div>
                   </div>
