@@ -13,6 +13,7 @@ import NoEventsImage from "./images/404.png";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
+import { eventShops } from "./zupass/event-shops-list";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -197,6 +198,25 @@ const NewScheduleIndex = ({
     const eventParam = searchParams.get("event");
 
     if (eventParam && events.length > 0) {
+      // custom zupass gated event id for cleaner urls
+      const customUrlIdEvent = events.find((event) => {
+        return eventShops.some((shop) => {
+          if (
+            shop.custom_url_id &&
+            shop.custom_url_id === eventParam &&
+            event.id.toString() === shop.supabase_id
+          ) {
+            return true;
+          }
+          return false;
+        });
+      });
+
+      if (customUrlIdEvent) {
+        setSelectedEvent(customUrlIdEvent);
+        return;
+      }
+
       // Try to find event by id or name (converted to slug format)
       const targetEvent = events.find(
         (event) =>
