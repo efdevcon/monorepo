@@ -16,11 +16,11 @@ const DifficultyTag = ({
   size?: "sm" | "md";
 }) => {
   const difficultyColorMap = {
-    beginner: "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
+    beginner: "text-[#146C58]  border-[#146C58]",
     intermediate: "text-[rgba(180,83,9,1)] border-[rgba(180,83,9,1)]",
     expert: "text-[rgba(153,27,27,1)] border-[rgba(153,27,27,1)]",
-    "all welcome": "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
-    other: "text-[rgba(20,108,88,1)]  border-[rgba(20,108,88,1)]",
+    "all welcome": "text-[#146C58]  border-[#146C58]",
+    other: "text-[#146C58]  border-[#146C58]",
   };
 
   const difficultyTextMap = {
@@ -38,7 +38,7 @@ const DifficultyTag = ({
 
   return (
     <div
-      className={`${difficultyColorMap[difficulty]} border border-solid px-2 py-0.5 uppercase ${sizeMap[size]} shrink-0`}
+      className={`${difficultyColorMap[difficulty]} bg-white border border-solid px-2 py-0.5 uppercase ${sizeMap[size]} shrink-0`}
     >
       {difficultyTextMap[difficulty]}
     </div>
@@ -98,7 +98,7 @@ const TypeTag = ({
 
   return (
     <div
-      className={`${typeColorMap[category]} px-2 py-0.5 rounded-full uppercase ${sizeMap[size]}`}
+      className={`${typeColorMap[category]} px-2 py-0.5 bg-white rounded-full uppercase ${sizeMap[size]}`}
     >
       {typeTextMap[category]}
     </div>

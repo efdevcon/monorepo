@@ -402,7 +402,7 @@ const Event: React.FC<EventProps> = ({
             </div>
 
             {isETHDay && (
-              <div className="flex items-center justify-center grow">
+              <div className="flex items-center justify-center mt-2">
                 <Image
                   src={ethDayImage}
                   alt="ETH Day"

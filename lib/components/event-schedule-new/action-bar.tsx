@@ -5,7 +5,7 @@ import { FilterSummary } from "./filter";
 import Export from "./export";
 
 const venueEvents = [
-  { color: "bg-[rgba(255,133,166,1)]", label: "Cowork" },
+  { color: "bg-[rgba(255,133,166,1)]", label: "EWF & Cowork" },
   { color: "bg-[rgba(116,172,223,1)]", label: "Core" },
   { color: "bg-[rgba(246,180,14,1)]", label: "Partner" },
 ];

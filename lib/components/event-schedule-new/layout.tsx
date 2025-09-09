@@ -42,7 +42,7 @@ const Layout = (props: CalendarLayoutProps) => {
                   <div className="text-base font-secondary">
                     Events held within La Rural (
                     <Link href="https://tickets.devconnect.org">
-                      ticket required
+                      world's fair ticket required
                     </Link>
                     )
                   </div>
@@ -50,8 +50,22 @@ const Layout = (props: CalendarLayoutProps) => {
               )}
             </div>
             <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C] self-center">
-              This calendar is a work in progress and will change before
-              Devconnect week. <b>Check back regularly for updates.</b>
+              {props.isCommunityCalendar ? (
+                <>
+                  This calendar is a work in progress and will change before
+                  Devconnect week. <b>Check back regularly for updates.</b>
+                  <br />
+                </>
+              ) : (
+                <>
+                  <b>
+                    All events inside La Rural require a world's fair ticket.
+                    You may also need to buy tickets for the specific events
+                    held within the world's fair.
+                  </b>
+                </>
+              )}
+
               {/* <RichText content={data.pages.calendar_disclaimer} /> */}
             </div>
           </div>
