@@ -58,13 +58,13 @@ export const atprotoToCalendarFormat = (event: any) => {
 
   const manualOverrides = {} as any;
 
-  if (event.id === 29) {
+  if (event.id === 84) {
     // 29 = ETH DAY
     // 23 = COWORKING
     // manualOverrides.spanRows = 5;
     console.log(event, "event");
     console.log("manual override for coworking");
-    // event.spanRows = 3;
+    manualOverrides.spanRows = 2;
   }
 
   const socials = event.socials || {};

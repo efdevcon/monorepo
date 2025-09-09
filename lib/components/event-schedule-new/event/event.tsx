@@ -10,7 +10,7 @@ import Link from "lib/components/link/Link";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
-import ethDayImage from "./ethday.jpg";
+import ethDayImage from "./eth-day-logo.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Button } from "lib/components/button";
@@ -124,9 +124,12 @@ const Event: React.FC<EventProps> = ({
     const isCoreEvent = event.isCoreEvent;
     const isCowork = event.id.toString() === "23";
     const isCommunityEvent = !isCoreEvent;
+    const isETHDay = event.id.toString() === "84";
 
     if (isCowork) {
       return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
+    } else if (isETHDay) {
+      return "bg-gradient-to-br from-[rgba(129,135,194,0.2)] via-[rgba(141,202,239,0.2)] via-[rgba(249,178,151,0.2)] to-[rgba(245,166,200,0.2)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isCoreEvent) {
       return "bg-[rgba(116,172,223,0.05)] hover:bg-[rgba(116,172,223,0.1)] !border-[rgba(116,172,223,1)] border-l-[4px]";
     } else if (isCommunityEvent) {
@@ -342,7 +345,8 @@ const Event: React.FC<EventProps> = ({
       <div
         style={{
           // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
-          height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
+          // height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
+          height: "100%",
         }}
         className={cn(
           `group cursor-pointer`,
@@ -378,13 +382,13 @@ const Event: React.FC<EventProps> = ({
                   className="w-[26px] object-contain"
                 />
               )}
-              {isETHDay && (
+              {/* {isETHDay && (
                 <Image
                   src={ethDayImage}
                   alt="ETH Day"
                   className="w-[26px] object-contain"
                 />
-              )}
+              )} */}
               <div className="flex flex-col w-full">
                 {eventName}
                 <div className="flex gap-4 justify-between w-full">
@@ -396,6 +400,16 @@ const Event: React.FC<EventProps> = ({
                 </div>
               </div>
             </div>
+
+            {isETHDay && (
+              <div className="flex items-center justify-center grow">
+                <Image
+                  src={ethDayImage}
+                  alt="ETH Day"
+                  className="w-[90px] object-contain"
+                />
+              </div>
+            )}
 
             <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
               {event.organizer}
