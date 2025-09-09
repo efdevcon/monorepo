@@ -12,14 +12,22 @@ export function middleware(request: NextRequest) {
     if (!authResult.success) {
       return authResult.error
     }
-    
-    // Create response with custom headers
-    const response = NextResponse.next()
+
+    // For Netlify compatibility, try both approaches
+    const url = new URL(request.url)
+    url.searchParams.set('_user_id', authResult.user.id)
+    url.searchParams.set('_user_email', authResult.user.email || '')
+
+    // Try to rewrite to the modified URL
+    const response = NextResponse.rewrite(url)
+
+    // Also try setting headers as a fallback
     response.headers.set('x-user-id', authResult.user.id)
     response.headers.set('x-user-email', authResult.user.email || '')
-    
-    console.log('Middleware: Setting headers for user:', authResult.user.email)
-    
+
+    console.log('Middleware: Setting data for user:', authResult.user.email)
+    console.log('Middleware: Modified URL:', url.toString())
+
     return response
   })
 }
