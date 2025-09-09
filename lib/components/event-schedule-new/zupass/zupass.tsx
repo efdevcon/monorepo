@@ -429,7 +429,9 @@ const EventVoucher = ({
       {!connectedWithTicket && !couponFetchedButNoCoupon && (
         <>
           <div className="text-sm font-semibold text-gray-600 mt-1">
-            You need a Devconnect ticket to attend this event.
+            {connectedWithNoTicket
+              ? "No Devconnect ticket found"
+              : "You need a Devconnect ticket to attend this event."}
           </div>
           <VoxelButton
             size="sm"

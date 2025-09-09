@@ -25,7 +25,7 @@ import { convert } from "html-to-text";
 import XIcon from "lib/assets/icons/x.svg";
 import FarcasterIcon from "lib/assets/icons/farcaster.svg";
 import InstagramIcon from "lib/assets/icons/instagram.svg";
-import { TicketTag } from "../calendar.components";
+import { TicketTag, SoldOutTag } from "../calendar.components";
 
 type EventProps = {
   event: EventType;
@@ -443,11 +443,13 @@ const Event: React.FC<EventProps> = ({
                   { "justify-between": isMultiDay }
                 )}
               >
-                {(event.ticketsAvailable || isCoworking) && (
+                {(event.ticketsAvailable || isCoworking) && !event.soldOut && (
                   <>
                     <TicketTag />
                   </>
                 )}
+
+                {event.soldOut && <SoldOutTag />}
 
                 <div className="flex gap-2">
                   <TypeTag category={event.eventType} size="sm" />

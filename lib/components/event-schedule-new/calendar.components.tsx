@@ -116,5 +116,13 @@ export const TicketTag = () => {
   );
 };
 
+export const SoldOutTag = () => {
+  return (
+    <div className="px-2 bg-black py-0.5 border border-solid border-[rgba(100,100,100,0)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+      Sold Out
+    </div>
+  );
+};
+
 export { DifficultyTag, TypeTag };
 export type { Difficulty, EventType };

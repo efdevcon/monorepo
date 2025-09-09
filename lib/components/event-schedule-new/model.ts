@@ -37,4 +37,5 @@ export interface Event {
   instagramHandle?: string;
   farcasterHandle?: string;
   ticketsUrl?: string;
+  soldOut?: boolean;
 }

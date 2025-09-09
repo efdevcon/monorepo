@@ -88,6 +88,7 @@ export const atprotoToCalendarFormat = (event: any) => {
     xHandle: socials.x_url || "",
     instagramHandle: socials.instagram_url || "",
     farcasterHandle: socials.farcaster_url || "",
+    soldOut: event.sold_out || false,
     ...manualOverrides,
   };
 };
