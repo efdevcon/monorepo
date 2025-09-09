@@ -276,13 +276,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleReset = () => {
-    setSkipped(false);
+    console.log('[ONBOARDING] Resetting onboarding state');
     setAuthState(undefined);
-    setEmail('');
     setVerificationCode('');
     setOtp('');
     setOtpSent(false);
     setOtpVerified(false);
+    console.log(
+      '[ONBOARDING] Resetting onboarding state and redirecting to onboarding'
+    );
+    setSkipped(false);
+    router.push('/onboarding');
   };
 
   const handleLogout = async () => {
