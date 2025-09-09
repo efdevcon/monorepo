@@ -10,7 +10,8 @@ import Link from "lib/components/link/Link";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
-import ethDayImage from "./eth-day-logo.png";
+import ethDayImage2 from "./eth-day-logo.png";
+import ethDayImage from "./eth-day-bg.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Button } from "lib/components/button";
@@ -126,9 +127,10 @@ const Event: React.FC<EventProps> = ({
     const isCommunityEvent = !isCoreEvent;
     const isETHDay = event.id.toString() === "84";
 
-    if (isCowork) {
+    if (isCowork || isETHDay) {
       return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isETHDay) {
+      // Not used atm looks cool though
       return "bg-gradient-to-br from-[rgba(129,135,194,0.2)] via-[rgba(141,202,239,0.2)] via-[rgba(249,178,151,0.2)] to-[rgba(245,166,200,0.2)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isCoreEvent) {
       return "bg-[rgba(116,172,223,0.05)] hover:bg-[rgba(116,172,223,0.1)] !border-[rgba(116,172,223,1)] border-l-[4px]";
@@ -406,7 +408,7 @@ const Event: React.FC<EventProps> = ({
                 <Image
                   src={ethDayImage}
                   alt="ETH Day"
-                  className="w-[90px] object-contain"
+                  className="w-full object-contain"
                 />
               </div>
             )}
