@@ -1,16 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { verifyAuth } from '../auth'
 import { getPaidTicketsByEmail } from './pretix'
 
 export async function GET(request: NextRequest) {
-  // Verify authentication
-  const authResult = await verifyAuth(request)
-  
-  if (!authResult.success) {
-    return authResult.error
-  }
-
-  const userEmail = authResult.user.email
+  // Get user email from headers (set by middleware)
+  const userEmail = request.headers.get('x-user-email')
   
   if (!userEmail) {
     return NextResponse.json({ 

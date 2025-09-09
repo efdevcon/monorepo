@@ -4,7 +4,7 @@ import { useUser } from '@/hooks/useUser';
 import { useState } from 'react';
 import QRCode from 'qrcode';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-import { para } from '@/config/para';
+import { fetchAuth } from '@/services/apiClient';
 
 interface Ticket {
   secret: string;
@@ -40,41 +40,14 @@ export default function TicketTab() {
     setTicketError(null);
 
     try {
-      let authToken: string;
+      // Use fetchAuth - automatically handles auth
+      const response = await fetchAuth<{ tickets: Order[] }>('/api/auth/tickets');
 
-      if (isParaConnected) {
-        // Get Para JWT when connected via Para
-        const { token: paraJwt } = await para.issueJwt();
-        authToken = paraJwt;
-        console.log('Para JWT:', paraJwt);
-      } else if (supabase && user) {
-        // Use Supabase session token for regular authentication
-        const {
-          data: { session },
-        } = await supabase.auth.getSession();
-
-        if (!session?.access_token) {
-          throw new Error('No active session');
-        }
-        authToken = session.access_token;
-      } else {
-        throw new Error('No active session');
+      if (!response.success) {
+        throw new Error(response.error || 'Failed to fetch tickets');
       }
 
-      const response = await fetch('/api/tickets', {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-          'X-Auth-Method': isParaConnected ? 'para' : 'supabase',
-        },
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch tickets');
-      }
-
-      const data = await response.json();
-      const ticketsData = data.tickets || [];
+      const ticketsData = response.data.tickets || [];
       setTickets(ticketsData);
 
       // Generate QR codes for each ticket
