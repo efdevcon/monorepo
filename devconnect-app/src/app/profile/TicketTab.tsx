@@ -41,7 +41,7 @@ export default function TicketTab() {
 
     try {
       // Use fetchAuth - automatically handles auth
-      const response = await fetchAuth<{ tickets: Order[] }>('/api/tickets');
+      const response = await fetchAuth<{ tickets: Order[] }>('/api/auth/tickets');
 
       if (!response.success) {
         throw new Error(response.error || 'Failed to fetch tickets');
