@@ -27,22 +27,44 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { isSkipped, setSkipped } = useUnifiedConnection();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut, sendOtp, verifyOtp, loading, error } = useUser();
-  const [email, setEmail] = useLocalStorage(
-    'email',
-    process.env.NEXT_PUBLIC_EMAIL || ''
-  );
+  const [email, setEmail] = useLocalStorage('email', '');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
+
+  // Handle hydration
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Debug logging to understand email value changes
+  useEffect(() => {
+    if (mounted) {
+      console.log('Onboarding email value changed:', email);
+    }
+  }, [email, mounted]);
+
   useEffect(() => {
     if (user?.email && email === '') {
+      console.log('Setting email from user object:', user.email);
       setEmail(user.email);
     }
-  }, [user?.email]);
+  }, [user?.email, email, setEmail]);
+
+  // Auto-submit OTP when 6 digits are entered
+  useEffect(() => {
+    if (otp && otp.length === 6 && !otpVerified && otpSent) {
+      const timer = setTimeout(() => {
+        handleOtpSubmit();
+      }, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [otp, otpVerified, otpSent]);
 
   // Para authentication hooks
   const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
@@ -117,7 +139,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleEmailSubmit = async () => {
+    console.log('handleEmailSubmit called with email:', email);
     if (!email || !email.includes('@')) {
+      console.log(
+        'Email validation failed - email:',
+        email,
+        'isValid:',
+        email && email.includes('@')
+      );
       return;
     }
 
@@ -372,7 +401,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               </svg>
             </button>
             <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
-            {otpVerified ?  'Connect Wallet' : 'Verify Code'}
+              {otpVerified ? 'Connect Wallet' : 'Verify Code'}
             </div>
             <div className="overflow-clip relative shrink-0 size-5">
               <svg
@@ -414,7 +443,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   We&apos;ve sent a verification code to
                 </div>
                 <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {email}
+                  {mounted ? email : ''}
                 </div>
               </div>
 
@@ -436,35 +465,28 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             maxLength={1}
                             className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
                             value={otp[index] || ''}
-                              onChange={(e) => {
-                                const value = e.target.value;
-                                const newOtp = otp.split('');
-                                newOtp[index] = value;
-                                const updatedOtp = newOtp.join('');
-                                setOtp(updatedOtp);
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const newOtp = otp.split('');
+                              newOtp[index] = value;
+                              const updatedOtp = newOtp.join('');
+                              setOtp(updatedOtp);
 
-                                // Move focus to next input if character entered
-                                if (value && index < 5) {
-                                  const target = e.target as HTMLInputElement;
-                                  const nextInput =
-                                    target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                      'input'
-                                    ) ||
-                                    target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                      'input'
-                                    );
-                                  if (nextInput) {
-                                    (nextInput as HTMLInputElement).focus();
-                                  }
+                              // Move focus to next input if character entered
+                              if (value && index < 5) {
+                                const target = e.target as HTMLInputElement;
+                                const nextInput =
+                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  ) ||
+                                  target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (nextInput) {
+                                  (nextInput as HTMLInputElement).focus();
                                 }
-
-                                // Auto-submit when 6th character is entered (if not already verified)
-                                if (value && updatedOtp.length === 6 && !otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
-                                }
-                              }}
+                              }
+                            }}
                             onKeyDown={(e) => {
                               // Handle backspace to move to previous input
                               if (
@@ -487,7 +509,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             }}
                             onPaste={(e) => {
                               e.preventDefault();
-                              const pastedData = e.clipboardData.getData('text');
+                              const pastedData =
+                                e.clipboardData.getData('text');
                               const digits = pastedData
                                 .replace(/\D/g, '')
                                 .slice(0, 6);
@@ -496,18 +519,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                 setOtp(digits);
                                 // Focus the last input after paste
                                 const inputs =
-                                  document.querySelectorAll('input[type="text"]');
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
                                 const lastInput = inputs[
                                   inputs.length - 1
                                 ] as HTMLInputElement;
                                 if (lastInput) {
                                   lastInput.focus();
-                                }
-                                // Auto-submit after paste (if not already verified)
-                                if (!otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
                                 }
                               }
                             }}
@@ -549,13 +568,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                   (nextInput as HTMLInputElement).focus();
                                 }
                               }
-
-                              // Auto-submit when 6th character is entered (if not already verified)
-                              if (value && updatedOtp.length === 6 && !otpVerified) {
-                                setTimeout(() => {
-                                  handleOtpSubmit();
-                                }, 100);
-                              }
                             }}
                             onKeyDown={(e) => {
                               // Handle backspace to move to previous input
@@ -576,7 +588,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                             }}
                             onPaste={(e) => {
                               e.preventDefault();
-                              const pastedData = e.clipboardData.getData('text');
+                              const pastedData =
+                                e.clipboardData.getData('text');
                               const digits = pastedData
                                 .replace(/\D/g, '')
                                 .slice(0, 6);
@@ -585,18 +598,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                                 setOtp(digits);
                                 // Focus the last input after paste
                                 const inputs =
-                                  document.querySelectorAll('input[type="text"]');
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
                                 const lastInput = inputs[
                                   inputs.length - 1
                                 ] as HTMLInputElement;
                                 if (lastInput) {
                                   lastInput.focus();
-                                }
-                                // Auto-submit after paste (if not already verified)
-                                if (!otpVerified) {
-                                  setTimeout(() => {
-                                    handleOtpSubmit();
-                                  }, 100);
                                 }
                               }
                             }}
@@ -766,7 +775,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   We&apos;ve sent a verification code to
                 </div>
                 <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {email}
+                  {mounted ? email : ''}
                 </div>
               </div>
 
@@ -775,9 +784,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <div className="flex flex-row gap-1 items-center justify-start">
                   {[0, 1, 2].map((index) => (
                     <div key={index} className="relative shrink-0 size-10">
-                      <div className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                        otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                      }`}>
+                      <div
+                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
+                        }`}
+                      >
                         <input
                           ref={(el) => {
                             if (el) {
@@ -862,9 +873,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <div className="flex flex-row gap-1 items-center justify-start">
                   {[3, 4, 5].map((index) => (
                     <div key={index} className="relative shrink-0 size-10">
-                      <div className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                        otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                      }`}>
+                      <div
+                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
+                        }`}
+                      >
                         <input
                           ref={(el) => {
                             if (el) {
@@ -1129,7 +1142,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <input
                 type="email"
                 placeholder="Enter your email"
-                value={email}
+                value={mounted ? email : ''}
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
               />
@@ -1163,8 +1176,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Continue with Email Button */}
           <button
             onClick={handleEmailSubmit}
-            disabled={!email || !email.includes('@') || isSigningUp}
+            disabled={!mounted || !email || !email.includes('@') || isSigningUp}
             className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title={
+              mounted
+                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUp}`
+                : 'Loading...'
+            }
           >
             <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
               {isSigningUp ? 'Sending...' : 'Continue with Email'}
@@ -1179,8 +1197,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Continue with External Wallet Button */}
           <button
             onClick={handleWalletConnect}
-            disabled={!email || !email.includes('@')}
+            disabled={!mounted || !email || !email.includes('@')}
             className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            title={
+              mounted
+                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@')}`
+                : 'Loading...'
+            }
           >
             <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
               Continue with External Wallet

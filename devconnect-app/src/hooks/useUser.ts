@@ -173,7 +173,7 @@ export function useUser(): UseUserResult {
 
         setUser(null)
 
-        router.push('/onboarding')
+      // router.push('/onboarding')
         
         toast.success('Successfully signed out!')
     } catch (error) {
