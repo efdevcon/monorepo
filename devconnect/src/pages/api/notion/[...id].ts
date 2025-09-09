@@ -5,7 +5,7 @@ import type { GetPageResponse } from '@notionhq/client/build/src/api-endpoints';
 // Define supported field types and their Notion property mappings
 interface FieldConfig {
   name: string;
-  type: 'text' | 'email' | 'file' | 'url';
+  type: 'text' | 'email' | 'file' | 'url' | 'formula';
 }
 
 // Helper function to extract field name from "[edit] fieldname", "[read] fieldname", or "[config] fieldname" format
@@ -38,7 +38,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -56,7 +56,10 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'status';
     case 'checkbox':
       return 'checkbox';
+    case 'formula':
+      return 'formula';
     default:
+      console.log(`Unsupported property type: ${property.type}`);
       return null;
   }
 }
@@ -106,10 +109,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
+      options?: Array<{ name: string; color?: string }>;
     }> = [];
 
     // Check if any [config] field contains [lock] to determine if all fields should be read-only
@@ -149,6 +153,23 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         case 'checkbox':
           if (propertyAny.type === 'checkbox') {
             fieldValue = propertyAny.checkbox ? 'true' : 'false';
+          }
+          break;
+        case 'formula':
+          if (propertyAny.type === 'formula') {
+            // Handle different formula result types
+            const formulaResult = propertyAny.formula;
+            if (formulaResult) {
+              if (formulaResult.type === 'string') {
+                fieldValue = formulaResult.string || '';
+              } else if (formulaResult.type === 'number') {
+                fieldValue = formulaResult.number?.toString() || '';
+              } else if (formulaResult.type === 'boolean') {
+                fieldValue = formulaResult.boolean ? 'true' : 'false';
+              } else if (formulaResult.type === 'date') {
+                fieldValue = formulaResult.date?.start || '';
+              }
+            }
           }
           break;
       }
@@ -218,14 +239,48 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             fieldValue = propertyAny.checkbox ? 'true' : 'false';
           }
           break;
+        case 'formula':
+          if (propertyAny.type === 'formula') {
+            // Handle different formula result types
+            const formulaResult = propertyAny.formula;
+            if (formulaResult) {
+              if (formulaResult.type === 'string') {
+                fieldValue = formulaResult.string || '';
+              } else if (formulaResult.type === 'number') {
+                fieldValue = formulaResult.number?.toString() || '';
+              } else if (formulaResult.type === 'boolean') {
+                fieldValue = formulaResult.boolean ? 'true' : 'false';
+              } else if (formulaResult.type === 'date') {
+                fieldValue = formulaResult.date?.start || '';
+              }
+            }
+          }
+          break;
       }
 
-      // Extract description from database schema if available
+      // Extract description and options from database schema if available
       let description: string | undefined;
+      let options: Array<{ name: string; color?: string }> | undefined;
       if (databaseSchema && databaseSchema.properties && databaseSchema.properties[propertyName]) {
         const propertySchema = databaseSchema.properties[propertyName];
         if (propertySchema.description) {
           description = propertySchema.description;
+        }
+        // Extract select options if this is a select field
+        if (fieldType === 'select' && propertySchema.select && propertySchema.select.options) {
+          options = propertySchema.select.options.map((option: any) => ({
+            name: option.name,
+            color: option.color
+          }));
+        }
+      } else if (fieldType === 'select') {
+        // Fallback: try to get options directly from the property if database schema is not available
+        const propertyAny = property as any;
+        if (propertyAny.select && propertyAny.select.options) {
+          options = propertyAny.select.options.map((option: any) => ({
+            name: option.name,
+            color: option.color
+          }));
         }
       }
 
@@ -239,7 +294,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         type: fieldType,
         mode: finalMode,
         order: order,
-        description: description
+        description: description,
+        options: options
       });
     }
     
@@ -328,6 +384,23 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
             fieldValue = propertyAny.checkbox ? 'true' : 'false';
           }
           break;
+        case 'formula':
+          if (propertyAny.type === 'formula') {
+            // Handle different formula result types
+            const formulaResult = propertyAny.formula;
+            if (formulaResult) {
+              if (formulaResult.type === 'string') {
+                fieldValue = formulaResult.string || '';
+              } else if (formulaResult.type === 'number') {
+                fieldValue = formulaResult.number?.toString() || '';
+              } else if (formulaResult.type === 'boolean') {
+                fieldValue = formulaResult.boolean ? 'true' : 'false';
+              } else if (formulaResult.type === 'date') {
+                fieldValue = formulaResult.date?.start || '';
+              }
+            }
+          }
+          break;
       }
 
       // Check if this config field contains [lock]
@@ -370,11 +443,11 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
         case 'checkbox':
           updates[propertyName] = { checkbox: value === 'true' || value === true };
           break;
+        case 'select':
+          updates[propertyName] = { select: value ? { name: value } : null };
+          break;
         // case 'title':
         //   updates[propertyName] = { title: value ? [{ text: { content: value } }] : [] };
-        //   break;
-        // case 'select':
-        //   updates[propertyName] = { select: value ? { name: value } : null };
         //   break;
       }
     }

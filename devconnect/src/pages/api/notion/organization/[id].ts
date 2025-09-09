@@ -89,6 +89,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                       return value.files && value.files.length > 0;
                     case 'checkbox':
                       return value.checkbox === true;
+                    case 'select':
+                      return value.select && value.select.name && value.select.name.trim() !== '';
+                    case 'status':
+                      return value.status && value.status.name && value.status.name.trim() !== '';
+                    case 'formula':
+                      // Handle different formula result types
+                      if (value.formula) {
+                        if (value.formula.type === 'string') {
+                          return value.formula.string && value.formula.string.trim() !== '';
+                        } else if (value.formula.type === 'number') {
+                          return value.formula.number !== null && value.formula.number !== undefined;
+                        } else if (value.formula.type === 'boolean') {
+                          return value.formula.boolean === true;
+                        } else if (value.formula.type === 'date') {
+                          return value.formula.date && value.formula.date.start;
+                        }
+                      }
+                      return false;
+                    case 'title':
+                      return value.title && value.title.length > 0;
                     default:
                       return false;
                   }

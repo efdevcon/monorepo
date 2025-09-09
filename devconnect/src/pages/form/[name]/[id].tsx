@@ -7,9 +7,10 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula'
   mode: 'edit' | 'read'
   description?: string
+  options?: Array<{ name: string; color?: string }>
 }
 
 // Config interface for API response
@@ -60,6 +61,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [isLocked, setIsLocked] = useState(false)
   const [isOk, setIsOk] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [selectedValues, setSelectedValues] = useState<Record<string, string>>({})
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
   // Get params from either props or router query
@@ -77,6 +79,14 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     setTimeout(() => {
       setNotifications(prev => prev.filter(n => n.id !== id))
     }, 4000)
+  }
+
+  // Handle select option change
+  const handleSelectChange = (fieldName: string, value: string) => {
+    setSelectedValues(prev => ({
+      ...prev,
+      [fieldName]: value,
+    }))
   }
 
   // Initialize file upload state for file fields
@@ -254,16 +264,43 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         type: field.type,
         mode: field.mode,
         description: field.description,
+        options: field.options,
       }))
 
       setFields(dynamicFields)
       initializeFileUploads(dynamicFields)
+
+      // Initialize selected values for select fields
+      const initialSelectedValues: Record<string, string> = {}
+      dynamicFields.forEach(field => {
+        if (field.type === 'select') {
+          initialSelectedValues[field.name] = field.value
+        }
+      })
+      setSelectedValues(initialSelectedValues)
+
       setLoading(false)
     } catch (err) {
       setError('Error loading data')
       setLoading(false)
     }
   }
+
+  // Debug select fields
+  useEffect(() => {
+    const selectFields = fields.filter(field => field.type === 'select')
+    if (selectFields.length > 0) {
+      console.log('Select fields found:', selectFields)
+      selectFields.forEach(field => {
+        console.log('Select field debug:', {
+          fieldName: field.name,
+          fieldType: field.type,
+          options: field.options,
+          selectedValue: selectedValues[field.name],
+        })
+      })
+    }
+  }, [fields, selectedValues])
 
   // Fetch initial page data
   useEffect(() => {
@@ -356,6 +393,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
             // For checkboxes, check if the checkbox is checked
             const isChecked = formData.get(field.name) === 'on'
             updates[field.name] = isChecked ? 'true' : 'false'
+          } else if (field.type === 'select') {
+            // For select fields, use the selected value from state
+            console.log(`Select field ${field.name} selected value:`, selectedValues[field.name])
+            updates[field.name] = selectedValues[field.name] || ''
           } else {
             const value = formData.get(field.name) as string
             updates[field.name] = value || ''
@@ -365,6 +406,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     }
 
     try {
+      console.log('Submitting updates:', updates)
       const res = await fetch(`/api/notion/${pageId}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
@@ -532,175 +574,238 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           )}
 
           <form onSubmit={handleSubmit} style={{ marginBottom: '2rem' }}>
-            {fields.map(field => (
-              <div key={field.name} style={{ marginBottom: '1.5rem' }}>
-                <label
-                  htmlFor={field.name}
-                  style={{
-                    display: 'block',
-                    marginBottom: '0.5rem',
-                    fontWeight: '500',
-                    color: field.mode === 'read' ? '#666' : '#333',
-                    fontSize: '0.95rem',
-                  }}
-                >
-                  {field.name.replace(/([A-Z])/g, ' $1').trim()}
-                  {field.mode === 'read' && (
-                    <span
+            {fields.map(field => {
+              console.log('Rendering field:', {
+                name: field.name,
+                type: field.type,
+                mode: field.mode,
+                hasOptions: !!field.options,
+              })
+              return (
+                <div key={field.name} style={{ marginBottom: '1.5rem' }}>
+                  <label
+                    htmlFor={field.name}
+                    style={{
+                      display: 'block',
+                      marginBottom: '0.5rem',
+                      fontWeight: '500',
+                      color: field.mode === 'read' ? '#666' : '#333',
+                      fontSize: '0.95rem',
+                    }}
+                  >
+                    {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                    {field.mode === 'read' && (
+                      <span
+                        style={{
+                          fontSize: '0.8rem',
+                          color: '#999',
+                          marginLeft: '0.5rem',
+                          fontStyle: 'italic',
+                        }}
+                      >
+                        (read-only)
+                      </span>
+                    )}
+                  </label>
+                  {field.description && (
+                    <p
                       style={{
-                        fontSize: '0.8rem',
-                        color: '#999',
-                        marginLeft: '0.5rem',
+                        fontSize: '1rem',
+                        color: '#666',
+                        margin: '0 0 0.5rem 0',
                         fontStyle: 'italic',
                       }}
                     >
-                      (read-only)
-                    </span>
+                      {field.description}
+                    </p>
                   )}
-                </label>
-                {field.description && (
-                  <p
-                    style={{
-                      fontSize: '0.85rem',
-                      color: '#666',
-                      margin: '0 0 0.5rem 0',
-                      fontStyle: 'italic',
-                    }}
-                  >
-                    {field.description}
-                  </p>
-                )}
-                {field.mode === 'read' ? (
-                  // Read-only display
-                  <div
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #e0e0e0',
-                      borderRadius: '6px',
-                      fontSize: '1rem',
-                      backgroundColor: '#f8f9fa',
-                      color: '#666',
-                      minHeight: '2.5rem',
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    {field.type === 'file' && field.value ? (
-                      <div style={{ width: '100%' }}>
-                        {isImageUrl(field.value) ? (
-                          <img
-                            src={field.value}
-                            alt="File preview"
-                            style={{
-                              maxWidth: '100%',
-                              maxHeight: '200px',
-                              borderRadius: '4px',
-                              marginBottom: '0.5rem',
-                            }}
-                          />
-                        ) : isPdfUrl(field.value) ? (
-                          <div
-                            style={{
-                              width: '100%',
-                              height: '300px',
-                              border: '1px solid #ddd',
-                              borderRadius: '4px',
-                              marginBottom: '0.5rem',
-                              overflow: 'hidden',
-                            }}
-                          >
-                            <iframe
-                              src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
-                              style={{
-                                width: '100%',
-                                height: '100%',
-                                border: 'none',
-                              }}
-                              title="PDF Preview"
-                            />
-                          </div>
-                        ) : (
-                          <div
-                            style={{
-                              padding: '1rem',
-                              backgroundColor: '#e9ecef',
-                              borderRadius: '4px',
-                              marginBottom: '0.5rem',
-                            }}
-                          >
-                            📄 {getFileNameFromUrl(field.value)}
-                          </div>
-                        )}
-                        <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
-                          <a
-                            href={field.value}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              color: '#007bff',
-                              textDecoration: 'none',
-                            }}
-                            onClick={e => e.stopPropagation()}
-                            onMouseEnter={e => {
-                              e.currentTarget.style.textDecoration = 'underline'
-                            }}
-                            onMouseLeave={e => {
-                              e.currentTarget.style.textDecoration = 'none'
-                            }}
-                          >
-                            📎 {getFileNameFromUrl(field.value)}
-                          </a>
-                        </p>
-                      </div>
-                    ) : field.type === 'checkbox' ? (
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
-                        <span style={{ fontSize: '0.9rem', color: '#666' }}>
-                          {field.value === 'true' ? 'Yes' : 'No'}
-                        </span>
-                      </div>
-                    ) : (
-                      field.value
-                    )}
-                  </div>
-                ) : field.type === 'file' ? (
-                  // File upload with drag and drop
-                  <div>
+                  {field.mode === 'read' ? (
+                    // Read-only display
                     <div
                       style={{
                         width: '100%',
-                        padding: '1rem',
-                        border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
+                        padding: '0.75rem',
+                        border: '1px solid #e0e0e0',
                         borderRadius: '6px',
-                        backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
-                        textAlign: 'center',
-                        cursor: 'pointer',
-                        transition: 'all 0.2s ease',
-                        minHeight: '120px',
+                        fontSize: '1rem',
+                        backgroundColor: '#f8f9fa',
+                        color: '#666',
+                        minHeight: '2.5rem',
                         display: 'flex',
-                        flexDirection: 'column',
                         alignItems: 'center',
-                        justifyContent: 'center',
                       }}
-                      onDragOver={e => handleDragOver(e, field.name)}
-                      onDragLeave={e => handleDragLeave(e, field.name)}
-                      onDrop={e => handleDrop(e, field.name)}
-                      onClick={() => fileInputRefs.current[field.name]?.click()}
                     >
-                      {fileUploads[field.name]?.preview ? (
-                        // Show preview
+                      {field.type === 'file' && field.value ? (
                         <div style={{ width: '100%' }}>
-                          {(() => {
-                            const preview = fileUploads[field.name]?.preview
-                            const isImage = preview && isImageUrl(preview)
-                            const isBlob = preview?.startsWith('blob:')
-                            console.log('Preview rendering for field:', field.name, { preview, isImage, isBlob })
+                          {isImageUrl(field.value) ? (
+                            <img
+                              src={field.value}
+                              alt="File preview"
+                              style={{
+                                maxWidth: '100%',
+                                maxHeight: '200px',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            />
+                          ) : isPdfUrl(field.value) ? (
+                            <div
+                              style={{
+                                width: '100%',
+                                height: '300px',
+                                border: '1px solid #ddd',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                                overflow: 'hidden',
+                              }}
+                            >
+                              <iframe
+                                src={`${field.value}#toolbar=0&navpanes=0&scrollbar=0`}
+                                style={{
+                                  width: '100%',
+                                  height: '100%',
+                                  border: 'none',
+                                }}
+                                title="PDF Preview"
+                              />
+                            </div>
+                          ) : (
+                            <div
+                              style={{
+                                padding: '1rem',
+                                backgroundColor: '#e9ecef',
+                                borderRadius: '4px',
+                                marginBottom: '0.5rem',
+                              }}
+                            >
+                              📄 {getFileNameFromUrl(field.value)}
+                            </div>
+                          )}
+                          <p style={{ margin: '0.5rem 0 0 0', fontSize: '0.9rem', color: '#666' }}>
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                              }}
+                              onClick={e => e.stopPropagation()}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              📎 {getFileNameFromUrl(field.value)}
+                            </a>
+                          </p>
+                        </div>
+                      ) : field.type === 'checkbox' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
+                          <span style={{ fontSize: '0.9rem', color: '#666' }}>
+                            {field.value === 'true' ? 'Yes' : 'No'}
+                          </span>
+                        </div>
+                      ) : field.type === 'select' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#e9ecef',
+                              borderRadius: '6px',
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color: '#333',
+                            }}
+                          >
+                            {field.value || 'No selection'}
+                          </span>
+                        </div>
+                      ) : (
+                        field.value
+                      )}
+                    </div>
+                  ) : field.type === 'file' ? (
+                    // File upload with drag and drop
+                    <div>
+                      <div
+                        style={{
+                          width: '100%',
+                          padding: '1rem',
+                          border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
+                          borderRadius: '6px',
+                          backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
+                          textAlign: 'center',
+                          cursor: 'pointer',
+                          transition: 'all 0.2s ease',
+                          minHeight: '120px',
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                        onDragOver={e => handleDragOver(e, field.name)}
+                        onDragLeave={e => handleDragLeave(e, field.name)}
+                        onDrop={e => handleDrop(e, field.name)}
+                        onClick={() => fileInputRefs.current[field.name]?.click()}
+                      >
+                        {fileUploads[field.name]?.preview ? (
+                          // Show preview
+                          <div style={{ width: '100%' }}>
+                            {(() => {
+                              const preview = fileUploads[field.name]?.preview
+                              const isImage = preview && isImageUrl(preview)
+                              const isBlob = preview?.startsWith('blob:')
+                              console.log('Preview rendering for field:', field.name, { preview, isImage, isBlob })
 
-                            // For blob URLs (new uploads), show the blob preview
-                            if (isBlob && fileUploads[field.name]?.file && preview) {
-                              const file = fileUploads[field.name].file
-                              if (file?.type.startsWith('image/')) {
+                              // For blob URLs (new uploads), show the blob preview
+                              if (isBlob && fileUploads[field.name]?.file && preview) {
+                                const file = fileUploads[field.name].file
+                                if (file?.type.startsWith('image/')) {
+                                  return (
+                                    <img
+                                      src={preview}
+                                      alt="Preview"
+                                      style={{
+                                        maxWidth: '100%',
+                                        maxHeight: '200px',
+                                        borderRadius: '4px',
+                                        marginBottom: '0.5rem',
+                                      }}
+                                    />
+                                  )
+                                } else if (file?.type === 'application/pdf') {
+                                  return (
+                                    <div
+                                      style={{
+                                        width: '100%',
+                                        height: '300px',
+                                        border: '1px solid #ddd',
+                                        borderRadius: '4px',
+                                        marginBottom: '0.5rem',
+                                        overflow: 'hidden',
+                                      }}
+                                    >
+                                      <iframe
+                                        src={`${preview}#toolbar=0&navpanes=0&scrollbar=0`}
+                                        style={{
+                                          width: '100%',
+                                          height: '100%',
+                                          border: 'none',
+                                        }}
+                                        title="PDF Preview"
+                                      />
+                                    </div>
+                                  )
+                                }
+                              }
+
+                              // For existing file URLs, show the actual file
+                              if (isImage && preview) {
                                 return (
                                   <img
                                     src={preview}
@@ -713,7 +818,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                     }}
                                   />
                                 )
-                              } else if (file?.type === 'application/pdf') {
+                              }
+
+                              // For PDF files, show PDF preview
+                              if (isPdfUrl(preview!)) {
                                 return (
                                   <div
                                     style={{
@@ -737,235 +845,283 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                   </div>
                                 )
                               }
-                            }
 
-                            // For existing file URLs, show the actual file
-                            if (isImage && preview) {
-                              return (
-                                <img
-                                  src={preview}
-                                  alt="Preview"
-                                  style={{
-                                    maxWidth: '100%',
-                                    maxHeight: '200px',
-                                    borderRadius: '4px',
-                                    marginBottom: '0.5rem',
-                                  }}
-                                />
-                              )
-                            }
-
-                            // For PDF files, show PDF preview
-                            if (isPdfUrl(preview!)) {
+                              // For other files, show file icon
                               return (
                                 <div
                                   style={{
-                                    width: '100%',
-                                    height: '300px',
-                                    border: '1px solid #ddd',
+                                    padding: '1rem',
+                                    backgroundColor: '#e9ecef',
                                     borderRadius: '4px',
                                     marginBottom: '0.5rem',
-                                    overflow: 'hidden',
                                   }}
                                 >
-                                  <iframe
-                                    src={`${preview}#toolbar=0&navpanes=0&scrollbar=0`}
-                                    style={{
-                                      width: '100%',
-                                      height: '100%',
-                                      border: 'none',
-                                    }}
-                                    title="PDF Preview"
-                                  />
+                                  📄 {preview ? getFileNameFromUrl(preview) : 'File'}
                                 </div>
                               )
-                            }
-
-                            // For other files, show file icon
-                            return (
-                              <div
-                                style={{
-                                  padding: '1rem',
-                                  backgroundColor: '#e9ecef',
-                                  borderRadius: '4px',
-                                  marginBottom: '0.5rem',
-                                }}
-                              >
-                                📄 {preview ? getFileNameFromUrl(preview) : 'File'}
-                              </div>
-                            )
-                          })()}
-                          <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                            Click or drag to replace
-                          </p>
-                        </div>
-                      ) : (
-                        // Show upload prompt
-                        <div>
-                          <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📁</div>
-                          <p style={{ margin: '0', fontSize: '1rem', color: '#666' }}>
-                            Drag and drop a file here, or click to select
-                          </p>
-                          <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                            Supports: Images, PDFs, Text files (max 20MB)
-                          </p>
+                            })()}
+                            <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
+                              Click or drag to replace
+                            </p>
+                          </div>
+                        ) : (
+                          // Show upload prompt
+                          <div>
+                            <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📁</div>
+                            <p style={{ margin: '0', fontSize: '1rem', color: '#666' }}>
+                              Drag and drop a file here, or click to select
+                            </p>
+                            <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
+                              Supports: Images, PDFs, Text files (max 20MB)
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                      <input
+                        ref={el => {
+                          fileInputRefs.current[field.name] = el
+                        }}
+                        type="file"
+                        accept="image/*,.pdf,.txt"
+                        style={{ display: 'none' }}
+                        onChange={e => {
+                          const file = e.target.files?.[0]
+                          if (file) handleFileSelect(field.name, file)
+                        }}
+                      />
+                      {fileUploads[field.name]?.file && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setFileUploads(prev => ({
+                              ...prev,
+                              [field.name]: { file: null, preview: null, isDragOver: false },
+                            }))
+                          }}
+                          style={{
+                            marginTop: '0.5rem',
+                            padding: '0.25rem 0.5rem',
+                            backgroundColor: '#dc3545',
+                            color: 'white',
+                            border: 'none',
+                            borderRadius: '4px',
+                            fontSize: '0.8rem',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Remove file
+                        </button>
+                      )}
+                      {/* File link outside the draggable area */}
+                      {fileUploads[field.name]?.preview && (
+                        <div style={{ marginTop: '0.5rem' }}>
+                          <a
+                            href={fileUploads[field.name].preview!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              color: '#007bff',
+                              textDecoration: 'none',
+                              fontSize: '0.9rem',
+                            }}
+                            onClick={e => e.stopPropagation()}
+                            onMouseEnter={e => {
+                              e.currentTarget.style.textDecoration = 'underline'
+                            }}
+                            onMouseLeave={e => {
+                              e.currentTarget.style.textDecoration = 'none'
+                            }}
+                          >
+                            📎 {getFileNameFromUrl(fileUploads[field.name].preview!)}
+                          </a>
                         </div>
                       )}
                     </div>
-                    <input
-                      ref={el => {
-                        fileInputRefs.current[field.name] = el
+                  ) : field.type === 'text' ? (
+                    // Textarea for text fields
+                    <textarea
+                      id={field.name}
+                      name={field.name}
+                      defaultValue={field.value || ''}
+                      rows={4}
+                      style={{
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #ddd',
+                        borderRadius: '6px',
+                        fontSize: '1rem',
+                        boxSizing: 'border-box',
+                        transition: 'border-color 0.2s ease',
+                        resize: 'vertical',
+                        fontFamily: 'inherit',
+                        minHeight: '100px',
                       }}
-                      type="file"
-                      accept="image/*,.pdf,.txt"
-                      style={{ display: 'none' }}
-                      onChange={e => {
-                        const file = e.target.files?.[0]
-                        if (file) handleFileSelect(field.name, file)
+                      onFocus={e => {
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.outline = 'none'
+                      }}
+                      onBlur={e => {
+                        e.target.style.borderColor = '#ddd'
                       }}
                     />
-                    {fileUploads[field.name]?.file && (
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setFileUploads(prev => ({
-                            ...prev,
-                            [field.name]: { file: null, preview: null, isDragOver: false },
-                          }))
-                        }}
+                  ) : field.type === 'checkbox' ? (
+                    // Checkbox input
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                      <input
+                        id={field.name}
+                        name={field.name}
+                        type="checkbox"
+                        defaultChecked={field.value === 'true'}
                         style={{
-                          marginTop: '0.5rem',
-                          padding: '0.25rem 0.5rem',
-                          backgroundColor: '#dc3545',
-                          color: 'white',
-                          border: 'none',
-                          borderRadius: '4px',
-                          fontSize: '0.8rem',
+                          width: '18px',
+                          height: '18px',
                           cursor: 'pointer',
+                          accentColor: '#007bff',
+                          transform: 'scale(1.1)',
+                        }}
+                      />
+                      <label
+                        htmlFor={field.name}
+                        style={{
+                          fontSize: '1rem',
+                          color: '#333',
+                          cursor: 'pointer',
+                          userSelect: 'none',
+                          fontWeight: '500',
                         }}
                       >
-                        Remove file
-                      </button>
-                    )}
-                    {/* File link outside the draggable area */}
-                    {fileUploads[field.name]?.preview && (
-                      <div style={{ marginTop: '0.5rem' }}>
-                        <a
-                          href={fileUploads[field.name].preview!}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        {field.description || 'Check to confirm'}
+                      </label>
+                    </div>
+                  ) : field.type === 'select' ? (
+                    // Select field with button options
+                    <div>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        {/* Temporary fallback options for testing */}
+                        {(!field.options || field.options.length === 0) && (
+                          <div style={{ color: '#666', fontSize: '0.9rem', marginBottom: '0.5rem', width: '100%' }}>
+                            No options available for this select field. Using test options:
+                          </div>
+                        )}
+                        {(field.options && field.options.length > 0
+                          ? field.options
+                          : [
+                              { name: 'Option 1', color: 'default' },
+                              { name: 'Option 2', color: 'default' },
+                              { name: 'Option 3', color: 'default' },
+                            ]
+                        ).map(option => {
+                          const isSelected = selectedValues[field.name] === option.name
+                          return (
+                            <button
+                              key={option.name}
+                              type="button"
+                              onClick={() => handleSelectChange(field.name, option.name)}
+                              style={{
+                                padding: '0.75rem 1.5rem',
+                                border: `2px solid ${isSelected ? '#007bff' : '#ddd'}`,
+                                borderRadius: '6px',
+                                backgroundColor: isSelected ? '#007bff' : 'white',
+                                color: isSelected ? 'white' : '#333',
+                                fontSize: '0.9rem',
+                                fontWeight: '500',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease',
+                                minWidth: '100px',
+                                textAlign: 'center',
+                              }}
+                              onMouseEnter={e => {
+                                if (!isSelected) {
+                                  e.currentTarget.style.borderColor = '#007bff'
+                                  e.currentTarget.style.backgroundColor = '#f0f8ff'
+                                }
+                              }}
+                              onMouseLeave={e => {
+                                if (!isSelected) {
+                                  e.currentTarget.style.borderColor = '#ddd'
+                                  e.currentTarget.style.backgroundColor = 'white'
+                                }
+                              }}
+                            >
+                              {option.name}
+                            </button>
+                          )
+                        })}
+                      </div>
+                      {/* Clear selection button */}
+                      {selectedValues[field.name] && (
+                        <button
+                          type="button"
+                          onClick={() => handleSelectChange(field.name, '')}
                           style={{
-                            color: '#007bff',
-                            textDecoration: 'none',
-                            fontSize: '0.9rem',
+                            padding: '0.5rem 1rem',
+                            border: '1px solid #dc3545',
+                            borderRadius: '6px',
+                            backgroundColor: 'white',
+                            color: '#dc3545',
+                            fontSize: '0.85rem',
+                            fontWeight: '500',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '0.25rem',
                           }}
-                          onClick={e => e.stopPropagation()}
                           onMouseEnter={e => {
-                            e.currentTarget.style.textDecoration = 'underline'
+                            e.currentTarget.style.backgroundColor = '#dc3545'
+                            e.currentTarget.style.color = 'white'
                           }}
                           onMouseLeave={e => {
-                            e.currentTarget.style.textDecoration = 'none'
+                            e.currentTarget.style.backgroundColor = 'white'
+                            e.currentTarget.style.color = '#dc3545'
                           }}
                         >
-                          📎 {getFileNameFromUrl(fileUploads[field.name].preview!)}
-                        </a>
-                      </div>
-                    )}
-                  </div>
-                ) : field.type === 'text' ? (
-                  // Textarea for text fields
-                  <textarea
-                    id={field.name}
-                    name={field.name}
-                    defaultValue={field.value || ''}
-                    rows={4}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #ddd',
-                      borderRadius: '6px',
-                      fontSize: '1rem',
-                      boxSizing: 'border-box',
-                      transition: 'border-color 0.2s ease',
-                      resize: 'vertical',
-                      fontFamily: 'inherit',
-                      minHeight: '100px',
-                    }}
-                    onFocus={e => {
-                      e.target.style.borderColor = '#007bff'
-                      e.target.style.outline = 'none'
-                    }}
-                    onBlur={e => {
-                      e.target.style.borderColor = '#ddd'
-                    }}
-                  />
-                ) : field.type === 'checkbox' ? (
-                  // Checkbox input
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          ✕ Clear selection
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    // Regular input field for other types
                     <input
                       id={field.name}
                       name={field.name}
-                      type="checkbox"
-                      defaultChecked={field.value === 'true'}
+                      type={(() => {
+                        const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'formula'
+                        switch (fieldType) {
+                          case 'file':
+                            return 'url'
+                          case 'email':
+                            return 'email'
+                          case 'url':
+                            return 'url'
+                          case 'title':
+                          case 'formula':
+                          default:
+                            return 'text'
+                        }
+                      })()}
+                      defaultValue={field.value || ''}
                       style={{
-                        width: '18px',
-                        height: '18px',
-                        cursor: 'pointer',
+                        width: '100%',
+                        padding: '0.75rem',
+                        border: '1px solid #ddd',
+                        borderRadius: '6px',
+                        fontSize: '1rem',
+                        boxSizing: 'border-box',
+                        transition: 'border-color 0.2s ease',
+                      }}
+                      onFocus={e => {
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.outline = 'none'
+                      }}
+                      onBlur={e => {
+                        e.target.style.borderColor = '#ddd'
                       }}
                     />
-                    <label
-                      htmlFor={field.name}
-                      style={{
-                        fontSize: '0.9rem',
-                        color: '#666',
-                        cursor: 'pointer',
-                        userSelect: 'none',
-                      }}
-                    >
-                      {field.description || 'Check to confirm'}
-                    </label>
-                  </div>
-                ) : (
-                  // Regular input field for other types
-                  <input
-                    id={field.name}
-                    name={field.name}
-                    type={(() => {
-                      const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'select'
-                      switch (fieldType) {
-                        case 'file':
-                          return 'url'
-                        case 'email':
-                          return 'email'
-                        case 'url':
-                          return 'url'
-                        case 'title':
-                        case 'select':
-                        default:
-                          return 'text'
-                      }
-                    })()}
-                    defaultValue={field.value || ''}
-                    style={{
-                      width: '100%',
-                      padding: '0.75rem',
-                      border: '1px solid #ddd',
-                      borderRadius: '6px',
-                      fontSize: '1rem',
-                      boxSizing: 'border-box',
-                      transition: 'border-color 0.2s ease',
-                    }}
-                    onFocus={e => {
-                      e.target.style.borderColor = '#007bff'
-                      e.target.style.outline = 'none'
-                    }}
-                    onBlur={e => {
-                      e.target.style.borderColor = '#ddd'
-                    }}
-                  />
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              )
+            })}
 
             {/* Submit Button - Only show if form is not locked */}
             {!isLocked && (
@@ -1045,7 +1201,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       {field.description && (
                         <div
                           style={{
-                            fontSize: '0.8rem',
+                            fontSize: '1rem',
                             color: '#666',
                             marginTop: '0.25rem',
                             fontStyle: 'italic',
@@ -1135,6 +1291,22 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                           <span style={{ fontSize: '1.2rem' }}>{field.value === 'true' ? '✅' : '☐'}</span>
                           <span style={{ fontSize: '0.9rem', color: '#666' }}>
                             {field.value === 'true' ? 'Yes' : 'No'}
+                          </span>
+                        </div>
+                      ) : field.type === 'select' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#e9ecef',
+                              borderRadius: '6px',
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color: '#333',
+                            }}
+                          >
+                            {field.value || 'No selection'}
                           </span>
                         </div>
                       ) : (
@@ -1263,7 +1435,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             e.currentTarget.style.textDecoration = 'none'
                           }}
                         >
-                          {item.name || `Accreditation ${index + 1}`}
+                          {`${index + 1}. ${item.name || `Accreditation`}`}
                         </a>
                       </td>
                       <td
