@@ -278,7 +278,7 @@ const Event: React.FC<EventProps> = ({
                     </Link>
                   )}
 
-                  {event.ticketsUrl && (
+                  {event.ticketsUrl && event.ticketsUrl !== event.eventLink && (
                     <Link href={event.ticketsUrl} className="self-start">
                       <VoxelButton
                         color="blue-1"
