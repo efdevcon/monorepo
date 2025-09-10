@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup'
   mode: 'edit' | 'read'
   description?: string
   options?: Array<{ name: string; color?: string }>
@@ -219,7 +219,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
       const responseData = await res.json()
       setSubItems(responseData.children || [])
-      setOrgPageName(responseData.pageName || '')
+      setOrgPageName(responseData.orgName || '')
     } catch (err) {
       setSubItems([])
       setOrgPageName('')
@@ -723,6 +723,22 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             }}
                           >
                             {field.value || 'No selection'}
+                          </span>
+                        </div>
+                      ) : field.type === 'rollup' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#e7f3ff',
+                              borderRadius: '6px',
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color: '#0066cc',
+                            }}
+                          >
+                            {field.value || 'No data'}
                           </span>
                         </div>
                       ) : (
@@ -1307,6 +1323,22 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             }}
                           >
                             {field.value || 'No selection'}
+                          </span>
+                        </div>
+                      ) : field.type === 'rollup' ? (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <span
+                            style={{
+                              display: 'inline-block',
+                              padding: '0.5rem 1rem',
+                              backgroundColor: '#e7f3ff',
+                              borderRadius: '6px',
+                              fontSize: '0.9rem',
+                              fontWeight: '500',
+                              color: '#0066cc',
+                            }}
+                          >
+                            {field.value || 'No data'}
                           </span>
                         </div>
                       ) : (

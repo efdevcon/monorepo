@@ -38,7 +38,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -58,8 +58,9 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'checkbox';
     case 'formula':
       return 'formula';
+    case 'rollup':
+      return 'rollup';
     default:
-      console.log(`Unsupported property type: ${property.type}`);
       return null;
   }
 }
@@ -84,6 +85,39 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 }
 
+
+// Helper function to fetch supporter data from rollup
+async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Promise<string> {
+  // Look for "Parent item" relation in the current page properties
+  const parentRelation = pageProperties["Parent item"];
+  if (parentRelation && parentRelation.type === 'relation' && parentRelation.relation && parentRelation.relation.length > 0) {
+    const parentPageId = parentRelation.relation[0].id;
+
+    try {
+      const parentPage = await notion.pages.retrieve({ page_id: parentPageId });
+      const parentProperties = (parentPage as any).properties;
+
+      // Look for "Supporters Tracker" in parent page
+      const supportersTracker = parentProperties["Supporters Tracker"];
+      if (supportersTracker && supportersTracker.relation && supportersTracker.relation.length > 0) {
+        const supporterPageId = supportersTracker.relation[0].id;
+        const supporterPage = await notion.pages.retrieve({ page_id: supporterPageId });
+        const supporterData = supporterPage as any;
+
+        // Extract supporter name/title like in organization API
+        return supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
+          supporterData.properties?.Name?.title?.[0]?.plain_text ||
+          supporterData.properties?.Title?.title?.[0]?.plain_text ||
+          'Unknown Supporter';
+      }
+    } catch (error) {
+      console.error('Failed to fetch supporter data from rollup:', error);
+    }
+  }
+
+  return '';
+}
+
 // GET: Fetch page data for the given id
 async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: string) {
   const notion = new Client({ auth: process.env.NOTION_SECRET });
@@ -94,7 +128,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     if (page.object !== 'page' || !('properties' in page)) {
       return res.status(400).json({ error: 'Invalid page object' });
     }
-    
+
+
     // Get database schema to access field descriptions
     let databaseSchema: any = null;
     if (page.parent && page.parent.type === 'database_id') {
@@ -109,7 +144,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
@@ -171,6 +206,15 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
               }
             }
           }
+          break;
+        case 'rollup':
+          if (propertyAny.type === 'rollup') {
+            // Handle rollup fields - they are read-only calculated fields
+            fieldValue = '[Calculated Field]';
+          }
+          break;
+        default:
+          fieldValue = '[UNSUPPORTED TYPE]';
           break;
       }
 
@@ -256,6 +300,63 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
             }
           }
           break;
+        case 'rollup':
+          if (propertyAny.type === 'rollup') {
+            // Handle rollup fields - fetch supporter data if rollup is empty
+            const rollupResult = propertyAny.rollup;
+
+            if (rollupResult && rollupResult.type === 'array') {
+              const arrayValues = rollupResult.array || [];
+
+              // Check if rollup is empty but we have a parent with Supporters Tracker
+              if (arrayValues.length === 0 || (arrayValues.length === 1 && arrayValues[0].type === 'relation' && arrayValues[0].relation.length === 0)) {
+                // Try to fetch supporter data from parent page
+                const supporterName = await fetchSupporterFromRollup(page.properties, notion);
+                fieldValue = supporterName || '[Calculated Field]';
+              } else {
+                // Process normal rollup array
+                const processedValues = arrayValues.map((item: any) => {
+                  if (item.type === 'select' && item.select) {
+                    return item.select.name;
+                  } else if (item.type === 'status' && item.status) {
+                    return item.status.name;
+                  } else if (item.type === 'title' && item.title) {
+                    return item.title[0]?.plain_text || '';
+                  } else if (item.type === 'rich_text' && item.rich_text) {
+                    return item.rich_text[0]?.plain_text || '';
+                  } else if (item.type === 'number' && item.number !== undefined) {
+                    return item.number.toString();
+                  } else if (item.type === 'checkbox') {
+                    return item.checkbox ? 'true' : 'false';
+                  } else if (item.type === 'date' && item.date) {
+                    return item.date.start || '';
+                  }
+                  return '';
+                }).filter(Boolean);
+
+                fieldValue = processedValues.join(', ');
+              }
+            } else if (rollupResult) {
+              // Handle other rollup types
+              if (rollupResult.type === 'string') {
+                fieldValue = rollupResult.string || '';
+              } else if (rollupResult.type === 'number') {
+                fieldValue = rollupResult.number?.toString() || '';
+              } else if (rollupResult.type === 'boolean') {
+                fieldValue = rollupResult.boolean ? 'true' : 'false';
+              } else if (rollupResult.type === 'date') {
+                fieldValue = rollupResult.date?.start || '';
+              } else {
+                fieldValue = '[Calculated Field]';
+              }
+            } else {
+              fieldValue = '[Calculated Field]';
+            }
+          }
+          break;
+        default:
+          fieldValue = '[UNSUPPORTED TYPE]';
+          break;
       }
 
       // Extract description and options from database schema if available
@@ -299,9 +400,10 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       });
     }
     
+
     // Sort fields by order
     fields.sort((a, b) => a.order - b.order);
-    
+
     // Return flat array of fields with config information
     return res.status(200).json({
       fields,
