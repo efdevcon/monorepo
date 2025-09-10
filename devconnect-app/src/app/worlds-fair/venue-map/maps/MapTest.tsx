@@ -14,13 +14,21 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
         viewBox="0 0 1200 800"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        // onMouseUp={(e) => {
-        //   const target = e.target as SVGElement;
-        //   if (target.id) {
-        //     onSVGElementClick(target.id, e);
-        //   }
-        // }}
-        className="bg-red-500"
+        onClick={(e) => {
+          const target = e.target as SVGElement;
+          if (target.id) {
+            e.stopPropagation();
+            onSVGElementClick(target.id, e);
+          }
+        }}
+        onTouchEnd={(e) => {
+          const target = e.target as SVGElement;
+          if (target.id) {
+            e.stopPropagation();
+            onSVGElementClick(target.id, e as any);
+          }
+        }}
+        // className="bg-red-500"
       >
         <g id="event-map-svg-test">
           <g id="defi">
