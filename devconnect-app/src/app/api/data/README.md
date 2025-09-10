@@ -4,7 +4,7 @@
 `GET /api/data`
 
 ## Description
-Fetches supporter and POI (Point of Interest) data from a Notion database. The data is automatically categorized based on the `Is POI` checkbox field.
+Fetches supporter and POI (Point of Interest) data from a Notion database. The data is automatically categorized based on the `POI` select field (previously was boolean `Is POI`).
 
 ## Response Format
 
@@ -15,29 +15,29 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
     "supporters": [
       {
         "name": "Espresso",
-        "layerNaming": "l2s/espresso",
-        "districtId": 1,
-        "locationId": 1
+        "layerName": "l2s/espresso",
+        "districtId": "1",
+        "locationId": "1"
       }
     ],
     "pois": [
       {
         "name": "Help desk 1",
-        "layerNaming": "arts/help-desk-1",
-        "districtId": 3,
-        "locationId": 3
+        "layerName": "arts/help-desk-1",
+        "districtId": "3",
+        "locationId": "3"
       }
     ],
-    "districts": [
-      { "id": 1, "name": "L2s" },
-      { "id": 2, "name": "Social" },
-      { "id": 3, "name": "Hardware & Wallets" }
-    ],
-    "locations": [
-      { "id": 1, "name": "Pista Central" },
-      { "id": 2, "name": "Green Pavilion" },
-      { "id": 3, "name": "Pavilion 9" }
-    ]
+    "districts": {
+      "1": { "name": "L2s" },
+      "2": { "name": "Social" },
+      "3": { "name": "Hardware & Wallets" }
+    },
+    "locations": {
+      "1": { "name": "Pista Central" },
+      "2": { "name": "Green Pavilion" },
+      "3": { "name": "Pavilion 9" }
+    }
   },
   "timestamp": "2025-09-09T17:59:05.480Z"
 }
@@ -46,24 +46,27 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
 ## Data Structure
 
 ### Supporters
-Array of supporter objects where `Is POI` is `false`. Each supporter contains:
+Array of supporter objects where `POI` field is empty. Each supporter contains:
 - `name` (string): Supporter name
-- `layerNaming` (string): Layer naming convention
-- `districtId` (number|null): Reference to districts array ID
-- `locationId` (number|null): Reference to locations array ID
+- `layerName` (string): Layer naming convention
+- `districtId` (string|null): Reference to districts object key
+- `locationId` (string|null): Reference to locations object key
 
 ### POIs (Points of Interest)
-Array of POI objects where `Is POI` is `true`. Each POI contains the same fields as supporters.
+Array of POI objects where `POI` field has a value. Each POI contains the same fields as supporters.
 
 ### Districts
-Array of unique district objects with:
-- `id` (number): Sequential ID starting from 1
-- `name` (string): District name
+Object of unique district objects with numeric string keys:
+
+- Key (string): Sequential ID starting from "1"
+- Value: Object with `name` (string): District name
 
 ### Locations
-Array of unique location objects with:
-- `id` (number): Sequential ID starting from 1
-- `name` (string): Location name
+
+Object of unique location objects with numeric string keys:
+
+- Key (string): Sequential ID starting from "1"
+- Value: Object with `name` (string): Location name
 
 ## Supported Property Types
 - `title` - Page titles

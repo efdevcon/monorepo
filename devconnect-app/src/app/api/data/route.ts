@@ -4,8 +4,9 @@ import { Client } from '@notionhq/client';
 /**
  * API endpoint to fetch data
  * GET /api/data
- * 
+ *
  * Attempts to fetch from Notion database, falls back to sample data on error
+ * POI field is now a select type indicating the type of POI (previously was boolean isPOI)
  */
 export async function GET(request: NextRequest) {
   try {
@@ -87,30 +88,39 @@ export async function GET(request: NextRequest) {
         name: getPropertyValue('Supporter Name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
-        id: getPropertyValue('Layer naming'),
-        isPOI: getPropertyValue('Is POI'),
+        layerName: getPropertyValue('Layer name'),
+        POI: getPropertyValue('POI'),
       };
     });
 
-    const supporters = data.filter(item => item.isPOI === 'false');
-    const pois = data.filter(item => item.isPOI === 'true');
+    // Filter out entries with empty Supporter Name
+    const filteredData = data.filter(item => item.name && item.name.trim() !== '');
 
-    // remove isPOI property from result
-    const cleanSupporters = supporters.map(item => { delete item.isPOI; return item; });
-    const cleanPois = pois.map(item => { delete item.isPOI; return item; });
+    const supporters = filteredData.filter(item => !item.POI || item.POI.trim() === '');
+    const pois = filteredData.filter(item => item.POI && item.POI.trim() !== '');
 
-    // Get unique districts and locations with IDs
-    const uniqueDistricts = [...new Set(data.map(item => item.district).filter(Boolean))]
-      .map((district, index) => ({ id: index + 1, name: district }));
-    
-    const uniqueLocations = [...new Set(data.map(item => item.location).filter(Boolean))]
-      .map((location, index) => ({ id: index + 1, name: location }));
+    // remove POI property from result (was previously isPOI boolean)
+    const cleanSupporters = supporters.map(item => { delete item.POI; return item; });
+    const cleanPois = pois.map(item => { delete item.POI; return item; });
 
-    // Create lookup maps for district and location IDs
-    const districtMap = new Map(uniqueDistricts.map(d => [d.name, d.id]));
-    const locationMap = new Map(uniqueLocations.map(l => [l.name, l.id]));
+    // Get unique districts and locations as objects with numeric ID as key
+    const uniqueDistrictsArray = [...new Set(filteredData.map(item => item.district).filter(Boolean))];
+    const uniqueDistricts = uniqueDistrictsArray.reduce((acc, district, index) => {
+      acc[(index + 1).toString()] = { name: district };
+      return acc;
+    }, {} as Record<string, { name: string }>);
 
-    // Replace district and location names with IDs in supporters and POIs
+    const uniqueLocationsArray = [...new Set(filteredData.map(item => item.location).filter(Boolean))];
+    const uniqueLocations = uniqueLocationsArray.reduce((acc, location, index) => {
+      acc[(index + 1).toString()] = { name: location };
+      return acc;
+    }, {} as Record<string, { name: string }>);
+
+    // Create lookup maps for district and location (name -> numeric ID)
+    const districtMap = new Map(uniqueDistrictsArray.map((name, index) => [name, (index + 1).toString()]));
+    const locationMap = new Map(uniqueLocationsArray.map((name, index) => [name, (index + 1).toString()]));
+
+    // Replace district and location names with their numeric IDs in supporters and POIs
     const supportersWithIds = cleanSupporters.map(item => {
       const { district, location, ...rest } = item;
       return {

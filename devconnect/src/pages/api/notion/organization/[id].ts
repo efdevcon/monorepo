@@ -39,8 +39,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return value && typeof value === 'object' && value.type === 'relation';
     });
     
-    const pageName = pageDetails.properties?.['Projects / Events / Hubs Name']?.title?.[0]?.plain_text || '';
-
+    let orgName = '';
     let subItems: any[] = [];
 
     // Get sub-items from relation properties (excluding Quest)
@@ -49,6 +48,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (propertyName === 'Quest') {
         // console.log(`[API Call] Skipping Quest property`);
         continue;
+      }
+
+      // Process Supporters Tracker property first to get orgName
+      if (propertyName === 'Supporters Tracker') {
+        const propertyData = property as any;
+        if (propertyData.relation && propertyData.relation.length > 0) {
+          console.log(`[API Call] Processing Supporters Tracker for orgName`);
+
+          const supporterPageId = propertyData.relation[0].id;
+          console.log(`[API Call] Supporter Page ID: ${supporterPageId}`);
+          try {
+            const supporterPage = await notion.pages.retrieve({ page_id: supporterPageId });
+            const supporterData = supporterPage as any;
+
+            // Extract just the supporter name/title
+            orgName = supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
+              supporterData.properties?.Name?.title?.[0]?.plain_text ||
+              supporterData.properties?.Title?.title?.[0]?.plain_text ||
+              'Unknown Supporter';
+
+            console.log(`[API Call] Set orgName to: ${orgName}`);
+          } catch (err) {
+            console.error(`[API Call] Failed to retrieve Supporters Tracker page ${supporterPageId}:`, err);
+            orgName = 'Error loading supporter data';
+          }
+        }
+        continue; // Skip further processing for this property
       }
 
       // Process Sub-item property with individual page retrievals for detailed data
@@ -110,6 +136,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     case 'title':
                       return value.title && value.title.length > 0;
                     default:
+                      console.log(`[UNSUPPORTED COMPLETION TYPE] Unsupported field type in completion check: ${value.type}`);
+                      console.log(`[UNSUPPORTED COMPLETION TYPE] Field data:`, JSON.stringify(value, null, 2));
+                      console.log(`[UNSUPPORTED COMPLETION TYPE] Field keys:`, Object.keys(value));
                       return false;
                   }
                 });
@@ -156,15 +185,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     // console.log(`[API Call] Final result for ${pageId}:`, {
-    //   pageName: pageName || 'Organization',
+    //   orgName: orgName,
     //   totalSubItems: subItems.length,
     //   subItemsWithData: subItems.filter(item => item.completionPercentage > 0 || item.status !== 'No Status').length
     // });
 
-    return res.status(200).json({ 
+    return res.status(200).json({
       children: subItems,
       count: subItems.length,
-      pageName: pageName || 'Organization'
+      orgName: orgName
     });
   } catch (error) {
     console.error('Error fetching child pages:', error);
