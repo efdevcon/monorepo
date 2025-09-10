@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
 import { ArrowBigLeft, Blend as AppIcon } from 'lucide-react';
 import Menu from '@/components/MobileMenu';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 interface TabItem {
   label: string;
@@ -131,130 +132,137 @@ export default function PageLayout({
   const pathname = usePathname();
   const [activeIndex, setActiveIndex] = useState(0);
   const activeTab = tabs[activeIndex];
+  const isMobile = useIsMobile();
 
   return (
     <>
       {/* Mobile layout */}
-      <div className="relative md:hidden" data-type="layout-mobile">
-        <div
-          data-page="Header"
-          className="w-full shrink-0 relative backdrop-blur-xs flex flex-col  items-start px-4 gap-5 sticky top-0 z-[999999]"
-          style={{
-            background: `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
+      {isMobile && (
+        <>
+          <div className="relative md:hidden" data-type="layout-mobile">
+            <div
+              data-page="Header"
+              className="w-full shrink-0 relative backdrop-blur-xs flex flex-col  items-start px-4 gap-5 sticky top-0 z-[999999]"
+              style={{
+                background: `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
             radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.20) 0%, rgba(36, 36, 54, 0.00) 100%),
             linear-gradient(263deg, rgba(246, 180, 14, 0.30) 2.9%, rgba(45, 45, 66, 0.30) 58.72%, rgba(36, 36, 54, 0.30) 100.39%),
             linear-gradient(98deg, rgba(116, 172, 223, 0.80) -7.48%, rgba(73, 129, 180, 0.80) 43.5%, rgba(255, 133, 166, 0.80) 122.37%)`,
-            backgroundBlendMode: 'normal, normal, overlay, normal',
-            backdropFilter: 'blur(4px)',
-            paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
-          }}
-        >
-          <div className="relative flex items-center gap-3 text-white text-lg font-bold h-[59px]">
-            <BackButton />
-            {title}
-          </div>
-        </div>
-
-        {tabs.length > 1 && (
-          <div
-            className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky bg-white md:rounded-t-sm z-[999998]"
-            style={{
-              top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
-            }}
-          >
-            <Tabs
-              tabs={tabs}
-              activeIndex={activeIndex}
-              setActiveIndex={setActiveIndex}
-            />
-          </div>
-        )}
-
-        {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
-        <div className="w-full flex flex-col items-center justify-start grow">
-          {activeTab && activeTab.component && (
-            <activeTab.component activeIndex={activeIndex} />
-          )}
-
-          {children}
-        </div>
-      </div>
-
-      <Menu />
-
-      {/* Desktop layout */}
-      <div
-        className="hidden md:flex flex-col items-center justify-center my-8"
-        data-type="layout-desktop"
-      >
-        <div className="section relative">
-          <div className="relative w-full flex gap-5 h-[fit-content]">
-            <div
-              className="items-center w-[160px] shrink-0 self-stretch"
-              data-type="layout-desktop-left-nav"
+                backgroundBlendMode: 'normal, normal, overlay, normal',
+                backdropFilter: 'blur(4px)',
+                paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
+              }}
             >
-              <div className="flex flex-col sticky top-4 items-center gap-4">
-                <Image
-                  src={WorldsFairLogo}
-                  alt="Worlds Fair Logo"
-                  className="w-auto h-[45px]"
-                />
-
-                <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm">
-                  {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
-                    (item) => {
-                      const isActive =
-                        pathname === item.href ||
-                        (item.href !== '/' && pathname.startsWith(item.href));
-                      return (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className={cn(
-                            'p-1.5 px-2 text-sm flex hover:bg-[#74ACDF26] gap-2 items-center rounded',
-                            isActive && 'bg-[#74ACDF26] font-semibold'
-                          )}
-                        >
-                          <item.icon
-                            // @ts-ignore
-                            size={18}
-                            color={isActive ? '#232336' : '#4B4B66'}
-                          />
-                          {item.label}
-                        </Link>
-                      );
-                    }
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col flex-1 mb-8">
-              <div className="h-[45px] my-2 ml-6 text-lg font-bold">
+              <div className="relative flex items-center gap-3 text-white text-lg font-bold h-[59px]">
+                <BackButton />
                 {title}
               </div>
-              <div className="flex-1 border border-solid border-[#8855CC26] rounded-sm h-[fit-content] relative">
-                {tabs.length > 1 && (
-                  <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky top-0 bg-white rounded-t-sm z-[100]">
-                    <Tabs
-                      tabs={tabs}
-                      activeIndex={activeIndex}
-                      setActiveIndex={setActiveIndex}
-                    />
-                  </div>
-                )}
-                {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
-                <div className="overflow-auto">
-                  {activeTab && activeTab.component && (
-                    <activeTab.component activeIndex={activeIndex} />
-                  )}
+            </div>
 
-                  {children}
+            {tabs.length > 1 && (
+              <div
+                className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky bg-white md:rounded-t-sm z-[999998]"
+                style={{
+                  top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
+                }}
+              >
+                <Tabs
+                  tabs={tabs}
+                  activeIndex={activeIndex}
+                  setActiveIndex={setActiveIndex}
+                />
+              </div>
+            )}
+
+            {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
+            <div className="w-full flex flex-col items-center justify-start grow">
+              {activeTab && activeTab.component && (
+                <activeTab.component activeIndex={activeIndex} />
+              )}
+
+              {children}
+            </div>
+          </div>
+
+          <Menu />
+        </>
+      )}
+
+      {/* Desktop layout */}
+      {!isMobile && (
+        <div
+          className="hidden md:flex flex-col items-center justify-center my-8"
+          data-type="layout-desktop"
+        >
+          <div className="section relative">
+            <div className="relative w-full flex gap-5 h-[fit-content]">
+              <div
+                className="items-center w-[160px] shrink-0 self-stretch"
+                data-type="layout-desktop-left-nav"
+              >
+                <div className="flex flex-col sticky top-4 items-center gap-4">
+                  <Image
+                    src={WorldsFairLogo}
+                    alt="Worlds Fair Logo"
+                    className="w-auto h-[45px]"
+                  />
+
+                  <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm">
+                    {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
+                      (item) => {
+                        const isActive =
+                          pathname === item.href ||
+                          (item.href !== '/' && pathname.startsWith(item.href));
+                        return (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            className={cn(
+                              'p-1.5 px-2 text-sm flex hover:bg-[#74ACDF26] gap-2 items-center rounded',
+                              isActive && 'bg-[#74ACDF26] font-semibold'
+                            )}
+                          >
+                            <item.icon
+                              // @ts-ignore
+                              size={18}
+                              color={isActive ? '#232336' : '#4B4B66'}
+                            />
+                            {item.label}
+                          </Link>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col flex-1 mb-8">
+                <div className="h-[45px] my-2 ml-6 text-lg font-bold">
+                  {title}
+                </div>
+                <div className="flex-1 border border-solid border-[#8855CC26] rounded-sm h-[fit-content] relative">
+                  {tabs.length > 1 && (
+                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky top-0 bg-white rounded-t-sm z-[100]">
+                      <Tabs
+                        tabs={tabs}
+                        activeIndex={activeIndex}
+                        setActiveIndex={setActiveIndex}
+                      />
+                    </div>
+                  )}
+                  {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
+                  <div className="overflow-auto">
+                    {activeTab && activeTab.component && (
+                      <activeTab.component activeIndex={activeIndex} />
+                    )}
+
+                    {children}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

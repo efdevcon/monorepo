@@ -3,7 +3,7 @@ import PageLayout from '@/components/PageLayout';
 import ProgrammeTab from './ScheduleTab';
 import WorldsFairTab from './WorldsFairTab';
 import { MapPinIcon, CalendarRangeIcon } from 'lucide-react';
-import { VenueMap } from './venue-map/VenueMap';
+import { VenueMap } from './venue-map/VenueMap2';
 
 const tabs = (atprotoEvents: any[]) => [
   {

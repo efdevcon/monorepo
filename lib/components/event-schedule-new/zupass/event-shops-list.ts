@@ -8,7 +8,7 @@ type EventShop = {
 
 export const eventShops: EventShop[] = [
   {
-    supabase_id: "54",
+    supabase_id: "86",
     custom_url_id: 'DSS',
     zupass_proof_id: "Devconnect ARG",
     coupon_collection: "dss-voucher-gating",

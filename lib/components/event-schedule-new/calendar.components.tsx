@@ -16,7 +16,7 @@ const DifficultyTag = ({
   size?: "sm" | "md";
 }) => {
   const difficultyColorMap = {
-    beginner: "text-[#146C58]  border-[#146C58]",
+    beginner: "text-[#146C58] border-[#146C58]",
     intermediate: "text-[rgba(180,83,9,1)] border-[rgba(180,83,9,1)]",
     expert: "text-[rgba(153,27,27,1)] border-[rgba(153,27,27,1)]",
     "all welcome": "text-[#146C58]  border-[#146C58]",
