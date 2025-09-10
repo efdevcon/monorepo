@@ -61,7 +61,7 @@ export const usePanzoom = (elementId: string) => {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
         boundsPadding: 0.5,
-        maxZoom: 2.5,
+        // maxZoom: 2.5,
         minZoom: 0.5,
         beforeWheel: function (e) {
           // allow wheel-zoom only if altKey is down. Otherwise - ignore

@@ -241,9 +241,18 @@ input, textarea {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
   width: 100%;
-  min-height: 100vh;
+  min-height: 100vh; /* Fallback for browsers that don't support svh */
+  min-height: 100svh; 
+
+  /* For PWA */
+  @media (display-mode: standalone) {
+    min-height: 100vh; 
+  }
+
   overflow-x: hidden;
   overscroll-behavior-y: contain;
   position: relative;

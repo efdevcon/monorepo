@@ -28,7 +28,6 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
             onSVGElementClick(target.id, e as any);
           }
         }}
-        // className="bg-red-500"
       >
         <g id="event-map-svg-test">
           <g id="defi">

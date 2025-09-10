@@ -140,7 +140,7 @@ export const VenueMap = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[1200/800] bg-gray-100 overflow-hidden"
+      className="relative w-full aspect-[1200/800] overflow-hidden grow"
       onClick={() => setSelectedElement(null)}
       onTouchEnd={() => setSelectedElement(null)}
     >

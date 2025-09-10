@@ -139,7 +139,10 @@ export default function PageLayout({
       {/* Mobile layout */}
       {isMobile && (
         <>
-          <div className="relative md:hidden" data-type="layout-mobile">
+          <div
+            className="relative md:hidden grow flex flex-col"
+            data-type="layout-mobile"
+          >
             <div
               data-page="Header"
               className="w-full shrink-0 relative backdrop-blur-xs flex flex-col  items-start px-4 gap-5 sticky top-0 z-[999999]"
@@ -175,7 +178,7 @@ export default function PageLayout({
             )}
 
             {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
-            <div className="w-full flex flex-col items-center justify-start grow">
+            <div className="w-full flex flex-col items-center justify-start grow relative">
               {activeTab && activeTab.component && (
                 <activeTab.component activeIndex={activeIndex} />
               )}
