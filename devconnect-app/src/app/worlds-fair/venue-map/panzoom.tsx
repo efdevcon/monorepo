@@ -48,6 +48,11 @@ export const PanzoomControls = (props: { pz: PanZoom | null }) => {
 };
 
 export const usePanzoom = (elementId: string) => {
+  const [panAndZoomLevels, setPanAndZoomLevels] = React.useState<{
+    x: number;
+    y: number;
+    scale: number;
+  }>({ x: 0, y: 0, scale: 1 });
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
   );
@@ -63,6 +68,7 @@ export const usePanzoom = (elementId: string) => {
         boundsPadding: 0.5,
         // maxZoom: 2.5,
         minZoom: 0.5,
+        // transformOrigin: { x: 0.5, y: 0.5 },
         beforeWheel: function (e) {
           // allow wheel-zoom only if altKey is down. Otherwise - ignore
           var shouldIgnore = !e.altKey && !e.ctrlKey;
@@ -73,6 +79,12 @@ export const usePanzoom = (elementId: string) => {
         //   var shouldIgnore = !e.altKey;
         //   return shouldIgnore;
         // },
+      });
+
+      panzoomInstance.on('zoom', (e: any) => {
+        const zoomLevels = e.getTransform();
+
+        setPanAndZoomLevels(zoomLevels);
       });
 
       // Prevent double-click zoom by intercepting double-click events
@@ -90,7 +102,7 @@ export const usePanzoom = (elementId: string) => {
     }
   }, [elementId]);
 
-  return panzoomInstance;
+  return { panzoomInstance, panAndZoomLevels };
 };
 
 // export const Venue = (props: Props) => {

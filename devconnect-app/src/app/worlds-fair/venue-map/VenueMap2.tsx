@@ -28,8 +28,6 @@ const MapPane = (props: {
 
   const element = selection ? elementLookup[selection] : null;
 
-  console.log(element, 'SELECTION');
-
   return (
     <div
       className={cn(
@@ -56,7 +54,7 @@ export const VenueMap = () => {
 
   const isHoveredOrSelected = hoveredElement || selectedElement;
 
-  const panzoomInstance = usePanzoom('venue-map');
+  const { panzoomInstance, panAndZoomLevels } = usePanzoom('venue-map');
 
   useEffect(() => {
     // Wait for next frame to ensure SVG is fully rendered
@@ -130,10 +128,46 @@ export const VenueMap = () => {
     id: string,
     event: React.MouseEvent<SVGElement>
   ) => {
-    console.log('SVG element clicked:', id);
+    // console.log('SVG element clicked:', id);
     if (elementLookup[id]) {
       setSelectedElement(selectedElement === id ? null : id);
-      console.log('Element position data:', elementLookup[id]);
+
+      // Center on and zoom to the selected element
+      if (panzoomInstance) {
+        const targetZoom = 2; // Fixed zoom level
+        const element = elementLookup[id];
+
+        // Get container dimensions
+        const container = document.getElementById('venue-map');
+        if (container) {
+          const containerRect = container.getBoundingClientRect();
+
+          // Calculate the pan position to center the element
+          // We need to account for the current zoom level and calculate where to pan
+          const centerX = containerRect.width / 2;
+          const centerY = containerRect.height / 2;
+
+          // Calculate the offset needed to center the element
+          //   const panX = centerX - element.centerX * targetZoom;
+          //   const panY = centerY - element.centerY * targetZoom;
+
+          // First reset zoom to target level, then pan to center
+          panzoomInstance.smoothZoomAbs(centerX, centerY, targetZoom);
+          //   panzoomInstance.smoothMoveTo(centerX, centerY);
+
+          //   console.log(panzoomInstance, 'panzoom instance');
+          console.log(element, 'element');
+          console.log(panAndZoomLevels, 'pan and zoom levels');
+
+          // After zoom completes, pan to center the element
+          //   setTimeout(() => {
+          //     panzoomInstance.moveTo(panX, panY);
+          //   }, 300); // Adjust timing based on your zoom animation duration
+        }
+      }
+
+      //   console.log(elementLookup[id], 'element lookup');
+      //   console.log('Element position data:', elementLookup[id]);
     }
   };
 
