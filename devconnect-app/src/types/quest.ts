@@ -60,6 +60,9 @@ export type QuestDifficulty =
  * Quest interface representing a quest item from the API
  */
 export interface Quest {
+  /** Unique quest identifier */
+  id: number;
+
   /** Quest name/title */
   name: string;
   
@@ -68,48 +71,30 @@ export interface Quest {
   
   /** Points awarded for completing the quest */
   points: number;
-  
-  /** Quest category */
-  category: QuestCategory;
-  
-  /** Quest group */
-  group: QuestGroup;
-  
+
   /** Difficulty level */
-  difficulty: QuestDifficulty;
+  difficulty: string;
   
   /** Quest instructions/description */
   instructions: string;
   
   /** Action type to perform */
-  action: QuestAction;
+  action: string;
   
   /** Button text to display */
   button: string;
   
   /** Type of condition to check for completion */
-  conditionType: QuestConditionType;
+  conditionType: string;
   
   /** Values for the condition check */
   conditionValues: string;
   
-  /** Unique quest identifier */
-  id: string;
-
-  /** URL to the quest logo/image */
-  logoLink: string;
+  /** Related supporter ID (if any) */
+  supporterId: string;
   
   /** URL to the POAP image */
   poapImageLink: string;
-  
-  /** Position coordinates (e.g., "200,500") */
-  position: string;
-
-  /** URL to the website */
-  websiteLink: string;
-
-  /** URL to the social media */
-  socialLink: string;
 }
 
 /**

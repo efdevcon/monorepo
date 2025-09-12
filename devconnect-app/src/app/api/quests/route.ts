@@ -32,6 +32,7 @@ export async function GET(request: NextRequest) {
       const properties = page.properties;
 
       // console.log(properties);
+      console.log(properties['Supporter']);
 
       // Helper function to get property value, trying both clean and prefixed names
       const getPropertyValue = (propertyName: string, fallbackName?: string) => {
@@ -68,6 +69,10 @@ export async function GET(request: NextRequest) {
           return property.files?.[0]?.file?.url || property.files?.[0]?.external?.url || '';
         } else if (property.type === 'unique_id') {
           return property.unique_id?.prefix + property.unique_id?.number || '';
+        } else if (property.type === 'relation') {
+          // Extract the first relation ID and remove hyphens
+          const relationId = property.relation?.[0]?.id;
+          return relationId ? relationId.replaceAll('-', '') : '';
         }
         return '';
       };
@@ -77,23 +82,18 @@ export async function GET(request: NextRequest) {
       const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
 
       return {
+        id: getPropertyValue('ID'),
         name: getPropertyValue('Name'),
         order: getPropertyValue('Order'),
         points: getPropertyValue('Points'),
-        category: getPropertyValue('District'),
-        group: getPropertyValue('Group'),
         difficulty: getPropertyValue('Difficulty'),
         instructions: getPropertyValue('Quest instructions'),
         action: getPropertyValue('Action'),
         button: getPropertyValue('Button'),
         conditionType: getPropertyValue('Condition type'),
         conditionValues: getPropertyValue('Quest condition values'),
-        id: category + '-' + name,
-        logoLink: getPropertyValue('Logo'),
+        supporterId: getPropertyValue('Supporter'),
         poapImageLink: getPropertyValue('POAP image'),
-        websiteLink: getPropertyValue('Website link'),
-        socialLink: getPropertyValue('Social link'),
-        projectDescription: getPropertyValue('Project description'),
       };
     });
 
