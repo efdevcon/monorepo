@@ -38,7 +38,7 @@ const DifficultyTag = ({
 
   return (
     <div
-      className={`${difficultyColorMap[difficulty]} bg-white border border-solid px-2 py-0.5 uppercase ${sizeMap[size]} shrink-0`}
+      className={`${difficultyColorMap[difficulty]} bg-white font-medium border border-solid px-2 py-0.5 uppercase ${sizeMap[size]} shrink-0`}
     >
       {difficultyTextMap[difficulty]}
     </div>
@@ -98,7 +98,7 @@ const TypeTag = ({
 
   return (
     <div
-      className={`${typeColorMap[category]} px-2 py-0.5 bg-white rounded-full uppercase ${sizeMap[size]}`}
+      className={`${typeColorMap[category]} px-2 py-0.5 font-medium bg-white rounded-full uppercase ${sizeMap[size]}`}
     >
       {typeTextMap[category]}
     </div>
@@ -108,7 +108,7 @@ const TypeTag = ({
 export const TicketTag = () => {
   return (
     <div
-      className={`px-2 py-0.5 border border-solid border-[rgba(100,100,100,0)] bg-[#1B6FAE] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
+      className={`px-2 py-0.5 font-medium border border-solid border-[rgba(100,100,100,0)] bg-[#1B6FAE] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
     >
       <TicketIcon size={13} className="shrink-0" />
       Tickets Required
@@ -118,7 +118,7 @@ export const TicketTag = () => {
 
 export const SoldOutTag = () => {
   return (
-    <div className="px-2 bg-black py-0.5 border border-solid border-[rgba(100,100,100,0)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+    <div className="px-2 bg-black py-0.5 font-medium border border-solid border-[rgba(100,100,100,0)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
       Sold Out
     </div>
   );

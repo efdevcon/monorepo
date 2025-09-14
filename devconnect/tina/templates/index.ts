@@ -40,6 +40,7 @@ const index: Template = {
       ],
     },
     createRichText('how_to_contribute'),
+    createRichText('ethereum_day_cta'),
     {
       name: 'contribute_and_support_list',
       label: 'contribute_and_support_list',

@@ -193,39 +193,48 @@ const NewScheduleIndex = ({
     return month === 10 && day >= 17 && day <= 22; // November (10) 17-22
   };
 
-  // Can consider moving this into the schedule component
   useEffect(() => {
-    const eventParam = searchParams.get("event");
+    const ethDayEvent =
+      events.find((event) => event.id.toString() === "84") || null;
+
+    if (ethDayEvent) {
+      (window as any).selectEthDay = () => {
+        setSelectedEvent(ethDayEvent);
+      };
+
+      return () => {
+        delete (window as any).selectEthDay;
+      };
+    }
+  }, []);
+
+  // Select event from url params
+  useEffect(() => {
+    let eventParam = searchParams.get("event");
+    const transforms = [
+      { from: "ethday", to: "84" },
+      { from: "DSS", to: "86" },
+    ];
+
+    if (
+      eventParam &&
+      transforms.some((transform) => transform.from === eventParam)
+    ) {
+      eventParam =
+        transforms.find((transform) => transform.from === eventParam)?.to ||
+        null;
+    }
 
     if (eventParam && events.length > 0) {
-      // custom zupass gated event id for cleaner urls
-      const customUrlIdEvent = events.find((event) => {
-        return eventShops.some((shop) => {
-          if (
-            shop.custom_url_id &&
-            shop.custom_url_id === eventParam &&
-            event.id.toString() === shop.supabase_id
-          ) {
-            return true;
-          }
-          return false;
-        });
-      });
-
-      if (customUrlIdEvent) {
-        setSelectedEvent(customUrlIdEvent);
-        return;
-      }
-
-      // Try to find event by id or name (converted to slug format)
-      const targetEvent = events.find(
+      // Transform event params to match event ids
+      const event = events.find(
         (event) =>
           event.id.toString() === eventParam.toString() ||
           (event.rkey && event.rkey.toString() === eventParam.toLowerCase())
       );
 
-      if (targetEvent) {
-        setSelectedEvent(targetEvent);
+      if (event) {
+        setSelectedEvent(event);
         return;
       }
     }

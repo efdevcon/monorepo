@@ -53,6 +53,8 @@ import VoxelSquares from 'assets/images/ba/voxel-squares.png'
 import VoxelBlueEthereum from 'assets/images/ba/voxel-blue-eth.png'
 import EthGlyph from 'assets/images/ba/eth-glyph.png'
 import { TICKETS_URL } from 'common/constants'
+import EthDayCTA from 'assets/images/ba/eth-day-updated.png'
+import { CMSButtons } from 'common/components/voxel-button/button'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -833,6 +835,25 @@ const Home: NextPage = (props: any) => {
                   </Link>
                 </motion.div>
               </motion.div>
+            </div>
+          </div>
+
+          <div className="section relative pt-16 bg-white">
+            <div className="flex flex-col items-center md:flex-row bg-[#FDF9EC] rounded-md border border-solid border-[#1B6FAE]">
+              <div className="relative w-full md:w-1/2 lg:w-[min(600px,50%)] md:shrink-0 h-full">
+                <Image
+                  src={EthDayCTA}
+                  alt="Ethereum Day"
+                  className="w-full h-full aspect-[16/7] md:aspect-auto object-cover object-left rounded-md overflow-hidden"
+                  style={{
+                    maskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)',
+                    WebkitMaskImage: 'linear-gradient(to right, black 0%, black 80%, transparent 100%)',
+                  }}
+                />
+              </div>
+              <div className="p-8 relative shrink-0 md:shrink flex flex-wrap flex-col">
+                <RichText content={data.pages.ethereum_day_cta} className="cms-markdown" Buttons={CMSButtons} />
+              </div>
             </div>
           </div>
 
