@@ -34,7 +34,6 @@ export default function AppShowcaseDetail({
   const router = useRouter();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
-  const [hasInitialized, setHasInitialized] = useState(false);
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -73,8 +72,6 @@ export default function AppShowcaseDetail({
 
   // Handle URL-based routing for initial state loading
   useEffect(() => {
-    if (hasInitialized) return; // Prevent re-running after initialization
-
     const hash = window.location.hash.substring(1); // Remove # from hash
 
     if (hash) {
@@ -83,7 +80,6 @@ export default function AppShowcaseDetail({
       if (district) {
         setExpandedDistrict(district.id);
         setExpandedQuests(new Set()); // Clear quest expansions when switching districts
-        setHasInitialized(true);
         // Remove hash from URL after loading state
         router.replace('/quests/app-showcase');
         return;
@@ -99,7 +95,6 @@ export default function AppShowcaseDetail({
           setExpandedDistrict(questDistrict.id);
           setExpandedQuests(new Set([quest.id]));
         }
-        setHasInitialized(true);
         // Remove hash from URL after loading state
         router.replace('/quests/app-showcase');
         return;
@@ -109,15 +104,8 @@ export default function AppShowcaseDetail({
     // Default: expand first district if no hash
     if (districtsWithQuests.length > 0 && !expandedDistrict) {
       setExpandedDistrict(districtsWithQuests[0].id);
-      setHasInitialized(true);
     }
-  }, [
-    districtsWithQuests,
-    appShowcaseQuests,
-    router,
-    hasInitialized,
-    expandedDistrict,
-  ]);
+  }, [districtsWithQuests, appShowcaseQuests, router]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
