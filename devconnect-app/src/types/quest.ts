@@ -36,15 +36,24 @@ export type QuestCategory =
   | 'L2s'
   | 'Social';
 
-/**
- * Quest groups without numbered prefixes
- */
-export type QuestGroup = 
-  | '1. Setup & app tour'
-  | '2. App Showcase'
-  | '3. World’s Fair interactions'
-  | '4. Explore the Ethereum ecosystem'
 
+  /**
+   * Quest group names with numbered prefixes
+  */
+export type QuestGroupName =
+  | 'Setup & app tour'
+  | 'App Showcase'
+  | 'World’s Fair interactions'
+  | 'Explore the Ethereum ecosystem'
+
+/**
+ * Quest group object
+ */
+export type QuestGroup = {
+  id: number;
+  name: QuestGroupName;
+  description: string;
+}
 /**
  * Quest difficulty levels without numbered prefixes
  */
@@ -56,7 +65,7 @@ export type QuestDifficulty =
   | 'Expert';
 
 /**
- * Quest interface representing a quest item from the API
+ * Quest interface representing a quest item
  */
 export interface Quest {
   /** Unique quest identifier */
@@ -71,9 +80,6 @@ export interface Quest {
   /** Points awarded for completing the quest */
   points: number;
 
-  /** Difficulty level */
-  difficulty: string;
-  
   /** Quest instructions/description */
   instructions: string;
   
@@ -95,8 +101,8 @@ export interface Quest {
   /** URL to the POAP image */
   poapImageLink: string;
 
-  /** Group of the quest */
-  group: QuestGroup;
+  /** Group ID of the quest (computed field) */
+  groupId: number;
 
   /** District ID of the quest (computed field based on supporterId) */
   districtId?: number;
