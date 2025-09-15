@@ -18,6 +18,8 @@ export interface POI {
   layerName: string;
   districtId: string | null;
   locationId: string | null;
+  logo: string;
+  description: string;
 }
 
 export interface District {

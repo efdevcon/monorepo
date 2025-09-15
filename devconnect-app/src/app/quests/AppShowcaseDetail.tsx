@@ -288,6 +288,18 @@ export default function AppShowcaseDetail({
     updateQuestStatus(quest.id.toString(), newStatus, false);
   };
 
+  const handleTodoClick = (quest: Quest) => {
+    // Find the district for this quest to get the layerName
+    const questDistrict = districtsWithQuests.find(
+      (d) => d.id === quest.districtId?.toString()
+    );
+
+    if (questDistrict) {
+      // Redirect to /worlds-fair#layerName
+      router.push(`/worlds-fair#${questDistrict.layerName}`);
+    }
+  };
+
   // Calculate overall progress
   const overallProgress = useMemo(() => {
     const allQuests = appShowcaseQuests;
@@ -309,26 +321,6 @@ export default function AppShowcaseDetail({
       {/* Header */}
       <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center justify-center w-5 h-5 text-gray-600 hover:text-gray-800"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.5 15L7.5 10L12.5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
           <h1 className="text-base font-bold text-gray-800 tracking-[-0.1px] flex-1 text-center">
             {group.name}
           </h1>
@@ -393,10 +385,8 @@ export default function AppShowcaseDetail({
             </div>
           </div>
         </div>
-      </div>;
-      {
-        /* District Sections */
-      }
+      </div>
+      {/* District Sections */}
       <div className="w-full space-y-3 p-4">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
@@ -524,52 +514,81 @@ export default function AppShowcaseDetail({
                                   'Complete this quest to earn points'}
                               </p>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                              <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div
+                              className={`flex flex-col items-center gap-2 ${!isCompleted ? 'cursor-pointer' : ''}`}
+                              onClick={
+                                !isCompleted
+                                  ? (e) => {
+                                      e.stopPropagation();
+                                      handleTodoClick(quest);
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
                                 {isCompleted ? (
-                                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 20 20"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M6 10L8.5 12.5L14 7"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </svg>
-                                  </div>
+                                  quest.poapImageLink ? (
+                                    <img
+                                      src={quest.poapImageLink}
+                                      alt="POAP"
+                                      width={40}
+                                      height={40}
+                                      className="w-full h-full object-cover rounded-full"
+                                    />
+                                  ) : (
+                                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                                      <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M6 10L8.5 12.5L14 7"
+                                          stroke="white"
+                                          strokeWidth="2"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                        />
+                                      </svg>
+                                    </div>
+                                  )
                                 ) : (
-                                  <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 20 20"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M10 6L10 14M6 10L14 10"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                      />
-                                    </svg>
+                                  <div className="relative w-10 h-10">
+                                    {/* Background ellipse */}
+                                    <div className="absolute inset-0 w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200" />
+                                    {/* Location icon */}
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                      <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-[#1b6fae]"
+                                      >
+                                        <path
+                                          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                          fill="currentColor"
+                                        />
+                                      </svg>
+                                    </div>
                                   </div>
                                 )}
                               </div>
-                              <div className="text-xs font-bold text-center">
+                              <div className="text-center w-14">
                                 {isCompleted ? (
-                                  <span className="text-green-600">
+                                  <span className="text-green-600 text-[10px] font-bold">
                                     COLLECTED
                                   </span>
                                 ) : (
-                                  <span className="text-blue-600">TO DO</span>
+                                  <p
+                                    className="text-[#1b6fae] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
+                                    style={{ fontFamily: 'Roboto, sans-serif' }}
+                                  >
+                                    TO DO
+                                  </p>
                                 )}
                               </div>
                             </div>
@@ -625,7 +644,7 @@ export default function AppShowcaseDetail({
             </div>
           );
         })}
-      </div>;
+      </div>
     </div>
   );
 }

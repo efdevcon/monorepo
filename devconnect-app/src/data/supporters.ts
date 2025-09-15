@@ -122,6 +122,22 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "2"
   },
   "25d638cdc41580efafe9c31c7ab8c7ff": {
+    "name": "Dappnode",
+    "layerName": "hardware-wallets_dappnode",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": "2"
+  },
+  "25d638cdc4158011ba2ecb11cdaaf8ee": {
+    "name": "Freedom Factory (EthOS)",
+    "layerName": "hardware-wallets_freedom-factory-ethos",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": "2"
+  },
+  "25d638cdc41580beba63e0cfa4a340d8": {
     "name": "H&W 7",
     "layerName": "hardware-wallets_hw-7",
     "logo": "",
@@ -129,23 +145,15 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "4",
     "locationId": "2"
   },
-  "25d638cdc4158011ba2ecb11cdaaf8ee": {
-    "name": "H&W 6",
-    "layerName": "hardware-wallets_hw-6",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "2"
-  },
-  "25d638cdc41580beba63e0cfa4a340d8": {
-    "name": "H&W 5",
-    "layerName": "hardware-wallets_hw-5",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "2"
-  },
   "25d638cdc4158079b532c9bc4c49542c": {
+    "name": "Gaming 9",
+    "layerName": "gaming_gaming-9",
+    "logo": "",
+    "description": "",
+    "districtId": "5",
+    "locationId": "3"
+  },
+  "25d638cdc41580aba236df6244205ba3": {
     "name": "Gaming 8",
     "layerName": "gaming_gaming-8",
     "logo": "",
@@ -153,7 +161,7 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "3"
   },
-  "25d638cdc41580aba236df6244205ba3": {
+  "25d638cdc415806097ded8fddaae1f33": {
     "name": "Gaming 7",
     "layerName": "gaming_gaming-7",
     "logo": "",
@@ -161,7 +169,15 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "3"
   },
-  "25d638cdc415806097ded8fddaae1f33": {
+  "25d638cdc415804a9c62c16ba4f111e9": {
+    "name": "DarkForest",
+    "layerName": "gaming_darkforest",
+    "logo": "",
+    "description": "",
+    "districtId": "5",
+    "locationId": "3"
+  },
+  "25d638cdc41580c5ad3cf39853809395": {
     "name": "Gaming 6",
     "layerName": "gaming_gaming-6",
     "logo": "",
@@ -169,15 +185,15 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "3"
   },
-  "25d638cdc415804a9c62c16ba4f111e9": {
-    "name": "Dark",
-    "layerName": "gaming_dark",
+  "25d638cdc415804abac1fc28709612f5": {
+    "name": "Gaming 5",
+    "layerName": "gaming_gaming-5",
     "logo": "",
     "description": "",
     "districtId": "5",
     "locationId": "3"
   },
-  "25d638cdc41580c5ad3cf39853809395": {
+  "25d638cdc41580b9b52dd040fe367989": {
     "name": "Gaming 4",
     "layerName": "gaming_gaming-4",
     "logo": "",
@@ -185,25 +201,9 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "3"
   },
-  "25d638cdc415804abac1fc28709612f5": {
+  "25d638cdc41580768f46cf523c3800c1": {
     "name": "Gaming 3",
     "layerName": "gaming_gaming-3",
-    "logo": "",
-    "description": "",
-    "districtId": "5",
-    "locationId": "3"
-  },
-  "25d638cdc41580b9b52dd040fe367989": {
-    "name": "Gaming 2",
-    "layerName": "gaming_gaming-2",
-    "logo": "",
-    "description": "",
-    "districtId": "5",
-    "locationId": "3"
-  },
-  "25d638cdc41580768f46cf523c3800c1": {
-    "name": "Gaming 1",
-    "layerName": "gaming_gaming-1",
     "logo": "",
     "description": "",
     "districtId": "5",
