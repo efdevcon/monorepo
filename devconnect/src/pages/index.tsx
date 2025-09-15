@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import css from './index.module.scss'
 import React, { useCallback, useRef, useState } from 'react'
-import DevconnectIstanbulText from 'assets/images/ba/logo-text.svg'
+import DevconnectText from 'assets/images/ba/logo-text.svg'
 import HeaderLogo from 'assets/images/header-logo.png'
 import { SEO } from 'common/components/SEO'
 import { Menu, FooterMenu } from 'common/components/layout/Menu'
@@ -167,7 +167,7 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                   {/* <DevconnectIstanbul />   */}
                   <Image src={DevconnectCubeLogo} alt="Devconnect Cube Logo" className="w-[60px] lg:w-[80px]" />
                   {/* <DevconnectCubeLogo /> */}
-                  <DevconnectIstanbulText />
+                  <DevconnectText />
                 </div>
                 <div className={css['middle']}>
                   <div className={css['left']}>
