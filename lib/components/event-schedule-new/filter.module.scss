@@ -28,15 +28,19 @@
   margin-right: 8px;
   width: min(315px, 100%);
   padding: 16px;
+  // margin-left: 16px;
 
   @media (max-width: 1024px) {
     position: absolute;
     top: 0px;
+  }
+
+  @media (max-width: 1024px) and (pointer: coarse) {
     margin-right: 0px;
     margin-left: 64px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 768px) and (pointer: coarse) {
     margin-left: 16px;
   }
 }
