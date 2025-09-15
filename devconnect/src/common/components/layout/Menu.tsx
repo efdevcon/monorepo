@@ -26,6 +26,8 @@ import { useScroll } from 'framer-motion'
 import { useDevaBotStore } from 'store/devai'
 import MailIcon from 'assets/icons/mail.svg'
 import { TICKETS_URL } from 'common/constants'
+import EthDayLogo from 'assets/images/eth-day-logo.png'
+import Image from 'next/image'
 
 const MultiLink = (props: any) => {
   const [open, setOpen] = React.useState(false)
@@ -95,6 +97,23 @@ const menuItems = (pathname: string) => [
   {
     text: 'Calendar',
     url: '/calendar',
+  },
+  {
+    text: () => {
+      return (
+        <div className={cn(css['ethday-rainbo'], 'flex items-center gap-1.5')}>
+          <div>Ethereum Day</div>
+          <Image src={EthDayLogo} alt="Ethereum Day" width={22} />
+        </div>
+      )
+    },
+    // customClass: css['ethday-rainbow'],
+    url: '/calendar?event=ethday',
+    onClick: () => {
+      // Hacky but works
+      // @ts-ignore
+      if (typeof window !== 'undefined' && window.selectEthDay) window.selectEthDay()
+    },
   },
   {
     text: 'Destino Devconnect',
@@ -238,9 +257,9 @@ export const FooterMenu = (props: any) => {
               className={cn(menuItem.customClass, 'flex')}
               key={menuItem.text}
               to={menuItem.children}
-              onClickMenuItem={props.onClickMenuItem}
+              onClick={menuItem.onClick}
             >
-              {menuItem.text}
+              {menuItem.text === 'function' ? menuItem.text() : menuItem.text}
             </MultiLink>
           )
         }
@@ -250,10 +269,13 @@ export const FooterMenu = (props: any) => {
             className={cn(menuItem.customClass, 'flex')}
             key={menuItem.text}
             href={menuItem.url}
-            onClick={props.onClickMenuItem}
+            onClick={() => {
+              if (props.onClickMenuItem) props.onClickMenuItem()
+              if (menuItem.onClick) menuItem.onClick()
+            }}
             indicateExternal
           >
-            {menuItem.text}
+            {typeof menuItem.text === 'function' ? menuItem.text() : menuItem.text}
           </Link>
         )
       })}
@@ -332,6 +354,7 @@ export const Menu = (props: any) => {
     <div
       className={cn(
         css['menu'],
+        css['menu-desktop'],
         'flex gap-4 self-start items-center backdrop-blur-sm bg-black/60 rounded-lg p-1.5 lg:p-0 lg:px-2 lg:pr-3 transition-all duration-500 pointer-events-auto',
         hasScrolled && 'bg-black/90',
         {
@@ -352,8 +375,9 @@ export const Menu = (props: any) => {
               className={cn(menuItem.customClass, 'hidden lg:flex')}
               key={menuItem.text}
               to={menuItem.children}
+              onClick={menuItem.onClick}
             >
-              {menuItem.text}
+              {typeof menuItem.text === 'function' ? menuItem.text() : menuItem.text}
             </MultiLink>
           )
         }
@@ -363,9 +387,10 @@ export const Menu = (props: any) => {
             className={cn(menuItem.customClass, 'hidden lg:flex')}
             key={menuItem.text}
             href={menuItem.url}
+            onClick={menuItem.onClick}
             indicateExternal
           >
-            {menuItem.text}
+            {typeof menuItem.text === 'function' ? menuItem.text() : menuItem.text}
           </Link>
         )
       })}

@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MapPin, Ticket, Users, ArrowUpRight, X } from "lucide-react";
+import {
+  MapPin,
+  Ticket,
+  Users,
+  ArrowUpRight,
+  X,
+  UsersRound,
+} from "lucide-react";
 import { Event as EventType } from "../model";
+import { getProgramming, Programming } from "./programming";
+const confetti = require("canvas-confetti");
 import moment from "moment";
 // import { format, parseISO } from "date-fns";
 // import { UTCDate } from "@date-fns/utc";
@@ -10,8 +19,8 @@ import Link from "lib/components/link/Link";
 // @ts-ignore
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
-import ethDayImage2 from "./eth-day-logo.png";
 import ethDayImage from "./eth-day-bg.png";
+import ethDayDialogImage from "./eth-day-updated.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
 import { Button } from "lib/components/button";
@@ -26,6 +35,7 @@ import XIcon from "lib/assets/icons/x.svg";
 import FarcasterIcon from "lib/assets/icons/farcaster.svg";
 import InstagramIcon from "lib/assets/icons/instagram.svg";
 import { TicketTag, SoldOutTag } from "../calendar.components";
+import { useIsMobile } from "lib/hooks/useIsMobile";
 
 type EventProps = {
   event: EventType;
@@ -100,8 +110,10 @@ const Event: React.FC<EventProps> = ({
   selectedEvent,
   setSelectedEvent,
 }) => {
+  const [showMobileProgramming, setShowMobileProgramming] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imageRef = useRef<any>(null);
+  const isMobile = useIsMobile(768);
 
   // Reset image loaded state when imageUrl changes
   useEffect(() => {
@@ -145,18 +157,129 @@ const Event: React.FC<EventProps> = ({
   const isETHDay = event.id.toString() === "84";
   const isCoreEvent = event.isCoreEvent;
 
+  const dialogOpen = selectedEvent?.id === event.id;
+
+  useEffect(() => {
+    if (isETHDay && dialogOpen && !isMobile) {
+      // Wait for next render cycle for dialog to be in DOM
+      const timeoutId = setTimeout(() => {
+        const dialogElement = document.querySelector('[role="dialog"]');
+
+        if (dialogElement) {
+          // Create a custom confetti instance that renders on a specific z-index
+          const myConfetti = confetti.create(undefined, {
+            resize: true,
+            useWorker: true,
+          });
+
+          // ETH logo SVG path
+          const ethShape = confetti.default.shapeFromPath({
+            path: "M 269.9 325.2 L 0 447.9 L 269.9 607.5 L 540 447.9 Z M 0.1 447.8 L 269.9 607.4 L 269.9 0 Z M 270 0 L 270 607.4 L 539.9 447.8 Z M 0 499 L 269.9 879.4 L 269.9 658.5 Z M 269.9 658.5 L 269.9 879.4 L 540 499 Z",
+            matrix: [0.02, 0, 0, 0.02, -5.4, -8.8], // Scale down to fit confetti size
+          });
+
+          // Fire confetti from left bottom corner
+          myConfetti({
+            particleCount: 120, // Fewer particles
+            angle: 70, // Shoot straight up
+            spread: 45,
+            startVelocity: 115, // Faster velocity for more height
+            gravity: 1.2, // Normal fall speed
+            drift: 0, // No drift for cleaner look
+            ticks: 250, // Still last longer
+            origin: { x: 0, y: 1 }, // Bottom left corner
+            shapes: [ethShape],
+            colors: [
+              "#5C5F8B", // Purple/indigo
+              "#7AC7E3", // Light blue
+              "#F7B68C", // Peach/orange
+              "#ff86a6", // Pink/magenta
+              // "#ffffff", // White
+            ],
+            scalar: 1.8, // Slightly smaller but still visible
+            flat: false, // Keep 3D rotation
+            spin: { min: -5, max: 5 }, // Moderate spin
+            zIndex: 10000000,
+            disableForReducedMotion: true,
+          });
+
+          myConfetti({
+            particleCount: 120, // Fewer particles
+            angle: 90, // Shoot straight up
+            spread: 150,
+            startVelocity: 50, // Faster velocity for more height
+            gravity: 1.2, // Normal fall speed
+            drift: 0, // No drift for cleaner look
+            ticks: 250, // Still last longer
+            origin: { x: 0.5, y: 1 }, // Bottom left corner
+            shapes: [ethShape],
+            colors: [
+              "#5C5F8B", // Purple/indigo
+              "#7AC7E3", // Light blue
+              "#F7B68C", // Peach/orange
+              "#ff86a6", // Pink/magenta
+              // "#ffffff", // White
+            ],
+            scalar: 1.8, // Slightly smaller but still visible
+            flat: false, // Keep 3D rotation
+            spin: { min: -5, max: 5 }, // Moderate spin
+            zIndex: 10000000,
+            disableForReducedMotion: true,
+          });
+
+          // Fire confetti from right bottom corner
+          myConfetti({
+            particleCount: 120, // Fewer particles
+            angle: 110, // Shoot at angle
+            spread: 45,
+            startVelocity: 115, // Faster velocity for more height
+            gravity: 1.2, // Normal fall speed
+            drift: 0, // No drift for cleaner look
+            ticks: 250, // Still last longer
+            origin: { x: 1, y: 1 }, // Bottom right corner
+            shapes: [ethShape],
+            colors: [
+              "#5C5F8B", // Purple/indigo
+              "#7AC7E3", // Light blue
+              "#F7B68C", // Peach/orange
+              "#ff86a6", // Pink/magenta
+              // "#ffffff", // White
+            ],
+            scalar: 1.8, // Slightly smaller but still visible
+            flat: false, // Keep 3D rotation
+            spin: { min: -10, max: 10 }, // Moderate spin
+            zIndex: 10000000,
+            disableForReducedMotion: true,
+          });
+        }
+      }, 100); // Wait 100ms for dialog to render
+
+      // Cleanup timeout on unmount
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isETHDay, dialogOpen, isMobile]);
+
   let eventName = event.name;
 
   const timeOfDay = computeEventTimeString(event);
   const isMultiDay = isMultiDayEvent(event);
+  const programming = getProgramming(event);
+
+  const showVisitSite =
+    event.eventLink !== "https://devconnect.org/calendar" &&
+    event.eventLink !== event.ticketsUrl;
+  const showBuyTickets = event.ticketsUrl;
+  const showProgrammingButton = programming && !showMobileProgramming;
 
   return (
     <>
       <Dialog open={selectedEvent?.id === event.id}>
         <DialogContent
+          data-dialog-content
           className={cn(
             "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[9998] gap-0 flex flex-col shrink-0",
-            typeClass
+            typeClass,
+            isETHDay || isCoworking ? "lg:w-[950px]" : ""
           )}
           onInteractOutside={(e) => {
             // If the zupass dialog is open, don't close the event dialog
@@ -169,6 +292,7 @@ const Event: React.FC<EventProps> = ({
             e.stopPropagation();
             e.preventDefault();
             setSelectedEvent(null);
+            setShowMobileProgramming(false);
           }}
         >
           <div className="absolute top-4 right-4 z-10">
@@ -176,170 +300,239 @@ const Event: React.FC<EventProps> = ({
               className="bg-white p-1.5 cursor-pointer border border-solid border-neutral-400"
               onClick={(e) => {
                 e.stopPropagation();
-                setSelectedEvent(null);
+
+                if (showMobileProgramming) {
+                  setShowMobileProgramming(false);
+                } else {
+                  setSelectedEvent(null);
+                }
               }}
             >
               <X className="w-3.5 h-3.5" />
             </div>
           </div>
 
-          {isCoworking && (
-            <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
-              <Image
-                src={coworkingImage}
-                alt={event.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
+          <div className={cn("flex flex-col", programming && "lg:flex-row")}>
+            <div className="flex flex-col">
+              {isCoworking && (
+                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                  <Image
+                    src={coworkingImage}
+                    alt={event.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
 
-          {event.imageUrl && imageLoaded && (
-            <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
-              <img
-                src={event.imageUrl}
-                alt={event.name}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
+              {isETHDay && (
+                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                  <Image
+                    src={ethDayDialogImage}
+                    alt={event.name}
+                    className="w-full h-full object-cover object-left"
+                  />
+                </div>
+              )}
 
-          {/* Load and see if it errors out prior to showing the image */}
-          {event.imageUrl && (
-            <img
-              ref={imageRef}
-              src={event.imageUrl}
-              alt={event.name}
-              className="hidden"
-              onLoad={() => {
-                setImageLoaded(true);
-              }}
-              onError={() => {
-                setImageLoaded(false);
-              }}
+              {event.imageUrl && imageLoaded && (
+                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                  <img
+                    src={event.imageUrl}
+                    alt={event.name}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
+
+              {/* Load and see if it errors out prior to showing the image */}
+              {event.imageUrl && (
+                <img
+                  ref={imageRef}
+                  src={event.imageUrl}
+                  alt={event.name}
+                  className="hidden"
+                  onLoad={() => {
+                    setImageLoaded(true);
+                  }}
+                  onError={() => {
+                    setImageLoaded(false);
+                  }}
+                />
+              )}
+
+              <div className="p-4 shrink-0">
+                <div className="flex flex-col text-[rgba(36,36,54,1)]">
+                  <div
+                    className={cn(
+                      "text-sm font-medium uppercase font-secondary text-[rgba(136,85,204,1)]",
+                      {
+                        "!text-[rgba(94,144,189,1)]":
+                          isCoreEvent && !isETHDay && !isCoworking,
+                      },
+                      { "!text-[#FF85A6]": isETHDay || isCoworking }
+                    )}
+                  >
+                    <div>
+                      {isETHDay || isCoworking
+                        ? "EWF & COWORK"
+                        : isCoreEvent
+                        ? "Core Event"
+                        : "Community Event"}
+                    </div>
+                  </div>
+
+                  <DialogTitle asChild>
+                    <div className="text-xl font-bold tracking-normal leading-tight mt-1">
+                      {event.name}
+                    </div>
+                  </DialogTitle>
+
+                  {event.organizer && (
+                    <div className="text-xs">hosted by {event.organizer}</div>
+                  )}
+
+                  <div className="flex flex-col mt-2 w-full">
+                    {timeOfDay.map((time, index) => (
+                      <div
+                        key={index}
+                        className="text-sm text-gray-600 font-medium"
+                      >
+                        {time}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Separator className="my-3" />
+
+                  <div className="text-sm flex gap-4 mb-2">
+                    <div className="flex justify-center gap-1.5 items-center font-medium shrink-0">
+                      <MapPin className="w-4 h-4 mb-0.5" />
+                      {typeof event.location === "string"
+                        ? event.location
+                        : event.location.text}
+                    </div>
+                    {event.amountPeople && !isETHDay && (
+                      <div className="flex items-center gap-1.5 font-medium">
+                        <Users className="w-4 h-4 mb-0.5" />{" "}
+                        {event.amountPeople}
+                      </div>
+                    )}
+                    {isETHDay && (
+                      <div className="flex items-center gap-4 grow">
+                        <div className="flex items-center  gap-1.5 font-semibold shrink-0">
+                          <Users className="w-4 h-4 mb-0.5" /> 3000
+                        </div>
+                        <div className="flex justify-end grow">
+                          <div className="p-1.5 px-3 bg-[#FFEBF0] text-xs font-medium">
+                            Limited capacity - first come, first serve
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="text-sm mt-1">
+                    {convert(event.description)}
+                  </div>
+
+                  <div className="flex justify-between items-center gap-2 flex-wrap">
+                    <div className="flex gap-2 items-center flex-wrap">
+                      {showVisitSite && (
+                        <Link href={event.eventLink} className="self-start">
+                          <VoxelButton
+                            color="blue-1"
+                            size="sm"
+                            fill
+                            className="shrink-0  mt-3 self-start"
+                          >
+                            Visit Site
+                            <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                          </VoxelButton>
+                        </Link>
+                      )}
+
+                      {showBuyTickets && (
+                        <Link href={event.ticketsUrl} className="self-start">
+                          <VoxelButton
+                            color="blue-1"
+                            size="sm"
+                            fill
+                            className="shrink-0  mt-3 self-start"
+                          >
+                            Buy Tickets
+                            <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                          </VoxelButton>
+                        </Link>
+                      )}
+
+                      {showProgrammingButton && (
+                        <VoxelButton
+                          color="blue-1"
+                          size="sm"
+                          fill
+                          className="shrink-0  mt-3 self-start block lg:hidden"
+                          onClick={() => setShowMobileProgramming(true)}
+                        >
+                          View Program
+                        </VoxelButton>
+                      )}
+                    </div>
+
+                    <div className="flex gap-1 text-xl mt-3 mr-1">
+                      {event.xHandle && (
+                        <Link href={`${event.xHandle}`} className="p-1">
+                          <XIcon className="icon self-end" />
+                        </Link>
+                      )}
+
+                      {event.instagramHandle && (
+                        <Link href={`${event.instagramHandle}`} className="p-1">
+                          <InstagramIcon className="icon self-end" />
+                        </Link>
+                      )}
+
+                      {event.farcasterHandle && (
+                        <Link href={`${event.farcasterHandle}`} className="p-1">
+                          <FarcasterIcon className="icon self-end" />
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+
+                  <Separator className="my-3" />
+
+                  {eventShops.some(
+                    (shop) => shop.supabase_id === event.id.toString()
+                  ) && (
+                    <>
+                      <ZupassConnection eventId={event.id} />
+
+                      <Separator className="my-4" />
+                    </>
+                  )}
+
+                  <div className="flex gap-2 justify-between shrink-0">
+                    {event.eventType && (
+                      <div className="text-sm">
+                        <TypeTag category={event.eventType} />
+                      </div>
+                    )}
+
+                    {event.difficulty && (
+                      <div className="text-sm">
+                        <DifficultyTag difficulty={event.difficulty} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <Programming
+              event={event}
+              programming={programming}
+              showMobileProgramming={showMobileProgramming}
             />
-          )}
-
-          <div className="p-4 shrink-0">
-            <div className="flex flex-col text-[rgba(36,36,54,1)]">
-              <div className="text-sm text-[rgba(94,144,189,1)] uppercase font-secondary">
-                <div>{isCoreEvent ? "Core Event" : "Community Event"}</div>
-              </div>
-
-              <DialogTitle asChild>
-                <div className="text-xl font-bold tracking-normal leading-tight mt-1">
-                  {event.name}
-                </div>
-              </DialogTitle>
-
-              {event.organizer && (
-                <div className="text-xs">hosted by {event.organizer}</div>
-              )}
-
-              <div className="flex flex-col mt-2 w-full">
-                {timeOfDay.map((time, index) => (
-                  <div key={index} className="text-xs text-gray-600">
-                    {time}
-                  </div>
-                ))}
-              </div>
-
-              <Separator className="my-3" />
-
-              <div className="text-sm flex gap-2 mb-2">
-                <div className="flex justify-center gap-1">
-                  <MapPin className="w-4 h-4" />
-                  {typeof event.location === "string"
-                    ? event.location
-                    : event.location.text}
-                </div>
-                {event.amountPeople && (
-                  <div className="flex items-center gap-1">
-                    <Users className="w-3 h-3" /> {event.amountPeople}
-                  </div>
-                )}
-              </div>
-
-              <div className="text-sm">{convert(event.description)}</div>
-
-              <div className="flex justify-between items-center gap-2 flex-wrap">
-                {}
-                <div className="flex gap-2 items-center">
-                  {event.eventLink !== "https://devconnect.org/calendar" && (
-                    <Link href={event.eventLink} className="self-start">
-                      <VoxelButton
-                        color="blue-1"
-                        size="sm"
-                        fill
-                        className="shrink-0  mt-2 self-start"
-                      >
-                        Visit Site
-                        <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                      </VoxelButton>
-                    </Link>
-                  )}
-
-                  {event.ticketsUrl && event.ticketsUrl !== event.eventLink && (
-                    <Link href={event.ticketsUrl} className="self-start">
-                      <VoxelButton
-                        color="blue-1"
-                        size="sm"
-                        fill
-                        className="shrink-0  mt-2 self-start"
-                      >
-                        Buy Tickets
-                        <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                      </VoxelButton>
-                    </Link>
-                  )}
-                </div>
-
-                <div className="flex gap-1 text-xl mt-2 mr-1">
-                  {event.xHandle && (
-                    <Link href={`${event.xHandle}`} className="p-1">
-                      <XIcon className="icon self-end" />
-                    </Link>
-                  )}
-
-                  {event.instagramHandle && (
-                    <Link href={`${event.instagramHandle}`} className="p-1">
-                      <InstagramIcon className="icon self-end" />
-                    </Link>
-                  )}
-
-                  {event.farcasterHandle && (
-                    <Link href={`${event.farcasterHandle}`} className="p-1">
-                      <FarcasterIcon className="icon self-end" />
-                    </Link>
-                  )}
-                </div>
-              </div>
-
-              <Separator className="my-3" />
-
-              {eventShops.some(
-                (shop) => shop.supabase_id === event.id.toString()
-              ) && (
-                <>
-                  <ZupassConnection eventId={event.id} />
-
-                  <Separator className="my-4" />
-                </>
-              )}
-
-              <div className="flex gap-2 justify-between shrink-0">
-                {event.eventType && (
-                  <div className="text-sm">
-                    <TypeTag category={event.eventType} />
-                  </div>
-                )}
-
-                {event.difficulty && (
-                  <div className="text-sm">
-                    <DifficultyTag difficulty={event.difficulty} />
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
         </DialogContent>
       </Dialog>
@@ -365,7 +558,6 @@ const Event: React.FC<EventProps> = ({
           if (event.onClick) {
             event.onClick();
           } else if (!selectedEvent) {
-            console.log("setting selected event");
             setSelectedEvent(event);
           }
         }}
@@ -444,9 +636,17 @@ const Event: React.FC<EventProps> = ({
                 )}
               >
                 {(event.ticketsAvailable || isCoworking) && !event.soldOut && (
-                  <>
+                  <div className="flex gap-1 items-center">
                     <TicketTag />
-                  </>
+                    {event.amountPeople && (
+                      <div
+                        className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
+                      >
+                        <Users className="w-3 h-3" />
+                        {event.amountPeople}
+                      </div>
+                    )}
+                  </div>
                 )}
 
                 {event.soldOut && <SoldOutTag />}
@@ -467,10 +667,10 @@ const Event: React.FC<EventProps> = ({
                 </div>
 
                 {/* <div
-                className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
-              >
-                {event.amountPeople}
-              </div> */}
+                  className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
+                >
+                  {event.amountPeople}
+                </div> */}
                 {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
               <Star className="text-black shrink-0" size={11} />
               RSVP

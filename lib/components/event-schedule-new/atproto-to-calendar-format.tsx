@@ -82,6 +82,7 @@ export const atprotoToCalendarFormat = (event: any) => {
     eventLink: event.main_url,
     isCoreEvent: event.isCoreEvent,
     imageUrl: event.image_url || "",
+    amountPeople: event.capacity || "",
     showTimeOfDay: event.showTimeOfDay ? true : false, // in case its undefined (added field later)
     ticketsAvailable: event.requires_ticket || false,
     ticketsUrl: event.tickets_url || "",

@@ -16,6 +16,7 @@ import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
 import { eventShops } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
+import cn from "classnames";
 
 // HOC to wrap ParcnetClientProvider
 export const withParcnetProvider = <P extends object>(
@@ -316,6 +317,18 @@ const EventVoucher = ({
     }
   }, [connectionState, fetchingCoupon, ticketVerified]);
 
+  useEffect(() => {
+    if (connectionState === ClientConnectionState.ERROR) {
+      // LOG MATOMO ERROR
+      // @ts-ignore
+      const matomo = window && window._paq;
+
+      if (matomo) {
+        matomo.push(["trackEvent", "Zupass Connection Error"]);
+      }
+    }
+  }, [connectionState]);
+
   return (
     <div className="w-full max-w-md mx-auto flex gap-2 flex-col">
       {/* Header */}
@@ -346,7 +359,9 @@ const EventVoucher = ({
               size="sm"
               className="outline-none  w-[150px]"
               color={
-                connectionState === ClientConnectionState.CONNECTED
+                connectionState === "ERROR"
+                  ? "red-1"
+                  : connectionState === ClientConnectionState.CONNECTED
                   ? "green-1"
                   : "green-1"
               }
@@ -375,7 +390,7 @@ const EventVoucher = ({
                 {connectionState === ClientConnectionState.DISCONNECTED &&
                   "Connect Zupass"}
                 {connectionState === ClientConnectionState.ERROR &&
-                  "Connection Failed"}
+                  "Connection Error"}
               </div>
             </VoxelButton>
           </div>
@@ -428,9 +443,13 @@ const EventVoucher = ({
 
       {!connectedWithTicket && !couponFetchedButNoCoupon && (
         <>
-          <div className="text-sm font-semibold text-gray-600 mt-1">
+          <div
+            className={cn("text-sm font-semibold text-gray-600 mt-1", {
+              "text-red-600": connectedWithNoTicket,
+            })}
+          >
             {connectedWithNoTicket
-              ? "No Devconnect ticket found"
+              ? "No Devconnect ticket found, get one below:"
               : "You need a Devconnect ticket to attend this event."}
           </div>
           <VoxelButton

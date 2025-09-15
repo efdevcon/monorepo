@@ -312,3 +312,20 @@ $width-right-column: 190px;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.ethday-rainbow {
+  // background: #fcb497;
+  // background: -webkit-linear-gradient(left,#8187c0, #8eccf0, #fcb497,  #f585b3);
+  // background: -o-linear-gradient(right, #8187c0, #8eccf0, #fcb497,  #f585b3);
+  // background: -moz-linear-gradient(right, #8187c0, #8eccf0, #fcb497,  #f585b3);
+  // background: linear-gradient(to right, #8187c0 50%, #8eccf0, #ffa17c,  #f585b3);
+  // background: #8187c0;
+  color: #8187c0;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.menu-desktop {
+  @media (max-width: 1093px) {
+    font-size: 14px;
+  }
+}
