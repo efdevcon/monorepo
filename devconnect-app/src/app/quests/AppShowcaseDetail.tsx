@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocalStorage } from 'usehooks-ts';
 import Image from 'next/image';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
@@ -105,6 +106,7 @@ export default function AppShowcaseDetail({
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const hasInitialized = useRef(false);
+  const [pwa] = useLocalStorage<boolean | null>('pwa', null);
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -331,7 +333,7 @@ export default function AppShowcaseDetail({
       <div
         className="bg-white border-b border-gray-200 w-full px-4 z-20 sticky"
         style={{
-          top: '59px', // Use exact pixel value instead of Tailwind class
+          top: pwa === true ? '118px' : '59px', // PWA mode: 118px, regular mode: 59px
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
         }}
       >

@@ -99,8 +99,11 @@ export default function QuestsPage() {
     if (group.id === 4) {
       // App Showcase group - navigate to dedicated route
       router.push('/quests/app-showcase');
+    } else if (group.id === 1) {
+      // Onboarding group - navigate to dedicated route
+      router.push('/quests/onboarding');
     } else {
-      // Other groups (onboarding) - use state-based navigation
+      // Other groups - use state-based navigation
       setSelectedGroup(group);
     }
   };
