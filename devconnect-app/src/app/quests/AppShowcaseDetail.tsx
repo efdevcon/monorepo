@@ -30,13 +30,13 @@ export default function AppShowcaseDetail({
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
 
-  // Get all App Showcase quests (groupId === 2)
-  const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 2);
+  // Get all App Showcase quests (groupId === 4)
+  const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
 
   // Group quests by district
   const questsByDistrict = useMemo(() => {
     const grouped: Record<string, Quest[]> = {};
-    
+
     appShowcaseQuests.forEach((quest) => {
       const districtId = quest.districtId?.toString();
       if (districtId && districtsData[districtId]) {
@@ -82,7 +82,7 @@ export default function AppShowcaseDetail({
       const questState = questStates[quest.id.toString()];
       return questState?.status === 'completed';
     }).length;
-    
+
     return {
       completed,
       total: quests.length,
@@ -101,7 +101,7 @@ export default function AppShowcaseDetail({
   };
 
   const toggleQuestExpansion = (questId: number) => {
-    setExpandedQuests(prev => {
+    setExpandedQuests((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(questId)) {
         newSet.delete(questId);
@@ -113,7 +113,7 @@ export default function AppShowcaseDetail({
   };
 
   const toggleDistrictExpansion = (districtId: string) => {
-    setExpandedDistrict(prev => prev === districtId ? '' : districtId);
+    setExpandedDistrict((prev) => (prev === districtId ? '' : districtId));
   };
 
   const selectDistrict = (districtId: string) => {
@@ -135,11 +135,12 @@ export default function AppShowcaseDetail({
       const questState = questStates[quest.id.toString()];
       return questState?.status === 'completed';
     }).length;
-    
+
     return {
       completed,
       total: allQuests.length,
-      percentage: allQuests.length > 0 ? (completed / allQuests.length) * 100 : 0,
+      percentage:
+        allQuests.length > 0 ? (completed / allQuests.length) * 100 : 0,
     };
   }, [appShowcaseQuests, questStates]);
 
@@ -296,7 +297,10 @@ export default function AppShowcaseDetail({
                     const isExpanded = expandedQuests.has(quest.id);
 
                     return (
-                      <div key={quest.id} className="border border-gray-100 rounded">
+                      <div
+                        key={quest.id}
+                        className="border border-gray-100 rounded"
+                      >
                         {/* Quest Card */}
                         <div className="p-4">
                           <div className="flex gap-3 items-start">
@@ -306,7 +310,8 @@ export default function AppShowcaseDetail({
                                 {quest.name}
                               </h4>
                               <p className="text-xs text-gray-600 leading-[1.3]">
-                                {quest.instructions || 'Complete this quest to earn points'}
+                                {quest.instructions ||
+                                  'Complete this quest to earn points'}
                               </p>
                             </div>
                             <div className="flex flex-col items-center gap-2">
@@ -350,14 +355,16 @@ export default function AppShowcaseDetail({
                               </div>
                               <div className="text-xs font-bold text-center">
                                 {isCompleted ? (
-                                  <span className="text-green-600">COLLECTED</span>
+                                  <span className="text-green-600">
+                                    COLLECTED
+                                  </span>
                                 ) : (
                                   <span className="text-blue-600">TO DO</span>
                                 )}
                               </div>
                             </div>
                           </div>
-                          
+
                           {/* Expand/Collapse Button */}
                           <button
                             onClick={() => toggleQuestExpansion(quest.id)}

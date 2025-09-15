@@ -148,8 +148,8 @@ export default function QuestsPage() {
 
   // If a group is selected, show the detail view
   if (selectedGroup) {
-    // Use AppShowcaseDetail for App Showcase group (groupId === 2)
-    if (selectedGroup.id === 2) {
+    // Use AppShowcaseDetail for App Showcase group (groupId === 4)
+    if (selectedGroup.id === 4) {
       return (
         <PageLayout title={title}>
           <AppShowcaseDetail
