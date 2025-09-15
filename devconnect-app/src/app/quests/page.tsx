@@ -1,143 +1,81 @@
 'use client';
 
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import PageLayout from '@/components/PageLayout';
-import TabbedSection from '@/components/TabbedSection';
-import QuestsTab from './QuestsTab';
-import RewardsTab from './RewardsTab';
-import LeaderboardTab from './LeaderboardTab';
 import { NAV_ITEMS } from '@/config/nav-items';
-import type { Quest as ApiQuest } from '@/types';
-
+import { questGroupsData } from '@/data/questGroups';
 import { questsData } from '@/data/quests';
-import { districtsData } from '@/data/districts';
+import QuestGroupDetail from './QuestGroupDetail';
+import AppShowcaseDetail from './AppShowcaseDetail';
+import type { QuestGroup } from '@/types';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
 const title = navLabel;
 
-// Quest states type
-type QuestStates = Record<
-  string,
-  {
-    status: 'completed' | 'active' | 'locked';
-    is_locked: boolean;
-    isCheckedIn?: boolean;
-  }
->;
+// Quest group progress type
+type QuestGroupProgress = {
+  groupId: number;
+  completed: number;
+  total: number;
+  status: 'completed' | 'in-progress' | 'not-started';
+};
 
-// Category-based tab configuration
-const CATEGORY_TABS = [
-  {
-    id: 'onboarding-1',
-    label: 'Onboarding Level 1',
-    category: 'Onboarding level 1',
-  },
-  {
-    id: 'onboarding-2',
-    label: 'Onboarding Level 2',
-    category: 'Onboarding level 2',
-  },
-  {
-    id: 'onboarding-3',
-    label: 'Onboarding Level 3',
-    category: 'Onboarding level 3',
-  },
-  { id: 'defi', label: 'DeFi', category: 'Defi' },
-  { id: 'l2s', label: 'L2s', category: 'L2s' },
-  { id: 'social', label: 'Social', category: 'Social' },
-  { id: 'rewards', label: 'Rewards', category: null },
-  { id: 'leaderboard', label: 'Leaderboard', category: null },
-];
+// Quest group status type
+type QuestGroupStatus = 'completed' | 'in-progress' | 'not-started';
 
 export default function QuestsPage() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
-  const [setTabIndex, setSetTabIndex] = useState<
-    ((index: number) => void) | null
-  >(null);
-  const [isHandlingDeepLink, setIsHandlingDeepLink] = useState(false);
-
-  // Local storage for quests data
-  const [apiQuests, setApiQuests] = useLocalStorage<ApiQuest[]>(
-    'quests-data',
-    []
-  );
+  const [selectedGroup, setSelectedGroup] = useState<QuestGroup | null>(null);
+  const [questGroupProgress, setQuestGroupProgress] = useLocalStorage<
+    Record<number, QuestGroupProgress>
+  >('quest-group-progress', {});
 
   // Local storage for quest status and locked state
-  const [questStates, setQuestStates] = useLocalStorage<QuestStates>(
-    'quest-states',
-    {}
-  );
-
-  // Ensure client-side rendering to prevent hydration mismatch
-  useEffect(() => {
-    setIsClient(true);
-
-    // Debug: Check what's in localStorage
-    const cachedQuests = localStorage.getItem('quests-data');
-    const cachedStates = localStorage.getItem('quest-states');
-    console.log('Cached quests:', cachedQuests);
-    console.log('Cached quest states:', cachedStates);
-  }, [apiQuests, questStates]);
-
-  // Process quests from TypeScript data on first load
-  useEffect(() => {
-    const processQuests = () => {
-      try {
-        setLoading(true);
-
-        // Transform the quests from TypeScript data
-        const transformedQuests: ApiQuest[] = questsData.map((quest: any) => {
-          // Determine category based on group
-          let category = '';
-          if (quest.group === '1. Onboarding') {
-            // Map onboarding quests to different levels based on order
-            if (quest.order <= 2) {
-              category = 'Onboarding level 1';
-            } else if (quest.order <= 4) {
-              category = 'Onboarding level 2';
-            } else {
-              category = 'Onboarding level 3';
-            }
-          } else if (quest.group === '2. App Showcase') {
-            // Use districtSlug if available, otherwise fallback to district name lookup
-            if (quest.districtSlug) {
-              // Map districtSlug to category name
-              const district = Object.values(districtsData).find(
-                (d) => d.layerName === quest.districtSlug
-              );
-              category = district ? district.name : 'Defi';
-            } else {
-              category = 'Defi'; // Default fallback
-            }
-          } else if (quest.group === '3. POI') {
-            category = 'POI';
-          }
-
-          return {
-            ...quest,
-            category,
-            group: quest.group.replace(/^\d+\.\s*/, '') as any, // Remove "1. ", "2. ", etc.
-            difficulty: quest.difficulty.replace(/^\d+\.\s*/, ''), // Remove "1. ", "2. ", etc.
-          };
-        });
-
-        setApiQuests(transformedQuests);
-        setError(null);
-      } catch (err) {
-        setError('Error processing quests');
-        console.error('Error processing quests:', err);
-      } finally {
-        setLoading(false);
+  const [questStates, setQuestStates] = useLocalStorage<
+    Record<
+      string,
+      {
+        status: 'completed' | 'active' | 'locked';
+        is_locked: boolean;
+        isCheckedIn?: boolean;
       }
-    };
+    >
+  >('quest-states', {});
 
-    // Process quests on first load
-    processQuests();
-  }, []); // Empty dependency array to only process once on mount
+  // Calculate progress for each quest group
+  useEffect(() => {
+    const progress: Record<number, QuestGroupProgress> = {};
+
+    questGroupsData.forEach((group) => {
+      const groupQuests = questsData.filter(
+        (quest) => quest.groupId === group.id
+      );
+      const completedQuests = groupQuests.filter((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status === 'completed';
+      });
+
+      const completed = completedQuests.length;
+      const total = groupQuests.length;
+
+      let status: QuestGroupStatus = 'not-started';
+      if (completed === total && total > 0) {
+        status = 'completed';
+      } else if (completed > 0) {
+        status = 'in-progress';
+      }
+
+      progress[group.id] = {
+        groupId: group.id,
+        completed,
+        total,
+        status,
+      };
+    });
+
+    setQuestGroupProgress(progress);
+  }, [questStates]);
 
   // Function to update quest status
   const updateQuestStatus = (
@@ -157,267 +95,139 @@ export default function QuestsPage() {
     }));
   };
 
-  // Function to update URL when tab changes
-  const updateUrlForTab = useCallback(
-    (tabIndex: number) => {
-      console.log(`quest:🌐 updateUrlForTab called with index: ${tabIndex}`);
-      console.log(`quest:🚫 isHandlingDeepLink: ${isHandlingDeepLink}`);
-      console.log(`quest:🔍 Stack trace:`, new Error().stack);
+  // Navigation handlers
+  const handleGroupClick = (group: QuestGroup) => {
+    setSelectedGroup(group);
+  };
 
-      // Prevent URL updates during deep linking
-      if (isHandlingDeepLink) {
-        console.log('quest:🚫 Skipping URL update during deep link handling');
-        return;
-      }
+  const handleBackToGroups = () => {
+    setSelectedGroup(null);
+  };
 
-      // Check if this is a SwipeableViews scroll event (not a manual tab click)
-      const stackTrace = new Error().stack || '';
-      const isSwipeableViewsEvent =
-        stackTrace.includes('SwipeableViews') ||
-        stackTrace.includes('handleScroll');
+  const getStatusBadge = (
+    status: QuestGroupStatus,
+    completed: number,
+    total: number
+  ) => {
+    const baseClasses = 'px-2 py-1 text-xs font-medium rounded';
 
-      // if (isSwipeableViewsEvent) {
-      //   console.log(
-      //     'quest:🚫 Skipping URL update - SwipeableViews scroll event'
-      //   );
-      //   return;
-      // }
-
-      const tab = CATEGORY_TABS[tabIndex];
-      if (tab) {
-        console.log(`quest:✅ Updating URL to #${tab.id}`);
-        // Use pushState to avoid triggering hashchange event
-        window.history.pushState(null, '', `#${tab.id}`);
-      } else {
-        console.log(`quest:❌ No tab found for index: ${tabIndex}`);
-      }
-    },
-    [isHandlingDeepLink]
-  );
-
-  // Function to switch to any tab
-  const switchToTab = useCallback(
-    (tabIndex: number) => {
-      console.log(`quest:🔄 switchToTab called with index: ${tabIndex}`);
-      console.log(`quest:📊 setTabIndex available: ${!!setTabIndex}`);
-
-      if (setTabIndex) {
-        console.log(`quest:✅ Calling setTabIndex(${tabIndex})`);
-        setTabIndex(tabIndex);
-      } else {
-        console.log(`quest:❌ setTabIndex not available`);
-      }
-    },
-    [setTabIndex]
-  );
-
-  // Stable callback for setting the tab index function
-  const handleTabIndexChange = useCallback(
-    (setTabIndexFn: (index: number) => void) => {
-      setSetTabIndex(() => setTabIndexFn);
-    },
-    []
-  );
-
-  // Function to find tab index from hash
-  const findTabIndexFromHash = useCallback((hashValue: string) => {
-    console.log('quest:🔍 Finding tab for hash:', hashValue);
-
-    // Find a category that the hash starts with
-    // For category hashes like "defi", find "defi"
-    // For quest hashes like "onboarding-level-2-pay-with-crypto", find "onboarding-level-2"
-    const categoryMatch = CATEGORY_TABS.findIndex((tab) => {
-      const startsWith =
-        hashValue.startsWith(tab.id + '-') || hashValue === tab.id;
-      // console.log(
-      //   `quest:🔍 Starts with check: "${hashValue}" starts with "${tab.id}-" or equals "${tab.id}" = ${startsWith}`
-      // );
-      return startsWith;
-    });
-
-    if (categoryMatch !== -1) {
-      console.log(`quest:✅ Category match found at index: ${categoryMatch}`);
-      return categoryMatch;
-    }
-
-    console.log('quest:❌ No match found');
-    return -1;
-  }, []);
-
-  // Handle deep linking
-  useEffect(() => {
-    if (!isClient || !setTabIndex) return;
-
-    const handleHashChange = () => {
-      const hash = window.location.hash;
-      console.log('quest:🔗 Processing hash:', hash);
-
-      if (hash.startsWith('#')) {
-        const hashValue = hash.substring(1);
-        console.log('quest:📝 Hash value:', hashValue);
-
-        const tabIndex = findTabIndexFromHash(hashValue);
-        console.log('quest:🎯 Found tab index:', tabIndex);
-
-        if (tabIndex !== -1) {
-          console.log('quest:✅ Switching to tab:', tabIndex);
-          setIsHandlingDeepLink(true);
-          // Call setTabIndex directly to avoid triggering updateUrlForTab
-          setTabIndex(tabIndex);
-          // Reset the flag after a short delay to allow the tab switch to complete
-          setTimeout(() => setIsHandlingDeepLink(false), 100);
-        } else {
-          console.log('quest:❌ No matching tab found');
-        }
-      }
-    };
-
-    // Handle initial load
-    handleHashChange();
-
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [isClient, setTabIndex, findTabIndexFromHash]);
-
-  // Also handle deep linking when setTabIndex becomes available
-  useEffect(() => {
-    if (isClient && setTabIndex) {
-      const hash = window.location.hash;
-      if (hash.startsWith('#')) {
-        const hashValue = hash.substring(1);
-        const tabIndex = findTabIndexFromHash(hashValue);
-
-        if (tabIndex !== -1) {
-          console.log('quest:🚀 Initial deep link: switching to tab', tabIndex);
-          setIsHandlingDeepLink(true);
-          setTabIndex(tabIndex);
-          // Reset the flag after a short delay to allow the tab switch to complete
-          setTimeout(() => setIsHandlingDeepLink(false), 100);
-        }
-      }
-    }
-  }, [isClient, setTabIndex, findTabIndexFromHash]);
-
-  // TODO: The tab logic in this component was hard to wrap head around - simplification + alignment with rest of app attempted here but some functionality probably lost
-  // Should consider handling deep linking in a generic manner (isolated to the Tab component, to isolate the complexity) if we want auto tab selection via url / deep linking
-  // Left all code as is for now, although I commented out the previous rendering logic
-  const tabs = [
-    ...Array.from({ length: 6 }, (_, index) => ({
-      label: CATEGORY_TABS[index].label,
-      component: ({ activeIndex }: { activeIndex: number }) => {
-        const category = CATEGORY_TABS[activeIndex]?.category;
-
-        if (!category) {
-          return <div>No category</div>;
-        }
-
-        const apiQuestsForCategory = apiQuests.filter(
-          (quest) => (quest as any).category === category
-        );
-
+    switch (status) {
+      case 'completed':
         return (
-          <QuestsTab
-            category={category}
-            numberOfTabs={CATEGORY_TABS.length}
-            apiQuests={apiQuestsForCategory}
+          <div className={`${baseClasses} bg-black text-white`}>
+            {completed}/{total}
+          </div>
+        );
+      case 'in-progress':
+        return (
+          <div className={`${baseClasses} bg-black text-white`}>
+            {completed}/{total}
+          </div>
+        );
+      case 'not-started':
+        return (
+          <div className={`${baseClasses} bg-gray-300 text-black`}>
+            Not started
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
+  const getStartHereBadge = (groupId: number) => {
+    if (groupId === 1) {
+      return (
+        <div className="px-2 py-1 text-xs font-semibold text-black border border-black rounded">
+          START HERE
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // If a group is selected, show the detail view
+  if (selectedGroup) {
+    // Use AppShowcaseDetail for App Showcase group (groupId === 2)
+    if (selectedGroup.id === 2) {
+      return (
+        <PageLayout title={title}>
+          <AppShowcaseDetail
+            group={selectedGroup}
+            onBack={handleBackToGroups}
             questStates={questStates}
             updateQuestStatus={updateQuestStatus}
-            loading={loading}
-            error={error}
-            tabId={CATEGORY_TABS[index].id}
           />
-        );
-      },
-    })),
-    {
-      label: 'Rewards',
-      component: () => <RewardsTab />,
-    },
-    {
-      label: 'Leaderboard',
-      component: () => <LeaderboardTab />,
-    },
-  ];
+        </PageLayout>
+      );
+    }
 
-  // Show loading only if not client-side yet
-  if (!isClient) {
+    // Use regular QuestGroupDetail for other groups
     return (
-      <PageLayout title={title} tabs={tabs}>
-        <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-3">
-          <div className="text-center">Loading quests...</div>
-        </div>
+      <PageLayout title={title}>
+        <QuestGroupDetail
+          group={selectedGroup}
+          onBack={handleBackToGroups}
+          questStates={questStates}
+          updateQuestStatus={updateQuestStatus}
+        />
       </PageLayout>
     );
   }
 
+  // Otherwise, show the group list
   return (
-    <PageLayout title={title} tabs={tabs}>
-      {/* <TabbedSection
-        navLabel={navLabel}
-        maxVisibleTabs={4}
-        onTabIndexChange={(setTabIndexFn) => {
-          // Set up the tab index function for deep linking (original function)
-          handleTabIndexChange(setTabIndexFn);
+    <PageLayout title={title}>
+      <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-6">
+        {/* Header Section */}
+        <div className="flex flex-col gap-3 items-start justify-start w-full">
+          <h1 className="text-[28px] font-bold text-black tracking-[-0.2px] leading-none">
+            Quests
+          </h1>
+          <p className="text-base text-black tracking-[-0.1px] leading-[1.3]">
+            Learn about Ethereum and explore the App Showcase to earn real
+            rewards!
+          </p>
+        </div>
 
-          // Create a wrapper that also updates the URL for manual tab changes
-          const wrappedSetTabIndex = (index: number) => {
-            console.log(
-              `quest:🎯 wrappedSetTabIndex called with index: ${index}`
+        {/* Quest Groups */}
+        <div className="flex flex-col gap-4 items-start justify-start w-full">
+          {questGroupsData.map((group) => {
+            const progress = questGroupProgress[group.id];
+            const isCompleted = progress?.status === 'completed';
+            const isInProgress = progress?.status === 'in-progress';
+
+            return (
+              <button
+                key={group.id}
+                onClick={() => handleGroupClick(group)}
+                className="bg-white border border-gray-200 rounded-lg p-4 w-full flex flex-col gap-4 items-end justify-start relative hover:bg-gray-50 transition-colors cursor-pointer"
+              >
+                {/* Status Badge */}
+                <div className="flex items-center gap-2">
+                  {getStartHereBadge(group.id)}
+                  {progress &&
+                    getStatusBadge(
+                      progress.status,
+                      progress.completed,
+                      progress.total
+                    )}
+                </div>
+
+                {/* Group Content */}
+                <div className="flex flex-col gap-2 items-start justify-start w-full">
+                  <h2 className="text-lg font-bold text-black tracking-[-0.1px] leading-[1.2] w-full text-left">
+                    {group.name}
+                  </h2>
+                  <p className="text-xs text-black tracking-[-0.1px] leading-[1.3] w-full text-left">
+                    {group.description}
+                  </p>
+                </div>
+              </button>
             );
-            console.log(`quest:🚫 isHandlingDeepLink: ${isHandlingDeepLink}`);
-
-            // Prevent tab changes during deep linking
-            if (isHandlingDeepLink) {
-              console.log(
-                'quest:🚫 Skipping tab change during deep link handling'
-              );
-              return;
-            }
-
-            setTabIndexFn(index);
-            updateUrlForTab(index);
-          };
-
-          // Store the original function for deep linking
-          setSetTabIndex(() => setTabIndexFn);
-        }}
-        onTabChange={updateUrlForTab}
-        disableSwipe={isHandlingDeepLink}
-      >
-        {(tabIndex, tabItem) => {
-          // Map tab index to the appropriate component
-          if (tabIndex < 6) {
-            // Quest category tabs (0-5)
-            const category = CATEGORY_TABS[tabIndex]?.category;
-            if (category) {
-              return (
-                <QuestsTab
-                  apiQuests={apiQuests.filter(
-                    (quest) => (quest as any).category === category
-                  )}
-                  questStates={questStates}
-                  updateQuestStatus={updateQuestStatus}
-                  loading={loading && apiQuests.length === 0} // Only show loading if no cached data
-                  error={error}
-                  category={category}
-                  onSwitchToTab={switchToTab}
-                  numberOfTabs={CATEGORY_TABS.length}
-                  tabId={CATEGORY_TABS[tabIndex]?.id}
-                />
-              );
-            }
-          } else if (tabIndex === 6) {
-            // Rewards tab
-            return <RewardsTab />;
-          } else if (tabIndex === 7) {
-            // Leaderboard tab
-            return <LeaderboardTab />;
-          }
-
-          return <div>Not found</div>;
-        }}
-      </TabbedSection> */}
+          })}
+        </div>
+      </div>
     </PageLayout>
   );
 }
