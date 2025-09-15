@@ -13,6 +13,8 @@ import fs from 'fs/promises';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import type { Quest } from '../src/types';
+import { supportersData } from '../src/data/supporters';
+import { districtsData } from '../src/data/districts';
 
 // Get the directory of the current script
 const __filename = fileURLToPath(import.meta.url);
@@ -24,7 +26,7 @@ const API_ENDPOINT = `${API_BASE_URL}/api/quests`;
 
 // Define output paths
 const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
-const QUESTS_FILE = path.join(DATA_DIR, 'quests.json');
+const QUESTS_FILE = path.join(DATA_DIR, 'quests.ts');
 const FULL_DATA_FILE = path.join(DATA_DIR, 'api-quests.json');
 
 // Using the imported Quest type from ../src/types
@@ -66,15 +68,48 @@ async function saveQuests(data: ApiResponse): Promise<void> {
   // Ensure data directory exists
   await fs.mkdir(DATA_DIR, { recursive: true });
 
+  // Process quests to add districtId and districtSlug based on supporterId
+  const processedQuests = quests.map((quest) => {
+    let districtId: number | undefined;
+    let districtSlug: string | undefined;
+
+    if (quest.supporterId) {
+      const supporter = supportersData[quest.supporterId];
+      if (supporter && supporter.districtId) {
+        districtId = parseInt(supporter.districtId, 10);
+        const district = districtsData[supporter.districtId];
+        if (district) {
+          districtSlug = district.layerName;
+        }
+      }
+    }
+
+    return {
+      ...quest,
+      districtId,
+      districtSlug,
+    };
+  });
+
+  // Generate TypeScript content
+  const questsContent = `import type { Quest } from '@/types';
+
+export const questsData: Quest[] = ${JSON.stringify(processedQuests, null, 2)};
+`;
+
   // Save quest data files
   await Promise.all([
-    fs.writeFile(QUESTS_FILE, JSON.stringify(quests, null, 2)),
-    fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
+    fs.writeFile(QUESTS_FILE, questsContent),
+    // fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
   ]);
 
+  // Count quests with district information
+  const questsWithDistricts = processedQuests.filter(quest => quest.districtId && quest.districtSlug).length;
+
   console.log('✅ Quest data saved successfully:');
-  console.log(`  - Quests: ${quests.length} items`);
-  console.log(`  - Total points available: ${quests.reduce((sum, quest) => sum + (quest.points || 0), 0)}`);
+  console.log(`  - Quests: ${processedQuests.length} items`);
+  console.log(`  - Quests with district info: ${questsWithDistricts} items`);
+  console.log(`  - Total points available: ${processedQuests.reduce((sum, quest) => sum + (quest.points || 0), 0)}`);
   console.log(`  - Full API response saved to api-quests.json`);
 }
 

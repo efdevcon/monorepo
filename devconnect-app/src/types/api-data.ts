@@ -20,10 +20,12 @@ export interface POI {
 
 export interface District {
   name: string;
+  layerName: string;
 }
 
 export interface Location {
   name: string;
+  layerName: string;
 }
 
 export interface Districts {

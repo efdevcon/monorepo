@@ -1,4 +1,6 @@
-[
+import type { POI } from '@/types/api-data';
+
+export const poisData: POI[] = [
   {
     "name": "Main entrance",
     "layerName": "main-entrance",
@@ -23,4 +25,4 @@
     "districtId": "1",
     "locationId": null
   }
-]
+];

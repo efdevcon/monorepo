@@ -94,7 +94,6 @@ export async function GET(request: NextRequest) {
         location: getPropertyValue('Location'),
         layerName: getPropertyValue('Layer name'),
         POI: getPropertyValue('POI'),
-        supporterId: getPropertyValue('Quests'),
         id: page.id?.replaceAll('-', ''),
       };
     });
@@ -138,6 +137,7 @@ export async function GET(request: NextRequest) {
 
     const poisWithIds = cleanPois.map(item => {
       const { district, location, ...rest } = item;
+      delete rest.id;
       return {
         ...rest,
         districtId: districtMap.get(district) || null,

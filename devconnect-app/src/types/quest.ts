@@ -32,9 +32,6 @@ export type QuestConditionType =
  * Quest categories without numbered prefixes
  */
 export type QuestCategory = 
-  | 'Onboarding level 1'
-  | 'Onboarding level 2'
-  | 'Onboarding level 3'
   | 'Defi'
   | 'L2s'
   | 'Social';
@@ -43,8 +40,10 @@ export type QuestCategory =
  * Quest groups without numbered prefixes
  */
 export type QuestGroup = 
-  | 'Onboarding'
-  | 'App Showcase';
+  | '1. Setup & app tour'
+  | '2. App Showcase'
+  | '3. World’s Fair interactions'
+  | '4. Explore the Ethereum ecosystem'
 
 /**
  * Quest difficulty levels without numbered prefixes
@@ -95,6 +94,15 @@ export interface Quest {
   
   /** URL to the POAP image */
   poapImageLink: string;
+
+  /** Group of the quest */
+  group: QuestGroup;
+
+  /** District ID of the quest (computed field based on supporterId) */
+  districtId?: number;
+
+  /** District slug of the quest (computed field based on supporterId) */
+  districtSlug?: string;
 }
 
 /**

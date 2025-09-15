@@ -90,6 +90,7 @@ export async function GET(request: NextRequest) {
         instructions: getPropertyValue('Quest instructions'),
         action: getPropertyValue('Action'),
         button: getPropertyValue('Button'),
+        group: getPropertyValue('Group'),
         conditionType: getPropertyValue('Condition type'),
         conditionValues: getPropertyValue('Quest condition values'),
         supporterId: getPropertyValue('Supporter'),

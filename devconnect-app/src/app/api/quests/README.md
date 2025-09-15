@@ -21,6 +21,7 @@ Fetches quest data from a Notion database. Quests are ordered by the 'Order' pro
       "instructions": "",
       "action": "connect-wallet",
       "button": "Connect Wallet",
+      "group": "Onboarding",
       "conditionType": "isWalletConnected",
       "conditionValues": "",
       "supporterId": "",
@@ -45,6 +46,7 @@ Each quest contains the following fields:
 - `instructions` (string): Instructions for completing the quest
 - `action` (string): Type of action required
 - `button` (string): Button text for the quest
+- `group` (string): Quest group classification
 - `conditionType` (string): Type of condition to check
 - `conditionValues` (string): Values for the condition
 - `supporterId` (string): ID of the related supporter (if any)

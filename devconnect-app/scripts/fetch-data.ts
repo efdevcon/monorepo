@@ -24,10 +24,10 @@ const API_ENDPOINT = `${API_BASE_URL}/api/data`;
 
 // Define output paths
 const DATA_DIR = path.join(__dirname, '..', 'src', 'data');
-const SUPPORTERS_FILE = path.join(DATA_DIR, 'supporters.json');
-const POIS_FILE = path.join(DATA_DIR, 'pois.json');
-const DISTRICTS_FILE = path.join(DATA_DIR, 'districts.json');
-const LOCATIONS_FILE = path.join(DATA_DIR, 'locations.json');
+const SUPPORTERS_FILE = path.join(DATA_DIR, 'supporters.ts');
+const POIS_FILE = path.join(DATA_DIR, 'pois.ts');
+const DISTRICTS_FILE = path.join(DATA_DIR, 'districts.ts');
+const LOCATIONS_FILE = path.join(DATA_DIR, 'locations.ts');
 const FULL_DATA_FILE = path.join(DATA_DIR, 'api-data.json');
 
 // Using the imported ApiResponse type from ../src/types
@@ -60,13 +60,56 @@ async function saveData(data: ApiResponse): Promise<void> {
   // Ensure data directory exists
   await fs.mkdir(DATA_DIR, { recursive: true });
 
+  // Generate TypeScript content
+  const supportersContent = `import type { Supporter } from '@/types/api-data';
+
+export const supportersData: Record<string, Supporter> = ${JSON.stringify(supporters, null, 2)};
+`;
+
+  const poisContent = `import type { POI } from '@/types/api-data';
+
+export const poisData: POI[] = ${JSON.stringify(pois, null, 2)};
+`;
+
+  // Add layerName to districts
+  const districtsWithLayerName = Object.fromEntries(
+    Object.entries(districts).map(([id, district]) => [
+      id,
+      {
+        ...district,
+        layerName: district.name.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')
+      }
+    ])
+  );
+
+  const districtsContent = `import type { Districts } from '@/types/api-data';
+
+export const districtsData: Districts = ${JSON.stringify(districtsWithLayerName, null, 2)};
+`;
+
+  // Add layerName to locations
+  const locationsWithLayerName = Object.fromEntries(
+    Object.entries(locations).map(([id, location]) => [
+      id,
+      {
+        ...location,
+        layerName: location.name.toLowerCase().replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-')
+      }
+    ])
+  );
+
+  const locationsContent = `import type { Locations } from '@/types/api-data';
+
+export const locationsData: Locations = ${JSON.stringify(locationsWithLayerName, null, 2)};
+`;
+
   // Save individual data files
   await Promise.all([
-    fs.writeFile(SUPPORTERS_FILE, JSON.stringify(supporters, null, 2)),
-    fs.writeFile(POIS_FILE, JSON.stringify(pois, null, 2)),
-    fs.writeFile(DISTRICTS_FILE, JSON.stringify(districts, null, 2)),
-    fs.writeFile(LOCATIONS_FILE, JSON.stringify(locations, null, 2)),
-    fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
+    fs.writeFile(SUPPORTERS_FILE, supportersContent),
+    fs.writeFile(POIS_FILE, poisContent),
+    fs.writeFile(DISTRICTS_FILE, districtsContent),
+    fs.writeFile(LOCATIONS_FILE, locationsContent),
+    // fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
   ]);
 
   console.log('✅ Data saved successfully:');

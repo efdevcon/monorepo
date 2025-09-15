@@ -10,6 +10,9 @@ import LeaderboardTab from './LeaderboardTab';
 import { NAV_ITEMS } from '@/config/nav-items';
 import type { Quest as ApiQuest } from '@/types';
 
+import { questsData } from '@/data/quests';
+import { districtsData } from '@/data/districts';
+
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
 const title = navLabel;
@@ -80,38 +83,61 @@ export default function QuestsPage() {
     console.log('Cached quest states:', cachedStates);
   }, [apiQuests, questStates]);
 
-  // Fetch quests from API on first load
+  // Process quests from TypeScript data on first load
   useEffect(() => {
-    const fetchQuests = async () => {
+    const processQuests = () => {
       try {
         setLoading(true);
-        const response = await fetch('/api/quests');
-        const data = await response.json();
 
-        if (data.success) {
-          // Transform the quests to trim numbered prefixes from category, group, and difficulty
-          const transformedQuests = data.quests.map((quest: any) => ({
+        // Transform the quests from TypeScript data
+        const transformedQuests: ApiQuest[] = questsData.map((quest: any) => {
+          // Determine category based on group
+          let category = '';
+          if (quest.group === '1. Onboarding') {
+            // Map onboarding quests to different levels based on order
+            if (quest.order <= 2) {
+              category = 'Onboarding level 1';
+            } else if (quest.order <= 4) {
+              category = 'Onboarding level 2';
+            } else {
+              category = 'Onboarding level 3';
+            }
+          } else if (quest.group === '2. App Showcase') {
+            // Use districtSlug if available, otherwise fallback to district name lookup
+            if (quest.districtSlug) {
+              // Map districtSlug to category name
+              const district = Object.values(districtsData).find(
+                (d) => d.layerName === quest.districtSlug
+              );
+              category = district ? district.name : 'Defi';
+            } else {
+              category = 'Defi'; // Default fallback
+            }
+          } else if (quest.group === '3. POI') {
+            category = 'POI';
+          }
+
+          return {
             ...quest,
-            category: quest.category.replace(/^\d+\.\s*/, ''), // Remove "1. ", "2. ", etc.
-            group: quest.group.replace(/^\d+\.\s*/, ''), // Remove "1. ", "2. ", etc.
+            category,
+            group: quest.group.replace(/^\d+\.\s*/, '') as any, // Remove "1. ", "2. ", etc.
             difficulty: quest.difficulty.replace(/^\d+\.\s*/, ''), // Remove "1. ", "2. ", etc.
-          }));
+          };
+        });
 
-          setApiQuests(transformedQuests);
-        } else {
-          setError('Failed to fetch quests');
-        }
+        setApiQuests(transformedQuests);
+        setError(null);
       } catch (err) {
-        setError('Error fetching quests');
-        console.error('Error fetching quests:', err);
+        setError('Error processing quests');
+        console.error('Error processing quests:', err);
       } finally {
         setLoading(false);
       }
     };
 
-    // Always fetch on first load
-    fetchQuests();
-  }, []); // Empty dependency array to only fetch once on mount
+    // Process quests on first load
+    processQuests();
+  }, []); // Empty dependency array to only process once on mount
 
   // Function to update quest status
   const updateQuestStatus = (
@@ -287,7 +313,7 @@ export default function QuestsPage() {
         }
 
         const apiQuestsForCategory = apiQuests.filter(
-          (quest) => quest.category === category
+          (quest) => (quest as any).category === category
         );
 
         return (
@@ -368,7 +394,7 @@ export default function QuestsPage() {
               return (
                 <QuestsTab
                   apiQuests={apiQuests.filter(
-                    (quest) => quest.category === category
+                    (quest) => (quest as any).category === category
                   )}
                   questStates={questStates}
                   updateQuestStatus={updateQuestStatus}
