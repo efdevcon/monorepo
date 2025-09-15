@@ -72,7 +72,7 @@ const QuestItem = ({
 
   const handleClick = () => {
     const newExpandedState = !isExpanded;
-    onQuestSelect?.(quest.id, newExpandedState);
+    onQuestSelect?.(quest.id.toString(), newExpandedState);
   };
 
   const handleQuestAction = async () => {
@@ -92,7 +92,7 @@ const QuestItem = ({
 
       if (result) {
         // Update quest state to completed
-        onQuestComplete?.(quest.id);
+        onQuestComplete?.(quest.id.toString());
 
         toast.success(
           <div className="space-y-2">
