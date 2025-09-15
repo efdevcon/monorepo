@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 import PageLayout from '@/components/PageLayout';
 import { NAV_ITEMS } from '@/config/nav-items';
@@ -26,6 +27,7 @@ type QuestGroupProgress = {
 type QuestGroupStatus = 'completed' | 'in-progress' | 'not-started';
 
 export default function QuestsPage() {
+  const router = useRouter();
   const [selectedGroup, setSelectedGroup] = useState<QuestGroup | null>(null);
   const [questGroupProgress, setQuestGroupProgress] = useLocalStorage<
     Record<number, QuestGroupProgress>
@@ -42,40 +44,6 @@ export default function QuestsPage() {
       }
     >
   >('quest-states', {});
-
-  // Calculate progress for each quest group
-  useEffect(() => {
-    const progress: Record<number, QuestGroupProgress> = {};
-
-    questGroupsData.forEach((group) => {
-      const groupQuests = questsData.filter(
-        (quest) => quest.groupId === group.id
-      );
-      const completedQuests = groupQuests.filter((quest) => {
-        const questState = questStates[quest.id.toString()];
-        return questState?.status === 'completed';
-      });
-
-      const completed = completedQuests.length;
-      const total = groupQuests.length;
-
-      let status: QuestGroupStatus = 'not-started';
-      if (completed === total && total > 0) {
-        status = 'completed';
-      } else if (completed > 0) {
-        status = 'in-progress';
-      }
-
-      progress[group.id] = {
-        groupId: group.id,
-        completed,
-        total,
-        status,
-      };
-    });
-
-    setQuestGroupProgress(progress);
-  }, [questStates]);
 
   // Function to update quest status
   const updateQuestStatus = (
@@ -95,9 +63,46 @@ export default function QuestsPage() {
     }));
   };
 
+  // Calculate progress for each quest group
+  useEffect(() => {
+    const progress: Record<number, QuestGroupProgress> = {};
+
+    questGroupsData.forEach((group) => {
+      const groupQuests = questsData.filter(
+        (quest) => quest.groupId === group.id
+      );
+      // For now, simulate some completed quests based on order
+      const completedQuests = groupQuests.filter((quest) => quest.order <= 2);
+      const completed = completedQuests.length;
+      const total = groupQuests.length;
+
+      let status: QuestGroupStatus = 'not-started';
+      if (completed === total && total > 0) {
+        status = 'completed';
+      } else if (completed > 0) {
+        status = 'in-progress';
+      }
+
+      progress[group.id] = {
+        groupId: group.id,
+        completed,
+        total,
+        status,
+      };
+    });
+
+    setQuestGroupProgress(progress);
+  }, []);
+
   // Navigation handlers
   const handleGroupClick = (group: QuestGroup) => {
-    setSelectedGroup(group);
+    if (group.id === 4) {
+      // App Showcase group - navigate to dedicated route
+      router.push('/quests/app-showcase');
+    } else {
+      // Other groups (onboarding) - use state-based navigation
+      setSelectedGroup(group);
+    }
   };
 
   const handleBackToGroups = () => {
@@ -175,7 +180,7 @@ export default function QuestsPage() {
     );
   }
 
-  // Otherwise, show the group list
+  // Show the group list
   return (
     <PageLayout title={title}>
       <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-6">

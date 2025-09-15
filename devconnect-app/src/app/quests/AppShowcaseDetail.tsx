@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import type { Quest, QuestGroup } from '@/types';
@@ -8,11 +9,14 @@ import type { Quest, QuestGroup } from '@/types';
 interface AppShowcaseDetailProps {
   group: QuestGroup;
   onBack: () => void;
-  questStates: Record<string, {
-    status: 'completed' | 'active' | 'locked';
-    is_locked: boolean;
-    isCheckedIn?: boolean;
-  }>;
+  questStates: Record<
+    string,
+    {
+      status: 'completed' | 'active' | 'locked';
+      is_locked: boolean;
+      isCheckedIn?: boolean;
+    }
+  >;
   updateQuestStatus: (
     questId: string,
     status: 'completed' | 'active' | 'locked',
@@ -27,8 +31,10 @@ export default function AppShowcaseDetail({
   questStates,
   updateQuestStatus,
 }: AppShowcaseDetailProps) {
+  const router = useRouter();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
+  const [hasInitialized, setHasInitialized] = useState(false);
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -65,12 +71,53 @@ export default function AppShowcaseDetail({
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [questsByDistrict]);
 
-  // Set first district as expanded by default
-  React.useEffect(() => {
+  // Handle URL-based routing for initial state loading
+  useEffect(() => {
+    if (hasInitialized) return; // Prevent re-running after initialization
+
+    const hash = window.location.hash.substring(1); // Remove # from hash
+
+    if (hash) {
+      // Check if it's a district slug
+      const district = districtsWithQuests.find((d) => d.layerName === hash);
+      if (district) {
+        setExpandedDistrict(district.id);
+        setExpandedQuests(new Set()); // Clear quest expansions when switching districts
+        setHasInitialized(true);
+        // Remove hash from URL after loading state
+        router.replace('/quests/app-showcase');
+        return;
+      }
+
+      // Check if it's a quest ID
+      const quest = appShowcaseQuests.find((q) => q.id.toString() === hash);
+      if (quest) {
+        const questDistrict = districtsWithQuests.find(
+          (d) => d.id === quest.districtId?.toString()
+        );
+        if (questDistrict) {
+          setExpandedDistrict(questDistrict.id);
+          setExpandedQuests(new Set([quest.id]));
+        }
+        setHasInitialized(true);
+        // Remove hash from URL after loading state
+        router.replace('/quests/app-showcase');
+        return;
+      }
+    }
+
+    // Default: expand first district if no hash
     if (districtsWithQuests.length > 0 && !expandedDistrict) {
       setExpandedDistrict(districtsWithQuests[0].id);
+      setHasInitialized(true);
     }
-  }, [districtsWithQuests, expandedDistrict]);
+  }, [
+    districtsWithQuests,
+    appShowcaseQuests,
+    router,
+    hasInitialized,
+    expandedDistrict,
+  ]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -117,7 +164,15 @@ export default function AppShowcaseDetail({
   };
 
   const selectDistrict = (districtId: string) => {
-    setExpandedDistrict(districtId);
+    // If clicking on the same district, toggle it (collapse if expanded)
+    if (expandedDistrict === districtId) {
+      setExpandedDistrict('');
+      setExpandedQuests(new Set());
+    } else {
+      // Expand the selected district and collapse others
+      setExpandedDistrict(districtId);
+      setExpandedQuests(new Set()); // Clear quest expansions
+    }
   };
 
   const handleQuestAction = (quest: Quest) => {

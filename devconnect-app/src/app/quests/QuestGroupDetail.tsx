@@ -7,11 +7,14 @@ import type { Quest, QuestGroup } from '@/types';
 interface QuestGroupDetailProps {
   group: QuestGroup;
   onBack: () => void;
-  questStates: Record<string, {
-    status: 'completed' | 'active' | 'locked';
-    is_locked: boolean;
-    isCheckedIn?: boolean;
-  }>;
+  questStates: Record<
+    string,
+    {
+      status: 'completed' | 'active' | 'locked';
+      is_locked: boolean;
+      isCheckedIn?: boolean;
+    }
+  >;
   updateQuestStatus: (
     questId: string,
     status: 'completed' | 'active' | 'locked',
@@ -143,7 +146,7 @@ export default function QuestGroupDetail({
                 <div className="flex items-start gap-3">
                   {/* Quest Icon */}
                   <div className="w-10 h-10 bg-gray-300 rounded flex-shrink-0" />
-                  
+
                   {/* Quest Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
@@ -152,10 +155,11 @@ export default function QuestGroupDetail({
                           {quest.name}
                         </h3>
                         <p className="text-xs text-black tracking-[-0.1px] leading-[1.3]">
-                          {quest.instructions || 'Complete this quest to earn points'}
+                          {quest.instructions ||
+                            'Complete this quest to earn points'}
                         </p>
                       </div>
-                      
+
                       {/* Completion Status */}
                       {isCompleted && (
                         <div className="w-5 h-5 flex-shrink-0 ml-2">
