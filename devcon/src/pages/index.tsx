@@ -55,6 +55,7 @@ import Coordination from 'assets/images/programming/Coordination.png'
 import DeveloperExperience from 'assets/images/programming/DeveloperExperience.png'
 import Security from 'assets/images/programming/Security.png'
 import Layer2 from 'assets/images/programming/Layer2.png'
+import DevconnectHighlight from 'components/domain/devconnect-highlight'
 
 const videos = [
   {
@@ -282,6 +283,8 @@ export default function Index(props: any) {
     <div className={`${css['layout-default']} ${themes['index']}`}>
       <Header withStrip withHero />
       <Hero />
+
+      <DevconnectHighlight />
 
       <div className="bg-white z-10 overflow-hidden w-full relative z<">
         <ImageNew
