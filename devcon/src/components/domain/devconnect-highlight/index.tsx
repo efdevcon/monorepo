@@ -4,6 +4,7 @@ import { useState } from 'react'
 import DevconnectHighlightImage from './hero.jpg'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 // import CubeLogo from './cube-logo.png'
 // import LogoText from './LogoText'
 import DevconnectLogoWithText from './DevconnectLogoWithText'
@@ -37,9 +38,11 @@ export default function DevconnectHighlight() {
                 Devconnect ARG is the Ethereum World's Fair: A showcase of apps and an event to connect, build, and
                 accelerate Ethereum adoption.
               </div>
-              <Button className="mt-8 gap-2 text-sm">
-                Visit Devconnect.org <ArrowUpRight className="w-4 h-4" />
-              </Button>
+              <Link href="https://devconnect.org">
+                <Button className="mt-8 gap-2 text-sm">
+                  Visit Devconnect.org <ArrowUpRight className="w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
 
