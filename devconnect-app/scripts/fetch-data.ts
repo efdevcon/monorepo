@@ -107,7 +107,7 @@ export const locationsData: Locations = ${JSON.stringify(locationsWithLayerName,
   await Promise.all([
     fs.writeFile(SUPPORTERS_FILE, supportersContent),
     fs.writeFile(POIS_FILE, poisContent),
-    fs.writeFile(DISTRICTS_FILE, districtsContent),
+    // fs.writeFile(DISTRICTS_FILE, districtsContent),
     fs.writeFile(LOCATIONS_FILE, locationsContent),
     // fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
   ]);

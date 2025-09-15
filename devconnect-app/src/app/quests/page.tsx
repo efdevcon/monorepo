@@ -183,7 +183,7 @@ export default function QuestsPage() {
   // Show the group list
   return (
     <PageLayout title={title}>
-      <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-6">
+      <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-6 p-4">
         {/* Header Section */}
         <div className="flex flex-col gap-3 items-start justify-start w-full">
           <h1 className="text-[28px] font-bold text-black tracking-[-0.2px] leading-none">

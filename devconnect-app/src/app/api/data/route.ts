@@ -95,6 +95,8 @@ export async function GET(request: NextRequest) {
         layerName: getPropertyValue('Layer name'),
         POI: getPropertyValue('POI'),
         id: page.id?.replaceAll('-', ''),
+        logo: getPropertyValue('Logo'),
+        description: getPropertyValue('Project description'),
       };
     });
 
