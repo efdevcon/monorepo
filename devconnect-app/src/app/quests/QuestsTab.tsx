@@ -7,6 +7,11 @@ import QuestReward from '@/components/QuestReward';
 import QuestLeaderboard from '@/components/QuestLeaderboard';
 import type { Quest as ApiQuest, ComponentQuest } from '@/types';
 
+// Extended ComponentQuest interface that includes category and group
+interface ExtendedComponentQuest extends ComponentQuest {
+  category: string;
+}
+
 // Quest states type
 type QuestStates = Record<
   string,
@@ -25,16 +30,21 @@ const transformApiQuestToComponentQuest = (
     is_locked: boolean;
     isCheckedIn?: boolean;
   }
-): ComponentQuest => {
+): ExtendedComponentQuest => {
+  if (!(apiQuest as any).category) {
+    throw new Error(`Quest ${apiQuest.id} is missing category field`);
+  }
+
   return {
     ...apiQuest,
+    category: (apiQuest as any).category,
     state: questState,
   };
 };
 
 // Generate quest deep link ID
 const getQuestDeepLinkId = (quest: ApiQuest): string => {
-  const category = quest.category
+  const category = (quest as any).category
     ?.toLowerCase()
     .replace(/\s+/g, '-')
     .replace(/[^a-z0-9-]/g, '-');
@@ -80,15 +90,17 @@ export default function QuestsTab({
   const [isHandlingDeepLink, setIsHandlingDeepLink] = useState(false);
 
   // Transform API quests to component quests with status from props
-  const componentQuests: ComponentQuest[] = apiQuests.map((apiQuest) => {
-    const savedState = questStates[apiQuest.id] || {
-      status: 'locked' as const,
-      is_locked: true,
-      isCheckedIn: false,
-    };
+  const componentQuests: ExtendedComponentQuest[] = apiQuests.map(
+    (apiQuest) => {
+      const savedState = questStates[apiQuest.id.toString()] || {
+        status: 'locked' as const,
+        is_locked: true,
+        isCheckedIn: false,
+      };
 
-    return transformApiQuestToComponentQuest(apiQuest, savedState);
-  });
+      return transformApiQuestToComponentQuest(apiQuest, savedState);
+    }
+  );
 
   // Handle quest completion
   const handleQuestComplete = (questId: string) => {
@@ -99,7 +111,7 @@ export default function QuestsTab({
   const handleResetStates = () => {
     // Reset all quests to locked state
     apiQuests.forEach((quest) => {
-      updateQuestStatus(quest.id, 'locked', true);
+      updateQuestStatus(quest.id.toString(), 'locked', true);
     });
   };
 
@@ -113,7 +125,7 @@ export default function QuestsTab({
     setExpandedQuestId(isExpanded ? questId : null);
 
     // Update URL based on expansion state
-    const quest = componentQuests.find((q) => q.id === questId);
+    const quest = componentQuests.find((q) => q.id.toString() === questId);
     if (quest) {
       if (isExpanded) {
         // Expanded: #category-quest
@@ -191,11 +203,11 @@ export default function QuestsTab({
 
             // Only update if the quest is not already selected and expanded
             if (
-              selectedQuestId !== matchingQuest.id ||
-              expandedQuestId !== matchingQuest.id
+              selectedQuestId !== matchingQuest.id.toString() ||
+              expandedQuestId !== matchingQuest.id.toString()
             ) {
-              setSelectedQuestId(matchingQuest.id);
-              setExpandedQuestId(matchingQuest.id);
+              setSelectedQuestId(matchingQuest.id.toString());
+              setExpandedQuestId(matchingQuest.id.toString());
             } else {
               console.log(
                 `quests:tab✅ Quest already selected and expanded, skipping update`
@@ -327,8 +339,8 @@ export default function QuestsTab({
           key={quest.id || `quest-item-${index}`}
           quest={quest}
           onQuestComplete={handleQuestComplete}
-          isSelected={selectedQuestId === quest.id}
-          isExpanded={expandedQuestId === quest.id}
+          isSelected={selectedQuestId === quest.id.toString()}
+          isExpanded={expandedQuestId === quest.id.toString()}
           onQuestSelect={handleQuestSelect}
         />
       ))}

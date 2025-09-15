@@ -9,7 +9,9 @@
     "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "fetch-data": "npx tsx scripts/fetch-data.ts",
+    "fetch-quests": "npx tsx scripts/fetch-quests.ts"
   },
   "dependencies": {
     "@coinbase/cdp-sdk": "^1.0.0",
@@ -85,6 +87,7 @@
     "null-loader": "^4.0.1",
     "prettier": "^3.6.2",
     "tailwindcss": "^4",
+    "tsx": "^4.20.3",
     "tw-animate-css": "^1.3.5",
     "typescript": "^5"
   }

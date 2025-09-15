@@ -22,11 +22,11 @@ export async function GET(request: NextRequest) {
       database_id: databaseId
     });
 
-    // Transform Notion response to quest format
     const data = response.results.map((page: any) => {
       const properties = page.properties;
 
       // console.log(properties);
+      console.log(properties['Quests']);
 
       // Helper function to get property value, trying both clean and prefixed names
       const getPropertyValue = (propertyName: string, fallbackName?: string) => {
@@ -80,6 +80,10 @@ export async function GET(request: NextRequest) {
           return '';
         } else if (property.type === 'checkbox') {
           return property.checkbox ? 'true' : 'false';
+        } else if (property.type === 'relation') {
+          // Extract the first relation ID and remove hyphens
+          const relationId = property.relation?.[0]?.id;
+          return relationId ? relationId.replaceAll('-', '') : '';
         }
         return '';
       };
@@ -90,6 +94,7 @@ export async function GET(request: NextRequest) {
         location: getPropertyValue('Location'),
         layerName: getPropertyValue('Layer name'),
         POI: getPropertyValue('POI'),
+        id: page.id?.replaceAll('-', ''),
       };
     });
 
@@ -132,6 +137,7 @@ export async function GET(request: NextRequest) {
 
     const poisWithIds = cleanPois.map(item => {
       const { district, location, ...rest } = item;
+      delete rest.id;
       return {
         ...rest,
         districtId: districtMap.get(district) || null,
@@ -139,8 +145,17 @@ export async function GET(request: NextRequest) {
       };
     });
 
+    // Convert supporters array to object with id as key, removing id from individual objects
+    const supportersObject = supportersWithIds.reduce((acc, supporter) => {
+      if (supporter.id) {
+        const { id, ...supporterWithoutId } = supporter;
+        acc[id] = supporterWithoutId;
+      }
+      return acc;
+    }, {} as Record<string, any>);
+
     const result = {
-      supporters: supportersWithIds,
+      supporters: supportersObject,
       pois: poisWithIds,
       districts: uniqueDistricts,
       locations: uniqueLocations,

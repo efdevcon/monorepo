@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 import StarIcon from '@/components/icons/StarIcon';
 import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
-import type { ComponentQuest } from '@/types';
+import type { ComponentQuest, QuestConditionType } from '@/types';
 import { executeQuestAction } from '@/utils/quest-actions';
 
 interface QuestItemProps {
@@ -72,7 +72,7 @@ const QuestItem = ({
 
   const handleClick = () => {
     const newExpandedState = !isExpanded;
-    onQuestSelect?.(quest.id, newExpandedState);
+    onQuestSelect?.(quest.id.toString(), newExpandedState);
   };
 
   const handleQuestAction = async () => {
@@ -86,13 +86,13 @@ const QuestItem = ({
       );
 
       const result = await executeQuestAction(
-        quest.conditionType,
+        quest.conditionType as QuestConditionType,
         quest.conditionValues
       );
 
       if (result) {
         // Update quest state to completed
-        onQuestComplete?.(quest.id);
+        onQuestComplete?.(quest.id.toString());
 
         toast.success(
           <div className="space-y-2">
@@ -192,10 +192,10 @@ const QuestItem = ({
         </div>
         <div className="w-full flex items-center gap-3">
           {/* Quest logo */}
-          {quest.logoLink && (
+          {quest.poapImageLink && (
             <div className="size-8 rounded-[1px] overflow-hidden bg-white flex-shrink-0">
               <img
-                src={quest.logoLink}
+                src={quest.poapImageLink}
                 alt={`${quest.name} logo`}
                 className="w-full h-full object-cover"
                 onError={(e) => {
@@ -259,16 +259,16 @@ const QuestItem = ({
           <div className="w-full flex gap-2 mt-2">
             {/* Learn More button */}
             <div
-              className="flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 bg-[#6b7280] shadow-[inset_0px_6px_0px_0px_rgba(107,114,128,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(75,85,99,1.00)] hover:bg-[#4b5563]"
+              className="flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 bg-[#6b7280] shadow-[inset_0px_6px_0px_0px_rgba(107,114,128,1.00),inset_0px_-6px_0px_0px_rgba(75,85,99,1.00)] hover:bg-[#4b5563]"
               onClick={(e) => {
                 e.stopPropagation();
-                // Generate deep link to map based on category and name
+                // Generate deep link to map based on supporterId and name
                 const generateDeepLink = () => {
-                  const category = quest.category?.toLowerCase();
+                  const supporterId = quest.supporterId?.toLowerCase();
                   const name = quest.name?.toLowerCase().replace(/\s+/g, '-');
 
-                  if (category && name) {
-                    return `/map#${category}-${name}`;
+                  if (supporterId && name) {
+                    return `/map#${supporterId}-${name}`;
                   }
                   return null;
                 };
@@ -295,10 +295,10 @@ const QuestItem = ({
             <div
               className={`flex-1 pl-6 pr-4 py-4 flex justify-center items-center gap-1 cursor-pointer transition-all duration-200 ${
                 quest.state.status === 'completed'
-                  ? 'bg-[#199821] shadow-[inset_0px_6px_0px_0px_rgba(38,184,38,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(25,152,33,1.00)] hover:bg-[#15801a]'
+                  ? 'bg-[#199821] shadow-[inset_0px_6px_0px_0px_rgba(38,184,38,1.00),inset_0px_-6px_0px_0px_rgba(25,152,33,1.00)] hover:bg-[#15801a]'
                   : quest.state.status === 'active'
-                    ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
-                    : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00)] shadow-[inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
+                    ? 'bg-[#1b6fae] shadow-[inset_0px_6px_0px_0px_rgba(75,138,185,1.00),inset_0px_-6px_0px_0px_rgba(19,79,124,1.00)] hover:bg-[#155a8f]'
+                    : 'bg-[#4b4b66] shadow-[inset_0px_6px_0px_0px_rgba(75,75,102,1.00),inset_0px_-6px_0px_0px_rgba(37,37,51,1.00)] hover:bg-[#3a3a52]'
               } ${isExecutingAction ? 'opacity-75 cursor-not-allowed' : ''}`}
               onClick={(e) => {
                 e.stopPropagation(); // Prevent triggering the parent click handler

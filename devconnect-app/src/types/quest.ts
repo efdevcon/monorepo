@@ -32,20 +32,28 @@ export type QuestConditionType =
  * Quest categories without numbered prefixes
  */
 export type QuestCategory = 
-  | 'Onboarding level 1'
-  | 'Onboarding level 2'
-  | 'Onboarding level 3'
   | 'Defi'
   | 'L2s'
   | 'Social';
 
-/**
- * Quest groups without numbered prefixes
- */
-export type QuestGroup = 
-  | 'Onboarding'
-  | 'App Showcase';
 
+  /**
+   * Quest group names with numbered prefixes
+  */
+export type QuestGroupName =
+  | 'Setup & app tour'
+  | 'App Showcase'
+  | 'World’s Fair interactions'
+  | 'Explore the Ethereum ecosystem'
+
+/**
+ * Quest group object
+ */
+export type QuestGroup = {
+  id: number;
+  name: QuestGroupName;
+  description: string;
+}
 /**
  * Quest difficulty levels without numbered prefixes
  */
@@ -57,9 +65,12 @@ export type QuestDifficulty =
   | 'Expert';
 
 /**
- * Quest interface representing a quest item from the API
+ * Quest interface representing a quest item
  */
 export interface Quest {
+  /** Unique quest identifier */
+  id: number;
+
   /** Quest name/title */
   name: string;
   
@@ -68,48 +79,36 @@ export interface Quest {
   
   /** Points awarded for completing the quest */
   points: number;
-  
-  /** Quest category */
-  category: QuestCategory;
-  
-  /** Quest group */
-  group: QuestGroup;
-  
-  /** Difficulty level */
-  difficulty: QuestDifficulty;
-  
+
   /** Quest instructions/description */
   instructions: string;
   
   /** Action type to perform */
-  action: QuestAction;
+  action: string;
   
   /** Button text to display */
   button: string;
   
   /** Type of condition to check for completion */
-  conditionType: QuestConditionType;
+  conditionType: string;
   
   /** Values for the condition check */
   conditionValues: string;
   
-  /** Unique quest identifier */
-  id: string;
-
-  /** URL to the quest logo/image */
-  logoLink: string;
+  /** Related supporter ID (if any) */
+  supporterId: string;
   
   /** URL to the POAP image */
   poapImageLink: string;
-  
-  /** Position coordinates (e.g., "200,500") */
-  position: string;
 
-  /** URL to the website */
-  websiteLink: string;
+  /** Group ID of the quest (computed field) */
+  groupId: number;
 
-  /** URL to the social media */
-  socialLink: string;
+  /** District ID of the quest (computed field based on supporterId) */
+  districtId?: number;
+
+  /** District slug of the quest (computed field based on supporterId) */
+  districtSlug?: string;
 }
 
 /**

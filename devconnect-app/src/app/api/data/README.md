@@ -12,14 +12,15 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
 {
   "success": true,
   "data": {
-    "supporters": [
-      {
+    "supporters": {
+      "268638cdc41580a1b02dc7a52c626d67": {
         "name": "Espresso",
-        "layerName": "l2s/espresso",
-        "districtId": "1",
-        "locationId": "1"
+        "layerName": "l2s_espresso",
+        "districtId": "2",
+        "locationId": "1",
+        "supporterId": "24c638cdc415801d8452f81fa83560b8"
       }
-    ],
+    },
     "pois": [
       {
         "name": "Help desk 1",
@@ -46,11 +47,15 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
 ## Data Structure
 
 ### Supporters
-Array of supporter objects where `POI` field is empty. Each supporter contains:
-- `name` (string): Supporter name
-- `layerName` (string): Layer naming convention
-- `districtId` (string|null): Reference to districts object key
-- `locationId` (string|null): Reference to locations object key
+Object of supporter objects where `POI` field is empty, with supporter ID as key:
+
+- Key (string): Supporter ID (Notion page ID with hyphens removed)
+- Value: Object containing:
+  - `name` (string): Supporter name
+  - `layerName` (string): Layer naming convention
+  - `districtId` (string|null): Reference to districts object key
+  - `locationId` (string|null): Reference to locations object key
+  - `supporterId` (string): Related quest supporter ID (if any)
 
 ### POIs (Points of Interest)
 Array of POI objects where `POI` field has a value. Each POI contains the same fields as supporters.
@@ -78,6 +83,7 @@ Object of unique location objects with numeric string keys:
 - `unique_id` - Unique identifiers
 - `formula` - Calculated values (string, number, boolean, date)
 - `checkbox` - Boolean values (returned as 'true'/'false' strings)
+- `relation` - Related page references (returns first relation ID with hyphens removed)
 
 ## Error Response
 ```json

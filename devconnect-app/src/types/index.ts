@@ -12,3 +12,16 @@ export type {
   QuestDifficulty,
   ComponentQuest
 } from './quest';
+
+// API data types
+export type {
+  Supporter,
+  POI,
+  District,
+  Location,
+  Districts,
+  Locations,
+  DataResponse,
+  ApiResponse,
+  ApiErrorResponse
+} from './api-data';
