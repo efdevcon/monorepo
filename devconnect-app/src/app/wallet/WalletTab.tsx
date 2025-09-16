@@ -279,7 +279,7 @@ export default function WalletTab() {
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleSendClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-6 w-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 <img src={imgSend} alt="send" className="w-8 h-8" />
               </button>
@@ -290,7 +290,7 @@ export default function WalletTab() {
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleReceiveClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-6 w-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 <img src={imgCallReceived} alt="receive" className="w-8 h-8" />
               </button>
@@ -301,7 +301,7 @@ export default function WalletTab() {
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleSwapClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-6 w-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 <img src={imgSwapVert} alt="swap" className="w-8 h-8" />
               </button>
@@ -312,7 +312,7 @@ export default function WalletTab() {
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleScanClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-6 w-full flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
                 <img src={imgQrCodeScanner} alt="scan" className="w-8 h-8" />
               </button>
