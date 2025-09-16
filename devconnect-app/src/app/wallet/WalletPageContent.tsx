@@ -7,7 +7,7 @@ import DigitalOnrampTab from './DigitalOnrampTab';
 import InPersonOnrampTab from './InPersonOnrampTab';
 import DebugTab from './DebugTab';
 import { useRouter, usePathname } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useMemo } from 'react';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/wallet');
 const navLabel = navItem?.label || 'Wallet';
@@ -27,14 +27,9 @@ const createTabsFromNavItems = (tabItems: TabItem[]) => {
     label: tabItem.label,
     href: tabItem.href, // Include href for navigation
     hide: tabItem.hide,
-    component: () => {
-      const Component = tabComponents[tabItem.label];
-      return Component ? (
-        <Component />
-      ) : (
-        <div>Component not found for {tabItem.label}</div>
-      );
-    },
+    component:
+      tabComponents[tabItem.label] ||
+      (() => <div>Component not found for {tabItem.label}</div>),
   }));
 };
 
@@ -55,7 +50,7 @@ export default function WalletPageContent({
 
   // Get tabs from nav-items configuration
   const tabItems = navItem?.tabItems || [];
-  const tabs = createTabsFromNavItems(tabItems);
+  const tabs = useMemo(() => createTabsFromNavItems(tabItems), [tabItems]);
 
   // Find active tab index based on current pathname
   const getActiveTabIndex = () => {
@@ -96,7 +91,7 @@ export default function WalletPageContent({
   }
 
   // For individual tab pages, show only the specific component
-  const getTabComponent = () => {
+  const getTabComponent = useCallback(() => {
     const currentTab = tabItems.find(
       (tab) => tab.href === activeTabHref || pathname === tab.href
     );
@@ -109,7 +104,7 @@ export default function WalletPageContent({
       );
     }
     return <WalletTab />; // Default fallback
-  };
+  }, [tabItems, activeTabHref, pathname]);
 
   return <PageLayout>{getTabComponent()}</PageLayout>;
 }

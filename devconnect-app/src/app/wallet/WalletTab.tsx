@@ -3,8 +3,9 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { getNetworkLogo } from '@/config/networks';
+import { useLocalStorage } from 'usehooks-ts';
 
 // Image assets from local public/images directory
 const imgCheckbox = '/images/imgCheckbox.png';
@@ -60,6 +61,18 @@ export default function WalletTab() {
   const [activeTab, setActiveTab] = useState<'assets' | 'activity'>('assets');
   const [showAllActivity, setShowAllActivity] = useState(false);
   const [showAllAssets, setShowAllAssets] = useState(false);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  const lastLoadedAddress = useRef<string | null>(null);
+  const isFetchingRef = useRef(false);
+
+  // Local storage key based on address
+  const storageKey = address ? `portfolio_${address}` : null;
+  const [cachedPortfolioData, setCachedPortfolioData] =
+    useLocalStorage<PortfolioData | null>(
+      storageKey || 'portfolio_default',
+      null
+    );
 
   const handleSendClick = () => {
     open({ view: 'WalletSend' });
@@ -101,44 +114,82 @@ export default function WalletTab() {
   };
 
   // Fetch portfolio data
-  const fetchPortfolioData = async () => {
-    if (!address) return;
+  const fetchPortfolioData = useCallback(
+    async (forceRefresh = false) => {
+      const currentAddress = address;
+      if (!currentAddress) return;
 
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/portfolio', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ address }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch portfolio data');
+      // If we have cached data and not forcing refresh, use cached data
+      if (cachedPortfolioData && !forceRefresh) {
+        setPortfolioData(cachedPortfolioData);
+        lastLoadedAddress.current = currentAddress;
+        return;
       }
 
-      const data = await response.json();
-      setPortfolioData(data);
-    } catch (err) {
-      console.error('Error fetching portfolio data:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to fetch portfolio data'
-      );
-    } finally {
-      setIsLoading(false);
-    }
+      // Prevent concurrent API calls
+      if (isFetchingRef.current) {
+        return;
+      }
+
+      // Prevent duplicate calls for the same address
+      if (lastLoadedAddress.current === currentAddress && !forceRefresh) {
+        return;
+      }
+
+      isFetchingRef.current = true;
+      setIsFetching(true);
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch('/api/portfolio', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ address: currentAddress }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch portfolio data');
+        }
+
+        const data = await response.json();
+        setPortfolioData(data);
+        setCachedPortfolioData(data);
+        lastLoadedAddress.current = currentAddress;
+      } catch (err) {
+        console.error('Error fetching portfolio data:', err);
+        setError(
+          err instanceof Error ? err.message : 'Failed to fetch portfolio data'
+        );
+      } finally {
+        setIsLoading(false);
+        setIsFetching(false);
+        isFetchingRef.current = false;
+      }
+    },
+    [address, cachedPortfolioData]
+  );
+
+  // Manual refresh function
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await fetchPortfolioData(true);
+    setIsRefreshing(false);
   };
 
   // Load portfolio data when address changes
   useEffect(() => {
     if (address) {
       fetchPortfolioData();
+    } else {
+      // Clear portfolio data when no address
+      setPortfolioData(null);
+      lastLoadedAddress.current = null;
     }
-  }, [address]);
+  }, [address, fetchPortfolioData]);
 
   // Format USD value
   const formatUSD = (value: number) => {
@@ -271,6 +322,26 @@ export default function WalletTab() {
                   '$0.00'
                 )}
               </span>
+              <button
+                onClick={handleRefresh}
+                disabled={isRefreshing || isFetching || !address}
+                className="p-2 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                title="Refresh portfolio data"
+              >
+                <svg
+                  className={`w-5 h-5 text-[#36364c] ${isRefreshing || isFetching ? 'animate-spin' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
 
@@ -438,7 +509,7 @@ export default function WalletTab() {
                         Failed to load assets
                       </p>
                       <button
-                        onClick={fetchPortfolioData}
+                        onClick={handleRefresh}
                         className="text-blue-500 text-sm underline mt-2"
                       >
                         Retry
@@ -543,20 +614,25 @@ export default function WalletTab() {
                         Failed to load activity
                       </p>
                       <button
-                        onClick={fetchPortfolioData}
+                        onClick={handleRefresh}
                         className="text-blue-500 text-sm underline mt-2"
                       >
                         Retry
                       </button>
                     </div>
                   ) : portfolioData &&
-                    portfolioData.recentActivity.length > 0 ? (
+                    portfolioData.recentActivity.filter(
+                      (activity) => activity.transaction?.hash
+                    ).length > 0 ? (
                     // Dynamic activity from portfolio data
                     portfolioData.recentActivity
+                      .filter((activity) => activity.transaction?.hash) // Only show activities with hash
                       .slice(
                         0,
                         showAllActivity
-                          ? portfolioData.recentActivity.length
+                          ? portfolioData.recentActivity.filter(
+                              (activity) => activity.transaction?.hash
+                            ).length
                           : 3
                       )
                       .map((activity, index) => {
@@ -632,18 +708,21 @@ export default function WalletTab() {
                 </div>
 
                 {/* View More Activity Button */}
-                {portfolioData && portfolioData.recentActivity.length > 3 && (
-                  <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
-                    <button
-                      onClick={handleViewMoreActivity}
-                      className="text-[#36364c] text-base font-bold cursor-pointer"
-                    >
-                      {showAllActivity
-                        ? 'Show Less Activity'
-                        : 'View More Activity'}
-                    </button>
-                  </div>
-                )}
+                {portfolioData &&
+                  portfolioData.recentActivity.filter(
+                    (activity) => activity.transaction?.hash
+                  ).length > 3 && (
+                    <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
+                      <button
+                        onClick={handleViewMoreActivity}
+                        className="text-[#36364c] text-base font-bold cursor-pointer"
+                      >
+                        {showAllActivity
+                          ? 'Show Less Activity'
+                          : 'View More Activity'}
+                      </button>
+                    </div>
+                  )}
               </>
             )}
           </div>
