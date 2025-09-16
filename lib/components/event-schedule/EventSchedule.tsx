@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, Suspense } from "react";
 import css from "./event-schedule.module.scss";
 import moment from "moment";
 import momentTZ from "moment-timezone";
@@ -2091,7 +2091,7 @@ const scheduleViewHOC = (Component: any) => {
   return ComponentWithScheduleView;
 };
 
-const Schedule: NextPage = scheduleViewHOC((props: any) => {
+const ScheduleInner: NextPage = scheduleViewHOC((props: any) => {
   const [openShareModal, setOpenShareModal] = React.useState(false);
   const [calendarModalOpen, setCalendarModalOpen] = React.useState(false);
   const { scheduleView, setScheduleView } = props;
@@ -2610,6 +2610,14 @@ const Schedule: NextPage = scheduleViewHOC((props: any) => {
     </>
   );
 });
+
+const Schedule: NextPage = (props: any) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ScheduleInner {...props} />
+    </Suspense>
+  );
+};
 
 export default Schedule;
 

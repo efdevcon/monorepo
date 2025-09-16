@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
 import Event from "./event/event";
@@ -148,7 +148,7 @@ const computeEventPlacements = (
   return eventPlacements;
 };
 
-const NewScheduleIndex = ({
+const NewScheduleIndexInner = ({
   selectedEvent,
   selectedDay,
   setSelectedEvent,
@@ -362,6 +362,14 @@ const NewScheduleIndex = ({
         {selectedDay && <MapComponent />} 
       </div>
     </div>  */
+};
+
+const NewScheduleIndex = (props: ScheduleProps) => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NewScheduleIndexInner {...props} />
+    </Suspense>
+  );
 };
 
 export default NewScheduleIndex;
