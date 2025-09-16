@@ -1112,11 +1112,9 @@ const Home: NextPage = (props: any) => {
 
           <div className="section relative py-8 md:py-12 bg-[#74ACDF] bg-opacity-50">
             <div className="mb-8">
-              <h2 className="section-header black">OUR MEDIA PARTNERS</h2>
-              <p className="mt-8">
-                Lorem ipsum dolor sit amet consectetur. Dui eu ut suspendisse diam auctor cras imperdiet. Facilisis ac
-                felis pellentesque viverra.
-              </p>
+              <h2 className="section-header black mb-6">OUR MEDIA PARTNERS</h2>
+
+              <RichText content={data.pages.media_partners} className="cms-markdown" />
             </div>
 
             {/* Desktop grid layout - 4 + 3 centered */}
@@ -1124,29 +1122,43 @@ const Home: NextPage = (props: any) => {
               {/* First row - 4 logos */}
               <div className="grid grid-cols-4 gap-2 items-center justify-items-center mb-12">
                 <div className="flex items-center justify-center p-6">
-                  <Image src={TheDefiantLogo} alt="The Defiant" className="max-h-20 w-auto" />
+                  <Link href="https://thedefiant.io/" target="_blank" rel="noopener noreferrer">
+                    <Image src={TheDefiantLogo} alt="The Defiant" className="max-h-20 w-auto" />
+                  </Link>
                 </div>
                 <div className="flex items-center justify-center p-6">
-                  <Image src={BanklessLogo} alt="Bankless" className="max-h-16 w-auto" />
+                  <Link href="https://www.bankless.com/" target="_blank" rel="noopener noreferrer">
+                    <Image src={BanklessLogo} alt="Bankless" className="max-h-16 w-auto" />
+                  </Link>
                 </div>
                 <div className="flex items-center justify-center p-6">
-                  <Image src={BeInCryptoLogo} alt="BeInCrypto" className="max-h-16 w-auto" />
+                  <Link href="https://beincrypto.com/" target="_blank" rel="noopener noreferrer">
+                    <Image src={BeInCryptoLogo} alt="BeInCrypto" className="max-h-16 w-auto" />
+                  </Link>
                 </div>
                 <div className="flex items-center justify-center p-6">
-                  <Image src={TheRollupLogo} alt="The Rollup" className="max-h-16 w-auto" />
+                  <Link href="https://therollup.co/" target="_blank" rel="noopener noreferrer">
+                    <Image src={TheRollupLogo} alt="The Rollup" className="max-h-16 w-auto" />
+                  </Link>
                 </div>
               </div>
               {/* Second row - 3 logos centered */}
               <div className="flex justify-center">
                 <div className="grid grid-cols-3 gap-20 items-center justify-items-center">
                   <div className="flex items-center justify-center p-6">
-                    <Image src={CriptoLogo} alt="Cripto Noticias" className="max-h-16 w-auto" />
+                    <Link href="https://www.criptonoticias.com/" target="_blank" rel="noopener noreferrer">
+                      <Image src={CriptoLogo} alt="Cripto Noticias" className="max-h-16 w-auto" />
+                    </Link>
                   </div>
                   <div className="flex items-center justify-center p-6">
-                    <Image src={EpicenterLogo} alt="Epicenter" className="max-h-16 w-auto" />
+                    <Link href="https://epicenter.tv/" target="_blank" rel="noopener noreferrer">
+                      <Image src={EpicenterLogo} alt="Epicenter" className="max-h-16 w-auto" />
+                    </Link>
                   </div>
                   <div className="flex items-center justify-center p-6">
-                    <Image src={IProUpLogo} alt="iPro Up" className="max-h-16 w-auto" />
+                    <Link href="https://www.iproup.com/" target="_blank" rel="noopener noreferrer">
+                      <Image src={IProUpLogo} alt="iPro Up" className="max-h-16 w-auto" />
+                    </Link>
                   </div>
                 </div>
               </div>

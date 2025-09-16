@@ -85,6 +85,7 @@ const index: Template = {
       type: 'object',
       fields: [{ label: 'question', name: 'question', type: 'string' }, createRichText('answer')],
     },
+    createRichText('media_partners'),
   ],
 }
 
