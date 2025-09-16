@@ -1,12 +1,10 @@
-import { Dialog, DialogTrigger, DialogContent } from 'lib/components/ui/dialog'
+import { Dialog, DialogContent } from 'lib/components/ui/dialog'
 import Button from 'lib/components/voxel-button/button'
 import { useState } from 'react'
 import DevconnectHighlightImage from './hero.jpg'
 import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
-// import CubeLogo from './cube-logo.png'
-// import LogoText from './LogoText'
 import DevconnectLogoWithText from './DevconnectLogoWithText'
 
 export default function DevconnectHighlight() {
@@ -20,8 +18,6 @@ export default function DevconnectHighlight() {
             className="relative p-8 lg:p-24 rounded-lg w-[900px] max-w-[90vw] shadow-lg border border-solid
            border-white/40"
           >
-            {/* <Image src={CubeLogo} alt="Devconnect Cube Logo" className="absolute bottom-0 left-0 w-[80px] m-4 z-10" />
-            <LogoText className="absolute right-0 top-0 z-10 m-2 mr-4" /> */}
             <Image
               src={DevconnectHighlightImage}
               alt="Devconnect Highlight"
