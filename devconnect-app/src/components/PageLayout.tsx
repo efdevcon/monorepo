@@ -221,13 +221,33 @@ export default function PageLayout({
                             key={item.href}
                             href={item.href}
                             className={cn(
-                              'p-1.5 px-2 text-sm flex hover:bg-[#74ACDF26] gap-2 items-center rounded',
-                              isActive && 'bg-[#74ACDF26] font-semibold'
+                              'p-1.5 px-2 text-sm flex gap-2 items-center rounded transition-colors duration-200',
+                              isActive
+                                ? 'font-semibold text-[#232336]'
+                                : 'text-[#4B4B66] hover:text-[#232336]'
                             )}
+                            style={{
+                              backgroundColor: isActive
+                                ? item.backgroundColor
+                                : 'transparent',
+                            }}
+                            onMouseEnter={(e) => {
+                              if (!isActive) {
+                                e.currentTarget.style.backgroundColor =
+                                  item.backgroundColor;
+                              }
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!isActive) {
+                                e.currentTarget.style.backgroundColor =
+                                  'transparent';
+                              }
+                            }}
                           >
                             <item.icon
                               // @ts-ignore
                               size={18}
+                              active={isActive}
                               color={isActive ? '#232336' : '#4B4B66'}
                             />
                             {item.label}
