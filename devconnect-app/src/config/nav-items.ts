@@ -7,6 +7,7 @@ import WalletIcon from '@/components/icons/WalletIcon';
 export type TabItem = {
   label: string;
   href?: string;
+  hide?: boolean;
 };
 
 export type NavItem = {
@@ -59,12 +60,18 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet/debug',
       },
       {
-        label: 'Onramp',
-        href: '/wallet/onramp',
-      },
-      {
         label: 'Tickets',
         href: '/wallet/tickets',
+      },
+      {
+        label: 'Digital Onramp',
+        href: '/wallet/digital-onramp',
+        hide: true,
+      },
+      {
+        label: 'In-person Onramp',
+        href: '/wallet/in-person-onramp',
+        hide: true,
       },
     ],
   },

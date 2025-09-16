@@ -85,7 +85,11 @@ export default function WalletTab() {
   };
 
   const handleDigitalClick = () => {
-    router.push('/wallet/onramp');
+    router.push('/wallet/digital-onramp');
+  };
+
+  const handleInPersonClick = () => {
+    router.push('/wallet/in-person-onramp');
   };
 
   const handleViewMoreActivity = () => {
@@ -347,7 +351,10 @@ export default function WalletTab() {
                   </div>
                 </div>
               </button>
-              <div className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2">
+              <div
+                onClick={handleInPersonClick}
+                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
+              >
                 <img src={imgGroup1} alt="in-person" className="w-8 h-8" />
                 <div className="text-center">
                   <div className="text-[#36364c] text-sm font-bold">
