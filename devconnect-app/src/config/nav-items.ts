@@ -55,6 +55,10 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet',
       },
       {
+        label: 'Debug',
+        href: '/wallet/debug',
+      },
+      {
         label: 'Onramp',
         href: '/wallet/onramp',
       },
