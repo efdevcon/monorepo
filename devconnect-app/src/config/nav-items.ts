@@ -6,6 +6,7 @@ import WalletIcon from '@/components/icons/WalletIcon';
 
 export type TabItem = {
   label: string;
+  href?: string;
 };
 
 export type NavItem = {
@@ -42,32 +43,6 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/quests',
     icon: QuestIcon,
     backgroundColor: 'rgba(246, 180, 14, 0.15)',
-    tabItems: [
-      {
-        label: 'Onboarding Level 1',
-      },
-      {
-        label: 'Onboarding Level 2',
-      },
-      {
-        label: 'Onboarding Level 3',
-      },
-      {
-        label: 'DeFi',
-      },
-      {
-        label: 'L2s',
-      },
-      {
-        label: 'Social',
-      },
-      {
-        label: 'Rewards',
-      },
-      {
-        label: 'Leaderboard',
-      },
-    ],
   },
   {
     label: 'Wallet',
@@ -77,12 +52,15 @@ export const NAV_ITEMS: NavItem[] = [
     tabItems: [
       {
         label: 'Wallet',
+        href: '/wallet',
       },
       {
         label: 'Onramp',
+        href: '/wallet/onramp',
       },
       {
         label: 'Tickets',
+        href: '/wallet/tickets',
       },
     ],
   },

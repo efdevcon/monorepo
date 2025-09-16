@@ -16,18 +16,23 @@ interface TabItem {
   label: string;
   labelIcon?: React.ComponentType<any>;
   component: React.ComponentType<any>;
+  href?: string;
 }
 
 interface PageLayoutProps {
   title: string;
   children?: React.ReactNode;
   tabs?: TabItem[];
+  activeIndex?: number;
+  setActiveIndex?: (index: number) => void;
+  onTabClick?: (tabItem: any, index: number) => void;
 }
 
 interface TabsProps {
   tabs?: TabItem[];
   activeIndex: number;
   setActiveIndex: (index: number) => void;
+  onTabClick?: (tabItem: any, index: number) => void;
 }
 
 const BackButton = () => {
@@ -80,7 +85,25 @@ const BackButton = () => {
   );
 };
 
-const Tabs = ({ tabs = [], activeIndex, setActiveIndex }: TabsProps) => {
+const Tabs = ({
+  tabs = [],
+  activeIndex,
+  setActiveIndex,
+  onTabClick,
+}: TabsProps) => {
+  const router = useRouter();
+
+  const handleTabClick = (tab: TabItem, idx: number) => {
+    if (onTabClick) {
+      onTabClick(tab, idx);
+    } else if (tab.href) {
+      // If no onTabClick provided but tab has href, navigate to URL
+      router.push(tab.href);
+    } else {
+      setActiveIndex(idx);
+    }
+  };
+
   return (
     <div
       className={`py-4 md:py-2 flex items-center md:rounded overflow-auto w-full`}
@@ -92,7 +115,7 @@ const Tabs = ({ tabs = [], activeIndex, setActiveIndex }: TabsProps) => {
             type="button"
             data-tab-index={idx}
             className={cn(
-              'shrink-0cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0',
+              'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0',
               idx === activeIndex
                 ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]'
                 : 'rounded-xs',
@@ -104,7 +127,7 @@ const Tabs = ({ tabs = [], activeIndex, setActiveIndex }: TabsProps) => {
               background: idx === activeIndex ? '#fff' : 'transparent',
               minWidth: 'auto',
             }}
-            onClick={() => setActiveIndex(idx)}
+            onClick={() => handleTabClick(tab, idx)}
           >
             <div
               className={cn(
@@ -128,9 +151,20 @@ export default function PageLayout({
   title,
   children,
   tabs = [],
+  activeIndex: externalActiveIndex,
+  setActiveIndex: externalSetActiveIndex,
+  onTabClick,
 }: PageLayoutProps) {
   const pathname = usePathname();
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [internalActiveIndex, setInternalActiveIndex] = useState(0);
+
+  // Use external state if provided, otherwise use internal state
+  const activeIndex =
+    externalActiveIndex !== undefined
+      ? externalActiveIndex
+      : internalActiveIndex;
+  const setActiveIndex = externalSetActiveIndex || setInternalActiveIndex;
+
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
 
@@ -173,6 +207,7 @@ export default function PageLayout({
                   tabs={tabs}
                   activeIndex={activeIndex}
                   setActiveIndex={setActiveIndex}
+                  onTabClick={onTabClick}
                 />
               </div>
             )}
@@ -269,6 +304,7 @@ export default function PageLayout({
                         tabs={tabs}
                         activeIndex={activeIndex}
                         setActiveIndex={setActiveIndex}
+                        onTabClick={onTabClick}
                       />
                     </div>
                   )}
