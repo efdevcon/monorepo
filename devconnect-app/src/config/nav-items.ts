@@ -20,17 +20,17 @@ export type NavItem = {
 };
 
 export const NAV_ITEMS: NavItem[] = [
-  {
-    label: 'Home',
-    tabItems: [
-      {
-        label: 'Dashboard',
-      },
-    ],
-    href: '/',
-    icon: HomeIcon as any,
-    backgroundColor: 'rgba(254, 232, 244, 0.75)',
-  },
+  // {
+  //   label: 'Home',
+  //   tabItems: [
+  //     {
+  //       label: 'Dashboard',
+  //     },
+  //   ],
+  //   href: '/',
+  //   icon: HomeIcon as any,
+  //   backgroundColor: 'rgba(254, 232, 244, 0.75)',
+  // },
   {
     label: 'World\'s Fair',
     longLabel: 'Ethereum World\'s Fair',
@@ -50,23 +50,24 @@ export const NAV_ITEMS: NavItem[] = [
       }
     ],
   },
-  // {
-  //   label: 'Map',
-  //   href: '/map',
-  //   icon: MapIcon,
-  //   backgroundColor: 'rgba(232, 243, 254, 0.75)',
-  //   tabItems: [
-  //     {
-  //       label: 'Dashboard',
-  //     },
-  //     {
-  //       label: 'Wallet',
-  //     },
-  //     {
-  //       label: 'Connections',
-  //     },
-  //   ],
-  // },
+  {
+    label: 'Map',
+    href: '/map',
+    // @ts-ignore
+    icon: MapIcon,
+    backgroundColor: 'rgba(232, 243, 254, 0.75)',
+    // tabItems: [
+    //   {
+    //     label: 'Dashboard',
+    //   },
+    //   {
+    //     label: 'Wallet',
+    //   },
+    //   {
+    //     label: 'Connections',
+    //   },
+    // ],
+  },
   {
     label: 'Scan',
     href: '/scan',
@@ -107,8 +108,8 @@ export const NAV_ITEMS: NavItem[] = [
     ],
   },
   {
-    label: 'Profile',
-    href: '/profile',
+    label: 'Wallet',
+    href: '/wallet',
     // @ts-ignore
     icon: UserIcon,
     backgroundColor: 'rgba(204, 186, 229, 0.75)',

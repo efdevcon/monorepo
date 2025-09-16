@@ -37,8 +37,8 @@ export default function HomePage() {
       window.location.pathname === '/onboarding' &&
       address
     ) {
-      console.log('🔄 [ONBOARDING] Redirecting to profile');
-      router.push('/profile');
+      console.log('🔄 [ONBOARDING] Redirecting to wallet');
+      router.push('/wallet');
     }
   }, [address]);
 

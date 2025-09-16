@@ -8,7 +8,7 @@ import WalletTab from '../onboarding/WalletTab';
 import TicketTab from './TicketTab';
 import OnrampTab from './OnrampTab';
 
-const navItem = NAV_ITEMS.find((item) => item.href === '/profile');
+const navItem = NAV_ITEMS.find((item) => item.href === '/wallet');
 const navLabel = navItem?.label || 'Sign up';
 const title = navLabel;
 
