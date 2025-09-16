@@ -152,17 +152,25 @@ export const VenueMap = () => {
     const centerX = containerRect.width / 2;
     const centerY = containerRect.height / 2;
 
-    // Calculate the target position to center the element
-    const elementCenterX = element.centerX * svgScale.scaleX;
-    const elementCenterY = element.centerY * svgScale.scaleY;
+    // Following panzoom's centerOn approach - use moveBy instead of moveTo!
+    // Get the SVG element's actual screen position using getBoundingClientRect
+    const svgElement = document.getElementById(id);
+    if (!svgElement) return;
 
-    // Calculate the pan offset needed to center the element after zoom
-    const panX = centerX - elementCenterX * targetZoom;
-    const panY = centerY - elementCenterY * targetZoom;
+    const elementRect = svgElement.getBoundingClientRect();
+    const elementCenterScreenX = elementRect.left + elementRect.width / 2;
+    const elementCenterScreenY = elementRect.top + elementRect.height / 2;
 
-    // First zoom to target level, then pan to center the element
-    panzoomInstance.zoomAbs(centerX, centerY, targetZoom);
-    panzoomInstance.moveTo(panX, panY);
+    // Calculate the delta in screen space (same as panzoom's centerOn)
+    const deltaX = centerX - elementCenterScreenX;
+    const deltaY = centerY - elementCenterScreenY;
+
+    // Use moveBy instead of moveTo - this works in screen coordinate space!
+    // Third parameter is for smooth animation (same as centerOn uses)
+    panzoomInstance.moveBy(deltaX, deltaY, true);
+
+    // Step 2: Zoom in on the now-centered element
+    // panzoomInstance.zoomAbs(centerX, centerY, targetZoom);
   };
 
   const onSVGElementClick = (
@@ -196,29 +204,6 @@ export const VenueMap = () => {
         e.stopPropagation();
         setSelectedElement(null);
       }}
-      // Prevent all mouse events from propagating
-      onMouseDown={handleContainerEvent}
-      onMouseUp={handleContainerEvent}
-      onMouseMove={handleContainerEvent}
-      onMouseEnter={handleContainerEvent}
-      onMouseLeave={handleContainerEvent}
-      onMouseOver={handleContainerEvent}
-      onMouseOut={handleContainerEvent}
-      // Prevent touch events from propagating
-      onTouchStart={handleContainerEvent}
-      onTouchMove={handleContainerEvent}
-      onTouchCancel={handleContainerEvent}
-      // Prevent wheel/scroll events from propagating (for zoom)
-      onWheel={handleContainerEvent}
-      // Prevent pointer events from propagating
-      onPointerDown={handleContainerEvent}
-      onPointerUp={handleContainerEvent}
-      onPointerMove={handleContainerEvent}
-      onPointerEnter={handleContainerEvent}
-      onPointerLeave={handleContainerEvent}
-      onPointerCancel={handleContainerEvent}
-      // Prevent context menu from propagating
-      onContextMenu={handleContainerEvent}
     >
       {/* Panzoom container */}
       <div
@@ -282,24 +267,21 @@ export const VenueMap = () => {
                 // const centerX = rect.width / 2;
                 // const centerY = rect.height / 2;
 
+                setSelectedElement(null);
                 // console.log('Using center:', centerX, centerY);
 
                 panzoomInstance.pause();
 
                 // Use the container center as zoom origin
                 panzoomInstance.moveTo(0, 0);
-                panzoomInstance.zoomAbs(0, 0, 1);
+                panzoomInstance.smoothZoomAbs(0, 0, 1);
 
                 panzoomInstance.resume();
-
-                setTimeout(() => {
-                  console.log('After zoom:', panzoomInstance.getTransform());
-                }, 100);
               }
             }
           }}
         >
-          Reset View
+          Reset Zoom
         </button>
       </div>
     </div>
