@@ -48,11 +48,6 @@ export const PanzoomControls = (props: { pz: PanZoom | null }) => {
 };
 
 export const usePanzoom = (elementId: string) => {
-  const [panAndZoomLevels, setPanAndZoomLevels] = React.useState<{
-    x: number;
-    y: number;
-    scale: number;
-  }>({ x: 0, y: 0, scale: 1 });
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
   );
@@ -60,13 +55,12 @@ export const usePanzoom = (elementId: string) => {
   React.useEffect(() => {
     const scene = document.getElementById(elementId);
 
-    console.log('scene', scene);
-
     if (scene) {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
-        boundsPadding: 0.5,
-        // maxZoom: 2.5,
+        boundsPadding: 0.3,
+        maxZoom: 2.5,
+        zoomDoubleClickSpeed: 1,
         minZoom: 0.5,
         // transformOrigin: { x: 0.5, y: 0.5 },
         beforeWheel: function (e) {
@@ -74,24 +68,45 @@ export const usePanzoom = (elementId: string) => {
           var shouldIgnore = !e.altKey && !e.ctrlKey;
           return shouldIgnore;
         },
-        // beforeMouseDown: function (e) {
-        //   // allow mouse-down panning only if altKey is down. Otherwise - ignore
-        //   var shouldIgnore = !e.altKey;
-        //   return shouldIgnore;
-        // },
+        beforeMouseDown: function (e) {
+          // Ignore mouse events on buttons and their children
+          const target = e.target as Element;
+          const isButton = target.closest('button');
+          return !!isButton; // Return true to ignore the event
+        },
       });
 
-      panzoomInstance.on('zoom', (e: any) => {
-        const zoomLevels = e.getTransform();
+      // panzoomInstance.on('transform', (e: any) => {
+      //   // const zoomLevels = e.getTransform();
 
-        setPanAndZoomLevels(zoomLevels);
+      //   // setPanAndZoomLevels(zoomLevels);
+      // });
+
+      panzoomInstance.on('zoom', (e: any) => {
+        console.log('zoomstart', e);
+      });
+
+      panzoomInstance.on('zoomend', (e: any) => {
+        console.log('zoomend', e);
+      });
+
+      panzoomInstance.on('panstart', (e: any) => {
+        console.log('panstart', e);
+      });
+
+      panzoomInstance.on('panend', (e: any) => {
+        console.log('panend', e);
+      });
+
+      panzoomInstance.on('transform', (e: any) => {
+        console.log('transform', e);
       });
 
       // Prevent double-click zoom by intercepting double-click events
-      scene.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      });
+      // scene.addEventListener('dblclick', (e) => {
+      //   e.preventDefault();
+      //   e.stopPropagation();
+      // });
 
       setPanzoomInstance(panzoomInstance);
 
@@ -102,7 +117,7 @@ export const usePanzoom = (elementId: string) => {
     }
   }, [elementId]);
 
-  return { panzoomInstance, panAndZoomLevels };
+  return { panzoomInstance };
 };
 
 // export const Venue = (props: Props) => {

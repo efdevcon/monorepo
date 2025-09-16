@@ -1,7 +1,7 @@
 'use client';
 // https://github.com/timmywil/panzoom
 import React, { useRef, useEffect, useState } from 'react';
-import { usePanzoom } from './panzoom';
+import { usePanzoom, PanzoomControls } from './panzoom';
 import MapTest from './maps/MapTest';
 import {
   svgToLookup,
@@ -51,10 +51,26 @@ export const VenueMap = () => {
   const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  //   const [initialTransform, setInitialTransform] = useState<{x: number, y: number, scale: number} | null>(null);
 
   const isHoveredOrSelected = hoveredElement || selectedElement;
 
-  const { panzoomInstance, panAndZoomLevels } = usePanzoom('venue-map');
+  const { panzoomInstance } = usePanzoom('venue-map');
+
+  // Store initial transform state when panzoom instance becomes available
+  //   useEffect(() => {
+  //     if (panzoomInstance && !initialTransform) {
+  //       // Wait a frame to ensure panzoom is fully initialized
+  //       requestAnimationFrame(() => {
+  //         const transform = panzoomInstance.getTransform();
+  //         setInitialTransform({
+  //           x: transform.x,
+  //           y: transform.y,
+  //           scale: transform.scale
+  //         });
+  //       });
+  //     }
+  //   }, [panzoomInstance, initialTransform]);
 
   useEffect(() => {
     // Wait for next frame to ensure SVG is fully rendered
@@ -124,59 +140,70 @@ export const VenueMap = () => {
     }
   };
 
+  const focusOnElement = (id: string) => {
+    const element = elementLookup[id];
+    if (!element || !panzoomInstance) return;
+
+    const targetZoom = 2;
+    const container = document.getElementById('venue-map');
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const centerX = containerRect.width / 2;
+    const centerY = containerRect.height / 2;
+
+    // Following panzoom's centerOn approach - use moveBy instead of moveTo!
+    // Get the SVG element's actual screen position using getBoundingClientRect
+    const svgElement = document.getElementById(id);
+    if (!svgElement) return;
+
+    const elementRect = svgElement.getBoundingClientRect();
+    const elementCenterScreenX = elementRect.left + elementRect.width / 2;
+    const elementCenterScreenY = elementRect.top + elementRect.height / 2;
+
+    // Calculate the delta in screen space (same as panzoom's centerOn)
+    const deltaX = centerX - elementCenterScreenX;
+    const deltaY = centerY - elementCenterScreenY;
+
+    // Use moveBy instead of moveTo - this works in screen coordinate space!
+    // Third parameter is for smooth animation (same as centerOn uses)
+    panzoomInstance.moveBy(deltaX, deltaY, true);
+
+    // Step 2: Zoom in on the now-centered element
+    // panzoomInstance.zoomAbs(centerX, centerY, targetZoom);
+  };
+
   const onSVGElementClick = (
     id: string,
     event: React.MouseEvent<SVGElement>
   ) => {
-    // console.log('SVG element clicked:', id);
     if (elementLookup[id]) {
-      setSelectedElement(selectedElement === id ? null : id);
+      const isCurrentlySelected = selectedElement === id;
+      setSelectedElement(isCurrentlySelected ? null : id);
 
-      // Center on and zoom to the selected element
-      if (panzoomInstance) {
-        const targetZoom = 2; // Fixed zoom level
-        const element = elementLookup[id];
-
-        // Get container dimensions
-        const container = document.getElementById('venue-map');
-        if (container) {
-          const containerRect = container.getBoundingClientRect();
-
-          // Calculate the pan position to center the element
-          // We need to account for the current zoom level and calculate where to pan
-          const centerX = containerRect.width / 2;
-          const centerY = containerRect.height / 2;
-
-          // Calculate the offset needed to center the element
-          //   const panX = centerX - element.centerX * targetZoom;
-          //   const panY = centerY - element.centerY * targetZoom;
-
-          // First reset zoom to target level, then pan to center
-          panzoomInstance.smoothZoomAbs(centerX, centerY, targetZoom);
-          //   panzoomInstance.smoothMoveTo(centerX, centerY);
-
-          //   console.log(panzoomInstance, 'panzoom instance');
-          console.log(element, 'element');
-          console.log(panAndZoomLevels, 'pan and zoom levels');
-
-          // After zoom completes, pan to center the element
-          //   setTimeout(() => {
-          //     panzoomInstance.moveTo(panX, panY);
-          //   }, 300); // Adjust timing based on your zoom animation duration
-        }
+      // Focus on the element if it's being selected (not deselected)
+      if (!isCurrentlySelected) {
+        focusOnElement(id);
       }
-
-      //   console.log(elementLookup[id], 'element lookup');
-      //   console.log('Element position data:', elementLookup[id]);
     }
+  };
+
+  const handleContainerEvent = (e: React.SyntheticEvent) => {
+    e.stopPropagation();
   };
 
   return (
     <div
       ref={containerRef}
       className="relative w-full aspect-[1200/800] overflow-hidden grow"
-      onClick={() => setSelectedElement(null)}
-      onTouchEnd={() => setSelectedElement(null)}
+      onClick={(e) => {
+        e.stopPropagation();
+        setSelectedElement(null);
+      }}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
+        setSelectedElement(null);
+      }}
     >
       {/* Panzoom container */}
       <div
@@ -210,34 +237,51 @@ export const VenueMap = () => {
       {/* Zoom controls */}
       <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
         <button
-          className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            panzoomInstance?.smoothZoom(0, 0, 2);
-          }}
-        >
-          +
-        </button>
-        <button
-          className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100"
-          onMouseDown={(e) => e.stopPropagation()}
-          onClick={(e) => {
-            e.stopPropagation();
-            panzoomInstance?.smoothZoom(0, 0, 0.5);
-          }}
-        >
-          -
-        </button>
-        <button
           className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation();
-            panzoomInstance?.smoothZoom(0, 0, 1);
+            if (panzoomInstance) {
+              //   const currentTransform = panzoomInstance.getTransform();
+              //   console.log('Current transform:', currentTransform);
+              //   console.log('MinZoom:', panzoomInstance.getMinZoom());
+              //   console.log('MaxZoom:', panzoomInstance.getMaxZoom());
+
+              //   // The bug is that somehow we got below minZoom!
+              //   // This shouldn't be possible - let's investigate
+
+              //   panzoomInstance.zoomAbs(0, 0, 1);
+              //   panzoomInstance.moveTo(0, 0);
+
+              //   setTimeout(() => {
+              //     console.log(
+              //       panzoomInstance.getTransform(),
+              //       'currentTransform delayed'
+              //     );
+              //   }, 1000);
+
+              // Get the actual container center instead of using (0,0)
+              const container = document.getElementById('venue-map');
+              if (container) {
+                // const rect = container.getBoundingClientRect();
+                // const centerX = rect.width / 2;
+                // const centerY = rect.height / 2;
+
+                setSelectedElement(null);
+                // console.log('Using center:', centerX, centerY);
+
+                panzoomInstance.pause();
+
+                // Use the container center as zoom origin
+                panzoomInstance.moveTo(0, 0);
+                panzoomInstance.smoothZoomAbs(0, 0, 1);
+
+                panzoomInstance.resume();
+              }
+            }
           }}
         >
-          Reset
+          Reset Zoom
         </button>
       </div>
     </div>
