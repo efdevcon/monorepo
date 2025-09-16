@@ -1,9 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
+import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
 import ManualPaymentModal from '@/components/ManualPaymentModal';
 import { Button } from '@/components/ui/button';
-import { CreditCard, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 interface PaymentRequest {
@@ -263,7 +264,6 @@ export default function ScanPage() {
 
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
-
     console.log('QR Scanner received value:', value);
 
     // First, try to parse as EIP-681 URL
@@ -373,134 +373,139 @@ export default function ScanPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Scan</h1>
-        <div className="text-black">Loading payment request...</div>
-      </div>
+      <PageLayout title="Scan">
+        <div className="flex flex-col items-center justify-center min-h-[400px]">
+          <div className="text-black">Loading payment request...</div>
+        </div>
+      </PageLayout>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Scan</h1>
-        <div className="text-red-600 mb-4">Error: {error}</div>
-        <div className="flex gap-2">
-          <Button
-            onClick={() => fetchPaymentRequest()}
-            className="bg-blue-600 hover:bg-blue-700"
-          >
-            Retry
-          </Button>
-          <Button
-            onClick={() => fetchPaymentRequest(true)}
-            className="bg-green-600 hover:bg-green-700"
-          >
-            Force Refresh
-          </Button>
+      <PageLayout title="Scan">
+        <div className="flex flex-col items-center justify-center min-h-[400px]">
+          <div className="text-red-600 mb-4">Error: {error}</div>
+          <div className="flex gap-2">
+            <Button
+              onClick={() => fetchPaymentRequest()}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              Retry
+            </Button>
+            <Button
+              onClick={() => fetchPaymentRequest(true)}
+              className="bg-green-600 hover:bg-green-700"
+            >
+              Force Refresh
+            </Button>
+          </div>
         </div>
-      </div>
+      </PageLayout>
     );
   }
 
   if (!paymentRequest) {
     return (
-      <div className="min-h-screen flex flex-col items-center bg-white pt-8">
-        <h1 className="text-black text-2xl mb-4">Scan</h1>
-        <div className="text-black">No payment request available</div>
-      </div>
+      <PageLayout title="Scan">
+        <div className="flex flex-col items-center justify-center min-h-[400px]">
+          <div className="text-black">No payment request available</div>
+        </div>
+      </PageLayout>
     );
   }
 
   console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
-    <div className="max-w-xl mx-auto flex flex-col items-center bg-white p-8">
-      <h1 className="text-black text-2xl">Scan</h1>
-
-      {/* Manual Payment Request ID Input */}
-      <div className="w-full mt-6 p-4 border border-gray-200 rounded-lg">
-        <h2 className="text-lg font-medium text-black mb-3">
-          Manual Payment Request
-        </h2>
-        <div className="flex gap-2">
-          <input
-            type="text"
-            placeholder="Enter payment request ID"
-            value={manualPaymentRequestId}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setManualPaymentRequestId(e.target.value)
-            }
-            className="flex-1 h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-              if (e.key === 'Enter') {
-                handleManualPaymentRequest();
+    <PageLayout title="Scan">
+      <div className="max-w-xl mx-auto flex flex-col items-center p-8">
+        {/* Manual Payment Request ID Input */}
+        <div className="w-full mt-6 p-4 border border-gray-200 rounded-lg">
+          <h2 className="text-lg font-medium text-black mb-3">
+            Manual Payment Request
+          </h2>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="Enter payment request ID"
+              value={manualPaymentRequestId}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setManualPaymentRequestId(e.target.value)
               }
-            }}
-          />
-          <Button
-            onClick={handleManualPaymentRequest}
-            disabled={isLoadingManualPayment}
-            className="bg-blue-600 hover:bg-blue-700"
-          >
-            {isLoadingManualPayment ? (
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-            ) : (
-              <Search className="h-4 w-4" />
-            )}
-          </Button>
+              className="flex-1 h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                if (e.key === 'Enter') {
+                  handleManualPaymentRequest();
+                }
+              }}
+            />
+            <Button
+              onClick={handleManualPaymentRequest}
+              disabled={isLoadingManualPayment}
+              className="bg-blue-600 hover:bg-blue-700"
+            >
+              {isLoadingManualPayment ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                <Search className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
+          {manualPaymentError && (
+            <div className="text-red-600 text-sm mt-2">
+              {manualPaymentError}
+            </div>
+          )}
         </div>
-        {manualPaymentError && (
-          <div className="text-red-600 text-sm mt-2">{manualPaymentError}</div>
-        )}
-      </div>
 
-      <div className="flex flex-col items-center justify-center mt-6">
-        <QRScanner
-          buttonLabel="Scan Payment QR Code"
-          onScan={handleQRScan}
-          onClose={() => {
-            console.log('close');
-            // window.open(paymentRequest.checkout_url, '_blank');
-          }}
-          autoOpen={true}
+        <div className="flex flex-col items-center justify-center mt-6">
+          <QRScanner
+            buttonLabel="Scan Payment QR Code"
+            onScan={handleQRScan}
+            onClose={() => {
+              console.log('close');
+              // window.open(paymentRequest.checkout_url, '_blank');
+            }}
+            autoOpen={true}
+          />
+        </div>
+
+        {/* Manual Payment Button */}
+        <div className="mt-6">
+          {/* <Button
+            variant="outline"
+            className="w-full flex items-center gap-2 cursor-pointer text-black"
+            onClick={async () => {
+              await fetchOrderStatusDetails();
+              setIsManualPaymentOpen(true);
+            }}
+          >
+            <CreditCard className="h-4 w-4" />
+            Re-open last payment
+          </Button> */}
+        </div>
+        <div className="mt-6">
+          <a href="/pos" target="_blank" className="text-blue-600 underline">
+            POS Terminal
+          </a>
+        </div>
+
+        {/* Manual Payment Modal */}
+        <ManualPaymentModal
+          key={`${prefilledPaymentData.recipient}-${prefilledPaymentData.amount}`}
+          isOpen={isManualPaymentOpen}
+          onClose={() => setIsManualPaymentOpen(false)}
+          isPara={Boolean(isPara)}
+          initialRecipient={prefilledPaymentData.recipient}
+          initialAmount={prefilledPaymentData.amount}
+          orderId={
+            prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()
+          }
+          orderStatus={prefilledPaymentData.orderStatus}
+          orderStatusDetail={prefilledPaymentData.orderStatusDetail}
         />
       </div>
-
-      {/* Manual Payment Button */}
-      <div className="mt-6">
-        {/* <Button
-          variant="outline"
-          className="w-full flex items-center gap-2 cursor-pointer text-black"
-          onClick={async () => {
-            await fetchOrderStatusDetails();
-            setIsManualPaymentOpen(true);
-          }}
-        >
-          <CreditCard className="h-4 w-4" />
-          Re-open last payment
-        </Button> */}
-      </div>
-      <div className="mt-6">
-        <a href="/pos" target="_blank" className="text-blue-600 underline">
-          POS Terminal
-        </a>
-      </div>
-
-      {/* Manual Payment Modal */}
-      <ManualPaymentModal
-        key={`${prefilledPaymentData.recipient}-${prefilledPaymentData.amount}`}
-        isOpen={isManualPaymentOpen}
-        onClose={() => setIsManualPaymentOpen(false)}
-        isPara={Boolean(isPara)}
-        initialRecipient={prefilledPaymentData.recipient}
-        initialAmount={prefilledPaymentData.amount}
-        orderId={
-          prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()
-        }
-        orderStatus={prefilledPaymentData.orderStatus}
-        orderStatusDetail={prefilledPaymentData.orderStatusDetail}
-      />
-    </div>
+    </PageLayout>
   );
 }

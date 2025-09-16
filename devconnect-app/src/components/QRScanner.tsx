@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { Scanner } from '@yudiel/react-qr-scanner';
 import Button from './Button';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface QRScannerProps {
   onScan?: (result: string) => void;
@@ -18,6 +19,7 @@ const QRScanner = ({
   autoOpen = false,
 }: QRScannerProps) => {
   const [open, setOpen] = useState(false);
+  const [pwa] = useLocalStorage('pwa', false);
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [permissionStatus, setPermissionStatus] = useState<string | null>(null);
@@ -171,7 +173,7 @@ const QRScanner = ({
         createPortal(
           <div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70"
-            style={{ height: 'calc(100vh - 91px)' }}
+            style={{ height: `calc(100vh - ${pwa ? '91px' : '72px'})` }}
             onClick={handleClose}
           >
             <div
@@ -203,7 +205,7 @@ const QRScanner = ({
                   styles={{
                     container: {
                       backgroundColor: 'transparent',
-                      height: '100%',
+                      height: 'calc(100% - 118px)',
                     },
                     video: {
                       borderRadius: '0',
