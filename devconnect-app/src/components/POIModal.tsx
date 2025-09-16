@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { QuestPOI } from '@/hooks/useQuestPOIs';
-import { filterCategories } from '@/data/filterCategories';
+import { filterCategories } from '@/data/to-delete/filterCategories';
 
 interface POIModalProps {
   selectedPOI: QuestPOI | null;

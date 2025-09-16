@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { filterCategories } from '@/data/filterCategories';
+import { filterCategories } from '@/data/to-delete/filterCategories';
 
 export const useMapFilters = () => {
   const [activeFilters, setActiveFilters] = useState<Set<string>>(new Set());
