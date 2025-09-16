@@ -65,6 +65,10 @@ export default function WalletTab() {
   const [isFetching, setIsFetching] = useState(false);
   const lastLoadedAddress = useRef<string | null>(null);
   const isFetchingRef = useRef(false);
+  const [identity, setIdentity] = useState<{
+    name: string | null;
+    avatar: string | null;
+  } | null>(null);
 
   // Local storage key based on address
   const storageKey = address ? `portfolio_${address}` : null;
@@ -111,6 +115,35 @@ export default function WalletTab() {
 
   const handleViewMoreAssets = () => {
     setShowAllAssets(!showAllAssets);
+  };
+
+  // Load identity from AppKit's local storage
+  const loadIdentity = () => {
+    if (!address) {
+      setIdentity(null);
+      return;
+    }
+
+    try {
+      const identityCache = localStorage.getItem('@appkit/identity_cache');
+      if (identityCache) {
+        const cache = JSON.parse(identityCache);
+        const addressData = cache[address];
+        if (addressData?.identity) {
+          setIdentity({
+            name: addressData.identity.name,
+            avatar: addressData.identity.avatar,
+          });
+        } else {
+          setIdentity(null);
+        }
+      } else {
+        setIdentity(null);
+      }
+    } catch (error) {
+      console.error('Error loading identity from cache:', error);
+      setIdentity(null);
+    }
   };
 
   // Fetch portfolio data
@@ -190,6 +223,11 @@ export default function WalletTab() {
       lastLoadedAddress.current = null;
     }
   }, [address, fetchPortfolioData]);
+
+  // Load identity when address changes
+  useEffect(() => {
+    loadIdentity();
+  }, [address]);
 
   // Format USD value
   const formatUSD = (value: number) => {
@@ -300,17 +338,26 @@ export default function WalletTab() {
           {/* Profile Info */}
           <div className="space-y-1 text-center">
             <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px]">
-              <img src={imgCheckbox} alt="checkbox" className="w-5 h-5" />
+              {identity?.avatar ? (
+                <img
+                  src={identity.avatar}
+                  alt="avatar"
+                  className="w-5 h-5 rounded-full"
+                />
+              ) : (
+                <img src={imgCheckbox} alt="checkbox" className="w-5 h-5" />
+              )}
               <span className="text-[#242436] text-base font-normal">
                 {address
-                  ? `${address.slice(0, 6)}...${address.slice(-4)}`
+                  ? identity?.name ||
+                    `${address.slice(0, 6)}...${address.slice(-4)}`
                   : 'Not connected'}
               </span>
-              <img
+              {/* <img
                 src={imgKeyboardArrowDown}
                 alt="dropdown"
                 className="w-5 h-5"
-              />
+              /> */}
             </div>
             <div className="flex items-center justify-center gap-3">
               <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
