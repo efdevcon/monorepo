@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { default as Layout } from 'lib/components/event-schedule-new/layout-app';
 import { useCalendarStore } from './tmp-state';
 import { Separator } from 'lib/components/ui/separator';

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import filterCss from "./filter.module.scss";
 import cn from "classnames";
 import { Checkbox } from "lib/components/ui/checkbox";
@@ -79,19 +79,21 @@ export const useFilters = (events: any[]) => {
     // Text search filter
     if (
       filter.name.length > 0 &&
-      !(event.name?.toLowerCase() || '').includes(filter.name.toLowerCase())
+      !(event.name?.toLowerCase() || "").includes(filter.name.toLowerCase())
     )
       return false;
 
     // Difficulty filter
     if (filter.difficulty.length > 0) {
-      const difficultyMatch = filter.difficulty.includes(event["difficulty"] || '');
+      const difficultyMatch = filter.difficulty.includes(
+        event["difficulty"] || ""
+      );
       if (!difficultyMatch) return false;
     }
 
     // Event type filter
     if (filter.eventType.length > 0) {
-      const typeMatch = filter.eventType.includes(event["eventType"] || '');
+      const typeMatch = filter.eventType.includes(event["eventType"] || "");
       if (!typeMatch) return false;
     }
 

@@ -77,13 +77,15 @@ export const POIModal: React.FC<POIModalProps> = ({
             <div
               className={`p-1.5 rounded ${getPOIColor(selectedPOI.category)}`}
             >
-              {filterCategories.find((f) => f.key === selectedPOI.category)
-                ?.icon &&
-                React.createElement(
-                  filterCategories.find((f) => f.key === selectedPOI.category)!
-                    .icon,
-                  { className: 'h-4 w-4' }
-                )}
+              {(() => {
+                const category = filterCategories.find(
+                  (f) => f.key === selectedPOI.category
+                );
+                const IconComponent = category?.icon;
+                return IconComponent ? (
+                  <IconComponent className="h-4 w-4" />
+                ) : null;
+              })()}
             </div>
             {/* Logo */}
             {selectedPOI.logo && (
@@ -161,13 +163,15 @@ export const POIModal: React.FC<POIModalProps> = ({
             <div
               className={`p-2 rounded-lg ${getPOIColor(selectedPOI.category)}`}
             >
-              {filterCategories.find((f) => f.key === selectedPOI.category)
-                ?.icon &&
-                React.createElement(
-                  filterCategories.find((f) => f.key === selectedPOI.category)!
-                    .icon,
-                  { className: 'h-5 w-5' }
-                )}
+              {(() => {
+                const category = filterCategories.find(
+                  (f) => f.key === selectedPOI.category
+                );
+                const IconComponent = category?.icon;
+                return IconComponent ? (
+                  <IconComponent className="h-5 w-5" />
+                ) : null;
+              })()}
             </div>
             {/* Logo */}
             {selectedPOI.logo && (

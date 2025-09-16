@@ -1,8 +1,8 @@
 'use client';
 // https://github.com/timmywil/panzoom
+import React, { useRef, useEffect, useState } from 'react';
 import { usePanzoom } from './panzoom';
 import MapTest from './maps/MapTest';
-import { useRef, useEffect, useState } from 'react';
 import {
   svgToLookup,
   svgToLookupWithGroups,
