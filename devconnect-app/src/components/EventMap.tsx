@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
-import { filterCategories } from '@/data/filterCategories';
-import { districtPositions } from '@/data/districtPositions';
+import { filterCategories } from '@/data/to-delete/filterCategories';
+import { districtPositions } from '@/data/to-delete/districtPositions';
 import { EventMapSVG } from './EventMapSVG';
 import { POIModal } from './POIModal';
 import { useMapInteraction } from '@/hooks/useMapInteraction';

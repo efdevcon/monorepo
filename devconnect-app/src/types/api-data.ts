@@ -9,6 +9,8 @@ export interface Supporter {
   districtId: string | null;
   locationId: string | null;
   supporterId?: string;
+  logo: string;
+  description: string;
 }
 
 export interface POI {
@@ -16,11 +18,14 @@ export interface POI {
   layerName: string;
   districtId: string | null;
   locationId: string | null;
+  logo: string;
+  description: string;
 }
 
 export interface District {
   name: string;
   layerName: string;
+  backgroundColor?: string;
 }
 
 export interface Location {

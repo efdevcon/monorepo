@@ -1,10 +1,14 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocalStorage } from 'usehooks-ts';
+import Image from 'next/image';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
+import { supportersData } from '@/data/supporters';
 import type { Quest, QuestGroup } from '@/types';
+import cn from 'classnames';
 
 interface AppShowcaseDetailProps {
   group: QuestGroup;
@@ -25,6 +29,73 @@ interface AppShowcaseDetailProps {
   ) => void;
 }
 
+interface TabsProps {
+  districts: Array<{ id: string; name: string; layerName: string }>;
+  activeDistrictId: string;
+  onDistrictSelect: (districtId: string) => void;
+}
+
+const Tabs = ({ districts, activeDistrictId, onDistrictSelect }: TabsProps) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const activeTabRef = useRef<HTMLButtonElement>(null);
+
+  // Scroll to active tab when it changes
+  useEffect(() => {
+    if (activeTabRef.current && scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
+      const activeTab = activeTabRef.current;
+
+      const containerRect = container.getBoundingClientRect();
+      const tabRect = activeTab.getBoundingClientRect();
+
+      const scrollLeft =
+        activeTab.offsetLeft - containerRect.width / 2 + tabRect.width / 2;
+
+      container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth',
+      });
+    }
+  }, [activeDistrictId]);
+
+  return (
+    <div className="py-4 md:py-2 w-full">
+      <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide">
+        <div className="flex bg-[#EFEFF5] md:rounded w-max min-w-full p-1 gap-0">
+          {districts.map((district) => (
+            <button
+              key={district.id}
+              ref={activeDistrictId === district.id ? activeTabRef : null}
+              type="button"
+              className={cn(
+                'flex-shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap rounded-[1px] min-w-max'
+              )}
+              style={{
+                outline: 'none',
+                border: 'none',
+                background:
+                  activeDistrictId === district.id ? '#fff' : 'transparent',
+              }}
+              onClick={() => onDistrictSelect(district.id)}
+            >
+              <div
+                className={cn(
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
+                  activeDistrictId === district.id
+                    ? 'text-[#232336]'
+                    : 'text-[#4b4b66] cursor-pointer'
+                )}
+              >
+                {district.name}
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function AppShowcaseDetail({
   group,
   onBack,
@@ -34,6 +105,8 @@ export default function AppShowcaseDetail({
   const router = useRouter();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
+  const hasInitialized = useRef(false);
+  const [pwa] = useLocalStorage<boolean | null>('pwa', null);
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -70,8 +143,11 @@ export default function AppShowcaseDetail({
       .sort((a, b) => a.name.localeCompare(b.name));
   }, [questsByDistrict]);
 
-  // Handle URL-based routing for initial state loading
+  // Handle URL-based routing
   useEffect(() => {
+    // Only run once on mount or when districts change
+    if (hasInitialized.current) return;
+
     const hash = window.location.hash.substring(1); // Remove # from hash
 
     if (hash) {
@@ -80,8 +156,7 @@ export default function AppShowcaseDetail({
       if (district) {
         setExpandedDistrict(district.id);
         setExpandedQuests(new Set()); // Clear quest expansions when switching districts
-        // Remove hash from URL after loading state
-        router.replace('/quests/app-showcase');
+        hasInitialized.current = true;
         return;
       }
 
@@ -95,8 +170,7 @@ export default function AppShowcaseDetail({
           setExpandedDistrict(questDistrict.id);
           setExpandedQuests(new Set([quest.id]));
         }
-        // Remove hash from URL after loading state
-        router.replace('/quests/app-showcase');
+        hasInitialized.current = true;
         return;
       }
     }
@@ -104,8 +178,9 @@ export default function AppShowcaseDetail({
     // Default: expand first district if no hash
     if (districtsWithQuests.length > 0 && !expandedDistrict) {
       setExpandedDistrict(districtsWithQuests[0].id);
+      hasInitialized.current = true;
     }
-  }, [districtsWithQuests, appShowcaseQuests, router]);
+  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -135,12 +210,20 @@ export default function AppShowcaseDetail({
     return getQuestStatus(quest) === 'completed';
   };
 
+  // Get supporter by ID
+  const getSupporterById = (supporterId: string) => {
+    return supportersData[supporterId] || null;
+  };
+
   const toggleQuestExpansion = (questId: number) => {
     setExpandedQuests((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(questId)) {
+        // If quest is already expanded, collapse it
         newSet.delete(questId);
       } else {
+        // If quest is not expanded, clear all others and expand this one
+        newSet.clear();
         newSet.add(questId);
       }
       return newSet;
@@ -148,18 +231,54 @@ export default function AppShowcaseDetail({
   };
 
   const toggleDistrictExpansion = (districtId: string) => {
-    setExpandedDistrict((prev) => (prev === districtId ? '' : districtId));
-  };
+    const isCurrentlyExpanded = expandedDistrict === districtId;
 
-  const selectDistrict = (districtId: string) => {
-    // If clicking on the same district, toggle it (collapse if expanded)
-    if (expandedDistrict === districtId) {
+    if (isCurrentlyExpanded) {
+      // Collapse the district
       setExpandedDistrict('');
       setExpandedQuests(new Set());
     } else {
-      // Expand the selected district and collapse others
+      // Use selectDistrict to ensure tab selection and quest expansion
+      selectDistrict(districtId);
+    }
+  };
+
+  const selectDistrict = (districtId: string) => {
+    const district = districtsWithQuests.find((d) => d.id === districtId);
+    if (district) {
       setExpandedDistrict(districtId);
-      setExpandedQuests(new Set()); // Clear quest expansions
+
+      // Find the first uncompleted quest in this district
+      const quests = questsByDistrict[districtId] || [];
+      const firstUncompletedQuest = quests.find((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status !== 'completed';
+      });
+
+      // Expand the first uncompleted quest if found, otherwise clear expansions
+      if (firstUncompletedQuest) {
+        setExpandedQuests(new Set([firstUncompletedQuest.id]));
+      } else {
+        setExpandedQuests(new Set()); // Clear quest expansions if all are completed
+      }
+
+      // Scroll to the district section after a brief delay to allow state update
+      setTimeout(() => {
+        const districtElement = document.getElementById(
+          `district-${districtId}`
+        );
+        if (districtElement) {
+          // Calculate offset to account for sticky tabs (59px + some padding)
+          const stickyTabsHeight = 80; // 59px + some padding
+          const elementTop = districtElement.offsetTop;
+          const offsetPosition = elementTop - stickyTabsHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      }, 100);
     }
   };
 
@@ -169,6 +288,18 @@ export default function AppShowcaseDetail({
 
     const newStatus = currentStatus === 'locked' ? 'active' : 'completed';
     updateQuestStatus(quest.id.toString(), newStatus, false);
+  };
+
+  const handleTodoClick = (quest: Quest) => {
+    // Find the district for this quest to get the layerName
+    const questDistrict = districtsWithQuests.find(
+      (d) => d.id === quest.districtId?.toString()
+    );
+
+    if (questDistrict) {
+      // Redirect to /worlds-fair#layerName
+      router.push(`/worlds-fair#${questDistrict.layerName}`);
+    }
   };
 
   // Calculate overall progress
@@ -188,39 +319,34 @@ export default function AppShowcaseDetail({
   }, [appShowcaseQuests, questStates]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start">
+    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start relative">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 w-full px-6 py-4">
+      <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center justify-center w-5 h-5 text-gray-600 hover:text-gray-800"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.5 15L7.5 10L12.5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
           <h1 className="text-base font-bold text-gray-800 tracking-[-0.1px] flex-1 text-center">
             {group.name}
           </h1>
           <div className="w-5" /> {/* Spacer for centering */}
         </div>
       </div>
-
+      {/* District Tabs */}
+      <div
+        className="bg-white border-b border-gray-200 w-full px-4 z-20 sticky"
+        style={{
+          top: pwa === true ? '118px' : '59px', // PWA mode: 118px, regular mode: 59px
+          transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
+        }}
+      >
+        <div className="max-w-2xl mx-auto">
+          <Tabs
+            districts={districtsWithQuests}
+            activeDistrictId={expandedDistrict}
+            onDistrictSelect={selectDistrict}
+          />
+        </div>
+      </div>
       {/* Reward Section */}
-      <div className="bg-white border-b border-gray-200 w-full px-6 py-4">
+      <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex flex-col gap-2">
           <div className="flex flex-col gap-1">
             <h2 className="text-base font-bold text-gray-800 tracking-[-0.1px]">
@@ -233,7 +359,7 @@ export default function AppShowcaseDetail({
           </div>
           <div className="flex flex-col gap-4">
             <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
-              {overallProgress.completed}/50 completed
+              {overallProgress.completed}/{overallProgress.total} completed
             </div>
             <div className="relative w-full h-2 bg-gray-100 rounded">
               <div
@@ -241,41 +367,29 @@ export default function AppShowcaseDetail({
                 style={{ width: `${overallProgress.percentage}%` }}
               />
               {/* Milestone markers */}
-              {[10, 20, 30, 40, 50].map((milestone, index) => (
-                <div
-                  key={milestone}
-                  className="absolute w-4 h-4 bg-white border border-blue-600 rounded-full -top-1"
-                  style={{ left: `${(milestone / 50) * 100}%` }}
-                >
-                  <div className="w-3 h-3 m-0.5 bg-blue-600 rounded-full" />
-                </div>
-              ))}
+              {[10, 20, 30, 40, 50].map((milestone, index) => {
+                // Only show milestone if it's less than or equal to the total quests
+                if (milestone <= overallProgress.total) {
+                  return (
+                    <div
+                      key={milestone}
+                      className="absolute w-4 h-4 bg-white border border-blue-600 rounded-full -top-1"
+                      style={{
+                        left: `${(milestone / overallProgress.total) * 100}%`,
+                      }}
+                    >
+                      <div className="w-3 h-3 m-0.5 bg-blue-600 rounded-full" />
+                    </div>
+                  );
+                }
+                return null;
+              })}
             </div>
           </div>
         </div>
       </div>
-
-      {/* District Highlight Menu */}
-      <div className="bg-white border-b border-gray-200 w-full px-6 py-4 sticky top-0 z-10">
-        <div className="flex gap-2 overflow-x-auto">
-          {districtsWithQuests.map((district) => (
-            <button
-              key={district.id}
-              onClick={() => selectDistrict(district.id)}
-              className={`px-4 py-2 rounded text-sm font-bold whitespace-nowrap ${
-                expandedDistrict === district.id
-                  ? 'bg-white shadow-sm border border-gray-300'
-                  : 'bg-gray-200'
-              }`}
-            >
-              {district.name}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* District Sections */}
-      <div className="w-full space-y-3 p-6">
+      <div className="w-full space-y-3 p-4">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
           const progress = getDistrictProgress(district.id);
@@ -284,15 +398,28 @@ export default function AppShowcaseDetail({
           return (
             <div
               key={district.id}
-              className="bg-white border border-gray-200 rounded-lg"
+              id={`district-${district.id}`}
+              className="border border-gray-200 rounded-lg"
+              style={{
+                backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), ${district.backgroundColor || 'linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)'}`,
+              }}
             >
               {/* District Header - Clickable */}
               <button
                 onClick={() => toggleDistrictExpansion(district.id)}
-                className="w-full p-6 text-left hover:bg-gray-50 transition-colors"
+                className="w-full p-4 text-left hover:bg-white/20 transition-colors rounded-lg"
               >
                 <div className="flex gap-3 items-center">
-                  <div className="w-14 h-14 bg-gray-300 rounded" />
+                  <div className="w-14 h-14 rounded overflow-hidden">
+                    <img
+                      src={`/images/districts/${district.layerName}.svg`}
+                      alt={district.name}
+                      width={56}
+                      height={56}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
                       {district.name}
@@ -334,7 +461,7 @@ export default function AppShowcaseDetail({
 
               {/* Quest List - Only show when district is expanded */}
               {isDistrictExpanded && (
-                <div className="px-6 pb-6 space-y-3">
+                <div className="px-4 pb-4 space-y-3">
                   {quests.map((quest) => {
                     const isCompleted = isQuestCompleted(quest);
                     const isExpanded = expandedQuests.has(quest.id);
@@ -342,12 +469,44 @@ export default function AppShowcaseDetail({
                     return (
                       <div
                         key={quest.id}
-                        className="border border-gray-100 rounded"
+                        className={`bg-white border rounded cursor-pointer hover:bg-gray-50 transition-colors ${
+                          isExpanded ? 'border-[#1b6fae]' : 'border-[#f0f0f4]'
+                        }`}
+                        onClick={() => toggleQuestExpansion(quest.id)}
                       >
                         {/* Quest Card */}
                         <div className="p-4">
                           <div className="flex gap-3 items-start">
-                            <div className="w-8 h-8 bg-gray-300 rounded flex-shrink-0" />
+                            <div className="w-8 h-8 rounded flex-shrink-0 overflow-hidden">
+                              {quest.supporterId ? (
+                                (() => {
+                                  const supporter = getSupporterById(
+                                    quest.supporterId
+                                  );
+                                  return supporter?.logo ? (
+                                    <img
+                                      src={supporter.logo}
+                                      alt={supporter.name}
+                                      width={32}
+                                      height={32}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  ) : (
+                                    <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
+                                      <span className="text-xs text-gray-600">
+                                        {supporter?.name?.charAt(0) || '?'}
+                                      </span>
+                                    </div>
+                                  );
+                                })()
+                              ) : (
+                                <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
+                                  <span className="text-xs text-gray-600">
+                                    ?
+                                  </span>
+                                </div>
+                              )}
+                            </div>
                             <div className="flex-1 min-w-0">
                               <h4 className="text-sm font-bold text-gray-800 mb-1">
                                 {quest.name}
@@ -357,62 +516,88 @@ export default function AppShowcaseDetail({
                                   'Complete this quest to earn points'}
                               </p>
                             </div>
-                            <div className="flex flex-col items-center gap-2">
-                              <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                            <div
+                              className={`flex flex-col items-center gap-2 ${!isCompleted ? 'cursor-pointer' : ''}`}
+                              onClick={
+                                !isCompleted
+                                  ? (e) => {
+                                      e.stopPropagation();
+                                      handleTodoClick(quest);
+                                    }
+                                  : undefined
+                              }
+                            >
+                              <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
                                 {isCompleted ? (
-                                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 20 20"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M6 10L8.5 12.5L14 7"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </svg>
-                                  </div>
+                                  quest.poapImageLink ? (
+                                    <img
+                                      src={quest.poapImageLink}
+                                      alt="POAP"
+                                      width={40}
+                                      height={40}
+                                      className="w-full h-full object-cover rounded-full"
+                                    />
+                                  ) : (
+                                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                                      <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                      >
+                                        <path
+                                          d="M6 10L8.5 12.5L14 7"
+                                          stroke="white"
+                                          strokeWidth="2"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                        />
+                                      </svg>
+                                    </div>
+                                  )
                                 ) : (
-                                  <div className="w-5 h-5 bg-blue-600 rounded-full flex items-center justify-center">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 20 20"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M10 6L10 14M6 10L14 10"
-                                        stroke="white"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                      />
-                                    </svg>
+                                  <div className="relative w-10 h-10">
+                                    {/* Background ellipse */}
+                                    <div className="absolute inset-0 w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200" />
+                                    {/* Location icon */}
+                                    <div className="absolute inset-0 flex items-center justify-center">
+                                      <svg
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="text-[#1b6fae]"
+                                      >
+                                        <path
+                                          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                          fill="currentColor"
+                                        />
+                                      </svg>
+                                    </div>
                                   </div>
                                 )}
                               </div>
-                              <div className="text-xs font-bold text-center">
+                              <div className="text-center w-14">
                                 {isCompleted ? (
-                                  <span className="text-green-600">
+                                  <span className="text-green-600 text-[10px] font-bold">
                                     COLLECTED
                                   </span>
                                 ) : (
-                                  <span className="text-blue-600">TO DO</span>
+                                  <p
+                                    className="text-[#1b6fae] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
+                                    style={{ fontFamily: 'Roboto, sans-serif' }}
+                                  >
+                                    TO DO
+                                  </p>
                                 )}
                               </div>
                             </div>
                           </div>
 
-                          {/* Expand/Collapse Button */}
-                          <button
-                            onClick={() => toggleQuestExpansion(quest.id)}
-                            className="mt-2 flex items-center justify-center w-full"
-                          >
+                          {/* Expand/Collapse Indicator */}
+                          <div className="mt-2 flex items-center justify-center w-full">
                             <svg
                               width="12"
                               height="12"
@@ -431,22 +616,22 @@ export default function AppShowcaseDetail({
                                 strokeLinejoin="round"
                               />
                             </svg>
-                          </button>
+                          </div>
                         </div>
 
                         {/* Expanded Quest Actions */}
                         {isExpanded && (
-                          <div className="bg-blue-50 border-t border-gray-100 p-4">
+                          <div
+                            className="bg-white border-t border-gray-100 p-4 rounded-bl rounded-br"
+                            onClick={(e) => e.stopPropagation()}
+                          >
                             <div className="flex gap-3 items-center">
-                              <button className="px-3 py-2 bg-gray-200 rounded text-sm font-bold text-gray-700">
-                                (i)
-                              </button>
-                              <button className="px-3 py-2 bg-gray-200 rounded text-sm font-bold text-gray-700">
-                                📍
+                              <button className="flex-1 px-3 py-3 bg-[#eaf3fa] rounded text-sm font-bold text-[#36364c] hover:bg-[#d4e7f5] transition-colors">
+                                Learn more
                               </button>
                               <button
                                 onClick={() => handleQuestAction(quest)}
-                                className="flex-1 px-3 py-2 bg-blue-600 text-white rounded text-sm font-bold hover:bg-blue-700"
+                                className="flex-1 px-3 py-3 bg-[#1b6fae] text-white rounded text-sm font-bold hover:bg-[#125181] transition-colors shadow-[0px_4px_0px_0px_#125181]"
                               >
                                 Verify quest
                               </button>

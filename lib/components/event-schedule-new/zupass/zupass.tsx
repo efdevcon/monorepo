@@ -1,13 +1,12 @@
 "use client";
 
-import { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState, useCallback } from "react";
 import {
   ClientConnectionState,
   ParcnetClientContext,
   ParcnetClientProvider,
   useParcnetClient,
 } from "@parcnet-js/app-connector-react";
-import { useState, useCallback } from "react";
 import Tooltip from "lib/components/tooltip";
 import { SquareArrowOutUpRight } from "lucide-react";
 import VoxelButton from "lib/components/voxel-button/button";
@@ -230,7 +229,7 @@ const EventVoucher = ({
   setDevconCoupons: (coupons: Record<string, string>) => void;
 }) => {
   const { connectionState, z } = useParcnetClient();
-  const ctx = useContext(ParcnetClientContext);
+  const ctx = useContext(ParcnetClientContext as React.Context<any>);
   const disconnect = ctx?.disconnect;
 
   const [couponFetchingComplete, setCouponFetchingComplete] = useState(false);
@@ -339,9 +338,9 @@ const EventVoucher = ({
           title={
             "This event is happening inside the main Devconnect venue; that means you will need a Devconnect ticket to attend. Connect with zupass below to verify ticket ownership."
           }
-          className="shrink-0 inline-flex items-center justify-center hidden md:flex z-[10000000000000]"
+          className="shrink-0 hidden md:inline-flex items-center justify-center z-[10000000000000]"
         >
-          <div className="flex items-center justify-center shrink-0 hidden md:flex md:shrink-0">
+          <div className="hidden md:flex items-center justify-center shrink-0">
             <Info size={18} />
           </div>
         </Tooltip>{" "}
@@ -404,7 +403,7 @@ const EventVoucher = ({
         {/* Step 2 - Get event ticket */}
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
-          <div className="mt-1 text-center flex sm:flex-col items-start items-center gap-2 sm:gap-0">
+          <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
             <VoxelButton
               disabled={!connectedWithCoupon}
               className={`outline-none w-[150px]`}

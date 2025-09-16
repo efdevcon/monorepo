@@ -1,7 +1,11 @@
 'use client';
-
-import EventMap from '@/components/EventMap';
+import PageLayout from '@/components/PageLayout';
+import { VenueMap } from './venue-map/VenueMap2';
 
 export default function MapPage() {
-  return <EventMap />;
+  return (
+    <PageLayout title="Map">
+      <VenueMap />
+    </PageLayout>
+  );
 }

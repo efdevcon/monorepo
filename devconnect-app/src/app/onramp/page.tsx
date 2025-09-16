@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import Link from 'next/link';
@@ -10,9 +9,9 @@ import Link from 'next/link';
 // https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
 const SuspenseHOC = (Component: React.ComponentType) => {
   return (props: any) => (
-    <Suspense fallback={<div>Loading...</div>}>
+    <React.Suspense fallback={<div>Loading...</div>}>
       <Component {...props} />
-    </Suspense>
+    </React.Suspense>
   );
 };
 

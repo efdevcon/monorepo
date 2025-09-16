@@ -40,7 +40,7 @@ export default function Menu() {
       <nav
         className={cn(
           css['menu'],
-          'md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center border-t border-gray-200]'
+          'md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center border-t border-gray-200 gap-2 px-2'
         )}
         style={{
           paddingBottom: 'calc(0px + max(0px, env(safe-area-inset-bottom)))',
@@ -57,15 +57,27 @@ export default function Menu() {
             <Link
               key={item.href}
               href={item.href}
-              className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors ${isActive ? 'text-[#232336] font-semibold' : 'text-[#4b4b66] font-normal'}`}
+              className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors text-transparent rounded-[2px] ${isActive ? 'font-bold' : 'font-normal'}`}
+              style={{
+                backgroundColor: isActive
+                  ? item.backgroundColor
+                  : 'transparent',
+              }}
             >
               <span
-                className={`${isScan ? 'size-11' : 'size-7'} flex items-center justify-center overflow-hidden`}
+                className={`${isScan ? 'size-12' : 'size-7'} flex items-center justify-center overflow-hidden`}
               >
                 <Icon active={isActive} />
               </span>
               {!isScan && (
-                <span className="text-[10px] leading-[10px]">{item.label}</span>
+                <span
+                  className="text-[10px] leading-[10px]"
+                  style={{
+                    color: isActive ? '#242436' : '#4B4B66',
+                  }}
+                >
+                  {item.label}
+                </span>
               )}
             </Link>
           );

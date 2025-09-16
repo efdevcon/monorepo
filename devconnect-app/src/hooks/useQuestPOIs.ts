@@ -35,24 +35,27 @@ export const useQuestPOIs = (): QuestPOI[] => {
         
         const questPOIs = quests.map((quest, index) => {
           // Use the quest ID directly as the SVG ID since they're now descriptive
-          const svgId = quest.id;
+          const svgId = quest.id.toString();
           // console.log(`Using quest ID as SVG ID for "${quest.name}": ${svgId}`);
+          
+          // Use supporterId as category fallback, or derive from quest properties
+          const category = quest.supporterId || 'general';
           
           return {
             id: svgId, // Use SVG element ID for map interaction
-            questId: quest.id, // Keep original quest ID for API calls
+            questId: quest.id.toString(), // Keep original quest ID for API calls
             name: quest.name,
-            category: quest.category.toLowerCase(), // Use quest category for map interaction
-            questCategory: quest.category, // Keep original quest category
+            category: category.toLowerCase(), // Use supporterId as category for map interaction
+            questCategory: category, // Keep original quest category
             description: quest.instructions || quest.name,
             details: quest.conditionValues,
             currentEvent: quest.button,
-            logo: quest.logoLink || undefined,
+            logo: quest.poapImageLink || undefined, // Use poapImageLink as logo
             heroImage: quest.poapImageLink || undefined,
             companyDescription: quest.instructions,
             amenities: [quest.action, quest.conditionType].filter(Boolean),
-            websiteLink: quest?.websiteLink || undefined,
-            socialLink: quest.socialLink,
+            websiteLink: undefined, // Not available in Quest interface
+            socialLink: undefined, // Not available in Quest interface
           };
         });
                   console.log('questPOIs', questPOIs);

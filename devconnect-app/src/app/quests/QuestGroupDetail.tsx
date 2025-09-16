@@ -67,26 +67,6 @@ export default function QuestGroupDetail({
       {/* Header */}
       <div className="bg-white border-b border-gray-200 w-full px-6 py-4">
         <div className="flex items-center justify-between">
-          <button
-            onClick={onBack}
-            className="flex items-center justify-center w-5 h-5 text-gray-600 hover:text-gray-800"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.5 15L7.5 10L12.5 5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
           <h1 className="text-base font-bold text-gray-800 tracking-[-0.1px] flex-1 text-center">
             {group.name}
           </h1>

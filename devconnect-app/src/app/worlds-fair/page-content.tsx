@@ -1,16 +1,9 @@
 'use client';
 import PageLayout from '@/components/PageLayout';
+import { CalendarRangeIcon } from 'lucide-react';
 import ProgrammeTab from './ScheduleTab';
-import WorldsFairTab from './WorldsFairTab';
-import { MapPinIcon, CalendarRangeIcon } from 'lucide-react';
-import { VenueMap } from './venue-map/VenueMap2';
 
 const tabs = (atprotoEvents: any[]) => [
-  {
-    label: 'Venue Map',
-    labelIcon: MapPinIcon,
-    component: () => <VenueMap />,
-  },
   {
     label: 'Event Schedule',
     labelIcon: CalendarRangeIcon,
