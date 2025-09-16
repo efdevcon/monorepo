@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import Onboarding from '@/components/Onboarding';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 import {
   generateSessionToken,
   formatAddressesForToken,
@@ -11,6 +10,7 @@ import {
 
 export default function OnrampTab() {
   const { address } = useUnifiedConnection();
+  const router = useRouter();
 
   // Generate a valid UUID v4 (required by Ripio API)
   const generateUUID = (): string => {
@@ -94,10 +94,11 @@ export default function OnrampTab() {
     {
       name: 'Coinbase',
       description: 'Best rate, easy, requires KYC',
-      gradient: 'from-blue-500 to-purple-600',
-      hoverGradient: 'hover:from-blue-600 hover:to-purple-700',
+      gradient:
+        'linear-gradient(135deg, rgba(0, 82, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
       logo: 'C',
       logoColor: 'text-blue-600',
+      logoImage: 'coinbase-logo.png',
       environment: 'production',
       onClick: async () => {
         if (!address) {
@@ -214,10 +215,11 @@ export default function OnrampTab() {
     {
       name: 'Transak',
       description: 'Good rate, easy, light KYC',
-      gradient: 'from-green-500 to-blue-600',
-      hoverGradient: 'hover:from-green-600 hover:to-blue-700',
+      gradient:
+        'linear-gradient(135deg, rgba(52, 138, 237, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
       logo: 'T',
       logoColor: 'text-green-600',
+      logoImage: 'transak-logo.png',
       environment: 'staging',
       onClick: () => {
         if (!address) {
@@ -242,10 +244,11 @@ export default function OnrampTab() {
     {
       name: 'Ripio',
       description: 'Argentinians only via Mercado Pago or Bank Transfer',
-      gradient: 'from-yellow-500 to-orange-600',
-      hoverGradient: 'hover:from-yellow-600 hover:to-orange-700',
+      gradient:
+        'linear-gradient(135deg, rgba(105, 14, 216, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
       logo: 'R',
       logoColor: 'text-yellow-600',
+      logoImage: 'ripio-logo.png',
       environment: 'staging',
       onClick: async () => {
         if (!address) {
@@ -352,10 +355,11 @@ export default function OnrampTab() {
     {
       name: 'Meld.io',
       description: 'Advanced, many options available',
-      gradient: 'from-purple-600 to-purple-800',
-      hoverGradient: 'hover:from-purple-700 hover:to-purple-900',
+      gradient:
+        'linear-gradient(135deg, rgba(249, 105, 211, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
       logo: 'M',
       logoColor: 'text-purple-600',
+      logoImage: 'meld-logo.png',
       environment: 'production',
       onClick: () => {
         if (!address) {
@@ -378,10 +382,11 @@ export default function OnrampTab() {
     {
       name: 'ZKP2P',
       description: 'Advanced, privacy preserving',
-      gradient: 'from-indigo-500 to-purple-600',
-      hoverGradient: 'hover:from-indigo-600 hover:to-purple-700',
+      gradient:
+        'linear-gradient(135deg, rgba(254, 138, 103, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%)',
       logo: 'Z',
       logoColor: 'text-indigo-600',
+      logoImage: 'zkp2p-logo.png',
       environment: 'production',
       onClick: () => {
         if (!address) {
@@ -410,37 +415,105 @@ export default function OnrampTab() {
   }
 
   return (
-    <div className="min-h-screen bg-white p-6">
-      <div className="max-w-md mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 text-center mb-8">
-          Choose Provider
-        </h1>
+    <div className="bg-[#f6fafe] min-h-screen">
+      {/* Header */}
+      <div className="bg-white border-b border-[#eeeeee] px-5 py-4">
+        <div className="flex items-center justify-between">
+          <button
+            onClick={() => router.push('/wallet')}
+            className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors cursor-pointer"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="#36364c"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </button>
+          <h1 className="text-[#36364c] text-base font-bold tracking-[-0.1px]">
+            Digital Exchanges
+          </h1>
+          <div className="w-6 h-6" />
+        </div>
+      </div>
 
-        <div className="space-y-4">
+      {/* Main Content */}
+      <div className="px-6 py-4">
+        {/* Title Section */}
+        <div className="mb-4">
+          <h2 className="text-[#242436] text-xl font-bold leading-[1.2] tracking-[-0.1px] mb-2">
+            Swap currency for crypto digitally
+          </h2>
+          <p className="text-[#36364c] text-sm leading-[1.3]">
+            Partners accept Debit/Credit card only
+          </p>
+        </div>
+
+        {/* Provider Cards */}
+        <div className="space-y-2 mb-4">
           {providers.map((provider, index) => (
             <button
               key={index}
               onClick={provider.onClick}
-              className={`w-full p-4 rounded-xl bg-gradient-to-r ${provider.gradient} text-white ${provider.hoverGradient} transition-all duration-200 flex flex-col cursor-pointer`}
+              className="w-full border border-[#f0f0f4] rounded p-4 flex items-center gap-3 hover:brightness-75 transition-all duration-200 cursor-pointer"
+              style={{ background: provider.gradient }}
             >
-              <div className="flex items-center justify-between w-full">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                    <span className={`${provider.logoColor} font-bold text-xl`}>
-                      {provider.logo}
-                    </span>
-                  </div>
-                  <div className="text-left">
-                    <div className="text-lg font-semibold">{provider.name}</div>
-                    <div className="text-sm opacity-90">
-                      {provider.description}
-                    </div>
+              {/* Provider Icon */}
+              <div className="w-8 h-8 rounded flex items-center justify-center flex-shrink-0 overflow-hidden">
+                <img
+                  src={`/images/${provider.logoImage}`}
+                  alt={`${provider.name} logo`}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+
+              {/* Provider Info */}
+              <div className="flex-1 text-left">
+                <div className="text-[#242436] text-base font-bold leading-[1.2] tracking-[-0.1px] mb-1">
+                  {provider.name}
+                </div>
+                <div className="text-[#36364c] text-sm leading-[1.3] tracking-[-0.1px] mb-1">
+                  {provider.description}
+                </div>
+                <div className="flex items-center gap-2">
+                  {provider.docs && (
+                    <a
+                      href={provider.docs}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-[#36364c] hover:text-[#242436] transition-colors underline"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      📚 Documentation
+                    </a>
+                  )}
+                  <div
+                    className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                      provider.environment === 'production'
+                        ? 'bg-green-100 text-green-800'
+                        : 'bg-red-100 text-red-800'
+                    }`}
+                  >
+                    {provider.environment === 'production'
+                      ? '🚀 PROD'
+                      : '🧪 STAGING'}
                   </div>
                 </div>
+              </div>
+
+              {/* Chevron Icon */}
+              <div className="w-4 h-4 flex-shrink-0">
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                   fill="none"
-                  stroke="currentColor"
+                  stroke="#36364c"
                   viewBox="0 0 24 24"
                 >
                   <path
@@ -451,32 +524,40 @@ export default function OnrampTab() {
                   />
                 </svg>
               </div>
-              <div className="flex flex-row self-end items-center justify-center mt-3 space-x-2">
-                {provider.docs && (
-                  <a
-                    href={provider.docs}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-white opacity-80 hover:opacity-100 transition-opacity underline"
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    📚 Documentation
-                  </a>
-                )}
-                <div
-                  className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                    provider.environment === 'production'
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-red-100 text-red-800'
-                  }`}
-                >
-                  {provider.environment === 'production'
-                    ? '🚀 PROD'
-                    : '🧪 STAGING'}
-                </div>
-              </div>
             </button>
           ))}
+        </div>
+
+        {/* Help Banner */}
+        <div className="bg-[#fff5db] border border-[#ecc791] rounded p-3">
+          <div className="flex items-start gap-2">
+            <div className="w-6 h-6 flex-shrink-0 mt-0.5">
+              <svg
+                className="w-6 h-6 text-[#492e09]"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </div>
+            <div className="text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
+              <div className="font-bold mb-1">Need help?</div>
+              <div>
+                Contact our support team if you're having trouble with our
+                digital exchange options. Alternatively, you can visit our{' '}
+                <span className="font-bold underline">
+                  in-person exchange page
+                </span>{' '}
+                to learn more about exchanging currency for crypto in La Rural.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
