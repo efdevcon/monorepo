@@ -60,7 +60,7 @@ export const usePanzoom = (elementId: string) => {
     if (scene) {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
-        boundsPadding: 0.3,
+        boundsPadding: 0.5,
         maxZoom: 2.5,
         zoomDoubleClickSpeed: 1,
         minZoom: 0.5,

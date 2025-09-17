@@ -143,29 +143,90 @@ export function svgToLookupWithGroups(svgElement: SVGSVGElement | null): {
 
 // Helper to get position in viewport coordinates (useful for absolute positioning)
 export function getViewportPosition(
-  svgElement: SVGSVGElement,
-  elementId: string
+  id: string,
+  container: Element,
+  element: SVGElement
 ): ElementPosition | null {
-  const element = svgElement.getElementById(elementId);
-  if (!element || !(element instanceof SVGGraphicsElement)) return null;
-  
+  if (!(element instanceof SVGGraphicsElement)) return null;
+
   try {
-    const svgRect = svgElement.getBoundingClientRect();
-    const elementRect = element.getBoundingClientRect();
-    
-    // Calculate position relative to SVG container
-    return {
-      id: elementId,
-      x: elementRect.left - svgRect.left,
-      y: elementRect.top - svgRect.top,
-      width: elementRect.width,
-      height: elementRect.height,
-      centerX: (elementRect.left - svgRect.left) + elementRect.width / 2,
-      centerY: (elementRect.top - svgRect.top) + elementRect.height / 2,
-      type: element.tagName.toLowerCase()
-    };
+    // Check if element has a transform attribute (same logic as svgToLookup)
+    const transform = element.getAttribute('transform');
+
+    if (transform && transform.includes('rotate')) {
+      // For rotated elements, parse the rotation and calculate the actual center
+      const rotateMatch = transform.match(/rotate\(([-\d.]+)(?:\s+([-\d.]+)\s+([-\d.]+))?\)/);
+      const bbox = element.getBBox();
+
+      if (rotateMatch && rotateMatch[2] && rotateMatch[3]) {
+        // rotation angle, cx, cy (center of rotation)
+        const cx = parseFloat(rotateMatch[2]);
+        const cy = parseFloat(rotateMatch[3]);
+
+        // Same calculation as svgToLookup
+        return {
+          id,
+          x: cx,
+          y: cy,
+          width: bbox.width,
+          height: bbox.height,
+          centerX: cx + bbox.width / 2,
+          centerY: cy + bbox.height / 2,
+          type: element.tagName.toLowerCase()
+        };
+      } else {
+        // Fallback for other rotation formats using transformation matrix
+        const svgElement = element.ownerSVGElement;
+        if (!svgElement) return null;
+
+        const matrix = (element as any).getCTM();
+        if (matrix) {
+          const point = svgElement.createSVGPoint();
+          point.x = bbox.x + bbox.width / 2;
+          point.y = bbox.y + bbox.height / 2;
+          const transformedPoint = point.matrixTransform(matrix);
+
+          return {
+            id,
+            x: transformedPoint.x - bbox.width / 2,
+            y: transformedPoint.y - bbox.height / 2,
+            width: bbox.width,
+            height: bbox.height,
+            centerX: transformedPoint.x,
+            centerY: transformedPoint.y,
+            type: element.tagName.toLowerCase()
+          };
+        } else {
+          // Fallback to regular bbox if can't get transform matrix
+          return {
+            id,
+            x: bbox.x,
+            y: bbox.y,
+            width: bbox.width,
+            height: bbox.height,
+            centerX: bbox.x + bbox.width / 2,
+            centerY: bbox.y + bbox.height / 2,
+            type: element.tagName.toLowerCase()
+          };
+        }
+      }
+    } else {
+      // For non-transformed elements, use regular getBBox
+      const bbox = element.getBBox();
+
+      return {
+        id,
+        x: bbox.x,
+        y: bbox.y,
+        width: bbox.width,
+        height: bbox.height,
+        centerX: bbox.x + bbox.width / 2,
+        centerY: bbox.y + bbox.height / 2,
+        type: element.tagName.toLowerCase()
+      };
+    }
   } catch (error) {
-    console.warn(`Could not get viewport position for element ${elementId}:`, error);
+    console.warn(`Could not get viewport position for element ${id}:`, error);
     return null;
   }
 }
