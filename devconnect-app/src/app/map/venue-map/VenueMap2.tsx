@@ -79,8 +79,14 @@ export const VenueMap = () => {
     'art-exhibition': {
       groups: ['art'],
     },
-    'toilet-dis-1': {
-      groups: ['art', 'alt-l1'],
+    'entrance-1': {
+      groups: ['art'],
+    },
+    'cowork-8': {
+      groups: ['coworks'],
+    },
+    'cowork-1': {
+      groups: ['coworks'],
     },
   });
 
@@ -99,7 +105,7 @@ export const VenueMap = () => {
 
   const allPossibleFilters = useMemo(() => {
     // Get from database / api
-    const groups = ['art', 'alt-l1'];
+    const groups = ['art', 'coworks'];
 
     const elementKeys = Object.keys(elementLookup);
 
@@ -258,13 +264,6 @@ export const VenueMap = () => {
     const deltaX = targetCenterX - elementCenterX;
     const deltaY = targetCenterY - elementCenterY;
 
-    console.log('Focus calculation (simplified):', {
-      elementId: id,
-      elementCenter: { x: elementCenterX, y: elementCenterY },
-      targetCenter: { x: targetCenterX, y: targetCenterY },
-      delta: { x: deltaX, y: deltaY },
-    });
-
     // Move it! (third parameter for smooth animation)
     // Offset Y slightly to account for the map pane that appears
     panzoomInstance.moveBy(deltaX, deltaY - 30, true);
@@ -289,8 +288,6 @@ export const VenueMap = () => {
       // }
     }
   };
-
-  console.log(currentFilters, 'currentFilters');
 
   return (
     <div

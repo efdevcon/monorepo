@@ -83,10 +83,15 @@ export const usePanzoom = (elementId: string) => {
       //   // setPanAndZoomLevels(zoomLevels);
       // });
 
-      // panzoomInstance.on('zoom', (e: any) => {
-      //   console.log('zoomstart', e);
-      //   // setIsZooming(true);
-      // });
+      panzoomInstance.on('zoom', (e: any) => {
+        console.log('zoomstart', e);
+        setIsZooming(true);
+
+        // Set a timeout to ensure the zoom animation is complete
+        setTimeout(() => {
+          setIsZooming(false);
+        }, 600);
+      });
 
       // panzoomInstance.on('zoomend', (e: any) => {
       //   console.log('zoomend', e);
@@ -110,9 +115,9 @@ export const usePanzoom = (elementId: string) => {
       //   // setIsPanning(false);
       // });
 
-      // panzoomInstance.on('transform', (e: any) => {
-      //   console.log('transform', e);
-      // });
+      panzoomInstance.on('transform', (e: any) => {
+        console.log('transform', e);
+      });
 
       // Prevent double-click zoom by intercepting double-click events
       // scene.addEventListener('dblclick', (e) => {
