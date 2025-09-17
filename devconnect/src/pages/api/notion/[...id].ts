@@ -38,7 +38,7 @@ function extractFieldName(propertyName: string): { name: string | null; mode: 'e
 }
 
 // Helper function to determine field type from Notion property
-function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup' | null {
+function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup' | 'relation' | 'quests' | null {
   switch (property.type) {
     case 'rich_text':
       return 'text';
@@ -60,6 +60,8 @@ function getFieldType(property: any): 'text' | 'email' | 'file' | 'url' | 'title
       return 'formula';
     case 'rollup':
       return 'rollup';
+    case 'relation':
+      return 'relation';
     default:
       return null;
   }
@@ -120,6 +122,7 @@ async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Pr
 
 // GET: Fetch page data for the given id
 async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: string) {
+  const supporter = !req.query?.supporter ? false : true;
   const notion = new Client({ auth: process.env.NOTION_SECRET });
   try {
     const page = await notion.pages.retrieve({ page_id: pageId }) as GetPageResponse;
@@ -144,7 +147,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     const fields: Array<{
       name: string;
       value: string;
-      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup';
+      type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup' | 'relation' | 'quests';
       mode: 'edit' | 'read';
       order: number;
       description?: string;
@@ -160,8 +163,6 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     for (const [propertyName, property] of Object.entries(page.properties)) {
       const { name: fieldName, mode, order } = extractFieldName(propertyName);
       if (!fieldName || mode !== 'config') continue;
-
-
 
       const fieldType = getFieldType(property);
       if (!fieldType) continue;
@@ -233,7 +234,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       const { name: fieldName, mode, order } = extractFieldName(propertyName);
       if (!fieldName || (mode !== 'edit' && mode !== 'read')) continue;
 
-      const fieldType = getFieldType(property);
+      let fieldType = getFieldType(property);
       if (!fieldType) continue;
 
       let fieldValue = '';
@@ -298,6 +299,13 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
                 fieldValue = formulaResult.date?.start || '';
               }
             }
+          }
+          break;
+        case 'relation':
+          if (propertyAny.type === 'relation') {
+            // return list of ids
+            fieldValue = propertyAny.relation?.map((item: any) => `${item.id?.replaceAll('-', '')}`).join(',') || '';
+            fieldType = 'quests';
           }
           break;
         case 'rollup':
@@ -397,6 +405,16 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         order: order,
         description: description,
         options: options
+      });
+    }
+
+    if (supporter) {
+      fields.push({
+        name: 'Supporter name',
+        value: (page.properties?.['Supporter Name'] as any)?.title?.[0]?.plain_text || '',
+        type: 'text',
+        mode: 'read',
+        order: 0,
       });
     }
     
