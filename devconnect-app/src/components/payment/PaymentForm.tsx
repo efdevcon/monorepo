@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Copy, DollarSign, Send } from 'lucide-react';
 import { toast } from 'sonner';
+import { base } from '@base-org/account';
 
 interface PaymentFormProps {
   onSendPayment: (recipient: string, amount: string) => void;
@@ -14,18 +15,19 @@ interface PaymentFormProps {
   showPreview?: boolean;
 }
 
-export default function PaymentForm({ 
-  onSendPayment, 
+export default function PaymentForm({
+  onSendPayment,
   onDirectSend,
-  initialRecipient = '', 
+  initialRecipient = '',
   initialAmount = '0.01',
   isPending = false,
-  showPreview = true
+  showPreview = true,
 }: PaymentFormProps) {
   const [recipient, setRecipient] = useState(initialRecipient);
   const [amount, setAmount] = useState(initialAmount);
   const [isRecipientValid, setIsRecipientValid] = useState(false);
   const [isAmountValid, setIsAmountValid] = useState(true);
+  const [isBasePayLoading, setIsBasePayLoading] = useState(false);
 
   // Validate initial values on mount and when initial values change
   useEffect(() => {
@@ -78,6 +80,35 @@ export default function PaymentForm({
       onDirectSend(recipient.trim(), amount);
     } else {
       onSendPayment(recipient.trim(), amount);
+    }
+  };
+
+  const handleBasePay = async () => {
+    if (!isRecipientValid) {
+      toast.error('Please enter a valid 0x address');
+      return;
+    }
+    if (!isAmountValid || !amount) {
+      toast.error('Please enter a valid amount');
+      return;
+    }
+
+    setIsBasePayLoading(true);
+
+    try {
+      const result = await base.pay({
+        amount,
+        to: recipient.trim(),
+      });
+
+      toast.success('Base payment successful!');
+      return result;
+    } catch (error: any) {
+      console.error('Payment failed:', error.message);
+      toast.error(`Base payment failed: ${error.message}`);
+      throw error;
+    } finally {
+      setIsBasePayLoading(false);
     }
   };
 
@@ -183,25 +214,49 @@ export default function PaymentForm({
         </div>
       </div>
 
-      {/* Send Payment Button */}
-      <div className="flex justify-center">
-        <Button
-          onClick={handleSendPayment}
-          disabled={!isFormValid || isPending}
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
-        >
-          {isPending ? (
-            <>
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-              Processing...
-            </>
-          ) : (
-            <>
-              <Send className="h-4 w-4 mr-2" />
-              Send Payment
-            </>
-          )}
-        </Button>
+      {/* Payment Buttons */}
+      <div className="space-y-3">
+        {/* Send Payment Button */}
+        <div className="flex justify-center">
+          <Button
+            onClick={handleSendPayment}
+            disabled={!isFormValid || isPending}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {isPending ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Processing...
+              </>
+            ) : (
+              <>
+                <Send className="h-4 w-4 mr-2" />
+                Send Payment
+              </>
+            )}
+          </Button>
+        </div>
+
+        {/* Base Pay Button */}
+        <div className="flex justify-center">
+          <Button
+            onClick={handleBasePay}
+            disabled={!isFormValid || isBasePayLoading}
+            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
+          >
+            {isBasePayLoading ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Processing...
+              </>
+            ) : (
+              <>
+                <DollarSign className="h-4 w-4 mr-2" />
+                Base Pay
+              </>
+            )}
+          </Button>
+        </div>
       </div>
     </div>
   );
