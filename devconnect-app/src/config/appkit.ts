@@ -80,7 +80,7 @@ export const appKit = createAppKit({
     email: false,
     socials: false,
     emailShowWallets: false,
-    onramp: false,
+    onramp: true,
     swaps: true,
     history: true,
     // allWallets: true,

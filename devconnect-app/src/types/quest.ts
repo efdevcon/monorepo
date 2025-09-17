@@ -53,6 +53,7 @@ export type QuestGroup = {
   id: number;
   name: QuestGroupName;
   description: string;
+  image: string;
 }
 /**
  * Quest difficulty levels without numbered prefixes
