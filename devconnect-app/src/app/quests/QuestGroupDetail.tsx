@@ -173,7 +173,7 @@ export default function QuestGroupDetail({
       </div>
 
       {/* Quest List */}
-      <div className="w-full px-6 py-4 space-y-3">
+      <div className="w-full px-6 py-4 space-y-3 bg-[#f6fafe]">
         {groupQuests.map((quest, index) => {
           const isCompleted = isQuestCompleted(quest);
           const isLast = index === groupQuests.length - 1;
@@ -248,13 +248,22 @@ export default function QuestGroupDetail({
 
                 {/* Action Button */}
                 {!isCompleted && (
-                  <div className="mt-4">
-                    <button
-                      onClick={() => handleTodoClick(quest)}
-                      className="w-full bg-[#eaf3fa] border border-white rounded px-3 py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-[#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978]"
-                    >
-                      {quest.button || 'Verify'}
-                    </button>
+                  <div className="mt-4 w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
+                    <div className="w-full flex justify-start items-center gap-3">
+                      <div
+                        data-icon="false"
+                        data-state="default"
+                        data-type="Secondary"
+                        className="w-full bg-[#eaf3fa] border border-white rounded px-3 
+                      py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-
+                      [#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer"
+                        onClick={() => handleTodoClick(quest)}
+                      >
+                        <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
+                          {quest.button || 'Verify'}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
