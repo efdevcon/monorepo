@@ -71,8 +71,13 @@ export default function QuestsPage() {
       const groupQuests = questsData.filter(
         (quest) => quest.groupId === group.id
       );
-      // For now, simulate some completed quests based on order
-      const completedQuests = groupQuests.filter((quest) => quest.order <= 2);
+
+      // Calculate actual completed quests based on quest states
+      const completedQuests = groupQuests.filter((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status === 'completed';
+      });
+
       const completed = completedQuests.length;
       const total = groupQuests.length;
 
@@ -92,7 +97,7 @@ export default function QuestsPage() {
     });
 
     setQuestGroupProgress(progress);
-  }, []);
+  }, [questStates]); // Update when quest states change
 
   // Navigation handlers
   const handleGroupClick = (group: QuestGroup) => {
@@ -107,48 +112,6 @@ export default function QuestsPage() {
 
   const handleBackToGroups = () => {
     setSelectedGroup(null);
-  };
-
-  const getStatusBadge = (
-    status: QuestGroupStatus,
-    completed: number,
-    total: number
-  ) => {
-    const baseClasses = 'px-2 py-1 text-xs font-medium rounded';
-
-    switch (status) {
-      case 'completed':
-        return (
-          <div className={`${baseClasses} bg-black text-white`}>
-            {completed}/{total}
-          </div>
-        );
-      case 'in-progress':
-        return (
-          <div className={`${baseClasses} bg-black text-white`}>
-            {completed}/{total}
-          </div>
-        );
-      case 'not-started':
-        return (
-          <div className={`${baseClasses} bg-gray-300 text-black`}>
-            Not started
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
-
-  const getStartHereBadge = (groupId: number) => {
-    if (groupId === 1) {
-      return (
-        <div className="px-2 py-1 text-xs font-semibold text-black border border-black rounded">
-          START HERE
-        </div>
-      );
-    }
-    return null;
   };
 
   // If a group is selected, show the detail view
@@ -180,57 +143,97 @@ export default function QuestsPage() {
     );
   }
 
+  // Reset function to clear all quest states
+  const handleReset = () => {
+    setQuestStates({});
+    // Progress will be recalculated automatically by useEffect when questStates changes
+  };
+
   // Show the group list
   return (
     <PageLayout title={title}>
-      <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start gap-6 p-4">
-        {/* Header Section */}
-        <div className="flex flex-col gap-3 items-start justify-start w-full">
-          <h1 className="text-[28px] font-bold text-black tracking-[-0.2px] leading-none">
-            Quests
-          </h1>
-          <p className="text-base text-black tracking-[-0.1px] leading-[1.3]">
-            Learn about Ethereum and explore the App Showcase to earn real
-            rewards!
-          </p>
-        </div>
+      <div className="bg-[#f6fafe] min-h-screen">
+        <div className="max-w-[500px] mx-auto">
+          {/* Header Section */}
+          <div className="flex flex-col gap-3 items-start justify-start px-6 pt-6">
+            <h1 className="text-[28px] font-bold text-[#242436] tracking-[-0.2px] leading-none">
+              Quests
+            </h1>
+            <p className="text-base text-[#36364c] tracking-[-0.1px] leading-[1.3]">
+              Learn about Ethereum and explore the App Showcase to earn real
+              rewards!
+            </p>
+          </div>
 
-        {/* Quest Groups */}
-        <div className="flex flex-col gap-4 items-start justify-start w-full">
-          {questGroupsData.map((group) => {
-            const progress = questGroupProgress[group.id];
-            const isCompleted = progress?.status === 'completed';
-            const isInProgress = progress?.status === 'in-progress';
+          {/* Quest Groups */}
+          <div className="flex flex-col gap-4 items-start justify-start px-6 py-6">
+            {questGroupsData.map((group) => {
+              const progress = questGroupProgress[group.id];
+              const isCompleted = progress?.status === 'completed';
+              const isInProgress = progress?.status === 'in-progress';
 
-            return (
-              <button
-                key={group.id}
-                onClick={() => handleGroupClick(group)}
-                className="bg-white border border-gray-200 rounded-lg p-4 w-full flex flex-col gap-4 items-end justify-start relative hover:bg-gray-50 transition-colors cursor-pointer"
-              >
-                {/* Status Badge */}
-                <div className="flex items-center gap-2">
-                  {getStartHereBadge(group.id)}
-                  {progress &&
-                    getStatusBadge(
-                      progress.status,
-                      progress.completed,
-                      progress.total
+              return (
+                <button
+                  key={group.id}
+                  onClick={() => handleGroupClick(group)}
+                  className="bg-center bg-cover bg-no-repeat h-[228px] relative rounded-[4px] w-full overflow-hidden hover:opacity-95 transition-opacity cursor-pointer"
+                  style={{
+                    backgroundImage: `url('${group.image}')`,
+                  }}
+                >
+                  {/* Status Badge - Top Right */}
+                  <div className="absolute backdrop-blur-[3px] backdrop-filter bg-[rgba(229,241,251,0.8)] box-border flex gap-2 items-center justify-center p-1 right-3 top-3 rounded">
+                    {progress && (
+                      <span className="font-medium text-[#36364c] text-xs tracking-[-0.1px]">
+                        {progress.status === 'completed'
+                          ? `${progress.completed}/${progress.total}`
+                          : progress.status === 'in-progress'
+                            ? `${progress.completed}/${progress.total}`
+                            : 'Not started'}
+                      </span>
                     )}
-                </div>
+                  </div>
 
-                {/* Group Content */}
-                <div className="flex flex-col gap-2 items-start justify-start w-full">
-                  <h2 className="text-lg font-bold text-black tracking-[-0.1px] leading-[1.2] w-full text-left">
-                    {group.name}
-                  </h2>
-                  <p className="text-xs text-black tracking-[-0.1px] leading-[1.3] w-full text-left">
-                    {group.description}
-                  </p>
-                </div>
-              </button>
-            );
-          })}
+                  {/* Content Overlay - Bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 backdrop-blur-[1px] backdrop-filter bg-[rgba(241,248,252,0.9)] p-4">
+                    <div className="flex flex-col gap-2">
+                      {/* START HERE Badge for first group */}
+                      {group.id === 1 && (
+                        <div className="bg-[#1b6fae] px-1 w-fit flex items-center justify-center">
+                          <span className="font-semibold text-white text-[10px] tracking-[0.1px]">
+                            START HERE
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Group Title */}
+                      <h2 className="font-bold text-[#242436] text-lg tracking-[-0.1px] leading-[1.2] text-left">
+                        {group.name}
+                      </h2>
+
+                      {/* Group Description */}
+                      <p className="font-normal text-[#36364c] text-sm tracking-[-0.1px] leading-[1.4] text-left">
+                        {group.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Border */}
+                  <div className="absolute border border-[#f0f0f4] border-solid inset-0 pointer-events-none rounded-[4px]" />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Reset Button */}
+          <div className="px-6 pb-6">
+            <button
+              onClick={handleReset}
+              className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"
+            >
+              Reset All Progress
+            </button>
+          </div>
         </div>
       </div>
     </PageLayout>
