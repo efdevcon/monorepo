@@ -92,7 +92,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 // Calculate completion percentage for edit fields
                 const properties = pageData.properties || {};
                 const editFields = Object.entries(properties).filter(([key, value]: [string, any]) => {
-                  return key.includes('[edit]');
+                  return key.includes('[edit]') && !key.includes('(optional)');
                 });
 
                 // Name

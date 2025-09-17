@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 interface DynamicField {
   name: string
   value: string
-  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup'
+  type: 'text' | 'email' | 'file' | 'url' | 'title' | 'select' | 'status' | 'checkbox' | 'formula' | 'rollup' | 'quests'
   mode: 'edit' | 'read'
   description?: string
   options?: Array<{ name: string; color?: string }>
@@ -239,7 +239,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     }
 
     try {
-      const res = await fetch(`/api/notion/${pageId}`)
+      const res = await fetch(`/api/notion/${pageId}${pageName === 'supporter' ? '?supporter=true' : ''}`)
       if (!res.ok) throw new Error('Failed to fetch data')
       const responseData: ConfigResponse = await res.json()
 
@@ -741,6 +741,35 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             {field.value || 'No data'}
                           </span>
                         </div>
+                      ) : field.type === 'quests' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <ul style={{ margin: '0', padding: '0', listStyle: 'none' }}>
+                              {field.value.split(',').map((questId, index) => (
+                                <li key={questId} style={{ marginBottom: '0.5rem' }}>
+                                  <a
+                                    href={`/form/quest/${questId.trim()}`}
+                                    target="_blank"
+                                    style={{
+                                      color: '#007bff',
+                                      textDecoration: 'none',
+                                      fontSize: '0.9rem',
+                                      fontWeight: '500',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '0.5rem',
+                                    }}
+                                  >
+                                    <span style={{ fontSize: '1rem' }}>-</span>
+                                    Quest {index + 1}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
+                          )}
+                        </div>
                       ) : (
                         field.value
                       )}
@@ -1102,7 +1131,14 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       id={field.name}
                       name={field.name}
                       type={(() => {
-                        const fieldType = field.type as 'text' | 'email' | 'file' | 'url' | 'title' | 'formula'
+                        const fieldType = field.type as
+                          | 'text'
+                          | 'email'
+                          | 'file'
+                          | 'url'
+                          | 'title'
+                          | 'formula'
+                          | 'quests'
                         switch (fieldType) {
                           case 'file':
                             return 'url'
@@ -1112,6 +1148,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             return 'url'
                           case 'title':
                           case 'formula':
+                          case 'quests':
                           default:
                             return 'text'
                         }
@@ -1340,6 +1377,35 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                           >
                             {field.value || 'No data'}
                           </span>
+                        </div>
+                      ) : field.type === 'quests' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <ul style={{ margin: '0', padding: '0', listStyle: 'none' }}>
+                              {field.value.split(',').map((questId, index) => (
+                                <li key={questId} style={{ marginBottom: '0.5rem' }}>
+                                  <a
+                                    href={`/form/quest/${questId.trim()}`}
+                                    target="_blank"
+                                    style={{
+                                      color: '#007bff',
+                                      textDecoration: 'none',
+                                      fontSize: '0.9rem',
+                                      fontWeight: '500',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '0.5rem',
+                                    }}
+                                  >
+                                    <span style={{ fontSize: '1rem' }}>-</span>
+                                    Quest {index + 1}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
+                          )}
                         </div>
                       ) : (
                         field.value || 'No value'
