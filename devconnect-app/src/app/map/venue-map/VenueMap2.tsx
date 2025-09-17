@@ -239,64 +239,35 @@ export const VenueMap = () => {
   };
 
   const focusOnElement = (id: string) => {
-    // const element = elementLookup[id];
-    const container = document.getElementById('venue-map');
-    const svgElement = container?.querySelector(`[id="${id}"]`);
+    const svgElement = document.getElementById(id);
+    if (!svgElement || !panzoomInstance || !containerRef.current) return;
 
-    if (!svgElement || !panzoomInstance) return;
-
-    const element = getViewportPosition(
-      id,
-      container as any,
-      svgElement as any
-    );
-
-    // Use the parent container (the one that doesn't change with panzoom)
-    if (!containerRef.current) return;
-
+    // Get actual screen positions - no scaling needed!
+    const elementRect = svgElement.getBoundingClientRect();
     const containerRect = containerRef.current.getBoundingClientRect();
 
-    // Get current transform to understand current scale
-    const currentTransform = panzoomInstance.getTransform();
+    // Where is the element center on screen right now?
+    const elementCenterX = elementRect.left + elementRect.width / 2;
+    const elementCenterY = elementRect.top + elementRect.height / 2;
 
-    // Get the SVG container offset due to flexbox centering
-    const svgContainer = document.getElementById('venue-map');
-    const svgRect = svgContainer?.getBoundingClientRect();
-    if (!svgRect) return;
+    // Where do we want it? (center of container)
+    const targetCenterX = containerRect.left + containerRect.width / 2;
+    const targetCenterY = containerRect.top + containerRect.height / 2;
 
-    // The raw offset includes the current transform, so subtract it out
-    const rawOffsetX = svgRect.left - containerRect.left;
-    const rawOffsetY = svgRect.top - containerRect.top;
+    // How far to move?
+    const deltaX = targetCenterX - elementCenterX;
+    const deltaY = targetCenterY - elementCenterY;
 
-    // The actual centering offset (removing the transform effect)
-    const svgOffsetX = rawOffsetX - currentTransform.x;
-    const svgOffsetY = rawOffsetY - currentTransform.y;
+    console.log('Focus calculation (simplified):', {
+      elementId: id,
+      elementCenter: { x: elementCenterX, y: elementCenterY },
+      targetCenter: { x: targetCenterX, y: targetCenterY },
+      delta: { x: deltaX, y: deltaY },
+    });
 
-    // Simple approach: center of the container viewport
-    const centerX = containerRect.width / 2; // - svgOffsetX;
-    const centerY = containerRect.height / 2; // - svgOffsetY;
-
-    // Element center in SVG viewBox coordinates (from lookup)
-    const elementCenterSvgX = element?.centerX || 0;
-    const elementCenterSvgY = element?.centerY || 0;
-
-    // Convert SVG coordinates to container coordinates (without panzoom scale)
-    const elementContainerX = elementCenterSvgX * svgScale.scaleX;
-    const elementContainerY = elementCenterSvgY * svgScale.scaleY;
-
-    // Calculate how far we need to move to center the element
-    // The moveTo coordinates are in transform space, not screen space
-    // We want the element to appear at the center, so:
-    // elementContainerX * scale + transform.x = centerX
-    // Therefore: transform.x = centerX - (elementContainerX * scale)
-    const targetX = centerX - elementContainerX * currentTransform.scale; //  - svgOffsetX;
-    const targetY = centerY - elementContainerY * currentTransform.scale; // - svgOffsetY;
-
-    // Use moveTo with the calculated coordinates
-    panzoomInstance.smoothMoveTo(
-      targetX,
-      targetY - 30 * currentTransform.scale // Offset to account for the map pane that folds out on select
-    );
+    // Move it! (third parameter for smooth animation)
+    // Offset Y slightly to account for the map pane that appears
+    panzoomInstance.moveBy(deltaX, deltaY - 30, true);
   };
 
   const onSVGElementClick = (
@@ -326,7 +297,7 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow aspect-[1200/800] flex'
+        'relative w-full overflow-hidden grow flex'
         // hasActiveFilters && css['has-selection-or-hover']
       )}
       onClick={(e) => {
@@ -341,7 +312,7 @@ export const VenueMap = () => {
       {/* Panzoom container */}
       <div
         id="venue-map"
-        className="relative"
+        className="relative w-full"
         onMouseOver={handleSVGMouseOver}
         onMouseOut={handleSVGMouseOut}
       >
@@ -380,11 +351,15 @@ export const VenueMap = () => {
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();
+              panzoomInstance?.moveTo(0, 0);
+              panzoomInstance?.smoothZoomAbs(0, 0, 1);
               setCurrentFilters({ ...currentFilters, selection: [group] });
             }}
             onTouchEnd={(e) => {
               e.stopPropagation();
               e.preventDefault();
+              panzoomInstance?.moveTo(0, 0);
+              panzoomInstance?.smoothZoomAbs(0, 0, 1);
               setCurrentFilters({ ...currentFilters, selection: [group] });
             }}
           >
