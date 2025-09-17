@@ -89,7 +89,7 @@ export async function GET(request: NextRequest) {
       };
 
       return {
-        name: getPropertyValue('Supporter Name'),
+        name: getPropertyValue('Supporter name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
         layerName: getPropertyValue('Layer name'),

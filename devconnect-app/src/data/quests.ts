@@ -20,7 +20,7 @@ export const questsData: Quest[] = [
     "name": "TODO",
     "order": 1,
     "points": 100,
-    "instructions": "",
+    "instructions": "…",
     "action": "",
     "button": "",
     "conditionType": "",
@@ -31,10 +31,10 @@ export const questsData: Quest[] = [
   },
   {
     "id": 1,
-    "name": "Connect your event ticket",
+    "name": "Connect your Devconnect ticket",
     "order": 1,
     "points": 20,
-    "instructions": "",
+    "instructions": "Link your ticket to the app",
     "action": "connect-wallet",
     "button": "Connect Wallet",
     "conditionType": "isWalletConnected",
@@ -48,7 +48,7 @@ export const questsData: Quest[] = [
     "name": "Add funds to your wallet",
     "order": 2,
     "points": 80,
-    "instructions": "",
+    "instructions": "…",
     "action": "",
     "button": "",
     "conditionType": "",
@@ -62,9 +62,9 @@ export const questsData: Quest[] = [
     "name": "Favorite an event on the Schedule",
     "order": 2,
     "points": 10,
-    "instructions": "",
+    "instructions": "View the Schedule and save an event",
     "action": "associate-ticket",
-    "button": "Link ticket",
+    "button": "View Schedule",
     "conditionType": "isTicketAssociated",
     "conditionValues": "",
     "supporterId": "",
@@ -76,7 +76,7 @@ export const questsData: Quest[] = [
     "name": "Pay with crypto at the venue",
     "order": 3,
     "points": 40,
-    "instructions": "",
+    "instructions": "Have at least tried crypto payement at the venue once.",
     "action": "verify-payment",
     "button": "Verify Payment",
     "conditionType": "numberOfCryptoPayment",
@@ -90,9 +90,9 @@ export const questsData: Quest[] = [
     "name": "Explore the Event Map",
     "order": 3,
     "points": 10,
-    "instructions": "",
+    "instructions": "Learn the venue layout via our in-app Map",
     "action": "setup-profile",
-    "button": "Setup Profile",
+    "button": "View Map",
     "conditionType": "isProfileSetup",
     "conditionValues": "",
     "supporterId": "",
@@ -118,11 +118,11 @@ export const questsData: Quest[] = [
     "name": "Try the in-app QR code scanner",
     "order": 4,
     "points": 20,
-    "instructions": "",
+    "instructions": "Tip: Enable camera permissions!",
     "action": "visit-link",
-    "button": "Visit Glossary",
+    "button": "Open QR Code Scanner",
     "conditionType": "isLinkVisited",
-    "conditionValues": "“/glossary”",
+    "conditionValues": "",
     "supporterId": "",
     "poapImageLink": "",
     "groupId": 1
@@ -132,14 +132,28 @@ export const questsData: Quest[] = [
     "name": "Learn how to fund your wallet",
     "order": 5,
     "points": 50,
-    "instructions": "",
+    "instructions": "View the in-app onramp options to learn how to add funds to your wallet",
     "action": "mini-quiz",
-    "button": "Start Quiz",
+    "button": "View Exchange options",
     "conditionType": "isMiniQuizCompleted",
-    "conditionValues": "“crypto-risk”",
+    "conditionValues": "",
     "supporterId": "",
     "poapImageLink": "",
-    "groupId": 2
+    "groupId": 1
+  },
+  {
+    "id": 38,
+    "name": "1inch quest 2",
+    "order": 0,
+    "points": 50,
+    "instructions": "",
+    "action": "claim-poap",
+    "button": "Verify",
+    "conditionType": "verifyPoap",
+    "conditionValues": "149598",
+    "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
+    "poapImageLink": "https://assets.poap.xyz/bf667c97-9df7-444d-8f98-274862714bcb.gif?size=xlarge",
+    "groupId": 4
   },
   {
     "id": 37,
@@ -153,9 +167,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "25d638cdc41580829018e6ada2eb3f8d",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 1,
-    "districtSlug": "arts"
+    "groupId": 4
   },
   {
     "id": 36,
@@ -169,9 +181,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc415802c97d8f585214603ad",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 3,
-    "districtSlug": "social"
+    "groupId": 4
   },
   {
     "id": 35,
@@ -185,9 +195,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc41580e69a97f635ca4a9099",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 4,
-    "districtSlug": "hardware-wallets"
+    "groupId": 4
   },
   {
     "id": 34,
@@ -201,9 +209,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc41580309fe5f80334bfb779",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 5,
-    "districtSlug": "gaming"
+    "groupId": 4
   },
   {
     "id": 33,
@@ -217,9 +223,7 @@ export const questsData: Quest[] = [
     "conditionValues": "43882",
     "supporterId": "241638cdc41580858795dfc9f5630277",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 6,
-    "districtSlug": "privacy"
+    "groupId": 4
   },
   {
     "id": 32,
@@ -233,9 +237,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc4158098bc20c52a9ec59c9a",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 7,
-    "districtSlug": "ai"
+    "groupId": 4
   },
   {
     "id": 31,
@@ -249,9 +251,7 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "24e638cdc41580c1b782c738fb082f8d",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": 2,
-    "districtSlug": "l2s"
+    "groupId": 4
   },
   {
     "id": 30,
@@ -265,13 +265,11 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "241638cdc415809d9909ea3bbcb6d327",
     "poapImageLink": "https://storage.googleapis.com/zapper-fi-assets/apps%2Fbasenames.png",
-    "groupId": 4,
-    "districtId": 2,
-    "districtSlug": "l2s"
+    "groupId": 4
   },
   {
     "id": 18,
-    "name": "1inch",
+    "name": "1inch quest 1",
     "order": 0,
     "points": 50,
     "instructions": "",
@@ -281,16 +279,14 @@ export const questsData: Quest[] = [
     "conditionValues": "149598",
     "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
     "poapImageLink": "https://assets.poap.xyz/bf667c97-9df7-444d-8f98-274862714bcb.gif?size=xlarge",
-    "groupId": 4,
-    "districtId": 8,
-    "districtSlug": "defi"
+    "groupId": 4
   },
   {
     "id": 17,
     "name": "ENS",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "Claim and verify your ENS.",
     "action": "claim-poap",
     "button": "Verify",
     "conditionType": "verifyPoap",
@@ -304,7 +300,7 @@ export const questsData: Quest[] = [
     "name": "Basename",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "Claim and verify your Basename.",
     "action": "verify-basename",
     "button": "Verify",
     "conditionType": "verifyBasename",
@@ -318,23 +314,21 @@ export const questsData: Quest[] = [
     "name": "Aave",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "Discover lending and borrowing protocols with Aave.",
     "action": "claim-poap",
     "button": "Verify",
     "conditionType": "verifyPoap",
     "conditionValues": "43882",
     "supporterId": "254638cdc41580fc975fe3023c8f17f0",
     "poapImageLink": "https://assets.poap.xyz/aave-booth-permissionless-2022-logo-1652279176656.png?size=xlarge",
-    "groupId": 4,
-    "districtId": 8,
-    "districtSlug": "defi"
+    "groupId": 4
   },
   {
     "id": 9,
     "name": "Uniswap",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "Explore the automated market maker exhibit and learn about liquidity pools.",
     "action": "claim-poap",
     "button": "Verify",
     "conditionType": "verifyPoap",
@@ -348,7 +342,7 @@ export const questsData: Quest[] = [
     "name": "Optimism",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "First transaction on Optimism",
     "action": "claim-poap",
     "button": "Verify",
     "conditionType": "verifyPoap",

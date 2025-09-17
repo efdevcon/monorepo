@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
 
       return {
         id: getPropertyValue('ID'),
-        name: getPropertyValue('Name'),
+        name: getPropertyValue('Quest name'),
         order: getPropertyValue('Order'),
         points: getPropertyValue('Points'),
         difficulty: getPropertyValue('Difficulty'),

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { questsData } from '@/data/quests';
+import { supportersData } from '@/data/supporters';
 import type { Quest, QuestGroup } from '@/types';
 
 interface QuestGroupDetailProps {
@@ -22,6 +23,27 @@ interface QuestGroupDetailProps {
     isCheckedIn?: boolean
   ) => void;
 }
+
+// Quest icons mapping based on action type
+const getQuestIcon = (action: string) => {
+  const iconMap: Record<string, string> = {
+    'connect-wallet': '/images/icons/ticket.svg',
+    'associate-ticket': '/images/icons/heart-outline.svg',
+    'setup-profile': '/images/icons/map.svg',
+    'visit-link': '/images/icons/qrcode-scan.svg',
+    'mini-quiz': '/images/icons/cash-plus.svg',
+    'verify-payment': '/images/icons/cash-plus.svg',
+    'claim-poap': '/images/icons/check-circle.svg',
+    'verify-basename': '/images/icons/check-circle.svg',
+  };
+
+  return iconMap[action] || '/images/icons/default-quest.svg';
+};
+
+// Get supporter by ID
+const getSupporterById = (supporterId: string) => {
+  return supportersData[supporterId] || null;
+};
 
 export default function QuestGroupDetail({
   group,
@@ -61,53 +83,91 @@ export default function QuestGroupDetail({
     updateQuestStatus(quest.id.toString(), 'completed', false);
   };
 
+  const handleTodoClick = (quest: Quest) => {
+    // Handle different quest actions
+    if (quest.action === 'visit-link' && quest.conditionValues) {
+      // Extract link from conditionValues (remove quotes)
+      const link = quest.conditionValues.replace(/"/g, '');
+      window.open(link, '_blank');
+    } else if (quest.action === 'associate-ticket') {
+      // Navigate to schedule or ticket page
+      window.open('/schedule', '_blank');
+    } else if (quest.action === 'setup-profile') {
+      // Navigate to map page
+      window.open('/map', '_blank');
+    } else if (quest.action === 'mini-quiz') {
+      // Navigate to quiz or exchange page
+      window.open('/exchange', '_blank');
+    }
+    // For other actions, just complete the quest
+    handleQuestAction(quest);
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 w-full px-6 py-4">
+      <div className="bg-white border-b border-[#e0e0eb] w-full px-5 py-4">
         <div className="flex items-center justify-between">
-          <h1 className="text-base font-bold text-gray-800 tracking-[-0.1px] flex-1 text-center">
+          <button
+            onClick={onBack}
+            className="w-6 h-6 flex items-center justify-center"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="#36364c"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <h1 className="text-base font-bold text-[#36364c] tracking-[-0.1px] flex-1 text-center">
             {group.name}
           </h1>
-          <div className="w-5" /> {/* Spacer for centering */}
+          <div className="w-6" /> {/* Spacer for centering */}
         </div>
       </div>
 
-      {/* Progress Section */}
-      <div className="bg-white border-b border-gray-200 w-full px-6 py-4">
+      {/* Reward Section */}
+      <div className="bg-white border-b border-[#eeeeee] w-full px-6 py-4">
         <div className="flex gap-4 items-start">
           <div className="flex-1">
-            <div className="flex flex-col gap-2.5">
+            <div className="flex flex-col gap-3">
               <div className="flex flex-col gap-1">
-                <h2 className="text-sm font-bold text-black tracking-[-0.1px]">
+                <h2 className="text-base font-bold text-[#242436] tracking-[-0.1px]">
                   Complete all quests
                 </h2>
-                <p className="text-xs text-black tracking-[-0.1px]">
+                <p className="text-sm text-[#36364c] tracking-[-0.1px]">
                   <span className="font-bold">Reward:</span>{' '}
-                  <span className="font-normal">Item name</span>
+                  <span className="font-normal">Spin the Prize Wheel!</span>
                 </p>
               </div>
-              <div className="w-full">
-                <div className="relative h-4 w-full bg-gray-300 rounded">
+              <div className="flex flex-col gap-2">
+                <div className="text-xs font-medium text-[#4b4b66] tracking-[-0.1px]">
+                  {completed}/{total} completed
+                </div>
+                <div className="bg-[#e0effa] h-2 w-full rounded">
                   <div
-                    className="absolute top-0 left-0 h-4 bg-gray-500 rounded"
+                    className="bg-[#1b6fae] h-2 rounded"
                     style={{ width: `${progressPercentage}%` }}
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-xs font-normal text-black tracking-[-0.1px]">
-                      {completed} / {total}
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="bg-gray-300 w-16 h-16 flex items-center justify-center">
-            <div className="text-center">
-              <div className="text-xs font-medium text-black tracking-[-0.1px]">
-                {total} quests
-              </div>
-            </div>
+          <div className="bg-center bg-cover bg-no-repeat w-18 h-18 rounded border border-white">
+            <img
+              src="/images/Quests.png"
+              alt={group.name}
+              className="w-full h-full object-cover rounded"
+            />
           </div>
         </div>
       </div>
@@ -121,19 +181,44 @@ export default function QuestGroupDetail({
           return (
             <div key={quest.id} className="relative">
               {/* Quest Card */}
-              <div className="bg-white border border-gray-100 rounded-lg p-4">
+              <div className="bg-white border border-[#e2e2e9] rounded p-4">
                 <div className="flex items-start gap-3">
                   {/* Quest Icon */}
-                  <div className="w-10 h-10 bg-gray-300 rounded flex-shrink-0" />
+                  <div className="w-6 h-6 flex-shrink-0">
+                    {quest.supporterId ? (
+                      (() => {
+                        const supporter = getSupporterById(quest.supporterId);
+                        return supporter?.logo ? (
+                          <img
+                            src={supporter.logo}
+                            alt={supporter.name}
+                            className="w-full h-full object-cover rounded"
+                          />
+                        ) : (
+                          <img
+                            src={getQuestIcon(quest.action)}
+                            alt={quest.name}
+                            className="w-full h-full"
+                          />
+                        );
+                      })()
+                    ) : (
+                      <img
+                        src={getQuestIcon(quest.action)}
+                        alt={quest.name}
+                        className="w-full h-full"
+                      />
+                    )}
+                  </div>
 
                   {/* Quest Content */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
-                        <h3 className="text-sm font-bold text-black tracking-[-0.1px] mb-1">
+                        <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
                           {quest.name}
                         </h3>
-                        <p className="text-xs text-black tracking-[-0.1px] leading-[1.3]">
+                        <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3]">
                           {quest.instructions ||
                             'Complete this quest to earn points'}
                         </p>
@@ -141,30 +226,20 @@ export default function QuestGroupDetail({
 
                       {/* Completion Status */}
                       {isCompleted && (
-                        <div className="w-5 h-5 flex-shrink-0 ml-2">
-                          <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 20 20"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <circle
-                              cx="10"
-                              cy="10"
-                              r="9"
-                              fill="#10B981"
-                              stroke="#10B981"
-                              strokeWidth="2"
+                        <div className="w-6 h-6 flex-shrink-0 ml-2">
+                          {quest.poapImageLink ? (
+                            <img
+                              src={quest.poapImageLink}
+                              alt="POAP"
+                              className="w-full h-full object-cover rounded-full"
                             />
-                            <path
-                              d="M6 10L8.5 12.5L14 7"
-                              stroke="white"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
+                          ) : (
+                            <img
+                              src="/images/icons/check-circle.svg"
+                              alt="Completed"
+                              className="w-full h-full"
                             />
-                          </svg>
+                          )}
                         </div>
                       )}
                     </div>
@@ -175,19 +250,14 @@ export default function QuestGroupDetail({
                 {!isCompleted && (
                   <div className="mt-4">
                     <button
-                      onClick={() => handleQuestAction(quest)}
-                      className="w-full px-2 py-3 border border-black rounded text-sm font-bold text-black tracking-[-0.1px] hover:bg-gray-50 transition-colors"
+                      onClick={() => handleTodoClick(quest)}
+                      className="w-full bg-[#eaf3fa] border border-white rounded px-3 py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-[#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978]"
                     >
-                      {quest.button || 'Start Quest'}
+                      {quest.button || 'Verify'}
                     </button>
                   </div>
                 )}
               </div>
-
-              {/* Connector Line */}
-              {!isLast && (
-                <div className="absolute left-8 top-16 w-0.5 h-6 bg-gray-300" />
-              )}
             </div>
           );
         })}

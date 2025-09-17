@@ -101,12 +101,15 @@ export default function QuestsPage() {
 
   // Navigation handlers
   const handleGroupClick = (group: QuestGroup) => {
-    if (group.id === 4) {
+    if (group.id === 1) {
+      // Onboarding group - navigate to dedicated route
+      router.push('/quests/onboarding');
+    } else if (group.id === 4) {
       // App Showcase group - navigate to dedicated route
       router.push('/quests/app-showcase');
     } else {
-      // Onboarding group - navigate to dedicated route
-      router.push('/quests/onboarding');
+      // Other groups - show inline detail view
+      setSelectedGroup(group);
     }
   };
 
@@ -116,20 +119,6 @@ export default function QuestsPage() {
 
   // If a group is selected, show the detail view
   if (selectedGroup) {
-    // Use AppShowcaseDetail for App Showcase group (groupId === 4)
-    if (selectedGroup.id === 4) {
-      return (
-        <PageLayout title={title}>
-          <AppShowcaseDetail
-            group={selectedGroup}
-            onBack={handleBackToGroups}
-            questStates={questStates}
-            updateQuestStatus={updateQuestStatus}
-          />
-        </PageLayout>
-      );
-    }
-
     // Use regular QuestGroupDetail for other groups
     return (
       <PageLayout title={title}>
