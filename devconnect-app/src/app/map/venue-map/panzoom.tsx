@@ -64,7 +64,6 @@ export const usePanzoom = (elementId: string) => {
         maxZoom: 2.5,
         zoomDoubleClickSpeed: 1,
         minZoom: 0.5,
-        // transformOrigin: { x: 0.5, y: 0.5 },
         beforeWheel: function (e) {
           // allow wheel-zoom only if altKey is down. Otherwise - ignore
           var shouldIgnore = !e.altKey && !e.ctrlKey;
@@ -84,32 +83,32 @@ export const usePanzoom = (elementId: string) => {
       //   // setPanAndZoomLevels(zoomLevels);
       // });
 
-      panzoomInstance.on('zoom', (e: any) => {
-        console.log('zoomstart', e);
-        // setIsZooming(true);
-      });
+      // panzoomInstance.on('zoom', (e: any) => {
+      //   console.log('zoomstart', e);
+      //   // setIsZooming(true);
+      // });
 
-      panzoomInstance.on('zoomend', (e: any) => {
-        console.log('zoomend', e);
-        // setTimeout(() => {
-        //   setIsZooming(false);
-        // }, 300);
-        // setIsZooming(false);
-      });
+      // panzoomInstance.on('zoomend', (e: any) => {
+      //   console.log('zoomend', e);
+      //   // setTimeout(() => {
+      //   //   setIsZooming(false);
+      //   // }, 300);
+      //   // setIsZooming(false);
+      // });
 
-      panzoomInstance.on('panstart', (e: any) => {
-        console.log('panstart', e);
-        // setIsPanning(true);
-      });
+      // panzoomInstance.on('panstart', (e: any) => {
+      //   console.log('panstart', e);
+      //   // setIsPanning(true);
+      // });
 
-      panzoomInstance.on('pan', (e: any) => {
-        console.log('pan', e);
-      });
+      // panzoomInstance.on('pan', (e: any) => {
+      //   console.log('pan', e);
+      // });
 
-      panzoomInstance.on('panend', (e: any) => {
-        console.log('panend', e);
-        // setIsPanning(false);
-      });
+      // panzoomInstance.on('panend', (e: any) => {
+      //   console.log('panend', e);
+      //   // setIsPanning(false);
+      // });
 
       // panzoomInstance.on('transform', (e: any) => {
       //   console.log('transform', e);

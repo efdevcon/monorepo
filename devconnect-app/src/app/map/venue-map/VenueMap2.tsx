@@ -11,6 +11,7 @@ import {
 import { Pin } from './components/Pin';
 import cn from 'classnames';
 import css from './map.module.scss';
+import { X } from 'lucide-react';
 
 /*
     1) Zoom into element programatically by id (so we can use it via search params / url deep link)
@@ -22,6 +23,7 @@ import css from './map.module.scss';
 
 const MapPane = (props: {
   selection: string | null;
+  setSelectedElement: (element: string | null) => void;
   elementLookup: SVGLookup;
 }) => {
   const { selection, elementLookup } = props;
@@ -31,13 +33,24 @@ const MapPane = (props: {
   return (
     <div
       className={cn(
-        'absolute z-[1] bottom-0 left-0 right-0 border-t border-t-solid border-gray-200 p-4 transition-all duration-300 translate-y-[100%] opacity-0',
+        'flex justify-between absolute z-[1] bottom-0 left-0 right-0 border-t border-t-solid border-gray-200 p-4 transition-all duration-300 translate-y-[100%] opacity-0',
         selection && '!translate-y-[0%] opacity-100',
         css['map']
       )}
+      onClick={(e) => {
+        e.stopPropagation();
+        // setSelectedElement(null);
+      }}
+      onTouchEnd={(e) => {
+        e.stopPropagation();
+        // setSelectedElement(null);
+      }}
     >
       <div className={cn('text-sm font-bold', !selection && 'text-white')}>
         {element?.id || 'no-selection'}
+      </div>
+      <div className="flex items-center justify-center">
+        <X className="h-4 w-4" onClick={() => props.setSelectedElement(null)} />
       </div>
     </div>
   );
@@ -172,7 +185,7 @@ export const VenueMap = () => {
     // Use moveTo with the calculated coordinates
     panzoomInstance.smoothMoveTo(
       targetX,
-      targetY - 40 * (1 / currentTransform.scale) // Offset to account for the map pane that folds out on select
+      targetY - 30 * (1 / currentTransform.scale) // Offset to account for the map pane that folds out on select
     );
   };
 
@@ -196,7 +209,7 @@ export const VenueMap = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full aspect-[1200/800] overflow-hidden grow"
+      className="relative w-full overflow-hidden grow aspect-[1200/800] py-8"
       onClick={(e) => {
         e.stopPropagation();
         setSelectedElement(null);
@@ -209,7 +222,7 @@ export const VenueMap = () => {
       {/* Panzoom container */}
       <div
         id="venue-map"
-        className="relative"
+        className="relative "
         onMouseOver={handleSVGMouseOver}
         onMouseOut={handleSVGMouseOut}
       >
@@ -233,7 +246,11 @@ export const VenueMap = () => {
         </div>
       </div>
 
-      <MapPane selection={selectedElement} elementLookup={elementLookup} />
+      <MapPane
+        selection={selectedElement}
+        elementLookup={elementLookup}
+        setSelectedElement={setSelectedElement}
+      />
 
       {/* Zoom controls */}
       <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
