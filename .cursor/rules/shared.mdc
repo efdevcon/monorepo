@@ -22,3 +22,18 @@ Code Style:
 - Use meaningful variable names
 - Keep functions small and focused
 - Write self-documenting code
+
+Figma Asset Export:
+
+- When working with Figma designs, use the generated asset URLs from the Figma code tool
+- Export assets directly from Figma when localhost URLs are not accessible
+- Use this command pattern for downloading Figma assets:
+
+  ```bash
+  cd /path/to/public/images && \
+  curl -o asset-name.png "http://localhost:3845/assets/[asset-id].png"
+  ```
+
+- For direct Figma export: Select asset → Right-click → Export → Choose format → Save to public/images/
+- Name assets descriptively: `provider-logo.png`, `icon-name.svg`, etc.
+- Always verify asset accessibility before implementing in code

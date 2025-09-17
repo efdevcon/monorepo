@@ -2,5 +2,5 @@
 import WalletPageContent from '../WalletPageContent';
 
 export default function OnrampPage() {
-  return <WalletPageContent title="Onramp" showTabs={true} activeTabHref="/wallet/onramp" />;
+  return <WalletPageContent showTabs={false} activeTabHref="/wallet/in-person-onramp" />;
 }
