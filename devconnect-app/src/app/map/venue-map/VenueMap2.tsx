@@ -51,7 +51,6 @@ export const VenueMap = () => {
   const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
-  //   const [initialTransform, setInitialTransform] = useState<{x: number, y: number, scale: number} | null>(null);
 
   const isHoveredOrSelected = hoveredElement || selectedElement;
 
@@ -144,33 +143,59 @@ export const VenueMap = () => {
     const element = elementLookup[id];
     if (!element || !panzoomInstance) return;
 
-    const targetZoom = 2;
-    const container = document.getElementById('venue-map');
-    if (!container) return;
+    // Use the parent container (the one that doesn't change with panzoom)
+    if (!containerRef.current) return;
 
-    const containerRect = container.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
     const centerX = containerRect.width / 2;
     const centerY = containerRect.height / 2;
 
-    // Following panzoom's centerOn approach - use moveBy instead of moveTo!
-    // Get the SVG element's actual screen position using getBoundingClientRect
-    const svgElement = document.getElementById(id);
-    if (!svgElement) return;
+    // Also get the SVG container position for reference
+    const svgRect = svgRef.current?.getBoundingClientRect();
 
-    const elementRect = svgElement.getBoundingClientRect();
-    const elementCenterScreenX = elementRect.left + elementRect.width / 2;
-    const elementCenterScreenY = elementRect.top + elementRect.height / 2;
+    // Get current transform to understand current scale
+    const currentTransform = panzoomInstance.getTransform();
 
-    // Calculate the delta in screen space (same as panzoom's centerOn)
-    const deltaX = centerX - elementCenterScreenX;
-    const deltaY = centerY - elementCenterScreenY;
+    // Element center in SVG viewBox coordinates (from lookup)
+    const elementCenterSvgX = element.centerX;
+    const elementCenterSvgY = element.centerY;
 
-    // Use moveBy instead of moveTo - this works in screen coordinate space!
-    // Third parameter is for smooth animation (same as centerOn uses)
-    panzoomInstance.moveBy(deltaX, deltaY, true);
+    // Convert SVG coordinates to container coordinates (without panzoom scale)
+    const elementContainerX = elementCenterSvgX * svgScale.scaleX;
+    const elementContainerY = elementCenterSvgY * svgScale.scaleY;
 
-    // Step 2: Zoom in on the now-centered element
-    // panzoomInstance.zoomAbs(centerX, centerY, targetZoom);
+    // Calculate how far we need to move to center the element
+    // The moveTo coordinates are in transform space, not screen space
+    // We want the element to appear at the center, so:
+    // elementContainerX * scale + transform.x = centerX
+    // Therefore: transform.x = centerX - (elementContainerX * scale)
+    const targetX = centerX - (elementContainerX * currentTransform.scale);
+    const targetY = centerY - (elementContainerY * currentTransform.scale);
+
+    console.log('Focus calculation:', {
+      elementId: id,
+      elementCenterSvg: { x: elementCenterSvgX, y: elementCenterSvgY },
+      svgScale,
+      currentTransform,
+      elementContainer: { x: elementContainerX, y: elementContainerY },
+      containerRect: { width: containerRect.width, height: containerRect.height },
+      svgRect: svgRect ? { width: svgRect.width, height: svgRect.height } : null,
+      containerCenter: { x: centerX, y: centerY },
+      targetTransform: { x: targetX, y: targetY },
+    });
+
+    // Let's also test: where would the element actually appear after this moveTo?
+    const predictedScreenX = elementContainerX * currentTransform.scale + targetX;
+    const predictedScreenY = elementContainerY * currentTransform.scale + targetY;
+
+    console.log('Predicted position after moveTo:', {
+      predicted: { x: predictedScreenX, y: predictedScreenY },
+      shouldBe: { x: centerX, y: centerY },
+      difference: { x: predictedScreenX - centerX, y: predictedScreenY - centerY }
+    });
+
+    // Use moveTo with the calculated coordinates
+    panzoomInstance.moveTo(targetX, targetY);
   };
 
   const onSVGElementClick = (
@@ -242,42 +267,24 @@ export const VenueMap = () => {
           onClick={(e) => {
             e.stopPropagation();
             if (panzoomInstance) {
-              //   const currentTransform = panzoomInstance.getTransform();
-              //   console.log('Current transform:', currentTransform);
-              //   console.log('MinZoom:', panzoomInstance.getMinZoom());
-              //   console.log('MaxZoom:', panzoomInstance.getMaxZoom());
+              setSelectedElement(null);
 
-              //   // The bug is that somehow we got below minZoom!
-              //   // This shouldn't be possible - let's investigate
+              panzoomInstance.pause();
 
-              //   panzoomInstance.zoomAbs(0, 0, 1);
-              //   panzoomInstance.moveTo(0, 0);
+              panzoomInstance.moveTo(0, 0);
+              panzoomInstance.zoomAbs(0, 0, 1);
 
-              //   setTimeout(() => {
-              //     console.log(
-              //       panzoomInstance.getTransform(),
-              //       'currentTransform delayed'
-              //     );
-              //   }, 1000);
-
-              // Get the actual container center instead of using (0,0)
-              const container = document.getElementById('venue-map');
-              if (container) {
-                // const rect = container.getBoundingClientRect();
-                // const centerX = rect.width / 2;
-                // const centerY = rect.height / 2;
-
-                setSelectedElement(null);
-                // console.log('Using center:', centerX, centerY);
-
-                panzoomInstance.pause();
-
-                // Use the container center as zoom origin
-                panzoomInstance.moveTo(0, 0);
-                panzoomInstance.smoothZoomAbs(0, 0, 1);
-
-                panzoomInstance.resume();
-              }
+              panzoomInstance.resume();
+            }
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation();
+            if (panzoomInstance) {
+              setSelectedElement(null);
+              panzoomInstance.pause();
+              panzoomInstance.moveTo(0, 0);
+              panzoomInstance.zoomAbs(0, 0, 1);
+              panzoomInstance.resume();
             }
           }}
         >
