@@ -50,7 +50,11 @@ const MapPane = (props: {
         {element?.id || 'no-selection'}
       </div>
       <div className="flex items-center justify-center">
-        <X className="h-4 w-4" onClick={() => props.setSelectedElement(null)} />
+        <X
+          className="h-4 w-4"
+          onClick={() => props.setSelectedElement(null)}
+          onTouchEnd={() => props.setSelectedElement(null)}
+        />
       </div>
     </div>
   );
