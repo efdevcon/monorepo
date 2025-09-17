@@ -286,8 +286,8 @@ export default function AppShowcaseDetail({
     const currentStatus = getQuestStatus(quest);
     if (currentStatus === 'completed') return;
 
-    const newStatus = currentStatus === 'locked' ? 'active' : 'completed';
-    updateQuestStatus(quest.id.toString(), newStatus, false);
+    // Go directly from locked to completed
+    updateQuestStatus(quest.id.toString(), 'completed', false);
   };
 
   const handleTodoClick = (quest: Quest) => {
