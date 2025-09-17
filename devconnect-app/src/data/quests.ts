@@ -153,7 +153,9 @@ export const questsData: Quest[] = [
     "conditionValues": "149598",
     "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
     "poapImageLink": "https://assets.poap.xyz/bf667c97-9df7-444d-8f98-274862714bcb.gif?size=xlarge",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 8,
+    "districtSlug": "defi"
   },
   {
     "id": 37,
@@ -167,7 +169,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "25d638cdc41580829018e6ada2eb3f8d",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 1,
+    "districtSlug": "arts"
   },
   {
     "id": 36,
@@ -181,7 +185,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc415802c97d8f585214603ad",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 3,
+    "districtSlug": "social"
   },
   {
     "id": 35,
@@ -195,7 +201,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc41580e69a97f635ca4a9099",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 4,
+    "districtSlug": "hardware-wallets"
   },
   {
     "id": 34,
@@ -209,7 +217,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc41580309fe5f80334bfb779",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 5,
+    "districtSlug": "gaming"
   },
   {
     "id": 33,
@@ -223,7 +233,9 @@ export const questsData: Quest[] = [
     "conditionValues": "43882",
     "supporterId": "241638cdc41580858795dfc9f5630277",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 6,
+    "districtSlug": "privacy"
   },
   {
     "id": 32,
@@ -237,7 +249,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "254638cdc4158098bc20c52a9ec59c9a",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 7,
+    "districtSlug": "ai"
   },
   {
     "id": 31,
@@ -251,7 +265,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "24e638cdc41580c1b782c738fb082f8d",
     "poapImageLink": "",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 2,
+    "districtSlug": "l2s"
   },
   {
     "id": 30,
@@ -265,7 +281,9 @@ export const questsData: Quest[] = [
     "conditionValues": "190840",
     "supporterId": "241638cdc415809d9909ea3bbcb6d327",
     "poapImageLink": "https://storage.googleapis.com/zapper-fi-assets/apps%2Fbasenames.png",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 2,
+    "districtSlug": "l2s"
   },
   {
     "id": 18,
@@ -279,7 +297,9 @@ export const questsData: Quest[] = [
     "conditionValues": "149598",
     "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
     "poapImageLink": "https://assets.poap.xyz/bf667c97-9df7-444d-8f98-274862714bcb.gif?size=xlarge",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 8,
+    "districtSlug": "defi"
   },
   {
     "id": 17,
@@ -321,7 +341,9 @@ export const questsData: Quest[] = [
     "conditionValues": "43882",
     "supporterId": "254638cdc41580fc975fe3023c8f17f0",
     "poapImageLink": "https://assets.poap.xyz/aave-booth-permissionless-2022-logo-1652279176656.png?size=xlarge",
-    "groupId": 4
+    "groupId": 4,
+    "districtId": 8,
+    "districtSlug": "defi"
   },
   {
     "id": 9,
