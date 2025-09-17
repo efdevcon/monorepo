@@ -1,29 +1,30 @@
 'use client';
 // https://github.com/timmywil/panzoom
-import React, { useRef, useEffect, useState } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 import { usePanzoom, PanzoomControls } from './panzoom';
 import MapTest from './maps/MapTest';
 import {
   svgToLookup,
   svgToLookupWithGroups,
   SVGLookup,
+  ElementPosition,
 } from './utils/svgToLookup';
 import { Pin } from './components/Pin';
 import cn from 'classnames';
 import css from './map.module.scss';
 import { X } from 'lucide-react';
-
-/*
-    1) Zoom into element programatically by id (so we can use it via search params / url deep link)
-    2) Place pin on elements
-    3) Highlight elements
-    4) Get current zoom level
-    5) Show different parts of the map depending on the zoom level (low to high fidelity)
-*/
+import { useSearchParams } from 'next/navigation';
+import { getViewportPosition } from './utils/svgToLookup';
 
 const MapPane = (props: {
   selection: string | null;
-  setSelectedElement: (element: string | null) => void;
+  setCurrentFilters: (filters: typeof initialFilters) => void;
   elementLookup: SVGLookup;
 }) => {
   const { selection, elementLookup } = props;
@@ -37,68 +38,144 @@ const MapPane = (props: {
         selection && '!translate-y-[0%] opacity-100',
         css['map']
       )}
+      // Don't let the click/touch events bubble up to the panzoom container
       onClick={(e) => {
         e.stopPropagation();
-        // setSelectedElement(null);
       }}
       onTouchEnd={(e) => {
         e.stopPropagation();
-        // setSelectedElement(null);
       }}
     >
       <div className={cn('text-sm font-bold', !selection && 'text-white')}>
-        {element?.id || 'no-selection'}
+        {element?.id || selection || 'no-selection'}
       </div>
       <div className="flex items-center justify-center">
         <X
           className="h-4 w-4"
-          onClick={() => props.setSelectedElement(null)}
-          onTouchEnd={() => props.setSelectedElement(null)}
+          onClick={() => props.setCurrentFilters(initialFilters)}
+          onTouchEnd={() => props.setCurrentFilters(initialFilters)}
         />
       </div>
     </div>
   );
 };
 
+const initialFilters = {
+  search: '', // Search term, not supported yet but added for future use
+  selection: [], // Array for flexibility in case we want to build more complex filter combinations
+} as {
+  search: string;
+  selection: string[];
+};
+
 export const VenueMap = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [elementLookup, setElementLookup] = useState<SVGLookup>({});
-  const [groupData, setGroupData] = useState<{ [key: string]: string[] }>({});
   const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
-  const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const searchParams = useSearchParams();
+  const [elementData, setElementData] = useState<{ [key: string]: any }>({
+    'art-exhibition': {
+      groups: ['art'],
+    },
+    'toilet-dis-1': {
+      groups: ['art', 'alt-l1'],
+    },
+  });
 
-  const isHoveredOrSelected = hoveredElement || selectedElement;
+  const [currentFilters, setCurrentFilters] =
+    useState<typeof initialFilters>(initialFilters);
+
+  useEffect(() => {
+    const selection = searchParams.get('filter');
+    if (selection) {
+      setCurrentFilters({
+        ...currentFilters,
+        selection: [selection],
+      });
+    }
+  }, [searchParams]);
+
+  const allPossibleFilters = useMemo(() => {
+    // Get from database / api
+    const groups = ['art', 'alt-l1'];
+
+    const elementKeys = Object.keys(elementLookup);
+
+    return {
+      groups: groups,
+      elements: elementKeys,
+    };
+  }, [elementLookup]);
+
+  // console.log(allPossibleFilters, 'allPossibleFilters');
+
+  const selectedElements = useMemo(() => {
+    const { groups, elements } = allPossibleFilters;
+
+    // Selected filters
+    // const selectedFilters = currentFilters.selection.map((key) => {
+    //   // @ts-ignore
+    //   return filters[key];
+    // });
+
+    return elements.filter((key) => {
+      // const element = elementLookup[key];
+      const element = elementData[key];
+      const elementGroups = element?.groups;
+
+      // @ts-ignore
+      const isInGroup = elementGroups
+        ? currentFilters.selection.some((activeGroup: string) =>
+            elementGroups.some((g: string) => g === activeGroup)
+          )
+        : false;
+      // @ts-ignore
+      const isSelected = currentFilters.selection.includes(key);
+
+      return isInGroup || isSelected;
+    });
+  }, [currentFilters, allPossibleFilters]);
+
+  // console.log(selectedElements, 'selectedElements');
 
   const { panzoomInstance, interactionsLocked } = usePanzoom('venue-map');
 
-  // Store initial transform state when panzoom instance becomes available
-  //   useEffect(() => {
-  //     if (panzoomInstance && !initialTransform) {
-  //       // Wait a frame to ensure panzoom is fully initialized
-  //       requestAnimationFrame(() => {
-  //         const transform = panzoomInstance.getTransform();
-  //         setInitialTransform({
-  //           x: transform.x,
-  //           y: transform.y,
-  //           scale: transform.scale
-  //         });
-  //       });
-  //     }
-  //   }, [panzoomInstance, initialTransform]);
-
   useEffect(() => {
+    const elementsWithIds = svgRef.current?.querySelectorAll(
+      '[id]:not(svg):not(g)'
+    );
+
+    const lookup: SVGLookup = {};
+
+    elementsWithIds?.forEach((element: Element) => {
+      const id = element.id;
+      if (id) {
+        lookup[id] = element as unknown as ElementPosition;
+      }
+    });
+
+    setElementLookup(lookup);
+
     // Wait for next frame to ensure SVG is fully rendered
+    // requestAnimationFrame(() => {
+    //   const lookup = svgToLookup(svgRef.current);
+    //   setElementLookup(lookup);
+    //   // Also get grouped data
+    //   // const { elements, groups } = svgToLookupWithGroups(svgRef.current);
+    //   // setGroupData(groups);
+    //   // Calculate scale between SVG viewBox and actual rendered size
+    //   // if (svgRef.current) {
+    //   //   const svgRect = svgRef.current.getBoundingClientRect();
+    //   //   const viewBox = svgRef.current.viewBox.baseVal;
+    //   //   const scaleX = svgRect.width / viewBox.width;
+    //   //   const scaleY = svgRect.height / viewBox.height;
+    //   //   setSvgScale({ scaleX, scaleY });
+    //   // }
+    // });
+
     requestAnimationFrame(() => {
-      const lookup = svgToLookup(svgRef.current);
-      setElementLookup(lookup);
-
-      // Also get grouped data
-      const { elements, groups } = svgToLookupWithGroups(svgRef.current);
-      setGroupData(groups);
-
-      // Calculate scale between SVG viewBox and actual rendered size
       if (svgRef.current) {
         const svgRect = svgRef.current.getBoundingClientRect();
         const viewBox = svgRef.current.viewBox.baseVal;
@@ -109,6 +186,9 @@ export const VenueMap = () => {
     });
   }, []);
 
+  const hasActiveFilters =
+    currentFilters.selection.length > 0 || currentFilters.search.length > 0;
+
   // Apply hover effect to all SVG elements dynamically
   useEffect(() => {
     if (!svgRef.current) return;
@@ -116,19 +196,21 @@ export const VenueMap = () => {
     const svgElements = svgRef.current.querySelectorAll('[id]:not(g)');
 
     svgElements.forEach((element) => {
+      const isSelected = selectedElements.includes(element.id);
+      const isHovered = hoveredElement === element.id;
+
       const svgElement = element as SVGElement;
-      if (isHoveredOrSelected === null) {
+      if (isSelected || isHovered) {
         svgElement.style.opacity = '1';
         svgElement.style.transition = 'opacity 0.5s ease-in-out';
-      } else if (isHoveredOrSelected === element.id) {
-        svgElement.style.opacity = '1';
+      } else if (hasActiveFilters) {
+        svgElement.style.opacity = '0.15';
         svgElement.style.transition = 'opacity 0.5s ease-in-out';
       } else {
-        svgElement.style.opacity = '0.3';
-        svgElement.style.transition = 'opacity 0.5s ease-in-out';
+        svgElement.style.opacity = '1';
       }
     });
-  }, [isHoveredOrSelected]);
+  }, [selectedElements, hoveredElement, hasActiveFilters]);
 
   const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as SVGElement;
@@ -157,22 +239,46 @@ export const VenueMap = () => {
   };
 
   const focusOnElement = (id: string) => {
-    const element = elementLookup[id];
-    if (!element || !panzoomInstance) return;
+    // const element = elementLookup[id];
+    const container = document.getElementById('venue-map');
+    const svgElement = container?.querySelector(`[id="${id}"]`);
+
+    if (!svgElement || !panzoomInstance) return;
+
+    const element = getViewportPosition(
+      id,
+      container as any,
+      svgElement as any
+    );
 
     // Use the parent container (the one that doesn't change with panzoom)
     if (!containerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
-    const centerX = containerRect.width / 2;
-    const centerY = containerRect.height / 2;
 
     // Get current transform to understand current scale
     const currentTransform = panzoomInstance.getTransform();
 
+    // Get the SVG container offset due to flexbox centering
+    const svgContainer = document.getElementById('venue-map');
+    const svgRect = svgContainer?.getBoundingClientRect();
+    if (!svgRect) return;
+
+    // The raw offset includes the current transform, so subtract it out
+    const rawOffsetX = svgRect.left - containerRect.left;
+    const rawOffsetY = svgRect.top - containerRect.top;
+
+    // The actual centering offset (removing the transform effect)
+    const svgOffsetX = rawOffsetX - currentTransform.x;
+    const svgOffsetY = rawOffsetY - currentTransform.y;
+
+    // Simple approach: center of the container viewport
+    const centerX = containerRect.width / 2; // - svgOffsetX;
+    const centerY = containerRect.height / 2; // - svgOffsetY;
+
     // Element center in SVG viewBox coordinates (from lookup)
-    const elementCenterSvgX = element.centerX;
-    const elementCenterSvgY = element.centerY;
+    const elementCenterSvgX = element?.centerX || 0;
+    const elementCenterSvgY = element?.centerY || 0;
 
     // Convert SVG coordinates to container coordinates (without panzoom scale)
     const elementContainerX = elementCenterSvgX * svgScale.scaleX;
@@ -183,13 +289,13 @@ export const VenueMap = () => {
     // We want the element to appear at the center, so:
     // elementContainerX * scale + transform.x = centerX
     // Therefore: transform.x = centerX - (elementContainerX * scale)
-    const targetX = centerX - elementContainerX * currentTransform.scale;
-    const targetY = centerY - elementContainerY * currentTransform.scale;
+    const targetX = centerX - elementContainerX * currentTransform.scale; //  - svgOffsetX;
+    const targetY = centerY - elementContainerY * currentTransform.scale; // - svgOffsetY;
 
     // Use moveTo with the calculated coordinates
     panzoomInstance.smoothMoveTo(
       targetX,
-      targetY - 30 * (1 / currentTransform.scale) // Offset to account for the map pane that folds out on select
+      targetY - 30 * currentTransform.scale // Offset to account for the map pane that folds out on select
     );
   };
 
@@ -201,7 +307,10 @@ export const VenueMap = () => {
       // const isCurrentlySelected = selectedElement === id;
       // setSelectedElement(isCurrentlySelected ? null : id);
 
-      setSelectedElement(id);
+      setCurrentFilters({
+        ...currentFilters,
+        selection: [id],
+      });
 
       // Focus on the element if it's being selected (not deselected)
       // if (!isCurrentlySelected) {
@@ -210,30 +319,36 @@ export const VenueMap = () => {
     }
   };
 
+  console.log(currentFilters, 'currentFilters');
+
   return (
     <div
       ref={containerRef}
-      className="relative w-full overflow-hidden grow aspect-[1200/800] py-8"
+      id="venue-container"
+      className={cn(
+        'relative w-full overflow-hidden grow aspect-[1200/800] flex'
+        // hasActiveFilters && css['has-selection-or-hover']
+      )}
       onClick={(e) => {
         e.stopPropagation();
-        setSelectedElement(null);
+        setCurrentFilters(initialFilters);
       }}
       onTouchEnd={(e) => {
         e.stopPropagation();
-        setSelectedElement(null);
+        setCurrentFilters(initialFilters);
       }}
     >
       {/* Panzoom container */}
       <div
         id="venue-map"
-        className="relative "
+        className="relative"
         onMouseOver={handleSVGMouseOver}
         onMouseOut={handleSVGMouseOut}
       >
         <MapTest ref={svgRef} onSVGElementClick={onSVGElementClick} />
 
         {/* Pin layer overlay - moves with the panzoom */}
-        <div
+        {/* <div
           className="absolute top-0 left-0 overflow-visible"
           style={{ pointerEvents: 'none' }}
         >
@@ -247,14 +362,36 @@ export const VenueMap = () => {
               size={16}
             />
           )}
-        </div>
+        </div> */}
       </div>
 
       <MapPane
-        selection={selectedElement}
+        selection={currentFilters.selection[0]}
         elementLookup={elementLookup}
-        setSelectedElement={setSelectedElement}
+        setCurrentFilters={setCurrentFilters}
       />
+
+      {/* Filters */}
+      <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
+        {allPossibleFilters.groups.map((group) => (
+          <button
+            key={group}
+            className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              setCurrentFilters({ ...currentFilters, selection: [group] });
+            }}
+            onTouchEnd={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              setCurrentFilters({ ...currentFilters, selection: [group] });
+            }}
+          >
+            {group}
+          </button>
+        ))}
+      </div>
 
       {/* Zoom controls */}
       <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
@@ -264,7 +401,7 @@ export const VenueMap = () => {
           onClick={(e) => {
             e.stopPropagation();
             if (panzoomInstance) {
-              setSelectedElement(null);
+              setCurrentFilters(initialFilters);
 
               panzoomInstance.pause();
 
@@ -277,7 +414,7 @@ export const VenueMap = () => {
           onTouchEnd={(e) => {
             e.stopPropagation();
             if (panzoomInstance) {
-              setSelectedElement(null);
+              setCurrentFilters(initialFilters);
               panzoomInstance.pause();
               panzoomInstance.moveTo(0, 0);
               panzoomInstance.zoomAbs(0, 0, 1);
@@ -291,3 +428,18 @@ export const VenueMap = () => {
     </div>
   );
 };
+
+/*
+  1) Select multiple svg elements (via filter selection, e.g. "toilet" should map to all toilets) + highlight them
+  2) Resolve information by id (e.g. "toilet-1" should show information about the toilet (if there is any))
+  3) Deep linking - e.g. /map&filter=toilet-1
+  4) Search - e.g. /map?search="toilet"
+
+
+  
+    1) Zoom into element programatically by id (so we can use it via search params / url deep link)
+    2) Place pin on elements
+    3) Highlight elements
+    4) Get current zoom level
+    5) Show different parts of the map depending on the zoom level (low to high fidelity)
+*/
