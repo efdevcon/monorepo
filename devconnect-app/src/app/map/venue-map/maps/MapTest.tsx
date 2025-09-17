@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef } from 'react';
 
 interface MapTestProps {
   onSVGElementClick: (id: string, event: React.MouseEvent<SVGElement>) => void;
@@ -6,6 +6,35 @@ interface MapTestProps {
 
 const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
   ({ onSVGElementClick }, ref) => {
+    const interactionStart = useRef<{ x: number; y: number } | null>(null);
+    const movementExceededThreshold = useRef(false);
+
+    const handleInteractionStart = (clientX: number, clientY: number) => {
+      interactionStart.current = { x: clientX, y: clientY };
+      movementExceededThreshold.current = false;
+    };
+
+    const handleInteractionMove = (clientX: number, clientY: number) => {
+      if (interactionStart.current && !movementExceededThreshold.current) {
+        const deltaX = clientX - interactionStart.current.x;
+        const deltaY = clientY - interactionStart.current.y;
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        if (distance > 5) {
+          movementExceededThreshold.current = true;
+        }
+      }
+    };
+
+    const handleInteractionEnd = () => {
+      interactionStart.current = null;
+      movementExceededThreshold.current = false;
+    };
+
+    const shouldPreventClick = () => {
+      return movementExceededThreshold.current;
+    };
+
     return (
       <svg
         ref={ref}
@@ -14,19 +43,51 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
         viewBox="0 0 1200 800"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        onPointerDown={(e) => {
+          handleInteractionStart(e.clientX, e.clientY);
+        }}
+        onPointerMove={(e) => {
+          handleInteractionMove(e.clientX, e.clientY);
+        }}
+        onTouchStart={(e) => {
+          if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            handleInteractionStart(touch.clientX, touch.clientY);
+          }
+        }}
+        onTouchMove={(e) => {
+          if (e.touches.length > 0) {
+            const touch = e.touches[0];
+            handleInteractionMove(touch.clientX, touch.clientY);
+          }
+        }}
         onClick={(e) => {
+          if (shouldPreventClick()) {
+            e.preventDefault();
+            e.stopPropagation();
+            return;
+          }
           const target = e.target as SVGElement;
           if (target.id) {
             e.stopPropagation();
             onSVGElementClick(target.id, e);
           }
+
+          handleInteractionEnd();
         }}
         onTouchEnd={(e) => {
+          if (shouldPreventClick()) {
+            e.preventDefault();
+            e.stopPropagation();
+            handleInteractionEnd();
+            return;
+          }
           const target = e.target as SVGElement;
           if (target.id) {
             e.stopPropagation();
             onSVGElementClick(target.id, e as any);
           }
+          handleInteractionEnd();
         }}
       >
         <g id="event-map-svg-test">

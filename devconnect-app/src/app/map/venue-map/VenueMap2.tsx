@@ -54,7 +54,7 @@ export const VenueMap = () => {
 
   const isHoveredOrSelected = hoveredElement || selectedElement;
 
-  const { panzoomInstance } = usePanzoom('venue-map');
+  const { panzoomInstance, interactionsLocked } = usePanzoom('venue-map');
 
   // Store initial transform state when panzoom instance becomes available
   //   useEffect(() => {
@@ -150,9 +150,6 @@ export const VenueMap = () => {
     const centerX = containerRect.width / 2;
     const centerY = containerRect.height / 2;
 
-    // Also get the SVG container position for reference
-    const svgRect = svgRef.current?.getBoundingClientRect();
-
     // Get current transform to understand current scale
     const currentTransform = panzoomInstance.getTransform();
 
@@ -169,52 +166,31 @@ export const VenueMap = () => {
     // We want the element to appear at the center, so:
     // elementContainerX * scale + transform.x = centerX
     // Therefore: transform.x = centerX - (elementContainerX * scale)
-    const targetX = centerX - (elementContainerX * currentTransform.scale);
-    const targetY = centerY - (elementContainerY * currentTransform.scale);
-
-    console.log('Focus calculation:', {
-      elementId: id,
-      elementCenterSvg: { x: elementCenterSvgX, y: elementCenterSvgY },
-      svgScale,
-      currentTransform,
-      elementContainer: { x: elementContainerX, y: elementContainerY },
-      containerRect: { width: containerRect.width, height: containerRect.height },
-      svgRect: svgRect ? { width: svgRect.width, height: svgRect.height } : null,
-      containerCenter: { x: centerX, y: centerY },
-      targetTransform: { x: targetX, y: targetY },
-    });
-
-    // Let's also test: where would the element actually appear after this moveTo?
-    const predictedScreenX = elementContainerX * currentTransform.scale + targetX;
-    const predictedScreenY = elementContainerY * currentTransform.scale + targetY;
-
-    console.log('Predicted position after moveTo:', {
-      predicted: { x: predictedScreenX, y: predictedScreenY },
-      shouldBe: { x: centerX, y: centerY },
-      difference: { x: predictedScreenX - centerX, y: predictedScreenY - centerY }
-    });
+    const targetX = centerX - elementContainerX * currentTransform.scale;
+    const targetY = centerY - elementContainerY * currentTransform.scale;
 
     // Use moveTo with the calculated coordinates
-    panzoomInstance.moveTo(targetX, targetY);
+    panzoomInstance.smoothMoveTo(
+      targetX,
+      targetY - 40 * (1 / currentTransform.scale) // Offset to account for the map pane that folds out on select
+    );
   };
 
   const onSVGElementClick = (
     id: string,
     event: React.MouseEvent<SVGElement>
   ) => {
-    if (elementLookup[id]) {
-      const isCurrentlySelected = selectedElement === id;
-      setSelectedElement(isCurrentlySelected ? null : id);
+    if (elementLookup[id] && !interactionsLocked) {
+      // const isCurrentlySelected = selectedElement === id;
+      // setSelectedElement(isCurrentlySelected ? null : id);
+
+      setSelectedElement(id);
 
       // Focus on the element if it's being selected (not deselected)
-      if (!isCurrentlySelected) {
-        focusOnElement(id);
-      }
+      // if (!isCurrentlySelected) {
+      focusOnElement(id);
+      // }
     }
-  };
-
-  const handleContainerEvent = (e: React.SyntheticEvent) => {
-    e.stopPropagation();
   };
 
   return (
@@ -288,7 +264,7 @@ export const VenueMap = () => {
             }
           }}
         >
-          Reset Zoom
+          Reset View
         </button>
       </div>
     </div>

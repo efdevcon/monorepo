@@ -51,6 +51,8 @@ export const usePanzoom = (elementId: string) => {
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
   );
+  const [isZooming, setIsZooming] = React.useState(false);
+  const [isPanning, setIsPanning] = React.useState(false);
 
   React.useEffect(() => {
     const scene = document.getElementById(elementId);
@@ -84,23 +86,34 @@ export const usePanzoom = (elementId: string) => {
 
       panzoomInstance.on('zoom', (e: any) => {
         console.log('zoomstart', e);
+        // setIsZooming(true);
       });
 
       panzoomInstance.on('zoomend', (e: any) => {
         console.log('zoomend', e);
+        // setTimeout(() => {
+        //   setIsZooming(false);
+        // }, 300);
+        // setIsZooming(false);
       });
 
       panzoomInstance.on('panstart', (e: any) => {
         console.log('panstart', e);
+        // setIsPanning(true);
+      });
+
+      panzoomInstance.on('pan', (e: any) => {
+        console.log('pan', e);
       });
 
       panzoomInstance.on('panend', (e: any) => {
         console.log('panend', e);
+        // setIsPanning(false);
       });
 
-      panzoomInstance.on('transform', (e: any) => {
-        console.log('transform', e);
-      });
+      // panzoomInstance.on('transform', (e: any) => {
+      //   console.log('transform', e);
+      // });
 
       // Prevent double-click zoom by intercepting double-click events
       // scene.addEventListener('dblclick', (e) => {
@@ -117,7 +130,12 @@ export const usePanzoom = (elementId: string) => {
     }
   }, [elementId]);
 
-  return { panzoomInstance };
+  return {
+    panzoomInstance,
+    isZooming,
+    isPanning,
+    interactionsLocked: isZooming || isPanning,
+  };
 };
 
 // export const Venue = (props: Props) => {
