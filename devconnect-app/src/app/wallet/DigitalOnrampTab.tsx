@@ -239,7 +239,7 @@ export default function OnrampTab() {
           'Complete your purchase in the new tab'
         );
       },
-      docs: 'https://dev.moonpay.com/v1.0/docs/credit-cards-testing',
+      docs: 'https://docs.transak.com/docs/test-credentials',
     },
     {
       name: 'Ripio',
