@@ -39,17 +39,19 @@ const BackButton = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [sessionId, setSessionId] = useState<string | null>(null);
+  const [canBack, setCanBack] = useState(false);
 
   useEffect(() => {
-    if (history.state.key && !sessionId) {
-      setSessionId(history.state.key);
-
-      return;
+    if (typeof window !== 'undefined') {
+      if (history.state.key && !sessionId) {
+        setSessionId(history.state.key);
+      }
+      
+      // Check if we can go back after component mounts
+      const canGoBack = history.state?.key !== sessionId;
+      setCanBack(canGoBack);
     }
-  }, [sessionId, setSessionId]);
-
-  const canBack =
-    typeof window !== 'undefined' && history.state?.key !== sessionId;
+  }, [sessionId]);
 
   const handleBackClick = () => {
     if (canBack) {
