@@ -32,13 +32,12 @@ const MapPane = (props: {
 
   const element = selection ? elementLookup[selection] : null;
 
-  // Hardcoded data for now
+  // Data from supporters.ts for AAVE
   const elementData = {
-    title: element?.id || selection || 'no-selection',
-    description:
-      'Explore the AI-powered IDE that lets you write code using instructions.',
+    title: 'AAVE',
+    description: 'Decentralized lending protocol',
     hasQuest: true,
-    image: '/images/icons/star.png', // Placeholder image
+    image: 'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png',
   };
 
   return (
@@ -137,7 +136,7 @@ const MapPane = (props: {
               </div>
               <div className="px-1 py-0.5 border border-[#4b4b66] rounded">
                 <div className="text-[10px] font-semibold text-[#36364c] tracking-[0.2px]">
-                  AI
+                  DeFi
                 </div>
               </div>
             </div>
