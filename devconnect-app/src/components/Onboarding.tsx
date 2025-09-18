@@ -4,7 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import {
   useSignUpOrLogIn,
   useVerifyNewAccount,
@@ -36,13 +36,20 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [mounted, setMounted] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const EOA_FLOW = searchParams.get('eoa') === 'true';
+  const [EOA_FLOW, setEOA_FLOW] = useState(false);
 
   // Handle hydration
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Read search params after mounting to avoid SSR issues
+  useEffect(() => {
+    if (mounted && typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      setEOA_FLOW(urlParams.get('eoa') === 'true');
+    }
+  }, [mounted]);
 
   // Debug logging to understand email value changes
   useEffect(() => {
