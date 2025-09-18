@@ -4,7 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   useSignUpOrLogIn,
   useVerifyNewAccount,
@@ -36,6 +36,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [mounted, setMounted] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const EOA_FLOW = searchParams.get('eoa') === 'true';
 
   // Handle hydration
   useEffect(() => {
@@ -379,6 +381,32 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     };
   }, []);
 
+  // Footer
+  const renderFooter = () => {
+    return (
+      <>
+        <div className="flex flex-row gap-2 items-center justify-center pt-[6px] relative w-full border-[#36364c]">
+          <p className="font-normal text-[12px] text-center leading-[1.4]">
+            <span className="text-[#4b4b66]">
+              By logging in, you agree to our{' '}
+            </span>
+            <span className="underline font-bold text-[#1b6fae]">
+              Terms and Conditions
+            </span>
+            <span className="text-[#4b4b66]"> and </span>
+            <span className="underline font-bold text-[#1b6fae]">
+              Privacy Policy
+            </span>
+            <span className="text-[#4b4b66]">.</span>
+          </p>
+        </div>
+        <div className="flex flex-row items-center justify-center pb-4 relative w-full border-[#36364c]">
+          <img src="/images/para.png" alt="Para" className="h-4 w-auto" />
+        </div>
+      </>
+    );
+  };
+
   // OTP verification screen for external wallet connection
   if (otpSent) {
     return (
@@ -692,21 +720,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-          <p className="font-normal text-[12px] text-center leading-[1.4]">
-            <span className="text-[#4b4b66]">
-              By logging in, you agree to our{' '}
-            </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Terms and Conditions
-            </span>
-            <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Privacy Policy
-            </span>
-            <span className="text-[#4b4b66]">.</span>
-          </p>
-        </div>
+        {renderFooter()}
       </div>
     );
   }
@@ -992,21 +1006,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-          <p className="font-normal text-[12px] text-center leading-[1.4]">
-            <span className="text-[#4b4b66]">
-              By logging in, you agree to our{' '}
-            </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Terms and Conditions
-            </span>
-            <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Privacy Policy
-            </span>
-            <span className="text-[#4b4b66]">.</span>
-          </p>
-        </div>
+        {renderFooter()}
       </div>
     );
   }
@@ -1083,21 +1083,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-          <p className="font-normal text-[12px] text-center leading-[1.4]">
-            <span className="text-[#4b4b66]">
-              By logging in, you agree to our{' '}
-            </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Terms and Conditions
-            </span>
-            <span className="text-[#4b4b66]"> and </span>
-            <span className="underline font-bold text-[#1b6fae]">
-              Privacy Policy
-            </span>
-            <span className="text-[#4b4b66]">.</span>
-          </p>
-        </div>
+        {renderFooter()}
       </div>
     );
   }
@@ -1155,27 +1141,33 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         </div>
 
         {/* THEN Divider */}
-        <div className="relative w-full">
-          <div className="h-0 relative w-full">
-            <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
+        {EOA_FLOW && (
+          <div className="relative w-full">
+            <div className="h-0 relative w-full">
+              <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
+            </div>
+            <div className="bg-white flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
+                THEN
+              </span>
+            </div>
           </div>
-          <div className="bg-white flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
-              THEN
-            </span>
-          </div>
-        </div>
+        )}
 
         {/* Choose your authentication method */}
         <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
-          <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
-            <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
-              Choose your authentication method
-            </h3>
-            <p className="font-normal text-[14px] w-full leading-[1.3]">
-              Provide this to get your ticket data in the app.
-            </p>
-          </div>
+          {EOA_FLOW && (
+            <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
+              <>
+                <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
+                  Choose your authentication method
+                </h3>
+                <p className="font-normal text-[14px] w-full leading-[1.3]">
+                  Provide this to get your ticket data in the app.
+                </p>
+              </>
+            </div>
+          )}
 
           {/* Continue with Email Button */}
           <button
@@ -1198,21 +1190,25 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             we&apos;ll create a wallet for you behind the scenes
           </p>
 
+          {!EOA_FLOW && renderFooter()}
+
           {/* Continue with External Wallet Button */}
-          <button
-            onClick={handleWalletConnect}
-            disabled={!mounted || !email || !email.includes('@')}
-            className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            title={
-              mounted
-                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@')}`
-                : 'Loading...'
-            }
-          >
-            <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-              Continue with External Wallet
-            </span>
-          </button>
+          {EOA_FLOW && (
+            <button
+              onClick={handleWalletConnect}
+              disabled={!mounted || !email || !email.includes('@')}
+              className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              title={
+                mounted
+                  ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@')}`
+                  : 'Loading...'
+              }
+            >
+              <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+                Continue with External Wallet
+              </span>
+            </button>
+          )}
         </div>
 
         {/* OR Divider */}
@@ -1230,7 +1226,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         {/* Skip for now */}
         <button
           onClick={isSkipped ? handleReset : handleSkip}
-          className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+          className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-6"
         >
           {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
         </button>
@@ -1245,23 +1241,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           </button>
         )}
       </div>
-
-      {/* Footer */}
-      <div className="flex flex-row gap-2 items-center justify-center p-[24px] relative w-full border-t border-[#36364c]">
-        <p className="font-normal text-[12px] text-center leading-[1.4]">
-          <span className="text-[#4b4b66]">
-            By logging in, you agree to our{' '}
-          </span>
-          <span className="underline font-bold text-[#1b6fae]">
-            Terms and Conditions
-          </span>
-          <span className="text-[#4b4b66]"> and </span>
-          <span className="underline font-bold text-[#1b6fae]">
-            Privacy Policy
-          </span>
-          <span className="text-[#4b4b66]">.</span>
-        </p>
-      </div>
+      {EOA_FLOW && renderFooter()}
     </div>
   );
 }
