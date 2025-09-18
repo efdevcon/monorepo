@@ -107,6 +107,7 @@ export default function AppShowcaseDetail({
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const hasInitialized = useRef(false);
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
+  const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -169,6 +170,24 @@ export default function AppShowcaseDetail({
         if (questDistrict) {
           setExpandedDistrict(questDistrict.id);
           setExpandedQuests(new Set([quest.id]));
+
+          // Scroll to the quest after state updates
+          setTimeout(() => {
+            const questElement = questRefs.current[quest.id];
+            if (questElement) {
+              // Calculate offset to account for sticky tabs and menu
+              const stickyTabsHeight = pwa === true ? 118 : 59; // PWA mode: 118px, regular mode: 59px
+              const menuHeight = 30; // Additional 30px for menu
+              const elementTop = questElement.offsetTop;
+              const offsetPosition =
+                elementTop - stickyTabsHeight - menuHeight - 45; // Extra 45px padding
+
+              window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth',
+              });
+            }
+          }, 200); // Increased delay to ensure DOM updates are complete
         }
         hasInitialized.current = true;
         return;
@@ -180,7 +199,7 @@ export default function AppShowcaseDetail({
       setExpandedDistrict(districtsWithQuests[0].id);
       hasInitialized.current = true;
     }
-  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict]);
+  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict, pwa]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -269,7 +288,7 @@ export default function AppShowcaseDetail({
         );
         if (districtElement) {
           // Calculate offset to account for sticky tabs (59px + some padding)
-          const stickyTabsHeight = 80; // 59px + some padding
+          const stickyTabsHeight = 135; // 59px + some padding
           const elementTop = districtElement.offsetTop;
           const offsetPosition = elementTop - stickyTabsHeight;
 
@@ -298,8 +317,33 @@ export default function AppShowcaseDetail({
 
     if (questDistrict) {
       // Redirect to /worlds-fair#layerName
-      router.push(`/worlds-fair#${questDistrict.layerName}`);
+      // router.push(`/worlds-fair#${questDistrict.layerName}`);
+      // hardcoded for now
+      router.push(`/map?filter=defi-aave`);
     }
+  };
+
+  // Reset function to clear all quest states for App Showcase quests
+  const handleReset = () => {
+    // Reset only App Showcase quests (groupId === 4)
+    const appShowcaseQuestIds = appShowcaseQuests.map((quest) =>
+      quest.id.toString()
+    );
+    const newQuestStates = { ...questStates };
+
+    appShowcaseQuestIds.forEach((questId) => {
+      delete newQuestStates[questId];
+    });
+
+    // Update all quest states at once
+    Object.keys(newQuestStates).forEach((questId) => {
+      updateQuestStatus(questId, 'locked', true);
+    });
+
+    // Reset App Showcase quests to locked state
+    appShowcaseQuestIds.forEach((questId) => {
+      updateQuestStatus(questId, 'locked', true);
+    });
   };
 
   // Calculate overall progress
@@ -344,51 +388,87 @@ export default function AppShowcaseDetail({
             onDistrictSelect={selectDistrict}
           />
         </div>
-      </div>
-      {/* Reward Section */}
-      <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
-        <div className="flex flex-col gap-2">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-base font-bold text-gray-800 tracking-[-0.1px]">
-              Complete 10 quests
-            </h2>
-            <p className="text-sm text-gray-600">
-              <span className="font-bold">Reward:</span>{' '}
-              <span className="font-normal">Spin the Prize Wheel!</span>
-            </p>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
-              {overallProgress.completed}/{overallProgress.total} completed
-            </div>
-            <div className="relative w-full h-2 bg-gray-100 rounded">
-              <div
-                className="absolute top-0 left-0 h-2 bg-blue-600 rounded"
-                style={{ width: `${overallProgress.percentage}%` }}
-              />
-              {/* Milestone markers */}
-              {[10, 20, 30, 40, 50].map((milestone, index) => {
-                // Only show milestone if it's less than or equal to the total quests
-                if (milestone <= overallProgress.total) {
-                  return (
-                    <div
-                      key={milestone}
-                      className="absolute w-4 h-4 bg-white border border-blue-600 rounded-full -top-1"
-                      style={{
-                        left: `${(milestone / overallProgress.total) * 100}%`,
-                      }}
-                    >
-                      <div className="w-3 h-3 m-0.5 bg-blue-600 rounded-full" />
-                    </div>
-                  );
-                }
-                return null;
-              })}
+        {/* Reward Section */}
+        <div className="bg-white border-gray-200 w-full px-4 pb-4">
+          <div className="flex flex-col gap-2">
+            {/* <div className="flex flex-col gap-1">
+              <h2 className="text-base font-bold text-gray-800 tracking-[-0.1px]">
+                Complete 10 quests
+              </h2>
+              <p className="text-sm text-gray-600">
+                <span className="font-bold">Reward:</span>{' '}
+                <span className="font-normal">Spin the Prize Wheel!</span>
+              </p>
+            </div> */}
+            <div className="flex flex-col gap-4">
+              <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
+                {overallProgress.completed}/{overallProgress.total} completed
+              </div>
+              <div className="relative w-full h-2 bg-gray-100 rounded">
+                <div
+                  className="absolute top-0 left-0 h-2 bg-blue-600 rounded"
+                  style={{ width: `${overallProgress.percentage}%` }}
+                />
+                {/* Milestone markers */}
+                {[5, 10, 15, 20, 40, 60].map((milestone, index) => {
+                  // Only show milestone if it's less than or equal to the total quests
+                  if (milestone <= overallProgress.total) {
+                    const isCompleted = overallProgress.completed >= milestone;
+                    const size = isCompleted ? 32 : 24;
+                    return (
+                      <div
+                        key={milestone}
+                        className="absolute"
+                        style={{
+                          left: `calc(${(milestone / overallProgress.total) * 100}% - ${size / 2}px)`,
+                          top: `${isCompleted ? '-10.5px' : `-${size / 3}px`}`,
+                          width: `${size}px`,
+                          height: `${size}px`,
+                        }}
+                      >
+                        <div
+                          className="flex items-center justify-center"
+                          style={{
+                            width: `${size}px`,
+                            height: `${size}px`,
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: `${size}px`,
+                              height: `${size}px`,
+                            }}
+                          >
+                            {isCompleted ? (
+                              <Image
+                                src="/images/icons/star-completed.svg"
+                                alt="Completed milestone"
+                                width={size}
+                                height={size}
+                                className="w-full h-full"
+                              />
+                            ) : (
+                              <Image
+                                src="/images/icons/star.svg"
+                                alt="Milestone"
+                                width={size}
+                                height={size}
+                                className="w-full h-full"
+                              />
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }
+                  return null;
+                })}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      {/* District Sections */}
+      ;{/* District Sections */}
       <div className="w-full space-y-3 p-4">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
@@ -469,6 +549,9 @@ export default function AppShowcaseDetail({
                     return (
                       <div
                         key={quest.id}
+                        ref={(el) => {
+                          questRefs.current[quest.id] = el;
+                        }}
                         className={`bg-white border rounded cursor-pointer hover:bg-gray-50 transition-colors ${
                           isExpanded ? 'border-[#1b6fae]' : 'border-[#f0f0f4]'
                         }`}
@@ -646,6 +729,15 @@ export default function AppShowcaseDetail({
             </div>
           );
         })}
+      </div>
+      ;{/* Reset Button */}
+      <div className="w-full px-4 pb-4">
+        <button
+          onClick={handleReset}
+          className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"
+        >
+          Reset All Progress
+        </button>
       </div>
     </div>
   );
