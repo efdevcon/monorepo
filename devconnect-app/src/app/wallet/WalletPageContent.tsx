@@ -8,28 +8,34 @@ import InPersonOnrampTab from './InPersonOnrampTab';
 import DebugTab from './DebugTab';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState, useMemo } from 'react';
+import React from 'react';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/wallet');
 const navLabel = navItem?.label || 'Wallet';
 
 // Map tab labels to components
-const tabComponents: Record<string, React.ComponentType> = {
-  Wallet: WalletTab,
-  Debug: DebugTab,
-  Tickets: TicketTab,
-  'Digital Onramp': DigitalOnrampTab,
-  'In-person Onramp': InPersonOnrampTab,
+const tabComponents: Record<string, React.ComponentType<any>> = {
+  Wallet: WalletTab as React.ComponentType<any>,
+  Debug: DebugTab as React.ComponentType<any>,
+  Tickets: TicketTab as React.ComponentType<any>,
+  'Digital Onramp': DigitalOnrampTab as React.ComponentType<any>,
+  'In-person Onramp': InPersonOnrampTab as React.ComponentType<any>,
 };
 
 // Create tabs from nav-items configuration
-const createTabsFromNavItems = (tabItems: TabItem[]) => {
+const createTabsFromNavItems = (tabItems: TabItem[]): Array<{
+  label: string;
+  href?: string;
+  hide?: boolean;
+  component: React.ComponentType<any>;
+}> => {
   return tabItems.map((tabItem) => ({
     label: tabItem.label,
     href: tabItem.href, // Include href for navigation
     hide: tabItem.hide,
     component:
       tabComponents[tabItem.label] ||
-      (() => <div>Component not found for {tabItem.label}</div>),
+      (() => <div>Component not found for {tabItem.label}</div>) as React.ComponentType<any>,
   }));
 };
 
