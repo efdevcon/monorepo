@@ -578,8 +578,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "2"
   },
   "254638cdc41580fc975fe3023c8f17f0": {
-    "name": "AAVE Dao (Avara)",
-    "layerName": "defi_aave-dao-avara",
+    "name": "AAVE",
+    "layerName": "defi_aave",
     "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png",
     "description": "",
     "districtId": "8",

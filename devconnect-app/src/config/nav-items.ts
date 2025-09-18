@@ -41,7 +41,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Quests',
-    href: '/quests',
+    href: '/quests/app-showcase',
     icon: QuestIcon,
     backgroundColor: 'rgba(246, 180, 14, 0.15)',
   },
