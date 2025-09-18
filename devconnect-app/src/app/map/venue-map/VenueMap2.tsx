@@ -294,7 +294,7 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow flex'
+        'relative w-full overflow-hidden grow flex py-8'
         // hasActiveFilters && css['has-selection-or-hover']
       )}
       onClick={(e) => {

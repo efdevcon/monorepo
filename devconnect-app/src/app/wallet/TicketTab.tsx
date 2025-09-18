@@ -36,7 +36,7 @@ export default function TicketTab() {
 
   // Auto-load tickets when component mounts
   useEffect(() => {
-    const fetchTickets = async (forceRefresh = false) => {
+    const fetchTickets = async (forceRefresh = true) => {
       if (isLoadingRef.current) {
         console.log('Already fetching tickets, skipping...');
         return;
@@ -65,10 +65,13 @@ export default function TicketTab() {
         const ticketsData = response.data.tickets || [];
         setTickets(ticketsData);
 
+        console.log('ticketsData', ticketsData);
+
         // Generate QR codes for each ticket
         const newQrCodes: { [key: string]: string } = {};
         for (const order of ticketsData) {
           for (const ticket of order.tickets) {
+            console.log('ticket', ticket);
             if (ticket.secret) {
               try {
                 const qrDataUrl = await QRCode.toDataURL(ticket.secret, {

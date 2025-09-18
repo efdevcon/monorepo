@@ -16,6 +16,7 @@ import { POD } from "@pcd/pod";
 import { eventShops } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
 import cn from "classnames";
+import Fallback from "./fallback";
 
 // HOC to wrap ParcnetClientProvider
 export const withParcnetProvider = <P extends object>(
@@ -38,6 +39,14 @@ export const withParcnetProvider = <P extends object>(
       </ParcnetClientProvider>
     );
   };
+};
+
+export const FallbackWrapper = (props: any) => {
+  if (process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true") {
+    return <Fallback {...props} />;
+  }
+
+  return <ZupassConnection {...props} />;
 };
 
 function ZupassConnection(props: any) {
@@ -105,6 +114,8 @@ function ZupassConnection(props: any) {
         }:`,
         isValid
       );
+
+      console.log(podData, "POD DATA LETS GO");
 
       return isValid;
     } catch (error) {
@@ -208,7 +219,7 @@ function ZupassConnection(props: any) {
   );
 }
 
-export default ZupassConnection;
+export default FallbackWrapper;
 
 const EventVoucher = ({
   couponCollection,
@@ -255,6 +266,8 @@ const EventVoucher = ({
 
     setFetchingCoupon(true);
     setCouponStatus(null);
+
+    console.log(tickets?.devconnect, "TICKETS DEVCONNECT");
 
     try {
       const response = await fetch(

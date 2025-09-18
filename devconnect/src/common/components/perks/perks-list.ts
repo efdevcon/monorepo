@@ -26,6 +26,7 @@ type Perk = {
   wallet_proof?: boolean
   global_coupon?: string
   instructions?: string
+  zupass_disabled?: boolean
 }
 
 const perks: Perk[] = [

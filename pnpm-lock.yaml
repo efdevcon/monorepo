@@ -1100,7 +1100,7 @@ importers:
         version: 4.0.1(webpack@5.100.2)
       openai:
         specifier: 4.95.1
-        version: 4.95.1(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76)
+        version: 4.95.1(encoding@0.1.13)(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76)
       postcss:
         specifier: ^8.4.31
         version: 8.5.6
@@ -1520,6 +1520,9 @@ importers:
       '@radix-ui/react-toast':
         specifier: ^1.2.1
         version: 1.2.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@supabase/supabase-js':
+        specifier: ^2.52.0
+        version: 2.52.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@types/react':
         specifier: ^19
         version: 19.1.8
@@ -27689,8 +27692,8 @@ snapshots:
       '@supabase/node-fetch': 2.6.15
       '@types/phoenix': 1.6.6
       '@types/ws': 8.18.1
-      isows: 1.0.7(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))
-      ws: 8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      isows: 1.0.7(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))
+      ws: 8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -42682,21 +42685,6 @@ snapshots:
       is-wsl: 2.2.0
 
   openai@4.104.0(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76):
-    dependencies:
-      '@types/node': 18.19.120
-      '@types/node-fetch': 2.6.12
-      abort-controller: 3.0.0
-      agentkeepalive: 4.6.0
-      form-data-encoder: 1.7.2
-      formdata-node: 4.4.1
-      node-fetch: 2.7.0(encoding@0.1.13)
-    optionalDependencies:
-      ws: 8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - encoding
-
-  openai@4.95.1(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76):
     dependencies:
       '@types/node': 18.19.120
       '@types/node-fetch': 2.6.12

@@ -14,6 +14,8 @@ import { POD } from '@pcd/pod'
 import { PODData } from '@parcnet-js/podspec'
 import { proveWalletOwnership } from './wallet-proof'
 import { eventShops } from 'lib/components/event-schedule-new/zupass/event-shops-list'
+import { supabase } from 'common/supabaseClient'
+import { getPaidTicketsByEmail } from './pretix'
 
 const verifyPodSignature = (podData: PODData): boolean => {
   try {
@@ -57,6 +59,54 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const perk =
     perksList.find(perk => perk.coupon_collection === collection) ||
     eventShops.find(event => event.coupon_collection === collection)
+
+  // Zupass gating refers to third party event shops that use zupass to gate their event via our calendar
+  const isZupassGating = eventShops.some(event => event.coupon_collection === collection)
+
+  if (isZupassGating && perk?.zupass_disabled) {
+    console.warn('ZUPASS SKIPPED, USING SUPABASE AUTH INSTEAD: ', collection)
+
+    // Extract token from Authorization header
+    const authHeader = req.headers.authorization
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'Missing or invalid Authorization header' })
+    }
+
+    const token = authHeader.substring(7) // Remove 'Bearer ' prefix
+
+    // Verify supabase token
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(token)
+
+    if (authError || !user) {
+      return res.status(401).json({ error: 'Invalid or expired Supabase token' })
+    }
+
+    const claimedBy = user.email
+
+    if (!claimedBy) {
+      return res.status(400).json({ error: 'User email is required' })
+    }
+
+    const tickets = await getPaidTicketsByEmail(claimedBy)
+
+    const hasTickets = tickets && tickets.length > 0
+
+    if (!hasTickets) {
+      return res.status(400).json({ error: 'User does not have a paid ticket' })
+    }
+
+    const coupon = await claimSingleCoupon(perk!.zupass_proof_id ?? '', collection, claimedBy)
+
+    return res.status(200).json({
+      coupon: coupon.coupon,
+      coupon_status: coupon.status,
+      collection,
+      ticket_type: perk!.zupass_proof_id,
+    })
+  }
 
   if (!perk) {
     return res.status(400).json({ error: 'Perk or gated event not found' })
@@ -130,11 +180,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   const ticketId = pod.entries.ticketId?.value?.toString()
+  const ticketOwner = pod.entries.attendeeEmail?.value?.toString()
 
-  if (!ticketId) {
-    return res.status(400).json({ error: 'Ticket ID is required' })
+  if (!ticketId || !ticketOwner) {
+    return res.status(400).json({ error: 'Ticket ID and ticket owner are required' })
   }
 
+  // If perk is same for everyone, just return it, no need to claim
   if (perk.global_coupon) {
     return res.status(200).json({
       coupon: perk.global_coupon,
@@ -144,7 +196,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     })
   }
 
-  const coupon = await claimSingleCoupon(perk.zupass_proof_id ?? '', collection, ticketId)
+  // If zupass gating, use ticket owner, otherwise use ticket ID. Why:
+  // This is because the ticket id is zupass specific and not known to pretix - we are building a fallback claiming process if zupass goes down - that means we cannot claim by the ticket id found in the proof, we have to use something that works in either case (email)
+  const claimedBy = isZupassGating ? ticketOwner : ticketId
+  const coupon = await claimSingleCoupon(perk.zupass_proof_id ?? '', collection, claimedBy)
 
   return res.status(200).json({
     coupon: coupon.coupon,
