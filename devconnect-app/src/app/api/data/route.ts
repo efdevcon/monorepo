@@ -26,7 +26,6 @@ export async function GET(request: NextRequest) {
       const properties = page.properties;
 
       // console.log(properties);
-      console.log(properties['Quests']);
 
       // Helper function to get property value, trying both clean and prefixed names
       const getPropertyValue = (propertyName: string, fallbackName?: string) => {
@@ -88,8 +87,8 @@ export async function GET(request: NextRequest) {
         return '';
       };
 
-      return {
-        name: getPropertyValue('Supporter name'),
+      const result = {
+        name: getPropertyValue('Supporter Name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
         layerName: getPropertyValue('Layer name'),
@@ -97,7 +96,13 @@ export async function GET(request: NextRequest) {
         id: page.id?.replaceAll('-', ''),
         logo: getPropertyValue('Logo'),
         description: getPropertyValue('Project description'),
+        group: getPropertyValue('POI'),
       };
+
+      if (!result.group)
+        delete result.group;
+
+      return result;
     });
 
     // Filter out entries with empty Supporter Name
@@ -110,7 +115,7 @@ export async function GET(request: NextRequest) {
     const cleanSupporters = supporters.map(item => { delete item.POI; return item; });
     const cleanPois = pois.map(item => { delete item.POI; return item; });
 
-    // Get unique districts and locations as objects with numeric ID as key
+    // Get unique districts, locations, and POI groups as objects with numeric ID as key
     const uniqueDistrictsArray = [...new Set(filteredData.map(item => item.district).filter(Boolean))];
     const uniqueDistricts = uniqueDistrictsArray.reduce((acc, district, index) => {
       acc[(index + 1).toString()] = { name: district };
@@ -123,9 +128,16 @@ export async function GET(request: NextRequest) {
       return acc;
     }, {} as Record<string, { name: string }>);
 
-    // Create lookup maps for district and location (name -> numeric ID)
+    const uniquePoiGroupsArray = [...new Set(pois.map(item => item.group).filter(Boolean))];
+    const uniquePoiGroups = uniquePoiGroupsArray.reduce((acc, group, index) => {
+      acc[(index + 1).toString()] = { name: group };
+      return acc;
+    }, {} as Record<string, { name: string }>);
+
+    // Create lookup maps for district, location, and POI group (name -> numeric ID)
     const districtMap = new Map(uniqueDistrictsArray.map((name, index) => [name, (index + 1).toString()]));
     const locationMap = new Map(uniqueLocationsArray.map((name, index) => [name, (index + 1).toString()]));
+    const poiGroupMap = new Map(uniquePoiGroupsArray.map((name, index) => [name, (index + 1).toString()]));
 
     // Replace district and location names with their numeric IDs in supporters and POIs
     const supportersWithIds = cleanSupporters.map(item => {
@@ -138,12 +150,13 @@ export async function GET(request: NextRequest) {
     });
 
     const poisWithIds = cleanPois.map(item => {
-      const { district, location, ...rest } = item;
+      const { district, location, group, ...rest } = item;
       delete rest.id;
       return {
         ...rest,
         districtId: districtMap.get(district) || null,
         locationId: locationMap.get(location) || null,
+        groupId: poiGroupMap.get(group) || null,
       };
     });
 
@@ -161,6 +174,7 @@ export async function GET(request: NextRequest) {
       pois: poisWithIds,
       districts: uniqueDistricts,
       locations: uniqueLocations,
+      poiGroups: uniquePoiGroups,
     };
 
     return NextResponse.json({

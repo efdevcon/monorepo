@@ -2,8 +2,8 @@ import type { Districts } from '@/types/api-data';
 
 export const districtsData: Districts = {
   "1": {
-    "name": "Arts",
-    "layerName": "arts",
+    "name": "Collectibles",
+    "layerName": "collectibles",
     "backgroundColor": "linear-gradient(0deg, rgb(255, 133, 166) 0%, rgb(238, 221, 51) 100%)"
   },
   "2": {
@@ -17,7 +17,7 @@ export const districtsData: Districts = {
     "backgroundColor": "linear-gradient(0deg, rgb(255, 133, 166) 0%, rgb(170, 167, 255) 100%)"
   },
   "4": {
-    "name": "Hardware",
+    "name": "Hardware & Wallets",
     "layerName": "hardware-wallets",
     "backgroundColor": "linear-gradient(0deg, rgb(116, 172, 223) 0%, rgb(238, 136, 34) 100%)"
   },
@@ -37,7 +37,7 @@ export const districtsData: Districts = {
     "backgroundColor": "linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)"
   },
   "8": {
-    "name": "Defi",
+    "name": "DeFi",
     "layerName": "defi",
     "backgroundColor": "linear-gradient(0deg, rgb(136, 85, 204) 0%, rgb(221, 102, 170) 100%)"
   }

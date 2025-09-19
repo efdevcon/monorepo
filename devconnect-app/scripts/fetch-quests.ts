@@ -90,10 +90,9 @@ async function saveQuests(data: ApiResponse): Promise<void> {
     groupNameToIdMap.set(group.name, group.id);
   });
 
-  // Process quests to add districtId, districtSlug, and groupId
+  // Process quests to add districtId and groupId
   const processedQuests: Quest[] = quests.map((quest) => {
     let districtId: number | undefined;
-    let districtSlug: string | undefined;
     let groupId: number | undefined;
 
     // Map group name to group ID (remove numbered prefix if present)
@@ -115,9 +114,6 @@ async function saveQuests(data: ApiResponse): Promise<void> {
       if (supporter && supporter.districtId) {
         districtId = parseInt(supporter.districtId, 10);
         const district = districtsData[supporter.districtId];
-        if (district) {
-          districtSlug = district.layerName;
-        }
       }
     }
 
@@ -127,7 +123,6 @@ async function saveQuests(data: ApiResponse): Promise<void> {
       ...questWithoutGroupAndDifficulty,
       groupId,
       districtId,
-      districtSlug,
     };
   });
 
@@ -144,7 +139,7 @@ export const questsData: Quest[] = ${JSON.stringify(processedQuests, null, 2)};
   ]);
 
   // Count quests with different types of information
-  const questsWithDistricts = processedQuests.filter(quest => quest.districtId && quest.districtSlug).length;
+  const questsWithDistricts = processedQuests.filter(quest => quest.districtId).length;
   const questsWithGroups = processedQuests.filter(quest => quest.groupId).length;
 
   console.log('✅ Quest data saved successfully:');

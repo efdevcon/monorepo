@@ -107,9 +107,6 @@ export interface Quest {
 
   /** District ID of the quest (computed field based on supporterId) */
   districtId?: number;
-
-  /** District slug of the quest (computed field based on supporterId) */
-  districtSlug?: string;
 }
 
 /**

@@ -28,6 +28,7 @@ const SUPPORTERS_FILE = path.join(DATA_DIR, 'supporters.ts');
 const POIS_FILE = path.join(DATA_DIR, 'pois.ts');
 const DISTRICTS_FILE = path.join(DATA_DIR, 'districts.ts');
 const LOCATIONS_FILE = path.join(DATA_DIR, 'locations.ts');
+const POI_GROUPS_FILE = path.join(DATA_DIR, 'poiGroups.ts');
 const FULL_DATA_FILE = path.join(DATA_DIR, 'api-data.json');
 
 // Using the imported ApiResponse type from ../src/types
@@ -55,7 +56,7 @@ async function saveData(data: ApiResponse): Promise<void> {
     throw new Error('API response indicates failure or missing data');
   }
 
-  const { supporters, pois, districts, locations } = data.data;
+  const { supporters, pois, districts, locations, poiGroups } = data.data;
 
   // Ensure data directory exists
   await fs.mkdir(DATA_DIR, { recursive: true });
@@ -103,12 +104,18 @@ export const districtsData: Districts = ${JSON.stringify(districtsWithLayerName,
 export const locationsData: Locations = ${JSON.stringify(locationsWithLayerName, null, 2)};
 `;
 
+  const poiGroupsContent = `import type { PoiGroups } from '@/types/api-data';
+
+export const poiGroupsData: PoiGroups = ${JSON.stringify(poiGroups, null, 2)};
+`;
+
   // Save individual data files
   await Promise.all([
     fs.writeFile(SUPPORTERS_FILE, supportersContent),
     fs.writeFile(POIS_FILE, poisContent),
     // fs.writeFile(DISTRICTS_FILE, districtsContent),
     fs.writeFile(LOCATIONS_FILE, locationsContent),
+    fs.writeFile(POI_GROUPS_FILE, poiGroupsContent),
     // fs.writeFile(FULL_DATA_FILE, JSON.stringify(data, null, 2))
   ]);
 
@@ -117,6 +124,7 @@ export const locationsData: Locations = ${JSON.stringify(locationsWithLayerName,
   console.log(`  - POIs: ${pois.length} items`);
   console.log(`  - Districts: ${Object.keys(districts).length} items`);
   console.log(`  - Locations: ${Object.keys(locations).length} items`);
+  console.log(`  - POI Groups: ${Object.keys(poiGroups).length} items`);
   console.log(`  - Full API response saved to api-data.json`);
 }
 
