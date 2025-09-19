@@ -2,22 +2,13 @@ import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = [
   {
-    "name": "Toilet 1",
-    "layerName": "toilet-1",
+    "name": "Activation 1",
+    "layerName": "activation-1",
     "logo": "",
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "18"
-  },
-  {
-    "name": "Coffee 1",
-    "layerName": "coffee-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "6"
+    "groupId": "1"
   },
   {
     "name": "Childcare 1",
@@ -29,33 +20,6 @@ export const poisData: POI[] = [
     "groupId": "3"
   },
   {
-    "name": "Football Area 1",
-    "layerName": "football-area-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "2"
-  },
-  {
-    "name": "Open Cinema 1",
-    "layerName": "open-cinema-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "2"
-  },
-  {
-    "name": "Interview room 1",
-    "layerName": "interview-room-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "12"
-  },
-  {
     "name": "Chill Out Area 1",
     "layerName": "chill-out-area-1",
     "logo": "",
@@ -63,6 +27,24 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": null,
     "groupId": "4"
+  },
+  {
+    "name": "Co-work 1",
+    "layerName": "cowork-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "5"
+  },
+  {
+    "name": "Coffee 1",
+    "layerName": "coffee-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "6"
   },
   {
     "name": "Community Hub 1",
@@ -74,13 +56,58 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
-    "name": "Stage 1",
-    "layerName": "stage-1",
+    "name": "Discussion corner 1",
+    "layerName": "discussion-corner-1",
     "logo": "",
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "17"
+    "groupId": "8"
+  },
+  {
+    "name": "Food & Beverage 1",
+    "layerName": "food-beverage-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "10"
+  },
+  {
+    "name": "Football Area 1",
+    "layerName": "football-area-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "2"
+  },
+  {
+    "name": "Info desk 1",
+    "layerName": "info-desk-1",
+    "logo": "",
+    "description": "",
+    "districtId": "2",
+    "locationId": "2",
+    "groupId": "11"
+  },
+  {
+    "name": "Interview room 1",
+    "layerName": "interview-room-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "12"
+  },
+  {
+    "name": "Main entrance",
+    "layerName": "main-entrance",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "9"
   },
   {
     "name": "Meeting Room 1",
@@ -101,51 +128,6 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
-    "name": "SWAG station 1",
-    "layerName": "swag-station-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "16"
-  },
-  {
-    "name": "Activation 1",
-    "layerName": "activation-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "1"
-  },
-  {
-    "name": "Discussion corner 1",
-    "layerName": "discussion-corner-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "8"
-  },
-  {
-    "name": "Co-work 1",
-    "layerName": "cowork-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "5"
-  },
-  {
-    "name": "Main entrance",
-    "layerName": "main-entrance",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "9"
-  },
-  {
     "name": "Onramp 1",
     "layerName": "onramp-1",
     "logo": "",
@@ -155,21 +137,39 @@ export const poisData: POI[] = [
     "groupId": "15"
   },
   {
-    "name": "Food & Beverage 1",
-    "layerName": "food-beverage-1",
+    "name": "Open Cinema 1",
+    "layerName": "open-cinema-1",
     "logo": "",
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "10"
+    "groupId": "2"
   },
   {
-    "name": "Info desk 1",
-    "layerName": "info-desk-1",
+    "name": "Stage 1",
+    "layerName": "stage-1",
     "logo": "",
     "description": "",
-    "districtId": "2",
-    "locationId": "2",
-    "groupId": "11"
+    "districtId": null,
+    "locationId": null,
+    "groupId": "17"
+  },
+  {
+    "name": "SWAG station 1",
+    "layerName": "swag-station-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "16"
+  },
+  {
+    "name": "Toilet 1",
+    "layerName": "toilet-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "18"
   }
 ];

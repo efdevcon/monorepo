@@ -174,10 +174,21 @@ export async function GET(request: NextRequest) {
         locationId: locationMap.get(location) || null,
         groupId: poiGroupMap.get(group) || null,
       };
+    }).sort((a, b) => {
+      const nameA = a.name || '';
+      const nameB = b.name || '';
+      return nameA.localeCompare(nameB);
+    });
+
+    // Sort supporters by name before converting to object
+    const sortedSupporters = supportersWithIds.sort((a, b) => {
+      const nameA = a.name || '';
+      const nameB = b.name || '';
+      return nameA.localeCompare(nameB);
     });
 
     // Convert supporters array to object with id as key, removing id from individual objects
-    const supportersObject = supportersWithIds.reduce((acc, supporter) => {
+    const supportersObject = sortedSupporters.reduce((acc, supporter) => {
       if (supporter.id) {
         const { id, ...supporterWithoutId } = supporter;
         acc[id] = supporterWithoutId;
