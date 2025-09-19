@@ -105,13 +105,66 @@ const TypeTag = ({
   );
 };
 
-export const TicketTag = () => {
+export const TicketTag = ({ event }: { event: any }) => {
+  const isCommunityCalendar = !event.isCoreEvent;
+  const isCoworking = event.id.toString() === "23";
+  const isSoldOut = event.soldOut;
+  const requiresSignup = event.requiresSignup;
+  const isPaidEvent = event.ticketsAvailable;
+
+  if (isCoworking) {
+    return (
+      <div className="px-1.5 py-0.5 font-medium border border-solid border-[rgba(27,111,174,1)] bg-[rgba(27,111,174,1)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+        Get Your Tickets
+      </div>
+    );
+  }
+
+  if (isCommunityCalendar) {
+    return (
+      <div className="px-1.5 py-0.5 font-medium border border-solid border-[rgba(100,100,100,0)] bg-[rgba(113,56,188,1)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+        Tickets Required
+      </div>
+    );
+  }
+
+  if (isSoldOut) {
+    return (
+      <div className="px-1.5 py-0.5 font-medium border border-solid border-[rgba(100,100,100,0)] bg-black text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+        Sold Out
+      </div>
+    );
+  }
+
+  if (isPaidEvent || requiresSignup || isSoldOut) {
+    return (
+      <div className="px-1.5 py-0.5 font-medium border border-solid bg-[rgba(58,54,94,1)] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0">
+        {isSoldOut
+          ? "Sold Out!"
+          : requiresSignup
+          ? "+ Signup Required"
+          : "+ Signup Required"}
+      </div>
+    );
+  }
+
+  if (event.description === "Details coming soon.") {
+    return (
+      <div
+        className={`px-1.5 py-0.5 font-medium border border-solid text-[#3A365E] border-[#3A365E] bg-[white] uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
+      >
+        Details Soon
+      </div>
+    );
+  }
+
   return (
     <div
-      className={`px-2 py-0.5 font-medium border border-solid border-[rgba(100,100,100,0)] bg-[#1B6FAE] text-white uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
+      className={`px-1.5 py-0.5 font-medium border border-solid text-[rgba(27,111,174,1)] border-[rgba(27,111,174,1)] bg-[white] uppercase text-[10px] flex items-center gap-1.5 shrink-0`}
     >
-      <TicketIcon size={13} className="shrink-0" />
-      Tickets Required
+      {event.description === "Details coming soon."
+        ? "Details soon"
+        : "Included in Ticket"}
     </div>
   );
 };

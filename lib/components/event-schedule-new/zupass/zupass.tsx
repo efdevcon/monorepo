@@ -462,7 +462,7 @@ const EventVoucher = ({
           >
             {connectedWithNoTicket
               ? "No Devconnect ticket found, get one below:"
-              : "You need a Devconnect ticket to attend this event."}
+              : "Verify your Devconnect ticket to sign up for this event."}
           </div>
           <VoxelButton
             size="sm"

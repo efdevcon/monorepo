@@ -270,6 +270,7 @@ const Event: React.FC<EventProps> = ({
     event.eventLink !== event.ticketsUrl;
   const showBuyTickets = event.ticketsUrl;
   const showProgrammingButton = programming && !showMobileProgramming;
+  const showTicketTag = event.ticketsAvailable || event.isCoreEvent;
 
   return (
     <>
@@ -616,28 +617,15 @@ const Event: React.FC<EventProps> = ({
                 "justify-between": !isCoworking || isMultiDay,
               })}
             >
-              {/* {isCoworking && (
-                <a
-                  href="https://tickets.devconnect.org/?mtm_campaign=devconnect.org&mtm_source=website"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                  }}
-                >
-                  <TicketTag />
-                </a>
-              )}
-
-              {event.ticketsAvailable && <TicketTag />} */}
-
               <div
                 className={cn(
                   "flex gap-2 grow items-end text-[9px] flex-wrap",
                   { "justify-between": isMultiDay }
                 )}
               >
-                {(event.ticketsAvailable || isCoworking) && !event.soldOut && (
+                {(showTicketTag || event.amountPeople) && (
                   <div className="flex gap-1 items-center">
-                    <TicketTag />
+                    {showTicketTag && <TicketTag event={event} />}
                     {event.amountPeople && (
                       <div
                         className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
@@ -649,32 +637,11 @@ const Event: React.FC<EventProps> = ({
                   </div>
                 )}
 
-                {event.soldOut && <SoldOutTag />}
-
                 <div className="flex gap-2">
                   <TypeTag category={event.eventType} size="sm" />
 
-                  {/* {event.organizer && (
-                <div
-                  className={`rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1.5 items-center`}
-                >
-                  <Star className="text-black hidden md:block" size={11} />
-                  <div className="line-clamp-1">{event.organizer}</div>
-                </div>
-              )} */}
-
                   <DifficultyTag difficulty={event.difficulty} size="sm" />
                 </div>
-
-                {/* <div
-                  className={`rounded text-[10px] px-2 bg-[#bef0ff] py-0.5 flex gap-1.5 items-center`}
-                >
-                  {event.amountPeople}
-                </div> */}
-                {/* <div className="rounded text-[10px] bg-[#bef0ff] px-2 py-0.5 flex gap-1 items-center justify-end">
-              <Star className="text-black shrink-0" size={11} />
-              RSVP
-            </div> */}
               </div>
             </div>
           </div>
