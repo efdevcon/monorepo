@@ -18,6 +18,7 @@ export interface POI {
   layerName: string;
   districtId: string | null;
   locationId: string | null;
+  groupId: string | null;
   logo: string;
   description: string;
 }
@@ -33,6 +34,14 @@ export interface Location {
   layerName: string;
 }
 
+export interface PoiGroup {
+  name: string;
+}
+
+export interface PoiGroups {
+  [key: string]: PoiGroup;
+}
+
 export interface Districts {
   [key: string]: District;
 }
@@ -46,6 +55,7 @@ export interface DataResponse {
   pois: POI[];
   districts: Districts;
   locations: Locations;
+  poiGroups: PoiGroups;
 }
 
 export interface ApiResponse {

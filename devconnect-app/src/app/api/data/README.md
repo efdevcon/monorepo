@@ -26,7 +26,8 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
         "name": "Help desk 1",
         "layerName": "arts/help-desk-1",
         "districtId": "3",
-        "locationId": "3"
+        "locationId": "3",
+        "groupId": "1"
       }
     ],
     "districts": {
@@ -38,6 +39,11 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
       "1": { "name": "Pista Central" },
       "2": { "name": "Green Pavilion" },
       "3": { "name": "Pavilion 9" }
+    },
+    "poiGroups": {
+      "1": { "name": "Help Desk" },
+      "2": { "name": "Food & Drinks" },
+      "3": { "name": "Entertainment" }
     }
   },
   "timestamp": "2025-09-09T17:59:05.480Z"
@@ -58,7 +64,15 @@ Object of supporter objects where `POI` field is empty, with supporter ID as key
   - `supporterId` (string): Related quest supporter ID (if any)
 
 ### POIs (Points of Interest)
-Array of POI objects where `POI` field has a value. Each POI contains the same fields as supporters.
+Array of POI objects where `POI` field has a value. Each POI contains:
+
+- `name` (string): POI name
+- `layerName` (string): Layer naming convention
+- `districtId` (string|null): Reference to districts object key
+- `locationId` (string|null): Reference to locations object key
+- `groupId` (string|null): Reference to poiGroups object key
+- `logo` (string): Logo URL
+- `description` (string): POI description
 
 ### Districts
 Object of unique district objects with numeric string keys:
@@ -72,6 +86,13 @@ Object of unique location objects with numeric string keys:
 
 - Key (string): Sequential ID starting from "1"
 - Value: Object with `name` (string): Location name
+
+### POI Groups
+
+Object of unique POI group objects with numeric string keys:
+
+- Key (string): Sequential ID starting from "1"
+- Value: Object with `name` (string): POI group name
 
 ## Supported Property Types
 - `title` - Page titles

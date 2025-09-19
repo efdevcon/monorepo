@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
       database_id: databaseId,
       sorts: [
         {
-          property: 'Order',
+          property: 'ID',
           direction: 'ascending',
         },
       ],
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
       const properties = page.properties;
 
       // console.log(properties);
-      console.log(properties['Supporter']);
+      // console.log(properties['Supporter']);
 
       // Helper function to get property value, trying both clean and prefixed names
       const getPropertyValue = (propertyName: string, fallbackName?: string) => {
@@ -98,10 +98,17 @@ export async function GET(request: NextRequest) {
       };
     });
 
+    // Sort quests by ID as a backup to ensure consistent ordering
+    const sortedQuests = quests.sort((a, b) => {
+      const idA = parseInt(a.id) || 0;
+      const idB = parseInt(b.id) || 0;
+      return idA - idB;
+    });
+
     return NextResponse.json({
       success: true,
-      quests,
-      total: quests.length,
+      quests: sortedQuests,
+      total: sortedQuests.length,
       timestamp: new Date().toISOString()
     });
 
