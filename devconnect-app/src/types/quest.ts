@@ -106,7 +106,7 @@ export interface Quest {
   groupId: number;
 
   /** District ID of the quest (computed field based on supporterId) */
-  districtId?: number;
+  districtId?: string;
 }
 
 /**

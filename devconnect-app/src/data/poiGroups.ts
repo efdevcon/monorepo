@@ -2,57 +2,57 @@ import type { PoiGroups } from '@/types/api-data';
 
 export const poiGroupsData: PoiGroups = {
   "1": {
-    "name": "Toilets"
+    "name": "Activation"
   },
   "2": {
-    "name": "Coffee"
+    "name": "Animation"
   },
   "3": {
     "name": "Childcare"
   },
   "4": {
-    "name": "Animation"
+    "name": "Chill Out Area"
   },
   "5": {
-    "name": "Interview rooms"
+    "name": "Co-work"
   },
   "6": {
-    "name": "Chill Out Area"
+    "name": "Coffee"
   },
   "7": {
     "name": "Community Hubs"
   },
   "8": {
-    "name": "Stages"
-  },
-  "9": {
-    "name": "Meeting Rooms"
-  },
-  "10": {
-    "name": "Music Stage"
-  },
-  "11": {
-    "name": "SWAG station"
-  },
-  "12": {
-    "name": "Activation"
-  },
-  "13": {
     "name": "Discussion corner"
   },
-  "14": {
-    "name": "Co-work"
-  },
-  "15": {
+  "9": {
     "name": "Entrance"
   },
-  "16": {
-    "name": "Onramp"
-  },
-  "17": {
+  "10": {
     "name": "Food & Beverage"
   },
-  "18": {
+  "11": {
     "name": "Info desk"
+  },
+  "12": {
+    "name": "Interview rooms"
+  },
+  "13": {
+    "name": "Meeting Rooms"
+  },
+  "14": {
+    "name": "Music Stage"
+  },
+  "15": {
+    "name": "Onramp"
+  },
+  "16": {
+    "name": "SWAG station"
+  },
+  "17": {
+    "name": "Stages"
+  },
+  "18": {
+    "name": "Toilets"
   }
 };

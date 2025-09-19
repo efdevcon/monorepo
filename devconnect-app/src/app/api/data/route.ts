@@ -17,12 +17,26 @@ export async function GET(request: NextRequest) {
 
     const databaseId = '241638cdc415801e8174d12adcfb0d33';
 
-    // Try to fetch from Notion first
-    const response = await notion.databases.query({
-      database_id: databaseId
-    });
+    // Try to fetch from Notion first with pagination to get all results
+    let allResults: any[] = [];
+    let hasMore = true;
+    let startCursor: string | undefined = undefined;
 
-    const data = response.results.map((page: any) => {
+    while (hasMore) {
+      const response = await notion.databases.query({
+        database_id: databaseId,
+        start_cursor: startCursor,
+        page_size: 100 // Maximum page size
+      });
+
+      allResults = allResults.concat(response.results);
+      hasMore = response.has_more;
+      startCursor = response.next_cursor || undefined;
+
+      console.log(`Fetched ${response.results.length} items, total: ${allResults.length}, hasMore: ${hasMore}`);
+    }
+
+    const data = allResults.map((page: any) => {
       const properties = page.properties;
 
       // console.log(properties);
@@ -105,6 +119,8 @@ export async function GET(request: NextRequest) {
       return result;
     });
 
+
+    console.log(`Total items processed: ${data.length}`);
     // Filter out entries with empty Supporter Name
     const filteredData = data.filter(item => item.name && item.name.trim() !== '');
 
@@ -116,19 +132,19 @@ export async function GET(request: NextRequest) {
     const cleanPois = pois.map(item => { delete item.POI; return item; });
 
     // Get unique districts, locations, and POI groups as objects with numeric ID as key
-    const uniqueDistrictsArray = [...new Set(filteredData.map(item => item.district).filter(Boolean))];
+    const uniqueDistrictsArray = [...new Set(filteredData.map(item => item.district).filter(Boolean))].sort();
     const uniqueDistricts = uniqueDistrictsArray.reduce((acc, district, index) => {
       acc[(index + 1).toString()] = { name: district };
       return acc;
     }, {} as Record<string, { name: string }>);
 
-    const uniqueLocationsArray = [...new Set(filteredData.map(item => item.location).filter(Boolean))];
+    const uniqueLocationsArray = [...new Set(filteredData.map(item => item.location).filter(Boolean))].sort();
     const uniqueLocations = uniqueLocationsArray.reduce((acc, location, index) => {
       acc[(index + 1).toString()] = { name: location };
       return acc;
     }, {} as Record<string, { name: string }>);
 
-    const uniquePoiGroupsArray = [...new Set(pois.map(item => item.group).filter(Boolean))];
+    const uniquePoiGroupsArray = [...new Set(pois.map(item => item.group).filter(Boolean))].sort();
     const uniquePoiGroups = uniquePoiGroupsArray.reduce((acc, group, index) => {
       acc[(index + 1).toString()] = { name: group };
       return acc;

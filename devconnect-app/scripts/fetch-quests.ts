@@ -92,7 +92,7 @@ async function saveQuests(data: ApiResponse): Promise<void> {
 
   // Process quests to add districtId and groupId
   const processedQuests: Quest[] = quests.map((quest) => {
-    let districtId: number | undefined;
+    let districtId: string | undefined;
     let groupId: number | undefined;
 
     // Map group name to group ID (remove numbered prefix if present)
@@ -112,8 +112,7 @@ async function saveQuests(data: ApiResponse): Promise<void> {
     if (quest.supporterId) {
       const supporter = supportersData[quest.supporterId];
       if (supporter && supporter.districtId) {
-        districtId = parseInt(supporter.districtId, 10);
-        const district = districtsData[supporter.districtId];
+        districtId = supporter.districtId;
       }
     }
 

@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
       const properties = page.properties;
 
       // console.log(properties);
-      console.log(properties['Supporter']);
+      // console.log(properties['Supporter']);
 
       // Helper function to get property value, trying both clean and prefixed names
       const getPropertyValue = (propertyName: string, fallbackName?: string) => {

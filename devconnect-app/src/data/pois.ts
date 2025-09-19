@@ -8,7 +8,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "1"
+    "groupId": "18"
   },
   {
     "name": "Coffee 1",
@@ -17,7 +17,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "2"
+    "groupId": "6"
   },
   {
     "name": "Childcare 1",
@@ -35,7 +35,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "4"
+    "groupId": "2"
   },
   {
     "name": "Open Cinema 1",
@@ -44,7 +44,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "4"
+    "groupId": "2"
   },
   {
     "name": "Interview room 1",
@@ -53,7 +53,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "5"
+    "groupId": "12"
   },
   {
     "name": "Chill Out Area 1",
@@ -62,7 +62,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "6"
+    "groupId": "4"
   },
   {
     "name": "Community Hub 1",
@@ -80,7 +80,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "8"
+    "groupId": "17"
   },
   {
     "name": "Meeting Room 1",
@@ -89,7 +89,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "9"
+    "groupId": "13"
   },
   {
     "name": "Music Stage 1",
@@ -98,7 +98,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "10"
+    "groupId": "14"
   },
   {
     "name": "SWAG station 1",
@@ -107,7 +107,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "11"
+    "groupId": "16"
   },
   {
     "name": "Activation 1",
@@ -116,7 +116,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "12"
+    "groupId": "1"
   },
   {
     "name": "Discussion corner 1",
@@ -125,7 +125,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "8"
   },
   {
     "name": "Co-work 1",
@@ -134,7 +134,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "5"
   },
   {
     "name": "Main entrance",
@@ -143,7 +143,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "15"
+    "groupId": "9"
   },
   {
     "name": "Onramp 1",
@@ -152,7 +152,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "16"
+    "groupId": "15"
   },
   {
     "name": "Food & Beverage 1",
@@ -161,7 +161,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "17"
+    "groupId": "10"
   },
   {
     "name": "Info desk 1",
@@ -169,7 +169,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": "2",
-    "locationId": "1",
-    "groupId": "18"
+    "locationId": "2",
+    "groupId": "11"
   }
 ];
