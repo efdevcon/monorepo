@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import { ListFilter, Search } from "lucide-react";
+import { Grid, List, ListFilter, Search } from "lucide-react";
 import { FilterSummary } from "./filter";
 import Export from "./export";
 
@@ -59,7 +59,7 @@ const ActionBar = ({
         {filterActive && <FilterSummary filter={filter} />}
       </div>
 
-      <div className="flex items-center gap-4 shrink-0 grow lg:grow-0">
+      <div className="flex items-center gap-4 shrink-0 grow lg:grow-0 hidden md:flex">
         {categories.map((category) => (
           <div
             key={category.label}
@@ -71,13 +71,24 @@ const ActionBar = ({
         ))}
       </div>
 
-      <div className="items-center justify-end grow gap-2 shrink-0 hidden lg:flex">
+      {/* <div className="flex items-center gap-2 shrink-0 grow justify-end">
+        <div className="text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2">
+          <List size={13} />
+          List
+        </div>
+        <div className="text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2">
+          <Grid size={13} />
+          Grid
+        </div>
+      </div> */}
+
+      <div className="items-center justify-end gap-2 shrink-0 hidden grow lg:flex">
         {/* <Export events={events} /> */}
         <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
           <Search size={15} color="rgba(124, 124, 153, 1)" />
           <input
             className="grow border-none outline-none bg-transparen ml-0.5"
-            placeholder="Search events or organizers"
+            placeholder="Search events"
             type="text"
             value={filter.name}
             onChange={(e: any) => setFilter("name", e.target.value)}

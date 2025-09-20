@@ -460,7 +460,7 @@ const Event: React.FC<EventProps> = ({
                             fill
                             className="shrink-0  mt-3 self-start"
                           >
-                            Buy Tickets
+                            Get Tickets
                             <ArrowUpRight className="w-4 h-4 mb-0.5" />
                           </VoxelButton>
                         </Link>
@@ -577,15 +577,9 @@ const Event: React.FC<EventProps> = ({
                   className="w-[26px] object-contain"
                 />
               )}
-              {/* {isETHDay && (
-                <Image
-                  src={ethDayImage}
-                  alt="ETH Day"
-                  className="w-[26px] object-contain"
-                />
-              )} */}
+
               <div className="flex flex-col w-full">
-                {eventName}
+                <div className="md:line-clamp-none">{eventName}</div>
                 <div className="flex gap-4 justify-between w-full">
                   {timeOfDay.map((time, index) => (
                     <div key={index} className="text-xs text-gray-600">
@@ -597,7 +591,7 @@ const Event: React.FC<EventProps> = ({
             </div>
 
             {isETHDay && (
-              <div className="flex items-center justify-center mt-2">
+              <div className="hidden md:flex items-center justify-center mt-2">
                 <Image
                   src={ethDayImage}
                   alt="ETH Day"
@@ -610,10 +604,10 @@ const Event: React.FC<EventProps> = ({
               {event.organizer}
             </div>
 
-            <Separator className="my-1.5" />
+            <Separator className="my-1.5 hidden md:block" />
 
             <div
-              className={cn("flex gap-4 justify-end", {
+              className={cn("hidden md:flex gap-4 justify-end", {
                 "justify-between": !isCoworking || isMultiDay,
               })}
             >

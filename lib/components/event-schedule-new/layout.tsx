@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NewScheduleIndex, { ScheduleProps } from "./index";
 import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
@@ -13,6 +13,7 @@ type CalendarLayoutProps = ScheduleProps & {
 };
 
 const Layout = (props: CalendarLayoutProps) => {
+  const [viewMode, setViewMode] = useState<"list" | "grid">("list");
   const {
     filterOpen,
     setFilterOpen,
@@ -106,6 +107,7 @@ const Layout = (props: CalendarLayoutProps) => {
             resetFilter={resetFilter}
             filter={filter}
             events={props.events}
+            setViewMode={setViewMode}
           />
         </div>
 
@@ -132,7 +134,11 @@ const Layout = (props: CalendarLayoutProps) => {
           <div className="grow relative">
             {/* white gradient to indicate more events on the right for mobile */}
             <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
-            <NewScheduleIndex {...props} events={filteredEvents} />
+            <NewScheduleIndex
+              {...props}
+              events={filteredEvents}
+              viewMode={viewMode}
+            />
           </div>
         </div>
       </div>

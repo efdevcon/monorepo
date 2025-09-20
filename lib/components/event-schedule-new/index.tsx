@@ -14,6 +14,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
 import { eventShops } from "./zupass/event-shops-list";
+import { useIsMobile } from "lib/hooks/useIsMobile";
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -22,6 +23,7 @@ export type ScheduleProps = {
   setSelectedEvent: (event: EventType | null) => void;
   setSelectedDay: (day: string | null) => void;
   events: EventType[];
+  viewMode: "list" | "grid";
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -53,7 +55,8 @@ const createPlacementTracker = () => {
 // Compute event placements in the grid
 const computeEventPlacements = (
   events: EventType[],
-  dateColumns: string[]
+  dateColumns: string[],
+  isMobile: boolean
 ): any[] => {
   const placementTracker = createPlacementTracker();
 
@@ -122,13 +125,15 @@ const computeEventPlacements = (
       row++;
     }
 
+    const spanRows = isMobile ? 1 : event.spanRows ? event.spanRows : 1;
+
     // Store event with its grid position
     eventPlacements.push({
       event,
       timeblock: earliestTimeblock, // Use earliest timeblock for time display
       gridPosition: {
         row,
-        rowSpan: event.spanRows ? event.spanRows : 1,
+        rowSpan: spanRows ? spanRows : 1,
         column: startColIndex + 1, // +1 because CSS grid is 1-indexed
         duration,
       },
@@ -137,11 +142,11 @@ const computeEventPlacements = (
     });
 
     // Add additional rows for special events
-    if (event.spanRows) {
-      for (let i = 0; i < event.spanRows; i++) {
+    if (spanRows > 1) {
+      for (let i = 0; i < spanRows; i++) {
         !placementTracker.placeItem(row + i, startColIndex + 1, duration);
       }
-      row += event.spanRows - 1;
+      row += spanRows - 1;
     }
   });
 
@@ -154,14 +159,18 @@ const NewScheduleIndexInner = ({
   setSelectedEvent,
   setSelectedDay,
   events,
+  viewMode,
 }: ScheduleProps) => {
   const searchParams = useSearchParams();
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
+  const isMobile = useIsMobile(768);
 
   // Compute event placements for the unified grid
-  const eventPlacements = computeEventPlacements(events, eventRange);
+  const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
+
+  console.log("eventPlacements", eventPlacements);
 
   // Format date for display
   const formatDateHeader = (dateStr: string) => {
@@ -174,7 +183,7 @@ const NewScheduleIndexInner = ({
 
   // Define shared column template for consistent alignment
   // const columnTemplate = `repeat(${eventRange.length}, minmax(175px, 1fr))`
-  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 230px))`;
+  const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 240px))`;
 
   // Check if an event should be highlighted based on hovered date
   const isEventHighlighted = (placement: any) => {
@@ -249,7 +258,7 @@ const NewScheduleIndexInner = ({
           <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
           <div className="w-full flex">
             <div
-              className="grid shrink-0"
+              className="grid shrink-0 min-w-full"
               style={{
                 gridTemplateColumns: columnTemplate,
                 gridTemplateRows: "auto 1fr",
