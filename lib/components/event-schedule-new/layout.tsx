@@ -77,8 +77,8 @@ const Layout = (props: CalendarLayoutProps) => {
                   <br />
                 </>
               ) : (
-                <div className="flex items-center gap-2 text-white">
-                  <TicketPurple className="h-[26px] w-[26px] inline-block mr-2" />
+                <div className="flex flex-col text-center md:text-left md:flex-row items-center gap-2 text-white">
+                  <TicketPurple className="h-[26px] w-[26px] inline-block mr-2 shrink-0" />
                   <div className="flex flex-col">
                     <div className="font-semibold leading-tight">
                       Events hosted inside La Rural require a Devconnect World’s

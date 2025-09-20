@@ -1244,9 +1244,9 @@ const CommunityEvents = () => {
                               onChange={e => handleInputChange('requires_ticket', e.target.checked)}
                               className="mr-2"
                             />
-                            Requires ticket
+                            Requires ticket/signup
                           </label>
-                          <p className="text-xs text-gray-500 mt-1">Whether the event requires tickets</p>
+                          <p className="text-xs text-gray-500 mt-1">Whether the event requires tickets/signup</p>
                         </div>
 
                         <div className="flex flex-col">
