@@ -20,6 +20,7 @@ import Link from "lib/components/link/Link";
 import coworkingImage from "./cowork.webp";
 // @ts-ignore
 import ethDayImage from "./eth-day-bg.png";
+import ethDayLogo from "./eth-day-logo.png";
 import ethDayDialogImage from "./eth-day-updated.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
@@ -39,7 +40,7 @@ import { useIsMobile } from "lib/hooks/useIsMobile";
 
 type EventProps = {
   event: EventType;
-  duration: number;
+  isDialog?: boolean;
   className?: string;
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType | null) => void;
@@ -105,7 +106,7 @@ const computeEventTimeString = (event: EventType): string[] => {
 
 const Event: React.FC<EventProps> = ({
   event,
-  duration,
+  isDialog,
   className,
   selectedEvent,
   setSelectedEvent,
@@ -274,373 +275,396 @@ const Event: React.FC<EventProps> = ({
 
   return (
     <>
-      <Dialog open={selectedEvent?.id === event.id}>
-        <DialogContent
-          data-dialog-content
-          className={cn(
-            "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[9998] gap-0 flex flex-col shrink-0",
-            typeClass,
-            isETHDay || isCoworking ? "lg:w-[950px]" : ""
-          )}
-          onInteractOutside={(e) => {
-            // If the zupass dialog is open, don't close the event dialog
-            const zupassOpen = document.querySelector(".parcnet-dialog");
+      {isDialog && (
+        <Dialog open={selectedEvent?.id === event.id}>
+          <DialogContent
+            data-dialog-content
+            className={cn(
+              "max-w-[95vw] w-[475px] max-h-[90vh] overflow-y-auto text-black border-[4px] border-solid !bg-white z-[9998] gap-0 flex flex-col shrink-0",
+              typeClass,
+              isETHDay || isCoworking ? "lg:w-[950px]" : ""
+            )}
+            onInteractOutside={(e) => {
+              console.log("onInteractOutside");
 
-            if (zupassOpen) {
-              return;
-            }
+              // If the zupass dialog is open, don't close the event dialog
+              const zupassOpen = document.querySelector(".parcnet-dialog");
 
-            e.stopPropagation();
-            e.preventDefault();
-            setSelectedEvent(null);
-            setShowMobileProgramming(false);
-          }}
-        >
-          <div className="absolute top-4 right-4 z-10">
-            <div
-              className="bg-white p-1.5 cursor-pointer border border-solid border-neutral-400"
-              onClick={(e) => {
-                e.stopPropagation();
+              if (zupassOpen) {
+                return;
+              }
 
-                if (showMobileProgramming) {
-                  setShowMobileProgramming(false);
-                } else {
-                  setSelectedEvent(null);
-                }
-              }}
-            >
-              <X className="w-3.5 h-3.5" />
+              e.stopPropagation();
+              e.preventDefault();
+
+              if (selectedEvent?.id === event.id) {
+                setSelectedEvent(null);
+                setShowMobileProgramming(false);
+              }
+            }}
+          >
+            <div className="absolute top-4 right-4 z-10">
+              <div
+                className="bg-white p-1.5 cursor-pointer border border-solid border-neutral-400"
+                onClick={(e) => {
+                  e.stopPropagation();
+
+                  if (showMobileProgramming) {
+                    setShowMobileProgramming(false);
+                  } else {
+                    setSelectedEvent(null);
+                  }
+                }}
+              >
+                <X className="w-3.5 h-3.5" />
+              </div>
             </div>
-          </div>
 
-          <div className={cn("flex flex-col", programming && "lg:flex-row")}>
-            <div className="flex flex-col">
-              {isCoworking && (
-                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
-                  <Image
-                    src={coworkingImage}
-                    alt={event.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              )}
+            <div className={cn("flex flex-col", programming && "lg:flex-row")}>
+              <div className="flex flex-col">
+                {isCoworking && (
+                  <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                    <Image
+                      src={coworkingImage}
+                      alt={event.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
 
-              {isETHDay && (
-                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
-                  <Image
-                    src={ethDayDialogImage}
-                    alt={event.name}
-                    className="w-full h-full object-cover object-left"
-                  />
-                </div>
-              )}
+                {isETHDay && (
+                  <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                    <Image
+                      src={ethDayDialogImage}
+                      alt={event.name}
+                      className="w-full h-full object-cover object-left"
+                    />
+                  </div>
+                )}
 
-              {event.imageUrl && imageLoaded && (
-                <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                {event.imageUrl && imageLoaded && (
+                  <div className="aspect-[390/160] relative w-full overflow-hidden shrink-0">
+                    <img
+                      src={event.imageUrl}
+                      alt={event.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+
+                {/* Load and see if it errors out prior to showing the image */}
+                {event.imageUrl && (
                   <img
+                    ref={imageRef}
                     src={event.imageUrl}
                     alt={event.name}
-                    className="w-full h-full object-cover"
+                    className="hidden"
+                    onLoad={() => {
+                      setImageLoaded(true);
+                    }}
+                    onError={() => {
+                      setImageLoaded(false);
+                    }}
                   />
-                </div>
-              )}
+                )}
 
-              {/* Load and see if it errors out prior to showing the image */}
-              {event.imageUrl && (
-                <img
-                  ref={imageRef}
-                  src={event.imageUrl}
-                  alt={event.name}
-                  className="hidden"
-                  onLoad={() => {
-                    setImageLoaded(true);
-                  }}
-                  onError={() => {
-                    setImageLoaded(false);
-                  }}
-                />
-              )}
+                <div className="p-4 shrink-0">
+                  <div className="flex flex-col text-[rgba(36,36,54,1)]">
+                    <div
+                      className={cn(
+                        "text-sm font-medium uppercase font-secondary text-[rgba(136,85,204,1)]",
+                        {
+                          "!text-[rgba(94,144,189,1)]":
+                            isCoreEvent && !isETHDay && !isCoworking,
+                        },
+                        { "!text-[#FF85A6]": isETHDay || isCoworking }
+                      )}
+                    >
+                      <div>
+                        {isETHDay || isCoworking
+                          ? "EWF & COWORK"
+                          : isCoreEvent
+                          ? "Core Event"
+                          : "Community Event"}
+                      </div>
+                    </div>
 
-              <div className="p-4 shrink-0">
-                <div className="flex flex-col text-[rgba(36,36,54,1)]">
-                  <div
-                    className={cn(
-                      "text-sm font-medium uppercase font-secondary text-[rgba(136,85,204,1)]",
-                      {
-                        "!text-[rgba(94,144,189,1)]":
-                          isCoreEvent && !isETHDay && !isCoworking,
-                      },
-                      { "!text-[#FF85A6]": isETHDay || isCoworking }
+                    <DialogTitle asChild>
+                      <div className="text-xl font-bold tracking-normal leading-tight mt-1">
+                        {event.name}
+                      </div>
+                    </DialogTitle>
+
+                    {event.organizer && (
+                      <div className="text-xs">hosted by {event.organizer}</div>
                     )}
-                  >
-                    <div>
-                      {isETHDay || isCoworking
-                        ? "EWF & COWORK"
-                        : isCoreEvent
-                        ? "Core Event"
-                        : "Community Event"}
+
+                    <div className="flex flex-col mt-2 w-full">
+                      {timeOfDay.map((time, index) => (
+                        <div
+                          key={index}
+                          className="text-sm text-gray-600 font-medium"
+                        >
+                          {time}
+                        </div>
+                      ))}
+                    </div>
+
+                    <Separator className="my-3" />
+
+                    <div className="text-sm flex gap-4 mb-2">
+                      <div className="flex justify-center gap-1.5 items-center font-medium shrink-0">
+                        <MapPin className="w-4 h-4 mb-0.5" />
+                        {typeof event.location === "string"
+                          ? event.location
+                          : event.location.text}
+                      </div>
+                      {event.amountPeople && !isETHDay && (
+                        <div className="flex items-center gap-1.5 font-medium">
+                          <Users className="w-4 h-4 mb-0.5" />{" "}
+                          {event.amountPeople}
+                        </div>
+                      )}
+                      {isETHDay && (
+                        <div className="flex items-center gap-4 grow">
+                          <div className="flex items-center  gap-1.5 font-semibold shrink-0">
+                            <Users className="w-4 h-4 mb-0.5" /> 3000
+                          </div>
+                          <div className="flex justify-end grow">
+                            <div className="p-1.5 px-3 bg-[#FFEBF0] text-xs font-medium">
+                              Limited capacity - first come, first serve
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="text-sm mt-1">
+                      {convert(event.description)}
+                    </div>
+
+                    <div className="flex justify-between items-center gap-2 flex-wrap">
+                      <div className="flex gap-2 items-center flex-wrap">
+                        {showVisitSite && (
+                          <Link href={event.eventLink} className="self-start">
+                            <VoxelButton
+                              color="blue-1"
+                              size="sm"
+                              fill
+                              className="shrink-0  mt-3 self-start"
+                            >
+                              Visit Site
+                              <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                            </VoxelButton>
+                          </Link>
+                        )}
+
+                        {showBuyTickets && (
+                          <Link href={event.ticketsUrl} className="self-start">
+                            <VoxelButton
+                              color="blue-1"
+                              size="sm"
+                              fill
+                              className="shrink-0  mt-3 self-start"
+                            >
+                              Get Tickets
+                              <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                            </VoxelButton>
+                          </Link>
+                        )}
+
+                        {showProgrammingButton && (
+                          <VoxelButton
+                            color="blue-1"
+                            size="sm"
+                            fill
+                            className="shrink-0  mt-3 self-start block lg:hidden"
+                            onClick={() => setShowMobileProgramming(true)}
+                          >
+                            View Program
+                          </VoxelButton>
+                        )}
+                      </div>
+
+                      <div className="flex gap-1 text-xl mt-3 mr-1">
+                        {event.xHandle && (
+                          <Link href={`${event.xHandle}`} className="p-1">
+                            <XIcon className="icon self-end" />
+                          </Link>
+                        )}
+
+                        {event.instagramHandle && (
+                          <Link
+                            href={`${event.instagramHandle}`}
+                            className="p-1"
+                          >
+                            <InstagramIcon className="icon self-end" />
+                          </Link>
+                        )}
+
+                        {event.farcasterHandle && (
+                          <Link
+                            href={`${event.farcasterHandle}`}
+                            className="p-1"
+                          >
+                            <FarcasterIcon className="icon self-end" />
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+
+                    <Separator className="my-3" />
+
+                    {eventShops.some(
+                      (shop) => shop.supabase_id === event.id.toString()
+                    ) && (
+                      <>
+                        <ZupassConnection eventId={event.id} />
+
+                        <Separator className="my-4" />
+                      </>
+                    )}
+
+                    <div className="flex gap-2 justify-between shrink-0">
+                      {event.eventType && (
+                        <div className="text-sm">
+                          <TypeTag category={event.eventType} />
+                        </div>
+                      )}
+
+                      {event.difficulty && (
+                        <div className="text-sm">
+                          <DifficultyTag difficulty={event.difficulty} />
+                        </div>
+                      )}
                     </div>
                   </div>
+                </div>
+              </div>
 
-                  <DialogTitle asChild>
-                    <div className="text-xl font-bold tracking-normal leading-tight mt-1">
-                      {event.name}
-                    </div>
-                  </DialogTitle>
+              <Programming
+                event={event}
+                programming={programming}
+                showMobileProgramming={showMobileProgramming}
+              />
+            </div>
+          </DialogContent>
+        </Dialog>
+      )}
 
-                  {event.organizer && (
-                    <div className="text-xs">hosted by {event.organizer}</div>
-                  )}
+      {!isDialog && (
+        <div
+          style={{
+            // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
+            // height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
+            height: "100%",
+          }}
+          className={cn(
+            `group cursor-pointer`,
+            "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
+            typeClass,
+            eventClassName
+          )}
+          {...draggableLink1}
+          onClick={(e) => {
+            const result = draggableLink1.onClick(e);
 
-                  <div className="flex flex-col mt-2 w-full">
+            if (!result) return;
+
+            if (event.onClick) {
+              event.onClick();
+            } else if (!selectedEvent) {
+              setSelectedEvent(event);
+            }
+          }}
+        >
+          <div className="flex h-full z-10">
+            <div className="flex flex-col grow justify-between items-stretch">
+              <div
+                className={cn(
+                  "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
+                )}
+              >
+                {isCoworking && (
+                  <Image
+                    src={DevconnectCubeLogo}
+                    alt="Devconnect Cube"
+                    className="w-[26px] object-contain"
+                  />
+                )}
+
+                {isETHDay && (
+                  <Image
+                    src={ethDayLogo}
+                    alt="ETH Day"
+                    className="w-[26px] object-contain md:hidden"
+                  />
+                )}
+
+                <div className="flex flex-col w-full">
+                  <div className="md:line-clamp-none">{eventName}</div>
+                  <div className="flex gap-4 justify-between w-full">
                     {timeOfDay.map((time, index) => (
-                      <div
-                        key={index}
-                        className="text-sm text-gray-600 font-medium"
-                      >
+                      <div key={index} className="text-xs text-gray-600">
                         {time}
                       </div>
                     ))}
                   </div>
+                </div>
+              </div>
 
-                  <Separator className="my-3" />
+              {isETHDay && (
+                <div className="hidden md:flex items-center justify-center mt-2">
+                  <Image
+                    src={ethDayImage}
+                    alt="ETH Day"
+                    className="w-full object-contain"
+                  />
+                </div>
+              )}
 
-                  <div className="text-sm flex gap-4 mb-2">
-                    <div className="flex justify-center gap-1.5 items-center font-medium shrink-0">
-                      <MapPin className="w-4 h-4 mb-0.5" />
-                      {typeof event.location === "string"
-                        ? event.location
-                        : event.location.text}
-                    </div>
-                    {event.amountPeople && !isETHDay && (
-                      <div className="flex items-center gap-1.5 font-medium">
-                        <Users className="w-4 h-4 mb-0.5" />{" "}
-                        {event.amountPeople}
-                      </div>
-                    )}
-                    {isETHDay && (
-                      <div className="flex items-center gap-4 grow">
-                        <div className="flex items-center  gap-1.5 font-semibold shrink-0">
-                          <Users className="w-4 h-4 mb-0.5" /> 3000
-                        </div>
-                        <div className="flex justify-end grow">
-                          <div className="p-1.5 px-3 bg-[#FFEBF0] text-xs font-medium">
-                            Limited capacity - first come, first serve
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+              <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
+                {event.organizer}
+              </div>
 
-                  <div className="text-sm mt-1">
-                    {convert(event.description)}
-                  </div>
+              <Separator className="my-1.5 hidden md:block" />
 
-                  <div className="flex justify-between items-center gap-2 flex-wrap">
-                    <div className="flex gap-2 items-center flex-wrap">
-                      {showVisitSite && (
-                        <Link href={event.eventLink} className="self-start">
-                          <VoxelButton
-                            color="blue-1"
-                            size="sm"
-                            fill
-                            className="shrink-0  mt-3 self-start"
-                          >
-                            Visit Site
-                            <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                          </VoxelButton>
-                        </Link>
-                      )}
-
-                      {showBuyTickets && (
-                        <Link href={event.ticketsUrl} className="self-start">
-                          <VoxelButton
-                            color="blue-1"
-                            size="sm"
-                            fill
-                            className="shrink-0  mt-3 self-start"
-                          >
-                            Get Tickets
-                            <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                          </VoxelButton>
-                        </Link>
-                      )}
-
-                      {showProgrammingButton && (
-                        <VoxelButton
-                          color="blue-1"
-                          size="sm"
-                          fill
-                          className="shrink-0  mt-3 self-start block lg:hidden"
-                          onClick={() => setShowMobileProgramming(true)}
+              <div
+                className={cn("hidden md:flex gap-4 justify-end", {
+                  "justify-between": !isCoworking || isMultiDay,
+                })}
+              >
+                <div
+                  className={cn(
+                    "flex gap-2 grow items-end text-[9px] flex-wrap",
+                    { "justify-between": isMultiDay }
+                  )}
+                >
+                  {(showTicketTag || event.amountPeople) && (
+                    <div className="flex gap-1 items-center">
+                      {showTicketTag && <TicketTag event={event} />}
+                      {event.amountPeople && (
+                        <div
+                          className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
                         >
-                          View Program
-                        </VoxelButton>
+                          <Users className="w-3 h-3" />
+                          {event.amountPeople}
+                        </div>
                       )}
                     </div>
-
-                    <div className="flex gap-1 text-xl mt-3 mr-1">
-                      {event.xHandle && (
-                        <Link href={`${event.xHandle}`} className="p-1">
-                          <XIcon className="icon self-end" />
-                        </Link>
-                      )}
-
-                      {event.instagramHandle && (
-                        <Link href={`${event.instagramHandle}`} className="p-1">
-                          <InstagramIcon className="icon self-end" />
-                        </Link>
-                      )}
-
-                      {event.farcasterHandle && (
-                        <Link href={`${event.farcasterHandle}`} className="p-1">
-                          <FarcasterIcon className="icon self-end" />
-                        </Link>
-                      )}
-                    </div>
-                  </div>
-
-                  <Separator className="my-3" />
-
-                  {eventShops.some(
-                    (shop) => shop.supabase_id === event.id.toString()
-                  ) && (
-                    <>
-                      <ZupassConnection eventId={event.id} />
-
-                      <Separator className="my-4" />
-                    </>
                   )}
 
-                  <div className="flex gap-2 justify-between shrink-0">
-                    {event.eventType && (
-                      <div className="text-sm">
-                        <TypeTag category={event.eventType} />
-                      </div>
-                    )}
+                  <div className="flex gap-2">
+                    <TypeTag category={event.eventType} size="sm" />
 
-                    {event.difficulty && (
-                      <div className="text-sm">
-                        <DifficultyTag difficulty={event.difficulty} />
-                      </div>
-                    )}
+                    <DifficultyTag difficulty={event.difficulty} size="sm" />
                   </div>
-                </div>
-              </div>
-            </div>
-
-            <Programming
-              event={event}
-              programming={programming}
-              showMobileProgramming={showMobileProgramming}
-            />
-          </div>
-        </DialogContent>
-      </Dialog>
-
-      <div
-        style={{
-          // height: event.spanRows ? `minmax(120px, 100%)` : "auto"
-          // height: event.spanRows ? `${event.spanRows * 60}px` : "100%",
-          height: "100%",
-        }}
-        className={cn(
-          `group cursor-pointer`,
-          "flex flex-col gap-4 border border-solid border-neutral-300 p-2 px-2 h-full shrink-0 relative overflow-hidden hover:border-black transition-all duration-300",
-          typeClass,
-          eventClassName
-        )}
-        {...draggableLink1}
-        onClick={(e) => {
-          const result = draggableLink1.onClick(e);
-
-          if (!result) return;
-
-          if (event.onClick) {
-            event.onClick();
-          } else if (!selectedEvent) {
-            setSelectedEvent(event);
-          }
-        }}
-      >
-        <div className="flex h-full z-10">
-          <div className="flex flex-col grow justify-between items-stretch">
-            <div
-              className={cn(
-                "text-sm font-medium line-clamp-1 shrink-0 flex items-center gap-2"
-              )}
-            >
-              {isCoworking && (
-                <Image
-                  src={DevconnectCubeLogo}
-                  alt="Devconnect Cube"
-                  className="w-[26px] object-contain"
-                />
-              )}
-
-              <div className="flex flex-col w-full">
-                <div className="md:line-clamp-none">{eventName}</div>
-                <div className="flex gap-4 justify-between w-full">
-                  {timeOfDay.map((time, index) => (
-                    <div key={index} className="text-xs text-gray-600">
-                      {time}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {isETHDay && (
-              <div className="hidden md:flex items-center justify-center mt-2">
-                <Image
-                  src={ethDayImage}
-                  alt="ETH Day"
-                  className="w-full object-contain"
-                />
-              </div>
-            )}
-
-            <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
-              {event.organizer}
-            </div>
-
-            <Separator className="my-1.5 hidden md:block" />
-
-            <div
-              className={cn("hidden md:flex gap-4 justify-end", {
-                "justify-between": !isCoworking || isMultiDay,
-              })}
-            >
-              <div
-                className={cn(
-                  "flex gap-2 grow items-end text-[9px] flex-wrap",
-                  { "justify-between": isMultiDay }
-                )}
-              >
-                {(showTicketTag || event.amountPeople) && (
-                  <div className="flex gap-1 items-center">
-                    {showTicketTag && <TicketTag event={event} />}
-                    {event.amountPeople && (
-                      <div
-                        className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
-                      >
-                        <Users className="w-3 h-3" />
-                        {event.amountPeople}
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                <div className="flex gap-2">
-                  <TypeTag category={event.eventType} size="sm" />
-
-                  <DifficultyTag difficulty={event.difficulty} size="sm" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

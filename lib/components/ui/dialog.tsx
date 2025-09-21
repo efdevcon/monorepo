@@ -21,6 +21,16 @@ const DialogOverlay = React.forwardRef<
       ref={ref}
       className={cn("fixed inset-0 !z-[10000000] bg-black/80", className)}
       {...props}
+      // onClick={(e) => {
+      //   e.stopPropagation();
+      //   e.preventDefault();
+      //   console.log("overlay clicked");
+      // }}
+      // onPointerDown={(e) => {
+      //   e.stopPropagation();
+      //   e.preventDefault();
+      //   console.log("overlay pointer down");
+      // }}
     />
   );
 });

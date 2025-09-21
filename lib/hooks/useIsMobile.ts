@@ -1,23 +1,30 @@
 import { useState, useEffect } from 'react';
 
 export function useIsMobile(width = 768) {
-  const [isMobile, setIsMobile] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Tailwind's md breakpoint is 768px
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < width);
+    // Use matchMedia for better performance and reliability
+    const mediaQuery = window.matchMedia(`(max-width: ${width - 1}px)`);
+
+    // Set initial value
+    setIsMobile(mediaQuery.matches);
+
+    // Define handler
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsMobile(e.matches);
     };
 
-    // Check on mount
-    checkIsMobile();
-
-    // Add event listener
-    window.addEventListener('resize', checkIsMobile);
-
-    // Cleanup
-    return () => window.removeEventListener('resize', checkIsMobile);
-  }, []);
+    // Modern browsers support addEventListener
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    } else {
+      // Fallback for older browsers
+      mediaQuery.addListener(handleChange);
+      return () => mediaQuery.removeListener(handleChange);
+    }
+  }, [width]);
 
   return isMobile;
 }

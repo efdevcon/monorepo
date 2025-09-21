@@ -79,7 +79,10 @@ export const useFilters = (events: any[]) => {
     // Text search filter
     if (
       filter.name.length > 0 &&
-      !(event.name?.toLowerCase() || "").includes(filter.name.toLowerCase())
+      !(event.name?.toLowerCase() || "").includes(filter.name.toLowerCase()) &&
+      !(event.organizer?.toLowerCase() || "").includes(
+        filter.name.toLowerCase()
+      )
     )
       return false;
 

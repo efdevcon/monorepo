@@ -1,6 +1,6 @@
 import React from "react";
 import cn from "classnames";
-import { Grid, List, ListFilter, Search } from "lucide-react";
+import { Calendar, Grid, List, ListFilter, Search } from "lucide-react";
 import { FilterSummary } from "./filter";
 import Export from "./export";
 
@@ -24,6 +24,8 @@ const ActionBar = ({
   filter,
   filterActive,
   events,
+  viewMode,
+  setViewMode,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
@@ -34,6 +36,8 @@ const ActionBar = ({
   resetFilter: () => void;
   filterActive: boolean;
   events: any[];
+  viewMode: "list" | "grid";
+  setViewMode: (viewMode: "list" | "grid") => void;
 }) => {
   const categories = isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
@@ -71,16 +75,28 @@ const ActionBar = ({
         ))}
       </div>
 
-      {/* <div className="flex items-center gap-2 shrink-0 grow justify-end">
-        <div className="text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2">
-          <List size={13} />
+      <div className="flex md:hidden items-center gap-2 shrink-0 grow justify-end">
+        <div
+          className={cn(
+            "text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2",
+            viewMode === "list" && "bg-blue-50"
+          )}
+          onClick={() => setViewMode("list")}
+        >
+          <List size={13} className={viewMode === "list" ? "" : ""} />
           List
         </div>
-        <div className="text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2">
-          <Grid size={13} />
-          Grid
+        <div
+          className={cn(
+            "text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2",
+            viewMode === "grid" && "bg-blue-50"
+          )}
+          onClick={() => setViewMode("grid")}
+        >
+          <Calendar size={13} className={viewMode === "grid" ? "" : ""} />
+          Calendar
         </div>
-      </div> */}
+      </div>
 
       <div className="items-center justify-end gap-2 shrink-0 hidden grow lg:flex">
         {/* <Export events={events} /> */}

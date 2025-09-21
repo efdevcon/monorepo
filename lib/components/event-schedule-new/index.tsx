@@ -170,8 +170,6 @@ const NewScheduleIndexInner = ({
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
 
-  console.log("eventPlacements", eventPlacements);
-
   // Format date for display
   const formatDateHeader = (dateStr: string) => {
     const date = parseISO(dateStr);
@@ -223,6 +221,7 @@ const NewScheduleIndexInner = ({
     const transforms = [
       { from: "ethday", to: "84" },
       { from: "DSS", to: "86" },
+      { from: "soliditysummit", to: "76" },
     ];
 
     if (
@@ -249,59 +248,177 @@ const NewScheduleIndexInner = ({
     }
   }, [searchParams.get("event")]);
 
-  // <div className="flex flex-col gap-4 w-full">
+  const listView = viewMode === "list" && isMobile;
+
+  const selectedEventForDialog =
+    eventPlacements.find(
+      (placement) => placement.event.id === selectedEvent?.id
+    ) || null;
+
+  // State for managing collapsed days
+  const [collapsedDays, setCollapsedDays] = useState<Set<string>>(new Set());
+
   return (
     <>
-      <SwipeToScroll noBounds>
-        <div className="text-black flex">
-          {/* padding hack for mobile */}
-          <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-          <div className="w-full flex">
-            <div
-              className="grid shrink-0 min-w-full"
-              style={{
-                gridTemplateColumns: columnTemplate,
-                gridTemplateRows: "auto 1fr",
-              }}
-            >
-              {/* Header row with dates */}
-              <div className="contents relative">
-                {eventRange.map((date) => (
+      {selectedEventForDialog && (
+        <Event
+          event={selectedEventForDialog?.event}
+          isDialog={true}
+          selectedEvent={selectedEvent}
+          setSelectedEvent={setSelectedEvent}
+        />
+      )}
+
+      {listView && (
+        <div className="flex flex-col w-full touch-only:px-4">
+          {(() => {
+            // Group events by the dates they cover
+            const eventsByDate = new Map<string, typeof eventPlacements>();
+
+            // Get all unique dates from eventRange or from the events themselves
+            const allDates = new Set<string>();
+            eventPlacements.forEach((placement) => {
+              placement.datesCovered.forEach((date: string) => {
+                allDates.add(date);
+              });
+            });
+
+            // Sort the dates
+            const sortedDates = Array.from(allDates).sort();
+
+            // Group events by each date they appear on
+            sortedDates.forEach((date) => {
+              const eventsOnDate = eventPlacements.filter((placement) =>
+                placement.datesCovered.includes(date)
+              );
+              if (eventsOnDate.length > 0) {
+                eventsByDate.set(date, eventsOnDate);
+              }
+            });
+
+            // Toggle function for collapsing/expanding days
+            const toggleDayCollapse = (date: string) => {
+              setCollapsedDays((prev) => {
+                const newSet = new Set(prev);
+                if (newSet.has(date)) {
+                  newSet.delete(date);
+                } else {
+                  newSet.add(date);
+                }
+                return newSet;
+              });
+            };
+
+            // Render each date with its events
+            const entries = Array.from(eventsByDate.entries());
+            return entries.map(([date, dayEvents], index) => {
+              const isCollapsed = collapsedDays.has(date);
+              const isLast = index === entries.length - 1;
+              return (
+                <div key={date} className="relative">
+                  {/* Sticky date header */}
                   <div
-                    key={date}
                     className={cn(
-                      "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
-                      selectedDay === date && "!bg-slate-100 !opacity-100",
-                      selectedDay !== null && "opacity-20"
+                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2 border-solid bg-white cursor-pointer flex items-center justify-between",
+                      !isLast && "border-b border-[rgba(224,224,235,1)]"
                     )}
-                    // onMouseEnter={() => setHoveredDate(date)}
-                    // onMouseLeave={() => setHoveredDate(null)}
-                    // onClick={() => {
-                    //   if (selectedDay !== date) {
-                    //     setSelectedDay(date);
-                    //   } else {
-                    //     setSelectedDay(null);
-                    //   }
-                    // }}
+                    onClick={() => toggleDayCollapse(date)}
                   >
-                    <div className="text-center flex items-center justify-between w-full grow">
-                      <div className="flex gap-2 items-center justify-center h-full">
-                        {isDateInDevconnectRange(date) && (
-                          <Image
-                            src={DevconnectCubeLogo}
-                            alt="Devconnect Cube"
-                            className="w-[26px] object-contain"
-                          />
+                    <span>{moment(date).format("dddd, MMMM D")}</span>
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm">
+                        {dayEvents.length} event
+                        {dayEvents.length !== 1 ? "s" : ""}
+                      </span>
+                      <svg
+                        className={cn(
+                          "w-4 h-4 transition-transform",
+                          isCollapsed && "rotate-180"
                         )}
-                        {formatDateHeader(date).day}{" "}
-                      </div>
-                      <div className="">{formatDateHeader(date).date}</div>
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
                     </div>
                   </div>
-                ))}
-              </div>
+                  {/* Events for this date */}
+                  {!isCollapsed && (
+                    <div className="flex flex-col gap-1 pb-2 pt-1">
+                      {dayEvents.map((placement) => (
+                        <Event
+                          key={`${date}-${placement.event.id}`}
+                          event={placement.event}
+                          selectedEvent={selectedEvent}
+                          setSelectedEvent={setSelectedEvent}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            });
+          })()}
+        </div>
+      )}
 
-              {/* <div
+      {!listView && (
+        <SwipeToScroll noBounds>
+          <div className="text-black flex">
+            {/* padding hack for mobile */}
+            <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
+            <div className="w-full flex">
+              <div
+                className="grid shrink-0 min-w-full"
+                style={{
+                  gridTemplateColumns: columnTemplate,
+                  gridTemplateRows: "auto 1fr",
+                }}
+              >
+                {/* Header row with dates */}
+                <div className="contents relative">
+                  {eventRange.map((date) => (
+                    <div
+                      key={date}
+                      className={cn(
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
+                        selectedDay === date && "!bg-slate-100 !opacity-100",
+                        selectedDay !== null && "opacity-20"
+                      )}
+                      // onMouseEnter={() => setHoveredDate(date)}
+                      // onMouseLeave={() => setHoveredDate(null)}
+                      // onClick={() => {
+                      //   if (selectedDay !== date) {
+                      //     setSelectedDay(date);
+                      //   } else {
+                      //     setSelectedDay(null);
+                      //   }
+                      // }}
+                    >
+                      <div className="text-center flex items-center justify-between w-full grow">
+                        <div className="flex gap-2 items-center justify-center h-full">
+                          {isDateInDevconnectRange(date) && (
+                            <Image
+                              src={DevconnectCubeLogo}
+                              alt="Devconnect Cube"
+                              className="w-[26px] object-contain"
+                            />
+                          )}
+                          {formatDateHeader(date).day}{" "}
+                        </div>
+                        <div className="">{formatDateHeader(date).date}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* <div
                 className="left-0 z-[9] top-[100%] mt-2"
                 style={{
                   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
@@ -311,37 +428,38 @@ const NewScheduleIndexInner = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-              <div className={cn("contents", selectedDay && "hidden")}>
-                {eventPlacements.map((placement, idx) => (
-                  <div
-                    key={`event-${placement.event.id}-${idx}`}
-                    style={{
-                      gridRow: `${placement.gridPosition.row + 1} / span ${
-                        placement.gridPosition.rowSpan
-                      }`,
-                      gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
-                    }}
-                    className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
-                  >
-                    <Event
-                      event={placement.event}
-                      duration={placement.gridPosition.duration}
-                      className={
-                        isEventHighlighted(placement)
-                          ? "!border-neutral-500"
-                          : ""
-                      }
-                      selectedEvent={selectedEvent}
-                      setSelectedEvent={setSelectedEvent}
-                    />
-                  </div>
-                ))}
+                <div className={cn("contents", selectedDay && "hidden")}>
+                  {eventPlacements.map((placement, idx) => (
+                    <div
+                      key={`event-${placement.event.id}-${idx}`}
+                      style={{
+                        gridRow: `${placement.gridPosition.row + 1} / span ${
+                          placement.gridPosition.rowSpan
+                        }`,
+                        gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
+                      }}
+                      className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
+                    >
+                      <Event
+                        event={placement.event}
+                        isDialog={false}
+                        className={
+                          isEventHighlighted(placement)
+                            ? "!border-neutral-500"
+                            : ""
+                        }
+                        selectedEvent={selectedEvent}
+                        setSelectedEvent={setSelectedEvent}
+                      />
+                    </div>
+                  ))}
+                </div>
               </div>
+              <div className="w-4 md:w-0 h-[1px] shrink-0"></div>
             </div>
-            <div className="w-4 md:w-0 h-[1px] shrink-0"></div>
           </div>
-        </div>
-      </SwipeToScroll>
+        </SwipeToScroll>
+      )}
       {eventPlacements.length === 0 && (
         <div
           className="text-gray-400 py-3 text-center flex flex-col justify-center items-center"
