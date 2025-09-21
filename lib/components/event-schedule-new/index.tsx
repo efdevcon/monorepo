@@ -23,7 +23,6 @@ export type ScheduleProps = {
   setSelectedEvent: (event: EventType | null) => void;
   setSelectedDay: (day: string | null) => void;
   events: EventType[];
-  viewMode: "list" | "grid";
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -160,7 +159,7 @@ const NewScheduleIndexInner = ({
   setSelectedDay,
   events,
   viewMode,
-}: ScheduleProps) => {
+}: ScheduleProps & { viewMode: "list" | "grid" }) => {
   const searchParams = useSearchParams();
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
@@ -491,7 +490,9 @@ const NewScheduleIndexInner = ({
     </div>  */
 };
 
-const NewScheduleIndex = (props: ScheduleProps) => {
+const NewScheduleIndex = (
+  props: ScheduleProps & { viewMode: "list" | "grid" }
+) => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <NewScheduleIndexInner {...props} />
