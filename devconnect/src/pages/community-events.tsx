@@ -1521,6 +1521,7 @@ const CommunityEvents = () => {
                     showTimeOfDay: formData.show_time_of_day,
                   }),
                 ]}
+                viewMode="grid"
                 selectedEvent={previewSelectedEvent}
                 selectedDay={null}
                 setSelectedEvent={setPreviewSelectedEvent}
