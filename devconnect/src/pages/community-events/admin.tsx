@@ -1138,6 +1138,7 @@ const AdminPage = () => {
                   selectedDay={null}
                   setSelectedEvent={() => {}}
                   setSelectedDay={() => {}}
+                  viewMode="grid"
                 />
               </div>
 
