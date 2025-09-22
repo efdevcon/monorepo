@@ -7,7 +7,7 @@ export const colorMap = {
   blue: { primary: '#74ACDF', secondary: '#417FB8' },
   yellow: { primary: '#F6B40E', secondary: '#B2820A' },
   pink: { primary: '#FF85A6', secondary: '#BF4465' },
-  scholar: {},
+  scholar: { primary: '#36364C', secondary: '#2A2A3A' },
 }
 
 export const colorKeys = Object.keys(colorMap)
