@@ -1,6 +1,32 @@
 import { Client } from '@notionhq/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+// Helper function to validate password against page properties
+async function validatePassword(pageProperties: any, providedPassword: string): Promise<boolean> {
+  const formPassword = pageProperties["Form password"];
+  if (!formPassword) {
+    return false; // No password set on the page
+  }
+
+  // Extract password value based on property type
+  let storedPassword = '';
+  if (formPassword.type === 'rich_text') {
+    storedPassword = formPassword.rich_text?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'title') {
+    storedPassword = formPassword.title?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'select') {
+    storedPassword = formPassword.select?.name || '';
+  } else if (formPassword.type === 'formula') {
+    // Handle formula type - convert number to string for comparison
+    const formulaResult = formPassword.formula;
+    if (formulaResult && formulaResult.type === 'number') {
+      storedPassword = formulaResult.number?.toString() || '';
+    }
+  }
+
+  return storedPassword === providedPassword;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
   const { id } = req.query;
@@ -9,10 +35,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const pageId = Array.isArray(id) ? id[0] : id;
+  // Handle catch-all route - id is an array, we want the first element
+  const idParam = Array.isArray(id) ? id[0] : id;
 
-  if (!pageId || typeof pageId !== 'string') {
+  if (!idParam || typeof idParam !== 'string') {
     return res.status(400).json({ error: 'Invalid page ID' });
+  }
+
+  // Parse id-password format
+  const idParts = idParam.split('-');
+  if (idParts.length < 2) {
+    return res.status(400).json({ error: 'Invalid page ID format. Expected id-password format' });
+  }
+
+  const password = idParts.pop(); // Get the last part as password
+  const pageId = idParts.join('-'); // Join remaining parts as page ID
+
+  if (!pageId || !password) {
+    return res.status(400).json({ error: 'Invalid page ID or password format' });
   }
 
   try {
@@ -31,6 +71,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (pageErr) {
       console.error(`[API Call] Failed to retrieve page details for ${pageId}:`, pageErr);
       return res.status(500).json({ error: 'Failed to retrieve page details' });
+    }
+
+    // Validate password before proceeding
+    const isPasswordValid = await validatePassword(pageDetails.properties, password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid or missing password' });
     }
 
     // Check if there are relation properties that might contain sub-items

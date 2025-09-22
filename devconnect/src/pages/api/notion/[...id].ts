@@ -72,21 +72,60 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const { id } = req.query;
 
   // Handle catch-all route - id is an array, we want the first element
-  const pageId = Array.isArray(id) ? id[0] : id;
+  const idParam = Array.isArray(id) ? id[0] : id;
 
-  if (!pageId || typeof pageId !== 'string') {
+  if (!idParam || typeof idParam !== 'string') {
     return res.status(400).json({ error: 'Invalid page ID' });
   }
 
+  // Parse id-password format
+  const idParts = idParam.split('-');
+  if (idParts.length < 2) {
+    return res.status(400).json({ error: 'Invalid page ID format. Expected id-password format' });
+  }
+
+  const password = idParts.pop(); // Get the last part as password
+  const pageId = idParts.join('-'); // Join remaining parts as page ID
+
+  if (!pageId || !password) {
+    return res.status(400).json({ error: 'Invalid page ID or password format' });
+  }
+
   if (method === 'GET') {
-    return handleGet(req, res, pageId);
+    return handleGet(req, res, pageId, password);
   } else if (method === 'PATCH') {
-    return handlePatch(req, res, pageId);
+    return handlePatch(req, res, pageId, password);
   } else {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 }
 
+
+// Helper function to validate password against page properties
+async function validatePassword(pageProperties: any, providedPassword: string): Promise<boolean> {
+  const formPassword = pageProperties["Form password"];
+  if (!formPassword) {
+    return false; // No password set on the page
+  }
+
+  // Extract password value based on property type
+  let storedPassword = '';
+  if (formPassword.type === 'rich_text') {
+    storedPassword = formPassword.rich_text?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'title') {
+    storedPassword = formPassword.title?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'select') {
+    storedPassword = formPassword.select?.name || '';
+  } else if (formPassword.type === 'formula') {
+    // Handle formula type - convert number to string for comparison
+    const formulaResult = formPassword.formula;
+    if (formulaResult && formulaResult.type === 'number') {
+      storedPassword = formulaResult.number?.toString() || '';
+    }
+  }
+
+  return storedPassword === providedPassword;
+}
 
 // Helper function to fetch supporter data from rollup
 async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Promise<string> {
@@ -121,7 +160,7 @@ async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Pr
 }
 
 // GET: Fetch page data for the given id
-async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: string) {
+async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: string, password: string) {
   const supporter = !req.query?.supporter ? false : true;
   const notion = new Client({ auth: process.env.NOTION_SECRET });
   try {
@@ -130,6 +169,12 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     // Check if the page has properties (it should be a page object)
     if (page.object !== 'page' || !('properties' in page)) {
       return res.status(400).json({ error: 'Invalid page object' });
+    }
+
+    // Validate password before proceeding
+    const isPasswordValid = await validatePassword(page.properties, password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid or missing password' });
     }
 
 
@@ -436,7 +481,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
 }
 
 // PATCH: Update page with submitted form data
-async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: string) {
+async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: string, password: string) {
   const notion = new Client({ auth: process.env.NOTION_SECRET });
   try {
     const formData = req.body;
@@ -447,6 +492,12 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
     
     if (page.object !== 'page' || !('properties' in page)) {
       return res.status(400).json({ error: 'Invalid page object' });
+    }
+
+    // Validate password before proceeding
+    const isPasswordValid = await validatePassword(page.properties, password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid or missing password' });
     }
 
     // Check if any [config] field contains [lock] to prevent updates

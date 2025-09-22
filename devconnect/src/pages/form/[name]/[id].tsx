@@ -212,6 +212,16 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       const res = await fetch(`/api/notion/organization/${pageId}`)
 
       if (!res.ok) {
+        // Try to get the error message from the response
+        let errorMessage = 'Failed to fetch organization data'
+        try {
+          const errorData = await res.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          // If we can't parse the error response, use the status text
+          errorMessage = res.statusText || errorMessage
+        }
+        setError(errorMessage)
         setSubItems([])
         setOrgPageName('')
         return
@@ -221,6 +231,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       setSubItems(responseData.children || [])
       setOrgPageName(responseData.orgName || '')
     } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Error loading organization data'
+      setError(errorMessage)
       setSubItems([])
       setOrgPageName('')
     } finally {
@@ -240,7 +252,18 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
     try {
       const res = await fetch(`/api/notion/${pageId}${pageName === 'supporter' ? '?supporter=true' : ''}`)
-      if (!res.ok) throw new Error('Failed to fetch data')
+      if (!res.ok) {
+        // Try to get the error message from the response
+        let errorMessage = 'Failed to fetch data'
+        try {
+          const errorData = await res.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          // If we can't parse the error response, use the status text
+          errorMessage = res.statusText || errorMessage
+        }
+        throw new Error(errorMessage)
+      }
       const responseData: ConfigResponse = await res.json()
 
       // Handle new flat array API response format
@@ -281,7 +304,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
 
       setLoading(false)
     } catch (err) {
-      setError('Error loading data')
+      const errorMessage = err instanceof Error ? err.message : 'Error loading data'
+      setError(errorMessage)
       setLoading(false)
     }
   }
@@ -412,13 +436,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(updates),
       })
-      if (!res.ok) throw new Error('Failed to update')
+      if (!res.ok) {
+        // Try to get the error message from the response
+        let errorMessage = 'Failed to update'
+        try {
+          const errorData = await res.json()
+          errorMessage = errorData.error || errorMessage
+        } catch {
+          // If we can't parse the error response, use the status text
+          errorMessage = res.statusText || errorMessage
+        }
+        throw new Error(errorMessage)
+      }
       addNotification('success', 'Form updated successfully!')
 
       // Refetch data to show updated values
       await fetchData()
     } catch (err) {
-      addNotification('error', 'Error updating page. Please try again.')
+      const errorMessage = err instanceof Error ? err.message : 'Error updating page. Please try again.'
+      addNotification('error', errorMessage)
     } finally {
       setIsSubmitting(false)
     }
