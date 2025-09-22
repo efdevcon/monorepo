@@ -348,8 +348,45 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
           break;
         case 'relation':
           if (propertyAny.type === 'relation') {
-            // return list of ids
-            fieldValue = propertyAny.relation?.map((item: any) => `${item.id?.replaceAll('-', '')}`).join(',') || '';
+            // For quests, we need to get the password for each quest if supporter is true
+            if (supporter && propertyAny.relation && propertyAny.relation.length > 0) {
+              // Get passwords for each quest
+              const questIdsWithPasswords = await Promise.all(
+                propertyAny.relation.map(async (item: any) => {
+                  try {
+                    const questPage = await notion.pages.retrieve({ page_id: item.id });
+                    const questProperties = (questPage as any).properties;
+
+                    // Get the password from the quest page
+                    const questPassword = questProperties["Form password"];
+                    let password = '';
+
+                    if (questPassword) {
+                      if (questPassword.type === 'formula' && questPassword.formula?.type === 'number') {
+                        password = questPassword.formula.number?.toString() || '';
+                      } else if (questPassword.type === 'rich_text') {
+                        password = questPassword.rich_text?.[0]?.plain_text || '';
+                      } else if (questPassword.type === 'title') {
+                        password = questPassword.title?.[0]?.plain_text || '';
+                      } else if (questPassword.type === 'select') {
+                        password = questPassword.select?.name || '';
+                      }
+                    }
+
+                    // Return id-password format
+                    return password ? `${item.id?.replaceAll('-', '')}-${password}` : item.id?.replaceAll('-', '');
+                  } catch (error) {
+                    console.error('Failed to fetch quest password:', error);
+                    // Fallback to just the ID if password fetch fails
+                    return item.id?.replaceAll('-', '');
+                  }
+                })
+              );
+              fieldValue = questIdsWithPasswords.join(',');
+            } else {
+              // return list of ids without passwords
+              fieldValue = propertyAny.relation?.map((item: any) => `${item.id?.replaceAll('-', '')}`).join(',') || '';
+            }
             fieldType = 'quests';
           }
           break;

@@ -206,8 +206,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 //   status
                 // });
 
+                // Get password for this sub-item from already retrieved page data
+                let password = '';
+                const subItemProperties = pageData.properties;
+                const subItemPassword = subItemProperties["Form password"];
+
+                if (subItemPassword) {
+                  if (subItemPassword.type === 'formula' && subItemPassword.formula?.type === 'number') {
+                    password = subItemPassword.formula.number?.toString() || '';
+                  } else if (subItemPassword.type === 'rich_text') {
+                    password = subItemPassword.rich_text?.[0]?.plain_text || '';
+                  } else if (subItemPassword.type === 'title') {
+                    password = subItemPassword.title?.[0]?.plain_text || '';
+                  } else if (subItemPassword.type === 'select') {
+                    password = subItemPassword.select?.name || '';
+                  }
+                }
+
                 return {
-                  id: relation.id?.replace(/-/g, ''),
+                  id: password ? `${relation.id?.replace(/-/g, '')}-${password}` : relation.id?.replace(/-/g, ''),
                   name: name,
                   completionPercentage,
                   reviewStatus: reviewStatus,
