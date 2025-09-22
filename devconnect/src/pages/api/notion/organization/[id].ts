@@ -256,7 +256,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(200).json({
       children: subItems,
       count: subItems.length,
-      orgName: orgName
+      orgName: orgName,
+      accreditationGuideUrl: process.env.ACCREDITATION_GUIDE || ''
     });
   } catch (error) {
     console.error('Error fetching child pages:', error);

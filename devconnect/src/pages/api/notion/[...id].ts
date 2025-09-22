@@ -510,7 +510,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       config: {
         isLocked,
         isOk
-      }
+      },
+      accreditationInsuranceGuideUrl: process.env.ACCREDITATION_INSURANCE_GUIDE || ''
     });
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch page data' });
