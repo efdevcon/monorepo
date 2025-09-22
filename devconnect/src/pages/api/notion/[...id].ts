@@ -659,6 +659,11 @@ async function handlePatch(req: NextApiRequest, res: NextApiResponse, pageId: st
         //   updates[propertyName] = { title: value ? [{ text: { content: value } }] : [] };
         //   break;
       }
+
+      // Special handling for Insurance field - also update "Insurance link" field
+      if (fieldName === 'Insurance' && value) {
+        updates["Insurance link"] = { rich_text: value ? [{ text: { content: value } }] : [] }
+      }
     }
 
     await notion.pages.update({
