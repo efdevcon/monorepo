@@ -699,49 +699,46 @@ export default function AppShowcaseDetail({
                               </div>
                             </div>
                           </div>
-
-                          {/* Expand/Collapse Indicator */}
-                          <div className="mt-2 flex items-center justify-center w-full">
-                            <svg
-                              width="12"
-                              height="12"
-                              viewBox="0 0 20 20"
-                              fill="none"
-                              xmlns="http://www.w3.org/2000/svg"
-                              className={`transform transition-transform ${
-                                isExpanded ? 'rotate-180' : ''
-                              }`}
-                            >
-                              <path
-                                d="M5 7.5L10 12.5L15 7.5"
-                                stroke="currentColor"
-                                strokeWidth="2"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                              />
-                            </svg>
-                          </div>
                         </div>
 
                         {/* Expanded Quest Actions */}
                         {isExpanded && (
-                          <div
-                            className="bg-white border-t border-gray-100 p-4 rounded-bl rounded-br"
-                            onClick={(e) => e.stopPropagation()}
-                          >
-                            <div className="flex gap-3 items-center">
-                              <button
-                                onClick={() => handleAboutClick(quest)}
-                                className="flex-1 px-3 py-3 bg-[#eaf3fa] rounded text-sm font-bold text-[#36364c] hover:bg-[#d4e7f5] transition-colors"
-                              >
-                                About
-                              </button>
-                              <button
-                                onClick={() => handleQuestAction(quest)}
-                                className="flex-1 px-3 py-3 bg-[#1b6fae] text-white rounded text-sm font-bold hover:bg-[#125181] transition-colors shadow-[0px_4px_0px_0px_#125181]"
-                              >
-                                Verify
-                              </button>
+                          <div onClick={(e) => e.stopPropagation()}>
+                            <div className="bg-[#daebfb] box-border content-stretch flex flex-col items-center justify-center p-4 relative rounded-bl-[2px] rounded-br-[2px] size-full">
+                              <div className="content-stretch flex gap-3 items-center relative shrink-0 w-full">
+                                <div className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shrink-0">
+                                  <div
+                                    aria-hidden="true"
+                                    className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978]"
+                                  />
+                                  <button
+                                    onClick={() => handleAboutClick(quest)}
+                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-[#44445d] text-sm text-center text-nowrap w-full"
+                                    style={{
+                                      fontVariationSettings: "'wdth' 100",
+                                    }}
+                                  >
+                                    <p className="leading-none whitespace-pre">
+                                      About
+                                    </p>
+                                  </button>
+                                  <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc]" />
+                                </div>
+                                <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
+                                  <button
+                                    onClick={() => handleQuestAction(quest)}
+                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
+                                    style={{
+                                      fontVariationSettings: "'wdth' 100",
+                                    }}
+                                  >
+                                    <p className="leading-none whitespace-pre">
+                                      Verify
+                                    </p>
+                                  </button>
+                                  <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
+                                </div>
+                              </div>
                             </div>
                           </div>
                         )}
