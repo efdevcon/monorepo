@@ -4,6 +4,9 @@ import ActionBar from "./action-bar";
 import { Filter, FilterSummary, useFilters } from "./filter";
 import filterCss from "./filter.module.scss";
 import Link from "lib/components/link/Link";
+import layoutCss from "./layout-app.module.scss";
+import cn from "classnames";
+// import TicketPurple from "lib/assets/icons/ticket-purple.svg";
 
 type CalendarLayoutProps = ScheduleProps & {
   isCommunityCalendar: boolean;
@@ -24,34 +27,47 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events);
 
   return (
-    <div className="flex flex-col gap-4 w-full bg-white">
-      {/* <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-4 md:mb-1 mb-4">
-        <div className="text-3xl font-secondary shrink-0">
-          {props.isCommunityCalendar ? (
-            <div className="flex flex-col">
-              <b>Community Calendar</b>
-              <div className="text-base font-secondary">
-                Events held around Buenos Aires
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col">
-              <b>Devconnect ARG schedule </b>
-              <div className="text-base font-secondary">
-                Events held within La Rural (
-                <Link href="https://tickets.devconnect.org">
-                  ticket required
-                </Link>
-                )
-              </div>
-            </div>
+    <div
+      className={cn(
+        "flex flex-col gap-4 w-full bg-white",
+        layoutCss["layout-app"]
+      )}
+    >
+      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 px-4 md:px-0">
+        <div
+          className={cn(
+            "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center w-full",
+            props.isCommunityCalendar
+              ? "bg-[#74ACDF33]"
+              : "bg-[#3A365E] border border-transparent"
           )}
+          style={
+            !props.isCommunityCalendar
+              ? {
+                  borderImage:
+                    "linear-gradient(137.84deg, #F6B613 12.86%, #FF85A6 40.77%, #9894FF 67.87%, #8855CC 97.26%)",
+                  borderImageSlice: 1,
+                  borderWidth: "1px",
+                  borderStyle: "solid",
+                }
+              : undefined
+          }
+        >
+          <div className="flex flex-col text-center md:text-left md:flex-row items-center gap-2 text-white">
+            {/* <TicketPurple className="h-[26px] w-[26px] mr-2 shrink-0 hidden md:inline-block" /> */}
+            <div className="flex flex-col">
+              <div className="font-semibold leading-tight">
+                These events are hosted inside La Rural and require a Devconnect
+                World’s Fair ticket to enter.
+              </div>
+              <div>
+                You may also need to sign up or purchase tickets for other
+                events within the venue.
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="text-sm rounded-md bg-[#74ACDF33] px-4 py-2 text-[#36364C] self-center">
-          This calendar is a work in progress and will change before Devconnect
-          week. <b>Check back regularly for updates.</b>
-        </div>
-      </div> */}
+      </div>
 
       <ActionBar
         isCommunityCalendar={props.isCommunityCalendar}
