@@ -1676,6 +1676,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       >
                         <a
                           href={`/form/accreditation/${item.id}`}
+                          target="_blank"
                           style={{
                             color: '#007bff',
                             textDecoration: 'none',

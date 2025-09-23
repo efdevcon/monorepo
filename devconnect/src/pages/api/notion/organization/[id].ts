@@ -85,7 +85,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return value && typeof value === 'object' && value.type === 'relation';
     });
     
-    let orgName = '';
+    const orgName = pageDetails.properties?.['Org']?.title?.[0]?.plain_text || 'Unknown Org';
     let subItems: any[] = [];
 
     // Get sub-items from relation properties (excluding Quest)
@@ -94,33 +94,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (propertyName === 'Quest') {
         // console.log(`[API Call] Skipping Quest property`);
         continue;
-      }
-
-      // Process Supporters Tracker property first to get orgName
-      if (propertyName === 'Supporters Tracker') {
-        const propertyData = property as any;
-        if (propertyData.relation && propertyData.relation.length > 0) {
-          console.log(`[API Call] Processing Supporters Tracker for orgName`);
-
-          const supporterPageId = propertyData.relation[0].id;
-          console.log(`[API Call] Supporter Page ID: ${supporterPageId}`);
-          try {
-            const supporterPage = await notion.pages.retrieve({ page_id: supporterPageId });
-            const supporterData = supporterPage as any;
-
-            // Extract just the supporter name/title
-            orgName = supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
-              supporterData.properties?.Name?.title?.[0]?.plain_text ||
-              supporterData.properties?.Title?.title?.[0]?.plain_text ||
-              'Unknown Supporter';
-
-            console.log(`[API Call] Set orgName to: ${orgName}`);
-          } catch (err) {
-            console.error(`[API Call] Failed to retrieve Supporters Tracker page ${supporterPageId}:`, err);
-            orgName = 'Error loading supporter data';
-          }
-        }
-        continue; // Skip further processing for this property
       }
 
       // Process Sub-item property with individual page retrievals for detailed data
@@ -247,16 +220,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // console.log(`[API Call] Final result for ${pageId}:`, {
-    //   orgName: orgName,
-    //   totalSubItems: subItems.length,
-    //   subItemsWithData: subItems.filter(item => item.completionPercentage > 0 || item.status !== 'No Status').length
-    // });
-
     return res.status(200).json({
       children: subItems,
       count: subItems.length,
-      orgName: orgName,
+      orgName,
       accreditationGuideUrl: process.env.ACCREDITATION_GUIDE || ''
     });
   } catch (error) {
