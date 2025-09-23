@@ -672,56 +672,16 @@ export default function AppShowcaseDetail({
                               }
                             >
                               <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
-                                {isCompleted ? (
-                                  quest.poapImageLink ? (
-                                    <img
-                                      src={quest.poapImageLink}
-                                      alt="POAP"
-                                      width={40}
-                                      height={40}
-                                      className="w-full h-full object-cover rounded-full"
-                                    />
-                                  ) : (
-                                    <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                                      <svg
-                                        width="12"
-                                        height="12"
-                                        viewBox="0 0 20 20"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path
-                                          d="M6 10L8.5 12.5L14 7"
-                                          stroke="white"
-                                          strokeWidth="2"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                        />
-                                      </svg>
-                                    </div>
-                                  )
-                                ) : (
-                                  <div className="relative w-10 h-10">
-                                    {/* Background ellipse */}
-                                    <div className="absolute inset-0 w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-blue-200" />
-                                    {/* Location icon */}
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                      <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="text-[#1b6fae]"
-                                      >
-                                        <path
-                                          d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                                          fill="currentColor"
-                                        />
-                                      </svg>
-                                    </div>
-                                  </div>
-                                )}
+                                <img
+                                  src={
+                                    quest.poapImageLink ||
+                                    'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg'
+                                  }
+                                  alt="POAP"
+                                  width={40}
+                                  height={40}
+                                  className={`w-full h-full object-cover rounded-full ${isCompleted ? '' : 'grayscale opacity-50'}`}
+                                />
                               </div>
                               <div className="text-center w-14">
                                 {isCompleted ? (
@@ -730,7 +690,7 @@ export default function AppShowcaseDetail({
                                   </span>
                                 ) : (
                                   <p
-                                    className="text-[#1b6fae] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
+                                    className="text-[#4B4B66] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
                                     style={{ fontFamily: 'Roboto, sans-serif' }}
                                   >
                                     TO DO
