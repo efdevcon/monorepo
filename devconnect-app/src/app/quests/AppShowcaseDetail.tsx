@@ -9,6 +9,7 @@ import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
 import type { Quest, QuestGroup } from '@/types';
 import cn from 'classnames';
+import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 
 interface AppShowcaseDetailProps {
   group: QuestGroup;
@@ -105,6 +106,9 @@ export default function AppShowcaseDetail({
   const router = useRouter();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
+  const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(
+    null
+  );
   const hasInitialized = useRef(false);
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
@@ -323,6 +327,23 @@ export default function AppShowcaseDetail({
     }
   };
 
+  const handleAboutClick = (quest: Quest) => {
+    setShowSupporterInfo(quest);
+  };
+
+  const handleSupporterInfoClose = () => {
+    setShowSupporterInfo(null);
+  };
+
+  const handleSupporterInfoBack = () => {
+    setShowSupporterInfo(null);
+  };
+
+  const handleViewQuestLocation = (quest: Quest) => {
+    handleTodoClick(quest);
+    setShowSupporterInfo(null);
+  };
+
   // Reset function to clear all quest states for App Showcase quests
   const handleReset = () => {
     // Reset only App Showcase quests (groupId === 4)
@@ -364,6 +385,46 @@ export default function AppShowcaseDetail({
 
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start relative">
+      {/* SupporterInfo Modal */}
+      {showSupporterInfo && (
+        <div className="fixed inset-0 z-51 flex items-end justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/50"
+            onClick={handleSupporterInfoClose}
+          />
+
+          {/* Modal Content */}
+          <div className="relative w-full max-w-md rounded-t-lg shadow-lg">
+            <SupporterInfo
+              onClose={handleSupporterInfoClose}
+              onBack={handleSupporterInfoBack}
+              hideBackButton={true}
+              buttonText="View Quest Location"
+              onButtonClick={() => handleViewQuestLocation(showSupporterInfo)}
+              supporterName={
+                showSupporterInfo.supporterId
+                  ? getSupporterById(showSupporterInfo.supporterId)?.name ||
+                    'Unknown'
+                  : 'Quest'
+              }
+              supporterDescription={
+                showSupporterInfo.instructions ||
+                (showSupporterInfo.supporterId
+                  ? getSupporterById(showSupporterInfo.supporterId)
+                      ?.description || 'Complete this quest to earn points'
+                  : 'Complete this quest to earn points')
+              }
+              supporterLogo={
+                showSupporterInfo.supporterId
+                  ? getSupporterById(showSupporterInfo.supporterId)?.logo
+                  : undefined
+              }
+              category="Quest"
+            />
+          </div>
+        </div>
+      )}
       {/* Header */}
       <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">
@@ -469,7 +530,7 @@ export default function AppShowcaseDetail({
         </div>
       </div>
       {/* District Sections */}
-      <div className="w-full space-y-3 p-4">
+      <div className="w-full space-y-3 py-3">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
           const progress = getDistrictProgress(district.id);
@@ -479,7 +540,7 @@ export default function AppShowcaseDetail({
             <div
               key={district.id}
               id={`district-${district.id}`}
-              className="border border-gray-200 rounded-lg"
+              className="border border-gray-200"
               style={{
                 backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), ${district.backgroundColor || 'linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)'}`,
               }}
@@ -709,14 +770,17 @@ export default function AppShowcaseDetail({
                             onClick={(e) => e.stopPropagation()}
                           >
                             <div className="flex gap-3 items-center">
-                              <button className="flex-1 px-3 py-3 bg-[#eaf3fa] rounded text-sm font-bold text-[#36364c] hover:bg-[#d4e7f5] transition-colors">
-                                Learn more
+                              <button
+                                onClick={() => handleAboutClick(quest)}
+                                className="flex-1 px-3 py-3 bg-[#eaf3fa] rounded text-sm font-bold text-[#36364c] hover:bg-[#d4e7f5] transition-colors"
+                              >
+                                About
                               </button>
                               <button
                                 onClick={() => handleQuestAction(quest)}
                                 className="flex-1 px-3 py-3 bg-[#1b6fae] text-white rounded text-sm font-bold hover:bg-[#125181] transition-colors shadow-[0px_4px_0px_0px_#125181]"
                               >
-                                Verify quest
+                                Verify
                               </button>
                             </div>
                           </div>
