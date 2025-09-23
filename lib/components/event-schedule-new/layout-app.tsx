@@ -6,7 +6,7 @@ import filterCss from "./filter.module.scss";
 import Link from "lib/components/link/Link";
 import layoutCss from "./layout-app.module.scss";
 import cn from "classnames";
-import TicketPurple from "lib/assets/icons/ticket-purple.svg";
+// import TicketPurple from "lib/assets/icons/ticket-purple.svg";
 
 type CalendarLayoutProps = ScheduleProps & {
   isCommunityCalendar: boolean;
@@ -54,7 +54,7 @@ const Layout = (props: CalendarLayoutProps) => {
           }
         >
           <div className="flex flex-col text-center md:text-left md:flex-row items-center gap-2 text-white">
-            <TicketPurple className="h-[26px] w-[26px] mr-2 shrink-0 hidden md:inline-block" />
+            {/* <TicketPurple className="h-[26px] w-[26px] mr-2 shrink-0 hidden md:inline-block" /> */}
             <div className="flex flex-col">
               <div className="font-semibold leading-tight">
                 These events are hosted inside La Rural and require a Devconnect
