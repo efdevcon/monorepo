@@ -11,6 +11,22 @@ import type { Quest, QuestGroup } from '@/types';
 import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 
+// Quest icons mapping based on action type
+const getQuestIcon = (action: string) => {
+  const iconMap: Record<string, string> = {
+    'connect-wallet': '/images/icons/ticket.svg',
+    'associate-ticket': '/images/icons/heart-outline.svg',
+    'setup-profile': '/images/icons/map.svg',
+    'visit-link': '/images/icons/qrcode-scan.svg',
+    'mini-quiz': '/images/icons/cash-plus.svg',
+    'verify-payment': '/images/icons/cash-plus.svg',
+    'claim-poap': '/images/icons/check-circle.svg',
+    'verify-basename': '/images/icons/check-circle.svg',
+  };
+
+  return iconMap[action] || '/images/icons/default-quest.svg';
+};
+
 interface AppShowcaseDetailProps {
   group: QuestGroup;
   onBack: () => void;
@@ -34,9 +50,19 @@ interface TabsProps {
   districts: Array<{ id: string; name: string; layerName: string }>;
   activeDistrictId: string;
   onDistrictSelect: (districtId: string) => void;
+  showSetupTab?: boolean;
+  isSetupTabActive?: boolean;
+  onSetupTabSelect?: () => void;
 }
 
-const Tabs = ({ districts, activeDistrictId, onDistrictSelect }: TabsProps) => {
+const Tabs = ({
+  districts,
+  activeDistrictId,
+  onDistrictSelect,
+  showSetupTab = false,
+  isSetupTabActive = false,
+  onSetupTabSelect,
+}: TabsProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const activeTabRef = useRef<HTMLButtonElement>(null);
 
@@ -63,6 +89,35 @@ const Tabs = ({ districts, activeDistrictId, onDistrictSelect }: TabsProps) => {
     <div className="py-4 md:py-2 w-full">
       <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide">
         <div className="flex bg-[#EFEFF5] md:rounded w-max min-w-full p-1 gap-0">
+          {/* Setup & app tour tab */}
+          {showSetupTab && (
+            <button
+              ref={isSetupTabActive ? activeTabRef : null}
+              type="button"
+              className={cn(
+                'flex-shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap rounded-[1px] min-w-max'
+              )}
+              style={{
+                outline: 'none',
+                border: 'none',
+                background: isSetupTabActive ? '#165a8d' : 'transparent',
+              }}
+              onClick={onSetupTabSelect}
+            >
+              <div
+                className={cn(
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
+                  isSetupTabActive
+                    ? 'text-white'
+                    : 'text-[#4b4b66] cursor-pointer'
+                )}
+              >
+                Setup & app tour
+              </div>
+            </button>
+          )}
+
+          {/* District tabs */}
           {districts.map((district) => (
             <button
               key={district.id}
@@ -109,12 +164,16 @@ export default function AppShowcaseDetail({
   const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(
     null
   );
+  const [isSetupTabActive, setIsSetupTabActive] = useState<boolean>(false);
   const hasInitialized = useRef(false);
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
+
+  // Get all Setup & app tour quests (groupId === 1)
+  const setupQuests = questsData.filter((quest) => quest.groupId === 1);
 
   // Group quests by district
   const questsByDistrict = useMemo(() => {
@@ -198,12 +257,18 @@ export default function AppShowcaseDetail({
       }
     }
 
-    // Default: expand first district if no hash
-    if (districtsWithQuests.length > 0 && !expandedDistrict) {
-      setExpandedDistrict(districtsWithQuests[0].id);
+    // Default: show setup tab if no hash
+    if (!expandedDistrict && !isSetupTabActive) {
+      setIsSetupTabActive(true);
       hasInitialized.current = true;
     }
-  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict, pwa]);
+  }, [
+    districtsWithQuests,
+    appShowcaseQuests,
+    expandedDistrict,
+    pwa,
+    isSetupTabActive,
+  ]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -266,7 +331,42 @@ export default function AppShowcaseDetail({
     }
   };
 
+  const selectSetupTab = () => {
+    setIsSetupTabActive(true);
+    setExpandedDistrict('');
+
+    // Find the first uncompleted quest in setup quests
+    const firstUncompletedQuest = setupQuests.find((quest) => {
+      const questState = questStates[quest.id.toString()];
+      return questState?.status !== 'completed';
+    });
+
+    // Expand the first uncompleted quest if found, otherwise clear expansions
+    if (firstUncompletedQuest) {
+      setExpandedQuests(new Set([firstUncompletedQuest.id]));
+    } else {
+      setExpandedQuests(new Set()); // Clear quest expansions if all are completed
+    }
+
+    // Scroll to the setup section after a brief delay to allow state update
+    setTimeout(() => {
+      const setupElement = document.getElementById('setup-section');
+      if (setupElement) {
+        // Calculate offset to account for sticky tabs (59px + some padding)
+        const stickyTabsHeight = 135; // 59px + some padding
+        const elementTop = setupElement.offsetTop;
+        const offsetPosition = elementTop - stickyTabsHeight;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
+      }
+    }, 100);
+  };
+
   const selectDistrict = (districtId: string) => {
+    setIsSetupTabActive(false);
     const district = districtsWithQuests.find((d) => d.id === districtId);
     if (district) {
       setExpandedDistrict(districtId);
@@ -344,15 +444,17 @@ export default function AppShowcaseDetail({
     setShowSupporterInfo(null);
   };
 
-  // Reset function to clear all quest states for App Showcase quests
+  // Reset function to clear all quest states for App Showcase and Setup quests
   const handleReset = () => {
-    // Reset only App Showcase quests (groupId === 4)
+    // Reset App Showcase quests (groupId === 4) and Setup quests (groupId === 1)
     const appShowcaseQuestIds = appShowcaseQuests.map((quest) =>
       quest.id.toString()
     );
+    const setupQuestIds = setupQuests.map((quest) => quest.id.toString());
+    const allQuestIds = [...appShowcaseQuestIds, ...setupQuestIds];
     const newQuestStates = { ...questStates };
 
-    appShowcaseQuestIds.forEach((questId) => {
+    allQuestIds.forEach((questId) => {
       delete newQuestStates[questId];
     });
 
@@ -361,15 +463,30 @@ export default function AppShowcaseDetail({
       updateQuestStatus(questId, 'locked', true);
     });
 
-    // Reset App Showcase quests to locked state
-    appShowcaseQuestIds.forEach((questId) => {
+    // Reset all quests to locked state
+    allQuestIds.forEach((questId) => {
       updateQuestStatus(questId, 'locked', true);
     });
   };
 
-  // Calculate overall progress
+  // Calculate setup quests progress
+  const setupProgress = useMemo(() => {
+    const completed = setupQuests.filter((quest) => {
+      const questState = questStates[quest.id.toString()];
+      return questState?.status === 'completed';
+    }).length;
+
+    return {
+      completed,
+      total: setupQuests.length,
+      percentage:
+        setupQuests.length > 0 ? (completed / setupQuests.length) * 100 : 0,
+    };
+  }, [setupQuests, questStates]);
+
+  // Calculate overall progress (setup + app showcase)
   const overallProgress = useMemo(() => {
-    const allQuests = appShowcaseQuests;
+    const allQuests = [...setupQuests, ...appShowcaseQuests];
     const completed = allQuests.filter((quest) => {
       const questState = questStates[quest.id.toString()];
       return questState?.status === 'completed';
@@ -381,10 +498,10 @@ export default function AppShowcaseDetail({
       percentage:
         allQuests.length > 0 ? (completed / allQuests.length) * 100 : 0,
     };
-  }, [appShowcaseQuests, questStates]);
+  }, [setupQuests, appShowcaseQuests, questStates]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start relative">
+    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start relative bg-[#f6fafe]">
       {/* SupporterInfo Modal */}
       {showSupporterInfo && (
         <div className="fixed inset-0 z-51 flex items-end justify-center">
@@ -447,6 +564,9 @@ export default function AppShowcaseDetail({
             districts={districtsWithQuests}
             activeDistrictId={expandedDistrict}
             onDistrictSelect={selectDistrict}
+            showSetupTab={true}
+            isSetupTabActive={isSetupTabActive}
+            onSetupTabSelect={selectSetupTab}
           />
         </div>
         {/* Reward Section */}
@@ -529,8 +649,140 @@ export default function AppShowcaseDetail({
           </div>
         </div>
       </div>
+      {/* Setup & app tour Section */}
+      {isSetupTabActive && (
+        <div className="w-full py-3">
+          <div
+            id="setup-section"
+            className="bg-white border border-gray-200 p-6"
+          >
+            {/* Setup Section Header */}
+            <div className="mb-6">
+              <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
+                Setup & app tour
+              </h3>
+              <div className="flex flex-col gap-2">
+                <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
+                  {setupProgress.completed}/{setupProgress.total} completed
+                </div>
+                <div className="w-full h-2 bg-blue-50 rounded">
+                  <div
+                    className="h-2 bg-blue-600 rounded"
+                    style={{ width: `${setupProgress.percentage}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Setup Quest List */}
+            <div className="space-y-3">
+              {setupQuests.map((quest) => {
+                const isCompleted = isQuestCompleted(quest);
+
+                return (
+                  <div
+                    key={quest.id}
+                    ref={(el) => {
+                      questRefs.current[quest.id] = el;
+                    }}
+                    className="bg-white border border-[#e2e2e9] rounded"
+                  >
+                    <div className="flex items-start gap-3 p-4">
+                      {/* Quest Icon */}
+                      <div className="w-6 h-6 flex-shrink-0">
+                        {quest.supporterId ? (
+                          (() => {
+                            const supporter = getSupporterById(
+                              quest.supporterId
+                            );
+                            return supporter?.logo ? (
+                              <img
+                                src={supporter.logo}
+                                alt={supporter.name}
+                                className="w-full h-full object-cover rounded"
+                              />
+                            ) : (
+                              <img
+                                src={getQuestIcon(quest.action)}
+                                alt={quest.name}
+                                className="w-full h-full"
+                              />
+                            );
+                          })()
+                        ) : (
+                          <img
+                            src={getQuestIcon(quest.action)}
+                            alt={quest.name}
+                            className="w-full h-full"
+                          />
+                        )}
+                      </div>
+
+                      {/* Quest Content */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
+                              {quest.name}
+                            </h3>
+                            <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3]">
+                              {quest.instructions ||
+                                'Complete this quest to earn points'}
+                            </p>
+                          </div>
+
+                          {/* Completion Status */}
+                          {isCompleted && (
+                            <div className="w-6 h-6 flex-shrink-0 ml-2">
+                              {quest.poapImageLink ? (
+                                <img
+                                  src={quest.poapImageLink}
+                                  alt="POAP"
+                                  className="w-full h-full object-cover rounded-full"
+                                />
+                              ) : (
+                                <img
+                                  src="/images/icons/check-circle.svg"
+                                  alt="Completed"
+                                  className="w-full h-full"
+                                />
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Action Button */}
+                    {!isCompleted && (
+                      <div className="w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
+                        <div className="w-full flex justify-start items-center gap-3">
+                          <div
+                            data-icon="false"
+                            data-state="default"
+                            data-type="Secondary"
+                            className="w-full bg-[#eaf3fa] border border-white rounded px-3 
+                          py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-
+                          [#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer"
+                            onClick={() => handleTodoClick(quest)}
+                          >
+                            <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
+                              {quest.button || 'Verify'}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* District Sections */}
-      <div className="w-full space-y-3 py-3">
+      <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
           const progress = getDistrictProgress(district.id);
