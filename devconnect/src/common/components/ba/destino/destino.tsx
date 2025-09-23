@@ -19,6 +19,7 @@ import Guanaco from './images/guanaco.png'
 import DestinoLogo from './images/destino-logo.png'
 import { Popover, PopoverContent, PopoverTrigger } from 'lib/components/ui/popover'
 import css from 'styled-jsx/css'
+import Link from 'next/link'
 
 // https://docs.google.com/document/d/1v5vm0fDMS_5L2uDvuwjkahOcoy8-khFKTi3rGOsfQEw/edit?pli=1&tab=t.0#heading=h.3h638filjl7g
 
@@ -102,7 +103,23 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
         <FourthSection content={content} />
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-16 mb-24 overflow-hidden">
+      <div className="flex flex-col items-center justify-center gap-4 my-16 mb-24">
+        <p className="text-white text-xl font-semibold">Ready to become an EWFren? Apply now!</p>
+        <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+          <button
+            className={cn(
+              'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+              styles['tiled-button']
+            )}
+          >
+            <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+              {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+            </div>
+          </button>
+        </Link>
+      </div>
+
+      <div className="flex flex-col items-center justify-center gap-0 mb-24 overflow-hidden bg-white/10" id="events">
         <HowToApply content={content} />
         <EventsList content={content} events={events} />
       </div>

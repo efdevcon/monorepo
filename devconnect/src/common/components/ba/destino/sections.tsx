@@ -629,6 +629,19 @@ export const ExtraSectionAddedLater = () => {
               Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
             </p>
           </div>
+
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+            <button
+              className={cn(
+                'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                styles['tiled-button']
+              )}
+            >
+              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+              </div>
+            </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -718,7 +731,7 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
 
 export const EventsList = ({ content, events }: { content: any; events: any }) => {
   return (
-    <div className="section" id="events">
+    <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <EventsTable events={events} />
       </div>

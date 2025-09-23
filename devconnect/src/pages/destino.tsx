@@ -61,7 +61,7 @@ const DestinoPage = ({ content, events }: { content: any; events: any }) => {
   return (
     <>
       <SEO
-        title="Destino Devconnect Support"
+        title="Destino Support"
         description="Supporting local builders, organizers, and communities to take part in the first Ethereum World Fair in Buenos Aires."
         imageUrl={`https://devconnect.org/destino/hero-bg.png`}
       />
