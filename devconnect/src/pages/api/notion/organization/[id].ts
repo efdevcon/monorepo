@@ -1,6 +1,32 @@
 import { Client } from '@notionhq/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
+// Helper function to validate password against page properties
+async function validatePassword(pageProperties: any, providedPassword: string): Promise<boolean> {
+  const formPassword = pageProperties["Form password"];
+  if (!formPassword) {
+    return false; // No password set on the page
+  }
+
+  // Extract password value based on property type
+  let storedPassword = '';
+  if (formPassword.type === 'rich_text') {
+    storedPassword = formPassword.rich_text?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'title') {
+    storedPassword = formPassword.title?.[0]?.plain_text || '';
+  } else if (formPassword.type === 'select') {
+    storedPassword = formPassword.select?.name || '';
+  } else if (formPassword.type === 'formula') {
+    // Handle formula type - convert number to string for comparison
+    const formulaResult = formPassword.formula;
+    if (formulaResult && formulaResult.type === 'number') {
+      storedPassword = formulaResult.number?.toString() || '';
+    }
+  }
+
+  return storedPassword === providedPassword;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
   const { id } = req.query;
@@ -9,10 +35,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const pageId = Array.isArray(id) ? id[0] : id;
+  // Handle catch-all route - id is an array, we want the first element
+  const idParam = Array.isArray(id) ? id[0] : id;
 
-  if (!pageId || typeof pageId !== 'string') {
+  if (!idParam || typeof idParam !== 'string') {
     return res.status(400).json({ error: 'Invalid page ID' });
+  }
+
+  // Parse id-password format
+  const idParts = idParam.split('-');
+  if (idParts.length < 2) {
+    return res.status(400).json({ error: 'Invalid page ID format. Expected id-password format' });
+  }
+
+  const password = idParts.pop(); // Get the last part as password
+  const pageId = idParts.join('-'); // Join remaining parts as page ID
+
+  if (!pageId || !password) {
+    return res.status(400).json({ error: 'Invalid page ID or password format' });
   }
 
   try {
@@ -33,13 +73,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'Failed to retrieve page details' });
     }
 
+    // Validate password before proceeding
+    const isPasswordValid = await validatePassword(pageDetails.properties, password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid or missing password' });
+    }
+
     // Check if there are relation properties that might contain sub-items
     const properties = (pageDetails as any).properties || {};
     const relationProperties = Object.entries(properties).filter(([key, value]: [string, any]) => {
       return value && typeof value === 'object' && value.type === 'relation';
     });
     
-    let orgName = '';
+    const orgName = pageDetails.properties?.['Org']?.title?.[0]?.plain_text || 'Unknown Org';
     let subItems: any[] = [];
 
     // Get sub-items from relation properties (excluding Quest)
@@ -48,33 +94,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       if (propertyName === 'Quest') {
         // console.log(`[API Call] Skipping Quest property`);
         continue;
-      }
-
-      // Process Supporters Tracker property first to get orgName
-      if (propertyName === 'Supporters Tracker') {
-        const propertyData = property as any;
-        if (propertyData.relation && propertyData.relation.length > 0) {
-          console.log(`[API Call] Processing Supporters Tracker for orgName`);
-
-          const supporterPageId = propertyData.relation[0].id;
-          console.log(`[API Call] Supporter Page ID: ${supporterPageId}`);
-          try {
-            const supporterPage = await notion.pages.retrieve({ page_id: supporterPageId });
-            const supporterData = supporterPage as any;
-
-            // Extract just the supporter name/title
-            orgName = supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
-              supporterData.properties?.Name?.title?.[0]?.plain_text ||
-              supporterData.properties?.Title?.title?.[0]?.plain_text ||
-              'Unknown Supporter';
-
-            console.log(`[API Call] Set orgName to: ${orgName}`);
-          } catch (err) {
-            console.error(`[API Call] Failed to retrieve Supporters Tracker page ${supporterPageId}:`, err);
-            orgName = 'Error loading supporter data';
-          }
-        }
-        continue; // Skip further processing for this property
       }
 
       // Process Sub-item property with individual page retrievals for detailed data
@@ -160,8 +179,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 //   status
                 // });
 
+                // Get password for this sub-item from already retrieved page data
+                let password = '';
+                const subItemProperties = pageData.properties;
+                const subItemPassword = subItemProperties["Form password"];
+
+                if (subItemPassword) {
+                  if (subItemPassword.type === 'formula' && subItemPassword.formula?.type === 'number') {
+                    password = subItemPassword.formula.number?.toString() || '';
+                  } else if (subItemPassword.type === 'rich_text') {
+                    password = subItemPassword.rich_text?.[0]?.plain_text || '';
+                  } else if (subItemPassword.type === 'title') {
+                    password = subItemPassword.title?.[0]?.plain_text || '';
+                  } else if (subItemPassword.type === 'select') {
+                    password = subItemPassword.select?.name || '';
+                  }
+                }
+
                 return {
-                  id: relation.id?.replace(/-/g, ''),
+                  id: password ? `${relation.id?.replace(/-/g, '')}-${password}` : relation.id?.replace(/-/g, ''),
                   name: name,
                   completionPercentage,
                   reviewStatus: reviewStatus,
@@ -184,16 +220,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
     }
 
-    // console.log(`[API Call] Final result for ${pageId}:`, {
-    //   orgName: orgName,
-    //   totalSubItems: subItems.length,
-    //   subItemsWithData: subItems.filter(item => item.completionPercentage > 0 || item.status !== 'No Status').length
-    // });
-
     return res.status(200).json({
       children: subItems,
       count: subItems.length,
-      orgName: orgName
+      orgName,
+      accreditationGuideUrl: process.env.ACCREDITATION_GUIDE || ''
     });
   } catch (error) {
     console.error('Error fetching child pages:', error);
