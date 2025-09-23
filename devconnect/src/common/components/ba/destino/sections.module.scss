@@ -27,6 +27,7 @@
     content: '';
     z-index: -1;
     position: absolute;
+    opacity: 0.6;
     top: 0;
     left: 0;
     width: 100%;
@@ -204,4 +205,11 @@
 
 .popover-animation {
   animation: popover-animation 700ms ease-in-out;
+}
+
+.cms-styling {
+  a {
+    color: orange !important;
+    text-decoration: underline !important;
+  }
 }

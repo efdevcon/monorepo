@@ -10,14 +10,7 @@ const pastEditions: Template = {
       type: 'object',
       name: 'intro',
       label: 'Intro',
-      fields: [
-        {
-          type: 'string',
-          name: 'title',
-          label: 'Title',
-        },
-        createRichText('destino_devconnect_intro'),
-      ],
+      fields: [createRichText('destino_devconnect_intro_title'), createRichText('destino_devconnect_intro')],
     },
     {
       type: 'object',

@@ -116,7 +116,7 @@ const menuItems = (pathname: string) => [
     },
   },
   {
-    text: 'Destino Devconnect',
+    text: 'Destino Support',
     customClass: css['destino-rainbow'],
     url: '/destino',
   },

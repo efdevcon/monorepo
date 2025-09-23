@@ -4,7 +4,15 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import Image from 'next/image'
 import DestinoHero from './images/hero-bg.png'
-import { FirstSection, SecondSection, ThirdSection, FourthSection, HowToApply, EventsList } from './sections'
+import {
+  FirstSection,
+  SecondSection,
+  ThirdSection,
+  FourthSection,
+  HowToApply,
+  EventsList,
+  ExtraSectionAddedLater,
+} from './sections'
 import styles from './destino.module.scss'
 import cn from 'classnames'
 import Guanaco from './images/guanaco.png'
@@ -89,6 +97,7 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
 
       <div className={cn('flex flex-col justify-center w-full relative overflow-hidden pb-24')}>
         <SecondSection content={content} />
+        <ExtraSectionAddedLater />
         <ThirdSection content={content} />
         <FourthSection content={content} />
       </div>

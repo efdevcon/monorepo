@@ -43,21 +43,23 @@ export const FirstSection = ({ content }: { content: any }) => {
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-6 w-[700px] max-w-[98%] text-center">
-          <div className="font-bold text-4xl">{content.intro.title}</div>
+        <div className="flex flex-col items-center justify-center gap-2 w-[700px] max-w-[98%] text-center">
+          <div className="">
+            <RichText content={content.intro.destino_devconnect_intro_title} />
+          </div>
           <div className="text-lg">
-            <RichText content={content.intro.destino_devconnect_intro} />
+            <RichText content={content.intro.destino_devconnect_intro} className={styles['cms-styling']} />
           </div>
 
           <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
-                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                 styles['tiled-button']
               )}
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                {(globalThis as any).translations.apply_now}
+                {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
               </div>
             </button>
           </Link>
@@ -397,16 +399,18 @@ export const SecondSection = ({ content }: { content: any }) => {
         triangleColorShade2={shade2}
         sectionContentId="second-section-content"
         sectionId="second-section"
-        guanacoSpeechString="Let me show you around!"
+        guanacoSpeechString="Are you an EWFren?"
         grassColor="grass"
         showSign
       >
         <div
           className={cn(
-            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[20%] xl:translate-y-[50%] 2xl:translate-y-[65%] lg:h-[350px] xl:h-[220px]'
+            'flex flex-col gap-0 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[15%] xl:translate-y-[26%] 2xl:translate-y-[45%] lg:h-[500px] xl:h-[360px]'
           )}
         >
-          <div className="text-white text-4xl font-semibold shrink-0 ">{content.destino_devconnect_about.title}</div>
+          <div className="text-white text-3xl font-semibold w-[500px] max-w-[95%] shrink-0 mb-4 ">
+            {content.destino_devconnect_about.title}
+          </div>
           <div className="flex flex-col gap-4 w-[500px] max-w-[95%] relative text-lg shrink-0">
             <Image
               src={Tree}
@@ -436,7 +440,7 @@ export const SecondSection = ({ content }: { content: any }) => {
               {content.destino_devconnect_about.what_is_it.map((item: any) => {
                 return (
                   <div className="flex flex-col items-center gap-1" key={item.title}>
-                    <div className="text-yellow-400 text-2xl font-bold">{item.title}</div>
+                    <div className="text-yellow-400 text-lg font-semibold">{item.title}</div>
                     <RichText content={item.what_is_it} />
                   </div>
                 )
@@ -455,7 +459,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
   const shade2 = 'bg-[#bf4289]'
 
   return (
-    <div className="relative z-[9]" id="third-section">
+    <div className="relative z-[8]" id="third-section">
       <Platform
         reverse
         className=""
@@ -468,7 +472,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
         grassColor="grass-2"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
+          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[40%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
             <Image
               src={RockTwo}
               alt="Rock"
@@ -491,14 +495,14 @@ export const ThirdSection = ({ content }: { content: any }) => {
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 ">
+            <div className="text-white text-3xl font-bold shrink-0 ">
               {content.destino_devconnect_who_can_apply.title}
             </div>
             <div className="flex flex-col justify-center items-center gap-8 text-lg shrink-0">
-              <div className="shrink-0 text-yellow-400 text-2xl">
+              <div className="shrink-0 text-yellow-400 text-lg">
                 {content.destino_devconnect_who_can_apply.description}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 shrink-0 text-lg">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:gap-4 shrink-0 text-base">
                 {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
                   return (
                     <div className="flex flex-col items-center gap-2" key={item.description}>
@@ -522,7 +526,7 @@ export const FourthSection = ({ content }: { content: any }) => {
   const shade2 = 'bg-[#2871B3]'
 
   return (
-    <div className="relative z-[8]" id="fourth-section">
+    <div className="relative z-[7]" id="fourth-section">
       <Platform
         triangleColor={sectionColor}
         triangleColorShade={shade}
@@ -547,10 +551,10 @@ export const FourthSection = ({ content }: { content: any }) => {
               className="absolute top-0 right-0 translate-x-[130%] translate-y-[-40%] w-[130px] auto"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 mb-4 text-center">
+            <div className="text-white text-3xl font-bold shrink-0 mb-4 text-center">
               {content.destino_devconnect_how_to_apply.title}
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 lg:text-lg  shrink-0">
+            <div className="flex flex-col justify-center items-center gap-4 lg:text-base  shrink-0">
               <div className="grid grid-cols-2 gap-4 text-center shrink-0">
                 {content.destino_devconnect_how_to_apply.destino_devconnect_how_to_apply_list.map(
                   (item: any, index: number) => {
@@ -572,17 +576,78 @@ export const FourthSection = ({ content }: { content: any }) => {
   )
 }
 
+// Epic naming, but this is a mess anyway...
+export const ExtraSectionAddedLater = () => {
+  return (
+    <div className="z-[9]  relative pt-20">
+      <div className={cn('absolute bottom-0 left-0 right-0 h-[3000px] bg-[#535388]')}>
+        <></>
+      </div>
+      <div
+        className="flex flex-col items-center justify-center gap-4 relative bg-[#535388]"
+        // style={{
+        //   maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
+        //   WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
+        // }}
+      >
+        <div className="flex flex-col items-center justify-center gap-6 w-[800px] max-w-[95%] text-center z-[1] py-16">
+          <h2 className="text-white text-3xl font-semibold mb-4">What We're Looking for in the EWFren Program</h2>
+
+          <div className="text-yellow-400 text-lg font-medium">Request Tickets and Discounts</div>
+
+          <div className="space-y-4 text-white text-base leading-relaxed">
+            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
+              <strong>Universities:</strong> Invite your university - you can even organize a class or workshop inside
+              La Rural!
+            </div>
+
+            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
+              <strong>Startups:</strong> Apply with your startup group - we offer large, innovative coworking spaces,
+              including quiet areas and meeting rooms.
+            </div>
+
+            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
+              <strong>Communities:</strong> Apply with your community to be part of the experience and connect with the
+              Ethereum ecosystem.
+            </div>
+          </div>
+
+          <div className="p-6">
+            <h3 className="text-yellow-400 text-xl font-semibold mb-3">💰 Scholarships Available</h3>
+            <p className="text-white text-lg font-medium mb-3">
+              Up to <span className="text-yellow-400 font-bold">$1,000 USD in funding support</span> is available for
+              initiatives that help groups attend the Ethereum World Fair.
+            </p>
+            <p className="text-white/90 text-sm italic">
+              This can include transportation from distant locations, support with travel costs, or partial scholarships
+              for builders attending their first Devconnect.
+            </p>
+
+            <p className="text-white/90 text-sm italic mt-2">
+              Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is
+              intended for communities or initiatives that can collectively support multiple participants attending the
+              Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const HowToApply = ({ content }: { content: any }) => {
   return (
-    <div className="section my-16 mt-24">
+    <div className="section mt-24">
       <div className="flex flex-col items-center justify-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-0 w-[800px] max-w-[95%] text-center">
-          <div className="text-white text-4xl font-bold mb-8">{content.destino_devconnect_where_to_apply.title}</div>
-          <div className="text-white text-lg font-bold">{content.destino_devconnect_where_to_apply.description}</div>
-          <div className="text-white text-base opacity-70 mb-8">
+        <div className="flex flex-col items-center justify-center gap-0 w-[600px] max-w-[95%] text-center">
+          <div className="text-white text-3xl font-semibold mb-8">
+            {content.destino_devconnect_where_to_apply.title}
+          </div>
+          <div className="text-white">{content.destino_devconnect_where_to_apply.description}</div>
+          <div className="text-neutral-300 text-sm opacity-90 mb-8 mt-4 leading-tight">
             {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
-          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+          {/* <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
                 'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
@@ -593,7 +658,7 @@ export const HowToApply = ({ content }: { content: any }) => {
                 {(globalThis as any).translations.apply_now}
               </div>
             </button>
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>
