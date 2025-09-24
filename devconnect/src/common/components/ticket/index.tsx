@@ -10,7 +10,7 @@ export const colorMap = {
   scholar: { primary: '#36364C', secondary: '#2A2A3A' },
 }
 
-export const colorKeys = Object.keys(colorMap)
+export const colorKeys = Object.keys(colorMap).filter(key => key !== 'scholar')
 
 const isLatinOnly = (text: string): boolean => {
   return /^[\u0000-\u007F\u0080-\u00FF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF\u2C60-\u2C7F\uA720-\uA7FF\uFB00-\uFB4F]+$/.test(
