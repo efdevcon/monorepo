@@ -52,6 +52,7 @@ interface TabsProps {
   onDistrictSelect: (districtId: string) => void;
   showSetupTab?: boolean;
   isSetupTabActive?: boolean;
+  isSetupSectionExpanded?: boolean;
   onSetupTabSelect?: () => void;
 }
 
@@ -61,6 +62,7 @@ const Tabs = ({
   onDistrictSelect,
   showSetupTab = false,
   isSetupTabActive = false,
+  isSetupSectionExpanded = false,
   onSetupTabSelect,
 }: TabsProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -83,37 +85,28 @@ const Tabs = ({
         behavior: 'smooth',
       });
     }
-  }, [activeDistrictId]);
+  }, [activeDistrictId, isSetupTabActive, isSetupSectionExpanded]);
 
   return (
     <div className="py-4 md:py-2 w-full">
       <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide">
-        <div className="flex bg-[#EFEFF5] md:rounded w-max min-w-full p-1 gap-0">
+        <div className="flex gap-2 w-max min-w-full">
           {/* Setup & app tour tab */}
           {showSetupTab && (
             <button
               ref={isSetupTabActive ? activeTabRef : null}
               type="button"
               className={cn(
-                'flex-shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap rounded-[1px] min-w-max'
+                'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
+                isSetupTabActive && isSetupSectionExpanded
+                  ? 'bg-[#165a8d] text-white'
+                  : 'bg-[#ededf0] text-[#4b4b66] hover:bg-[#e0e0e5]'
               )}
-              style={{
-                outline: 'none',
-                border: 'none',
-                background: isSetupTabActive ? '#165a8d' : 'transparent',
-              }}
               onClick={onSetupTabSelect}
             >
-              <div
-                className={cn(
-                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
-                  isSetupTabActive
-                    ? 'text-white'
-                    : 'text-[#4b4b66] cursor-pointer'
-                )}
-              >
+              <span className="text-sm font-medium leading-none tracking-[-0.1px]">
                 Setup & app tour
-              </div>
+              </span>
             </button>
           )}
 
@@ -124,26 +117,16 @@ const Tabs = ({
               ref={activeDistrictId === district.id ? activeTabRef : null}
               type="button"
               className={cn(
-                'flex-shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap rounded-[1px] min-w-max'
+                'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
+                activeDistrictId === district.id
+                  ? 'bg-[#165a8d] text-white'
+                  : 'bg-[#ededf0] text-[#4b4b66] hover:bg-[#e0e0e5]'
               )}
-              style={{
-                outline: 'none',
-                border: 'none',
-                background:
-                  activeDistrictId === district.id ? '#fff' : 'transparent',
-              }}
               onClick={() => onDistrictSelect(district.id)}
             >
-              <div
-                className={cn(
-                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
-                  activeDistrictId === district.id
-                    ? 'text-[#232336]'
-                    : 'text-[#4b4b66] cursor-pointer'
-                )}
-              >
+              <span className="text-sm font-medium leading-none tracking-[-0.1px]">
                 {district.name}
-              </div>
+              </span>
             </button>
           ))}
         </div>
@@ -345,6 +328,7 @@ export default function AppShowcaseDetail({
       // Expand the setup section and collapse any expanded district
       setIsSetupSectionExpanded(true);
       setExpandedDistrict(''); // Collapse any expanded district
+      setIsSetupTabActive(true); // Ensure setup tab is highlighted
 
       // Find the first uncompleted quest in setup quests
       const firstUncompletedQuest = setupQuests.find((quest) => {
@@ -598,6 +582,7 @@ export default function AppShowcaseDetail({
             onDistrictSelect={selectDistrict}
             showSetupTab={true}
             isSetupTabActive={isSetupTabActive}
+            isSetupSectionExpanded={isSetupSectionExpanded}
             onSetupTabSelect={selectSetupTab}
           />
         </div>
