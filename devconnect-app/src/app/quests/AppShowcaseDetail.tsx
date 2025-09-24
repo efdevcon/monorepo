@@ -687,7 +687,7 @@ export default function AppShowcaseDetail({
           {/* Setup Section Header - Clickable */}
           <button
             onClick={toggleSetupSectionExpansion}
-            className="w-full p-4 text-left hover:bg-gray-50 transition-colors rounded-lg"
+            className="w-full p-4 text-left hover:bg-gray-50 transition-colors cursor-pointer"
           >
             <div className="flex gap-3 items-center">
               <div className="flex-1">
@@ -706,26 +706,26 @@ export default function AppShowcaseDetail({
                   </div>
                 </div>
               </div>
-              <div className="flex items-center">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={`transform transition-transform ${
-                    isSetupSectionExpanded ? 'rotate-180' : ''
-                  }`}
-                >
-                  <path
-                    d="M5 7.5L10 12.5L15 7.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
+            </div>
+            <div className="flex items-center justify-center w-4 h-4 mx-auto mt-2">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className={`transform transition-transform ${
+                  isSetupSectionExpanded ? 'rotate-180' : ''
+                }`}
+              >
+                <path
+                  d="M5 7.5L10 12.5L15 7.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
           </button>
 
@@ -856,7 +856,7 @@ export default function AppShowcaseDetail({
               {/* District Header - Clickable */}
               <button
                 onClick={() => toggleDistrictExpansion(district.id)}
-                className="w-full p-4 text-left hover:bg-white/20 transition-colors rounded-lg"
+                className="w-full p-4 text-left hover:bg-white/20 transition-colors cursor-pointer"
               >
                 <div className="flex gap-3 items-center">
                   <div className="w-14 h-14 rounded overflow-hidden">
@@ -885,26 +885,26 @@ export default function AppShowcaseDetail({
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center">
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={`transform transition-transform ${
-                        isDistrictExpanded ? 'rotate-180' : ''
-                      }`}
-                    >
-                      <path
-                        d="M5 7.5L10 12.5L15 7.5"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </div>
+                </div>
+                <div className="flex items-center justify-center w-4 h-4 mx-auto mt-2">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className={`transform transition-transform ${
+                      isDistrictExpanded ? 'rotate-180' : ''
+                    }`}
+                  >
+                    <path
+                      d="M5 7.5L10 12.5L15 7.5"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                 </div>
               </button>
 
