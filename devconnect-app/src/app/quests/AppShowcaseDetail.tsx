@@ -1017,20 +1017,22 @@ export default function AppShowcaseDetail({
                                   </button>
                                   <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc]" />
                                 </div>
-                                <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
-                                  <button
-                                    onClick={() => handleQuestAction(quest)}
-                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
-                                    style={{
-                                      fontVariationSettings: "'wdth' 100",
-                                    }}
-                                  >
-                                    <p className="leading-none whitespace-pre">
-                                      Verify
-                                    </p>
-                                  </button>
-                                  <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
-                                </div>
+                                {!isCompleted && (
+                                  <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
+                                    <button
+                                      onClick={() => handleQuestAction(quest)}
+                                      className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
+                                      style={{
+                                        fontVariationSettings: "'wdth' 100",
+                                      }}
+                                    >
+                                      <p className="leading-none whitespace-pre">
+                                        Verify
+                                      </p>
+                                    </button>
+                                    <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </div>
