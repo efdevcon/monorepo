@@ -429,20 +429,6 @@ export default function AppShowcaseDetail({
     updateQuestStatus(quest.id.toString(), 'completed', false);
   };
 
-  const handleTodoClick = (quest: Quest) => {
-    // Find the district for this quest to get the layerName
-    const questDistrict = districtsWithQuests.find(
-      (d) => d.id === quest.districtId?.toString()
-    );
-
-    if (questDistrict) {
-      // Redirect to /worlds-fair#layerName
-      // router.push(`/worlds-fair#${questDistrict.layerName}`);
-      // hardcoded for now
-      router.push(`/map?filter=defi-aave`);
-    }
-  };
-
   const handleAboutClick = (quest: Quest) => {
     setShowSupporterInfo(quest);
   };
@@ -456,7 +442,7 @@ export default function AppShowcaseDetail({
   };
 
   const handleViewQuestLocation = (quest: Quest) => {
-    handleTodoClick(quest);
+    router.push(`/map?filter=defi-aave`);
     setShowSupporterInfo(null);
   };
 
@@ -805,7 +791,7 @@ export default function AppShowcaseDetail({
                             className="w-full bg-[#eaf3fa] border border-white rounded px-3 
                           py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-
                           [#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer"
-                            onClick={() => handleTodoClick(quest)}
+                            onClick={() => handleQuestAction(quest)}
                           >
                             <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
                               {quest.button || 'Verify'}
@@ -821,8 +807,7 @@ export default function AppShowcaseDetail({
           )}
         </div>
       </div>
-
-      {/* District Sections */}
+      ;{/* District Sections */}
       <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
@@ -959,7 +944,7 @@ export default function AppShowcaseDetail({
                                 !isCompleted
                                   ? (e) => {
                                       e.stopPropagation();
-                                      handleTodoClick(quest);
+                                      handleQuestAction(quest);
                                     }
                                   : undefined
                               }
@@ -1046,7 +1031,7 @@ export default function AppShowcaseDetail({
           );
         })}
       </div>
-      {/* Reset Button */}
+      ;{/* Reset Button */}
       <div className="w-full px-4 pb-4">
         <button
           onClick={handleReset}
