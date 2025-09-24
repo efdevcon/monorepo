@@ -165,6 +165,8 @@ export default function AppShowcaseDetail({
     null
   );
   const [isSetupTabActive, setIsSetupTabActive] = useState<boolean>(false);
+  const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
+    useState<boolean>(false);
   const hasInitialized = useRef(false);
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
@@ -260,6 +262,7 @@ export default function AppShowcaseDetail({
     // Default: show setup tab if no hash
     if (!expandedDistrict && !isSetupTabActive) {
       setIsSetupTabActive(true);
+      setIsSetupSectionExpanded(true);
       hasInitialized.current = true;
     }
   }, [
@@ -331,9 +334,37 @@ export default function AppShowcaseDetail({
     }
   };
 
+  const toggleSetupSectionExpansion = () => {
+    const isCurrentlyExpanded = isSetupSectionExpanded;
+
+    if (isCurrentlyExpanded) {
+      // Collapse the setup section
+      setIsSetupSectionExpanded(false);
+      setExpandedQuests(new Set());
+    } else {
+      // Expand the setup section and collapse any expanded district
+      setIsSetupSectionExpanded(true);
+      setExpandedDistrict(''); // Collapse any expanded district
+
+      // Find the first uncompleted quest in setup quests
+      const firstUncompletedQuest = setupQuests.find((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status !== 'completed';
+      });
+
+      // Expand the first uncompleted quest if found, otherwise clear expansions
+      if (firstUncompletedQuest) {
+        setExpandedQuests(new Set([firstUncompletedQuest.id]));
+      } else {
+        setExpandedQuests(new Set()); // Clear quest expansions if all are completed
+      }
+    }
+  };
+
   const selectSetupTab = () => {
     setIsSetupTabActive(true);
     setExpandedDistrict('');
+    setIsSetupSectionExpanded(true);
 
     // Find the first uncompleted quest in setup quests
     const firstUncompletedQuest = setupQuests.find((quest) => {
@@ -367,6 +398,7 @@ export default function AppShowcaseDetail({
 
   const selectDistrict = (districtId: string) => {
     setIsSetupTabActive(false);
+    setIsSetupSectionExpanded(false); // Collapse setup section when selecting a district
     const district = districtsWithQuests.find((d) => d.id === districtId);
     if (district) {
       setExpandedDistrict(districtId);
@@ -650,32 +682,56 @@ export default function AppShowcaseDetail({
         </div>
       </div>
       {/* Setup & app tour Section */}
-      {isSetupTabActive && (
-        <div className="w-full py-3">
-          <div
-            id="setup-section"
-            className="bg-white border border-gray-200 p-6"
+      <div className="w-full py-3">
+        <div id="setup-section" className="bg-white border border-gray-200">
+          {/* Setup Section Header - Clickable */}
+          <button
+            onClick={toggleSetupSectionExpansion}
+            className="w-full p-4 text-left hover:bg-gray-50 transition-colors rounded-lg"
           >
-            {/* Setup Section Header */}
-            <div className="mb-6">
-              <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
-                Setup & app tour
-              </h3>
-              <div className="flex flex-col gap-2">
-                <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
-                  {setupProgress.completed}/{setupProgress.total} completed
-                </div>
-                <div className="w-full h-2 bg-blue-50 rounded">
-                  <div
-                    className="h-2 bg-blue-600 rounded"
-                    style={{ width: `${setupProgress.percentage}%` }}
-                  />
+            <div className="flex gap-3 items-center">
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
+                  Setup & app tour
+                </h3>
+                <div className="flex flex-col gap-2">
+                  <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
+                    {setupProgress.completed}/{setupProgress.total} completed
+                  </div>
+                  <div className="w-full h-2 bg-blue-50 rounded">
+                    <div
+                      className="h-2 bg-blue-600 rounded"
+                      style={{ width: `${setupProgress.percentage}%` }}
+                    />
+                  </div>
                 </div>
               </div>
+              <div className="flex items-center">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`transform transition-transform ${
+                    isSetupSectionExpanded ? 'rotate-180' : ''
+                  }`}
+                >
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
+          </button>
 
-            {/* Setup Quest List */}
-            <div className="space-y-3">
+          {/* Setup Quest List - Only show when section is expanded */}
+          {isSetupSectionExpanded && (
+            <div className="px-4 pb-4 space-y-3">
               {setupQuests.map((quest) => {
                 const isCompleted = isQuestCompleted(quest);
 
@@ -777,9 +833,9 @@ export default function AppShowcaseDetail({
                 );
               })}
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* District Sections */}
       <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
