@@ -28,6 +28,7 @@ interface SubItem {
   id: string
   name?: string
   completionPercentage: number
+  accreditationType: string
   reviewStatus: string
   claimStatus: string
 }
@@ -504,7 +505,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   return (
     <div
       style={{
-        maxWidth: '700px',
+        maxWidth: '800px',
         margin: '0 auto',
         padding: '1rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -1637,6 +1638,18 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         fontSize: '0.9rem',
                       }}
                     >
+                      Type
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
                       Review Status
                     </th>
                     <th
@@ -1746,6 +1759,36 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             {item.completionPercentage}%
                           </span>
                         </div>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
+                            backgroundColor: item.accreditationType?.includes('Exhibitor')
+                              ? '#e7f3ff'
+                              : item.accreditationType?.includes('Not found')
+                              ? '#ffe3ee'
+                              : '#e9ecef',
+                            color: item.accreditationType?.includes('Exhibitor')
+                              ? '#0066cc'
+                              : item.accreditationType?.includes('Not found')
+                              ? '#dc3545'
+                              : '#6c757d',
+                          }}
+                        >
+                          {item.accreditationType || 'N/A'}
+                        </span>
                       </td>
                       <td
                         style={{
