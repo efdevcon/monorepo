@@ -43,6 +43,7 @@ class AuthService {
         method: 'para'
       };
     } catch (error) {
+      console.error('Failed to generate Para token:', error);
       throw new Error(`Failed to generate Para token: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }

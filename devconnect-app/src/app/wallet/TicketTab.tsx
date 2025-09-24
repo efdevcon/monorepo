@@ -6,6 +6,10 @@ import QRCode from 'qrcode';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { fetchAuth } from '@/services/apiClient';
 import { useLocalStorage } from 'usehooks-ts';
+import VoxelButton from 'lib/components/voxel-button/button';
+import { toast } from 'sonner';
+import { Separator } from 'lib/components/ui/separator';
+import { useUserAppData } from '@/hooks/useUserAppData';
 
 interface Ticket {
   secret: string;
@@ -24,6 +28,7 @@ interface Order {
 
 export default function TicketTab() {
   const { user, signOut, error, hasInitialized, supabase } = useUser();
+  const { user: userAppData, syncUserData } = useUserAppData();
   const { isParaConnected, email } = useUnifiedConnection();
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);
@@ -33,74 +38,79 @@ export default function TicketTab() {
     {}
   );
   const isLoadingRef = useRef(false);
+  // Additional email state
+  const [checkYourEmail, setCheckYourEmail] = useState('');
+  const [verificationCode, setVerificationCode] = useState('');
+  const [verifyingCode, setVerifyingCode] = useState(false);
+  const [loadingAdditionalEmail, setLoadingAdditionalEmail] = useState(false);
 
-  // Auto-load tickets when component mounts
-  useEffect(() => {
-    const fetchTickets = async (forceRefresh = true) => {
-      if (isLoadingRef.current) {
-        console.log('Already fetching tickets, skipping...');
-        return;
+  const fetchTickets = async (forceRefresh = true) => {
+    if (isLoadingRef.current) {
+      console.log('Already fetching tickets, skipping...');
+      return;
+    }
+
+    // If we have cached tickets and not forcing refresh, skip fetch
+    if (!forceRefresh && tickets.length > 0) {
+      console.log('Using cached tickets, skipping fetch');
+      return;
+    }
+
+    isLoadingRef.current = true;
+    setLoading(true);
+    setTicketError(null);
+
+    try {
+      // Use fetchAuth - automatically handles auth
+      const response = await fetchAuth<{ tickets: Order[] }>(
+        '/api/auth/tickets'
+      );
+
+      if (!response.success) {
+        throw new Error(response.error || 'Failed to fetch tickets');
       }
 
-      // If we have cached tickets and not forcing refresh, skip fetch
-      if (!forceRefresh && tickets.length > 0) {
-        console.log('Using cached tickets, skipping fetch');
-        return;
-      }
+      const ticketsData = response.data.tickets || [];
+      setTickets(ticketsData);
 
-      isLoadingRef.current = true;
-      setLoading(true);
-      setTicketError(null);
+      console.log('ticketsData', ticketsData);
 
-      try {
-        // Use fetchAuth - automatically handles auth
-        const response = await fetchAuth<{ tickets: Order[] }>(
-          '/api/auth/tickets'
-        );
-
-        if (!response.success) {
-          throw new Error(response.error || 'Failed to fetch tickets');
-        }
-
-        const ticketsData = response.data.tickets || [];
-        setTickets(ticketsData);
-
-        console.log('ticketsData', ticketsData);
-
-        // Generate QR codes for each ticket
-        const newQrCodes: { [key: string]: string } = {};
-        for (const order of ticketsData) {
-          for (const ticket of order.tickets) {
-            console.log('ticket', ticket);
-            if (ticket.secret) {
-              try {
-                const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
-                  width: 200,
-                  margin: 1,
-                  color: {
-                    dark: '#000000',
-                    light: '#FFFFFF',
-                  },
-                });
-                newQrCodes[ticket.secret] = qrDataUrl;
-              } catch (qrErr) {
-                console.error('Error generating QR code:', qrErr);
-              }
+      // Generate QR codes for each ticket
+      const newQrCodes: { [key: string]: string } = {};
+      for (const order of ticketsData) {
+        for (const ticket of order.tickets) {
+          console.log('ticket', ticket);
+          if (ticket.secret) {
+            try {
+              const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+                width: 200,
+                margin: 1,
+                color: {
+                  dark: '#000000',
+                  light: '#FFFFFF',
+                },
+              });
+              newQrCodes[ticket.secret] = qrDataUrl;
+            } catch (qrErr) {
+              console.error('Error generating QR code:', qrErr);
             }
           }
         }
-        setQrCodes(newQrCodes);
-      } catch (err) {
-        console.error('Error fetching tickets:', err);
-        setTicketError(
-          err instanceof Error ? err.message : 'Failed to load tickets'
-        );
-      } finally {
-        setLoading(false);
-        isLoadingRef.current = false;
       }
-    };
+      setQrCodes(newQrCodes);
+    } catch (err) {
+      console.error('Error fetching tickets:', err);
+      setTicketError(
+        err instanceof Error ? err.message : 'Failed to load tickets'
+      );
+    } finally {
+      setLoading(false);
+      isLoadingRef.current = false;
+    }
+  };
 
+  // Auto-load tickets when component mounts
+  useEffect(() => {
     // Only fetch if we have a user (either from Supabase or Para)
     if (user || email) {
       fetchTickets();
@@ -170,31 +180,40 @@ export default function TicketTab() {
     await fetchTickets();
   };
 
+  const additionalEmails = userAppData?.additional_ticket_emails || [];
+
   return (
     <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">
-      <div className="mb-6 text-center">
+      {/* <div className="mb-6 text-center">
         <h2 className="text-2xl font-bold mb-2">Profile</h2>
+        <div>Tickets associated with emails:</div>
         <div className="text-gray-600">{email}</div>
-      </div>
+        {additionalEmails.map((email: string) => (
+          <div key={email} className="text-gray-600">
+            {email}
+          </div>
+        ))}
+      </div> */}
 
       <div className="w-full mb-8">
-        <div className="w-full flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+        {/* <div className="w-full flex justify-between gap-3 mb-4">
           <h3 className="text-xl font-semibold">Your Tickets</h3>
-          <button
+          <VoxelButton
             onClick={refreshTickets}
             disabled={loading}
-            className="px-4 py-2 bg-blue-500 hover:bg-blue-600 disabled:bg-gray-400 text-white rounded-md transition-colors text-sm self-start sm:self-auto"
+            color="blue-1"
+            size="sm"
           >
             {loading ? 'Refreshing...' : 'Refresh'}
-          </button>
-        </div>
+          </VoxelButton>
+        </div> */}
         {ticketError && (
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded mb-4">
             {ticketError}
           </div>
         )}
 
-        <div className="w-full space-y-4">
+        <div className="w-full space-y-2">
           {loading && (
             <div className="w-full bg-gray-50 border border-gray-200 text-gray-600 px-4 py-8 rounded-lg">
               <div className="text-center">
@@ -213,63 +232,203 @@ export default function TicketTab() {
           {!loading &&
             tickets.length > 0 &&
             tickets.map((order) => (
-              <div
-                key={order.orderCode}
-                className="border border-gray-200 rounded-lg p-4"
-              >
-                <div className="mb-3">
-                  <div className="font-semibold">Order: {order.orderCode}</div>
-                  <div className="text-sm text-gray-600">
-                    Date: {new Date(order.orderDate).toLocaleDateString()}
+              <>
+                {/* <div
+                  key={order.orderCode}
+                  className="border border-gray-200 rounded-lg p-4"
+                >
+                  <div className="mb-3">
+                    <div className="font-semibold">
+                      Order: {order.orderCode}
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Date: {new Date(order.orderDate).toLocaleDateString()}
+                    </div>
                   </div>
-                </div>
 
-                <div className="space-y-4">
-                  {order.tickets.map((ticket, idx) => (
-                    <div
-                      key={ticket.secret || idx}
-                      className="bg-gray-50 p-3 sm:p-4 rounded-lg"
-                    >
-                      <div className="flex flex-col sm:flex-row gap-4">
-                        <div className="flex-1">
-                          <div className="font-medium text-lg">
-                            {ticket.attendeeName || 'No name provided'}
-                          </div>
-                          <div className="text-gray-600 text-sm mt-1">
-                            {ticket.attendeeEmail}
-                          </div>
-                          <div className="text-gray-600 text-sm">
-                            {ticket.itemName}
-                          </div>
-                          <div className="text-gray-600 text-sm">
-                            Price: {ticket.price}
-                          </div>
-                          {ticket.secret && (
-                            <div className="text-xs text-gray-500 mt-2 font-mono break-all">
-                              {ticket.secret}
-                            </div>
-                          )}
+                  <div className="space-y-4"> */}
+                {order.tickets.map((ticket, idx) => (
+                  <div
+                    key={ticket.secret || idx}
+                    className="bg-gray-100 p-3 sm:p-4 border border-solid border-gray-200"
+                  >
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <div className="flex-1">
+                        <div className="font-medium text-lg">
+                          {ticket.attendeeName || 'No name provided'}
                         </div>
-                        {ticket.secret && qrCodes[ticket.secret] && (
-                          <div className="flex-shrink-0 self-center sm:self-auto">
-                            <img
-                              src={qrCodes[ticket.secret]}
-                              alt="Ticket QR Code"
-                              className="w-24 h-24 sm:w-32 sm:h-32 border-2 border-gray-300 rounded mx-auto sm:mx-0"
-                            />
-                            <div className="text-xs text-center text-gray-500 mt-1">
-                              Scan at venue
-                            </div>
+                        <div className="text-gray-600 text-sm mt-1">
+                          {ticket.attendeeEmail}
+                        </div>
+                        <div className="text-gray-600 text-sm">
+                          Ticket type: {ticket.itemName}
+                        </div>
+                        <div className="text-gray-600 text-sm">
+                          Order code: {order.orderCode}
+                        </div>
+                        {/* <div className="text-gray-600 text-sm">
+                            Price: {ticket.price}
+                          </div> */}
+                        {ticket.secret && (
+                          <div className="text-xs text-gray-500 mt-2 font-mono break-all">
+                            {ticket.secret}
                           </div>
                         )}
                       </div>
+                      {ticket.secret && qrCodes[ticket.secret] && (
+                        <div className="flex-shrink-0 self-center sm:self-auto">
+                          <img
+                            src={qrCodes[ticket.secret]}
+                            alt="Ticket QR Code"
+                            className="w-24 h-24 sm:w-32 sm:h-32 border-2 border-gray-300 rounded mx-auto sm:mx-0"
+                          />
+                          <div className="text-xs text-center text-gray-500 mt-1">
+                            Scan at venue
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
+                {/* </div>
+                </div> */}
+              </>
+            ))}
+
+          <div className="flex gap-4 items-center space-evenly my-4">
+            <Separator className="w-auto shrink grow" />
+            <p className="text-sm text-gray-600 shrink-0">
+              Your connected email addresses
+            </p>
+            <Separator className="w-auto shrink grow" />
+          </div>
+
+          <div className="flex flex-col text-center text-xs font-medium">
+            <div className="">{email}</div>
+            {additionalEmails.map((email: string) => (
+              <div key={email} className="">
+                {email}
               </div>
             ))}
+          </div>
+
+          <div className="flex gap-4 items-center space-evenly mt-4">
+            <Separator className="w-auto shrink grow" />
+            <p className="text-sm text-gray-600 shrink-0">
+              Is your ticket on a different email address?
+            </p>
+            <Separator className="w-auto shrink grow" />
+          </div>
+
+          <div className="flex  mt-4 flex-col sm:justify-center sm:items-center">
+            <VoxelButton
+              size="sm"
+              className=""
+              onClick={async () => {
+                const email = prompt('Enter your email address');
+
+                if (email) {
+                  setLoadingAdditionalEmail(true);
+                  setVerificationCode('');
+                  setCheckYourEmail('');
+
+                  const response = await fetchAuth<{ email: string }>(
+                    '/api/auth/tickets/attach-email',
+                    {
+                      method: 'POST',
+                      body: JSON.stringify({
+                        email,
+                        // Can't use localhost for this even if its inconvenient in dev - we are using the actual domain to match on type of OTP to send in supabase
+                        redirectTo: 'https://app.devconnect.org/wallet/tickets',
+                      }),
+                    }
+                  );
+
+                  if (response.success) {
+                    setCheckYourEmail(email);
+
+                    toast.success('Check your email for a verification code.');
+                  } else {
+                    console.error('Error adding email: ' + response.error);
+
+                    toast.error('Something went wrong. Try again later.');
+                  }
+
+                  setLoadingAdditionalEmail(false);
+                }
+              }}
+            >
+              {loadingAdditionalEmail
+                ? 'Preparing...'
+                : 'Add another email address'}
+            </VoxelButton>
+            {checkYourEmail && (
+              <div className="text-sm text-gray-800 mt-2 text-center mt-6 flex flex-col items-center max-w-[95%]">
+                <div>
+                  Check <span className="font-bold">{checkYourEmail}</span> for
+                  a verification code:
+                </div>
+                <input
+                  type="text"
+                  className="border border-neutral-300 w-full border-[1px] outline-none p-2 px-4 mt-2 text-center"
+                  value={verificationCode}
+                  placeholder="Enter verification code"
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                />
+
+                <VoxelButton
+                  size="sm"
+                  className="mt-2"
+                  color="green-1"
+                  disabled={verificationCode.length !== 6}
+                  onClick={async () => {
+                    setVerifyingCode(true);
+
+                    const response = await fetchAuth<{ email: string }>(
+                      '/api/auth/tickets/verify-email-ownership',
+                      {
+                        method: 'POST',
+                        body: JSON.stringify({
+                          emailToVerify: checkYourEmail,
+                          verificationCode,
+                        }),
+                      }
+                    );
+
+                    if (response.success) {
+                      toast.success('Email verified successfully!');
+
+                      await syncUserData();
+                      await fetchTickets();
+                    } else {
+                      if (response.error) {
+                        toast.error(response.error);
+                      } else {
+                        toast.error('Something went wrong. Try again later.');
+                      }
+                    }
+
+                    setVerifyingCode(false);
+                  }}
+                >
+                  {verifyingCode ? 'Verifying...' : 'Verify code'}{' '}
+                  {verificationCode.length !== 6 && '(6 digits required)'}
+                </VoxelButton>
+              </div>
+            )}
+          </div>
         </div>
       </div>
+
+      {/* <VoxelButton
+        onClick={async () => {
+          fetchAuth('/api/auth/test').then((res) => {
+            console.log(res);
+          });
+        }}
+      >
+        Test Service Role
+      </VoxelButton> */}
 
       {/* <div className="text-center">
         <button
