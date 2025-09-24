@@ -20,6 +20,7 @@ const backgroundImages = {
   blue: blueBg,
   pink: pinkBg,
   yellow: yellowBg,
+  scholar: yellowBg,
 }
 
 export const ShareTicket = ({
@@ -213,41 +214,43 @@ You coming?`)
         imageUrl={`${SITE_URL?.replace(/\/$/, '')}${ticketLink?.replace('/transparent', '/social')}`}
       />
       <div className="flex-1 flex flex-col items-center justify-center" style={{ marginTop: '157px' }}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '18px',
-            fontWeight: 600,
-            color: 'white',
-          }}
-        >
-          Choose your vibe:{' '}
-          {colorKeys.map(colorKey => {
-            const isSelected = color === colorKey
-            const primaryColor = colorMap[colorKey as keyof typeof colorMap].primary
-            console.log('colorKey', colorKey)
-            console.log('isSelected', isSelected)
-            console.log('primaryColor', primaryColor)
-            return (
-              <button
-                key={colorKey}
-                onClick={() => handleColorChange(colorKey)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  padding: 0,
-                  cursor: 'pointer',
-                }}
-                aria-label={colorKey}
-              >
-                <ColorButtonSvg color={primaryColor} selected={isSelected} />
-              </button>
-            )
-          })}
-        </div>
+        {color !== 'scholar' && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '18px',
+              fontWeight: 600,
+              color: 'white',
+            }}
+          >
+            Choose your vibe:{' '}
+            {colorKeys.map(colorKey => {
+              const isSelected = color === colorKey
+              const primaryColor = colorMap[colorKey as keyof typeof colorMap].primary
+              console.log('colorKey', colorKey)
+              console.log('isSelected', isSelected)
+              console.log('primaryColor', primaryColor)
+              return (
+                <button
+                  key={colorKey}
+                  onClick={() => handleColorChange(colorKey)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                  }}
+                  aria-label={colorKey}
+                >
+                  <ColorButtonSvg color={primaryColor} selected={isSelected} />
+                </button>
+              )
+            })}
+          </div>
+        )}
         <div style={{ width: '701px', maxWidth: '100vw' }}>
           {isLoading ? (
             <div
