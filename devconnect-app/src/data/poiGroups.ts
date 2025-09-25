@@ -47,12 +47,15 @@ export const poiGroupsData: PoiGroups = {
     "name": "Onramp"
   },
   "16": {
-    "name": "SWAG station"
+    "name": "QR-code"
   },
   "17": {
-    "name": "Stages"
+    "name": "SWAG station"
   },
   "18": {
+    "name": "Stages"
+  },
+  "19": {
     "name": "Toilets"
   }
 };
