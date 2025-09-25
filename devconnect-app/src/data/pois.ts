@@ -3,16 +3,16 @@ import type { POI } from '@/types/api-data';
 export const poisData: POI[] = [
   {
     "name": "Activation 1",
-    "layerName": "activation-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "7",
     "groupId": "1"
   },
   {
     "name": "Childcare 1",
-    "layerName": "childcare-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -21,7 +21,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Chill Out Area 1",
-    "layerName": "chill-out-area-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -30,16 +30,16 @@ export const poisData: POI[] = [
   },
   {
     "name": "Co-work 1",
-    "layerName": "cowork-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "5",
     "groupId": "5"
   },
   {
     "name": "Coffee 1",
-    "layerName": "coffee-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -48,7 +48,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Community Hub 1",
-    "layerName": "community-hub-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -57,25 +57,25 @@ export const poisData: POI[] = [
   },
   {
     "name": "Discussion corner 1",
-    "layerName": "discussion-corner-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "6",
     "groupId": "8"
   },
   {
     "name": "Food & Beverage 1",
-    "layerName": "food-beverage-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "2",
     "groupId": "10"
   },
   {
     "name": "Football Area 1",
-    "layerName": "football-area-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -84,16 +84,16 @@ export const poisData: POI[] = [
   },
   {
     "name": "Info desk 1",
-    "layerName": "info-desk-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": "2",
-    "locationId": "2",
+    "locationId": "1",
     "groupId": "11"
   },
   {
     "name": "Interview room 1",
-    "layerName": "interview-room-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -102,16 +102,16 @@ export const poisData: POI[] = [
   },
   {
     "name": "Main entrance",
-    "layerName": "main-entrance",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "4",
     "groupId": "9"
   },
   {
     "name": "Meeting Room 1",
-    "layerName": "meeting-room-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -120,7 +120,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Music Stage 1",
-    "layerName": "music-stage-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -129,16 +129,16 @@ export const poisData: POI[] = [
   },
   {
     "name": "Onramp 1",
-    "layerName": "onramp-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "3",
     "groupId": "15"
   },
   {
     "name": "Open Cinema 1",
-    "layerName": "open-cinema-1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -146,17 +146,8 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
-    "name": "Stage 1",
-    "layerName": "stage-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "17"
-  },
-  {
-    "name": "SWAG station 1",
-    "layerName": "swag-station-1",
+    "name": "QR-code 1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -164,12 +155,30 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Toilet 1",
-    "layerName": "toilet-1",
+    "name": "Stage 1",
+    "layerName": "",
     "logo": "",
     "description": "",
     "districtId": null,
     "locationId": null,
     "groupId": "18"
+  },
+  {
+    "name": "SWAG station 1",
+    "layerName": "",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "17"
+  },
+  {
+    "name": "Toilet 1",
+    "layerName": "",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "19"
   }
 ];

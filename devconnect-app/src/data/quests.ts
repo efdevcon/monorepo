@@ -189,7 +189,7 @@ export const questsData: Quest[] = [
     "name": "1inch quest 1",
     "order": 0,
     "points": 50,
-    "instructions": "",
+    "instructions": "...",
     "action": "claim-poap",
     "button": "Verify",
     "conditionType": "verifyPoap",
@@ -297,10 +297,9 @@ export const questsData: Quest[] = [
     "button": "Verify",
     "conditionType": "verifyPoap",
     "conditionValues": "190840",
-    "supporterId": "254638cdc41580309fe5f80334bfb779",
+    "supporterId": "",
     "poapImageLink": "",
-    "groupId": 4,
-    "districtId": "4"
+    "groupId": 4
   },
   {
     "id": 35,
