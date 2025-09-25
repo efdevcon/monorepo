@@ -158,7 +158,7 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
                     fill="#EE8822"
                   />
                   <path
-                    id="defi-compound"
+                    id="aave"
                     d="M670.292 427.58L664.765 437.118L668.827 439.454L674.354 429.916L670.292 427.58Z"
                     fill="#EE8822"
                   />
@@ -168,7 +168,7 @@ const MapTest = forwardRef<SVGSVGElement, MapTestProps>(
                     fill="#74ACDF"
                   />
                   <path
-                    id="defi-curve"
+                    id="1-inch"
                     d="M664.095 436.758L657.06 424.243H671.297L664.095 436.758Z"
                     fill="#74ACDF"
                   />

@@ -3,7 +3,7 @@ import type { POI } from '@/types/api-data';
 export const poisData: POI[] = [
   {
     "name": "Activation 1",
-    "layerName": "",
+    "layerName": "activation-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -12,7 +12,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Childcare 1",
-    "layerName": "",
+    "layerName": "childcare-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -21,7 +21,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Chill Out Area 1",
-    "layerName": "",
+    "layerName": "chill-out-area-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -30,7 +30,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Co-work 1",
-    "layerName": "",
+    "layerName": "cowork-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -39,7 +39,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Coffee 1",
-    "layerName": "",
+    "layerName": "coffee-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -48,7 +48,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Community Hub 1",
-    "layerName": "",
+    "layerName": "community-hub-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -57,7 +57,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Discussion corner 1",
-    "layerName": "",
+    "layerName": "discussion-corner-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -66,7 +66,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Food & Beverage 1",
-    "layerName": "",
+    "layerName": "food-beverage-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -75,7 +75,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Football Area 1",
-    "layerName": "",
+    "layerName": "football-area-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -84,7 +84,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Info desk 1",
-    "layerName": "",
+    "layerName": "info-desk-1",
     "logo": "",
     "description": "",
     "districtId": "2",
@@ -93,7 +93,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Interview room 1",
-    "layerName": "",
+    "layerName": "interview-room-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -102,7 +102,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Main entrance",
-    "layerName": "",
+    "layerName": "main-entrance",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -111,7 +111,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Meeting Room 1",
-    "layerName": "",
+    "layerName": "meeting-room-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -120,7 +120,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Music Stage 1",
-    "layerName": "",
+    "layerName": "music-stage-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -129,7 +129,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Onramp 1",
-    "layerName": "",
+    "layerName": "onramp-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -138,7 +138,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Open Cinema 1",
-    "layerName": "",
+    "layerName": "open-cinema-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -147,7 +147,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "QR-code 1",
-    "layerName": "",
+    "layerName": "qrcode-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -156,7 +156,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Stage 1",
-    "layerName": "",
+    "layerName": "stage-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -165,7 +165,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "SWAG station 1",
-    "layerName": "",
+    "layerName": "swag-station-1",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -174,7 +174,7 @@ export const poisData: POI[] = [
   },
   {
     "name": "Toilet 1",
-    "layerName": "",
+    "layerName": "toilet-1",
     "logo": "",
     "description": "",
     "districtId": null,
