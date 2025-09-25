@@ -276,7 +276,7 @@ const Event: React.FC<EventProps> = ({
   return (
     <>
       {isDialog && (
-        <Dialog open={selectedEvent?.id === event.id}>
+        <Dialog open>
           <DialogContent
             data-dialog-content
             className={cn(

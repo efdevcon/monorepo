@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '../../supabaseServerClient';
 import { ensureUser } from '../../user-data/ensure-user';
 
-export const POST = async (request: NextRequest, response: NextResponse) => {
+export const POST = async (request: NextRequest) => {
   const supabase = createServerClient();
   /* 4 (continued from attach-email route) - Extract user email provided by auth middleware */
   let userEmail = request.nextUrl.searchParams.get('_user_email');

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServerClient } from '../../supabaseServerClient';
-import { NextApiRequest, NextApiResponse } from 'next';
 
-export const POST = async (request: NextRequest, response: NextResponse) => {
+export const POST = async (request: NextRequest) => {
   const supabase = createServerClient();
   /* 1 - Extract user email provided by auth middleware */
   let userEmail = request.nextUrl.searchParams.get('_user_email');

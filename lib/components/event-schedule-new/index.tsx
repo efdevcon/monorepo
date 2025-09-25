@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
 // import NewSchedule from './calendar'
 import Event from "./event/event";
@@ -11,10 +11,16 @@ import cn from "classnames";
 import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
 import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+
+const customUrlTransforms = [
+  { from: "ethday", to: "84" },
+  { from: "DSS", to: "86" },
+  { from: "soliditysummit", to: "76" },
+];
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
@@ -153,14 +159,16 @@ const computeEventPlacements = (
 };
 
 const NewScheduleIndexInner = ({
-  selectedEvent,
+  // selectedEvent,
   selectedDay,
-  setSelectedEvent,
+  // setSelectedEvent,
   setSelectedDay,
   events,
   viewMode,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
@@ -205,7 +213,8 @@ const NewScheduleIndexInner = ({
 
     if (ethDayEvent) {
       (window as any).selectEthDay = () => {
-        setSelectedEvent(ethDayEvent);
+        // setSelectedEvent(ethDayEvent);
+        window.history.replaceState(null, "", `${pathname}?event=ethday`);
       };
 
       return () => {
@@ -214,38 +223,119 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  // Select event from url params
-  useEffect(() => {
-    let eventParam = searchParams.get("event");
-    const transforms = [
-      { from: "ethday", to: "84" },
-      { from: "DSS", to: "86" },
-      { from: "soliditysummit", to: "76" },
-    ];
+  const resolveEventID = (eventId: string) => {
+    if (!eventId) return "";
+  };
 
-    if (
-      eventParam &&
-      transforms.some((transform) => transform.from === eventParam)
-    ) {
-      eventParam =
-        transforms.find((transform) => transform.from === eventParam)?.to ||
-        null;
-    }
+  const generateEventID = (event: EventType) => {
+    return event.id;
+  };
 
-    if (eventParam && events.length > 0) {
-      // Transform event params to match event ids
-      const event = events.find(
-        (event) =>
-          event.id.toString() === eventParam.toString() ||
-          (event.rkey && event.rkey.toString() === eventParam.toLowerCase())
+  const normalizeEventID = (eventId: string) => {
+    if (!eventId) return "";
+
+    const event = events.find((event) => {
+      let normalizedId = event.id;
+
+      const transformMatch = customUrlTransforms.find(
+        (transform) => transform.from === event.id
       );
 
-      if (event) {
-        setSelectedEvent(event);
-        return;
+      if (transformMatch) {
+        normalizedId = transformMatch.to;
       }
+
+      return (
+        normalizedId.toString() === eventId ||
+        event.rkey?.toLowerCase() === eventId?.toLowerCase()
+      );
+    });
+
+    // Use rkey by default as it it the most semantically reasonable choice
+    let normalizedId = event?.rkey || "";
+
+    const transformMatch = customUrlTransforms.find(
+      (transform) => transform.to.toString() === event?.id
+    );
+
+    // Unless there is a custom url transform (e.g. we want to resolve ?event=ethday to event with id=84)
+    if (transformMatch) {
+      normalizedId = transformMatch.from.toString();
     }
-  }, [searchParams.get("event")]);
+
+    return normalizedId;
+  };
+
+  // We have to track the selected event id because using next router.replace is SLOW (triggers recompile)
+  // Instead, we use window.history.replaceState to update the url
+  // But we'd be out of sync if we didn't cause a rerender, so we keep track of the selected event id in state in parallel
+  // Additionally, we need to keep a unique initial state that is not null in the case that an event is selected via url when component mounts,
+  // otherwise closing the modal would set the event to null (which it already was), preventing a rerender
+  // Phew... that was a lot :^)
+  const [selectedEventId, setSelectedEventId] = useState<
+    string | null | "initial"
+  >("initial");
+
+  const selectedEvent = (() => {
+    if (typeof window === "undefined") return;
+
+    const getEventIdFromUrl = (eventId: string) => {
+      const transformMatch = customUrlTransforms.find(
+        (transform) => transform.from === eventId.toString()
+      );
+
+      if (transformMatch) {
+        eventId = transformMatch.to;
+      }
+
+      return eventId;
+    };
+
+    const currentUrlParams = new URLSearchParams(window.location.search);
+
+    const eventId = getEventIdFromUrl(
+      (selectedEventId === "initial" ? null : selectedEventId) ||
+        currentUrlParams.get("event") ||
+        ""
+    );
+
+    return events.find((event) => {
+      return (
+        event.id.toString() === eventId ||
+        event.rkey?.toLowerCase() === eventId?.toLowerCase()
+      );
+    });
+  })();
+
+  const setSelectedEvent = (event: EventType | null) => {
+    if (typeof window === "undefined") return;
+
+    const currentParams = new URLSearchParams(window.location.search);
+
+    if (!event) {
+      currentParams.delete("event");
+      setSelectedEventId(null);
+    } else {
+      let nextEventId = event.rkey || event.id;
+
+      const transformMatch = customUrlTransforms.find(
+        (transform) => transform.to === event.id.toString()
+      );
+
+      if (transformMatch) {
+        nextEventId = transformMatch.from;
+      }
+
+      currentParams.set("event", nextEventId);
+      setSelectedEventId(nextEventId);
+    }
+
+    // Update URL without any navigation using native History API
+    const paramsString = currentParams.toString();
+    const newUrl = paramsString ? `${pathname}?${paramsString}` : pathname;
+    // window.history.replaceState(null, "", newUrl);
+    router.replace(newUrl);
+  };
 
   const listView = viewMode === "list" && isMobile;
 
@@ -263,7 +353,8 @@ const NewScheduleIndexInner = ({
         <Event
           event={selectedEventForDialog?.event}
           isDialog={true}
-          selectedEvent={selectedEvent}
+          selectedEvent={selectedEvent || null}
+          // selectedEvent={selectedEvent}
           setSelectedEvent={setSelectedEvent}
         />
       )}
@@ -355,7 +446,7 @@ const NewScheduleIndexInner = ({
                         <Event
                           key={`${date}-${placement.event.id}`}
                           event={placement.event}
-                          selectedEvent={selectedEvent}
+                          selectedEvent={selectedEvent || null}
                           setSelectedEvent={setSelectedEvent}
                         />
                       ))}
@@ -448,7 +539,7 @@ const NewScheduleIndexInner = ({
                             ? "!border-neutral-500"
                             : ""
                         }
-                        selectedEvent={selectedEvent}
+                        selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
                       />
                     </div>
