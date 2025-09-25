@@ -201,9 +201,6 @@ export async function getPaidTicketsByEmail(email: string) {
     search: email,
   });
 
-  console.log(`${url}?${params}`, 'params');
-  // params.append('search', email);
-
   const response = await fetch(`${url}?${params}`, {
     method: 'GET',
     headers: {

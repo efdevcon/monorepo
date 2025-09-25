@@ -118,7 +118,7 @@ const Fallback = (props: FallbackProps) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ useEmailAuth: true }),
         }
       );
 
@@ -199,7 +199,7 @@ const Fallback = (props: FallbackProps) => {
                 onClick={handleLogin}
                 disabled={loading}
               >
-                {loading ? "Signing in..." : "Sign In"}
+                {loading ? "Signing in..." : "Connect Email"}
               </VoxelButton>
             ) : (
               <div className="flex flex-col gap-2">
@@ -286,7 +286,7 @@ const Fallback = (props: FallbackProps) => {
           >
             {isLoggedIn && !hasValidTicket
               ? "No Devconnect ticket found, get one below:"
-              : "You need a Devconnect ticket to attend this event."}
+              : "Verify your Devconnect ticket to sign up for this event."}
           </div>
           <VoxelButton
             size="sm"

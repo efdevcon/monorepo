@@ -42,11 +42,29 @@ export const withParcnetProvider = <P extends object>(
 };
 
 export const FallbackWrapper = (props: any) => {
-  if (process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true") {
+  const [useFallback, setUseFallback] = useState(
+    process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true"
+  );
+
+  useEffect(() => {
+    // Save preference to local storage
+    localStorage.setItem("zupass_use_fallback", "true");
+  }, [useFallback]);
+
+  useEffect(() => {
+    // Load preference from local storage
+    const savedUseFallback = localStorage.getItem("zupass_use_fallback");
+
+    if (savedUseFallback) {
+      setUseFallback(savedUseFallback === "true");
+    }
+  }, []);
+
+  if (useFallback) {
     return <Fallback {...props} />;
   }
 
-  return <ZupassConnection {...props} />;
+  return <ZupassConnection {...props} setUseFallback={setUseFallback} />;
 };
 
 function ZupassConnection(props: any) {
@@ -214,6 +232,7 @@ function ZupassConnection(props: any) {
         devconCoupons={devconCoupons}
         setDevconnectCoupons={setDevconnectCoupons}
         setDevconCoupons={setDevconCoupons}
+        setUseFallback={props.setUseFallback}
       />
     </div>
   );
@@ -228,6 +247,7 @@ const EventVoucher = ({
   devconCoupons,
   setDevconnectCoupons,
   setDevconCoupons,
+  setUseFallback,
 }: {
   couponCollection: string;
   tickets: {
@@ -238,6 +258,7 @@ const EventVoucher = ({
   devconCoupons: Record<string, string>;
   setDevconnectCoupons: (coupons: Record<string, string>) => void;
   setDevconCoupons: (coupons: Record<string, string>) => void;
+  setUseFallback: (useFallback: boolean) => void;
 }) => {
   const { connectionState, z } = useParcnetClient();
   const ctx = useContext(ParcnetClientContext as React.Context<any>);
@@ -482,7 +503,16 @@ const EventVoucher = ({
               className="underline text-teal-800"
             >
               support@devconnect.org
-            </a>
+            </a>{" "}
+            or{" "}
+            <a
+              href="#"
+              onClick={() => setUseFallback(true)}
+              className="underline text-teal-800"
+            >
+              click here
+            </a>{" "}
+            to verify with your email directly.
           </div>
         </>
       )}
