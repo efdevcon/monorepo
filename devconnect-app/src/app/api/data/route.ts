@@ -105,7 +105,7 @@ export async function GET(request: NextRequest) {
         name: getPropertyValue('Supporter Name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
-        layerName: getPropertyValue('Layer name'),
+        layerName: getPropertyValue('Layer name') || getPropertyValue('Suggested layer name'),
         POI: getPropertyValue('POI'),
         id: page.id?.replaceAll('-', ''),
         logo: getPropertyValue('Logo'),

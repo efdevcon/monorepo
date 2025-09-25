@@ -10,8 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "fetch-data": "npx tsx scripts/fetch-data.ts",
-    "fetch-quests": "npx tsx scripts/fetch-quests.ts"
+    "d": "npx tsx scripts/fetch-data.ts",
+    "q": "npx tsx scripts/fetch-quests.ts"
   },
   "dependencies": {
     "@base-org/account": "^2.2.0",

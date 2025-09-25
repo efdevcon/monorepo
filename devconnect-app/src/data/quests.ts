@@ -186,7 +186,7 @@ export const questsData: Quest[] = [
   },
   {
     "id": 18,
-    "name": "1inch quest 1",
+    "name": "1inch",
     "order": 0,
     "points": 50,
     "instructions": "...",
@@ -345,20 +345,5 @@ export const questsData: Quest[] = [
     "poapImageLink": "",
     "groupId": 4,
     "districtId": "2"
-  },
-  {
-    "id": 38,
-    "name": "1inch quest 2",
-    "order": 0,
-    "points": 50,
-    "instructions": "",
-    "action": "claim-poap",
-    "button": "Verify",
-    "conditionType": "verifyPoap",
-    "conditionValues": "149598",
-    "supporterId": "254638cdc41580cf8c7ed2b6327a89ad",
-    "poapImageLink": "https://assets.poap.xyz/bf667c97-9df7-444d-8f98-274862714bcb.gif?size=xlarge",
-    "groupId": 4,
-    "districtId": "3"
   }
 ];
