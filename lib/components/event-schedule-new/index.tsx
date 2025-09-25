@@ -72,15 +72,29 @@ const computeEventPlacements = (
     // if (a.isCoreEvent && !b.isCoreEvent) return 1;
     // if (!a.isCoreEvent && b.isCoreEvent) return -1;
 
-    const day1 = moment(a.timeblocks[0].start).dayOfYear();
-    const day2 = moment(b.timeblocks[0].start).dayOfYear();
+    const day1 = moment.utc(a.timeblocks[0].start).dayOfYear();
+    const day2 = moment.utc(b.timeblocks[0].start).dayOfYear();
+    const lastDay1 = moment
+      .utc(a.timeblocks[a.timeblocks.length - 1].end)
+      .dayOfYear();
+    const lastDay2 = moment
+      .utc(b.timeblocks[b.timeblocks.length - 1].end)
+      .dayOfYear();
 
     const isSameDay = day1 === day2;
+    const isSameLastDay = lastDay1 === lastDay2;
+
+    if (isSameLastDay && isSameDay) {
+      if (a.isCoreEvent && !b.isCoreEvent) return -1;
+      if (!a.isCoreEvent && b.isCoreEvent) return 1;
+
+      return a.priority - b.priority;
+    }
 
     if (isSameDay) {
       return (
-        moment(b.timeblocks[b.timeblocks.length - 1].end).valueOf() -
-        moment(a.timeblocks[a.timeblocks.length - 1].end).valueOf()
+        moment.utc(b.timeblocks[b.timeblocks.length - 1].end).valueOf() -
+        moment.utc(a.timeblocks[a.timeblocks.length - 1].end).valueOf()
       );
     }
 
@@ -213,8 +227,7 @@ const NewScheduleIndexInner = ({
 
     if (ethDayEvent) {
       (window as any).selectEthDay = () => {
-        // setSelectedEvent(ethDayEvent);
-        window.history.replaceState(null, "", `${pathname}?event=ethday`);
+        router.replace(`${pathname}?event=ethday`, { scroll: false });
       };
 
       return () => {
@@ -223,55 +236,6 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  const resolveEventID = (eventId: string) => {
-    if (!eventId) return "";
-  };
-
-  const generateEventID = (event: EventType) => {
-    return event.id;
-  };
-
-  const normalizeEventID = (eventId: string) => {
-    if (!eventId) return "";
-
-    const event = events.find((event) => {
-      let normalizedId = event.id;
-
-      const transformMatch = customUrlTransforms.find(
-        (transform) => transform.from === event.id
-      );
-
-      if (transformMatch) {
-        normalizedId = transformMatch.to;
-      }
-
-      return (
-        normalizedId.toString() === eventId ||
-        event.rkey?.toLowerCase() === eventId?.toLowerCase()
-      );
-    });
-
-    // Use rkey by default as it it the most semantically reasonable choice
-    let normalizedId = event?.rkey || "";
-
-    const transformMatch = customUrlTransforms.find(
-      (transform) => transform.to.toString() === event?.id
-    );
-
-    // Unless there is a custom url transform (e.g. we want to resolve ?event=ethday to event with id=84)
-    if (transformMatch) {
-      normalizedId = transformMatch.from.toString();
-    }
-
-    return normalizedId;
-  };
-
-  // We have to track the selected event id because using next router.replace is SLOW (triggers recompile)
-  // Instead, we use window.history.replaceState to update the url
-  // But we'd be out of sync if we didn't cause a rerender, so we keep track of the selected event id in state in parallel
-  // Additionally, we need to keep a unique initial state that is not null in the case that an event is selected via url when component mounts,
-  // otherwise closing the modal would set the event to null (which it already was), preventing a rerender
-  // Phew... that was a lot :^)
   const [selectedEventId, setSelectedEventId] = useState<
     string | null | "initial"
   >("initial");
@@ -333,8 +297,8 @@ const NewScheduleIndexInner = ({
     // Update URL without any navigation using native History API
     const paramsString = currentParams.toString();
     const newUrl = paramsString ? `${pathname}?${paramsString}` : pathname;
-    // window.history.replaceState(null, "", newUrl);
-    router.replace(newUrl);
+
+    router.replace(newUrl, { scroll: false });
   };
 
   const listView = viewMode === "list" && isMobile;
