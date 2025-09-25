@@ -48,7 +48,9 @@ export const FallbackWrapper = (props: any) => {
 
   useEffect(() => {
     // Save preference to local storage
-    localStorage.setItem("zupass_use_fallback", "true");
+    if (useFallback) {
+      localStorage.setItem("zupass_use_fallback", "true");
+    }
   }, [useFallback]);
 
   useEffect(() => {
