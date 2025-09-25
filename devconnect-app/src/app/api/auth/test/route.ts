@@ -1,8 +1,11 @@
 import { createServerClient } from '../supabaseServerClient';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export const GET = async (request: NextRequest, response: NextResponse) => {
-  return NextResponse.json({ message: 'Test route' });
+export const GET = async (
+  request: NextApiRequest,
+  response: NextApiResponse
+) => {
+  return response.json({ message: 'Test route' });
   //   const supabase = createServerClient();
 
   //   // This query should work regardless of RLS if using service role
