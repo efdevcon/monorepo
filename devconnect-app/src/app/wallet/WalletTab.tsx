@@ -9,6 +9,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
 import NetworkModal from '@/components/NetworkModal';
+import WalletModal from '@/components/WalletModal';
 
 // Image assets from local public/images directory
 const imgCheckbox = '/images/imgCheckbox.png';
@@ -75,6 +76,7 @@ export default function WalletTab() {
     avatar: string | null;
   } | null>(null);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
+  const [showWalletModal, setShowWalletModal] = useState(false);
 
   // Local storage key based on address
   const storageKey = address ? `portfolio_${address}` : null;
@@ -359,8 +361,11 @@ export default function WalletTab() {
                 </button>
               </div>
 
-              {/* Wallet Info - centered */}
-              <div className="flex items-center gap-2">
+              {/* Wallet Info - centered with dropdown */}
+              <button
+                onClick={() => setShowWalletModal(true)}
+                className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded transition-colors"
+              >
                 {identity?.avatar ? (
                   <img
                     src={identity.avatar}
@@ -376,7 +381,12 @@ export default function WalletTab() {
                       `${address.slice(0, 6)}...${address.slice(-4)}`
                     : 'Not connected'}
                 </span>
-              </div>
+                <img
+                  src={imgKeyboardArrowDown}
+                  alt="dropdown"
+                  className="w-4 h-4"
+                />
+              </button>
             </div>
             <div className="flex items-center justify-center gap-3">
               <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
@@ -799,6 +809,12 @@ export default function WalletTab() {
       <NetworkModal
         isOpen={showNetworkModal}
         onClose={() => setShowNetworkModal(false)}
+      />
+
+      {/* Wallet Switching Modal */}
+      <WalletModal
+        isOpen={showWalletModal}
+        onClose={() => setShowWalletModal(false)}
       />
     </div>
   );

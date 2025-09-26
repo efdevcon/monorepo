@@ -919,6 +919,7 @@ Issued At: ${issuedAt}`;
     paraConnector,
     primaryConnector,
     primaryConnectorId,
+    connections, // Add connections to expose all active connections
 
     // Account switching
     switchPrimaryConnector,
