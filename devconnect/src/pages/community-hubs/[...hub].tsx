@@ -112,43 +112,45 @@ const CommunityHubsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-slate-100 flex flex-col">
       <SEO
         title="Community Hubs - Devconnect"
         description="Explore various community hubs and specialized groups within the Devconnect ecosystem"
       />
-      
+
       {/* Desktop Layout */}
       <div className="hidden lg:flex flex-1">
         {/* Hub List - Left Sidebar */}
-        <div className="w-80 bg-white shadow-sm border-r flex-shrink-0">
-          <div className="p-4 border-b bg-gray-50">
-            <h2 className="text-lg font-semibold text-gray-900">All Hubs</h2>
-            <p className="text-sm text-gray-600">Click to switch</p>
+        <div className="w-80 bg-slate-200 shadow-sm border-r flex-shrink-0">
+          <div className="p-4 border-b bg-slate-300">
+            <h2 className="text-lg font-semibold text-slate-800">All Hubs</h2>
+            <p className="text-sm text-slate-600">Click to switch</p>
           </div>
-          
+
           <div className="divide-y divide-gray-200 max-h-[calc(100vh-120px)] overflow-y-auto">
             {hubData.map((hub, index) => (
               <button
                 key={hub.slug}
                 onClick={() => handleHubClick(hub)}
                 className={cn(
-                  'w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors',
+                  'w-full px-4 py-3 text-left transition-colors',
                   'flex items-center justify-between',
                   selectedHub?.slug === hub.slug
-                    ? 'bg-blue-50 border-r-4 border-blue-500'
-                    : 'hover:bg-gray-50'
+                    ? 'bg-blue-200 border-r-4 border-blue-600 text-blue-900'
+                    : 'hover:bg-slate-300 text-slate-700 hover:text-slate-900'
                 )}
               >
                 <div className="flex-1">
-                  <div className="font-medium text-sm text-gray-900">
-                    {hub.name}
-                  </div>
+                  <div className="font-medium text-sm">{hub.name}</div>
                 </div>
                 {selectedHub?.slug === hub.slug && (
                   <div className="ml-2">
-                    <svg className="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg className="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fillRule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                   </div>
                 )}
@@ -160,12 +162,7 @@ const CommunityHubsPage = () => {
         {/* Main Content - Iframe */}
         <div className="flex-1 bg-white">
           {selectedHub && (
-            <iframe
-              src={selectedHub.iframeUrl}
-              className="w-full h-full"
-              title={selectedHub.name}
-              loading="lazy"
-            />
+            <iframe src={selectedHub.iframeUrl} className="w-full h-full" title={selectedHub.name} loading="lazy" />
           )}
         </div>
       </div>
@@ -175,33 +172,26 @@ const CommunityHubsPage = () => {
         {/* Main Content - Iframe */}
         <div className="flex-1 bg-white" style={{ height: 'calc(100vh - 80px)' }}>
           {selectedHub && (
-            <iframe
-              src={selectedHub.iframeUrl}
-              className="w-full h-full"
-              title={selectedHub.name}
-              loading="lazy"
-            />
+            <iframe src={selectedHub.iframeUrl} className="w-full h-full" title={selectedHub.name} loading="lazy" />
           )}
         </div>
 
         {/* Hub List - Bottom Horizontal Scroll */}
-        <div className="bg-white border-t shadow-sm">
+        <div className="bg-slate-200 border-t shadow-sm">
           <div className="flex overflow-x-auto pb-4 px-4 space-x-2 pt-4">
             {hubData.map((hub, index) => (
               <button
                 key={hub.slug}
                 onClick={() => handleHubClick(hub)}
                 className={cn(
-                  'flex-shrink-0 px-4 py-3 rounded-lg text-left transition-colors',
-                  'min-w-[200px] max-w-[250px]',
+                  'flex-shrink-0 px-3 py-2 rounded-lg text-left transition-colors',
+                  'whitespace-nowrap',
                   selectedHub?.slug === hub.slug
-                    ? 'bg-blue-50 border-2 border-blue-500'
-                    : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'
+                    ? 'bg-blue-200 border-2 border-blue-600 text-blue-900'
+                    : 'bg-white border-2 border-slate-300 hover:bg-slate-100 text-slate-700 hover:text-slate-900'
                 )}
               >
-                <div className="font-medium text-sm text-gray-900">
-                  {hub.name}
-                </div>
+                <div className="font-medium text-xs">{hub.name}</div>
               </button>
             ))}
           </div>
