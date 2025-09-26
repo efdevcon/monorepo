@@ -15,7 +15,7 @@ import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
 import { eventShops, EventShop } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
-import Link from "lib/components/link/Link";
+import NextLink from "next/link";
 import cn from "classnames";
 import Fallback from "./fallback";
 
@@ -292,6 +292,9 @@ const EventVoucher = ({
   const couponFetchedButNoCoupon =
     connected && couponFetchingComplete && !coupon;
 
+  console.log(connectedWithTicket, "CONNECTED WITH TICKET");
+  console.log(connectedWithCoupon, "CONNECTED WITH COUPON");
+
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return;
     if (fetchingCoupon) return;
@@ -452,10 +455,10 @@ const EventVoucher = ({
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
             {noVoucherNeeded && (
-              <Link
-                href={shopUrl || "#"}
+              <NextLink
+                href={shopUrl || ""}
                 className={cn({
-                  contents: !connectedWithTicket,
+                  "!contents": !connectedWithTicket,
                 })}
               >
                 <VoxelButton
@@ -474,18 +477,18 @@ const EventVoucher = ({
                     </>
                   )}
                 </VoxelButton>
-              </Link>
+              </NextLink>
             )}
 
             {!noVoucherNeeded && (
-              <Link
-                href={coupon || "#"}
+              <NextLink
+                href={coupon || ""}
                 className={cn({
-                  contents: !connectedWithCoupon && !noVoucherNeeded,
+                  "!contents": !connectedWithCoupon,
                 })}
               >
                 <VoxelButton
-                  disabled={!connectedWithCoupon && !noVoucherNeeded}
+                  disabled={!connectedWithCoupon}
                   className={cn(`outline-none w-[150px]`, {
                     "!pointer-events-none": !connectedWithCoupon,
                   })}
@@ -500,7 +503,7 @@ const EventVoucher = ({
                     </>
                   )}
                 </VoxelButton>
-              </Link>
+              </NextLink>
             )}
           </div>
         </div>

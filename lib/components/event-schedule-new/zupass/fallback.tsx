@@ -6,7 +6,7 @@ import Tooltip from "lib/components/tooltip";
 import cn from "classnames";
 import { Session, AuthChangeEvent } from "@supabase/supabase-js";
 import { eventShops } from "./event-shops-list";
-import Link from "lib/components/link/Link";
+import NextLink from "next/link";
 
 interface FallbackProps {
   eventId: string | number;
@@ -248,7 +248,7 @@ const Fallback = (props: FallbackProps) => {
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
             {noVoucherNeeded && (
-              <Link
+              <NextLink
                 href={props.shopUrl || "#"}
                 className={cn({
                   contents: !hasValidTicket,
@@ -270,11 +270,11 @@ const Fallback = (props: FallbackProps) => {
                     </>
                   )}
                 </VoxelButton>
-              </Link>
+              </NextLink>
             )}
 
             {!noVoucherNeeded && (
-              <Link
+              <NextLink
                 href={coupon || "#"}
                 className={cn({
                   contents: !connectedWithCoupon,
@@ -296,7 +296,7 @@ const Fallback = (props: FallbackProps) => {
                     </>
                   )}
                 </VoxelButton>
-              </Link>
+              </NextLink>
             )}
           </div>
         </div>
