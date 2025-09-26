@@ -23,6 +23,7 @@ const customUrlTransforms = [
   { from: "moneyrails", to: "108" },
   { from: "trustless-eil", to: "109" },
   { from: "trustless-interop", to: "110" },
+  { from: "bridge-atlas", to: "91" },
 ];
 
 export type ScheduleProps = {
