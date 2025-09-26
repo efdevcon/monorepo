@@ -807,7 +807,7 @@ export default function AppShowcaseDetail({
           )}
         </div>
       </div>
-      ;{/* District Sections */}
+      {/* District Sections */}
       <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
@@ -1031,7 +1031,7 @@ export default function AppShowcaseDetail({
           );
         })}
       </div>
-      ;{/* Reset Button */}
+      {/* Reset Button */}
       <div className="w-full px-4 pb-4">
         <button
           onClick={handleReset}
