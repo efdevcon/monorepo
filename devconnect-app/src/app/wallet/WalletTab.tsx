@@ -4,8 +4,11 @@ import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getNetworkLogo } from '@/config/networks';
+import { getNetworkLogo, getNetworkConfig } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
+import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
+import NetworkLogo from '@/components/NetworkLogo';
+import NetworkModal from '@/components/NetworkModal';
 
 // Image assets from local public/images directory
 const imgCheckbox = '/images/imgCheckbox.png';
@@ -51,6 +54,8 @@ export default function WalletTab() {
   const { open } = useAppKit();
   const router = useRouter();
   const { address } = useUnifiedConnection();
+  const { currentChainId, getCurrentNetwork, switchToNetwork } =
+    useNetworkSwitcher();
 
   // Portfolio state
   const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
@@ -69,6 +74,7 @@ export default function WalletTab() {
     name: string | null;
     avatar: string | null;
   } | null>(null);
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
 
   // Local storage key based on address
   const storageKey = address ? `portfolio_${address}` : null;
@@ -337,27 +343,40 @@ export default function WalletTab() {
         <div className="space-y-4">
           {/* Profile Info */}
           <div className="space-y-1 text-center">
-            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px]">
-              {identity?.avatar ? (
-                <img
-                  src={identity.avatar}
-                  alt="avatar"
-                  className="w-5 h-5 rounded-full"
-                />
-              ) : (
-                <img src={imgCheckbox} alt="checkbox" className="w-5 h-5" />
-              )}
-              <span className="text-[#242436] text-base font-normal">
-                {address
-                  ? identity?.name ||
-                    `${address.slice(0, 6)}...${address.slice(-4)}`
-                  : 'Not connected'}
-              </span>
-              {/* <img
-                src={imgKeyboardArrowDown}
-                alt="dropdown"
-                className="w-5 h-5"
-              /> */}
+            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px] relative">
+              {/* Network Status - positioned on the left */}
+              <div className="absolute left-0 flex items-center gap-1 px-2 py-1 rounded">
+                <button
+                  onClick={() => setShowNetworkModal(true)}
+                  className="flex items-center gap-1 p-1 hover:bg-gray-100 rounded transition-colors"
+                >
+                  <NetworkLogo chainId={currentChainId} size="sm" />
+                  <img
+                    src={imgKeyboardArrowDown}
+                    alt="dropdown"
+                    className="w-4 h-4"
+                  />
+                </button>
+              </div>
+
+              {/* Wallet Info - centered */}
+              <div className="flex items-center gap-2">
+                {identity?.avatar ? (
+                  <img
+                    src={identity.avatar}
+                    alt="avatar"
+                    className="w-5 h-5 rounded-full"
+                  />
+                ) : (
+                  <img src={imgCheckbox} alt="checkbox" className="w-5 h-5" />
+                )}
+                <span className="text-[#242436] text-base font-normal">
+                  {address
+                    ? identity?.name ||
+                      `${address.slice(0, 6)}...${address.slice(-4)}`
+                    : 'Not connected'}
+                </span>
+              </div>
             </div>
             <div className="flex items-center justify-center gap-3">
               <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
@@ -775,6 +794,12 @@ export default function WalletTab() {
           </div>
         </div>
       </div>
+
+      {/* Network Switching Modal */}
+      <NetworkModal
+        isOpen={showNetworkModal}
+        onClose={() => setShowNetworkModal(false)}
+      />
     </div>
   );
 }
