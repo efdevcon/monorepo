@@ -18,8 +18,8 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsUploaded }) => {
   const [success, setSuccess] = useState<string | null>(null)
 
   const couponToUpload = {
-    url: '/dont-push-coupons/trustless-interop.csv',
-    collection: 'trustless-interop',
+    url: '/dont-push-coupons/trustless-interop-fixed.csv',
+    collection: 'trustless-interop-fixed',
     zk_proof_id: 'Devconnect ARG', // Must match the proof ID used in the perks system
   }
 

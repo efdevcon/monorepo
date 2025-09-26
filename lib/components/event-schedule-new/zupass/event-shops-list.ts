@@ -18,16 +18,16 @@ export const eventShops: EventShop[] = [
     coupon_collection: "dss-voucher-gating",
     zupass_disabled: zupassGatingFallbackOn,
   },
-  // {
-  //   supabase_id: "109",
-  //   zupass_proof_id: "Devconnect ARG",
-  //   coupon_collection: "trustless-eil",
-  //   zupass_disabled: zupassGatingFallbackOn,
-  // },
-  // {
-  //   supabase_id: "110",
-  //   zupass_proof_id: "Devconnect ARG",
-  //   coupon_collection: "trustless-interop",
-  //   zupass_disabled: zupassGatingFallbackOn,
-  // },
+  {
+    supabase_id: "109",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "trustless-eil",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "110",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "trustless-interop-fixed",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
 ];
