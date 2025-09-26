@@ -13,7 +13,7 @@ import VoxelButton from "lib/components/voxel-button/button";
 import { serializePodData } from "./serialize";
 import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
-import { eventShops } from "./event-shops-list";
+import { eventShops, EventShop } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
 import Link from "lib/components/link/Link";
 import cn from "classnames";
@@ -231,7 +231,9 @@ function ZupassConnection(props: any) {
   return (
     <div className="flex flex-col gap-4">
       <EventVoucher
-        couponCollection={shop.coupon_collection}
+        shopUrl={props.shopUrl}
+        shop={shop}
+        couponCollection={shop.coupon_collection || ""}
         tickets={tickets}
         devconnectCoupons={devconnectCoupons}
         devconCoupons={devconCoupons}
@@ -246,6 +248,8 @@ function ZupassConnection(props: any) {
 export default FallbackWrapper;
 
 const EventVoucher = ({
+  shop,
+  shopUrl,
   couponCollection,
   tickets,
   devconnectCoupons,
@@ -254,7 +258,9 @@ const EventVoucher = ({
   setDevconCoupons,
   setUseFallback,
 }: {
+  shop: EventShop;
   couponCollection: string;
+  shopUrl?: string;
   tickets: {
     // devcon: PODData;
     devconnect: PODData;
@@ -280,6 +286,7 @@ const EventVoucher = ({
   const connected = connectionState === ClientConnectionState.CONNECTED;
   const connectedWithNoTicket = connected && !ticketVerified;
   const connectedWithTicket = connected && ticketVerified;
+  const noVoucherNeeded = shop.gate_link_only;
   const connectedWithCoupon = connectedWithTicket && couponStatus?.success;
   const coupon = devconnectCoupons[couponCollection];
   const couponFetchedButNoCoupon =
@@ -349,11 +356,12 @@ const EventVoucher = ({
     if (
       connectionState === ClientConnectionState.CONNECTED &&
       !fetchingCoupon &&
-      !couponFetchingComplete
+      !couponFetchingComplete &&
+      !noVoucherNeeded
     ) {
       requestCoupon();
     }
-  }, [connectionState, fetchingCoupon, ticketVerified]);
+  }, [connectionState, fetchingCoupon, ticketVerified, noVoucherNeeded]);
 
   useEffect(() => {
     if (connectionState === ClientConnectionState.ERROR) {
@@ -443,29 +451,57 @@ const EventVoucher = ({
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <Link
-              href={coupon || "#"}
-              className={cn({
-                contents: !connectedWithCoupon,
-              })}
-            >
-              <VoxelButton
-                disabled={!connectedWithCoupon}
-                className={cn(`outline-none w-[150px]`, {
-                  "!pointer-events-none": !connectedWithCoupon,
+            {noVoucherNeeded && (
+              <Link
+                href={shopUrl || "#"}
+                className={cn({
+                  contents: !connectedWithTicket,
                 })}
-                size="sm"
               >
-                {fetchingCoupon ? (
-                  "Getting voucher..."
-                ) : (
-                  <>
-                    Get ticket
-                    <SquareArrowOutUpRight size={15} />
-                  </>
-                )}
-              </VoxelButton>
-            </Link>
+                <VoxelButton
+                  disabled={!connectedWithTicket}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithTicket,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </Link>
+            )}
+
+            {!noVoucherNeeded && (
+              <Link
+                href={coupon || "#"}
+                className={cn({
+                  contents: !connectedWithCoupon && !noVoucherNeeded,
+                })}
+              >
+                <VoxelButton
+                  disabled={!connectedWithCoupon && !noVoucherNeeded}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithCoupon,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </Link>
+            )}
           </div>
         </div>
       </div>

@@ -8,12 +8,12 @@ import { Event as EventType } from "./model";
 import { format, parseISO } from "date-fns";
 // import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
-import Timeline from "./timeline";
+// import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
-import { eventShops } from "./zupass/event-shops-list";
+// import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
 
 const customUrlTransforms = [
@@ -24,6 +24,9 @@ const customUrlTransforms = [
   { from: "trustless-eil", to: "109" },
   { from: "trustless-interop", to: "110" },
   { from: "bridge-atlas", to: "91" },
+  { from: "worldcup", to: "106" },
+  { from: "regulationday", to: "104" },
+  { from: "agenticzero", to: "71" },
 ];
 
 export type ScheduleProps = {

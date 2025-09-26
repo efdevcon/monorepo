@@ -272,6 +272,9 @@ const Event: React.FC<EventProps> = ({
   const showBuyTickets = event.ticketsUrl;
   const showProgrammingButton = programming && !showMobileProgramming;
   const showTicketTag = event.ticketsAvailable || event.isCoreEvent;
+  const isGated = eventShops.some(
+    (shop) => shop.supabase_id === event.id.toString()
+  );
 
   return (
     <>
@@ -459,7 +462,7 @@ const Event: React.FC<EventProps> = ({
                           </Link>
                         )}
 
-                        {showBuyTickets && (
+                        {showBuyTickets && !isGated && (
                           <Link href={event.ticketsUrl} className="self-start">
                             <VoxelButton
                               color="blue-1"
@@ -519,7 +522,10 @@ const Event: React.FC<EventProps> = ({
                       (shop) => shop.supabase_id === event.id.toString()
                     ) && (
                       <>
-                        <ZupassConnection eventId={event.id} />
+                        <ZupassConnection
+                          eventId={event.id}
+                          shopUrl={event.ticketsUrl || event.eventLink}
+                        />
 
                         <Separator className="my-4" />
                       </>

@@ -10,6 +10,7 @@ import Link from "lib/components/link/Link";
 
 interface FallbackProps {
   eventId: string | number;
+  shopUrl?: string;
   setUseFallback: (useFallback: "email" | "zupass") => void;
 }
 
@@ -52,6 +53,13 @@ const Fallback = (props: FallbackProps) => {
   const shop = findShopById(props.eventId.toString());
 
   if (!shop) return null;
+
+  const isLoggedIn = !!session;
+  const hasValidTicket = isLoggedIn; // In this fallback, we assume logged-in users have valid tickets
+  const connectedWithCoupon = hasValidTicket && couponStatus?.success;
+  const noVoucherNeeded = shop.gate_link_only;
+  const couponFetchedButNoCoupon =
+    isLoggedIn && couponFetchingComplete && !coupon;
 
   const handleLogin = async () => {
     const userEmail = prompt("Please enter your email address:");
@@ -103,6 +111,7 @@ const Fallback = (props: FallbackProps) => {
   };
 
   const requestCoupon = useCallback(async () => {
+    if (noVoucherNeeded) return;
     if (!session?.access_token) return;
     if (fetchingCoupon) return;
 
@@ -113,7 +122,7 @@ const Fallback = (props: FallbackProps) => {
       const couponCollection = shop.coupon_collection;
 
       const response = await fetch(
-        `/api/coupons/${encodeURIComponent(couponCollection)}`,
+        `/api/coupons/${encodeURIComponent(couponCollection || "")}`,
         {
           method: "POST",
           headers: {
@@ -156,16 +165,21 @@ const Fallback = (props: FallbackProps) => {
 
   // Auto-fetch coupon when logged in
   useEffect(() => {
-    if (session && !couponFetchingComplete && !fetchingCoupon) {
+    if (
+      session &&
+      !couponFetchingComplete &&
+      !fetchingCoupon &&
+      !noVoucherNeeded
+    ) {
       requestCoupon();
     }
-  }, [session, couponFetchingComplete, fetchingCoupon, requestCoupon]);
-
-  const isLoggedIn = !!session;
-  const hasValidTicket = isLoggedIn; // In this fallback, we assume logged-in users have valid tickets
-  const connectedWithCoupon = hasValidTicket && couponStatus?.success;
-  const couponFetchedButNoCoupon =
-    isLoggedIn && couponFetchingComplete && !coupon;
+  }, [
+    session,
+    couponFetchingComplete,
+    fetchingCoupon,
+    requestCoupon,
+    noVoucherNeeded,
+  ]);
 
   return (
     <div className="w-full max-w-md mx-auto flex gap-2 flex-col">
@@ -233,29 +247,57 @@ const Fallback = (props: FallbackProps) => {
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <Link
-              href={coupon || "#"}
-              className={cn({
-                contents: !connectedWithCoupon,
-              })}
-            >
-              <VoxelButton
-                disabled={!connectedWithCoupon}
-                className={cn(`outline-none w-[150px]`, {
-                  "!pointer-events-none": !connectedWithCoupon,
+            {noVoucherNeeded && (
+              <Link
+                href={props.shopUrl || "#"}
+                className={cn({
+                  contents: !hasValidTicket,
                 })}
-                size="sm"
               >
-                {fetchingCoupon ? (
-                  "Getting voucher..."
-                ) : (
-                  <>
-                    Get ticket
-                    <SquareArrowOutUpRight size={15} />
-                  </>
-                )}
-              </VoxelButton>
-            </Link>
+                <VoxelButton
+                  disabled={!hasValidTicket}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !hasValidTicket,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </Link>
+            )}
+
+            {!noVoucherNeeded && (
+              <Link
+                href={coupon || "#"}
+                className={cn({
+                  contents: !connectedWithCoupon,
+                })}
+              >
+                <VoxelButton
+                  disabled={!connectedWithCoupon}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithCoupon,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </Link>
+            )}
           </div>
         </div>
       </div>
