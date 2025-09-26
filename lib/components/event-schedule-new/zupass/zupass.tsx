@@ -15,6 +15,7 @@ import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
 import { eventShops } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
+import Link from "lib/components/link/Link";
 import cn from "classnames";
 import Fallback from "./fallback";
 
@@ -42,13 +43,15 @@ export const withParcnetProvider = <P extends object>(
 };
 
 export const FallbackWrapper = (props: any) => {
-  const [useFallback, setUseFallback] = useState(
-    process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true"
+  const [useFallback, setUseFallback] = useState<"email" | "zupass" | null>(
+    null
   );
 
   useEffect(() => {
-    // Save preference to local storage
-    if (useFallback) {
+    if (useFallback === "zupass") {
+      localStorage.setItem("zupass_use_fallback", "false");
+    }
+    if (useFallback === "email") {
       localStorage.setItem("zupass_use_fallback", "true");
     }
   }, [useFallback]);
@@ -58,12 +61,12 @@ export const FallbackWrapper = (props: any) => {
     const savedUseFallback = localStorage.getItem("zupass_use_fallback");
 
     if (savedUseFallback) {
-      setUseFallback(savedUseFallback === "true");
+      setUseFallback(savedUseFallback === "true" ? "email" : "zupass");
     }
   }, []);
 
-  if (useFallback) {
-    return <Fallback {...props} />;
+  if (useFallback === "email") {
+    return <Fallback {...props} setUseFallback={setUseFallback} />;
   }
 
   return <ZupassConnection {...props} setUseFallback={setUseFallback} />;
@@ -260,7 +263,7 @@ const EventVoucher = ({
   devconCoupons: Record<string, string>;
   setDevconnectCoupons: (coupons: Record<string, string>) => void;
   setDevconCoupons: (coupons: Record<string, string>) => void;
-  setUseFallback: (useFallback: boolean) => void;
+  setUseFallback: (useFallback: "email" | "zupass") => void;
 }) => {
   const { connectionState, z } = useParcnetClient();
   const ctx = useContext(ParcnetClientContext as React.Context<any>);
@@ -440,25 +443,29 @@ const EventVoucher = ({
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <VoxelButton
-              disabled={!connectedWithCoupon}
-              className={`outline-none w-[150px]`}
-              size="sm"
-              onClick={() => {
-                if (connectedWithCoupon) {
-                  window.open(coupon, "_blank");
-                }
-              }}
+            <Link
+              href={coupon || "#"}
+              className={cn({
+                contents: !connectedWithCoupon,
+              })}
             >
-              {fetchingCoupon ? (
-                "Getting voucher..."
-              ) : (
-                <>
-                  Get ticket
-                  <SquareArrowOutUpRight size={15} />
-                </>
-              )}
-            </VoxelButton>
+              <VoxelButton
+                disabled={!connectedWithCoupon}
+                className={cn(`outline-none w-[150px]`, {
+                  "!pointer-events-none": !connectedWithCoupon,
+                })}
+                size="sm"
+              >
+                {fetchingCoupon ? (
+                  "Getting voucher..."
+                ) : (
+                  <>
+                    Get ticket
+                    <SquareArrowOutUpRight size={15} />
+                  </>
+                )}
+              </VoxelButton>
+            </Link>
           </div>
         </div>
       </div>
@@ -509,7 +516,7 @@ const EventVoucher = ({
             or{" "}
             <a
               href="#"
-              onClick={() => setUseFallback(true)}
+              onClick={() => setUseFallback("email")}
               className="underline text-teal-800"
             >
               click here

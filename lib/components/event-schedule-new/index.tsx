@@ -20,6 +20,9 @@ const customUrlTransforms = [
   { from: "ethday", to: "84" },
   { from: "DSS", to: "86" },
   { from: "soliditysummit", to: "76" },
+  { from: "moneyrails", to: "108" },
+  { from: "trustless-eil", to: "109" },
+  { from: "trustless-interop", to: "110" },
 ];
 
 export type ScheduleProps = {

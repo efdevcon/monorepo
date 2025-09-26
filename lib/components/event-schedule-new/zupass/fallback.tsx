@@ -6,9 +6,11 @@ import Tooltip from "lib/components/tooltip";
 import cn from "classnames";
 import { Session, AuthChangeEvent } from "@supabase/supabase-js";
 import { eventShops } from "./event-shops-list";
+import Link from "lib/components/link/Link";
 
 interface FallbackProps {
   eventId: string | number;
+  setUseFallback: (useFallback: "email" | "zupass") => void;
 }
 
 const Fallback = (props: FallbackProps) => {
@@ -231,30 +233,29 @@ const Fallback = (props: FallbackProps) => {
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <VoxelButton
-              disabled={!connectedWithCoupon}
-              className={`outline-none w-[150px]`}
-              size="sm"
-              onClick={() => {
-                if (connectedWithCoupon && coupon) {
-                  if (coupon.startsWith("http")) {
-                    window.open(coupon, "_blank");
-                  } else {
-                    // For test responses
-                    alert(coupon);
-                  }
-                }
-              }}
+            <Link
+              href={coupon || "#"}
+              className={cn({
+                contents: !connectedWithCoupon,
+              })}
             >
-              {fetchingCoupon ? (
-                "Getting voucher..."
-              ) : (
-                <>
-                  Get ticket
-                  <SquareArrowOutUpRight size={15} />
-                </>
-              )}
-            </VoxelButton>
+              <VoxelButton
+                disabled={!connectedWithCoupon}
+                className={cn(`outline-none w-[150px]`, {
+                  "!pointer-events-none": !connectedWithCoupon,
+                })}
+                size="sm"
+              >
+                {fetchingCoupon ? (
+                  "Getting voucher..."
+                ) : (
+                  <>
+                    Get ticket
+                    <SquareArrowOutUpRight size={15} />
+                  </>
+                )}
+              </VoxelButton>
+            </Link>
           </div>
         </div>
       </div>
@@ -305,6 +306,14 @@ const Fallback = (props: FallbackProps) => {
               className="underline text-teal-800"
             >
               support@devconnect.org
+            </a>
+            <br />
+            <a
+              href="#"
+              onClick={() => props.setUseFallback("zupass")}
+              className="underline text-teal-800"
+            >
+              Click here to use zupass instead
             </a>
           </div>
         </>
