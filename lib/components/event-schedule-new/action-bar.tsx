@@ -2,17 +2,24 @@ import React from "react";
 import cn from "classnames";
 import { Calendar, Grid, List, ListFilter, Search } from "lucide-react";
 import { FilterSummary } from "./filter";
-import Export from "./export";
+import { Switch } from "lib/components/ui/switch";
+import { Separator } from "../ui/separator";
+// import Export from "./export";
 
 const venueEvents = [
-  { color: "bg-[rgba(255,133,166,1)]", label: "EWF & Cowork" },
-  { color: "bg-[rgba(116,172,223,1)]", label: "Core" },
-  { color: "bg-[rgba(246,180,14,1)]", label: "Partner" },
+  {
+    colors: ["bg-[rgba(255,133,166,1)]", "bg-[rgba(116,172,223,1)]"],
+    label: "World's Fair (La Rural)",
+  },
+  {
+    colors: ["bg-[rgba(136,85,204,1)]"],
+    label: "Community (Buenos Aires)",
+  },
 ];
 
-const communityEvents = [
-  { color: "bg-[rgba(136,85,204,1)]", label: "Community" },
-];
+// const communityEvents = [
+//   { color: "bg-[rgba(136,85,204,1)]", label: "Community" },
+// ];
 
 const ActionBar = ({
   isCommunityCalendar,
@@ -39,14 +46,14 @@ const ActionBar = ({
   viewMode: "list" | "grid";
   setViewMode: (viewMode: "list" | "grid") => void;
 }) => {
-  const categories = isCommunityCalendar ? communityEvents : venueEvents;
+  const categories = venueEvents; // isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
 
   return (
     <div
       data-type="action-bar"
       className={cn(
-        "flex justify-between items-center min-w-full gap-6 overflow-x-auto"
+        "flex justify-between items-center min-w-full gap-3 md:gap-4 overflow-x-auto"
       )}
     >
       <div className="flex items-center gap-2 shrink-0">
@@ -63,13 +70,30 @@ const ActionBar = ({
         {filterActive && <FilterSummary filter={filter} />}
       </div>
 
+      <div className="flex items-center  mr-6 cursor-pointer select-none">
+        <Switch
+          id="airplane-mode"
+          onCheckedChange={() => setFilter("community", !filter.community)}
+          checked={filter.community}
+        />
+        <label
+          htmlFor="airplane-mode"
+          className="font-medium text-sm pl-2 cursor-pointer select-none"
+        >
+          Community
+        </label>
+      </div>
+
       <div className="flex items-center gap-4 shrink-0 grow lg:grow-0 hidden md:flex">
         {categories.map((category) => (
           <div
             key={category.label}
             className={cn("text-sm font-medium flex items-center gap-1.5")}
           >
-            <div className={cn("w-[14px] h-[14px]", category.color)} />
+            {category.colors?.map((color) => (
+              <div className={cn("w-[14px] h-[14px]", color)} key={color} />
+            ))}
+
             {category.label}
           </div>
         ))}
@@ -78,23 +102,23 @@ const ActionBar = ({
       <div className="flex md:hidden items-center gap-2 shrink-0 grow justify-end">
         <div
           className={cn(
-            "text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2",
+            "text-sm h-[40px] w-[40px] font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
             viewMode === "list" && "bg-blue-50"
           )}
           onClick={() => setViewMode("list")}
         >
-          <List size={13} className={viewMode === "list" ? "" : ""} />
-          List
+          <List size={17} className={viewMode === "list" ? "" : ""} />
+          {/* List */}
         </div>
         <div
           className={cn(
-            "text-sm font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 p-1 px-2",
+            "text-sm h-[40px] w-[40px] font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
             viewMode === "grid" && "bg-blue-50"
           )}
           onClick={() => setViewMode("grid")}
         >
-          <Calendar size={13} className={viewMode === "grid" ? "" : ""} />
-          Calendar
+          <Calendar size={17} className={viewMode === "grid" ? "" : ""} />
+          {/* Calendar */}
         </div>
       </div>
 

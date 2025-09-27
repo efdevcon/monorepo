@@ -44,7 +44,7 @@ const Argentina = (props: any) => {
       </div>
       <div className="flex flex-col text-black mt-6">
         <CalendarLayout
-          events={events.filter((event: any) => event.isCoreEvent)}
+          events={events} // .filter((event: any) => event.isCoreEvent)}
           isCommunityCalendar={false}
           selectedEvent={selectedEvent}
           selectedDay={selectedDay}
@@ -52,7 +52,7 @@ const Argentina = (props: any) => {
           setSelectedDay={setSelectedDay}
         />
 
-        <div className="section">
+        {/* <div className="section">
           <Separator className="my-8 mt-12" />
         </div>
 
@@ -63,7 +63,7 @@ const Argentina = (props: any) => {
           selectedDay={selectedDay}
           setSelectedEvent={setSelectedEvent}
           setSelectedDay={setSelectedDay}
-        />
+        /> */}
 
         <div className="section mb-8 mt-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 my-4 bg-[rgba(116,172,223,0.1)] p-4 md:p-12">
