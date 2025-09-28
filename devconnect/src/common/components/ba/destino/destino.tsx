@@ -20,6 +20,7 @@ import DestinoLogo from './images/destino-logo.png'
 import { Popover, PopoverContent, PopoverTrigger } from 'lib/components/ui/popover'
 import css from 'styled-jsx/css'
 import Link from 'next/link'
+import { Separator } from 'lib/components/ui/separator'
 
 // https://docs.google.com/document/d/1v5vm0fDMS_5L2uDvuwjkahOcoy8-khFKTi3rGOsfQEw/edit?pli=1&tab=t.0#heading=h.3h638filjl7g
 
@@ -96,15 +97,16 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
     >
       <Hero content={content} />
 
-      <div className={cn('flex flex-col justify-center w-full relative overflow-hidden pb-24')}>
+      <div className={cn('flex flex-col justify-center w-full relative overflow-hidden')}>
         <SecondSection content={content} />
+        {/* <RichText content={content.destino_devconnect_about} /> */}
         <ExtraSectionAddedLater />
-        <ThirdSection content={content} />
-        <FourthSection content={content} />
+        {/* <ThirdSection content={content} /> */}
+        {/* <FourthSection content={content} /> */}
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-4 my-16 mb-24">
-        <p className="text-white text-xl font-semibold">Ready to become an EWFren? Apply now!</p>
+      {/* <div className="flex flex-col items-center justify-center gap-4 my-16 mb-24">
+        <p className="text-white text-xl font-semibold">Ready to become a Devconnect Fren? Apply now!</p>
         <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
           <button
             className={cn(
@@ -117,10 +119,11 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
             </div>
           </button>
         </Link>
-      </div>
+      </div> */}
 
-      <div className="flex flex-col items-center justify-center gap-0 mb-24 overflow-hidden bg-white/10" id="events">
+      <div className="flex flex-col" id="events">
         <HowToApply content={content} />
+        {/* <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] h-[152px] outline-none')} /> */}
         <EventsList content={content} events={events} />
       </div>
     </div>

@@ -27,6 +27,7 @@ import Missing from 'assets/images/404.png'
 import RichText from 'lib/components/tina-cms/RichText'
 import Link from 'common/components/link/Link'
 import dynamic from 'next/dynamic'
+import { Separator } from 'lib/components/ui/separator'
 
 const EventsTable = dynamic(() => import('./event-table').then(mod => mod.EventsTable), { ssr: false })
 
@@ -51,7 +52,7 @@ export const FirstSection = ({ content }: { content: any }) => {
             <RichText content={content.intro.destino_devconnect_intro} className={styles['cms-styling']} />
           </div>
 
-          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+          <Link href="https://ef-events.notion.site/EWFrens-Program-Destino-Support-278638cdc4158077837dc3de2bd471ae">
             <button
               className={cn(
                 'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
@@ -369,13 +370,13 @@ const Platform = ({
             reverse ? 'scale-x-[-1] !translate-x-[-65%] right-1/2 left-auto' : ''
           )}
         />
-        {showSign && (
+        {/* {showSign && (
           <Image
             src={Sign}
             alt="Sign"
             className="absolute z-[12] top-0 right-0 lg:translate-x-[-100%] xl:translate-x-[-140%] 2xl:translate-x-[-160%] w-[120px] translate-y-[70%] hidden xl:block"
           />
-        )}
+        )} */}
       </TriangleSection>
       <TriangleSection
         className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles[grassColor])}
@@ -399,19 +400,19 @@ export const SecondSection = ({ content }: { content: any }) => {
         triangleColorShade2={shade2}
         sectionContentId="second-section-content"
         sectionId="second-section"
-        guanacoSpeechString="Are you an EWFren?"
+        guanacoSpeechString="Are you a Devconnect Fren?"
         grassColor="grass"
         showSign
       >
         <div
           className={cn(
-            'flex flex-col gap-0 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[15%] xl:translate-y-[26%] 2xl:translate-y-[45%] lg:h-[500px] xl:h-[360px]'
+            'flex flex-col gap-0 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[15%] xl:translate-y-[40%]  lg:h-[500px] xl:h-[270px] 12xl:translate-y-[45%] 2xl:h-[230px] 2xl:translate-y-[60%]'
           )}
         >
-          <div className="text-white text-3xl font-semibold w-[500px] max-w-[95%] shrink-0 mb-4 ">
+          <div className="text-white text-3xl font-semibold w-[600px] max-w-[95%] shrink-0 mb-4 ">
             {content.destino_devconnect_about.title}
           </div>
-          <div className="flex flex-col gap-4 w-[500px] max-w-[95%] relative text-lg shrink-0">
+          <div className="flex flex-col gap-4 w-[600px] max-w-[95%] relative text-lg shrink-0">
             <Image
               src={Tree}
               alt="Tree"
@@ -431,7 +432,7 @@ export const SecondSection = ({ content }: { content: any }) => {
             <Image
               src={Tree}
               alt="Tree"
-              className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
+              className="absolute top-0 right-0 translate-x-[120%] translate-y-[30%] scale-[0.8]"
             />
 
             <RichText content={content.destino_devconnect_about.description} />
@@ -579,69 +580,90 @@ export const FourthSection = ({ content }: { content: any }) => {
 // Epic naming, but this is a mess anyway...
 export const ExtraSectionAddedLater = () => {
   return (
-    <div className="z-[9]  relative pt-20">
-      <div className={cn('absolute bottom-0 left-0 right-0 h-[3000px] bg-[#535388]')}>
+    <div className="z-[9]  relative">
+      {/* <div className={cn('absolute bottom-0 left-0 right-0 h-[3000px] bg-[#535388]')}>
         <></>
-      </div>
+      </div> */}
       <div
-        className="flex flex-col items-center justify-center gap-4 relative bg-[#535388]"
+        className="flex flex-col items-center justify-center gap-4 relative" // bg-[#535388]"
         // style={{
         //   maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
         //   WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
         // }}
       >
-        <div className="flex flex-col items-center justify-center gap-6 w-[800px] max-w-[95%] text-center z-[1] py-16">
-          <h2 className="text-white text-3xl font-semibold mb-4">What We're Looking for in the EWFren Program</h2>
+        <div className="section">
+          <div className="flex flex-col items-center justify-center z-[1] py-16 gap-8 pt-40">
+            <h2 className="text-white text-2xl lg:text-3xl font-medium mb-4 text-center">
+              Who we're looking for in the Devconnect Fren program
+            </h2>
 
-          <div className="text-yellow-400 text-lg font-medium">Request Tickets and Discounts</div>
+            {/* <div className="text-yellow-400 text-lg font-medium">Request Tickets and Discounts</div> */}
 
-          <div className="space-y-4 text-white text-base leading-relaxed">
-            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
-              <strong>Universities:</strong> Invite your university - you can even organize a class or workshop inside
-              La Rural!
-            </div>
-
-            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
-              <strong>Startups:</strong> Apply with your startup group - we offer large, innovative coworking spaces,
-              including quiet areas and meeting rooms.
-            </div>
-
-            <div className="bg-white/10 py-4 px-2 backdrop-blur-sm rounded-lg">
-              <strong>Communities:</strong> Apply with your community to be part of the experience and connect with the
-              Ethereum ecosystem.
-            </div>
-          </div>
-
-          <div className="p-6">
-            <h3 className="text-yellow-400 text-xl font-semibold mb-3">💰 Scholarships Available</h3>
-            <p className="text-white text-lg font-medium mb-3">
-              Up to <span className="text-yellow-400 font-bold">$1,000 USD in funding support</span> is available for
-              initiatives that help groups attend the Ethereum World Fair.
-            </p>
-            <p className="text-white/90 text-sm italic">
-              This can include transportation from distant locations, support with travel costs, or partial scholarships
-              for builders attending their first Devconnect.
-            </p>
-
-            <p className="text-white/90 text-sm italic mt-2">
-              Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is
-              intended for communities or initiatives that can collectively support multiple participants attending the
-              Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
-            </p>
-          </div>
-
-          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
-            <button
-              className={cn(
-                'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
-                styles['tiled-button']
-              )}
-            >
-              <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white text-base leading-relaxed text-center text-sm">
+              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
+                <div className="flex flex-col items-center justify-center gap-1">
+                  <span className="text-[#eca159] font-medium text-lg">Universities</span>
+                  Invite your university - you can even organize a class or workshop inside La Rural!
+                </div>
               </div>
-            </button>
-          </Link>
+              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
+                <div className="flex flex-col items-center justify-center gap-1">
+                  <span className="text-[#eca159] font-medium text-lg">Startups</span>
+                  Apply with your startup group - we offer large, innovative coworking spaces, including quiet areas and
+                  meeting rooms.
+                </div>
+              </div>
+              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
+                <div className="flex flex-col items-center justify-center gap-1">
+                  <span className="text-[#eca159] font-medium text-lg">Communities</span>
+                  Apply with your community to be part of the experience and connect with the Ethereum ecosystem.
+                </div>
+              </div>
+            </div>
+
+            <div className="backdrop-blur-sm flex my-4 shadow-lg">
+              <div
+                className="self-start w-auto bg-slate-900  p-4 px-8 text-center"
+                style={{
+                  borderImage:
+                    'linear-gradient(137.84deg, #F6B613 12.86%, #FF85A6 40.77%, #9894FF 67.87%, #33ccff 97.26%)',
+                  borderImageSlice: 1,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
+              >
+                <span className="font-medium">Scholarships Available </span> — Up to{' '}
+                <span className="text-[#eca159] font-medium">$1,000 USD in funding support</span> is available for
+                initiatives that help groups attend the Ethereum World Fair.
+              </div>
+            </div>
+
+            <div className="text-center">
+              <p className="text-white/90 text-sm">
+                Support can include transportation from distant locations, assistance with travel costs, or partial
+                scholarships for builders attending their first Devconnect.
+              </p>
+
+              <p className="text-white/90 text-sm mt-2">
+                Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is
+                intended for communities or initiatives that can collectively support multiple participants attending
+                the Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
+              </p>
+            </div>
+
+            <Link href="https://ef-events.notion.site/EWFrens-Program-Destino-Support-278638cdc4158077837dc3de2bd471ae">
+              <button
+                className={cn(
+                  'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                  styles['tiled-button']
+                )}
+              >
+                <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                  {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+                </div>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
@@ -650,16 +672,18 @@ export const ExtraSectionAddedLater = () => {
 
 export const HowToApply = ({ content }: { content: any }) => {
   return (
-    <div className="section mt-24">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-0 w-[600px] max-w-[95%] text-center">
-          <div className="text-white text-3xl font-semibold mb-8">
+    <div className="section">
+      <Separator className="mb-12 !bg-[#b9b9b9]" />
+      <div className="flex gap-4">
+        <div className="flex flex-col gap-0 w-[900px]">
+          <div className={cn('text-2xl lg:text-3xl font-medium mb-4 self-start', styles['destino-rainbow'])}>
             {content.destino_devconnect_where_to_apply.title}
           </div>
           <div className="text-white">{content.destino_devconnect_where_to_apply.description}</div>
-          <div className="text-neutral-300 text-sm opacity-90 mb-8 mt-4 leading-tight">
+          <div className="text-sm mb-8 mt-4 leading-tight text-[#eca159]">
             {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
+
           {/* <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
@@ -672,6 +696,9 @@ export const HowToApply = ({ content }: { content: any }) => {
               </div>
             </button>
           </Link> */}
+        </div>
+        <div className="grow justify-end pr-16 hidden lg:flex">
+          <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] outline-none')} />
         </div>
       </div>
     </div>
