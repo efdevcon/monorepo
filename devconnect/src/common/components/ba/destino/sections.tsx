@@ -621,9 +621,9 @@ export const ExtraSectionAddedLater = () => {
               </div>
             </div>
 
-            <div className="backdrop-blur-sm flex my-4 shadow-lg">
+            <div className="backdrop-blur-sm flex mt-4 shadow-lg">
               <div
-                className="self-start w-auto bg-slate-900  p-4 px-8 text-center"
+                className="self-start w-auto bg-slate-900 p-6 px-8 text-center"
                 style={{
                   borderImage:
                     'linear-gradient(137.84deg, #F6B613 12.86%, #FF85A6 40.77%, #9894FF 67.87%, #33ccff 97.26%)',
@@ -635,6 +635,13 @@ export const ExtraSectionAddedLater = () => {
                 <span className="font-medium">Scholarships Available </span> — Up to{' '}
                 <span className="text-[#eca159] font-medium">$1,000 USD in funding support</span> is available for
                 initiatives that help groups attend the Ethereum World Fair.
+                <br />
+                <br />
+                <span className="text-sm">
+                  <span className="text-[#eca159]">You also get:</span> free tickets, and discounts for your community
+                  or team, visibility across official Devconnect channels, and an on-chain certificate as an official
+                  Devconnect Fren
+                </span>
               </div>
             </div>
 
