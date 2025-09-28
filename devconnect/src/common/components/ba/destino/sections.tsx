@@ -60,7 +60,7 @@ export const FirstSection = ({ content }: { content: any }) => {
               )}
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+                {(globalThis as any).translations.learn_more || 'Apply Now'}
               </div>
             </button>
           </Link>
@@ -638,8 +638,8 @@ export const ExtraSectionAddedLater = () => {
                 <br />
                 <br />
                 <span className="text-sm">
-                  <span className="text-[#eca159]">You also get:</span> free tickets, and discounts for your community
-                  or team, visibility across official Devconnect channels, and an on-chain certificate as an official
+                  <span className="text-[#eca159]">You also get:</span> free tickets and discounts for your community or
+                  team, visibility across official Devconnect channels, and an on-chain certificate as an official
                   Devconnect Fren
                 </span>
               </div>
@@ -658,15 +658,25 @@ export const ExtraSectionAddedLater = () => {
               </p>
             </div>
 
+            <div className="text-white/90 mt-2 text-xl text-center flex flex-col gap-2">
+              <div>Request Tickets & Discounts: Until tickets are sold out</div>
+              <div>
+                Scholarship applications open: <span className="font-medium text-[#eca159]">October 15</span>
+              </div>
+              <div>
+                Scholarship announcements: <span className="font-medium text-[#eca159]">October 30</span>
+              </div>
+            </div>
+
             <Link href="https://ef-events.notion.site/EWFrens-Program-Destino-Support-278638cdc4158077837dc3de2bd471ae">
               <button
                 className={cn(
-                  'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                  'border-solid border-b-[6px] group px-8 py-2 mt-4 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                   styles['tiled-button']
                 )}
               >
                 <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                  {(globalThis as any).translations.apply_now_tickets || 'Apply For Tickets'}
+                  {(globalThis as any).translations.apply_now_tickets || 'Apply Now'}
                 </div>
               </button>
             </Link>
