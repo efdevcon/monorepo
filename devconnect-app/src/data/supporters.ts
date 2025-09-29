@@ -9,6 +9,14 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "6",
     "locationId": "5"
   },
+  "25d638cdc41580279504c4b4182f7f7b": {
+    "name": "0xbow / Privacy Pools",
+    "layerName": "0xbow-privacy-pools",
+    "logo": "",
+    "description": "",
+    "districtId": "7",
+    "locationId": "4"
+  },
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
     "layerName": "1inch",
@@ -496,14 +504,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "8",
     "locationId": "2"
-  },
-  "25d638cdc41580279504c4b4182f7f7b": {
-    "name": "Privacy 6",
-    "layerName": "privacy-6",
-    "logo": "",
-    "description": "",
-    "districtId": "7",
-    "locationId": "4"
   },
   "25d638cdc415803ba79cfdf2f7353ded": {
     "name": "Privacy 7",

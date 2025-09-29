@@ -174,9 +174,9 @@ export default function AppShowcaseDetail({
       }
     });
 
-    // Sort quests within each district by order
+    // Sort quests within each district alphabetically
     Object.keys(grouped).forEach((districtId) => {
-      grouped[districtId].sort((a, b) => a.order - b.order);
+      grouped[districtId].sort((a, b) => a.name.localeCompare(b.name));
     });
 
     return grouped;
