@@ -8,7 +8,7 @@ import { fetchAuth } from '@/services/apiClient';
 import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
-import { Separator } from 'lib/components/ui/separator';
+// import { Separator } from 'lib/components/ui/separator';
 import { useUserAppData } from '@/hooks/useUserAppData';
 
 interface Ticket {
@@ -296,11 +296,11 @@ export default function TicketTab() {
             ))}
 
           <div className="flex gap-4 items-center space-evenly my-4">
-            <Separator className="w-auto shrink grow" />
+            <div className="w-auto shrink grow h-px bg-gray-300" />
             <p className="text-sm text-gray-600 shrink-0">
               Your connected email addresses
             </p>
-            <Separator className="w-auto shrink grow" />
+            <div className="w-auto shrink grow h-px bg-gray-300" />
           </div>
 
           <div className="flex flex-col text-center text-xs font-medium">
@@ -313,11 +313,11 @@ export default function TicketTab() {
           </div>
 
           <div className="flex gap-4 items-center space-evenly mt-4">
-            <Separator className="w-auto shrink grow" />
+            <div className="w-auto shrink grow h-px bg-gray-300" />
             <p className="text-sm text-gray-600 shrink-0">
               Is your ticket on a different email address?
             </p>
-            <Separator className="w-auto shrink grow" />
+            <div className="w-auto shrink grow h-px bg-gray-300" />
           </div>
 
           <div className="flex  mt-4 flex-col sm:justify-center sm:items-center">
