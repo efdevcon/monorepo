@@ -10,6 +10,8 @@ import { supportersData } from '@/data/supporters';
 import type { Quest, QuestGroup } from '@/types';
 import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
+import { executeQuestAction } from '@/utils/quest-actions';
+import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: string) => {
@@ -142,6 +144,7 @@ export default function AppShowcaseDetail({
   updateQuestStatus,
 }: AppShowcaseDetailProps) {
   const router = useRouter();
+  const { address } = useUnifiedConnection();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(
@@ -421,12 +424,36 @@ export default function AppShowcaseDetail({
     }
   };
 
-  const handleQuestAction = (quest: Quest) => {
+  const handleQuestAction = async (quest: Quest) => {
     const currentStatus = getQuestStatus(quest);
     if (currentStatus === 'completed') return;
 
-    // Go directly from locked to completed
-    updateQuestStatus(quest.id.toString(), 'completed', false);
+    try {
+      // Get user addresses for POAP verification
+      const userAddresses = address ? [address] : [];
+
+      // Execute the quest action based on condition type and values
+      const isCompleted = await executeQuestAction(
+        quest.id.toString(),
+        quest.conditionType as any, // Type assertion for QuestConditionType
+        quest.conditionValues,
+        userAddresses
+      );
+
+      if (isCompleted) {
+        // Update quest status to completed if the action was successful
+        updateQuestStatus(quest.id.toString(), 'completed', false);
+      } else {
+        // Quest action failed - you might want to show an error message
+        // alert(`Quest action failed for quest ${quest.id}: ${quest.name}`);
+      }
+    } catch (error) {
+      // Handle any errors that occur during quest action execution
+      console.error(
+        `Error executing quest action for quest ${quest.id}:`,
+        error
+      );
+    }
   };
 
   const handleAboutClick = (quest: Quest) => {

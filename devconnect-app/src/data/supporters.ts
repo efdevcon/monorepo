@@ -20,7 +20,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
     "layerName": "1inch",
-    "logo": "https://i.postimg.cc/vBJ04z6f/apple-touch-icon.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-09-29T19-12-20-661Z-1inch.png",
     "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
     "districtId": "3",
     "locationId": "2"
