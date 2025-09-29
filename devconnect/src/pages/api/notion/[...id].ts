@@ -146,7 +146,7 @@ async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Pr
         const supporterData = supporterPage as any;
 
         // Extract supporter name/title like in organization API
-        return supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
+        return supporterData.properties?.['Name']?.title?.[0]?.plain_text ||
           supporterData.properties?.Name?.title?.[0]?.plain_text ||
           supporterData.properties?.Title?.title?.[0]?.plain_text ||
           'Unknown Supporter';
@@ -493,7 +493,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     if (supporter) {
       fields.push({
         name: 'Supporter name',
-        value: (page.properties?.['Supporter Name'] as any)?.title?.[0]?.plain_text || '',
+        value: (page.properties?.['Name'] as any)?.title?.[0]?.plain_text || '',
         type: 'text',
         mode: 'read',
         order: 0,

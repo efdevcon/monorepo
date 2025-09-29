@@ -10,15 +10,15 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "5"
   },
   "254638cdc41580cf8c7ed2b6327a89ad": {
-    "name": "1 inch",
-    "layerName": "1-inch",
+    "name": "1inch",
+    "layerName": "1inch",
     "logo": "https://i.postimg.cc/vBJ04z6f/apple-touch-icon.png",
     "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
     "districtId": "3",
     "locationId": "2"
   },
   "254638cdc41580fc975fe3023c8f17f0": {
-    "name": "AAVE",
+    "name": "Aave",
     "layerName": "aave",
     "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png",
     "description": "Earn, borrow, save, and swap. Trusted by millions of users.",
@@ -148,7 +148,7 @@ export const supportersData: Record<string, Supporter> = {
   "24e638cdc41580c1b782c738fb082f8d": {
     "name": "Celo",
     "layerName": "celo",
-    "logo": "",
+    "logo": "https://storage.googleapis.com/zapper-fi-assets/tokens/celo/0x471ece3750da237f93b8e339c536989b8978a438.png",
     "description": "",
     "districtId": "6",
     "locationId": "5"
@@ -172,8 +172,8 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580aa8942da33c92a78de": {
     "name": "CoW Swap",
     "layerName": "cow-swap",
-    "logo": "",
-    "description": "",
+    "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2Fcow-swap.png",
+    "description": "CoW Swap finds the lowest prices from all decentralized exchanges and DEX aggregators & saves you more with p2p trading and protection from MEV.",
     "districtId": "3",
     "locationId": "2"
   },
@@ -265,13 +265,13 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "8",
     "locationId": "2"
   },
-  "277638cdc41580c3b573d427ba91668e": {
+  "254638cdc415800680e4ccda38fe7b85": {
     "name": "Fileverse",
     "layerName": "fileverse",
     "logo": "",
     "description": "",
-    "districtId": "8",
-    "locationId": "2"
+    "districtId": "7",
+    "locationId": "4"
   },
   "25d638cdc4158070972cfd5538ea6247": {
     "name": "Fluidkey",
@@ -312,14 +312,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "8",
     "locationId": "2"
-  },
-  "25d638cdc41580768f46cf523c3800c1": {
-    "name": "Gaming 3",
-    "layerName": "gaming-3",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "4"
   },
   "25d638cdc41580b9b52dd040fe367989": {
     "name": "Gaming 4",
@@ -368,22 +360,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "3",
     "locationId": null
-  },
-  "276638cdc415808a8954e8a50298c0fd": {
-    "name": "H&W 10",
-    "layerName": "hw-10",
-    "logo": "",
-    "description": "",
-    "districtId": "5",
-    "locationId": null
-  },
-  "25d638cdc41580ad973fd55a15a7bfb1": {
-    "name": "H&W 9",
-    "layerName": "hw-9",
-    "logo": "",
-    "description": "",
-    "districtId": "5",
-    "locationId": "2"
   },
   "25d638cdc415809c97ffec49ceeb7573": {
     "name": "Hats Protocol",
@@ -569,6 +545,14 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "7",
     "locationId": "4"
   },
+  "25d638cdc41580768f46cf523c3800c1": {
+    "name": "Realms",
+    "layerName": "realms",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": "4"
+  },
   "25d638cdc41580c79339dfd968171fbc": {
     "name": "Replicats",
     "layerName": "replicats",
@@ -657,14 +641,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "2"
   },
-  "254638cdc41580728609e47146c74fa0": {
-    "name": "Wonderland",
-    "layerName": "wonderland",
-    "logo": "",
-    "description": "",
-    "districtId": "6",
-    "locationId": "5"
-  },
   "254638cdc41580aaade0d21fa14a6dd6": {
     "name": "World",
     "layerName": "world",
@@ -673,13 +649,13 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "6",
     "locationId": "5"
   },
-  "254638cdc415800680e4ccda38fe7b85": {
+  "277638cdc41580c3b573d427ba91668e": {
     "name": "XMTP",
     "layerName": "xmtp",
     "logo": "",
     "description": "",
-    "districtId": "7",
-    "locationId": "4"
+    "districtId": "8",
+    "locationId": "2"
   },
   "25d638cdc415803cbc84cffd81127c5d": {
     "name": "ZKP2P",
@@ -696,5 +672,13 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "7",
     "locationId": "4"
+  },
+  "279638cdc41580a09c58f82b8156d26a": {
+    "name": "Zora",
+    "layerName": "zora",
+    "logo": "",
+    "description": "",
+    "districtId": "8",
+    "locationId": null
   }
 };
