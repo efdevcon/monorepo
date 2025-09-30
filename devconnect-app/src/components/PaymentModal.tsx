@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
 import { X, Wallet, Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
@@ -100,6 +100,7 @@ export default function PaymentModal({
     null
   );
   const [isAddingTransaction, setIsAddingTransaction] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // PaymentForm state
   const [recipient, setRecipient] = useState('');
@@ -107,17 +108,57 @@ export default function PaymentModal({
   const [isRecipientValid, setIsRecipientValid] = useState(false);
   const [isAmountValid, setIsAmountValid] = useState(true);
   const [isBasePayLoading, setIsBasePayLoading] = useState(false);
-  const [selectedToken, setSelectedToken] = useState('USDC');
-  const [selectedChainId, setSelectedChainId] = useState(8453); // Base
+  // Load selected token and chain from localStorage, with fallbacks
+  const [selectedToken, setSelectedToken] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('selectedToken') || 'USDC';
+    }
+    return 'USDC';
+  });
+  const [selectedChainId, setSelectedChainId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return parseInt(localStorage.getItem('selectedChainId') || '8453');
+    }
+    return 8453; // Base
+  });
 
   const productUrl = `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/products/688ba8db51fc6c100f32cd63`;
+
+  // Helper functions to update localStorage and state
+  const updateSelectedToken = useCallback((token: string) => {
+    setSelectedToken(token);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedToken', token);
+    }
+  }, []);
+
+  const updateSelectedChainId = useCallback((chainId: number) => {
+    setSelectedChainId(chainId);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedChainId', chainId.toString());
+    }
+  }, []);
 
   // Function to fetch payment details from payment-status API
   const fetchPaymentDetails = async (paymentRequestId: string) => {
     try {
-      const response = await fetch(`/api/payment-status/${paymentRequestId}`);
+      // Add timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
+      const response = await fetch(`/api/payment-status/${paymentRequestId}`, {
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
+        if (response.status === 504) {
+          throw new Error(
+            'Payment service is temporarily unavailable. Please try again.'
+          );
+        }
+
         const errorData = await response.json();
         throw new Error(
           errorData.error || `HTTP error! status: ${response.status}`
@@ -181,12 +222,24 @@ export default function PaymentModal({
 
   // Handle network changes - for Para wallets, network is fixed to Base
   const handleNetworkChange = async (newChainId: number) => {
+    console.log('handleNetworkChange called with:', newChainId);
+    console.log('Current selectedToken:', selectedToken);
+    console.log('Current selectedChainId:', selectedChainId);
+
     // For Para wallets, network is always Base, so don't allow changes
     if (isPara) {
+      console.log('Para wallet - network change blocked');
       return;
     }
 
-    setSelectedChainId(newChainId);
+    updateSelectedChainId(newChainId);
+    console.log('Updated selectedChainId to:', newChainId);
+
+    // Update paymentData with the new chainId immediately
+    setPaymentData((prev) => ({
+      ...prev,
+      chainId: newChainId,
+    }));
 
     // Check if a transaction already exists for this token/chain combination
     if (paymentRequestId && paymentDetails.transactions) {
@@ -199,6 +252,10 @@ export default function PaymentModal({
         console.log(
           `No transaction found for ${selectedToken} on chain ${newChainId}, creating new transaction`
         );
+        console.log('About to create transaction with:', {
+          selectedToken,
+          newChainId,
+        });
         setIsAddingTransaction(true);
         try {
           const success = await addTransactionToPaymentRequest(
@@ -210,9 +267,10 @@ export default function PaymentModal({
               `Added ${selectedToken} transaction to payment request`
             );
             // Refresh payment details to get the new transaction
-            await refreshPaymentDetails();
+            await refreshPaymentDetails(selectedToken, newChainId);
           } else {
-            toast.error(`Failed to add ${selectedToken} transaction`);
+            // Don't show error toast here as it's already shown in addTransactionToPaymentRequest
+            console.log(`Failed to add ${selectedToken} transaction`);
           }
         } catch (error) {
           console.error('Error adding transaction:', error);
@@ -220,13 +278,20 @@ export default function PaymentModal({
         } finally {
           setIsAddingTransaction(false);
         }
+      } else {
+        // Transaction already exists, update amounts immediately
+        console.log(
+          `Found existing transaction for ${selectedToken} on chain ${newChainId}`
+        );
+        updateAmountsFromTransaction(existingTransaction);
       }
     }
   };
 
   // Handle token changes - network should adapt to support the selected token
   const handleTokenChange = async (newToken: string) => {
-    setSelectedToken(newToken);
+    console.log('handleTokenChange called with:', newToken);
+    updateSelectedToken(newToken);
 
     // Find a network that supports this token
     const supportedNetworks = Object.entries(
@@ -234,6 +299,8 @@ export default function PaymentModal({
     )
       .filter(([_, address]) => address)
       .map(([chainId, _]) => parseInt(chainId));
+
+    console.log('Supported networks for', newToken, ':', supportedNetworks);
 
     if (supportedNetworks.length > 0) {
       let newChainId: number;
@@ -244,6 +311,7 @@ export default function PaymentModal({
           newChainId = 8453; // Keep Base for Para
         } else {
           // If Base doesn't support the token, don't change network (Para restriction)
+          console.log('Token not supported on Base for Para wallet');
           return;
         }
       } else {
@@ -255,7 +323,15 @@ export default function PaymentModal({
             : supportedNetworks[0];
       }
 
-      setSelectedChainId(newChainId);
+      console.log('Selected chain ID for', newToken, ':', newChainId);
+      updateSelectedChainId(newChainId);
+
+      // Update paymentData with the new token and chainId immediately
+      setPaymentData((prev) => ({
+        ...prev,
+        token: newToken,
+        chainId: newChainId,
+      }));
 
       // Check if a transaction already exists for this token/chain combination
       if (paymentRequestId && paymentDetails.transactions) {
@@ -277,9 +353,10 @@ export default function PaymentModal({
             if (success) {
               toast.success(`Added ${newToken} transaction to payment request`);
               // Refresh payment details to get the new transaction
-              await refreshPaymentDetails();
+              await refreshPaymentDetails(newToken, newChainId);
             } else {
-              toast.error(`Failed to add ${newToken} transaction`);
+              // Don't show error toast here as it's already shown in addTransactionToPaymentRequest
+              console.log(`Failed to add ${newToken} transaction`);
             }
           } catch (error) {
             console.error('Error adding transaction:', error);
@@ -287,6 +364,12 @@ export default function PaymentModal({
           } finally {
             setIsAddingTransaction(false);
           }
+        } else {
+          // Transaction already exists, update amounts immediately
+          console.log(
+            `Found existing transaction for ${newToken} on chain ${newChainId}`
+          );
+          updateAmountsFromTransaction(existingTransaction);
         }
       }
     }
@@ -300,6 +383,10 @@ export default function PaymentModal({
     if (!paymentRequestId) return;
 
     try {
+      // Add timeout to prevent hanging requests
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+
       const response = await fetch(
         `/api/payment-request?paymentId=${paymentRequestId}&ticker=${token}&chainId=${chainId}`,
         {
@@ -307,10 +394,23 @@ export default function PaymentModal({
           headers: {
             'Content-Type': 'application/json',
           },
+          signal: controller.signal,
         }
       );
 
+      clearTimeout(timeoutId);
+
       if (!response.ok) {
+        if (response.status === 504) {
+          console.error(
+            'Gateway timeout when adding transaction to payment request'
+          );
+          toast.error(
+            'Payment service is temporarily unavailable. Please try again.'
+          );
+          return false;
+        }
+
         const errorData = await response.json();
         console.error(
           'Failed to add transaction to payment request:',
@@ -325,14 +425,29 @@ export default function PaymentModal({
       return true;
     } catch (error) {
       console.error('Error adding transaction to payment request:', error);
-      toast.error('Failed to add transaction to payment request');
+
+      if (error instanceof Error && error.name === 'AbortError') {
+        toast.error('Request timed out. Please try again.');
+      } else {
+        toast.error('Failed to add transaction to payment request');
+      }
       return false;
     }
   };
 
   // Function to refresh payment details after adding a transaction
-  const refreshPaymentDetails = async () => {
+  const refreshPaymentDetails = async (token?: string, chainId?: number) => {
     if (!paymentRequestId) return;
+
+    // Use passed parameters or current state
+    const currentToken = token || selectedToken;
+    const currentChainId = chainId || selectedChainId;
+
+    console.log('refreshPaymentDetails called with:', {
+      token: currentToken,
+      chainId: currentChainId,
+      fromParams: !!(token && chainId),
+    });
 
     try {
       const details = await fetchPaymentDetails(paymentRequestId);
@@ -340,25 +455,68 @@ export default function PaymentModal({
 
       // Update payment details with fresh data
       if (details.transactions && details.transactions.length > 0) {
-        // Find the transaction that matches the selected token and chain, or use the first one
+        console.log(
+          'refreshPaymentDetails - available transactions:',
+          details.transactions.map((tx: any) => ({
+            coin: tx.coin,
+            chain_id: tx.chain_id,
+            final_amount: tx.price_details?.final_amount,
+          }))
+        );
+        console.log('refreshPaymentDetails - looking for:', {
+          selectedToken: currentToken,
+          selectedChainId: currentChainId,
+        });
+
+        // Find the transaction that matches the current user selection
         const matchingTransaction = details.transactions.find(
           (tx: any) =>
-            tx.coin === selectedToken && tx.chain_id === selectedChainId
+            tx.coin === currentToken && tx.chain_id === currentChainId
         );
-        const transaction = matchingTransaction || details.transactions[0];
+
+        console.log(
+          'refreshPaymentDetails - matching transaction:',
+          matchingTransaction
+            ? {
+                coin: matchingTransaction.coin,
+                chain_id: matchingTransaction.chain_id,
+                final_amount: matchingTransaction.price_details?.final_amount,
+              }
+            : 'No matching transaction found'
+        );
+
+        // Use the matching transaction if found, otherwise use the first transaction
+        const transactionToUse = matchingTransaction || details.transactions[0];
+
+        console.log('refreshPaymentDetails - using transaction:', {
+          coin: transactionToUse.coin,
+          chain_id: transactionToUse.chain_id,
+          final_amount: transactionToUse.price_details?.final_amount,
+        });
+
+        // Only update selected token and chain if we don't have a current selection
+        // This preserves the user's selection when refreshing after adding a new transaction
+        if (!selectedToken || !selectedChainId) {
+          updateSelectedToken(transactionToUse.coin);
+          updateSelectedChainId(transactionToUse.chain_id);
+        }
 
         const paymentData = {
           orderId: details.order_id?.toString(),
           orderStatus: details.status,
           orderStatusDetail: details.status_detail,
           arsAmount: details.ars_amount,
-          priceDetails: transaction.price_details,
-          recipient: transaction.address,
-          amount: transaction.price_details?.final_amount?.toString() || '0.01',
+          priceDetails: transactionToUse.price_details,
+          recipient: transactionToUse.address,
+          amount:
+            transactionToUse.price_details?.final_amount?.toString() || '0.01',
           transactions: details.transactions,
         };
 
         setPaymentDetails(paymentData);
+
+        // Update all the form fields with the transaction data using the helper
+        updateAmountsFromTransaction(transactionToUse);
       } else {
         // Update transactions array even if empty
         setPaymentDetails((prev) => ({
@@ -440,12 +598,8 @@ export default function PaymentModal({
 
           // Extract transaction data from the first transaction
           if (details.transactions && details.transactions.length > 0) {
-            // Find the transaction that matches the selected token and chain, or use the first one
-            const matchingTransaction = details.transactions.find(
-              (tx: any) =>
-                tx.coin === selectedToken && tx.chain_id === selectedChainId
-            );
-            const transaction = matchingTransaction || details.transactions[0];
+            // On initial load, always use the first transaction to set the correct token/chain
+            const transaction = details.transactions[0];
 
             const paymentData = {
               orderId: details.order_id?.toString(),
@@ -459,6 +613,10 @@ export default function PaymentModal({
               transactions: details.transactions,
             };
 
+            // Set the selected token and chain to match the first transaction FIRST
+            updateSelectedToken(transaction.coin);
+            updateSelectedChainId(transaction.chain_id);
+
             setPaymentDetails(paymentData);
             setRecipient(transaction.address);
             setAmount(
@@ -469,6 +627,23 @@ export default function PaymentModal({
               amount:
                 transaction.price_details?.final_amount?.toString() || '0.01',
             });
+
+            // Validate the recipient and amount after setting them
+            const recipientValid = validateAddress(transaction.address);
+            const amountValid = validateAmount(
+              transaction.price_details?.final_amount?.toString() || '0.01'
+            );
+            console.log('Initial load validation:', {
+              recipient: transaction.address,
+              amount: transaction.price_details?.final_amount?.toString(),
+              recipientValid,
+              amountValid,
+            });
+            setIsRecipientValid(recipientValid);
+            setIsAmountValid(amountValid);
+
+            // Mark initial load as complete
+            setIsInitialLoad(false);
           } else {
             // No transactions found, create one with default values
             console.log('No transactions found, creating new transaction');
@@ -476,34 +651,11 @@ export default function PaymentModal({
             // Create a transaction with default USDC on Base
             const success = await addTransactionToPaymentRequest('USDC', 8453);
             if (success) {
-              // Set default payment data
-              const paymentData = {
-                orderId: details.order_id?.toString(),
-                orderStatus: details.status,
-                orderStatusDetail: details.status_detail,
-                arsAmount: details.ars_amount,
-                priceDetails: {
-                  currency: 'ARS',
-                  currency_amount: details.ars_amount || 14100,
-                  currency_final_amount: details.ars_amount || 14100,
-                  base_amount: details.amount || 0.01,
-                  final_amount: details.amount || 0.01,
-                  paid_amount: 0,
-                  discount_rate: 0,
-                  rate: 1,
-                },
-                recipient: '', // Will be filled by user
-                amount: details.amount?.toString() || '0.01',
-                transactions: details.transactions || [],
-              };
+              // Refresh payment details to get the new transaction data
+              await refreshPaymentDetails('USDC', 8453);
 
-              setPaymentDetails(paymentData);
-              setRecipient('');
-              setAmount(details.amount?.toString() || '0.01');
-              setPaymentData({
-                recipient: '',
-                amount: details.amount?.toString() || '0.01',
-              });
+              // Mark initial load as complete
+              setIsInitialLoad(false);
             } else {
               setPaymentDetailsError(
                 'Failed to create transaction for this payment request'
@@ -512,11 +664,23 @@ export default function PaymentModal({
           }
         } catch (error) {
           console.error('Error loading payment details:', error);
-          setPaymentDetailsError(
-            error instanceof Error
-              ? error.message
-              : 'Failed to fetch payment details'
-          );
+
+          let errorMessage = 'Failed to fetch payment details';
+          if (error instanceof Error) {
+            if (error.message.includes('temporarily unavailable')) {
+              errorMessage =
+                'Payment service is temporarily unavailable. Please try again.';
+            } else if (
+              error.message.includes('timeout') ||
+              error.name === 'AbortError'
+            ) {
+              errorMessage = 'Request timed out. Please try again.';
+            } else {
+              errorMessage = error.message;
+            }
+          }
+
+          setPaymentDetailsError(errorMessage);
         } finally {
           setIsLoadingPaymentDetails(false);
         }
@@ -535,6 +699,7 @@ export default function PaymentModal({
       setAmount('0.01');
       resetTransaction();
       checkSimulationMode();
+      setIsInitialLoad(true); // Reset initial load flag
     }
   }, [isOpen, checkSimulationMode]); // Remove resetTransaction from dependencies
 
@@ -544,39 +709,28 @@ export default function PaymentModal({
     setIsAmountValid(validateAmount(amount));
   }, [recipient, amount]);
 
-  // Update displayed amounts when selected token/chain changes
-  useEffect(() => {
-    if (paymentDetails.transactions && paymentDetails.transactions.length > 0) {
-      const matchingTransaction = paymentDetails.transactions.find(
-        (tx: any) =>
-          tx.coin === selectedToken && tx.chain_id === selectedChainId
-      );
+  // Helper function to update amounts from a specific transaction
+  const updateAmountsFromTransaction = useCallback((transaction: any) => {
+    console.log('Updating amounts from transaction:', {
+      coin: transaction.coin,
+      chain_id: transaction.chain_id,
+      final_amount: transaction.price_details?.final_amount,
+    });
 
-      if (matchingTransaction) {
-        // Update the displayed amounts with the matching transaction
-        setAmount(
-          matchingTransaction.price_details?.final_amount?.toString() || '0.01'
-        );
-        setRecipient(matchingTransaction.address);
-        setPaymentData({
-          recipient: matchingTransaction.address,
-          amount:
-            matchingTransaction.price_details?.final_amount?.toString() ||
-            '0.01',
-        });
+    setAmount(transaction.price_details?.final_amount?.toString() || '0.01');
+    setRecipient(transaction.address);
+    setPaymentData({
+      recipient: transaction.address,
+      amount: transaction.price_details?.final_amount?.toString() || '0.01',
+    });
 
-        // Update payment details with the matching transaction's price details
-        setPaymentDetails((prev) => ({
-          ...prev,
-          priceDetails: matchingTransaction.price_details,
-          recipient: matchingTransaction.address,
-          amount:
-            matchingTransaction.price_details?.final_amount?.toString() ||
-            '0.01',
-        }));
-      }
-    }
-  }, [selectedToken, selectedChainId, paymentDetails.transactions]);
+    setPaymentDetails((prev) => ({
+      ...prev,
+      priceDetails: transaction.price_details,
+      recipient: transaction.address,
+      amount: transaction.price_details?.final_amount?.toString() || '0.01',
+    }));
+  }, []);
 
   const handleFormSubmit = useCallback(
     (recipient: string, amount: string, token: string, chainId: number) => {
@@ -783,68 +937,6 @@ export default function PaymentModal({
                       </div>
                     </div>
                   </div>
-
-                  {/* Payment Details Input (when no existing transaction) */}
-                  {!paymentDetails.recipient && (
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <label className="text-[#353548] text-sm font-medium">
-                          Recipient Address
-                        </label>
-                        <div className="flex gap-2">
-                          <input
-                            type="text"
-                            placeholder="0x..."
-                            value={recipient}
-                            onChange={(e) =>
-                              handleRecipientChange(e.target.value)
-                            }
-                            className={`flex-1 h-10 rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                              !isRecipientValid && recipient
-                                ? 'border-red-500'
-                                : 'border-gray-300'
-                            }`}
-                          />
-                          <Button
-                            onClick={handlePaste}
-                            variant="outline"
-                            size="sm"
-                            className="px-3"
-                          >
-                            <Copy className="h-4 w-4" />
-                          </Button>
-                        </div>
-                        {!isRecipientValid && recipient && (
-                          <p className="text-red-500 text-xs">
-                            Please enter a valid 0x address
-                          </p>
-                        )}
-                      </div>
-
-                      <div className="space-y-2">
-                        <label className="text-[#353548] text-sm font-medium">
-                          Amount
-                        </label>
-                        <input
-                          type="number"
-                          step="0.000001"
-                          placeholder="0.01"
-                          value={amount}
-                          onChange={(e) => handleAmountChange(e.target.value)}
-                          className={`w-full h-10 rounded-md border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                            !isAmountValid && amount
-                              ? 'border-red-500'
-                              : 'border-gray-300'
-                          }`}
-                        />
-                        {!isAmountValid && amount && (
-                          <p className="text-red-500 text-xs">
-                            Please enter a valid amount (0-1000)
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                  )}
 
                   {/* Payment Method Section */}
                   <div className="space-y-3">

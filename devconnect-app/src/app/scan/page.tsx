@@ -224,7 +224,6 @@ export default function ScanPage() {
 
         {/* Payment Modal */}
         <PaymentModal
-          key={paymentRequestId}
           isOpen={isManualPaymentOpen}
           onClose={() => setIsManualPaymentOpen(false)}
           isPara={Boolean(isPara)}
