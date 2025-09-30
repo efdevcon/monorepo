@@ -4,7 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { getNetworkLogo, getNetworkConfig } from '@/config/networks';
+import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
@@ -28,16 +28,14 @@ interface TokenBalance {
   balance: number;
   balanceUSD: number;
   imgUrlV2: string | null;
-  network: {
-    name: string;
-  };
+  chainId: number;
 }
 
 interface RecentActivity {
   transaction?: {
     hash: string;
     timestamp: number;
-    network: string;
+    chainId: number;
   };
   interpretation?: {
     processedDescription: string;
@@ -277,64 +275,6 @@ export default function WalletTab() {
   // Truncate transaction hash
   const truncateHash = (hash: string) => {
     return `${hash.slice(0, 6)}...${hash.slice(-4)}`;
-  };
-
-  // Get readable network name
-  const getReadableNetworkName = (networkName: string): string => {
-    const networkMap: Record<string, string> = {
-      ETHEREUM_MAINNET: 'Ethereum',
-      BASE_MAINNET: 'Base',
-      OPTIMISM_MAINNET: 'Optimism',
-      ARBITRUM_MAINNET: 'Arbitrum',
-      Ethereum: 'Ethereum',
-      Base: 'Base',
-      'OP Mainnet': 'Optimism',
-      'Arbitrum One': 'Arbitrum',
-      ethereum: 'Ethereum',
-      base: 'Base',
-      optimism: 'Optimism',
-      arbitrum: 'Arbitrum',
-      'Ethereum Mainnet': 'Ethereum',
-      'Base Mainnet': 'Base',
-      'Optimism Mainnet': 'Optimism',
-      'Arbitrum Mainnet': 'Arbitrum',
-    };
-
-    if (networkMap[networkName]) {
-      return networkMap[networkName];
-    }
-
-    const lowerName = networkName.toLowerCase();
-    if (lowerName.includes('ethereum') || lowerName.includes('eth')) {
-      return 'Ethereum';
-    }
-    if (lowerName.includes('base')) {
-      return 'Base';
-    }
-    if (lowerName.includes('optimism') || lowerName.includes('op')) {
-      return 'Optimism';
-    }
-    if (lowerName.includes('arbitrum') || lowerName.includes('arb')) {
-      return 'Arbitrum';
-    }
-
-    return networkName;
-  };
-
-  // Helper function to get network logo by name
-  const getNetworkLogoByName = (networkName: string): string | undefined => {
-    const readableName = getReadableNetworkName(networkName);
-
-    // Map readable names back to chain IDs
-    const nameToChainId: Record<string, number> = {
-      Ethereum: 1,
-      Base: 8453,
-      Optimism: 10,
-      Arbitrum: 42161,
-    };
-
-    const chainId = nameToChainId[readableName];
-    return chainId ? getNetworkLogo(chainId) : undefined;
   };
 
   return (
@@ -620,12 +560,10 @@ export default function WalletTab() {
                                 </div>
                               )}
                               {/* Network logo overlay */}
-                              {getNetworkLogoByName(token.network.name) && (
+                              {token.chainId && (
                                 <img
-                                  src={getNetworkLogoByName(token.network.name)}
-                                  alt={getReadableNetworkName(
-                                    token.network.name
-                                  )}
+                                  src={getNetworkLogo(token.chainId)}
+                                  alt={getNetworkConfig(token.chainId).name}
                                   className="absolute -top-1 -left-1 w-4 h-4 rounded-full border border-white"
                                 />
                               )}
@@ -714,10 +652,12 @@ export default function WalletTab() {
                       .map((activity, index) => {
                         const hash = activity.transaction?.hash;
                         const timestamp = activity.transaction?.timestamp;
-                        const network = activity.transaction?.network;
-                        const readableNetwork = getReadableNetworkName(
-                          network || ''
-                        );
+                        const chainId = activity.transaction?.chainId;
+                        const networkConfig = chainId
+                          ? getNetworkConfig(chainId)
+                          : null;
+                        const readableNetwork =
+                          networkConfig?.name || 'Unknown Network';
                         const description =
                           activity.interpretation?.processedDescription;
 
@@ -726,17 +666,11 @@ export default function WalletTab() {
                             key={`${hash}-${index}`}
                             className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
                             onClick={() => {
-                              if (hash && network) {
-                                // Open transaction in block explorer
-                                const explorerUrls: Record<string, string> = {
-                                  Ethereum: 'https://etherscan.io',
-                                  Base: 'https://basescan.org',
-                                  Optimism: 'https://optimistic.etherscan.io',
-                                  Arbitrum: 'https://arbiscan.io',
-                                };
-
+                              if (hash && chainId) {
+                                // Get explorer URL dynamically from network config
+                                const networkConfig = getNetworkConfig(chainId);
                                 const explorerUrl =
-                                  explorerUrls[readableNetwork];
+                                  networkConfig?.blockExplorers?.default?.url;
                                 if (explorerUrl) {
                                   window.open(
                                     `${explorerUrl}/tx/${hash}`,
@@ -758,7 +692,7 @@ export default function WalletTab() {
                                     {truncateHash(hash)} ↗
                                   </p>
                                 )}
-                                {network && (
+                                {chainId && (
                                   <p className="text-xs text-[#4b4b66]">
                                     {readableNetwork}
                                   </p>

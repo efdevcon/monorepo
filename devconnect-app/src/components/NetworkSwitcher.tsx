@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
-import { getNetworkConfig } from '@/config/networks';
+import { getNetworkConfig, getReadableNetworkName } from '@/config/networks';
 import NetworkLogo from './NetworkLogo';
 import { useState } from 'react';
 import NetworkModal from './NetworkModal';
@@ -104,7 +104,9 @@ export default function NetworkSwitcher({
               <div className="flex items-center space-x-2">
                 <NetworkLogo chainId={chain.id} size="sm" />
                 <div className="flex flex-col items-start">
-                  <span className="text-sm font-medium">{config.name}</span>
+                  <span className="text-sm font-medium">
+                    {getReadableNetworkName(config.name)}
+                  </span>
                 </div>
               </div>
             </Button>

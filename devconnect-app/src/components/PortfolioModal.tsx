@@ -12,16 +12,14 @@ interface TokenBalance {
   balance: number;
   balanceUSD: number;
   imgUrlV2: string | null;
-  network: {
-    name: string;
-  };
+  chainId: number;
 }
 
 interface RecentActivity {
   transaction?: {
     hash: string;
     timestamp: number;
-    network: string;
+    chainId: number;
   };
   interpretation?: {
     processedDescription: string;
@@ -40,73 +38,6 @@ interface PortfolioModalProps {
 }
 
 import { chains, getNetworkConfig, getNetworkLogo } from '@/config/networks';
-
-// Helper function to get readable network name
-const getReadableNetworkName = (networkName: string): string => {
-  const networkMap: Record<string, string> = {
-    ETHEREUM_MAINNET: 'Ethereum',
-    BASE_MAINNET: 'Base',
-    OPTIMISM_MAINNET: 'Optimism',
-    ARBITRUM_MAINNET: 'Arbitrum',
-    Ethereum: 'Ethereum',
-    Base: 'Base',
-    'OP Mainnet': 'Optimism',
-    'Arbitrum One': 'Arbitrum',
-    // Additional possible formats from Zapper
-    ethereum: 'Ethereum',
-    base: 'Base',
-    optimism: 'Optimism',
-    arbitrum: 'Arbitrum',
-    'Ethereum Mainnet': 'Ethereum',
-    'Base Mainnet': 'Base',
-    'Optimism Mainnet': 'Optimism',
-    'Arbitrum Mainnet': 'Arbitrum',
-    Celo: 'Celo',
-    Polygon: 'Polygon',
-    Worldchain: 'Worldchain',
-  };
-
-  // Check exact match first
-  if (networkMap[networkName]) {
-    return networkMap[networkName];
-  }
-
-  // Check if network name contains keywords (case insensitive)
-  const lowerName = networkName.toLowerCase();
-  if (lowerName.includes('ethereum') || lowerName.includes('eth')) {
-    return 'Ethereum';
-  }
-  if (lowerName.includes('base')) {
-    return 'Base';
-  }
-  if (lowerName.includes('optimism') || lowerName.includes('op')) {
-    return 'Optimism';
-  }
-  if (lowerName.includes('arbitrum') || lowerName.includes('arb')) {
-    return 'Arbitrum';
-  }
-
-  return networkName;
-};
-
-// Helper function to get network logo by name
-const getNetworkLogoByName = (networkName: string): string | undefined => {
-  const readableName = getReadableNetworkName(networkName);
-
-  // Map readable names back to chain IDs
-  const nameToChainId: Record<string, number> = {
-    Ethereum: 1,
-    Base: 8453,
-    Optimism: 10,
-    Arbitrum: 42161,
-    Celo: 42220,
-    Polygon: 137,
-    Worldchain: 480,
-  };
-
-  const chainId = nameToChainId[readableName];
-  return chainId ? getNetworkLogo(chainId) : undefined;
-};
 
 export default function PortfolioModal({ address }: PortfolioModalProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -361,10 +292,10 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                               </div>
                             )}
                             {/* Network logo overlay */}
-                            {getNetworkLogoByName(token.network.name) && (
+                            {token.chainId && (
                               <img
-                                src={getNetworkLogoByName(token.network.name)}
-                                alt={getReadableNetworkName(token.network.name)}
+                                src={getNetworkLogo(token.chainId)}
+                                alt={getNetworkConfig(token.chainId).name}
                                 className="absolute -top-1 -left-1 w-4 h-4 rounded-full border border-white"
                               />
                             )}
@@ -372,7 +303,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                           <div>
                             <p className="font-medium">{token.symbol}</p>
                             <p className="text-sm text-gray-600">
-                              {getReadableNetworkName(token.network.name)}
+                              {getNetworkConfig(token.chainId).name}
                             </p>
                           </div>
                         </div>
@@ -405,11 +336,15 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                     portfolioData.recentActivity.map((activity, index) => {
                       const hash = activity.transaction?.hash;
                       const timestamp = activity.transaction?.timestamp;
-                      const network = activity.transaction?.network;
-                      const readableNetwork = getReadableNetworkName(
-                        network || ''
-                      );
-                      const networkLogo = getNetworkLogoByName(network || '');
+                      const chainId = activity.transaction?.chainId;
+                      const networkConfig = chainId
+                        ? getNetworkConfig(chainId)
+                        : null;
+                      const readableNetwork =
+                        networkConfig?.name || 'Unknown Network';
+                      const networkLogo = chainId
+                        ? getNetworkLogo(chainId)
+                        : undefined;
                       const description =
                         activity.interpretation?.processedDescription;
 
@@ -418,26 +353,13 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                           key={`${hash}-${index}`}
                           className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
                           onClick={() => {
-                            if (hash && network) {
-                              // Map readable network name to chain ID
-                              const nameToChainId: Record<string, number> = {
-                                Ethereum: 1,
-                                Base: 8453,
-                                Optimism: 10,
-                                Arbitrum: 42161,
-                              };
-
-                              const chainId = nameToChainId[readableNetwork];
-                              if (chainId) {
-                                const chain = chains.find(
-                                  (c) => c.id === chainId
+                            if (hash && chainId) {
+                              const networkConfig = getNetworkConfig(chainId);
+                              if (networkConfig?.blockExplorers?.default?.url) {
+                                window.open(
+                                  `${networkConfig.blockExplorers.default.url}/tx/${hash}`,
+                                  '_blank'
                                 );
-                                if (chain?.blockExplorers?.default?.url) {
-                                  window.open(
-                                    `${chain.blockExplorers.default.url}/tx/${hash}`,
-                                    '_blank'
-                                  );
-                                }
                               }
                             }
                           }}
@@ -454,7 +376,7 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
                                   {truncateHash(hash)} ↗
                                 </p>
                               )}
-                              {network && (
+                              {chainId && (
                                 <div className="flex items-center gap-1 mt-1">
                                   {networkLogo && (
                                     <img
