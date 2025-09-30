@@ -27,6 +27,8 @@ const customUrlTransforms = [
   { from: "worldcup", to: "106" },
   { from: "regulationday", to: "104" },
   { from: "agenticzero", to: "71" },
+  { from: "defi-today", to: "107" },
+  { from: "zero-to-dapp", to: "98" },
 ];
 
 export type ScheduleProps = {
