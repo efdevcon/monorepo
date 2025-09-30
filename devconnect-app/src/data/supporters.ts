@@ -57,46 +57,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "6",
     "locationId": "5"
   },
-  "25d638cdc41580829018e6ada2eb3f8d": {
-    "name": "Arts 2",
-    "layerName": "arts-2",
-    "logo": "",
-    "description": "",
-    "districtId": "2",
-    "locationId": "2"
-  },
-  "25d638cdc415806fbca5f5a768873546": {
-    "name": "Arts 3",
-    "layerName": "arts-3",
-    "logo": "",
-    "description": "",
-    "districtId": "2",
-    "locationId": "2"
-  },
-  "25d638cdc4158033ad04f20813ae1431": {
-    "name": "Arts 4",
-    "layerName": "arts-4",
-    "logo": "",
-    "description": "",
-    "districtId": "2",
-    "locationId": "2"
-  },
-  "25d638cdc4158001be0fcad5ee2e16a9": {
-    "name": "Arts 5",
-    "layerName": "arts-5",
-    "logo": "",
-    "description": "",
-    "districtId": "2",
-    "locationId": "2"
-  },
-  "25d638cdc4158033a31cc0b67b96e72d": {
-    "name": "Arts 6",
-    "layerName": "arts-6",
-    "logo": "",
-    "description": "",
-    "districtId": "2",
-    "locationId": "2"
-  },
   "25d638cdc415806097ded8fddaae1f33": {
     "name": "Axie / Ronin",
     "layerName": "axie-ronin",
@@ -321,38 +281,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "8",
     "locationId": "2"
   },
-  "25d638cdc41580b9b52dd040fe367989": {
-    "name": "Gaming 4",
-    "layerName": "gaming-4",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "4"
-  },
-  "25d638cdc415804abac1fc28709612f5": {
-    "name": "Gaming 5",
-    "layerName": "gaming-5",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "4"
-  },
-  "25d638cdc41580c5ad3cf39853809395": {
-    "name": "Gaming 6",
-    "layerName": "gaming-6",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "4"
-  },
-  "25d638cdc4158079b532c9bc4c49542c": {
-    "name": "Gaming 9",
-    "layerName": "gaming-9",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "4"
-  },
   "25d638cdc41580768dbfc6b48f30d71a": {
     "name": "Gitcoin",
     "layerName": "gitcoin",
@@ -472,6 +400,22 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "3",
     "locationId": "2"
+  },
+  "25d638cdc4158033ad04f20813ae1431": {
+    "name": "Open Arts Gallery",
+    "layerName": "open-arts-gallery",
+    "logo": "",
+    "description": "",
+    "districtId": "2",
+    "locationId": "2"
+  },
+  "27e638cdc41580acb2e3d4c9af1a355f": {
+    "name": "Open Gaming Space",
+    "layerName": "open-gaming-space",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": null
   },
   "254638cdc4158061b35df76bff79f9d0": {
     "name": "Peanut",

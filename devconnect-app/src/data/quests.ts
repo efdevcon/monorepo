@@ -230,20 +230,6 @@ export const questsData: Quest[] = [
     "districtId": "7"
   },
   {
-    "id": 34,
-    "name": "Realms",
-    "order": 0,
-    "instructions": "",
-    "action": "claim-poap",
-    "button": "",
-    "conditionType": "verifyPoap",
-    "conditionValues": "",
-    "supporterId": "25d638cdc41580768f46cf523c3800c1",
-    "poapImageLink": "",
-    "groupId": 4,
-    "districtId": "4"
-  },
-  {
     "id": 35,
     "name": "Ledger",
     "order": 0,
@@ -284,5 +270,19 @@ export const questsData: Quest[] = [
     "poapImageLink": "",
     "groupId": 4,
     "districtId": "2"
+  },
+  {
+    "id": 39,
+    "name": "Axie / Ronin",
+    "order": 0,
+    "instructions": "",
+    "action": "claim-poap",
+    "button": "",
+    "conditionType": "verifyPoap",
+    "conditionValues": "",
+    "supporterId": "25d638cdc415806097ded8fddaae1f33",
+    "poapImageLink": "",
+    "groupId": 4,
+    "districtId": "4"
   }
 ];
