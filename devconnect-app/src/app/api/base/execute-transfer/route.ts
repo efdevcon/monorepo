@@ -6,6 +6,7 @@ import {
   formatUSDCAmount,
   USDC_CONTRACT_ADDRESS 
 } from '@/lib/usdc-contract';
+import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
 
 /**
  * API endpoint to execute USDC transfers using signed authorization
@@ -152,11 +153,12 @@ export async function POST(request: NextRequest) {
 
     // Get private key from environment and check wallet authorization
     const privateKey = process.env.PRIVATE_KEY;
-    const requiredSponsorAddress = '0x20c85697e4789d7a1570e78688567160426d4cdd';
 
-    // Check if we have private key and the 'from' address matches required sponsor
+    // Check if we have private key and the 'from' address matches any authorized sponsor
     const hasPrivateKey = !!privateKey;
-    const isCorrectWallet = from.toLowerCase() === requiredSponsorAddress.toLowerCase();
+    const isCorrectWallet = AUTHORIZED_SPONSOR_ADDRESSES.some(
+      address => address.toLowerCase() === from.toLowerCase()
+    );
 
     if (!hasPrivateKey || !isCorrectWallet) {
       // Simulation mode - either no private key or unauthorized wallet
@@ -217,7 +219,7 @@ export async function POST(request: NextRequest) {
 
       const simulationReason = !hasPrivateKey
         ? 'No PRIVATE_KEY configured'
-        : `Wallet ${from} is not authorized. Only ${requiredSponsorAddress} can execute real transactions.`;
+        : `Wallet ${from} is not authorized. Only authorized sponsor addresses can execute real transactions.`;
 
       return NextResponse.json({
         success: true,
@@ -250,7 +252,7 @@ export async function POST(request: NextRequest) {
           reason: simulationReason,
           hasPrivateKey,
           isCorrectWallet,
-          requiredSponsorAddress
+          authorizedSponsorAddresses: AUTHORIZED_SPONSOR_ADDRESSES
         },
         timestamp: new Date().toISOString()
       });
