@@ -11,22 +11,26 @@ const tokenAddresses: Record<string, Record<number, string>> = {
     137: '0x0000000000000000000000000000000000000000', // Polygon (native)
     480: '0x0000000000000000000000000000000000000000', // World Chain (native)
   },
+  // https://app.zerion.io/tokens/USDC-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
+  // https://zapper.xyz/token/ethereum/0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48/USDC/details
   USDC: {
     1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // Ethereum mainnet
     8453: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913', // Base
     10: '0x0b2c639c533813f4aa9d7837caf62653d097ff85', // Optimism
     42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
-    42220: '0xceba9300f2b968710c2658997312cde580ebc9c5', // Celo
-    137: '0x2791bca1f2de4661ed88a30c99a7a9449aa84174', // Polygon
+    42220: '0xceba9300f2b948710d2653dd7b07f33a8b32118c', // Celo
+    137: '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', // Polygon (native) // bridged: 0x2791bca1f2de4661ed88a30c99a7a9449aa84174
     480: '0x79A02482A880bCE3F13e09Da970dC34db4CD24d1', // World Chain
   },
+  // https://app.zerion.io/tokens/USDT-0xdac17f958d2ee523a2206206994597c13d831ec7
+  // USDT0: https://zapper.xyz/token/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071/USD%25E2%2582%25AE0/details
   USDT: {
     1: '0xdac17f958d2ee523a2206206994597c13d831ec7', // Ethereum mainnet
-    8453: '0x50c5725949a6f0c72e6c4a641f24049a917db0cb', // Base
-    10: '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58', // Optimism
-    42161: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9', // Arbitrum
+    8453: '0xfde4c96c8593536e31f229ea8f37b2ada2699bb2', // Base (bridged)
+    10: '0x94b008aa00579c1307b0ef2c499ad98a8ce58e58', // Optimism (bridged) // native: 0x01bff41798a0bcf287b996046ca68b395dbc1071
+    42161: '0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9', // Arbitrum (native)
     42220: '0x48065fbbe25f71c9282ddf5e1cd6d6a887483d5e', // Celo
-    137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // Polygon
+    137: '0xc2132d05d31c914a87c6611c10748aeb04b58e8f', // Polygon (native)
   },
   wARS: {
     480: '0x0dc4f92879b7670e5f4e4e6e3c801d229129d90d', // World Chain only

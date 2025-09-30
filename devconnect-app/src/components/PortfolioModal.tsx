@@ -61,6 +61,9 @@ const getReadableNetworkName = (networkName: string): string => {
     'Base Mainnet': 'Base',
     'Optimism Mainnet': 'Optimism',
     'Arbitrum Mainnet': 'Arbitrum',
+    Celo: 'Celo',
+    Polygon: 'Polygon',
+    Worldchain: 'Worldchain',
   };
 
   // Check exact match first
@@ -96,6 +99,9 @@ const getNetworkLogoByName = (networkName: string): string | undefined => {
     Base: 8453,
     Optimism: 10,
     Arbitrum: 42161,
+    Celo: 42220,
+    Polygon: 137,
+    Worldchain: 480,
   };
 
   const chainId = nameToChainId[readableName];
