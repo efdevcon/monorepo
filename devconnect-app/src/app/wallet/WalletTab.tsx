@@ -160,19 +160,12 @@ export default function WalletTab() {
       const currentAddress = address;
       if (!currentAddress) return;
 
-      // If we have cached data and not forcing refresh, use cached data
-      if (cachedPortfolioData && !forceRefresh) {
-        setPortfolioData(cachedPortfolioData);
-        lastLoadedAddress.current = currentAddress;
-        return;
-      }
-
       // Prevent concurrent API calls
       if (isFetchingRef.current) {
         return;
       }
 
-      // Prevent duplicate calls for the same address
+      // Prevent duplicate calls for the same address unless forcing refresh
       if (lastLoadedAddress.current === currentAddress && !forceRefresh) {
         return;
       }
@@ -211,7 +204,7 @@ export default function WalletTab() {
         isFetchingRef.current = false;
       }
     },
-    [address, cachedPortfolioData]
+    [address]
   );
 
   // Manual refresh function
@@ -224,13 +217,20 @@ export default function WalletTab() {
   // Load portfolio data when address changes
   useEffect(() => {
     if (address) {
-      fetchPortfolioData();
+      // Only fetch if we don't have cached data for this address
+      if (!cachedPortfolioData) {
+        fetchPortfolioData();
+      } else {
+        // Use cached data if available
+        setPortfolioData(cachedPortfolioData);
+        lastLoadedAddress.current = address;
+      }
     } else {
       // Clear portfolio data when no address
       setPortfolioData(null);
       lastLoadedAddress.current = null;
     }
-  }, [address, fetchPortfolioData]);
+  }, [address, cachedPortfolioData, fetchPortfolioData]);
 
   // Load identity when address changes
   useEffect(() => {

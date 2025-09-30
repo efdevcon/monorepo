@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
 import { Wallet, TrendingUp, Activity, Coins, X } from 'lucide-react';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface TokenBalance {
   tokenAddress: string;
@@ -108,57 +109,108 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
   );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  const lastLoadedAddress = useRef<string | null>(null);
+  const isFetchingRef = useRef(false);
+
+  // Local storage key based on address
+  const storageKey = address ? `portfolio_${address}` : null;
+  const [cachedPortfolioData, setCachedPortfolioData] =
+    useLocalStorage<PortfolioData | null>(
+      storageKey || 'portfolio_default',
+      null
+    );
 
   const handleOpenModal = () => {
     setIsOpen(true);
-    // Clear previous data when opening
-    setPortfolioData(null);
     setError(null);
   };
 
   const handleCloseModal = () => {
     setIsOpen(false);
-    // Clear data when closing
-    setPortfolioData(null);
-    setError(null);
+    // Don't clear data when closing to preserve cache
   };
 
-  const fetchPortfolioData = async () => {
-    setIsLoading(true);
-    setError(null);
+  // Fetch portfolio data
+  const fetchPortfolioData = useCallback(
+    async (forceRefresh = false) => {
+      const currentAddress = address;
+      if (!currentAddress) return;
 
-    try {
-      // Fetch portfolio data from our backend API
-      const response = await fetch('/api/portfolio', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ address }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch portfolio data');
+      // If we have cached data and not forcing refresh, use cached data
+      if (cachedPortfolioData && !forceRefresh) {
+        setPortfolioData(cachedPortfolioData);
+        lastLoadedAddress.current = currentAddress;
+        return;
       }
 
-      const data = await response.json();
-      setPortfolioData(data);
-    } catch (err) {
-      console.error('Error fetching portfolio data:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to fetch portfolio data'
-      );
-    } finally {
-      setIsLoading(false);
-    }
+      // Prevent concurrent API calls
+      if (isFetchingRef.current) {
+        return;
+      }
+
+      // Prevent duplicate calls for the same address unless forcing refresh
+      if (lastLoadedAddress.current === currentAddress && !forceRefresh) {
+        return;
+      }
+
+      isFetchingRef.current = true;
+      setIsFetching(true);
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch('/api/portfolio', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ address: currentAddress }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch portfolio data');
+        }
+
+        const data = await response.json();
+        setPortfolioData(data);
+        setCachedPortfolioData(data);
+        lastLoadedAddress.current = currentAddress;
+      } catch (err) {
+        console.error('Error fetching portfolio data:', err);
+        setError(
+          err instanceof Error ? err.message : 'Failed to fetch portfolio data'
+        );
+      } finally {
+        setIsLoading(false);
+        setIsFetching(false);
+        isFetchingRef.current = false;
+      }
+    },
+    [address, cachedPortfolioData]
+  );
+
+  // Manual refresh function
+  const handleRefresh = async () => {
+    setIsRefreshing(true);
+    await fetchPortfolioData(true);
+    setIsRefreshing(false);
   };
 
   useEffect(() => {
-    if (isOpen) {
-      fetchPortfolioData();
+    if (isOpen && address) {
+      // Only fetch if we don't have cached data for this address
+      if (!cachedPortfolioData) {
+        fetchPortfolioData();
+      } else {
+        // Use cached data if available
+        setPortfolioData(cachedPortfolioData);
+        lastLoadedAddress.current = address;
+      }
     }
-  }, [isOpen]);
+  }, [isOpen, address, cachedPortfolioData, fetchPortfolioData]);
 
   const formatUSD = (value: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -218,12 +270,34 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
               Portfolio Overview
             </h2>
 
-            <button
-              onClick={handleCloseModal}
-              className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleRefresh}
+                disabled={isRefreshing || isFetching || !address}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                title="Refresh portfolio data"
+              >
+                <svg
+                  className={`w-4 h-4 text-gray-600 ${isRefreshing || isFetching ? 'animate-spin' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+              </button>
+              <button
+                onClick={handleCloseModal}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
           {isLoading && (
