@@ -1,6 +1,6 @@
-import { mainnet, base, optimism, arbitrum } from '@reown/appkit/networks';
+import { mainnet, base, arbitrum, optimism, celo, polygon, worldchain } from '@reown/appkit/networks';
 
-export const chains = [mainnet, base, optimism, arbitrum];
+export const chains = [mainnet, base, arbitrum, optimism, celo, polygon, worldchain];
 
 // Zapper network logos (high quality)
 const zapperLogos: Record<number, string> = {
@@ -8,6 +8,9 @@ const zapperLogos: Record<number, string> = {
   8453: 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png',
   10: 'https://storage.googleapis.com/zapper-fi-assets/networks/optimism-icon.png',
   42161: 'https://storage.googleapis.com/zapper-fi-assets/networks/arbitrum-icon.png',
+  42220: 'https://storage.googleapis.com/zapper-fi-assets/networks/celo-icon.png',
+  137: 'https://storage.googleapis.com/zapper-fi-assets/networks/polygon-icon.png',
+  480: 'https://storage.googleapis.com/zapper-fi-assets/networks/worldchain-icon.png',
 };
 
 
