@@ -24,7 +24,7 @@ const Layout = (props: CalendarLayoutProps) => {
     setFilter,
     resetFilter,
     filterActive,
-  } = useFilters(props.events);
+  } = useFilters(props.events, true);
 
   return (
     <div className="section overflow-visible touch-only:!contents text-left">

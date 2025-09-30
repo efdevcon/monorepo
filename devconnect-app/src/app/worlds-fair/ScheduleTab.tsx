@@ -23,7 +23,8 @@ export default function ScheduleTab({ atprotoEvents = [] }: ScheduleTabProps) {
         selectedDay={selectedDay}
         setSelectedEvent={setSelectedEvent}
         setSelectedDay={setSelectedDay}
-        events={atprotoEvents.filter((event: any) => event.isCoreEvent)}
+        events={atprotoEvents}
+        // events={atprotoEvents.filter((event: any) => event.isCoreEvent)}
       />
       {/* <Separator className="my-4 mx-4 w-full" />
       <Layout

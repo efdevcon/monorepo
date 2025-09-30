@@ -6,6 +6,8 @@ import {
   ArrowUpRight,
   X,
   UsersRound,
+  CalendarArrowUp,
+  Heart,
 } from "lucide-react";
 import { Event as EventType } from "../model";
 import { getProgramming, Programming } from "./programming";
@@ -44,6 +46,7 @@ type EventProps = {
   className?: string;
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType | null) => void;
+  setExports: (exports: EventType[] | null) => void;
 };
 
 const formatTime = (isoString: string) => {
@@ -104,12 +107,63 @@ const computeEventTimeString = (event: EventType): string[] => {
   });
 };
 
+const FavoriteEvent = ({
+  event,
+  isDialog,
+}: {
+  event: EventType;
+  isDialog?: boolean;
+}) => {
+  // const { account } = useAccountContext();
+
+  return (
+    <div
+      className="flex justify-center cursor-pointer relative shrink-0 hover:scale-110 transition-all duration-300 text-slate-600"
+      onClick={(e) => {
+        e.stopPropagation();
+
+        alert("Favorite event");
+      }}
+    >
+      <Heart
+        className={
+          isDialog
+            ? "w-5 h-5"
+            : "w-4 h-4 mt-0.5 text-slate-500 hover:text-slate-900 "
+        }
+      />
+    </div>
+  );
+};
+
+const ExportEvent = ({
+  event,
+  isDialog,
+  setExports,
+}: {
+  event: EventType;
+  isDialog?: boolean;
+  setExports: (exports: EventType[] | null) => void;
+}) => {
+  return (
+    <div
+      className="flex items-center justify-center cursor-pointer relative shrink-0 hover:scale-110 transition-all duration-300 text-slate-600"
+      onClick={() => {
+        setExports([event]);
+      }}
+    >
+      <CalendarArrowUp className={isDialog ? "w-5 h-5" : "w-4 h-4 mt-0.5"} />
+    </div>
+  );
+};
+
 const Event: React.FC<EventProps> = ({
   event,
   isDialog,
   className,
   selectedEvent,
   setSelectedEvent,
+  setExports,
 }) => {
   const [showMobileProgramming, setShowMobileProgramming] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -293,7 +347,10 @@ const Event: React.FC<EventProps> = ({
               // If the zupass dialog is open, don't close the event dialog
               const zupassOpen = document.querySelector(".parcnet-dialog");
 
-              if (zupassOpen) {
+              const nestedDialogs =
+                document.querySelectorAll(".dialog-overlay").length > 1;
+
+              if (zupassOpen || nestedDialogs) {
                 return;
               }
 
@@ -373,22 +430,24 @@ const Event: React.FC<EventProps> = ({
 
                 <div className="p-4 shrink-0">
                   <div className="flex flex-col text-[rgba(36,36,54,1)]">
-                    <div
-                      className={cn(
-                        "text-sm font-medium uppercase font-secondary text-[rgba(136,85,204,1)]",
-                        {
-                          "!text-[rgba(94,144,189,1)]":
-                            isCoreEvent && !isETHDay && !isCoworking,
-                        },
-                        { "!text-[#FF85A6]": isETHDay || isCoworking }
-                      )}
-                    >
-                      <div>
-                        {isETHDay || isCoworking
-                          ? "EWF & COWORK"
-                          : isCoreEvent
-                          ? "Core Event"
-                          : "Community Event"}
+                    <div className="flex items-center justify-between gap-2">
+                      <div
+                        className={cn(
+                          "text-sm font-medium uppercase font-secondary text-[rgba(136,85,204,1)]",
+                          {
+                            "!text-[rgba(94,144,189,1)]":
+                              isCoreEvent && !isETHDay && !isCoworking,
+                          },
+                          { "!text-[#FF85A6]": isETHDay || isCoworking }
+                        )}
+                      >
+                        <div>
+                          {isETHDay || isCoworking
+                            ? "EWF & COWORK"
+                            : isCoreEvent
+                            ? "Core Event"
+                            : "Community Event"}
+                        </div>
                       </div>
                     </div>
 
@@ -402,15 +461,26 @@ const Event: React.FC<EventProps> = ({
                       <div className="text-xs">hosted by {event.organizer}</div>
                     )}
 
-                    <div className="flex flex-col mt-2 w-full">
-                      {timeOfDay.map((time, index) => (
-                        <div
-                          key={index}
-                          className="text-sm text-gray-600 font-medium"
-                        >
-                          {time}
-                        </div>
-                      ))}
+                    <div className="flex items-center gap-2">
+                      <div className="flex flex-col mt-2 w-full">
+                        {timeOfDay.map((time, index) => (
+                          <div
+                            key={index}
+                            className="text-sm text-gray-600 font-medium"
+                          >
+                            {time}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="flex items-center gap-2 mr-2">
+                        <ExportEvent
+                          event={event}
+                          isDialog
+                          setExports={setExports}
+                        />
+                        <FavoriteEvent event={event} isDialog />
+                      </div>
                     </div>
 
                     <Separator className="my-3" />
@@ -608,7 +678,10 @@ const Event: React.FC<EventProps> = ({
                 )}
 
                 <div className="flex flex-col w-full">
-                  <div className="md:line-clamp-none">{eventName}</div>
+                  <div className="flex justify-between gap-2">
+                    <div className="md:line-clamp-none">{eventName}</div>
+                    <FavoriteEvent event={event} />
+                  </div>
                   <div className="flex gap-4 justify-between w-full">
                     {timeOfDay.map((time, index) => (
                       <div key={index} className="text-xs text-gray-600">

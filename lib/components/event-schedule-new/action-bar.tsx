@@ -33,6 +33,7 @@ const ActionBar = ({
   events,
   viewMode,
   setViewMode,
+  hideCommunityByDefault,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
@@ -45,6 +46,7 @@ const ActionBar = ({
   events: any[];
   viewMode: "list" | "grid";
   setViewMode: (viewMode: "list" | "grid") => void;
+  hideCommunityByDefault?: boolean;
 }) => {
   const categories = venueEvents; // isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;
@@ -52,9 +54,7 @@ const ActionBar = ({
   return (
     <div
       data-type="action-bar"
-      className={cn(
-        "flex justify-between items-center min-w-full gap-3 md:gap-4 overflow-x-auto"
-      )}
+      className={cn("flex min-w-full gap-3 md:gap-4 overflow-x-auto")}
     >
       <div className="flex items-center gap-2 shrink-0">
         <button
@@ -70,7 +70,7 @@ const ActionBar = ({
         {filterActive && <FilterSummary filter={filter} />}
       </div>
 
-      <div className="flex items-center  mr-6 cursor-pointer select-none">
+      <div className="flex items-center justify-start md:mr-6 cursor-pointer select-none shrink-0">
         <Switch
           id="airplane-mode"
           onCheckedChange={() => setFilter("community", !filter.community)}
@@ -84,7 +84,12 @@ const ActionBar = ({
         </label>
       </div>
 
-      <div className="flex items-center gap-4 shrink-0 grow lg:grow-0 hidden md:flex">
+      <div
+        className={cn(
+          "flex items-center gap-4 shrink-0 grow lg:grow-0 justify-end hidden md:flex",
+          hideCommunityByDefault && "lg:!grow"
+        )}
+      >
         {categories.map((category) => (
           <div
             key={category.label}
@@ -122,9 +127,18 @@ const ActionBar = ({
         </div>
       </div>
 
-      <div className="items-center justify-end gap-2 shrink-0 hidden grow lg:flex">
+      <div
+        className={cn(
+          "items-center justify-end gap-2 shrink-0 hidden grow lg:flex",
+          hideCommunityByDefault && "lg:!hidden"
+        )}
+      >
         {/* <Export events={events} /> */}
-        <div className="flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow">
+        <div
+          className={cn(
+            "flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow"
+          )}
+        >
           <Search size={15} color="rgba(124, 124, 153, 1)" />
           <input
             className="grow border-none outline-none bg-transparen ml-0.5"

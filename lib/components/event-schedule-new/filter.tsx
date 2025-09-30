@@ -5,7 +5,7 @@ import { Checkbox } from "lib/components/ui/checkbox";
 import { Badge } from "lib/components/ui/badge";
 import { X, Search } from "lucide-react";
 
-export const useFilters = (events: any[]) => {
+export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const keysToFilterOn = ["eventType", "difficulty", "categories"];
   const filterableValues = {} as { [key: string]: Set<string> };
@@ -15,7 +15,7 @@ export const useFilters = (events: any[]) => {
     difficulty: [],
     eventType: [],
     name: "",
-    community: true,
+    community: showCommunityByDefault,
   };
 
   const [filter, setFilterState] = useState<any>(defaultFilter);
@@ -25,7 +25,8 @@ export const useFilters = (events: any[]) => {
     // filter.name !== defaultFilter.name ||
     filter.category.length !== defaultFilter.category.length ||
     filter.difficulty.length !== defaultFilter.difficulty.length ||
-    filter.eventType.length !== defaultFilter.eventType.length;
+    filter.eventType.length !== defaultFilter.eventType.length ||
+    filter.name !== defaultFilter.name;
 
   // Function to handle filter updates with toggle behavior for arrays
   const setFilter = (filterKey: string, nextValue: any) => {

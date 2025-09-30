@@ -15,6 +15,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
 // import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+import Export from "./export";
 
 const customUrlTransforms = [
   { from: "ethday", to: "84" },
@@ -190,10 +191,12 @@ const NewScheduleIndexInner = ({
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
+  const [exports, setExports] = useState<EventType[] | null>(null);
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
+
+  console.log(exports, "exports");
 
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
@@ -243,9 +246,9 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  const [selectedEventId, setSelectedEventId] = useState<
-    string | null | "initial"
-  >("initial");
+  // const [selectedEventId, setSelectedEventId] = useState<
+  //   string | null | "initial"
+  // >("initial");
 
   const selectedEvent = (() => {
     if (typeof window === "undefined") return;
@@ -262,12 +265,11 @@ const NewScheduleIndexInner = ({
       return eventId;
     };
 
-    const currentUrlParams = new URLSearchParams(window.location.search);
+    const currentUrlParams = new URLSearchParams(searchParams);
 
     const eventId = getEventIdFromUrl(
-      (selectedEventId === "initial" ? null : selectedEventId) ||
-        currentUrlParams.get("event") ||
-        ""
+      // (selectedEventId === "initial" ? null : selectedEventId) ||
+      currentUrlParams.get("event") || ""
     );
 
     return events.find((event) => {
@@ -281,11 +283,11 @@ const NewScheduleIndexInner = ({
   const setSelectedEvent = (event: EventType | null) => {
     if (typeof window === "undefined") return;
 
-    const currentParams = new URLSearchParams(window.location.search);
+    const currentParams = new URLSearchParams(searchParams);
 
     if (!event) {
       currentParams.delete("event");
-      setSelectedEventId(null);
+      // setSelectedEventId(null);
     } else {
       let nextEventId = event.rkey || event.id;
 
@@ -298,7 +300,7 @@ const NewScheduleIndexInner = ({
       }
 
       currentParams.set("event", nextEventId);
-      setSelectedEventId(nextEventId);
+      // setSelectedEventId(nextEventId);
     }
 
     // Update URL without any navigation using native History API
@@ -325,9 +327,13 @@ const NewScheduleIndexInner = ({
           event={selectedEventForDialog?.event}
           isDialog={true}
           selectedEvent={selectedEvent || null}
-          // selectedEvent={selectedEvent}
           setSelectedEvent={setSelectedEvent}
+          setExports={setExports}
         />
+      )}
+
+      {exports && (
+        <Export events={exports} setExports={() => setExports(null)} />
       )}
 
       {listView && (
@@ -419,6 +425,7 @@ const NewScheduleIndexInner = ({
                           event={placement.event}
                           selectedEvent={selectedEvent || null}
                           setSelectedEvent={setSelectedEvent}
+                          setExports={setExports}
                         />
                       ))}
                     </div>
@@ -512,6 +519,7 @@ const NewScheduleIndexInner = ({
                         }
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
+                        setExports={setExports}
                       />
                     </div>
                   ))}
