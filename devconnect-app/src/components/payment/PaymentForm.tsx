@@ -2,17 +2,36 @@
 
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Copy, DollarSign, Send } from 'lucide-react';
+import { Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 import { base } from '@base-org/account';
+import TokenSelector from './TokenSelector';
+import NetworkSelector from './NetworkSelector';
+import NetworkLogo from '../NetworkLogo';
+import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
+import { getNetworkConfig } from '@/config/networks';
 
 interface PaymentFormProps {
-  onSendPayment: (recipient: string, amount: string) => void;
-  onDirectSend?: (recipient: string, amount: string) => void;
+  onSendPayment: (
+    recipient: string,
+    amount: string,
+    token: string,
+    chainId: number
+  ) => void;
+  onDirectSend?: (
+    recipient: string,
+    amount: string,
+    token: string,
+    chainId: number
+  ) => void;
   initialRecipient?: string;
   initialAmount?: string;
   isPending?: boolean;
   showPreview?: boolean;
+  isPara?: boolean;
+  merchantName?: string;
+  orderId?: string;
+  connectedAddress?: string;
 }
 
 export default function PaymentForm({
@@ -22,12 +41,58 @@ export default function PaymentForm({
   initialAmount = '0.01',
   isPending = false,
   showPreview = true,
+  isPara = false,
+  merchantName = 'Devconnect',
+  orderId,
+  connectedAddress,
 }: PaymentFormProps) {
   const [recipient, setRecipient] = useState(initialRecipient);
   const [amount, setAmount] = useState(initialAmount);
   const [isRecipientValid, setIsRecipientValid] = useState(false);
   const [isAmountValid, setIsAmountValid] = useState(true);
   const [isBasePayLoading, setIsBasePayLoading] = useState(false);
+  const [selectedToken, setSelectedToken] = useState('USDC');
+  const [selectedChainId, setSelectedChainId] = useState(8453); // Base
+
+  // Handle network changes - for Para wallets, network is fixed to Base
+  const handleNetworkChange = (newChainId: number) => {
+    // For Para wallets, network is always Base, so don't allow changes
+    if (isPara) {
+      return;
+    }
+
+    setSelectedChainId(newChainId);
+  };
+
+  // Handle token changes - network should adapt to support the selected token
+  const handleTokenChange = (newToken: string) => {
+    setSelectedToken(newToken);
+
+    // Find a network that supports this token
+    const supportedNetworks = Object.entries(
+      tokens[newToken as keyof typeof tokens]?.addresses || {}
+    )
+      .filter(([_, address]) => address)
+      .map(([chainId, _]) => parseInt(chainId));
+
+    if (supportedNetworks.length > 0) {
+      // For Para wallets, only allow Base if it supports the token
+      if (isPara) {
+        if (supportedNetworks.includes(8453)) {
+          setSelectedChainId(8453); // Keep Base for Para
+        }
+        // If Base doesn't support the token, don't change network (Para restriction)
+      } else {
+        // For other wallets, prefer Base, then Ethereum, then any other network
+        const preferredNetwork = supportedNetworks.includes(8453)
+          ? 8453
+          : supportedNetworks.includes(1)
+            ? 1
+            : supportedNetworks[0];
+        setSelectedChainId(preferredNetwork);
+      }
+    }
+  };
 
   // Validate initial values on mount and when initial values change
   useEffect(() => {
@@ -77,9 +142,9 @@ export default function PaymentForm({
     }
 
     if (onDirectSend && !showPreview) {
-      onDirectSend(recipient.trim(), amount);
+      onDirectSend(recipient.trim(), amount, selectedToken, selectedChainId);
     } else {
-      onSendPayment(recipient.trim(), amount);
+      onSendPayment(recipient.trim(), amount, selectedToken, selectedChainId);
     }
   };
 
@@ -115,149 +180,131 @@ export default function PaymentForm({
   const quickAmounts = ['0.01', '0.1', '1', '10', '100'];
   const isFormValid = isRecipientValid && isAmountValid && amount;
 
+  const selectedTokenInfo = getTokenInfo(selectedToken, selectedChainId);
+  const selectedNetwork = getNetworkConfig(selectedChainId);
+
   return (
     <div className="space-y-6">
-      <div className="text-center">
-        <h2 className="text-xl font-semibold mb-2">Send Payment</h2>
-        <p className="text-sm text-gray-600">
-          Enter the recipient address and amount to send USDC
-        </p>
-      </div>
-
-      <div className="space-y-4">
-        {/* Recipient Address Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Recipient Address
-          </label>
-          <input
-            type="text"
-            value={recipient}
-            onChange={(e) => handleRecipientChange(e.target.value)}
-            placeholder="Enter 0x address..."
-            autoComplete="off"
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent mb-2 text-[12.5px]"
-          />
-          <div className="flex justify-end">
-            <Button
-              onClick={handlePaste}
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <Copy className="h-4 w-4" />
-              Paste
-            </Button>
+      {/* Merchant Information */}
+      <div className="text-center space-y-2">
+        <h2 className="text-[#20202b] text-base font-bold">{merchantName}</h2>
+        {orderId && (
+          <p className="text-[#353548] text-xs">
+            <span className="font-bold">Order ID:</span> {orderId}
+          </p>
+        )}
+        <div className="space-y-2">
+          <div className="flex items-end justify-center gap-1">
+            <span className="text-[#4b4b66] text-xl">ARS</span>
+            <span className="text-[#20202b] text-2xl font-bold">14,100</span>
           </div>
-          {recipient && !isRecipientValid && (
-            <p className="text-sm text-red-600 mt-1">
-              Please enter a valid 0x address (42 characters)
-            </p>
-          )}
-          {/* {isRecipientValid && (
-            <p className="text-sm text-green-600 mt-1">
-              ✅ Valid address: {recipient.slice(0, 6)}...{recipient.slice(-4)}
-            </p>
-          )} */}
-        </div>
-
-        {/* Amount Input */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Amount to Send
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <DollarSign className="h-5 w-5 text-gray-400" />
-            </div>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => handleAmountChange(e.target.value)}
-              placeholder="0.01"
-              step="0.01"
-              min="0.01"
-              max="1000"
-              className="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+          <div className="flex items-end justify-center gap-1">
+            <span className="text-[#4b4b66] text-base">USD</span>
+            <span className="text-[#20202b] text-xl font-bold">{amount}</span>
           </div>
-
-          {/* Quick Amount Buttons */}
-          {/* <div className="mt-2">
-            <p className="text-sm text-gray-600 mb-2">Quick amounts:</p>
-            <div className="flex flex-wrap gap-2">
-              {quickAmounts.map((quickAmount) => (
-                <button
-                  key={quickAmount}
-                  onClick={() => handleAmountChange(quickAmount)}
-                  className={`px-3 py-1 rounded-lg text-sm font-medium transition-colors ${
-                    amount === quickAmount
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                  }`}
-                >
-                  {quickAmount} USDC
-                </button>
-              ))}
-            </div>
-          </div> */}
-
-          {amount && !isAmountValid && (
-            <p className="text-sm text-red-600 mt-1">
-              Please enter a valid amount between 0.01 and 1000 USDC
-            </p>
-          )}
-          {/* {isAmountValid && amount && (
-            <p className="text-sm text-green-600 mt-1">
-              ✅ Amount: {amount} USDC
-            </p>
-          )} */}
         </div>
       </div>
 
-      {/* Payment Buttons */}
+      {/* Payment Method Section */}
       <div className="space-y-3">
-        {/* Send Payment Button */}
-        <div className="flex justify-center">
-          <Button
-            onClick={handleSendPayment}
-            disabled={!isFormValid || isPending}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
-          >
-            {isPending ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Processing...
-              </>
-            ) : (
-              <>
-                <Send className="h-4 w-4 mr-2" />
-                Send Payment
-              </>
-            )}
-          </Button>
+        <h3 className="text-[#353548] text-base font-semibold">
+          Payment method
+        </h3>
+        <TokenSelector
+          selectedToken={selectedToken}
+          onTokenChange={handleTokenChange}
+          chainId={selectedChainId}
+          isPara={isPara}
+        />
+      </div>
+
+      {/* Network Section */}
+      <div className="space-y-3">
+        <h3 className="text-[#353548] text-base font-semibold">Network</h3>
+        <NetworkSelector
+          selectedChainId={selectedChainId}
+          onNetworkChange={handleNetworkChange}
+          isPara={isPara}
+          selectedToken={selectedToken}
+        />
+        {isPara && (
+          <p className="text-xs text-[#4b4b66] bg-gray-50 p-2 rounded">
+            Network is automatically selected based on the chosen payment method
+          </p>
+        )}
+      </div>
+
+      {/* Wallet Section */}
+      <div className="space-y-3">
+        <h3 className="text-[#353548] text-base font-semibold">Wallet</h3>
+        <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <NetworkLogo chainId={selectedChainId} size="sm" />
+            <span className="text-[#353548] text-base font-normal">
+              {isPara ? 'Para' : 'Standard Wallet'}
+            </span>
+          </div>
+          <ChevronDown className="w-5 h-5 text-[#353548]" />
         </div>
 
-        {/* Base Pay Button */}
-        <div className="flex justify-center">
-          <Button
-            onClick={handleBasePay}
-            disabled={!isFormValid || isBasePayLoading}
-            className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors disabled:opacity-50"
-          >
-            {isBasePayLoading ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Processing...
-              </>
-            ) : (
-              <>
-                <DollarSign className="h-4 w-4 mr-2" />
-                Base Pay
-              </>
-            )}
-          </Button>
+        {/* Connection Status */}
+        <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-white text-base font-semibold">
+              Connected to:
+            </span>
+            <div className="flex items-center gap-2">
+              <NetworkLogo chainId={selectedChainId} size="sm" />
+              <span className="text-white text-sm">
+                {connectedAddress
+                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
+                  : 'Not connected'}
+              </span>
+            </div>
+          </div>
+          {isPara && (
+            <p className="text-[#ededf0] text-xs text-center">
+              <span className="font-bold">Para: </span>
+              <span className="font-normal">This transaction is gas-free</span>
+            </p>
+          )}
+        </div>
+        <button className="text-[#1b6fae] text-sm font-medium">
+          SWITCH WALLET (2)
+        </button>
+      </div>
+
+      {/* Amount to Pay */}
+      <div className="border-t border-[#c7c7d0] pt-3">
+        <div className="flex items-center justify-between">
+          <span className="text-[#353548] text-base font-semibold">
+            Amount to pay
+          </span>
+          <span className="text-[#353548] text-base">
+            {amount} {selectedTokenInfo?.symbol || selectedToken}
+          </span>
         </div>
       </div>
+
+      {/* Pay Button */}
+      <Button
+        onClick={handleSendPayment}
+        disabled={!isFormValid || isPending}
+        className="w-full bg-[#137c59] hover:bg-[#0c5039] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#0c5039] transition-colors disabled:opacity-50"
+      >
+        {isPending ? (
+          <>
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+            Processing...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4 mr-2" />
+            Pay {merchantName} {amount}{' '}
+            {selectedTokenInfo?.symbol || selectedToken}
+          </>
+        )}
+      </Button>
     </div>
   );
 } 

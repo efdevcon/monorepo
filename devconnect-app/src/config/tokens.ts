@@ -4,11 +4,11 @@ import { chains } from './networks';
 const tokenAddresses: Record<string, Record<number, string>> = {
   ETH: {
     1: '0x0000000000000000000000000000000000000000', // Ethereum mainnet (native)
+    42161: '0x0000000000000000000000000000000000000000', // Arbitrum (native)
     8453: '0x0000000000000000000000000000000000000000', // Base (native)
     10: '0x0000000000000000000000000000000000000000', // Optimism (native)
-    42161: '0x0000000000000000000000000000000000000000', // Arbitrum (native)
-    42220: '0x0000000000000000000000000000000000000000', // Celo (native)
-    137: '0x0000000000000000000000000000000000000000', // Polygon (native)
+    // 42220: '0xd221812de1bd094f35587ee8e174b07b6167d9af', // Celo (bridged)
+    // 137: '0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', // Polygon (bridged)
     480: '0x0000000000000000000000000000000000000000', // World Chain (native)
   },
   // https://app.zerion.io/tokens/USDC-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
@@ -20,7 +20,7 @@ const tokenAddresses: Record<string, Record<number, string>> = {
     42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
     42220: '0xceba9300f2b948710d2653dd7b07f33a8b32118c', // Celo
     137: '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', // Polygon (native) // bridged: 0x2791bca1f2de4661ed88a30c99a7a9449aa84174
-    480: '0x79A02482A880bCE3F13e09Da970dC34db4CD24d1', // World Chain
+    480: '0x79a02482a880bce3f13e09da970dc34db4cd24d1', // World Chain
   },
   // https://app.zerion.io/tokens/USDT-0xdac17f958d2ee523a2206206994597c13d831ec7
   // USDT0: https://zapper.xyz/token/optimism/0x01bff41798a0bcf287b996046ca68b395dbc1071/USD%25E2%2582%25AE0/details
@@ -39,15 +39,19 @@ const tokenAddresses: Record<string, Record<number, string>> = {
 
 // Dynamic network names for logo URLs derived from chains
 const networkNames: Record<number, string> = chains.reduce((acc, chain) => {
-  acc[chain.id] = chain.name.toLowerCase().replace(/\s+/g, '');
+  acc[chain.id] = chain.name.toLowerCase().replace(/\s+/g, '')?.replace('arbitrumone', 'arbitrum')?.replace('opmainnet', 'optimism');
   return acc;
 }, {} as Record<number, string>);
 
 // Helper function to get token logo URL
 const getTokenLogoUrl = (tokenSymbol: string, chainId: number): string => {
+  if (tokenSymbol === 'wARS') {
+    return `/images/wARS.png`;
+  }
+
   const networkName = networkNames[chainId];
   const tokenAddress = tokenAddresses[tokenSymbol][chainId];
-  
+
   if (!networkName || !tokenAddress) {
     return `https://storage.googleapis.com/zapper-fi-assets/tokens/${tokenSymbol.toLowerCase()}.png`;
   }
@@ -82,7 +86,7 @@ export const tokens = {
     name: 'Wrapped ARS',
     decimals: 18,
     addresses: tokenAddresses.wARS,
-    networks: [8453], // Base only
+    networks: [480], // World Chain only
   },
 } as const;
 

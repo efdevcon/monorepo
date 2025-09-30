@@ -1,24 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData } from 'wagmi';
 import { toast } from 'sonner';
-
-// USDC contract constants
-const USDC_CONTRACT_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
-const USDC_DECIMALS = 6;
-
-// USDC ABI for transfer function
-const USDC_ABI = [
-  {
-    name: 'transfer',
-    type: 'function',
-    stateMutability: 'nonpayable',
-    inputs: [
-      { name: 'to', type: 'address' },
-      { name: 'amount', type: 'uint256' }
-    ],
-    outputs: [{ name: '', type: 'bool' }]
-  }
-] as const;
+import { getTokenInfo } from '@/config/tokens';
 
 export type TransactionStatus = 
   | 'idle' 
@@ -88,27 +71,59 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     setSimulationDetails(null);
   };
 
-  const sendRegularTransaction = async (recipient: string, amount: string) => {
+  const sendRegularTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
     if (!isConnected || !connectedAddress) {
       throw new Error('Wallet not connected');
+    }
+
+    if (!token || !chainId) {
+      throw new Error('Token and chainId are required');
     }
 
     try {
       setTxStatus('transfer');
       
-      // Convert amount to wei (USDC has 6 decimals)
-      const amountNumber = parseFloat(amount);
-      const amountWei = BigInt(Math.floor(amountNumber * Math.pow(10, USDC_DECIMALS)));
-      
-      console.log('Initiating regular transaction...');
+      // Get token information dynamically
+      const tokenInfo = getTokenInfo(token, chainId);
+      if (!tokenInfo) {
+        throw new Error(`Token ${token} not supported on chain ${chainId}`);
+      }
 
-      // Write the contract transaction
-      writeContract({
-        address: USDC_CONTRACT_ADDRESS,
-        abi: USDC_ABI,
-        functionName: 'transfer',
-        args: [recipient as `0x${string}`, amountWei],
-      });
+      // Convert amount to wei based on token decimals
+      const amountNumber = parseFloat(amount);
+      const amountWei = BigInt(Math.floor(amountNumber * Math.pow(10, tokenInfo.decimals)));
+      
+      console.log(`Initiating ${token} transaction on chain ${chainId}...`);
+      console.log('Token info:', tokenInfo);
+
+      // For native tokens (ETH), use a different approach
+      if ('isNative' in tokenInfo && tokenInfo.isNative) {
+        // Handle native token transfer (ETH)
+        // This would need to be implemented based on your specific requirements
+        throw new Error('Native token transfers not yet implemented');
+      } else {
+        // Handle ERC-20 token transfer
+        const tokenABI = [
+          {
+            name: 'transfer',
+            type: 'function',
+            stateMutability: 'nonpayable',
+            inputs: [
+              { name: 'to', type: 'address' },
+              { name: 'amount', type: 'uint256' }
+            ],
+            outputs: [{ name: '', type: 'bool' }]
+          }
+        ] as const;
+
+        // Write the contract transaction
+        writeContract({
+          address: tokenInfo.address as `0x${string}`,
+          abi: tokenABI,
+          functionName: 'transfer',
+          args: [recipient as `0x${string}`, amountWei],
+        });
+      }
       
       console.log('writeContract called successfully');
 
@@ -128,7 +143,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendParaTransaction = async (recipient: string, amount: string) => {
+  const sendParaTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
     if (!isConnected || !connectedAddress) {
       throw new Error('Wallet not connected');
     }
@@ -136,7 +151,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     try {
       setTxStatus('preparing');
       
-      // Step 1: Prepare authorization
+      // Step 1: Prepare authorization (hardcoded for Para - USDC on Base)
       const authResponse = await fetch('/api/base/prepare-authorization', {
         method: 'POST',
         headers: {
@@ -218,12 +233,12 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendTransaction = async (recipient: string, amount: string) => {
+  const sendTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
     try {
       if (isPara) {
-        await sendParaTransaction(recipient, amount);
+        await sendParaTransaction(recipient, amount, token, chainId);
       } else {
-        await sendRegularTransaction(recipient, amount);
+        await sendRegularTransaction(recipient, amount, token, chainId);
       }
     } catch (error) {
       console.error('Transaction failed:', error);
