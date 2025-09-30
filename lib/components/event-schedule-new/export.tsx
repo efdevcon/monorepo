@@ -247,6 +247,12 @@ const ExportToIcs: React.FC<ExportToIcsProps> = ({ events, setExports }) => {
           </div>
         </div>
 
+        <div className="flex items-center justify-between text-xs text-red-400">
+          Be mindful that event changes and updates will not be reflected once
+          you export to your own calendar. It is important to check back closer
+          to the event date to make sure your calendar matches the schedule.
+        </div>
+
         <div className="">
           <div className="space-y-3">
             <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">

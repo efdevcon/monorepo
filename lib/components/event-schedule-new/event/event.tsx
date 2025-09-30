@@ -479,7 +479,7 @@ const Event: React.FC<EventProps> = ({
                           isDialog
                           setExports={setExports}
                         />
-                        <FavoriteEvent event={event} isDialog />
+                        {/* <FavoriteEvent event={event} isDialog /> */}
                       </div>
                     </div>
 
@@ -680,7 +680,7 @@ const Event: React.FC<EventProps> = ({
                 <div className="flex flex-col w-full">
                   <div className="flex justify-between gap-2">
                     <div className="md:line-clamp-none">{eventName}</div>
-                    <FavoriteEvent event={event} />
+                    {/* <FavoriteEvent event={event} /> */}
                   </div>
                   <div className="flex gap-4 justify-between w-full">
                     {timeOfDay.map((time, index) => (
