@@ -33,7 +33,7 @@ export default function NetworkSelector({
           
           // Check if token has network restrictions
           const token = tokens[selectedToken as keyof typeof tokens];
-          if ('networks' in token && token.networks) {
+          if ('networks' in token && token.networks && Array.isArray(token.networks)) {
             return token.networks.includes(chain.id as any);
           }
           
