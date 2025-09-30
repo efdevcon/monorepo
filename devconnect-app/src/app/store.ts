@@ -1,35 +1,32 @@
 import { create } from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
 
-interface AppState {
-  user: any;
+export interface AppState {
+  // User data from supabase (so basically data attached to the logged in email)
+  userData: {
+    additional_ticket_emails: string[];
+    favorite_events: string[];
+  } | null;
+  setUserData: (userData: AppState['userData']) => void;
+  logout: (state: AppState) => void;
 }
 
-const useAppStore = create<AppState>()(
-  devtools(
-    persist(
-      (set) => ({
-        // Initial state
-        user: {},
-        // User actions
-        setUser: (userData: any) =>
-          set((state) => ({
-            user: userData,
-          })),
+// Lets keep global state for simplicity - useShallow for performance as needed
+const useGlobalStore = create<AppState>()((set) => ({
+  // Initial state
+  userData: null,
 
-        logout: () =>
-          set({
-            user: null,
-          }),
-      }),
-      {
-        name: 'devconnect-app-store',
-        partialize: (state) => ({
-          user: state.user,
-        }),
-      }
-    )
-  )
-);
+  // User actions
+  setUserData: (userData: AppState['userData']) =>
+    set((state) => ({
+      ...state,
+      userData: userData,
+    })),
 
-export default useAppStore;
+  logout: (state: AppState) =>
+    set({
+      ...state,
+      userData: null,
+    }),
+}));
+
+export default useGlobalStore;

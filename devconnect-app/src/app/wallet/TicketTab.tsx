@@ -9,7 +9,10 @@ import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
 // import { Separator } from 'lib/components/ui/separator';
-import { useUserAppData } from '@/hooks/useUserAppData';
+// import { useUserAppData } from '@/hooks/useUserAppData';
+// import { ensureUserData } from '@/app/store.hooks';
+import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
+import useGlobalStore from '@/app/store';
 
 interface Ticket {
   secret: string;
@@ -27,9 +30,9 @@ interface Order {
 }
 
 export default function TicketTab() {
-  const { user, signOut, error, hasInitialized, supabase } = useUser();
-  const { user: userAppData, syncUserData } = useUserAppData();
-  const { isParaConnected, email } = useUnifiedConnection();
+  const additionalTicketEmails = useAdditionalTicketEmails();
+  const { setUserData } = useGlobalStore();
+  const { email } = useUnifiedConnection();
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);
   const [ticketError, setTicketError] = useState<string | null>(null);
@@ -112,10 +115,10 @@ export default function TicketTab() {
   // Auto-load tickets when component mounts
   useEffect(() => {
     // Only fetch if we have a user (either from Supabase or Para)
-    if (user || email) {
+    if (email) {
       fetchTickets();
     }
-  }, [user, email]);
+  }, [email]);
 
   // Function to refresh tickets
   const refreshTickets = async () => {
@@ -179,8 +182,6 @@ export default function TicketTab() {
 
     await fetchTickets();
   };
-
-  const additionalEmails = userAppData?.additional_ticket_emails || [];
 
   return (
     <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -305,7 +306,7 @@ export default function TicketTab() {
 
           <div className="flex flex-col text-center text-xs font-medium">
             <div className="">{email}</div>
-            {additionalEmails.map((email: string) => (
+            {additionalTicketEmails.map((email: string) => (
               <div key={email} className="">
                 {email}
               </div>
@@ -398,7 +399,7 @@ export default function TicketTab() {
                     if (response.success) {
                       toast.success('Email verified successfully!');
 
-                      await syncUserData();
+                      await ensureUserData(setUserData);
                       await fetchTickets();
                     } else {
                       if (response.error) {
