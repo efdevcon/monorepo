@@ -44,28 +44,7 @@ export default function ScanPage() {
   const [manualPaymentError, setManualPaymentError] = useState<string | null>(
     null
   );
-  const [prefilledPaymentData, setPrefilledPaymentData] = useState<{
-    recipient: string;
-    amount: string;
-    orderId?: string;
-    orderStatus?: string;
-    orderStatusDetail?: string;
-    arsAmount?: number;
-    priceDetails?: {
-      currency: string;
-      currency_amount: number;
-      currency_final_amount: number;
-      base_amount: number;
-      final_amount: number;
-      paid_amount: number;
-      discount_rate: number;
-      rate: number;
-    };
-    paymentRequestId?: string;
-  }>({
-    recipient: '',
-    amount: '0.01',
-  });
+  const [paymentRequestId, setPaymentRequestId] = useState<string>('');
   const { isPara } = useUnifiedConnection();
 
   // Function to parse EIP-681 URL and extract payment data
@@ -124,26 +103,6 @@ export default function ScanPage() {
     }
   };
 
-  // Function to fetch payment details from payment-status API
-  const fetchPaymentDetails = async (paymentRequestId: string) => {
-    try {
-      const response = await fetch(`/api/payment-status/${paymentRequestId}`);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('Error fetching payment details:', error);
-      throw error;
-    }
-  };
-
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
     console.log('QR Scanner received value:', value);
@@ -152,63 +111,23 @@ export default function ScanPage() {
     const eip681Data = parseEIP681Url(value);
     if (eip681Data) {
       console.log('QR Scanner parsed EIP-681 data:', eip681Data);
-      setPrefilledPaymentData(eip681Data);
-      setIsManualPaymentOpen(true);
+      // For EIP-681 URLs, we don't have a payment request ID, so open as regular link
+      window.open(value, '_blank');
       return;
     }
 
     // Then, try to parse as manual URL or payment request ID
-    const paymentRequestId = value.startsWith('https://')
+    const parsedPaymentRequestId = value.startsWith('https://')
       ? parseManualUrl(value)
       : value;
-    if (paymentRequestId) {
-      console.log('QR Scanner parsed payment request ID:', paymentRequestId);
-
-      try {
-        // Fetch payment details from the API
-        const paymentDetails = await fetchPaymentDetails(paymentRequestId);
-        console.log('Payment details fetched:', paymentDetails);
-
-        // Extract transaction data from the first transaction
-        if (
-          paymentDetails.transactions &&
-          paymentDetails.transactions.length > 0
-        ) {
-          const transaction = paymentDetails.transactions[0];
-
-          setPrefilledPaymentData({
-            recipient: transaction.address,
-            amount:
-              transaction.price_details?.final_amount?.toString() ||
-              paymentDetails.amount.toString(),
-            orderId: paymentDetails.order_id?.toString(),
-            orderStatus: paymentDetails.status,
-            orderStatusDetail: paymentDetails.status_detail,
-            arsAmount: paymentDetails.ars_amount,
-            priceDetails: transaction.price_details,
-            paymentRequestId: paymentRequestId,
-          });
-
-          setIsManualPaymentOpen(true);
-          return;
-        } else {
-          console.log('No transactions found in payment details');
-          // Fall back to opening the URL in a new tab
-          window.open(
-            `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
-            '_blank'
-          );
-          return;
-        }
-      } catch (error) {
-        console.error('Error processing payment request:', error);
-        // Fall back to opening the URL in a new tab
-        window.open(
-          `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
-          '_blank'
-        );
-        return;
-      }
+    if (parsedPaymentRequestId) {
+      console.log(
+        'QR Scanner parsed payment request ID:',
+        parsedPaymentRequestId
+      );
+      setPaymentRequestId(parsedPaymentRequestId);
+      setIsManualPaymentOpen(true);
+      return;
     }
 
     // If neither EIP-681 nor payment request ID, try to open as a regular link
@@ -223,50 +142,10 @@ export default function ScanPage() {
       return;
     }
 
-    try {
-      setIsLoadingManualPayment(true);
-      setManualPaymentError(null);
-
-      const paymentDetails = await fetchPaymentDetails(
-        manualPaymentRequestId.trim()
-      );
-      console.log('Manual payment details fetched:', paymentDetails);
-
-      // Extract transaction data from the first transaction
-      if (
-        paymentDetails.transactions &&
-        paymentDetails.transactions.length > 0
-      ) {
-        const transaction = paymentDetails.transactions[0];
-
-        setPrefilledPaymentData({
-          recipient: transaction.address,
-          amount:
-            transaction.price_details?.final_amount?.toString() ||
-            paymentDetails.amount.toString(),
-          orderId: paymentDetails.order_id?.toString(),
-          orderStatus: paymentDetails.status,
-          orderStatusDetail: paymentDetails.status_detail,
-          arsAmount: paymentDetails.ars_amount,
-          priceDetails: transaction.price_details,
-          paymentRequestId: manualPaymentRequestId.trim(),
-        });
-
-        setIsManualPaymentOpen(true);
-        setManualPaymentRequestId(''); // Clear the input after successful fetch
-      } else {
-        setManualPaymentError('No transactions found for this payment request');
-      }
-    } catch (error) {
-      console.error('Error processing manual payment request:', error);
-      setManualPaymentError(
-        error instanceof Error
-          ? error.message
-          : 'Failed to fetch payment details'
-      );
-    } finally {
-      setIsLoadingManualPayment(false);
-    }
+    setPaymentRequestId(manualPaymentRequestId.trim());
+    setIsManualPaymentOpen(true);
+    setManualPaymentRequestId(''); // Clear the input
+    setManualPaymentError(null);
   };
 
   return (
@@ -345,18 +224,11 @@ export default function ScanPage() {
 
         {/* Payment Modal */}
         <PaymentModal
-          key={`${prefilledPaymentData.recipient}-${prefilledPaymentData.amount}`}
+          key={paymentRequestId}
           isOpen={isManualPaymentOpen}
           onClose={() => setIsManualPaymentOpen(false)}
           isPara={Boolean(isPara)}
-          initialRecipient={prefilledPaymentData.recipient}
-          initialAmount={prefilledPaymentData.amount}
-          orderId={prefilledPaymentData.orderId}
-          orderStatus={prefilledPaymentData.orderStatus}
-          orderStatusDetail={prefilledPaymentData.orderStatusDetail}
-          arsAmount={prefilledPaymentData.arsAmount}
-          priceDetails={prefilledPaymentData.priceDetails}
-          paymentRequestId={prefilledPaymentData.paymentRequestId}
+          paymentRequestId={paymentRequestId}
         />
       </div>
     </PageLayout>
