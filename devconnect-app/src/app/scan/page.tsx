@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import PageLayout from '@/components/PageLayout';
 import QRScanner from '@/components/QRScanner';
-import ManualPaymentModal from '@/components/ManualPaymentModal';
+import PaymentModal from '@/components/PaymentModal';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
@@ -37,9 +37,6 @@ interface PaymentRequest {
   expiration_time?: string;
 }
 
-const PAYMENT_REQUEST_KEY = 'devconnect_payment_request';
-const PAYMENT_REQUEST_EXPIRY_KEY = 'devconnect_payment_request_expiry';
-
 export default function ScanPage() {
   const [isManualPaymentOpen, setIsManualPaymentOpen] = useState(false);
   const [manualPaymentRequestId, setManualPaymentRequestId] = useState('');
@@ -53,59 +50,23 @@ export default function ScanPage() {
     orderId?: string;
     orderStatus?: string;
     orderStatusDetail?: string;
+    arsAmount?: number;
+    priceDetails?: {
+      currency: string;
+      currency_amount: number;
+      currency_final_amount: number;
+      base_amount: number;
+      final_amount: number;
+      paid_amount: number;
+      discount_rate: number;
+      rate: number;
+    };
+    paymentRequestId?: string;
   }>({
     recipient: '',
     amount: '0.01',
   });
-  const [paymentRequest, setPaymentRequest] = useState<PaymentRequest | null>(
-    null
-  );
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const { isPara } = useUnifiedConnection();
-
-  // Get cached payment request from localStorage
-  const getCachedPaymentRequest = (): PaymentRequest | null => {
-    try {
-      const cached = localStorage.getItem(PAYMENT_REQUEST_KEY);
-      const expiry = localStorage.getItem(PAYMENT_REQUEST_EXPIRY_KEY);
-
-      if (!cached || !expiry) {
-        return null;
-      }
-
-      // Check if cached data is still valid (24 hours)
-      const expiryTime = parseInt(expiry);
-      if (Date.now() > expiryTime) {
-        // Clear expired data
-        localStorage.removeItem(PAYMENT_REQUEST_KEY);
-        localStorage.removeItem(PAYMENT_REQUEST_EXPIRY_KEY);
-        return null;
-      }
-
-      return JSON.parse(cached);
-    } catch (error) {
-      console.error('Error reading cached payment request:', error);
-      return null;
-    }
-  };
-
-  // Cache payment request in localStorage
-  const cachePaymentRequest = (data: PaymentRequest) => {
-    try {
-      // Cache for 24 hours
-      const expiryTime = Date.now() + 24 * 60 * 60 * 1000;
-
-      localStorage.setItem(PAYMENT_REQUEST_KEY, JSON.stringify(data));
-      localStorage.setItem(PAYMENT_REQUEST_EXPIRY_KEY, expiryTime.toString());
-    } catch (error) {
-      console.error('Error caching payment request:', error);
-    }
-  };
-
-  // Removed fetchPaymentRequest - only work with user-provided payment IDs
-
-  // No automatic payment request fetching - only work with user-provided payment IDs
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
@@ -183,86 +144,6 @@ export default function ScanPage() {
     }
   };
 
-  // Function to get payment request from merchants API
-  const getPaymentRequest = async (paymentId: string) => {
-    try {
-      setIsLoading(true);
-      setError(null);
-
-      const response = await fetch(`/api/merchants?paymentId=${paymentId}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
-      }
-
-      const data: PaymentRequest = await response.json();
-      setPaymentRequest(data);
-
-      // Cache the new data
-      cachePaymentRequest(data);
-
-      // Update prefilled payment data with the first transaction
-      if (data.transactions && data.transactions.length > 0) {
-        const transaction = data.transactions[0];
-        setPrefilledPaymentData({
-          recipient: transaction.address,
-          amount:
-            transaction.price_details?.final_amount?.toString() ||
-            data.amount.toString(),
-        });
-      }
-
-      return data;
-    } catch (err) {
-      console.error('Error getting payment request:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to get payment request'
-      );
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Function to fetch order status details before opening manual payment
-  const fetchOrderStatusDetails = async () => {
-    try {
-      // Use the current payment request ID if available
-      if (paymentRequest?.id) {
-        const paymentDetails = await fetchPaymentDetails(paymentRequest.id);
-        console.log('Order status details fetched:', paymentDetails);
-
-        // Update prefilled payment data with status information
-        if (
-          paymentDetails.transactions &&
-          paymentDetails.transactions.length > 0
-        ) {
-          const transaction = paymentDetails.transactions[0];
-          setPrefilledPaymentData({
-            recipient: transaction.address,
-            amount:
-              transaction.price_details?.final_amount?.toString() ||
-              paymentDetails.amount.toString(),
-            orderId: paymentDetails.order_id?.toString(),
-            orderStatus: paymentDetails.status,
-            orderStatusDetail: paymentDetails.status_detail,
-          });
-        }
-      }
-    } catch (error) {
-      console.error('Error fetching order status details:', error);
-      // Continue with manual payment even if status fetch fails
-    }
-  };
-
   // Handle QR code scan
   const handleQRScan = async (value: string) => {
     console.log('QR Scanner received value:', value);
@@ -276,15 +157,12 @@ export default function ScanPage() {
       return;
     }
 
-    // Then, try to parse as manual URL
+    // Then, try to parse as manual URL or payment request ID
     const paymentRequestId = value.startsWith('https://')
       ? parseManualUrl(value)
       : value;
     if (paymentRequestId) {
-      console.log(
-        'QR Scanner parsed manual URL, payment request ID:',
-        paymentRequestId
-      );
+      console.log('QR Scanner parsed payment request ID:', paymentRequestId);
 
       try {
         // Fetch payment details from the API
@@ -306,49 +184,24 @@ export default function ScanPage() {
             orderId: paymentDetails.order_id?.toString(),
             orderStatus: paymentDetails.status,
             orderStatusDetail: paymentDetails.status_detail,
+            arsAmount: paymentDetails.ars_amount,
+            priceDetails: transaction.price_details,
+            paymentRequestId: paymentRequestId,
           });
 
           setIsManualPaymentOpen(true);
           return;
         } else {
           console.log('No transactions found in payment details');
-
-          // Get payment request when no transactions are found
-          try {
-            console.log('Getting payment request due to no transactions found');
-            const newPaymentRequest = await getPaymentRequest(
-              paymentDetails.id
-            );
-
-            // Update prefilled payment data with the new payment request
-            if (
-              newPaymentRequest.transactions &&
-              newPaymentRequest.transactions.length > 0
-            ) {
-              const transaction = newPaymentRequest.transactions[0];
-              setPrefilledPaymentData({
-                recipient: transaction.address,
-                amount:
-                  transaction.price_details?.final_amount?.toString() ||
-                  newPaymentRequest.amount.toString(),
-                orderId: newPaymentRequest.order_id?.toString(),
-              });
-
-              setIsManualPaymentOpen(true);
-              return;
-            }
-          } catch (error) {
-            console.error('Error getting payment request:', error);
-            // Fall back to opening the URL in a new tab
-            window.open(
-              `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
-              '_blank'
-            );
-            return;
-          }
+          // Fall back to opening the URL in a new tab
+          window.open(
+            `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
+            '_blank'
+          );
+          return;
         }
       } catch (error) {
-        console.error('Error processing manual URL:', error);
+        console.error('Error processing payment request:', error);
         // Fall back to opening the URL in a new tab
         window.open(
           `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
@@ -358,7 +211,7 @@ export default function ScanPage() {
       }
     }
 
-    // If neither EIP-681 nor manual URL, try to open as a regular link
+    // If neither EIP-681 nor payment request ID, try to open as a regular link
     console.log('Opening as regular link:', value);
     window.open(value, '_blank');
   };
@@ -394,6 +247,9 @@ export default function ScanPage() {
           orderId: paymentDetails.order_id?.toString(),
           orderStatus: paymentDetails.status,
           orderStatusDetail: paymentDetails.status_detail,
+          arsAmount: paymentDetails.ars_amount,
+          priceDetails: transaction.price_details,
+          paymentRequestId: manualPaymentRequestId.trim(),
         });
 
         setIsManualPaymentOpen(true);
@@ -412,10 +268,6 @@ export default function ScanPage() {
       setIsLoadingManualPayment(false);
     }
   };
-
-  // No automatic loading/error states - only work with user-provided payment IDs
-
-  console.log('Current prefilledPaymentData:', prefilledPaymentData);
 
   return (
     <PageLayout title="Scan">
@@ -491,19 +343,20 @@ export default function ScanPage() {
           </a>
         </div>
 
-        {/* Manual Payment Modal */}
-        <ManualPaymentModal
+        {/* Payment Modal */}
+        <PaymentModal
           key={`${prefilledPaymentData.recipient}-${prefilledPaymentData.amount}`}
           isOpen={isManualPaymentOpen}
           onClose={() => setIsManualPaymentOpen(false)}
           isPara={Boolean(isPara)}
           initialRecipient={prefilledPaymentData.recipient}
           initialAmount={prefilledPaymentData.amount}
-          orderId={
-            prefilledPaymentData.orderId || paymentRequest?.order_id?.toString()
-          }
+          orderId={prefilledPaymentData.orderId}
           orderStatus={prefilledPaymentData.orderStatus}
           orderStatusDetail={prefilledPaymentData.orderStatusDetail}
+          arsAmount={prefilledPaymentData.arsAmount}
+          priceDetails={prefilledPaymentData.priceDetails}
+          paymentRequestId={prefilledPaymentData.paymentRequestId}
         />
       </div>
     </PageLayout>

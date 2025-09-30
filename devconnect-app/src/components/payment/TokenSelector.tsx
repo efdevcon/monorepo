@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { tokens, getTokenInfo, getSupportedTokens } from '@/config/tokens';
-import { getNetworkConfig } from '@/config/networks';
+import { tokens, getTokenInfo } from '@/config/tokens';
 
 interface TokenSelectorProps {
   selectedToken: string;

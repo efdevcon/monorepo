@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData } from 'wagmi';
+import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData, useSendTransaction, useSwitchChain } from 'wagmi';
 import { toast } from 'sonner';
 import { getTokenInfo } from '@/config/tokens';
 
@@ -52,12 +52,18 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
   // Wallet connection hooks
   const { address: connectedAddress, isConnected } = useAccount();
   
+  // Network switching hook
+  const { switchChain } = useSwitchChain();
+
   // Contract write hooks for regular wallets
   const { writeContract, isPending: isWritePending, data: hash, error: writeError } = useWriteContract();
   
+  // Native token transfer hook
+  const { sendTransaction: sendNativeTransaction, isPending: isNativePending, data: nativeHash, error: nativeError } = useSendTransaction();
+
   // Transaction receipt hook
   const { isLoading: isConfirming, isSuccess, isError } = useWaitForTransactionReceipt({
-    hash,
+    hash: hash || nativeHash,
   });
 
   // Typed data signing for Para wallets
@@ -81,6 +87,18 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
 
     try {
+      setTxStatus('preparing');
+
+      // Switch to the selected network if needed
+      try {
+        await switchChain({ chainId });
+        console.log(`Switched to network ${chainId}`);
+      } catch (switchError) {
+        console.error('Network switch failed:', switchError);
+        // Continue with transaction even if network switch fails
+        // The user might already be on the correct network
+      }
+
       setTxStatus('transfer');
       
       // Get token information dynamically
@@ -96,11 +114,15 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       console.log(`Initiating ${token} transaction on chain ${chainId}...`);
       console.log('Token info:', tokenInfo);
 
-      // For native tokens (ETH), use a different approach
+      // For native tokens (ETH), use native transfer
       if ('isNative' in tokenInfo && tokenInfo.isNative) {
         // Handle native token transfer (ETH)
-        // This would need to be implemented based on your specific requirements
-        throw new Error('Native token transfers not yet implemented');
+        console.log('Sending native ETH transfer...');
+
+        sendNativeTransaction({
+          to: recipient as `0x${string}`,
+          value: amountWei,
+        });
       } else {
         // Handle ERC-20 token transfer
         const tokenABI = [
@@ -151,6 +173,16 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     try {
       setTxStatus('preparing');
       
+      // For Para transactions, ensure we're on Base network (8453)
+      const baseChainId = 8453;
+      try {
+        await switchChain({ chainId: baseChainId });
+        console.log('Switched to Base network for Para transaction');
+      } catch (switchError) {
+        console.error('Failed to switch to Base network:', switchError);
+        // Continue with transaction - user might already be on Base
+      }
+
       // Step 1: Prepare authorization (hardcoded for Para - USDC on Base)
       const authResponse = await fetch('/api/base/prepare-authorization', {
         method: 'POST',
@@ -248,11 +280,11 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
   // Handle transaction success/error for regular wallets
   useEffect(() => {
-    if (isSuccess && hash && txStatus !== 'confirmed') {
-      setTxHash(hash);
+    if (isSuccess && (hash || nativeHash) && txStatus !== 'confirmed') {
+      setTxHash(hash || nativeHash || null);
       setTxStatus('confirmed');
     }
-  }, [isSuccess, hash, txStatus]);
+  }, [isSuccess, hash, nativeHash, txStatus]);
 
   // Handle write contract errors (user rejections, etc.)
   useEffect(() => {
@@ -269,6 +301,22 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       }
     }
   }, [writeError, txStatus]);
+
+  // Handle native transaction errors
+  useEffect(() => {
+    if (nativeError && txStatus !== 'error') {
+      console.error('Native transaction error:', nativeError);
+      setTxStatus('error');
+
+      if (isUserRejectionError(nativeError)) {
+        setTxError('Transaction was cancelled by user');
+      } else if (nativeError instanceof Error) {
+        setTxError(nativeError.message);
+      } else {
+        setTxError('Native transaction failed');
+      }
+    }
+  }, [nativeError, txStatus]);
 
   useEffect(() => {
     if (isError && txStatus !== 'error') {
@@ -289,6 +337,6 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     resetTransaction,
     isConnected,
     connectedAddress,
-    isPending: isWritePending || isSigningTypedData || isConfirming,
+    isPending: isWritePending || isNativePending || isSigningTypedData || isConfirming,
   };
 } 
