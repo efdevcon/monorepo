@@ -2,6 +2,15 @@ import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = [
   {
+    "name": "Account Abstraction Hub",
+    "layerName": "account-abstraction-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Activation 1",
     "layerName": "activation-1",
     "logo": "",
@@ -47,15 +56,6 @@ export const poisData: POI[] = [
     "groupId": "6"
   },
   {
-    "name": "Community Hub 1",
-    "layerName": "community-hub-1",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "7"
-  },
-  {
     "name": "Discussion corner 1",
     "layerName": "discussion-corner-1",
     "logo": "",
@@ -63,6 +63,24 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": "6",
     "groupId": "8"
+  },
+  {
+    "name": "Enterprise Hub",
+    "layerName": "enterprise-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Fintech & Onchain Banking",
+    "layerName": "fintech-onchain-banking",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Food & Beverage 1",
@@ -83,6 +101,15 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
+    "name": "Governance Geeks Hub",
+    "layerName": "governance-geeks-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Info desk 1",
     "layerName": "info-desk-1",
     "logo": "",
@@ -99,6 +126,15 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": null,
     "groupId": "12"
+  },
+  {
+    "name": "LATAM Hub",
+    "layerName": "latam-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Main entrance",
@@ -128,6 +164,24 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
+    "name": "Node Operators Hub",
+    "layerName": "node-operators-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Onchain Art Hub",
+    "layerName": "onchain-art-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Onramp 1",
     "layerName": "onramp-1",
     "logo": "",
@@ -146,6 +200,33 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
+    "name": "Open Source Community Hub",
+    "layerName": "open-source-community-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Pop-Up Cities",
+    "layerName": "popup-cities",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Privacy Hub",
+    "layerName": "privacy-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "QR-code 1",
     "layerName": "qrcode-1",
     "logo": "",
@@ -153,6 +234,24 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": null,
     "groupId": "16"
+  },
+  {
+    "name": "Regen Hub",
+    "layerName": "regen-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "RWA Hub",
+    "layerName": "rwa-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Stage 1",
@@ -180,5 +279,23 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": null,
     "groupId": "19"
+  },
+  {
+    "name": "Women in Web3 Hub",
+    "layerName": "women-in-web3-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "World of DeSci",
+    "layerName": "world-of-desci",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   }
 ];

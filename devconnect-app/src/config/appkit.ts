@@ -32,7 +32,7 @@ const connectors: CreateConnectorFn[] = [
     nameOverride: "Email (Para)",
     // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
     authLayout: ["AUTH:FULL"],
-    chains,
+    chains: [base],
     disableEmailLogin: false,
     disablePhoneLogin: true,
     logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",

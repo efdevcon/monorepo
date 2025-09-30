@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PAYMENT_CONFIG } from '@/config/config';
 
-export async function POST(request: NextRequest) {
+export async function GET(request: NextRequest) {
   try {
     const SIMPLEFI_API_AUTHORIZATION_BEARER = process.env.SIMPLEFI_API_AUTHORIZATION_BEARER;
     
@@ -12,31 +11,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const response = await fetch('https://api.simplefi.tech/payment_requests', {
-      method: 'POST',
+    // Get payment ID from query parameters
+    const { searchParams } = new URL(request.url);
+    const paymentId = searchParams.get('paymentId');
+    
+    if (!paymentId) {
+      return NextResponse.json(
+        { error: 'Payment ID is required' },
+        { status: 400 }
+      );
+    }
+
+    const response = await fetch(`https://api.simplefi.tech/payment_requests/${paymentId}/add_transaction`, {
+      method: 'PUT',
       headers: {
         'accept': 'application/json, text/plain, */*',
         'authorization': `Bearer ${SIMPLEFI_API_AUTHORIZATION_BEARER}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify({
-        amount: 0.01,
-        currency: 'USD',
-        coins: [{ chain_id: 8453, ticker: 'USDC' }],
-        reference: {
-          _product_id: '688ba8db51fc6c100f32cd63',
-          product_name: 'Devconnect Test',
-        },
-        card_payment: false,
-        merchant_id: PAYMENT_CONFIG.MERCHANT_ID,
+        ticker: 'USDC',
+        chain_id: 8453
       }),
     });
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('SimpleFi API error:', response.status, errorText);
+      console.error('SimpleFi Payment Requests API error:', response.status, errorText);
       return NextResponse.json(
-        { error: `SimpleFi API error: ${response.status}` },
+        { error: `SimpleFi Payment Requests API error: ${response.status}` },
         { status: response.status }
       );
     }
@@ -44,10 +47,10 @@ export async function POST(request: NextRequest) {
     const data = await response.json();
     return NextResponse.json(data);
   } catch (error) {
-    console.error('Error fetching payment request:', error);
+    console.error('Error adding transaction to payment request:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch payment request' },
+      { error: 'Failed to add transaction to payment request' },
       { status: 500 }
     );
   }
-} 
+}

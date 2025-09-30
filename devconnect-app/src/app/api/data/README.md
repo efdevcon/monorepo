@@ -4,7 +4,15 @@
 `GET /api/data`
 
 ## Description
-Fetches supporter and POI (Point of Interest) data from a Notion database. The data is automatically categorized based on the `POI` select field (previously was boolean `Is POI`).
+Fetches supporter and POI (Point of Interest) data from a Notion database with pagination support. The data is automatically categorized based on the `POI` select field - entries with empty POI field become supporters, entries with POI values become POIs.
+
+## Features
+
+- **Pagination Support**: Automatically fetches all results using Notion's pagination API
+- **Data Categorization**: Separates supporters from POIs based on POI field
+- **ID Mapping**: Creates numeric IDs for districts, locations, and POI groups
+- **Layer Name Generation**: Automatically generates `layerName` fields for districts and locations
+- **Data Processing**: Filters empty names, sorts data alphabetically
 
 ## Response Format
 
@@ -27,7 +35,9 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
         "layerName": "arts/help-desk-1",
         "districtId": "3",
         "locationId": "3",
-        "groupId": "1"
+        "groupId": "1",
+        "logo": "https://example.com/logo.png",
+        "description": "Main help desk location"
       }
     ],
     "districts": {
@@ -46,13 +56,14 @@ Fetches supporter and POI (Point of Interest) data from a Notion database. The d
       "3": { "name": "Entertainment" }
     }
   },
-  "timestamp": "2025-09-09T17:59:05.480Z"
+  "timestamp": "2025-01-09T17:59:05.480Z"
 }
 ```
 
 ## Data Structure
 
 ### Supporters
+
 Object of supporter objects where `POI` field is empty, with supporter ID as key:
 
 - Key (string): Supporter ID (Notion page ID with hyphens removed)
@@ -64,6 +75,7 @@ Object of supporter objects where `POI` field is empty, with supporter ID as key
   - `supporterId` (string): Related quest supporter ID (if any)
 
 ### POIs (Points of Interest)
+
 Array of POI objects where `POI` field has a value. Each POI contains:
 
 - `name` (string): POI name
@@ -75,6 +87,7 @@ Array of POI objects where `POI` field has a value. Each POI contains:
 - `description` (string): POI description
 
 ### Districts
+
 Object of unique district objects with numeric string keys:
 
 - Key (string): Sequential ID starting from "1"
@@ -94,7 +107,20 @@ Object of unique POI group objects with numeric string keys:
 - Key (string): Sequential ID starting from "1"
 - Value: Object with `name` (string): POI group name
 
+## Data Processing
+
+The API automatically processes the data:
+
+1. **Pagination**: Fetches all results using Notion's pagination (100 items per page)
+2. **Filtering**: Removes entries with empty names
+3. **Categorization**: Separates supporters (empty POI) from POIs (has POI value)
+4. **ID Generation**: Creates sequential numeric IDs for districts, locations, and POI groups
+5. **Mapping**: Replaces district/location names with numeric IDs in supporters and POIs
+6. **Layer Names**: Generates `layerName` fields by converting names to lowercase and replacing spaces with hyphens
+7. **Sorting**: Sorts supporters and POIs alphabetically by name
+
 ## Supported Property Types
+
 - `title` - Page titles
 - `rich_text` - Text content
 - `select` - Dropdown selections
@@ -107,11 +133,18 @@ Object of unique POI group objects with numeric string keys:
 - `relation` - Related page references (returns first relation ID with hyphens removed)
 
 ## Error Response
+
 ```json
 {
   "success": false,
   "error": "Failed to return data",
   "details": "Error message",
-  "timestamp": "2025-09-09T17:59:05.480Z"
+  "timestamp": "2025-01-09T17:59:05.480Z"
 }
 ```
+
+## Database Configuration
+
+- **Database ID**: `241638cdc415801e8174d12adcfb0d33`
+- **Pagination**: 100 items per page with automatic pagination
+- **Required Environment Variable**: `NOTION_SECRET`

@@ -833,14 +833,42 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                       gap: '0.5rem',
                                     }}
                                   >
-                                    <span style={{ fontSize: '1rem' }}>-</span>
-                                    Quest {index + 1}
+                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
+                                    {/* Quest {index + 1} */}
+                                    Quest form
                                   </a>
                                 </li>
                               ))}
                             </ul>
                           ) : (
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
+                          )}
+                        </div>
+                      ) : field.type === 'url' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                                fontSize: '1rem',
+                                fontWeight: '500',
+                                wordBreak: 'break-all',
+                              }}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              {field.value}
+                            </a>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No URL provided</span>
                           )}
                         </div>
                       ) : (
@@ -1555,14 +1583,42 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                       gap: '0.5rem',
                                     }}
                                   >
-                                    <span style={{ fontSize: '1rem' }}>-</span>
-                                    Quest {index + 1}
+                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
+                                    {/* Quest {index + 1} */}
+                                    Quest form
                                   </a>
                                 </li>
                               ))}
                             </ul>
                           ) : (
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
+                          )}
+                        </div>
+                      ) : field.type === 'url' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                                fontSize: '0.9rem',
+                                fontWeight: '500',
+                                wordBreak: 'break-all',
+                              }}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              {field.value}
+                            </a>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No URL provided</span>
                           )}
                         </div>
                       ) : (

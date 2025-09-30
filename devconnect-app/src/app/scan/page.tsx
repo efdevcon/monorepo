@@ -6,6 +6,7 @@ import ManualPaymentModal from '@/components/ManualPaymentModal';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { PAYMENT_CONFIG } from '@/config/config';
 
 interface PaymentRequest {
   id: string;
@@ -18,8 +19,22 @@ interface PaymentRequest {
     chain_id: number;
     address: string;
     status: string;
+    price_details?: {
+      final_amount: number;
+      currency: string;
+      currency_amount: number;
+      currency_final_amount: number;
+      base_amount: number;
+      paid_amount: number;
+      discount_rate: number;
+      rate: number;
+    };
   }>;
   checkout_url: string;
+  status?: string;
+  status_detail?: string;
+  usd_amount?: number;
+  expiration_time?: string;
 }
 
 const PAYMENT_REQUEST_KEY = 'devconnect_payment_request';
@@ -88,74 +103,9 @@ export default function ScanPage() {
     }
   };
 
-  // Fetch payment request from API
-  const fetchPaymentRequest = async (forceRefresh = false) => {
-    try {
-      setIsLoading(true);
-      setError(null);
+  // Removed fetchPaymentRequest - only work with user-provided payment IDs
 
-      // Check for cached data first (unless forcing refresh)
-      if (!forceRefresh) {
-        const cached = getCachedPaymentRequest();
-        if (cached) {
-          setPaymentRequest(cached);
-
-          // Update prefilled payment data with the first transaction
-          if (cached.transactions && cached.transactions.length > 0) {
-            const transaction = cached.transactions[0];
-            setPrefilledPaymentData({
-              recipient: transaction.address,
-              amount: cached.amount.toString(),
-            });
-          }
-
-          setIsLoading(false);
-          return;
-        }
-      }
-
-      const response = await fetch('/api/payment-request', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(
-          errorData.error || `HTTP error! status: ${response.status}`
-        );
-      }
-
-      const data: PaymentRequest = await response.json();
-      setPaymentRequest(data);
-
-      // Cache the new data
-      cachePaymentRequest(data);
-
-      // Update prefilled payment data with the first transaction
-      if (data.transactions && data.transactions.length > 0) {
-        const transaction = data.transactions[0];
-        setPrefilledPaymentData({
-          recipient: transaction.address,
-          amount: data.amount.toString(),
-        });
-      }
-    } catch (err) {
-      console.error('Error fetching payment request:', err);
-      setError(
-        err instanceof Error ? err.message : 'Failed to fetch payment request'
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  // Fetch payment request on component mount
-  useEffect(() => {
-    fetchPaymentRequest();
-  }, []);
+  // No automatic payment request fetching - only work with user-provided payment IDs
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {
@@ -233,6 +183,55 @@ export default function ScanPage() {
     }
   };
 
+  // Function to get payment request from merchants API
+  const getPaymentRequest = async (paymentId: string) => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      const response = await fetch(`/api/merchants?paymentId=${paymentId}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          errorData.error || `HTTP error! status: ${response.status}`
+        );
+      }
+
+      const data: PaymentRequest = await response.json();
+      setPaymentRequest(data);
+
+      // Cache the new data
+      cachePaymentRequest(data);
+
+      // Update prefilled payment data with the first transaction
+      if (data.transactions && data.transactions.length > 0) {
+        const transaction = data.transactions[0];
+        setPrefilledPaymentData({
+          recipient: transaction.address,
+          amount:
+            transaction.price_details?.final_amount?.toString() ||
+            data.amount.toString(),
+        });
+      }
+
+      return data;
+    } catch (err) {
+      console.error('Error getting payment request:', err);
+      setError(
+        err instanceof Error ? err.message : 'Failed to get payment request'
+      );
+      throw err;
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   // Function to fetch order status details before opening manual payment
   const fetchOrderStatusDetails = async () => {
     try {
@@ -249,7 +248,9 @@ export default function ScanPage() {
           const transaction = paymentDetails.transactions[0];
           setPrefilledPaymentData({
             recipient: transaction.address,
-            amount: paymentDetails.amount.toString(),
+            amount:
+              transaction.price_details?.final_amount?.toString() ||
+              paymentDetails.amount.toString(),
             orderId: paymentDetails.order_id?.toString(),
             orderStatus: paymentDetails.status,
             orderStatusDetail: paymentDetails.status_detail,
@@ -299,7 +300,9 @@ export default function ScanPage() {
 
           setPrefilledPaymentData({
             recipient: transaction.address,
-            amount: paymentDetails.amount.toString(),
+            amount:
+              transaction.price_details?.final_amount?.toString() ||
+              paymentDetails.amount.toString(),
             orderId: paymentDetails.order_id?.toString(),
             orderStatus: paymentDetails.status,
             orderStatusDetail: paymentDetails.status_detail,
@@ -308,12 +311,49 @@ export default function ScanPage() {
           setIsManualPaymentOpen(true);
           return;
         } else {
-          console.error('No transactions found in payment details');
+          console.log('No transactions found in payment details');
+
+          // Get payment request when no transactions are found
+          try {
+            console.log('Getting payment request due to no transactions found');
+            const newPaymentRequest = await getPaymentRequest(
+              paymentDetails.id
+            );
+
+            // Update prefilled payment data with the new payment request
+            if (
+              newPaymentRequest.transactions &&
+              newPaymentRequest.transactions.length > 0
+            ) {
+              const transaction = newPaymentRequest.transactions[0];
+              setPrefilledPaymentData({
+                recipient: transaction.address,
+                amount:
+                  transaction.price_details?.final_amount?.toString() ||
+                  newPaymentRequest.amount.toString(),
+                orderId: newPaymentRequest.order_id?.toString(),
+              });
+
+              setIsManualPaymentOpen(true);
+              return;
+            }
+          } catch (error) {
+            console.error('Error getting payment request:', error);
+            // Fall back to opening the URL in a new tab
+            window.open(
+              `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
+              '_blank'
+            );
+            return;
+          }
         }
       } catch (error) {
         console.error('Error processing manual URL:', error);
         // Fall back to opening the URL in a new tab
-        window.open(value, '_blank');
+        window.open(
+          `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/payment/${value}`,
+          '_blank'
+        );
         return;
       }
     }
@@ -348,7 +388,9 @@ export default function ScanPage() {
 
         setPrefilledPaymentData({
           recipient: transaction.address,
-          amount: paymentDetails.amount.toString(),
+          amount:
+            transaction.price_details?.final_amount?.toString() ||
+            paymentDetails.amount.toString(),
           orderId: paymentDetails.order_id?.toString(),
           orderStatus: paymentDetails.status,
           orderStatusDetail: paymentDetails.status_detail,
@@ -371,49 +413,7 @@ export default function ScanPage() {
     }
   };
 
-  if (isLoading) {
-    return (
-      <PageLayout title="Scan">
-        <div className="flex flex-col items-center justify-center min-h-[400px]">
-          <div className="text-black">Loading payment request...</div>
-        </div>
-      </PageLayout>
-    );
-  }
-
-  if (error) {
-    return (
-      <PageLayout title="Scan">
-        <div className="flex flex-col items-center justify-center min-h-[400px]">
-          <div className="text-red-600 mb-4">Error: {error}</div>
-          <div className="flex gap-2">
-            <Button
-              onClick={() => fetchPaymentRequest()}
-              className="bg-blue-600 hover:bg-blue-700"
-            >
-              Retry
-            </Button>
-            <Button
-              onClick={() => fetchPaymentRequest(true)}
-              className="bg-green-600 hover:bg-green-700"
-            >
-              Force Refresh
-            </Button>
-          </div>
-        </div>
-      </PageLayout>
-    );
-  }
-
-  if (!paymentRequest) {
-    return (
-      <PageLayout title="Scan">
-        <div className="flex flex-col items-center justify-center min-h-[400px]">
-          <div className="text-black">No payment request available</div>
-        </div>
-      </PageLayout>
-    );
-  }
+  // No automatic loading/error states - only work with user-provided payment IDs
 
   console.log('Current prefilledPaymentData:', prefilledPaymentData);
 

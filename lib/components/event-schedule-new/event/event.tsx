@@ -94,7 +94,7 @@ const computeEventTimeString = (event: EventType): string[] => {
         const startTime = formatTime(timeblock.start);
         const endTime = formatTime(timeblock.end);
 
-        return `${startDate}, ${startTime} to ${endTime}`; // , ${startTime} — ${endTime}`;
+        return `${startDate}, ${startTime} to ${endTime}, ${startTime} — ${endTime}`;
       });
   }
 

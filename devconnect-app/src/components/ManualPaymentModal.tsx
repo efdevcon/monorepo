@@ -9,6 +9,7 @@ import { usePaymentTransaction } from '@/hooks/usePaymentTransaction';
 import PaymentForm from '@/components/payment/PaymentForm';
 import PreviewStep from '@/components/payment/PreviewStep';
 import StatusStep from '@/components/payment/StatusStep';
+import { AUTHORIZED_SPONSOR_ADDRESSES, PAYMENT_CONFIG } from '@/config/config';
 
 type PaymentStep = 'form' | 'preview' | 'status';
 
@@ -45,8 +46,7 @@ export default function ManualPaymentModal({
     boolean | null
   >(null);
 
-  const productUrl =
-    'https://www.pagar.simplefi.tech/6603276727aaa6386588474d/products/688ba8db51fc6c100f32cd63';
+  const productUrl = `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/products/688ba8db51fc6c100f32cd63`;
 
   // Get wallet connection status
   const { isConnected, address: connectedAddress } = useUnifiedConnection();
@@ -236,9 +236,12 @@ export default function ManualPaymentModal({
                     Connected wallet: {connectedAddress.slice(0, 6)}...
                     {connectedAddress.slice(-4)}
                   </div>
-                  <div>Required sponsor: 0x20c8...4cdd</div>
                   <div>
-                    Only the authorized sponsor wallet can execute real
+                    Authorized sponsors: {AUTHORIZED_SPONSOR_ADDRESSES.length}{' '}
+                    addresses
+                  </div>
+                  <div>
+                    Only authorized sponsor wallets can execute real
                     transactions
                   </div>
                 </div>

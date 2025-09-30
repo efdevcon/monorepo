@@ -1,7 +1,11 @@
 'use client';
 
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
-import { getNetworkConfig, chains } from '@/config/networks';
+import {
+  getNetworkConfig,
+  chains,
+  getReadableNetworkName,
+} from '@/config/networks';
 import NetworkLogo from './NetworkLogo';
 
 interface NetworkModalProps {
@@ -63,16 +67,18 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
                   key={chain.id}
                   onClick={() => handleNetworkSwitch(chain.id)}
                   className={`w-full flex items-center gap-4 p-2 transition-colors ${
-                    isCurrentChain 
-                      ? 'bg-[#eaf4fb]' 
-                      : 'hover:bg-gray-50'
+                    isCurrentChain ? 'bg-[#eaf4fb]' : 'hover:bg-gray-50'
                   }`}
                 >
                   <NetworkLogo chainId={chain.id} size="sm" />
-                  <span className={`text-base font-medium tracking-[-0.1px] ${
-                    isCurrentChain ? 'text-[#36364c] font-bold' : 'text-[#36364c] font-normal'
-                  }`}>
-                    {config.name}
+                  <span
+                    className={`text-base font-medium tracking-[-0.1px] ${
+                      isCurrentChain
+                        ? 'text-[#36364c] font-bold'
+                        : 'text-[#36364c] font-normal'
+                    }`}
+                  >
+                    {getReadableNetworkName(config.name)}
                   </span>
                 </button>
               );

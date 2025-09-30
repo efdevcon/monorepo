@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
       };
 
       const result = {
-        name: getPropertyValue('Supporter Name'),
+        name: getPropertyValue('Name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
         layerName: getPropertyValue('Layer name') || getPropertyValue('Suggested layer name'),
