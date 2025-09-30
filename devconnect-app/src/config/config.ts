@@ -1,5 +1,3 @@
-import { Environment } from "@getpara/react-sdk";
-
 export const APP_CONFIG = {
   NODE_ENV: process.env.NODE_ENV || 'development',
 
@@ -14,8 +12,8 @@ export const APP_CONFIG = {
   PARA_API_KEY: process.env.NEXT_PUBLIC_PARA_API_KEY || '',
   PARA_ENVIRONMENT:
     process.env.NEXT_PUBLIC_PARA_API_KEY?.startsWith('prod_')
-      ? Environment.PROD
-      : Environment.BETA,
+      ? 'PROD'
+      : 'BETA',
 
   BASE_RPC_URL: `https://base-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` || "https://mainnet.base.org",
   SOCIAL_IMAGE: `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`,
