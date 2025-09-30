@@ -693,9 +693,18 @@ export default function WalletTab() {
                                   </p>
                                 )}
                                 {chainId && (
-                                  <p className="text-xs text-[#4b4b66]">
-                                    {readableNetwork}
-                                  </p>
+                                  <div className="flex items-center gap-1 mt-1">
+                                    {getNetworkLogo(chainId) && (
+                                      <img
+                                        src={getNetworkLogo(chainId)}
+                                        alt={readableNetwork}
+                                        className="w-3 h-3 rounded-full"
+                                      />
+                                    )}
+                                    <p className="text-xs text-[#4b4b66]">
+                                      {readableNetwork}
+                                    </p>
+                                  </div>
                                 )}
                               </div>
                               {timestamp && (

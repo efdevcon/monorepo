@@ -85,7 +85,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    console.log('Portfolio data fetched successfully:', JSON.stringify(portfolioResult, null, 2));
+    console.log('Portfolio data fetched successfully');
 
     // Fetch activity data for all chains
     const activityQuery = `
@@ -157,7 +157,6 @@ export async function POST(request: NextRequest) {
 
     const activityResult = await activityResponse.json();
 
-    console.log('Activity result:', JSON.stringify(activityResult, null, 2));
 
     // Process the transaction data to create descriptions and apply the "Received" to "Sent" replacement
     if (activityResult.data?.transactionHistoryV2?.edges) {
@@ -232,8 +231,6 @@ export async function POST(request: NextRequest) {
     const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => {
       const token = edge.node;
 
-      // Debug: Log the network structure to see what we're getting
-      console.log('Token network data:', JSON.stringify(token.network, null, 2));
 
       // Flatten the token structure with chainId directly
       const flattenedToken = {
