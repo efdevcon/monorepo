@@ -453,7 +453,8 @@ const NewScheduleIndexInner = ({
                     <div
                       key={date}
                       className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5"
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-1",
+                        !isDateInDevconnectRange(date) && "!bg-blue-50"
                         // selectedDay === date && "!bg-slate-100 !opacity-100",
                         // selectedDay !== null && "opacity-20"
                       )}
