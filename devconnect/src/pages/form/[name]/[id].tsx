@@ -658,7 +658,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       fontSize: '0.95rem',
                     }}
                   >
-                    {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                    {field.name}
                     {field.mode === 'read' && (
                       <span
                         style={{
@@ -1344,7 +1344,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                      {field.name}
                       {field.description && (
                         <div
                           style={{
