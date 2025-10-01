@@ -204,6 +204,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     let isOk = false;
     const configFields: Array<{ name: string; value: string; order: number }> = [];
 
+    // console.log('page.properties', JSON.stringify(page.properties, null, 2));
+
     // First pass: collect config fields and check for lock
     for (const [propertyName, property] of Object.entries(page.properties)) {
       const { name: fieldName, mode, order } = extractFieldName(propertyName);
@@ -218,7 +220,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       switch (fieldType) {
         case 'text':
           if (property.type === 'rich_text') {
-            fieldValue = property.rich_text?.[0]?.plain_text || '';
+            // Concatenate all text content from rich_text array
+            fieldValue = (property.rich_text || []).map((item: any) => item.text?.content || '').join('');
           }
           break;
         case 'select':
@@ -288,7 +291,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       switch (fieldType) {
         case 'text':
           if (property.type === 'rich_text') {
-            fieldValue = property.rich_text?.[0]?.plain_text || '';
+            // Concatenate all text content from rich_text array
+            fieldValue = (property.rich_text || []).map((item: any) => item.text?.content || '').join('');
           }
           break;
         case 'email':
