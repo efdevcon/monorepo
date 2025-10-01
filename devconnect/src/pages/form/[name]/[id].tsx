@@ -652,25 +652,49 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                     htmlFor={field.name}
                     style={{
                       display: 'block',
-                      marginBottom: '0.5rem',
-                      fontWeight: '500',
-                      color: field.mode === 'read' ? '#666' : '#333',
-                      fontSize: '0.95rem',
+                      marginBottom: '0.75rem',
+                      fontWeight: field.mode === 'read' ? '600' : '500',
+                      color: field.mode === 'read' ? '#495057' : '#333',
+                      fontSize: '1rem',
+                      position: 'relative',
                     }}
                   >
-                    {field.name}
-                    {field.mode === 'read' && (
+                    {field.mode === 'read' ? (
                       <span
                         style={{
-                          fontSize: '0.8rem',
-                          color: '#999',
-                          marginLeft: '0.5rem',
-                          fontStyle: 'italic',
+                          display: 'inline-block',
+                          backgroundColor: '#6c757d',
+                          color: 'white',
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '4px',
+                          fontSize: '0.75rem',
+                          fontWeight: '600',
+                          marginRight: '0.75rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px',
                         }}
                       >
-                        (read-only)
+                        📖 Read Only
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          backgroundColor: '#28a745',
+                          color: 'white',
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '4px',
+                          fontSize: '0.75rem',
+                          fontWeight: '600',
+                          marginRight: '0.75rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px',
+                        }}
+                      >
+                        ✏️ Editable
                       </span>
                     )}
+                    {field.name}
                   </label>
                   {field.description && (
                     <p
@@ -690,15 +714,17 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                     <div
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #e0e0e0',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #e9ecef',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         backgroundColor: '#f8f9fa',
-                        color: '#666',
-                        minHeight: '2.5rem',
+                        color: '#495057',
+                        minHeight: '3rem',
                         display: 'flex',
-                        alignItems: 'center',
+                        alignItems: 'flex-start',
+                        position: 'relative',
+                        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
                       }}
                     >
                       {field.type === 'file' && field.value ? (
@@ -865,7 +891,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                           )}
                         </div>
                       ) : (
-                        field.value
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{field.value}</div>
                       )}
                     </div>
                   ) : field.type === 'file' ? (
@@ -874,18 +900,21 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       <div
                         style={{
                           width: '100%',
-                          padding: '1rem',
-                          border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
-                          borderRadius: '6px',
-                          backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
+                          padding: '1.5rem',
+                          border: `3px dashed ${fileUploads[field.name]?.isDragOver ? '#0056b3' : '#007bff'}`,
+                          borderRadius: '12px',
+                          backgroundColor: fileUploads[field.name]?.isDragOver ? '#e3f2fd' : '#f8f9ff',
                           textAlign: 'center',
                           cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                          minHeight: '120px',
+                          transition: 'all 0.3s ease',
+                          minHeight: '140px',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          boxShadow: fileUploads[field.name]?.isDragOver
+                            ? '0 4px 12px rgba(0,123,255,0.3)'
+                            : '0 2px 8px rgba(0,123,255,0.1)',
                         }}
                         onDragOver={e => handleDragOver(e, field.name)}
                         onDragLeave={e => handleDragLeave(e, field.name)}
@@ -1085,22 +1114,28 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       rows={4}
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #007bff',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         boxSizing: 'border-box',
-                        transition: 'border-color 0.2s ease',
+                        transition: 'all 0.2s ease',
                         resize: 'vertical',
                         fontFamily: 'inherit',
-                        minHeight: '100px',
+                        minHeight: '120px',
+                        backgroundColor: '#f8f9ff',
+                        boxShadow: '0 2px 4px rgba(0,123,255,0.1)',
                       }}
                       onFocus={e => {
-                        e.target.style.borderColor = '#007bff'
+                        e.target.style.borderColor = '#0056b3'
+                        e.target.style.backgroundColor = '#ffffff'
+                        e.target.style.boxShadow = '0 4px 8px rgba(0,123,255,0.2)'
                         e.target.style.outline = 'none'
                       }}
                       onBlur={e => {
-                        e.target.style.borderColor = '#ddd'
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.backgroundColor = '#f8f9ff'
+                        e.target.style.boxShadow = '0 2px 4px rgba(0,123,255,0.1)'
                       }}
                     />
                   ) : field.type === 'checkbox' ? (
@@ -1250,19 +1285,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       defaultValue={field.value || ''}
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #007bff',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         boxSizing: 'border-box',
-                        transition: 'border-color 0.2s ease',
+                        transition: 'all 0.2s ease',
+                        backgroundColor: '#f8f9ff',
+                        boxShadow: '0 2px 4px rgba(0,123,255,0.1)',
                       }}
                       onFocus={e => {
-                        e.target.style.borderColor = '#007bff'
+                        e.target.style.borderColor = '#0056b3'
+                        e.target.style.backgroundColor = '#ffffff'
+                        e.target.style.boxShadow = '0 4px 8px rgba(0,123,255,0.2)'
                         e.target.style.outline = 'none'
                       }}
                       onBlur={e => {
-                        e.target.style.borderColor = '#ddd'
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.backgroundColor = '#f8f9ff'
+                        e.target.style.boxShadow = '0 2px 4px rgba(0,123,255,0.1)'
                       }}
                     />
                   )}
@@ -1531,7 +1572,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                           )}
                         </div>
                       ) : (
-                        field.value || 'No value'
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{field.value || 'No value'}</div>
                       )}
                     </td>
                   </tr>
