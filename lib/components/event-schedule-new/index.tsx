@@ -195,7 +195,7 @@ const NewScheduleIndexInner = ({
   const pathname = usePathname();
   const [exports, setExports] = useState<EventType[] | null>(null);
   const eventRange = computeCalendarRange(events);
-  const [hoveredDate, setHoveredDate] = useState<string | null>(null);
+  // const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
 
   // Compute event placements for the unified grid
@@ -215,12 +215,12 @@ const NewScheduleIndexInner = ({
   const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 240px))`;
 
   // Check if an event should be highlighted based on hovered date
-  const isEventHighlighted = (placement: any) => {
-    if (!hoveredDate) return false;
+  // const isEventHighlighted = (placement: any) => {
+  //   if (!hoveredDate) return false;
 
-    // Check if any of the dates covered by this event match the hovered date
-    return placement.datesCovered.includes(hoveredDate);
-  };
+  //   // Check if any of the dates covered by this event match the hovered date
+  //   return placement.datesCovered.includes(hoveredDate);
+  // };
 
   // Check if date is within November 17-22 range
   const isDateInDevconnectRange = (dateStr: string) => {
@@ -516,11 +516,11 @@ const NewScheduleIndexInner = ({
                       <Event
                         event={placement.event}
                         isDialog={false}
-                        className={
-                          isEventHighlighted(placement)
-                            ? "!border-neutral-500"
-                            : ""
-                        }
+                        // className={
+                        //   isEventHighlighted(placement)
+                        //     ? "!border-neutral-500"
+                        //     : ""
+                        // }
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
                         setExports={setExports}

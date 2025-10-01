@@ -22,7 +22,7 @@ export default function ProgrammePageContent({
 }: {
   atprotoEvents: any;
 }) {
-  useUnifiedConnection();
+  // useUnifiedConnection();
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={tabs(atprotoEvents)}>

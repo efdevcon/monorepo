@@ -22,15 +22,6 @@ export default function ScheduleTab({ atprotoEvents = [] }: ScheduleTabProps) {
         toggleFavoriteEvent={toggleFavoriteEvent}
         // events={atprotoEvents.filter((event: any) => event.isCoreEvent)}
       />
-      {/* <Separator className="my-4 mx-4 w-full" />
-      <Layout
-        isCommunityCalendar={true}
-        selectedEvent={selectedEvent}
-        selectedDay={selectedDay}
-        setSelectedEvent={setSelectedEvent}
-        setSelectedDay={setSelectedDay}
-        events={atprotoEvents.filter((event: any) => !event.isCoreEvent)}
-      /> */}
     </div>
   );
 }
