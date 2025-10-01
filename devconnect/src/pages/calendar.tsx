@@ -16,7 +16,6 @@ import { Separator } from 'lib/components/ui/separator'
 import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format'
 
 const Argentina = (props: any) => {
-  const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
   // const [selectedEvent, setSelectedEvent] = useState<any>(null)
   const { data }: { data: any } = useTina(props.content)
 
@@ -46,10 +45,6 @@ const Argentina = (props: any) => {
         <CalendarLayout
           events={events} // .filter((event: any) => event.isCoreEvent)}
           isCommunityCalendar={false}
-          selectedEvent={selectedEvent}
-          selectedDay={selectedDay}
-          setSelectedEvent={setSelectedEvent}
-          setSelectedDay={setSelectedDay}
         />
 
         {/* <div className="section">
