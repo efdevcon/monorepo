@@ -34,10 +34,8 @@ const customUrlTransforms = [
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
-  selectedEvent: EventType | null;
-  selectedDay: string | null;
-  setSelectedEvent: (event: EventType | null) => void;
-  setSelectedDay: (day: string | null) => void;
+  favoriteEvents?: string[];
+  toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
 };
 
@@ -184,9 +182,11 @@ const computeEventPlacements = (
 
 const NewScheduleIndexInner = ({
   // selectedEvent,
-  selectedDay,
+  // selectedDay,
   // setSelectedEvent,
-  setSelectedDay,
+  // setSelectedDay,
+  favoriteEvents,
+  toggleFavoriteEvent,
   events,
   viewMode,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
@@ -197,8 +197,6 @@ const NewScheduleIndexInner = ({
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
-
-  console.log(exports, "exports");
 
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
@@ -331,6 +329,8 @@ const NewScheduleIndexInner = ({
           selectedEvent={selectedEvent || null}
           setSelectedEvent={setSelectedEvent}
           setExports={setExports}
+          toggleFavoriteEvent={toggleFavoriteEvent}
+          favoriteEvents={favoriteEvents}
         />
       )}
 
@@ -428,6 +428,8 @@ const NewScheduleIndexInner = ({
                           selectedEvent={selectedEvent || null}
                           setSelectedEvent={setSelectedEvent}
                           setExports={setExports}
+                          toggleFavoriteEvent={toggleFavoriteEvent}
+                          favoriteEvents={favoriteEvents}
                         />
                       ))}
                     </div>
@@ -458,9 +460,9 @@ const NewScheduleIndexInner = ({
                     <div
                       key={date}
                       className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
-                        selectedDay === date && "!bg-slate-100 !opacity-100",
-                        selectedDay !== null && "opacity-20"
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5"
+                        // selectedDay === date && "!bg-slate-100 !opacity-100",
+                        // selectedDay !== null && "opacity-20"
                       )}
                       // onMouseEnter={() => setHoveredDate(date)}
                       // onMouseLeave={() => setHoveredDate(null)}
@@ -499,7 +501,7 @@ const NewScheduleIndexInner = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-                <div className={cn("contents", selectedDay && "hidden")}>
+                <div className={cn("contents")}>
                   {eventPlacements.map((placement, idx) => (
                     <div
                       key={`event-${placement.event.id}-${idx}`}
@@ -522,6 +524,8 @@ const NewScheduleIndexInner = ({
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
                         setExports={setExports}
+                        toggleFavoriteEvent={toggleFavoriteEvent}
+                        favoriteEvents={favoriteEvents}
                       />
                     </div>
                   ))}

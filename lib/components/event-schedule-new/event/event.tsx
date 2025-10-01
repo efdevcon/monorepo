@@ -8,6 +8,7 @@ import {
   UsersRound,
   CalendarArrowUp,
   Heart,
+  Check,
 } from "lucide-react";
 import { Event as EventType } from "../model";
 import { getProgramming, Programming } from "./programming";
@@ -47,6 +48,8 @@ type EventProps = {
   selectedEvent: EventType | null;
   setSelectedEvent: (event: EventType | null) => void;
   setExports: (exports: EventType[] | null) => void;
+  toggleFavoriteEvent?: (eventId: string) => void;
+  favoriteEvents?: string[];
 };
 
 const formatTime = (isoString: string) => {
@@ -110,11 +113,18 @@ const computeEventTimeString = (event: EventType): string[] => {
 const FavoriteEvent = ({
   event,
   isDialog,
+  toggleFavoriteEvent,
+  favoriteEvents,
 }: {
   event: EventType;
   isDialog?: boolean;
+  toggleFavoriteEvent: (eventId: string) => void;
+  favoriteEvents?: string[];
 }) => {
   // const { account } = useAccountContext();
+  const isFavorited = favoriteEvents?.some(
+    (eventId) => eventId.toString() === event.id.toString()
+  );
 
   return (
     <div
@@ -122,15 +132,21 @@ const FavoriteEvent = ({
       onClick={(e) => {
         e.stopPropagation();
 
-        alert("Favorite event");
+        toggleFavoriteEvent(event.id);
       }}
     >
+      {/* {isFavorited && (
+        <div className="absolute top-0 right-0 w-4 h-4 bg-white rounded-full flex items-center justify-center">
+          <Check className="w-3 h-3 text-slate-900" />
+        </div>
+      )} */}
       <Heart
-        className={
-          isDialog
-            ? "w-5 h-5"
-            : "w-4 h-4 mt-0.5 text-slate-500 hover:text-slate-900 "
-        }
+        fill={isFavorited ? "#ce5154" : "none"}
+        className={cn(
+          "w-4 h-4 mt-0.5 text-slate-500 hover:text-slate-900",
+          isDialog && "w-5 h-5",
+          isFavorited && "!text-[#ce5154]"
+        )}
       />
     </div>
   );
@@ -164,6 +180,8 @@ const Event: React.FC<EventProps> = ({
   selectedEvent,
   setSelectedEvent,
   setExports,
+  toggleFavoriteEvent,
+  favoriteEvents,
 }) => {
   const [showMobileProgramming, setShowMobileProgramming] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -479,7 +497,14 @@ const Event: React.FC<EventProps> = ({
                           isDialog
                           setExports={setExports}
                         />
-                        {/* <FavoriteEvent event={event} isDialog /> */}
+                        {toggleFavoriteEvent && (
+                          <FavoriteEvent
+                            event={event}
+                            isDialog
+                            toggleFavoriteEvent={toggleFavoriteEvent}
+                            favoriteEvents={favoriteEvents}
+                          />
+                        )}
                       </div>
                     </div>
 
@@ -680,7 +705,13 @@ const Event: React.FC<EventProps> = ({
                 <div className="flex flex-col w-full">
                   <div className="flex justify-between gap-2">
                     <div className="md:line-clamp-none">{eventName}</div>
-                    {/* <FavoriteEvent event={event} /> */}
+                    {toggleFavoriteEvent && (
+                      <FavoriteEvent
+                        event={event}
+                        toggleFavoriteEvent={toggleFavoriteEvent}
+                        favoriteEvents={favoriteEvents}
+                      />
+                    )}
                   </div>
                   <div className="flex gap-4 justify-between w-full">
                     {timeOfDay.map((time, index) => (

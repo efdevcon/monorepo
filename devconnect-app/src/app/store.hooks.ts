@@ -1,14 +1,36 @@
-import { useEffect } from 'react';
-import useGlobalStore, { AppState } from './store';
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useGlobalStore, AppState } from './store';
 import { useShallow } from 'zustand/react/shallow';
 import { fetchAuth } from '@/services/apiClient';
+import { toast } from 'sonner';
 
 export const useFavorites = () => {
-  const favorites = useGlobalStore(
-    useShallow((state) => state.userData?.favorite_events)
-  );
+  const favorites =
+    useGlobalStore((state) => state.userData?.favorite_events) || [];
+  const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
 
-  return favorites;
+  const updateFavorite = (eventId: string) => {
+    const nextFavoriteEvents = favorites?.includes(eventId)
+      ? favorites?.filter((existingEvent: string) => existingEvent !== eventId)
+      : [...(favorites || []), eventId];
+
+    setFavoriteEvents(nextFavoriteEvents);
+
+    fetchAuth('/api/auth/favorites', {
+      method: 'POST',
+      body: JSON.stringify({ favoriteEvents: favorites }),
+    }).then((response) => {
+      if (!response.success) {
+        toast.error(
+          'There was an error updating your favorites. Check your connection and try again.'
+        );
+      }
+    });
+  };
+
+  return [favorites, updateFavorite] as [string[], (eventId: string) => void];
 };
 
 export const useAdditionalTicketEmails = () => {
@@ -42,4 +64,16 @@ export const useEnsureUserData = (isConnected: boolean) => {
       setUserData(null);
     }
   }, [isConnected]);
+
+  // Ensure user data is loaded whenever the window is focused (for when user returns from background, in case user updated its data on different device)
+  useEffect(() => {
+    const handleFocus = () => {
+      if (isConnected) {
+        ensureUserData(setUserData);
+      }
+    };
+
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, [isConnected, setUserData]);
 };

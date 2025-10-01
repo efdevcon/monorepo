@@ -111,6 +111,8 @@ const Layout = (props: CalendarLayoutProps) => {
             {...props}
             events={filteredEvents}
             viewMode={viewMode}
+            favoriteEvents={props.favoriteEvents}
+            toggleFavoriteEvent={props.toggleFavoriteEvent}
           />
         </div>
       </div>

@@ -1138,7 +1138,7 @@ Issued At: ${issuedAt}`;
   const shouldShowNavigation = isConnected || isSkipped || pathname !== '/';
 
   // Ensure user data is loaded into global store when connection status changes
-  useEnsureUserData(isConnected);
+  useEnsureUserData(!!(supabaseUser?.email || paraAccount?.embedded?.email));
 
   return {
     // Connection status

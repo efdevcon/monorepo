@@ -1,6 +1,5 @@
 'use client';
 
-import { useUser } from '@/hooks/useUser';
 import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
@@ -12,7 +11,7 @@ import { toast } from 'sonner';
 // import { useUserAppData } from '@/hooks/useUserAppData';
 // import { ensureUserData } from '@/app/store.hooks';
 import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
-import useGlobalStore from '@/app/store';
+import { useGlobalStore } from '@/app/store';
 
 interface Ticket {
   secret: string;
@@ -120,68 +119,68 @@ export default function TicketTab() {
     }
   }, [email]);
 
-  // Function to refresh tickets
-  const refreshTickets = async () => {
-    if (isLoadingRef.current) return;
+  // // Function to refresh tickets
+  // const refreshTickets = async () => {
+  //   if (isLoadingRef.current) return;
 
-    // Clear cache and fetch fresh data
-    setTickets([]);
-    setQrCodes({});
+  //   // Clear cache and fetch fresh data
+  //   setTickets([]);
+  //   setQrCodes({});
 
-    // Trigger fetch with force refresh
-    const fetchTickets = async () => {
-      if (isLoadingRef.current) return;
+  //   // Trigger fetch with force refresh
+  //   const fetchTickets = async () => {
+  //     if (isLoadingRef.current) return;
 
-      isLoadingRef.current = true;
-      setLoading(true);
-      setTicketError(null);
+  //     isLoadingRef.current = true;
+  //     setLoading(true);
+  //     setTicketError(null);
 
-      try {
-        const response = await fetchAuth<{ tickets: Order[] }>(
-          '/api/auth/tickets'
-        );
-        if (!response.success) {
-          throw new Error(response.error || 'Failed to fetch tickets');
-        }
+  //     try {
+  //       const response = await fetchAuth<{ tickets: Order[] }>(
+  //         '/api/auth/tickets'
+  //       );
+  //       if (!response.success) {
+  //         throw new Error(response.error || 'Failed to fetch tickets');
+  //       }
 
-        const ticketsData = response.data.tickets || [];
-        setTickets(ticketsData);
+  //       const ticketsData = response.data.tickets || [];
+  //       setTickets(ticketsData);
 
-        // Generate QR codes for each ticket
-        const newQrCodes: { [key: string]: string } = {};
-        for (const order of ticketsData) {
-          for (const ticket of order.tickets) {
-            if (ticket.secret) {
-              try {
-                const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
-                  width: 200,
-                  margin: 1,
-                  color: {
-                    dark: '#000000',
-                    light: '#FFFFFF',
-                  },
-                });
-                newQrCodes[ticket.secret] = qrDataUrl;
-              } catch (qrErr) {
-                console.error('Error generating QR code:', qrErr);
-              }
-            }
-          }
-        }
-        setQrCodes(newQrCodes);
-      } catch (err) {
-        console.error('Error fetching tickets:', err);
-        setTicketError(
-          err instanceof Error ? err.message : 'Failed to load tickets'
-        );
-      } finally {
-        setLoading(false);
-        isLoadingRef.current = false;
-      }
-    };
+  //       // Generate QR codes for each ticket
+  //       const newQrCodes: { [key: string]: string } = {};
+  //       for (const order of ticketsData) {
+  //         for (const ticket of order.tickets) {
+  //           if (ticket.secret) {
+  //             try {
+  //               const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+  //                 width: 200,
+  //                 margin: 1,
+  //                 color: {
+  //                   dark: '#000000',
+  //                   light: '#FFFFFF',
+  //                 },
+  //               });
+  //               newQrCodes[ticket.secret] = qrDataUrl;
+  //             } catch (qrErr) {
+  //               console.error('Error generating QR code:', qrErr);
+  //             }
+  //           }
+  //         }
+  //       }
+  //       setQrCodes(newQrCodes);
+  //     } catch (err) {
+  //       console.error('Error fetching tickets:', err);
+  //       setTicketError(
+  //         err instanceof Error ? err.message : 'Failed to load tickets'
+  //       );
+  //     } finally {
+  //       setLoading(false);
+  //       isLoadingRef.current = false;
+  //     }
+  //   };
 
-    await fetchTickets();
-  };
+  //   await fetchTickets();
+  // };
 
   return (
     <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -399,7 +398,10 @@ export default function TicketTab() {
                     if (response.success) {
                       toast.success('Email verified successfully!');
 
+                      // Ensure user data reflects the updataed email
                       await ensureUserData(setUserData);
+
+                      // Fetch tickets again (since we added a new email)
                       await fetchTickets();
                     } else {
                       if (response.error) {
