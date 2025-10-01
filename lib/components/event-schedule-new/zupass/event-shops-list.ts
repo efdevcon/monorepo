@@ -55,6 +55,12 @@ export const eventShops: EventShop[] = [
     gate_link_only: true,
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "91", // ethereum argentina
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "bridge-atlas",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
   // {
   //   supabase_id: "113", // ethereum argentina
   //   zupass_proof_id: "Devconnect ARG",

@@ -8,10 +8,12 @@ import {
   UsersRound,
   CalendarArrowUp,
   Heart,
+  Share2,
   Check,
 } from "lucide-react";
 import { Event as EventType } from "../model";
 import { getProgramming, Programming } from "./programming";
+import { customUrlTransforms } from "../index";
 const confetti = require("canvas-confetti");
 import moment from "moment";
 // import { format, parseISO } from "date-fns";
@@ -40,6 +42,7 @@ import FarcasterIcon from "lib/assets/icons/farcaster.svg";
 import InstagramIcon from "lib/assets/icons/instagram.svg";
 import { TicketTag, SoldOutTag } from "../calendar.components";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+import { toast } from "sonner";
 
 type EventProps = {
   event: EventType;
@@ -148,6 +151,57 @@ const FavoriteEvent = ({
           isFavorited && "!text-[#ce5154]"
         )}
       />
+    </div>
+  );
+};
+
+const ShareEvent = ({
+  event,
+  isDialog,
+}: {
+  event: EventType;
+  isDialog?: boolean;
+}) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    // Determine the event ID to use in the URL
+    let eventId = event.rkey || event.id;
+
+    const transformMatch = customUrlTransforms.find(
+      (transform) => transform.to === event.id.toString()
+    );
+
+    if (transformMatch) {
+      eventId = transformMatch.from;
+    }
+
+    // Build the shareable URL
+    const url = `${window.location.origin}${window.location.pathname}?event=${eventId}`;
+
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      toast.success("Copied to clipboard");
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+      toast.error("Failed to copy to clipboard");
+    }
+  };
+
+  return (
+    <div
+      className="flex items-center justify-center cursor-pointer relative shrink-0 hover:scale-110 transition-all duration-300 text-slate-600"
+      onClick={handleCopy}
+    >
+      {copied ? (
+        <Check className={isDialog ? "w-5 h-5" : "w-4 h-4 mt-0.5"} />
+      ) : (
+        <Share2 className={isDialog ? "w-5 h-5" : "w-4 h-4 mt-0.5"} />
+      )}
     </div>
   );
 };
@@ -491,7 +545,8 @@ const Event: React.FC<EventProps> = ({
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-2 mr-2">
+                      <div className="flex items-center gap-3 mr-2">
+                        <ShareEvent event={event} isDialog />
                         <ExportEvent
                           event={event}
                           isDialog
