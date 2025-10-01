@@ -24,7 +24,7 @@ const Layout = (props: CalendarLayoutProps) => {
     setFilter,
     resetFilter,
     filterActive,
-  } = useFilters(props.events, false);
+  } = useFilters(props.events, false, props.favoriteEvents);
 
   return (
     <div
@@ -82,6 +82,7 @@ const Layout = (props: CalendarLayoutProps) => {
         viewMode={viewMode}
         setViewMode={setViewMode}
         hideCommunityByDefault
+        favorites={props.favoriteEvents}
       />
 
       <div className="relative flex">
@@ -98,6 +99,7 @@ const Layout = (props: CalendarLayoutProps) => {
                 setFilter={setFilter}
                 resetFilter={resetFilter}
                 filterActive={filterActive}
+                showFavorites
               />
             </div>
             <div className={filterCss["fade"]} />

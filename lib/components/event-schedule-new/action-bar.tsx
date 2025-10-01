@@ -34,6 +34,7 @@ const ActionBar = ({
   viewMode,
   setViewMode,
   hideCommunityByDefault,
+  favorites,
 }: {
   isCommunityCalendar: boolean;
   filterOpen: boolean;
@@ -47,6 +48,7 @@ const ActionBar = ({
   viewMode: "list" | "grid";
   setViewMode: (viewMode: "list" | "grid") => void;
   hideCommunityByDefault?: boolean;
+  favorites?: string[];
 }) => {
   const categories = venueEvents; // isCommunityCalendar ? communityEvents : venueEvents;
   const hasLoggedInUser = true;

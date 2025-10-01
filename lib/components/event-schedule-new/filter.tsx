@@ -3,9 +3,14 @@ import filterCss from "./filter.module.scss";
 import cn from "classnames";
 import { Checkbox } from "lib/components/ui/checkbox";
 import { Badge } from "lib/components/ui/badge";
+import { Switch } from "lib/components/ui/switch";
 import { X, Search } from "lucide-react";
 
-export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
+export const useFilters = (
+  events: any[],
+  showCommunityByDefault: boolean,
+  favorites?: string[] | null
+) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const keysToFilterOn = ["eventType", "difficulty", "categories"];
   const filterableValues = {} as { [key: string]: Set<string> };
@@ -16,6 +21,7 @@ export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
     eventType: [],
     name: "",
     community: showCommunityByDefault,
+    favorites: false,
   };
 
   const [filter, setFilterState] = useState<any>(defaultFilter);
@@ -26,7 +32,8 @@ export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
     filter.category.length !== defaultFilter.category.length ||
     filter.difficulty.length !== defaultFilter.difficulty.length ||
     filter.eventType.length !== defaultFilter.eventType.length ||
-    filter.name !== defaultFilter.name;
+    filter.name !== defaultFilter.name ||
+    filter.favorites !== defaultFilter.favorites;
 
   // Function to handle filter updates with toggle behavior for arrays
   const setFilter = (filterKey: string, nextValue: any) => {
@@ -80,6 +87,14 @@ export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
   const filteredEvents = events.filter((event: any) => {
     // Community filter
     if (!filter.community && !event.isCoreEvent) return false;
+
+    if (favorites && filter.favorites) {
+      const eventIsFavorited = favorites.some(
+        (favoritedEvent: any) =>
+          event.id.toString() === favoritedEvent.toString()
+      );
+      if (!eventIsFavorited) return false;
+    }
 
     // Text search filter
     if (
@@ -142,6 +157,7 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
       computeFilterShorthand("Difficulty", filter.difficulty),
       computeFilterShorthand("Event Type", filter.eventType),
       filter.name ? `"${filter.name}"` : null,
+      filter.favorites ? "Favorites" : null,
     ]
       .filter((val) => !!val)
       .map((val) => uppercaseFirstLetter(val as string))
@@ -185,6 +201,7 @@ export const Filter = ({
   setFilter,
   resetFilter,
   filterActive,
+  showFavorites,
 }: {
   filterOpen: boolean;
   setFilterOpen: (open: boolean) => void;
@@ -195,6 +212,7 @@ export const Filter = ({
   setFilter: (filterKey: string, nextValue: any) => void;
   resetFilter: () => void;
   filterActive: boolean;
+  showFavorites?: boolean;
 }) => {
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
@@ -235,6 +253,16 @@ export const Filter = ({
             />
           </div>
         </div>
+
+        {showFavorites && (
+          <div className="flex items-center gap-2">
+            <Switch
+              checked={filter.favorites}
+              onCheckedChange={(checked) => setFilter("favorites", checked)}
+            />
+            <p className="text-sm font-medium">Favorites</p>
+          </div>
+        )}
 
         {filterableValuesKeys.map((key) => {
           const valuesForFilter = Array.from(filterableValues[key]);
