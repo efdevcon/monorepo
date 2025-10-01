@@ -229,7 +229,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       children: subItems,
       count: subItems.length,
       orgName,
-      accreditationGuideUrl: process.env.ACCREDITATION_GUIDE || ''
+      descriptionLinks: {
+        'accreditation guide': process.env.ACCREDITATION_GUIDE || '',
+      }
     });
   } catch (error) {
     console.error('Error fetching child pages:', error);
