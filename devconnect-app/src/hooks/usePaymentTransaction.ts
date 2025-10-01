@@ -32,6 +32,12 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     message: string;
   } | null>(null);
 
+  // Track which wallet initiated the current transaction
+  const [currentTransactionWallet, setCurrentTransactionWallet] = useState<'regular' | 'para' | null>(null);
+
+  // Track if we've already handled errors to prevent loops
+  const [hasHandledError, setHasHandledError] = useState(false);
+
   // Helper function to detect user rejection errors
   const isUserRejectionError = (error: any): boolean => {
     if (!error) return false;
@@ -75,6 +81,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     setTxHash(null);
     setIsSimulation(false);
     setSimulationDetails(null);
+    setCurrentTransactionWallet(null);
+    setHasHandledError(false);
   };
 
   const sendRegularTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
@@ -87,6 +95,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
 
     try {
+      console.log('🔄 [REGULAR_TX] Starting regular wallet transaction');
+      setCurrentTransactionWallet('regular');
       setTxStatus('preparing');
 
       // Switch to the selected network if needed
@@ -171,6 +181,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
 
     try {
+      console.log('🔄 [PARA_TX] Starting Para wallet transaction');
+      setCurrentTransactionWallet('para');
       setTxStatus('preparing');
       
       // For Para transactions, ensure we're on Base network (8453)
@@ -280,17 +292,18 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
   // Handle transaction success/error for regular wallets
   useEffect(() => {
-    if (isSuccess && (hash || nativeHash) && txStatus !== 'confirmed') {
+    if (isSuccess && (hash || nativeHash) && txStatus !== 'confirmed' && currentTransactionWallet === 'regular') {
       setTxHash(hash || nativeHash || null);
       setTxStatus('confirmed');
     }
-  }, [isSuccess, hash, nativeHash, txStatus]);
+  }, [isSuccess, hash, nativeHash, txStatus, currentTransactionWallet]);
 
-  // Handle write contract errors (user rejections, etc.)
+  // Handle write contract errors (user rejections, etc.) - only for regular wallet transactions
   useEffect(() => {
-    if (writeError && txStatus !== 'error') {
-      console.error('Write contract error:', writeError);
+    if (writeError && txStatus !== 'error' && currentTransactionWallet === 'regular' && !hasHandledError) {
+      console.error('🔄 [REGULAR_TX] Write contract error:', writeError);
       setTxStatus('error');
+      setHasHandledError(true);
 
       if (isUserRejectionError(writeError)) {
         setTxError('Transaction was cancelled by user');
@@ -299,14 +312,21 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       } else {
         setTxError('Transaction failed');
       }
+    } else if (writeError && currentTransactionWallet !== 'regular') {
+      console.log('🔄 [IGNORED] Write contract error ignored - not from current transaction wallet:', {
+        writeError,
+        currentTransactionWallet,
+        txStatus
+      });
     }
-  }, [writeError, txStatus]);
+  }, [writeError, txStatus, currentTransactionWallet, hasHandledError]);
 
-  // Handle native transaction errors
+  // Handle native transaction errors - only for regular wallet transactions
   useEffect(() => {
-    if (nativeError && txStatus !== 'error') {
-      console.error('Native transaction error:', nativeError);
+    if (nativeError && txStatus !== 'error' && currentTransactionWallet === 'regular' && !hasHandledError) {
+      console.error('🔄 [REGULAR_TX] Native transaction error:', nativeError);
       setTxStatus('error');
+      setHasHandledError(true);
 
       if (isUserRejectionError(nativeError)) {
         setTxError('Transaction was cancelled by user');
@@ -315,17 +335,32 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       } else {
         setTxError('Native transaction failed');
       }
+    } else if (nativeError && currentTransactionWallet !== 'regular') {
+      console.log('🔄 [IGNORED] Native transaction error ignored - not from current transaction wallet:', {
+        nativeError,
+        currentTransactionWallet,
+        txStatus
+      });
     }
-  }, [nativeError, txStatus]);
+  }, [nativeError, txStatus, currentTransactionWallet, hasHandledError]);
 
+  // Handle blockchain-level errors - only for regular wallet transactions
   useEffect(() => {
-    if (isError && txStatus !== 'error') {
+    if (isError && txStatus !== 'error' && currentTransactionWallet === 'regular' && !hasHandledError) {
+      console.error('🔄 [REGULAR_TX] Blockchain-level error');
       setTxStatus('error');
+      setHasHandledError(true);
       // Note: For regular transactions, the error handling is done in the writeContract call
       // This useEffect handles blockchain-level errors
       setTxError('Transaction failed on blockchain');
+    } else if (isError && currentTransactionWallet !== 'regular') {
+      console.log('🔄 [IGNORED] Blockchain-level error ignored - not from current transaction wallet:', {
+        isError,
+        currentTransactionWallet,
+        txStatus
+      });
     }
-  }, [isError, txStatus]);
+  }, [isError, txStatus, currentTransactionWallet, hasHandledError]);
 
   return {
     sendTransaction,

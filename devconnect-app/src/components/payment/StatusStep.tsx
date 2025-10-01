@@ -3,17 +3,41 @@
 import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { 
-  Settings, 
-  Pen, 
-  Radio, 
-  Clock, 
-  CheckCircle, 
-  AlertTriangle, 
-  Loader2 
+import { getTokenInfo } from '@/config/tokens';
+import { getNetworkConfig } from '@/config/networks';
+
+// Helper function to get the correct explorer URL for a transaction
+const getTransactionExplorerUrl = (txHash: string, chainId: number): string => {
+  switch (chainId) {
+    case 1: // Ethereum
+      return `https://etherscan.io/tx/${txHash}`;
+    case 8453: // Base
+      return `https://basescan.org/tx/${txHash}`;
+    case 10: // Optimism
+      return `https://optimistic.etherscan.io/tx/${txHash}`;
+    case 137: // Polygon
+      return `https://polygonscan.com/tx/${txHash}`;
+    case 42161: // Arbitrum
+      return `https://arbiscan.io/tx/${txHash}`;
+    default:
+      return `https://basescan.org/tx/${txHash}`; // Default to Base
+  }
+};
+import {
+  Settings,
+  Pen,
+  Radio,
+  Clock,
+  CheckCircle,
+  AlertTriangle,
+  Loader2,
 } from 'lucide-react';
 
-type TransactionStatusBadge = "completed" | "in-progress" | "pending" | "failed";
+type TransactionStatusBadge =
+  | 'completed'
+  | 'in-progress'
+  | 'pending'
+  | 'failed';
 
 type TransactionStep = {
   id: string;
@@ -24,7 +48,7 @@ type TransactionStep = {
 
 type TransactionState = {
   currentStepIndex: number;
-  overallStatus: "processing" | "completed" | "failed";
+  overallStatus: 'processing' | 'completed' | 'failed';
   failedStepIndex?: number;
   transactionHash?: string;
   errorMessage?: string;
@@ -35,6 +59,8 @@ interface StatusStepProps {
   txError: string;
   isPara: boolean;
   amount: string;
+  token?: string;
+  chainId?: number;
   connectedAddress?: string;
   txHash?: string | null;
   isSimulation?: boolean;
@@ -270,6 +296,8 @@ export default function StatusStep({
   txError,
   isPara,
   amount,
+  token = 'USDC',
+  chainId = 8453,
   connectedAddress,
   txHash,
   isSimulation,
@@ -349,8 +377,10 @@ export default function StatusStep({
           <div className="text-sm text-green-700">
             <div className="font-medium">Transaction Details:</div>
             <div className="mt-2 space-y-1">
-              <div>Amount: {amount} USDC</div>
-              <div>Network: Base</div>
+              <div>
+                Amount: {amount} {token}
+              </div>
+              <div>Network: {getNetworkConfig(chainId)?.name || 'Unknown'}</div>
               <div>
                 From:{' '}
                 {connectedAddress
@@ -361,7 +391,7 @@ export default function StatusStep({
               {txHash && !isSimulation && (
                 <div className="pt-2">
                   <a
-                    href={`https://basescan.org/tx/${txHash}`}
+                    href={getTransactionExplorerUrl(txHash, chainId)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:text-blue-800 underline flex items-center gap-1"
