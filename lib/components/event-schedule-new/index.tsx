@@ -17,7 +17,7 @@ import DevconnectCubeLogo from "./images/cube-logo.png";
 import { useIsMobile } from "lib/hooks/useIsMobile";
 import Export from "./export";
 
-const customUrlTransforms = [
+export const customUrlTransforms = [
   { from: "ethday", to: "84" },
   { from: "DSS", to: "86" },
   { from: "soliditysummit", to: "76" },
@@ -246,10 +246,6 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  // const [selectedEventId, setSelectedEventId] = useState<
-  //   string | null | "initial"
-  // >("initial");
-
   const selectedEvent = (() => {
     if (typeof window === "undefined") return;
 
@@ -267,10 +263,7 @@ const NewScheduleIndexInner = ({
 
     const currentUrlParams = new URLSearchParams(searchParams);
 
-    const eventId = getEventIdFromUrl(
-      // (selectedEventId === "initial" ? null : selectedEventId) ||
-      currentUrlParams.get("event") || ""
-    );
+    const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
 
     return events.find((event) => {
       return (
@@ -317,7 +310,7 @@ const NewScheduleIndexInner = ({
       (placement) => placement.event.id === selectedEvent?.id
     ) || null;
 
-  // State for managing collapsed days
+  // State for managing collapsed days in list view
   const [collapsedDays, setCollapsedDays] = useState<Set<string>>(new Set());
 
   return (
