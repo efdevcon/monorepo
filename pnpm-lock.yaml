@@ -1100,7 +1100,7 @@ importers:
         version: 4.0.1(webpack@5.100.2)
       openai:
         specifier: 4.95.1
-        version: 4.95.1(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76)
+        version: 4.95.1(encoding@0.1.13)(ws@8.18.3(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76)
       postcss:
         specifier: ^8.4.31
         version: 8.5.6
@@ -1523,6 +1523,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.8)(react@19.1.0)
+      '@radix-ui/react-switch':
+        specifier: ^1.2.6
+        version: 1.2.6(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@radix-ui/react-toast':
         specifier: ^1.2.1
         version: 1.2.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -5366,6 +5369,19 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
     peerDependenciesMeta:
       '@types/react':
+        optional: true
+
+  '@radix-ui/react-switch@1.2.6':
+    resolution: {integrity: sha512-bByzr1+ep1zk4VubeEVViV592vu2lHE2BZY5OnzehZqOOgogN80+mNtCqPkhn2gklJqOpxWgPoYTSnhBCqpOXQ==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
         optional: true
 
   '@radix-ui/react-toast@1.2.14':
@@ -24513,6 +24529,21 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.8
 
+  '@radix-ui/react-switch@1.2.6(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@radix-ui/primitive': 1.1.3
+      '@radix-ui/react-compose-refs': 1.1.2(@types/react@19.1.8)(react@19.1.0)
+      '@radix-ui/react-context': 1.1.2(@types/react@19.1.8)(react@19.1.0)
+      '@radix-ui/react-primitive': 2.1.3(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@radix-ui/react-use-controllable-state': 1.2.2(@types/react@19.1.8)(react@19.1.0)
+      '@radix-ui/react-use-previous': 1.1.1(@types/react@19.1.8)(react@19.1.0)
+      '@radix-ui/react-use-size': 1.1.1(@types/react@19.1.8)(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+    optionalDependencies:
+      '@types/react': 19.1.8
+      '@types/react-dom': 19.1.6(@types/react@19.1.8)
+
   '@radix-ui/react-toast@1.2.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@18.2.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@radix-ui/primitive': 1.1.2
@@ -42751,21 +42782,6 @@ snapshots:
       is-wsl: 2.2.0
 
   openai@4.104.0(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76):
-    dependencies:
-      '@types/node': 18.19.120
-      '@types/node-fetch': 2.6.12
-      abort-controller: 3.0.0
-      agentkeepalive: 4.6.0
-      form-data-encoder: 1.7.2
-      formdata-node: 4.4.1
-      node-fetch: 2.7.0(encoding@0.1.13)
-    optionalDependencies:
-      ws: 8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - encoding
-
-  openai@4.95.1(encoding@0.1.13)(ws@8.18.2(bufferutil@4.0.9)(utf-8-validate@5.0.10))(zod@3.25.76):
     dependencies:
       '@types/node': 18.19.120
       '@types/node-fetch': 2.6.12

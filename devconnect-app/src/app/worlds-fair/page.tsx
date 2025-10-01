@@ -1,4 +1,3 @@
-import moment from 'moment';
 import ProgrammePageContent from './page-content';
 import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format';
 

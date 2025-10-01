@@ -24,7 +24,7 @@ const Layout = (props: CalendarLayoutProps) => {
     setFilter,
     resetFilter,
     filterActive,
-  } = useFilters(props.events);
+  } = useFilters(props.events, false);
 
   return (
     <div
@@ -81,6 +81,7 @@ const Layout = (props: CalendarLayoutProps) => {
         events={props.events}
         viewMode={viewMode}
         setViewMode={setViewMode}
+        hideCommunityByDefault
       />
 
       <div className="relative flex">
@@ -110,6 +111,8 @@ const Layout = (props: CalendarLayoutProps) => {
             {...props}
             events={filteredEvents}
             viewMode={viewMode}
+            favoriteEvents={props.favoriteEvents}
+            toggleFavoriteEvent={props.toggleFavoriteEvent}
           />
         </div>
       </div>

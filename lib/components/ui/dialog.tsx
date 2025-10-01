@@ -19,7 +19,10 @@ const DialogOverlay = React.forwardRef<
   return (
     <DialogPrimitive.Overlay
       ref={ref}
-      className={cn("fixed inset-0 !z-[10000000] bg-black/80", className)}
+      className={cn(
+        "fixed inset-0 !z-[10000000] bg-black/80 dialog-overlay",
+        className
+      )}
       {...props}
       // onClick={(e) => {
       //   e.stopPropagation();

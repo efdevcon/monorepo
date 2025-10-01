@@ -5,7 +5,7 @@ import { Checkbox } from "lib/components/ui/checkbox";
 import { Badge } from "lib/components/ui/badge";
 import { X, Search } from "lucide-react";
 
-export const useFilters = (events: any[]) => {
+export const useFilters = (events: any[], showCommunityByDefault: boolean) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const keysToFilterOn = ["eventType", "difficulty", "categories"];
   const filterableValues = {} as { [key: string]: Set<string> };
@@ -15,6 +15,7 @@ export const useFilters = (events: any[]) => {
     difficulty: [],
     eventType: [],
     name: "",
+    community: showCommunityByDefault,
   };
 
   const [filter, setFilterState] = useState<any>(defaultFilter);
@@ -24,7 +25,8 @@ export const useFilters = (events: any[]) => {
     // filter.name !== defaultFilter.name ||
     filter.category.length !== defaultFilter.category.length ||
     filter.difficulty.length !== defaultFilter.difficulty.length ||
-    filter.eventType.length !== defaultFilter.eventType.length;
+    filter.eventType.length !== defaultFilter.eventType.length ||
+    filter.name !== defaultFilter.name;
 
   // Function to handle filter updates with toggle behavior for arrays
   const setFilter = (filterKey: string, nextValue: any) => {
@@ -76,6 +78,9 @@ export const useFilters = (events: any[]) => {
   });
 
   const filteredEvents = events.filter((event: any) => {
+    // Community filter
+    if (!filter.community && !event.isCoreEvent) return false;
+
     // Text search filter
     if (
       filter.name.length > 0 &&
@@ -136,16 +141,24 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
       computeFilterShorthand("Categories", filter.category),
       computeFilterShorthand("Difficulty", filter.difficulty),
       computeFilterShorthand("Event Type", filter.eventType),
-      filter.name ? `Search: "${filter.name}"` : null,
+      filter.name ? `"${filter.name}"` : null,
     ]
       .filter((val) => !!val)
       .map((val) => uppercaseFirstLetter(val as string))
       .join(", ") || "None";
 
   return (
-    <div className={filterCss["active-filters"]}>
-      <p className="small-text">Active filter:</p>
-      <p className="bold tiny-text">{filterSummary}</p>
+    <div
+      className={cn(
+        filterCss["active-filters"],
+        "max-w-[200px] truncate text-ellipsis"
+      )}
+    >
+      {/* <p className="small-text">Active filter:</p> */}
+      <p className="text-xs line-clamp-2 leading-tight">
+        <span className="font-medium">Active filter:</span> <br />
+        <span className="text-ellipsis line-clamp-2">{filterSummary}</span>
+      </p>
     </div>
   );
 };

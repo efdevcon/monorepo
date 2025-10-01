@@ -1,6 +1,5 @@
 'use client';
 
-import { useUser } from '@/hooks/useUser';
 import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
@@ -9,7 +8,10 @@ import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
 // import { Separator } from 'lib/components/ui/separator';
-import { useUserAppData } from '@/hooks/useUserAppData';
+// import { useUserAppData } from '@/hooks/useUserAppData';
+// import { ensureUserData } from '@/app/store.hooks';
+import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
+import { useGlobalStore } from '@/app/store';
 
 interface Ticket {
   secret: string;
@@ -27,9 +29,9 @@ interface Order {
 }
 
 export default function TicketTab() {
-  const { user, signOut, error, hasInitialized, supabase } = useUser();
-  const { user: userAppData, syncUserData } = useUserAppData();
-  const { isParaConnected, email } = useUnifiedConnection();
+  const additionalTicketEmails = useAdditionalTicketEmails();
+  const { setUserData } = useGlobalStore();
+  const { email } = useUnifiedConnection();
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);
   const [ticketError, setTicketError] = useState<string | null>(null);
@@ -112,75 +114,73 @@ export default function TicketTab() {
   // Auto-load tickets when component mounts
   useEffect(() => {
     // Only fetch if we have a user (either from Supabase or Para)
-    if (user || email) {
+    if (email) {
       fetchTickets();
     }
-  }, [user, email]);
+  }, [email]);
 
-  // Function to refresh tickets
-  const refreshTickets = async () => {
-    if (isLoadingRef.current) return;
+  // // Function to refresh tickets
+  // const refreshTickets = async () => {
+  //   if (isLoadingRef.current) return;
 
-    // Clear cache and fetch fresh data
-    setTickets([]);
-    setQrCodes({});
+  //   // Clear cache and fetch fresh data
+  //   setTickets([]);
+  //   setQrCodes({});
 
-    // Trigger fetch with force refresh
-    const fetchTickets = async () => {
-      if (isLoadingRef.current) return;
+  //   // Trigger fetch with force refresh
+  //   const fetchTickets = async () => {
+  //     if (isLoadingRef.current) return;
 
-      isLoadingRef.current = true;
-      setLoading(true);
-      setTicketError(null);
+  //     isLoadingRef.current = true;
+  //     setLoading(true);
+  //     setTicketError(null);
 
-      try {
-        const response = await fetchAuth<{ tickets: Order[] }>(
-          '/api/auth/tickets'
-        );
-        if (!response.success) {
-          throw new Error(response.error || 'Failed to fetch tickets');
-        }
+  //     try {
+  //       const response = await fetchAuth<{ tickets: Order[] }>(
+  //         '/api/auth/tickets'
+  //       );
+  //       if (!response.success) {
+  //         throw new Error(response.error || 'Failed to fetch tickets');
+  //       }
 
-        const ticketsData = response.data.tickets || [];
-        setTickets(ticketsData);
+  //       const ticketsData = response.data.tickets || [];
+  //       setTickets(ticketsData);
 
-        // Generate QR codes for each ticket
-        const newQrCodes: { [key: string]: string } = {};
-        for (const order of ticketsData) {
-          for (const ticket of order.tickets) {
-            if (ticket.secret) {
-              try {
-                const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
-                  width: 200,
-                  margin: 1,
-                  color: {
-                    dark: '#000000',
-                    light: '#FFFFFF',
-                  },
-                });
-                newQrCodes[ticket.secret] = qrDataUrl;
-              } catch (qrErr) {
-                console.error('Error generating QR code:', qrErr);
-              }
-            }
-          }
-        }
-        setQrCodes(newQrCodes);
-      } catch (err) {
-        console.error('Error fetching tickets:', err);
-        setTicketError(
-          err instanceof Error ? err.message : 'Failed to load tickets'
-        );
-      } finally {
-        setLoading(false);
-        isLoadingRef.current = false;
-      }
-    };
+  //       // Generate QR codes for each ticket
+  //       const newQrCodes: { [key: string]: string } = {};
+  //       for (const order of ticketsData) {
+  //         for (const ticket of order.tickets) {
+  //           if (ticket.secret) {
+  //             try {
+  //               const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+  //                 width: 200,
+  //                 margin: 1,
+  //                 color: {
+  //                   dark: '#000000',
+  //                   light: '#FFFFFF',
+  //                 },
+  //               });
+  //               newQrCodes[ticket.secret] = qrDataUrl;
+  //             } catch (qrErr) {
+  //               console.error('Error generating QR code:', qrErr);
+  //             }
+  //           }
+  //         }
+  //       }
+  //       setQrCodes(newQrCodes);
+  //     } catch (err) {
+  //       console.error('Error fetching tickets:', err);
+  //       setTicketError(
+  //         err instanceof Error ? err.message : 'Failed to load tickets'
+  //       );
+  //     } finally {
+  //       setLoading(false);
+  //       isLoadingRef.current = false;
+  //     }
+  //   };
 
-    await fetchTickets();
-  };
-
-  const additionalEmails = userAppData?.additional_ticket_emails || [];
+  //   await fetchTickets();
+  // };
 
   return (
     <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">
@@ -305,7 +305,7 @@ export default function TicketTab() {
 
           <div className="flex flex-col text-center text-xs font-medium">
             <div className="">{email}</div>
-            {additionalEmails.map((email: string) => (
+            {additionalTicketEmails.map((email: string) => (
               <div key={email} className="">
                 {email}
               </div>
@@ -398,7 +398,10 @@ export default function TicketTab() {
                     if (response.success) {
                       toast.success('Email verified successfully!');
 
-                      await syncUserData();
+                      // Ensure user data reflects the updataed email
+                      await ensureUserData(setUserData);
+
+                      // Fetch tickets again (since we added a new email)
                       await fetchTickets();
                     } else {
                       if (response.error) {

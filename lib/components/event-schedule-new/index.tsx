@@ -15,6 +15,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
 // import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+import Export from "./export";
 
 const customUrlTransforms = [
   { from: "ethday", to: "84" },
@@ -33,10 +34,8 @@ const customUrlTransforms = [
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
-  selectedEvent: EventType | null;
-  selectedDay: string | null;
-  setSelectedEvent: (event: EventType | null) => void;
-  setSelectedDay: (day: string | null) => void;
+  favoriteEvents?: string[];
+  toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
 };
 
@@ -183,16 +182,18 @@ const computeEventPlacements = (
 
 const NewScheduleIndexInner = ({
   // selectedEvent,
-  selectedDay,
+  // selectedDay,
   // setSelectedEvent,
-  setSelectedDay,
+  // setSelectedDay,
+  favoriteEvents,
+  toggleFavoriteEvent,
   events,
   viewMode,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
+  const [exports, setExports] = useState<EventType[] | null>(null);
   const eventRange = computeCalendarRange(events);
   const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
@@ -245,9 +246,9 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  const [selectedEventId, setSelectedEventId] = useState<
-    string | null | "initial"
-  >("initial");
+  // const [selectedEventId, setSelectedEventId] = useState<
+  //   string | null | "initial"
+  // >("initial");
 
   const selectedEvent = (() => {
     if (typeof window === "undefined") return;
@@ -264,12 +265,11 @@ const NewScheduleIndexInner = ({
       return eventId;
     };
 
-    const currentUrlParams = new URLSearchParams(window.location.search);
+    const currentUrlParams = new URLSearchParams(searchParams);
 
     const eventId = getEventIdFromUrl(
-      (selectedEventId === "initial" ? null : selectedEventId) ||
-        currentUrlParams.get("event") ||
-        ""
+      // (selectedEventId === "initial" ? null : selectedEventId) ||
+      currentUrlParams.get("event") || ""
     );
 
     return events.find((event) => {
@@ -283,11 +283,11 @@ const NewScheduleIndexInner = ({
   const setSelectedEvent = (event: EventType | null) => {
     if (typeof window === "undefined") return;
 
-    const currentParams = new URLSearchParams(window.location.search);
+    const currentParams = new URLSearchParams(searchParams);
 
     if (!event) {
       currentParams.delete("event");
-      setSelectedEventId(null);
+      // setSelectedEventId(null);
     } else {
       let nextEventId = event.rkey || event.id;
 
@@ -300,7 +300,7 @@ const NewScheduleIndexInner = ({
       }
 
       currentParams.set("event", nextEventId);
-      setSelectedEventId(nextEventId);
+      // setSelectedEventId(nextEventId);
     }
 
     // Update URL without any navigation using native History API
@@ -327,9 +327,15 @@ const NewScheduleIndexInner = ({
           event={selectedEventForDialog?.event}
           isDialog={true}
           selectedEvent={selectedEvent || null}
-          // selectedEvent={selectedEvent}
           setSelectedEvent={setSelectedEvent}
+          setExports={setExports}
+          toggleFavoriteEvent={toggleFavoriteEvent}
+          favoriteEvents={favoriteEvents}
         />
+      )}
+
+      {exports && (
+        <Export events={exports} setExports={() => setExports(null)} />
       )}
 
       {listView && (
@@ -421,6 +427,9 @@ const NewScheduleIndexInner = ({
                           event={placement.event}
                           selectedEvent={selectedEvent || null}
                           setSelectedEvent={setSelectedEvent}
+                          setExports={setExports}
+                          toggleFavoriteEvent={toggleFavoriteEvent}
+                          favoriteEvents={favoriteEvents}
                         />
                       ))}
                     </div>
@@ -451,9 +460,9 @@ const NewScheduleIndexInner = ({
                     <div
                       key={date}
                       className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
-                        selectedDay === date && "!bg-slate-100 !opacity-100",
-                        selectedDay !== null && "opacity-20"
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5"
+                        // selectedDay === date && "!bg-slate-100 !opacity-100",
+                        // selectedDay !== null && "opacity-20"
                       )}
                       // onMouseEnter={() => setHoveredDate(date)}
                       // onMouseLeave={() => setHoveredDate(null)}
@@ -492,7 +501,7 @@ const NewScheduleIndexInner = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-                <div className={cn("contents", selectedDay && "hidden")}>
+                <div className={cn("contents")}>
                   {eventPlacements.map((placement, idx) => (
                     <div
                       key={`event-${placement.event.id}-${idx}`}
@@ -514,6 +523,9 @@ const NewScheduleIndexInner = ({
                         }
                         selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
+                        setExports={setExports}
+                        toggleFavoriteEvent={toggleFavoriteEvent}
+                        favoriteEvents={favoriteEvents}
                       />
                     </div>
                   ))}
