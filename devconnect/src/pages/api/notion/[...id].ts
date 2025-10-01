@@ -511,7 +511,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         isLocked,
         isOk
       },
-      accreditationInsuranceGuideUrl: process.env.ACCREDITATION_INSURANCE_GUIDE || ''
+      descriptionLinks: {
+        'attached insurance guide': process.env.ACCREDITATION_INSURANCE_GUIDE || '',
+        'Devconnect ARG Terms & Conditions': 'https://drive.google.com/file/d/1QHOHnvlZ-KvY8lE97bcmF176fgdyCjmt/view',
+        'Devconnect ARG Code of Conduct': 'https://drive.google.com/file/d/1OgE4JTQwB0vkCHYpsmxZeHvkzQ5bjiSN/view',
+      }
     });
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch page data' });
