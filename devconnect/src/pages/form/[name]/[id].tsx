@@ -64,7 +64,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [isOk, setIsOk] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedValues, setSelectedValues] = useState<Record<string, string>>({})
-  const [accreditationGuideUrl, setAccreditationGuideUrl] = useState<string>('')
+  const [orgDescriptionLinks, setOrgDescriptionLinks] = useState<Record<string, string>>({})
   const [descriptionLinks, setDescriptionLinks] = useState<Record<string, string>>({})
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
@@ -254,8 +254,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       setSubItems(responseData.children || [])
       setOrgPageName(responseData.orgName || '')
 
-      // Set accreditation guide URL from API response
-      setAccreditationGuideUrl(responseData.accreditationGuideUrl || '')
+      // Set description links from API response
+      setOrgDescriptionLinks(responseData.descriptionLinks || {})
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Error loading organization data'
       setError(errorMessage)
@@ -1860,8 +1860,66 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         </div>
       )}
 
-      {/* Accreditation Guide Link - Only show for org pages with successful data load */}
-      {pageName === 'org' && accreditationGuideUrl && subItems.length > 0 && (
+      {/* Accreditation Guide Link - Only show for accreditation pages with successful data load */}
+      {pageName === 'accreditation' && descriptionLinks['attached insurance guide'] && fields.length > 0 && (
+        <div
+          style={{
+            marginTop: '3rem',
+            padding: '2rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '8px',
+            border: '1px solid #e9ecef',
+            textAlign: 'center',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 1rem 0',
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#333',
+            }}
+          >
+            Need Help with Insurance?
+          </h3>
+          <p
+            style={{
+              margin: '0 0 1.5rem 0',
+              color: '#666',
+              fontSize: '1rem',
+            }}
+          >
+            Check out our accreditation insurance guide for detailed instructions and support.
+          </p>
+          <a
+            href={descriptionLinks['attached insurance guide']}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.5rem',
+              backgroundColor: '#28a745',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              fontSize: '1rem',
+              fontWeight: '500',
+              transition: 'background-color 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = '#218838'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = '#28a745'
+            }}
+          >
+            🛡️ View Insurance Guide
+          </a>
+        </div>
+      )}
+
+      {/* Help Links - Only show for org pages with successful data load */}
+      {pageName === 'org' && Object.keys(orgDescriptionLinks).length > 0 && subItems.length > 0 && (
         <div
           style={{
             marginTop: '3rem',
@@ -1889,32 +1947,40 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               fontSize: '1rem',
             }}
           >
-            Check out our accreditation guide for detailed instructions and support.
+            Check out our guides and resources for detailed instructions and support.
           </p>
-          <a
-            href={accreditationGuideUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#007bff',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#0056b3'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = '#007bff'
-            }}
-          >
-            📖 View Accreditation Guide
-          </a>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            {Object.entries(orgDescriptionLinks).map(
+              ([linkText, linkUrl]) =>
+                linkUrl && (
+                  <a
+                    key={linkText}
+                    href={linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.75rem 1.5rem',
+                      backgroundColor: '#007bff',
+                      color: 'white',
+                      textDecoration: 'none',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      transition: 'background-color 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = '#0056b3'
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = '#007bff'
+                    }}
+                  >
+                    📖 {linkText}
+                  </a>
+                )
+            )}
+          </div>
         </div>
       )}
 
