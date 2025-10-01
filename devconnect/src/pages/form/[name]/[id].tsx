@@ -20,7 +20,7 @@ interface ConfigResponse {
     isLocked: boolean
     isOk?: boolean
   }
-  accreditationInsuranceGuideUrl?: string
+  descriptionLinks?: Record<string, string>
 }
 
 // Sub-item interface for org forms
@@ -65,7 +65,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedValues, setSelectedValues] = useState<Record<string, string>>({})
   const [accreditationGuideUrl, setAccreditationGuideUrl] = useState<string>('')
-  const [accreditationInsuranceGuideUrl, setAccreditationInsuranceGuideUrl] = useState<string>('')
+  const [descriptionLinks, setDescriptionLinks] = useState<Record<string, string>>({})
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
   // Get params from either props or router query
@@ -142,6 +142,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     } catch {
       return 'File'
     }
+  }
+
+  // Helper function to render description with links
+  const renderDescriptionWithLinks = (description: string) => {
+    if (!description || !descriptionLinks) return description
+
+    let result = description
+    const linkKeys = Object.keys(descriptionLinks)
+
+    // Replace each link pattern with actual links
+    linkKeys.forEach(linkText => {
+      const linkUrl = descriptionLinks[linkText]
+      if (linkUrl && result.includes(linkText)) {
+        const linkElement = `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" style="color: #007bff; text-decoration: underline; font-weight: 500;">${linkText}</a>`
+        result = result.replace(linkText, linkElement)
+      }
+    })
+
+    return result
   }
 
   // Handle file selection
@@ -280,8 +299,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       setIsLocked(responseData.config?.isLocked || false)
       setIsOk(responseData.config?.isOk || false)
 
-      // Set accreditation insurance guide URL from API response
-      setAccreditationInsuranceGuideUrl(responseData.accreditationInsuranceGuideUrl || '')
+      // Set description links from API response
+      setDescriptionLinks(responseData.descriptionLinks || {})
 
       // Convert to data object for backward compatibility
       const allData: Record<string, string> = {}
@@ -661,36 +680,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         margin: '0 0 0.5rem 0',
                         fontStyle: 'italic',
                       }}
-                    >
-                      {field.name === 'Insurance' &&
-                      accreditationInsuranceGuideUrl &&
-                      field.description.includes('attached insurance guide') ? (
-                        <>
-                          {field.description.split('attached insurance guide')[0]}
-                          <a
-                            href={accreditationInsuranceGuideUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              color: '#007bff',
-                              textDecoration: 'underline',
-                              fontWeight: '500',
-                            }}
-                            onMouseEnter={e => {
-                              e.currentTarget.style.color = '#0056b3'
-                            }}
-                            onMouseLeave={e => {
-                              e.currentTarget.style.color = '#007bff'
-                            }}
-                          >
-                            attached insurance guide
-                          </a>
-                          {field.description.split('attached insurance guide')[1]}
-                        </>
-                      ) : (
-                        field.description
-                      )}
-                    </p>
+                      dangerouslySetInnerHTML={{
+                        __html: renderDescriptionWithLinks(field.description),
+                      }}
+                    />
                   )}
                   {field.mode === 'read' ? (
                     // Read-only display
@@ -1321,64 +1314,6 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         </>
       )}
 
-      {/* Accreditation Insurance Guide Link - Only show for accreditation pages with successful data load */}
-      {pageName === 'accreditation' && accreditationInsuranceGuideUrl && fields.length > 0 && (
-        <div
-          style={{
-            marginTop: '3rem',
-            padding: '2rem',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '8px',
-            border: '1px solid #e9ecef',
-            textAlign: 'center',
-          }}
-        >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#333',
-            }}
-          >
-            Need Help with Insurance?
-          </h3>
-          <p
-            style={{
-              margin: '0 0 1.5rem 0',
-              color: '#666',
-              fontSize: '1rem',
-            }}
-          >
-            Check out our accreditation insurance guide for detailed instructions and support.
-          </p>
-          <a
-            href={accreditationInsuranceGuideUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#218838'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = '#28a745'
-            }}
-          >
-            🛡️ View Insurance Guide
-          </a>
-        </div>
-      )}
-
       {/* Read-only Information Display for Org Forms */}
       {pageName === 'org' && (
         <div style={{ marginBottom: '2rem' }}>
@@ -1418,36 +1353,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             marginTop: '0.25rem',
                             fontStyle: 'italic',
                           }}
-                        >
-                          {field.name === 'Insurance' &&
-                          accreditationInsuranceGuideUrl &&
-                          field.description.includes('attached insurance guide') ? (
-                            <>
-                              {field.description.split('attached insurance guide')[0]}
-                              <a
-                                href={accreditationInsuranceGuideUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  color: '#007bff',
-                                  textDecoration: 'underline',
-                                  fontWeight: '500',
-                                }}
-                                onMouseEnter={e => {
-                                  e.currentTarget.style.color = '#0056b3'
-                                }}
-                                onMouseLeave={e => {
-                                  e.currentTarget.style.color = '#007bff'
-                                }}
-                              >
-                                attached insurance guide
-                              </a>
-                              {field.description.split('attached insurance guide')[1]}
-                            </>
-                          ) : (
-                            field.description
-                          )}
-                        </div>
+                          dangerouslySetInnerHTML={{
+                            __html: renderDescriptionWithLinks(field.description),
+                          }}
+                        />
                       )}
                     </td>
                     <td
