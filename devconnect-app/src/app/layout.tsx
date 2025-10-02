@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
-import { SkippedProvider } from '@/context/SkippedContext';
 import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';

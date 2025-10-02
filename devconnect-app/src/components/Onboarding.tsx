@@ -24,7 +24,6 @@ interface OnboardingProps {
 export default function Onboarding({ onConnect }: OnboardingProps) {
   const { open } = useAppKit();
   const { connect, connectors } = useConnect();
-  const { isSkipped, setSkipped } = useUnifiedConnection();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut, sendOtp, verifyOtp, loading, error } = useUser();
   const [email, setEmail] = useLocalStorage('email', '');
@@ -270,18 +269,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const handleSkip = () => {
     console.log('handleSkip called');
     // Set skipped state to allow navigation without connection
-    if (!isSkipped) {
-      setSkipped(true);
-      console.log('setSkipped(true) called');
-      onConnect?.();
-
-      localStorage.setItem('loginIsSkipped', 'true');
-      router.push('/');
-
-      console.log('onConnect callback called');
-    } else {
-      setSkipped(false);
-    }
+    onConnect?.();
+    localStorage.setItem('loginIsSkipped', 'true');
+    router.push('/');
+    console.log('onConnect callback called');
   };
 
   const handleReset = () => {
@@ -294,7 +285,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     console.log(
       '[ONBOARDING] Resetting onboarding state and redirecting to onboarding'
     );
-    setSkipped(false);
+    localStorage.removeItem('loginIsSkipped');
     router.push('/onboarding');
   };
 
@@ -302,7 +293,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     try {
       await signOut();
       // Reset the onboarding state after logout
-      setSkipped(false);
+      localStorage.removeItem('loginIsSkipped');
       setAuthState(undefined);
       setEmail('');
       setVerificationCode('');
@@ -1232,10 +1223,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
         {/* Skip for now */}
         <button
-          onClick={isSkipped ? handleReset : handleSkip}
+          onClick={handleSkip}
           className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-6"
         >
-          {isSkipped ? 'Reset (back to onboarding flow)' : 'Skip for now'}
+          Skip for now
         </button>
 
         {/* Logout Button - Only show when user is logged in */}
