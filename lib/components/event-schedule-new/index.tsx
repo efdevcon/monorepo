@@ -1,12 +1,10 @@
 import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
-// import NewSchedule from './calendar'
 import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import { Event as EventType } from "./model";
 import { format, parseISO } from "date-fns";
-// import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
 // import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";

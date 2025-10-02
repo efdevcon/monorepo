@@ -13,6 +13,10 @@ export interface AppState {
   logout: (state: AppState) => void;
 }
 
+export const useNow = () => {
+  return new Date();
+};
+
 // Lets keep global state for simplicity - useShallow for performance as needed
 export const useGlobalStore = create<AppState>()((set) => ({
   // Initial state
