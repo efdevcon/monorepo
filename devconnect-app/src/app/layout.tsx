@@ -97,7 +97,7 @@ export default async function RootLayout({
   // const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
 
   // Check if Supabase is configured
-  const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
   return (
     <html lang="en">

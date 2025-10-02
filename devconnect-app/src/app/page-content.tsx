@@ -4,16 +4,29 @@ import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { WelcomeSection, TodaysSchedule } from './dashboard-sections';
+import { HomeIcon, CalendarIcon, TicketIcon } from 'lucide-react';
 
-const tabs = (atprotoEvents: any[]) => [
+export const homeTabs = () => [
   {
-    label: 'Dashboard',
-    component: () => (
-      <div className="bg-[rgba(246,250,254,1)] p-4">
-        <WelcomeSection />
-        <TodaysSchedule atprotoEvents={atprotoEvents} />
-      </div>
-    ),
+    label: 'Home',
+    labelIcon: HomeIcon,
+    href: '/',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/',
+  },
+  {
+    label: 'Schedule',
+    labelIcon: CalendarIcon,
+    href: '/schedule',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/schedule',
+  },
+  {
+    label: 'Tickets',
+    labelIcon: TicketIcon,
+    href: '/tickets',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/tickets',
   },
 ];
 
@@ -25,7 +38,6 @@ export default function HomePageContent({
   const router = useRouter();
   const { address } = useUnifiedConnection();
 
-  console.log('🔄 [HOME] atprotoEvents', atprotoEvents);
   useEffect(() => {
     const isSkipped = localStorage.getItem('loginIsSkipped');
 
@@ -35,5 +47,12 @@ export default function HomePageContent({
     }
   }, [router, address]);
 
-  return <PageLayout title="Home 😎" tabs={tabs(atprotoEvents)} />;
+  return (
+    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
+      <div className="bg-[rgba(246,250,254,1)] p-4 grow">
+        <WelcomeSection />
+        <TodaysSchedule atprotoEvents={atprotoEvents} />
+      </div>
+    </PageLayout>
+  );
 }

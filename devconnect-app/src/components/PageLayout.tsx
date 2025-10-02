@@ -17,6 +17,7 @@ interface TabItem {
   labelIcon?: React.ComponentType<any>;
   component: React.ComponentType<any>;
   href?: string;
+  isActive?: (pathname: string) => boolean;
 }
 
 interface PageLayoutProps {
@@ -46,7 +47,7 @@ const BackButton = () => {
       if (history.state.key && !sessionId) {
         setSessionId(history.state.key);
       }
-      
+
       // Check if we can go back after component mounts
       const canGoBack = history.state?.key !== sessionId;
       setCanBack(canGoBack);
@@ -64,7 +65,7 @@ const BackButton = () => {
   return (
     <div
       className={cn(
-        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 transition-all duration-300',
+        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 transition-all duration-300 absolute left-0',
         canBack && 'hover:scale-110'
       )}
     >
@@ -94,6 +95,7 @@ const Tabs = ({
   onTabClick,
 }: TabsProps) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleTabClick = (tab: TabItem, idx: number) => {
     if (onTabClick) {
@@ -108,42 +110,46 @@ const Tabs = ({
 
   return (
     <div
-      className={`py-4 md:py-2 flex items-center md:rounded overflow-auto w-full`}
+      className={`py-4 md:py-2 flex items-center justify-center md:rounded overflow-auto w-full`}
     >
-      <div className="flex bg-[#EFEFF5] md:rounded w-[fit-content] shrink-0 flex p-1">
-        {tabs.map((tab, idx) => (
-          <button
-            key={tab.label}
-            type="button"
-            data-tab-index={idx}
-            className={cn(
-              'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0',
-              idx === activeIndex
-                ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]'
-                : 'rounded-xs',
-              tab.labelIcon && 'pl-2'
-            )}
-            style={{
-              outline: 'none',
-              border: 'none',
-              background: idx === activeIndex ? '#fff' : 'transparent',
-              minWidth: 'auto',
-            }}
-            onClick={() => handleTabClick(tab, idx)}
-          >
-            <div
+      <div className="flex md:rounded w-[fit-content] shrink-0 flex gap-2">
+        {tabs.map((tab, idx) => {
+          let isActive;
+
+          // If tab has isActive function, use it to determine if the tab is active
+          if (tab.isActive) {
+            isActive = tab.isActive(pathname);
+          } else {
+            // Otherwise use whatever we had before... I think we can remove this later, but lets keep it so I don't break anything
+            isActive = idx === activeIndex;
+          }
+
+          return (
+            <button
+              key={tab.label}
+              type="button"
+              data-tab-index={idx}
               className={cn(
-                'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
-                idx === activeIndex
-                  ? 'text-[#232336]'
-                  : 'text-[#4b4b66] cursor-pointer'
+                'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0 border-b-2 border-b-solid border-b-transparent',
+                isActive
+                  ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
+                  : 'rounded-xs',
+                tab.labelIcon && 'pl-2'
               )}
+              onClick={() => handleTabClick(tab, idx)}
             >
-              {tab.labelIcon && <tab.labelIcon size={18} />}
-              {tab.label}
-            </div>
-          </button>
-        ))}
+              <div
+                className={cn(
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-2 font-medium items-center',
+                  isActive ? '' : 'cursor-pointer'
+                )}
+              >
+                {tab.labelIcon && <tab.labelIcon size={14} />}
+                {tab.label}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -193,7 +199,7 @@ export default function PageLayout({
                   paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
                 }}
               >
-                <div className="relative flex items-center gap-3 text-white text-lg font-bold h-[59px]">
+                <div className="relative flex items-center justify-center w-full gap-3 text-white text-lg font-bold h-[59px]">
                   <BackButton />
                   {title}
                 </div>
@@ -252,9 +258,15 @@ export default function PageLayout({
                   <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm">
                     {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
                       (item) => {
-                        const isActive =
+                        let isActive =
                           pathname === item.href ||
                           (item.href !== '/' && pathname.startsWith(item.href));
+
+                        if (item.isActive) {
+                          console.log('item.isActive', item.isActive(pathname));
+                          isActive = item.isActive(pathname);
+                        }
+
                         return (
                           <Link
                             key={item.href}
