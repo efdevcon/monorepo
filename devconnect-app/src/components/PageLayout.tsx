@@ -35,6 +35,7 @@ interface TabsProps {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   onTabClick?: (tabItem: any, index: number) => void;
+  className?: string;
 }
 
 const BackButton = () => {
