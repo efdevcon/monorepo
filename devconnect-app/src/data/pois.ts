@@ -16,8 +16,17 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "7",
+    "locationId": "6",
     "groupId": "1"
+  },
+  {
+    "name": "Ai Onboarding",
+    "layerName": "ai-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "1",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Childcare 1",
@@ -43,7 +52,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "5",
+    "locationId": "4",
     "groupId": "5"
   },
   {
@@ -56,12 +65,30 @@ export const poisData: POI[] = [
     "groupId": "6"
   },
   {
+    "name": "Collectibles Onboarding",
+    "layerName": "collectibles-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "2",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
+    "name": "DeFi Onboarding",
+    "layerName": "defi-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "3",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
     "name": "Discussion corner 1",
     "layerName": "discussion-corner-1",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "6",
+    "locationId": "5",
     "groupId": "8"
   },
   {
@@ -88,7 +115,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "2",
+    "locationId": "1",
     "groupId": "10"
   },
   {
@@ -101,6 +128,15 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
+    "name": "Gaming Onboarding",
+    "layerName": "gaming-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
     "name": "Governance Geeks Hub",
     "layerName": "governance-geeks-hub",
     "logo": "",
@@ -110,13 +146,13 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
-    "name": "Info desk 1",
-    "layerName": "info-desk-1",
+    "name": "Hardware & Wallets Onboarding",
+    "layerName": "hardware-wallets-onboarding",
     "logo": "",
     "description": "",
-    "districtId": "2",
-    "locationId": "1",
-    "groupId": "11"
+    "districtId": "5",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Interview room 1",
@@ -125,7 +161,16 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
+  },
+  {
+    "name": "L2 Onboarding",
+    "layerName": "l2-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "LATAM Hub",
@@ -142,7 +187,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "4",
+    "locationId": "3",
     "groupId": "9"
   },
   {
@@ -152,7 +197,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "12"
   },
   {
     "name": "Music Stage 1",
@@ -161,7 +206,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "13"
   },
   {
     "name": "Node Operators Hub",
@@ -187,7 +232,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": "3",
+    "locationId": "2",
     "groupId": "15"
   },
   {
@@ -227,6 +272,15 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
+    "name": "Privacy Onboarding",
+    "layerName": "privacy-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "7",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
     "name": "QR-code 1",
     "layerName": "qrcode-1",
     "logo": "",
@@ -252,6 +306,15 @@ export const poisData: POI[] = [
     "districtId": null,
     "locationId": null,
     "groupId": "7"
+  },
+  {
+    "name": "Social Onboarding",
+    "layerName": "social-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "8",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Stage 1",
