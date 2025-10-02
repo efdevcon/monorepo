@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData, useSendTransaction, useSwitchChain } from 'wagmi';
+import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData, useSendTransaction, useSwitchChain, useSwitchAccount } from 'wagmi';
 import { toast } from 'sonner';
 import { getTokenInfo } from '@/config/tokens';
+import { useUnifiedConnection } from './useUnifiedConnection';
+import { useSignMessage } from '@getpara/react-sdk';
+import { createWalletClient, custom, hashTypedData } from 'viem';
+import { base } from 'viem/chains';
 
 export type TransactionStatus = 
   | 'idle' 
@@ -61,6 +65,9 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
   // Network switching hook
   const { switchChain } = useSwitchChain();
 
+  // Account switching hook
+  const { switchAccount } = useSwitchAccount();
+
   // Contract write hooks for regular wallets
   const { writeContract, isPending: isWritePending, data: hash, error: writeError } = useWriteContract();
   
@@ -74,6 +81,21 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
   // Typed data signing for Para wallets
   const { signTypedDataAsync, isPending: isSigningTypedData } = useSignTypedData();
+
+  // Para SDK native signing methods
+  const { signMessageAsync } = useSignMessage();
+
+  // Get Para connection functions for ensuring Para connector is active
+  const {
+    wagmiAccount,
+    paraConnector,
+    handleConnectToWallet,
+    ensureParaWagmiConnection,
+    paraWallet,
+    paraAccount,
+    connectors,
+    connections
+  } = useUnifiedConnection();
 
   const resetTransaction = () => {
     setTxStatus('idle');
@@ -180,6 +202,8 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       throw new Error('Wallet not connected');
     }
 
+    const paraWalletAddress = paraWallet?.data?.address as `0x${string}`;
+
     try {
       console.log('🔄 [PARA_TX] Starting Para wallet transaction');
       setCurrentTransactionWallet('para');
@@ -195,14 +219,20 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         // Continue with transaction - user might already be on Base
       }
 
+      // Use Para's native signing methods directly - bypass Wagmi connector issues
+      console.log('🔄 [PARA_TX] Using Para SDK native signing - bypassing Wagmi connector issues', connectedAddress);
+
       // Step 1: Prepare authorization (hardcoded for Para - USDC on Base)
+      console.log('🔄 [PARA_TX] Preparing authorization for Para wallet:', paraWalletAddress);
+      setTxStatus('preparing');
+
       const authResponse = await fetch('/api/base/prepare-authorization', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: connectedAddress,
+          from: paraWalletAddress,
           to: recipient,
           amount: amount,
         }),
@@ -214,9 +244,18 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       }
 
       const authData = await authResponse.json();
+      console.log('🔄 [PARA_TX] Authorization prepared, now signing');
       setTxStatus('signing');
 
-      // Step 2: Sign the authorization message
+      // Step 2: Sign the authorization message using Para wallet
+      console.log('🔄 [PARA_TX] Signing with Para wallet address:', paraWalletAddress);
+      console.log('🔄 [PARA_TX] Para wallet provides both gas sponsoring and signature');
+
+      if (!paraWallet?.data?.id) {
+        throw new Error('Para wallet not available for signing');
+      }
+
+      // Use Wagmi's signTypedDataAsync with the Para wallet
       const signature = await signTypedDataAsync({
         domain: authData.authorization.domain,
         types: authData.authorization.types,
@@ -224,9 +263,18 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         message: authData.authorization.message,
       });
 
+      console.log('🔄 [PARA_TX] Para wallet signing completed');
+
       setTxStatus('executing');
 
       // Step 3: Execute the transfer
+      console.log('🔄 [PARA_TX] Executing transfer with Para wallet');
+      console.log('🔄 [PARA_TX] Sending signature to backend:', {
+        signature,
+        signatureType: typeof signature,
+        signatureLength: signature?.length
+      });
+
       const executeResponse = await fetch('/api/base/execute-transfer', {
         method: 'POST',
         headers: {
@@ -240,6 +288,13 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
       if (!executeResponse.ok) {
         const errorData = await executeResponse.json();
+        console.error('🔄 [PARA_TX] Backend error response:', errorData);
+        console.error('🔄 [PARA_TX] Request payload:', {
+          signature,
+          authorization: authData.authorization,
+        });
+        console.error('🔄 [PARA_TX] Authorization message from address:', authData.authorization.message.from);
+        console.error('🔄 [PARA_TX] Current connected address:', connectedAddress);
         throw new Error(errorData.error || 'Failed to execute transfer');
       }
 
@@ -247,16 +302,19 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
       // Check if this is a simulation response
       if (executeData.simulation) {
+        console.log('🔄 [PARA_TX] Transfer simulation completed');
         setIsSimulation(true);
         setSimulationDetails(executeData.simulationDetails);
         setTxStatus('confirmed');
       } else {
-      // Real transaction
+        // Real transaction
+        console.log('🔄 [PARA_TX] Transfer executed, broadcasting transaction');
         setTxHash(executeData.transaction?.hash || null);
         setTxStatus('confirming');
 
         // For now, we'll simulate confirmation since we're using mock responses
         setTimeout(() => {
+          console.log('🔄 [PARA_TX] Transaction confirmed');
           setTxStatus('confirmed');
         }, 2000);
       }

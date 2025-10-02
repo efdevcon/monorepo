@@ -27,7 +27,7 @@ export function WelcomeSection() {
         </div>
       </div>
       <div className="text-xl font-bold">{dummyEmail}</div>
-      <div>Welcome to the Ethereum World's Fair! </div>
+      <div>Welcome to the Ethereum World&apos;s Fair! </div>
     </div>
   );
 }
@@ -44,7 +44,7 @@ export function TodaysSchedule({ atprotoEvents }: { atprotoEvents: any[] }) {
   return (
     <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border border-[rgba(234,234,234,1)]">
       <div className="flex w-full items-center justify-between gap-2">
-        <p className="font-semibold">Today's Schedule</p>
+        <p className="font-semibold">Today&apos;s Schedule</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
       </div>
       <p className="text-xs mb-2">

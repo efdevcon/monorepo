@@ -830,8 +830,18 @@ export function useUnifiedConnection() {
       // Reset disconnect flag since user is manually connecting
       hasResetAfterDisconnect = false;
 
-      // Connect to the wallet
-      await connect({ connector });
+      // Check if connector is already connected
+      const isConnectorConnected = connections.some(
+        (conn) => conn.connector.id === connector.id
+      );
+
+      if (isConnectorConnected) {
+        console.log('Connector already connected, switching to it...');
+        await switchAccount({ connector });
+      } else {
+        console.log('Connector not connected, connecting...');
+        await connect({ connector });
+      }
 
       // Set as primary connector (user intent)
       setPrimaryConnectorId(connector.id, true);
@@ -891,16 +901,32 @@ export function useUnifiedConnection() {
     }
 
     try {
+      // Check if Para is the ACTIVE connector, not just connected
+      const isParaActive = wagmiAccount.connector?.id === 'para' || wagmiAccount.connector?.id === 'getpara';
       const isParaWagmiConnected = connections.some(
         (conn) => conn.connector.id === paraConnector.id
       );
-      if (isParaConnected && !isParaWagmiConnected) {
+
+      console.log('Para connection check:', {
+        isParaActive,
+        isParaWagmiConnected,
+        currentConnector: wagmiAccount.connector?.id,
+        paraConnectorId: paraConnector.id,
+        isParaConnected
+      });
+
+      if (isParaActive) {
+        console.log('Para is already the active connector');
+        return true;
+      } else if (isParaConnected && !isParaWagmiConnected) {
         console.log('Ensuring Para is connected to wagmi...');
         await connect({ connector: paraConnector });
         console.log('Para successfully connected to wagmi');
         return true;
-      } else if (isParaWagmiConnected) {
-        console.log('Para is already connected to wagmi');
+      } else if (isParaWagmiConnected && !isParaActive) {
+        console.log('Para is connected but not active, switching to Para...');
+        await switchAccount({ connector: paraConnector });
+        console.log('Para successfully switched to active');
         return true;
       } else {
         console.log('Para SDK not connected, cannot connect to wagmi');

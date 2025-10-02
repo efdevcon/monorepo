@@ -680,8 +680,8 @@ export default function WalletTab() {
                               }
                             }}
                           >
-                            <div className="flex items-start justify-between">
-                              <div className="flex-1">
+                            <div className="w-full">
+                              <div className="w-full">
                                 {description && (
                                   <p className="font-medium text-sm mb-1 text-[#36364c]">
                                     {description}
@@ -692,26 +692,26 @@ export default function WalletTab() {
                                     {truncateHash(hash)} ↗
                                   </p>
                                 )}
-                                {chainId && (
-                                  <div className="flex items-center gap-1 mt-1">
-                                    {getNetworkLogo(chainId) && (
-                                      <img
-                                        src={getNetworkLogo(chainId)}
-                                        alt={readableNetwork}
-                                        className="w-3 h-3 rounded-full"
-                                      />
-                                    )}
-                                    <p className="text-xs text-[#4b4b66]">
-                                      {readableNetwork}
+                                {chainId && timestamp && (
+                                  <div className="flex items-center justify-between mt-1">
+                                    <div className="flex items-center gap-1">
+                                      {getNetworkLogo(chainId) && (
+                                        <img
+                                          src={getNetworkLogo(chainId)}
+                                          alt={readableNetwork}
+                                          className="w-3 h-3 rounded-full"
+                                        />
+                                      )}
+                                      <p className="text-xs text-[#4b4b66]">
+                                        {readableNetwork}
+                                      </p>
+                                    </div>
+                                    <p className="text-xs text-gray-500">
+                                      {formatTimestamp(timestamp)}
                                     </p>
                                   </div>
                                 )}
                               </div>
-                              {timestamp && (
-                                <p className="text-xs text-gray-500 ml-2">
-                                  {formatTimestamp(timestamp)}
-                                </p>
-                              )}
                             </div>
                           </div>
                         );
