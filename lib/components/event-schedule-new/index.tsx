@@ -30,6 +30,7 @@ export const customUrlTransforms = [
   { from: "agenticzero", to: "71" },
   { from: "defi-today", to: "107" },
   { from: "zero-to-dapp", to: "98" },
+  { from: "zktls-day", to: "111" },
 ];
 
 export type ScheduleProps = {

@@ -45,6 +45,7 @@ import { useIsMobile } from "lib/hooks/useIsMobile";
 import { toast } from "sonner";
 
 type EventProps = {
+  compact?: boolean;
   event: EventType;
   isDialog?: boolean;
   className?: string;
@@ -228,6 +229,7 @@ const ExportEvent = ({
 };
 
 const Event: React.FC<EventProps> = ({
+  compact,
   event,
   isDialog,
   className,
@@ -778,7 +780,7 @@ const Event: React.FC<EventProps> = ({
                 </div>
               </div>
 
-              {isETHDay && (
+              {isETHDay && !compact && (
                 <div className="hidden md:flex items-center justify-center mt-2">
                   <Image
                     src={ethDayImage}

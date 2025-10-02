@@ -234,8 +234,6 @@ export function useUnifiedConnection() {
   // Supabase auth hook - for email from Supabase authentication
   const { user: supabaseUser, signOut } = useUser();
 
-  // Skipped state from shared context
-  const { isSkipped, setSkipped, clearSkipped } = useSkipped();
   const pathname = usePathname();
 
   // SIWE state
@@ -1128,14 +1126,13 @@ Issued At: ${issuedAt}`;
 
   // Determine if user should be redirected to onboarding
   const shouldRedirectToOnboarding = () => {
-    if (isSkipped) return false;
     if (pathname === '/onboarding') return false;
     if (isConnected) return false;
     return true;
   };
 
   // Show navigation if connected, skipped, or on any page other than homepage
-  const shouldShowNavigation = isConnected || isSkipped || pathname !== '/';
+  const shouldShowNavigation = isConnected || pathname !== '/';
 
   // Ensure user data is loaded into global store when connection status changes
   useEnsureUserData(!!(supabaseUser?.email || paraAccount?.embedded?.email));
@@ -1190,11 +1187,6 @@ Issued At: ${issuedAt}`;
 
     // Disconnect
     disconnect: handleDisconnect,
-
-    // Skipped state
-    isSkipped,
-    setSkipped,
-    clearSkipped,
 
     // Navigation
     shouldRedirectToOnboarding,

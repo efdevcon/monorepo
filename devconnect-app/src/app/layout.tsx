@@ -86,7 +86,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -112,7 +112,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/app-icon.png" />
 
         {/* Meta tags now handled by generateMetadata function above */}
-        {/* 
+        {/*
         <meta name="apple-mobile-web-app-title" content="Devconnect" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Devconnect" />
@@ -163,14 +163,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SkippedProvider>
-          <PWAProvider>
-            <WalletsProviders>
-              {children}
-              <NewDeployment />
-            </WalletsProviders>
-          </PWAProvider>
-        </SkippedProvider>
+        <PWAProvider>
+          <WalletsProviders>
+            {children}
+            <NewDeployment />
+          </WalletsProviders>
+        </PWAProvider>
+
         <Toaster />
       </body>
     </html>
