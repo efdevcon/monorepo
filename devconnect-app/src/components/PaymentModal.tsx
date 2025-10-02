@@ -108,16 +108,40 @@ export default function PaymentModal({
   const [isRecipientValid, setIsRecipientValid] = useState(false);
   const [isAmountValid, setIsAmountValid] = useState(true);
   const [isBasePayLoading, setIsBasePayLoading] = useState(false);
-  // Load selected token and chain from localStorage, with fallbacks
+  // Load selected token and chain from localStorage, with wallet-specific fallbacks
   const [selectedToken, setSelectedToken] = useState(() => {
     if (typeof window !== 'undefined') {
-      return localStorage.getItem('selectedToken') || 'USDC';
+      // For Para wallets, always use USDC
+      if (isPara) {
+        console.log('Para wallet - initializing with USDC');
+        return 'USDC';
+      }
+      // For external wallets, use saved preference or default to USDC
+      const savedToken = localStorage.getItem('selectedToken') || 'USDC';
+      console.log(
+        'External wallet - initializing with saved token:',
+        savedToken
+      );
+      return savedToken;
     }
-    return 'USDC';
+    return isPara ? 'USDC' : 'USDC';
   });
   const [selectedChainId, setSelectedChainId] = useState(() => {
     if (typeof window !== 'undefined') {
-      return parseInt(localStorage.getItem('selectedChainId') || '8453');
+      // For Para wallets, always use Base
+      if (isPara) {
+        console.log('Para wallet - initializing with Base (8453)');
+        return 8453;
+      }
+      // For external wallets, use saved preference or default to Base
+      const savedChainId = parseInt(
+        localStorage.getItem('selectedChainId') || '8453'
+      );
+      console.log(
+        'External wallet - initializing with saved chain:',
+        savedChainId
+      );
+      return savedChainId;
     }
     return 8453; // Base
   });
@@ -125,19 +149,27 @@ export default function PaymentModal({
   const productUrl = `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/products/688ba8db51fc6c100f32cd63`;
 
   // Helper functions to update localStorage and state
-  const updateSelectedToken = useCallback((token: string) => {
-    setSelectedToken(token);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedToken', token);
-    }
-  }, []);
+  const updateSelectedToken = useCallback(
+    (token: string) => {
+      setSelectedToken(token);
+      // Only save to localStorage for external wallets (Para wallets are always USDC)
+      if (typeof window !== 'undefined' && !isPara) {
+        localStorage.setItem('selectedToken', token);
+      }
+    },
+    [isPara]
+  );
 
-  const updateSelectedChainId = useCallback((chainId: number) => {
-    setSelectedChainId(chainId);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedChainId', chainId.toString());
-    }
-  }, []);
+  const updateSelectedChainId = useCallback(
+    (chainId: number) => {
+      setSelectedChainId(chainId);
+      // Only save to localStorage for external wallets (Para wallets are always Base)
+      if (typeof window !== 'undefined' && !isPara) {
+        localStorage.setItem('selectedChainId', chainId.toString());
+      }
+    },
+    [isPara]
+  );
 
   // Function to fetch payment details from payment-status API
   const fetchPaymentDetails = async (paymentRequestId: string) => {
@@ -291,6 +323,16 @@ export default function PaymentModal({
   // Handle token changes - network should adapt to support the selected token
   const handleTokenChange = async (newToken: string) => {
     console.log('handleTokenChange called with:', newToken);
+
+    // For Para wallets, only allow USDC
+    if (isPara && newToken !== 'USDC') {
+      console.log(
+        'Para wallets only support USDC, ignoring token change to:',
+        newToken
+      );
+      return;
+    }
+
     updateSelectedToken(newToken);
 
     // Find a network that supports this token
@@ -494,11 +536,29 @@ export default function PaymentModal({
           final_amount: transactionToUse.price_details?.final_amount,
         });
 
-        // Only update selected token and chain if we don't have a current selection
-        // This preserves the user's selection when refreshing after adding a new transaction
-        if (!selectedToken || !selectedChainId) {
+        // For Para wallets, always use the transaction's token/chain
+        // For external wallets, preserve user's selection unless it's empty
+        if (isPara) {
+          // Para wallets always use the transaction's token/chain
           updateSelectedToken(transactionToUse.coin);
           updateSelectedChainId(transactionToUse.chain_id);
+        } else {
+          // External wallets: only update if no current selection
+          if (!selectedToken || !selectedChainId) {
+            console.log(
+              'No current selection, using transaction token/chain:',
+              transactionToUse.coin,
+              transactionToUse.chain_id
+            );
+            updateSelectedToken(transactionToUse.coin);
+            updateSelectedChainId(transactionToUse.chain_id);
+          } else {
+            console.log(
+              'Preserving user selection:',
+              selectedToken,
+              selectedChainId
+            );
+          }
         }
 
         const paymentData = {
@@ -598,8 +658,45 @@ export default function PaymentModal({
 
           // Extract transaction data from the first transaction
           if (details.transactions && details.transactions.length > 0) {
-            // On initial load, always use the first transaction to set the correct token/chain
-            const transaction = details.transactions[0];
+            console.log(
+              'Available transactions:',
+              details.transactions.map((tx: any) => ({
+                coin: tx.coin,
+                chain_id: tx.chain_id,
+                final_amount: tx.price_details?.final_amount,
+              }))
+            );
+
+            // For Para wallets, always use the first transaction
+            // For external wallets, try to find a transaction that matches saved preferences
+            let transaction = details.transactions[0]; // Default to first transaction
+
+            if (!isPara) {
+              // Try to find a transaction that matches saved preferences
+              const savedToken = localStorage.getItem('selectedToken');
+              const savedChainId = localStorage.getItem('selectedChainId');
+
+              if (savedToken && savedChainId) {
+                const matchingTransaction = details.transactions.find(
+                  (tx: any) =>
+                    tx.coin === savedToken &&
+                    tx.chain_id === parseInt(savedChainId)
+                );
+
+                if (matchingTransaction) {
+                  console.log(
+                    'Found matching transaction for saved preferences:',
+                    matchingTransaction.coin,
+                    matchingTransaction.chain_id
+                  );
+                  transaction = matchingTransaction;
+                } else {
+                  console.log(
+                    'No matching transaction found for saved preferences, using first transaction'
+                  );
+                }
+              }
+            }
 
             const paymentData = {
               orderId: details.order_id?.toString(),
@@ -613,31 +710,103 @@ export default function PaymentModal({
               transactions: details.transactions,
             };
 
-            // Set the selected token and chain to match the first transaction FIRST
-            updateSelectedToken(transaction.coin);
-            updateSelectedChainId(transaction.chain_id);
+            // Set the selected token and chain based on wallet type and preferences
+            if (isPara) {
+              // Para wallets always use the transaction's token/chain
+              console.log(
+                'Para wallet - using transaction token/chain:',
+                transaction.coin,
+                transaction.chain_id
+              );
+              updateSelectedToken(transaction.coin);
+              updateSelectedChainId(transaction.chain_id);
+            } else {
+              // External wallets: use saved preferences if available, otherwise use transaction
+              const savedToken = localStorage.getItem('selectedToken');
+              const savedChainId = localStorage.getItem('selectedChainId');
+
+              console.log('External wallet - checking preferences:', {
+                savedToken,
+                savedChainId,
+                transactionCoin: transaction.coin,
+                transactionChainId: transaction.chain_id,
+                currentSelectedToken: selectedToken,
+                currentSelectedChainId: selectedChainId,
+                isPara,
+              });
+
+              if (savedToken && savedChainId) {
+                // Use saved preferences
+                console.log(
+                  'Using saved token/chain preferences:',
+                  savedToken,
+                  savedChainId
+                );
+                updateSelectedToken(savedToken);
+                updateSelectedChainId(parseInt(savedChainId));
+              } else {
+                // No saved preferences, use the transaction's token/chain
+                console.log(
+                  'No saved preferences, using transaction token/chain:',
+                  transaction.coin,
+                  transaction.chain_id
+                );
+                updateSelectedToken(transaction.coin);
+                updateSelectedChainId(transaction.chain_id);
+              }
+            }
 
             setPaymentDetails(paymentData);
-            setRecipient(transaction.address);
-            setAmount(
-              transaction.price_details?.final_amount?.toString() || '0.01'
-            );
-            setPaymentData({
-              recipient: transaction.address,
-              amount:
-                transaction.price_details?.final_amount?.toString() || '0.01',
-            });
+
+            // Only set amounts if the transaction matches our selected token/chain
+            if (
+              transaction.coin === selectedToken &&
+              transaction.chain_id === selectedChainId
+            ) {
+              console.log(
+                'Setting amounts from matching transaction:',
+                transaction.coin,
+                transaction.chain_id
+              );
+              setRecipient(transaction.address);
+              setAmount(
+                transaction.price_details?.final_amount?.toString() || '0.01'
+              );
+              setPaymentData({
+                recipient: transaction.address,
+                amount:
+                  transaction.price_details?.final_amount?.toString() || '0.01',
+              });
+            } else {
+              console.log(
+                'Transaction does not match selected token/chain, keeping current amounts'
+              );
+              // Keep current amounts if transaction doesn't match our selection
+            }
 
             // Validate the recipient and amount after setting them
-            const recipientValid = validateAddress(transaction.address);
-            const amountValid = validateAmount(
-              transaction.price_details?.final_amount?.toString() || '0.01'
-            );
+            const recipientToValidate =
+              transaction.coin === selectedToken &&
+              transaction.chain_id === selectedChainId
+                ? transaction.address
+                : recipient;
+            const amountToValidate =
+              transaction.coin === selectedToken &&
+              transaction.chain_id === selectedChainId
+                ? transaction.price_details?.final_amount?.toString() || '0.01'
+                : amount;
+
+            const recipientValid = validateAddress(recipientToValidate);
+            const amountValid = validateAmount(amountToValidate);
+
             console.log('Initial load validation:', {
-              recipient: transaction.address,
-              amount: transaction.price_details?.final_amount?.toString(),
+              recipient: recipientToValidate,
+              amount: amountToValidate,
               recipientValid,
               amountValid,
+              transactionMatches:
+                transaction.coin === selectedToken &&
+                transaction.chain_id === selectedChainId,
             });
             setIsRecipientValid(recipientValid);
             setIsAmountValid(amountValid);
@@ -645,14 +814,22 @@ export default function PaymentModal({
             // Mark initial load as complete
             setIsInitialLoad(false);
           } else {
-            // No transactions found, create one with default values
-            console.log('No transactions found, creating new transaction');
+            // No transactions found, create one with user's selected token/chain
+            console.log(
+              'No transactions found, creating new transaction with selected token:',
+              selectedToken,
+              'on chain:',
+              selectedChainId
+            );
 
-            // Create a transaction with default USDC on Base
-            const success = await addTransactionToPaymentRequest('USDC', 8453);
+            // Create a transaction with user's selected token and chain
+            const success = await addTransactionToPaymentRequest(
+              selectedToken,
+              selectedChainId
+            );
             if (success) {
               // Refresh payment details to get the new transaction data
-              await refreshPaymentDetails('USDC', 8453);
+              await refreshPaymentDetails(selectedToken, selectedChainId);
 
               // Mark initial load as complete
               setIsInitialLoad(false);
@@ -700,8 +877,15 @@ export default function PaymentModal({
       resetTransaction();
       checkSimulationMode();
       setIsInitialLoad(true); // Reset initial load flag
+
+      // For Para wallets, ensure they're always set to USDC/Base
+      if (isPara) {
+        console.log('Para wallet detected - forcing USDC/Base selection');
+        setSelectedToken('USDC');
+        setSelectedChainId(8453);
+      }
     }
-  }, [isOpen, checkSimulationMode]); // Remove resetTransaction from dependencies
+  }, [isOpen, checkSimulationMode, isPara]); // Remove resetTransaction from dependencies
 
   // Validate recipient and amount when they change
   useEffect(() => {
@@ -710,27 +894,49 @@ export default function PaymentModal({
   }, [recipient, amount]);
 
   // Helper function to update amounts from a specific transaction
-  const updateAmountsFromTransaction = useCallback((transaction: any) => {
-    console.log('Updating amounts from transaction:', {
-      coin: transaction.coin,
-      chain_id: transaction.chain_id,
-      final_amount: transaction.price_details?.final_amount,
-    });
+  const updateAmountsFromTransaction = useCallback(
+    (transaction: any) => {
+      console.log('Updating amounts from transaction:', {
+        coin: transaction.coin,
+        chain_id: transaction.chain_id,
+        final_amount: transaction.price_details?.final_amount,
+        selectedToken,
+        selectedChainId,
+      });
 
-    setAmount(transaction.price_details?.final_amount?.toString() || '0.01');
-    setRecipient(transaction.address);
-    setPaymentData({
-      recipient: transaction.address,
-      amount: transaction.price_details?.final_amount?.toString() || '0.01',
-    });
+      // Only use transaction amounts if the transaction matches our selected token/chain
+      if (
+        transaction.coin === selectedToken &&
+        transaction.chain_id === selectedChainId
+      ) {
+        console.log(
+          'Transaction matches selected token/chain, using transaction amounts'
+        );
+        setAmount(
+          transaction.price_details?.final_amount?.toString() || '0.01'
+        );
+        setRecipient(transaction.address);
+        setPaymentData({
+          recipient: transaction.address,
+          amount: transaction.price_details?.final_amount?.toString() || '0.01',
+        });
 
-    setPaymentDetails((prev) => ({
-      ...prev,
-      priceDetails: transaction.price_details,
-      recipient: transaction.address,
-      amount: transaction.price_details?.final_amount?.toString() || '0.01',
-    }));
-  }, []);
+        setPaymentDetails((prev) => ({
+          ...prev,
+          priceDetails: transaction.price_details,
+          recipient: transaction.address,
+          amount: transaction.price_details?.final_amount?.toString() || '0.01',
+        }));
+      } else {
+        console.log(
+          'Transaction does not match selected token/chain, keeping current amounts'
+        );
+        // Don't update amounts if transaction doesn't match our selection
+        // This prevents USDC amounts from being shown when ETH is selected
+      }
+    },
+    [selectedToken, selectedChainId]
+  );
 
   const handleFormSubmit = useCallback(
     (recipient: string, amount: string, token: string, chainId: number) => {
@@ -1121,6 +1327,8 @@ export default function PaymentModal({
             txError={txError}
             isPara={isPara}
             amount={paymentData.amount}
+            token={paymentData.token || selectedToken}
+            chainId={paymentData.chainId || selectedChainId}
             connectedAddress={connectedAddress}
             txHash={txHash}
             isSimulation={isSimulation}
