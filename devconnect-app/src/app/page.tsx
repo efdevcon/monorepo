@@ -1,5 +1,5 @@
 import HomePageContent from './page-content';
-import { getAtprotoEvents } from './worlds-fair/page';
+import { getAtprotoEvents } from '@/utils/atproto-events';
 
 export default async function HomePage() {
   const atprotoEvents = await getAtprotoEvents();

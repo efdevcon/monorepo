@@ -228,7 +228,7 @@ const ExportEvent = ({
   );
 };
 
-const Event: React.FC<EventProps> = ({
+function Event({
   compact,
   event,
   isDialog,
@@ -238,7 +238,7 @@ const Event: React.FC<EventProps> = ({
   setExports,
   toggleFavoriteEvent,
   favoriteEvents,
-}) => {
+}: EventProps): React.JSX.Element {
   const [showMobileProgramming, setShowMobileProgramming] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const imageRef = useRef<any>(null);
