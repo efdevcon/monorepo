@@ -31,7 +31,7 @@ export default function ProgrammePageContent({
   const [favoriteEvents, toggleFavoriteEvent] = useFavorites();
 
   return (
-    <PageLayout title="Schedule" tabs={homeTabs()}>
+    <PageLayout title="World's Fair" tabs={homeTabs()}>
       <div className={cn('text-left touch-only:px-0 p-4', css['schedule-tab'])}>
         <ScheduleLayout
           isCommunityCalendar={false}

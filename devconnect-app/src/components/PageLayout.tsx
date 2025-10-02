@@ -8,9 +8,10 @@ import Link from 'next/link';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
-import { ArrowBigLeft, Blend as AppIcon } from 'lucide-react';
+import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useIsScrolled } from 'lib/hooks/useIsScrolled';
 
 interface TabItem {
   label: string;
@@ -65,7 +66,7 @@ const BackButton = () => {
   return (
     <div
       className={cn(
-        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 transition-all duration-300 absolute left-0',
+        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 absolute left-0',
         canBack && 'hover:scale-110'
       )}
     >
@@ -74,7 +75,7 @@ const BackButton = () => {
           onClick={handleBackClick}
           className="flex items-center cursor-pointer select-none"
         >
-          <ArrowBigLeft
+          <Undo2
             style={{
               fontSize: 16,
               // transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
@@ -93,6 +94,7 @@ const Tabs = ({
   activeIndex,
   setActiveIndex,
   onTabClick,
+  className,
 }: TabsProps) => {
   const router = useRouter();
   const pathname = usePathname();
@@ -110,7 +112,10 @@ const Tabs = ({
 
   return (
     <div
-      className={`py-4 md:py-2 flex items-center justify-center md:rounded overflow-auto w-full`}
+      className={cn(
+        'py-2 md:py-2 flex items-center justify-center md:rounded overflow-auto w-full',
+        className
+      )}
     >
       <div className="flex md:rounded w-[fit-content] shrink-0 flex gap-2">
         {tabs.map((tab, idx) => {
@@ -176,6 +181,8 @@ export default function PageLayout({
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
 
+  const isScrolled = useIsScrolled(20);
+
   return (
     <>
       {/* Mobile layout */}
@@ -188,18 +195,27 @@ export default function PageLayout({
             {title && (
               <div
                 data-page="Header"
-                className="w-full shrink-0 relative backdrop-blur-xs flex flex-col  items-start px-4 gap-5 sticky top-0 z-[999999]"
+                className={cn(
+                  'w-full shrink-0 relative flex flex-col items-start transition-transform text-white translate-y-[0px] duration-300 px-4 gap-5 sticky top-0 z-[999998]',
+                  isScrolled ? '!translate-y-[-10px] !text-black' : ''
+                )}
                 style={{
-                  background: `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
+                  background: isScrolled
+                    ? 'white'
+                    : `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
             radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.20) 0%, rgba(36, 36, 54, 0.00) 100%),
             linear-gradient(263deg, rgba(246, 180, 14, 0.30) 2.9%, rgba(45, 45, 66, 0.30) 58.72%, rgba(36, 36, 54, 0.30) 100.39%),
             linear-gradient(98deg, rgba(116, 172, 223, 0.80) -7.48%, rgba(73, 129, 180, 0.80) 43.5%, rgba(255, 133, 166, 0.80) 122.37%)`,
                   backgroundBlendMode: 'normal, normal, overlay, normal',
-                  backdropFilter: 'blur(4px)',
+                  backdropFilter: isScrolled ? 'blur(0px)' : 'blur(4px)',
                   paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
                 }}
               >
-                <div className="relative flex items-center justify-center w-full gap-3 text-white text-lg font-bold h-[59px]">
+                <div
+                  className={cn(
+                    'relative flex items-center  transition-transform duration-300 h-[59px] translate-y-[0px] justify-center w-full gap-3 font-medium'
+                  )}
+                >
                   <BackButton />
                   {title}
                 </div>
@@ -208,7 +224,10 @@ export default function PageLayout({
 
             {tabs.length > 1 && (
               <div
-                className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky bg-white md:rounded-t-sm z-[999998]"
+                className={cn(
+                  'px-4 text-lg z-[1] font-bold border-b border-b-solid border-[#8855CC26] transition-transform translate-y-[0px] duration-300 sticky bg-white md:rounded-t-sm z-[999999]',
+                  isScrolled ? '!translate-y-[-25px]' : ''
+                )}
                 style={{
                   top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
                 }}

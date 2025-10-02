@@ -119,7 +119,7 @@ export default function TicketTab() {
   }, [email]);
 
   return (
-    <PageLayout title="Your Tickets" tabs={homeTabs()}>
+    <PageLayout title="World's Fair" tabs={homeTabs()}>
       <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">
         <div className="w-full mb-8">
           {ticketError && (

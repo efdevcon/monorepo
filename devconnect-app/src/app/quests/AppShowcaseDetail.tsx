@@ -227,7 +227,7 @@ export default function AppShowcaseDetail({
             const questElement = questRefs.current[quest.id];
             if (questElement) {
               // Calculate offset to account for sticky tabs and menu
-              const stickyTabsHeight = pwa === true ? 118 : 59; // PWA mode: 118px, regular mode: 59px
+              const stickyTabsHeight = pwa === true ? 118 : 48; // PWA mode: 118px, regular mode: 59px
               const menuHeight = 30; // Additional 30px for menu
               const elementTop = questElement.offsetTop;
               const offsetPosition =
@@ -584,7 +584,7 @@ export default function AppShowcaseDetail({
       <div
         className="bg-white border-b border-gray-200 w-full px-4 z-20 sticky"
         style={{
-          top: pwa === true ? '118px' : '59px', // PWA mode: 118px, regular mode: 59px
+          top: pwa === true ? '118px' : '48px', // PWA mode: 118px, regular mode: 59px
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
         }}
       >
