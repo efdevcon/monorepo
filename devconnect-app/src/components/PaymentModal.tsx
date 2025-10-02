@@ -844,9 +844,28 @@ export default function PaymentModal({
               });
             } else {
               console.log(
-                'Transaction does not match selected token/chain, keeping current amounts'
+                'Transaction does not match selected token/chain, creating new transaction'
               );
-              // Keep current amounts if transaction doesn't match our selection
+              // Create a transaction with user's selected token and chain
+              // For Para wallets, always use USDC on Base
+              const tokenToUse = isPara ? 'USDC' : selectedToken;
+              const chainIdToUse = isPara ? 8453 : selectedChainId;
+
+              const success = await addTransactionToPaymentRequest(
+                tokenToUse,
+                chainIdToUse
+              );
+              if (success) {
+                // Refresh payment details to get the new transaction data
+                await refreshPaymentDetails(tokenToUse, chainIdToUse);
+
+                // Mark initial load as complete
+                setIsInitialLoad(false);
+              } else {
+                setPaymentDetailsError(
+                  'Failed to create transaction for this payment request'
+                );
+              }
             }
 
             // Validate the recipient and amount after setting them
