@@ -13,7 +13,6 @@ import {
   useLogout,
   useWallet as useParaWallet,
 } from '@getpara/react-sdk';
-import { useSkipped } from '@/context/SkippedContext';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { appKit } from '@/config/appkit';

@@ -132,8 +132,8 @@ export async function GET(request: NextRequest) {
       };
 
       // remove 1., 2., 3. from category
-      const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
-      const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
+      // const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
+      // const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
 
       const conditionType = getPropertyValue('Condition type');
       const conditionValues = getPropertyValue('Quest condition values');
