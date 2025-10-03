@@ -126,17 +126,25 @@ class AuthService {
         return await this.generateSupabaseToken();
       }
 
-      // If no user, try Para
+      // Try Para if no Supabase user
+      // Note: This will only succeed if Para user has completed biometric/OTP verification
+      // (checked by useWalletManager via isFullyAuthenticated before calling useEnsureUserData)
       if (typeof para !== 'undefined' && typeof para.issueJwt === 'function') {
-        return await this.generateParaToken();
+        try {
+          console.log('No Supabase user, attempting Para token generation');
+          return await this.generateParaToken();
+        } catch (paraError) {
+          console.log('Para token generation failed:', paraError);
+          // Fall through to error below
+        }
       }
 
-      // Fallback to Supabase if Para not available
+      // Fallback to Supabase if available (will likely fail, but consistent behavior)
       if (this.supabase) {
         return await this.generateSupabaseToken();
       }
 
-      throw new Error('No authentication method available');
+      throw new Error('No authenticated session available. Please complete authentication first.');
     } catch (error) {
       throw new Error(`Failed to generate token with user context: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }

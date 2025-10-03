@@ -4,6 +4,8 @@ import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParaWalletConnection } from './useParaWallet';
 import { useEOAWalletConnection } from './useEOAWallet';
 import { useUser } from './useUser';
+import { useEnsureUserData } from '@/app/store.hooks';
+import { useAutoParaJwtExchange } from './useAutoParaJwtExchange';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
 import { createPublicClient, http } from 'viem';
@@ -155,6 +157,100 @@ export function useWalletManager() {
   const paraEmail = para.email;
   const supabaseEmail = supabaseUser?.email || null;
   const email = supabaseEmail || paraEmail; // Prioritize Supabase email, fallback to Para
+
+  // Automatically exchange Para JWT for Supabase session when Para is connected
+  // This eliminates the need to manually click "Get Supabase JWT" button
+  useAutoParaJwtExchange({
+    paraConnected: para.isConnected,
+    paraAddress: para.address,
+    supabaseHasUser: !!supabaseUser,
+    supabaseInitialized,
+  });
+
+  // Sync authentication state to global store (for RequiresAuthHOC and other components)
+  // Only use Supabase authentication for this check
+  // Para users will automatically get a Supabase session via auto JWT exchange above
+  const hasValidSupabaseAuth = supabaseInitialized && !!supabaseUser;
+
+  // Log comprehensive user authentication state
+  useEffect(() => {
+    const canIssueParaJwt = typeof para !== 'undefined' &&
+      typeof (window as any).para?.issueJwt === 'function' &&
+      para.isConnected;
+
+    console.log('👤 [USER_AUTH_STATE] Complete authentication info:', {
+      // Para state
+      para: {
+        isConnected: para.isConnected,
+        address: para.address,
+        email: para.email,
+        walletId: para.walletId,
+        canIssueJwt: canIssueParaJwt,
+        note: canIssueParaJwt
+          ? '✅ Para can issue JWT - backend supports Para JWT directly!'
+          : '❌ Para cannot issue JWT yet - biometric verification needed',
+      },
+      // Supabase state
+      supabase: {
+        initialized: supabaseInitialized,
+        loading: supabaseLoading,
+        hasUser: !!supabaseUser,
+        userId: supabaseUser?.id,
+        email: supabaseUser?.email,
+        userMetadata: supabaseUser?.user_metadata,
+      },
+      // Unified state
+      unified: {
+        email,
+        isAuthenticated: !!email,
+        hasValidSupabaseAuth,
+        willTriggerUserDataFetch: hasValidSupabaseAuth,
+      },
+      // Connection state
+      connection: {
+        isConnected,
+        address,
+        isPara,
+        primaryType,
+      },
+      // Auth options
+      authOptions: {
+        option1_supabase: supabaseInitialized && !!supabaseUser 
+          ? '✅ Can use Supabase auth' 
+          : '❌ No Supabase session',
+        option2_paraAutoExchange: para.isConnected && !supabaseUser
+          ? '🔄 Auto JWT exchange will trigger automatically' 
+          : para.isConnected && !!supabaseUser
+            ? '✅ Para JWT already exchanged'
+            : '❌ Para not connected',
+      },
+      // Current behavior
+      currentBehavior: {
+        description: '🚀 Automatic JWT exchange enabled! Para users will be authenticated automatically.',
+        requiresAuthHOCWillWork: hasValidSupabaseAuth,
+        whatYouNeedToDo: hasValidSupabaseAuth 
+          ? '✅ You are authenticated!' 
+          : para.isConnected 
+            ? '🔄 Automatic JWT exchange in progress... Please complete biometric verification when prompted.' 
+            : '❌ Please connect a wallet',
+      }
+    });
+  }, [
+    para.isConnected,
+    para.address,
+    para.email,
+    supabaseInitialized,
+    supabaseLoading,
+    supabaseUser?.id,
+    supabaseUser?.email,
+    email,
+    hasValidSupabaseAuth,
+    isConnected,
+    address,
+    isPara,
+  ]);
+
+  useEnsureUserData(hasValidSupabaseAuth);
 
   // Debug: Log address computation
   console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
