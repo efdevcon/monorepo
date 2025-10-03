@@ -5,14 +5,10 @@ import { ensureUser } from '../user-data/ensure-user';
 const setFavoriteEvents = async (events: string[], userEmail: string) => {
   const supabase = createServerClient();
 
-  console.log(events, userEmail, 'hello1?');
-
   const { data, error } = await supabase
     .from('devconnect_app_user')
     .update({ favorite_events: events })
     .eq('email', userEmail);
-
-  console.log(data, error, 'hello?');
 
   if (error) {
     throw new Error(`Failed to set favorite events: ${error.message}`);

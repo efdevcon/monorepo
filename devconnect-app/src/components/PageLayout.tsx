@@ -114,7 +114,7 @@ const Tabs = ({
   return (
     <div
       className={cn(
-        'py-2 md:py-2 flex items-center justify-center md:rounded overflow-auto w-full',
+        'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded overflow-auto w-full',
         className
       )}
     >

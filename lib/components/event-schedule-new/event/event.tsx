@@ -136,7 +136,7 @@ const FavoriteEvent = ({
       onClick={(e) => {
         e.stopPropagation();
 
-        toggleFavoriteEvent(event.id);
+        toggleFavoriteEvent(event.id.toString());
       }}
     >
       {/* {isFavorited && (
@@ -834,6 +834,6 @@ function Event({
       )}
     </>
   );
-};
+}
 
 export default Event;

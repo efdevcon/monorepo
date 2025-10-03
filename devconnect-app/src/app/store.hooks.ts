@@ -6,6 +6,7 @@ import { useShallow } from 'zustand/react/shallow';
 import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
 import { requireAuth } from '@/components/RequiresAuth';
+import { useWalletManager } from '@/hooks/useWalletManager';
 
 export const useFavorites = () => {
   const userData = useGlobalStore(useShallow((state) => state.userData));
@@ -29,7 +30,7 @@ export const useFavorites = () => {
 
     fetchAuth('/api/auth/favorites', {
       method: 'POST',
-      body: JSON.stringify({ favoriteEvents: favorites }),
+      body: JSON.stringify({ favoriteEvents: nextFavoriteEvents }),
     }).then((response) => {
       if (!response.success) {
         toast.error(
@@ -56,6 +57,7 @@ export const ensureUserData = async (
   const userData = await fetchAuth('/api/auth/user-data');
 
   if (userData.success) {
+    console.log('userData', userData.data);
     setUserData(userData.data);
   } else {
     console.error('Failed to fetch user data from supabase');
