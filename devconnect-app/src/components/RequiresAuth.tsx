@@ -10,13 +10,19 @@ import Image from 'next/image';
 export const RequiresAuthContent = ({
   message,
   onSkip,
+  asModal,
 }: {
   message: string;
   onSkip?: () => void;
+  asModal?: boolean;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-4 my-16 mx-8">
-      <div className="bg-white p-5 shadow-xl max-w-md w-full mx-4 flex flex-col relative mx-8">
+    <div
+      className={`flex flex-col items-center justify-center h-full gap-4 ${
+        asModal ? '' : 'my-16 mx-8'
+      }`}
+    >
+      <div className="bg-white p-5 shadow-xl max-w-md w-full flex flex-col relative">
         <h2 className="text-lg font-bold mb-1">Authentication Required</h2>
         <p className="mb-4 max-w-[70%] z-1">{message}</p>
 
@@ -56,8 +62,8 @@ const AuthModal = ({
       className="fixed inset-0 bg-black/60 z-[9999999999999999] flex items-center justify-center"
       onClick={onClose}
     >
-      <div onClick={(e) => e.stopPropagation()}>
-        <RequiresAuthContent message={message} onSkip={onClose} />
+      <div onClick={(e) => e.stopPropagation()} className="my-16 mx-8">
+        <RequiresAuthContent message={message} onSkip={onClose} asModal />
       </div>
     </div>
   );
