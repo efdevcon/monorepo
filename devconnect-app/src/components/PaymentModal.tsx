@@ -6,8 +6,8 @@ import { Button } from '@/components/ui/button';
 import { X, Wallet, Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 import { base } from '@base-org/account';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-import { usePaymentTransaction } from '@/hooks/usePaymentTransaction';
+import { useWalletManager } from '@/hooks/useWalletManager';
+import { useTransaction } from '@/hooks/useTransaction';
 import TokenSelector from '@/components/payment/TokenSelector';
 import NetworkSelector from '@/components/payment/NetworkSelector';
 import NetworkLogo from '@/components/NetworkLogo';
@@ -33,7 +33,7 @@ interface PaymentModalProps {
 export default function PaymentModal({
   isOpen,
   onClose,
-  isPara = false,
+  isPara: _isPara = false, // Prop not needed anymore but kept for compatibility
   paymentRequestId,
 }: PaymentModalProps) {
   const [currentStep, setCurrentStep] = useState<PaymentStep>('form');
@@ -49,6 +49,15 @@ export default function PaymentModal({
   const [isSystemSimulationMode, setIsSystemSimulationMode] = useState<
     boolean | null
   >(null);
+
+  // Get wallet connection status - needs to be early for hooks that depend on it
+  const {
+    isConnected,
+    address: connectedAddress,
+    isPara,
+    para,
+    eoa,
+  } = useWalletManager();
 
   // Payment details state
   const [paymentDetails, setPaymentDetails] = useState<{
@@ -196,24 +205,20 @@ export default function PaymentModal({
     }
   };
 
-  // Get wallet connection status
-  const {
-    isConnected,
-    address: connectedAddress,
-    wagmiAccount,
-    handleConnectToWallet,
-    paraConnector,
-    primaryConnectorId,
-    isParaConnected,
-    ensureParaWagmiConnection,
-  } = useUnifiedConnection();
+  // For compatibility (wallet connection status already loaded above)
+  const wagmiAccount = eoa.wagmiAccount;
+  const paraConnector = null; // No longer needed
+  const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
+  const isParaConnected = para.isConnected;
+  const handleConnectToWallet = () => eoa.connect();
+  const ensureParaWagmiConnection = async () => true; // No longer needed
 
   // Para SDK hooks for direct Para transactions
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
   const { signMessageAsync } = useSignMessage();
 
-  // Payment transaction hook
+  // Payment transaction hook - now uses decoupled architecture
   const {
     sendTransaction,
     txStatus,
@@ -223,7 +228,7 @@ export default function PaymentModal({
     simulationDetails,
     resetTransaction,
     isPending,
-  } = usePaymentTransaction({ isPara });
+  } = useTransaction();
 
   // PaymentForm functions
   const validateAddress = (address: string) => {
@@ -1142,25 +1147,9 @@ export default function PaymentModal({
         '- switching to Para connector'
       );
 
-      if (paraConnector) {
-        try {
-          await handleConnectToWallet(paraConnector);
-          // Add a small delay to ensure the connector switch is complete
-          await new Promise((resolve) => setTimeout(resolve, 500));
-
-          // Continue with the transaction after switching
-        } catch (error) {
-          console.error('Failed to switch to Para connector:', error);
-          toast.error('Failed to switch to Para wallet. Please try again.');
-          return;
-        }
-      } else {
-        console.error('Para connector not found');
-        toast.error(
-          'Para wallet not available. Please ensure Para wallet is installed.'
-        );
-        return;
-      }
+      // Para connector is no longer needed with decoupled architecture
+      // The wallet manager handles this automatically
+      console.log('Para connector logic skipped - handled by wallet manager');
     }
 
     // Add transaction to payment request if paymentRequestId is available
@@ -1187,7 +1176,6 @@ export default function PaymentModal({
       expectedConnector: isPara ? 'para' : 'any',
       primaryConnectorId,
       isParaConnected,
-      paraConnectorId: paraConnector?.id,
     });
 
     // Use internal form submission
@@ -1534,8 +1522,8 @@ export default function PaymentModal({
             amount={paymentData.amount}
             token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
             chainId={paymentData.chainId || (isPara ? 8453 : selectedChainId)}
-            connectedAddress={connectedAddress}
-            txHash={txHash}
+            connectedAddress={connectedAddress || undefined}
+            txHash={txHash || undefined}
             isSimulation={isSimulation}
             simulationDetails={simulationDetails}
             onDone={handleStatusDone}

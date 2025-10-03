@@ -2,7 +2,8 @@
 
 import { useAppKit } from '@reown/appkit/react';
 import { useConnect } from 'wagmi';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+// Note: Onboarding doesn't actually use useUnifiedConnection, just imported
+// import { useWalletManager } from '@/hooks/useWalletManager';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {

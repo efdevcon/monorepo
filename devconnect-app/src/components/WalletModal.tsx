@@ -1,9 +1,9 @@
 'use client';
 
 import { useAppKit } from '@reown/appkit/react';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { toast } from 'sonner';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 // Image assets from local public/images directory
 const imgCheckbox = '/images/imgCheckbox.png';
@@ -19,22 +19,50 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     isConnected,
     address,
     isPara,
-    isDisconnecting,
-    connectors,
-    switchableConnectors,
-    primaryConnector,
-    primaryConnectorId,
-    handleSwitchAccount,
-    handleConnectToWallet,
     disconnect: hookDisconnect,
-    isParaConnected,
-    wagmiAccount,
-    connections,
-    email,
-  } = useUnifiedConnection();
+    para,
+    eoa,
+    primaryType,
+    switchWallet,
+    hasMultipleWallets,
+    isDisconnecting,
+  } = useWalletManager();
+
+  // For compatibility, expose the underlying data
+  const connections = eoa.eoaConnections;
+  const connectors = eoa.connectors;
+
+  // Build switchable connectors list - include both Para and EOA wallets
+  const switchableConnectors = useMemo(() => {
+    const wallets: any[] = [];
+
+    // Add Para if connected
+    if (para.isConnected) {
+      wallets.push({
+        id: 'para',
+        name: 'Para',
+        address: para.address,
+      });
+    }
+
+    // Add EOA connectors
+    eoa.eoaConnections.forEach((conn) => {
+      wallets.push(conn.connector);
+    });
+
+    return wallets;
+  }, [para.isConnected, para.address, eoa.eoaConnections]);
+
+  const email = (para.paraAccount as any)?.email || null;
+  const primaryConnector = isPara
+    ? { id: 'para', name: 'Para', ...para.paraAccount }
+    : eoa.wagmiAccount.connector;
+  const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
 
   // Identity state for avatars
-  const [identities, setIdentities] = useState<Record<string, { name: string | null; avatar: string | null }>>({});
+  const [identities, setIdentities] = useState<
+    Record<string, { name: string | null; avatar: string | null }>
+  >({});
 
   // Load identity from AppKit's local storage
   const loadIdentities = () => {
@@ -42,10 +70,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
       const identityCache = localStorage.getItem('@appkit/identity_cache');
       if (identityCache) {
         const cache = JSON.parse(identityCache);
-        const newIdentities: Record<string, { name: string | null; avatar: string | null }> = {};
-        
+        const newIdentities: Record<
+          string,
+          { name: string | null; avatar: string | null }
+        > = {};
+
         // Load identities for all addresses we have
-        Object.keys(cache).forEach(addr => {
+        Object.keys(cache).forEach((addr) => {
           const addressData = cache[addr];
           if (addressData?.identity) {
             newIdentities[addr] = {
@@ -54,7 +85,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
             };
           }
         });
-        
+
         setIdentities(newIdentities);
       }
     } catch (error) {
@@ -70,7 +101,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   }, [isOpen]);
 
   if (!isOpen) return null;
-  
+
   // Debug each connector's properties
   if (switchableConnectors && switchableConnectors.length > 0) {
     switchableConnectors.forEach((connector: any, index: number) => {
@@ -88,7 +119,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         connectorAddress: connector.connector?.address,
         providerAddress: connector.provider?.address,
         // Full connector object for inspection
-        fullConnector: connector
+        fullConnector: connector,
       });
     });
   }
@@ -102,7 +133,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         connectorName: connection.connector?.name,
         accounts: connection.accounts,
         chainId: connection.chainId,
-        allProperties: Object.keys(connection)
+        allProperties: Object.keys(connection),
       });
     });
   }
@@ -116,11 +147,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     try {
       console.log('🔌 [WALLET_MODAL] Starting disconnect process');
       await hookDisconnect();
-      
+
       toast.success(
         <div className="space-y-1">
           <div className="font-semibold text-green-800">🔓 Disconnected</div>
-          <div className="text-sm text-green-700">Wallet disconnected successfully</div>
+          <div className="text-sm text-green-700">
+            Wallet disconnected successfully
+          </div>
         </div>,
         {
           duration: 3000,
@@ -134,7 +167,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           },
         }
       );
-      
+
       onClose();
     } catch (err) {
       console.error('🔌 [WALLET_MODAL] Disconnect failed:', err);
@@ -162,22 +195,26 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   // Helper function to get address for a connector
   const getConnectorAddress = (connector: any) => {
     // First try to find the address from connections array
-    const connection = connections?.find(conn => conn.connector?.id === connector.id);
+    const connection = connections?.find(
+      (conn) => conn.connector?.id === connector.id
+    );
     if (connection?.accounts?.[0]) {
       return connection.accounts[0];
     }
-    
+
     // Fallback to connector properties
-    return connector.address || 
-           connector.accounts?.[0] || 
-           connector.connector?.address ||
-           connector.provider?.address;
+    return (
+      connector.address ||
+      connector.accounts?.[0] ||
+      connector.connector?.address ||
+      connector.provider?.address
+    );
   };
 
   // Helper function to count total wallets
   const getTotalWalletCount = () => {
     const allWallets = [];
-    
+
     // Add current wallet if connected
     if (isConnected && address && primaryConnector) {
       allWallets.push({
@@ -185,7 +222,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
         name: primaryConnector.name,
         address: address,
         isCurrent: true,
-        connector: primaryConnector
+        connector: primaryConnector,
       });
     }
 
@@ -194,7 +231,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
       // Filter out duplicates by address, keeping only unique addresses
       const seenAddresses = new Set<string>();
       if (address) seenAddresses.add(address.toLowerCase()); // Exclude current address
-      
+
       const uniqueConnectors = switchableConnectors.filter((connector: any) => {
         const connectorAddress = getConnectorAddress(connector);
         if (connectorAddress && typeof connectorAddress === 'string') {
@@ -215,7 +252,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           name: connector.name,
           address: connectorAddress,
           isCurrent: false,
-          connector: connector
+          connector: connector,
         });
       });
     }
@@ -226,12 +263,20 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const handleSwitchToWallet = async (connector: any) => {
     try {
       console.log('🔄 [WALLET_MODAL] Switching to wallet:', connector.name);
-      await handleSwitchAccount(connector);
-      
+
+      // Determine wallet type and switch
+      const walletType =
+        connector.id === 'para' || connector.id === 'getpara' ? 'para' : 'eoa';
+      switchWallet(walletType);
+
       toast.success(
         <div className="space-y-1">
-          <div className="font-semibold text-green-800">✅ Switched Successfully</div>
-          <div className="text-sm text-green-700">Now using {connector.name}</div>
+          <div className="font-semibold text-green-800">
+            ✅ Switched Successfully
+          </div>
+          <div className="text-sm text-green-700">
+            Now using {connector.name}
+          </div>
         </div>,
         {
           duration: 3000,
@@ -245,7 +290,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           },
         }
       );
-      
+
       onClose();
     } catch (err) {
       console.error('🔄 [WALLET_MODAL] Switch failed:', err);

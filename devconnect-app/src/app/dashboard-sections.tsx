@@ -5,12 +5,12 @@ import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
 import moment from 'moment';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+// import { useWalletManager } from '@/hooks/useWalletManager';
 import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
 
 export function WelcomeSection() {
-  // const { email } = useUnifiedConnection();
+  // const { email } = useWalletManager();
   const now = useNow();
   const dummyEmail = 'example.eth';
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');

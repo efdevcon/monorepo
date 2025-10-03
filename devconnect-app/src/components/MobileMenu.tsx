@@ -4,13 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/nav-items';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import css from './MobileMenu.module.scss';
 import cn from 'classnames';
 
 export default function Menu() {
-  const { shouldShowNavigation } = useUnifiedConnection();
+  const { isConnected } = useWalletManager();
   const pathname = usePathname();
+  const shouldShowNavigation = isConnected || pathname !== '/';
   const hasLoggedHidden = React.useRef(false);
 
   // Only log once when navigation becomes hidden to avoid spam

@@ -2,7 +2,7 @@
 
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
@@ -52,9 +52,24 @@ interface PortfolioData {
 export default function WalletTab() {
   const { open } = useAppKit();
   const router = useRouter();
-  const { address, isPara, isDisconnecting, shouldShowDisconnecting } = useUnifiedConnection();
+  const { address, isPara, isDisconnecting, para, eoa, chainId } =
+    useWalletManager();
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
+
+  // Debug: Track address changes
+  useEffect(() => {
+    console.log('🏠 [WALLET_TAB] Address changed:', {
+      address,
+      isPara,
+      paraAddress: para.address,
+      eoaAddress: eoa.address,
+    });
+  }, [address, isPara, para.address, eoa.address]);
+
+  // Calculate shouldShowDisconnecting based on wallet state
+  const shouldShowDisconnecting =
+    isDisconnecting && (isPara || !eoa.isConnected);
 
   // Portfolio state
   const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
@@ -303,7 +318,8 @@ export default function WalletTab() {
               Connect Your Wallet
             </h1>
             <p className="text-[#36364c] text-base">
-              Connect your wallet to access your portfolio and manage your assets
+              Connect your wallet to access your portfolio and manage your
+              assets
             </p>
           </div>
           <button

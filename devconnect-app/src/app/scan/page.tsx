@@ -5,7 +5,7 @@ import QRScanner from '@/components/QRScanner';
 import PaymentModal from '@/components/PaymentModal';
 import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { PAYMENT_CONFIG } from '@/config/config';
 
 interface PaymentRequest {
@@ -45,7 +45,7 @@ export default function ScanPage() {
     null
   );
   const [paymentRequestId, setPaymentRequestId] = useState<string>('');
-  const { isPara } = useUnifiedConnection();
+  const { isPara } = useWalletManager();
 
   // Function to parse EIP-681 URL and extract payment data
   const parseEIP681Url = (url: string) => {

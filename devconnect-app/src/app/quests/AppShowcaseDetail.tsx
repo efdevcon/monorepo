@@ -11,7 +11,7 @@ import type { Quest, QuestGroup } from '@/types';
 import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: string) => {
@@ -144,7 +144,7 @@ export default function AppShowcaseDetail({
   updateQuestStatus,
 }: AppShowcaseDetailProps) {
   const router = useRouter();
-  const { address } = useUnifiedConnection();
+  const { address } = useWalletManager();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(

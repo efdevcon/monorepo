@@ -2,7 +2,7 @@
 import PageLayout from '@/components/PageLayout';
 import { CalendarRangeIcon } from 'lucide-react';
 import ProgrammeTab from './ScheduleTab';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+// import { useWalletManager } from '@/hooks/useWalletManager';
 
 const tabs = (atprotoEvents: any[]) => [
   {
@@ -22,7 +22,7 @@ export default function ProgrammePageContent({
 }: {
   atprotoEvents: any;
 }) {
-  // useUnifiedConnection();
+  // useWalletManager();
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={tabs(atprotoEvents)}>
