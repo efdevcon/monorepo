@@ -5,13 +5,22 @@ import { useGlobalStore, AppState } from './store';
 import { useShallow } from 'zustand/react/shallow';
 import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
+import { requireAuth } from '@/components/RequiresAuth';
 
 export const useFavorites = () => {
+  const userData = useGlobalStore(useShallow((state) => state.userData));
   const favorites =
     useGlobalStore((state) => state.userData?.favorite_events) || [];
   const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
 
   const updateFavorite = (eventId: string) => {
+    if (!userData || true) {
+      requireAuth(
+        'You need to be authenticated to add events to your favorites.'
+      );
+      return;
+    }
+
     const nextFavoriteEvents = favorites?.includes(eventId)
       ? favorites?.filter((existingEvent: string) => existingEvent !== eventId)
       : [...(favorites || []), eventId];

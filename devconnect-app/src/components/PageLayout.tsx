@@ -137,6 +137,7 @@ const Tabs = ({
               data-tab-index={idx}
               className={cn(
                 'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0 border-b-2 border-b-solid border-b-transparent',
+                'hover:!bg-[rgba(234,244,251,1)]',
                 isActive
                   ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
                   : 'rounded-xs',

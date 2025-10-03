@@ -7,7 +7,10 @@ import { homeTabs } from '../page-content';
 import cn from 'classnames';
 import css from './schedule.module.scss';
 import { useFavorites } from '@/app/store.hooks';
+import { useGlobalStore } from '@/app/store';
 import { default as ScheduleLayout } from 'lib/components/event-schedule-new/layout-app';
+import { useShallow } from 'zustand/react/shallow';
+import { requireAuth } from '@/components/RequiresAuth';
 
 // const tabs = (atprotoEvents: any[]) => [
 //   {
@@ -38,7 +41,6 @@ export default function ProgrammePageContent({
           events={atprotoEvents}
           favoriteEvents={favoriteEvents}
           toggleFavoriteEvent={toggleFavoriteEvent}
-          // events={atprotoEvents.filter((event: any) => event.isCoreEvent)}
         />
       </div>
     </PageLayout>

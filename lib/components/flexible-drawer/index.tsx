@@ -20,6 +20,7 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
+// Renders shadcn drawer for mobile, and custom inline absolutely positioned drawer on desktop
 const FlexibleDrawer = ({
   children,
   open,
@@ -76,16 +77,3 @@ const FlexibleDrawer = ({
 };
 
 export default FlexibleDrawer;
-
-/*
-    <FlexibleDrawer 
-
-    
-        open={open}
-        onOpenChange={onOpenChange}
-    >
-        <div>
-            Anything goes here - the drawer is just a white container 
-        </div>
-    </FlexibleDrawer>
-*/
