@@ -1,16 +1,15 @@
 'use client';
 import PageLayout from '@/components/PageLayout';
-import { CalendarRangeIcon } from 'lucide-react';
-import ProgrammeTab from './ScheduleTab';
+// import { CalendarRangeIcon } from 'lucide-react';
+// import ProgrammeTab from './ScheduleTab';
 // import { useWalletManager } from '@/hooks/useWalletManager';
 
 const tabs = (atprotoEvents: any[]) => [
-  {
-    label: 'Event Schedule',
-    labelIcon: CalendarRangeIcon,
-    component: () => <ProgrammeTab atprotoEvents={atprotoEvents} />,
-  },
-
+  // {
+  //   label: 'Event Schedule',
+  //   labelIcon: CalendarRangeIcon,
+  //   component: () => <ProgrammeTab atprotoEvents={atprotoEvents} />,
+  // },
   // {
   //   label: 'Favorites',
   //   component: () => <FavoritesTab />,
