@@ -170,6 +170,7 @@ export default async function RootLayout({
         </PWAProvider>
 
         <Toaster />
+        <div id="requires-auth-modal" />
       </body>
     </html>
   );
