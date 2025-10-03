@@ -40,6 +40,9 @@ if (typeof window !== 'undefined') {
 }
 let cachedStorageValue: string | null | undefined = undefined; // Cache localStorage result
 let hasResetAfterDisconnect = false; // Prevent multiple reset calls
+let isDisconnecting = false; // Prevent concurrent disconnect calls
+let disconnectPromise: Promise<any> | null = null; // Track ongoing disconnect operation
+let paraDisconnected = false; // Prevent Para reconnection after disconnect
 
 const setGlobalPrimaryConnectorId = (value: string | null) => {
   if (globalPrimaryConnectorId !== value) {
@@ -48,6 +51,8 @@ const setGlobalPrimaryConnectorId = (value: string | null) => {
     // Reset the disconnect flag when user reconnects
     if (value !== null) {
       hasResetAfterDisconnect = false;
+      isDisconnecting = false; // Reset disconnect state on reconnect
+      paraDisconnected = false; // Reset Para disconnect flag on reconnect
     }
     if (value) {
       savePrimaryConnectorToStorage(value);
@@ -228,7 +233,7 @@ export function useUnifiedConnection() {
   // Para SDK hooks - for Para-specific functionality
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
-  const { logout } = useLogout();
+  const { logout, logoutAsync } = useLogout();
 
   // Supabase auth hook - for email from Supabase authentication
   const { user: supabaseUser, signOut } = useUser();
@@ -683,7 +688,7 @@ export function useUnifiedConnection() {
 
   // Sync Para to Wagmi when primary is Para
   useEffect(() => {
-    if (primaryConnectorId === 'para' && isParaConnected && paraConnector) {
+    if (primaryConnectorId === 'para' && isParaConnected && paraConnector && !paraDisconnected) {
       const isParaWagmiConnected = connections.some(
         (conn) => conn.connector.id === paraConnector.id
       );
@@ -698,7 +703,7 @@ export function useUnifiedConnection() {
 
   // Ensure Para stays connected to Wagmi even when not primary (for seamless switching)
   useEffect(() => {
-    if (isParaConnected && paraConnector && primaryConnectorId !== 'para') {
+    if (isParaConnected && paraConnector && primaryConnectorId !== 'para' && !paraDisconnected) {
       const isParaWagmiConnected = connections.some(
         (conn) => conn.connector.id === paraConnector.id
       );
@@ -938,8 +943,57 @@ export function useUnifiedConnection() {
     }
   };
 
-  // Enhanced disconnect function with proper coordination and error handling
+  // Utility function to safely disconnect Para SDK with timeout protection
+  const safeParaLogout = async (): Promise<boolean> => {
+    try {
+      console.log('🔌 [PARA_LOGOUT] Starting Para SDK logout');
+
+      // Set flag to prevent Para reconnection
+      paraDisconnected = true;
+
+      // Use logoutAsync with timeout protection and proper options
+      await Promise.race([
+        logoutAsync({
+          clearPregenWallets: false, // Keep pre-generated wallets for consistency
+        }),
+        new Promise<void>((_, reject) =>
+          setTimeout(() => reject(new Error('Para logout timeout')), 5000)
+        )
+      ]);
+
+      console.log('🔌 [PARA_LOGOUT] Para SDK logout successful');
+      return true;
+    } catch (error) {
+      console.error('🔌 [PARA_LOGOUT] Para SDK logout failed:', error);
+      return false;
+    }
+  };
+
+  // Enhanced disconnect function with race condition protection
   const handleDisconnect = async () => {
+    // Race condition protection: prevent concurrent disconnect calls
+    if (isDisconnecting) {
+      console.warn('🔌 [UNIFIED_DISCONNECT] Disconnect already in progress, waiting for completion...');
+      if (disconnectPromise) {
+        await disconnectPromise;
+        return;
+      }
+    }
+
+    // Create a single disconnect promise to prevent race conditions
+    disconnectPromise = performDisconnect();
+    isDisconnecting = true;
+
+    try {
+      await disconnectPromise;
+    } finally {
+      isDisconnecting = false;
+      disconnectPromise = null;
+    }
+  };
+
+  // Internal disconnect function with proper coordination
+  const performDisconnect = async () => {
     const disconnectResults = {
       appKit: false,
       wagmi: false,
@@ -990,25 +1044,20 @@ export function useUnifiedConnection() {
         // Continue with Para disconnect even if wagmi fails
       }
 
-      // Step 3: Disconnect Para SDK (if applicable)
+      // Step 3: Disconnect Para SDK (if applicable) - with timeout protection
       if (isPara) {
         console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting Para SDK');
-        try {
-          logout();
-          disconnectResults.para = true;
+        disconnectResults.para = await safeParaLogout();
+        if (disconnectResults.para) {
           console.log('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect successful');
-        } catch (paraError) {
-          console.error(
-            '🔌 [UNIFIED_DISCONNECT] Para SDK disconnect failed:',
-            paraError
-          );
-          // Continue with cleanup even if Para disconnect fails
+        } else {
+          console.warn('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect failed, continuing with cleanup');
         }
       } else {
         disconnectResults.para = true; // Not applicable
       }
 
-      // Step 4: Cleanup state
+      // Step 4: Cleanup state - with atomic operations
       console.log('🔌 [UNIFIED_DISCONNECT] Performing state cleanup');
       try {
         // Set disconnect flag to prevent immediate reconnection
@@ -1027,12 +1076,19 @@ export function useUnifiedConnection() {
         );
       }
 
+      // Step 5: Sign out from Supabase
+      try {
+        await signOut();
+        console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
+      } catch (signOutError) {
+        console.error('🔌 [UNIFIED_DISCONNECT] Sign out failed:', signOutError);
+        // Continue even if sign out fails
+      }
+
       // Evaluate overall success
       const allSuccessful = Object.values(disconnectResults).every(
         (result) => result
       );
-      signOut();
-      console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
 
       if (allSuccessful) {
         console.log(
@@ -1053,6 +1109,8 @@ export function useUnifiedConnection() {
           );
         }
       }
+
+      return disconnectResults;
     } catch (error) {
       console.error(
         '🔌 [UNIFIED_DISCONNECT] Disconnect process failed:',
