@@ -2,35 +2,19 @@
 import PageLayout from '@/components/PageLayout';
 // import { CalendarRangeIcon } from 'lucide-react';
 // import ProgrammeTab from './ScheduleTab';
-// import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { homeTabs } from '../page-content';
 import cn from 'classnames';
 import css from './schedule.module.scss';
 import { useFavorites } from '@/app/store.hooks';
-import { useGlobalStore } from '@/app/store';
 import { default as ScheduleLayout } from 'lib/components/event-schedule-new/layout-app';
-import { useShallow } from 'zustand/react/shallow';
-import { requireAuth } from '@/components/RequiresAuth';
-
-// const tabs = (atprotoEvents: any[]) => [
-//   {
-//     label: 'Event Schedule',
-//     labelIcon: CalendarRangeIcon,
-//     component: () => <ProgrammeTab atprotoEvents={atprotoEvents} />,
-//   },
-
-//   // {
-//   //   label: 'Favorites',
-//   //   component: () => <FavoritesTab />,
-//   // },
-// ];
 
 export default function ProgrammePageContent({
   atprotoEvents,
 }: {
   atprotoEvents: any;
 }) {
-  // useWalletManager();
+  useWalletManager();
   const [favoriteEvents, toggleFavoriteEvent] = useFavorites();
 
   return (

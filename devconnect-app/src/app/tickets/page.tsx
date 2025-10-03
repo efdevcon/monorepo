@@ -39,8 +39,8 @@ const TicketWrapper = () => {
 const TicketTab = RequiresAuthHOC(() => {
   const additionalTicketEmails = useAdditionalTicketEmails();
   const { setUserData } = useGlobalStore();
-  const { para } = useWalletManager();
-  const email = (para.paraAccount as any)?.email || null;
+  const { email } = useWalletManager();
+  //   const email = (para.paraAccount as any)?.email || null;
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);
   const [ticketError, setTicketError] = useState<string | null>(null);

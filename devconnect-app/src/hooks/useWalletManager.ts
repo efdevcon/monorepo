@@ -57,8 +57,13 @@ export function useWalletManager() {
   const [hookId] = useState(() => ++hookInstanceCounter);
   const para = useParaWalletConnection();
   const eoa = useEOAWalletConnection();
-  const { user: supabaseUser, loading: supabaseLoading, hasInitialized: supabaseInitialized, ...userMethods } = useUser();
-  
+  const {
+    user: supabaseUser,
+    loading: supabaseLoading,
+    hasInitialized: supabaseInitialized,
+    ...userMethods
+  } = useUser();
+
   // Track disconnecting state at manager level for better UI control
   const [isDisconnecting, setIsDisconnecting] = useState(false);
 
@@ -95,11 +100,20 @@ export function useWalletManager() {
     };
 
     window.addEventListener('storage', handleStorageChange as EventListener);
-    window.addEventListener('primaryWalletTypeChange', handleCustomEvent as EventListener);
+    window.addEventListener(
+      'primaryWalletTypeChange',
+      handleCustomEvent as EventListener
+    );
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange as EventListener);
-      window.removeEventListener('primaryWalletTypeChange', handleCustomEvent as EventListener);
+      window.removeEventListener(
+        'storage',
+        handleStorageChange as EventListener
+      );
+      window.removeEventListener(
+        'primaryWalletTypeChange',
+        handleCustomEvent as EventListener
+      );
     };
   }, [hookId, primaryType]);
 
@@ -125,16 +139,20 @@ export function useWalletManager() {
         console.log('✅ [WALLET_MANAGER] Set primary wallet type:', type);
 
         // Dispatch custom event to notify other hook instances
-        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: type }));
+        window.dispatchEvent(
+          new CustomEvent('primaryWalletTypeChange', { detail: type })
+        );
       } else {
         localStorage.removeItem(PRIMARY_WALLET_TYPE_KEY);
         console.log('✅ [WALLET_MANAGER] Cleared primary wallet type');
 
         // Dispatch custom event
-        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: null }));
+        window.dispatchEvent(
+          new CustomEvent('primaryWalletTypeChange', { detail: null })
+        );
       }
     }
-    
+
     // Update individual wallet primary states
     if (type === 'para') {
       para.setPrimary();
@@ -149,9 +167,17 @@ export function useWalletManager() {
 
   // Unified connection state
   const isConnected = isParaActive || isEOAActive;
-  const address = isParaActive ? para.address : isEOAActive ? eoa.address : null;
+  const address = isParaActive
+    ? para.address
+    : isEOAActive
+      ? eoa.address
+      : null;
   const isPara = isParaActive;
-  const chainId = isParaActive ? para.chainId : isEOAActive ? eoa.chainId : null;
+  const chainId = isParaActive
+    ? para.chainId
+    : isEOAActive
+      ? eoa.chainId
+      : null;
 
   // Unified authentication state
   const paraEmail = para.email;
@@ -174,7 +200,8 @@ export function useWalletManager() {
 
   // Log comprehensive user authentication state
   useEffect(() => {
-    const canIssueParaJwt = typeof para !== 'undefined' &&
+    const canIssueParaJwt =
+      typeof para !== 'undefined' &&
       typeof (window as any).para?.issueJwt === 'function' &&
       para.isConnected;
 
@@ -215,25 +242,28 @@ export function useWalletManager() {
       },
       // Auth options
       authOptions: {
-        option1_supabase: supabaseInitialized && !!supabaseUser 
-          ? '✅ Can use Supabase auth' 
-          : '❌ No Supabase session',
-        option2_paraAutoExchange: para.isConnected && !supabaseUser
-          ? '🔄 Auto JWT exchange will trigger automatically' 
-          : para.isConnected && !!supabaseUser
-            ? '✅ Para JWT already exchanged'
-            : '❌ Para not connected',
+        option1_supabase:
+          supabaseInitialized && !!supabaseUser
+            ? '✅ Can use Supabase auth'
+            : '❌ No Supabase session',
+        option2_paraAutoExchange:
+          para.isConnected && !supabaseUser
+            ? '🔄 Auto JWT exchange will trigger automatically'
+            : para.isConnected && !!supabaseUser
+              ? '✅ Para JWT already exchanged'
+              : '❌ Para not connected',
       },
       // Current behavior
       currentBehavior: {
-        description: '🚀 Automatic JWT exchange enabled! Para users will be authenticated automatically.',
+        description:
+          '🚀 Automatic JWT exchange enabled! Para users will be authenticated automatically.',
         requiresAuthHOCWillWork: hasValidSupabaseAuth,
-        whatYouNeedToDo: hasValidSupabaseAuth 
-          ? '✅ You are authenticated!' 
-          : para.isConnected 
-            ? '🔄 Automatic JWT exchange in progress... Please complete biometric verification when prompted.' 
+        whatYouNeedToDo: hasValidSupabaseAuth
+          ? '✅ You are authenticated!'
+          : para.isConnected
+            ? '🔄 Automatic JWT exchange in progress... Please complete biometric verification when prompted.'
             : '❌ Please connect a wallet',
-      }
+      },
     });
   }, [
     para.isConnected,
@@ -250,8 +280,6 @@ export function useWalletManager() {
     isPara,
   ]);
 
-  useEnsureUserData(hasValidSupabaseAuth);
-
   // Debug: Log address computation
   console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
     address: address ? address.slice(0, 10) + '...' : null,
@@ -266,7 +294,9 @@ export function useWalletManager() {
   // ============================================
   // Identity Resolution (ENS) - Store per address
   // ============================================
-  const [identityMap, setIdentityMap] = useState<Record<string, WalletIdentity | null>>({});
+  const [identityMap, setIdentityMap] = useState<
+    Record<string, WalletIdentity | null>
+  >({});
   const [identityLoading, setIdentityLoading] = useState(false);
   const identityFetchingRef = useRef<Set<string>>(new Set());
 
@@ -277,7 +307,9 @@ export function useWalletManager() {
       address: address ? address.slice(0, 10) + '...' : null,
       hasIdentity: !!result,
       identityName: result?.name,
-      identityMapKeys: Object.keys(identityMap).map(k => k.slice(0, 10) + '...'),
+      identityMapKeys: Object.keys(identityMap).map(
+        (k) => k.slice(0, 10) + '...'
+      ),
     });
     return result;
   }, [address, identityMap, hookId]);
@@ -315,7 +347,10 @@ export function useWalletManager() {
             const parsedCache = JSON.parse(cached);
             if (Date.now() - parsedCache.timestamp < 3600000) {
               if (!isCancelled) {
-                setIdentityMap(prev => ({ ...prev, [addressKey]: parsedCache.identity }));
+                setIdentityMap((prev) => ({
+                  ...prev,
+                  [addressKey]: parsedCache.identity,
+                }));
                 setIdentityLoading(false);
                 identityFetchingRef.current.delete(addressKey);
               }
@@ -353,7 +388,10 @@ export function useWalletManager() {
         };
 
         if (!isCancelled) {
-          setIdentityMap(prev => ({ ...prev, [addressKey]: resolvedIdentity }));
+          setIdentityMap((prev) => ({
+            ...prev,
+            [addressKey]: resolvedIdentity,
+          }));
 
           // Cache result
           localStorage.setItem(
@@ -369,7 +407,7 @@ export function useWalletManager() {
       } catch (err) {
         console.error('Error resolving identity:', err);
         if (!isCancelled) {
-          setIdentityMap(prev => ({ ...prev, [addressKey]: null }));
+          setIdentityMap((prev) => ({ ...prev, [addressKey]: null }));
           setIdentityLoading(false);
           identityFetchingRef.current.delete(addressKey);
         }
@@ -386,7 +424,9 @@ export function useWalletManager() {
   // ============================================
   // Portfolio Data - Store per address
   // ============================================
-  const [portfolioMap, setPortfolioMap] = useState<Record<string, PortfolioData | null>>({});
+  const [portfolioMap, setPortfolioMap] = useState<
+    Record<string, PortfolioData | null>
+  >({});
   const [portfolioLoading, setPortfolioLoading] = useState(false);
   const [portfolioError, setPortfolioError] = useState<string | null>(null);
   const portfolioFetchingRef = useRef<Set<string>>(new Set());
@@ -398,7 +438,9 @@ export function useWalletManager() {
       address: address ? address.slice(0, 10) + '...' : null,
       hasPortfolio: !!result,
       totalValue: result?.totalValue,
-      portfolioMapKeys: Object.keys(portfolioMap).map(k => k.slice(0, 10) + '...'),
+      portfolioMapKeys: Object.keys(portfolioMap).map(
+        (k) => k.slice(0, 10) + '...'
+      ),
     });
     return result;
   }, [address, portfolioMap, hookId]);
@@ -413,13 +455,17 @@ export function useWalletManager() {
 
       // If we're already fetching this address, skip
       if (portfolioFetchingRef.current.has(addressKey)) {
-        console.log(`⏭️ [WALLET_MANAGER] Portfolio fetch already in progress for ${addressKey.slice(0, 10)}...`);
+        console.log(
+          `⏭️ [WALLET_MANAGER] Portfolio fetch already in progress for ${addressKey.slice(0, 10)}...`
+        );
         return;
       }
 
       // Skip if already in memory (unless forcing refresh)
       if (!forceRefresh && portfolioMap[addressKey] !== undefined) {
-        console.log(`✅ [WALLET_MANAGER] Portfolio already in memory for ${addressKey.slice(0, 10)}...`);
+        console.log(
+          `✅ [WALLET_MANAGER] Portfolio already in memory for ${addressKey.slice(0, 10)}...`
+        );
         return;
       }
 
@@ -432,11 +478,18 @@ export function useWalletManager() {
           try {
             const parsedCache = JSON.parse(cached);
             if (Date.now() - parsedCache.timestamp < 300000) {
-              console.log(`📦 [WALLET_MANAGER] Using cached portfolio for ${addressKey.slice(0, 10)}...`);
-              setPortfolioMap(prev => ({ ...prev, [addressKey]: parsedCache.data }));
+              console.log(
+                `📦 [WALLET_MANAGER] Using cached portfolio for ${addressKey.slice(0, 10)}...`
+              );
+              setPortfolioMap((prev) => ({
+                ...prev,
+                [addressKey]: parsedCache.data,
+              }));
               return; // Don't fetch from API
             } else {
-              console.log(`⏰ [WALLET_MANAGER] Cache expired for ${addressKey.slice(0, 10)}...`);
+              console.log(
+                `⏰ [WALLET_MANAGER] Cache expired for ${addressKey.slice(0, 10)}...`
+              );
             }
           } catch (err) {
             console.warn('Invalid portfolio cache:', err);
@@ -450,7 +503,10 @@ export function useWalletManager() {
       setPortfolioError(null);
 
       try {
-        console.log(`🌐 [WALLET_MANAGER] Fetching portfolio from API for ${addressKey.slice(0, 10)}...`, { forceRefresh });
+        console.log(
+          `🌐 [WALLET_MANAGER] Fetching portfolio from API for ${addressKey.slice(0, 10)}...`,
+          { forceRefresh }
+        );
 
         const response = await fetch('/api/portfolio', {
           method: 'POST',
@@ -466,7 +522,7 @@ export function useWalletManager() {
         }
 
         const data = await response.json();
-        setPortfolioMap(prev => ({ ...prev, [addressKey]: data }));
+        setPortfolioMap((prev) => ({ ...prev, [addressKey]: data }));
 
         // Cache the result
         const cacheKey = `portfolio_${addressKey}`;
@@ -478,13 +534,15 @@ export function useWalletManager() {
           })
         );
 
-        console.log(`✅ [WALLET_MANAGER] Portfolio fetched and cached for ${addressKey.slice(0, 10)}...`);
+        console.log(
+          `✅ [WALLET_MANAGER] Portfolio fetched and cached for ${addressKey.slice(0, 10)}...`
+        );
       } catch (err) {
         console.error('Error fetching portfolio:', err);
         setPortfolioError(
           err instanceof Error ? err.message : 'Failed to fetch portfolio'
         );
-        setPortfolioMap(prev => ({ ...prev, [addressKey]: null }));
+        setPortfolioMap((prev) => ({ ...prev, [addressKey]: null }));
       } finally {
         setPortfolioLoading(false);
         portfolioFetchingRef.current.delete(addressKey);
@@ -502,7 +560,9 @@ export function useWalletManager() {
       if (portfolioMap[addressKey] === undefined) {
         fetchPortfolio();
       } else {
-        console.log(`⏭️ [WALLET_MANAGER] Skipping auto-fetch, portfolio already available for ${addressKey.slice(0, 10)}...`);
+        console.log(
+          `⏭️ [WALLET_MANAGER] Skipping auto-fetch, portfolio already available for ${addressKey.slice(0, 10)}...`
+        );
       }
     }
   }, [address, fetchPortfolio, portfolioMap]);
@@ -519,25 +579,38 @@ export function useWalletManager() {
       eoaAddress: eoa.address,
       finalAddress: address,
     });
-  }, [primaryType, isParaActive, isEOAActive, para.isConnected, eoa.isConnected, para.address, eoa.address, address]);
+  }, [
+    primaryType,
+    isParaActive,
+    isEOAActive,
+    para.isConnected,
+    eoa.isConnected,
+    para.address,
+    eoa.address,
+    address,
+  ]);
 
   /**
    * Disconnect current active wallet
    * Special behavior: When disconnecting Para, also disconnect all EOA wallets
    */
   const disconnect = async () => {
-    console.log('🔌 [WALLET_MANAGER] Disconnecting active wallet:', primaryType);
-    
+    console.log(
+      '🔌 [WALLET_MANAGER] Disconnecting active wallet:',
+      primaryType
+    );
+
     // Determine if we should show disconnecting state (for visual feedback)
     // Show when: Para is disconnecting OR EOA is disconnecting without Para (full logout scenarios)
-    const shouldShowDisconnectingState = isParaActive || (isEOAActive && !para.isConnected);
+    const shouldShowDisconnectingState =
+      isParaActive || (isEOAActive && !para.isConnected);
 
     console.log('🔌 [WALLET_MANAGER] Should show disconnecting state:', {
       shouldShowDisconnectingState,
       isParaActive,
       isEOAActive,
       paraIsConnected: para.isConnected,
-      calculation: `${isParaActive} || (${isEOAActive} && !${para.isConnected})`
+      calculation: `${isParaActive} || (${isEOAActive} && !${para.isConnected})`,
     });
 
     // Set disconnecting state at manager level for UI control
@@ -548,7 +621,9 @@ export function useWalletManager() {
     try {
       if (isParaActive) {
         // When disconnecting Para, disconnect everything
-        console.log('🔌 [WALLET_MANAGER] Para is active, disconnecting all wallets');
+        console.log(
+          '🔌 [WALLET_MANAGER] Para is active, disconnecting all wallets'
+        );
         await Promise.allSettled([
           para.disconnect(),
           eoa.isConnected ? eoa.disconnect() : Promise.resolve(),
@@ -562,7 +637,9 @@ export function useWalletManager() {
         // If Para is still connected, switch to Para (acts like a wallet switch)
         // Otherwise, clear primary type (full logout)
         if (para.isConnected) {
-          console.log('🔄 [WALLET_MANAGER] Para still connected, switching to Para');
+          console.log(
+            '🔄 [WALLET_MANAGER] Para still connected, switching to Para'
+          );
           setPrimaryType('para');
         } else {
           console.log('🔌 [WALLET_MANAGER] No other wallets, clearing primary');
@@ -572,7 +649,7 @@ export function useWalletManager() {
 
       // Add minimum delay to show disconnecting state for better UX
       if (shouldShowDisconnectingState) {
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
       console.log('✅ [WALLET_MANAGER] Disconnect completed');
@@ -589,7 +666,7 @@ export function useWalletManager() {
    */
   const disconnectAll = async () => {
     console.log('🔌 [WALLET_MANAGER] Disconnecting all wallets');
-    
+
     const results = await Promise.allSettled([
       para.isConnected ? para.disconnect() : Promise.resolve(),
       eoa.isConnected ? eoa.disconnect() : Promise.resolve(),
@@ -599,7 +676,10 @@ export function useWalletManager() {
     results.forEach((result, index) => {
       if (result.status === 'rejected') {
         const walletType = index === 0 ? 'Para' : 'EOA';
-        console.error(`❌ [WALLET_MANAGER] ${walletType} disconnect failed:`, result.reason);
+        console.error(
+          `❌ [WALLET_MANAGER] ${walletType} disconnect failed:`,
+          result.reason
+        );
       }
     });
 
@@ -619,7 +699,7 @@ export function useWalletManager() {
       console.warn('⚠️ [WALLET_MANAGER] Cannot switch to EOA - not connected');
       return;
     }
-    
+
     setPrimaryType(type);
     console.log('✅ [WALLET_MANAGER] Switched to:', type);
   };
@@ -629,10 +709,12 @@ export function useWalletManager() {
    */
   const switchNetwork = async (chainId: number) => {
     if (!isEOAActive) {
-      console.warn('⚠️ [WALLET_MANAGER] Cannot switch network - not on EOA wallet');
+      console.warn(
+        '⚠️ [WALLET_MANAGER] Cannot switch network - not on EOA wallet'
+      );
       return;
     }
-    
+
     await eoa.switchNetwork(chainId);
   };
 
@@ -645,6 +727,8 @@ export function useWalletManager() {
     return 'Not connected';
   };
 
+  useEnsureUserData(isConnected);
+
   return {
     // Current active wallet state
     isConnected,
@@ -653,10 +737,10 @@ export function useWalletManager() {
     chainId,
     primaryType,
     isDisconnecting, // Manager-level disconnecting state (controlled for UI)
-    
+
     // Wallet information
     walletDisplayName: getWalletDisplayName(),
-    
+
     // Identity (ENS)
     identity,
     identityLoading,
@@ -679,14 +763,14 @@ export function useWalletManager() {
     // Individual wallet states
     para,
     eoa,
-    
+
     // Actions
     disconnect,
     disconnectAll,
     switchWallet,
     switchNetwork,
     setPrimaryType,
-    
+
     // Supabase auth actions
     ...userMethods, // sendOtp, verifyOtp, signOut, supabase
 
@@ -694,4 +778,3 @@ export function useWalletManager() {
     hasMultipleWallets: para.isConnected && eoa.isConnected,
   };
 }
-

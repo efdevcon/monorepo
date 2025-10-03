@@ -5,14 +5,15 @@ import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
 import moment from 'moment';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
-// import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export function WelcomeSection() {
-  // const { email } = useWalletManager();
+  const { email } = useWalletManager();
   const now = useNow();
-  const dummyEmail = 'example.eth';
+  const dummyEmail = email || 'Anon';
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
 
@@ -90,9 +91,11 @@ export function TodaysSchedule({ atprotoEvents }: { atprotoEvents: any[] }) {
         </div>
       )}
 
-      <Button size="sm" className="w-full md:w-auto self-start mt-2">
-        View full Schedule
-      </Button>
+      <Link href="/schedule">
+        <Button size="sm" className="w-full md:w-auto self-start mt-2">
+          View full Schedule
+        </Button>
+      </Link>
     </div>
   );
 }
