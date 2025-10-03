@@ -11,7 +11,7 @@ import NetworkModal from '@/components/NetworkModal';
 import WalletModal from '@/components/WalletModal';
 
 // Image assets from local public/images directory
-const imgCheckbox = '/images/imgCheckbox.png';
+const imgPara = '/images/paraLogo.png';
 const imgSend = '/images/imgSend.svg';
 const imgCallReceived = '/images/imgCallReceived.svg';
 const imgSwapVert = '/images/imgSwapVert.svg';
@@ -289,7 +289,7 @@ export default function WalletTab() {
                     className="w-5 h-5 rounded-full"
                   />
                 ) : (
-                  <img src={imgCheckbox} alt="checkbox" className="w-5 h-5" />
+                  <img src={imgPara} alt="checkbox" className="w-5 h-5" />
                 )}
                 <span className="text-[#242436] text-base font-normal">
                   {address

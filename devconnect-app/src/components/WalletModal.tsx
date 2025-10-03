@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { useState, useEffect, useMemo } from 'react';
 
 // Image assets from local public/images directory
-const imgCheckbox = '/images/imgCheckbox.png';
+const imgPara = '/images/paraLogo.png';
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -441,11 +441,12 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                         }
 
                         // Fallback to connector icon
-                        const connectorIcon =
-                          wallet.connector?.icon ||
-                          wallet.connector?.connector?.icon ||
-                          wallet.connector?.provider?.icon ||
-                          '/images/icons/injected.png';
+                        const connectorIcon = isPara
+                          ? '/images/paraLogo.png'
+                          : wallet.connector?.icon ||
+                            wallet.connector?.connector?.icon ||
+                            wallet.connector?.provider?.icon ||
+                            '/images/icons/injected.png';
 
                         if (connectorIcon) {
                           return (
@@ -511,11 +512,12 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     <div className="text-xs text-[#4b4b66] flex justify-center items-center gap-1">
                       {/* Wallet icon next to type indicator */}
                       {(() => {
-                        const connectorIcon =
-                          wallet.connector?.icon ||
-                          wallet.connector?.connector?.icon ||
-                          wallet.connector?.provider?.icon ||
-                          '/images/icons/injected.png';
+                        const connectorIcon = isPara
+                          ? '/images/paraLogo.png'
+                          : wallet.connector?.icon ||
+                            wallet.connector?.connector?.icon ||
+                            wallet.connector?.provider?.icon ||
+                            '/images/icons/injected.png';
 
                         if (connectorIcon) {
                           return (
