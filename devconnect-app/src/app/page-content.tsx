@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+// import { useWalletManager } from '@/hooks/useWalletManager';
 import { WelcomeSection, TodaysSchedule } from './dashboard-sections';
 import { HomeIcon, CalendarIcon, TicketIcon } from 'lucide-react';
 

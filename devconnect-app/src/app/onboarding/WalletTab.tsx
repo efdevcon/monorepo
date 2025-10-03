@@ -3,13 +3,13 @@
 import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { useUser } from '@/hooks/useUser';
 import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
-  const { isConnected, address, isPara } = useUnifiedConnection();
+  const { isConnected, address, isPara } = useWalletManager();
   const { user } = useUser();
   const router = useRouter();
 
@@ -29,18 +29,6 @@ export default function HomePage() {
       lastLoggedState.current = stateKey;
     }
   }, [isConnected, address, isPara]);
-
-  // useEffect(() => {
-  //   console.log('🔄 [ONBOARDING] Connection status:', address);
-  //   if (
-  //     typeof window !== 'undefined' &&
-  //     window.location.pathname === '/onboarding' &&
-  //     address
-  //   ) {
-  //     console.log('🔄 [ONBOARDING] Redirecting to wallet');
-  //     router.push('/wallet');
-  //   }
-  // }, [address]);
 
   return (
     <>

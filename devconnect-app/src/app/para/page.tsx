@@ -4,11 +4,11 @@ import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import ParaIntegration from '@/components/ParaIntegration';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
-  const { isConnected, address, isPara } = useUnifiedConnection();
+  const { isConnected, address, isPara } = useWalletManager();
 
   // Only log significant connection changes to avoid spam
   const lastLoggedState = useRef<string | null>(null);
@@ -19,7 +19,9 @@ export default function HomePage() {
         isConnected,
         hasAddress: !!address,
         isPara,
-        address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : undefined
+        address: address
+          ? `${address.slice(0, 6)}...${address.slice(-4)}`
+          : undefined,
       });
       lastLoggedState.current = stateKey;
     }
@@ -27,13 +29,13 @@ export default function HomePage() {
 
   return (
     <>
-      <ParaIntegration 
-                address={address} 
-                isPara={isPara} 
-                onConnect={() => {
-                  console.log('Para integration connected');
-                }}
-              />
+      <ParaIntegration
+        address={address}
+        isPara={isPara}
+        onConnect={() => {
+          console.log('Para integration connected');
+        }}
+      />
     </>
   );
 }

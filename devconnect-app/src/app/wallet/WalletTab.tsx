@@ -2,7 +2,7 @@
 
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
@@ -52,9 +52,24 @@ interface PortfolioData {
 export default function WalletTab() {
   const { open } = useAppKit();
   const router = useRouter();
-  const { address } = useUnifiedConnection();
+  const { address, isPara, isDisconnecting, para, eoa, chainId } =
+    useWalletManager();
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
+
+  // Debug: Track address changes
+  useEffect(() => {
+    console.log('🏠 [WALLET_TAB] Address changed:', {
+      address,
+      isPara,
+      paraAddress: para.address,
+      eoaAddress: eoa.address,
+    });
+  }, [address, isPara, para.address, eoa.address]);
+
+  // Calculate shouldShowDisconnecting based on wallet state
+  const shouldShowDisconnecting =
+    isDisconnecting && (isPara || !eoa.isConnected);
 
   // Portfolio state
   const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
@@ -277,6 +292,47 @@ export default function WalletTab() {
     return `${hash.slice(0, 6)}...${hash.slice(-4)}`;
   };
 
+  // Show disconnecting state if currently disconnecting and should show it
+  if (shouldShowDisconnecting) {
+    return (
+      <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <div className="flex items-center justify-center gap-3">
+            <div className="animate-spin w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+            <div className="text-[#242436] text-xl font-semibold">
+              Disconnecting wallet...
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show login screen when not connected
+  if (!address) {
+    return (
+      <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <div className="space-y-2">
+            <h1 className="text-[#242436] text-2xl font-bold tracking-[-0.1px]">
+              Connect Your Wallet
+            </h1>
+            <p className="text-[#36364c] text-base">
+              Connect your wallet to access your portfolio and manage your
+              assets
+            </p>
+          </div>
+          <button
+            onClick={() => router.push('/onboarding')}
+            className="bg-[#165a8d] text-white px-8 py-3 rounded-[4px] font-semibold text-base hover:bg-[#0f4a73] transition-colors cursor-pointer"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-[#f6fafe] min-h-screen w-full">
       {/* Main Content */}
@@ -288,22 +344,36 @@ export default function WalletTab() {
             <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px] relative">
               {/* Network Status - positioned on the left */}
               <div className="absolute left-0 flex items-center gap-1 px-2 py-1 rounded">
-                <button
-                  onClick={() => setShowNetworkModal(true)}
-                  className="flex items-center gap-1 p-1 hover:bg-gray-100 rounded transition-colors"
-                >
-                  <NetworkLogo chainId={currentChainId} size="sm" />
-                  <img
-                    src={imgKeyboardArrowDown}
-                    alt="dropdown"
-                    className="w-4 h-4"
-                  />
-                </button>
+                {isPara ? (
+                  // Show Base network icon when connected with Para
+                  <div className="flex items-center gap-1 p-1">
+                    <NetworkLogo chainId={8453} size="sm" />
+                  </div>
+                ) : (
+                  // Show network selector for external wallets
+                  <button
+                    onClick={() => setShowNetworkModal(true)}
+                    className="flex items-center gap-1 p-1 hover:bg-gray-100 rounded transition-colors"
+                  >
+                    <NetworkLogo chainId={currentChainId} size="sm" />
+                    <img
+                      src={imgKeyboardArrowDown}
+                      alt="dropdown"
+                      className="w-4 h-4"
+                    />
+                  </button>
+                )}
               </div>
 
               {/* Wallet Info - centered with dropdown */}
               <button
-                onClick={() => setShowWalletModal(true)}
+                onClick={() => {
+                  if (!address) {
+                    router.push('/onboarding');
+                  } else {
+                    setShowWalletModal(true);
+                  }
+                }}
                 className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded transition-colors"
               >
                 {identity?.avatar ? (

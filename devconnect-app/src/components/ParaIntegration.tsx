@@ -3,11 +3,10 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { para } from '@/config/para';
 import { createClient } from '@supabase/supabase-js';
 import { useConnect } from 'wagmi';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-import { useModal, useLogout } from '@getpara/react-sdk';
+import { useWalletManager } from '@/hooks/useWalletManager';
+import { useModal, useLogout, useIssueJwt } from '@getpara/react-sdk';
 
 // Toast utility functions
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
@@ -56,15 +55,21 @@ interface ParaIntegrationProps {
   onConnect?: () => void;
 }
 
-export default function ParaIntegration({ address, isPara, onConnect }: ParaIntegrationProps) {
+export default function ParaIntegration({
+  address,
+  isPara,
+  onConnect,
+}: ParaIntegrationProps) {
   const { connect, connectors } = useConnect();
-  const { isParaConnected } = useUnifiedConnection();
+  const { para } = useWalletManager();
+  const isParaConnected = para.isConnected;
   const { openModal } = useModal();
   const [isConnectingPara, setIsConnectingPara] = useState(false);
   const [paraError, setParaError] = useState<string | null>(null);
   const [paraSuccess, setParaSuccess] = useState(false);
   const [userData, setUserData] = useState<any>(null);
   const { logout } = useLogout();
+  const { issueJwtAsync } = useIssueJwt();
 
   // Find the Para connector for wagmi
   const paraConnector = connectors.find(
@@ -98,7 +103,7 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
   const handleParaJwtExchange = async () => {
     try {
       console.log('🔄 [PARA_JWT] Starting Para JWT exchange process');
-      
+
       // Show loading toast
       toast.info(
         <div className="space-y-2">
@@ -123,7 +128,7 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
       );
 
       // After OTP verification and session active
-      const { token: paraJwt } = await para.issueJwt();
+      const { token: paraJwt } = await issueJwtAsync();
 
       console.log('🔄 [PARA_JWT] Para JWT obtained, exchanging with Supabase');
 
@@ -138,28 +143,28 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
       }
 
       const { supabaseJwt } = await response.json();
-      
+
       // Create Supabase client and set session
       const supabase = createClient(
         process.env.NEXT_PUBLIC_SUPABASE_URL!,
         process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
       );
-      
+
       // Use signInWithPassword with the JWT as the password, or set the session directly
       await supabase.auth.setSession({
         access_token: supabaseJwt,
-        refresh_token: supabaseJwt // Using the same token as refresh for now
+        refresh_token: supabaseJwt, // Using the same token as refresh for now
       });
-      
+
       // get the user from the supabase client
       const { data: user } = await supabase.auth.getUser();
       console.log('🔄 [PARA_JWT] User:', user);
-      
+
       // Store user data for display
       setUserData(user);
-      
+
       console.log('🔄 [PARA_JWT] Supabase session set successfully');
-      
+
       showSuccessToast(
         '✅ JWT Exchange Complete',
         'Para JWT successfully exchanged and Supabase session set'
@@ -168,11 +173,9 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
       console.log('🔄 [PARA_JWT] JWT exchange completed successfully');
     } catch (error) {
       console.error('🔄 [PARA_JWT] JWT exchange failed:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-      showErrorToast(
-        '❌ JWT Exchange Failed',
-        errorMessage
-      );
+      const errorMessage =
+        error instanceof Error ? error.message : 'Unknown error';
+      showErrorToast('❌ JWT Exchange Failed', errorMessage);
     } finally {
       // Dismiss the loading toast
       toast.dismiss();
@@ -186,10 +189,12 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
         <p className="text-sm text-gray-600 mb-4">
           {address ? `Connected: ${address}` : 'Not connected'}
         </p>
-        
+
         {/* Connection Status */}
         <div className="text-xs text-gray-500 mb-4">
-          <div>Para SDK: {isParaConnected ? '✅ Connected' : '❌ Disconnected'}</div>
+          <div>
+            Para SDK: {isParaConnected ? '✅ Connected' : '❌ Disconnected'}
+          </div>
         </div>
       </div>
 
@@ -201,7 +206,7 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
               onClick={handleDirectParaConnect}
               className="w-full cursor-pointer"
               size="lg"
-              variant={isAlreadyConnectedViaPara ? "default" : "outline"}
+              variant={isAlreadyConnectedViaPara ? 'default' : 'outline'}
             >
               Connect with Para
             </Button>
@@ -235,73 +240,109 @@ export default function ParaIntegration({ address, isPara, onConnect }: ParaInte
         )}
 
         {/* Para Modal Button */}
-        {address && isParaConnected && <> <Button
-          onClick={() => {
-            // This would need to be implemented with the Para modal
-            console.log('Opening Para modal...');
-            openModal();
-          }}
-          className="w-full cursor-pointer"
-          size="lg"
-          variant="outline"
-        >
-          📱 Open Para Modal
-        </Button>
-        <Button
-          onClick={() => {
-            console.log('Logging out from Para...');
-            logout();
-            setUserData(null);
-            // HACK: refresh the page after 3 seconds
-            setTimeout(() => {
-              window.location.reload();
-            }, 3000);
-          }}
-        >
-          Logout
-        </Button>
-        </> }
+        {address && isParaConnected && (
+          <>
+            {' '}
+            <Button
+              onClick={() => {
+                // This would need to be implemented with the Para modal
+                console.log('Opening Para modal...');
+                openModal();
+              }}
+              className="w-full cursor-pointer"
+              size="lg"
+              variant="outline"
+            >
+              📱 Open Para Modal
+            </Button>
+            <Button
+              onClick={() => {
+                console.log('Logging out from Para...');
+                logout();
+                setUserData(null);
+                // HACK: refresh the page after 3 seconds
+                setTimeout(() => {
+                  window.location.reload();
+                }, 3000);
+              }}
+            >
+              Logout
+            </Button>
+          </>
+        )}
 
         {/* User Information Display */}
         {userData && (
           <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <h4 className="text-lg font-semibold text-blue-900 mb-3">User Information from PARA JWT</h4>
+            <h4 className="text-lg font-semibold text-blue-900 mb-3">
+              User Information from PARA JWT
+            </h4>
             <div className="space-y-3 text-sm">
               <div className="grid grid-cols-1 gap-2">
                 <div className="flex justify-between">
                   <span className="font-medium text-blue-800">Email:</span>
-                  <span className="text-blue-700">{userData.user?.email || 'N/A'}</span>
+                  <span className="text-blue-700">
+                    {userData.user?.email || 'N/A'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium text-blue-800">User ID:</span>
-                  <span className="text-blue-700 font-mono text-xs">{userData.user?.id || 'N/A'}</span>
+                  <span className="text-blue-700 font-mono text-xs">
+                    {userData.user?.id || 'N/A'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium text-blue-800">Wallet Address:</span>
-                  <span className="text-blue-700 font-mono text-xs">{userData.user?.user_metadata?.wallet_address || 'N/A'}</span>
+                  <span className="font-medium text-blue-800">
+                    Wallet Address:
+                  </span>
+                  <span className="text-blue-700 font-mono text-xs">
+                    {userData.user?.user_metadata?.wallet_address || 'N/A'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium text-blue-800">Wallet Type:</span>
-                  <span className="text-blue-700">{userData.user?.user_metadata?.wallet_type || 'N/A'}</span>
+                  <span className="font-medium text-blue-800">
+                    Wallet Type:
+                  </span>
+                  <span className="text-blue-700">
+                    {userData.user?.user_metadata?.wallet_type || 'N/A'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium text-blue-800">Email Verified:</span>
-                  <span className="text-blue-700">{userData.user?.user_metadata?.email_verified ? '✅ Yes' : '❌ No'}</span>
+                  <span className="font-medium text-blue-800">
+                    Email Verified:
+                  </span>
+                  <span className="text-blue-700">
+                    {userData.user?.user_metadata?.email_verified
+                      ? '✅ Yes'
+                      : '❌ No'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="font-medium text-blue-800">Last Sign In:</span>
-                  <span className="text-blue-700">{userData.user?.last_sign_in_at ? new Date(userData.user.last_sign_in_at).toLocaleString() : 'N/A'}</span>
+                  <span className="font-medium text-blue-800">
+                    Last Sign In:
+                  </span>
+                  <span className="text-blue-700">
+                    {userData.user?.last_sign_in_at
+                      ? new Date(userData.user.last_sign_in_at).toLocaleString()
+                      : 'N/A'}
+                  </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="font-medium text-blue-800">Created:</span>
-                  <span className="text-blue-700">{userData.user?.created_at ? new Date(userData.user.created_at).toLocaleString() : 'N/A'}</span>
+                  <span className="text-blue-700">
+                    {userData.user?.created_at
+                      ? new Date(userData.user.created_at).toLocaleString()
+                      : 'N/A'}
+                  </span>
                 </div>
               </div>
-              
+
               {/* Additional Metadata */}
               {userData.user?.user_metadata && (
                 <div className="mt-3 pt-3 border-t border-blue-200">
-                  <h5 className="font-medium text-blue-800 mb-2">Additional Metadata:</h5>
+                  <h5 className="font-medium text-blue-800 mb-2">
+                    Additional Metadata:
+                  </h5>
                   <div className="bg-white p-2 rounded border text-xs">
                     <pre className="whitespace-pre-wrap text-blue-700">
                       {JSON.stringify(userData.user.user_metadata, null, 2)}
