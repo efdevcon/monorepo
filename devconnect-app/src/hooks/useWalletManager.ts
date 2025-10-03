@@ -230,7 +230,7 @@ export function useWalletManager() {
         });
 
         const ensName = await publicClient.getEnsName({
-          address: address as `0x${string}`,
+          address: addressKey as `0x${string}`,
         });
 
         let ensAvatar: string | null = null;
@@ -354,7 +354,7 @@ export function useWalletManager() {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ address }),
+          body: JSON.stringify({ address: addressKey }), // Use lowercase address
         });
 
         if (!response.ok) {
@@ -391,11 +391,18 @@ export function useWalletManager() {
   );
 
   // Auto-fetch portfolio when address changes
+  // Only fetch if we don't already have data (prevents redundant fetches on wallet switch)
   useEffect(() => {
     if (address) {
-      fetchPortfolio();
+      const addressKey = address.toLowerCase();
+      // Only fetch if not already in memory or cache
+      if (portfolioMap[addressKey] === undefined) {
+        fetchPortfolio();
+      } else {
+        console.log(`⏭️ [WALLET_MANAGER] Skipping auto-fetch, portfolio already available for ${addressKey.slice(0, 10)}...`);
+      }
     }
-  }, [address, fetchPortfolio]);
+  }, [address, fetchPortfolio, portfolioMap]);
 
   // Debug logging for address changes
   useEffect(() => {
