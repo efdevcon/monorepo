@@ -19,6 +19,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     isConnected,
     address,
     isPara,
+    isDisconnecting,
     connectors,
     switchableConnectors,
     primaryConnector,
@@ -29,7 +30,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     isParaConnected,
     wagmiAccount,
     connections,
-    email
+    email,
   } = useUnifiedConnection();
 
   // Identity state for avatars
@@ -550,13 +551,23 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           <div className="flex gap-3">
             <button
               onClick={handleDisconnect}
-              className="flex-1 bg-red-50 border border-red-200 shadow-[0px_4px_0px_0px_#dc2626] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-red-100 transition-colors"
+              disabled={isDisconnecting}
+              className="flex-1 bg-red-50 border border-red-200 shadow-[0px_4px_0px_0px_#dc2626] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-red-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span className="text-red-700 text-sm font-bold">
-                {isPara && getTotalWalletCount() > 1
-                  ? 'Disconnect all'
-                  : 'Disconnect'}
-              </span>
+              {isDisconnecting ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin w-4 h-4 border-2 border-red-700 border-t-transparent rounded-full"></div>
+                  <span className="text-red-700 text-sm font-bold">
+                    Disconnecting...
+                  </span>
+                </div>
+              ) : (
+                <span className="text-red-700 text-sm font-bold">
+                  {isPara && getTotalWalletCount() > 1
+                    ? 'Disconnect all'
+                    : 'Disconnect'}
+                </span>
+              )}
             </button>
             {getTotalWalletCount() < 2 && (
               <button

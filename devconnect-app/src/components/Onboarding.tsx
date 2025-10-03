@@ -416,29 +416,29 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   // Show loading state for first 2 seconds
-  if (isInitialLoading) {
-    return (
-      <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+  // if (isInitialLoading) {
+  //   return (
+  //     <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
+  //       {/* Main border with shadow */}
+  //       <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
-        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-          {/* Loading spinner */}
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae] mb-4"></div>
+  //       <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+  //         {/* Loading spinner */}
+  //         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae] mb-4"></div>
 
-          {/* Loading text */}
-          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-            <div className="font-bold text-[#242436] text-[18px] tracking-[-0.1px] w-full">
-              Loading...
-            </div>
-            <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
-              Please wait while we prepare everything for you...
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  //         {/* Loading text */}
+  //         <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
+  //           <div className="font-bold text-[#242436] text-[18px] tracking-[-0.1px] w-full">
+  //             Loading...
+  //           </div>
+  //           <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
+  //             Please wait while we prepare everything for you...
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   // OTP verification screen for external wallet connection
   if (otpSent) {
