@@ -81,6 +81,14 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "1"
   },
+  "241638cdc415809d9909ea3bbcb6d327": {
+    "name": "Base",
+    "layerName": "base",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
+    "locationId": "4"
+  },
   "25d638cdc41580cca6f1f46af6e30c95": {
     "name": "Beam",
     "layerName": "beam",
@@ -97,13 +105,13 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc41580aba236df6244205ba3": {
-    "name": "Biomes / DUST",
-    "layerName": "biomes-dust",
+  "280638cdc41580c9869fc31f2895acfe": {
+    "name": "Boulder",
+    "layerName": "boulder",
     "logo": "",
     "description": "",
-    "districtId": "4",
-    "locationId": "3"
+    "districtId": "3",
+    "locationId": null
   },
   "25d638cdc415800ea54ddbc8fa7ac1f5": {
     "name": "Burner",
@@ -128,14 +136,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "1",
     "locationId": "1"
-  },
-  "241638cdc415809d9909ea3bbcb6d327": {
-    "name": "Coinbase",
-    "layerName": "coinbase",
-    "logo": "",
-    "description": "",
-    "districtId": "6",
-    "locationId": "4"
   },
   "254638cdc41580aa8942da33c92a78de": {
     "name": "CoW Swap",
@@ -495,14 +495,6 @@ export const supportersData: Record<string, Supporter> = {
     "logo": "",
     "description": "",
     "districtId": "7",
-    "locationId": "3"
-  },
-  "25d638cdc41580768f46cf523c3800c1": {
-    "name": "Realms",
-    "layerName": "realms",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
     "locationId": "3"
   },
   "25d638cdc41580c79339dfd968171fbc": {
