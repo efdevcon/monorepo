@@ -14,7 +14,7 @@ export const useFavorites = () => {
   const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
 
   const updateFavorite = (eventId: string) => {
-    if (!userData || true) {
+    if (!userData) {
       requireAuth(
         'You need to be authenticated to add events to your favorites.'
       );

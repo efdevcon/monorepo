@@ -15,10 +15,10 @@ export const RequiresAuthContent = ({
   onSkip?: () => void;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full gap-4 my-16">
-      <div className="bg-white p-5 shadow-xl max-w-md w-full mx-4 flex flex-col relative">
+    <div className="flex flex-col items-center justify-center h-full gap-4 my-16 mx-8">
+      <div className="bg-white p-5 shadow-xl max-w-md w-full mx-4 flex flex-col relative mx-8">
         <h2 className="text-lg font-bold mb-1">Authentication Required</h2>
-        <p className="mb-4 max-w-[70%]">{message}</p>
+        <p className="mb-4 max-w-[70%] z-1">{message}</p>
 
         <div className="flex gap-2 items-end">
           <Link href="/onboarding">
@@ -37,7 +37,7 @@ export const RequiresAuthContent = ({
         <Image
           src={Offline}
           alt="Offline"
-          className="w-[50%] sm:w-[30%] shrink-0 self-center mb-4 absolute bottom-0 right-4"
+          className="w-[40%] sm:w-[35%] shrink-0 self-center mb-4 absolute bottom-0 right-0 sm:right-4"
         />
       </div>
     </div>
