@@ -603,14 +603,12 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 <div className="flex items-center gap-2">
                   <div className="animate-spin w-4 h-4 border-2 border-red-700 border-t-transparent rounded-full"></div>
                   <span className="text-red-700 text-sm font-bold">
-                    Disconnecting...
+                    {isPara ? 'Logging out...' : 'Disconnecting...'}
                   </span>
                 </div>
               ) : (
                 <span className="text-red-700 text-sm font-bold">
-                  {isPara && getTotalWalletCount() > 1
-                    ? 'Disconnect all'
-                    : 'Disconnect'}
+                  {isPara ? 'Logout' : 'Disconnect wallet'}
                 </span>
               )}
             </button>

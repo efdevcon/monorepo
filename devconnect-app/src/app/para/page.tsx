@@ -30,7 +30,7 @@ export default function HomePage() {
   return (
     <>
       <ParaIntegration
-        address={address}
+        address={address || undefined}
         isPara={isPara}
         onConnect={() => {
           console.log('Para integration connected');

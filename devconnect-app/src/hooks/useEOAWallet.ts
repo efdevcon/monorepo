@@ -8,7 +8,7 @@ import {
   useConnectors,
   useSwitchChain,
 } from 'wagmi';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAppKit } from '@reown/appkit/react';
 import { appKit } from '@/config/appkit';
 
@@ -50,6 +50,22 @@ export function useEOAWalletConnection() {
   const chainId = isConnected ? wagmiAccount.chainId : null;
   const connectorId = isConnected ? wagmiAccount.connector?.id : null;
   const connectorName = isConnected ? wagmiAccount.connector?.name : null;
+
+  // Auto-switch to EOA when it connects
+  useEffect(() => {
+    if (isConnected && connectorId && typeof window !== 'undefined') {
+      const currentEOAConnector = localStorage.getItem(PRIMARY_EOA_CONNECTOR_KEY);
+
+      // Auto-switch to newly connected EOA if it's a different connector than the last one
+      // This means: always switch to a newly connected wallet
+      if (currentEOAConnector !== connectorId) {
+        console.log('🔄 [EOA] Auto-switching to newly connected EOA:', connectorName);
+        localStorage.setItem('devconnect_primary_wallet_type', 'eoa');
+        localStorage.setItem(PRIMARY_EOA_CONNECTOR_KEY, connectorId);
+        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: 'eoa' }));
+      }
+    }
+  }, [isConnected, connectorId, connectorName]);
 
   /**
    * Open AppKit modal to connect EOA wallet

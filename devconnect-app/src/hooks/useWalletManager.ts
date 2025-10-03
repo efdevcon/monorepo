@@ -1,22 +1,63 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParaWalletConnection } from './useParaWallet';
 import { useEOAWalletConnection } from './useEOAWallet';
+import { normalize } from 'viem/ens';
+import { mainnet } from 'viem/chains';
+import { createPublicClient, http } from 'viem';
 
 const PRIMARY_WALLET_TYPE_KEY = 'devconnect_primary_wallet_type';
 
 export type WalletType = 'para' | 'eoa' | null;
+
+interface WalletIdentity {
+  name: string | null;
+  avatar: string | null;
+}
+
+interface TokenBalance {
+  tokenAddress: string;
+  symbol: string;
+  balance: number;
+  balanceUSD: number;
+  imgUrlV2: string | null;
+  chainId: number;
+}
+
+interface RecentActivity {
+  transaction?: {
+    hash: string;
+    timestamp: number;
+    chainId: number;
+  };
+  interpretation?: {
+    processedDescription: string;
+    description?: string;
+  };
+}
+
+export interface PortfolioData {
+  totalValue: number;
+  tokenBalances: TokenBalance[];
+  recentActivity: RecentActivity[];
+}
 
 /**
  * Wallet Manager
  * Thin coordination layer between Para and EOA wallets
  * No synchronization - just simple switching logic
  */
+let hookInstanceCounter = 0;
+
 export function useWalletManager() {
+  const [hookId] = useState(() => ++hookInstanceCounter);
   const para = useParaWalletConnection();
   const eoa = useEOAWalletConnection();
   
+  // Track disconnecting state at manager level for better UI control
+  const [isDisconnecting, setIsDisconnecting] = useState(false);
+
   // Load primary wallet type from localStorage
   const [primaryType, setPrimaryTypeState] = useState<WalletType>(() => {
     if (typeof window !== 'undefined') {
@@ -25,6 +66,38 @@ export function useWalletManager() {
     }
     return null;
   });
+
+  // Listen for storage changes to sync across hook instances
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === PRIMARY_WALLET_TYPE_KEY) {
+        const newValue = e.newValue as WalletType;
+        console.log(`🔄 [WALLET_MANAGER #${hookId}] Storage change detected:`, {
+          oldValue: e.oldValue,
+          newValue,
+        });
+        setPrimaryTypeState(newValue);
+      }
+    };
+
+    // Also listen for custom events (for same-window updates)
+    const handleCustomEvent = (e: CustomEvent) => {
+      const newValue = e.detail as WalletType;
+      console.log(`🔄 [WALLET_MANAGER #${hookId}] Custom event received:`, {
+        newValue,
+        currentValue: primaryType,
+      });
+      setPrimaryTypeState(newValue);
+    };
+
+    window.addEventListener('storage', handleStorageChange as EventListener);
+    window.addEventListener('primaryWalletTypeChange', handleCustomEvent as EventListener);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange as EventListener);
+      window.removeEventListener('primaryWalletTypeChange', handleCustomEvent as EventListener);
+    };
+  }, [hookId, primaryType]);
 
   // Auto-detect primary wallet if not set
   useEffect(() => {
@@ -46,9 +119,15 @@ export function useWalletManager() {
       if (type) {
         localStorage.setItem(PRIMARY_WALLET_TYPE_KEY, type);
         console.log('✅ [WALLET_MANAGER] Set primary wallet type:', type);
+
+        // Dispatch custom event to notify other hook instances
+        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: type }));
       } else {
         localStorage.removeItem(PRIMARY_WALLET_TYPE_KEY);
         console.log('✅ [WALLET_MANAGER] Cleared primary wallet type');
+
+        // Dispatch custom event
+        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: null }));
       }
     }
     
@@ -70,6 +149,254 @@ export function useWalletManager() {
   const isPara = isParaActive;
   const chainId = isParaActive ? para.chainId : isEOAActive ? eoa.chainId : null;
 
+  // Debug: Log address computation
+  console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
+    address: address ? address.slice(0, 10) + '...' : null,
+    fullAddress: address,
+    isPara,
+    isParaActive,
+    isEOAActive,
+    paraAddress: para.address?.slice(0, 10) + '...',
+    eoaAddress: eoa.address?.slice(0, 10) + '...',
+  });
+
+  // ============================================
+  // Identity Resolution (ENS) - Store per address
+  // ============================================
+  const [identityMap, setIdentityMap] = useState<Record<string, WalletIdentity | null>>({});
+  const [identityLoading, setIdentityLoading] = useState(false);
+  const identityFetchingRef = useRef<Set<string>>(new Set());
+
+  // Get identity for current address (memoized to prevent unnecessary re-renders)
+  const identity = useMemo(() => {
+    const result = address ? identityMap[address.toLowerCase()] || null : null;
+    console.log(`🔍 [WALLET_MANAGER #${hookId}] Identity lookup:`, {
+      address: address ? address.slice(0, 10) + '...' : null,
+      hasIdentity: !!result,
+      identityName: result?.name,
+      identityMapKeys: Object.keys(identityMap).map(k => k.slice(0, 10) + '...'),
+    });
+    return result;
+  }, [address, identityMap, hookId]);
+
+  useEffect(() => {
+    if (!address) {
+      return;
+    }
+
+    const addressKey = address.toLowerCase();
+
+    // If we already have identity for this address, skip
+    if (identityMap[addressKey] !== undefined) {
+      return;
+    }
+
+    // If we're already fetching this address, skip
+    if (identityFetchingRef.current.has(addressKey)) {
+      return;
+    }
+
+    let isCancelled = false;
+
+    const resolveIdentity = async () => {
+      identityFetchingRef.current.add(addressKey);
+      setIdentityLoading(true);
+
+      try {
+        // Check cache first (1 hour TTL)
+        const cacheKey = `wallet_identity_${addressKey}`;
+        const cached = localStorage.getItem(cacheKey);
+
+        if (cached) {
+          try {
+            const parsedCache = JSON.parse(cached);
+            if (Date.now() - parsedCache.timestamp < 3600000) {
+              if (!isCancelled) {
+                setIdentityMap(prev => ({ ...prev, [addressKey]: parsedCache.identity }));
+                setIdentityLoading(false);
+                identityFetchingRef.current.delete(addressKey);
+              }
+              return;
+            }
+          } catch {
+            // Invalid cache, continue
+          }
+        }
+
+        // Resolve ENS on mainnet
+        const publicClient = createPublicClient({
+          chain: mainnet,
+          transport: http(),
+        });
+
+        const ensName = await publicClient.getEnsName({
+          address: address as `0x${string}`,
+        });
+
+        let ensAvatar: string | null = null;
+        if (ensName) {
+          try {
+            ensAvatar = await publicClient.getEnsAvatar({
+              name: normalize(ensName),
+            });
+          } catch (err) {
+            console.warn('Failed to resolve ENS avatar:', err);
+          }
+        }
+
+        const resolvedIdentity: WalletIdentity = {
+          name: ensName,
+          avatar: ensAvatar,
+        };
+
+        if (!isCancelled) {
+          setIdentityMap(prev => ({ ...prev, [addressKey]: resolvedIdentity }));
+
+          // Cache result
+          localStorage.setItem(
+            cacheKey,
+            JSON.stringify({
+              identity: resolvedIdentity,
+              timestamp: Date.now(),
+            })
+          );
+          setIdentityLoading(false);
+          identityFetchingRef.current.delete(addressKey);
+        }
+      } catch (err) {
+        console.error('Error resolving identity:', err);
+        if (!isCancelled) {
+          setIdentityMap(prev => ({ ...prev, [addressKey]: null }));
+          setIdentityLoading(false);
+          identityFetchingRef.current.delete(addressKey);
+        }
+      }
+    };
+
+    resolveIdentity();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [address, identityMap]);
+
+  // ============================================
+  // Portfolio Data - Store per address
+  // ============================================
+  const [portfolioMap, setPortfolioMap] = useState<Record<string, PortfolioData | null>>({});
+  const [portfolioLoading, setPortfolioLoading] = useState(false);
+  const [portfolioError, setPortfolioError] = useState<string | null>(null);
+  const portfolioFetchingRef = useRef<Set<string>>(new Set());
+
+  // Get portfolio for current address (memoized to prevent unnecessary re-renders)
+  const portfolio = useMemo(() => {
+    const result = address ? portfolioMap[address.toLowerCase()] || null : null;
+    console.log(`🔍 [WALLET_MANAGER #${hookId}] Portfolio lookup:`, {
+      address: address ? address.slice(0, 10) + '...' : null,
+      hasPortfolio: !!result,
+      totalValue: result?.totalValue,
+      portfolioMapKeys: Object.keys(portfolioMap).map(k => k.slice(0, 10) + '...'),
+    });
+    return result;
+  }, [address, portfolioMap, hookId]);
+
+  const fetchPortfolio = useCallback(
+    async (forceRefresh = false) => {
+      if (!address) {
+        return;
+      }
+
+      const addressKey = address.toLowerCase();
+
+      // If we're already fetching this address, skip
+      if (portfolioFetchingRef.current.has(addressKey)) {
+        console.log(`⏭️ [WALLET_MANAGER] Portfolio fetch already in progress for ${addressKey.slice(0, 10)}...`);
+        return;
+      }
+
+      // Skip if already in memory (unless forcing refresh)
+      if (!forceRefresh && portfolioMap[addressKey] !== undefined) {
+        console.log(`✅ [WALLET_MANAGER] Portfolio already in memory for ${addressKey.slice(0, 10)}...`);
+        return;
+      }
+
+      // Check localStorage cache first (5 minutes TTL)
+      if (!forceRefresh) {
+        const cacheKey = `portfolio_${addressKey}`;
+        const cached = localStorage.getItem(cacheKey);
+
+        if (cached) {
+          try {
+            const parsedCache = JSON.parse(cached);
+            if (Date.now() - parsedCache.timestamp < 300000) {
+              console.log(`📦 [WALLET_MANAGER] Using cached portfolio for ${addressKey.slice(0, 10)}...`);
+              setPortfolioMap(prev => ({ ...prev, [addressKey]: parsedCache.data }));
+              return; // Don't fetch from API
+            } else {
+              console.log(`⏰ [WALLET_MANAGER] Cache expired for ${addressKey.slice(0, 10)}...`);
+            }
+          } catch (err) {
+            console.warn('Invalid portfolio cache:', err);
+          }
+        }
+      }
+
+      // Only fetch from API if: no cache OR cache expired OR force refresh
+      portfolioFetchingRef.current.add(addressKey);
+      setPortfolioLoading(true);
+      setPortfolioError(null);
+
+      try {
+        console.log(`🌐 [WALLET_MANAGER] Fetching portfolio from API for ${addressKey.slice(0, 10)}...`, { forceRefresh });
+
+        const response = await fetch('/api/portfolio', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ address }),
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to fetch portfolio');
+        }
+
+        const data = await response.json();
+        setPortfolioMap(prev => ({ ...prev, [addressKey]: data }));
+
+        // Cache the result
+        const cacheKey = `portfolio_${addressKey}`;
+        localStorage.setItem(
+          cacheKey,
+          JSON.stringify({
+            data,
+            timestamp: Date.now(),
+          })
+        );
+
+        console.log(`✅ [WALLET_MANAGER] Portfolio fetched and cached for ${addressKey.slice(0, 10)}...`);
+      } catch (err) {
+        console.error('Error fetching portfolio:', err);
+        setPortfolioError(
+          err instanceof Error ? err.message : 'Failed to fetch portfolio'
+        );
+        setPortfolioMap(prev => ({ ...prev, [addressKey]: null }));
+      } finally {
+        setPortfolioLoading(false);
+        portfolioFetchingRef.current.delete(addressKey);
+      }
+    },
+    [address, portfolioMap]
+  );
+
+  // Auto-fetch portfolio when address changes
+  useEffect(() => {
+    if (address) {
+      fetchPortfolio();
+    }
+  }, [address, fetchPortfolio]);
+
   // Debug logging for address changes
   useEffect(() => {
     console.log('🔍 [WALLET_MANAGER] State update:', {
@@ -86,21 +413,64 @@ export function useWalletManager() {
 
   /**
    * Disconnect current active wallet
+   * Special behavior: When disconnecting Para, also disconnect all EOA wallets
    */
   const disconnect = async () => {
     console.log('🔌 [WALLET_MANAGER] Disconnecting active wallet:', primaryType);
     
+    // Determine if we should show disconnecting state (for visual feedback)
+    // Show when: Para is disconnecting OR EOA is disconnecting without Para (full logout scenarios)
+    const shouldShowDisconnectingState = isParaActive || (isEOAActive && !para.isConnected);
+
+    console.log('🔌 [WALLET_MANAGER] Should show disconnecting state:', {
+      shouldShowDisconnectingState,
+      isParaActive,
+      isEOAActive,
+      paraIsConnected: para.isConnected,
+      calculation: `${isParaActive} || (${isEOAActive} && !${para.isConnected})`
+    });
+
+    // Set disconnecting state at manager level for UI control
+    if (shouldShowDisconnectingState) {
+      setIsDisconnecting(true);
+    }
+
     try {
       if (isParaActive) {
-        await para.disconnect();
+        // When disconnecting Para, disconnect everything
+        console.log('🔌 [WALLET_MANAGER] Para is active, disconnecting all wallets');
+        await Promise.allSettled([
+          para.disconnect(),
+          eoa.isConnected ? eoa.disconnect() : Promise.resolve(),
+        ]);
+        // Clear primary type - full logout
+        setPrimaryType(null);
       } else if (isEOAActive) {
+        // When disconnecting EOA, only disconnect EOA
         await eoa.disconnect();
+
+        // If Para is still connected, switch to Para (acts like a wallet switch)
+        // Otherwise, clear primary type (full logout)
+        if (para.isConnected) {
+          console.log('🔄 [WALLET_MANAGER] Para still connected, switching to Para');
+          setPrimaryType('para');
+        } else {
+          console.log('🔌 [WALLET_MANAGER] No other wallets, clearing primary');
+          setPrimaryType(null);
+        }
       }
-      setPrimaryType(null);
+
+      // Add minimum delay to show disconnecting state for better UX
+      if (shouldShowDisconnectingState) {
+        await new Promise(resolve => setTimeout(resolve, 800));
+      }
+
       console.log('✅ [WALLET_MANAGER] Disconnect completed');
     } catch (error) {
       console.error('❌ [WALLET_MANAGER] Disconnect failed:', error);
       throw error;
+    } finally {
+      setIsDisconnecting(false);
     }
   };
 
@@ -160,8 +530,8 @@ export function useWalletManager() {
    * Get display name for current wallet
    */
   const getWalletDisplayName = () => {
-    if (isParaActive) return 'Para';
-    if (isEOAActive) return eoa.connectorName || 'Wallet';
+    if (isParaActive) return 'Embedded Wallet (Para)';
+    if (isEOAActive) return eoa.connectorName || 'External Wallet';
     return 'Not connected';
   };
 
@@ -172,10 +542,21 @@ export function useWalletManager() {
     isPara,
     chainId,
     primaryType,
+    isDisconnecting, // Manager-level disconnecting state (controlled for UI)
     
     // Wallet information
     walletDisplayName: getWalletDisplayName(),
     
+    // Identity (ENS)
+    identity,
+    identityLoading,
+
+    // Portfolio data
+    portfolio,
+    portfolioLoading,
+    portfolioError,
+    refreshPortfolio: () => fetchPortfolio(true),
+
     // Individual wallet states
     para,
     eoa,
@@ -188,7 +569,6 @@ export function useWalletManager() {
     setPrimaryType,
     
     // Status flags
-    isDisconnecting: para.isDisconnecting || eoa.isDisconnecting,
     hasMultipleWallets: para.isConnected && eoa.isConnected,
   };
 }

@@ -3,9 +3,8 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useWalletManager } from '@/hooks/useWalletManager';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
-import { useLocalStorage } from 'usehooks-ts';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
 import NetworkModal from '@/components/NetworkModal';
@@ -21,83 +20,94 @@ const imgGroup = '/images/imgGroup.svg';
 const imgGroup1 = '/images/imgGroup1.svg';
 const imgKeyboardArrowDown = '/images/imgKeyboardArrowDown.svg';
 
-// Types for portfolio data
-interface TokenBalance {
-  tokenAddress: string;
-  symbol: string;
-  balance: number;
-  balanceUSD: number;
-  imgUrlV2: string | null;
-  chainId: number;
-}
-
-interface RecentActivity {
-  transaction?: {
-    hash: string;
-    timestamp: number;
-    chainId: number;
-  };
-  interpretation?: {
-    processedDescription: string;
-    description?: string;
-  };
-}
-
-interface PortfolioData {
-  totalValue: number;
-  tokenBalances: TokenBalance[];
-  recentActivity: RecentActivity[];
-}
-
 export default function WalletTab() {
   const { open } = useAppKit();
   const router = useRouter();
-  const { address, isPara, isDisconnecting, para, eoa, chainId } =
-    useWalletManager();
+  const {
+    address,
+    isPara,
+    isDisconnecting,
+    para,
+    eoa,
+    chainId,
+    identity,
+    identityLoading,
+    portfolio,
+    portfolioLoading,
+    portfolioError,
+    isConnected,
+    refreshPortfolio,
+  } = useWalletManager();
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
 
-  // Debug: Track address changes
+  // Use manager-level isDisconnecting for consistent UI control
+  const shouldShowDisconnecting = isDisconnecting;
+
+  // Debug logging for disconnecting state
   useEffect(() => {
-    console.log('🏠 [WALLET_TAB] Address changed:', {
-      address,
-      isPara,
-      paraAddress: para.address,
-      eoaAddress: eoa.address,
-    });
-  }, [address, isPara, para.address, eoa.address]);
+    if (para.isDisconnecting || eoa.isDisconnecting) {
+      console.log('🔄 [WALLET_TAB] Disconnecting state:', {
+        shouldShowDisconnecting,
+        paraIsDisconnecting: para.isDisconnecting,
+        eoaIsDisconnecting: eoa.isDisconnecting,
+        paraIsConnected: para.isConnected,
+        eoaIsConnected: eoa.isConnected,
+        calculation: {
+          'para.isDisconnecting': para.isDisconnecting,
+          'eoa.isDisconnecting && !para.isConnected':
+            eoa.isDisconnecting && !para.isConnected,
+          result:
+            para.isDisconnecting || (eoa.isDisconnecting && !para.isConnected),
+        },
+      });
+    }
+  }, [
+    shouldShowDisconnecting,
+    para.isDisconnecting,
+    eoa.isDisconnecting,
+    para.isConnected,
+    eoa.isConnected,
+  ]);
 
-  // Calculate shouldShowDisconnecting based on wallet state
-  const shouldShowDisconnecting =
-    isDisconnecting && (isPara || !eoa.isConnected);
-
-  // Portfolio state
-  const [portfolioData, setPortfolioData] = useState<PortfolioData | null>(
-    null
-  );
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  // UI state
   const [activeTab, setActiveTab] = useState<'assets' | 'activity'>('assets');
   const [showAllActivity, setShowAllActivity] = useState(false);
   const [showAllAssets, setShowAllAssets] = useState(false);
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [isFetching, setIsFetching] = useState(false);
-  const lastLoadedAddress = useRef<string | null>(null);
-  const isFetchingRef = useRef(false);
-  const [identity, setIdentity] = useState<{
-    name: string | null;
-    avatar: string | null;
-  } | null>(null);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
 
-  // Local storage key based on address
-  const storageKey = address ? `portfolio_${address}` : null;
-  const [cachedPortfolioData, setCachedPortfolioData] =
-    useLocalStorage<PortfolioData | null>(
-      storageKey || 'portfolio_default',
-      null
-    );
+  // Debug logging - track if component is receiving props
+  console.log('🏠 [WALLET_TAB] Component render:', {
+    address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
+    fullAddress: address,
+    isPara,
+    hasIdentity: !!identity,
+    hasPortfolio: !!portfolio,
+    para,
+  });
+
+  // Debug logging for wallet state changes
+  useEffect(() => {
+    console.log('🏠 [WALLET_TAB] Wallet state update (useEffect):', {
+      address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
+      fullAddress: address,
+      isPara,
+      identity: identity
+        ? { name: identity.name, hasAvatar: !!identity.avatar }
+        : null,
+      portfolio: portfolio
+        ? {
+            totalValue: portfolio.totalValue,
+            assetsCount: portfolio.tokenBalances.length,
+            activityCount: portfolio.recentActivity.length,
+          }
+        : null,
+      portfolioLoading,
+      portfolioError,
+    });
+  }, [address, isPara, identity, portfolio, portfolioLoading, portfolioError]);
 
   const handleSendClick = () => {
     open({ view: 'WalletSend' });
@@ -138,117 +148,12 @@ export default function WalletTab() {
     setShowAllAssets(!showAllAssets);
   };
 
-  // Load identity from AppKit's local storage
-  const loadIdentity = () => {
-    if (!address) {
-      setIdentity(null);
-      return;
-    }
-
-    try {
-      const identityCache = localStorage.getItem('@appkit/identity_cache');
-      if (identityCache) {
-        const cache = JSON.parse(identityCache);
-        const addressData = cache[address];
-        if (addressData?.identity) {
-          setIdentity({
-            name: addressData.identity.name,
-            avatar: addressData.identity.avatar,
-          });
-        } else {
-          setIdentity(null);
-        }
-      } else {
-        setIdentity(null);
-      }
-    } catch (error) {
-      console.error('Error loading identity from cache:', error);
-      setIdentity(null);
-    }
-  };
-
-  // Fetch portfolio data
-  const fetchPortfolioData = useCallback(
-    async (forceRefresh = false) => {
-      const currentAddress = address;
-      if (!currentAddress) return;
-
-      // Prevent concurrent API calls
-      if (isFetchingRef.current) {
-        return;
-      }
-
-      // Prevent duplicate calls for the same address unless forcing refresh
-      if (lastLoadedAddress.current === currentAddress && !forceRefresh) {
-        return;
-      }
-
-      isFetchingRef.current = true;
-      setIsFetching(true);
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch('/api/portfolio', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ address: currentAddress }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to fetch portfolio data');
-        }
-
-        const data = await response.json();
-        setPortfolioData(data);
-        setCachedPortfolioData(data);
-        lastLoadedAddress.current = currentAddress;
-      } catch (err) {
-        console.error('Error fetching portfolio data:', err);
-        setError(
-          err instanceof Error ? err.message : 'Failed to fetch portfolio data'
-        );
-      } finally {
-        setIsLoading(false);
-        setIsFetching(false);
-        isFetchingRef.current = false;
-      }
-    },
-    [address]
-  );
-
   // Manual refresh function
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    await fetchPortfolioData(true);
+    await refreshPortfolio();
     setIsRefreshing(false);
   };
-
-  // Load portfolio data when address changes
-  useEffect(() => {
-    if (address) {
-      // Only fetch if we don't have cached data for this address
-      if (!cachedPortfolioData) {
-        fetchPortfolioData();
-      } else {
-        // Use cached data if available
-        setPortfolioData(cachedPortfolioData);
-        lastLoadedAddress.current = address;
-      }
-    } else {
-      // Clear portfolio data when no address
-      setPortfolioData(null);
-      lastLoadedAddress.current = null;
-    }
-  }, [address, cachedPortfolioData, fetchPortfolioData]);
-
-  // Load identity when address changes
-  useEffect(() => {
-    loadIdentity();
-  }, [address]);
 
   // Format USD value
   const formatUSD = (value: number) => {
@@ -292,7 +197,8 @@ export default function WalletTab() {
     return `${hash.slice(0, 6)}...${hash.slice(-4)}`;
   };
 
-  // Show disconnecting state if currently disconnecting and should show it
+  // Show disconnecting state FIRST (before checking address)
+  // This prevents showing "Connect Your Wallet" during disconnect
   if (shouldShowDisconnecting) {
     return (
       <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
@@ -309,7 +215,7 @@ export default function WalletTab() {
   }
 
   // Show login screen when not connected
-  if (!address) {
+  if (!para.isConnected) {
     return (
       <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
         <div className="text-center space-y-6">
@@ -340,7 +246,7 @@ export default function WalletTab() {
         {/* Profile Section */}
         <div className="space-y-4">
           {/* Profile Info */}
-          <div className="space-y-1 text-center">
+          <div className="space-y-1 text-center" key={address || 'no-address'}>
             <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px] relative">
               {/* Network Status - positioned on the left */}
               <div className="absolute left-0 flex items-center gap-1 px-2 py-1 rounded">
@@ -400,22 +306,22 @@ export default function WalletTab() {
             </div>
             <div className="flex items-center justify-center gap-3">
               <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
-                {isLoading ? (
+                {portfolioLoading ? (
                   <div className="animate-pulse bg-gray-200 h-9 w-32 rounded"></div>
-                ) : portfolioData ? (
-                  formatUSD(portfolioData.totalValue)
+                ) : portfolio ? (
+                  formatUSD(portfolio.totalValue)
                 ) : (
                   '$0.00'
                 )}
               </span>
               <button
                 onClick={handleRefresh}
-                disabled={isRefreshing || isFetching || !address}
+                disabled={isRefreshing || portfolioLoading || !address}
                 className="p-2 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 title="Refresh portfolio data"
               >
                 <svg
-                  className={`w-5 h-5 text-[#36364c] ${isRefreshing || isFetching ? 'animate-spin' : ''}`}
+                  className={`w-5 h-5 text-[#36364c] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -573,7 +479,7 @@ export default function WalletTab() {
                 </h3>
 
                 <div className="space-y-4">
-                  {isLoading ? (
+                  {portfolioLoading ? (
                     // Loading skeleton
                     <>
                       {[1, 2, 3].map((i) => (
@@ -589,7 +495,7 @@ export default function WalletTab() {
                         </div>
                       ))}
                     </>
-                  ) : error ? (
+                  ) : portfolioError ? (
                     <div className="text-center py-4">
                       <p className="text-red-500 text-sm">
                         Failed to load assets
@@ -601,13 +507,12 @@ export default function WalletTab() {
                         Retry
                       </button>
                     </div>
-                  ) : portfolioData &&
-                    portfolioData.tokenBalances.length > 0 ? (
+                  ) : portfolio && portfolio.tokenBalances.length > 0 ? (
                     // Dynamic assets from portfolio data
-                    portfolioData.tokenBalances
+                    portfolio.tokenBalances
                       .slice(
                         0,
-                        showAllAssets ? portfolioData.tokenBalances.length : 3
+                        showAllAssets ? portfolio.tokenBalances.length : 3
                       )
                       .map((token, index) => (
                         <div
@@ -661,7 +566,7 @@ export default function WalletTab() {
                 </div>
 
                 {/* View More Assets Button */}
-                {portfolioData && portfolioData.tokenBalances.length > 3 && (
+                {portfolio && portfolio.tokenBalances.length > 3 && (
                   <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
                     <button
                       onClick={handleViewMoreAssets}
@@ -679,7 +584,7 @@ export default function WalletTab() {
                 </h3>
 
                 <div className="space-y-3">
-                  {isLoading ? (
+                  {portfolioLoading ? (
                     // Loading skeleton for activity
                     <>
                       {[1, 2, 3, 4].map((i) => (
@@ -692,7 +597,7 @@ export default function WalletTab() {
                         </div>
                       ))}
                     </>
-                  ) : error ? (
+                  ) : portfolioError ? (
                     <div className="text-center py-4">
                       <p className="text-red-500 text-sm">
                         Failed to load activity
@@ -704,17 +609,17 @@ export default function WalletTab() {
                         Retry
                       </button>
                     </div>
-                  ) : portfolioData &&
-                    portfolioData.recentActivity.filter(
+                  ) : portfolio &&
+                    portfolio.recentActivity.filter(
                       (activity) => activity.transaction?.hash
                     ).length > 0 ? (
                     // Dynamic activity from portfolio data
-                    portfolioData.recentActivity
+                    portfolio.recentActivity
                       .filter((activity) => activity.transaction?.hash) // Only show activities with hash
                       .slice(
                         0,
                         showAllActivity
-                          ? portfolioData.recentActivity.filter(
+                          ? portfolio.recentActivity.filter(
                               (activity) => activity.transaction?.hash
                             ).length
                           : 3
@@ -797,8 +702,8 @@ export default function WalletTab() {
                 </div>
 
                 {/* View More Activity Button */}
-                {portfolioData &&
-                  portfolioData.recentActivity.filter(
+                {portfolio &&
+                  portfolio.recentActivity.filter(
                     (activity) => activity.transaction?.hash
                   ).length > 3 && (
                     <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">

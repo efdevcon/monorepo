@@ -26,12 +26,16 @@ export function useParaWalletConnection() {
   const address = paraWallet?.data?.address || null;
   const walletId = paraWallet?.data?.id || null;
 
-  // Save primary state when Para connects
+  // Auto-switch to Para when it connects (if no other wallet was primary)
   useEffect(() => {
     if (isConnected && typeof window !== 'undefined') {
-      const isPrimary = localStorage.getItem(PRIMARY_PARA_KEY);
-      if (isPrimary === 'true') {
-        console.log('✅ [PARA] Para wallet is primary');
+      const currentPrimary = localStorage.getItem('devconnect_primary_wallet_type');
+
+      // If no primary wallet is set, automatically make Para primary
+      if (!currentPrimary) {
+        console.log('🔄 [PARA] Auto-switching to Para (no primary wallet set)');
+        localStorage.setItem('devconnect_primary_wallet_type', 'para');
+        window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: 'para' }));
       }
     }
   }, [isConnected]);
