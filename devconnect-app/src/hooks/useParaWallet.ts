@@ -25,6 +25,7 @@ export function useParaWalletConnection() {
   const isConnected = paraAccount?.isConnected && !!paraWallet?.data?.address;
   const address = paraWallet?.data?.address || null;
   const walletId = paraWallet?.data?.id || null;
+  const email = (paraAccount as any)?.embedded?.email || null;
 
   // Auto-switch to Para when it connects (if no other wallet was primary)
   useEffect(() => {
@@ -115,6 +116,7 @@ export function useParaWalletConnection() {
     // Para-specific info
     chainId: 8453, // Para is always on Base
     chainName: 'Base',
+    email, // Para user email (from embedded wallet)
     
     // Actions
     disconnect,

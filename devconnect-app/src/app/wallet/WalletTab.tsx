@@ -37,6 +37,10 @@ export default function WalletTab() {
     portfolioError,
     isConnected,
     refreshPortfolio,
+    email,
+    paraEmail,
+    supabaseEmail,
+    isAuthenticated,
   } = useWalletManager();
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
@@ -85,6 +89,10 @@ export default function WalletTab() {
     isPara,
     hasIdentity: !!identity,
     hasPortfolio: !!portfolio,
+    email,
+    paraEmail,
+    supabaseEmail,
+    isAuthenticated,
     para,
   });
 
@@ -215,7 +223,7 @@ export default function WalletTab() {
   }
 
   // Show login screen when not connected
-  if (!para.isConnected) {
+  if (!para.isConnected && !eoa.isConnected) {
     return (
       <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
         <div className="text-center space-y-6">
@@ -304,6 +312,34 @@ export default function WalletTab() {
                 />
               </button>
             </div>
+
+            {/* Email Display */}
+            {email && (
+              <div className="flex items-center justify-center gap-2 text-sm">
+                <svg
+                  className="w-4 h-4 text-[#36364c]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+                <span className="text-[#36364c] text-sm font-normal">
+                  {email}
+                </span>
+                {paraEmail && supabaseEmail && (
+                  <span className="text-[#8b8b99] text-xs">
+                    ({isPara ? 'Para' : 'Supabase'})
+                  </span>
+                )}
+              </div>
+            )}
+
             <div className="flex items-center justify-center gap-3">
               <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
                 {portfolioLoading ? (

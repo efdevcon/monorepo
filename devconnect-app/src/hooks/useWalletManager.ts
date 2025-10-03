@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParaWalletConnection } from './useParaWallet';
 import { useEOAWalletConnection } from './useEOAWallet';
+import { useUser } from './useUser';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
 import { createPublicClient, http } from 'viem';
@@ -54,6 +55,7 @@ export function useWalletManager() {
   const [hookId] = useState(() => ++hookInstanceCounter);
   const para = useParaWalletConnection();
   const eoa = useEOAWalletConnection();
+  const { user: supabaseUser, loading: supabaseLoading, hasInitialized: supabaseInitialized, ...userMethods } = useUser();
   
   // Track disconnecting state at manager level for better UI control
   const [isDisconnecting, setIsDisconnecting] = useState(false);
@@ -148,6 +150,11 @@ export function useWalletManager() {
   const address = isParaActive ? para.address : isEOAActive ? eoa.address : null;
   const isPara = isParaActive;
   const chainId = isParaActive ? para.chainId : isEOAActive ? eoa.chainId : null;
+
+  // Unified authentication state
+  const paraEmail = para.email;
+  const supabaseEmail = supabaseUser?.email || null;
+  const email = supabaseEmail || paraEmail; // Prioritize Supabase email, fallback to Para
 
   // Debug: Log address computation
   console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
@@ -564,6 +571,15 @@ export function useWalletManager() {
     portfolioError,
     refreshPortfolio: () => fetchPortfolio(true),
 
+    // Authentication state (unified)
+    email, // Unified email (Supabase or Para)
+    paraEmail, // Para-specific email
+    supabaseEmail, // Supabase-specific email
+    supabaseUser, // Full Supabase user object
+    supabaseLoading,
+    supabaseInitialized,
+    isAuthenticated: !!email, // Helper flag for authenticated state
+
     // Individual wallet states
     para,
     eoa,
@@ -575,6 +591,9 @@ export function useWalletManager() {
     switchNetwork,
     setPrimaryType,
     
+    // Supabase auth actions
+    ...userMethods, // sendOtp, verifyOtp, signOut, supabase
+
     // Status flags
     hasMultipleWallets: para.isConnected && eoa.isConnected,
   };

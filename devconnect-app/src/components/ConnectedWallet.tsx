@@ -103,6 +103,10 @@ export default function ConnectedWallet() {
     eoa,
     primaryType,
     switchWallet,
+    email, // Unified email (Supabase or Para)
+    paraEmail, // Para-specific email
+    supabaseEmail, // Supabase-specific email
+    isAuthenticated,
   } = useWalletManager();
 
   // For compatibility with existing code
@@ -117,9 +121,6 @@ export default function ConnectedWallet() {
     ? { id: 'para', name: 'Para', ...para.paraAccount }
     : eoa.wagmiAccount.connector;
   const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
-  const paraEmail = (paraAccount as any)?.email || null;
-  const email = paraEmail;
-  const supabaseEmail = null; // TODO: Get from user hook if needed
 
   // Simplified functions
   const handleSwitchAccount = async (connector: any) => {
