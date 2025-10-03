@@ -270,11 +270,11 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   };
 
   return (
-    <div 
+    <div
       className="fixed inset-0 bg-black/33 flex items-end justify-center z-[999999]"
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white w-full max-w-[393px] rounded-t-lg shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
@@ -288,8 +288,18 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -299,10 +309,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           {/* Unified Wallets Grid */}
           <div className="grid grid-cols-2 gap-4 mb-10">
             {(() => {
-
               // Create a unified list of all wallets (current + switchable)
               const allWallets = [];
-              
+
               // Add current wallet if connected
               if (isConnected && address && primaryConnector) {
                 allWallets.push({
@@ -310,7 +319,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   name: primaryConnector.name,
                   address: address,
                   isCurrent: true,
-                  connector: primaryConnector
+                  connector: primaryConnector,
                 });
               }
 
@@ -319,29 +328,34 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 // Filter out duplicates by address, keeping only unique addresses
                 const seenAddresses = new Set<string>();
                 if (address) seenAddresses.add(address.toLowerCase()); // Exclude current address
-                
-                const uniqueConnectors = switchableConnectors.filter((connector: any) => {
-                  const connectorAddress = getConnectorAddress(connector);
-                  if (connectorAddress && typeof connectorAddress === 'string') {
-                    if (seenAddresses.has(connectorAddress.toLowerCase())) {
-                      return false; // Skip this connector as we've already seen this address
-                    }
-                    seenAddresses.add(connectorAddress.toLowerCase());
-                    return true;
-                  } else {
-                    // If no address, keep the connector (fallback to connector id filtering)
-                    return true;
-                  }
-                });
 
-                uniqueConnectors.forEach(connector => {
+                const uniqueConnectors = switchableConnectors.filter(
+                  (connector: any) => {
+                    const connectorAddress = getConnectorAddress(connector);
+                    if (
+                      connectorAddress &&
+                      typeof connectorAddress === 'string'
+                    ) {
+                      if (seenAddresses.has(connectorAddress.toLowerCase())) {
+                        return false; // Skip this connector as we've already seen this address
+                      }
+                      seenAddresses.add(connectorAddress.toLowerCase());
+                      return true;
+                    } else {
+                      // If no address, keep the connector (fallback to connector id filtering)
+                      return true;
+                    }
+                  }
+                );
+
+                uniqueConnectors.forEach((connector) => {
                   const connectorAddress = getConnectorAddress(connector);
                   allWallets.push({
                     id: connector.id,
                     name: connector.name,
                     address: connectorAddress,
                     isCurrent: false,
-                    connector: connector
+                    connector: connector,
                   });
                 });
               }
@@ -350,48 +364,68 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
               const displayWallets = allWallets.slice(0, 2);
 
               return displayWallets.map((wallet: any, index: number) => (
-                <div 
+                <div
                   key={wallet.id}
                   className="flex flex-col items-center gap-3 cursor-pointer"
-                  onClick={() => !wallet.isCurrent && handleSwitchToWallet(wallet.connector)}
+                  onClick={() =>
+                    !wallet.isCurrent && handleSwitchToWallet(wallet.connector)
+                  }
                 >
                   <div className="relative">
-                    <div className={`w-20 h-20 rounded-lg flex items-center justify-center transition-colors ${
-                      wallet.isCurrent ? 'bg-green-100 border-2 border-green-500' : 'bg-gray-200 hover:bg-gray-300'
-                    }`}>
-                        {(() => {
-                          // Prioritize identity avatar first
-                          if (wallet.address && identities[wallet.address]?.avatar) {
-                            return (
-                              <img
-                                src={identities[wallet.address].avatar!}
-                                alt="avatar"
-                                className="w-16 h-16 rounded-lg object-cover"
-                              />
-                            );
-                          }
-                          
-                          // Fallback to connector icon
-                          const connectorIcon = wallet.connector?.icon || 
-                                              wallet.connector?.connector?.icon || 
-                                              wallet.connector?.provider?.icon ||
-                                              '/images/icons/injected.png'
-                          
-                          if (connectorIcon) {
-                            return (
-                              <img
-                                src={connectorIcon}
-                                alt={wallet.name}
-                                className="w-16 h-16 rounded-lg object-cover"
-                              />
-                            );
-                          }
-                        
+                    <div
+                      className={`w-20 h-20 rounded-lg flex items-center justify-center transition-colors ${
+                        wallet.isCurrent
+                          ? 'bg-green-100 border-2 border-green-500'
+                          : 'bg-gray-200 hover:bg-gray-300'
+                      }`}
+                    >
+                      {(() => {
+                        // Prioritize identity avatar first
+                        if (
+                          wallet.address &&
+                          identities[wallet.address]?.avatar
+                        ) {
+                          return (
+                            <img
+                              src={identities[wallet.address].avatar!}
+                              alt="avatar"
+                              className="w-16 h-16 rounded-lg object-cover"
+                            />
+                          );
+                        }
+
+                        // Fallback to connector icon
+                        const connectorIcon =
+                          wallet.connector?.icon ||
+                          wallet.connector?.connector?.icon ||
+                          wallet.connector?.provider?.icon ||
+                          '/images/icons/injected.png';
+
+                        if (connectorIcon) {
+                          return (
+                            <img
+                              src={connectorIcon}
+                              alt={wallet.name}
+                              className="w-16 h-16 rounded-lg object-cover"
+                            />
+                          );
+                        }
+
                         // Final fallback to browser icon
                         return (
                           <div className="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center">
-                            <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                            <svg
+                              className="w-8 h-8 text-gray-400"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                              />
                             </svg>
                           </div>
                         );
@@ -399,33 +433,44 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     </div>
                     {wallet.isCurrent && (
                       <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
-                        <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                        <svg
+                          className="w-3 h-3 text-white"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clipRule="evenodd"
+                          />
                         </svg>
                       </div>
                     )}
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-[#242436] tracking-[0.1px]">
-                      {wallet.address && identities[wallet.address]?.name 
-                        ? identities[wallet.address].name 
-                        : wallet.id==='para' ? email : wallet.address 
-                        ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
-                        : 'No address'}
+                      {wallet.address && identities[wallet.address]?.name
+                        ? identities[wallet.address].name
+                        : wallet.id === 'para'
+                          ? email
+                          : wallet.address
+                            ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
+                            : 'No address'}
                     </div>
                     <div className="text-sm text-[#4b4b66]">
-                      {wallet.address 
+                      {wallet.address
                         ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
                         : 'No address'}
                     </div>
                     <div className="text-xs text-[#4b4b66] flex justify-center items-center gap-1">
                       {/* Wallet icon next to type indicator */}
                       {(() => {
-                        const connectorIcon = wallet.connector?.icon || 
-                                            wallet.connector?.connector?.icon || 
-                                            wallet.connector?.provider?.icon ||
-                                            '/images/icons/injected.png'
-                        
+                        const connectorIcon =
+                          wallet.connector?.icon ||
+                          wallet.connector?.connector?.icon ||
+                          wallet.connector?.provider?.icon ||
+                          '/images/icons/injected.png';
+
                         if (connectorIcon) {
                           return (
                             <img
@@ -435,11 +480,21 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                             />
                           );
                         }
-                        
+
                         // Fallback to browser icon for small display
                         return (
-                          <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9" />
+                          <svg
+                            className="w-3 h-3 text-gray-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
+                            />
                           </svg>
                         );
                       })()}
@@ -464,12 +519,22 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
             {/* Add Wallet Slot - only show if less than 2 wallets */}
             {getTotalWalletCount() < 2 && (
               <div className="flex flex-col items-center gap-3">
-                <div 
+                <div
                   className="w-20 h-20 rounded-lg bg-[#f0f0f4] border-2 border-dashed border-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-100 transition-colors"
                   onClick={handleAddWallet}
                 >
-                  <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  <svg
+                    className="w-8 h-8 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
                   </svg>
                 </div>
                 <div className="text-center">
@@ -488,7 +553,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
               className="flex-1 bg-red-50 border border-red-200 shadow-[0px_4px_0px_0px_#dc2626] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-red-100 transition-colors"
             >
               <span className="text-red-700 text-sm font-bold">
-                Disconnect
+                {isPara && getTotalWalletCount() > 1
+                  ? 'Disconnect all'
+                  : 'Disconnect'}
               </span>
             </button>
             {getTotalWalletCount() < 2 && (
@@ -496,9 +563,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                 onClick={handleAddWallet}
                 className="flex-1 bg-[#1b6fae] border border-white shadow-[0px_4px_0px_0px_#125181] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-[#1a5f9a] transition-colors"
               >
-                <span className="text-white text-sm font-bold">
-                  Add Wallet
-                </span>
+                <span className="text-white text-sm font-bold">Add Wallet</span>
               </button>
             )}
           </div>
