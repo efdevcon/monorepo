@@ -35,17 +35,17 @@ export default function HomePageContent({
 }: {
   atprotoEvents: any[];
 }) {
-  const router = useRouter();
-  const { address } = useUnifiedConnection();
+  // const router = useRouter();
+  // const { address } = useUnifiedConnection();
 
-  useEffect(() => {
-    const isSkipped = localStorage.getItem('loginIsSkipped');
+  // useEffect(() => {
+  //   const isSkipped = localStorage.getItem('loginIsSkipped');
 
-    if (!isSkipped && address) {
-      console.log('🔄 [HOME] Redirecting to onboarding');
-      router.push('/onboarding');
-    }
-  }, [router, address]);
+  //   if (!isSkipped && address) {
+  //     console.log('🔄 [HOME] Redirecting to onboarding');
+  //     router.push('/onboarding');
+  //   }
+  // }, [router, address]);
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>

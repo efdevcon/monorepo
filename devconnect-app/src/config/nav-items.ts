@@ -28,7 +28,6 @@ export const NAV_ITEMS: NavItem[] = [
     icon: ProgrammeIcon,
     backgroundColor: 'rgba(255, 133, 166, 0.15)',
     isActive: (pathname) => {
-      console.log('pathname', pathname);
       return (
         pathname === '/' ||
         pathname.split('/').pop() === 'schedule' ||

@@ -30,17 +30,17 @@ export default function HomePage() {
     }
   }, [isConnected, address, isPara]);
 
-  useEffect(() => {
-    console.log('🔄 [ONBOARDING] Connection status:', address);
-    if (
-      typeof window !== 'undefined' &&
-      window.location.pathname === '/onboarding' &&
-      address
-    ) {
-      console.log('🔄 [ONBOARDING] Redirecting to wallet');
-      router.push('/wallet');
-    }
-  }, [address]);
+  // useEffect(() => {
+  //   console.log('🔄 [ONBOARDING] Connection status:', address);
+  //   if (
+  //     typeof window !== 'undefined' &&
+  //     window.location.pathname === '/onboarding' &&
+  //     address
+  //   ) {
+  //     console.log('🔄 [ONBOARDING] Redirecting to wallet');
+  //     router.push('/wallet');
+  //   }
+  // }, [address]);
 
   return (
     <>

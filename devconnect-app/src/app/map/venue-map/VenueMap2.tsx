@@ -22,6 +22,7 @@ import css from './map.module.scss';
 import { X } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { getViewportPosition } from './utils/svgToLookup';
+import FlexibleDrawer from 'lib/components/flexible-drawer';
 
 const MapPane = (props: {
   selection: string | null;
@@ -39,23 +40,17 @@ const MapPane = (props: {
     window.location.href = '/quests/app-showcase#14';
   };
 
+  const paneOpen = !!selection;
+
   return (
-    <div
-      className={cn(
-        'absolute z-[1] bottom-0 left-0 right-0 transition-all duration-300 translate-y-[100%] opacity-0',
-        selection && '!translate-y-[0%] opacity-100',
-        css['map']
-      )}
-      // Don't let the click/touch events bubble up to the panzoom container
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      onTouchEnd={(e) => {
-        e.stopPropagation();
-      }}
+    <FlexibleDrawer
+      open={paneOpen}
+      onOpenChange={() => setCurrentFilters(initialFilters)}
+      className="bg-gradient-to-t from-[#F6B40E] to-[#AAA7FF] bg-white/70 bg-blend-normal"
+      hideHandle={true}
     >
       <SupporterInfo onClose={handleClose} onBack={handleBack} />
-    </div>
+    </FlexibleDrawer>
   );
 };
 
