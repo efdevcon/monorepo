@@ -12,7 +12,7 @@ import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
 import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
 import RipioOnrampButton from '@/components/RipioOnrampButton';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAccount, useConnect, useSwitchAccount } from 'wagmi';
 import { appKit } from '@/config/appkit';
 import { useConnectorClient } from 'wagmi';
@@ -23,6 +23,7 @@ import PortfolioModal from './PortfolioModal';
 import NetworkSwitcher from './NetworkSwitcher';
 import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
 import { ZupassProvider } from '@/context/ZupassProvider';
+import { useRouter, usePathname } from 'next/navigation';
 
 // Toast utility functions to reduce overload and improve UX
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
@@ -90,7 +91,8 @@ export default function ConnectedWallet() {
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
-
+  const router = useRouter();
+  const pathname = usePathname();
   // Unified connection hook for Para SDK integration
   const {
     isConnected,
@@ -508,6 +510,36 @@ export default function ConnectedWallet() {
       showErrorToast('❌ SIWE Error', 'An unexpected error occurred');
     }
   };
+
+  // Redirect to home page after 2 seconds when on onboarding page
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.location.pathname === '/onboarding'
+    ) {
+      const timer = setTimeout(() => {
+        console.log('🔄 [ONBOARDING] Redirecting to home page after 2 seconds');
+        router.push('/');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [router]);
+
+  // Show loading state for onboarding page
+  if (pathname === '/onboarding') {
+    return (
+      <div className="bg-white p-4 space-y-4 rounded-lg">
+        <div className="flex flex-col items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-lg font-medium text-gray-700">Loading...</p>
+          <p className="text-sm text-gray-500">
+            Setting up your wallet connection
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white p-4 space-y-4 rounded-lg">
