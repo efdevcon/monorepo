@@ -23,5 +23,11 @@
     "build:devcon-api": "pnpm --filter devcon-api build",
     "start:devcon-api": "pnpm --filter devcon-api start"
   },
-  "packageManager": "pnpm@10.13.1"
+  "packageManager": "pnpm@10.13.1",
+  "pnpm": {
+    "overrides": {
+      "devconnect>@reown/appkit": "1.7.17",
+      "devconnect>@reown/appkit-adapter-wagmi": "1.7.17"
+    }
+  }
 }
