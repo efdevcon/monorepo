@@ -11,7 +11,7 @@ import { toast } from 'sonner';
 // import { useUserAppData } from '@/hooks/useUserAppData';
 // import { ensureUserData } from '@/app/store.hooks';
 import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
-import { useGlobalStore } from '@/app/store';
+import { useGlobalStore } from '@/app/store.provider';
 
 interface Ticket {
   secret: string;
@@ -30,7 +30,7 @@ interface Order {
 
 export default function TicketTab() {
   const additionalTicketEmails = useAdditionalTicketEmails();
-  const { setUserData } = useGlobalStore();
+  const setUserData = useGlobalStore((state) => state.setUserData);
   const { para } = useWalletManager();
   const email = (para.paraAccount as any)?.email || null;
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);

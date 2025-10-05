@@ -1,5 +1,5 @@
 import React from 'react';
-import { useGlobalStore } from '@/app/store';
+import { useGlobalStore } from '@/app/store.provider';
 import { RequiresAuthContent } from '@/components/RequiresAuth';
 import { useShallow } from 'zustand/react/shallow';
 

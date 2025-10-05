@@ -6,6 +6,8 @@ import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
+import { GlobalStoreProvider } from '@/app/store.provider';
+import { getAtprotoEvents } from '@/utils/atproto-events';
 
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
@@ -99,6 +101,8 @@ export default async function RootLayout({
   // Check if Supabase is configured
   // const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+  const atprotoEvents = await getAtprotoEvents();
+
   return (
     <html lang="en">
       <head>
@@ -164,7 +168,9 @@ export default async function RootLayout({
       >
         <PWAProvider>
           <WalletsProviders>
-            {children}
+            <GlobalStoreProvider events={atprotoEvents}>
+              {children}
+            </GlobalStoreProvider>
             <NewDeployment />
           </WalletsProviders>
         </PWAProvider>

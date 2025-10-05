@@ -8,7 +8,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
 import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
-import { useGlobalStore } from '@/app/store';
+import { useGlobalStore } from '@/app/store.provider';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import { homeTabs } from '../page-content';
 import PageLayout from '@/components/PageLayout';
@@ -38,9 +38,8 @@ const TicketWrapper = () => {
 
 const TicketTab = RequiresAuthHOC(() => {
   const additionalTicketEmails = useAdditionalTicketEmails();
-  const { setUserData } = useGlobalStore();
-  const { email } = useWalletManager();
-  //   const email = (para.paraAccount as any)?.email || null;
+  const setUserData = useGlobalStore((state) => state.setUserData);
+  const email = useGlobalStore((state) => state.userData?.email);
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);
   const [ticketError, setTicketError] = useState<string | null>(null);

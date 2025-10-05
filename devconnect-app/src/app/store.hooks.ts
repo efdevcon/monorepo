@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useGlobalStore, AppState } from './store';
+import { useGlobalStore } from './store.provider';
 import { useShallow } from 'zustand/react/shallow';
 import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
 import { requireAuth } from '@/components/RequiresAuth';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { AppState } from './store';
+// import { useWalletManager } from '@/hooks/useWalletManager';
 
 export const useFavorites = () => {
   const userData = useGlobalStore(useShallow((state) => state.userData));
@@ -51,6 +52,11 @@ export const useAdditionalTicketEmails = () => {
   return additionalTicketEmails || [];
 };
 
+export const useEvents = () => {
+  const events = useGlobalStore((state) => state.events);
+  return events || [];
+};
+
 export const ensureUserData = async (
   setUserData: (userData: AppState['userData']) => void
 ) => {
@@ -66,7 +72,7 @@ export const ensureUserData = async (
 
 // Hook to ensure user data is loaded from supabase whenever connection status changes
 export const useEnsureUserData = (isConnected: boolean) => {
-  const { setUserData } = useGlobalStore();
+  const setUserData = useGlobalStore((state) => state.setUserData);
 
   useEffect(() => {
     if (isConnected) {
