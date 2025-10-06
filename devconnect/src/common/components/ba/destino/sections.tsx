@@ -602,7 +602,10 @@ export const ExtraSectionAddedLater = ({ content }: { content: any }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white leading-relaxed text-center text-sm">
               {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
                 return (
-                  <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
+                  <div
+                    className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg"
+                    key={item.title}
+                  >
                     <div className="flex flex-col items-center justify-center gap-1">
                       <span className="text-[#eca159] font-medium text-lg">{item.title}</span>
                       {item.description}
