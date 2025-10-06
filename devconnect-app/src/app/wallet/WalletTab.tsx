@@ -32,7 +32,8 @@ export default function WalletTab() {
     chainId,
     identity,
     identityLoading,
-    portfolio,
+    portfolio, // Current address's portfolio
+    portfolioCache, // All cached portfolios by address (e.g., portfolioCache[address])
     portfolioLoading,
     portfolioError,
     isConnected,
