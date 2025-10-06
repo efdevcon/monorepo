@@ -10,7 +10,7 @@ import { toast } from 'sonner';
 import { useAdditionalTicketEmails, ensureUserData } from '@/app/store.hooks';
 import { useGlobalStore } from '@/app/store.provider';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
-import { homeTabs } from '../page-content';
+import { homeTabs } from '../page';
 import PageLayout from '@/components/PageLayout';
 
 interface Ticket {

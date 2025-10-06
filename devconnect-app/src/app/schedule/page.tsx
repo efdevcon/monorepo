@@ -1,6 +1,6 @@
 'use client';
 import PageLayout from '@/components/PageLayout';
-import { homeTabs } from '../page-content';
+import { homeTabs } from '../page';
 import cn from 'classnames';
 import css from './schedule.module.scss';
 import { useFavorites, useEvents } from '@/app/store.hooks';
