@@ -210,40 +210,40 @@ const perks: Perk[] = [
     ],
     global_coupon: 'DEVCONVAN10',
   },
-  // {
-  //   coupon_collection: 'tripsha-hotels',
-  //   name: 'Tripsha Hotels',
-  //   requires: 'Devconnect ARG ticket',
-  //   description: 'Stay at Hotels with other Attendees, Save $$!',
-  //   issuer: 'Tripsha',
-  //   image: TripshaImage,
-  //   instructions: 'Book your hotel here',
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   external: true,
-  //   urls: [
-  //     {
-  //       text: 'Visit Tripsha',
-  //       url: 'https://app.tripsha.com/event/6852ea340dc16200084a6a71',
-  //     },
-  //   ],
-  // },
-  // {
-  //   coupon_collection: 'tripsha-car',
-  //   name: 'Tripsha Transport',
-  //   requires: 'Devconnect ARG ticket',
-  //   description: 'Venues & Transport for Orgs, Individuals & Groups',
-  //   issuer: 'Tripsha',
-  //   image: TripshaCar,
-  //   instructions: 'Book your transpot here',
-  //   zupass_proof_id: 'Devconnect ARG',
-  //   external: true,
-  //   urls: [
-  //     {
-  //       text: 'Visit Tripsha',
-  //       url: 'https://app.tripsha.com/event/68cd411de35f2900024f7f53',
-  //     },
-  //   ],
-  // },
+  {
+    coupon_collection: 'tripsha-hotels',
+    name: 'Tripsha Hotels',
+    requires: 'Devconnect ARG ticket',
+    description: 'Stay at Hotels with other Attendees, Save $$!',
+    issuer: 'Tripsha',
+    image: TripshaImage,
+    instructions: 'Book your hotel here',
+    zupass_proof_id: 'Devconnect ARG',
+    external: true,
+    urls: [
+      {
+        text: 'Visit Tripsha',
+        url: 'https://app.tripsha.com/event/6852ea340dc16200084a6a71',
+      },
+    ],
+  },
+  {
+    coupon_collection: 'tripsha-car',
+    name: 'Tripsha Transport',
+    requires: 'Devconnect ARG ticket',
+    description: 'Venues & Transport for Orgs, Individuals & Groups',
+    issuer: 'Tripsha',
+    image: TripshaCar,
+    instructions: 'Book your transpot here',
+    zupass_proof_id: 'Devconnect ARG',
+    external: true,
+    urls: [
+      {
+        text: 'Visit Tripsha',
+        url: 'https://app.tripsha.com/event/68cd411de35f2900024f7f53',
+      },
+    ],
+  },
   {
     coupon_collection: 'protocol-guild-free-ticket',
     // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field
