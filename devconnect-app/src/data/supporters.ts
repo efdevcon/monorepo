@@ -1,14 +1,6 @@
 import type { Supporter } from '@/types/api-data';
 
 export const supportersData: Record<string, Supporter> = {
-  "254638cdc41580fc88aff47f153f0674": {
-    "name": "???",
-    "layerName": "",
-    "logo": "",
-    "description": "",
-    "districtId": "6",
-    "locationId": "4"
-  },
   "25d638cdc41580279504c4b4182f7f7b": {
     "name": "0xbow / Privacy Pools",
     "layerName": "0xbow-privacy-pools",
@@ -358,7 +350,7 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "nethermind",
     "logo": "",
     "description": "",
-    "districtId": "5",
+    "districtId": "1",
     "locationId": "1"
   },
   "25d638cdc415801d84b8ebe461e4ac20": {
@@ -384,6 +376,14 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "7",
     "locationId": "3"
+  },
+  "254638cdc41580fc88aff47f153f0674": {
+    "name": "Obol",
+    "layerName": "obol",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
+    "locationId": "4"
   },
   "254638cdc41580bbb285dfd0c726271a": {
     "name": "Octant",
@@ -474,8 +474,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "25d638cdc415806c9d25e537edf97b24": {
-    "name": "Radicle / DRIP ",
-    "layerName": "radicle-drip-",
+    "name": "Radicle / DRIP",
+    "layerName": "radicle-drip",
     "logo": "",
     "description": "",
     "districtId": "8",
@@ -511,6 +511,14 @@ export const supportersData: Record<string, Supporter> = {
     "logo": "",
     "description": "",
     "districtId": "3",
+    "locationId": null
+  },
+  "284638cdc4158082b4f5eb3ce920eb59": {
+    "name": "Rise",
+    "layerName": "rise",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
     "locationId": null
   },
   "256638cdc41580709456cb1417e645eb": {
