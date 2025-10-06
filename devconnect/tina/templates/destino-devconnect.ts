@@ -72,6 +72,9 @@ const pastEditions: Template = {
             },
           ],
         },
+        createRichText('disclaimers'),
+        createRichText('scholarships_available'),
+        createRichText('deadlines'),
       ],
     },
     {

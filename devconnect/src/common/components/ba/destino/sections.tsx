@@ -52,13 +52,12 @@ export const FirstSection = ({ content }: { content: any }) => {
             <RichText content={content.intro.destino_devconnect_intro} className={styles['cms-styling']} />
           </div>
 
-          <Link href="https://ef-events.notion.site/EWFrens-Program-Destino-Support-278638cdc4158077837dc3de2bd471ae">
+          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
                 'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                 styles['tiled-button']
               )}
-              disabled
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
                 {(globalThis as any).translations.learn_more || 'Apply Now'}
@@ -579,7 +578,7 @@ export const FourthSection = ({ content }: { content: any }) => {
 }
 
 // Epic naming, but this is a mess anyway...
-export const ExtraSectionAddedLater = () => {
+export const ExtraSectionAddedLater = ({ content }: { content: any }) => {
   return (
     <div className="z-[9]  relative">
       {/* <div className={cn('absolute bottom-0 left-0 right-0 h-[3000px] bg-[#535388]')}>
@@ -595,31 +594,22 @@ export const ExtraSectionAddedLater = () => {
         <div className="section">
           <div className="flex flex-col items-center justify-center z-[1] py-16 gap-8 pt-40">
             <h2 className="text-white text-2xl lg:text-3xl font-medium mb-4 text-center">
-              Who we're looking for in the Devconnect Fren program
+              {content.destino_devconnect_who_can_apply.title}
             </h2>
 
             {/* <div className="text-yellow-400 text-lg font-medium">Request Tickets and Discounts</div> */}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white text-base leading-relaxed text-center text-sm">
-              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
-                <div className="flex flex-col items-center justify-center gap-1">
-                  <span className="text-[#eca159] font-medium text-lg">Universities</span>
-                  Invite your university - you can even organize a class or workshop inside La Rural!
-                </div>
-              </div>
-              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
-                <div className="flex flex-col items-center justify-center gap-1">
-                  <span className="text-[#eca159] font-medium text-lg">Startups</span>
-                  Apply with your startup group - we offer large, innovative coworking spaces, including quiet areas and
-                  meeting rooms.
-                </div>
-              </div>
-              <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
-                <div className="flex flex-col items-center justify-center gap-1">
-                  <span className="text-[#eca159] font-medium text-lg">Communities</span>
-                  Apply with your community to be part of the experience and connect with the Ethereum ecosystem.
-                </div>
-              </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white leading-relaxed text-center text-sm">
+              {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
+                return (
+                  <div className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg">
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-[#eca159] font-medium text-lg">{item.title}</span>
+                      {item.description}
+                    </div>
+                  </div>
+                )
+              })}
             </div>
 
             <div className="backdrop-blur-sm flex mt-4 shadow-lg">
@@ -633,7 +623,11 @@ export const ExtraSectionAddedLater = () => {
                   borderStyle: 'solid',
                 }}
               >
-                <span className="font-medium">Scholarships Available </span> — Up to{' '}
+                <RichText
+                  content={content.destino_devconnect_who_can_apply.scholarships_available}
+                  className={styles['scholarships-available']}
+                />
+                {/* <span className="font-medium">Scholarships Available </span> — Up to{' '}
                 <span className="text-[#eca159] font-medium">$1,000 USD in funding support</span> is available for
                 initiatives that help groups attend the Ethereum World Fair.
                 <br />
@@ -642,12 +636,16 @@ export const ExtraSectionAddedLater = () => {
                   <span className="text-[#eca159]">You also get:</span> free tickets and discounts for your community or
                   team, visibility across official Devconnect channels, and an on-chain certificate as an official
                   Devconnect Fren
-                </span>
+                </span> */}
               </div>
             </div>
 
             <div className="text-center">
-              <p className="text-white/90 text-sm">
+              <RichText
+                content={content.destino_devconnect_who_can_apply.disclaimers}
+                className={styles['disclaimers']}
+              />
+              {/* <p className="text-white/90 text-sm">
                 Support can include transportation from distant locations, assistance with travel costs, or partial
                 scholarships for builders attending their first Devconnect.
               </p>
@@ -656,20 +654,21 @@ export const ExtraSectionAddedLater = () => {
                 Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is
                 intended for communities or initiatives that can collectively support multiple participants attending
                 the Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
-              </p>
+              </p> */}
             </div>
 
             <div className="text-white/90 mt-2 text-xl text-center flex flex-col gap-2">
-              <div>Request Tickets & Discounts: Until tickets are sold out</div>
+              <RichText content={content.destino_devconnect_who_can_apply.deadlines} className={styles['deadlines']} />
+              {/* <div>Request Tickets & Discounts: Until tickets are sold out</div>
               <div>
                 Scholarship applications open: <span className="font-medium text-[#eca159]">October 15</span>
               </div>
               <div>
                 Scholarship announcements: <span className="font-medium text-[#eca159]">October 30</span>
-              </div>
+              </div> */}
             </div>
 
-            <Link href="https://ef-events.notion.site/EWFrens-Program-Destino-Support-278638cdc4158077837dc3de2bd471ae">
+            <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
               <button
                 className={cn(
                   'border-solid border-b-[6px] group px-8 py-2 mt-4 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',

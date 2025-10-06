@@ -100,7 +100,7 @@ const Destino = ({ content, events }: { content: any; events: any }) => {
       <div className={cn('flex flex-col justify-center w-full relative overflow-hidden')}>
         <SecondSection content={content} />
         {/* <RichText content={content.destino_devconnect_about} /> */}
-        <ExtraSectionAddedLater />
+        <ExtraSectionAddedLater content={content} />
         {/* <ThirdSection content={content} /> */}
         {/* <FourthSection content={content} /> */}
       </div>
