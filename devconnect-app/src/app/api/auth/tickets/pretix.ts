@@ -198,7 +198,7 @@ export async function getPaidTicketsByEmail(email: string) {
   const params = new URLSearchParams({
     // email: email,
     status: 'p', // 'p' for paid orders
-    search: email,
+    search: 'email',
   });
 
   const response = await fetch(`${url}?${params}`, {
@@ -224,7 +224,11 @@ export async function getPaidTicketsByEmail(email: string) {
       orderDate: order.datetime,
       email: order.email,
       tickets: order.positions
-        .filter((position: any) => position.attendee_email === email)
+        .filter(
+          (position: any) =>
+            position.attendee_email &&
+            position.attendee_email.toLowerCase() === email.toLowerCase()
+        )
         .map((position: any) => ({
           secret: position.secret,
           attendeeName: position.attendee_name,
