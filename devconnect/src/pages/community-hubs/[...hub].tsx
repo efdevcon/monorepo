@@ -103,6 +103,13 @@ const CommunityHubsPage = () => {
     router.push(`/community-hubs/${hub.slug}`, undefined, { shallow: true })
   }
 
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const hub = hubData.find(h => h.slug === event.target.value)
+    if (hub) {
+      handleHubClick(hub)
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -121,9 +128,9 @@ const CommunityHubsPage = () => {
       {/* Desktop Layout */}
       <div className="hidden lg:flex flex-1">
         {/* Hub List - Left Sidebar */}
-        <div className="w-80 bg-slate-200 shadow-sm border-r flex-shrink-0">
+        <div className="bg-slate-200 shadow-sm border-r flex-shrink-0" style={{ width: '250px' }}>
           <div className="p-4 border-b bg-slate-300">
-            <h2 className="text-lg font-semibold text-slate-800">All Hubs</h2>
+            <h2 className="text-lg font-semibold text-slate-800">All Community Hubs</h2>
             <p className="text-sm text-slate-600">Click to switch</p>
           </div>
 
@@ -170,31 +177,34 @@ const CommunityHubsPage = () => {
       {/* Mobile Layout */}
       <div className="lg:hidden flex flex-col h-screen">
         {/* Main Content - Iframe */}
-        <div className="flex-1 bg-white" style={{ height: 'calc(100vh - 80px)' }}>
+        <div className="flex-1 bg-white overflow-hidden">
           {selectedHub && (
             <iframe src={selectedHub.iframeUrl} className="w-full h-full" title={selectedHub.name} loading="lazy" />
           )}
         </div>
 
-        {/* Hub List - Bottom Horizontal Scroll */}
-        <div className="bg-slate-200 border-t shadow-sm">
-          <div className="flex overflow-x-auto pb-4 px-4 space-x-2 pt-4">
-            {hubData.map((hub, index) => (
-              <button
-                key={hub.slug}
-                onClick={() => handleHubClick(hub)}
-                className={cn(
-                  'flex-shrink-0 px-3 py-2 rounded-lg text-left transition-colors',
-                  'whitespace-nowrap',
-                  selectedHub?.slug === hub.slug
-                    ? 'bg-blue-200 border-2 border-blue-600 text-blue-900'
-                    : 'bg-white border-2 border-slate-300 hover:bg-slate-100 text-slate-700 hover:text-slate-900'
-                )}
-              >
-                <div className="font-medium text-xs">{hub.name}</div>
-              </button>
+        {/* Hub Selector - Bottom */}
+        <div className="bg-slate-200 border-t shadow-sm p-4 flex-shrink-0 safe-bottom">
+          <select
+            id="hub-select"
+            value={selectedHub?.slug || ''}
+            onChange={handleSelectChange}
+            className="w-full px-3 py-2 bg-white border-2 border-slate-300 rounded-lg text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
+            style={{
+              backgroundImage:
+                "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e\")",
+              backgroundPosition: 'right 0.5rem center',
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '1.5em 1.5em',
+              paddingRight: '2.5rem',
+            }}
+          >
+            {hubData.map(hub => (
+              <option key={hub.slug} value={hub.slug}>
+                {hub.name}
+              </option>
             ))}
-          </div>
+          </select>
         </div>
       </div>
     </div>
