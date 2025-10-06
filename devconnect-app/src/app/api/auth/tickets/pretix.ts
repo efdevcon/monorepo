@@ -198,7 +198,7 @@ export async function getPaidTicketsByEmail(email: string) {
   const params = new URLSearchParams({
     // email: email,
     status: 'p', // 'p' for paid orders
-    search: 'email',
+    search: email,
   });
 
   const response = await fetch(`${url}?${params}`, {
