@@ -62,8 +62,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   // Zupass gating refers to third party event shops that use zupass to gate their event via our calendar
   const isZupassGating = eventShops.some(event => event.coupon_collection === collection)
+  const { useEmailAuth } = req.body
 
-  if (isZupassGating && perk?.zupass_disabled) {
+  if (isZupassGating && useEmailAuth) {
     console.warn('ZUPASS SKIPPED, USING SUPABASE AUTH INSTEAD: ', collection)
 
     // Extract token from Authorization header
@@ -95,7 +96,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const hasTickets = tickets && tickets.length > 0
 
     if (!hasTickets) {
-      return res.status(400).json({ error: 'User does not have a paid ticket' })
+      return res.status(400).json({ error: 'User does not have a Devconnect ticket' })
     }
 
     const coupon = await claimSingleCoupon(perk!.zupass_proof_id ?? '', collection, claimedBy)

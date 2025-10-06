@@ -6,9 +6,12 @@ import Tooltip from "lib/components/tooltip";
 import cn from "classnames";
 import { Session, AuthChangeEvent } from "@supabase/supabase-js";
 import { eventShops } from "./event-shops-list";
+import NextLink from "next/link";
 
 interface FallbackProps {
   eventId: string | number;
+  shopUrl?: string;
+  setUseFallback: (useFallback: "email" | "zupass") => void;
 }
 
 const Fallback = (props: FallbackProps) => {
@@ -50,6 +53,13 @@ const Fallback = (props: FallbackProps) => {
   const shop = findShopById(props.eventId.toString());
 
   if (!shop) return null;
+
+  const isLoggedIn = !!session;
+  const hasValidTicket = isLoggedIn; // In this fallback, we assume logged-in users have valid tickets
+  const connectedWithCoupon = hasValidTicket && couponStatus?.success;
+  const noVoucherNeeded = shop.gate_link_only;
+  const couponFetchedButNoCoupon =
+    isLoggedIn && couponFetchingComplete && !coupon;
 
   const handleLogin = async () => {
     const userEmail = prompt("Please enter your email address:");
@@ -101,6 +111,7 @@ const Fallback = (props: FallbackProps) => {
   };
 
   const requestCoupon = useCallback(async () => {
+    if (noVoucherNeeded) return;
     if (!session?.access_token) return;
     if (fetchingCoupon) return;
 
@@ -111,14 +122,14 @@ const Fallback = (props: FallbackProps) => {
       const couponCollection = shop.coupon_collection;
 
       const response = await fetch(
-        `/api/coupons/${encodeURIComponent(couponCollection)}`,
+        `/api/coupons/${encodeURIComponent(couponCollection || "")}`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${session.access_token}`,
           },
-          body: JSON.stringify({}),
+          body: JSON.stringify({ useEmailAuth: true }),
         }
       );
 
@@ -154,16 +165,21 @@ const Fallback = (props: FallbackProps) => {
 
   // Auto-fetch coupon when logged in
   useEffect(() => {
-    if (session && !couponFetchingComplete && !fetchingCoupon) {
+    if (
+      session &&
+      !couponFetchingComplete &&
+      !fetchingCoupon &&
+      !noVoucherNeeded
+    ) {
       requestCoupon();
     }
-  }, [session, couponFetchingComplete, fetchingCoupon, requestCoupon]);
-
-  const isLoggedIn = !!session;
-  const hasValidTicket = isLoggedIn; // In this fallback, we assume logged-in users have valid tickets
-  const connectedWithCoupon = hasValidTicket && couponStatus?.success;
-  const couponFetchedButNoCoupon =
-    isLoggedIn && couponFetchingComplete && !coupon;
+  }, [
+    session,
+    couponFetchingComplete,
+    fetchingCoupon,
+    requestCoupon,
+    noVoucherNeeded,
+  ]);
 
   return (
     <div className="w-full max-w-md mx-auto flex gap-2 flex-col">
@@ -199,7 +215,7 @@ const Fallback = (props: FallbackProps) => {
                 onClick={handleLogin}
                 disabled={loading}
               >
-                {loading ? "Signing in..." : "Sign In"}
+                {loading ? "Signing in..." : "Connect Email"}
               </VoxelButton>
             ) : (
               <div className="flex flex-col gap-2">
@@ -231,30 +247,57 @@ const Fallback = (props: FallbackProps) => {
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <VoxelButton
-              disabled={!connectedWithCoupon}
-              className={`outline-none w-[150px]`}
-              size="sm"
-              onClick={() => {
-                if (connectedWithCoupon && coupon) {
-                  if (coupon.startsWith("http")) {
-                    window.open(coupon, "_blank");
-                  } else {
-                    // For test responses
-                    alert(coupon);
-                  }
-                }
-              }}
-            >
-              {fetchingCoupon ? (
-                "Getting voucher..."
-              ) : (
-                <>
-                  Get ticket
-                  <SquareArrowOutUpRight size={15} />
-                </>
-              )}
-            </VoxelButton>
+            {noVoucherNeeded && (
+              <NextLink
+                href={props.shopUrl || "#"}
+                className={cn({
+                  contents: !hasValidTicket,
+                })}
+              >
+                <VoxelButton
+                  disabled={!hasValidTicket}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !hasValidTicket,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </NextLink>
+            )}
+
+            {!noVoucherNeeded && (
+              <NextLink
+                href={coupon || "#"}
+                className={cn({
+                  contents: !connectedWithCoupon,
+                })}
+              >
+                <VoxelButton
+                  disabled={!connectedWithCoupon}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithCoupon,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </NextLink>
+            )}
           </div>
         </div>
       </div>
@@ -286,7 +329,7 @@ const Fallback = (props: FallbackProps) => {
           >
             {isLoggedIn && !hasValidTicket
               ? "No Devconnect ticket found, get one below:"
-              : "You need a Devconnect ticket to attend this event."}
+              : "Verify your Devconnect ticket to sign up for this event."}
           </div>
           <VoxelButton
             size="sm"
@@ -305,6 +348,14 @@ const Fallback = (props: FallbackProps) => {
               className="underline text-teal-800"
             >
               support@devconnect.org
+            </a>
+            <br />
+            <a
+              href="#"
+              onClick={() => props.setUseFallback("zupass")}
+              className="underline text-teal-800"
+            >
+              Click here to use zupass instead
             </a>
           </div>
         </>

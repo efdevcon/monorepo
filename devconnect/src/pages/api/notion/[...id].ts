@@ -146,7 +146,7 @@ async function fetchSupporterFromRollup(pageProperties: any, notion: Client): Pr
         const supporterData = supporterPage as any;
 
         // Extract supporter name/title like in organization API
-        return supporterData.properties?.['Supporter Name']?.title?.[0]?.plain_text ||
+        return supporterData.properties?.['Name']?.title?.[0]?.plain_text ||
           supporterData.properties?.Name?.title?.[0]?.plain_text ||
           supporterData.properties?.Title?.title?.[0]?.plain_text ||
           'Unknown Supporter';
@@ -204,6 +204,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     let isOk = false;
     const configFields: Array<{ name: string; value: string; order: number }> = [];
 
+    // console.log('page.properties', JSON.stringify(page.properties, null, 2));
+
     // First pass: collect config fields and check for lock
     for (const [propertyName, property] of Object.entries(page.properties)) {
       const { name: fieldName, mode, order } = extractFieldName(propertyName);
@@ -218,7 +220,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       switch (fieldType) {
         case 'text':
           if (property.type === 'rich_text') {
-            fieldValue = property.rich_text?.[0]?.plain_text || '';
+            // Concatenate all text content from rich_text array
+            fieldValue = (property.rich_text || []).map((item: any) => item.text?.content || '').join('');
           }
           break;
         case 'select':
@@ -288,7 +291,8 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       switch (fieldType) {
         case 'text':
           if (property.type === 'rich_text') {
-            fieldValue = property.rich_text?.[0]?.plain_text || '';
+            // Concatenate all text content from rich_text array
+            fieldValue = (property.rich_text || []).map((item: any) => item.text?.content || '').join('');
           }
           break;
         case 'email':
@@ -493,7 +497,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
     if (supporter) {
       fields.push({
         name: 'Supporter name',
-        value: (page.properties?.['Supporter Name'] as any)?.title?.[0]?.plain_text || '',
+        value: (page.properties?.['Name'] as any)?.title?.[0]?.plain_text || '',
         type: 'text',
         mode: 'read',
         order: 0,
@@ -511,7 +515,11 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         isLocked,
         isOk
       },
-      accreditationInsuranceGuideUrl: process.env.ACCREDITATION_INSURANCE_GUIDE || ''
+      descriptionLinks: {
+        'attached insurance guide': process.env.ACCREDITATION_INSURANCE_GUIDE || '',
+        'Devconnect ARG Terms & Conditions': 'https://drive.google.com/file/d/1QHOHnvlZ-KvY8lE97bcmF176fgdyCjmt/view',
+        'Devconnect ARG Code of Conduct': 'https://drive.google.com/file/d/1OgE4JTQwB0vkCHYpsmxZeHvkzQ5bjiSN/view',
+      }
     });
   } catch (error) {
     return res.status(500).json({ error: 'Failed to fetch page data' });

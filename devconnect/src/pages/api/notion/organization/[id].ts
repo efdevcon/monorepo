@@ -166,6 +166,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   ? Math.round((completedFields.length / editFields.length) * 100)
                   : 0;
 
+
+                // Get accreditation type
+                const accreditationType = pageData.properties?.['0.[read] Accreditation type']?.select?.name || 'Not found';
                 // Get review status
                 const reviewStatus = pageData.properties?.['[config] Review']?.status?.name?.replace('[lock] ', '') || 'No Status';
                 // Get claim status
@@ -200,7 +203,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   id: password ? `${relation.id?.replace(/-/g, '')}-${password}` : relation.id?.replace(/-/g, ''),
                   name: name,
                   completionPercentage,
-                  reviewStatus: reviewStatus,
+                  accreditationType,
+                  reviewStatus,
                   claimStatus
                 };
               } catch (err) {
@@ -208,6 +212,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 return {
                   id: relation.id?.replace(/-/g, ''),
                   completionPercentage: 0,
+                  accreditationType: 'Not found',
                   reviewStatus: 'No Status',
                   claimStatus: 'No Status'
                 };
@@ -224,7 +229,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       children: subItems,
       count: subItems.length,
       orgName,
-      accreditationGuideUrl: process.env.ACCREDITATION_GUIDE || ''
+      descriptionLinks: {
+        'accreditation guide': process.env.ACCREDITATION_GUIDE || '',
+      }
     });
   } catch (error) {
     console.error('Error fetching child pages:', error);

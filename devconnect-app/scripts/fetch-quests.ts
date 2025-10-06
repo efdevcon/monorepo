@@ -35,8 +35,6 @@ interface ApiQuestResponse {
   id: number;
   name: string;
   order: number;
-  points: number;
-  difficulty: string;
   instructions: string;
   action: string;
   button: string;
@@ -116,10 +114,10 @@ async function saveQuests(data: ApiResponse): Promise<void> {
       }
     }
 
-    // Remove group and difficulty fields and add processed fields
-    const { group, difficulty, ...questWithoutGroupAndDifficulty } = quest;
+    // Remove group and add processed fields
+    const { group, ...questWithoutGroup } = quest;
     return {
-      ...questWithoutGroupAndDifficulty,
+      ...questWithoutGroup,
       groupId,
       districtId,
     };
@@ -145,7 +143,6 @@ export const questsData: Quest[] = ${JSON.stringify(processedQuests, null, 2)};
   console.log(`  - Quests: ${processedQuests.length} items`);
   console.log(`  - Quests with group IDs: ${questsWithGroups} items`);
   console.log(`  - Quests with district info: ${questsWithDistricts} items`);
-  console.log(`  - Total points available: ${processedQuests.reduce((sum, quest) => sum + (quest.points || 0), 0)}`);
   console.log(`  - Full API response saved to api-quests.json`);
 }
 

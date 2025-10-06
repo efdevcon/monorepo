@@ -2,19 +2,29 @@
 
 import { Button } from '@/components/ui/button';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
-import { getNetworkConfig } from '@/config/networks';
+import { getNetworkConfig, getReadableNetworkName } from '@/config/networks';
 import NetworkLogo from './NetworkLogo';
+import { useState } from 'react';
+import NetworkModal from './NetworkModal';
 
 interface NetworkSwitcherProps {
   className?: string;
   size?: 'sm' | 'lg';
-  variant?: 'default' | 'outline' | 'secondary' | 'destructive' | 'ghost' | 'link';
+  variant?:
+    | 'default'
+    | 'outline'
+    | 'secondary'
+    | 'destructive'
+    | 'ghost'
+    | 'link';
+  showAsModal?: boolean;
 }
 
-export default function NetworkSwitcher({ 
-  className = '', 
+export default function NetworkSwitcher({
+  className = '',
   size = 'lg',
-  variant = 'outline' 
+  variant = 'outline',
+  showAsModal = false,
 }: NetworkSwitcherProps) {
   const {
     currentChainId,
@@ -23,8 +33,11 @@ export default function NetworkSwitcher({
     error,
     switchToNetwork,
     isSwitchingTo,
-    chains
+    chains,
+    getCurrentNetwork,
   } = useNetworkSwitcher();
+
+  const [showModal, setShowModal] = useState(false);
 
   if (!isConnected) {
     return (
@@ -37,6 +50,35 @@ export default function NetworkSwitcher({
     );
   }
 
+  // If showAsModal is true, show a button that opens the modal
+  if (showAsModal) {
+    return (
+      <>
+        <div className={`space-y-2 ${className}`}>
+          <h3 className="text-sm font-medium text-gray-700">Switch Network</h3>
+          <Button
+            onClick={() => setShowModal(true)}
+            className="w-full cursor-pointer transition-all duration-200 hover:bg-gray-50"
+            size={size}
+            variant={variant}
+          >
+            <div className="flex items-center space-x-2">
+              <NetworkLogo chainId={currentChainId} size="sm" />
+              <div className="flex flex-col items-start">
+                <span className="text-sm font-medium">
+                  {getCurrentNetwork().name}
+                </span>
+              </div>
+            </div>
+          </Button>
+        </div>
+
+        <NetworkModal isOpen={showModal} onClose={() => setShowModal(false)} />
+      </>
+    );
+  }
+
+  // Original grid layout
   return (
     <div className={`space-y-2 ${className} pb-4`}>
       <h3 className="text-sm font-medium text-gray-700">Switch Network</h3>
@@ -52,21 +94,18 @@ export default function NetworkSwitcher({
               onClick={() => switchToNetwork(chain.id)}
               disabled={isSwitching || isCurrentChain}
               className={`w-full cursor-pointer transition-all duration-200 ${
-                isCurrentChain 
-                  ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200' 
+                isCurrentChain
+                  ? 'bg-green-100 border-green-500 text-green-700 hover:bg-green-200'
                   : 'hover:bg-gray-50'
               }`}
               size={size}
               variant={isCurrentChain ? 'default' : variant}
             >
               <div className="flex items-center space-x-2">
-                <NetworkLogo 
-                  chainId={chain.id} 
-                  size="sm" 
-                />
+                <NetworkLogo chainId={chain.id} size="sm" />
                 <div className="flex flex-col items-start">
                   <span className="text-sm font-medium">
-                    {config.name}
+                    {getReadableNetworkName(config.name)}
                   </span>
                 </div>
               </div>
@@ -74,14 +113,6 @@ export default function NetworkSwitcher({
           );
         })}
       </div>
-      
-      {/* Show current network info */}
-      {/* <div className="text-xs text-gray-500 pt-2 border-t">
-        <div>Current Network: {getNetworkConfig(currentChainId).name}</div>
-        <div>Chain ID: {currentChainId}</div>
-        {isPending && <div className="text-blue-600">Switching network...</div>}
-        {error && <div className="text-red-600">Error: {error.message}</div>}
-      </div> */}
     </div>
   );
 }

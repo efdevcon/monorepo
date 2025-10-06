@@ -1,12 +1,23 @@
 'use client';
 
-import { useAccount as useWagmiAccount, useConnect, useDisconnect, useSignMessage, useSwitchAccount, useConnections } from 'wagmi';
-import { useAccount as useParaAccount, useLogout, useWallet as useParaWallet } from '@getpara/react-sdk';
-import { useSkipped } from '@/context/SkippedContext';
+import {
+  useAccount as useWagmiAccount,
+  useConnect,
+  useDisconnect,
+  useSignMessage,
+  useSwitchAccount,
+  useConnections,
+} from 'wagmi';
+import {
+  useAccount as useParaAccount,
+  useLogout,
+  useWallet as useParaWallet,
+} from '@getpara/react-sdk';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { appKit } from '@/config/appkit';
 import { useUser } from '@/hooks/useUser';
+import { useEnsureUserData } from '@/app/store.hooks';
 
 // Simple state - no complex global management needed
 
@@ -16,14 +27,27 @@ let userIntentTimestamp = 0; // Track when user explicitly chooses a connector
 
 // Initialize user intent timestamp immediately from localStorage
 if (typeof window !== 'undefined') {
-  const savedTimestamp = localStorage.getItem('devconnect_user_intent_timestamp');
+  const savedTimestamp = localStorage.getItem(
+    'devconnect_user_intent_timestamp'
+  );
   if (savedTimestamp) {
     userIntentTimestamp = parseInt(savedTimestamp);
-    console.log('🔄 [GLOBAL_INIT] Loaded user intent timestamp from localStorage:', userIntentTimestamp);
+    console.log(
+      '🔄 [GLOBAL_INIT] Loaded user intent timestamp from localStorage:',
+      userIntentTimestamp
+    );
   }
 }
 let cachedStorageValue: string | null | undefined = undefined; // Cache localStorage result
 let hasResetAfterDisconnect = false; // Prevent multiple reset calls
+let isDisconnecting = false; // Prevent concurrent disconnect calls
+let disconnectPromise: Promise<any> | null = null; // Track ongoing disconnect operation
+let paraDisconnected = false; // Prevent Para reconnection after disconnect
+let isAutoSwitching = false; // Prevent infinite auto-switch loops
+let autoSwitchTimeout: NodeJS.Timeout | null = null; // Track auto-switch timeout
+let isDisconnectInProgress = false; // Prevent auto-switch during disconnect
+let shouldShowDisconnecting = false; // Control when to show disconnecting state
+let preventReconnection = false; // Prevent wallets from reconnecting after disconnect all
 
 const setGlobalPrimaryConnectorId = (value: string | null) => {
   if (globalPrimaryConnectorId !== value) {
@@ -32,6 +56,16 @@ const setGlobalPrimaryConnectorId = (value: string | null) => {
     // Reset the disconnect flag when user reconnects
     if (value !== null) {
       hasResetAfterDisconnect = false;
+      isDisconnecting = false; // Reset disconnect state on reconnect
+      paraDisconnected = false; // Reset Para disconnect flag on reconnect
+      isAutoSwitching = false; // Reset auto-switching flag on reconnect
+      isDisconnectInProgress = false; // Reset disconnect in progress flag on reconnect
+      shouldShowDisconnecting = false; // Reset disconnecting display flag on reconnect
+      preventReconnection = false; // Reset prevent reconnection flag on reconnect
+      if (autoSwitchTimeout) {
+        clearTimeout(autoSwitchTimeout);
+        autoSwitchTimeout = null;
+      }
     }
     if (value) {
       savePrimaryConnectorToStorage(value);
@@ -50,7 +84,7 @@ const getCachedStorageValue = (connectors?: readonly any[]): string | null => {
 const addGlobalStateListener = (listener: () => void) => {
   // For now, just call the listener immediately
   listener();
-  return () => { }; // No-op cleanup
+  return () => {}; // No-op cleanup
 };
 
 // Global state change counter for triggering sync
@@ -60,7 +94,8 @@ let hasInitialized = false;
 
 // Constants for localStorage persistence
 const PRIMARY_CONNECTOR_KEY = 'devconnect_primary_connector';
-const PRIMARY_CONNECTOR_TIMESTAMP_KEY = 'devconnect_primary_connector_timestamp';
+const PRIMARY_CONNECTOR_TIMESTAMP_KEY =
+  'devconnect_primary_connector_timestamp';
 const USER_INTENT_TIMESTAMP_KEY = 'devconnect_user_intent_timestamp';
 const CONNECTOR_EXPIRY_TIME = 7 * 24 * 60 * 60 * 1000; // 7 days in milliseconds
 
@@ -70,8 +105,14 @@ const savePrimaryConnectorToStorage = (connectorId: string | null) => {
     if (typeof window !== 'undefined') {
       if (connectorId) {
         localStorage.setItem(PRIMARY_CONNECTOR_KEY, connectorId);
-        localStorage.setItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY, Date.now().toString());
-        console.log('💾 [STORAGE] Saved primary connector to localStorage:', connectorId);
+        localStorage.setItem(
+          PRIMARY_CONNECTOR_TIMESTAMP_KEY,
+          Date.now().toString()
+        );
+        console.log(
+          '💾 [STORAGE] Saved primary connector to localStorage:',
+          connectorId
+        );
       } else {
         localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
         localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
@@ -92,7 +133,10 @@ const saveUserIntentTimestamp = (timestamp: number) => {
       console.log('💾 [STORAGE] Saved user intent timestamp:', timestamp);
     }
   } catch (error) {
-    console.error('Failed to save user intent timestamp to localStorage:', error);
+    console.error(
+      'Failed to save user intent timestamp to localStorage:',
+      error
+    );
   }
 };
 
@@ -107,46 +151,67 @@ const loadUserIntentTimestamp = (): number => {
       }
     }
   } catch (error) {
-    console.error('Failed to load user intent timestamp from localStorage:', error);
+    console.error(
+      'Failed to load user intent timestamp from localStorage:',
+      error
+    );
   }
   return 0; // Default to 0 if not found
 };
 
-const loadPrimaryConnectorFromStorage = (availableConnectors?: readonly any[]): string | null => {
+const loadPrimaryConnectorFromStorage = (
+  availableConnectors?: readonly any[]
+): string | null => {
   try {
     if (typeof window !== 'undefined') {
       const savedConnector = localStorage.getItem(PRIMARY_CONNECTOR_KEY);
-      const savedTimestamp = localStorage.getItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
+      const savedTimestamp = localStorage.getItem(
+        PRIMARY_CONNECTOR_TIMESTAMP_KEY
+      );
 
       if (savedConnector && savedTimestamp) {
         const timestamp = parseInt(savedTimestamp);
         const now = Date.now();
-        
+
         // Check if the saved connector is still valid (not expired)
         if (now - timestamp < CONNECTOR_EXPIRY_TIME) {
           // If connectors list is provided, validate that the saved connector is still available
           if (availableConnectors && availableConnectors.length > 0) {
             let isConnectorAvailable = availableConnectors.some(
-              conn => conn.id === savedConnector
+              (conn) => conn.id === savedConnector
             );
 
             if (!isConnectorAvailable) {
-              console.log('💾 [STORAGE] Saved connector no longer available, clearing:', savedConnector);
-              alert('Saved connector no longer available, clearing: ' + savedConnector);
-              console.log('💾 [STORAGE] Available connectors:', availableConnectors.map(c => ({ id: c.id, name: c.name })));
+              console.log(
+                '💾 [STORAGE] Saved connector no longer available, clearing:',
+                savedConnector
+              );
+              alert(
+                'Saved connector no longer available, clearing: ' +
+                  savedConnector
+              );
+              console.log(
+                '💾 [STORAGE] Available connectors:',
+                availableConnectors.map((c) => ({ id: c.id, name: c.name }))
+              );
               localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
               localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
               return null;
             }
           }
-          
-          console.log('💾 [STORAGE] Loaded primary connector from localStorage:', savedConnector);
+
+          console.log(
+            '💾 [STORAGE] Loaded primary connector from localStorage:',
+            savedConnector
+          );
           return savedConnector;
         } else {
           // Clear expired data
           localStorage.removeItem(PRIMARY_CONNECTOR_KEY);
           localStorage.removeItem(PRIMARY_CONNECTOR_TIMESTAMP_KEY);
-          console.log('💾 [STORAGE] Cleared expired primary connector from localStorage');
+          console.log(
+            '💾 [STORAGE] Cleared expired primary connector from localStorage'
+          );
         }
       }
     }
@@ -174,42 +239,48 @@ export function useUnifiedConnection() {
   // console.log('connectors', connectors);
   const { disconnect } = useDisconnect();
   const { signMessageAsync, isPending: isSigning } = useSignMessage();
-  const { connectors: switchableConnectors, switchAccount } = useSwitchAccount();
+  const { connectors: switchableConnectors, switchAccount } =
+    useSwitchAccount();
   const connections = useConnections(); // Added to track all active connections
 
   // Para SDK hooks - for Para-specific functionality
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
-  const { logout } = useLogout();
+  const { logout, logoutAsync } = useLogout();
 
   // Supabase auth hook - for email from Supabase authentication
   const { user: supabaseUser, signOut } = useUser();
 
-  // Skipped state from shared context
-  const { isSkipped, setSkipped, clearSkipped } = useSkipped();
   const pathname = usePathname();
 
   // SIWE state
-  const [siweState, setSiweState] = useState<'idle' | 'signing' | 'success' | 'error'>('idle');
+  const [siweState, setSiweState] = useState<
+    'idle' | 'signing' | 'success' | 'error'
+  >('idle');
   const [siweMessage, setSiweMessage] = useState('');
   const [siweSignature, setSiweSignature] = useState('');
 
   // Primary connector state - use global state synchronized across all hook instances
-  const [primaryConnectorId, _setPrimaryConnectorId] = useState<string | null>(() => {
-    // Initialize from global state if available
-    if (globalPrimaryConnectorId !== null) {
-      return globalPrimaryConnectorId;
-    }
+  const [primaryConnectorId, _setPrimaryConnectorId] = useState<string | null>(
+    () => {
+      // Initialize from global state if available
+      if (globalPrimaryConnectorId !== null) {
+        return globalPrimaryConnectorId;
+      }
 
-    // For first hook instance, load from cached localStorage (without connectors validation)
-    const saved = getCachedStorageValue();
-    if (saved) {
-      console.log('🔄 [INIT] Initializing with saved primary connector:', saved);
-      globalPrimaryConnectorId = saved;
-      return saved;
+      // For first hook instance, load from cached localStorage (without connectors validation)
+      const saved = getCachedStorageValue();
+      if (saved) {
+        console.log(
+          '🔄 [INIT] Initializing with saved primary connector:',
+          saved
+        );
+        globalPrimaryConnectorId = saved;
+        return saved;
+      }
+      return null;
     }
-    return null;
-  });
+  );
 
   // Sync local state with global state changes
   useEffect(() => {
@@ -218,7 +289,7 @@ export function useUnifiedConnection() {
       if (currentLocal !== globalPrimaryConnectorId) {
         console.log('🔄 [SYNC] Syncing local state with global state:', {
           local: currentLocal,
-          global: globalPrimaryConnectorId
+          global: globalPrimaryConnectorId,
         });
         return globalPrimaryConnectorId;
       }
@@ -227,12 +298,15 @@ export function useUnifiedConnection() {
   }, [globalStateChangeCounter]); // Depend on change counter to trigger sync
 
   // Simple wrapper to set primary connector
-  const setPrimaryConnectorId = (value: string | null, isUserIntent = false) => {
+  const setPrimaryConnectorId = (
+    value: string | null,
+    isUserIntent = false
+  ) => {
     console.log('🔄 [SET_CONNECTOR] Setting primary connector:', {
       value,
       isUserIntent,
       previousTimestamp: userIntentTimestamp,
-      currentTime: Date.now()
+      currentTime: Date.now(),
     });
 
     _setPrimaryConnectorId(value);
@@ -241,22 +315,29 @@ export function useUnifiedConnection() {
     if (isUserIntent) {
       userIntentTimestamp = Date.now();
       saveUserIntentTimestamp(userIntentTimestamp);
-      console.log('🔄 [SET_CONNECTOR] Updated user intent timestamp:', userIntentTimestamp);
+      console.log(
+        '🔄 [SET_CONNECTOR] Updated user intent timestamp:',
+        userIntentTimestamp
+      );
     }
   };
 
-    // Memoized Para connector
-  const paraConnector = useMemo(() => connectors.find(c => c.id === 'para' || c.id === 'getpara'), [connectors]);
+  // Memoized Para connector
+  const paraConnector = useMemo(
+    () => connectors.find((c) => c.id === 'para' || c.id === 'getpara'),
+    [connectors]
+  );
 
   // Determine connection status - simplified and consistent
   const isWagmiConnected = wagmiAccount.isConnected && !!wagmiAccount.address;
-  const isParaConnected = paraAccount?.isConnected && !!paraWallet?.data?.address;
+  const isParaConnected =
+    paraAccount?.isConnected && !!paraWallet?.data?.address;
 
   // Current primary connector
   const primaryConnector = useMemo(() => {
     // If we have a primary connector ID, find that connector
     if (primaryConnectorId) {
-      return connectors.find(c => c.id === primaryConnectorId);
+      return connectors.find((c) => c.id === primaryConnectorId);
     }
 
     // If no primary connector is set, try to determine from current wagmi connection
@@ -270,58 +351,150 @@ export function useUnifiedConnection() {
     // }
 
     return null;
-  }, [connectors, primaryConnectorId, wagmiAccount.connector, paraConnector, isParaConnected]);
+  }, [
+    connectors,
+    primaryConnectorId,
+    wagmiAccount.connector,
+    paraConnector,
+    isParaConnected,
+  ]);
 
   // Simple connection and address logic
   const { isConnected, address } = useMemo(() => {
     // If primary connector matches current wagmi connection
-    if (primaryConnectorId && wagmiAccount.connector?.id === primaryConnectorId) {
+    if (
+      primaryConnectorId &&
+      wagmiAccount.connector?.id === primaryConnectorId
+    ) {
       const connected = isWagmiConnected && !!wagmiAccount.address;
       return {
         isConnected: connected,
-        address: connected ? wagmiAccount.address : undefined
+        address: connected ? wagmiAccount.address : undefined,
       };
     }
 
     // If primary is Para and Para is connected
-    if ((primaryConnectorId === 'para' || primaryConnectorId === 'getpara') && isParaConnected && paraWallet?.data?.address) {
+    if (
+      (primaryConnectorId === 'para' || primaryConnectorId === 'getpara') &&
+      isParaConnected &&
+      paraWallet?.data?.address
+    ) {
       return {
         isConnected: true,
-        address: paraWallet.data.address
+        address: paraWallet.data.address,
       };
     }
 
     // If we have a wagmi connection but it doesn't match primary connector, switch wagmi to match primary
-    if (primaryConnectorId && wagmiAccount.connector && wagmiAccount.connector.id !== primaryConnectorId) {
-      console.log('🔄 [AUTO_SWITCH] Wagmi connection mismatch, switching wagmi from', wagmiAccount.connector.id, 'to primary connector:', primaryConnectorId);
+    if (
+      primaryConnectorId &&
+      wagmiAccount.connector &&
+      wagmiAccount.connector.id !== primaryConnectorId &&
+      !isAutoSwitching && // Prevent infinite loops
+      !isDisconnectInProgress && // Prevent auto-switch during disconnect
+      !preventReconnection // Prevent auto-switch after disconnect all
+    ) {
+      console.log('🔄 [AUTO_SWITCH] Conditions met:', {
+        primaryConnectorId,
+        currentConnector: wagmiAccount.connector.id,
+        isAutoSwitching,
+        isDisconnectInProgress,
+        preventReconnection,
+        hasTargetConnector: !!connectors.find(c => c.id === primaryConnectorId)
+      });
+      console.log(
+        '🔄 [AUTO_SWITCH] Wagmi connection mismatch, switching wagmi from',
+        wagmiAccount.connector.id,
+        'to primary connector:',
+        primaryConnectorId
+      );
+      
+      // Set flag to prevent multiple simultaneous switches
+      isAutoSwitching = true;
+      
+      // Clear any existing timeout
+      if (autoSwitchTimeout) {
+        clearTimeout(autoSwitchTimeout);
+      }
+      
+      // Set a timeout to reset the flag if the switch takes too long
+      autoSwitchTimeout = setTimeout(() => {
+        console.warn('🔄 [AUTO_SWITCH] Timeout reached, resetting auto-switch flag');
+        isAutoSwitching = false;
+        autoSwitchTimeout = null;
+      }, 10000); // 10 second timeout
+      
       // Switch wagmi connection to match primary connector
-      const targetConnector = connectors.find(c => c.id === primaryConnectorId);
+      const targetConnector = connectors.find(
+        (c) => c.id === primaryConnectorId
+      );
       if (targetConnector) {
         // Use setTimeout to avoid calling connect during render
-        setTimeout(() => {
-          connect({ connector: targetConnector });
+        setTimeout(async () => {
+          try {
+            await connect({ connector: targetConnector });
+            console.log('🔄 [AUTO_SWITCH] Successfully switched to:', primaryConnectorId);
+          } catch (error) {
+            console.error('🔄 [AUTO_SWITCH] Failed to switch to:', primaryConnectorId, error);
+          } finally {
+            // Clear timeout and reset flag after a delay to allow for connection to stabilize
+            if (autoSwitchTimeout) {
+              clearTimeout(autoSwitchTimeout);
+              autoSwitchTimeout = null;
+            }
+            setTimeout(() => {
+              isAutoSwitching = false;
+            }, 2000);
+          }
         }, 0);
+      } else {
+        console.warn('🔄 [AUTO_SWITCH] Target connector not found:', primaryConnectorId);
+        if (autoSwitchTimeout) {
+          clearTimeout(autoSwitchTimeout);
+          autoSwitchTimeout = null;
+        }
+        isAutoSwitching = false;
       }
       return {
         isConnected: false, // Temporarily disconnected while switching
-        address: undefined
+        address: undefined,
       };
+    } else if (primaryConnectorId && wagmiAccount.connector && wagmiAccount.connector.id !== primaryConnectorId && isDisconnectInProgress) {
+      console.log('🔄 [AUTO_SWITCH] Blocked due to disconnect in progress:', {
+        primaryConnectorId,
+        currentConnector: wagmiAccount.connector.id,
+        isDisconnectInProgress
+      });
+    } else if (primaryConnectorId && wagmiAccount.connector && wagmiAccount.connector.id !== primaryConnectorId && preventReconnection) {
+      console.log('🔄 [AUTO_SWITCH] Blocked due to prevent reconnection after disconnect all:', {
+        primaryConnectorId,
+        currentConnector: wagmiAccount.connector.id,
+        preventReconnection
+      });
     }
 
     // No primary connector set, use wagmi connection as fallback
     if (!primaryConnectorId && isWagmiConnected && wagmiAccount.address) {
       return {
         isConnected: true,
-        address: wagmiAccount.address
+        address: wagmiAccount.address,
       };
     }
 
     // Not connected
     return {
       isConnected: false,
-      address: undefined
+      address: undefined,
     };
-  }, [primaryConnectorId, wagmiAccount.connector?.id, wagmiAccount.address, wagmiAccount.isConnected, isWagmiConnected, isParaConnected, paraWallet?.data?.address]);
+  }, [
+    primaryConnectorId,
+    wagmiAccount.connector?.id,
+    wagmiAccount.address,
+    wagmiAccount.isConnected,
+    isWagmiConnected,
+    isParaConnected,
+    paraWallet?.data?.address,
+  ]);
 
   // Determine if Para is the primary connector - simplified to match connection logic
   const isPara = useMemo(() => {
@@ -374,7 +547,13 @@ export function useUnifiedConnection() {
     }, 50); // Small delay to allow initialization
 
     return () => clearTimeout(timer);
-  }, [isParaConnected, wagmiAccount.isConnected, wagmiAccount.connector?.id, connectors, primaryConnectorId]);
+  }, [
+    isParaConnected,
+    wagmiAccount.isConnected,
+    wagmiAccount.connector?.id,
+    connectors,
+    primaryConnectorId,
+  ]);
 
   // Simple Para auto-detection after init (respect user intent)
   // useEffect(() => {
@@ -409,30 +588,45 @@ export function useUnifiedConnection() {
   useEffect(() => {
     if (!primaryConnectorId || connectors.length === 0) return;
 
-    let targetConnector = connectors.find(c => c.id === primaryConnectorId);
+    let targetConnector = connectors.find((c) => c.id === primaryConnectorId);
 
     // If exact match not found, try to find by name or partial match
     if (!targetConnector) {
-      console.log('🔄 [RECONNECT] Primary connector not found by ID:', primaryConnectorId, 'trying alternative matches...');
+      console.log(
+        '🔄 [RECONNECT] Primary connector not found by ID:',
+        primaryConnectorId,
+        'trying alternative matches...'
+      );
 
       // Try to find by name (case insensitive)
-      targetConnector = connectors.find(c =>
-        c.name?.toLowerCase().includes('zerion') ||
-        primaryConnectorId.toLowerCase().includes(c.name?.toLowerCase() || '')
+      targetConnector = connectors.find(
+        (c) =>
+          c.name?.toLowerCase().includes('zerion') ||
+          primaryConnectorId.toLowerCase().includes(c.name?.toLowerCase() || '')
       );
 
       // If found by name, update the primary connector ID to use the correct connector ID
       if (targetConnector && targetConnector.id !== primaryConnectorId) {
-        console.log('🔄 [RECONNECT] Found connector by name, updating primary connector from', primaryConnectorId, 'to', targetConnector.id);
+        console.log(
+          '🔄 [RECONNECT] Found connector by name, updating primary connector from',
+          primaryConnectorId,
+          'to',
+          targetConnector.id
+        );
         setPrimaryConnectorId(targetConnector.id, false);
         return; // Exit and let the next effect run with the correct connector ID
       }
 
       // If still not found and primaryConnectorId contains 'zerion', try 'injected' connector
-      if (!targetConnector && primaryConnectorId.toLowerCase().includes('zerion')) {
-        targetConnector = connectors.find(c => c.id === 'injected');
+      if (
+        !targetConnector &&
+        primaryConnectorId.toLowerCase().includes('zerion')
+      ) {
+        targetConnector = connectors.find((c) => c.id === 'injected');
         if (targetConnector) {
-          console.log('🔄 [RECONNECT] Using injected connector for Zerion wallet, updating primary connector');
+          console.log(
+            '🔄 [RECONNECT] Using injected connector for Zerion wallet, updating primary connector'
+          );
           // Update the primary connector ID to use the correct connector
           setPrimaryConnectorId(targetConnector.id, false);
           return; // Exit and let the next effect run with the correct connector ID
@@ -441,8 +635,15 @@ export function useUnifiedConnection() {
 
       // If still not found, log and clear the invalid connector
       if (!targetConnector) {
-        console.warn('🔄 [RECONNECT] No suitable connector found for:', primaryConnectorId, 'clearing saved connector');
-        console.log('🔄 [RECONNECT] Available connectors:', connectors.map(c => ({ id: c.id, name: c.name })));
+        console.warn(
+          '🔄 [RECONNECT] No suitable connector found for:',
+          primaryConnectorId,
+          'clearing saved connector'
+        );
+        console.log(
+          '🔄 [RECONNECT] Available connectors:',
+          connectors.map((c) => ({ id: c.id, name: c.name }))
+        );
 
         // Clear the invalid saved connector
         savePrimaryConnectorToStorage(null);
@@ -455,30 +656,53 @@ export function useUnifiedConnection() {
     const timer = setTimeout(() => {
       // Only attempt reconnection if we haven't just disconnected (check the global flag)
       if (hasResetAfterDisconnect) {
-        console.log('🔄 [RECONNECT] Skipping reconnection - recent disconnect detected');
+        console.log(
+          '🔄 [RECONNECT] Skipping reconnection - recent disconnect detected'
+        );
         return;
       }
 
       // If we're connected to the wrong connector, switch to the right one
-      if (wagmiAccount.isConnected && wagmiAccount.connector?.id !== primaryConnectorId && !wagmiAccount.isConnecting) {
+      if (
+        wagmiAccount.isConnected &&
+        wagmiAccount.connector?.id !== primaryConnectorId &&
+        !wagmiAccount.isConnecting
+      ) {
         // console.log('🔄 [RECONNECT] Switching from', wagmiAccount.connector?.id, 'to primary connector:', primaryConnectorId);
         // connect({ connector: targetConnector });
       }
       // If we're not connected at all but have a primary connector, try to connect
-      else if (!wagmiAccount.isConnected && !wagmiAccount.isConnecting && !wagmiAccount.isReconnecting) {
-        console.log('🔄 [RECONNECT] Not connected, attempting to connect to primary connector:', primaryConnectorId);
+      else if (
+        !wagmiAccount.isConnected &&
+        !wagmiAccount.isConnecting &&
+        !wagmiAccount.isReconnecting
+      ) {
+        console.log(
+          '🔄 [RECONNECT] Not connected, attempting to connect to primary connector:',
+          primaryConnectorId
+        );
         try {
           connect({ connector: targetConnector });
         } catch (error) {
-          console.error('🔄 [RECONNECT] Failed to connect to primary connector:', error);
+          console.error(
+            '🔄 [RECONNECT] Failed to connect to primary connector:',
+            error
+          );
         }
       }
     }, 200); // Slightly longer delay to allow disconnect to complete
 
     return () => clearTimeout(timer);
-  }, [primaryConnectorId, wagmiAccount.isConnected, wagmiAccount.connector?.id, wagmiAccount.isConnecting, wagmiAccount.isReconnecting, connectors]);
+  }, [
+    primaryConnectorId,
+    wagmiAccount.isConnected,
+    wagmiAccount.connector?.id,
+    wagmiAccount.isConnecting,
+    wagmiAccount.isReconnecting,
+    connectors,
+  ]);
 
-    // No auto-switch - user chooses manually
+  // No auto-switch - user chooses manually
   // This effect is removed to eliminate all automatic switching behavior
 
   // Note: Removed the effect that reset hasSetPrimaryConnector.current when primaryConnectorId becomes null
@@ -490,18 +714,34 @@ export function useUnifiedConnection() {
 
     // Only reset if we were previously connected and now both are null AND we're not connected at all
     // This prevents reset during page refresh when values are temporarily null
-    if (!wagmiAccount.connector && !primaryConnectorId && !wagmiAccount.isConnecting && !wagmiAccount.isReconnecting && !wagmiAccount.isConnected) {
+    if (
+      !wagmiAccount.connector &&
+      !primaryConnectorId &&
+      !wagmiAccount.isConnecting &&
+      !wagmiAccount.isReconnecting &&
+      !wagmiAccount.isConnected
+    ) {
       // Add a longer delay to allow external wallets time to reconnect after page refresh
       resetTimeoutId = setTimeout(() => {
         // Double-check the conditions before resetting (in case wallet reconnected during delay)
-        if (!wagmiAccount.connector && !primaryConnectorId && !wagmiAccount.isConnecting && !wagmiAccount.isReconnecting && !wagmiAccount.isConnected) {
+        if (
+          !wagmiAccount.connector &&
+          !primaryConnectorId &&
+          !wagmiAccount.isConnecting &&
+          !wagmiAccount.isReconnecting &&
+          !wagmiAccount.isConnected
+        ) {
           if (!hasResetAfterDisconnect) {
-            console.log('🔄 [RESET] Resetting primary connector after disconnect');
+            console.log(
+              '🔄 [RESET] Resetting primary connector after disconnect'
+            );
             setPrimaryConnectorId(null, false); // Explicitly mark as not user intent
             hasResetAfterDisconnect = true;
           }
         } else {
-          console.log('🔄 [RESET] Skipping reset - wallet reconnected during delay');
+          console.log(
+            '🔄 [RESET] Skipping reset - wallet reconnected during delay'
+          );
         }
       }, 5000); // 5 second delay to allow wallet reconnection
     }
@@ -511,14 +751,24 @@ export function useUnifiedConnection() {
         clearTimeout(resetTimeoutId);
       }
     };
-  }, [wagmiAccount.connector, primaryConnectorId, wagmiAccount.isConnecting, wagmiAccount.isReconnecting, wagmiAccount.isConnected]);
+  }, [
+    wagmiAccount.connector,
+    primaryConnectorId,
+    wagmiAccount.isConnecting,
+    wagmiAccount.isReconnecting,
+    wagmiAccount.isConnected,
+  ]);
 
   // Sync Para to Wagmi when primary is Para
   useEffect(() => {
-    if (primaryConnectorId === 'para' && isParaConnected && paraConnector) {
-      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
+    if (primaryConnectorId === 'para' && isParaConnected && paraConnector && !paraDisconnected && !isDisconnectInProgress) {
+      const isParaWagmiConnected = connections.some(
+        (conn) => conn.connector.id === paraConnector.id
+      );
       if (!isParaWagmiConnected) {
-        console.log('🔗 [SYNC] Para SDK connected but not in Wagmi, syncing...');
+        console.log(
+          '🔗 [SYNC] Para SDK connected but not in Wagmi, syncing...'
+        );
         connect({ connector: paraConnector });
       }
     }
@@ -526,10 +776,14 @@ export function useUnifiedConnection() {
 
   // Ensure Para stays connected to Wagmi even when not primary (for seamless switching)
   useEffect(() => {
-    if (isParaConnected && paraConnector && primaryConnectorId !== 'para') {
-      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
+    if (isParaConnected && paraConnector && primaryConnectorId !== 'para' && !paraDisconnected && !isDisconnectInProgress) {
+      const isParaWagmiConnected = connections.some(
+        (conn) => conn.connector.id === paraConnector.id
+      );
       if (!isParaWagmiConnected) {
-        console.log('🔗 [PARA_SYNC] Para SDK connected but not in Wagmi (not primary), syncing for seamless switching...');
+        console.log(
+          '🔗 [PARA_SYNC] Para SDK connected but not in Wagmi (not primary), syncing for seamless switching...'
+        );
         connect({ connector: paraConnector });
       }
     }
@@ -554,7 +808,14 @@ export function useUnifiedConnection() {
         lastLoggedState.current = currentState;
       }
     }
-  }, [isConnected, address, primaryConnectorId, isPara, wagmiAccount.connector?.id, globalPrimaryConnectorId]);
+  }, [
+    isConnected,
+    address,
+    primaryConnectorId,
+    isPara,
+    wagmiAccount.connector?.id,
+    globalPrimaryConnectorId,
+  ]);
 
   // Log primary connector changes (only when it actually changes)
   const prevPrimaryConnectorId = useRef<string | null>(null);
@@ -564,7 +825,7 @@ export function useUnifiedConnection() {
         from: prevPrimaryConnectorId.current,
         to: primaryConnectorId,
         currentWagmiConnector: wagmiAccount.connector?.id,
-        isPara
+        isPara,
       });
       prevPrimaryConnectorId.current = primaryConnectorId;
     }
@@ -576,13 +837,15 @@ export function useUnifiedConnection() {
       console.log('Switching primary connector to:', connectorId);
 
       // Find the connector
-      const connector = connectors.find(c => c.id === connectorId);
+      const connector = connectors.find((c) => c.id === connectorId);
       if (!connector) {
         throw new Error(`Connector ${connectorId} not found`);
       }
 
       // Check if already connected
-      const isAlreadyConnected = connections.some(conn => conn.connector.id === connectorId);
+      const isAlreadyConnected = connections.some(
+        (conn) => conn.connector.id === connectorId
+      );
 
       if (!isAlreadyConnected) {
         console.log('Connecting to new connector:', connectorId);
@@ -606,18 +869,26 @@ export function useUnifiedConnection() {
   // Handle account switching within the same connector
   const handleSwitchAccount = async (connector: any) => {
     try {
-      console.log('🔄 [SWITCH] Switching account within connector:', connector.id, {
-        currentPrimaryConnectorId: primaryConnectorId,
-        currentWagmiConnector: wagmiAccount.connector?.id,
-        targetConnector: connector.id
-      });
+      console.log(
+        '🔄 [SWITCH] Switching account within connector:',
+        connector.id,
+        {
+          currentPrimaryConnectorId: primaryConnectorId,
+          currentWagmiConnector: wagmiAccount.connector?.id,
+          targetConnector: connector.id,
+        }
+      );
 
       // Reset disconnect flag since user is manually switching
       hasResetAfterDisconnect = false;
 
       // Set the primary connector before switching (mark as user intent)
       setPrimaryConnectorId(connector.id, true);
-      console.log('🔄 [SWITCH] Primary connector updated to:', connector.id, '(user intent)');
+      console.log(
+        '🔄 [SWITCH] Primary connector updated to:',
+        connector.id,
+        '(user intent)'
+      );
 
       await switchAccount({ connector });
       console.log('🔄 [SWITCH] Wagmi switchAccount completed');
@@ -637,8 +908,18 @@ export function useUnifiedConnection() {
       // Reset disconnect flag since user is manually connecting
       hasResetAfterDisconnect = false;
 
-      // Connect to the wallet
-      await connect({ connector });
+      // Check if connector is already connected
+      const isConnectorConnected = connections.some(
+        (conn) => conn.connector.id === connector.id
+      );
+
+      if (isConnectorConnected) {
+        console.log('Connector already connected, switching to it...');
+        await switchAccount({ connector });
+      } else {
+        console.log('Connector not connected, connecting...');
+        await connect({ connector });
+      }
 
       // Set as primary connector (user intent)
       setPrimaryConnectorId(connector.id, true);
@@ -650,12 +931,15 @@ export function useUnifiedConnection() {
     }
   };
 
-    // Utility function to restore external wallet as primary (for recovery scenarios)
+  // Utility function to restore external wallet as primary (for recovery scenarios)
   const restoreExternalWalletAsPrimary = async (connectorId: string) => {
     try {
-      console.log('🔄 [RESTORE] Attempting to restore external wallet as primary:', connectorId);
-      
-      const targetConnector = connectors.find(c => c.id === connectorId);
+      console.log(
+        '🔄 [RESTORE] Attempting to restore external wallet as primary:',
+        connectorId
+      );
+
+      const targetConnector = connectors.find((c) => c.id === connectorId);
       if (!targetConnector) {
         console.error('🔄 [RESTORE] Connector not found:', connectorId);
         return false;
@@ -668,9 +952,15 @@ export function useUnifiedConnection() {
       if (wagmiAccount.connector?.id !== connectorId) {
         try {
           await connect({ connector: targetConnector });
-          console.log('🔄 [RESTORE] Successfully connected to restored wallet:', connectorId);
+          console.log(
+            '🔄 [RESTORE] Successfully connected to restored wallet:',
+            connectorId
+          );
         } catch (connectError) {
-          console.warn('🔄 [RESTORE] Connection failed, but primary connector set:', connectError);
+          console.warn(
+            '🔄 [RESTORE] Connection failed, but primary connector set:',
+            connectError
+          );
         }
       }
 
@@ -689,14 +979,32 @@ export function useUnifiedConnection() {
     }
 
     try {
-      const isParaWagmiConnected = connections.some(conn => conn.connector.id === paraConnector.id);
-      if (isParaConnected && !isParaWagmiConnected) {
+      // Check if Para is the ACTIVE connector, not just connected
+      const isParaActive = wagmiAccount.connector?.id === 'para' || wagmiAccount.connector?.id === 'getpara';
+      const isParaWagmiConnected = connections.some(
+        (conn) => conn.connector.id === paraConnector.id
+      );
+
+      console.log('Para connection check:', {
+        isParaActive,
+        isParaWagmiConnected,
+        currentConnector: wagmiAccount.connector?.id,
+        paraConnectorId: paraConnector.id,
+        isParaConnected
+      });
+
+      if (isParaActive) {
+        console.log('Para is already the active connector');
+        return true;
+      } else if (isParaConnected && !isParaWagmiConnected) {
         console.log('Ensuring Para is connected to wagmi...');
         await connect({ connector: paraConnector });
         console.log('Para successfully connected to wagmi');
         return true;
-      } else if (isParaWagmiConnected) {
-        console.log('Para is already connected to wagmi');
+      } else if (isParaWagmiConnected && !isParaActive) {
+        console.log('Para is connected but not active, switching to Para...');
+        await switchAccount({ connector: paraConnector });
+        console.log('Para successfully switched to active');
         return true;
       } else {
         console.log('Para SDK not connected, cannot connect to wagmi');
@@ -708,60 +1016,476 @@ export function useUnifiedConnection() {
     }
   };
 
-  // Enhanced disconnect function with proper coordination and error handling
+  // Utility function to safely disconnect Para SDK with timeout protection
+  const safeParaLogout = async (): Promise<boolean> => {
+    try {
+      console.log('🔌 [PARA_LOGOUT] Starting Para SDK logout');
+
+      // Set flag to prevent Para reconnection
+      paraDisconnected = true;
+
+      // Use the proper Para SDK logout pattern
+      try {
+        console.log('🔌 [PARA_LOGOUT] Attempting Para SDK async logout with proper options');
+        await Promise.race([
+          logoutAsync({
+            clearPregenWallets: false // Keep pregenerated wallets
+          }),
+          new Promise<void>((_, reject) =>
+            setTimeout(() => reject(new Error('Para logout timeout')), 10000) // Increased timeout
+          )
+        ]);
+        console.log('🔌 [PARA_LOGOUT] Para SDK async logout successful');
+        
+        // Wait a bit for the logout to propagate
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Check if Para is actually disconnected
+        const isStillConnected = paraAccount?.isConnected && paraWallet?.data?.address;
+        console.log('🔌 [PARA_LOGOUT] Para connection status after logout:', {
+          paraAccountConnected: paraAccount?.isConnected,
+          paraWalletAddress: paraWallet?.data?.address,
+          isStillConnected
+        });
+        
+        if (isStillConnected) {
+          console.warn('🔌 [PARA_LOGOUT] Para still connected after async logout, trying sync logout');
+          try {
+            logout();
+            console.log('🔌 [PARA_LOGOUT] Para SDK sync logout attempted');
+            // Wait a bit more
+            await new Promise(resolve => setTimeout(resolve, 500));
+          } catch (syncError) {
+            console.error('🔌 [PARA_LOGOUT] Sync logout failed:', syncError);
+          }
+        }
+        
+      } catch (asyncError) {
+        console.error('🔌 [PARA_LOGOUT] Async logout failed:', asyncError);
+        
+        // Fallback to sync logout
+        try {
+          console.log('🔌 [PARA_LOGOUT] Attempting sync logout as fallback');
+          logout();
+          console.log('🔌 [PARA_LOGOUT] Para SDK sync logout successful');
+        } catch (syncError) {
+          console.error('🔌 [PARA_LOGOUT] Both logout methods failed:', { asyncError, syncError });
+          return false;
+        }
+      }
+
+      console.log('🔌 [PARA_LOGOUT] Para SDK logout process completed');
+      return true;
+    } catch (error) {
+      console.error('🔌 [PARA_LOGOUT] Para SDK logout failed:', error);
+      return false;
+    }
+  };
+
+  // Enhanced disconnect function with race condition protection
   const handleDisconnect = async () => {
+    // Race condition protection: prevent concurrent disconnect calls
+    if (isDisconnecting) {
+      console.warn('🔌 [UNIFIED_DISCONNECT] Disconnect already in progress, waiting for completion...');
+      if (disconnectPromise) {
+        await disconnectPromise;
+        return;
+      }
+    }
+
+    // Check if there are any connections to disconnect
+    if (connections.length === 0 && !paraAccount?.isConnected) {
+      console.log('🔌 [UNIFIED_DISCONNECT] No connections to disconnect, letting UI handle state change');
+      return;
+    }
+
+    // Determine if we should show disconnecting state
+    // Exception: Don't show disconnecting state for Para + EOA with EOA selected (Para stays connected)
+    const hasParaAndEOA = paraAccount?.isConnected && connections.some(conn =>
+      conn.connector.id !== 'para' &&
+      conn.connector.id !== 'getpara' &&
+      conn.accounts &&
+      conn.accounts.length > 0
+    );
+
+    // Check if EOA is primary - either by primaryConnectorId or by current address not being Para
+    const isEOAPrimaryByConnector = primaryConnectorId && primaryConnectorId !== 'para' && primaryConnectorId !== 'getpara';
+    const isEOAPrimaryByAddress = address && paraWallet?.data?.address &&
+      address.toLowerCase() !== paraWallet?.data?.address.toLowerCase();
+    const isEOAPrimary = isEOAPrimaryByConnector || isEOAPrimaryByAddress;
+
+    // Show disconnecting state by default, except when Para + EOA with EOA selected (Para stays connected)
+    shouldShowDisconnecting = !(hasParaAndEOA && isEOAPrimary);
+
+    // Also don't show disconnecting state if user is actively switching
+    if (isAutoSwitching) {
+      shouldShowDisconnecting = false;
+    }
+
+
+    console.log('🔌 [UNIFIED_DISCONNECT] Should show disconnecting state:', shouldShowDisconnecting, {
+      hasParaAndEOA,
+      isEOAPrimary,
+      isEOAPrimaryByConnector,
+      isEOAPrimaryByAddress,
+      isAutoSwitching,
+      preventReconnection,
+      primaryConnectorId,
+      currentAddress: address,
+      paraAddress: paraWallet?.data?.address,
+      isParaConnected: paraAccount?.isConnected
+    });
+
+    // Set disconnect in progress flag to prevent auto-switch
+    isDisconnectInProgress = true;
+    console.log('🔌 [UNIFIED_DISCONNECT] Setting disconnect in progress flag to prevent auto-switch');
+
+    // For Para-only disconnects, reset the disconnecting flag immediately since Para logout is unreliable
+    if (!hasParaAndEOA) {
+      console.log('🔌 [UNIFIED_DISCONNECT] Para-only disconnect detected, resetting shouldShowDisconnecting flag immediately');
+      shouldShowDisconnecting = false;
+    }
+
+    // Create a single disconnect promise to prevent race conditions
+    disconnectPromise = performDisconnect();
+    isDisconnecting = true;
+
+    try {
+      await disconnectPromise;
+    } finally {
+      isDisconnecting = false;
+      disconnectPromise = null;
+      shouldShowDisconnecting = false; // Reset disconnecting display flag
+      // Reset disconnect in progress flag after a delay
+      setTimeout(() => {
+        isDisconnectInProgress = false;
+        console.log('🔌 [UNIFIED_DISCONNECT] Reset disconnect in progress flag');
+      }, 2000);
+    }
+  };
+
+  // Internal disconnect function with proper coordination
+  const performDisconnect = async () => {
     const disconnectResults = {
       appKit: false,
       wagmi: false,
       para: false,
-      cleanup: false
+      cleanup: false,
     };
 
-    try {
-      console.log('🔌 [UNIFIED_DISCONNECT] Starting coordinated disconnect, isPara:', isPara);
+    // Preserve the primary connector ID and address before any cleanup
+    const originalPrimaryConnectorId = primaryConnectorId;
+    const originalIsPara = isPara;
+    const originalAddress = address;
 
-      // Step 1: Disconnect from AppKit (for external wallets)
-      if (!isPara && primaryConnectorId && primaryConnectorId !== 'para' && primaryConnectorId !== 'getpara') {
-        console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting from AppKit');
+    // Set prevent reconnection flag for "disconnect all" scenarios
+    // This happens when Para is primary AND there are external wallets connected
+    if (originalIsPara && connections.some(conn =>
+      conn.connector.id !== 'para' &&
+      conn.connector.id !== 'getpara' &&
+      conn.accounts &&
+      conn.accounts.length > 0
+    )) {
+      // Para + EOA with Para selected = disconnect all
+      preventReconnection = true;
+      console.log('🔌 [UNIFIED_DISCONNECT] Disconnect all detected (Para primary + external wallets), setting preventReconnection flag');
+    }
+
+    try {
+      console.log(
+        '🔌 [UNIFIED_DISCONNECT] Starting coordinated disconnect, isPara:',
+        originalIsPara,
+        'primaryConnectorId:',
+        originalPrimaryConnectorId,
+        'address:',
+        originalAddress
+      );
+
+      /*
+       * How It Works Now (Address-Based Detection):
+       * Scenario                    Primary Wallet    Disconnect Behavior                    UI State
+       * Para only                   Para             Disconnects Para only                  → Stay on page
+       * EOA only                    MetaMask         Disconnects MetaMask only              → Stay on page
+       * Para + EOA, Para selected   Para             Disconnects Para + all EOAs           → Stay on page
+       * Para + EOA, EOA selected   MetaMask         Disconnects all EOAs except Para       → Stay on page
+       * 
+       * Key Logic:
+       * - AppKit disconnect: When external wallet address detected OR non-Para primary connector
+       * - Wagmi disconnect: Only when Para is primary (to avoid disconnecting Para when EOA is primary)
+       * - Para SDK disconnect: Only when Para is primary or current address is Para
+       * - No automatic redirects: All scenarios stay on current page, UI components handle state changes naturally
+       * 
+       * Note: Uses case-insensitive address comparison to determine wallet type instead of connector names.
+       * This is more reliable than connector IDs which can change or be inconsistent.
+       */
+
+      // Log all connections for debugging
+      console.log('🔌 [UNIFIED_DISCONNECT] Current connections:', connections.map(conn => ({
+        id: conn.connector.id,
+        name: conn.connector.name,
+        accounts: conn.accounts?.length || 0,
+        hasAccounts: !!(conn.accounts && conn.accounts.length > 0)
+      })));
+      
+      // Log address information for debugging
+      console.log('🔌 [UNIFIED_DISCONNECT] Address analysis:', {
+        originalAddress,
+        paraAddress: paraWallet?.data?.address,
+        isParaConnected: paraAccount?.isConnected,
+        isParaAddress: originalAddress?.toLowerCase() === paraWallet?.data?.address?.toLowerCase()
+      });
+
+      // Step 1: Disconnect from AppKit (for external wallets) - only if primary is external wallet
+      // Check if the current address belongs to an external wallet (not Para)
+      const isExternalWalletAddress = originalAddress && 
+        paraWallet?.data?.address && 
+        originalAddress.toLowerCase() !== paraWallet?.data?.address.toLowerCase();
+      
+      // Also check if we have a primary connector that's not Para
+      const hasNonParaPrimary = originalPrimaryConnectorId && 
+        originalPrimaryConnectorId !== 'para' && 
+        originalPrimaryConnectorId !== 'getpara';
+      
+      // If there's no Para connection at all, and we have an address, it must be an external wallet
+      const isOnlyExternalWallet = originalAddress && !paraWallet?.data?.address;
+
+      const shouldDisconnectAppKit = isExternalWalletAddress || 
+        (!originalIsPara && hasNonParaPrimary) ||
+        isOnlyExternalWallet;
+      
+      console.log('🔌 [UNIFIED_DISCONNECT] Should disconnect AppKit:', shouldDisconnectAppKit, {
+        originalIsPara,
+        originalPrimaryConnectorId,
+        originalAddress,
+        isExternalWalletAddress,
+        hasNonParaPrimary,
+        isOnlyExternalWallet,
+        paraAddress: paraWallet?.data?.address,
+        logic: 'isExternalWalletAddress || (!originalIsPara && hasNonParaPrimary) || isOnlyExternalWallet'
+      });
+
+      if (shouldDisconnectAppKit) {
+        console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting from AppKit (primary is external wallet)');
         try {
           await appKit.disconnect();
           disconnectResults.appKit = true;
           console.log('🔌 [UNIFIED_DISCONNECT] AppKit disconnect successful');
         } catch (appKitError) {
-          console.error('🔌 [UNIFIED_DISCONNECT] AppKit disconnect failed:', appKitError);
+          console.error(
+            '🔌 [UNIFIED_DISCONNECT] AppKit disconnect failed:',
+            appKitError
+          );
           // Continue with other disconnects even if AppKit fails
         }
       } else {
+        console.log('🔌 [UNIFIED_DISCONNECT] Skipping AppKit disconnect (primary is Para or not applicable)');
         disconnectResults.appKit = true; // Not applicable
       }
 
-      // Step 2: Disconnect from wagmi
+      // Step 2: Disconnect from wagmi - only when Para is primary
       console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting from wagmi');
+      console.log('🔌 [UNIFIED_DISCONNECT] Current wagmi connections before disconnect:', connections.map(conn => ({
+        id: conn.connector.id,
+        name: conn.connector.name,
+        accounts: conn.accounts?.length || 0,
+        hasAccounts: !!(conn.accounts && conn.accounts.length > 0)
+      })));
       try {
-        await disconnect();
+        // Check if current address is Para address
+        const isCurrentAddressPara = originalAddress && 
+          paraWallet?.data?.address && 
+          originalAddress.toLowerCase() === paraWallet?.data?.address.toLowerCase();
+        
+        if (originalIsPara || isCurrentAddressPara) {
+          // If Para is primary or current address is Para, disconnect all wagmi connections
+          console.log('🔌 [UNIFIED_DISCONNECT] Para is primary, disconnecting all wagmi connections including external wallets');
+
+          // First try AppKit disconnect for external wallets
+          try {
+            await appKit.disconnect();
+            console.log('🔌 [UNIFIED_DISCONNECT] AppKit disconnect successful for external wallets');
+          } catch (appKitError) {
+            console.error('🔌 [UNIFIED_DISCONNECT] AppKit disconnect failed:', appKitError);
+          }
+
+          // Then disconnect external wallets from wagmi individually (not Para)
+          const externalConnections = connections.filter(conn =>
+            conn.connector.id !== 'para' &&
+            conn.connector.id !== 'getpara' &&
+            conn.accounts &&
+            conn.accounts.length > 0
+          );
+
+          for (const conn of externalConnections) {
+            try {
+              console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting external wagmi connection:', conn.connector.id);
+              await conn.connector.disconnect();
+              console.log('🔌 [UNIFIED_DISCONNECT] External wagmi disconnect successful for:', conn.connector.id);
+            } catch (wagmiError) {
+              console.error('🔌 [UNIFIED_DISCONNECT] External wagmi disconnect failed for:', conn.connector.id, wagmiError);
+            }
+          }
+
+          // Finally disconnect Para from wagmi if it's connected
+          const paraConnection = connections.find(conn =>
+            conn.connector.id === 'para' || conn.connector.id === 'getpara'
+          );
+
+          if (paraConnection) {
+            try {
+              console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting Para from wagmi:', paraConnection.connector.id);
+              await paraConnection.connector.disconnect();
+              console.log('🔌 [UNIFIED_DISCONNECT] Para wagmi disconnect successful');
+            } catch (paraWagmiError) {
+              console.error('🔌 [UNIFIED_DISCONNECT] Para wagmi disconnect failed:', paraWagmiError);
+            }
+          }
+          
+          // Log connections after wagmi disconnect
+          console.log('🔌 [UNIFIED_DISCONNECT] Wagmi connections after disconnect:', connections.map(conn => ({
+            id: conn.connector.id,
+            name: conn.connector.name,
+            accounts: conn.accounts?.length || 0,
+            hasAccounts: !!(conn.accounts && conn.accounts.length > 0)
+          })));
+          
+          // Additional check: if there are still external wallets connected, try force disconnect
+          const hasExternalWallets = connections.some(conn => 
+            conn.connector.id !== 'para' && 
+            conn.connector.id !== 'getpara' && 
+            conn.accounts && 
+            conn.accounts.length > 0
+          );
+          
+          if (hasExternalWallets) {
+            console.warn('🔌 [UNIFIED_DISCONNECT] External wallets still connected after AppKit and wagmi disconnect, trying force disconnect');
+
+            // Try to force disconnect by calling disconnect on each external connector
+            const externalConnectors = connections.filter(conn =>
+              conn.connector.id !== 'para' &&
+              conn.connector.id !== 'getpara' &&
+              conn.accounts &&
+              conn.accounts.length > 0
+            );
+
+            for (const conn of externalConnectors) {
+              try {
+                console.log('🔌 [UNIFIED_DISCONNECT] Force disconnecting external connector:', conn.connector.id);
+                await conn.connector.disconnect();
+                console.log('🔌 [UNIFIED_DISCONNECT] Force disconnect successful for:', conn.connector.id);
+              } catch (forceError) {
+                console.error('🔌 [UNIFIED_DISCONNECT] Force disconnect failed for:', conn.connector.id, forceError);
+              }
+            }
+          }
+        } else {
+          // If external wallet is primary, DO NOT disconnect wagmi as it would disconnect Para too
+          // AppKit disconnect should handle the external wallet, Para should remain connected
+          console.log('🔌 [UNIFIED_DISCONNECT] External wallet is primary, skipping wagmi disconnect to preserve Para connection');
+          console.log('🔌 [UNIFIED_DISCONNECT] AppKit disconnect should handle the external wallet');
+        }
         disconnectResults.wagmi = true;
-        console.log('🔌 [UNIFIED_DISCONNECT] Wagmi disconnect successful');
       } catch (wagmiError) {
-        console.error('🔌 [UNIFIED_DISCONNECT] Wagmi disconnect failed:', wagmiError);
+        console.error(
+          '🔌 [UNIFIED_DISCONNECT] Wagmi disconnect failed:',
+          wagmiError
+        );
         // Continue with Para disconnect even if wagmi fails
       }
 
-      // Step 3: Disconnect Para SDK (if applicable)
-      if (isPara) {
-        console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting Para SDK');
-        try {
-          logout();
-          disconnectResults.para = true;
+      // Step 3: Disconnect Para SDK (if applicable) - only if Para is primary
+      // Check if the current address belongs to Para
+      const isParaAddress = originalAddress && 
+        paraWallet?.data?.address && 
+        originalAddress.toLowerCase() === paraWallet?.data?.address.toLowerCase();
+      
+      const shouldDisconnectPara = originalIsPara || isParaAddress;
+      
+      console.log('🔌 [UNIFIED_DISCONNECT] Should disconnect Para:', shouldDisconnectPara, {
+        originalIsPara,
+        originalPrimaryConnectorId,
+        originalAddress,
+        isParaAddress,
+        paraAddress: paraWallet?.data?.address
+      });
+
+      if (shouldDisconnectPara) {
+        console.log('🔌 [UNIFIED_DISCONNECT] Disconnecting Para SDK (Para is primary)');
+        disconnectResults.para = await safeParaLogout();
+        if (disconnectResults.para) {
           console.log('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect successful');
-        } catch (paraError) {
-          console.error('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect failed:', paraError);
-          // Continue with cleanup even if Para disconnect fails
+          // Add a longer delay to ensure Para SDK state is fully updated
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          // Re-check Para connection status after logout
+          const paraStillConnected = paraAccount?.isConnected && paraWallet?.data?.address;
+          console.log('🔌 [UNIFIED_DISCONNECT] Para connection status after logout:', {
+            paraAccountConnected: paraAccount?.isConnected,
+            paraWalletAddress: paraWallet?.data?.address,
+            paraStillConnected
+          });
+          
+          // If Para is still connected, try additional logout methods
+          if (paraStillConnected) {
+            console.warn('🔌 [UNIFIED_DISCONNECT] Para is still connected after logout, trying additional methods');
+            try {
+              // Try the sync logout as a fallback
+              logout();
+              console.log('🔌 [UNIFIED_DISCONNECT] Additional sync logout attempted');
+              
+              // Wait a bit more and check again
+              await new Promise(resolve => setTimeout(resolve, 500));
+              const paraStillConnectedAfterSync = paraAccount?.isConnected && paraWallet?.data?.address;
+              console.log('🔌 [UNIFIED_DISCONNECT] Para status after sync logout:', {
+                paraAccountConnected: paraAccount?.isConnected,
+                paraWalletAddress: paraWallet?.data?.address,
+                paraStillConnectedAfterSync
+              });
+              
+              // If Para is still connected after all logout attempts, force disconnect by clearing state
+              if (paraStillConnectedAfterSync) {
+                console.warn('🔌 [UNIFIED_DISCONNECT] Para SDK logout methods failed, forcing disconnect by clearing state');
+                // Force clear Para connection state
+                paraDisconnected = true;
+                // Clear any cached Para data
+                if (typeof window !== 'undefined') {
+                  try {
+                    // Clear Para-related localStorage items
+                    const keys = Object.keys(localStorage);
+                    keys.forEach(key => {
+                      if (key.includes('para') || key.includes('Para')) {
+                        localStorage.removeItem(key);
+                        console.log('🔌 [UNIFIED_DISCONNECT] Cleared Para localStorage key:', key);
+                      }
+                    });
+
+                    // Also try to clear any Para SDK internal state
+                    if ((window as any).para) {
+                      try {
+                        (window as any).para.logout();
+                        console.log('🔌 [UNIFIED_DISCONNECT] Called window.para.logout()');
+                      } catch (windowParaError) {
+                        console.error('🔌 [UNIFIED_DISCONNECT] window.para.logout() failed:', windowParaError);
+                      }
+                    }
+                  } catch (clearError) {
+                    console.error('🔌 [UNIFIED_DISCONNECT] Failed to clear Para localStorage:', clearError);
+                  }
+                }
+              }
+            } catch (additionalError) {
+              console.error('🔌 [UNIFIED_DISCONNECT] Additional logout methods failed:', additionalError);
+            }
+          }
+        } else {
+          console.warn('🔌 [UNIFIED_DISCONNECT] Para SDK disconnect failed, continuing with cleanup');
         }
       } else {
+        console.log('🔌 [UNIFIED_DISCONNECT] Skipping Para SDK disconnect (Para is not primary)');
         disconnectResults.para = true; // Not applicable
       }
 
-      // Step 4: Cleanup state
+      // Step 4: Cleanup state - with atomic operations
       console.log('🔌 [UNIFIED_DISCONNECT] Performing state cleanup');
       try {
         // Set disconnect flag to prevent immediate reconnection
@@ -774,29 +1498,58 @@ export function useUnifiedConnection() {
         disconnectResults.cleanup = true;
         console.log('🔌 [UNIFIED_DISCONNECT] State cleanup successful');
       } catch (cleanupError) {
-        console.error('🔌 [UNIFIED_DISCONNECT] State cleanup failed:', cleanupError);
+        console.error(
+          '🔌 [UNIFIED_DISCONNECT] State cleanup failed:',
+          cleanupError
+        );
+      }
+
+      // Step 5: Sign out from Supabase
+      try {
+        await signOut();
+        console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
+      } catch (signOutError) {
+        console.error('🔌 [UNIFIED_DISCONNECT] Sign out failed:', signOutError);
+        // Continue even if sign out fails
       }
 
       // Evaluate overall success
-      const allSuccessful = Object.values(disconnectResults).every(result => result);
-      signOut();
-      console.log('🔌 [UNIFIED_DISCONNECT] Sign out completed');
+      const allSuccessful = Object.values(disconnectResults).every(
+        (result) => result
+      );
 
       if (allSuccessful) {
-        console.log('🔌 [UNIFIED_DISCONNECT] All disconnect operations completed successfully');
-        if (typeof window !== 'undefined') {
-          window.location.href = '/onboarding';
-        }
+        console.log(
+          '🔌 [UNIFIED_DISCONNECT] All disconnect operations completed successfully'
+        );
+        // Reset disconnecting display flag immediately when disconnect completes
+        shouldShowDisconnecting = false;
+        console.log('🔌 [UNIFIED_DISCONNECT] Reset shouldShowDisconnecting flag after successful disconnect');
+
+        // Force a state change to trigger UI re-render
+        globalStateChangeCounter += 1;
+        console.log('🔌 [UNIFIED_DISCONNECT] Triggered global state change to update UI');
+
+        // No redirect - let the UI handle the state change naturally
       } else {
-        console.warn('🔌 [UNIFIED_DISCONNECT] Some disconnect operations failed:', disconnectResults);
+        console.warn(
+          '🔌 [UNIFIED_DISCONNECT] Some disconnect operations failed:',
+          disconnectResults
+        );
         // Don't throw error if at least wagmi disconnect succeeded (most important)
         if (!disconnectResults.wagmi) {
-          throw new Error('Critical disconnect failure: wagmi disconnect failed');
+          throw new Error(
+            'Critical disconnect failure: wagmi disconnect failed'
+          );
         }
       }
 
+      return disconnectResults;
     } catch (error) {
-      console.error('🔌 [UNIFIED_DISCONNECT] Disconnect process failed:', error);
+      console.error(
+        '🔌 [UNIFIED_DISCONNECT] Disconnect process failed:',
+        error
+      );
       throw error;
     }
   };
@@ -808,7 +1561,10 @@ export function useUnifiedConnection() {
         throw new Error('No primary connector available for signing');
       }
 
-      console.log('Signing message with primary connector:', primaryConnector.id);
+      console.log(
+        'Signing message with primary connector:',
+        primaryConnector.id
+      );
 
       // Ensure primary is active
       if (primaryConnector.id !== wagmiAccount.connector?.id) {
@@ -823,7 +1579,10 @@ export function useUnifiedConnection() {
       // Sign using the active connector (no 'connector' param needed)
       const signature = await signMessageAsync({ message });
 
-      console.log('Message signed successfully with connector:', primaryConnector.id);
+      console.log(
+        'Message signed successfully with connector:',
+        primaryConnector.id
+      );
       return signature;
     } catch (error) {
       console.error('Failed to sign message:', error);
@@ -882,22 +1641,27 @@ Issued At: ${issuedAt}`;
     return { message, nonce };
   };
 
-  // Determine if user should be redirected to onboarding
+  // Utility function to determine if user should be redirected to onboarding
+  // Note: This is not used automatically - components can use this to decide their own behavior
   const shouldRedirectToOnboarding = () => {
-    if (isSkipped) return false;
     if (pathname === '/onboarding') return false;
     if (isConnected) return false;
     return true;
   };
 
   // Show navigation if connected, skipped, or on any page other than homepage
-  const shouldShowNavigation = isConnected || isSkipped || pathname !== '/';
+  const shouldShowNavigation = isConnected || pathname !== '/';
+
+  // Ensure user data is loaded into global store when connection status changes
+  useEnsureUserData(!!(supabaseUser?.email || paraAccount?.embedded?.email));
 
   return {
     // Connection status
     isConnected,
     address,
     isPara,
+    isDisconnecting,
+    shouldShowDisconnecting,
 
     // Wagmi state
     wagmiAccount,
@@ -919,6 +1683,7 @@ Issued At: ${issuedAt}`;
     paraConnector,
     primaryConnector,
     primaryConnectorId,
+    connections, // Add connections to expose all active connections
 
     // Account switching
     switchPrimaryConnector,
@@ -942,11 +1707,6 @@ Issued At: ${issuedAt}`;
 
     // Disconnect
     disconnect: handleDisconnect,
-
-    // Skipped state
-    isSkipped,
-    setSkipped,
-    clearSkipped,
 
     // Navigation
     shouldRedirectToOnboarding,

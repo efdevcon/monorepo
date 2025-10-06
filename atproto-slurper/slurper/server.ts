@@ -654,6 +654,8 @@ app.post(
         rkey
       );
 
+      console.log("Result of createEventBluesky:", result);
+
       const { error: contactError } = await supabase
         .from("atproto_records_contacts")
         .upsert(

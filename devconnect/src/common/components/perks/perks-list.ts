@@ -10,6 +10,8 @@ import BeTrustyImage from './images/betrusty.jpg'
 import RoamlessImage from './images/roamless-banner.png'
 import AlephImage from './images/aleph-updated.png'
 import PrecogImage from './images/precog.png'
+import DoubleTreeImage from './images/hilton.jpg'
+import VanAlImage from './images/van-al.jpg'
 
 type Perk = {
   coupon_collection: string
@@ -147,6 +149,23 @@ const perks: Perk[] = [
     external: true,
   },
   {
+    coupon_collection: 'double-tree-hilton',
+    name: 'Hotel DoubleTree by Hilton',
+    requires: 'Devconnect ARG ticket',
+    description: 'Enjoy a special preferred rate - with full buffet breakfast',
+    issuer: 'Hotel DoubleTree by Hilton',
+    image: DoubleTreeImage,
+    instructions: 'Special rates available when following the link:',
+    zupass_proof_id: 'Devconnect ARG',
+    urls: [
+      {
+        text: 'Visit Hilton',
+        url: 'https://www.hilton.com/en/attend-my-event/buesidt-331-25996bb4-f1e0-42cd-81dd-6845d58a1368/',
+      },
+    ],
+    global_coupon: 'https://www.hilton.com/en/attend-my-event/buesidt-331-25996bb4-f1e0-42cd-81dd-6845d58a1368/',
+  },
+  {
     coupon_collection: 'precog-2025',
     name: 'Precog',
     requires: 'Devconnect ARG ticket',
@@ -171,6 +190,23 @@ const perks: Perk[] = [
     issuer: 'Aleph Cloud',
     image: AlephImage,
     zupass_proof_id: 'Devconnect ARG',
+  },
+  {
+    coupon_collection: 'van-al',
+    name: 'Van Al Aeropuerto',
+    requires: 'Devconnect ARG ticket',
+    description: '10% Off - Airport Transport, Crypto Welcome',
+    issuer: 'Van Al Aeropuerto',
+    image: VanAlImage,
+    instructions: 'Use the code at checkout',
+    zupass_proof_id: 'Devconnect ARG',
+    urls: [
+      {
+        text: 'Visit Van Al Aeropuerto',
+        url: 'https://ar.vanalaeropuerto.com/ ',
+      },
+    ],
+    global_coupon: 'DEVCONVAN10',
   },
   {
     coupon_collection: 'protocol-guild-free-ticket',

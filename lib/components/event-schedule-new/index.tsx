@@ -1,27 +1,40 @@
-import React, { useEffect, useState, Suspense } from "react";
+import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
-// import NewSchedule from './calendar'
 import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
 import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
 import { Event as EventType } from "./model";
 import { format, parseISO } from "date-fns";
-// import { useCalendarStore } from 'store/calendar'
 import cn from "classnames";
-import Timeline from "./timeline";
+// import Timeline from "./timeline";
 import NoEventsImage from "./images/404.png";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
-import { eventShops } from "./zupass/event-shops-list";
+// import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+import Export from "./export";
+
+export const customUrlTransforms = [
+  { from: "ethday", to: "84" },
+  { from: "DSS", to: "86" },
+  { from: "soliditysummit", to: "76" },
+  { from: "moneyrails", to: "108" },
+  { from: "trustless-eil", to: "109" },
+  { from: "trustless-interop", to: "110" },
+  { from: "bridge-atlas", to: "91" },
+  { from: "worldcup", to: "106" },
+  { from: "regulationday", to: "104" },
+  { from: "agenticzero", to: "71" },
+  { from: "defi-today", to: "107" },
+  { from: "zero-to-dapp", to: "98" },
+  { from: "zktls-day", to: "111" },
+];
 
 export type ScheduleProps = {
   isCommunityCalendar?: boolean;
-  selectedEvent: EventType | null;
-  selectedDay: string | null;
-  setSelectedEvent: (event: EventType | null) => void;
-  setSelectedDay: (day: string | null) => void;
+  favoriteEvents?: string[];
+  toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
 };
 
@@ -66,15 +79,29 @@ const computeEventPlacements = (
     // if (a.isCoreEvent && !b.isCoreEvent) return 1;
     // if (!a.isCoreEvent && b.isCoreEvent) return -1;
 
-    const day1 = moment(a.timeblocks[0].start).dayOfYear();
-    const day2 = moment(b.timeblocks[0].start).dayOfYear();
+    const day1 = moment.utc(a.timeblocks[0].start).dayOfYear();
+    const day2 = moment.utc(b.timeblocks[0].start).dayOfYear();
+    const lastDay1 = moment
+      .utc(a.timeblocks[a.timeblocks.length - 1].end)
+      .dayOfYear();
+    const lastDay2 = moment
+      .utc(b.timeblocks[b.timeblocks.length - 1].end)
+      .dayOfYear();
 
     const isSameDay = day1 === day2;
+    const isSameLastDay = lastDay1 === lastDay2;
+
+    if (isSameLastDay && isSameDay) {
+      if (a.isCoreEvent && !b.isCoreEvent) return -1;
+      if (!a.isCoreEvent && b.isCoreEvent) return 1;
+
+      return a.priority - b.priority;
+    }
 
     if (isSameDay) {
       return (
-        moment(b.timeblocks[b.timeblocks.length - 1].end).valueOf() -
-        moment(a.timeblocks[a.timeblocks.length - 1].end).valueOf()
+        moment.utc(b.timeblocks[b.timeblocks.length - 1].end).valueOf() -
+        moment.utc(a.timeblocks[a.timeblocks.length - 1].end).valueOf()
       );
     }
 
@@ -153,17 +180,21 @@ const computeEventPlacements = (
 };
 
 const NewScheduleIndexInner = ({
-  selectedEvent,
-  selectedDay,
-  setSelectedEvent,
-  setSelectedDay,
+  // selectedEvent,
+  // selectedDay,
+  // setSelectedEvent,
+  // setSelectedDay,
+  favoriteEvents,
+  toggleFavoriteEvent,
   events,
   viewMode,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
   const searchParams = useSearchParams();
-  // const { selectedEvent, selectedDay, setSelectedEvent, setSelectedDay } = useCalendarStore()
+  const router = useRouter();
+  const pathname = usePathname();
+  const [exports, setExports] = useState<EventType[] | null>(null);
   const eventRange = computeCalendarRange(events);
-  const [hoveredDate, setHoveredDate] = useState<string | null>(null);
+  // const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
 
   // Compute event placements for the unified grid
@@ -183,12 +214,12 @@ const NewScheduleIndexInner = ({
   const columnTemplate = `repeat(${eventRange.length}, minmax(auto, 240px))`;
 
   // Check if an event should be highlighted based on hovered date
-  const isEventHighlighted = (placement: any) => {
-    if (!hoveredDate) return false;
+  // const isEventHighlighted = (placement: any) => {
+  //   if (!hoveredDate) return false;
 
-    // Check if any of the dates covered by this event match the hovered date
-    return placement.datesCovered.includes(hoveredDate);
-  };
+  //   // Check if any of the dates covered by this event match the hovered date
+  //   return placement.datesCovered.includes(hoveredDate);
+  // };
 
   // Check if date is within November 17-22 range
   const isDateInDevconnectRange = (dateStr: string) => {
@@ -205,7 +236,7 @@ const NewScheduleIndexInner = ({
 
     if (ethDayEvent) {
       (window as any).selectEthDay = () => {
-        setSelectedEvent(ethDayEvent);
+        router.replace(`${pathname}?event=ethday`, { scroll: false });
       };
 
       return () => {
@@ -214,38 +245,62 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
-  // Select event from url params
-  useEffect(() => {
-    let eventParam = searchParams.get("event");
-    const transforms = [
-      { from: "ethday", to: "84" },
-      { from: "DSS", to: "86" },
-      { from: "soliditysummit", to: "76" },
-    ];
+  const selectedEvent = (() => {
+    if (typeof window === "undefined") return;
 
-    if (
-      eventParam &&
-      transforms.some((transform) => transform.from === eventParam)
-    ) {
-      eventParam =
-        transforms.find((transform) => transform.from === eventParam)?.to ||
-        null;
-    }
-
-    if (eventParam && events.length > 0) {
-      // Transform event params to match event ids
-      const event = events.find(
-        (event) =>
-          event.id.toString() === eventParam.toString() ||
-          (event.rkey && event.rkey.toString() === eventParam.toLowerCase())
+    const getEventIdFromUrl = (eventId: string) => {
+      const transformMatch = customUrlTransforms.find(
+        (transform) => transform.from === eventId.toString()
       );
 
-      if (event) {
-        setSelectedEvent(event);
-        return;
+      if (transformMatch) {
+        eventId = transformMatch.to;
       }
+
+      return eventId;
+    };
+
+    const currentUrlParams = new URLSearchParams(searchParams);
+
+    const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
+
+    return events.find((event) => {
+      return (
+        event.id.toString() === eventId ||
+        event.rkey?.toLowerCase() === eventId?.toLowerCase()
+      );
+    });
+  })();
+
+  const setSelectedEvent = (event: EventType | null) => {
+    if (typeof window === "undefined") return;
+
+    const currentParams = new URLSearchParams(searchParams);
+
+    if (!event) {
+      currentParams.delete("event");
+      // setSelectedEventId(null);
+    } else {
+      let nextEventId = event.rkey || event.id;
+
+      const transformMatch = customUrlTransforms.find(
+        (transform) => transform.to === event.id.toString()
+      );
+
+      if (transformMatch) {
+        nextEventId = transformMatch.from;
+      }
+
+      currentParams.set("event", nextEventId);
+      // setSelectedEventId(nextEventId);
     }
-  }, [searchParams.get("event")]);
+
+    // Update URL without any navigation using native History API
+    const paramsString = currentParams.toString();
+    const newUrl = paramsString ? `${pathname}?${paramsString}` : pathname;
+
+    router.replace(newUrl, { scroll: false });
+  };
 
   const listView = viewMode === "list" && isMobile;
 
@@ -254,7 +309,7 @@ const NewScheduleIndexInner = ({
       (placement) => placement.event.id === selectedEvent?.id
     ) || null;
 
-  // State for managing collapsed days
+  // State for managing collapsed days in list view
   const [collapsedDays, setCollapsedDays] = useState<Set<string>>(new Set());
 
   return (
@@ -263,9 +318,16 @@ const NewScheduleIndexInner = ({
         <Event
           event={selectedEventForDialog?.event}
           isDialog={true}
-          selectedEvent={selectedEvent}
+          selectedEvent={selectedEvent || null}
           setSelectedEvent={setSelectedEvent}
+          setExports={setExports}
+          toggleFavoriteEvent={toggleFavoriteEvent}
+          favoriteEvents={favoriteEvents}
         />
+      )}
+
+      {exports && (
+        <Export events={exports} setExports={() => setExports(null)} />
       )}
 
       {listView && (
@@ -355,8 +417,11 @@ const NewScheduleIndexInner = ({
                         <Event
                           key={`${date}-${placement.event.id}`}
                           event={placement.event}
-                          selectedEvent={selectedEvent}
+                          selectedEvent={selectedEvent || null}
                           setSelectedEvent={setSelectedEvent}
+                          setExports={setExports}
+                          toggleFavoriteEvent={toggleFavoriteEvent}
+                          favoriteEvents={favoriteEvents}
                         />
                       ))}
                     </div>
@@ -387,9 +452,10 @@ const NewScheduleIndexInner = ({
                     <div
                       key={date}
                       className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-semibold py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-0.5",
-                        selectedDay === date && "!bg-slate-100 !opacity-100",
-                        selectedDay !== null && "opacity-20"
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-1",
+                        !isDateInDevconnectRange(date) && "!bg-blue-50"
+                        // selectedDay === date && "!bg-slate-100 !opacity-100",
+                        // selectedDay !== null && "opacity-20"
                       )}
                       // onMouseEnter={() => setHoveredDate(date)}
                       // onMouseLeave={() => setHoveredDate(null)}
@@ -428,7 +494,7 @@ const NewScheduleIndexInner = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-                <div className={cn("contents", selectedDay && "hidden")}>
+                <div className={cn("contents")}>
                   {eventPlacements.map((placement, idx) => (
                     <div
                       key={`event-${placement.event.id}-${idx}`}
@@ -443,13 +509,16 @@ const NewScheduleIndexInner = ({
                       <Event
                         event={placement.event}
                         isDialog={false}
-                        className={
-                          isEventHighlighted(placement)
-                            ? "!border-neutral-500"
-                            : ""
-                        }
-                        selectedEvent={selectedEvent}
+                        // className={
+                        //   isEventHighlighted(placement)
+                        //     ? "!border-neutral-500"
+                        //     : ""
+                        // }
+                        selectedEvent={selectedEvent || null}
                         setSelectedEvent={setSelectedEvent}
+                        setExports={setExports}
+                        toggleFavoriteEvent={toggleFavoriteEvent}
+                        favoriteEvents={favoriteEvents}
                       />
                     </div>
                   ))}

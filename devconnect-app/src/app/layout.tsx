@@ -2,11 +2,12 @@ import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import '@getpara/react-sdk/styles.css';
-import { SkippedProvider } from '@/context/SkippedContext';
 import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
+import { GlobalStoreProvider } from '@/app/store.provider';
+import { getAtprotoEvents } from '@/utils/atproto-events';
 
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
@@ -86,7 +87,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -98,7 +99,9 @@ export default function RootLayout({
   // const image = `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`;
 
   // Check if Supabase is configured
-  const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  // const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  const atprotoEvents = await getAtprotoEvents();
 
   return (
     <html lang="en">
@@ -112,7 +115,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/app-icon.png" />
 
         {/* Meta tags now handled by generateMetadata function above */}
-        {/* 
+        {/*
         <meta name="apple-mobile-web-app-title" content="Devconnect" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Devconnect" />
@@ -163,15 +166,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SkippedProvider>
-          <PWAProvider>
-            <WalletsProviders>
+        <PWAProvider>
+          <WalletsProviders>
+            <GlobalStoreProvider events={atprotoEvents}>
               {children}
-              <NewDeployment />
-            </WalletsProviders>
-          </PWAProvider>
-        </SkippedProvider>
+            </GlobalStoreProvider>
+            <NewDeployment />
+          </WalletsProviders>
+        </PWAProvider>
+
         <Toaster />
+        <div id="requires-auth-modal" />
       </body>
     </html>
   );

@@ -151,24 +151,127 @@ export async function POST(req: NextRequest) {
       } catch (createError: any) {
         // If user creation fails due to email already existing, try to get the user again
         if (createError.message?.includes('already been registered') || createError.code === 'email_exists') {
-          console.log('User creation failed, trying to get existing user again');
+          console.log('User creation failed (user exists), trying to get existing user again');
+          console.log('Looking for email:', email);
+          console.log('Looking for external_id:', externalId);
+
           try {
+            // Wait a moment for database consistency
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             const { data: users, error: listError } = await supabaseAdmin.auth.admin.listUsers();
-            if (!listError && users.users) {
-              const existingUser = users.users.find((u) => u.email === email);
-              if (existingUser) {
-                supabaseUser = existingUser;
-                console.log('Retrieved existing user after creation failure');
-              } else {
-                throw new Error('Failed to retrieve existing user');
-              }
+            if (listError) {
+              console.error('Error listing users:', listError);
+              throw new Error(`Failed to list users: ${listError.message}`);
+            }
+
+            if (!users || !users.users) {
+              throw new Error('No users data returned from Supabase');
+            }
+
+            console.log(`Found ${users.users.length} total users, searching...`);
+
+            // Try to find by email (case-insensitive)
+            const userByEmail = users.users.find((u) =>
+              u.email?.toLowerCase() === email.toLowerCase()
+            );
+
+            // Try to find by external_id
+            const userByExternalId = users.users.find((u) =>
+              u.user_metadata?.external_id === externalId
+            );
+
+            supabaseUser = userByEmail || userByExternalId;
+
+            if (supabaseUser) {
+              console.log('✅ Retrieved existing user after creation failure:', {
+                id: supabaseUser.id,
+                email: supabaseUser.email,
+                foundBy: userByEmail ? 'email' : 'external_id'
+              });
             } else {
-              throw new Error('Failed to list users');
+              console.error('❌ User not found in list. Available emails:',
+                users.users.map(u => u.email).slice(0, 10)
+              );
+
+              // The user exists (creation failed) but we can't find it in the list
+              // This might be due to pagination or the user being created through another flow
+              // Since we know the user exists (creation failed), let's try with pagination
+              console.log('⚠️ Attempting paginated search for user...');
+              
+              let foundUser = null;
+              let page = 1;
+              const perPage = 1000;
+              
+              try {
+                // Search through paginated results
+                while (!foundUser && page <= 10) { // Limit to 10 pages max
+                  const { data: paginatedUsers, error: pageError } = await supabaseAdmin.auth.admin.listUsers({
+                    page,
+                    perPage
+                  });
+                  
+                  if (pageError) {
+                    console.error(`Page ${page} error:`, pageError);
+                    break;
+                  }
+                  
+                  if (!paginatedUsers?.users || paginatedUsers.users.length === 0) {
+                    console.log(`No more users at page ${page}`);
+                    break;
+                  }
+                  
+                  console.log(`Searching page ${page} (${paginatedUsers.users.length} users)...`);
+                  
+                  foundUser = paginatedUsers.users.find((u) => 
+                    u.email?.toLowerCase() === email.toLowerCase() ||
+                    u.user_metadata?.external_id === externalId
+                  );
+                  
+                  if (foundUser) {
+                    console.log(`✅ Found user on page ${page}`);
+                    break;
+                  }
+                  
+                  page++;
+                }
+                
+                if (foundUser) {
+                  supabaseUser = foundUser;
+                  console.log('✅ Found user via paginated search:', supabaseUser.id);
+                  
+                  // Update their metadata to link to Para
+                  try {
+                    await supabaseAdmin.auth.admin.updateUserById(
+                      supabaseUser.id,
+                      {
+                        user_metadata: {
+                          ...supabaseUser.user_metadata,
+                          external_id: externalId,
+                          para_auth_type: payload.data.authType,
+                          wallet_address: walletData?.address,
+                          wallet_type: walletData?.type,
+                        },
+                      }
+                    );
+                    console.log('✅ Updated user metadata with Para info');
+                  } catch (updateErr) {
+                    console.warn('Failed to update metadata:', updateErr);
+                  }
+                } else {
+                  throw new Error('User not found even with paginated search');
+                }
+              } catch (finalError: any) {
+                console.error('Final user lookup failed:', finalError);
+                throw new Error(`User exists but cannot be retrieved: ${finalError.message}`);
+              }
             }
           } catch (getError: any) {
+            console.error('Error retrieving existing user:', getError);
             throw new Error(`User exists but cannot be retrieved: ${getError.message || 'Unknown error'}`);
           }
         } else {
+          console.error('User creation failed with unexpected error:', createError);
           throw createError;
         }
       }

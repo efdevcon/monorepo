@@ -16,189 +16,41 @@ import {
   ElementPosition,
 } from './utils/svgToLookup';
 import { Pin } from './components/Pin';
+import { SupporterInfo } from './components/SupporterInfo';
 import cn from 'classnames';
 import css from './map.module.scss';
 import { X } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { getViewportPosition } from './utils/svgToLookup';
+import FlexibleDrawer from 'lib/components/flexible-drawer';
 
 const MapPane = (props: {
   selection: string | null;
   setCurrentFilters: (filters: typeof initialFilters) => void;
   elementLookup: SVGLookup;
 }) => {
-  const { selection, elementLookup } = props;
-  const router = useRouter();
+  const { selection, setCurrentFilters } = props;
 
-  const element = selection ? elementLookup[selection] : null;
-
-  // Data from supporters.ts for AAVE
-  const elementData = {
-    title: 'AAVE',
-    description: 'Decentralized lending protocol',
-    hasQuest: true,
-    image: 'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png',
+  const handleClose = () => {
+    setCurrentFilters(initialFilters);
+    window.location.href = '/map';
   };
 
+  const handleBack = () => {
+    window.location.href = '/quests/app-showcase#14';
+  };
+
+  const paneOpen = !!selection;
+
   return (
-    <div
-      className={cn(
-        'absolute z-[1] bottom-0 left-0 right-0 transition-all duration-300 translate-y-[100%] opacity-0',
-        selection && '!translate-y-[0%] opacity-100',
-        css['map']
-      )}
-      style={{
-        borderTop: '1px solid rgba(255, 255, 255, 0.70)',
-        background:
-          'linear-gradient(0deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 100%), linear-gradient(0deg, #AAA7FF 0%, #F6B40E 100%)',
-        boxShadow: '0 -2px 4px 0 rgba(54, 54, 76, 0.10)',
-      }}
-      // Don't let the click/touch events bubble up to the panzoom container
-      onClick={(e) => {
-        e.stopPropagation();
-      }}
-      onTouchEnd={(e) => {
-        e.stopPropagation();
-      }}
+    <FlexibleDrawer
+      open={paneOpen}
+      onOpenChange={() => setCurrentFilters(initialFilters)}
+      className="bg-gradient-to-t from-[#F6B40E] to-[#AAA7FF] bg-white/70 bg-blend-normal"
+      hideHandle={true}
     >
-      <div className="flex flex-col gap-4 p-5 pt-5">
-        {/* Header with back button and close button */}
-        <div className="flex justify-between items-center">
-          {/* Back button - hardcoded navigation to /quests/app-showcase#14 */}
-          <button
-            onClick={(e) => {
-              console.log('Back button clicked');
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = '/quests/app-showcase#14';
-            }}
-            onTouchEnd={(e) => {
-              console.log('Back button touched');
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = '/quests/app-showcase#14';
-            }}
-            className="flex gap-1 items-center hover:opacity-80 transition-opacity"
-          >
-            <div className="w-4 h-4 flex items-center justify-center">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M10 12L6 8L10 4"
-                  stroke="#36364c"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <div className="text-sm font-semibold text-[#36364c]">Back</div>
-          </button>
-
-          {/* Close button - navigates to /map and closes MapPane */}
-          <button
-            onClick={(e) => {
-              console.log('Close button clicked');
-              e.preventDefault();
-              e.stopPropagation();
-              props.setCurrentFilters(initialFilters);
-              window.location.href = '/map';
-            }}
-            onTouchEnd={(e) => {
-              console.log('Close button touched');
-              e.preventDefault();
-              e.stopPropagation();
-              props.setCurrentFilters(initialFilters);
-              window.location.href = '/map';
-            }}
-            className="w-6 h-6 flex items-center justify-center hover:opacity-80 transition-opacity"
-          >
-            <X className="w-4 h-4 text-[#36364c]" />
-          </button>
-        </div>
-
-        {/* Main content */}
-        <div className="flex gap-3 items-start">
-          {/* Image */}
-          <div className="w-11 h-11 bg-gray-200 rounded flex-shrink-0">
-            <img
-              src={elementData.image}
-              alt={elementData.title}
-              className="w-full h-full object-cover rounded"
-            />
-          </div>
-
-          {/* Content */}
-          <div className="flex flex-col gap-1.5 flex-1 min-w-0">
-            {/* Title and AI badge */}
-            <div className="flex gap-1.5 items-center">
-              <div className="text-base font-bold text-[#242436]">
-                {elementData.title}
-              </div>
-              <div className="px-1 py-0.5 border border-[#4b4b66] rounded">
-                <div className="text-[10px] font-semibold text-[#36364c] tracking-[0.2px]">
-                  DeFi
-                </div>
-              </div>
-            </div>
-
-            {/* Quest info */}
-            {elementData.hasQuest && (
-              <div className="flex gap-1 items-center">
-                <div className="w-4 h-4 flex items-center justify-center">
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path
-                      d="M8 1L10.09 5.26L15 6L11 9.74L11.82 15L8 12.27L4.18 15L5 9.74L1 6L5.91 5.26L8 1Z"
-                      fill="#36364c"
-                    />
-                  </svg>
-                </div>
-                <div className="text-xs font-medium text-[#36364c] tracking-[-0.1px]">
-                  Quest available
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Description */}
-        <div className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3]">
-          {elementData.description}
-        </div>
-
-        {/* Action buttons */}
-        <div className="flex gap-3">
-          <button
-            onClick={(e) => e.stopPropagation()}
-            onTouchEnd={(e) => e.stopPropagation()}
-            className="flex-1 bg-[#eaf3fa] border border-white rounded px-3 py-3 shadow-[0px_4px_0px_0px_#595978] hover:bg-[#ddeaf5] transition-colors"
-          >
-            <div className="text-sm font-bold text-[#36364c] text-center">
-              Learn more
-            </div>
-          </button>
-          {/* View Quest button - hardcoded navigation to /quests/app-showcase#14 */}
-          <button
-            onClick={(e) => {
-              console.log('View Quest button clicked');
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = '/quests/app-showcase#14';
-            }}
-            onTouchEnd={(e) => {
-              console.log('View Quest button touched');
-              e.preventDefault();
-              e.stopPropagation();
-              window.location.href = '/quests/app-showcase#14';
-            }}
-            className="flex-1 bg-[#1b6fae] rounded px-3 py-3 shadow-[0px_4px_0px_0px_#125181] hover:bg-[#155a8a] transition-colors"
-          >
-            <div className="text-sm font-bold text-white text-center">
-              View Quest
-            </div>
-          </button>
-        </div>
-      </div>
-    </div>
+      <SupporterInfo onClose={handleClose} onBack={handleBack} />
+    </FlexibleDrawer>
   );
 };
 

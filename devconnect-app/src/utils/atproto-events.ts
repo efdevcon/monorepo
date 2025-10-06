@@ -1,13 +1,14 @@
-import moment from 'moment';
-import ProgrammePageContent from './page-content';
 import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format';
 
-async function getAtprotoEvents() {
+export async function getAtprotoEvents() {
   try {
     const atprotoEvents = await fetch(
       process.env.NODE_ENV === 'development' && !process.env.FORCE_PROD_ENV
         ? 'http://localhost:4000/calendar-events'
-        : 'https://at-slurper.onrender.com/calendar-events'
+        : 'https://at-slurper.onrender.com/calendar-events',
+      {
+        next: { revalidate: 300 }, // Cache for 5 minutes
+      }
     );
 
     const atprotoEventsData = await atprotoEvents.json();
@@ -19,9 +20,4 @@ async function getAtprotoEvents() {
     console.error(error);
     return [];
   }
-}
-
-export default async function ProgrammePage() {
-  const atprotoEvents = await getAtprotoEvents();
-  return <ProgrammePageContent atprotoEvents={atprotoEvents} />;
 }

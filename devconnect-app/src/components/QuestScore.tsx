@@ -17,26 +17,27 @@ const SmallStarIcon = ({ isCompleted }: { isCompleted: boolean }) => {
 };
 
 const QuestScore = ({ quests, onResetStates }: QuestScoreProps) => {
-  // Calculate total points from completed quests
+  // Calculate total points from completed quests (1 point per quest)
   const totalPoints = quests.reduce((total, quest) => {
     if (quest.state.status === 'completed') {
-      return total + quest.points;
+      return total + 1; // 1 point per completed quest
     }
     return total;
   }, 0);
 
-  // Calculate total possible points
-  const totalPossiblePoints = quests.reduce((total, quest) => {
-    return total + quest.points;
-  }, 0);
+  // Calculate total possible points (1 point per quest)
+  const totalPossiblePoints = quests.length;
 
   // Calculate completion percentage
-  const completionPercentage = totalPossiblePoints > 0 
-    ? Math.round((totalPoints / totalPossiblePoints) * 100) 
-    : 0;
+  const completionPercentage =
+    totalPossiblePoints > 0
+      ? Math.round((totalPoints / totalPossiblePoints) * 100)
+      : 0;
 
   // Count completed quests
-  const completedQuests = quests.filter(quest => quest.state.status === 'completed').length;
+  const completedQuests = quests.filter(
+    (quest) => quest.state.status === 'completed'
+  ).length;
   const totalQuests = quests.length;
 
   const handleReset = () => {

@@ -2,7 +2,7 @@
 import PageLayout from '@/components/PageLayout';
 import { NAV_ITEMS, TabItem } from '@/config/nav-items';
 import WalletTab from './WalletTab';
-import TicketTab from './TicketTab';
+// import TicketTab from './TicketTab';
 import DigitalOnrampTab from './DigitalOnrampTab';
 import InPersonOnrampTab from './InPersonOnrampTab';
 import DebugTab from './DebugTab';
@@ -17,13 +17,15 @@ const navLabel = navItem?.label || 'Wallet';
 const tabComponents: Record<string, React.ComponentType<any>> = {
   Wallet: WalletTab as React.ComponentType<any>,
   Debug: DebugTab as React.ComponentType<any>,
-  Tickets: TicketTab as React.ComponentType<any>,
+  // Tickets: TicketTab as React.ComponentType<any>,
   'Digital Onramp': DigitalOnrampTab as React.ComponentType<any>,
   'In-person Onramp': InPersonOnrampTab as React.ComponentType<any>,
 };
 
 // Create tabs from nav-items configuration
-const createTabsFromNavItems = (tabItems: TabItem[]): Array<{
+const createTabsFromNavItems = (
+  tabItems: TabItem[]
+): Array<{
   label: string;
   href?: string;
   hide?: boolean;
@@ -35,7 +37,9 @@ const createTabsFromNavItems = (tabItems: TabItem[]): Array<{
     hide: tabItem.hide,
     component:
       tabComponents[tabItem.label] ||
-      (() => <div>Component not found for {tabItem.label}</div>) as React.ComponentType<any>,
+      ((() => (
+        <div>Component not found for {tabItem.label}</div>
+      )) as React.ComponentType<any>),
   }));
 };
 

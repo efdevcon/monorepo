@@ -12,7 +12,7 @@ import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
 import CoinbaseOnrampButton from '@/components/CoinbaseOnrampButton';
 import CoinbaseOneClickBuyButton from '@/components/CoinbaseOneClickBuyButton';
 import RipioOnrampButton from '@/components/RipioOnrampButton';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useAccount, useConnect, useSwitchAccount } from 'wagmi';
 import { appKit } from '@/config/appkit';
 import { useConnectorClient } from 'wagmi';
@@ -21,8 +21,9 @@ import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
 import PortfolioModal from './PortfolioModal';
 import NetworkSwitcher from './NetworkSwitcher';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import { ZupassProvider } from '@/context/ZupassProvider';
+import { useRouter, usePathname } from 'next/navigation';
 
 // Toast utility functions to reduce overload and improve UX
 const showSuccessToast = (title: string, message?: string, duration = 3000) => {
@@ -90,36 +91,62 @@ export default function ConnectedWallet() {
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
-
-  // Unified connection hook for Para SDK integration
+  const router = useRouter();
+  const pathname = usePathname();
+  // Wallet manager hook for decoupled Para/EOA management
   const {
     isConnected,
     address,
     isPara,
-    wagmiAccount,
-    isWagmiConnected,
-    paraAccount,
-    paraWallet,
-    isParaConnected,
-    connectors,
-    switchableConnectors,
-    paraConnector,
-    primaryConnector,
-    primaryConnectorId,
-    switchPrimaryConnector,
-    handleSwitchAccount,
-    handleConnectToWallet: hookConnectToWallet,
-    handleSignMessage: hookSignMessage,
-    isSigning,
-    siweState,
-    siweEnabled,
-    handleSiweSignIn,
     disconnect: hookDisconnect,
-    ensureParaWagmiConnection,
-    paraEmail,
-    email,
-    supabaseEmail,
-  } = useUnifiedConnection();
+    para,
+    eoa,
+    primaryType,
+    switchWallet,
+    email, // Unified email (Supabase or Para)
+    paraEmail, // Para-specific email
+    supabaseEmail, // Supabase-specific email
+    isAuthenticated,
+  } = useWalletManager();
+
+  // For compatibility with existing code
+  const wagmiAccount = eoa.wagmiAccount;
+  const isWagmiConnected = eoa.isConnected;
+  const paraAccount = para.paraAccount;
+  const paraWallet = para.paraWallet;
+  const isParaConnected = para.isConnected;
+  const connectors = eoa.connectors;
+  const switchableConnectors = eoa.eoaConnections.map((conn) => conn.connector);
+  const primaryConnector: any = isPara
+    ? { id: 'para', name: 'Para', ...para.paraAccount }
+    : eoa.wagmiAccount.connector;
+  const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
+
+  // Simplified functions
+  const handleSwitchAccount = async (connector: any) => {
+    const walletType =
+      connector.id === 'para' || connector.id === 'getpara' ? 'para' : 'eoa';
+    switchWallet(walletType);
+  };
+  const switchPrimaryConnector = (type: 'para' | 'eoa') => switchWallet(type);
+
+  // Placeholder functions for SIWE - simplified for now
+  const siweEnabled = false;
+  const siweState: 'idle' | 'signing' | 'success' | 'error' = 'idle';
+  const isSigning = false;
+  const handleSiweSignIn = async () => {};
+  const handleSignMessage: any = async (message: string) => {
+    if (isPara && (paraWallet as any)?.signMessage) {
+      return await (paraWallet as any).signMessage(message);
+    } else {
+      return await signMessageAsync({ message });
+    }
+  };
+  const hookConnectToWallet = async () => {
+    eoa.connect();
+    return true;
+  };
+  const ensureParaWagmiConnection = async () => true; // No longer needed with decoupled architecture
 
   // Simplified signing state management
   const [signingState, setSigningState] = useState<
@@ -201,14 +228,12 @@ export default function ConnectedWallet() {
       }
 
       // Use the unified connection hook's function to connect
-      const success = await hookConnectToWallet(connector);
+      await hookConnectToWallet();
 
-      if (success) {
-        showSuccessToast(
-          '✅ Connected Successfully',
-          `Connected to ${connector.name}`
-        );
-      }
+      showSuccessToast(
+        '✅ Connected Successfully',
+        `Connected to ${connector.name}`
+      );
     } catch (error) {
       console.error('Failed to connect to wallet:', error);
       showErrorToast(
@@ -491,23 +516,43 @@ export default function ConnectedWallet() {
   // Handle SIWE verification
   const handleSiweVerification = async () => {
     try {
-      const success = await handleSiweSignIn();
-      if (success) {
-        showSuccessToast(
-          '✅ SIWE Verified',
-          'Sign-In with Ethereum successful'
-        );
-      } else {
-        showErrorToast(
-          '❌ SIWE Failed',
-          'Please try again or check your wallet'
-        );
-      }
+      await handleSiweSignIn();
+      showSuccessToast('✅ SIWE Verified', 'Sign-In with Ethereum successful');
     } catch (error) {
       console.error('SIWE verification failed:', error);
       showErrorToast('❌ SIWE Error', 'An unexpected error occurred');
     }
   };
+
+  // Redirect to home page after 2 seconds when on onboarding page
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      window.location.pathname === '/onboarding'
+    ) {
+      const timer = setTimeout(() => {
+        console.log('🔄 [ONBOARDING] Redirecting to home page after 2 seconds');
+        router.push('/');
+      }, 2000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [router]);
+
+  // Show loading state for onboarding page
+  if (pathname === '/onboarding') {
+    return (
+      <div className="bg-white p-4 space-y-4 rounded-lg">
+        <div className="flex flex-col items-center justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+          <p className="text-lg font-medium text-gray-700">Loading...</p>
+          <p className="text-sm text-gray-500">
+            Setting up your wallet connection
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-white p-4 space-y-4 rounded-lg">
@@ -524,7 +569,8 @@ export default function ConnectedWallet() {
               Primary Connector: {primaryConnector?.name || primaryConnectorId}
             </div>
           )}
-          {siweEnabled && (
+          {/* SIWE is disabled */}
+          {/* {siweEnabled && (
             <div>
               SIWE Status:{' '}
               {siweState === 'success'
@@ -535,7 +581,7 @@ export default function ConnectedWallet() {
                     ? '❌ Failed'
                     : '⏸️ Pending'}
             </div>
-          )}
+          )} */}
           {/* Debug information for Para connections */}
           {isPara && (
             <>
@@ -618,22 +664,16 @@ export default function ConnectedWallet() {
 
         {address && <PortfolioModal address={address} />}
 
-        {/* SIWE Verification Button (only show if SIWE is enabled and not verified) */}
-        {siweEnabled && siweState !== 'success' && (
+        {/* SIWE Verification Button - disabled for now */}
+        {/* {siweEnabled && (
           <Button
             onClick={handleSiweVerification}
             className="w-full cursor-pointer"
             size="lg"
-            variant={siweState === 'error' ? 'destructive' : 'default'}
-            disabled={siweState === 'signing'}
           >
-            {siweState === 'signing'
-              ? 'Signing SIWE Message...'
-              : siweState === 'error'
-                ? '❌ SIWE Failed - Try Again'
-                : '🔐 Complete Sign-In with Ethereum'}
+            🔐 Complete Sign-In with Ethereum
           </Button>
-        )}
+        )} */}
 
         <Button
           onClick={handleSign}

@@ -7,6 +7,60 @@ import { Client } from '@notionhq/client';
  * 
  * Attempts to fetch from Notion database, falls back to sample data on error
  */
+
+// GraphQL query to fetch POAP images from POAP API
+async function fetchPOAPImages(poapIds: string[]): Promise<Record<string, string>> {
+  if (poapIds.length === 0) return {};
+
+  const query = `
+    query GetPOAPImages($ids: [Int!]!) {
+      drops(where: {id: {_in: $ids}}) {
+        id
+        image_url
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch('https://public.compass.poap.tech/v1/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables: {
+          ids: poapIds.map(id => parseInt(id)).filter(id => !isNaN(id))
+        }
+      })
+    });
+
+    if (!response.ok) {
+      console.error('Failed to fetch POAP images:', response.status, response.statusText);
+      return {};
+    }
+
+    const data = await response.json();
+
+    if (data.errors) {
+      console.error('GraphQL errors:', data.errors);
+      return {};
+    }
+
+    // Create a mapping from POAP ID to image URL
+    const imageMap: Record<string, string> = {};
+    if (data.data?.drops) {
+      data.data.drops.forEach((drop: any) => {
+        imageMap[drop.id.toString()] = drop.image_url;
+      });
+    }
+
+    return imageMap;
+  } catch (error) {
+    console.error('Error fetching POAP images:', error);
+    return {};
+  }
+}
 export async function GET(request: NextRequest) {
   try {
     // Initialize Notion client
@@ -78,28 +132,54 @@ export async function GET(request: NextRequest) {
       };
 
       // remove 1., 2., 3. from category
-      const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
-      const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
+      // const category = getPropertyValue('District')?.replace(/[0-9]\. /, '').toLowerCase();
+      // const name = getPropertyValue('Name')?.toLowerCase().replace(/\s+/g, '-');
+
+      const conditionType = getPropertyValue('Condition type');
+      const conditionValues = getPropertyValue('Quest condition values');
+
+      // Extract POAP ID from conditionValues if conditionType is verifyPoap
+      const poapId = conditionType === 'verifyPoap' ? conditionValues : undefined;
 
       return {
         id: getPropertyValue('ID'),
         name: getPropertyValue('Quest name'),
         order: getPropertyValue('Order'),
-        points: getPropertyValue('Points'),
-        difficulty: getPropertyValue('Difficulty'),
         instructions: getPropertyValue('Quest instructions'),
         action: getPropertyValue('Action'),
         button: getPropertyValue('Button'),
         group: getPropertyValue('Group'),
-        conditionType: getPropertyValue('Condition type'),
-        conditionValues: getPropertyValue('Quest condition values'),
+        conditionType,
+        conditionValues,
         supporterId: getPropertyValue('Supporter'),
-        poapImageLink: getPropertyValue('POAP image'),
+        poapImageLink: "",
+        poapId,
       };
     });
 
+    // Collect all POAP IDs from quests that have them
+    const poapIds = quests
+      .filter(quest => quest.poapId)
+      .map(quest => quest.poapId!);
+
+    // Fetch POAP images in batch
+    const poapImageMap = await fetchPOAPImages(poapIds);
+
+    // Update quests with fetched POAP images
+    const questsWithImages = quests.map(quest => {
+      if (quest.poapId && poapImageMap[quest.poapId]) {
+        const { poapId, ...questWithoutPoapId } = quest;
+        return {
+          ...questWithoutPoapId,
+          poapImageLink: poapImageMap[quest.poapId]
+        };
+      }
+      const { poapId, ...questWithoutPoapId } = quest;
+      return questWithoutPoapId;
+    });
+
     // Sort quests by ID as a backup to ensure consistent ordering
-    const sortedQuests = quests.sort((a, b) => {
+    const sortedQuests = questsWithImages.sort((a, b) => {
       const idA = parseInt(a.id) || 0;
       const idB = parseInt(b.id) || 0;
       return idA - idB;

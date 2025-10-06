@@ -3,6 +3,7 @@ import 'styles/globals.scss'
 import type { AppProps } from 'next/app'
 import { Roboto, Roboto_Condensed } from 'next/font/google'
 import DevaBot from 'lib/components/ai/overlay'
+import { Toaster } from 'sonner'
 import DevconnectCubeLogo from 'assets/images/ba/cube-logo.png'
 // import { AccountContextProvider } from 'context/account-context-provider'
 // import { Web3Provider } from 'context/web3'
@@ -107,6 +108,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       {/* </AccountContextProvider>
         </Web3Provider> */}
       {/* </DataProvider> */}
+      <Toaster />
     </>
   )
 }

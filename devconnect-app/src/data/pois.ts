@@ -2,13 +2,31 @@ import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = [
   {
+    "name": "Account Abstraction Hub",
+    "layerName": "account-abstraction-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Activation 1",
     "layerName": "activation-1",
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "6",
     "groupId": "1"
+  },
+  {
+    "name": "Ai Onboarding",
+    "layerName": "ai-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "1",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Childcare 1",
@@ -34,7 +52,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "4",
     "groupId": "5"
   },
   {
@@ -47,13 +65,22 @@ export const poisData: POI[] = [
     "groupId": "6"
   },
   {
-    "name": "Community Hub 1",
-    "layerName": "community-hub-1",
+    "name": "Collectibles Onboarding",
+    "layerName": "collectibles-onboarding",
     "logo": "",
     "description": "",
-    "districtId": null,
+    "districtId": "2",
     "locationId": null,
-    "groupId": "7"
+    "groupId": "14"
+  },
+  {
+    "name": "DeFi Onboarding",
+    "layerName": "defi-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "3",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Discussion corner 1",
@@ -61,8 +88,26 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "5",
     "groupId": "8"
+  },
+  {
+    "name": "Enterprise Hub",
+    "layerName": "enterprise-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Fintech & Onchain Banking",
+    "layerName": "fintech-onchain-banking",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Food & Beverage 1",
@@ -70,7 +115,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "1",
     "groupId": "10"
   },
   {
@@ -83,13 +128,31 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
-    "name": "Info desk 1",
-    "layerName": "info-desk-1",
+    "name": "Gaming Onboarding",
+    "layerName": "gaming-onboarding",
     "logo": "",
     "description": "",
-    "districtId": "2",
-    "locationId": "2",
-    "groupId": "11"
+    "districtId": "4",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
+    "name": "Governance Geeks Hub",
+    "layerName": "governance-geeks-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Hardware & Wallets Onboarding",
+    "layerName": "hardware-wallets-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "5",
+    "locationId": null,
+    "groupId": "14"
   },
   {
     "name": "Interview room 1",
@@ -98,7 +161,25 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "12"
+    "groupId": "11"
+  },
+  {
+    "name": "L2 Onboarding",
+    "layerName": "l2-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
+    "name": "LATAM Hub",
+    "layerName": "latam-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Main entrance",
@@ -106,7 +187,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "3",
     "groupId": "9"
   },
   {
@@ -116,7 +197,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "13"
+    "groupId": "12"
   },
   {
     "name": "Music Stage 1",
@@ -125,7 +206,25 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "14"
+    "groupId": "13"
+  },
+  {
+    "name": "Node Operators Hub",
+    "layerName": "node-operators-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Onchain Art Hub",
+    "layerName": "onchain-art-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   },
   {
     "name": "Onramp 1",
@@ -133,7 +232,7 @@ export const poisData: POI[] = [
     "logo": "",
     "description": "",
     "districtId": null,
-    "locationId": null,
+    "locationId": "2",
     "groupId": "15"
   },
   {
@@ -146,13 +245,85 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
+    "name": "Open Source Community Hub",
+    "layerName": "open-source-community-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Pop-Up Cities",
+    "layerName": "popup-cities",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Privacy Hub",
+    "layerName": "privacy-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Privacy Onboarding",
+    "layerName": "privacy-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "7",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
+    "name": "QR-code 1",
+    "layerName": "qrcode-1",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "16"
+  },
+  {
+    "name": "Regen Hub",
+    "layerName": "regen-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "RWA Hub",
+    "layerName": "rwa-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Social Onboarding",
+    "layerName": "social-onboarding",
+    "logo": "",
+    "description": "",
+    "districtId": "8",
+    "locationId": null,
+    "groupId": "14"
+  },
+  {
     "name": "Stage 1",
     "layerName": "stage-1",
     "logo": "",
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "17"
+    "groupId": "18"
   },
   {
     "name": "SWAG station 1",
@@ -161,7 +332,7 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "16"
+    "groupId": "17"
   },
   {
     "name": "Toilet 1",
@@ -170,6 +341,24 @@ export const poisData: POI[] = [
     "description": "",
     "districtId": null,
     "locationId": null,
-    "groupId": "18"
+    "groupId": "19"
+  },
+  {
+    "name": "Women in Web3 Hub",
+    "layerName": "women-in-web3-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "World of DeSci",
+    "layerName": "world-of-desci",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
   }
 ];

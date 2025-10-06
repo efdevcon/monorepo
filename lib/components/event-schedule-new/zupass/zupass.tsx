@@ -13,8 +13,9 @@ import VoxelButton from "lib/components/voxel-button/button";
 import { serializePodData } from "./serialize";
 import { pod, PODData } from "@parcnet-js/podspec";
 import { POD } from "@pcd/pod";
-import { eventShops } from "./event-shops-list";
+import { eventShops, EventShop } from "./event-shops-list";
 import { Info, ArrowRight } from "lucide-react";
+import NextLink from "next/link";
 import cn from "classnames";
 import Fallback from "./fallback";
 
@@ -42,11 +43,33 @@ export const withParcnetProvider = <P extends object>(
 };
 
 export const FallbackWrapper = (props: any) => {
-  if (process.env.NEXT_PUBLIC_ZUPASS_FALLBACK_ON === "true") {
-    return <Fallback {...props} />;
+  const [useFallback, setUseFallback] = useState<"email" | "zupass" | null>(
+    null
+  );
+
+  useEffect(() => {
+    if (useFallback === "zupass") {
+      localStorage.setItem("zupass_use_fallback", "false");
+    }
+    if (useFallback === "email") {
+      localStorage.setItem("zupass_use_fallback", "true");
+    }
+  }, [useFallback]);
+
+  useEffect(() => {
+    // Load preference from local storage
+    const savedUseFallback = localStorage.getItem("zupass_use_fallback");
+
+    if (savedUseFallback) {
+      setUseFallback(savedUseFallback === "true" ? "email" : "zupass");
+    }
+  }, []);
+
+  if (useFallback === "email") {
+    return <Fallback {...props} setUseFallback={setUseFallback} />;
   }
 
-  return <ZupassConnection {...props} />;
+  return <ZupassConnection {...props} setUseFallback={setUseFallback} />;
 };
 
 function ZupassConnection(props: any) {
@@ -208,12 +231,15 @@ function ZupassConnection(props: any) {
   return (
     <div className="flex flex-col gap-4">
       <EventVoucher
-        couponCollection={shop.coupon_collection}
+        shopUrl={props.shopUrl}
+        shop={shop}
+        couponCollection={shop.coupon_collection || ""}
         tickets={tickets}
         devconnectCoupons={devconnectCoupons}
         devconCoupons={devconCoupons}
         setDevconnectCoupons={setDevconnectCoupons}
         setDevconCoupons={setDevconCoupons}
+        setUseFallback={props.setUseFallback}
       />
     </div>
   );
@@ -222,14 +248,19 @@ function ZupassConnection(props: any) {
 export default FallbackWrapper;
 
 const EventVoucher = ({
+  shop,
+  shopUrl,
   couponCollection,
   tickets,
   devconnectCoupons,
   devconCoupons,
   setDevconnectCoupons,
   setDevconCoupons,
+  setUseFallback,
 }: {
+  shop: EventShop;
   couponCollection: string;
+  shopUrl?: string;
   tickets: {
     // devcon: PODData;
     devconnect: PODData;
@@ -238,6 +269,7 @@ const EventVoucher = ({
   devconCoupons: Record<string, string>;
   setDevconnectCoupons: (coupons: Record<string, string>) => void;
   setDevconCoupons: (coupons: Record<string, string>) => void;
+  setUseFallback: (useFallback: "email" | "zupass") => void;
 }) => {
   const { connectionState, z } = useParcnetClient();
   const ctx = useContext(ParcnetClientContext as React.Context<any>);
@@ -254,10 +286,14 @@ const EventVoucher = ({
   const connected = connectionState === ClientConnectionState.CONNECTED;
   const connectedWithNoTicket = connected && !ticketVerified;
   const connectedWithTicket = connected && ticketVerified;
+  const noVoucherNeeded = shop.gate_link_only;
   const connectedWithCoupon = connectedWithTicket && couponStatus?.success;
   const coupon = devconnectCoupons[couponCollection];
   const couponFetchedButNoCoupon =
     connected && couponFetchingComplete && !coupon;
+
+  console.log(connectedWithTicket, "CONNECTED WITH TICKET");
+  console.log(connectedWithCoupon, "CONNECTED WITH COUPON");
 
   const requestCoupon = useCallback(async () => {
     if (connectionState !== ClientConnectionState.CONNECTED) return;
@@ -323,11 +359,12 @@ const EventVoucher = ({
     if (
       connectionState === ClientConnectionState.CONNECTED &&
       !fetchingCoupon &&
-      !couponFetchingComplete
+      !couponFetchingComplete &&
+      !noVoucherNeeded
     ) {
       requestCoupon();
     }
-  }, [connectionState, fetchingCoupon, ticketVerified]);
+  }, [connectionState, fetchingCoupon, ticketVerified, noVoucherNeeded]);
 
   useEffect(() => {
     if (connectionState === ClientConnectionState.ERROR) {
@@ -417,25 +454,57 @@ const EventVoucher = ({
         <div className="flex flex-col ">
           <div className="text-xs text-[#4B4B66] mb-1">2. Get event ticket</div>
           <div className="mt-1 text-center flex sm:flex-col items-center gap-2 sm:gap-0">
-            <VoxelButton
-              disabled={!connectedWithCoupon}
-              className={`outline-none w-[150px]`}
-              size="sm"
-              onClick={() => {
-                if (connectedWithCoupon) {
-                  window.open(coupon, "_blank");
-                }
-              }}
-            >
-              {fetchingCoupon ? (
-                "Getting voucher..."
-              ) : (
-                <>
-                  Get ticket
-                  <SquareArrowOutUpRight size={15} />
-                </>
-              )}
-            </VoxelButton>
+            {noVoucherNeeded && (
+              <NextLink
+                href={shopUrl || ""}
+                className={cn({
+                  "!contents": !connectedWithTicket,
+                })}
+              >
+                <VoxelButton
+                  disabled={!connectedWithTicket}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithTicket,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </NextLink>
+            )}
+
+            {!noVoucherNeeded && (
+              <NextLink
+                href={coupon || ""}
+                className={cn({
+                  "!contents": !connectedWithCoupon,
+                })}
+              >
+                <VoxelButton
+                  disabled={!connectedWithCoupon}
+                  className={cn(`outline-none w-[150px]`, {
+                    "!pointer-events-none": !connectedWithCoupon,
+                  })}
+                  size="sm"
+                >
+                  {fetchingCoupon ? (
+                    "Getting voucher..."
+                  ) : (
+                    <>
+                      Get ticket
+                      <SquareArrowOutUpRight size={15} />
+                    </>
+                  )}
+                </VoxelButton>
+              </NextLink>
+            )}
           </div>
         </div>
       </div>
@@ -482,7 +551,16 @@ const EventVoucher = ({
               className="underline text-teal-800"
             >
               support@devconnect.org
-            </a>
+            </a>{" "}
+            or{" "}
+            <a
+              href="#"
+              onClick={() => setUseFallback("email")}
+              className="underline text-teal-800"
+            >
+              click here
+            </a>{" "}
+            to verify with your email directly.
           </div>
         </>
       )}

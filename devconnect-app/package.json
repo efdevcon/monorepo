@@ -10,8 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
-    "fetch-data": "npx tsx scripts/fetch-data.ts",
-    "fetch-quests": "npx tsx scripts/fetch-quests.ts"
+    "d": "npx tsx scripts/fetch-data.ts",
+    "q": "npx tsx scripts/fetch-quests.ts"
   },
   "dependencies": {
     "@base-org/account": "^2.2.0",
@@ -24,9 +24,9 @@
     "@farcaster/mini-app-solana": "^1.0.7",
     "@farcaster/miniapp-sdk": "^0.1.8",
     "@farcaster/miniapp-wagmi-connector": "^1.0.0",
-    "@getpara/graz": "2.0.0-alpha.12",
-    "@getpara/react-sdk": "2.0.0-alpha.47",
-    "@getpara/wagmi-v2-integration": "2.0.0-alpha.47",
+    "@getpara/graz": "2.0.0-alpha.19",
+    "@getpara/react-sdk": "2.0.0-alpha.63",
+    "@getpara/wagmi-v2-integration": "2.0.0-alpha.63",
     "@leapwallet/cosmos-social-login-capsule-provider": "^0.0.44",
     "@netlify/plugin-nextjs": "^5.11.6",
     "@notionhq/client": "^4.0.1",
@@ -44,6 +44,7 @@
     "@solana/wallet-adapter-react": "^0.15.39",
     "@solana/wallet-adapter-walletconnect": "^0.1.21",
     "@solana/web3.js": "^1.98.4",
+    "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.52.0",
     "@tanstack/react-query": "^5.83.0",
     "@types/moment": "^2.13.0",
@@ -60,6 +61,7 @@
     "next": "15.4.4",
     "next-themes": "^0.4.6",
     "panzoom": "^9.4.3",
+    "pino-pretty": "^13.1.1",
     "qrcode": "^1.5.4",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
@@ -71,8 +73,8 @@
     "starknet": "^7.6.4",
     "tailwind-merge": "^3.3.1",
     "usehooks-ts": "^3.1.1",
-    "viem": "^2.36.0",
-    "wagmi": "^2.16.8",
+    "viem": "^2.37.11",
+    "wagmi": "^2.17.5",
     "zustand": "^5.0.7"
   },
   "devDependencies": {

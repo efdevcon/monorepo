@@ -102,10 +102,10 @@ export async function GET(request: NextRequest) {
       };
 
       const result = {
-        name: getPropertyValue('Supporter Name'),
+        name: getPropertyValue('Name'),
         district: getPropertyValue('District'),
         location: getPropertyValue('Location'),
-        layerName: getPropertyValue('Layer name'),
+        layerName: getPropertyValue('Layer name') || getPropertyValue('Suggested layer name'),
         POI: getPropertyValue('POI'),
         id: page.id?.replaceAll('-', ''),
         logo: getPropertyValue('Logo'),

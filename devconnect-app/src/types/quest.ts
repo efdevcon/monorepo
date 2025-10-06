@@ -74,12 +74,9 @@ export interface Quest {
 
   /** Quest name/title */
   name: string;
-  
+
   /** Display order */
   order: number;
-  
-  /** Points awarded for completing the quest */
-  points: number;
 
   /** Quest instructions/description */
   instructions: string;

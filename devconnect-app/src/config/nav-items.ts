@@ -15,20 +15,29 @@ export type NavItem = {
   longLabel?: string;
   href: string;
   icon: React.ComponentType<{ active: boolean }>;
+  isActive?: (pathname: string) => boolean;
   backgroundColor: string;
   tabItems?: TabItem[];
 };
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    label: 'World\'s Fair',
-    longLabel: 'Ethereum World\'s Fair',
-    href: '/worlds-fair',
+    label: "World's Fair",
+    longLabel: "Ethereum World's Fair",
+    href: '/',
     icon: ProgrammeIcon,
     backgroundColor: 'rgba(255, 133, 166, 0.15)',
+    isActive: (pathname) => {
+      return (
+        pathname === '/' ||
+        pathname.split('/').pop() === 'schedule' ||
+        pathname.split('/').pop() === 'tickets'
+      );
+    },
   },
   {
     label: 'Map',
+    longLabel: 'La Rural Map',
     href: '/map',
     icon: MapIcon,
     backgroundColor: 'rgba(116, 172, 223, 0.15)',
@@ -60,10 +69,6 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet/debug',
       },
       {
-        label: 'Tickets',
-        href: '/wallet/tickets',
-      },
-      {
         label: 'Digital Onramp',
         href: '/wallet/digital-onramp',
         hide: true,
@@ -77,4 +82,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-export const navItems = NAV_ITEMS.map(({ label, backgroundColor }) => ({ label, backgroundColor })); 
+export const navItems = NAV_ITEMS.map(({ label, backgroundColor }) => ({
+  label,
+  backgroundColor,
+}));

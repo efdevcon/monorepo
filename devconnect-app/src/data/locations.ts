@@ -6,11 +6,23 @@ export const locationsData: Locations = {
     "layerName": "green-pavilion"
   },
   "2": {
+    "name": "Pavilion 8",
+    "layerName": "pavilion-8"
+  },
+  "3": {
     "name": "Pavilion 9",
     "layerName": "pavilion-9"
   },
-  "3": {
+  "4": {
     "name": "Pista Central",
     "layerName": "pista-central"
+  },
+  "5": {
+    "name": "Red Pavilion",
+    "layerName": "red-pavilion"
+  },
+  "6": {
+    "name": "Yellow Pavilion",
+    "layerName": "yellow-pavilion"
   }
 };

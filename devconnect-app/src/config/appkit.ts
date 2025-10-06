@@ -3,10 +3,7 @@ import { createAppKit } from "@reown/appkit/react";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import { CreateConnectorFn } from "wagmi";
 import { injected } from "wagmi/connectors";
-import { paraConnector } from "@getpara/wagmi-v2-integration";
-import { para } from "./para";
 import { APP_NAME } from './config';
-import { queryClient } from "@/context/QueryProvider";
 import { chains } from './networks';
 import { base } from '@reown/appkit/networks';
 
@@ -24,39 +21,10 @@ const metadata = {
   icons: ["https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg"],
 };
 
-// Add all connectors to AppKit's wagmi adapter
+// EOA connectors only - Para is handled separately via Para SDK
+// Removed paraConnector to decouple Para from wagmi/AppKit
 const connectors: CreateConnectorFn[] = [
-  // Para connector for email authentication
-  paraConnector({
-    appName: APP_NAME,
-    nameOverride: "Email (Para)",
-    // wallets: ["METAMASK","PHANTOM","WALLETCONNECT","COINBASE","RAINBOW","ZERION","SAFE","RABBY","OKX","HAHA","BACKPACK","VALORA","GLOW","SOLFLARE","KEPLR","LEAP","COSMOSTATION"],
-    authLayout: ["AUTH:FULL"],
-    chains,
-    disableEmailLogin: false,
-    disablePhoneLogin: true,
-    logo: "https://partner-assets.beta.getpara.com/icons/7766a9b6-0afd-477e-9501-313f384e3e19/key-logos/Devconnect%20Project-icon.jpg",
-    oAuthMethods: [],
-    onRampTestMode: false,
-    options: {},
-    para,
-    queryClient,
-    // TEMP: disable recovery secret step
-    // recoverySecretStepEnabled: true,
-    theme: {
-      accentColor: "#0066CC",
-      backgroundColor: "#FFFFFF",
-      borderRadius: "none",
-      darkAccentColor: "#4D9FFF",
-      darkBackgroundColor: "#1A1F2B",
-      darkForegroundColor: "#E8EBF2",
-      font: "Inter",
-      foregroundColor: "#2D3648",
-      mode: "light",
-    },
-    twoFactorAuthEnabled: false,
-  }) as CreateConnectorFn,
-  // Add injected connector explicitly
+  // Add injected connector for browser wallets
   injected(),
 ];
 

@@ -2,53 +2,53 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
-import TabbedSection from '@/components/TabbedSection';
-import DashboardImage from '@/images/hero.webp';
-import Image from 'next/image';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
-// import { NAV_ITEMS } from '@/config/nav-items';
+import { WelcomeSection, TodaysSchedule } from './dashboard-sections';
+import { HomeIcon, CalendarIcon, TicketIcon } from 'lucide-react';
 
-// const navItem = NAV_ITEMS.find((item) => item.href === '/');
-// const navLabel = navItem?.label || 'Profile';
-// const title = navLabel;
-
-const tabs = [
+export const homeTabs = () => [
   {
-    label: 'Dashboard',
-    component: () => (
-      <div>
-        <Image
-          src={DashboardImage}
-          alt="Dashboard"
-          className="w-full h-full object-cover"
-        />
-      </div>
-    ),
+    label: 'Home',
+    labelIcon: HomeIcon,
+    href: '/',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/',
+  },
+  {
+    label: 'Schedule',
+    labelIcon: CalendarIcon,
+    href: '/schedule',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/schedule',
+  },
+  {
+    label: 'Tickets',
+    labelIcon: TicketIcon,
+    href: '/tickets',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/tickets',
   },
 ];
 
-export default function HomePage() {
-  const router = useRouter();
-  const { address } = useUnifiedConnection();
+export default function HomePageContent() {
+  // const events = useEvents();
+  // const router = useRouter();
+  // const { address } = useUnifiedConnection();
 
-  useEffect(() => {
-    const isSkipped = localStorage.getItem('loginIsSkipped');
+  // useEffect(() => {
+  //   const isSkipped = localStorage.getItem('loginIsSkipped');
 
-    if (!isSkipped && address) {
-      console.log('🔄 [HOME] Redirecting to onboarding');
-      router.push('/onboarding');
-    }
-  }, [router, address]);
-
-  // if (!address) {
-  //   return <WalletTab />;
-  // }
+  //   if (!isSkipped && address) {
+  //     console.log('🔄 [HOME] Redirecting to onboarding');
+  //     router.push('/onboarding');
+  //   }
+  // }, [router, address]);
 
   return (
-    <PageLayout title="Home 😎" tabs={tabs}>
-      {/* <div className="w-full flex flex-col items-center py-8 pb-20 px-4">
-        Welcome, John Smith, founder of Nethereum! 👋
-      </div> */}
+    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
+      <div className="bg-[rgba(246,250,254,1)] p-4 grow">
+        <WelcomeSection />
+        <TodaysSchedule />
+      </div>
     </PageLayout>
   );
 }

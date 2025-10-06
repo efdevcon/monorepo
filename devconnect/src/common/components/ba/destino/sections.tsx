@@ -58,6 +58,7 @@ export const FirstSection = ({ content }: { content: any }) => {
                 'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                 styles['tiled-button']
               )}
+              disabled
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
                 {(globalThis as any).translations.learn_more || 'Apply Now'}
@@ -707,9 +708,11 @@ export const HowToApply = ({ content }: { content: any }) => {
                 'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                 styles['tiled-button']
               )}
+              disabled
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                {(globalThis as any).translations.apply_now}
+                Applications Closed
+                {(globalThis as any).translations.apply_now} 
               </div>
             </button>
           </Link> */}

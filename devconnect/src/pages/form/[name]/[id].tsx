@@ -20,7 +20,7 @@ interface ConfigResponse {
     isLocked: boolean
     isOk?: boolean
   }
-  accreditationInsuranceGuideUrl?: string
+  descriptionLinks?: Record<string, string>
 }
 
 // Sub-item interface for org forms
@@ -28,6 +28,7 @@ interface SubItem {
   id: string
   name?: string
   completionPercentage: number
+  accreditationType: string
   reviewStatus: string
   claimStatus: string
 }
@@ -63,8 +64,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   const [isOk, setIsOk] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [selectedValues, setSelectedValues] = useState<Record<string, string>>({})
-  const [accreditationGuideUrl, setAccreditationGuideUrl] = useState<string>('')
-  const [accreditationInsuranceGuideUrl, setAccreditationInsuranceGuideUrl] = useState<string>('')
+  const [orgDescriptionLinks, setOrgDescriptionLinks] = useState<Record<string, string>>({})
+  const [descriptionLinks, setDescriptionLinks] = useState<Record<string, string>>({})
   const fileInputRefs = useRef<{ [key: string]: HTMLInputElement | null }>({})
 
   // Get params from either props or router query
@@ -141,6 +142,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     } catch {
       return 'File'
     }
+  }
+
+  // Helper function to render description with links
+  const renderDescriptionWithLinks = (description: string) => {
+    if (!description || !descriptionLinks) return description
+
+    let result = description
+    const linkKeys = Object.keys(descriptionLinks)
+
+    // Replace each link pattern with actual links
+    linkKeys.forEach(linkText => {
+      const linkUrl = descriptionLinks[linkText]
+      if (linkUrl && result.includes(linkText)) {
+        const linkElement = `<a href="${linkUrl}" target="_blank" rel="noopener noreferrer" style="color: #007bff; text-decoration: underline; font-weight: 500;">${linkText}</a>`
+        result = result.replace(linkText, linkElement)
+      }
+    })
+
+    return result
   }
 
   // Handle file selection
@@ -234,8 +254,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       setSubItems(responseData.children || [])
       setOrgPageName(responseData.orgName || '')
 
-      // Set accreditation guide URL from API response
-      setAccreditationGuideUrl(responseData.accreditationGuideUrl || '')
+      // Set description links from API response
+      setOrgDescriptionLinks(responseData.descriptionLinks || {})
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Error loading organization data'
       setError(errorMessage)
@@ -279,8 +299,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       setIsLocked(responseData.config?.isLocked || false)
       setIsOk(responseData.config?.isOk || false)
 
-      // Set accreditation insurance guide URL from API response
-      setAccreditationInsuranceGuideUrl(responseData.accreditationInsuranceGuideUrl || '')
+      // Set description links from API response
+      setDescriptionLinks(responseData.descriptionLinks || {})
 
       // Convert to data object for backward compatibility
       const allData: Record<string, string> = {}
@@ -504,7 +524,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
   return (
     <div
       style={{
-        maxWidth: '700px',
+        maxWidth: '900px',
         margin: '0 auto',
         padding: '1rem',
         fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -632,25 +652,49 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                     htmlFor={field.name}
                     style={{
                       display: 'block',
-                      marginBottom: '0.5rem',
-                      fontWeight: '500',
-                      color: field.mode === 'read' ? '#666' : '#333',
-                      fontSize: '0.95rem',
+                      marginBottom: '0.75rem',
+                      fontWeight: field.mode === 'read' ? '600' : '500',
+                      color: field.mode === 'read' ? '#495057' : '#333',
+                      fontSize: '1rem',
+                      position: 'relative',
                     }}
                   >
-                    {field.name.replace(/([A-Z])/g, ' $1').trim()}
-                    {field.mode === 'read' && (
+                    {field.mode === 'read' ? (
                       <span
                         style={{
-                          fontSize: '0.8rem',
-                          color: '#999',
-                          marginLeft: '0.5rem',
-                          fontStyle: 'italic',
+                          display: 'inline-block',
+                          backgroundColor: '#6c757d',
+                          color: 'white',
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '4px',
+                          fontSize: '0.75rem',
+                          fontWeight: '600',
+                          marginRight: '0.75rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px',
                         }}
                       >
-                        (read-only)
+                        📖 Read Only
+                      </span>
+                    ) : (
+                      <span
+                        style={{
+                          display: 'inline-block',
+                          backgroundColor: '#28a745',
+                          color: 'white',
+                          padding: '0.25rem 0.5rem',
+                          borderRadius: '4px',
+                          fontSize: '0.75rem',
+                          fontWeight: '600',
+                          marginRight: '0.75rem',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px',
+                        }}
+                      >
+                        ✏️ Editable
                       </span>
                     )}
+                    {field.name}
                   </label>
                   {field.description && (
                     <p
@@ -660,51 +704,27 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         margin: '0 0 0.5rem 0',
                         fontStyle: 'italic',
                       }}
-                    >
-                      {field.name === 'Insurance' &&
-                      accreditationInsuranceGuideUrl &&
-                      field.description.includes('attached insurance guide') ? (
-                        <>
-                          {field.description.split('attached insurance guide')[0]}
-                          <a
-                            href={accreditationInsuranceGuideUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              color: '#007bff',
-                              textDecoration: 'underline',
-                              fontWeight: '500',
-                            }}
-                            onMouseEnter={e => {
-                              e.currentTarget.style.color = '#0056b3'
-                            }}
-                            onMouseLeave={e => {
-                              e.currentTarget.style.color = '#007bff'
-                            }}
-                          >
-                            attached insurance guide
-                          </a>
-                          {field.description.split('attached insurance guide')[1]}
-                        </>
-                      ) : (
-                        field.description
-                      )}
-                    </p>
+                      dangerouslySetInnerHTML={{
+                        __html: renderDescriptionWithLinks(field.description),
+                      }}
+                    />
                   )}
                   {field.mode === 'read' ? (
                     // Read-only display
                     <div
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #e0e0e0',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #e9ecef',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         backgroundColor: '#f8f9fa',
-                        color: '#666',
-                        minHeight: '2.5rem',
+                        color: '#495057',
+                        minHeight: '3rem',
                         display: 'flex',
-                        alignItems: 'center',
+                        alignItems: 'flex-start',
+                        position: 'relative',
+                        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
                       }}
                     >
                       {field.type === 'file' && field.value ? (
@@ -832,8 +852,9 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                       gap: '0.5rem',
                                     }}
                                   >
-                                    <span style={{ fontSize: '1rem' }}>-</span>
-                                    Quest {index + 1}
+                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
+                                    {/* Quest {index + 1} */}
+                                    Quest form
                                   </a>
                                 </li>
                               ))}
@@ -842,8 +863,35 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
                           )}
                         </div>
+                      ) : field.type === 'url' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                                fontSize: '1rem',
+                                fontWeight: '500',
+                                wordBreak: 'break-all',
+                              }}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              {field.value}
+                            </a>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No URL provided</span>
+                          )}
+                        </div>
                       ) : (
-                        field.value
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{field.value}</div>
                       )}
                     </div>
                   ) : field.type === 'file' ? (
@@ -852,18 +900,21 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       <div
                         style={{
                           width: '100%',
-                          padding: '1rem',
-                          border: `2px dashed ${fileUploads[field.name]?.isDragOver ? '#007bff' : '#ddd'}`,
-                          borderRadius: '6px',
-                          backgroundColor: fileUploads[field.name]?.isDragOver ? '#f0f8ff' : '#f8f9fa',
+                          padding: '1.5rem',
+                          border: `3px dashed ${fileUploads[field.name]?.isDragOver ? '#0056b3' : '#007bff'}`,
+                          borderRadius: '12px',
+                          backgroundColor: fileUploads[field.name]?.isDragOver ? '#e3f2fd' : '#f8f9ff',
                           textAlign: 'center',
                           cursor: 'pointer',
-                          transition: 'all 0.2s ease',
-                          minHeight: '120px',
+                          transition: 'all 0.3s ease',
+                          minHeight: '140px',
                           display: 'flex',
                           flexDirection: 'column',
                           alignItems: 'center',
                           justifyContent: 'center',
+                          boxShadow: fileUploads[field.name]?.isDragOver
+                            ? '0 4px 12px rgba(0,123,255,0.3)'
+                            : '0 2px 8px rgba(0,123,255,0.1)',
                         }}
                         onDragOver={e => handleDragOver(e, field.name)}
                         onDragLeave={e => handleDragLeave(e, field.name)}
@@ -1063,22 +1114,28 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       rows={4}
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #007bff',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         boxSizing: 'border-box',
-                        transition: 'border-color 0.2s ease',
+                        transition: 'all 0.2s ease',
                         resize: 'vertical',
                         fontFamily: 'inherit',
-                        minHeight: '100px',
+                        minHeight: '120px',
+                        backgroundColor: '#f8f9ff',
+                        boxShadow: '0 2px 4px rgba(0,123,255,0.1)',
                       }}
                       onFocus={e => {
-                        e.target.style.borderColor = '#007bff'
+                        e.target.style.borderColor = '#0056b3'
+                        e.target.style.backgroundColor = '#ffffff'
+                        e.target.style.boxShadow = '0 4px 8px rgba(0,123,255,0.2)'
                         e.target.style.outline = 'none'
                       }}
                       onBlur={e => {
-                        e.target.style.borderColor = '#ddd'
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.backgroundColor = '#f8f9ff'
+                        e.target.style.boxShadow = '0 2px 4px rgba(0,123,255,0.1)'
                       }}
                     />
                   ) : field.type === 'checkbox' ? (
@@ -1228,19 +1285,25 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       defaultValue={field.value || ''}
                       style={{
                         width: '100%',
-                        padding: '0.75rem',
-                        border: '1px solid #ddd',
-                        borderRadius: '6px',
+                        padding: '1rem',
+                        border: '2px solid #007bff',
+                        borderRadius: '8px',
                         fontSize: '1rem',
                         boxSizing: 'border-box',
-                        transition: 'border-color 0.2s ease',
+                        transition: 'all 0.2s ease',
+                        backgroundColor: '#f8f9ff',
+                        boxShadow: '0 2px 4px rgba(0,123,255,0.1)',
                       }}
                       onFocus={e => {
-                        e.target.style.borderColor = '#007bff'
+                        e.target.style.borderColor = '#0056b3'
+                        e.target.style.backgroundColor = '#ffffff'
+                        e.target.style.boxShadow = '0 4px 8px rgba(0,123,255,0.2)'
                         e.target.style.outline = 'none'
                       }}
                       onBlur={e => {
-                        e.target.style.borderColor = '#ddd'
+                        e.target.style.borderColor = '#007bff'
+                        e.target.style.backgroundColor = '#f8f9ff'
+                        e.target.style.boxShadow = '0 2px 4px rgba(0,123,255,0.1)'
                       }}
                     />
                   )}
@@ -1292,64 +1355,6 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         </>
       )}
 
-      {/* Accreditation Insurance Guide Link - Only show for accreditation pages with successful data load */}
-      {pageName === 'accreditation' && accreditationInsuranceGuideUrl && fields.length > 0 && (
-        <div
-          style={{
-            marginTop: '3rem',
-            padding: '2rem',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '8px',
-            border: '1px solid #e9ecef',
-            textAlign: 'center',
-          }}
-        >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#333',
-            }}
-          >
-            Need Help with Insurance?
-          </h3>
-          <p
-            style={{
-              margin: '0 0 1.5rem 0',
-              color: '#666',
-              fontSize: '1rem',
-            }}
-          >
-            Check out our accreditation insurance guide for detailed instructions and support.
-          </p>
-          <a
-            href={accreditationInsuranceGuideUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#218838'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = '#28a745'
-            }}
-          >
-            🛡️ View Insurance Guide
-          </a>
-        </div>
-      )}
-
       {/* Read-only Information Display for Org Forms */}
       {pageName === 'org' && (
         <div style={{ marginBottom: '2rem' }}>
@@ -1380,7 +1385,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         whiteSpace: 'nowrap',
                       }}
                     >
-                      {field.name.replace(/([A-Z])/g, ' $1').trim()}
+                      {field.name}
                       {field.description && (
                         <div
                           style={{
@@ -1389,36 +1394,10 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             marginTop: '0.25rem',
                             fontStyle: 'italic',
                           }}
-                        >
-                          {field.name === 'Insurance' &&
-                          accreditationInsuranceGuideUrl &&
-                          field.description.includes('attached insurance guide') ? (
-                            <>
-                              {field.description.split('attached insurance guide')[0]}
-                              <a
-                                href={accreditationInsuranceGuideUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                style={{
-                                  color: '#007bff',
-                                  textDecoration: 'underline',
-                                  fontWeight: '500',
-                                }}
-                                onMouseEnter={e => {
-                                  e.currentTarget.style.color = '#0056b3'
-                                }}
-                                onMouseLeave={e => {
-                                  e.currentTarget.style.color = '#007bff'
-                                }}
-                              >
-                                attached insurance guide
-                              </a>
-                              {field.description.split('attached insurance guide')[1]}
-                            </>
-                          ) : (
-                            field.description
-                          )}
-                        </div>
+                          dangerouslySetInnerHTML={{
+                            __html: renderDescriptionWithLinks(field.description),
+                          }}
+                        />
                       )}
                     </td>
                     <td
@@ -1554,8 +1533,9 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                                       gap: '0.5rem',
                                     }}
                                   >
-                                    <span style={{ fontSize: '1rem' }}>-</span>
-                                    Quest {index + 1}
+                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
+                                    {/* Quest {index + 1} */}
+                                    Quest form
                                   </a>
                                 </li>
                               ))}
@@ -1564,8 +1544,35 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
                           )}
                         </div>
+                      ) : field.type === 'url' ? (
+                        <div style={{ width: '100%' }}>
+                          {field.value ? (
+                            <a
+                              href={field.value}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{
+                                color: '#007bff',
+                                textDecoration: 'none',
+                                fontSize: '0.9rem',
+                                fontWeight: '500',
+                                wordBreak: 'break-all',
+                              }}
+                              onMouseEnter={e => {
+                                e.currentTarget.style.textDecoration = 'underline'
+                              }}
+                              onMouseLeave={e => {
+                                e.currentTarget.style.textDecoration = 'none'
+                              }}
+                            >
+                              {field.value}
+                            </a>
+                          ) : (
+                            <span style={{ color: '#666', fontStyle: 'italic' }}>No URL provided</span>
+                          )}
+                        </div>
                       ) : (
-                        field.value || 'No value'
+                        <div style={{ whiteSpace: 'pre-wrap' }}>{field.value || 'No value'}</div>
                       )}
                     </td>
                   </tr>
@@ -1626,6 +1633,18 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                       }}
                     >
                       Completion
+                    </th>
+                    <th
+                      style={{
+                        padding: '1rem',
+                        textAlign: 'center',
+                        fontWeight: '600',
+                        color: '#333',
+                        borderBottom: '2px solid #e9ecef',
+                        fontSize: '0.9rem',
+                      }}
+                    >
+                      Type
                     </th>
                     <th
                       style={{
@@ -1762,6 +1781,36 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                             fontSize: '0.8rem',
                             fontWeight: '500',
                             whiteSpace: 'nowrap',
+                            backgroundColor: item.accreditationType?.includes('Exhibitor')
+                              ? '#e7f3ff'
+                              : item.accreditationType?.includes('Not found')
+                              ? '#ffe3ee'
+                              : '#e9ecef',
+                            color: item.accreditationType?.includes('Exhibitor')
+                              ? '#0066cc'
+                              : item.accreditationType?.includes('Not found')
+                              ? '#dc3545'
+                              : '#6c757d',
+                          }}
+                        >
+                          {item.accreditationType || 'N/A'}
+                        </span>
+                      </td>
+                      <td
+                        style={{
+                          padding: '1rem',
+                          textAlign: 'center',
+                          borderBottom: '1px solid #e9ecef',
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: 'inline-block',
+                            padding: '0.25rem 0.75rem',
+                            borderRadius: '12px',
+                            fontSize: '0.8rem',
+                            fontWeight: '500',
+                            whiteSpace: 'nowrap',
                             backgroundColor: item.reviewStatus.includes('✅') ? '#d4edda' : '#e9ecef',
                             color: item.reviewStatus.includes('✅') ? '#155724' : '#6c757d',
                           }}
@@ -1811,8 +1860,66 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
         </div>
       )}
 
-      {/* Accreditation Guide Link - Only show for org pages with successful data load */}
-      {pageName === 'org' && accreditationGuideUrl && subItems.length > 0 && (
+      {/* Accreditation Guide Link - Only show for accreditation pages with successful data load */}
+      {pageName === 'accreditation' && descriptionLinks['attached insurance guide'] && fields.length > 0 && (
+        <div
+          style={{
+            marginTop: '3rem',
+            padding: '2rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '8px',
+            border: '1px solid #e9ecef',
+            textAlign: 'center',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 1rem 0',
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#333',
+            }}
+          >
+            Need Help with Insurance?
+          </h3>
+          <p
+            style={{
+              margin: '0 0 1.5rem 0',
+              color: '#666',
+              fontSize: '1rem',
+            }}
+          >
+            Check out our accreditation insurance guide for detailed instructions and support.
+          </p>
+          <a
+            href={descriptionLinks['attached insurance guide']}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.5rem',
+              backgroundColor: '#28a745',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              fontSize: '1rem',
+              fontWeight: '500',
+              transition: 'background-color 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = '#218838'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = '#28a745'
+            }}
+          >
+            🛡️ View Insurance Guide
+          </a>
+        </div>
+      )}
+
+      {/* Help Links - Only show for org pages with successful data load */}
+      {pageName === 'org' && Object.keys(orgDescriptionLinks).length > 0 && subItems.length > 0 && (
         <div
           style={{
             marginTop: '3rem',
@@ -1840,32 +1947,40 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               fontSize: '1rem',
             }}
           >
-            Check out our accreditation guide for detailed instructions and support.
+            Check out our guides and resources for detailed instructions and support.
           </p>
-          <a
-            href={accreditationGuideUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#007bff',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#0056b3'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = '#007bff'
-            }}
-          >
-            📖 View Accreditation Guide
-          </a>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+            {Object.entries(orgDescriptionLinks).map(
+              ([linkText, linkUrl]) =>
+                linkUrl && (
+                  <a
+                    key={linkText}
+                    href={linkUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.75rem 1.5rem',
+                      backgroundColor: '#007bff',
+                      color: 'white',
+                      textDecoration: 'none',
+                      borderRadius: '6px',
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      transition: 'background-color 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = '#0056b3'
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = '#007bff'
+                    }}
+                  >
+                    📖 {linkText}
+                  </a>
+                )
+            )}
+          </div>
         </div>
       )}
 

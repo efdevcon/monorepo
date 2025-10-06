@@ -1,52 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { chains } from '@/config/networks';
+import { chains, getReadableNetworkName, convertNetworkToChainId } from '@/config/networks';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
-// Helper function to get readable network name
-const getReadableNetworkName = (networkName: string): string => {
-  const networkMap: Record<string, string> = {
-    'ETHEREUM_MAINNET': 'Ethereum',
-    'BASE_MAINNET': 'Base',
-    'OPTIMISM_MAINNET': 'Optimism',
-    'ARBITRUM_MAINNET': 'Arbitrum',
-    'Ethereum': 'Ethereum',
-    'Base': 'Base',
-    'OP Mainnet': 'Optimism',
-    'Arbitrum One': 'Arbitrum',
-    // Additional possible formats from Zapper
-    'ethereum': 'Ethereum',
-    'base': 'Base',
-    'optimism': 'Optimism',
-    'arbitrum': 'Arbitrum',
-    'Ethereum Mainnet': 'Ethereum',
-    'Base Mainnet': 'Base',
-    'Optimism Mainnet': 'Optimism',
-    'Arbitrum Mainnet': 'Arbitrum',
-  };
-
-  // Check exact match first
-  if (networkMap[networkName]) {
-    return networkMap[networkName];
-  }
-
-  // Check if network name contains keywords (case insensitive)
-  const lowerName = networkName.toLowerCase();
-  if (lowerName.includes('ethereum') || lowerName.includes('eth')) {
-    return 'Ethereum';
-  }
-  if (lowerName.includes('base')) {
-    return 'Base';
-  }
-  if (lowerName.includes('optimism') || lowerName.includes('op')) {
-    return 'Optimism';
-  }
-  if (lowerName.includes('arbitrum') || lowerName.includes('arb')) {
-    return 'Arbitrum';
-  }
-
-  return networkName;
-};
 
 export async function POST(request: NextRequest) {
   try {
@@ -91,7 +47,7 @@ export async function POST(request: NextRequest) {
                   balanceUSD
                   imgUrlV2
                   network {
-                    name
+                    chainId
                   }
                 }
               }
@@ -173,6 +129,9 @@ export async function POST(request: NextRequest) {
                     imageUrlV2
                   }
                 }
+                networkObject {
+                  chainId
+                }
               }
             }
           }
@@ -198,14 +157,13 @@ export async function POST(request: NextRequest) {
 
     const activityResult = await activityResponse.json();
 
-    // console.log('Activity result:', JSON.stringify(activityResult, null, 2));
 
     // Process the transaction data to create descriptions and apply the "Received" to "Sent" replacement
     if (activityResult.data?.transactionHistoryV2?.edges) {
       activityResult.data.transactionHistoryV2.edges.forEach((edge: any) => {
         const node = edge.node;
 
-        // Create description from the transaction data using fungibleDeltas
+        // Create description from the transaction data using fungibleDeltas (if available)
         if (node.fungibleDeltas && node.fungibleDeltas.length > 0) {
           const tokenInfo = node.fungibleDeltas[0];
           const symbol = tokenInfo.token?.symbol || 'Unknown Token';
@@ -228,17 +186,32 @@ export async function POST(request: NextRequest) {
               };
             }
           }
-
-          // Add transaction data in the format expected by the frontend
-          // Find the chain name for this network and make it readable
-          const chain = chains.find(c => c.id === node.network);
-          const networkName = chain?.name || `Chain ${node.network}`;
-          node.transaction = {
-            hash: node.transactionHash,
-            timestamp: node.transactionBlockTimestamp,
-            network: getReadableNetworkName(networkName)
-          };
         }
+
+        // Process ALL activities to convert network names to chainId
+        // Get chainId from various sources and ensure it's a number
+        const networkValue = node.transaction?.network || node.networkObject?.chainId || node.network;
+        const chainId = convertNetworkToChainId(networkValue);
+
+        // Handle both TimelineEventV2 and ActivityTimelineEventDelta formats
+        const hash = node.transaction?.hash || node.transactionHash;
+        const timestamp = node.transaction?.timestamp || node.transactionBlockTimestamp;
+
+        // Create minimal transaction object with only essential data
+        node.transaction = {
+          hash: hash,
+          timestamp: timestamp,
+          chainId: chainId
+        };
+
+        // Clean up the node to only return minimal info to frontend
+        const cleanedNode = {
+          interpretation: node.interpretation,
+          transaction: node.transaction
+        };
+
+        // Replace the original node with cleaned version
+        edge.node = cleanedNode;
       });
     }
     // console.log('Processed edges:', activityResult.data?.transactionHistoryV2?.edges);
@@ -257,11 +230,19 @@ export async function POST(request: NextRequest) {
     // Filter tokens with value >= $0.01 and calculate total from tokens only
     const allTokenBalances = portfolio.tokenBalances?.byToken?.edges?.map((edge: any) => {
       const token = edge.node;
-      // Update network name to be readable
-      if (token.network?.name) {
-        token.network.name = getReadableNetworkName(token.network.name);
-      }
-      return token;
+
+
+      // Flatten the token structure with chainId directly
+      const flattenedToken = {
+        tokenAddress: token.tokenAddress,
+        symbol: token.symbol,
+        balance: token.balance,
+        balanceUSD: token.balanceUSD,
+        imgUrlV2: token.imgUrlV2,
+        chainId: token.network?.chainId || convertNetworkToChainId(token.network?.name || 'ethereum')
+      };
+
+      return flattenedToken;
     }) || [];
     const filteredTokenBalances = allTokenBalances.filter((token: any) => token.balanceUSD >= 0.01);
     

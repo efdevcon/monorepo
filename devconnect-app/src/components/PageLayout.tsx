@@ -8,15 +8,17 @@ import Link from 'next/link';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
-import { ArrowBigLeft, Blend as AppIcon } from 'lucide-react';
+import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useIsScrolled } from 'lib/hooks/useIsScrolled';
 
 interface TabItem {
   label: string;
   labelIcon?: React.ComponentType<any>;
   component: React.ComponentType<any>;
   href?: string;
+  isActive?: (pathname: string) => boolean;
 }
 
 interface PageLayoutProps {
@@ -33,6 +35,7 @@ interface TabsProps {
   activeIndex: number;
   setActiveIndex: (index: number) => void;
   onTabClick?: (tabItem: any, index: number) => void;
+  className?: string;
 }
 
 const BackButton = () => {
@@ -46,7 +49,7 @@ const BackButton = () => {
       if (history.state.key && !sessionId) {
         setSessionId(history.state.key);
       }
-      
+
       // Check if we can go back after component mounts
       const canGoBack = history.state?.key !== sessionId;
       setCanBack(canGoBack);
@@ -64,7 +67,7 @@ const BackButton = () => {
   return (
     <div
       className={cn(
-        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 transition-all duration-300',
+        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 absolute left-0',
         canBack && 'hover:scale-110'
       )}
     >
@@ -73,7 +76,7 @@ const BackButton = () => {
           onClick={handleBackClick}
           className="flex items-center cursor-pointer select-none"
         >
-          <ArrowBigLeft
+          <Undo2
             style={{
               fontSize: 16,
               // transform: 'rotateY(180deg)', // Apply 180-degree rotation on the X-axis
@@ -92,8 +95,10 @@ const Tabs = ({
   activeIndex,
   setActiveIndex,
   onTabClick,
+  className,
 }: TabsProps) => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleTabClick = (tab: TabItem, idx: number) => {
     if (onTabClick) {
@@ -108,42 +113,50 @@ const Tabs = ({
 
   return (
     <div
-      className={`py-4 md:py-2 flex items-center md:rounded overflow-auto w-full`}
+      className={cn(
+        'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded overflow-auto w-full',
+        className
+      )}
     >
-      <div className="flex bg-[#EFEFF5] md:rounded w-[fit-content] shrink-0 flex p-1">
-        {tabs.map((tab, idx) => (
-          <button
-            key={tab.label}
-            type="button"
-            data-tab-index={idx}
-            className={cn(
-              'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0',
-              idx === activeIndex
-                ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)]'
-                : 'rounded-xs',
-              tab.labelIcon && 'pl-2'
-            )}
-            style={{
-              outline: 'none',
-              border: 'none',
-              background: idx === activeIndex ? '#fff' : 'transparent',
-              minWidth: 'auto',
-            }}
-            onClick={() => handleTabClick(tab, idx)}
-          >
-            <div
+      <div className="flex md:rounded w-[fit-content] shrink-0 flex gap-2">
+        {tabs.map((tab, idx) => {
+          let isActive;
+
+          // If tab has isActive function, use it to determine if the tab is active
+          if (tab.isActive) {
+            isActive = tab.isActive(pathname);
+          } else {
+            // Otherwise use whatever we had before... I think we can remove this later, but lets keep it so I don't break anything
+            isActive = idx === activeIndex;
+          }
+
+          return (
+            <button
+              key={tab.label}
+              type="button"
+              data-tab-index={idx}
               className={cn(
-                'text-center justify-center text-sm font-medium leading-tight flex gap-1.5',
-                idx === activeIndex
-                  ? 'text-[#232336]'
-                  : 'text-[#4b4b66] cursor-pointer'
+                'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0 border-b-2 border-b-solid border-b-transparent',
+                'hover:!bg-[rgba(234,244,251,1)]',
+                isActive
+                  ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
+                  : 'rounded-xs',
+                tab.labelIcon && 'pl-2'
               )}
+              onClick={() => handleTabClick(tab, idx)}
             >
-              {tab.labelIcon && <tab.labelIcon size={18} />}
-              {tab.label}
-            </div>
-          </button>
-        ))}
+              <div
+                className={cn(
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-2 font-medium items-center',
+                  isActive ? '' : 'cursor-pointer'
+                )}
+              >
+                {tab.labelIcon && <tab.labelIcon size={14} />}
+                {tab.label}
+              </div>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
@@ -170,6 +183,8 @@ export default function PageLayout({
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
 
+  const isScrolled = useIsScrolled(20);
+
   return (
     <>
       {/* Mobile layout */}
@@ -182,18 +197,27 @@ export default function PageLayout({
             {title && (
               <div
                 data-page="Header"
-                className="w-full shrink-0 relative backdrop-blur-xs flex flex-col  items-start px-4 gap-5 sticky top-0 z-[999999]"
+                className={cn(
+                  'w-full shrink-0 relative flex flex-col items-start transition-transform text-white translate-y-[0px] duration-300 px-4 gap-5 sticky top-0 z-[999998]',
+                  isScrolled ? '!translate-y-[-10px] !text-black' : ''
+                )}
                 style={{
-                  background: `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
+                  background: isScrolled
+                    ? 'white'
+                    : `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
             radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.20) 0%, rgba(36, 36, 54, 0.00) 100%),
             linear-gradient(263deg, rgba(246, 180, 14, 0.30) 2.9%, rgba(45, 45, 66, 0.30) 58.72%, rgba(36, 36, 54, 0.30) 100.39%),
             linear-gradient(98deg, rgba(116, 172, 223, 0.80) -7.48%, rgba(73, 129, 180, 0.80) 43.5%, rgba(255, 133, 166, 0.80) 122.37%)`,
                   backgroundBlendMode: 'normal, normal, overlay, normal',
-                  backdropFilter: 'blur(4px)',
+                  backdropFilter: isScrolled ? 'blur(0px)' : 'blur(4px)',
                   paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
                 }}
               >
-                <div className="relative flex items-center gap-3 text-white text-lg font-bold h-[59px]">
+                <div
+                  className={cn(
+                    'relative flex items-center  transition-transform duration-300 h-[59px] translate-y-[0px] justify-center w-full gap-3 font-medium'
+                  )}
+                >
                   <BackButton />
                   {title}
                 </div>
@@ -202,7 +226,10 @@ export default function PageLayout({
 
             {tabs.length > 1 && (
               <div
-                className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] sticky bg-white md:rounded-t-sm z-[999998]"
+                className={cn(
+                  'px-4 text-lg z-[1] font-bold border-b border-b-solid border-[#8855CC26] transition-transform translate-y-[0px] duration-300 sticky bg-white md:rounded-t-sm z-[999999]',
+                  isScrolled ? '!translate-y-[-25px]' : ''
+                )}
                 style={{
                   top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
                 }}
@@ -252,9 +279,15 @@ export default function PageLayout({
                   <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm">
                     {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
                       (item) => {
-                        const isActive =
+                        let isActive =
                           pathname === item.href ||
                           (item.href !== '/' && pathname.startsWith(item.href));
+
+                        if (item.isActive) {
+                          console.log('item.isActive', item.isActive(pathname));
+                          isActive = item.isActive(pathname);
+                        }
+
                         return (
                           <Link
                             key={item.href}

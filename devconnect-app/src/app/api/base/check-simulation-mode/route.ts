@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
 
 /**
  * API endpoint to check if the system is in simulation mode
@@ -15,11 +16,12 @@ export async function GET(request: NextRequest) {
     const walletAddress = searchParams.get('wallet');
 
     const privateKey = process.env.PRIVATE_KEY;
-    const requiredSponsorAddress = '0x20c85697e4789d7a1570e78688567160426d4cdd';
 
-    // Check if we have private key and wallet address matches required sponsor
+    // Check if we have private key and wallet address matches any authorized sponsor
     const hasPrivateKey = !!privateKey;
-    const isCorrectWallet = walletAddress && walletAddress.toLowerCase() === requiredSponsorAddress.toLowerCase();
+    const isCorrectWallet = walletAddress && AUTHORIZED_SPONSOR_ADDRESSES.some(
+      address => address.toLowerCase() === walletAddress.toLowerCase()
+    );
 
     const isSimulationMode = !hasPrivateKey || !isCorrectWallet;
 
@@ -27,7 +29,7 @@ export async function GET(request: NextRequest) {
     if (!hasPrivateKey) {
       message = 'System is in simulation mode - no PRIVATE_KEY configured';
     } else if (!isCorrectWallet) {
-      message = `System is in simulation mode - wallet ${walletAddress} is not authorized. Only ${requiredSponsorAddress} can execute real transactions.`;
+      message = `System is in simulation mode - wallet ${walletAddress} is not authorized. Only authorized sponsor addresses can execute real transactions.`;
     } else {
       message = 'System is configured for real transactions';
     }
@@ -38,7 +40,7 @@ export async function GET(request: NextRequest) {
       hasPrivateKey,
       isCorrectWallet,
       walletAddress,
-      requiredSponsorAddress,
+      authorizedSponsorAddresses: AUTHORIZED_SPONSOR_ADDRESSES,
       message,
       timestamp: new Date().toISOString()
     });

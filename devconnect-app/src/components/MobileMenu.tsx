@@ -4,13 +4,14 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/nav-items';
-import { useUnifiedConnection } from '@/hooks/useUnifiedConnection';
+import { useWalletManager } from '@/hooks/useWalletManager';
 import css from './MobileMenu.module.scss';
 import cn from 'classnames';
 
 export default function Menu() {
-  const { shouldShowNavigation } = useUnifiedConnection();
+  const { isConnected } = useWalletManager();
   const pathname = usePathname();
+  const shouldShowNavigation = isConnected || pathname !== '/';
   const hasLoggedHidden = React.useRef(false);
 
   // Only log once when navigation becomes hidden to avoid spam
@@ -28,7 +29,7 @@ export default function Menu() {
   //   return null;
   // }
 
-  const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
+  // const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 
   return (
     <>
@@ -48,9 +49,14 @@ export default function Menu() {
         }}
       >
         {NAV_ITEMS.map((item) => {
-          const isActive =
+          let isActive =
             pathname === item.href ||
             (item.href !== '/' && pathname.startsWith(item.href));
+
+          if (item.isActive) {
+            isActive = item.isActive(pathname);
+          }
+
           const Icon = item.icon;
           const isScan = item.label === 'Scan';
           return (

@@ -1132,14 +1132,7 @@ const AdminPage = () => {
               {/* Calendar Preview */}
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-6">Calendar Preview</h2>
-                <NewSchedule
-                  events={formattedEvents}
-                  selectedEvent={null}
-                  selectedDay={null}
-                  setSelectedEvent={() => {}}
-                  setSelectedDay={() => {}}
-                  viewMode="grid"
-                />
+                <NewSchedule events={formattedEvents} viewMode="grid" />
               </div>
 
               {/* JSON Expansion Dialog */}

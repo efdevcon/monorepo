@@ -24,7 +24,7 @@ const Layout = (props: CalendarLayoutProps) => {
     setFilter,
     resetFilter,
     filterActive,
-  } = useFilters(props.events);
+  } = useFilters(props.events, true);
 
   return (
     <div className="section overflow-visible touch-only:!contents text-left">
@@ -43,11 +43,14 @@ const Layout = (props: CalendarLayoutProps) => {
                 <div className="flex flex-col">
                   <b>Devconnect ARG schedule </b>
                   <div className="text-base font-secondary">
-                    Events held within La Rural (
-                    <Link href="https://tickets.devconnect.org">
-                      world's fair ticket required
+                    Events held within La Rural require a{` `}
+                    <Link
+                      href="https://tickets.devconnect.org"
+                      className="text-blue-500 font-medium"
+                    >
+                      world's fair ticket{` `}
                     </Link>
-                    )
+                    to enter.
                   </div>
                 </div>
               )}

@@ -1522,10 +1522,6 @@ const CommunityEvents = () => {
                   }),
                 ]}
                 viewMode="grid"
-                selectedEvent={previewSelectedEvent}
-                selectedDay={null}
-                setSelectedEvent={setPreviewSelectedEvent}
-                setSelectedDay={() => {}}
               />
 
               {/* <p className="text-xs text-gray-500 mt-1">The preview is draggable if your event spans multiple days.</p> */}
