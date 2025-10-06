@@ -234,7 +234,7 @@ const perks: Perk[] = [
     description: 'Venues & Transport for Orgs, Individuals & Groups',
     issuer: 'Tripsha',
     image: TripshaCar,
-    instructions: 'Book your transpot here',
+    instructions: 'Book your transport here',
     zupass_proof_id: 'Devconnect ARG',
     external: true,
     urls: [
