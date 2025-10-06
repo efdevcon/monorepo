@@ -1,6 +1,12 @@
 'use client';
 
-import { type ReactNode, createContext, useRef, useContext } from 'react';
+import {
+  type ReactNode,
+  createContext,
+  useRef,
+  useContext,
+  createRef,
+} from 'react';
 import { useStore } from 'zustand';
 import { useWalletManager } from '@/hooks/useWalletManager';
 
@@ -26,11 +32,14 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
   return children;
 };
 
+const storeRef = createRef<AppStore | null>();
+
 export const GlobalStoreProvider = ({
   events,
   children,
 }: GlobalStoreProviderProps) => {
-  const storeRef = useRef<AppStore | null>(null);
+  // const storeRef = useRef<AppStore | null>(null);
+
   if (storeRef.current === null) {
     storeRef.current = createGlobalStore(initGlobalStore(events));
   }
