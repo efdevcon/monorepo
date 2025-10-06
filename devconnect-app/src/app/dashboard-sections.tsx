@@ -1,6 +1,6 @@
 'use client';
 import Event from 'lib/components/event-schedule-new/event/event';
-import { useFavorites } from './store.hooks';
+import { useEvents, useFavorites } from './store.hooks';
 import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
 import moment from 'moment';
 import Image from 'next/image';
@@ -33,10 +33,12 @@ export function WelcomeSection() {
   );
 }
 
-export function TodaysSchedule({ atprotoEvents }: { atprotoEvents: any[] }) {
+export function TodaysSchedule() {
+  const events = useEvents();
   const [favorites] = useFavorites();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
-  const events = atprotoEvents.filter((event) =>
+  // TODO: implement more advanced filtering here, e.g. highlighted events like ethereum day , etc.
+  const filteredEvents = events.filter((event) =>
     favorites.includes(event.id.toString())
   );
 
@@ -68,7 +70,7 @@ export function TodaysSchedule({ atprotoEvents }: { atprotoEvents: any[] }) {
 
       {hasEventsToShow && (
         <div className="flex flex-col items-stretch gap-2 w-full">
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <Event
               compact
               key={event.id}
