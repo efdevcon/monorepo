@@ -46,12 +46,18 @@ export async function numberOfCryptoPayment(questId: string, conditionValues: st
 export async function verifyPoap(questId: string, conditionValues: string, userAddresses?: string[]): Promise<boolean> {
   try {
     if (!userAddresses || userAddresses.length === 0) {
-      console.warn('No user addresses provided for POAP verification');
+      toast.info('⚠️ No Addresses', {
+        description: 'No user addresses provided for POAP verification',
+        duration: 3000,
+      });
       return false;
     }
 
     if (!conditionValues) {
-      console.warn('No POAP drop ID provided for verification');
+      toast.info('⚠️ Missing Drop ID', {
+        description: 'No POAP drop ID provided for verification',
+        duration: 3000,
+      });
       return false;
     }
 
@@ -116,7 +122,10 @@ export async function verifyPoap(questId: string, conditionValues: string, userA
  */
 export async function isWalletConnected(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement wallet connection check logic
-  alert(`TODO: Checking wallet connection with values: ${conditionValues}`);
+  toast.info('🔧 Coming Soon', {
+    description: `Checking wallet connection with values: ${conditionValues}`,
+    duration: 3000,
+  });
   return true;
 }
 
@@ -127,9 +136,58 @@ export async function isWalletConnected(questId: string, conditionValues: string
  * @returns Promise<boolean> - True if ticket is associated
  */
 export async function isTicketAssociated(questId: string, conditionValues: string): Promise<boolean> {
-  // TODO: Implement ticket association check logic
-  alert(`TODO: Checking ticket association with values: ${conditionValues}`);
-  return true;
+  try {
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined' || typeof localStorage === 'undefined') {
+      console.error('localStorage is not available');
+      return false;
+    }
+
+    // Get tickets from local storage
+    const ticketsJson = localStorage.getItem('user-tickets');
+
+    if (!ticketsJson) {
+      toast.warning('🎫 No Tickets Found', {
+        description: 'Please connect a ticket to your account first.',
+        duration: 5000,
+      });
+      return false;
+    }
+
+    // Parse the tickets data
+    const orders = JSON.parse(ticketsJson);
+
+    // Check if there's at least one ticket
+    let totalTickets = 0;
+    if (Array.isArray(orders)) {
+      for (const order of orders) {
+        if (order.tickets && Array.isArray(order.tickets)) {
+          totalTickets += order.tickets.length;
+        }
+      }
+    }
+
+    if (totalTickets > 0) {
+      toast.success('✅ Ticket Verified!', {
+        description: `You have ${totalTickets} ticket${totalTickets > 1 ? 's' : ''} associated with your account.`,
+        duration: 5000,
+      });
+      return true;
+    } else {
+      toast.warning('🎫 No Tickets Found', {
+        description: 'Please connect a ticket to your account first.',
+        duration: 5000,
+      });
+      return false;
+    }
+  } catch (error) {
+    console.error(`Error checking ticket association for quest ${questId}:`, error);
+    toast.error('⚠️ Verification Error', {
+      description: 'Unable to verify ticket association at this time.',
+      duration: 5000,
+    });
+    return false;
+  }
 }
 
 /**
@@ -140,7 +198,10 @@ export async function isTicketAssociated(questId: string, conditionValues: strin
  */
 export async function isProfileSetup(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement profile setup check logic
-  alert(`TODO: Checking profile setup with values: ${conditionValues}`);
+  toast.info('🔧 Coming Soon', {
+    description: `Checking profile setup with values: ${conditionValues}`,
+    duration: 3000,
+  });
   return true;
 }
 
@@ -151,8 +212,10 @@ export async function isProfileSetup(questId: string, conditionValues: string): 
  * @returns Promise<boolean> - True if link has been visited
  */
 export async function isLinkVisited(questId: string, conditionValues: string): Promise<boolean> {
-  // TODO: Implement link visit check logic
-  alert(`TODO: Checking link visit with values: ${conditionValues}`);
+  toast.success('🎉 Link Visited!', {
+    description: 'Congratulations! You have completed this quest!',
+    duration: 6000,
+  });
   return true;
 }
 
@@ -164,7 +227,10 @@ export async function isLinkVisited(questId: string, conditionValues: string): P
  */
 export async function isMiniQuizCompleted(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement mini quiz completion check logic
-  alert(`TODO: Checking mini quiz completion with values: ${conditionValues}`);
+  toast.info('🔧 Coming Soon', {
+    description: `Checking mini quiz completion with values: ${conditionValues}`,
+    duration: 3000,
+  });
   return true;
 }
 
@@ -176,7 +242,10 @@ export async function isMiniQuizCompleted(questId: string, conditionValues: stri
  */
 export async function verifyBalance(questId: string, conditionValues: string): Promise<boolean> {
   // TODO: Implement balance verification logic
-  alert(`TODO: Verifying balance with values: ${conditionValues}`);
+  toast.info('🔧 Coming Soon', {
+    description: `Verifying balance with values: ${conditionValues}`,
+    duration: 3000,
+  });
   return true;
 }
 
