@@ -1,6 +1,6 @@
 .loopingHeader {
   position: relative;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   background-color: rgba(58, 54, 94, 1);
   color: white;
@@ -9,6 +9,7 @@
 
 .scrollContainer {
   display: flex;
+  width: fit-content;
   animation: scroll 20s linear infinite;
 }
 
