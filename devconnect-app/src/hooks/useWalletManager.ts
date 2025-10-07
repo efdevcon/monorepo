@@ -185,6 +185,11 @@ export function useWalletManager() {
   const supabaseEmail = supabaseUser?.email || null;
   const email = supabaseEmail || paraEmail; // Prioritize Supabase email, fallback to Para
 
+  // Hack for demo - this is not good, once we figure out proper server/client rendering, we should remove this
+  if (email && typeof window !== 'undefined') {
+    localStorage.setItem('loginIsSkipped', 'true');
+  }
+
   // Automatically exchange Para JWT for Supabase session when Para is connected
   // This eliminates the need to manually click "Get Supabase JWT" button
   useAutoParaJwtExchange({
@@ -425,10 +430,9 @@ export function useWalletManager() {
   // ============================================
   // Portfolio Data - Store all portfolios in single global cache
   // ============================================
-  const [portfolioCache, setPortfolioCache] = useLocalStorage<Record<string, PortfolioData>>(
-    'portfolio',
-    {}
-  );
+  const [portfolioCache, setPortfolioCache] = useLocalStorage<
+    Record<string, PortfolioData>
+  >('portfolio', {});
 
   const [portfolioLoading, setPortfolioLoading] = useState(false);
   const [portfolioError, setPortfolioError] = useState<string | null>(null);
@@ -524,16 +528,21 @@ export function useWalletManager() {
     // Check if we're currently fetching
     const currentlyFetching = portfolioFetchingRef.current;
 
-    console.log(`🔍 [WALLET_MANAGER] Auto-fetch check for ${addressKey.slice(0, 10)}...`, {
-      hasCachedData,
-      alreadyAttempted,
-      currentlyFetching,
-      willFetch: !hasCachedData && !alreadyAttempted && !currentlyFetching,
-    });
+    console.log(
+      `🔍 [WALLET_MANAGER] Auto-fetch check for ${addressKey.slice(0, 10)}...`,
+      {
+        hasCachedData,
+        alreadyAttempted,
+        currentlyFetching,
+        willFetch: !hasCachedData && !alreadyAttempted && !currentlyFetching,
+      }
+    );
 
     // Only fetch if: no cached data AND haven't attempted before AND not currently fetching
     if (!hasCachedData && !alreadyAttempted && !currentlyFetching) {
-      console.log(`📡 [WALLET_MANAGER] Auto-fetching portfolio for ${addressKey.slice(0, 10)}... (first time)`);
+      console.log(
+        `📡 [WALLET_MANAGER] Auto-fetching portfolio for ${addressKey.slice(0, 10)}... (first time)`
+      );
 
       // Mark this address as attempted BEFORE starting the fetch
       initialFetchAttemptedRef.current.add(addressKey);
@@ -703,7 +712,9 @@ export function useWalletManager() {
     return 'Not connected';
   };
 
-  useEnsureUserData(isConnected);
+  console.log(email, 'email');
+
+  useEnsureUserData(email);
 
   return {
     // Current active wallet state
