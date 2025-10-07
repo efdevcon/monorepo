@@ -10,7 +10,6 @@ import { useWalletManager } from '@/hooks/useWalletManager';
 import { useTransaction } from '@/hooks/useTransaction';
 import TokenSelector from '@/components/payment/TokenSelector';
 import NetworkSelector from '@/components/payment/NetworkSelector';
-import NetworkLogo from '@/components/NetworkLogo';
 import StatusStep from '@/components/payment/StatusStep';
 import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
@@ -1384,19 +1383,28 @@ export default function PaymentModal({
                     <h3 className="text-[#353548] text-base font-semibold">
                       Wallet
                     </h3>
-                    <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
+                    {/* <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <NetworkLogo
-                          chainId={isPara ? 8453 : selectedChainId}
-                          size="sm"
-                        />
+                        {(() => {
+                          const connectorIcon = isPara
+                            ? '/images/paraLogo.png'
+                            : wagmiAccount.connector?.icon ||
+                              '/images/icons/injected.png';
+
+                          return (
+                            <img
+                              src={connectorIcon}
+                              alt="wallet"
+                              className="w-8 h-8 rounded-lg object-cover"
+                            />
+                          );
+                        })()}
                         <span className="text-[#353548] text-base font-normal">
-                          {isPara ? 'Para' : 'Standard Wallet'}
+                          {isPara ? 'Embedded Wallet' : 'External Wallet'}
                         </span>
                       </div>
                       <ChevronDown className="w-5 h-5 text-[#353548]" />
-                    </div>
-
+                    </div> */}
                     {/* Connection Status */}
                     <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
                       <div className="flex items-center justify-between mb-2">
@@ -1404,10 +1412,20 @@ export default function PaymentModal({
                           Connected to:
                         </span>
                         <div className="flex items-center gap-2">
-                          <NetworkLogo
-                            chainId={isPara ? 8453 : selectedChainId}
-                            size="sm"
-                          />
+                          {(() => {
+                            const connectorIcon = isPara
+                              ? '/images/paraLogo.png'
+                              : wagmiAccount.connector?.icon ||
+                                '/images/icons/injected.png';
+
+                            return (
+                              <img
+                                src={connectorIcon}
+                                alt="wallet"
+                                className="w-5 h-5 rounded object-cover"
+                              />
+                            );
+                          })()}
                           <span className="text-white text-sm">
                             {connectedAddress
                               ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
