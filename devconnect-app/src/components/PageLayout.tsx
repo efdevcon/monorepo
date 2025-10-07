@@ -345,9 +345,9 @@ export default function PageLayout({
                 <div className="h-[45px] my-2 ml-6 text-lg font-bold">
                   {title}
                 </div>
-                <div className="flex-1 border border-solid border-[#8855CC26] rounded-sm h-[fit-content] relative">
+                <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (
-                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky top-0 bg-white rounded-t-sm z-[100]">
+                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky rounded-t-sm top-0 bg-white z-[100]">
                       <Tabs
                         tabs={tabs}
                         activeIndex={activeIndex}

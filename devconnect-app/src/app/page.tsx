@@ -2,7 +2,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
-import { WelcomeSection, TodaysSchedule } from './dashboard-sections';
+import {
+  WelcomeSection,
+  TodaysSchedule,
+  LoopingHeader,
+} from './dashboard-sections';
 import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
@@ -21,7 +25,8 @@ export default function HomePageContent() {
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
-      <div className="bg-[rgba(246,250,254,1)] p-4 grow">
+      <div className="bg-[rgba(246,250,254,1)] grow">
+        <LoopingHeader />
         <WelcomeSection />
         <TodaysSchedule />
       </div>

@@ -167,7 +167,7 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
     <div
       className={cn(
         filterCss["active-filters"],
-        "max-w-[200px] truncate text-ellipsis"
+        "max-w-[200px] truncate text-ellipsis hidden sm:!flex"
       )}
     >
       {/* <p className="small-text">Active filter:</p> */}

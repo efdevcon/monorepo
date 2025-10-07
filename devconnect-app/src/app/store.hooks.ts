@@ -12,7 +12,11 @@ import { AppState } from './store';
 export const useFavorites = () => {
   const userData = useGlobalStore(useShallow((state) => state.userData));
   const favorites =
-    useGlobalStore((state) => state.userData?.favorite_events) || [];
+    useGlobalStore((state) => {
+      console.log('SELECTOR RUNNING, state:', state);
+
+      return state.userData?.favorite_events;
+    }) || [];
   const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
 
   const updateFavorite = (eventId: string) => {

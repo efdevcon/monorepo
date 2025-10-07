@@ -45,7 +45,10 @@ export const GlobalStoreProvider = ({
   const storeRef = useRef<AppStore | null>(null);
 
   if (storeRef.current === null) {
+    console.log('creating store');
     storeRef.current = createGlobalStore(initGlobalStore(events, userData));
+  } else {
+    console.log('store already created');
   }
 
   useStore(storeRef.current, (state) => console.log('STATE', state));
