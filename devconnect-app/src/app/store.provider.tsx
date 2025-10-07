@@ -35,14 +35,14 @@ const WalletProvider = ({ children }: { children: ReactNode }) => {
   return children;
 };
 
-const storeRef = createRef<AppStore | null>();
+// const storeRef = createRef<AppStore | null>();
 
 export const GlobalStoreProvider = ({
   events,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
-  // const storeRef = useRef<AppStore | null>(null);
+  const storeRef = useRef<AppStore | null>(null);
 
   if (storeRef.current === null) {
     storeRef.current = createGlobalStore(initGlobalStore(events, userData));

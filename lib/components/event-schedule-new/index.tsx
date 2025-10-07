@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
 import Event from "./event/event";
@@ -36,6 +37,7 @@ export type ScheduleProps = {
   favoriteEvents?: string[];
   toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
+  noUrlRouting?: boolean;
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -188,7 +190,12 @@ const NewScheduleIndexInner = ({
   toggleFavoriteEvent,
   events,
   viewMode,
+  noUrlRouting,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
+  // Opt out of url based routing
+  const [selectedEventInlineState, setSelectedEventInlineState] = useState<
+    string | null
+  >(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -236,6 +243,11 @@ const NewScheduleIndexInner = ({
 
     if (ethDayEvent) {
       (window as any).selectEthDay = () => {
+        if (noUrlRouting) {
+          setSelectedEventInlineState(ethDayEvent.id.toString());
+          return;
+        }
+
         router.replace(`${pathname}?event=ethday`, { scroll: false });
       };
 
@@ -245,24 +257,26 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
+  const getEventIdFromUrl = (eventId: string) => {
+    const transformMatch = customUrlTransforms.find(
+      (transform) => transform.from === eventId.toString()
+    );
+
+    if (transformMatch) {
+      eventId = transformMatch.to;
+    }
+
+    return eventId;
+  };
+
   const selectedEvent = (() => {
     if (typeof window === "undefined") return;
 
-    const getEventIdFromUrl = (eventId: string) => {
-      const transformMatch = customUrlTransforms.find(
-        (transform) => transform.from === eventId.toString()
-      );
-
-      if (transformMatch) {
-        eventId = transformMatch.to;
-      }
-
-      return eventId;
-    };
-
     const currentUrlParams = new URLSearchParams(searchParams);
 
-    const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
+    const eventId = noUrlRouting
+      ? selectedEventInlineState
+      : getEventIdFromUrl(currentUrlParams.get("event") || "");
 
     return events.find((event) => {
       return (
@@ -272,12 +286,28 @@ const NewScheduleIndexInner = ({
     });
   })();
 
+  useEffect(() => {
+    if (noUrlRouting) {
+      const currentUrlParams = new URLSearchParams(searchParams);
+      const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
+
+      setSelectedEventInlineState(eventId);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
   const setSelectedEvent = (event: EventType | null) => {
     if (typeof window === "undefined") return;
 
     const currentParams = new URLSearchParams(searchParams);
 
     if (!event) {
+      if (noUrlRouting) {
+        setSelectedEventInlineState(null);
+
+        return;
+      }
+
       currentParams.delete("event");
       // setSelectedEventId(null);
     } else {
@@ -289,6 +319,14 @@ const NewScheduleIndexInner = ({
 
       if (transformMatch) {
         nextEventId = transformMatch.from;
+      }
+
+      console.log("nextEventId", nextEventId);
+
+      if (noUrlRouting) {
+        setSelectedEventInlineState(event.id.toString());
+
+        return;
       }
 
       currentParams.set("event", nextEventId);
@@ -303,6 +341,8 @@ const NewScheduleIndexInner = ({
   };
 
   const listView = viewMode === "list" && isMobile;
+
+  console.log("selectedEvent", selectedEvent);
 
   const selectedEventForDialog =
     eventPlacements.find(

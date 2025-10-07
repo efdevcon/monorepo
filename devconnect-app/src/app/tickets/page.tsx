@@ -30,7 +30,7 @@ interface Order {
 
 const TicketWrapper = () => {
   return (
-    <PageLayout title="World's Fair" tabs={homeTabs()}>
+    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
       <TicketTab />
     </PageLayout>
   );
