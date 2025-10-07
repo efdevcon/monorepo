@@ -4,7 +4,7 @@ import cn from "classnames";
 import { Checkbox } from "lib/components/ui/checkbox";
 import { Badge } from "lib/components/ui/badge";
 import { Switch } from "lib/components/ui/switch";
-import { X, Search } from "lucide-react";
+import { X, Search, ChevronDown } from "lucide-react";
 
 export const useFilters = (
   events: any[],
@@ -16,7 +16,7 @@ export const useFilters = (
   const filterableValues = {} as { [key: string]: Set<string> };
 
   const defaultFilter = {
-    category: [],
+    categories: [],
     difficulty: [],
     eventType: [],
     name: "",
@@ -24,12 +24,14 @@ export const useFilters = (
     favorites: false,
   };
 
+  console.log(events, "events");
+
   const [filter, setFilterState] = useState<any>(defaultFilter);
 
   // Compute if any filter is active (differs from default)
   const filterActive =
     // filter.name !== defaultFilter.name ||
-    filter.category.length !== defaultFilter.category.length ||
+    filter.categories.length !== defaultFilter.categories.length ||
     filter.difficulty.length !== defaultFilter.difficulty.length ||
     filter.eventType.length !== defaultFilter.eventType.length ||
     filter.name !== defaultFilter.name ||
@@ -121,8 +123,8 @@ export const useFilters = (
     }
 
     // Categories filter
-    if (filter.category.length > 0) {
-      const categoryMatch = filter.category.some((category: any) =>
+    if (filter.categories.length > 0) {
+      const categoryMatch = filter.categories.some((category: any) =>
         (event["categories"] || []).includes(category)
       );
       if (!categoryMatch) return false;
@@ -153,7 +155,7 @@ export const FilterSummary = ({ filter }: { filter: any }) => {
 
   const filterSummary =
     [
-      computeFilterShorthand("Categories", filter.category),
+      computeFilterShorthand("Categories", filter.categories),
       computeFilterShorthand("Difficulty", filter.difficulty),
       computeFilterShorthand("Event Type", filter.eventType),
       filter.name ? `"${filter.name}"` : null,
@@ -216,10 +218,37 @@ export const Filter = ({
 }) => {
   const filterableValuesKeys = Array.from(Object.keys(filterableValues));
 
+  // Initialize accordions - open only if the filter group has active selections
+  const [openAccordions, setOpenAccordions] = useState<Set<string>>(() => {
+    const initialOpen = new Set<string>();
+    filterableValuesKeys.forEach((key) => {
+      const activeFilters = filter[key] || [];
+      const hasActiveFilters = Array.isArray(activeFilters)
+        ? activeFilters.length > 0
+        : activeFilters !== "";
+      if (hasActiveFilters) {
+        initialOpen.add(key);
+      }
+    });
+    return initialOpen;
+  });
+
+  const toggleAccordion = (key: string) => {
+    setOpenAccordions((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(key)) {
+        newSet.delete(key);
+      } else {
+        newSet.add(key);
+      }
+      return newSet;
+    });
+  };
+
   return (
     <div className={cn(filterCss["filter-foldout"])}>
-      <div className="flex flex-col gap-4 w-full">
-        <div className="flex justify-between items-center w-full">
+      <div className="flex flex-col gap-4 w-full shrink-0">
+        <div className="flex justify-between items-center w-full shrink-0">
           <div className="text-sm font-medium underline">
             Refine your search
           </div>
@@ -255,7 +284,7 @@ export const Filter = ({
         </div>
 
         {showFavorites && (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             <Switch
               checked={filter.favorites}
               onCheckedChange={(checked) => setFilter("favorites", checked)}
@@ -268,37 +297,50 @@ export const Filter = ({
           const valuesForFilter = Array.from(filterableValues[key]);
           const filterStateKey = key;
           const activeFilters = filter[filterStateKey] || [];
+          const isOpen = openAccordions.has(key);
 
           if (valuesForFilter.length === 0) return null;
 
           return (
-            <div key={key} className="flex flex-col gap-2">
-              <div className="text-sm font-medium capitalize">
-                {filterKeyToLabel(key)}
+            <div key={key} className="flex flex-col gap-2 shrink-0">
+              <div
+                className="text-sm font-medium capitalize cursor-pointer flex items-center justify-between"
+                onClick={() => toggleAccordion(key)}
+              >
+                <span>{filterKeyToLabel(key)}</span>
+                <ChevronDown
+                  size={16}
+                  className={cn(
+                    "transition-transform",
+                    isOpen ? "rotate-180" : ""
+                  )}
+                />
               </div>
-              <div className="flex flex-col gap-0.5">
-                {Array.from(valuesForFilter).map((value: any) => {
-                  const isSelected = Array.isArray(activeFilters)
-                    ? activeFilters.includes(value)
-                    : activeFilters === value;
+              {isOpen && (
+                <div className="flex flex-col gap-0.5">
+                  {Array.from(valuesForFilter).map((value: any) => {
+                    const isSelected = Array.isArray(activeFilters)
+                      ? activeFilters.includes(value)
+                      : activeFilters === value;
 
-                  return (
-                    <div
-                      key={value}
-                      className={cn(
-                        "text-sm cursor-pointer py-0.5 rounded transition-colors select-none flex items-center gap-2",
-                        isSelected
-                          ? "bg-blue-100 text-blue-800 font-medium"
-                          : "hover:bg-gray-100"
-                      )}
-                      onClick={() => setFilter(filterStateKey, value)}
-                    >
-                      <Checkbox checked={isSelected} className="mb-0.5" />
-                      {uppercaseFirstLetter(value)}
-                    </div>
-                  );
-                })}
-              </div>
+                    return (
+                      <div
+                        key={value}
+                        className={cn(
+                          "text-sm cursor-pointer py-0.5 rounded transition-colors select-none flex items-center gap-2",
+                          isSelected
+                            ? "bg-blue-100 text-blue-800 font-medium"
+                            : "hover:bg-gray-100"
+                        )}
+                        onClick={() => setFilter(filterStateKey, value)}
+                      >
+                        <Checkbox checked={isSelected} className="mb-0.5" />
+                        {uppercaseFirstLetter(value)}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })}

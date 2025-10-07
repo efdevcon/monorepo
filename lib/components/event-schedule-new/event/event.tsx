@@ -598,6 +598,19 @@ function Event({
                       {convert(event.description)}
                     </div>
 
+                    {event.categories && event.categories.length > 0 && (
+                      <div className="flex gap-2 items-center mt-2.5 flex-wrap">
+                        {event.categories.map((category) => (
+                          <div
+                            key={category}
+                            className="text-xs py-1 px-2 rounded-md border border-solid border-gray-300"
+                          >
+                            {category}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
                     <div className="flex justify-between items-center gap-2 flex-wrap">
                       <div className="flex gap-2 items-center flex-wrap">
                         {showVisitSite && (
