@@ -34,7 +34,7 @@ const Layout = (props: CalendarLayoutProps) => {
         layoutCss["layout-app"]
       )}
     >
-      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1">
+      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 mx-0 sm:mx-4">
         <div
           className={cn(
             "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center w-full",

@@ -5,29 +5,51 @@ import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
 import moment from 'moment';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
-import { useWalletManager } from '@/hooks/useWalletManager';
 import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useGlobalStore } from './store.provider';
+import styles from './dashboard-sections.module.scss';
+
+export const LoopingHeader = () => {
+  return (
+    <div className={styles.loopingHeader}>
+      <div className={styles.scrollContainer}>
+        <div className={styles.itemGroup}>
+          <div className={styles.item}>Nov 17–22, 2025</div>
+          <div className={styles.item}>La Rural, Buenos Aires, Argentina</div>
+          <div className={styles.item}>15,000+ attendees</div>
+          <div className={styles.item}>80+ applications</div>
+        </div>
+        <div className={styles.itemGroup}>
+          <div className={styles.item}>Nov 17–22, 2025</div>
+          <div className={styles.item}>La Rural, Buenos Aires, Argentina</div>
+          <div className={styles.item}>15,000+ attendees</div>
+          <div className={styles.item}>80+ applications</div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export function WelcomeSection() {
-  const { email } = useWalletManager();
+  const email = useGlobalStore((state) => state.userData?.email);
   const now = useNow();
   const dummyEmail = email || 'Anon';
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 mb-4">
-      <div className="flex justify-between w-full gap-2">
-        <div className="text-2xl font-semibold bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
+    <div className="flex flex-col items-start justify-start gap-2 mb-4 mx-4">
+      <div className="flex justify-between w-full  gap-2">
+        <div className="text-2xl font-semibold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
-        <div className="font-semibold text-sm">
+        <div className="font-semibold text-xs text-neutral-600">
           {formattedDate} Buenos Aires (GMT-3)
         </div>
       </div>
-      <div className="text-xl font-bold">{dummyEmail}</div>
+      <div className="text-lg font-medium">{dummyEmail}</div>
       <div>Welcome to the Ethereum World&apos;s Fair! </div>
     </div>
   );
@@ -45,7 +67,7 @@ export function TodaysSchedule() {
   const hasEventsToShow = events.length > 0;
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border border-[rgba(234,234,234,1)]">
+    <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)]">
       <div className="flex w-full items-center justify-between gap-2">
         <p className="font-semibold">Today&apos;s Schedule</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
@@ -93,9 +115,15 @@ export function TodaysSchedule() {
         </div>
       )}
 
-      <Link href="/schedule">
-        <Button size="sm" className="w-full md:w-auto self-start mt-2">
+      <Link href="/schedule" className="w-full md:w-auto self-start mt-2">
+        <Button size="sm" className="w-full" color="green-1">
           View full Schedule
+        </Button>
+      </Link>
+
+      <Link href="/schedule" className="w-full md:w-auto self-start mt-1">
+        <Button size="sm" className="w-full">
+          View Tickets
         </Button>
       </Link>
     </div>
