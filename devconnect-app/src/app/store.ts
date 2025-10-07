@@ -31,8 +31,6 @@ export const createGlobalStore = (
     'setUserData' | 'setFavoriteEvents' | 'logout'
   > = initGlobalStore()
 ) => {
-  console.log(Date.now(), 'NEW STORE CREATED');
-
   return createStore<AppState>()((set) => ({
     ...initState,
 

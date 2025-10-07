@@ -321,8 +321,6 @@ const NewScheduleIndexInner = ({
         nextEventId = transformMatch.from;
       }
 
-      console.log("nextEventId", nextEventId);
-
       if (noUrlRouting) {
         setSelectedEventInlineState(event.id.toString());
 
@@ -330,7 +328,6 @@ const NewScheduleIndexInner = ({
       }
 
       currentParams.set("event", nextEventId);
-      // setSelectedEventId(nextEventId);
     }
 
     // Update URL without any navigation using native History API
@@ -341,8 +338,6 @@ const NewScheduleIndexInner = ({
   };
 
   const listView = viewMode === "list" && isMobile;
-
-  console.log("selectedEvent", selectedEvent);
 
   const selectedEventForDialog =
     eventPlacements.find(
