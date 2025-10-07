@@ -9,6 +9,7 @@ import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
 import NetworkModal from '@/components/NetworkModal';
 import WalletModal from '@/components/WalletModal';
+import ReceiveModal from '@/components/ReceiveModal';
 import { toast } from 'sonner';
 
 // Image assets from local public/images directory
@@ -83,6 +84,7 @@ export default function WalletTab() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
+  const [showReceiveModal, setShowReceiveModal] = useState(false);
   const [addressCopied, setAddressCopied] = useState(false);
 
   // Debug logging - track if component is receiving props
@@ -121,7 +123,11 @@ export default function WalletTab() {
   }, [address, isPara, identity, portfolio, portfolioLoading, portfolioError]);
 
   const handleSendClick = () => {
-    open({ view: 'WalletSend' });
+    if (isPara) {
+      alert('TODO: Send tokens with Para');
+    } else {
+      open({ view: 'WalletSend' });
+    }
   };
 
   const handleSwapClick = () => {
@@ -140,7 +146,7 @@ export default function WalletTab() {
   };
 
   const handleReceiveClick = () => {
-    open({ view: 'Account' });
+    setShowReceiveModal(true);
   };
 
   const handleDigitalClick = () => {
@@ -388,7 +394,7 @@ export default function WalletTab() {
                 </span>
                 {paraEmail && supabaseEmail && (
                   <span className="text-[#8b8b99] text-xs">
-                    ({isPara ? 'Para' : 'Supabase'})
+                    {isPara ? '(Para)' : ''}
                   </span>
                 )}
               </div>
@@ -823,6 +829,14 @@ export default function WalletTab() {
       <WalletModal
         isOpen={showWalletModal}
         onClose={() => setShowWalletModal(false)}
+      />
+
+      {/* Receive Modal */}
+      <ReceiveModal
+        isOpen={showReceiveModal}
+        onClose={() => setShowReceiveModal(false)}
+        address={address}
+        identityName={identity?.name || null}
       />
     </div>
   );
