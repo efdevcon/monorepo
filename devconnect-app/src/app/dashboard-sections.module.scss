@@ -1,6 +1,6 @@
 .loopingHeader {
   position: relative;
-  width: 100vw;
+  width: 100%;
   overflow: hidden;
   background-color: rgba(58, 54, 94, 1);
   color: white;
@@ -10,7 +10,8 @@
 .scrollContainer {
   display: flex;
   width: fit-content;
-  animation: scroll 20s linear infinite;
+  animation: scroll 3s linear infinite;
+  will-change: transform;
 }
 
 .itemGroup {
@@ -30,6 +31,6 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / 3));
   }
 }

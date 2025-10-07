@@ -10,24 +10,27 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
 import styles from './dashboard-sections.module.scss';
+import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 
 export const LoopingHeader = () => {
+  const items = [
+    'Nov 17 - 22, 2025',
+    'La Rural, Buenos Aires, Argentina',
+    '15,000+ attendees',
+    '80+ applications',
+  ];
+
   return (
-    <div className={styles.loopingHeader}>
-      <div className={styles.scrollContainer}>
-        <div className={styles.itemGroup}>
-          <div className={styles.item}>Nov 17–22, 2025</div>
-          <div className={styles.item}>La Rural, Buenos Aires, Argentina</div>
-          <div className={styles.item}>15,000+ attendees</div>
-          <div className={styles.item}>80+ applications</div>
+    <div className="bg-[rgba(58,54,94,1)] text-white md:border-b md:bg-white md:text-black w-screen mb-4 py-2">
+      <InfiniteScroll nDuplications={4} speed="100s">
+        <div className="flex flex-row">
+          {items.map((item, j) => (
+            <div className="shrink-0 ml-6" key={j}>
+              {item}
+            </div>
+          ))}
         </div>
-        <div className={styles.itemGroup}>
-          <div className={styles.item}>Nov 17–22, 2025</div>
-          <div className={styles.item}>La Rural, Buenos Aires, Argentina</div>
-          <div className={styles.item}>15,000+ attendees</div>
-          <div className={styles.item}>80+ applications</div>
-        </div>
-      </div>
+      </InfiniteScroll>
     </div>
   );
 };
