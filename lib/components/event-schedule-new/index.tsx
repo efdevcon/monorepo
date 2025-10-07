@@ -30,6 +30,11 @@ export const customUrlTransforms = [
   { from: "defi-today", to: "107" },
   { from: "zero-to-dapp", to: "98" },
   { from: "zktls-day", to: "111" },
+  { from: "zkid-day", to: "119" },
+  { from: "organizer-hangout", to: "137" },
+  { from: "trustlessagentsday", to: "136" },
+  // { from: 'stableconnect', to: '112' },
+  // { from: 'pacificonnect', to: '112' },
 ];
 
 export type ScheduleProps = {

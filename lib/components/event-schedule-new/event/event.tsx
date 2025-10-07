@@ -400,9 +400,10 @@ function Event({
   const showBuyTickets = event.ticketsUrl;
   const showProgrammingButton = programming && !showMobileProgramming;
   const showTicketTag = event.ticketsAvailable || event.isCoreEvent;
-  const isGated = eventShops.some(
+  const isGated = eventShops.find(
     (shop) => shop.supabase_id === event.id.toString()
   );
+  const hideVisitSite = isGated && isGated.hide_visit_site;
 
   return (
     <>
@@ -613,7 +614,7 @@ function Event({
 
                     <div className="flex justify-between items-center gap-2 flex-wrap">
                       <div className="flex gap-2 items-center flex-wrap">
-                        {showVisitSite && (
+                        {showVisitSite && !hideVisitSite && (
                           <Link href={event.eventLink} className="self-start">
                             <VoxelButton
                               color="blue-1"

@@ -24,8 +24,6 @@ export const useFilters = (
     favorites: false,
   };
 
-  console.log(events, "events");
-
   const [filter, setFilterState] = useState<any>(defaultFilter);
 
   // Compute if any filter is active (differs from default)
