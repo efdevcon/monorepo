@@ -118,6 +118,8 @@ async function saveQuests(data: ApiResponse): Promise<void> {
     const { group, ...questWithoutGroup } = quest;
     return {
       ...questWithoutGroup,
+      action: quest.action as Quest['action'],
+      conditionType: quest.conditionType as Quest['conditionType'],
       groupId,
       districtId,
     };
