@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server';
 import { createServerClient } from '../supabaseServerClient';
 
 export const ensureUser = async (userEmail: string) => {

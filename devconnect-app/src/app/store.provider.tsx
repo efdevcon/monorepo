@@ -5,9 +5,11 @@ import {
   createContext,
   useRef,
   useContext,
+  useEffect,
   createRef,
 } from 'react';
 import { useStore } from 'zustand';
+
 import { useWalletManager } from '@/hooks/useWalletManager';
 
 import {
@@ -24,6 +26,7 @@ export const GlobalStoreContext = createContext<AppStore | undefined>(
 export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
+  userData: AppState['userData'];
 }
 
 const WalletProvider = ({ children }: { children: ReactNode }) => {
@@ -36,13 +39,20 @@ const storeRef = createRef<AppStore | null>();
 
 export const GlobalStoreProvider = ({
   events,
+  userData,
   children,
 }: GlobalStoreProviderProps) => {
   // const storeRef = useRef<AppStore | null>(null);
 
   if (storeRef.current === null) {
-    storeRef.current = createGlobalStore(initGlobalStore(events));
+    storeRef.current = createGlobalStore(initGlobalStore(events, userData));
   }
+
+  useStore(storeRef.current, (state) => console.log('STATE', state));
+
+  useEffect(() => {
+    console.log('MOUNTED THE PROVIDER, SHOULD RUN JUST ONCE');
+  }, []);
 
   return (
     <GlobalStoreContext.Provider value={storeRef.current}>

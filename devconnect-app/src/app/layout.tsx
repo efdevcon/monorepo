@@ -7,7 +7,10 @@ import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
 import { GlobalStoreProvider } from '@/app/store.provider';
+import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
 import { getAtprotoEvents } from '@/utils/atproto-events';
+import { headers } from 'next/headers';
+import { ensureUser } from '@/app/api/auth/user-data/ensure-user';
 
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
@@ -101,6 +104,12 @@ export default async function RootLayout({
   // Check if Supabase is configured
   // const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
+  const headersList = await headers();
+  const authResult = await verifyAuthWithHeaders(headersList as Headers);
+  let userData = null;
+  if (authResult.success) {
+    userData = await ensureUser(authResult.user?.email || '');
+  }
   const atprotoEvents = await getAtprotoEvents();
 
   return (
@@ -168,7 +177,7 @@ export default async function RootLayout({
       >
         <PWAProvider>
           <WalletsProviders>
-            <GlobalStoreProvider events={atprotoEvents}>
+            <GlobalStoreProvider events={atprotoEvents} userData={userData}>
               {children}
             </GlobalStoreProvider>
             <NewDeployment />

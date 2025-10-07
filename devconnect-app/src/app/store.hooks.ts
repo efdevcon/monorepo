@@ -63,7 +63,6 @@ export const ensureUserData = async (
   const userData = await fetchAuth('/api/auth/user-data');
 
   if (userData.success) {
-    console.log('userData', userData.data);
     setUserData(userData.data);
   } else {
     console.error('Failed to fetch user data from supabase');

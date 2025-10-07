@@ -18,10 +18,11 @@ export interface AppState {
 export type AppStore = ReturnType<typeof createGlobalStore>;
 
 export const initGlobalStore = (
-  events?: any[]
+  events?: any[],
+  userData?: AppState['userData']
 ): Omit<AppState, 'setUserData' | 'setFavoriteEvents' | 'logout'> => ({
   events: events,
-  userData: null,
+  userData: userData || null,
 });
 
 export const createGlobalStore = (

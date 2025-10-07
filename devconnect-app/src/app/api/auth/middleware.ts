@@ -41,39 +41,37 @@ interface ParaJwtPayload {
   sub: string;
 }
 
-export type AuthResult = 
+export type AuthResult =
   | { success: true; user: User }
   | { success: false; error: NextResponse }
 
-export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
+export type AuthResultWithHeaders =
+  | { success: true; user: User }
+  | { success: false; error: string }
+
+// Core verification logic that works with any headers-like object
+async function verifyAuthCore(
+  authHeader: string | null,
+  authMethod: string | null
+): Promise<AuthResultWithHeaders> {
   // Check Supabase configuration
   if (!supabaseUrl || !supabaseAnonKey) {
     return {
       success: false,
-      error: NextResponse.json({ 
-        error: 'Supabase configuration missing' 
-      }, { status: 500 })
+      error: 'Supabase configuration missing'
     }
   }
 
   const supabase = createClient(supabaseUrl, supabaseAnonKey)
-  
-  // Get the authorization header
-  const authHeader = request.headers.get('authorization')
-  
+
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return {
       success: false,
-      error: NextResponse.json({ 
-        error: 'Authorization header required' 
-      }, { status: 401 })
+      error: 'Authorization header required'
     }
   }
 
   const token = authHeader.replace('Bearer ', '')
-  
-  // Check the auth method header to determine verification strategy
-  const authMethod = request.headers.get('x-auth-method')
 
   if (authMethod === 'para') {
     // Verify as Para JWT
@@ -115,9 +113,7 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
       console.log('Para JWT verification failed:', paraError);
       return {
         success: false,
-        error: NextResponse.json({
-          error: 'Invalid or expired Para JWT token'
-        }, { status: 401 })
+        error: 'Invalid or expired Para JWT token'
       }
     }
   } else {
@@ -127,9 +123,7 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
     if (authError || !user) {
       return {
         success: false,
-        error: NextResponse.json({
-          error: 'Invalid or expired Supabase token'
-        }, { status: 401 })
+        error: 'Invalid or expired Supabase token'
       }
     }
 
@@ -140,4 +134,33 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
       user
     }
   }
+}
+
+// For use with NextRequest (API routes, middleware)
+export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
+  const authHeader = request.headers.get('authorization')
+  const authMethod = request.headers.get('x-auth-method')
+
+  const result = await verifyAuthCore(authHeader, authMethod)
+
+  if (!result.success) {
+    return {
+      success: false,
+      error: NextResponse.json({ error: result.error }, {
+        status: result.error.includes('configuration') ? 500 : 401
+      })
+    }
+  }
+
+  return result
+}
+
+// For use with Headers from Server Components (layouts, pages)
+export async function verifyAuthWithHeaders(
+  headers: Headers
+): Promise<AuthResultWithHeaders> {
+  const authHeader = headers.get('authorization')
+  const authMethod = headers.get('x-auth-method')
+
+  return verifyAuthCore(authHeader, authMethod)
 }

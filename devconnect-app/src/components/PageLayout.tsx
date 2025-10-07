@@ -130,7 +130,8 @@ const Tabs = ({
             isActive = idx === activeIndex;
           }
 
-          return (
+          const hasHref = tab.href && tab.href !== '';
+          const tabBody = (
             <button
               key={tab.label}
               type="button"
@@ -143,7 +144,7 @@ const Tabs = ({
                   : 'rounded-xs',
                 tab.labelIcon && 'pl-2'
               )}
-              onClick={() => handleTabClick(tab, idx)}
+              onClick={hasHref ? undefined : () => handleTabClick(tab, idx)}
             >
               <div
                 className={cn(
@@ -156,6 +157,16 @@ const Tabs = ({
               </div>
             </button>
           );
+
+          if (hasHref) {
+            return (
+              <Link href={tab.href || ''} key={tab.label}>
+                {tabBody}
+              </Link>
+            );
+          } else {
+            return tabBody;
+          }
         })}
       </div>
     </div>
