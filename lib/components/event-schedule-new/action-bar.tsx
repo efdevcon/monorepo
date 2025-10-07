@@ -13,7 +13,7 @@ const venueEvents = [
   },
   {
     colors: ["bg-[rgba(136,85,204,1)]"],
-    label: "Community (Buenos Aires)",
+    label: "Side Events (Buenos Aires)",
   },
 ];
 
@@ -82,7 +82,7 @@ const ActionBar = ({
           htmlFor="airplane-mode"
           className="font-medium text-sm pl-2 cursor-pointer select-none"
         >
-          Community
+          Side Events
         </label>
       </div>
 

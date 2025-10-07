@@ -16,7 +16,7 @@ export const getProgramming = (event: Event) => {
       },
       {
         title: "EF & Ethereum Update",
-        speakers: "[to be announced]",
+        speakers: "Tomasz K. Stańczak",
         time: "9:30",
       },
       {
@@ -25,13 +25,13 @@ export const getProgramming = (event: Event) => {
         time: "10:00",
       },
       {
-        title: "Ethereum Roadmap",
-        speakers: "[to be announced]",
+        title: "Ethereum In 30 minutes",
+        speakers: "Vitalik Buterin",
         time: "10:30",
       },
       {
         title: "Ethereum Protocol",
-        speakers: "[to be announced]",
+        speakers: "Dankrad Feist",
         time: "11:00",
       },
       {
