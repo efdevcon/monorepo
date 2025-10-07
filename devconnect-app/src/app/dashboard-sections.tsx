@@ -59,6 +59,7 @@ export function WelcomeSection() {
 }
 
 export function TodaysSchedule() {
+  const email = useGlobalStore((state) => state.userData?.email);
   const events = useEvents();
   const [favorites] = useFavorites();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
@@ -67,7 +68,9 @@ export function TodaysSchedule() {
     favorites.includes(event.id.toString())
   );
 
-  const hasEventsToShow = events.length > 0;
+  const hasEventsToShow = filteredEvents.length > 0;
+
+  console.log(hasEventsToShow, 'hasEventsToShow');
 
   return (
     <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)]">
@@ -124,11 +127,13 @@ export function TodaysSchedule() {
         </Button>
       </Link>
 
-      <Link href="/schedule" className="w-full md:w-auto self-start mt-1">
-        <Button size="sm" className="w-full">
-          View Tickets
-        </Button>
-      </Link>
+      {email && (
+        <Link href="/schedule" className="w-full md:w-auto self-start mt-1">
+          <Button size="sm" className="w-full">
+            View Tickets
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }

@@ -10,18 +10,17 @@ import {
 import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
-  // const events = useEvents();
-  // const router = useRouter();
+  const router = useRouter();
   // const { address } = useUnifiedConnection();
 
-  // useEffect(() => {
-  //   const isSkipped = localStorage.getItem('loginIsSkipped');
+  useEffect(() => {
+    const isSkipped = localStorage.getItem('loginIsSkipped');
 
-  //   if (!isSkipped && address) {
-  //     console.log('🔄 [HOME] Redirecting to onboarding');
-  //     router.push('/onboarding');
-  //   }
-  // }, [router, address]);
+    if (!isSkipped) {
+      console.log('🔄 [HOME] Redirecting to onboarding');
+      router.push('/onboarding');
+    }
+  }, [router]);
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
