@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { getTokenInfo } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
+import { useLocalStorage } from 'usehooks-ts';
 
 // Helper function to get the correct explorer URL for a transaction
 const getTransactionExplorerUrl = (txHash: string, chainId: number): string => {
@@ -54,6 +55,22 @@ type TransactionState = {
   errorMessage?: string;
 };
 
+type StoredPaymentInfo = {
+  paymentId: string;
+  amount: string;
+  token: string;
+  chainId: number;
+  txHash: string | null;
+  timestamp: number;
+  orderId?: string;
+  recipient?: string;
+  connectedAddress?: string;
+};
+
+type StoredPayments = {
+  [paymentId: string]: StoredPaymentInfo;
+};
+
 interface StatusStepProps {
   txStatus: string;
   txError: string;
@@ -73,6 +90,9 @@ interface StatusStepProps {
   } | null;
   onDone: () => void;
   onTryAgain?: () => void;
+  paymentId?: string;
+  orderId?: string;
+  isAlreadyCompleted?: boolean;
 }
 
 const getParaSteps = (isPara: boolean) => {
@@ -304,17 +324,83 @@ export default function StatusStep({
   simulationDetails,
   onDone,
   onTryAgain,
+  paymentId,
+  orderId,
+  isAlreadyCompleted = false,
 }: StatusStepProps) {
   const [transactionState, setTransactionState] = useState<TransactionState>({
     currentStepIndex: 0,
     overallStatus: 'processing',
   });
 
+  // Local storage for completed payments
+  const [storedPayments, setStoredPayments] = useLocalStorage<StoredPayments>(
+    'devconnect-payments',
+    {}
+  );
+
   // Sync internal state with received txStatus
   useEffect(() => {
     const newState = mapTxStatusToTransactionState(txStatus, txError, isPara);
     setTransactionState(newState);
   }, [txStatus, txError, isPara]);
+
+  // Save payment info to local storage ONLY when first confirmed (never on reload)
+  useEffect(() => {
+    // Don't save if this is an already completed payment being viewed
+    if (isAlreadyCompleted) {
+      console.log(
+        'ℹ️ [PAYMENT_STORAGE] Skipping save for already completed payment:',
+        paymentId
+      );
+      return;
+    }
+
+    if (txStatus === 'confirmed' && paymentId && !isSimulation && txHash) {
+      setStoredPayments((prev) => {
+        // If payment already exists, don't overwrite anything
+        if (prev[paymentId]) {
+          console.log(
+            'ℹ️ [PAYMENT_STORAGE] Payment already exists, skipping save:',
+            paymentId
+          );
+          return prev;
+        }
+
+        // This is a NEW payment confirmation - save it
+        const paymentInfo: StoredPaymentInfo = {
+          paymentId,
+          amount,
+          token,
+          chainId,
+          txHash,
+          timestamp: Date.now(), // Set timestamp only on first confirmation
+          orderId,
+          recipient: 'Devconnect',
+          connectedAddress,
+        };
+
+        console.log('💾 [PAYMENT_STORAGE] Saving NEW payment:', paymentInfo);
+
+        return {
+          ...prev,
+          [paymentId]: paymentInfo,
+        };
+      });
+    }
+  }, [
+    txStatus,
+    paymentId,
+    amount,
+    token,
+    chainId,
+    txHash,
+    orderId,
+    connectedAddress,
+    isSimulation,
+    isAlreadyCompleted,
+    setStoredPayments,
+  ]);
 
   const initialSteps = getParaSteps(isPara);
 
@@ -344,77 +430,129 @@ export default function StatusStep({
 
   const steps = generateSteps();
 
-  if (txStatus === 'confirmed') {
+  // Get stored payment info if available
+  const storedPaymentInfo =
+    paymentId && storedPayments[paymentId] ? storedPayments[paymentId] : null;
+
+  // Handle both confirmed and already completed cases
+  if (txStatus === 'confirmed' || isAlreadyCompleted) {
+    // Use stored info if this is an already completed payment and we don't have current data
+    const displayAmount = amount || storedPaymentInfo?.amount || '0';
+    const displayToken = token || storedPaymentInfo?.token || 'USDC';
+    const displayChainId = chainId || storedPaymentInfo?.chainId || 8453;
+    const displayTxHash = txHash || storedPaymentInfo?.txHash || null;
+    const displayOrderId = orderId || storedPaymentInfo?.orderId || null;
+    const displayTimestamp = storedPaymentInfo?.timestamp
+      ? new Date(storedPaymentInfo.timestamp)
+      : new Date();
+
     return (
-      <div className="space-y-6">
-        <div className="text-center">
-          <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold mb-2">Payment Successful!</h2>
-          <p className="text-sm text-gray-600">
-            Your USDC transfer has been completed successfully.
-          </p>
-          {isPara && isSimulation && (
-            <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-              Simulation Mode
-            </div>
-          )}
+      <div className="flex flex-col items-center gap-8 py-6">
+        {/* Wallet Icon with Check Mark */}
+        <div className="relative">
+          <img
+            src="/images/wallet-loaded.gif"
+            alt="Wallet loaded with checkmark"
+            className="w-[280px] h-[280px] object-contain"
+          />
         </div>
 
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-          <div className="text-sm text-green-700">
-            <div className="font-medium">Transaction Details:</div>
-            <div className="mt-2 space-y-1">
-              <div>
-                Amount: {amount} {token}
-              </div>
-              <div>Network: {getNetworkConfig(chainId)?.name || 'Unknown'}</div>
-              <div>
-                From:{' '}
-                {connectedAddress
-                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
-                  : 'Unknown'}
-              </div>
-              <div>Status: {isSimulation ? 'Simulation' : 'Confirmed'}</div>
-              {txHash && !isSimulation && (
-                <div className="pt-2">
-                  <a
-                    href={getTransactionExplorerUrl(txHash, chainId)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 underline flex items-center gap-1"
-                  >
-                    View Transaction
-                  </a>
-                </div>
-              )}
-              {isPara && isSimulation && (
-                <div className="pt-2 text-orange-600 text-xs">
-                  ⚠️ This is a simulation - no actual transaction was sent
-                </div>
-              )}
-            </div>
+        {/* Payment Details */}
+        <div className="flex flex-col items-center gap-4 text-center">
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-[20px] leading-none text-[#353548]"
+              style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+            >
+              You paid
+            </p>
+            <p
+              className="text-[24px] leading-none text-[#353548]"
+              style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+            >
+              <span className="font-bold text-[#20202B]">
+                {displayAmount} {displayToken}
+              </span>
+              {' to '}
+              <span className="font-bold text-[#20202B]">Devconnect</span>
+            </p>
+          </div>
+
+          <div
+            className="text-[16px] leading-[1.3] text-[#353548]"
+            style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400 }}
+          >
+            <p className="font-bold mb-0" style={{ fontWeight: 700 }}>
+              {displayOrderId
+                ? `Order ID: ${displayOrderId}`
+                : 'Transaction Complete'}
+            </p>
+            <p>
+              {displayTimestamp.toLocaleDateString('en-US', {
+                weekday: 'short',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+              })}
+            </p>
           </div>
         </div>
 
-        <Button
-          onClick={onDone}
-          className="w-full bg-green-600 hover:bg-green-700 text-white"
-        >
-          Done
-        </Button>
+        {/* Action Buttons */}
+        <div className="flex gap-3 w-full max-w-[345px]">
+          {displayTxHash && !isSimulation && (
+            <a
+              href={getTransactionExplorerUrl(displayTxHash, displayChainId)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 bg-[#EAF3FA] hover:bg-[#D5E7F4] transition-colors flex items-center justify-center gap-2 px-6 py-3 rounded-[1px] text-[#44445D] font-bold text-[16px] no-underline"
+              style={{
+                fontFamily: 'Roboto, sans-serif',
+                boxShadow: '0px 4px 0px 0px #595978',
+              }}
+            >
+              {displayChainId === 8453 ? 'BaseScan' : 'Explorer'}
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+              >
+                <path d="M12 3.5L12 9.5L10.5 9.5L10.5 5.5L5 11L4 10L9.5 4.5L5.5 4.5L5.5 3L11.5 3C11.7761 3 12 3.22386 12 3.5Z" />
+              </svg>
+            </a>
+          )}
+          <button
+            onClick={onDone}
+            className="flex-1 bg-[#0073DE] hover:bg-[#005DAC] transition-colors flex items-center justify-center px-6 py-3 rounded-[1px] text-white font-bold text-[16px] border-none cursor-pointer"
+            style={{
+              fontFamily: 'Roboto, sans-serif',
+              boxShadow: '0px 4px 0px 0px #005493',
+            }}
+          >
+            Return to App
+          </button>
+        </div>
+
+        {isPara && isSimulation && (
+          <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            Simulation Mode
+          </div>
+        )}
       </div>
     );
   }
@@ -545,6 +683,15 @@ export default function StatusStep({
 
   return (
     <div className="space-y-6">
+      {/* Wallet Loading Animation */}
+      <div className="flex justify-center">
+        <img
+          src="/images/wallet-loading.gif"
+          alt="Processing payment"
+          className="w-[280px] h-[280px] object-contain"
+        />
+      </div>
+
       <div className="text-center">
         <h2 className="text-xl font-semibold mb-2">Processing Payment</h2>
         <p className="text-sm text-gray-600">

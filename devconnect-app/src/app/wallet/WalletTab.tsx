@@ -11,6 +11,8 @@ import NetworkModal from '@/components/NetworkModal';
 import WalletModal from '@/components/WalletModal';
 import ReceiveModal from '@/components/ReceiveModal';
 import { toast } from 'sonner';
+import { useLocalStorage } from 'usehooks-ts';
+import PaymentModal from '@/components/PaymentModal';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -21,6 +23,24 @@ const imgQrCodeScanner = '/images/imgQrCodeScanner.svg';
 const imgGroup = '/images/imgGroup.svg';
 const imgGroup1 = '/images/imgGroup1.svg';
 const imgKeyboardArrowDown = '/images/imgKeyboardArrowDown.svg';
+const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
+
+// Types for stored payment info
+type StoredPaymentInfo = {
+  paymentId: string;
+  amount: string;
+  token: string;
+  chainId: number;
+  txHash: string | null;
+  timestamp: number;
+  orderId?: string;
+  recipient?: string;
+  connectedAddress?: string;
+};
+
+type StoredPayments = {
+  [paymentId: string]: StoredPaymentInfo;
+};
 
 export default function WalletTab() {
   const { open } = useAppKit();
@@ -85,7 +105,17 @@ export default function WalletTab() {
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [showReceiveModal, setShowReceiveModal] = useState(false);
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedPaymentId, setSelectedPaymentId] = useState<string | null>(
+    null
+  );
   const [addressCopied, setAddressCopied] = useState(false);
+
+  // Load stored payments from localStorage
+  const [storedPayments] = useLocalStorage<StoredPayments>(
+    'devconnect-payments',
+    {}
+  );
 
   // Debug logging - track if component is receiving props
   console.log('🏠 [WALLET_TAB] Component render:', {
@@ -224,6 +254,29 @@ export default function WalletTab() {
   // Truncate transaction hash
   const truncateHash = (hash: string) => {
     return `${hash.slice(0, 6)}...${hash.slice(-4)}`;
+  };
+
+  // Find stored order for a transaction hash
+  const findOrderForTxHash = (txHash: string): StoredPaymentInfo | null => {
+    if (!txHash || !storedPayments) return null;
+
+    // Search through all stored payments to find one with matching tx hash
+    for (const paymentId in storedPayments) {
+      const payment = storedPayments[paymentId];
+      if (
+        payment.txHash &&
+        payment.txHash.toLowerCase() === txHash.toLowerCase()
+      ) {
+        return payment;
+      }
+    }
+    return null;
+  };
+
+  // Handle viewing order details
+  const handleViewOrder = (paymentId: string) => {
+    setSelectedPaymentId(paymentId);
+    setShowPaymentModal(true);
   };
 
   // Show disconnecting state FIRST (before checking address)
@@ -732,57 +785,116 @@ export default function WalletTab() {
                         const description =
                           activity.interpretation?.processedDescription;
 
+                        // Check if this transaction matches a stored order
+                        const matchedOrder = hash
+                          ? findOrderForTxHash(hash)
+                          : null;
+
                         return (
-                          <div
-                            key={`${hash}-${index}`}
-                            className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
-                            onClick={() => {
-                              if (hash && chainId) {
-                                // Get explorer URL dynamically from network config
-                                const networkConfig = getNetworkConfig(chainId);
-                                const explorerUrl =
-                                  networkConfig?.blockExplorers?.default?.url;
-                                if (explorerUrl) {
-                                  window.open(
-                                    `${explorerUrl}/tx/${hash}`,
-                                    '_blank'
-                                  );
+                          <div key={`${hash}-${index}`} className="space-y-2">
+                            <div
+                              className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
+                              onClick={() => {
+                                if (hash && chainId) {
+                                  // Get explorer URL dynamically from network config
+                                  const networkConfig =
+                                    getNetworkConfig(chainId);
+                                  const explorerUrl =
+                                    networkConfig?.blockExplorers?.default?.url;
+                                  if (explorerUrl) {
+                                    window.open(
+                                      `${explorerUrl}/tx/${hash}`,
+                                      '_blank'
+                                    );
+                                  }
                                 }
-                              }
-                            }}
-                          >
-                            <div className="w-full">
+                              }}
+                            >
                               <div className="w-full">
-                                {description && (
-                                  <p className="font-medium text-sm mb-1 text-[#36364c]">
-                                    {description}
-                                  </p>
-                                )}
-                                {hash && (
-                                  <p className="text-xs text-gray-600 font-mono mb-1">
-                                    {truncateHash(hash)} ↗
-                                  </p>
-                                )}
-                                {chainId && timestamp && (
-                                  <div className="flex items-center justify-between mt-1">
-                                    <div className="flex items-center gap-1">
-                                      {getNetworkLogo(chainId) && (
-                                        <img
-                                          src={getNetworkLogo(chainId)}
-                                          alt={readableNetwork}
-                                          className="w-3 h-3 rounded-full"
-                                        />
-                                      )}
-                                      <p className="text-xs text-[#4b4b66]">
-                                        {readableNetwork}
+                                <div className="w-full">
+                                  {description && (
+                                    <p className="font-medium text-sm mb-1 text-[#36364c]">
+                                      {description}
+                                    </p>
+                                  )}
+                                  {hash && (
+                                    <p className="text-xs text-gray-600 font-mono mb-1">
+                                      {truncateHash(hash)} ↗
+                                    </p>
+                                  )}
+                                  {chainId && timestamp && (
+                                    <div className="flex items-center justify-between mt-1">
+                                      <div className="flex items-center gap-1">
+                                        {getNetworkLogo(chainId) && (
+                                          <img
+                                            src={getNetworkLogo(chainId)}
+                                            alt={readableNetwork}
+                                            className="w-3 h-3 rounded-full"
+                                          />
+                                        )}
+                                        <p className="text-xs text-[#4b4b66]">
+                                          {readableNetwork}
+                                        </p>
+                                      </div>
+                                      <p className="text-xs text-gray-500">
+                                        {formatTimestamp(timestamp)}
                                       </p>
                                     </div>
-                                    <p className="text-xs text-gray-500">
-                                      {formatTimestamp(timestamp)}
+                                  )}
+                                </div>
+                              </div>
+                              {/* Devconnect Order Banner */}
+                              {matchedOrder && (
+                                <div
+                                  className="bg-[#eaf4fb] flex gap-3 items-center p-3 rounded cursor-pointer hover:bg-[#d5e7f4] transition-colors mt-2"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleViewOrder(matchedOrder.paymentId);
+                                  }}
+                                >
+                                  <div className="w-7 h-7 flex-shrink-0">
+                                    <img
+                                      src={imgDevconnectLogo}
+                                      alt="Devconnect"
+                                      className="w-full h-full"
+                                    />
+                                  </div>
+                                  <div className="flex-1 flex flex-col gap-1">
+                                    <p
+                                      className="text-[11px] font-medium text-[#4b4b66] tracking-[0.2px]"
+                                      style={{
+                                        fontFamily: 'Roboto, sans-serif',
+                                      }}
+                                    >
+                                      {matchedOrder.orderId
+                                        ? `ORDER #${matchedOrder.orderId}`
+                                        : 'ORDER'}
+                                    </p>
+                                    <p
+                                      className="text-[14px] leading-[1.3] text-[#353548] tracking-[-0.1px]"
+                                      style={{
+                                        fontFamily: 'Roboto, sans-serif',
+                                      }}
+                                    >
+                                      You paid{' '}
+                                      <span className="font-bold">
+                                        {matchedOrder.amount}{' '}
+                                        {matchedOrder.token}
+                                      </span>
+                                      {' to '}
+                                      <span className="font-bold">
+                                        {matchedOrder.recipient || 'Devconnect'}
+                                      </span>
                                     </p>
                                   </div>
-                                )}
-                              </div>
+                                  <p
+                                    className="text-[14px] font-bold text-[#0073de] tracking-[-0.1px] flex-shrink-0"
+                                    style={{ fontFamily: 'Roboto, sans-serif' }}
+                                  >
+                                    View
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           </div>
                         );
@@ -838,6 +950,18 @@ export default function WalletTab() {
         address={address}
         identityName={identity?.name || null}
       />
+
+      {/* Payment Details Modal */}
+      {selectedPaymentId && (
+        <PaymentModal
+          isOpen={showPaymentModal}
+          onClose={() => {
+            setShowPaymentModal(false);
+            setSelectedPaymentId(null);
+          }}
+          paymentRequestId={selectedPaymentId}
+        />
+      )}
     </div>
   );
 }

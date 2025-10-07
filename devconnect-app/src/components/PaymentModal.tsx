@@ -92,6 +92,27 @@ export default function PaymentModal({
         discount_rate: number;
         rate: number;
       };
+      payments?: Array<{
+        hash: string;
+        from: string;
+        chain_id: number;
+        block: number | null;
+        amount: number;
+        paid_by: string | null;
+        paid_at: string;
+        linked_at: string;
+      }>;
+    }>;
+    payments?: Array<{
+      hash: string;
+      from: string;
+      chain_id: number;
+      block: number | null;
+      amount: number;
+      paid_by: string | null;
+      paid_at: string;
+      linked_at: string;
+      coin?: string;
     }>;
   }>({});
   const [isLoadingPaymentDetails, setIsLoadingPaymentDetails] = useState(false);
@@ -1205,7 +1226,7 @@ export default function PaymentModal({
 
   return (
     <Modal open={isOpen} close={handleClose} className="!p-0">
-      <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5">
+      <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5 bg-white">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
@@ -1502,35 +1523,28 @@ export default function PaymentModal({
 
         {currentStep === 'form' &&
           paymentDetails.orderStatus === 'approved' && (
-            <div className="text-center py-8">
-              <div className="mb-4">
-                <svg
-                  className="h-16 w-16 text-green-500 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">
-                  Payment Already Completed
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  This order has already been paid and approved.
-                </p>
-              </div>
-              <Button
-                onClick={handleClose}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Close
-              </Button>
-            </div>
+            <StatusStep
+              txStatus="confirmed"
+              txError=""
+              isPara={isPara}
+              amount={paymentData.amount || paymentDetails.amount || '0'}
+              token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
+              chainId={paymentData.chainId || (isPara ? 8453 : selectedChainId)}
+              connectedAddress={connectedAddress || undefined}
+              txHash={
+                // Get the actual blockchain transaction hash from payments
+                paymentDetails.payments?.[0]?.hash ||
+                paymentDetails.transactions?.[0]?.payments?.[0]?.hash ||
+                txHash ||
+                undefined
+              }
+              isSimulation={false}
+              simulationDetails={null}
+              onDone={handleClose}
+              paymentId={paymentRequestId || paymentDetails.orderId}
+              orderId={paymentDetails.orderId}
+              isAlreadyCompleted={true}
+            />
           )}
         {currentStep === 'status' && (
           <StatusStep
@@ -1546,6 +1560,8 @@ export default function PaymentModal({
             simulationDetails={simulationDetails}
             onDone={handleStatusDone}
             onTryAgain={handleTryAgain}
+            paymentId={paymentRequestId || paymentDetails.orderId}
+            orderId={paymentDetails.orderId}
           />
         )}
       </ModalContent>
