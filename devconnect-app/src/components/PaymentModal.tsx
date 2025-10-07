@@ -1424,9 +1424,9 @@ export default function PaymentModal({
                         </p>
                       )}
                     </div>
-                    <button className="text-[#1b6fae] text-sm font-medium">
+                    {/* <button className="text-[#1b6fae] text-sm font-medium">
                       SWITCH WALLET (2)
-                    </button>
+                    </button> */}
                   </div>
 
                   {/* Amount to Pay */}
