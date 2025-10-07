@@ -9,6 +9,7 @@ import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
 import NetworkModal from '@/components/NetworkModal';
 import WalletModal from '@/components/WalletModal';
+import { toast } from 'sonner';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -82,6 +83,7 @@ export default function WalletTab() {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
+  const [addressCopied, setAddressCopied] = useState(false);
 
   // Debug logging - track if component is receiving props
   console.log('🏠 [WALLET_TAB] Component render:', {
@@ -162,6 +164,18 @@ export default function WalletTab() {
     setIsRefreshing(true);
     await refreshPortfolio();
     setIsRefreshing(false);
+  };
+
+  // Copy address to clipboard
+  const handleCopyAddress = async () => {
+    if (address) {
+      await navigator.clipboard.writeText(address);
+      setAddressCopied(true);
+      setTimeout(() => setAddressCopied(false), 2000);
+      toast.success('Address copied to clipboard', {
+        description: address,
+      });
+    }
   };
 
   // Format USD value
@@ -281,37 +295,76 @@ export default function WalletTab() {
               </div>
 
               {/* Wallet Info - centered with dropdown */}
-              <button
-                onClick={() => {
-                  if (!address) {
-                    router.push('/onboarding');
-                  } else {
-                    setShowWalletModal(true);
-                  }
-                }}
-                className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded transition-colors"
-              >
-                {identity?.avatar ? (
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => {
+                    if (!address) {
+                      router.push('/onboarding');
+                    } else {
+                      setShowWalletModal(true);
+                    }
+                  }}
+                  className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded transition-colors"
+                >
+                  {identity?.avatar ? (
+                    <img
+                      src={identity.avatar}
+                      alt="avatar"
+                      className="w-5 h-5 rounded-full"
+                    />
+                  ) : (
+                    <img src={imgPara} alt="checkbox" className="w-5 h-5" />
+                  )}
+                  <span className="text-[#242436] text-base font-normal">
+                    {address
+                      ? identity?.name ||
+                        `${address.slice(0, 6)}...${address.slice(-4)}`
+                      : 'Not connected'}
+                  </span>
                   <img
-                    src={identity.avatar}
-                    alt="avatar"
-                    className="w-5 h-5 rounded-full"
+                    src={imgKeyboardArrowDown}
+                    alt="dropdown"
+                    className="w-4 h-4"
                   />
-                ) : (
-                  <img src={imgPara} alt="checkbox" className="w-5 h-5" />
+                </button>
+                {address && (
+                  <button
+                    onClick={handleCopyAddress}
+                    className="p-1 hover:bg-gray-100 rounded transition-colors relative"
+                    title={addressCopied ? 'Copied!' : 'Copy address'}
+                  >
+                    {addressCopied ? (
+                      <svg
+                        className="w-4 h-4 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 13l4 4L19 7"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        className="w-4 h-4 text-[#36364c]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                        />
+                      </svg>
+                    )}
+                  </button>
                 )}
-                <span className="text-[#242436] text-base font-normal">
-                  {address
-                    ? identity?.name ||
-                      `${address.slice(0, 6)}...${address.slice(-4)}`
-                    : 'Not connected'}
-                </span>
-                <img
-                  src={imgKeyboardArrowDown}
-                  alt="dropdown"
-                  className="w-4 h-4"
-                />
-              </button>
+              </div>
             </div>
 
             {/* Email Display */}
@@ -398,7 +451,7 @@ export default function WalletTab() {
                 Receive
               </span>
             </div>
-            <div className="flex-1 flex flex-col items-center gap-2">
+            {/* <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleSwapClick}
                 className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
@@ -408,7 +461,7 @@ export default function WalletTab() {
               <span className="text-[#36364c] text-sm font-medium tracking-[-0.1px]">
                 Swap
               </span>
-            </div>
+            </div> */}
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleScanClick}
