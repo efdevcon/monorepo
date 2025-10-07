@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { Button } from '@/components/ui/button';
+import { Copy, Check } from 'lucide-react';
 
 interface PaymentRequest {
   id: string;
@@ -30,6 +31,7 @@ export default function POSPage() {
   const [qrCodeFormat, setQrCodeFormat] = useState<'manual' | 'eip681'>(
     'manual'
   );
+  const [copiedPaymentId, setCopiedPaymentId] = useState(false);
 
   // Get cached payment request from localStorage
   const getCachedPaymentRequest = (): PaymentRequest | null => {
@@ -119,6 +121,19 @@ export default function POSPage() {
   useEffect(() => {
     fetchPaymentRequest();
   }, []);
+
+  // Copy payment ID to clipboard
+  const copyPaymentId = async () => {
+    if (!paymentRequest?.id) return;
+
+    try {
+      await navigator.clipboard.writeText(paymentRequest.id);
+      setCopiedPaymentId(true);
+      setTimeout(() => setCopiedPaymentId(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy payment ID:', err);
+    }
+  };
 
   // Generate EIP-681 URL from payment request data
   const generateEIP681Url = (paymentData: PaymentRequest) => {
@@ -269,15 +284,28 @@ export default function POSPage() {
 
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">Payment ID:</span>
-                <span className="text-black font-bold text-lg">
-                  {paymentRequest.id}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-black font-bold text-sm break-all">
+                    {paymentRequest.id}
+                  </span>
+                  <button
+                    onClick={copyPaymentId}
+                    className="p-1 hover:bg-gray-200 rounded transition-colors cursor-pointer"
+                    title="Copy Payment ID"
+                  >
+                    {copiedPaymentId ? (
+                      <Check className="w-4 h-4 text-green-600" />
+                    ) : (
+                      <Copy className="w-4 h-4 text-gray-600" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="flex justify-between items-center">
                 <span className="text-gray-600 font-medium">Amount:</span>
                 <span className="text-black font-bold text-lg">
-                  ${paymentRequest.amount} {paymentRequest.currency}
+                  {paymentRequest.amount} {paymentRequest.currency}
                 </span>
               </div>
 
@@ -313,7 +341,14 @@ export default function POSPage() {
       {paymentRequest.checkout_url && (
         <div className="w-full mt-8">
           <h3 className="text-black text-xl font-semibold mb-4 text-center">
-            SimpleFi Payment status
+            <a
+              href={paymentRequest.checkout_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-blue-600 transition-colors underline"
+            >
+              SimpleFi Payment status
+            </a>
           </h3>
           <div className="w-full max-w-[899px] h-96 border border-gray-300 rounded-xl overflow-hidden shadow-md mx-auto">
             <iframe
