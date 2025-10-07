@@ -178,8 +178,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": null
   },
   "254638cdc4158098bc20c52a9ec59c9a": {
-    "name": "Eliza",
-    "layerName": "eliza",
+    "name": "elizaOS",
+    "layerName": "elizaos",
     "logo": "",
     "description": "",
     "districtId": "1",
