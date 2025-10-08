@@ -51,6 +51,8 @@ export const SERVER_CONFIG = {
   SMTP_SERVICE: process.env.SMTP_SERVICE,
   SMTP_USERNAME: process.env.SMTP_USERNAME,
   SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+
+  ACCREDITATION_GUIDE_URL: process.env.ACCREDITATION_GUIDE_URL || '',
 }
 
 export const PRETALX_CONFIG = {
