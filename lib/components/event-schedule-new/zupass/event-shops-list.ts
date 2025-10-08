@@ -88,6 +88,12 @@ export const eventShops: EventShop[] = [
     coupon_collection: "privacy-stack",
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "137",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "organizer-hangout",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
   // {
   //   supabase_id: "113", // ethereum argentina
   //   zupass_proof_id: "Devconnect ARG",
