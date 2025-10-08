@@ -517,6 +517,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       },
       descriptionLinks: {
         'attached insurance guide': process.env.ACCREDITATION_INSURANCE_GUIDE || '',
+        'accreditation claiming guide': process.env.ACCREDITATION_CLAIMING_GUIDE || '',
         'Devconnect ARG Terms & Conditions': 'https://drive.google.com/file/d/1QHOHnvlZ-KvY8lE97bcmF176fgdyCjmt/view',
         'Devconnect ARG Code of Conduct': 'https://drive.google.com/file/d/1OgE4JTQwB0vkCHYpsmxZeHvkzQ5bjiSN/view',
       }

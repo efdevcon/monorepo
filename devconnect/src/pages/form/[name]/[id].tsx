@@ -1861,61 +1861,122 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       )}
 
       {/* Accreditation Guide Link - Only show for accreditation pages with successful data load */}
-      {pageName === 'accreditation' && descriptionLinks['attached insurance guide'] && fields.length > 0 && (
-        <div
-          style={{
-            marginTop: '3rem',
-            padding: '2rem',
-            backgroundColor: '#f8f9fa',
-            borderRadius: '8px',
-            border: '1px solid #e9ecef',
-            textAlign: 'center',
-          }}
-        >
-          <h3
-            style={{
-              margin: '0 0 1rem 0',
-              fontSize: '1.2rem',
-              fontWeight: '600',
-              color: '#333',
-            }}
-          >
-            Need Help with Insurance?
-          </h3>
-          <p
-            style={{
-              margin: '0 0 1.5rem 0',
-              color: '#666',
-              fontSize: '1rem',
-            }}
-          >
-            Check out our accreditation insurance guide for detailed instructions and support.
-          </p>
-          <a
-            href={descriptionLinks['attached insurance guide']}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              display: 'inline-block',
-              padding: '0.75rem 1.5rem',
-              backgroundColor: '#28a745',
-              color: 'white',
-              textDecoration: 'none',
-              borderRadius: '6px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              transition: 'background-color 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.backgroundColor = '#218838'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.backgroundColor = '#28a745'
-            }}
-          >
-            🛡️ View Insurance Guide
-          </a>
-        </div>
+      {pageName === 'accreditation' && fields.length > 0 && (
+        <>
+          {isLocked && descriptionLinks['accreditation claiming guide'] ? (
+            <div
+              style={{
+                marginTop: '3rem',
+                padding: '2rem',
+                backgroundColor: '#f8f9fa',
+                borderRadius: '8px',
+                border: '1px solid #e9ecef',
+                textAlign: 'center',
+              }}
+            >
+              <h3
+                style={{
+                  margin: '0 0 1rem 0',
+                  fontSize: '1.2rem',
+                  fontWeight: '600',
+                  color: '#333',
+                }}
+              >
+                Need Help Claiming Your Accreditation?
+              </h3>
+              <p
+                style={{
+                  margin: '0 0 1.5rem 0',
+                  color: '#666',
+                  fontSize: '1rem',
+                }}
+              >
+                Check out our accreditation claiming guide for detailed instructions on how to claim your accreditation.
+              </p>
+              <a
+                href={descriptionLinks['accreditation claiming guide']}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-block',
+                  padding: '0.75rem 1.5rem',
+                  backgroundColor: '#28a745',
+                  color: 'white',
+                  textDecoration: 'none',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  fontWeight: '500',
+                  transition: 'background-color 0.2s ease',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.backgroundColor = '#218838'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.backgroundColor = '#28a745'
+                }}
+              >
+                ☑️ View Claiming Guide
+              </a>
+            </div>
+          ) : (
+            descriptionLinks['attached insurance guide'] && (
+              <div
+                style={{
+                  marginTop: '3rem',
+                  padding: '2rem',
+                  backgroundColor: '#f8f9fa',
+                  borderRadius: '8px',
+                  border: '1px solid #e9ecef',
+                  textAlign: 'center',
+                }}
+              >
+                <h3
+                  style={{
+                    margin: '0 0 1rem 0',
+                    fontSize: '1.2rem',
+                    fontWeight: '600',
+                    color: '#333',
+                  }}
+                >
+                  Need Help with Insurance?
+                </h3>
+                <p
+                  style={{
+                    margin: '0 0 1.5rem 0',
+                    color: '#666',
+                    fontSize: '1rem',
+                  }}
+                >
+                  Check out our accreditation insurance guide for detailed instructions and support.
+                </p>
+                <a
+                  href={descriptionLinks['attached insurance guide']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#28a745',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = '#218838'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = '#28a745'
+                  }}
+                >
+                  🛡️ View Insurance Guide
+                </a>
+              </div>
+            )
+          )}
+        </>
       )}
 
       {/* Help Links - Only show for org pages with successful data load */}
