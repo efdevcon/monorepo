@@ -4,7 +4,7 @@ import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParaWalletConnection } from './useParaWallet';
 import { useEOAWalletConnection } from './useEOAWallet';
 import { useUser } from './useUser';
-import { useEnsureUserData } from '@/app/store.hooks';
+import { ensureUserData, useEnsureUserData } from '@/app/store.hooks';
 import { useAutoParaJwtExchange } from './useAutoParaJwtExchange';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
@@ -711,8 +711,6 @@ export function useWalletManager() {
     if (isEOAActive) return eoa.connectorName || 'External Wallet';
     return 'Not connected';
   };
-
-  console.log(email, 'email');
 
   useEnsureUserData(email);
 

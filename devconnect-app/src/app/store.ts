@@ -3,6 +3,7 @@
 import { createStore } from 'zustand';
 
 export interface AppState {
+  initializing: boolean;
   // User data from supabase (so basically data attached to the logged in email)
   userData: {
     additional_ticket_emails?: string[];
@@ -23,6 +24,7 @@ export const initGlobalStore = (
 ): Omit<AppState, 'setUserData' | 'setFavoriteEvents' | 'logout'> => ({
   events: events,
   userData: userData || null,
+  initializing: true,
 });
 
 export const createGlobalStore = (

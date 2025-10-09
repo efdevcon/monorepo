@@ -9,7 +9,6 @@ import {
   createRef,
 } from 'react';
 import { useStore } from 'zustand';
-
 import { useWalletManager } from '@/hooks/useWalletManager';
 
 import {
@@ -18,6 +17,7 @@ import {
   createGlobalStore,
   initGlobalStore,
 } from '@/app/store';
+// import { ensureUserData } from './store.hooks';
 
 export const GlobalStoreContext = createContext<AppStore | undefined>(
   undefined
@@ -26,40 +26,40 @@ export const GlobalStoreContext = createContext<AppStore | undefined>(
 export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
-  userData: AppState['userData'];
+  userData?: AppState['userData'];
 }
 
-const WalletProvider = ({ children }: { children: ReactNode }) => {
+const AuthProvider = ({ children }: { children: ReactNode }) => {
   useWalletManager();
 
   return children;
 };
-
-// const storeRef = createRef<AppStore | null>();
 
 export const GlobalStoreProvider = ({
   events,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
+  // useWalletManager();
   const storeRef = useRef<AppStore | null>(null);
 
   if (storeRef.current === null) {
-    console.log('creating store');
     storeRef.current = createGlobalStore(initGlobalStore(events, userData));
-  } else {
-    console.log('store already created');
   }
 
-  useStore(storeRef.current, (state) => console.log('STATE', state));
+  // useEffect(() => {
+  //   if (!storeRef.current) return;
 
-  useEffect(() => {
-    console.log('MOUNTED THE PROVIDER, SHOULD RUN JUST ONCE');
-  }, []);
+  //   if (email) {
+  //     ensureUserData(storeRef.current?.getState().setUserData);
+  //   } else {
+  //     storeRef.current?.getState().setUserData(null);
+  //   }
+  // }, [email]);
 
   return (
     <GlobalStoreContext.Provider value={storeRef.current}>
-      <WalletProvider>{children}</WalletProvider>
+      <AuthProvider>{children}</AuthProvider>
     </GlobalStoreContext.Provider>
   );
 };

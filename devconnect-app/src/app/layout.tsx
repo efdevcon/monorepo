@@ -7,8 +7,9 @@ import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
 import PWAProvider from '@/components/PWAProvider';
 import { GlobalStoreProvider } from '@/app/store.provider';
-import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
 import { getAtprotoEvents } from '@/utils/atproto-events';
+import { unstable_cache } from 'next/cache';
+import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
 import { headers } from 'next/headers';
 import { ensureUser } from '@/app/api/auth/user-data/ensure-user';
 
@@ -90,6 +91,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+export const revalidate = 300; // 5 minutes
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -104,24 +107,39 @@ export default async function RootLayout({
   // Check if Supabase is configured
   // const hasSupabase = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  const headersList = await headers();
-  const authResult = await verifyAuthWithHeaders(headersList as Headers);
-  let userData = null;
-  if (authResult.success) {
-    userData = await ensureUser(authResult.user?.email || '');
-  }
-  const atprotoEvents = await getAtprotoEvents();
+  // This does not work on the server side because the relevant headers are not available
+  // We could use cookies instead so its autoincluded?
+  // const headersList = await headers();
+  // const authResult = await verifyAuthWithHeaders(headersList as Headers);
+
+  // let userData = null;
+
+  // if (authResult.success) {
+  //   userData = await ensureUser(authResult.user?.email || '');
+  // }
+
+  // Cache the atproto events for 5 minutes - wrapped in unstable_cache to avoid re-fetching the events on every request
+  const atprotoEvents = await unstable_cache(
+    getAtprotoEvents,
+    ['atproto-events'],
+    {
+      revalidate: 300,
+    }
+  )();
+
+  // console.log(atprotoEvents, 'atprotoEvents');
+  // console.log(userData, 'userData');
 
   return (
     <html lang="en">
       <head>
         {/* Progressive Web App */}
-        <link
+        {/* <link
           rel="manifest"
           href="/manifest.json"
           crossOrigin="use-credentials"
-        />
-        <link rel="apple-touch-icon" href="/app-icon.png" />
+        /> */}
+        {/* <link rel="apple-touch-icon" href="/app-icon.png" /> */}
 
         {/* Meta tags now handled by generateMetadata function above */}
         {/*
@@ -177,7 +195,7 @@ export default async function RootLayout({
       >
         <PWAProvider>
           <WalletsProviders>
-            <GlobalStoreProvider events={atprotoEvents} userData={userData}>
+            <GlobalStoreProvider events={atprotoEvents} /*userData={userData}*/>
               {children}
             </GlobalStoreProvider>
             <NewDeployment />

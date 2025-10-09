@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
-import { useWalletManager } from '@/hooks/useWalletManager';
 import { fetchAuth } from '@/services/apiClient';
 import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
@@ -12,6 +11,7 @@ import { useGlobalStore } from '@/app/store.provider';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import { homeTabs } from '../navigation';
 import PageLayout from '@/components/PageLayout';
+// import { useRouter } from 'next/navigation';
 
 interface Ticket {
   secret: string;
@@ -53,6 +53,7 @@ const TicketTab = RequiresAuthHOC(() => {
   const [verificationCode, setVerificationCode] = useState('');
   const [verifyingCode, setVerifyingCode] = useState(false);
   const [loadingAdditionalEmail, setLoadingAdditionalEmail] = useState(false);
+  // const router = useRouter();
 
   const fetchTickets = async (forceRefresh = true) => {
     if (isLoadingRef.current) {
@@ -83,7 +84,7 @@ const TicketTab = RequiresAuthHOC(() => {
       const ticketsData = response.data.tickets || [];
       setTickets(ticketsData);
 
-      console.log('ticketsData', ticketsData);
+      // console.log('ticketsData', ticketsData);
 
       // Generate QR codes for each ticket
       const newQrCodes: { [key: string]: string } = {};
@@ -120,12 +121,12 @@ const TicketTab = RequiresAuthHOC(() => {
   };
 
   // Auto-load tickets when component mounts
-  useEffect(() => {
-    // Only fetch if we have a user (either from Supabase or Para)
-    if (email) {
-      fetchTickets();
-    }
-  }, [email]);
+  // useEffect(() => {
+  //   // Only fetch if we have a user (either from Supabase or Para)
+  //   if (email) {
+  //     fetchTickets();
+  //   }
+  // }, [email]);
 
   return (
     <div className="w-full py-6 sm:py-8 px-4 sm:px-6 max-w-4xl mx-auto">

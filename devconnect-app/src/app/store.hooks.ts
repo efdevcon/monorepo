@@ -13,8 +13,6 @@ export const useFavorites = () => {
   const userData = useGlobalStore(useShallow((state) => state.userData));
   const favorites =
     useGlobalStore((state) => {
-      console.log('SELECTOR RUNNING, state:', state);
-
       return state.userData?.favorite_events;
     }) || [];
   const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
@@ -79,6 +77,7 @@ export const useEnsureUserData = (isConnected: boolean) => {
 
   useEffect(() => {
     if (isConnected) {
+      console.log('ensuring user data');
       ensureUserData(setUserData);
     } else {
       setUserData(null);

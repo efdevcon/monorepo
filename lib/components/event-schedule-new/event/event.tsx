@@ -145,11 +145,11 @@ const FavoriteEvent = ({
         </div>
       )} */}
       <Heart
-        fill={isFavorited ? "#ce5154" : "none"}
+        fill={isFavorited ? "rgba(255,133,166,1)" : "none"}
         className={cn(
           "w-4 h-4 mt-0.5 text-slate-500 hover:text-slate-900",
           isDialog && "w-5 h-5",
-          isFavorited && "!text-[#ce5154]"
+          isFavorited && "!text-[rgba(255,133,166,1)]"
         )}
       />
     </div>
