@@ -33,6 +33,7 @@ export const customUrlTransforms = [
   { from: "zkid-day", to: "119" },
   { from: "organizer-hangout", to: "137" },
   { from: "trustlessagentsday", to: "136" },
+  { from: "apptownhall", to: "142" },
   // { from: 'stableconnect', to: '112' },
   // { from: 'pacificonnect', to: '112' },
 ];
