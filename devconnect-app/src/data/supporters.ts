@@ -12,7 +12,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
     "layerName": "1inch",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-09-29T19-12-20-661Z-1inch.png",
+    "logo": "",
     "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
     "districtId": "3",
     "locationId": "1"
@@ -25,13 +25,13 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc41580b0bd59e6e5713b80f0": {
+  "287638cdc41580098b24fecdc95bee77": {
     "name": "Ai 8",
     "layerName": "ai-8",
     "logo": "",
     "description": "",
     "districtId": "1",
-    "locationId": "1"
+    "locationId": null
   },
   "254638cdc41580be910bd11367d15f83": {
     "name": "Ambire",
@@ -257,14 +257,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "1"
   },
-  "25d638cdc415803cba59c384174881d9": {
-    "name": "Gaia",
-    "layerName": "gaia",
-    "logo": "",
-    "description": "",
-    "districtId": "1",
-    "locationId": "1"
-  },
   "25d638cdc415806eb73bf318bb8c34b0": {
     "name": "Gainforest",
     "layerName": "gainforest",
@@ -345,7 +337,7 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc41580beba63e0cfa4a340d8": {
+  "25d638cdc415803cba59c384174881d9": {
     "name": "Nethermind",
     "layerName": "nethermind",
     "logo": "",
@@ -458,12 +450,20 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "25d638cdc415803ba79cfdf2f7353ded": {
-    "name": "Privacy 7",
-    "layerName": "privacy-7",
+    "name": "Privacy 7 - PSE",
+    "layerName": "privacy-7-pse",
     "logo": "",
     "description": "",
     "districtId": "7",
     "locationId": "3"
+  },
+  "287638cdc415803580f1feed1fd67f6a": {
+    "name": "Privacy 8 TBD",
+    "layerName": "privacy-8-tbd",
+    "logo": "",
+    "description": "",
+    "districtId": "7",
+    "locationId": null
   },
   "256638cdc4158003aadde80270c59050": {
     "name": "R3alblocks",
@@ -632,5 +632,13 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "8",
     "locationId": null
+  },
+  "25d638cdc41580b0bd59e6e5713b80f0": {
+    "name": "Zyfai",
+    "layerName": "zyfai",
+    "logo": "",
+    "description": "",
+    "districtId": "1",
+    "locationId": "1"
   }
 };

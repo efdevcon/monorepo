@@ -2,8 +2,8 @@ import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = [
   {
-    "name": "Account Abstraction Hub",
-    "layerName": "account-abstraction-hub",
+    "name": "Account Abstraction",
+    "layerName": "account-abstraction",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -128,6 +128,15 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
+    "name": "Future Cities & Hubs",
+    "layerName": "future-cities-hubs",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Gaming Onboarding",
     "layerName": "gaming-onboarding",
     "logo": "",
@@ -137,8 +146,8 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
-    "name": "Governance Geeks Hub",
-    "layerName": "governance-geeks-hub",
+    "name": "Governance Geeks",
+    "layerName": "governance-geeks",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -182,6 +191,15 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
+    "name": "Legal Hub",
+    "layerName": "legal-hub",
+    "logo": "",
+    "description": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Main entrance",
     "layerName": "main-entrance",
     "logo": "",
@@ -209,8 +227,8 @@ export const poisData: POI[] = [
     "groupId": "13"
   },
   {
-    "name": "Node Operators Hub",
-    "layerName": "node-operators-hub",
+    "name": "Node Operators",
+    "layerName": "node-operators",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -245,17 +263,8 @@ export const poisData: POI[] = [
     "groupId": "2"
   },
   {
-    "name": "Open Source Community Hub",
-    "layerName": "open-source-community-hub",
-    "logo": "",
-    "description": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "7"
-  },
-  {
-    "name": "Pop-Up Cities",
-    "layerName": "popup-cities",
+    "name": "Open Source Hub",
+    "layerName": "open-source-hub",
     "logo": "",
     "description": "",
     "districtId": null,
@@ -299,8 +308,8 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
-    "name": "RWA Hub",
-    "layerName": "rwa-hub",
+    "name": "RWA",
+    "layerName": "rwa",
     "logo": "",
     "description": "",
     "districtId": null,
