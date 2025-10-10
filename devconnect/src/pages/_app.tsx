@@ -61,12 +61,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <style jsx global>{`
-        html {
-          --font-roboto: ${roboto.style.fontFamily};
-          --font-roboto-condensed: ${robotoCondensed.style.fontFamily};
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          html {
+            --font-roboto: ${roboto.style.fontFamily};
+            --font-roboto-condensed: ${robotoCondensed.style.fontFamily};
+          }
+        `
+      }} />
 
       <DevaBot
         botVersion="devconnect"
