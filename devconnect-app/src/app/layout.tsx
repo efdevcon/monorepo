@@ -119,13 +119,15 @@ export default async function RootLayout({
   // }
 
   // Cache the atproto events for 5 minutes - wrapped in unstable_cache to avoid re-fetching the events on every request
-  const atprotoEvents = await unstable_cache(
-    getAtprotoEvents,
-    ['atproto-events'],
-    {
-      revalidate: 300,
-    }
-  )();
+  // const atprotoEvents = await unstable_cache(
+  //   getAtprotoEvents,
+  //   ['atproto-events'],
+  //   {
+  //     revalidate: 300,
+  //   }
+  // )();
+
+  const atprotoEvents = await getAtprotoEvents();
 
   // console.log(atprotoEvents, 'atprotoEvents');
   // console.log(userData, 'userData');
