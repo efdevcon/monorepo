@@ -32,33 +32,26 @@ export interface GlobalStoreProviderProps {
 const AuthProvider = ({ children }: { children: ReactNode }) => {
   useWalletManager();
 
+  useEffect(() => {
+    console.log('AuthProvider mounted');
+  }, []);
+
   return children;
 };
+
+let globalStoreProvider: AppStore | null = null;
 
 export const GlobalStoreProvider = ({
   events,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
-  // useWalletManager();
-  const storeRef = useRef<AppStore | null>(null);
-
-  if (storeRef.current === null) {
-    storeRef.current = createGlobalStore(initGlobalStore(events, userData));
+  if (globalStoreProvider === null) {
+    globalStoreProvider = createGlobalStore(initGlobalStore(events, userData));
   }
 
-  // useEffect(() => {
-  //   if (!storeRef.current) return;
-
-  //   if (email) {
-  //     ensureUserData(storeRef.current?.getState().setUserData);
-  //   } else {
-  //     storeRef.current?.getState().setUserData(null);
-  //   }
-  // }, [email]);
-
   return (
-    <GlobalStoreContext.Provider value={storeRef.current}>
+    <GlobalStoreContext.Provider value={globalStoreProvider}>
       <AuthProvider>{children}</AuthProvider>
     </GlobalStoreContext.Provider>
   );
