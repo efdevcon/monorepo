@@ -168,7 +168,15 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     if (!file) return
 
     // Validate file type (images, PDFs, etc.)
-    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf', 'text/plain']
+    const validTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'application/pdf',
+      'text/plain',
+      'image/svg+xml',
+    ]
     if (!validTypes.includes(file.type)) {
       addNotification('error', 'Please select a valid file type (image, PDF, or text)')
       return
@@ -1068,7 +1076,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                               Drag and drop a file here, or click to select
                             </p>
                             <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                              Supports: Images, PDFs, Text files (max 20MB)
+                              Supports: Images or PDFs (max 20MB)
                             </p>
                           </div>
                         )}
