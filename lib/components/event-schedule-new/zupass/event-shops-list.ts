@@ -48,7 +48,8 @@ export const eventShops: EventShop[] = [
     supabase_id: "108", // money rails event
     zupass_proof_id: "Devconnect ARG",
     gate_link_only: true,
-    // hide_visit_site: true,
+    hide_visit_site: true,
+    // coupon_collection: "moneyrails",
     zupass_disabled: zupassGatingFallbackOn,
   },
   {
