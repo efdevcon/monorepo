@@ -1,9 +1,24 @@
 'use client';
 
-import { createStore } from 'zustand';
+import { createStore, StateCreator } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+export interface Ticket {
+  secret: string;
+  attendeeName: string | null;
+  attendeeEmail: string;
+  price: string;
+  itemName: string;
+}
+
+export interface Order {
+  orderCode: string;
+  orderDate: string;
+  email: string;
+  tickets: Ticket[];
+}
 
 export interface AppState {
-  initializing: boolean;
   // User data from supabase (so basically data attached to the logged in email)
   userData: {
     additional_ticket_emails?: string[];
@@ -11,8 +26,14 @@ export interface AppState {
     email?: string;
   } | null;
   events: any[] | undefined;
+  tickets: Order[] | null;
+  ticketsLoading: boolean;
+  qrCodes: { [key: string]: string };
   setUserData: (userData: AppState['userData']) => void;
   setFavoriteEvents: (nextFavoriteEvents: string[]) => void;
+  setTickets: (tickets: Order[] | null) => void;
+  setTicketsLoading: (loading: boolean) => void;
+  setQrCodes: (qrCodes: { [key: string]: string }) => void;
   logout: (state: AppState) => void;
 }
 
@@ -21,19 +42,21 @@ export type AppStore = ReturnType<typeof createGlobalStore>;
 export const initGlobalStore = (
   events?: any[],
   userData?: AppState['userData']
-): Omit<AppState, 'setUserData' | 'setFavoriteEvents' | 'logout'> => ({
+): Omit<AppState, 'setUserData' | 'setFavoriteEvents' | 'setTickets' | 'setTicketsLoading' | 'setQrCodes' | 'logout'> => ({
   events: events,
   userData: userData || null,
-  initializing: true,
+  tickets: null,
+  ticketsLoading: false,
+  qrCodes: {},
 });
 
 export const createGlobalStore = (
   initState: Omit<
     AppState,
-    'setUserData' | 'setFavoriteEvents' | 'logout'
+    'setUserData' | 'setFavoriteEvents' | 'setTickets' | 'setTicketsLoading' | 'setQrCodes' | 'logout'
   > = initGlobalStore()
 ) => {
-  return createStore<AppState>()((set) => ({
+  const storeConfig: StateCreator<AppState> = (set) => ({
     ...initState,
 
     // User actions
@@ -44,7 +67,7 @@ export const createGlobalStore = (
       })),
 
     setFavoriteEvents: (nextFavoriteEvents: string[]) =>
-      set((state: AppState) => {
+      set((state) => {
         return {
           ...state,
           userData: {
@@ -54,10 +77,47 @@ export const createGlobalStore = (
         };
       }),
 
+    setTickets: (tickets: Order[] | null) =>
+      set((state) => ({
+        ...state,
+        tickets,
+      })),
+
+    setTicketsLoading: (loading: boolean) =>
+      set((state) => ({
+        ...state,
+        ticketsLoading: loading,
+      })),
+
+    setQrCodes: (qrCodes: { [key: string]: string }) =>
+      set((state) => ({
+        ...state,
+        qrCodes,
+      })),
+
     logout: (state: AppState) =>
       set({
         ...state,
         userData: null,
+        tickets: null,
+        qrCodes: {},
       }),
-  }));
+  });
+
+  if (typeof window !== 'undefined') {
+    // Client-side: use persist middleware
+    return createStore<AppState>()(
+      persist(storeConfig, {
+        name: 'devconnect-store',
+        partialize: (state) => ({
+          userData: state.userData,
+          tickets: state.tickets,
+          qrCodes: state.qrCodes,
+        }),
+      }) as StateCreator<AppState>
+    );
+  } else {
+    // Server-side: no persist wrapper
+    return createStore<AppState>()(storeConfig);
+  }
 };

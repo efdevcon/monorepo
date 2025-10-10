@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useGlobalStore } from './store.provider';
 import { useShallow } from 'zustand/react/shallow';
 import { fetchAuth } from '@/services/apiClient';
 import { toast } from 'sonner';
 import { requireAuth } from '@/components/RequiresAuth';
-import { AppState } from './store';
+import { AppState, Order } from './store';
+import QRCode from 'qrcode';
 // import { useWalletManager } from '@/hooks/useWalletManager';
 
 export const useFavorites = () => {
@@ -95,4 +96,90 @@ export const useEnsureUserData = (isConnected: boolean) => {
     window.addEventListener('focus', handleFocus);
     return () => window.removeEventListener('focus', handleFocus);
   }, [isConnected, setUserData]);
+};
+
+// Fetch tickets and generate QR codes
+export const fetchTickets = async (
+  setTickets: (tickets: Order[] | null) => void,
+  setTicketsLoading: (loading: boolean) => void,
+  setQrCodes: (qrCodes: { [key: string]: string }) => void
+) => {
+  setTicketsLoading(true);
+
+  try {
+    const response = await fetchAuth<{ tickets: Order[] }>('/api/auth/tickets');
+
+    if (!response.success) {
+      throw new Error(response.error || 'Failed to fetch tickets');
+    }
+
+    const ticketsData = response.data.tickets || [];
+    setTickets(ticketsData);
+
+    // Generate QR codes for each ticket
+    const newQrCodes: { [key: string]: string } = {};
+    for (const order of ticketsData) {
+      for (const ticket of order.tickets) {
+        if (ticket.secret) {
+          try {
+            const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
+              width: 200,
+              margin: 1,
+              color: {
+                dark: '#000000',
+                light: '#FFFFFF',
+              },
+            });
+            newQrCodes[ticket.secret] = qrDataUrl;
+          } catch (qrErr) {
+            console.error('Error generating QR code:', qrErr);
+          }
+        }
+      }
+    }
+    setQrCodes(newQrCodes);
+  } catch (err) {
+    console.error('Error fetching tickets:', err);
+    toast.error(err instanceof Error ? err.message : 'Failed to load tickets');
+  } finally {
+    setTicketsLoading(false);
+  }
+};
+
+// Hook to fetch and manage tickets
+export const useTickets = () => {
+  const additionalTicketEmails = useAdditionalTicketEmails();
+  const email = useGlobalStore((state) => state.userData?.email);
+  const tickets = useGlobalStore((state) => state.tickets);
+  const ticketsLoading = useGlobalStore((state) => state.ticketsLoading);
+  const qrCodes = useGlobalStore((state) => state.qrCodes);
+  const setTickets = useGlobalStore((state) => state.setTickets);
+  const setTicketsLoading = useGlobalStore((state) => state.setTicketsLoading);
+  const setQrCodes = useGlobalStore((state) => state.setQrCodes);
+  const isLoadingRef = useRef(false);
+
+  const refresh = async () => {
+    if (isLoadingRef.current) {
+      console.log('Already fetching tickets, skipping...');
+      return;
+    }
+
+    isLoadingRef.current = true;
+    await fetchTickets(setTickets, setTicketsLoading, setQrCodes);
+    isLoadingRef.current = false;
+  };
+
+  // Auto-fetch tickets when email is available
+  useEffect(() => {
+    if (email) {
+      refresh();
+    }
+  }, [email, additionalTicketEmails]);
+
+  return {
+    tickets: tickets || [],
+    loading: ticketsLoading,
+    qrCodes,
+    refresh,
+  };
 };
