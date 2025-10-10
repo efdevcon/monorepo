@@ -498,7 +498,7 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
       fields.push({
         name: 'Supporter name',
         value: (page.properties?.['Name'] as any)?.title?.[0]?.plain_text || '',
-        description: databaseSchema.properties['Name']?.description || '',
+        description: databaseSchema?.properties['Name']?.description || '',
         type: 'text',
         mode: 'read',
         order: 0,
