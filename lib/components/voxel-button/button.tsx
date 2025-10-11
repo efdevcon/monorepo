@@ -13,6 +13,8 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       return "border-[#991b1b] bg-[#dc2626] text-white hover:bg-[rgba(239,68,68,1)]";
     if (color === "white-1")
       return "border-gray-300 bg-white text-black hover:bg-gray-50";
+    if (color === "purple-1")
+      return "border-[rgba(106,43,159)] bg-[rgb(120,52,208)] text-white hover:bg-[rgba(136,85,204,0.8)] disabled:opacity-70 disabled:pointer-events-none";
 
     return defaultColor;
   })();
@@ -20,7 +22,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
   // TODO: implement sizes
   const size = (() => {
     if (fat) return "px-4 py-2";
-    if (props.size === "sm") return "px-4 py-1 text-sm";
+    if (props.size === "sm") return "px-4 py-1 text-sm border-b-[5px]";
 
     return "px-8 py-2";
   })();
@@ -30,7 +32,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       {...props}
       className={cn(
         computedColor,
-        "border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:border-opacity-0 flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
+        "border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:!border-opacity-0 flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
         size,
         props.className
       )}

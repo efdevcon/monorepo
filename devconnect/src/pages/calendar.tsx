@@ -14,6 +14,9 @@ import { CMSButtons } from 'common/components/voxel-button/button'
 import CalendarLayout from 'lib/components/event-schedule-new/layout'
 import { Separator } from 'lib/components/ui/separator'
 import { apiResultToCalendarFormat } from 'lib/components/event-schedule-new/atproto-to-calendar-format'
+import VoxelButton from 'lib/components/voxel-button/button'
+import NextLink from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 
 const Argentina = (props: any) => {
   // const [selectedEvent, setSelectedEvent] = useState<any>(null)
@@ -34,6 +37,12 @@ const Argentina = (props: any) => {
         <div className="section z-10 pb-1">
           <div className="flex justify-between items-end">
             <Image src={PageTitle} alt="Page Title" className={'contain w-[450px] translate-x-[-3%]'} />
+            <VoxelButton color="purple-1" size="sm" fill className="shrink-0 hidden lg:flex self-end mb-3">
+              <NextLink href="https://devconnect.org/community-events" className="flex items-center gap-1.5 ">
+                Submit Your Side Event
+                <ArrowUpRight className="w-4 h-4 mb-0.5" />
+              </NextLink>
+            </VoxelButton>
             {/* <div className={cn(styles.shadow, 'gap-2 pb-3 text-white hidden md:block')}>Buenos Aires, ARGENTINA</div> */}
           </div>
         </div>

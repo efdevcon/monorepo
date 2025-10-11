@@ -29,7 +29,6 @@ import ethDayLogo from "./eth-day-logo.png";
 import ethDayDialogImage from "./eth-day-updated.png";
 import DevconnectCubeLogo from "../images/cube-logo.png";
 import { Dialog, DialogContent, DialogTitle } from "lib/components/ui/dialog";
-import { Button } from "lib/components/button";
 import { Separator } from "lib/components/ui/separator";
 import { useDraggableLink } from "lib/hooks/useDraggableLink";
 import { DifficultyTag, TypeTag } from "../calendar.components";
@@ -261,14 +260,23 @@ function Event({
   const draggableLink1 = useDraggableLink();
   const eventClassName = className || "";
 
+  const isCoworking = event.id.toString() === "23";
+  const isETHDay = event.id.toString() === "84";
+  const isCoreEvent = event.isCoreEvent;
+  const isCommunityHubs = event.id.toString() === "149";
+
   // Type of event and resulting customization class
   const typeClass = (() => {
-    const isCoreEvent = event.isCoreEvent;
-    const isCowork = event.id.toString() === "23";
+    // const isCoreEvent = event.isCoreEvent;
+    // const isCowork = event.id.toString() === "23";
     const isCommunityEvent = !isCoreEvent;
-    const isETHDay = event.id.toString() === "84";
+    // const isETHDay = event.id.toString() === "84";
 
-    if (isCowork || isETHDay) {
+    if (isCommunityHubs) {
+      return "bg-[rgba(246,180,14,0.05)] hover:bg-[rgba(246,180,14,0.1)] !border-[rgba(246,180,14,1)] border-l-[4px]";
+    }
+
+    if (isCoworking || isETHDay) {
       return "bg-[rgba(255,133,166,0.05)] hover:bg-[rgba(255,133,166,0.1)] !border-[rgba(255,133,166,1)] border-l-[4px]";
     } else if (isETHDay) {
       // Not used atm looks cool though
@@ -281,10 +289,6 @@ function Event({
 
     return "";
   })();
-
-  const isCoworking = event.id.toString() === "23";
-  const isETHDay = event.id.toString() === "84";
-  const isCoreEvent = event.isCoreEvent;
 
   const dialogOpen = selectedEvent?.id === event.id;
 
@@ -513,12 +517,15 @@ function Event({
                             "!text-[rgba(94,144,189,1)]":
                               isCoreEvent && !isETHDay && !isCoworking,
                           },
-                          { "!text-[#FF85A6]": isETHDay || isCoworking }
+                          { "!text-[#FF85A6]": isETHDay || isCoworking },
+                          { "!text-[rgb(216,158,10)]": isCommunityHubs }
                         )}
                       >
                         <div>
                           {isETHDay || isCoworking
                             ? "EWF & COWORK"
+                            : isCommunityHubs
+                            ? "Community Hubs"
                             : isCoreEvent
                             ? "Core Event"
                             : "Community Event"}
@@ -614,19 +621,21 @@ function Event({
 
                     <div className="flex justify-between items-center gap-2 flex-wrap">
                       <div className="flex gap-2 items-center flex-wrap">
-                        {showVisitSite && !hideVisitSite && (
-                          <Link href={event.eventLink} className="self-start">
-                            <VoxelButton
-                              color="blue-1"
-                              size="sm"
-                              fill
-                              className="shrink-0  mt-3 self-start"
-                            >
-                              Visit Site
-                              <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                            </VoxelButton>
-                          </Link>
-                        )}
+                        {showVisitSite &&
+                          !hideVisitSite &&
+                          !isCommunityHubs && (
+                            <Link href={event.eventLink} className="self-start">
+                              <VoxelButton
+                                color="blue-1"
+                                size="sm"
+                                fill
+                                className="shrink-0  mt-3 self-start"
+                              >
+                                Visit Site
+                                <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                              </VoxelButton>
+                            </Link>
+                          )}
 
                         {showBuyTickets && !isGated && (
                           <Link href={event.ticketsUrl} className="self-start">
@@ -742,6 +751,11 @@ function Event({
             const result = draggableLink1.onClick(e);
 
             if (!result) return;
+
+            // if (isCommunityHubs) {
+            //   window.open("https://devconnect.org/community-hubs", "_blank");
+            //   return;
+            // }
 
             if (event.onClick) {
               event.onClick();

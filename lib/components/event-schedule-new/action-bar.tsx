@@ -1,14 +1,17 @@
 import React from "react";
 import cn from "classnames";
-import { Calendar, Grid, List, ListFilter, Search } from "lucide-react";
+import { Calendar, List, ListFilter, Search } from "lucide-react";
 import { FilterSummary } from "./filter";
 import { Switch } from "lib/components/ui/switch";
-import { Separator } from "../ui/separator";
 // import Export from "./export";
 
 const venueEvents = [
   {
-    colors: ["bg-[rgba(255,133,166,1)]", "bg-[rgba(116,172,223,1)]"],
+    colors: [
+      "bg-[rgba(255,133,166,1)]",
+      "bg-[rgba(116,172,223,1)]",
+      "bg-[rgba(246,180,14,1)]",
+    ],
     label: "World's Fair (La Rural)",
   },
   {
@@ -136,6 +139,7 @@ const ActionBar = ({
         )}
       >
         {/* <Export events={events} /> */}
+
         <div
           className={cn(
             "flex items-center gap-2 border border-[rgba(224,224,235,1)] border-solid p-3 py-2 max-w-[320px] grow"
