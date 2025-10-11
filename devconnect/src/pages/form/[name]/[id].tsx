@@ -1980,51 +1980,51 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
             </h3>
             <p
               style={{
-                margin: '0 0 1.5rem 0',
+                margin: '0 0 1rem 0',
                 color: '#666',
-                fontSize: '1rem',
+                fontSize: '1.3rem',
               }}
             >
-              Check out our guides for detailed instructions and support.
+              <b style={{ color: '#000' }}>⚠️ Don't forget to submit your POAP before the Oct 24th deadline 🗓️</b>
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
-               {descriptionLinks['poap creation guide'] && (
-                 <a
-                   href={descriptionLinks['poap creation guide']}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   style={{
-                     display: 'inline-flex',
-                     alignItems: 'center',
-                     gap: '0.5rem',
-                     padding: '0.75rem 1.5rem',
-                     backgroundColor: '#968cff',
-                     color: 'white',
-                     textDecoration: 'none',
-                     borderRadius: '6px',
-                     fontSize: '1rem',
-                     fontWeight: '500',
-                     transition: 'background-color 0.2s ease',
-                   }}
-                   onMouseEnter={e => {
-                     e.currentTarget.style.backgroundColor = '#473e6b'
-                   }}
-                   onMouseLeave={e => {
-                     e.currentTarget.style.backgroundColor = '#968cff'
-                   }}
-                 >
-                   <img
-                     src="https://poap.xyz/apple-touch-icon.png"
-                     alt=""
-                     style={{
-                       width: '20px',
-                       height: '20px',
-                       borderRadius: '4px',
-                     }}
-                   />
-                   <span>POAP Creation Guide</span>
-                 </a>
-               )}
+              {descriptionLinks['poap creation guide'] && (
+                <a
+                  href={descriptionLinks['poap creation guide']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#968cff',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = '#473e6b'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = '#968cff'
+                  }}
+                >
+                  <img
+                    src="https://poap.xyz/apple-touch-icon.png"
+                    alt=""
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '4px',
+                    }}
+                  />
+                  <span>POAP Creation Guide</span>
+                </a>
+              )}
               {descriptionLinks['supporter quest documentation'] && (
                 <a
                   href={descriptionLinks['supporter quest documentation']}
@@ -2052,6 +2052,15 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                 </a>
               )}
             </div>
+            <p
+              style={{
+                margin: '1rem 0 0 0',
+                color: '#666',
+                fontSize: '1rem',
+              }}
+            >
+              👆 <b>Design template</b> available in the POAP Creation Guide.
+            </p>
           </div>
         )}
 
