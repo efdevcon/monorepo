@@ -604,7 +604,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
             ? 'Form is locked 🔒 - view only'
             : fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
             ? 'Update your information'
-            : 'Submit your information'}
+            : 'Update your information'}
         </p>
       </div>
 
@@ -1378,12 +1378,12 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                   disabled={isSubmitting}
                 >
                   {isSubmitting
-                    ? 'Submitting...'
+                    ? 'Updating...'
                     : fields
                         .filter(field => field.mode === 'edit')
                         .some(field => field.value && field.value.trim() !== '')
                     ? 'Update'
-                    : 'Submit'}
+                    : 'Update'}
                 </button>
               </div>
             )}
