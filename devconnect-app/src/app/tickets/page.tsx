@@ -6,6 +6,7 @@ import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
 import TicketImage from '@/images/devconnect-arg-ticket.png';
 import Image from 'next/image';
+import { ChevronDown, LockKeyhole, Mail } from 'lucide-react';
 import {
   useAdditionalTicketEmails,
   ensureUserData,
@@ -15,6 +16,7 @@ import { useGlobalStore } from '@/app/store.provider';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import { homeTabs } from '../navigation';
 import PageLayout from '@/components/PageLayout';
+import moment from 'moment';
 import cn from 'classnames';
 
 const TicketWrapper = () => {
@@ -35,134 +37,170 @@ const ConnectedEmails = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const [verifyingCode, setVerifyingCode] = useState(false);
   const [loadingAdditionalEmail, setLoadingAdditionalEmail] = useState(false);
+  const [expanded, setExpanded] = useState(true);
 
   return (
     <>
-      <div className="flex gap-4 items-center space-evenly my-4">
+      {/* <div className="flex gap-4 items-center space-evenly my-4">
         <div className="w-auto shrink grow h-px bg-gray-300" />
         <p className="text-sm text-gray-600 shrink-0">
           Your connected email addresses
         </p>
         <div className="w-auto shrink grow h-px bg-gray-300" />
-      </div>
+      </div> */}
 
-      <div className="flex flex-col text-center text-xs font-medium">
-        <div className="">{email}</div>
-        {additionalTicketEmails.map((email: string) => (
-          <div key={email} className="">
-            {email}
+      <div className="flex flex-col text-xs w-[350px] shrink-0 max-w-[350px] bg-white rounded-sm border border-[rgba(237,237,240,1)]">
+        <div
+          className={cn(
+            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-4',
+            expanded && 'border-b border-[rgba(237,237,240,1)]'
+          )}
+          onClick={() => setExpanded(!expanded)}
+        >
+          <div className="flex flex-col">
+            <div className="text-sm font-medium mb-1">Connected emails</div>
+            <div>{email}</div>
+            {additionalTicketEmails.map((email: string) => (
+              <div key={email} className="">
+                {email}
+              </div>
+            ))}
           </div>
-        ))}
+          <ChevronDown className="w-4 h-4" />
+        </div>
+        {expanded && (
+          <>
+            {/* <div className="flex flex-col p-3 m-2 mb-0 bg-[rgba(209,233,255,1)]">
+              If you have tickets on a different email address, you can add it
+              here.
+            </div> */}
+            <div className="flex p-4 flex-col sm:justify-center sm:items-center">
+              <button
+                className="basic-button blue w-full"
+                onClick={async () => {
+                  const email = prompt('Enter your email address');
+
+                  if (email) {
+                    setLoadingAdditionalEmail(true);
+                    setVerificationCode('');
+                    setCheckYourEmail('');
+
+                    const response = await fetchAuth<{ email: string }>(
+                      '/api/auth/tickets/attach-email',
+                      {
+                        method: 'POST',
+                        body: JSON.stringify({
+                          email,
+                          redirectTo:
+                            'https://app.devconnect.org/wallet/tickets',
+                        }),
+                      }
+                    );
+
+                    if (response.success) {
+                      setCheckYourEmail(email);
+                      toast.success(
+                        'Check your email for a verification code.'
+                      );
+                    } else {
+                      console.error('Error adding email: ' + response.error);
+                      toast.error('Something went wrong. Try again later.');
+                    }
+
+                    setLoadingAdditionalEmail(false);
+                  }
+                }}
+              >
+                <Mail className="w-4 h-4" />
+                {loadingAdditionalEmail
+                  ? 'Sending...'
+                  : 'Got tickets on another email?'}
+              </button>
+              {checkYourEmail && (
+                <div className="text-sm text-gray-800 mt-2 text-center mt-6 flex flex-col items-center w-full">
+                  <div className="text-xs">
+                    We sent a code to:{' '}
+                    <span className="font-bold">{checkYourEmail}</span>
+                  </div>
+                  <input
+                    type="text"
+                    className="border border-neutral-300 w-full border-[1px] outline-none p-2 px-4 mt-2 text-center"
+                    value={verificationCode}
+                    placeholder="Enter verification code"
+                    onChange={(e) => setVerificationCode(e.target.value)}
+                  />
+
+                  <button
+                    className="mt-4 basic-button blue w-full"
+                    disabled={verificationCode.length !== 6}
+                    onClick={async () => {
+                      setVerifyingCode(true);
+
+                      const response = await fetchAuth<{ email: string }>(
+                        '/api/auth/tickets/verify-email-ownership',
+                        {
+                          method: 'POST',
+                          body: JSON.stringify({
+                            emailToVerify: checkYourEmail,
+                            verificationCode,
+                          }),
+                        }
+                      );
+
+                      if (response.success) {
+                        toast.success('Email verified successfully!');
+                        await ensureUserData(setUserData);
+                        await refresh();
+                      } else {
+                        if (response.error) {
+                          toast.error(response.error);
+                        } else {
+                          toast.error('Something went wrong. Try again later.');
+                        }
+                      }
+
+                      setVerifyingCode(false);
+                    }}
+                  >
+                    <LockKeyhole className="w-4 h-4" />
+                    {verifyingCode ? 'Verifying...' : 'Verify code'}{' '}
+                    {verificationCode.length !== 6 && '(6 digits required)'}
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        )}
       </div>
 
-      <div className="flex gap-4 items-center space-evenly mt-4">
+      {/* <div className="flex gap-4 items-center space-evenly mt-4">
         <div className="w-auto shrink grow h-px bg-gray-300" />
         <p className="text-sm text-gray-600 shrink-0">
           Is your ticket on a different email address?
         </p>
         <div className="w-auto shrink grow h-px bg-gray-300" />
-      </div>
-
-      <div className="flex mt-4 flex-col sm:justify-center sm:items-center">
-        <VoxelButton
-          size="sm"
-          className=""
-          onClick={async () => {
-            const email = prompt('Enter your email address');
-
-            if (email) {
-              setLoadingAdditionalEmail(true);
-              setVerificationCode('');
-              setCheckYourEmail('');
-
-              const response = await fetchAuth<{ email: string }>(
-                '/api/auth/tickets/attach-email',
-                {
-                  method: 'POST',
-                  body: JSON.stringify({
-                    email,
-                    redirectTo: 'https://app.devconnect.org/wallet/tickets',
-                  }),
-                }
-              );
-
-              if (response.success) {
-                setCheckYourEmail(email);
-                toast.success('Check your email for a verification code.');
-              } else {
-                console.error('Error adding email: ' + response.error);
-                toast.error('Something went wrong. Try again later.');
-              }
-
-              setLoadingAdditionalEmail(false);
-            }
-          }}
-        >
-          {loadingAdditionalEmail
-            ? 'Preparing...'
-            : 'Add another email address'}
-        </VoxelButton>
-        {checkYourEmail && (
-          <div className="text-sm text-gray-800 mt-2 text-center mt-6 flex flex-col items-center max-w-[95%]">
-            <div>
-              Check <span className="font-bold">{checkYourEmail}</span> for a
-              verification code:
-            </div>
-            <input
-              type="text"
-              className="border border-neutral-300 w-full border-[1px] outline-none p-2 px-4 mt-2 text-center"
-              value={verificationCode}
-              placeholder="Enter verification code"
-              onChange={(e) => setVerificationCode(e.target.value)}
-            />
-
-            <VoxelButton
-              size="sm"
-              className="mt-2"
-              color="green-1"
-              disabled={verificationCode.length !== 6}
-              onClick={async () => {
-                setVerifyingCode(true);
-
-                const response = await fetchAuth<{ email: string }>(
-                  '/api/auth/tickets/verify-email-ownership',
-                  {
-                    method: 'POST',
-                    body: JSON.stringify({
-                      emailToVerify: checkYourEmail,
-                      verificationCode,
-                    }),
-                  }
-                );
-
-                if (response.success) {
-                  toast.success('Email verified successfully!');
-                  await ensureUserData(setUserData);
-                  await refresh();
-                } else {
-                  if (response.error) {
-                    toast.error(response.error);
-                  } else {
-                    toast.error('Something went wrong. Try again later.');
-                  }
-                }
-
-                setVerifyingCode(false);
-              }}
-            >
-              {verifyingCode ? 'Verifying...' : 'Verify code'}{' '}
-              {verificationCode.length !== 6 && '(6 digits required)'}
-            </VoxelButton>
-          </div>
-        )}
-      </div>
+      </div> */}
     </>
+  );
+};
+
+const SideEventTicket = ({
+  ticket,
+  qrCodes,
+}: {
+  ticket: any;
+  qrCodes: any;
+}) => {
+  return (
+    <div className="relative max-w-[350px]">
+      <Image src={TicketImage} alt="Ticket" />
+    </div>
   );
 };
 
 const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
   return (
-    <div className="relative max-w-[350px] mx-auto">
+    <div className="relative max-w-[350px]">
       <Image src={TicketImage} alt="Ticket" />
       <div className="absolute text-gray-600 top-[25%] left-[9%] mt-1 h-[32%] flex justify-center flex-col">
         <div className="flex flex-col relative items-start justify-start max-w-[80%]">
@@ -185,6 +223,56 @@ const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
   );
 };
 
+const SideEventTickets = ({
+  tickets,
+  qrCodes,
+}: {
+  tickets: any;
+  qrCodes: any;
+}) => {
+  const [dates, setDates] = useState<any>([
+    moment('2025-11-17'),
+    moment('2025-11-18'),
+    moment('2025-11-19'),
+    moment('2025-11-20'),
+    moment('2025-11-21'),
+    moment('2025-11-22'),
+  ]);
+
+  const [selectedDates, setSelectedDates] = useState<any>(new Set());
+
+  return (
+    <div className="flex flex-col gap-1 py-4 grow self-start">
+      <div className="flex flex-col gap-1 mb-3">
+        <div className="text-lg font-semibold">Event Tickets</div>
+        <div className="text-sm">
+          Entrance tickets for events hosted at La Rural.
+        </div>
+      </div>
+
+      {dates.map((date: any) => (
+        <div
+          className={cn(
+            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white',
+            selectedDates.has(date) && 'border-b border-[rgba(237,237,240,1)]'
+          )}
+          onClick={() => setSelectedDates(new Set([...selectedDates, date]))}
+        >
+          <div className="flex flex-col">
+            <div className="text-sm font-medium mb-1">
+              {date.format('MMMM D, YYYY')}
+            </div>
+            <div className="text-xs text-gray-600">
+              You have no tickets for this date
+            </div>
+          </div>
+          <ChevronDown className="w-4 h-4" />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const TicketTab = RequiresAuthHOC(() => {
   // Use the tickets hook from store
   const { tickets, loading, qrCodes } = useTickets();
@@ -193,11 +281,11 @@ const TicketTab = RequiresAuthHOC(() => {
   return (
     <div
       className={cn(
-        'w-full py-6 sm:py-8 px-4 sm:px-6 mx-auto',
+        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto',
         'gradient-background'
       )}
     >
-      <div className="w-full mb-8">
+      <div className="w-full">
         <div className="w-full space-y-2">
           {loading && !hasTickets && (
             <div className="w-full bg-gray-50 border border-gray-200 text-gray-600 px-4 py-8 rounded-lg">
@@ -214,23 +302,38 @@ const TicketTab = RequiresAuthHOC(() => {
             </div>
           )}
 
-          <ConnectedEmails />
-
-          {hasTickets && (
-            <div className="flex flex-col gap-8 mt-8">
-              {tickets.map((order) => (
-                <>
-                  {order.tickets.map((ticket, idx) => (
-                    <Ticket
-                      ticket={ticket}
-                      qrCodes={qrCodes}
-                      key={ticket.secret}
-                    />
-                  ))}
-                </>
-              ))}
+          <div className="flex justify-between gap-8">
+            <div className="flex flex-col gap-1">
+              <div className="text-lg font-semibold">
+                Your Devconnect Ticket
+              </div>
+              <div className="text-sm">
+                Grants access to La Rural, the Ethereum World’s Fair, and any
+                included side events for Nov 17–22, 2025.
+              </div>
             </div>
-          )}
+            <ConnectedEmails />
+          </div>
+
+          <div className="flex gap-8 items-center">
+            {hasTickets && (
+              <div className="flex flex-col gap-8 mt-4">
+                {tickets.map((order) => (
+                  <>
+                    {order.tickets.map((ticket, idx) => (
+                      <Ticket
+                        ticket={ticket}
+                        qrCodes={qrCodes}
+                        key={ticket.secret}
+                      />
+                    ))}
+                  </>
+                ))}
+              </div>
+            )}
+
+            <SideEventTickets tickets={tickets} qrCodes={qrCodes} />
+          </div>
 
           {/* {hasTickets &&
             tickets.map((order) => (
