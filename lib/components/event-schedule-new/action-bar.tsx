@@ -53,8 +53,7 @@ const ActionBar = ({
   hideCommunityByDefault?: boolean;
   favorites?: string[];
 }) => {
-  const categories = venueEvents; // isCommunityCalendar ? communityEvents : venueEvents;
-  const hasLoggedInUser = true;
+  const categories = venueEvents;
 
   return (
     <div
