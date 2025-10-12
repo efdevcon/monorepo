@@ -37,7 +37,7 @@ const ConnectedEmails = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const [verifyingCode, setVerifyingCode] = useState(false);
   const [loadingAdditionalEmail, setLoadingAdditionalEmail] = useState(false);
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
 
   return (
     <>
@@ -49,10 +49,10 @@ const ConnectedEmails = () => {
         <div className="w-auto shrink grow h-px bg-gray-300" />
       </div> */}
 
-      <div className="flex flex-col text-xs w-[350px] shrink-0 max-w-[350px] bg-white rounded-sm border border-[rgba(237,237,240,1)]">
+      <div className="flex flex-col self-start text-xs w-full sm:w-[350px] sm:max-w-[50%] shrink-0 bg-white rounded-sm border border-[rgba(237,237,240,1)] shadow-xs order-1 sm:order-2">
         <div
           className={cn(
-            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-4',
+            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3',
             expanded && 'border-b border-[rgba(237,237,240,1)]'
           )}
           onClick={() => setExpanded(!expanded)}
@@ -74,7 +74,7 @@ const ConnectedEmails = () => {
               If you have tickets on a different email address, you can add it
               here.
             </div> */}
-            <div className="flex p-4 flex-col sm:justify-center sm:items-center">
+            <div className="flex p-3 flex-col sm:justify-center sm:items-center">
               <button
                 className="basic-button blue w-full"
                 onClick={async () => {
@@ -242,7 +242,7 @@ const SideEventTickets = ({
   const [selectedDates, setSelectedDates] = useState<any>(new Set());
 
   return (
-    <div className="flex flex-col gap-1 py-4 grow self-start">
+    <div className="flex flex-col gap-1 py-4 grow self-start w-full md:w-auto">
       <div className="flex flex-col gap-1 mb-3">
         <div className="text-lg font-semibold">Event Tickets</div>
         <div className="text-sm">
@@ -253,7 +253,7 @@ const SideEventTickets = ({
       {dates.map((date: any) => (
         <div
           className={cn(
-            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white',
+            'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white shadow-xs',
             selectedDates.has(date) && 'border-b border-[rgba(237,237,240,1)]'
           )}
           onClick={() => setSelectedDates(new Set([...selectedDates, date]))}
@@ -281,7 +281,7 @@ const TicketTab = RequiresAuthHOC(() => {
   return (
     <div
       className={cn(
-        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto',
+        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto grow',
         'gradient-background'
       )}
     >
@@ -302,8 +302,8 @@ const TicketTab = RequiresAuthHOC(() => {
             </div>
           )}
 
-          <div className="flex justify-between gap-8">
-            <div className="flex flex-col gap-1">
+          <div className="flex flex-col sm:flex-row justify-between gap-4">
+            <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold">
                 Your Devconnect Ticket
               </div>
@@ -315,7 +315,7 @@ const TicketTab = RequiresAuthHOC(() => {
             <ConnectedEmails />
           </div>
 
-          <div className="flex gap-8 items-center">
+          <div className="flex flex-col md:flex-row gap-8 lg:items-center items-center">
             {hasTickets && (
               <div className="flex flex-col gap-8 mt-4">
                 {tickets.map((order) => (

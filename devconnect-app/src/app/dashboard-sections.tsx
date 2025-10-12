@@ -44,7 +44,7 @@ export function WelcomeSection() {
 
   return (
     <div className="flex flex-col items-start justify-start gap-2 mb-4 mx-4">
-      <div className="flex justify-between w-full  gap-2">
+      <div className="flex justify-between w-full  gap-1">
         <div className="text-2xl font-semibold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
@@ -52,8 +52,10 @@ export function WelcomeSection() {
           {formattedDate} Buenos Aires (GMT-3)
         </div>
       </div>
-      <div className="text-lg font-medium">{dummyEmail}</div>
-      <div>Welcome to the Ethereum World&apos;s Fair! </div>
+      <div className="text-lg leading-tight font-medium mt-2">{dummyEmail}</div>
+      <div className="font-medium leading-tight">
+        Welcome to the Ethereum World&apos;s Fair!{' '}
+      </div>
     </div>
   );
 }
@@ -78,7 +80,7 @@ export function TodaysSchedule() {
         <p className="font-semibold">Today&apos;s Schedule</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
       </div>
-      <p className="text-xs mb-2">
+      <p className="text-sm mb-2">
         These are your recommended events for today. Build your own schedule by
         adding events to your favorites.
       </p>
