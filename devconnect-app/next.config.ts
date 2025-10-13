@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
   transpilePackages: ['lib'],
+  logging: {
+    fetches: {
+      fullUrl: true,
+    },
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Fallbacks for Node.js modules in client-side code

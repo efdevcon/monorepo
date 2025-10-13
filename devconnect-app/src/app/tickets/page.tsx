@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { fetchAuth } from '@/services/apiClient';
-import VoxelButton from 'lib/components/voxel-button/button';
 import { toast } from 'sonner';
 import TicketImage from '@/images/devconnect-arg-ticket.png';
 import Image from 'next/image';
@@ -18,6 +17,12 @@ import { homeTabs } from '../navigation';
 import PageLayout from '@/components/PageLayout';
 import moment from 'moment';
 import cn from 'classnames';
+import {
+  Dialog as DialogRoot,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from 'lib/components/ui/dialog';
 
 const TicketWrapper = () => {
   return (
@@ -198,28 +203,80 @@ const SideEventTicket = ({
   );
 };
 
-const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
+const QRCodeModal = ({
+  qrCode,
+  isOpen,
+  onClose,
+  ticket,
+}: {
+  qrCode: string;
+  isOpen: boolean;
+  onClose: () => void;
+  ticket: any;
+}) => {
   return (
-    <div className="relative max-w-[350px]">
-      <Image src={TicketImage} alt="Ticket" />
-      <div className="absolute text-gray-600 top-[25%] left-[9%] mt-1 h-[32%] flex justify-center flex-col">
-        <div className="flex flex-col relative items-start justify-start max-w-[80%]">
-          <div className="font-bold text-[rgba(136,85,204,1)] bg-[rgba(252,252,252,0.7)] self-start text-2xl inline leading-tight">
-            {ticket.attendeeName}
+    <DialogRoot open={isOpen} onOpenChange={onClose}>
+      <DialogContent className="max-w-md p-6">
+        <DialogHeader>
+          <DialogTitle className="text-center">
+            {ticket.attendeeName} - QR Code
+          </DialogTitle>
+        </DialogHeader>
+        <div className="flex flex-col items-center space-y-4">
+          <div className="bg-white p-4 rounded-lg border">
+            <img
+              src={qrCode}
+              alt="QR Code"
+              className="w-64 h-64 object-contain"
+            />
+          </div>
+          {ticket.itemName && (
+            <p className="text-sm text-gray-600 text-center">
+              Ticket type: {ticket.itemName}
+            </p>
+          )}
+        </div>
+      </DialogContent>
+    </DialogRoot>
+  );
+};
+
+const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
+  const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
+
+  return (
+    <>
+      <div className="relative max-w-[350px]">
+        <Image src={TicketImage} alt="Ticket" />
+        <div className="absolute text-gray-600 top-[25%] left-[9%] mt-1 h-[32%] flex justify-center flex-col">
+          <div className="flex flex-col relative items-start justify-start max-w-[80%]">
+            <div className="font-bold text-[rgba(136,85,204,1)] bg-[rgba(252,252,252,0.7)] self-start text-2xl inline leading-tight">
+              {ticket.attendeeName}
+            </div>
+          </div>
+
+          <div className="text-sm mt-1">
+            Ethereum World's Fair <br /> Attendee Ticket
           </div>
         </div>
 
-        <div className="text-sm mt-1">
-          Ethereum World's Fair <br /> Attendee Ticket
-        </div>
+        <img
+          src={qrCodes[ticket.secret]}
+          alt="Ticket QR Code"
+          className="absolute bottom-[15%] right-[8.5%] h-[22%] aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
+          onClick={() => setIsQRCodeModalOpen(true)}
+        />
       </div>
 
-      <img
-        src={qrCodes[ticket.secret]}
-        alt="Ticket QR Code"
-        className="absolute bottom-[15%] right-[8.5%] h-[22%] aspect-square p-1 border border-solid border-gray-300 rounded-sm"
-      />
-    </div>
+      {qrCodes[ticket.secret] && (
+        <QRCodeModal
+          qrCode={qrCodes[ticket.secret]}
+          isOpen={isQRCodeModalOpen}
+          onClose={() => setIsQRCodeModalOpen(false)}
+          ticket={ticket}
+        />
+      )}
+    </>
   );
 };
 
@@ -277,6 +334,8 @@ const TicketTab = RequiresAuthHOC(() => {
   // Use the tickets hook from store
   const { tickets, loading, qrCodes } = useTickets();
   const hasTickets = tickets && tickets.length > 0;
+
+  console.log(tickets, 'tickets');
 
   return (
     <div
