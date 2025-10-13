@@ -6,6 +6,7 @@ import {
   useWallet as useParaWallet,
 } from '@getpara/react-sdk';
 import { useState, useEffect } from 'react';
+import { useUser } from './useUser';
 
 const PRIMARY_PARA_KEY = 'devconnect_para_primary';
 
@@ -18,6 +19,7 @@ export function useParaWalletConnection() {
   const paraAccount = useParaAccount();
   const paraWallet = useParaWallet();
   const { logout, logoutAsync } = useLogout();
+  const { signOut } = useUser();
   
   const [isDisconnecting, setIsDisconnecting] = useState(false);
 
@@ -82,6 +84,7 @@ export function useParaWalletConnection() {
       console.error('❌ [PARA] Para disconnect failed:', error);
       throw error;
     } finally {
+      await signOut();
       setIsDisconnecting(false);
     }
   };
