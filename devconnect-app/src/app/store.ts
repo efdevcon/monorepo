@@ -9,6 +9,7 @@ export interface Ticket {
   attendeeEmail: string;
   price: string;
   itemName: string;
+  addons: any[];
 }
 
 export interface Order {
@@ -42,7 +43,15 @@ export type AppStore = ReturnType<typeof createGlobalStore>;
 export const initGlobalStore = (
   events?: any[],
   userData?: AppState['userData']
-): Omit<AppState, 'setUserData' | 'setFavoriteEvents' | 'setTickets' | 'setTicketsLoading' | 'setQrCodes' | 'logout'> => ({
+): Omit<
+  AppState,
+  | 'setUserData'
+  | 'setFavoriteEvents'
+  | 'setTickets'
+  | 'setTicketsLoading'
+  | 'setQrCodes'
+  | 'logout'
+> => ({
   events: events,
   userData: userData || null,
   tickets: null,
@@ -53,7 +62,12 @@ export const initGlobalStore = (
 export const createGlobalStore = (
   initState: Omit<
     AppState,
-    'setUserData' | 'setFavoriteEvents' | 'setTickets' | 'setTicketsLoading' | 'setQrCodes' | 'logout'
+    | 'setUserData'
+    | 'setFavoriteEvents'
+    | 'setTickets'
+    | 'setTicketsLoading'
+    | 'setQrCodes'
+    | 'logout'
   > = initGlobalStore()
 ) => {
   const storeConfig: StateCreator<AppState> = (set) => ({

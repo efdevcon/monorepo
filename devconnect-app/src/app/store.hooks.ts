@@ -113,12 +113,12 @@ export const fetchTickets = async (
       throw new Error(response.error || 'Failed to fetch tickets');
     }
 
-    const ticketsData = response.data.tickets || [];
-    setTickets(ticketsData);
+    const orderData = response.data.tickets || [];
+    setTickets(orderData);
 
     // Generate QR codes for each ticket
     const newQrCodes: { [key: string]: string } = {};
-    for (const order of ticketsData) {
+    for (const order of orderData) {
       for (const ticket of order.tickets) {
         if (ticket.secret) {
           try {
@@ -131,6 +131,16 @@ export const fetchTickets = async (
               },
             });
             newQrCodes[ticket.secret] = qrDataUrl;
+
+            if (ticket.addons) {
+              for (const addon of ticket.addons) {
+                const qrDataUrl = await QRCode.toDataURL(addon.secret, {
+                  width: 200,
+                  margin: 1,
+                });
+                newQrCodes[addon.secret] = qrDataUrl;
+              }
+            }
           } catch (qrErr) {
             console.error('Error generating QR code:', qrErr);
           }

@@ -32,6 +32,52 @@ const TicketWrapper = () => {
   );
 };
 
+const SwagItems = ({
+  order,
+  ticket,
+  qrCodes,
+}: {
+  order: any;
+  ticket: any;
+  qrCodes: any;
+}) => {
+  const addons = ticket.addons;
+  const [selectedAddon, setSelectedAddon] = useState<any>(null);
+
+  return (
+    <div className="mt-1 grid grid-cols-[repeat(auto-fill,150px)] gap-2 justify-center sm:justify-start">
+      {addons.map((addon: any) => (
+        <div className="shrink-0" key={addon.id}>
+          <div className="flex flex-col gap-4 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
+            <div className="text-sm font-medium">{addon.itemName}</div>
+            <div>
+              <img
+                src={qrCodes[addon.secret]}
+                alt="Ticket QR Code"
+                className="w-[120px] aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => setSelectedAddon(addon)}
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+
+      {selectedAddon !== null && (
+        <QRCodeModal
+          qrCode={qrCodes[selectedAddon.secret]}
+          isOpen={selectedAddon !== null}
+          onClose={() => setSelectedAddon(null)}
+          ticket={{
+            attendeeName: selectedAddon.itemName,
+            itemName: ticket.attendeeName,
+            secret: selectedAddon.secret,
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
 const ConnectedEmails = () => {
   const additionalTicketEmails = useAdditionalTicketEmails();
   const setUserData = useGlobalStore((state) => state.setUserData);
@@ -231,9 +277,7 @@ const QRCodeModal = ({
             />
           </div>
           {ticket.itemName && (
-            <p className="text-sm text-gray-600 text-center">
-              Ticket type: {ticket.itemName}
-            </p>
+            <p className="text-sm font-medium text-center">{ticket.itemName}</p>
           )}
         </div>
       </DialogContent>
@@ -281,10 +325,10 @@ const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
 };
 
 const SideEventTickets = ({
-  tickets,
+  orders,
   qrCodes,
 }: {
-  tickets: any;
+  orders: any;
   qrCodes: any;
 }) => {
   const [dates, setDates] = useState<any>([
@@ -332,10 +376,10 @@ const SideEventTickets = ({
 
 const TicketTab = RequiresAuthHOC(() => {
   // Use the tickets hook from store
-  const { tickets, loading, qrCodes } = useTickets();
-  const hasTickets = tickets && tickets.length > 0;
+  const { tickets: orders, loading, qrCodes } = useTickets();
+  const hasTickets = orders && orders.length > 0;
 
-  console.log(tickets, 'tickets');
+  console.log(orders, 'orders');
 
   return (
     <div
@@ -355,7 +399,7 @@ const TicketTab = RequiresAuthHOC(() => {
             </div>
           )}
 
-          {!loading && tickets.length === 0 && (
+          {!loading && orders.length === 0 && (
             <div className="bg-gray-50 border border-gray-200 text-gray-600 px-4 py-3 rounded">
               No tickets found for your account.
             </div>
@@ -377,7 +421,7 @@ const TicketTab = RequiresAuthHOC(() => {
           <div className="flex flex-col md:flex-row gap-8 lg:items-center items-center">
             {hasTickets && (
               <div className="flex flex-col gap-8 mt-4">
-                {tickets.map((order) => (
+                {orders.map((order) => (
                   <>
                     {order.tickets.map((ticket, idx) => (
                       <Ticket
@@ -391,54 +435,33 @@ const TicketTab = RequiresAuthHOC(() => {
               </div>
             )}
 
-            <SideEventTickets tickets={tickets} qrCodes={qrCodes} />
+            <SideEventTickets orders={orders} qrCodes={qrCodes} />
           </div>
 
-          {/* {hasTickets &&
-            tickets.map((order) => (
-              <>
-                {order.tickets.map((ticket, idx) => (
-                  <div
-                    key={ticket.secret || idx}
-                    className="bg-gray-100 p-3 sm:p-4 border border-solid border-gray-200"
-                  >
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <div className="flex-1">
-                        <div className="font-medium text-lg">
-                          {ticket.attendeeName || 'No name provided'}
-                        </div>
-                        <div className="text-gray-600 text-sm mt-1">
-                          {ticket.attendeeEmail}
-                        </div>
-                        <div className="text-gray-600 text-sm">
-                          Ticket type: {ticket.itemName}
-                        </div>
-                        <div className="text-gray-600 text-sm">
-                          Order code: {order.orderCode}
-                        </div>
-                        {ticket.secret && (
-                          <div className="text-xs text-gray-500 mt-2 font-mono break-all">
-                            {ticket.secret}
-                          </div>
-                        )}
-                      </div>
-                      {ticket.secret && qrCodes[ticket.secret] && (
-                        <div className="flex-shrink-0 self-center sm:self-auto">
-                          <img
-                            src={qrCodes[ticket.secret]}
-                            alt="Ticket QR Code"
-                            className="w-24 h-24 sm:w-32 sm:h-32 border-2 border-gray-300 rounded mx-auto sm:mx-0"
-                          />
-                          <div className="text-xs text-center text-gray-500 mt-1">
-                            Scan at venue
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </>
-            ))} */}
+          <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
+            <div className="text-lg font-semibold">Swag Vouchers</div>
+            <div className="text-sm">
+              Got Devconnect swag with your ticket? Find your vouchers here and
+              claim your items at the Swag Station.
+            </div>
+          </div>
+          <div className="flex flex-col gap-1">
+            {orders.map((order) => {
+              console.log(order, 'order');
+              return (
+                <>
+                  {order.tickets.map((ticket) => (
+                    <SwagItems
+                      order={order}
+                      ticket={ticket}
+                      qrCodes={qrCodes}
+                      key={ticket.secret}
+                    />
+                  ))}
+                </>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
