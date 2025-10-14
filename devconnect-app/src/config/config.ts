@@ -38,7 +38,8 @@ export const AUTHORIZED_SPONSOR_ADDRESSES = [
   '0x5685c438d75d454b44cecfda44b7a942fb2a8814',
   '0x9f7Ba98d2656c95314dD890c5d332cC60a57AE34',
   '0x9eeccbec6120abc6ae16b6dec4e70eee8c7acbbe',
-  '0x2bd84c995ac420aae171e0a4677b73fbfcf43563'
+  '0x2bd84c995ac420aae171e0a4677b73fbfcf43563',
+  '0x6f788bd865c770468651e5587742aa1fefc20b9d'
 ];
 
 // Payment configuration
