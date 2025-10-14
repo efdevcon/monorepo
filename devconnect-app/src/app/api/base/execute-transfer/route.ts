@@ -7,6 +7,7 @@ import {
   USDC_CONTRACT_ADDRESS 
 } from '@/lib/usdc-contract';
 import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
+import { validateSponsorshipPolicy } from '@/config/sponsor-policy';
 
 /**
  * API endpoint to execute USDC transfers using signed authorization
@@ -97,6 +98,22 @@ export async function POST(request: NextRequest) {
         details: sigError instanceof Error ? sigError.message : 'Unknown signature error'
       }, { status: 400 });
     }
+
+    // ⭐ NEW: Validate sponsorship policy
+    console.log('🔒 [POLICY] Validating sponsorship policy...');
+    const policyCheck = validateSponsorshipPolicy(from, BigInt(value), USDC_CONTRACT_ADDRESS);
+    if (!policyCheck.allowed) {
+      console.log('❌ [POLICY] Policy violation:', policyCheck.reason);
+      return NextResponse.json({
+        error: 'Sponsorship policy violation',
+        details: policyCheck.reason,
+        policy: {
+          reason: policyCheck.reason,
+          action: 'Transaction rejected'
+        }
+      }, { status: 403 });
+    }
+    console.log('✅ [POLICY] Policy checks passed');
 
     // Validate signature is a string
     if (typeof signature !== 'string') {
