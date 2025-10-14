@@ -2,8 +2,8 @@ import stores from './pretix-stores-list';
 
 interface PretixItem {
   id: number;
-  name: string | { en: string; [key: string]: string };
-  description?: string | { en: string; [key: string]: string };
+  name: string | { en: string;[key: string]: string };
+  description?: string | { en: string;[key: string]: string };
   category?: string;
   active?: boolean;
   [key: string]: any;
@@ -100,7 +100,7 @@ export async function getPaidTicketsByEmail(
 
           const mainName = mainItemDetails?.name;
           const mainDescription = mainItemDetails?.description;
-          
+
           return {
             secret: position.secret,
             attendeeName: position.attendee_name,
