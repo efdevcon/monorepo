@@ -161,6 +161,13 @@ export function useParaTransaction() {
       if (!executeResponse.ok) {
         const errorData = await executeResponse.json();
         console.error('❌ [PARA_TX] Execution failed:', errorData);
+
+        // Check if this is an EIP-7702 delegation error
+        if (errorData.action === 'clear_delegation') {
+          const errorMsg = `${errorData.message}\n\n✅ SOLUTION: Use the delegation clearing tool (opens automatically). Our backend relayer will clear it for you - NO ETH needed in your wallet!`;
+          throw new Error(errorMsg);
+        }
+
         throw new Error(errorData.error || 'Failed to execute transfer');
       }
 

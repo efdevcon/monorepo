@@ -295,6 +295,13 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         });
         console.error('🔄 [PARA_TX] Authorization message from address:', authData.authorization.message.from);
         console.error('🔄 [PARA_TX] Current connected address:', connectedAddress);
+
+        // Check if this is an EIP-7702 delegation error
+        if (errorData.action === 'clear_delegation') {
+          const errorMsg = `${errorData.message}\n\n✅ SOLUTION: Use the one-click clearing button below. Our backend relayer will clear it for you - NO ETH needed!`;
+          throw new Error(errorMsg);
+        }
+
         throw new Error(errorData.error || 'Failed to execute transfer');
       }
 
