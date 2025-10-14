@@ -22,7 +22,7 @@ export const SPONSOR_POLICY = {
   ],
   
   // Minimum amount (to prevent spam)
-  minTransactionAmount: parseUnits('0.01', 6), // 0.01 USDC minimum
+  minTransactionAmount: parseUnits('0.005', 6), // 0.005 USDC minimum
 } as const;
 
 // In-memory rate limiting tracker (resets on server restart)
