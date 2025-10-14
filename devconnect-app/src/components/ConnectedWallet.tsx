@@ -6,6 +6,7 @@ import {
 } from '@reown/appkit/react';
 import { useSignMessage } from 'wagmi';
 import { ModalStep, useLogout, useModal } from '@getpara/react-sdk';
+import { useViemAccount } from '@getpara/react-sdk/evm';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import Zkp2pOnrampQRCode from '@/components/Zkp2pOnrampQRCode';
@@ -91,6 +92,7 @@ export default function ConnectedWallet() {
   const { signMessageAsync, isPending: wagmiIsSigning } = useSignMessage();
   const { logoutAsync, isPending: isParaLoggingOut } = useLogout();
   const { openModal } = useModal();
+  const { viemAccount } = useViemAccount();
   const router = useRouter();
   const pathname = usePathname();
   // Wallet manager hook for decoupled Para/EOA management
@@ -136,8 +138,9 @@ export default function ConnectedWallet() {
   const isSigning = false;
   const handleSiweSignIn = async () => {};
   const handleSignMessage: any = async (message: string) => {
-    if (isPara && (paraWallet as any)?.signMessage) {
-      return await (paraWallet as any).signMessage(message);
+    if (isPara && viemAccount) {
+      // Use Para SDK's Viem account for signing (same as useParaTransaction)
+      return await viemAccount.signMessage({ message });
     } else {
       return await signMessageAsync({ message });
     }
@@ -427,7 +430,11 @@ export default function ConnectedWallet() {
 
       // Perform the signing
       let signature;
-      if (primaryConnector) {
+      if (isPara && viemAccount) {
+        // Use Para SDK's Viem account for signing (same as useParaTransaction)
+        console.log('🔏 [SIGNING] Using Para SDK Viem account for signing');
+        signature = await viemAccount.signMessage({ message });
+      } else if (primaryConnector) {
         console.log(
           '🔏 [SIGNING] Using primary connector:',
           primaryConnector.id
@@ -461,11 +468,28 @@ export default function ConnectedWallet() {
         signatureLength: signature.length,
       });
 
-      // Show success toast
-      showSuccessToast(
-        '✅ Message Signed!',
-        `Using ${primaryConnector?.name || 'wallet'}`,
-        3000
+      // Show success toast with signature
+      toast.success(
+        <div className="space-y-2">
+          <div className="font-semibold text-green-800">✅ Message Signed!</div>
+          <div className="text-sm text-green-700">
+            Using {primaryConnector?.name || 'wallet'}
+          </div>
+          <div className="text-xs text-green-600 break-all font-mono bg-green-50 p-2 rounded border border-green-200">
+            {truncatedSig}
+          </div>
+        </div>,
+        {
+          duration: 5000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+            border: '1px solid #bbf7d0',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
       );
 
       // Reset state after success
