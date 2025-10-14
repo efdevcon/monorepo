@@ -168,7 +168,15 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
     if (!file) return
 
     // Validate file type (images, PDFs, etc.)
-    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'application/pdf', 'text/plain']
+    const validTypes = [
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/webp',
+      'application/pdf',
+      'text/plain',
+      'image/svg+xml',
+    ]
     if (!validTypes.includes(file.type)) {
       addNotification('error', 'Please select a valid file type (image, PDF, or text)')
       return
@@ -596,7 +604,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
             ? 'Form is locked 🔒 - view only'
             : fields.filter(field => field.mode === 'edit').some(field => field.value && field.value.trim() !== '')
             ? 'Update your information'
-            : 'Submit your information'}
+            : 'Update your information'}
         </p>
       </div>
 
@@ -635,6 +643,34 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               >
                 {isOk ? '' : 'All fields are now read-only.'}
               </p>
+              {pageName === 'accreditation' && descriptionLinks['accreditation claiming guide'] && (
+                <div style={{ marginTop: '1rem' }}>
+                  <a
+                    href={descriptionLinks['accreditation claiming guide']}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: 'inline-block',
+                      padding: '0.5rem 1rem',
+                      backgroundColor: '#28a745',
+                      color: 'white',
+                      textDecoration: 'none',
+                      borderRadius: '6px',
+                      fontSize: '0.9rem',
+                      fontWeight: '500',
+                      transition: 'background-color 0.2s ease',
+                    }}
+                    onMouseEnter={e => {
+                      e.currentTarget.style.backgroundColor = '#218838'
+                    }}
+                    onMouseLeave={e => {
+                      e.currentTarget.style.backgroundColor = '#28a745'
+                    }}
+                  >
+                    View Accreditation Claiming Guide
+                  </a>
+                </div>
+              )}
             </div>
           )}
 
@@ -1040,7 +1076,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                               Drag and drop a file here, or click to select
                             </p>
                             <p style={{ margin: '0.25rem 0 0 0', fontSize: '0.8rem', color: '#999' }}>
-                              Supports: Images, PDFs, Text files (max 20MB)
+                              Supports: Images or PDFs (max 20MB)
                             </p>
                           </div>
                         )}
@@ -1342,12 +1378,12 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                   disabled={isSubmitting}
                 >
                   {isSubmitting
-                    ? 'Submitting...'
+                    ? 'Updating...'
                     : fields
                         .filter(field => field.mode === 'edit')
                         .some(field => field.value && field.value.trim() !== '')
                     ? 'Update'
-                    : 'Submit'}
+                    : 'Update'}
                 </button>
               </div>
             )}
@@ -1914,6 +1950,174 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
             }}
           >
             🛡️ View Insurance Guide
+          </a>
+        </div>
+      )}
+
+      {/* Quest Guides - Only show for quest pages with successful data load */}
+      {pageName === 'quest' &&
+        fields.length > 0 &&
+        (descriptionLinks['poap creation guide'] || descriptionLinks['supporter quest documentation']) && (
+          <div
+            style={{
+              marginTop: '3rem',
+              padding: '2rem',
+              backgroundColor: '#f8f9fa',
+              borderRadius: '8px',
+              border: '1px solid #e9ecef',
+              textAlign: 'center',
+            }}
+          >
+            <h3
+              style={{
+                margin: '0 0 1rem 0',
+                fontSize: '1.2rem',
+                fontWeight: '600',
+                color: '#333',
+              }}
+            >
+              Need Help with Quests?
+            </h3>
+            <p
+              style={{
+                margin: '0 0 1rem 0',
+                color: '#666',
+                fontSize: '1.3rem',
+              }}
+            >
+              <b style={{ color: '#000' }}>⚠️ Don't forget to submit your POAP before the Oct 24th deadline 🗓️</b>
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+              {descriptionLinks['poap creation guide'] && (
+                <a
+                  href={descriptionLinks['poap creation guide']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#968cff',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = '#473e6b'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = '#968cff'
+                  }}
+                >
+                  <img
+                    src="https://poap.xyz/apple-touch-icon.png"
+                    alt=""
+                    style={{
+                      width: '20px',
+                      height: '20px',
+                      borderRadius: '4px',
+                    }}
+                  />
+                  <span>POAP Creation Guide</span>
+                </a>
+              )}
+              {descriptionLinks['supporter quest documentation'] && (
+                <a
+                  href={descriptionLinks['supporter quest documentation']}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '0.75rem 1.5rem',
+                    backgroundColor: '#007bff',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '6px',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    transition: 'background-color 0.2s ease',
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.backgroundColor = '#0056b3'
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.backgroundColor = '#007bff'
+                  }}
+                >
+                  📖 Supporter Quest Documentation
+                </a>
+              )}
+            </div>
+            <p
+              style={{
+                margin: '1rem 0 0 0',
+                color: '#666',
+                fontSize: '1rem',
+              }}
+            >
+              👆 <b>Design template</b> available in the POAP Creation Guide.
+            </p>
+          </div>
+        )}
+
+      {/* supporter quest documentation - Only show for supporter pages with successful data load */}
+      {pageName === 'supporter' && descriptionLinks['supporter quest documentation'] && fields.length > 0 && (
+        <div
+          style={{
+            marginTop: '3rem',
+            padding: '2rem',
+            backgroundColor: '#f8f9fa',
+            borderRadius: '8px',
+            border: '1px solid #e9ecef',
+            textAlign: 'center',
+          }}
+        >
+          <h3
+            style={{
+              margin: '0 0 1rem 0',
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#333',
+            }}
+          >
+            Need Help with Supporter Quests?
+          </h3>
+          <p
+            style={{
+              margin: '0 0 1.5rem 0',
+              color: '#666',
+              fontSize: '1rem',
+            }}
+          >
+            Check out our Supporter Quest Documentation for detailed instructions and support.
+          </p>
+          <a
+            href={descriptionLinks['supporter quest documentation']}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-block',
+              padding: '0.75rem 1.5rem',
+              backgroundColor: '#007bff',
+              color: 'white',
+              textDecoration: 'none',
+              borderRadius: '6px',
+              fontSize: '1rem',
+              fontWeight: '500',
+              transition: 'background-color 0.2s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.backgroundColor = '#0056b3'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.backgroundColor = '#007bff'
+            }}
+          >
+            📖 View Supporter Quest Documentation
           </a>
         </div>
       )}

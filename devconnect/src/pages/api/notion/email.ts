@@ -132,7 +132,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         body: JSON.stringify({
           email: cleanedProperties.Email,
           name: cleanedProperties.Name,
-          // accreditationLink: cleanedProperties.Accreditation
           accreditationLink: cleanedProperties.Accreditation
         })
       })

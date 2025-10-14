@@ -1,14 +1,6 @@
 import type { Supporter } from '@/types/api-data';
 
 export const supportersData: Record<string, Supporter> = {
-  "254638cdc41580fc88aff47f153f0674": {
-    "name": "???",
-    "layerName": "",
-    "logo": "",
-    "description": "",
-    "districtId": "6",
-    "locationId": "4"
-  },
   "25d638cdc41580279504c4b4182f7f7b": {
     "name": "0xbow / Privacy Pools",
     "layerName": "0xbow-privacy-pools",
@@ -20,26 +12,26 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
     "layerName": "1inch",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-09-29T19-12-20-661Z-1inch.png",
-    "description": "The 1inch Network unites decentralized protocols whose synergy enables the most lucrative, fastest and protected operations in the DeFi space.",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T11-30-04-598Z-new-brand-logo.svg",
+    "description": "",
     "districtId": "3",
     "locationId": "1"
   },
   "254638cdc41580fc975fe3023c8f17f0": {
     "name": "Aave",
     "layerName": "aave",
-    "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png",
-    "description": "Earn, borrow, save, and swap. Trusted by millions of users.",
+    "logo": "",
+    "description": "",
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc41580b0bd59e6e5713b80f0": {
+  "287638cdc41580098b24fecdc95bee77": {
     "name": "Ai 8",
     "layerName": "ai-8",
     "logo": "",
     "description": "",
     "districtId": "1",
-    "locationId": "1"
+    "locationId": null
   },
   "254638cdc41580be910bd11367d15f83": {
     "name": "Ambire",
@@ -124,7 +116,7 @@ export const supportersData: Record<string, Supporter> = {
   "24e638cdc41580c1b782c738fb082f8d": {
     "name": "Celo",
     "layerName": "celo",
-    "logo": "https://storage.googleapis.com/zapper-fi-assets/tokens/celo/0x471ece3750da237f93b8e339c536989b8978a438.png",
+    "logo": "",
     "description": "",
     "districtId": "6",
     "locationId": "4"
@@ -132,16 +124,16 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415801e9439fd63fd5c6ea7": {
     "name": "Chrom.AR",
     "layerName": "chromar",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-12T23-07-19-270Z-logo_split.svg",
+    "description": "SPARK-A1 is a Web3 Copilot",
     "districtId": "1",
     "locationId": "1"
   },
   "254638cdc41580aa8942da33c92a78de": {
     "name": "CoW Swap",
     "layerName": "cow-swap",
-    "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2Fcow-swap.png",
-    "description": "CoW Swap finds the lowest prices from all decentralized exchanges and DEX aggregators & saves you more with p2p trading and protection from MEV.",
+    "logo": "",
+    "description": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -153,6 +145,14 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "5",
     "locationId": "1"
   },
+  "25d638cdc415804a9c62c16ba4f111e9": {
+    "name": "Dark Forest Punk",
+    "layerName": "dark-forest-punk",
+    "logo": "",
+    "description": "",
+    "districtId": "4",
+    "locationId": "3"
+  },
   "25d638cdc41580bd9e2ce3ec369ee233": {
     "name": "DeFi Saver",
     "layerName": "defi-saver",
@@ -160,14 +160,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "3",
     "locationId": "1"
-  },
-  "25d638cdc415804a9c62c16ba4f111e9": {
-    "name": "DFArchon (DarkForest)",
-    "layerName": "dfarchon-darkforest",
-    "logo": "",
-    "description": "",
-    "districtId": "4",
-    "locationId": "3"
   },
   "25d638cdc415807883a8eb0f08d1c9c4": {
     "name": "Dipe",
@@ -178,16 +170,16 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "272638cdc41580f9a607f340a8c64a30": {
-    "name": "Edge & Node",
-    "layerName": "edge-node",
+    "name": "Edge & Node / The Graph",
+    "layerName": "edge-node-the-graph",
     "logo": "",
     "description": "",
     "districtId": "3",
     "locationId": null
   },
   "254638cdc4158098bc20c52a9ec59c9a": {
-    "name": "Eliza",
-    "layerName": "eliza",
+    "name": "elizaOS",
+    "layerName": "elizaos",
     "logo": "",
     "description": "",
     "districtId": "1",
@@ -212,8 +204,8 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580a798dddcbb06526414": {
     "name": "Ethereum Follow Protocol (EFP)",
     "layerName": "ethereum-follow-protocol-efp",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-11T17-38-49-709Z-efp-logo.svg",
+    "description": "Ethereum Follow Protocol (EFP) is an onchain social graph protocol for Ethereum accounts that complements ENS.",
     "districtId": "8",
     "locationId": "1"
   },
@@ -228,8 +220,8 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415802c97d8f585214603ad": {
     "name": "Farcaster",
     "layerName": "farcaster",
-    "logo": "https://storage.googleapis.com/zapper-fi-assets/apps%2FFarcaster.png",
-    "description": "A sufficiently decentralized social network.",
+    "logo": "",
+    "description": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -263,14 +255,6 @@ export const supportersData: Record<string, Supporter> = {
     "logo": "",
     "description": "",
     "districtId": "5",
-    "locationId": "1"
-  },
-  "25d638cdc415803cba59c384174881d9": {
-    "name": "Gaia",
-    "layerName": "gaia",
-    "logo": "",
-    "description": "",
-    "districtId": "1",
     "locationId": "1"
   },
   "25d638cdc415806eb73bf318bb8c34b0": {
@@ -308,8 +292,8 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158001aa64dc7af6b20f22": {
     "name": "Holonym",
     "layerName": "holonym",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T10-52-43-393Z-Brand=human.tech,%20Type=Default.svg",
+    "description": "Holonym’s mission is the foundation of natural digital rights for privacy, security, and data ownership. human.tech is a project by Holonym to proliferate humanistic technology through applied cryptography.",
     "districtId": "7",
     "locationId": "3"
   },
@@ -348,17 +332,17 @@ export const supportersData: Record<string, Supporter> = {
   "256638cdc4158065920eceb5c35f4116": {
     "name": "Morpho",
     "layerName": "morpho",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T11-32-42-750Z-Morpho-with-background-logo%20(6)%201.png",
+    "description": "Morpho is the universal lending network with $12B+ in deposits. ",
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc41580beba63e0cfa4a340d8": {
+  "25d638cdc415803cba59c384174881d9": {
     "name": "Nethermind",
     "layerName": "nethermind",
     "logo": "",
     "description": "",
-    "districtId": "5",
+    "districtId": "1",
     "locationId": "1"
   },
   "25d638cdc415801d84b8ebe461e4ac20": {
@@ -384,6 +368,14 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "7",
     "locationId": "3"
+  },
+  "254638cdc41580fc88aff47f153f0674": {
+    "name": "Obol",
+    "layerName": "obol",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
+    "locationId": "4"
   },
   "254638cdc41580bbb285dfd0c726271a": {
     "name": "Octant",
@@ -458,12 +450,20 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "25d638cdc415803ba79cfdf2f7353ded": {
-    "name": "Privacy 7",
-    "layerName": "privacy-7",
+    "name": "Privacy 7 - PSE",
+    "layerName": "privacy-7-pse",
     "logo": "",
     "description": "",
     "districtId": "7",
     "locationId": "3"
+  },
+  "287638cdc415803580f1feed1fd67f6a": {
+    "name": "Privacy 8 TBD",
+    "layerName": "privacy-8-tbd",
+    "logo": "",
+    "description": "",
+    "districtId": "7",
+    "locationId": null
   },
   "256638cdc4158003aadde80270c59050": {
     "name": "R3alblocks",
@@ -474,8 +474,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "25d638cdc415806c9d25e537edf97b24": {
-    "name": "Radicle / DRIP ",
-    "layerName": "radicle-drip-",
+    "name": "Radicle / DRIP",
+    "layerName": "radicle-drip",
     "logo": "",
     "description": "",
     "districtId": "8",
@@ -511,6 +511,14 @@ export const supportersData: Record<string, Supporter> = {
     "logo": "",
     "description": "",
     "districtId": "3",
+    "locationId": null
+  },
+  "284638cdc4158082b4f5eb3ce920eb59": {
+    "name": "Rise",
+    "layerName": "rise",
+    "logo": "",
+    "description": "",
+    "districtId": "6",
     "locationId": null
   },
   "256638cdc41580709456cb1417e645eb": {
@@ -604,8 +612,8 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415803cbc84cffd81127c5d": {
     "name": "ZKP2P",
     "layerName": "zkp2p",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T10-24-38-472Z-zkp2p%20logo.png",
+    "description": "ZKP2P is a peer-to-peer, non-custodial protocol that enables seamless crypto <> fiat on/off ramping powered by zero-knowledge proofs. ",
     "districtId": "3",
     "locationId": "1"
   },
@@ -624,5 +632,13 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "8",
     "locationId": null
+  },
+  "25d638cdc41580b0bd59e6e5713b80f0": {
+    "name": "Zyfai",
+    "layerName": "zyfai",
+    "logo": "",
+    "description": "",
+    "districtId": "1",
+    "locationId": "1"
   }
 };

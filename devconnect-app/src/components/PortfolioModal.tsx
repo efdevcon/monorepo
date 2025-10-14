@@ -51,13 +51,15 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
   const lastLoadedAddress = useRef<string | null>(null);
   const isFetchingRef = useRef(false);
 
-  // Local storage key based on address
-  const storageKey = address ? `portfolio_${address}` : null;
-  const [cachedPortfolioData, setCachedPortfolioData] =
-    useLocalStorage<PortfolioData | null>(
-      storageKey || 'portfolio_default',
-      null
-    );
+  // Global portfolio cache with address-based keys
+  const [portfolioCache, setPortfolioCache] = useLocalStorage<
+    Record<string, PortfolioData>
+  >('portfolio', {});
+
+  // Get cached portfolio for current address
+  const cachedPortfolioData = address?.toLowerCase()
+    ? portfolioCache[address.toLowerCase()] || null
+    : null;
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -69,83 +71,85 @@ export default function PortfolioModal({ address }: PortfolioModalProps) {
     // Don't clear data when closing to preserve cache
   };
 
-  // Fetch portfolio data
-  const fetchPortfolioData = useCallback(
-    async (forceRefresh = false) => {
-      const currentAddress = address;
-      if (!currentAddress) return;
+  // Fetch portfolio data - auto-fetches once if no cache, or manual refresh
+  const fetchPortfolioData = useCallback(async () => {
+    const currentAddress = address;
+    if (!currentAddress) return;
 
-      // If we have cached data and not forcing refresh, use cached data
-      if (cachedPortfolioData && !forceRefresh) {
-        setPortfolioData(cachedPortfolioData);
-        lastLoadedAddress.current = currentAddress;
-        return;
+    // Prevent concurrent API calls
+    if (isFetchingRef.current) {
+      return;
+    }
+
+    isFetchingRef.current = true;
+    setIsFetching(true);
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const addressKey = currentAddress.toLowerCase();
+      console.log('🌐 [PORTFOLIO_MODAL] Fetching from API');
+
+      const response = await fetch('/api/portfolio', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address: addressKey }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch portfolio data');
       }
 
-      // Prevent concurrent API calls
-      if (isFetchingRef.current) {
-        return;
-      }
+      const data = await response.json();
+      setPortfolioData(data);
 
-      // Prevent duplicate calls for the same address unless forcing refresh
-      if (lastLoadedAddress.current === currentAddress && !forceRefresh) {
-        return;
-      }
+      // Save to global portfolio cache with address as key
+      setPortfolioCache((prev) => ({
+        ...prev,
+        [addressKey]: data,
+      }));
 
-      isFetchingRef.current = true;
-      setIsFetching(true);
-      setIsLoading(true);
-      setError(null);
+      lastLoadedAddress.current = currentAddress;
+    } catch (err) {
+      console.error('Error fetching portfolio data:', err);
+      setError(
+        err instanceof Error ? err.message : 'Failed to fetch portfolio data'
+      );
+    } finally {
+      setIsLoading(false);
+      setIsFetching(false);
+      isFetchingRef.current = false;
+    }
+  }, [address, setPortfolioCache]);
 
-      try {
-        const response = await fetch('/api/portfolio', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ address: currentAddress }),
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to fetch portfolio data');
-        }
-
-        const data = await response.json();
-        setPortfolioData(data);
-        setCachedPortfolioData(data);
-        lastLoadedAddress.current = currentAddress;
-      } catch (err) {
-        console.error('Error fetching portfolio data:', err);
-        setError(
-          err instanceof Error ? err.message : 'Failed to fetch portfolio data'
-        );
-      } finally {
-        setIsLoading(false);
-        setIsFetching(false);
-        isFetchingRef.current = false;
-      }
-    },
-    [address, cachedPortfolioData]
-  );
-
-  // Manual refresh function
+  // Manual refresh function to update existing data
   const handleRefresh = async () => {
     setIsRefreshing(true);
-    await fetchPortfolioData(true);
+    await fetchPortfolioData();
     setIsRefreshing(false);
   };
 
+  // Load cached data when modal opens, or auto-fetch once if no cache
   useEffect(() => {
-    if (isOpen && address) {
-      // Only fetch if we don't have cached data for this address
-      if (!cachedPortfolioData) {
-        fetchPortfolioData();
-      } else {
-        // Use cached data if available
-        setPortfolioData(cachedPortfolioData);
-        lastLoadedAddress.current = address;
-      }
+    if (!isOpen || !address) return;
+
+    if (cachedPortfolioData) {
+      // Use cached data if available
+      console.log('📦 [PORTFOLIO_MODAL] Loading from cache');
+      setPortfolioData(cachedPortfolioData);
+      lastLoadedAddress.current = address;
+    } else if (
+      !isFetchingRef.current &&
+      lastLoadedAddress.current !== address
+    ) {
+      // Auto-fetch once if no cached data (first time only)
+      console.log(
+        '📡 [PORTFOLIO_MODAL] No cache found, auto-fetching (first time)'
+      );
+      fetchPortfolioData();
     }
   }, [isOpen, address, cachedPortfolioData, fetchPortfolioData]);
 

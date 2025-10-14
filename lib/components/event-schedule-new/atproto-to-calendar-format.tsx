@@ -58,12 +58,8 @@ export const atprotoToCalendarFormat = (event: any) => {
 
   const manualOverrides = {} as any;
 
+  // eth day event
   if (event.id === 84) {
-    // 29 = ETH DAY
-    // 23 = COWORKING
-    // manualOverrides.spanRows = 5;
-    console.log(event, "event");
-    console.log("manual override for coworking");
     manualOverrides.spanRows = 2;
   }
 
@@ -90,6 +86,7 @@ export const atprotoToCalendarFormat = (event: any) => {
     instagramHandle: socials.instagram_url || "",
     farcasterHandle: socials.farcaster_url || "",
     soldOut: event.sold_out || false,
+    categories: event.categories || [],
     ...manualOverrides,
   };
 };

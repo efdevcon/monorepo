@@ -1,0 +1,36 @@
+.loopingHeader {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: rgba(58, 54, 94, 1);
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.scrollContainer {
+  display: flex;
+  width: fit-content;
+  animation: scroll 3s linear infinite;
+  will-change: transform;
+}
+
+.itemGroup {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 2rem;
+  padding: 0.5rem 1rem;
+}
+
+.item {
+  flex-shrink: 0;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}

@@ -130,7 +130,8 @@ const Tabs = ({
             isActive = idx === activeIndex;
           }
 
-          return (
+          const hasHref = tab.href && tab.href !== '';
+          const tabBody = (
             <button
               key={tab.label}
               type="button"
@@ -143,7 +144,7 @@ const Tabs = ({
                   : 'rounded-xs',
                 tab.labelIcon && 'pl-2'
               )}
-              onClick={() => handleTabClick(tab, idx)}
+              onClick={hasHref ? undefined : () => handleTabClick(tab, idx)}
             >
               <div
                 className={cn(
@@ -156,6 +157,16 @@ const Tabs = ({
               </div>
             </button>
           );
+
+          if (hasHref) {
+            return (
+              <Link href={tab.href || ''} key={tab.label}>
+                {tabBody}
+              </Link>
+            );
+          } else {
+            return tabBody;
+          }
         })}
       </div>
     </div>
@@ -198,16 +209,11 @@ export default function PageLayout({
               <div
                 data-page="Header"
                 className={cn(
-                  'w-full shrink-0 relative flex flex-col items-start transition-transform text-white translate-y-[0px] duration-300 px-4 gap-5 sticky top-0 z-[999998]',
-                  isScrolled ? '!translate-y-[-10px] !text-black' : ''
+                  'w-full shrink-0 relative flex flex-col items-start gradient-header transition-transform text-white translate-y-[0px] duration-300 px-4 gap-5 sticky top-0 z-[999998]',
+                  isScrolled ? '!translate-y-[-10px] !text-black !bg-white' : ''
                 )}
                 style={{
-                  background: isScrolled
-                    ? 'white'
-                    : `radial-gradient(196.3% 65.93% at 98.09% -7.2%, rgba(246, 180, 14, 0.30) 0%, rgba(246, 180, 14, 0.00) 100%),
-            radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.20) 0%, rgba(36, 36, 54, 0.00) 100%),
-            linear-gradient(263deg, rgba(246, 180, 14, 0.30) 2.9%, rgba(45, 45, 66, 0.30) 58.72%, rgba(36, 36, 54, 0.30) 100.39%),
-            linear-gradient(98deg, rgba(116, 172, 223, 0.80) -7.48%, rgba(73, 129, 180, 0.80) 43.5%, rgba(255, 133, 166, 0.80) 122.37%)`,
+                  background: isScrolled ? 'white' : ``,
                   backgroundBlendMode: 'normal, normal, overlay, normal',
                   backdropFilter: isScrolled ? 'blur(0px)' : 'blur(4px)',
                   paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
@@ -334,9 +340,9 @@ export default function PageLayout({
                 <div className="h-[45px] my-2 ml-6 text-lg font-bold">
                   {title}
                 </div>
-                <div className="flex-1 border border-solid border-[#8855CC26] rounded-sm h-[fit-content] relative">
+                <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (
-                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky top-0 bg-white rounded-t-sm z-[100]">
+                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky rounded-t-sm top-0 bg-white z-[100]">
                       <Tabs
                         tabs={tabs}
                         activeIndex={activeIndex}

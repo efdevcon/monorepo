@@ -67,6 +67,7 @@ html {
   overscroll-behavior-y: contain;
   -webkit-overflow-scrolling: touch;
   width: 100vw;
+  color: rgba(53, 53, 72, 1);
   /* --content-width: 1680px; */
   /* font-family: var(--font-geist-sans); */
 }
@@ -236,7 +237,8 @@ input, textarea {
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background;
+    color: rgba(53, 53, 72, 1);
   }
 }
 
@@ -314,4 +316,41 @@ svg.icon {
 
 .tippy-popper {
   z-index: 10000000000000 !important;
+}
+
+.gradient-background {
+  background: linear-gradient(360deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%);
+}
+
+.gradient-header {
+  background:
+  radial-gradient(53.19% 190.92% at 102.42% -18.87%, rgba(246, 180, 14, 0.5) 0%, rgba(246, 180, 14, 0) 100%),
+  radial-gradient(71.21% 71.21% at 50% 71.21%, rgba(36, 36, 54, 0.2) 0%, rgba(36, 36, 54, 0) 100%),
+  radial-gradient(49.87% 131.91% at 50.13% 52.83%, rgba(36, 36, 54, 0.11) 0%, rgba(45, 45, 66, 0.11) 70.05%, rgba(45, 45, 66, 0) 100%),
+  linear-gradient(90.94deg, #74ACDF -26.73%, #165A8D 50.61%, #FF85A6 126.73%);
+background-blend-mode: overlay;
+}
+
+.basic-button {
+  height: 40px;
+
+  @apply text-sm font-medium flex justify-center items-center gap-2 px-6;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+
+  
+  &.blue {
+    background-color: rgba(0, 115, 222, 1);
+    color: white;
+
+    &:hover {
+      background-color: rgba(0, 115, 222, 0.8);
+    }
+  }
+
+  &.green {
+    background-color: rgba(0, 115, 222, 1);
+    color: white;
+  }
 }

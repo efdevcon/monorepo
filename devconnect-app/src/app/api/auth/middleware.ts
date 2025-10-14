@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { createClient, type User } from '@supabase/supabase-js'
-import { jwtVerify, createRemoteJWKSet } from 'jose'
+import { NextRequest, NextResponse } from 'next/server';
+import { createClient, type User } from '@supabase/supabase-js';
+import { jwtVerify, createRemoteJWKSet } from 'jose';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL || process.env.SUPABASE_URL;
+const supabaseAnonKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY;
 
 // Define Para JWKS URLs based on environment
 const PARA_JWKS_URLS = {
@@ -41,45 +43,44 @@ interface ParaJwtPayload {
   sub: string;
 }
 
-export type AuthResult = 
+export type AuthResult =
   | { success: true; user: User }
-  | { success: false; error: NextResponse }
+  | { success: false; error: NextResponse };
 
-export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
+export type AuthResultWithHeaders =
+  | { success: true; user: User }
+  | { success: false; error: string };
+
+// Core verification logic that works with any headers-like object
+async function verifyAuthCore(
+  authHeader: string | null,
+  authMethod: string | null
+): Promise<AuthResultWithHeaders> {
   // Check Supabase configuration
   if (!supabaseUrl || !supabaseAnonKey) {
     return {
       success: false,
-      error: NextResponse.json({ 
-        error: 'Supabase configuration missing' 
-      }, { status: 500 })
-    }
+      error: 'Supabase configuration missing',
+    };
   }
 
-  const supabase = createClient(supabaseUrl, supabaseAnonKey)
-  
-  // Get the authorization header
-  const authHeader = request.headers.get('authorization')
-  
+  const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return {
       success: false,
-      error: NextResponse.json({ 
-        error: 'Authorization header required' 
-      }, { status: 401 })
-    }
+      error: 'Authorization header required',
+    };
   }
 
-  const token = authHeader.replace('Bearer ', '')
-  
-  // Check the auth method header to determine verification strategy
-  const authMethod = request.headers.get('x-auth-method')
+  const token = authHeader.replace('Bearer ', '');
 
   if (authMethod === 'para') {
     // Verify as Para JWT
     try {
       // Get JWKS URL based on environment
-      const env = (process.env.PARA_ENVIRONMENT || 'prod') as keyof typeof PARA_JWKS_URLS;
+      const env = (process.env.PARA_ENVIRONMENT ||
+        'prod') as keyof typeof PARA_JWKS_URLS;
       const jwksUrl = PARA_JWKS_URLS[env];
       const JWKS = createRemoteJWKSet(new URL(jwksUrl));
 
@@ -89,7 +90,8 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
       });
 
       // If Para JWT verification succeeds, create a mock user object
-      const email = payload.data.email || `${payload.data.userId}@para-fallback.com`;
+      const email =
+        payload.data.email || `${payload.data.userId}@para-fallback.com`;
       const paraUser: User = {
         id: payload.data.userId,
         email,
@@ -109,35 +111,69 @@ export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
 
       return {
         success: true,
-        user: paraUser
+        user: paraUser,
       };
     } catch (paraError) {
       console.log('Para JWT verification failed:', paraError);
       return {
         success: false,
-        error: NextResponse.json({
-          error: 'Invalid or expired Para JWT token'
-        }, { status: 401 })
-      }
+        error: 'Invalid or expired Para JWT token',
+      };
     }
   } else {
     // Verify as Supabase JWT
-    const { data: { user }, error: authError } = await supabase.auth.getUser(token)
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser(token);
 
     if (authError || !user) {
       return {
         success: false,
-        error: NextResponse.json({
-          error: 'Invalid or expired Supabase token'
-        }, { status: 401 })
-      }
+        error: 'Invalid or expired Supabase token',
+      };
     }
 
     console.log('Supabase user:', user);
 
     return {
       success: true,
-      user
-    }
+      user,
+    };
   }
+}
+
+// For use with NextRequest (API routes, middleware)
+export async function verifyAuth(request: NextRequest): Promise<AuthResult> {
+  const authHeader = request.headers.get('authorization');
+  const authMethod = request.headers.get('x-auth-method');
+
+  const result = await verifyAuthCore(authHeader, authMethod);
+
+  if (!result.success) {
+    return {
+      success: false,
+      error: NextResponse.json(
+        { error: result.error },
+        {
+          status: result.error.includes('configuration') ? 500 : 401,
+        }
+      ),
+    };
+  }
+
+  return result;
+}
+
+// For use with Headers from Server Components (layouts, pages)
+export async function verifyAuthWithHeaders(
+  headers: Headers
+): Promise<AuthResultWithHeaders> {
+  const authHeader = headers.get('authorization');
+  const authMethod = headers.get('x-auth-method');
+
+  console.log(authHeader, 'authHeader');
+  console.log(authMethod, 'authMethod');
+
+  return verifyAuthCore(authHeader, authMethod);
 }

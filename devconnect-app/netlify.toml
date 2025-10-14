@@ -12,3 +12,4 @@
 
 [build.environment]
 PNPM_FLAGS = "--filter devconnect-app..."
+NODE_OPTIONS = "--max-old-space-size=4096"

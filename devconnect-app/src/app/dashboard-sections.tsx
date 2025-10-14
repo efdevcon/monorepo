@@ -5,35 +5,63 @@ import NoEventsImage from 'lib/components/event-schedule-new/images/404.png';
 import moment from 'moment';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
-import { useWalletManager } from '@/hooks/useWalletManager';
 import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useGlobalStore } from './store.provider';
+import styles from './dashboard-sections.module.scss';
+import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
+
+export const LoopingHeader = () => {
+  const items = [
+    'Nov 17 - 22, 2025',
+    'La Rural, Buenos Aires, Argentina',
+    '15,000+ attendees',
+    '80+ applications',
+  ];
+
+  return (
+    <div className="bg-[rgba(58,54,94,1)] text-white md:border-b md:bg-white md:text-black w-screen mb-4 py-2">
+      <InfiniteScroll nDuplications={4} speed="100s">
+        <div className="flex flex-row">
+          {items.map((item, j) => (
+            <div className="shrink-0 ml-6" key={j}>
+              {item}
+            </div>
+          ))}
+        </div>
+      </InfiniteScroll>
+    </div>
+  );
+};
 
 export function WelcomeSection() {
-  const { email } = useWalletManager();
+  const email = useGlobalStore((state) => state.userData?.email);
   const now = useNow();
   const dummyEmail = email || 'Anon';
   const buenosAiresTime = moment(now).utc().subtract(3, 'hours');
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 mb-4">
-      <div className="flex justify-between w-full gap-2">
-        <div className="text-2xl font-semibold bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
+    <div className="flex flex-col items-start justify-start gap-2 mb-4 mx-4">
+      <div className="flex justify-between w-full  gap-1">
+        <div className="text-2xl font-semibold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
-        <div className="font-semibold text-sm">
+        <div className="font-semibold text-xs text-neutral-600">
           {formattedDate} Buenos Aires (GMT-3)
         </div>
       </div>
-      <div className="text-xl font-bold">{dummyEmail}</div>
-      <div>Welcome to the Ethereum World&apos;s Fair! </div>
+      <div className="text-lg leading-tight font-medium mt-2">{dummyEmail}</div>
+      <div className="font-medium leading-tight">
+        Welcome to the Ethereum World&apos;s Fair!{' '}
+      </div>
     </div>
   );
 }
 
 export function TodaysSchedule() {
+  const email = useGlobalStore((state) => state.userData?.email);
   const events = useEvents();
   const [favorites] = useFavorites();
   const [selectedEvent, setSelectedEvent] = useState<any>(null);
@@ -42,15 +70,17 @@ export function TodaysSchedule() {
     favorites.includes(event.id.toString())
   );
 
-  const hasEventsToShow = events.length > 0;
+  const hasEventsToShow = filteredEvents.length > 0;
+
+  console.log(hasEventsToShow, 'hasEventsToShow');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border border-[rgba(234,234,234,1)]">
+    <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)]">
       <div className="flex w-full items-center justify-between gap-2">
         <p className="font-semibold">Today&apos;s Schedule</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
       </div>
-      <p className="text-xs mb-2">
+      <p className="text-sm mb-2">
         These are your recommended events for today. Build your own schedule by
         adding events to your favorites.
       </p>
@@ -93,11 +123,19 @@ export function TodaysSchedule() {
         </div>
       )}
 
-      <Link href="/schedule">
-        <Button size="sm" className="w-full md:w-auto self-start mt-2">
+      <Link href="/schedule" className="w-full md:w-auto self-start mt-2">
+        <Button size="sm" className="w-full" color="green-1">
           View full Schedule
         </Button>
       </Link>
+
+      {email && (
+        <Link href="/schedule" className="w-full md:w-auto self-start mt-1">
+          <Button size="sm" className="w-full">
+            View Tickets
+          </Button>
+        </Link>
+      )}
     </div>
   );
 }

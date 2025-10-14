@@ -6,6 +6,7 @@ import filterCss from "./filter.module.scss";
 import Link from "lib/components/link/Link";
 import layoutCss from "./layout-app.module.scss";
 import cn from "classnames";
+import { withParcnetProvider } from "./zupass/zupass";
 // import TicketPurple from "lib/assets/icons/ticket-purple.svg";
 
 type CalendarLayoutProps = ScheduleProps & {
@@ -33,7 +34,7 @@ const Layout = (props: CalendarLayoutProps) => {
         layoutCss["layout-app"]
       )}
     >
-      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 px-4 md:px-0">
+      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 touch-only:mx-4">
         <div
           className={cn(
             "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center w-full",
@@ -115,6 +116,7 @@ const Layout = (props: CalendarLayoutProps) => {
             viewMode={viewMode}
             favoriteEvents={props.favoriteEvents}
             toggleFavoriteEvent={props.toggleFavoriteEvent}
+            noUrlRouting
           />
         </div>
       </div>
@@ -122,4 +124,4 @@ const Layout = (props: CalendarLayoutProps) => {
   );
 };
 
-export default Layout;
+export default withParcnetProvider(Layout);

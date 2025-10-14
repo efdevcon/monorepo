@@ -51,7 +51,7 @@ async function fetchPOAPImages(poapIds: string[]): Promise<Record<string, string
     const imageMap: Record<string, string> = {};
     if (data.data?.drops) {
       data.data.drops.forEach((drop: any) => {
-        imageMap[drop.id.toString()] = drop.image_url;
+        imageMap[drop.id.toString()] = drop.image_url + '?size=large';
       });
     }
 

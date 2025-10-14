@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
 import Event from "./event/event";
@@ -29,6 +30,12 @@ export const customUrlTransforms = [
   { from: "defi-today", to: "107" },
   { from: "zero-to-dapp", to: "98" },
   { from: "zktls-day", to: "111" },
+  { from: "zkid-day", to: "119" },
+  { from: "organizer-hangout", to: "137" },
+  { from: "trustlessagentsday", to: "136" },
+  { from: "apptownhall", to: "142" },
+  // { from: 'stableconnect', to: '112' },
+  // { from: 'pacificonnect', to: '112' },
 ];
 
 export type ScheduleProps = {
@@ -36,6 +43,7 @@ export type ScheduleProps = {
   favoriteEvents?: string[];
   toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
+  noUrlRouting?: boolean;
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -188,7 +196,12 @@ const NewScheduleIndexInner = ({
   toggleFavoriteEvent,
   events,
   viewMode,
+  noUrlRouting,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
+  // Opt out of url based routing
+  const [selectedEventInlineState, setSelectedEventInlineState] = useState<
+    string | null
+  >(null);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -236,6 +249,11 @@ const NewScheduleIndexInner = ({
 
     if (ethDayEvent) {
       (window as any).selectEthDay = () => {
+        if (noUrlRouting) {
+          setSelectedEventInlineState(ethDayEvent.id.toString());
+          return;
+        }
+
         router.replace(`${pathname}?event=ethday`, { scroll: false });
       };
 
@@ -245,24 +263,26 @@ const NewScheduleIndexInner = ({
     }
   }, []);
 
+  const getEventIdFromUrl = (eventId: string) => {
+    const transformMatch = customUrlTransforms.find(
+      (transform) => transform.from === eventId.toString()
+    );
+
+    if (transformMatch) {
+      eventId = transformMatch.to;
+    }
+
+    return eventId;
+  };
+
   const selectedEvent = (() => {
     if (typeof window === "undefined") return;
 
-    const getEventIdFromUrl = (eventId: string) => {
-      const transformMatch = customUrlTransforms.find(
-        (transform) => transform.from === eventId.toString()
-      );
-
-      if (transformMatch) {
-        eventId = transformMatch.to;
-      }
-
-      return eventId;
-    };
-
     const currentUrlParams = new URLSearchParams(searchParams);
 
-    const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
+    const eventId = noUrlRouting
+      ? selectedEventInlineState
+      : getEventIdFromUrl(currentUrlParams.get("event") || "");
 
     return events.find((event) => {
       return (
@@ -272,12 +292,28 @@ const NewScheduleIndexInner = ({
     });
   })();
 
+  useEffect(() => {
+    if (noUrlRouting) {
+      const currentUrlParams = new URLSearchParams(searchParams);
+      const eventId = getEventIdFromUrl(currentUrlParams.get("event") || "");
+
+      setSelectedEventInlineState(eventId);
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  }, []);
+
   const setSelectedEvent = (event: EventType | null) => {
     if (typeof window === "undefined") return;
 
     const currentParams = new URLSearchParams(searchParams);
 
     if (!event) {
+      if (noUrlRouting) {
+        setSelectedEventInlineState(null);
+
+        return;
+      }
+
       currentParams.delete("event");
       // setSelectedEventId(null);
     } else {
@@ -291,8 +327,13 @@ const NewScheduleIndexInner = ({
         nextEventId = transformMatch.from;
       }
 
+      if (noUrlRouting) {
+        setSelectedEventInlineState(event.id.toString());
+
+        return;
+      }
+
       currentParams.set("event", nextEventId);
-      // setSelectedEventId(nextEventId);
     }
 
     // Update URL without any navigation using native History API

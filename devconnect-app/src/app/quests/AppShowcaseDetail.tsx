@@ -7,23 +7,30 @@ import Image from 'next/image';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
-import type { Quest, QuestGroup } from '@/types';
+import type { Quest, QuestAction, QuestGroup } from '@/types';
 import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWalletManager } from '@/hooks/useWalletManager';
 
 // Quest icons mapping based on action type
-const getQuestIcon = (action: string) => {
-  const iconMap: Record<string, string> = {
+const getQuestIcon = (action: QuestAction) => {
+  const iconMap: Record<QuestAction, string> = {
     'connect-wallet': '/images/icons/ticket.svg',
-    'associate-ticket': '/images/icons/heart-outline.svg',
+    'associate-ticket': '/images/icons/ticket.svg',
     'setup-profile': '/images/icons/map.svg',
-    'visit-link': '/images/icons/qrcode-scan.svg',
+    'visit-link': '/images/icons/cash-plus.svg',
     'mini-quiz': '/images/icons/cash-plus.svg',
     'verify-payment': '/images/icons/cash-plus.svg',
     'claim-poap': '/images/icons/check-circle.svg',
     'verify-basename': '/images/icons/check-circle.svg',
+    'favorite-schedule': '/images/icons/heart-outline.svg',
+    'explore-map': '/images/icons/map.svg',
+    'try-qr': '/images/icons/qrcode-scan.svg',
+    'verify-ens': '/images/icons/cash-plus.svg',
+    todo: '/images/icons/default-quest.svg',
+    'verify-balance': '/images/icons/cash-plus.svg',
+    '': '/images/icons/default-quest.svg',
   };
 
   return iconMap[action] || '/images/icons/default-quest.svg';
@@ -227,7 +234,7 @@ export default function AppShowcaseDetail({
             const questElement = questRefs.current[quest.id];
             if (questElement) {
               // Calculate offset to account for sticky tabs and menu
-              const stickyTabsHeight = pwa === true ? 118 : 48; // PWA mode: 118px, regular mode: 59px
+              const stickyTabsHeight = pwa === true ? 108 : 48; // PWA mode: 108px, regular mode: 59px
               const menuHeight = 30; // Additional 30px for menu
               const elementTop = questElement.offsetTop;
               const offsetPosition =
@@ -440,6 +447,17 @@ export default function AppShowcaseDetail({
         userAddresses
       );
 
+      // For groupId 1 (Setup & app tour), also open links if conditionValues is a URL or path
+      if (quest.conditionType === 'isLinkVisited' && quest.conditionValues) {
+        if (quest.conditionValues.startsWith('http')) {
+          // Open external link in new tab
+          window.open(quest.conditionValues, '_blank', 'noopener,noreferrer');
+        } else if (quest.conditionValues.startsWith('/')) {
+          // Navigate to internal route
+          router.push(quest.conditionValues);
+        }
+      }
+
       if (isCompleted) {
         // Update quest status to completed if the action was successful
         updateQuestStatus(quest.id.toString(), 'completed', false);
@@ -584,7 +602,7 @@ export default function AppShowcaseDetail({
       <div
         className="bg-white border-b border-gray-200 w-full px-4 z-20 sticky"
         style={{
-          top: pwa === true ? '118px' : '48px', // PWA mode: 118px, regular mode: 59px
+          top: pwa === true ? '108px' : '48px', // PWA mode: 108px, regular mode: 59px
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
         }}
       >
@@ -621,7 +639,7 @@ export default function AppShowcaseDetail({
                   style={{ width: `${overallProgress.percentage}%` }}
                 />
                 {/* Milestone markers */}
-                {[5, 10, 15, 20, 40, 60].map((milestone, index) => {
+                {[10, 30, 50, 83].map((milestone, index) => {
                   // Only show milestone if it's less than or equal to the total quests
                   if (milestone <= overallProgress.total) {
                     const isCompleted = overallProgress.completed >= milestone;

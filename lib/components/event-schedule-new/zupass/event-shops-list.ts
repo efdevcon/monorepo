@@ -6,6 +6,7 @@ export type EventShop = {
   custom_url_id?: string;
   global_coupon?: string;
   zupass_disabled?: boolean;
+  hide_visit_site?: boolean;
 };
 
 const zupassGatingFallbackOn =
@@ -47,6 +48,8 @@ export const eventShops: EventShop[] = [
     supabase_id: "108", // money rails event
     zupass_proof_id: "Devconnect ARG",
     gate_link_only: true,
+    // hide_visit_site: true,
+    // coupon_collection: "moneyrails",
     zupass_disabled: zupassGatingFallbackOn,
   },
   {
@@ -67,6 +70,44 @@ export const eventShops: EventShop[] = [
     coupon_collection: "zktls-gating",
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "119",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "zkid-day",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "136",
+    zupass_proof_id: "Devconnect ARG",
+    gate_link_only: true,
+    hide_visit_site: true,
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "141",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "privacy-stack",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "137",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "organizer-hangout",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "98",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "zero-to-dapp",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+  {
+    supabase_id: "142",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "apptownhall",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
+
   // {
   //   supabase_id: "113", // ethereum argentina
   //   zupass_proof_id: "Devconnect ARG",

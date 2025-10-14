@@ -26,6 +26,8 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     switchWallet,
     hasMultipleWallets,
     isDisconnecting,
+    portfolioCache,
+    portfolioLoading,
   } = useWalletManager();
 
   // For compatibility, expose the underlying data
@@ -209,6 +211,24 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
       connector.connector?.address ||
       connector.provider?.address
     );
+  };
+
+  // Helper function to format balance
+  const formatBalance = (value: number | undefined) => {
+    if (value === undefined || value === null) return null;
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value);
+  };
+
+  // Helper function to get portfolio balance for an address
+  const getPortfolioBalance = (walletAddress: string | undefined) => {
+    if (!walletAddress) return null;
+    const addressKey = walletAddress.toLowerCase();
+    return portfolioCache[addressKey]?.totalValue;
   };
 
   // Helper function to count total wallets
@@ -555,6 +575,16 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                           <span>External wallet</span>
                         </>
                       )}
+                    </div>
+                    {/* Balance Display */}
+                    <div className="text-xs font-semibold text-[#242436] mt-1">
+                      {(() => {
+                        const balance = getPortfolioBalance(wallet.address);
+                        if (balance !== null && balance !== undefined) {
+                          return formatBalance(balance);
+                        }
+                        return portfolioLoading ? 'Loading...' : '$0.00';
+                      })()}
                     </div>
                     {/* <div className="text-xs text-[#4b4b66]">
                       {wallet.isCurrent ? 'Current' : 'Switch'}

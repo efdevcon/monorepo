@@ -697,12 +697,21 @@ const CommunityEvents = () => {
           .join('')
           .substring(0, 16)
 
-        const response = await agent.com.atproto.repo.listRecords({
-          repo: did,
-          collection: 'org.devcon.event',
-        })
+        let cursor: string | undefined
+        let allRecords: any[] = []
 
-        events = response.data.records
+        do {
+          const response = await agent.com.atproto.repo.listRecords({
+            repo: did,
+            collection: 'org.devcon.event',
+            cursor,
+          })
+
+          allRecords = allRecords.concat(response.data.records)
+          cursor = response.data.cursor
+        } while (cursor)
+
+        events = allRecords
           .filter((record: any) => {
             const rkey = record.uri.split('/').pop()
             const rkeyExpected = `${userID}-${record.value.title.toLowerCase().replace(/[^a-z0-9-]/g, '-')}`
@@ -715,12 +724,21 @@ const CommunityEvents = () => {
       if (userProfile) {
         const did = userProfile?.did
 
-        const response = await agent.com.atproto.repo.listRecords({
-          repo: did,
-          collection: 'org.devcon.event',
-        })
+        let cursor: string | undefined
+        let allRecords: any[] = []
 
-        events = response.data.records
+        do {
+          const response = await agent.com.atproto.repo.listRecords({
+            repo: did,
+            collection: 'org.devcon.event',
+            cursor,
+          })
+
+          allRecords = allRecords.concat(response.data.records)
+          cursor = response.data.cursor
+        } while (cursor)
+
+        events = allRecords
           .filter((record: any) => {
             // If the user is not our internally owned did, just return everything
             if (did !== devconnectDid) {

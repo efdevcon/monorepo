@@ -4,11 +4,12 @@ import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { useParaWalletConnection } from './useParaWallet';
 import { useEOAWalletConnection } from './useEOAWallet';
 import { useUser } from './useUser';
-import { useEnsureUserData } from '@/app/store.hooks';
+import { ensureUserData, useEnsureUserData } from '@/app/store.hooks';
 import { useAutoParaJwtExchange } from './useAutoParaJwtExchange';
 import { normalize } from 'viem/ens';
 import { mainnet } from 'viem/chains';
 import { createPublicClient, http } from 'viem';
+import { useLocalStorage } from 'usehooks-ts';
 
 const PRIMARY_WALLET_TYPE_KEY = 'devconnect_primary_wallet_type';
 
@@ -183,6 +184,11 @@ export function useWalletManager() {
   const paraEmail = para.email;
   const supabaseEmail = supabaseUser?.email || null;
   const email = supabaseEmail || paraEmail; // Prioritize Supabase email, fallback to Para
+
+  // Hack for demo - this is not good, once we figure out proper server/client rendering, we should remove this
+  if (email && typeof window !== 'undefined') {
+    localStorage.setItem('loginIsSkipped', 'true');
+  }
 
   // Automatically exchange Para JWT for Supabase session when Para is connected
   // This eliminates the need to manually click "Get Supabase JWT" button
@@ -422,150 +428,129 @@ export function useWalletManager() {
   }, [address, identityMap]);
 
   // ============================================
-  // Portfolio Data - Store per address
+  // Portfolio Data - Store all portfolios in single global cache
   // ============================================
-  const [portfolioMap, setPortfolioMap] = useState<
-    Record<string, PortfolioData | null>
-  >({});
+  const [portfolioCache, setPortfolioCache] = useLocalStorage<
+    Record<string, PortfolioData>
+  >('portfolio', {});
+
   const [portfolioLoading, setPortfolioLoading] = useState(false);
   const [portfolioError, setPortfolioError] = useState<string | null>(null);
-  const portfolioFetchingRef = useRef<Set<string>>(new Set());
+  const portfolioFetchingRef = useRef(false);
+  const initialFetchAttemptedRef = useRef<Set<string>>(new Set()); // Track addresses we've attempted to fetch
 
-  // Get portfolio for current address (memoized to prevent unnecessary re-renders)
+  // Get portfolio for current address from cache (convenience accessor)
+  // To access portfolios for other addresses, use portfolioCache[address]
   const portfolio = useMemo(() => {
-    const result = address ? portfolioMap[address.toLowerCase()] || null : null;
+    const addressKey = address?.toLowerCase();
+    const result = addressKey ? portfolioCache[addressKey] || null : null;
     console.log(`🔍 [WALLET_MANAGER #${hookId}] Portfolio lookup:`, {
       address: address ? address.slice(0, 10) + '...' : null,
       hasPortfolio: !!result,
       totalValue: result?.totalValue,
-      portfolioMapKeys: Object.keys(portfolioMap).map(
-        (k) => k.slice(0, 10) + '...'
-      ),
+      cachedAddresses: Object.keys(portfolioCache).length,
     });
     return result;
-  }, [address, portfolioMap, hookId]);
+  }, [address, portfolioCache, hookId]);
 
-  const fetchPortfolio = useCallback(
-    async (forceRefresh = false) => {
-      if (!address) {
-        return;
-      }
-
-      const addressKey = address.toLowerCase();
-
-      // If we're already fetching this address, skip
-      if (portfolioFetchingRef.current.has(addressKey)) {
-        console.log(
-          `⏭️ [WALLET_MANAGER] Portfolio fetch already in progress for ${addressKey.slice(0, 10)}...`
-        );
-        return;
-      }
-
-      // Skip if already in memory (unless forcing refresh)
-      if (!forceRefresh && portfolioMap[addressKey] !== undefined) {
-        console.log(
-          `✅ [WALLET_MANAGER] Portfolio already in memory for ${addressKey.slice(0, 10)}...`
-        );
-        return;
-      }
-
-      // Check localStorage cache first (5 minutes TTL)
-      if (!forceRefresh) {
-        const cacheKey = `portfolio_${addressKey}`;
-        const cached = localStorage.getItem(cacheKey);
-
-        if (cached) {
-          try {
-            const parsedCache = JSON.parse(cached);
-            if (Date.now() - parsedCache.timestamp < 300000) {
-              console.log(
-                `📦 [WALLET_MANAGER] Using cached portfolio for ${addressKey.slice(0, 10)}...`
-              );
-              setPortfolioMap((prev) => ({
-                ...prev,
-                [addressKey]: parsedCache.data,
-              }));
-              return; // Don't fetch from API
-            } else {
-              console.log(
-                `⏰ [WALLET_MANAGER] Cache expired for ${addressKey.slice(0, 10)}...`
-              );
-            }
-          } catch (err) {
-            console.warn('Invalid portfolio cache:', err);
-          }
-        }
-      }
-
-      // Only fetch from API if: no cache OR cache expired OR force refresh
-      portfolioFetchingRef.current.add(addressKey);
-      setPortfolioLoading(true);
-      setPortfolioError(null);
-
-      try {
-        console.log(
-          `🌐 [WALLET_MANAGER] Fetching portfolio from API for ${addressKey.slice(0, 10)}...`,
-          { forceRefresh }
-        );
-
-        const response = await fetch('/api/portfolio', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ address: addressKey }), // Use lowercase address
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to fetch portfolio');
-        }
-
-        const data = await response.json();
-        setPortfolioMap((prev) => ({ ...prev, [addressKey]: data }));
-
-        // Cache the result
-        const cacheKey = `portfolio_${addressKey}`;
-        localStorage.setItem(
-          cacheKey,
-          JSON.stringify({
-            data,
-            timestamp: Date.now(),
-          })
-        );
-
-        console.log(
-          `✅ [WALLET_MANAGER] Portfolio fetched and cached for ${addressKey.slice(0, 10)}...`
-        );
-      } catch (err) {
-        console.error('Error fetching portfolio:', err);
-        setPortfolioError(
-          err instanceof Error ? err.message : 'Failed to fetch portfolio'
-        );
-        setPortfolioMap((prev) => ({ ...prev, [addressKey]: null }));
-      } finally {
-        setPortfolioLoading(false);
-        portfolioFetchingRef.current.delete(addressKey);
-      }
-    },
-    [address, portfolioMap]
-  );
-
-  // Auto-fetch portfolio when address changes
-  // Only fetch if we don't already have data (prevents redundant fetches on wallet switch)
-  useEffect(() => {
-    if (address) {
-      const addressKey = address.toLowerCase();
-      // Only fetch if not already in memory or cache
-      if (portfolioMap[addressKey] === undefined) {
-        fetchPortfolio();
-      } else {
-        console.log(
-          `⏭️ [WALLET_MANAGER] Skipping auto-fetch, portfolio already available for ${addressKey.slice(0, 10)}...`
-        );
-      }
+  // Fetch portfolio only when explicitly called (manual refresh only)
+  const fetchPortfolio = useCallback(async () => {
+    if (!address) {
+      console.warn('⚠️ [WALLET_MANAGER] Cannot fetch portfolio - no address');
+      return;
     }
-  }, [address, fetchPortfolio, portfolioMap]);
+
+    // Prevent concurrent API calls
+    if (portfolioFetchingRef.current) {
+      console.log(
+        `⏭️ [WALLET_MANAGER] Portfolio fetch already in progress for ${address.slice(0, 10)}...`
+      );
+      return;
+    }
+
+    portfolioFetchingRef.current = true;
+    setPortfolioLoading(true);
+    setPortfolioError(null);
+
+    try {
+      const addressKey = address.toLowerCase();
+      console.log(
+        `🌐 [WALLET_MANAGER] Fetching portfolio from API for ${address.slice(0, 10)}...`
+      );
+
+      const response = await fetch('/api/portfolio', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ address: addressKey }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch portfolio');
+      }
+
+      const data = await response.json();
+
+      // Save to global portfolio cache with address as key
+      setPortfolioCache((prev) => ({
+        ...prev,
+        [addressKey]: data,
+      }));
+
+      console.log(
+        `✅ [WALLET_MANAGER] Portfolio fetched and cached for ${address.slice(0, 10)}...`
+      );
+    } catch (err) {
+      console.error('Error fetching portfolio:', err);
+      setPortfolioError(
+        err instanceof Error ? err.message : 'Failed to fetch portfolio'
+      );
+    } finally {
+      setPortfolioLoading(false);
+      portfolioFetchingRef.current = false;
+    }
+  }, [address, setPortfolioCache]);
+
+  // Auto-fetch portfolio ONCE if not in cache (first-time load only)
+  useEffect(() => {
+    if (!address) return;
+
+    const addressKey = address.toLowerCase();
+
+    // Check if we have cached data for this address
+    const hasCachedData = !!portfolioCache[addressKey];
+
+    // Check if we've already attempted to fetch for this address
+    const alreadyAttempted = initialFetchAttemptedRef.current.has(addressKey);
+
+    // Check if we're currently fetching
+    const currentlyFetching = portfolioFetchingRef.current;
+
+    console.log(
+      `🔍 [WALLET_MANAGER] Auto-fetch check for ${addressKey.slice(0, 10)}...`,
+      {
+        hasCachedData,
+        alreadyAttempted,
+        currentlyFetching,
+        willFetch: !hasCachedData && !alreadyAttempted && !currentlyFetching,
+      }
+    );
+
+    // Only fetch if: no cached data AND haven't attempted before AND not currently fetching
+    if (!hasCachedData && !alreadyAttempted && !currentlyFetching) {
+      console.log(
+        `📡 [WALLET_MANAGER] Auto-fetching portfolio for ${addressKey.slice(0, 10)}... (first time)`
+      );
+
+      // Mark this address as attempted BEFORE starting the fetch
+      initialFetchAttemptedRef.current.add(addressKey);
+
+      // Trigger the fetch
+      fetchPortfolio();
+    }
+  }, [address, portfolioCache, fetchPortfolio]);
 
   // Debug logging for address changes
   useEffect(() => {
@@ -727,7 +712,7 @@ export function useWalletManager() {
     return 'Not connected';
   };
 
-  useEnsureUserData(isConnected);
+  useEnsureUserData(email);
 
   return {
     // Current active wallet state
@@ -746,10 +731,11 @@ export function useWalletManager() {
     identityLoading,
 
     // Portfolio data
-    portfolio,
+    portfolio, // Current address's portfolio only
+    portfolioCache, // All cached portfolios by address
     portfolioLoading,
     portfolioError,
-    refreshPortfolio: () => fetchPortfolio(true),
+    refreshPortfolio: fetchPortfolio, // Manual refresh to update existing data
 
     // Authentication state (unified)
     email, // Unified email (Supabase or Para)

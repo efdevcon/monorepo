@@ -11,7 +11,12 @@ export type QuestAction =
   | 'setup-profile'
   | 'visit-link'
   | 'mini-quiz'
-  | 'verify-balance';
+  | 'verify-balance'
+  | 'favorite-schedule'
+  | 'explore-map'
+  | 'try-qr'
+  | 'verify-ens'
+  | '';
 
 /**
  * Condition types for quest completion verification
@@ -82,13 +87,13 @@ export interface Quest {
   instructions: string;
   
   /** Action type to perform */
-  action: string;
+  action: QuestAction;
   
   /** Button text to display */
   button: string;
   
   /** Type of condition to check for completion */
-  conditionType: string;
+  conditionType: QuestConditionType;
   
   /** Values for the condition check */
   conditionValues: string;

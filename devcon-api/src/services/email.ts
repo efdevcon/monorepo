@@ -46,7 +46,8 @@ export async function sendAccreditationConfirmationEmail(
 ) {
   const properties = {
     Name: name,
-    AccreditationLink: accreditationLink
+    AccreditationLink: accreditationLink,
+    AccreditationGuideUrl: SERVER_CONFIG.ACCREDITATION_GUIDE_URL
   }
 
   return sendMail(

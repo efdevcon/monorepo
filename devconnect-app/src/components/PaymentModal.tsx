@@ -10,7 +10,6 @@ import { useWalletManager } from '@/hooks/useWalletManager';
 import { useTransaction } from '@/hooks/useTransaction';
 import TokenSelector from '@/components/payment/TokenSelector';
 import NetworkSelector from '@/components/payment/NetworkSelector';
-import NetworkLogo from '@/components/NetworkLogo';
 import StatusStep from '@/components/payment/StatusStep';
 import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
@@ -93,6 +92,27 @@ export default function PaymentModal({
         discount_rate: number;
         rate: number;
       };
+      payments?: Array<{
+        hash: string;
+        from: string;
+        chain_id: number;
+        block: number | null;
+        amount: number;
+        paid_by: string | null;
+        paid_at: string;
+        linked_at: string;
+      }>;
+    }>;
+    payments?: Array<{
+      hash: string;
+      from: string;
+      chain_id: number;
+      block: number | null;
+      amount: number;
+      paid_by: string | null;
+      paid_at: string;
+      linked_at: string;
+      coin?: string;
     }>;
   }>({});
   const [isLoadingPaymentDetails, setIsLoadingPaymentDetails] = useState(false);
@@ -1206,7 +1226,7 @@ export default function PaymentModal({
 
   return (
     <Modal open={isOpen} close={handleClose} className="!p-0">
-      <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5">
+      <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5 bg-white">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
@@ -1384,19 +1404,28 @@ export default function PaymentModal({
                     <h3 className="text-[#353548] text-base font-semibold">
                       Wallet
                     </h3>
-                    <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
+                    {/* <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <NetworkLogo
-                          chainId={isPara ? 8453 : selectedChainId}
-                          size="sm"
-                        />
+                        {(() => {
+                          const connectorIcon = isPara
+                            ? '/images/paraLogo.png'
+                            : wagmiAccount.connector?.icon ||
+                              '/images/icons/injected.png';
+
+                          return (
+                            <img
+                              src={connectorIcon}
+                              alt="wallet"
+                              className="w-8 h-8 rounded-lg object-cover"
+                            />
+                          );
+                        })()}
                         <span className="text-[#353548] text-base font-normal">
-                          {isPara ? 'Para' : 'Standard Wallet'}
+                          {isPara ? 'Embedded Wallet' : 'External Wallet'}
                         </span>
                       </div>
                       <ChevronDown className="w-5 h-5 text-[#353548]" />
-                    </div>
-
+                    </div> */}
                     {/* Connection Status */}
                     <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
                       <div className="flex items-center justify-between mb-2">
@@ -1404,10 +1433,20 @@ export default function PaymentModal({
                           Connected to:
                         </span>
                         <div className="flex items-center gap-2">
-                          <NetworkLogo
-                            chainId={isPara ? 8453 : selectedChainId}
-                            size="sm"
-                          />
+                          {(() => {
+                            const connectorIcon = isPara
+                              ? '/images/paraLogo.png'
+                              : wagmiAccount.connector?.icon ||
+                                '/images/icons/injected.png';
+
+                            return (
+                              <img
+                                src={connectorIcon}
+                                alt="wallet"
+                                className="w-5 h-5 rounded object-cover"
+                              />
+                            );
+                          })()}
                           <span className="text-white text-sm">
                             {connectedAddress
                               ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
@@ -1424,9 +1463,9 @@ export default function PaymentModal({
                         </p>
                       )}
                     </div>
-                    <button className="text-[#1b6fae] text-sm font-medium">
+                    {/* <button className="text-[#1b6fae] text-sm font-medium">
                       SWITCH WALLET (2)
-                    </button>
+                    </button> */}
                   </div>
 
                   {/* Amount to Pay */}
@@ -1484,35 +1523,28 @@ export default function PaymentModal({
 
         {currentStep === 'form' &&
           paymentDetails.orderStatus === 'approved' && (
-            <div className="text-center py-8">
-              <div className="mb-4">
-                <svg
-                  className="h-16 w-16 text-green-500 mx-auto mb-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <h3 className="text-xl font-semibold text-green-700 mb-2">
-                  Payment Already Completed
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  This order has already been paid and approved.
-                </p>
-              </div>
-              <Button
-                onClick={handleClose}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Close
-              </Button>
-            </div>
+            <StatusStep
+              txStatus="confirmed"
+              txError=""
+              isPara={isPara}
+              amount={paymentData.amount || paymentDetails.amount || '0'}
+              token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
+              chainId={paymentData.chainId || (isPara ? 8453 : selectedChainId)}
+              connectedAddress={connectedAddress || undefined}
+              txHash={
+                // Get the actual blockchain transaction hash from payments
+                paymentDetails.payments?.[0]?.hash ||
+                paymentDetails.transactions?.[0]?.payments?.[0]?.hash ||
+                txHash ||
+                undefined
+              }
+              isSimulation={false}
+              simulationDetails={null}
+              onDone={handleClose}
+              paymentId={paymentRequestId || paymentDetails.orderId}
+              orderId={paymentDetails.orderId}
+              isAlreadyCompleted={true}
+            />
           )}
         {currentStep === 'status' && (
           <StatusStep
@@ -1528,6 +1560,8 @@ export default function PaymentModal({
             simulationDetails={simulationDetails}
             onDone={handleStatusDone}
             onTryAgain={handleTryAgain}
+            paymentId={paymentRequestId || paymentDetails.orderId}
+            orderId={paymentDetails.orderId}
           />
         )}
       </ModalContent>

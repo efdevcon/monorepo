@@ -2,50 +2,30 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
-import { WelcomeSection, TodaysSchedule } from './dashboard-sections';
-import { HomeIcon, CalendarIcon, TicketIcon } from 'lucide-react';
-
-export const homeTabs = () => [
-  {
-    label: 'Home',
-    labelIcon: HomeIcon,
-    href: '/',
-    component: () => null,
-    isActive: (pathname: string) => pathname === '/',
-  },
-  {
-    label: 'Schedule',
-    labelIcon: CalendarIcon,
-    href: '/schedule',
-    component: () => null,
-    isActive: (pathname: string) => pathname === '/schedule',
-  },
-  {
-    label: 'Tickets',
-    labelIcon: TicketIcon,
-    href: '/tickets',
-    component: () => null,
-    isActive: (pathname: string) => pathname === '/tickets',
-  },
-];
+import {
+  WelcomeSection,
+  TodaysSchedule,
+  LoopingHeader,
+} from './dashboard-sections';
+import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
-  // const events = useEvents();
-  // const router = useRouter();
+  const router = useRouter();
   // const { address } = useUnifiedConnection();
 
-  // useEffect(() => {
-  //   const isSkipped = localStorage.getItem('loginIsSkipped');
+  useEffect(() => {
+    const isSkipped = localStorage.getItem('loginIsSkipped');
 
-  //   if (!isSkipped && address) {
-  //     console.log('🔄 [HOME] Redirecting to onboarding');
-  //     router.push('/onboarding');
-  //   }
-  // }, [router, address]);
+    if (!isSkipped) {
+      console.log('🔄 [HOME] Redirecting to onboarding');
+      router.push('/onboarding');
+    }
+  }, [router]);
 
   return (
     <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
-      <div className="bg-[rgba(246,250,254,1)] p-4 grow">
+      <div className="bg-[rgba(246,250,254,1)] grow pb-8">
+        <LoopingHeader />
         <WelcomeSection />
         <TodaysSchedule />
       </div>
