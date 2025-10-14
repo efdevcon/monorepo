@@ -45,7 +45,7 @@ const SwagItems = ({
   const [selectedAddon, setSelectedAddon] = useState<any>(null);
 
   return (
-    <div className="mt-1 grid grid-cols-[repeat(auto-fill,150px)] gap-2 justify-center sm:justify-start">
+    <div className="mt-1 grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,150px)] gap-2 justify-center sm:justify-start">
       {addons.map((addon: any) => (
         <div className="shrink-0" key={addon.id}>
           <div className="flex flex-col gap-4 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
@@ -54,7 +54,7 @@ const SwagItems = ({
               <img
                 src={qrCodes[addon.secret]}
                 alt="Ticket QR Code"
-                className="w-[120px] aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
+                className="w-full aspect-square p-1 border border-solid border-gray-300 rounded-sm cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={() => setSelectedAddon(addon)}
               />
             </div>
