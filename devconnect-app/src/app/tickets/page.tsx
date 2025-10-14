@@ -26,7 +26,7 @@ import {
 
 const TicketWrapper = () => {
   return (
-    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
+    <PageLayout title="Ethereum World's Fair — Tickets" tabs={homeTabs()}>
       <TicketTab />
     </PageLayout>
   );
@@ -379,8 +379,6 @@ const TicketTab = RequiresAuthHOC(() => {
   const { tickets: orders, loading, qrCodes } = useTickets();
   const hasTickets = orders && orders.length > 0;
 
-  console.log(orders, 'orders');
-
   return (
     <div
       className={cn(
@@ -393,28 +391,39 @@ const TicketTab = RequiresAuthHOC(() => {
           {loading && !hasTickets && (
             <div className="w-full bg-gray-50 border border-gray-200 text-gray-600 px-4 py-8 rounded-lg">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-gray-600 mb-2"></div>
+                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-gray-600 mb-4"></div>
                 <div>Loading tickets...</div>
               </div>
             </div>
           )}
 
           {!loading && orders.length === 0 && (
-            <div className="bg-gray-50 border border-gray-200 text-gray-600 px-4 py-3 rounded">
-              No tickets found for your account.
+            <div className="bg-gray-50 border border-gray-200 font-medium text-gray-600 px-4 py-3 mb-4 rounded">
+              No tickets found for your connected email addresses.
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row justify-between gap-4">
+          <div className="flex flex-col sm:flex-row justify-between gap-4 sm:items-center">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold">
                 Your Devconnect Ticket
               </div>
-              <div className="text-sm">
-                Grants access to La Rural, the Ethereum World’s Fair, and any
-                included side events for Nov 17–22, 2025.
-              </div>
+              {hasTickets && (
+                <div className="text-sm">
+                  Grants access to La Rural, the Ethereum World’s Fair, and any
+                  included side events for Nov 17–22, 2025.
+                </div>
+              )}
+
+              {!hasTickets && (
+                <div className="text-sm">
+                  You can load your tickets into the World's Fair app by
+                  connecting your email addresses you used to purchase your
+                  tickets.
+                </div>
+              )}
             </div>
+
             <ConnectedEmails />
           </div>
 
@@ -435,19 +444,22 @@ const TicketTab = RequiresAuthHOC(() => {
               </div>
             )}
 
-            <SideEventTickets orders={orders} qrCodes={qrCodes} />
+            {hasTickets && (
+              <SideEventTickets orders={orders} qrCodes={qrCodes} />
+            )}
           </div>
 
-          <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
-            <div className="text-lg font-semibold">Swag Vouchers</div>
-            <div className="text-sm">
-              Got Devconnect swag with your ticket? Find your vouchers here and
-              claim your items at the Swag Station.
+          {hasTickets && (
+            <div className="flex flex-col gap-1 order-2 sm:order-1 mt-8">
+              <div className="text-lg font-semibold">Swag Vouchers</div>
+              <div className="text-sm">
+                Got Devconnect swag with your ticket? Find your vouchers here
+                and claim your items at the Swag Station.
+              </div>
             </div>
-          </div>
+          )}
           <div className="flex flex-col gap-1">
             {orders.map((order) => {
-              console.log(order, 'order');
               return (
                 <>
                   {order.tickets.map((ticket) => (

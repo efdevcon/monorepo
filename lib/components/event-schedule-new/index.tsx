@@ -34,6 +34,7 @@ export const customUrlTransforms = [
   { from: "organizer-hangout", to: "137" },
   { from: "trustlessagentsday", to: "136" },
   { from: "apptownhall", to: "142" },
+  { from: "eip-summit", to: "162" },
   // { from: 'stableconnect', to: '112' },
   // { from: 'pacificonnect', to: '112' },
 ];

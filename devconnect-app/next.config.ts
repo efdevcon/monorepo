@@ -35,10 +35,58 @@ const nextConfig: NextConfig = {
       };
     }
 
+    // Apply specific config for maps folder SVGs
+    config.module.rules.push({
+      test: /\.svg$/,
+      include: /\/maps\//,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgoConfig: {
+              plugins: [
+                {
+                  name: 'preset-default',
+                  params: {
+                    overrides: {
+                      cleanupIds: false,
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        },
+      ],
+    });
+
     return config;
   },
   turbopack: {
     rules: {
+      // Prevent ID cleanup for SVGs in maps folder
+      '**/maps/**/*.svg': {
+        loaders: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'preset-default',
+                    params: {
+                      overrides: {
+                        cleanupIds: false,
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        as: '*.js',
+      },
       '*.svg': {
         loaders: ['@svgr/webpack'],
         as: '*.js',
