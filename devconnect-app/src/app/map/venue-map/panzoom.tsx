@@ -119,11 +119,9 @@ export const usePanzoom = (elementId: string, setZoomLevel: any) => {
         const transform = e.getTransform();
         // console.log('transform', transform);
 
-        if (transform.scale > 1) {
-          console.log('zoomed-in');
+        if (transform.scale > 1.2) {
           setZoomLevel('zoomed-in');
         } else {
-          console.log('zoomed-out');
           setZoomLevel('zoomed-out');
         }
       });

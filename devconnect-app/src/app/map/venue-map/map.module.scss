@@ -1,15 +1,29 @@
 .map {
-    background: hsla(0, 0%, 100%, .97);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-
-    g[id='Icons'] {
-        display: none;
-    }
+    // background: hsla(0, 0%, 100%, .97);
+    // backdrop-filter: blur(4px);
+    // -webkit-backdrop-filter: blur(4px);
 
     g[id='Info'] {
-        display: none;
+        opacity: 0;
+        transition: opacity 0.9s ease;
     }
+
+    g[id='Icons'] {
+        opacity: 0;
+        transition: opacity 0.9s ease;
+    }
+
+    &.zoomed-in {
+        g[id='Info'] {
+            opacity: 1;
+        }
+
+        g[id='Icons'] {
+            opacity: 1;
+        }
+    }
+
+
 }
 
 // .has-selection-or-hover {
