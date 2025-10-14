@@ -14,6 +14,9 @@
     "q": "npx tsx scripts/fetch-quests.ts"
   },
   "dependencies": {
+    "@aa-sdk/core": "^4.70.0",
+    "@account-kit/infra": "^4.70.0",
+    "@account-kit/smart-contracts": "^4.70.0",
     "@base-org/account": "^2.2.0",
     "@coinbase/cdp-sdk": "^1.0.0",
     "@cosmjs/cosmwasm-stargate": "^0.34.0",
@@ -26,6 +29,7 @@
     "@farcaster/miniapp-wagmi-connector": "^1.0.0",
     "@getpara/graz": "2.0.0-alpha.19",
     "@getpara/react-sdk": "2.0.0-alpha.63",
+    "@getpara/viem-v2-integration": "2.0.0-alpha.63",
     "@getpara/wagmi-v2-integration": "2.0.0-alpha.63",
     "@leapwallet/cosmos-social-login-capsule-provider": "^0.0.44",
     "@netlify/plugin-nextjs": "^5.13.5",
@@ -62,6 +66,7 @@
     "next": "16.0.0-beta.0",
     "next-themes": "^0.4.6",
     "panzoom": "^9.4.3",
+    "permissionless": "^0.2.57",
     "pino-pretty": "^13.1.1",
     "qrcode": "^1.5.4",
     "qrcode.react": "^4.2.0",
@@ -74,7 +79,7 @@
     "starknet": "^7.6.4",
     "tailwind-merge": "^3.3.1",
     "usehooks-ts": "^3.1.1",
-    "viem": "^2.37.11",
+    "viem": "^2.38.2",
     "wagmi": "^2.17.5",
     "zustand": "^5.0.7"
   },

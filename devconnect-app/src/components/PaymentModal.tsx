@@ -8,6 +8,7 @@ import { toast } from 'sonner';
 import { base } from '@base-org/account';
 import { useWalletManager } from '@/hooks/useWalletManager';
 import { useTransaction } from '@/hooks/useTransaction';
+import { isEIP7702Available } from '@/config/eip7702';
 import TokenSelector from '@/components/payment/TokenSelector';
 import NetworkSelector from '@/components/payment/NetworkSelector';
 import StatusStep from '@/components/payment/StatusStep';
@@ -121,6 +122,9 @@ export default function PaymentModal({
   );
   const [isAddingTransaction, setIsAddingTransaction] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Check if EIP-7702 is available
+  const isUsingEIP7702 = isPara && isEIP7702Available();
 
   // PaymentForm state
   const [recipient, setRecipient] = useState('');
@@ -1257,6 +1261,24 @@ export default function PaymentModal({
                 Simulation Mode
               </div>
             )}
+            {isPara && isUsingEIP7702 && !isSystemSimulationMode && (
+              <div className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                <svg
+                  className="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                  />
+                </svg>
+                EIP-7702
+              </div>
+            )}
           </div>
 
           <button
@@ -1455,12 +1477,34 @@ export default function PaymentModal({
                         </div>
                       </div>
                       {isPara && (
-                        <p className="text-[#ededf0] text-xs text-center">
-                          <span className="font-bold">Para: </span>
-                          <span className="font-normal">
-                            This transaction is gas-free
-                          </span>
-                        </p>
+                        <div className="space-y-1">
+                          <p className="text-[#ededf0] text-xs text-center">
+                            <span className="font-bold">Para: </span>
+                            <span className="font-normal">
+                              This transaction is gas-free
+                            </span>
+                          </p>
+                          {isUsingEIP7702 && (
+                            <p className="text-[#f6b613] text-xs text-center flex items-center justify-center gap-1">
+                              <svg
+                                className="h-3 w-3"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                                />
+                              </svg>
+                              <span className="font-semibold">
+                                EIP-7702 Enabled
+                              </span>
+                            </p>
+                          )}
+                        </div>
                       )}
                     </div>
                     {/* <button className="text-[#1b6fae] text-sm font-medium">
