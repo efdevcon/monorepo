@@ -1,5 +1,14 @@
 import stores from './pretix-stores-list';
 
+interface PretixItem {
+  id: number;
+  name: string | { en: string; [key: string]: string };
+  description?: string | { en: string; [key: string]: string };
+  category?: string;
+  active?: boolean;
+  [key: string]: any;
+}
+
 export async function getPaidTicketsByEmail(
   email: string,
   storeID = 'devconnect'
@@ -30,7 +39,7 @@ export async function getPaidTicketsByEmail(
   }
 
   const itemsData = await itemsResponse.json();
-  const itemsMap = new Map(
+  const itemsMap = new Map<number, PretixItem>(
     itemsData.results.map((item: any) => [item.id, item])
   );
 
@@ -72,16 +81,16 @@ export async function getPaidTicketsByEmail(
           const addons = order.positions
             .filter((p: any) => p.addon_to === position.id)
             .map((addon: any) => {
-              const itemDetails = itemsMap.get(addon.item) as any;
+              const itemDetails = itemsMap.get(addon.item);
+              const name = itemDetails?.name;
+              const description = itemDetails?.description;
               return {
                 id: addon.item,
                 secret: addon.secret,
                 itemName:
-                  itemDetails?.name?.en ||
-                  itemDetails?.name ||
-                  `Item ${addon.item}`,
+                  typeof name === 'object' ? name.en : name || `Item ${addon.item}`,
                 description:
-                  itemDetails?.description?.en || itemDetails?.description,
+                  typeof description === 'object' ? description.en : description,
                 price: addon.price,
                 attendeeName: addon.attendee_name,
                 category: itemDetails?.category,
@@ -89,6 +98,9 @@ export async function getPaidTicketsByEmail(
               };
             });
 
+          const mainName = mainItemDetails?.name;
+          const mainDescription = mainItemDetails?.description;
+          
           return {
             secret: position.secret,
             attendeeName: position.attendee_name,
@@ -97,12 +109,9 @@ export async function getPaidTicketsByEmail(
             // Use item details from the items endpoint
             itemId: position.item,
             itemName:
-              mainItemDetails?.name?.en ||
-              mainItemDetails?.name ||
-              position.item_name ||
-              'Ticket',
+              typeof mainName === 'object' ? mainName.en : mainName || position.item_name || 'Ticket',
             itemDescription:
-              mainItemDetails?.description?.en || mainItemDetails?.description,
+              typeof mainDescription === 'object' ? mainDescription.en : mainDescription,
             addons: addons,
           };
         }),
