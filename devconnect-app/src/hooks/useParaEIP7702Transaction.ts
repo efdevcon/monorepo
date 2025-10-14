@@ -246,13 +246,47 @@ export function useParaEIP7702Transaction() {
       // Step 6: Send UserOperation with Alchemy gas sponsorship
       console.log('🔄 [EIP-7702] Sending UserOperation via Alchemy...');
       
-      const userOperationResult = await alchemyClient.sendUserOperation({
-        uo: [{
-          target: EIP7702_CONFIG.USDC_CONTRACT,
-          data: transferData,
-          value: BigInt(0),
-        }],
-      });
+      let userOperationResult;
+      try {
+        // Try without gas multiplier first
+        userOperationResult = await alchemyClient.sendUserOperation({
+          uo: [{
+            target: EIP7702_CONFIG.USDC_CONTRACT,
+            data: transferData,
+            value: BigInt(0),
+          }],
+        });
+      } catch (error: any) {
+        // Check if error is "replacement underpriced"
+        const isUnderpricedError = 
+          error?.message?.includes('replacement underpriced') ||
+          error?.details?.includes('replacement underpriced') ||
+          error?.shortMessage?.includes('replacement underpriced');
+        
+        if (isUnderpricedError) {
+          console.log('⚠️  [EIP-7702] Transaction underpriced, retrying with 20% gas increase...');
+          
+          // Retry with 20% gas buffer
+          userOperationResult = await alchemyClient.sendUserOperation({
+            uo: [{
+              target: EIP7702_CONFIG.USDC_CONTRACT,
+              data: transferData,
+              value: BigInt(0),
+            }],
+            overrides: {
+              maxPriorityFeePerGas: {
+                multiplier: 1.2,
+              },
+              maxFeePerGas: {
+                multiplier: 1.2,
+              },
+            },
+          });
+        } else {
+          // Re-throw other errors
+          throw error;
+        }
+      }
 
       console.log('✅ [EIP-7702] UserOperation submitted:', userOperationResult.hash);
       
