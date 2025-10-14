@@ -1,10 +1,9 @@
 'use client';
 
 import { useAppKit } from '@reown/appkit/react';
-import { useConnect } from 'wagmi';
 // Note: Onboarding doesn't actually use useUnifiedConnection, just imported
 // import { useWalletManager } from '@/hooks/useWalletManager';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   useSignUpOrLogIn,
@@ -12,6 +11,8 @@ import {
   useResendVerificationCode,
   useWaitForLogin,
   useWaitForWalletCreation,
+  useAccount,
+  useLogout,
   type AuthState,
   useModal,
 } from '@getpara/react-sdk';
@@ -24,12 +25,13 @@ interface OnboardingProps {
 
 export default function Onboarding({ onConnect }: OnboardingProps) {
   const { open } = useAppKit();
-  const { connect, connectors } = useConnect();
   const [authState, setAuthState] = useState<AuthState | undefined>();
   const { user, signOut, sendOtp, verifyOtp, loading, error } = useUser();
   const [email, setEmail] = useLocalStorage('email', '');
   const [verificationCode, setVerificationCode] = useState('');
   const [isResent, setIsResent] = useState(false);
+  const [verificationError, setVerificationError] = useState<string>('');
+  const [emailError, setEmailError] = useState<string>('');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [otpVerified, setOtpVerified] = useState(false);
@@ -75,6 +77,20 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     }
   }, [user?.email, email, setEmail]);
 
+  // Clear email error when email changes
+  useEffect(() => {
+    if (emailError) {
+      setEmailError('');
+    }
+  }, [email]);
+
+  // Clear verification error when verification code changes
+  useEffect(() => {
+    if (verificationError) {
+      setVerificationError('');
+    }
+  }, [verificationCode]);
+
   // Auto-submit OTP when 6 digits are entered
   useEffect(() => {
     if (otp && otp.length === 6 && !otpVerified && otpSent) {
@@ -86,25 +102,72 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   }, [otp, otpVerified, otpSent]);
 
   // Para authentication hooks
-  const { signUpOrLogInAsync: signUpOrLogIn, isPending: isSigningUp } =
+  const { signUpOrLogIn, isPending: isSigningUpOrLoggingIn } =
     useSignUpOrLogIn();
-  const { verifyNewAccountAsync: verifyNewAccount, isPending: isVerifying } =
+  const { verifyNewAccount, isPending: isVerifyingNewAccount } =
     useVerifyNewAccount();
   const {
     resendVerificationCodeAsync: resendVerificationCode,
     isPending: isResending,
   } = useResendVerificationCode();
-  const { waitForLoginAsync: waitForLogin, isPending: isWaitingForLogin } =
-    useWaitForLogin();
-  const {
-    waitForWalletCreationAsync: waitForWalletCreation,
-    isPending: isWaitingForWallet,
-  } = useWaitForWalletCreation();
+  const { waitForLogin, isPending: isWaitingForLogin } = useWaitForLogin();
+  const { waitForWalletCreation, isPending: isWaitingForWalletCreation } =
+    useWaitForWalletCreation();
+  const { isConnected } = useAccount();
+  const { logout } = useLogout();
 
-  // Find the Para connector for wagmi
-  const paraConnector = connectors.find(
-    (connector: any) => connector.id === 'para'
-  );
+  const shouldCancelPolling = useRef(false);
+
+  // Setup polling for the Para login process to complete
+  const pollLogin = () => {
+    // Reset the cancellation flag
+    shouldCancelPolling.current = false;
+    waitForLogin(
+      {
+        // Check the cancellation flag
+        isCanceled: () => shouldCancelPolling.current,
+      },
+      {
+        onSuccess: ({ needsWallet }) => {
+          if (needsWallet) {
+            waitForWalletCreation(
+              {
+                // Also check cancellation for wallet creation
+                isCanceled: () => shouldCancelPolling.current,
+              },
+              {
+                onSuccess: ({ recoverySecret }) => {
+                  // Can optionally give this recovery secret to the user here
+                  // console.log(
+                  //   '🚀 ~ pollLogin ~ recoverySecret:',
+                  //   recoverySecret
+                  // );
+                },
+              }
+            );
+          }
+        },
+      }
+    );
+  };
+
+  // Setup polling for the Para signup process to complete
+  const pollSignUp = () => {
+    // Reset the cancellation flag
+    shouldCancelPolling.current = false;
+    waitForWalletCreation(
+      {
+        // Check the cancellation flag
+        isCanceled: () => shouldCancelPolling.current,
+      },
+      {
+        onSuccess: ({ recoverySecret }) => {
+          // Can optionally give this recovery secret to the user here
+          // console.log('🚀 ~ pollSignUp ~ recoverySecret:', recoverySecret);
+        },
+      }
+    );
+  };
 
   const handleWalletConnect = async () => {
     // If email is provided, send OTP first, then open wallet connection
@@ -157,37 +220,89 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     setOtpVerified(false);
   };
 
-  const handleEmailSubmit = async () => {
-    console.log('handleEmailSubmit called with email:', email);
+  const handleEmailSubmit = () => {
+    console.log('[EMAIL_SUBMIT] Starting email submission with email:', email);
     if (!email || !email.includes('@')) {
       console.log(
-        'Email validation failed - email:',
+        '[EMAIL_SUBMIT] Email validation failed - email:',
         email,
         'isValid:',
         email && email.includes('@')
       );
+      setEmailError('Please enter a valid email address');
       return;
     }
 
-    try {
-      const result = await signUpOrLogIn({ auth: { email } });
-      setAuthState(result);
-    } catch (error) {
-      console.error('Email signup/login failed:', error);
-    }
+    // Clear previous errors
+    setEmailError('');
+    console.log('[EMAIL_SUBMIT] Calling signUpOrLogIn...');
+
+    signUpOrLogIn(
+      {
+        auth: { email },
+      },
+      {
+        onSuccess: (authState) => {
+          console.log('[EMAIL_SUBMIT] Success! AuthState:', authState);
+          // Set the state here so the UI reflects properly
+          setAuthState(authState);
+        },
+        onError: (error) => {
+          console.error('[EMAIL_SUBMIT] Error:', error);
+          if (error?.message) {
+            setEmailError(error.message);
+          } else {
+            setEmailError(
+              'Failed to send verification code. Please try again.'
+            );
+          }
+        },
+      }
+    );
   };
 
-  const handleVerificationCodeSubmit = async () => {
+  const handleVerificationCodeSubmit = () => {
     if (!verificationCode || verificationCode.length !== 6) {
       return;
     }
 
-    try {
-      const result = await verifyNewAccount({ verificationCode });
-      setAuthState(result);
-    } catch (error) {
-      console.error('Verification failed:', error);
-    }
+    // Clear previous error
+    setVerificationError('');
+
+    verifyNewAccount(
+      {
+        verificationCode: verificationCode.trim(), // Trim whitespace
+      },
+      {
+        onSuccess: (authState) => {
+          // Set the state here so the UI reflects properly
+          setAuthState(authState);
+        },
+        onError: (error: any) => {
+          console.log('🚀 ~ handleVerificationCodeSubmit ~ error:', error);
+
+          // Handle specific error cases
+          if (
+            error?.message?.includes('Account already exists') ||
+            error?.message?.includes('already exists')
+          ) {
+            setVerificationError(
+              'This account already exists. Please try logging in instead of signing up.'
+            );
+          } else if (error?.status === 500) {
+            setVerificationError(
+              'Server error. Please try again or contact support.'
+            );
+          } else if (error?.message) {
+            setVerificationError(error.message);
+          } else {
+            setVerificationError(
+              'Verification failed. Please check your code and try again.'
+            );
+          }
+        },
+      }
+    );
   };
 
   const handleResendCode = async () => {
@@ -200,80 +315,27 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     }
   };
 
-  const forceWagmiConnection = async () => {
-    if (!paraConnector) {
-      console.error('Para connector not found');
-      return;
-    }
+  // These urls could also be iframed (aside from passkeyUrl) to make the ui more seamless
+  const handleOpenWindowClick = (url: string) => () => {
+    window.open(url, '_blank', 'noopener,noreferrer');
 
-    try {
-      console.log('Forcing wagmi Para connector connection...');
-      await connect({ connector: paraConnector });
-
-      // Set Para as primary connector (user intent since they just completed Para auth)
-      console.log('Setting Para as primary connector after Para auth');
-      // Note: We can't directly call setPrimaryConnectorId here because this is in Onboarding component
-      // The unified connection hook will detect this and set it as primary
-      console.log('Wagmi Para connector connected successfully');
-    } catch (error) {
-      console.error('Failed to connect wagmi Para connector:', error);
-    }
-  };
-
-  const handleLoginMethod = async (method: 'passkey' | 'password') => {
-    if (!authState || authState.stage !== 'login') return;
-
-    const popupUrl =
-      method === 'passkey' && authState.isPasskeySupported
-        ? authState.passkeyUrl!
-        : authState.passwordUrl!;
-
-    const newWindow = window.open(popupUrl, `ParaLogin_${method}`);
-
-    try {
-      const result = await waitForLogin({
-        isCanceled: () => newWindow?.closed || false,
-      });
-
-      if (result.needsWallet) {
-        // Handle wallet creation if needed
-        const walletResult = await waitForWalletCreation({
-          isCanceled: () => newWindow?.closed || false,
-        });
-        console.log('Wallet created:', walletResult);
-      }
-
-      // Force wagmi connection after successful Para login
-      await forceWagmiConnection();
-
-      onConnect?.();
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
-
-  const handleSignupMethod = async (method: 'passkey' | 'password') => {
-    if (!authState || authState.stage !== 'signup') return;
-
-    const popupUrl =
-      method === 'passkey' && authState.isPasskeySupported
-        ? authState.passkeyUrl!
-        : authState.passwordUrl!;
-
-    const newWindow = window.open(popupUrl, `ParaSignup_${method}`);
-
-    try {
-      const result = await waitForWalletCreation({
-        isCanceled: () => newWindow?.closed || false,
-      });
-      console.log('Signup completed:', result);
-
-      // Force wagmi connection after successful Para signup
-      await forceWagmiConnection();
-
-      onConnect?.();
-    } catch (error) {
-      console.error('Signup failed:', error);
+    switch (authState?.stage) {
+      case 'verify':
+        // Only start polling for basic auth users, passkey/password/PIN users will start polling later in the flow
+        if (!!authState.loginUrl) {
+          if (authState.nextStage === 'signup') {
+            pollSignUp();
+          } else if (authState.nextStage === 'login') {
+            pollLogin();
+          }
+        }
+        break;
+      case 'signup':
+        pollSignUp();
+        break;
+      case 'login':
+        pollLogin();
+        break;
     }
   };
 
@@ -288,6 +350,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   const handleReset = () => {
     console.log('[ONBOARDING] Resetting onboarding state');
+    // Set the cancellation flag
+    shouldCancelPolling.current = true;
     setAuthState(undefined);
     setVerificationCode('');
     setOtp('');
@@ -301,7 +365,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleLogout = async () => {
+    // Set the cancellation flag before logging out
+    shouldCancelPolling.current = true;
+
     try {
+      await logout();
       await signOut();
       // Reset the onboarding state after logout
       localStorage.removeItem('loginIsSkipped');
@@ -317,8 +385,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleBack = () => {
+    // Set the cancellation flag when going back
+    shouldCancelPolling.current = true;
     setAuthState(undefined);
     setVerificationCode('');
+    setVerificationError('');
   };
 
   // HACK: Hide the w3m-connect-external-widget (Para)
@@ -415,6 +486,78 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       </>
     );
   };
+
+  // Show loading state when processing
+  if (
+    isSigningUpOrLoggingIn ||
+    isVerifyingNewAccount ||
+    isWaitingForLogin ||
+    isWaitingForWalletCreation
+  ) {
+    return (
+      <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
+        {/* Main border with shadow */}
+        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+          {/* Loading spinner */}
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae] mb-4"></div>
+
+          {/* Loading text */}
+          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
+            <div className="font-bold text-[#242436] text-[18px] tracking-[-0.1px] w-full">
+              Loading...
+            </div>
+            <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
+              Please wait while we set up your account...
+            </div>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+          >
+            Start Over
+          </button>
+        </div>
+
+        {renderFooter()}
+      </div>
+    );
+  }
+
+  // Show connected state
+  if (isConnected) {
+    return (
+      <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
+        {/* Main border with shadow */}
+        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+          {/* Success message */}
+          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
+            <div className="font-bold text-[#16a34a] text-[24px] tracking-[-0.1px] w-full">
+              Connected!
+            </div>
+            <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
+              Your account is ready to use.
+            </div>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
+          >
+            <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+              Logout
+            </span>
+          </button>
+        </div>
+
+        {renderFooter()}
+      </div>
+    );
+  }
 
   // Show loading state for first 2 seconds
   // if (isInitialLoading) {
@@ -820,222 +963,266 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
           {/* Verification content */}
           <div className="flex flex-col gap-8 items-start justify-start p-0 relative w-full">
-            <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-              {/* Email sent message */}
-              <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
-                <div className="font-normal text-[#36364c] text-[14px] w-full">
-                  We&apos;ve sent a verification code to
+            {authState.loginUrl ? (
+              /* Show button to open login URL for passkey/password flow */
+              <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
+                <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
+                  <div className="font-normal text-[#36364c] text-[14px] w-full">
+                    We&apos;ve sent a verification email to
+                  </div>
+                  <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
+                    {mounted ? email : ''}
+                  </div>
                 </div>
-                <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {mounted ? email : ''}
-                </div>
+                <button
+                  onClick={handleOpenWindowClick(authState.loginUrl)}
+                  className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
+                >
+                  <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                    {authState.nextStage === 'login' ? 'Login' : 'Signup'}
+                  </span>
+                </button>
               </div>
+            ) : (
+              /* Show verification code input for basic email auth */
+              <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
+                {/* Email sent message */}
+                <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
+                  <div className="font-normal text-[#36364c] text-[14px] w-full">
+                    We&apos;ve sent a verification code to
+                  </div>
+                  <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
+                    {mounted ? email : ''}
+                  </div>
+                </div>
 
-              {/* OTP Input */}
-              <div className="flex flex-row gap-1 items-center justify-start p-0 relative">
-                <div className="flex flex-row gap-1 items-center justify-start">
-                  {[0, 1, 2].map((index) => (
-                    <div key={index} className="relative shrink-0 size-10">
-                      <div
-                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                        }`}
-                      >
-                        <input
-                          ref={(el) => {
-                            if (el) {
-                              // Store ref for focus management
-                              (el as any)._index = index;
-                            }
-                          }}
-                          type="text"
-                          maxLength={1}
-                          className={`w-full h-full text-center text-[20px] font-normal bg-transparent border-none outline-none ${
-                            otpVerified ? 'text-[#16a34a]' : 'text-[#36364c]'
+                {/* OTP Input */}
+                <div className="flex flex-row gap-1 items-center justify-start p-0 relative">
+                  <div className="flex flex-row gap-1 items-center justify-start">
+                    {[0, 1, 2].map((index) => (
+                      <div key={index} className="relative shrink-0 size-10">
+                        <div
+                          className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                            otpVerified
+                              ? 'border-[#16a34a]'
+                              : 'border-[#d6d6d6]'
                           }`}
-                          disabled={otpVerified}
-                          value={verificationCode[index] || ''}
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            const newCode = verificationCode.split('');
-                            newCode[index] = value;
-                            const updatedCode = newCode.join('');
-                            setVerificationCode(updatedCode);
+                        >
+                          <input
+                            ref={(el) => {
+                              if (el) {
+                                // Store ref for focus management
+                                (el as any)._index = index;
+                              }
+                            }}
+                            type="text"
+                            maxLength={1}
+                            className={`w-full h-full text-center text-[20px] font-normal bg-transparent border-none outline-none ${
+                              otpVerified ? 'text-[#16a34a]' : 'text-[#36364c]'
+                            }`}
+                            disabled={otpVerified}
+                            value={verificationCode[index] || ''}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const newCode = verificationCode.split('');
+                              newCode[index] = value;
+                              const updatedCode = newCode.join('');
+                              setVerificationCode(updatedCode);
 
-                            // Move focus to next input if character entered
-                            if (value && index < 5) {
-                              const target = e.target as HTMLInputElement;
-                              const nextInput =
-                                target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                  'input'
-                                ) ||
-                                target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                  'input'
-                                );
-                              if (nextInput) {
-                                (nextInput as HTMLInputElement).focus();
+                              // Move focus to next input if character entered
+                              if (value && index < 5) {
+                                const target = e.target as HTMLInputElement;
+                                const nextInput =
+                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  ) ||
+                                  target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (nextInput) {
+                                  (nextInput as HTMLInputElement).focus();
+                                }
                               }
-                            }
-                          }}
-                          onKeyDown={(e) => {
-                            // Handle backspace to move to previous input
-                            if (
-                              e.key === 'Backspace' &&
-                              !verificationCode[index] &&
-                              index > 0
-                            ) {
-                              const target = e.target as HTMLInputElement;
-                              const prevInput =
-                                target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                  'input'
-                                ) ||
-                                target.parentElement?.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                  'input'
-                                );
-                              if (prevInput) {
-                                (prevInput as HTMLInputElement).focus();
+                            }}
+                            onKeyDown={(e) => {
+                              // Handle backspace to move to previous input
+                              if (
+                                e.key === 'Backspace' &&
+                                !verificationCode[index] &&
+                                index > 0
+                              ) {
+                                const target = e.target as HTMLInputElement;
+                                const prevInput =
+                                  target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                    'input'
+                                  ) ||
+                                  target.parentElement?.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (prevInput) {
+                                  (prevInput as HTMLInputElement).focus();
+                                }
                               }
-                            }
-                          }}
-                          onPaste={(e) => {
-                            e.preventDefault();
-                            const pastedData = e.clipboardData.getData('text');
-                            const digits = pastedData
-                              .replace(/\D/g, '')
-                              .slice(0, 6);
+                            }}
+                            onPaste={(e) => {
+                              e.preventDefault();
+                              const pastedData =
+                                e.clipboardData.getData('text');
+                              const digits = pastedData
+                                .replace(/\D/g, '')
+                                .slice(0, 6);
 
-                            if (digits.length === 6) {
-                              setVerificationCode(digits);
-                              // Focus the last input after paste
-                              const inputs =
-                                document.querySelectorAll('input[type="text"]');
-                              const lastInput = inputs[
-                                inputs.length - 1
-                              ] as HTMLInputElement;
-                              if (lastInput) {
-                                lastInput.focus();
+                              if (digits.length === 6) {
+                                setVerificationCode(digits);
+                                // Focus the last input after paste
+                                const inputs =
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
+                                const lastInput = inputs[
+                                  inputs.length - 1
+                                ] as HTMLInputElement;
+                                if (lastInput) {
+                                  lastInput.focus();
+                                }
                               }
-                            }
-                          }}
-                        />
+                            }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-row gap-1 items-center justify-start">
-                  {[3, 4, 5].map((index) => (
-                    <div key={index} className="relative shrink-0 size-10">
-                      <div
-                        className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
-                          otpVerified ? 'border-[#16a34a]' : 'border-[#d6d6d6]'
-                        }`}
-                      >
-                        <input
-                          ref={(el) => {
-                            if (el) {
-                              // Store ref for focus management
-                              (el as any)._index = index;
-                            }
-                          }}
-                          type="text"
-                          maxLength={1}
-                          className={`w-full h-full text-center text-[20px] font-normal bg-transparent border-none outline-none ${
-                            otpVerified ? 'text-[#16a34a]' : 'text-[#36364c]'
+                    ))}
+                  </div>
+                  <div className="flex flex-row gap-1 items-center justify-start">
+                    {[3, 4, 5].map((index) => (
+                      <div key={index} className="relative shrink-0 size-10">
+                        <div
+                          className={`absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border ${
+                            otpVerified
+                              ? 'border-[#16a34a]'
+                              : 'border-[#d6d6d6]'
                           }`}
-                          disabled={otpVerified}
-                          value={verificationCode[index] || ''}
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            const newCode = verificationCode.split('');
-                            newCode[index] = value;
-                            const updatedCode = newCode.join('');
-                            setVerificationCode(updatedCode);
+                        >
+                          <input
+                            ref={(el) => {
+                              if (el) {
+                                // Store ref for focus management
+                                (el as any)._index = index;
+                              }
+                            }}
+                            type="text"
+                            maxLength={1}
+                            className={`w-full h-full text-center text-[20px] font-normal bg-transparent border-none outline-none ${
+                              otpVerified ? 'text-[#16a34a]' : 'text-[#36364c]'
+                            }`}
+                            disabled={otpVerified}
+                            value={verificationCode[index] || ''}
+                            onChange={(e) => {
+                              const value = e.target.value;
+                              const newCode = verificationCode.split('');
+                              newCode[index] = value;
+                              const updatedCode = newCode.join('');
+                              setVerificationCode(updatedCode);
 
-                            // Move focus to next input if character entered
-                            if (value && index < 5) {
-                              const target = e.target as HTMLInputElement;
-                              const nextInput =
-                                target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                  'input'
-                                );
-                              if (nextInput) {
-                                (nextInput as HTMLInputElement).focus();
+                              // Move focus to next input if character entered
+                              if (value && index < 5) {
+                                const target = e.target as HTMLInputElement;
+                                const nextInput =
+                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (nextInput) {
+                                  (nextInput as HTMLInputElement).focus();
+                                }
                               }
-                            }
-                          }}
-                          onKeyDown={(e) => {
-                            // Handle backspace to move to previous input
-                            if (
-                              e.key === 'Backspace' &&
-                              !verificationCode[index] &&
-                              index > 0
-                            ) {
-                              const target = e.target as HTMLInputElement;
-                              const prevInput =
-                                target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                  'input'
-                                );
-                              if (prevInput) {
-                                (prevInput as HTMLInputElement).focus();
+                            }}
+                            onKeyDown={(e) => {
+                              // Handle backspace to move to previous input
+                              if (
+                                e.key === 'Backspace' &&
+                                !verificationCode[index] &&
+                                index > 0
+                              ) {
+                                const target = e.target as HTMLInputElement;
+                                const prevInput =
+                                  target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                    'input'
+                                  );
+                                if (prevInput) {
+                                  (prevInput as HTMLInputElement).focus();
+                                }
                               }
-                            }
-                          }}
-                          onPaste={(e) => {
-                            e.preventDefault();
-                            const pastedData = e.clipboardData.getData('text');
-                            const digits = pastedData
-                              .replace(/\D/g, '')
-                              .slice(0, 6);
+                            }}
+                            onPaste={(e) => {
+                              e.preventDefault();
+                              const pastedData =
+                                e.clipboardData.getData('text');
+                              const digits = pastedData
+                                .replace(/\D/g, '')
+                                .slice(0, 6);
 
-                            if (digits.length === 6) {
-                              setVerificationCode(digits);
-                              // Focus the last input after paste
-                              const inputs =
-                                document.querySelectorAll('input[type="text"]');
-                              const lastInput = inputs[
-                                inputs.length - 1
-                              ] as HTMLInputElement;
-                              if (lastInput) {
-                                lastInput.focus();
+                              if (digits.length === 6) {
+                                setVerificationCode(digits);
+                                // Focus the last input after paste
+                                const inputs =
+                                  document.querySelectorAll(
+                                    'input[type="text"]'
+                                  );
+                                const lastInput = inputs[
+                                  inputs.length - 1
+                                ] as HTMLInputElement;
+                                if (lastInput) {
+                                  lastInput.focus();
+                                }
                               }
-                            }
-                          }}
-                        />
+                            }}
+                          />
+                        </div>
                       </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Verify Button */}
+                <button
+                  onClick={handleVerificationCodeSubmit}
+                  disabled={
+                    verificationCode.length !== 6 || isVerifyingNewAccount
+                  }
+                  className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                    {isVerifyingNewAccount ? 'Verifying...' : 'Verify Code'}
+                  </span>
+                </button>
+
+                {/* Error Display */}
+                {verificationError && (
+                  <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
+                    <div className="font-normal text-red-500 text-[14px] w-full">
+                      {verificationError}
                     </div>
-                  ))}
+                  </div>
+                )}
+
+                {/* Resend code */}
+                <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
+                  <div className="font-normal text-[#4b4b66] text-[12px] w-full">
+                    Didn&apos;t receive a code?
+                  </div>
+                  <button
+                    onClick={handleResendCode}
+                    disabled={isResending}
+                    className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
+                  >
+                    {isResending
+                      ? 'Sending...'
+                      : isResent
+                        ? 'Code sent!'
+                        : 'Resend code'}
+                  </button>
                 </div>
               </div>
-
-              {/* Verify Button */}
-              <button
-                onClick={handleVerificationCodeSubmit}
-                disabled={verificationCode.length !== 6 || isVerifying}
-                className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isVerifying ? 'Verifying...' : 'Verify Code'}
-                </span>
-              </button>
-            </div>
-
-            {/* Resend code */}
-            <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
-              <div className="font-normal text-[#4b4b66] text-[12px] w-full">
-                Didn&apos;t receive a code?
-              </div>
-              <button
-                onClick={handleResendCode}
-                disabled={isResending}
-                className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
-              >
-                {isResending
-                  ? 'Sending...'
-                  : isResent
-                    ? 'Code sent!'
-                    : 'Resend code'}
-              </button>
-            </div>
+            )}
           </div>
         </div>
 
@@ -1080,36 +1267,48 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
             {authState.isPasskeySupported && authState.passkeyUrl && (
               <button
-                onClick={() =>
-                  authState.stage === 'signup'
-                    ? handleSignupMethod('passkey')
-                    : handleLoginMethod('passkey')
-                }
-                disabled={isWaitingForLogin || isWaitingForWallet}
+                onClick={handleOpenWindowClick(authState.passkeyUrl)}
+                disabled={isWaitingForLogin || isWaitingForWalletCreation}
                 className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
               >
                 <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isWaitingForLogin || isWaitingForWallet
+                  {isWaitingForLogin || isWaitingForWalletCreation
                     ? 'Setting up...'
-                    : 'Continue with Passkey'}
+                    : authState.stage === 'login'
+                      ? 'Login with Passkey'
+                      : 'Signup with Passkey'}
                 </span>
               </button>
             )}
 
             {authState.passwordUrl && (
               <button
-                onClick={() =>
-                  authState.stage === 'signup'
-                    ? handleSignupMethod('password')
-                    : handleLoginMethod('password')
-                }
-                disabled={isWaitingForLogin || isWaitingForWallet}
+                onClick={handleOpenWindowClick(authState.passwordUrl)}
+                disabled={isWaitingForLogin || isWaitingForWalletCreation}
                 className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
               >
                 <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isWaitingForLogin || isWaitingForWallet
+                  {isWaitingForLogin || isWaitingForWalletCreation
                     ? 'Setting up...'
-                    : 'Continue with Password'}
+                    : authState.stage === 'login'
+                      ? 'Login with Password'
+                      : 'Signup with Password'}
+                </span>
+              </button>
+            )}
+
+            {authState.pinUrl && (
+              <button
+                onClick={handleOpenWindowClick(authState.pinUrl)}
+                disabled={isWaitingForLogin || isWaitingForWalletCreation}
+                className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
+              >
+                <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+                  {isWaitingForLogin || isWaitingForWalletCreation
+                    ? 'Setting up...'
+                    : authState.stage === 'login'
+                      ? 'Login with PIN'
+                      : 'Signup with PIN'}
                 </span>
               </button>
             )}
@@ -1206,18 +1405,32 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Continue with Email Button */}
           <button
             onClick={handleEmailSubmit}
-            disabled={!mounted || !email || !email.includes('@') || isSigningUp}
+            disabled={
+              !mounted ||
+              !email ||
+              !email.includes('@') ||
+              isSigningUpOrLoggingIn
+            }
             className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             title={
               mounted
-                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUp}`
+                ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUpOrLoggingIn}`
                 : 'Loading...'
             }
           >
             <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-              {isSigningUp ? 'Sending...' : 'Continue with Email'}
+              {isSigningUpOrLoggingIn ? 'Sending...' : 'Continue with Email'}
             </span>
           </button>
+
+          {/* Error Display */}
+          {emailError && (
+            <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
+              <div className="font-normal text-red-500 text-[14px] w-full">
+                {emailError}
+              </div>
+            </div>
+          )}
 
           {/* Wallet creation text */}
           <p className="font-normal text-[#4b4b66] text-[12px] text-left w-full leading-[1.3]">
