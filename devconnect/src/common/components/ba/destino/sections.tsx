@@ -27,6 +27,7 @@ import Missing from 'assets/images/404.png'
 import RichText from 'lib/components/tina-cms/RichText'
 import Link from 'common/components/link/Link'
 import dynamic from 'next/dynamic'
+import { Separator } from 'lib/components/ui/separator'
 
 const EventsTable = dynamic(() => import('./event-table').then(mod => mod.EventsTable), { ssr: false })
 
@@ -43,23 +44,23 @@ export const FirstSection = ({ content }: { content: any }) => {
       id="first-section"
     >
       <div className="flex flex-col justify-center items-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-6 w-[700px] max-w-[98%] text-center">
-          <div className="font-bold text-4xl">{content.intro.title}</div>
+        <div className="flex flex-col items-center justify-center gap-2 w-[700px] max-w-[98%] text-center">
+          <div className="">
+            <RichText content={content.intro.destino_devconnect_intro_title} />
+          </div>
           <div className="text-lg">
-            <RichText content={content.intro.destino_devconnect_intro} />
+            <RichText content={content.intro.destino_devconnect_intro} className={styles['cms-styling']} />
           </div>
 
           <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
-                'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                'border-solid border-b-[6px] group px-8 py-2 mt-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
                 styles['tiled-button']
               )}
-              disabled
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
-                Applications Closed
-                {/* {(globalThis as any).translations.apply_now} */}
+                {(globalThis as any).translations.learn_more || 'Apply Now'}
               </div>
             </button>
           </Link>
@@ -369,13 +370,13 @@ const Platform = ({
             reverse ? 'scale-x-[-1] !translate-x-[-65%] right-1/2 left-auto' : ''
           )}
         />
-        {showSign && (
+        {/* {showSign && (
           <Image
             src={Sign}
             alt="Sign"
             className="absolute z-[12] top-0 right-0 lg:translate-x-[-100%] xl:translate-x-[-140%] 2xl:translate-x-[-160%] w-[120px] translate-y-[70%] hidden xl:block"
           />
-        )}
+        )} */}
       </TriangleSection>
       <TriangleSection
         className={cn('absolute bottom-0 left-0 right-0 h-[3000px] z-[9]', triangleColor, styles[grassColor])}
@@ -399,17 +400,19 @@ export const SecondSection = ({ content }: { content: any }) => {
         triangleColorShade2={shade2}
         sectionContentId="second-section-content"
         sectionId="second-section"
-        guanacoSpeechString="Let me show you around!"
+        guanacoSpeechString="Are you a Devconnect Fren?"
         grassColor="grass"
         showSign
       >
         <div
           className={cn(
-            'flex flex-col gap-4 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[20%] xl:translate-y-[50%] 2xl:translate-y-[65%] lg:h-[350px] xl:h-[220px]'
+            'flex flex-col gap-0 justify-center items-center text-center w-full pt-16 pb-40 md:pb-8 lg:pt-8 lg:pb-16 xl:pb-8 xl:mb-8 lg:translate-y-[15%] xl:translate-y-[40%]  lg:h-[500px] xl:h-[270px] 12xl:translate-y-[45%] 2xl:h-[230px] 2xl:translate-y-[60%]'
           )}
         >
-          <div className="text-white text-4xl font-semibold shrink-0 ">{content.destino_devconnect_about.title}</div>
-          <div className="flex flex-col gap-4 w-[500px] max-w-[95%] relative text-lg shrink-0">
+          <div className="text-white text-3xl font-semibold w-[600px] max-w-[95%] shrink-0 mb-4 ">
+            {content.destino_devconnect_about.title}
+          </div>
+          <div className="flex flex-col gap-4 w-[600px] max-w-[95%] relative text-lg shrink-0">
             <Image
               src={Tree}
               alt="Tree"
@@ -429,7 +432,7 @@ export const SecondSection = ({ content }: { content: any }) => {
             <Image
               src={Tree}
               alt="Tree"
-              className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
+              className="absolute top-0 right-0 translate-x-[120%] translate-y-[30%] scale-[0.8]"
             />
 
             <RichText content={content.destino_devconnect_about.description} />
@@ -438,7 +441,7 @@ export const SecondSection = ({ content }: { content: any }) => {
               {content.destino_devconnect_about.what_is_it.map((item: any) => {
                 return (
                   <div className="flex flex-col items-center gap-1" key={item.title}>
-                    <div className="text-yellow-400 text-2xl font-bold">{item.title}</div>
+                    <div className="text-yellow-400 text-lg font-semibold">{item.title}</div>
                     <RichText content={item.what_is_it} />
                   </div>
                 )
@@ -457,7 +460,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
   const shade2 = 'bg-[#bf4289]'
 
   return (
-    <div className="relative z-[9]" id="third-section">
+    <div className="relative z-[8]" id="third-section">
       <Platform
         reverse
         className=""
@@ -470,7 +473,7 @@ export const ThirdSection = ({ content }: { content: any }) => {
         grassColor="grass-2"
       >
         <div className={cn('flex flex-col gap-4 justify-center items-center text-center')}>
-          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[50%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
+          <div className="flex flex-col items-center gap-4 w-[700px] max-w-[95%] pt-32 pb-32 mb-4 md:pb-24 lg:pt-0 lg:mb-8 xl:mb-16 xl:pt-0 xl:pb-0 lg:translate-y-[30%] xl:translate-y-[40%] 2xl:translate-y-[70%] lg:h-[400px] xl:h-[250px]">
             <Image
               src={RockTwo}
               alt="Rock"
@@ -493,14 +496,14 @@ export const ThirdSection = ({ content }: { content: any }) => {
               className="absolute top-0 right-0 translate-x-[100%] translate-y-[30%] scale-[0.8]"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 ">
+            <div className="text-white text-3xl font-bold shrink-0 ">
               {content.destino_devconnect_who_can_apply.title}
             </div>
             <div className="flex flex-col justify-center items-center gap-8 text-lg shrink-0">
-              <div className="shrink-0 text-yellow-400 text-2xl">
+              <div className="shrink-0 text-yellow-400 text-lg">
                 {content.destino_devconnect_who_can_apply.description}
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 shrink-0 text-lg">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-2 lg:gap-4 shrink-0 text-base">
                 {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
                   return (
                     <div className="flex flex-col items-center gap-2" key={item.description}>
@@ -524,7 +527,7 @@ export const FourthSection = ({ content }: { content: any }) => {
   const shade2 = 'bg-[#2871B3]'
 
   return (
-    <div className="relative z-[8]" id="fourth-section">
+    <div className="relative z-[7]" id="fourth-section">
       <Platform
         triangleColor={sectionColor}
         triangleColorShade={shade}
@@ -549,10 +552,10 @@ export const FourthSection = ({ content }: { content: any }) => {
               className="absolute top-0 right-0 translate-x-[130%] translate-y-[-40%] w-[130px] auto"
             />
 
-            <div className="text-white text-4xl font-bold shrink-0 mb-4 text-center">
+            <div className="text-white text-3xl font-bold shrink-0 mb-4 text-center">
               {content.destino_devconnect_how_to_apply.title}
             </div>
-            <div className="flex flex-col justify-center items-center gap-4 lg:text-lg  shrink-0">
+            <div className="flex flex-col justify-center items-center gap-4 lg:text-base  shrink-0">
               <div className="grid grid-cols-2 gap-4 text-center shrink-0">
                 {content.destino_devconnect_how_to_apply.destino_devconnect_how_to_apply_list.map(
                   (item: any, index: number) => {
@@ -574,17 +577,134 @@ export const FourthSection = ({ content }: { content: any }) => {
   )
 }
 
+// Epic naming, but this is a mess anyway...
+export const ExtraSectionAddedLater = ({ content }: { content: any }) => {
+  return (
+    <div className="z-[9]  relative">
+      {/* <div className={cn('absolute bottom-0 left-0 right-0 h-[3000px] bg-[#535388]')}>
+        <></>
+      </div> */}
+      <div
+        className="flex flex-col items-center justify-center gap-4 relative" // bg-[#535388]"
+        // style={{
+        //   maskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
+        //   WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 30%, black 70%, transparent 100%)',
+        // }}
+      >
+        <div className="section">
+          <div className="flex flex-col items-center justify-center z-[1] py-16 gap-8 pt-40">
+            <h2 className="text-white text-2xl lg:text-3xl font-medium mb-4 text-center">
+              {content.destino_devconnect_who_can_apply.title}
+            </h2>
+
+            {/* <div className="text-yellow-400 text-lg font-medium">Request Tickets and Discounts</div> */}
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-white leading-relaxed text-center text-sm">
+              {content.destino_devconnect_who_can_apply.destino_devconnect_who_can_apply_list.map((item: any) => {
+                return (
+                  <div
+                    className="bg-slate-800 py-4 px-4 backdrop-blur-sm flex justify-center items-center shadow-lg"
+                    key={item.title}
+                  >
+                    <div className="flex flex-col items-center justify-center gap-1">
+                      <span className="text-[#eca159] font-medium text-lg">{item.title}</span>
+                      {item.description}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="backdrop-blur-sm flex mt-4 shadow-lg">
+              <div
+                className="self-start w-auto bg-slate-900 p-6 px-8 text-center"
+                style={{
+                  borderImage:
+                    'linear-gradient(137.84deg, #F6B613 12.86%, #FF85A6 40.77%, #9894FF 67.87%, #33ccff 97.26%)',
+                  borderImageSlice: 1,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
+                }}
+              >
+                <RichText
+                  content={content.destino_devconnect_who_can_apply.scholarships_available}
+                  className={styles['scholarships-available']}
+                />
+                {/* <span className="font-medium">Scholarships Available </span> — Up to{' '}
+                <span className="text-[#eca159] font-medium">$1,000 USD in funding support</span> is available for
+                initiatives that help groups attend the Ethereum World Fair.
+                <br />
+                <br />
+                <span className="text-sm">
+                  <span className="text-[#eca159]">You also get:</span> free tickets and discounts for your community or
+                  team, visibility across official Devconnect channels, and an on-chain certificate as an official
+                  Devconnect Fren
+                </span> */}
+              </div>
+            </div>
+
+            <div className="text-center">
+              <RichText
+                content={content.destino_devconnect_who_can_apply.disclaimers}
+                className={styles['disclaimers']}
+              />
+              {/* <p className="text-white/90 text-sm">
+                Support can include transportation from distant locations, assistance with travel costs, or partial
+                scholarships for builders attending their first Devconnect.
+              </p>
+
+              <p className="text-white/90 text-sm mt-2">
+                Note: The budget is limited. We will not provide $1,000 to support a single builder. This funding is
+                intended for communities or initiatives that can collectively support multiple participants attending
+                the Ethereum World Fair. We prioritize initiatives that have the greatest impact across communities.
+              </p> */}
+            </div>
+
+            <div className="text-white/90 mt-2 text-xl text-center flex flex-col gap-2">
+              <RichText content={content.destino_devconnect_who_can_apply.deadlines} className={styles['deadlines']} />
+              {/* <div>Request Tickets & Discounts: Until tickets are sold out</div>
+              <div>
+                Scholarship applications open: <span className="font-medium text-[#eca159]">October 15</span>
+              </div>
+              <div>
+                Scholarship announcements: <span className="font-medium text-[#eca159]">October 30</span>
+              </div> */}
+            </div>
+
+            <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+              <button
+                className={cn(
+                  'border-solid border-b-[6px] group px-8 py-2 mt-4 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
+                  styles['tiled-button']
+                )}
+              >
+                <div className="group-hover:translate-y-[3px] transition-transform uppercase">
+                  {(globalThis as any).translations.apply_now_tickets || 'Apply Now'}
+                </div>
+              </button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export const HowToApply = ({ content }: { content: any }) => {
   return (
-    <div className="section my-16 mt-24">
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="flex flex-col items-center justify-center gap-0 w-[800px] max-w-[95%] text-center">
-          <div className="text-white text-4xl font-bold mb-8">{content.destino_devconnect_where_to_apply.title}</div>
-          <div className="text-white text-lg font-bold">{content.destino_devconnect_where_to_apply.description}</div>
-          <div className="text-white text-base opacity-70 mb-8">
+    <div className="section">
+      <Separator className="mb-12 !bg-[#b9b9b9]" />
+      <div className="flex gap-4">
+        <div className="flex flex-col gap-0 w-[900px]">
+          <div className={cn('text-2xl lg:text-3xl font-medium mb-4 self-start', styles['destino-rainbow'])}>
+            {content.destino_devconnect_where_to_apply.title}
+          </div>
+          <div className="text-white">{content.destino_devconnect_where_to_apply.description}</div>
+          <div className="text-sm mb-8 mt-4 leading-tight text-[#eca159]">
             {content.destino_devconnect_where_to_apply.where_to_apply}
           </div>
-          <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
+
+          {/* <Link href="https://esp.ethereum.foundation/devcon-grants/apply">
             <button
               className={cn(
                 'border-solid border-b-[6px] group px-8 py-2 border-[#F58A36] text-[#36364C] text-xl font-semibold bg-[#ffa94e] hover:bg-[#f5a236] transition-colors hover:border-opacity-0',
@@ -594,10 +714,13 @@ export const HowToApply = ({ content }: { content: any }) => {
             >
               <div className="group-hover:translate-y-[3px] transition-transform uppercase">
                 Applications Closed
-                {/* {(globalThis as any).translations.apply_now} */}
+                {(globalThis as any).translations.apply_now} 
               </div>
             </button>
-          </Link>
+          </Link> */}
+        </div>
+        <div className="grow justify-end pr-16 hidden lg:flex">
+          <Image src={Guanaco} alt="Guanaco" className={cn('object-contain w-[103px] outline-none')} />
         </div>
       </div>
     </div>
@@ -657,7 +780,7 @@ const TriangleSection = ({ children, aspectRatio = 69 / 20, className }: Triangl
 
 export const EventsList = ({ content, events }: { content: any; events: any }) => {
   return (
-    <div className="section" id="events">
+    <div className="section">
       <div className="flex flex-col items-center justify-center gap-4 ">
         <EventsTable events={events} />
       </div>

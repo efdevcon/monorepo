@@ -198,7 +198,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
       <div className="flex justify-between items-center mb-4 gap-2">
         {/* <div className="font-bold">Destino Devconnect Events</div> */}
 
-        <div className="flex">
+        {/* <div className="flex">
           <p
             className={`no-select cursor-pointer px-2 py-2 ${!includePastEvents ? styles['selected-filter'] : ''}`}
             onClick={() => {
@@ -226,7 +226,7 @@ const EventsTable = React.memo(({ events, pages }: any) => {
           value={search}
           onChange={e => setSearch(e.target.value)}
           placeholder="Search Events"
-        />
+        /> */}
       </div>
 
       <div className="mb-4">{/* <RichText content={pages.events_table}></RichText> */}</div>

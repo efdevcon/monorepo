@@ -27,6 +27,7 @@
     content: '';
     z-index: -1;
     position: absolute;
+    opacity: 0.6;
     top: 0;
     left: 0;
     width: 100%;
@@ -204,4 +205,33 @@
 
 .popover-animation {
   animation: popover-animation 700ms ease-in-out;
+}
+
+.cms-styling {
+  a {
+    color: orange !important;
+    text-decoration: underline !important;
+  }
+}
+
+.destino-rainbow {
+  background: linear-gradient(to right, #ff66c4, #ff9933, #ffee00, #63ca44, #33ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.disclaimers {
+  font-size: 13px !important;
+}
+
+.scholarships-available,
+.deadlines {
+  b {
+    font-weight: 500 !important;
+  }
+  s {
+    color: #eca159;
+    font-weight: 500 !important;
+    text-decoration: none !important;
+  }
 }
