@@ -200,35 +200,99 @@ export default function WalletTab() {
 
   // Handle Peanut claim
   const handlePeanutClaim = async () => {
-    const response = await fetchAuth<{ link: string; message: string }>(
-      '/api/auth/claim-peanut'
+    // Open popup immediately with blank URL (prevents mobile popup blockers)
+    const popup = window.open(
+      'about:blank',
+      '_blank',
+      'width=470,height=750'
     );
 
-    if (response.success && response.data?.link) {
-      // Open link in new tab
-      window.open(response.data.link, '_blank');
-      toast.success('Claim link opened in new tab');
-    } else {
-      // Handle error - show user-friendly message
-      const errorMessage = response.error || 'Failed to access claim link';
+    if (!popup) {
+      toast.error('Popup Blocked', {
+        description: 'Please allow popups for this site',
+        duration: 4000,
+      });
+      return;
+    }
 
-      // Check if it's an authorization error
-      if (
-        errorMessage.includes('Not authorized') ||
-        errorMessage.includes('not eligible')
-      ) {
-        toast.error('This perk is not available for your account', {
-          description: 'Only eligible users can claim this reward',
-          duration: 5000,
-        });
+    try {
+      const response = await fetchAuth<{ link: string; message: string }>(
+        '/api/auth/claim-peanut'
+      );
+
+      if (response.success && response.data?.link) {
+        // Navigate popup to the actual URL
+        popup.location.href = response.data.link;
+        toast.success('Claim link opened in new tab');
       } else {
-        toast.error('Unable to open claim link', {
-          description: errorMessage,
-          duration: 4000,
-        });
+        // Handle error - show user-friendly message
+        const errorMessage = response.error || 'Failed to access claim link';
+
+        // Close the popup
+        popup.close();
+
+        // Check if it's an authorization error
+        if (
+          errorMessage.includes('Not authorized') ||
+          errorMessage.includes('not eligible')
+        ) {
+          toast.error('This perk is not available for your account', {
+            description: 'Only eligible users can claim this reward',
+            duration: 5000,
+          });
+        } else {
+          toast.error('Unable to open claim link', {
+            description: errorMessage,
+            duration: 4000,
+          });
+        }
+
+        console.error('Peanut claim error:', errorMessage);
+      }
+    } catch (error) {
+      console.error('Peanut claim exception:', error);
+
+      // Show error message in popup
+      if (popup && !popup.closed) {
+        popup.document.write(`
+          <html>
+            <head>
+              <title>Error</title>
+              <style>
+                body { 
+                  font-family: Arial, sans-serif; 
+                  display: flex; 
+                  justify-content: center; 
+                  align-items: center; 
+                  height: 100vh; 
+                  margin: 0; 
+                  background: #f5f5f5;
+                }
+                .error-container {
+                  text-align: center;
+                  padding: 2rem;
+                  background: white;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }
+                .error-title { color: #dc2626; margin-bottom: 1rem; }
+                .error-message { color: #6b7280; }
+              </style>
+            </head>
+            <body>
+              <div class="error-container">
+                <h2 class="error-title">Connection Error</h2>
+                <p class="error-message">Failed to retrieve claim link. Please try again or refresh the page.</p>
+              </div>
+            </body>
+          </html>
+        `);
       }
 
-      console.error('Peanut claim error:', errorMessage);
+      toast.error('Failed to retrieve claim link', {
+        description: 'Please try again',
+        duration: 4000,
+      });
     }
   };
 
