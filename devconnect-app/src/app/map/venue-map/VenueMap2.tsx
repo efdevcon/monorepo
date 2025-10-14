@@ -8,7 +8,7 @@ import React, {
   useMemo,
 } from 'react';
 import { usePanzoom, PanzoomControls } from './panzoom';
-import MapTest from './maps/MapTest';
+import MapTest from './maps/MapWrapper';
 import {
   svgToLookup,
   svgToLookupWithGroups,
@@ -56,17 +56,17 @@ const MapPane = (props: {
 
 const initialFilters = {
   search: '', // Search term, not supported yet but added for future use
-  selection: [], // Array for flexibility in case we want to build more complex filter combinations
+  selection: null, // Array for flexibility in case we want to build more complex filter combinations
 } as {
   search: string;
-  selection: string[];
+  selection: string | null;
 };
 
 export const VenueMap = () => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [elementLookup, setElementLookup] = useState<SVGLookup>({});
-  const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
+  // const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const [elementData, setElementData] = useState<{ [key: string]: any }>({
@@ -83,6 +83,9 @@ export const VenueMap = () => {
       groups: ['coworks'],
     },
   });
+  const [zoomLevel, setZoomLevel] = useState<'zoomed-in' | 'zoomed-out'>(
+    'zoomed-out'
+  );
 
   const [currentFilters, setCurrentFilters] =
     useState<typeof initialFilters>(initialFilters);
@@ -92,7 +95,7 @@ export const VenueMap = () => {
     if (selection) {
       setCurrentFilters({
         ...currentFilters,
-        selection: [selection],
+        selection: selection,
       });
     }
   }, [searchParams]);
@@ -111,7 +114,7 @@ export const VenueMap = () => {
 
   // console.log(allPossibleFilters, 'allPossibleFilters');
 
-  const selectedElements = useMemo(() => {
+  const selectedElement = useMemo(() => {
     const { groups, elements } = allPossibleFilters;
 
     // Selected filters
@@ -120,27 +123,32 @@ export const VenueMap = () => {
     //   return filters[key];
     // });
 
-    return elements.filter((key) => {
+    return elements.find((key) => {
       // const element = elementLookup[key];
       const element = elementData[key];
-      const elementGroups = element?.groups;
+      // const elementGroups = element?.groups;
 
       // @ts-ignore
-      const isInGroup = elementGroups
-        ? currentFilters.selection.some((activeGroup: string) =>
-            elementGroups.some((g: string) => g === activeGroup)
-          )
-        : false;
+      // const isInGroup = elementGroups
+      //   ? currentFilters.selection.some((activeGroup: string) =>
+      //       elementGroups.some((g: string) => g === activeGroup)
+      //     )
+      //   : false;
       // @ts-ignore
-      const isSelected = currentFilters.selection.includes(key);
+      const isSelected = currentFilters.selection === key;
 
-      return isInGroup || isSelected;
+      return isSelected; // isInGroup || isSelected;
     });
   }, [currentFilters, allPossibleFilters]);
 
+  console.log(selectedElement, 'selectedElements');
+
   // console.log(selectedElements, 'selectedElements');
 
-  const { panzoomInstance, interactionsLocked } = usePanzoom('venue-map');
+  const { panzoomInstance, interactionsLocked } = usePanzoom(
+    'venue-map',
+    setZoomLevel
+  );
 
   useEffect(() => {
     const elementsWithIds = svgRef.current?.querySelectorAll(
@@ -175,19 +183,19 @@ export const VenueMap = () => {
     //   // }
     // });
 
-    requestAnimationFrame(() => {
-      if (svgRef.current) {
-        const svgRect = svgRef.current.getBoundingClientRect();
-        const viewBox = svgRef.current.viewBox.baseVal;
-        const scaleX = svgRect.width / viewBox.width;
-        const scaleY = svgRect.height / viewBox.height;
-        setSvgScale({ scaleX, scaleY });
-      }
-    });
+    // requestAnimationFrame(() => {
+    //   if (svgRef.current) {
+    //     const svgRect = svgRef.current.getBoundingClientRect();
+    //     const viewBox = svgRef.current.viewBox.baseVal;
+    //     const scaleX = svgRect.width / viewBox.width;
+    //     const scaleY = svgRect.height / viewBox.height;
+    //     setSvgScale({ scaleX, scaleY });
+    //   }
+    // });
   }, []);
 
   const hasActiveFilters =
-    currentFilters.selection.length > 0 || currentFilters.search.length > 0;
+    currentFilters.selection !== null || currentFilters.search.length > 0;
 
   // Apply hover effect to all SVG elements dynamically
   useEffect(() => {
@@ -196,7 +204,7 @@ export const VenueMap = () => {
     const svgElements = svgRef.current.querySelectorAll('[id]:not(g)');
 
     svgElements.forEach((element) => {
-      const isSelected = selectedElements.includes(element.id);
+      const isSelected = selectedElement === element.id;
       const isHovered = hoveredElement === element.id;
 
       const svgElement = element as SVGElement;
@@ -210,7 +218,7 @@ export const VenueMap = () => {
         svgElement.style.opacity = '1';
       }
     });
-  }, [selectedElements, hoveredElement, hasActiveFilters]);
+  }, [selectedElement, hoveredElement, hasActiveFilters]);
 
   const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as SVGElement;
@@ -240,6 +248,7 @@ export const VenueMap = () => {
 
   const focusOnElement = (id: string) => {
     const svgElement = document.getElementById(id);
+
     if (!svgElement || !panzoomInstance || !containerRef.current) return;
 
     // Get actual screen positions - no scaling needed!
@@ -267,20 +276,18 @@ export const VenueMap = () => {
     id: string,
     event: React.MouseEvent<SVGElement>
   ) => {
-    if (elementLookup[id] && !interactionsLocked) {
-      // const isCurrentlySelected = selectedElement === id;
-      // setSelectedElement(isCurrentlySelected ? null : id);
+    // if (elementLookup[id] && !interactionsLocked) {
+    // const isCurrentlySelected = selectedElement === id;
+    // setSelectedElement(isCurrentlySelected ? null : id);
 
-      setCurrentFilters({
-        ...currentFilters,
-        selection: [id],
-      });
+    // console.log(id, 'id');
 
-      // Focus on the element if it's being selected (not deselected)
-      // if (!isCurrentlySelected) {
-      focusOnElement(id);
-      // }
-    }
+    setCurrentFilters({
+      ...currentFilters,
+      selection: id,
+    });
+
+    focusOnElement(id);
   };
 
   return (
@@ -288,7 +295,8 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow flex py-8'
+        'relative w-full overflow-hidden grow flex py-8',
+        'gradient-background'
         // hasActiveFilters && css['has-selection-or-hover']
       )}
       onClick={(e) => {
@@ -328,7 +336,7 @@ export const VenueMap = () => {
       </div>
 
       <MapPane
-        selection={currentFilters.selection[0]}
+        selection={currentFilters.selection}
         elementLookup={elementLookup}
         setCurrentFilters={setCurrentFilters}
       />
@@ -344,19 +352,21 @@ export const VenueMap = () => {
               e.preventDefault();
               panzoomInstance?.moveTo(0, 0);
               panzoomInstance?.smoothZoomAbs(0, 0, 1);
-              setCurrentFilters({ ...currentFilters, selection: [group] });
+              setCurrentFilters({ ...currentFilters, selection: group });
             }}
             onTouchEnd={(e) => {
               e.stopPropagation();
               e.preventDefault();
               panzoomInstance?.moveTo(0, 0);
               panzoomInstance?.smoothZoomAbs(0, 0, 1);
-              setCurrentFilters({ ...currentFilters, selection: [group] });
+              setCurrentFilters({ ...currentFilters, selection: group });
             }}
           >
             {group}
           </button>
         ))}
+
+        {zoomLevel}
       </div>
 
       {/* Zoom controls */}
@@ -408,4 +418,12 @@ export const VenueMap = () => {
     3) Highlight elements
     4) Get current zoom level
     5) Show different parts of the map depending on the zoom level (low to high fidelity)
+*/
+
+/*
+  1) All data should be fetched and ready
+  
+  2) On click, set id 
+    2.1) Pane should receive the current selection
+
 */

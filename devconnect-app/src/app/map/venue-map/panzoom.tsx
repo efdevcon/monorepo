@@ -47,7 +47,7 @@ export const PanzoomControls = (props: { pz: PanZoom | null }) => {
   );
 };
 
-export const usePanzoom = (elementId: string) => {
+export const usePanzoom = (elementId: string, setZoomLevel: any) => {
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
   );
@@ -61,7 +61,7 @@ export const usePanzoom = (elementId: string) => {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
         boundsPadding: 0.5,
-        maxZoom: 2.5,
+        maxZoom: 6,
         zoomDoubleClickSpeed: 1,
         minZoom: 0.5,
         beforeWheel: function (e) {
@@ -115,9 +115,18 @@ export const usePanzoom = (elementId: string) => {
       //   // setIsPanning(false);
       // });
 
-      // panzoomInstance.on('transform', (e: any) => {
-      //   console.log('transform', e);
-      // });
+      panzoomInstance.on('transform', (e: any) => {
+        const transform = e.getTransform();
+        // console.log('transform', transform);
+
+        if (transform.scale > 1) {
+          console.log('zoomed-in');
+          setZoomLevel('zoomed-in');
+        } else {
+          console.log('zoomed-out');
+          setZoomLevel('zoomed-out');
+        }
+      });
 
       // Prevent double-click zoom by intercepting double-click events
       // scene.addEventListener('dblclick', (e) => {

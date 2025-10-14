@@ -26,7 +26,7 @@ import {
 
 const TicketWrapper = () => {
   return (
-    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
+    <PageLayout title="Ethereum World's Fair — Tickets" tabs={homeTabs()}>
       <TicketTab />
     </PageLayout>
   );

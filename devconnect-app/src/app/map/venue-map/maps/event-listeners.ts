@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef } from 'react';
 
 // Reusable props for the SVG element, can be used with any SVG element
 const useSVGProps = ({ onSVGElementClick }: any) => {
@@ -31,9 +31,10 @@ const useSVGProps = ({ onSVGElementClick }: any) => {
     return movementExceededThreshold.current;
   };
 
-  return { 
+  return {
     width: '100%',
     height: '100%',
+    // className: 'gradient-background',
     onPointerDown: (e: React.PointerEvent<SVGSVGElement>) => {
       handleInteractionStart(e.clientX, e.clientY);
     },
@@ -79,7 +80,7 @@ const useSVGProps = ({ onSVGElementClick }: any) => {
         onSVGElementClick(target.id, e);
       }
       handleInteractionEnd();
-    }
+    },
   };
 };
 

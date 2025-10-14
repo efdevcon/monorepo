@@ -107,6 +107,13 @@ export const eventShops: EventShop[] = [
     coupon_collection: "apptownhall",
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "162",
+    zupass_proof_id: "Devconnect ARG",
+    gate_link_only: true,
+    hide_visit_site: true,
+    zupass_disabled: zupassGatingFallbackOn,
+  },
 
   // {
   //   supabase_id: "113", // ethereum argentina
