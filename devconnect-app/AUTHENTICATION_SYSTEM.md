@@ -293,12 +293,298 @@ Key state variables:
 - Use custom UI in Onboarding component
 - AppKit modal controlled by `open()` method
 
+## Authentication Verification Flow
+
+Once a user is logged in, here's how the system verifies they're authenticated:
+
+### 1. **Token Storage** (Client-Side)
+
+**Para Users:**
+
+- Para SDK stores authentication session
+- Can issue JWT tokens via `issueJwtAsync()`
+
+**Supabase Users:**
+
+- Supabase stores JWT in browser (localStorage/cookies)
+- Managed by Supabase client automatically
+
+**Auto-Exchange (Para → Supabase):**
+
+```typescript
+// src/hooks/useAutoParaJwtExchange.ts
+// Automatically triggered when Para wallet connects
+1. Para connects → issueJwtAsync() → Get Para JWT
+2. POST /api/exchange-token → Exchange for Supabase JWT  
+3. supabase.auth.setSession() → Set Supabase session
+4. Now user has BOTH Para and Supabase authentication
+```
+
+### 2. **Making API Requests** (Client-Side)
+
+```typescript
+// src/services/apiClient.ts
+// When frontend calls a protected endpoint:
+
+fetchAuth('/api/auth/user-data')
+  ↓
+1. authService.generateToken() - Smart token selection:
+   - Try Supabase first (if user session exists)
+   - Fallback to Para (if para.issueJwt available)
+   
+2. Add headers:
+   - Authorization: Bearer <token>
+   - X-Auth-Method: 'supabase' | 'para'
+   
+3. Send request to backend
+```
+
+### 3. **Authentication Verification** (Server-Side)
+
+```typescript
+// src/middleware.ts
+// Global middleware intercepts ALL /api/auth/* routes
+
+Request to /api/auth/tickets
+  ↓
+middleware.ts
+  ↓
+verifyAuth(request) 
+  ↓
+app/api/auth/middleware.ts
+```
+
+**Verification Logic:**
+
+```typescript
+// src/app/api/auth/middleware.ts
+
+verifyAuth(request) {
+  1. Extract headers:
+     - authorization: "Bearer <token>"
+     - x-auth-method: "supabase" | "para"
+  
+  2. Route based on auth method:
+  
+     If x-auth-method === 'para':
+       → Verify Para JWT with Para's JWKS
+       → Check signature, expiry
+       → Extract user data from Para JWT
+       → Return mock User object
+       
+     If x-auth-method === 'supabase' (or not set):
+       → Verify Supabase JWT
+       → Call supabase.auth.getUser(token)
+       → Return Supabase User object
+  
+  3. If verification succeeds:
+     → Inject user data into request:
+       - Query params: ?_user_id=xxx&_user_email=xxx
+       - Headers: x-user-id, x-user-email
+     → Forward to route handler
+     
+  4. If verification fails:
+     → Return 401 Unauthorized
+}
+```
+
+### 4. **Protected Route Access**
+
+```typescript
+// src/app/api/auth/user-data/route.ts
+
+export async function GET(request: NextRequest) {
+  // User is already authenticated by middleware!
+  const userEmail = request.headers.get('x-user-email') ||
+                    request.nextUrl.searchParams.get('_user_email');
+  
+  // Safe to use - middleware guarantees valid user
+  const userData = await ensureUser(userEmail);
+  
+  return NextResponse.json(userData);
+}
+```
+
+### 5. **JWT Verification Details**
+
+**Para JWT Verification:**
+
+```typescript
+// Uses JWKS (JSON Web Key Set) from Para's public keys
+JWKS_URLS = {
+  sandbox: 'https://api.sandbox.getpara.com/.well-known/jwks.json',
+  beta: 'https://api.beta.getpara.com/.well-known/jwks.json',
+  prod: 'https://api.getpara.com/.well-known/jwks.json'
+}
+
+// Verify with jose library
+jwtVerify<ParaJwtPayload>(token, JWKS, { algorithms: ['RS256'] })
+
+// Para JWT Payload Structure:
+{
+  data: {
+    userId: string,
+    email?: string,
+    wallets?: [{ address, type, ... }],
+    authType: 'EMAIL' | 'PASSKEY' | 'PASSWORD' | 'PIN',
+    ...
+  },
+  exp: timestamp,
+  iat: timestamp,
+  sub: userId
+}
+```
+
+**Supabase JWT Verification:**
+
+```typescript
+// Supabase client handles verification internally
+const { data: { user }, error } = await supabase.auth.getUser(token)
+
+// Checks:
+// - JWT signature (HS256 with SUPABASE_JWT_SECRET)
+// - Expiration
+// - User exists in Supabase auth database
+```
+
+### 6. **Authentication State in Frontend**
+
+```typescript
+// src/hooks/useWalletManager.ts
+
+const hasValidSupabaseAuth = supabaseInitialized && !!supabaseUser;
+
+// This determines if RequiresAuthHOC allows access
+// Even Para users need Supabase session (via auto-exchange)
+
+useEffect(() => {
+  console.log('👤 [USER_AUTH_STATE]', {
+    para: {
+      isConnected,
+      canIssueJwt,  // Can generate Para JWT
+    },
+    supabase: {
+      hasUser,       // Has Supabase session
+    },
+    unified: {
+      hasValidSupabaseAuth,  // ✅ This determines authentication
+    }
+  });
+}, [...]);
+```
+
+## Dual Authentication System
+
+The app cleverly uses **TWO authentication layers**:
+
+| Layer | Purpose | Storage |
+|-------|---------|---------|
+| **Para** | Wallet authentication, biometric security | Para SDK session |
+| **Supabase** | Backend user management, database access | JWT in browser |
+
+**Why Both?**
+
+1. **Para**: Creates and manages wallets, handles secure authentication
+2. **Supabase**: Provides traditional auth for database operations, easier backend integration
+
+**Auto-Exchange Bridge:**
+
+- Para users automatically get Supabase sessions
+- Backend can accept EITHER Para JWT or Supabase JWT
+- Frontend prioritizes Supabase for consistency
+
+## Authentication Flow Diagram
+
+```
+┌─────────────┐
+│   Client    │
+└──────┬──────┘
+       │
+       ├─ Para Connected?
+       │  ├─ Yes → Auto-exchange Para JWT → Supabase session
+       │  └─ No  → Direct Supabase OTP login
+       │
+       ▼
+   [Has Supabase Session]
+       │
+       ├─ API Call: fetchAuth('/api/auth/tickets')
+       │
+       ▼
+┌──────────────────────────────────────────┐
+│  Smart Token Selection (authService)     │
+│  1. Try Supabase token (if session)      │
+│  2. Fallback to Para JWT (if available)  │
+└──────────────┬───────────────────────────┘
+               │
+               ├─ Headers: Authorization + X-Auth-Method
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Next.js Middleware (src/middleware.ts)  │
+│  Intercepts /api/auth/* routes           │
+└──────────────┬───────────────────────────┘
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  verifyAuth() (middleware.ts)            │
+│  - Verify JWT (Para or Supabase)         │
+│  - Extract user data                     │
+│  - Inject into request headers           │
+└──────────────┬───────────────────────────┘
+               │
+               ├─ Success → Forward with user headers
+               │
+               ▼
+┌──────────────────────────────────────────┐
+│  Protected Route Handler                 │
+│  - Read x-user-email, x-user-id          │
+│  - Process request with verified user    │
+└──────────────────────────────────────────┘
+```
+
+## Security Features
+
+### Token Expiry
+
+- **Supabase JWT**: 1 hour (auto-refresh handled by client)
+- **Para JWT**: 30 minutes (can be refreshed via `issueJwt()`)
+
+### Biometric Security (Para)
+
+- Para can require biometric verification before issuing JWT
+- Adds extra security layer for sensitive operations
+- User must verify fingerprint/face ID to get fresh token
+
+### JWKS Verification (Para)
+
+- Backend verifies Para JWT signature using public keys
+- Cannot be forged without Para's private key
+- Rotated keys supported via JWKS endpoint
+
+### Supabase RLS (Row Level Security)
+
+- Database has user policies based on JWT claims
+- Even with valid JWT, users can only access their own data
+- Additional security layer at database level
+
 ## Code References
 
 | File | Purpose |
 |------|---------|
+| **Authentication Core** ||
 | `src/components/Onboarding.tsx` | Main auth UI and flow orchestration |
 | `src/hooks/useUser.ts` | Supabase authentication |
+| `src/hooks/useWalletManager.ts` | Unified wallet + auth state |
+| `src/hooks/useAutoParaJwtExchange.ts` | Automatic Para → Supabase JWT exchange |
+| **API Client** ||
+| `src/services/apiClient.ts` | Authenticated API requests |
+| `src/services/authService.ts` | Token generation and management |
+| **Backend Verification** ||
+| `src/middleware.ts` | Global auth middleware for /api/auth/* |
+| `src/app/api/auth/middleware.ts` | JWT verification logic |
+| `src/app/api/exchange-token/route.ts` | Para → Supabase JWT exchange |
+| `src/app/api/auth/user-data/route.ts` | Example protected endpoint |
+| **Configuration** ||
 | `src/context/WalletProviders.tsx` | Provider setup |
 | `src/config/appkit.ts` | AppKit/Wagmi configuration |
 | `src/config/para.ts` | Para SDK initialization |
