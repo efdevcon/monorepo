@@ -1,58 +1,30 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect } from 'react';
 import { useGlobalStore } from './store.provider';
-import { useShallow } from 'zustand/react/shallow';
-import { fetchAuth } from '@/services/apiClient';
-import { toast } from 'sonner';
-import { requireAuth } from '@/components/RequiresAuth';
-import { AppState, Order } from './store';
-import QRCode from 'qrcode';
+import {
+  useUserData as useUserDataSWR,
+  useTickets as useTicketsSWR,
+  useFavorites as useFavoritesSWR
+} from '@/hooks/useServerData';
+import { AppState } from './store';
 // import { useWalletManager } from '@/hooks/useWalletManager';
 
+/**
+ * Manage favorite events (now using SWR)
+ * Returns: [favorites, updateFavorite]
+ */
 export const useFavorites = () => {
-  const userData = useGlobalStore(useShallow((state) => state.userData));
-  const favorites =
-    useGlobalStore((state) => {
-      return state.userData?.favorite_events;
-    }) || [];
-  const setFavoriteEvents = useGlobalStore((state) => state.setFavoriteEvents);
-
-  const updateFavorite = (eventId: string) => {
-    if (!userData) {
-      requireAuth(
-        'You need to be authenticated to add events to your favorites.'
-      );
-      return;
-    }
-
-    const nextFavoriteEvents = favorites?.includes(eventId)
-      ? favorites?.filter((existingEvent: string) => existingEvent !== eventId)
-      : [...(favorites || []), eventId];
-
-    setFavoriteEvents(nextFavoriteEvents);
-
-    fetchAuth('/api/auth/favorites', {
-      method: 'POST',
-      body: JSON.stringify({ favoriteEvents: nextFavoriteEvents }),
-    }).then((response) => {
-      if (!response.success) {
-        toast.error(
-          'There was an error updating your favorites. Check your connection and try again.'
-        );
-      }
-    });
-  };
-
+  const { favorites, updateFavorite } = useFavoritesSWR();
   return [favorites, updateFavorite] as [string[], (eventId: string) => void];
 };
 
+/**
+ * Get additional ticket emails (now using SWR)
+ */
 export const useAdditionalTicketEmails = () => {
-  const additionalTicketEmails = useGlobalStore(
-    useShallow((state) => state.userData?.additional_ticket_emails)
-  );
-
-  return additionalTicketEmails || [];
+  const { additionalTicketEmails } = useUserDataSWR();
+  return additionalTicketEmails;
 };
 
 export const useEvents = () => {
@@ -60,9 +32,15 @@ export const useEvents = () => {
   return events || [];
 };
 
+/**
+ * Manually fetch and update user data (for backward compatibility)
+ * Note: Most code should use useUserData() hook instead
+ */
 export const ensureUserData = async (
   setUserData: (userData: AppState['userData']) => void
 ) => {
+  // Direct fetch for backward compatibility
+  const { fetchAuth } = await import('@/services/apiClient');
   const userData = await fetchAuth('/api/auth/user-data');
 
   if (userData.success) {
@@ -72,123 +50,48 @@ export const ensureUserData = async (
   }
 };
 
-// Hook to ensure user data is loaded from supabase whenever connection status changes
-export const useEnsureUserData = (isConnected: boolean) => {
+/**
+ * Hook to ensure user data is loaded (now uses SWR, no manual refetching needed)
+ * SWR automatically handles revalidation on focus and reconnect
+ */
+export const useEnsureUserData = (email: string | undefined) => {
+  // SWR handles all the caching and revalidation automatically
+  // We just need to use the hook - it will fetch when email is available
+  const { userData, refresh } = useUserDataSWR();
+
+// Optionally sync to Zustand for backward compatibility
   const setUserData = useGlobalStore((state) => state.setUserData);
 
   useEffect(() => {
-    if (isConnected) {
-      console.log('ensuring user data');
-      ensureUserData(setUserData);
-    } else {
+    if (userData) {
+      setUserData(userData);
+    } else if (!email) {
       setUserData(null);
     }
-  }, [isConnected]);
-
-  // Ensure user data is loaded whenever the window is focused (for when user returns from background, in case user updated its data on different device)
-  useEffect(() => {
-    const handleFocus = () => {
-      if (isConnected) {
-        ensureUserData(setUserData);
-      }
-    };
-
-    window.addEventListener('focus', handleFocus);
-    return () => window.removeEventListener('focus', handleFocus);
-  }, [isConnected, setUserData]);
+  }, [userData, email, setUserData]);
 };
 
-// Fetch tickets and generate QR codes
-export const fetchTickets = async (
-  setTickets: (tickets: Order[] | null) => void,
-  setTicketsLoading: (loading: boolean) => void,
-  setQrCodes: (qrCodes: { [key: string]: string }) => void
-) => {
-  setTicketsLoading(true);
-
-  try {
-    const response = await fetchAuth<{ tickets: Order[] }>('/api/auth/tickets');
-
-    if (!response.success) {
-      throw new Error(response.error || 'Failed to fetch tickets');
-    }
-
-    const orderData = response.data.tickets || [];
-    setTickets(orderData);
-
-    // Generate QR codes for each ticket
-    const newQrCodes: { [key: string]: string } = {};
-    for (const order of orderData) {
-      for (const ticket of order.tickets) {
-        if (ticket.secret) {
-          try {
-            const qrDataUrl = await QRCode.toDataURL(ticket.secret, {
-              width: 200,
-              margin: 1,
-              color: {
-                dark: '#000000',
-                light: '#FFFFFF',
-              },
-            });
-            newQrCodes[ticket.secret] = qrDataUrl;
-
-            if (ticket.addons) {
-              for (const addon of ticket.addons) {
-                const qrDataUrl = await QRCode.toDataURL(addon.secret, {
-                  width: 200,
-                  margin: 1,
-                });
-                newQrCodes[addon.secret] = qrDataUrl;
-              }
-            }
-          } catch (qrErr) {
-            console.error('Error generating QR code:', qrErr);
-          }
-        }
-      }
-    }
-    setQrCodes(newQrCodes);
-  } catch (err) {
-    console.error('Error fetching tickets:', err);
-    toast.error(err instanceof Error ? err.message : 'Failed to load tickets');
-  } finally {
-    setTicketsLoading(false);
-  }
-};
-
-// Hook to fetch and manage tickets
+/**
+ * Hook to fetch and manage tickets (now using SWR)
+ * SWR automatically handles caching, deduplication, and revalidation
+ */
 export const useTickets = () => {
-  const additionalTicketEmails = useAdditionalTicketEmails();
-  const email = useGlobalStore((state) => state.userData?.email);
-  const tickets = useGlobalStore((state) => state.tickets);
-  const ticketsLoading = useGlobalStore((state) => state.ticketsLoading);
-  const qrCodes = useGlobalStore((state) => state.qrCodes);
+  const { tickets, qrCodes, loading, refresh } = useTicketsSWR();
+
+  // Optionally sync to Zustand for backward compatibility
   const setTickets = useGlobalStore((state) => state.setTickets);
-  const setTicketsLoading = useGlobalStore((state) => state.setTicketsLoading);
   const setQrCodes = useGlobalStore((state) => state.setQrCodes);
-  const isLoadingRef = useRef(false);
+  const setTicketsLoading = useGlobalStore((state) => state.setTicketsLoading);
 
-  const refresh = async () => {
-    if (isLoadingRef.current) {
-      console.log('Already fetching tickets, skipping...');
-      return;
-    }
-
-    isLoadingRef.current = true;
-    await fetchTickets(setTickets, setTicketsLoading, setQrCodes);
-    isLoadingRef.current = false;
-  };
-
-  // Auto-fetch tickets when email is available
   useEffect(() => {
-    if (email) {
-      refresh();
-    }
-  }, [email, additionalTicketEmails]);
+    setTickets(tickets);
+    setQrCodes(qrCodes);
+    setTicketsLoading(loading);
+  }, [tickets, qrCodes, loading, setTickets, setQrCodes, setTicketsLoading]);
 
   return {
-    tickets: tickets || [],
-    loading: ticketsLoading,
+    tickets,
+    loading,
     qrCodes,
     refresh,
   };

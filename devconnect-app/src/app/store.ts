@@ -1,5 +1,20 @@
 'use client';
 
+/**
+ * Global Store (Zustand)
+ * 
+ * ARCHITECTURE UPDATE:
+ * - Server data (userData, tickets) is now managed by SWR (see src/hooks/useServerData.ts)
+ * - This store is kept mainly for backward compatibility and static data (events)
+ * - New code should use SWR hooks directly for better caching and performance
+ * 
+ * Migration Status:
+ * ✅ userData → useSWR (useUserData hook)
+ * ✅ tickets → useSWR (useTickets hook)
+ * ✅ favorites → useSWR with mutations (useFavorites hook)
+ * 🔄 events → Still in Zustand (static initialization data)
+ */
+
 import { createStore, StateCreator } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -20,16 +35,22 @@ export interface Order {
 }
 
 export interface AppState {
-  // User data from supabase (so basically data attached to the logged in email)
+  // Static data (passed at initialization)
+  events: any[] | undefined;
+
+  // Server data (now managed by SWR, kept here for backward compatibility)
+  // @deprecated Use SWR hooks instead: useUserData(), useTickets(), useFavorites()
   userData: {
     additional_ticket_emails?: string[];
     favorite_events?: string[];
     email?: string;
   } | null;
-  events: any[] | undefined;
   tickets: Order[] | null;
   ticketsLoading: boolean;
   qrCodes: { [key: string]: string };
+
+  // Actions (mostly for backward compatibility)
+  // @deprecated Use SWR hooks for automatic caching and revalidation
   setUserData: (userData: AppState['userData']) => void;
   setFavoriteEvents: (nextFavoriteEvents: string[]) => void;
   setTickets: (tickets: Order[] | null) => void;
