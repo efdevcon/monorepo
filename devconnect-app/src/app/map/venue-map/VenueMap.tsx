@@ -196,11 +196,11 @@ export const VenueMap = () => {
         svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
         svgElement.style.filter = 'none';
-      } else if (hoveredElement) {
+      } /*else if (hoveredElement) {
         // Hover fallback
         svgElement.style.opacity = '0.5';
         svgElement.style.filter = 'none';
-      } else {
+      } */ else {
         // Reset fallback
         svgElement.style.opacity = '1';
         svgElement.style.filter = 'none';
@@ -302,7 +302,7 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow flex py-8',
+        'relative w-full overflow-hidden grow flex py-8 md:h-[80vh]',
         'gradient-background',
         css.map,
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
@@ -381,8 +381,6 @@ export const VenueMap = () => {
             {group}
           </button>
         ))}
-
-        {zoomLevel}
       </div>
 
       {/* Zoom controls */}

@@ -114,6 +114,12 @@ export const eventShops: EventShop[] = [
     hide_visit_site: true,
     zupass_disabled: zupassGatingFallbackOn,
   },
+  {
+    supabase_id: "107",
+    zupass_proof_id: "Devconnect ARG",
+    coupon_collection: "defi-today",
+    zupass_disabled: zupassGatingFallbackOn,
+  },
 
   // {
   //   supabase_id: "113", // ethereum argentina
