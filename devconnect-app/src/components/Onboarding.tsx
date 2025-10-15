@@ -1,8 +1,7 @@
 'use client';
 
 import { useAppKit } from '@reown/appkit/react';
-// Note: Onboarding doesn't actually use useUnifiedConnection, just imported
-// import { useWalletManager } from '@/hooks/useWalletManager';
+// Note: Onboarding doesn't use useWalletManager directly - it manages its own auth flow
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import {

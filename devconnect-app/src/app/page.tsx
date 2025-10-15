@@ -11,7 +11,6 @@ import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
   const router = useRouter();
-  // const { address } = useUnifiedConnection();
 
   useEffect(() => {
     const isSkipped = localStorage.getItem('loginIsSkipped');

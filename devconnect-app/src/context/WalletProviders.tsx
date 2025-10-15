@@ -24,7 +24,7 @@ export function WalletsProviders({ children }: { children: React.ReactNode }) {
           }}
           config={{
             appName: 'Devconnect App',
-            disableEmbeddedModal: true,
+            // disableEmbeddedModal: true,
           }}
           paraModalConfig={{
             disableEmailLogin: false,
