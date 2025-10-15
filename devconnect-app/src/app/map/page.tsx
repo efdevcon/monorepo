@@ -1,6 +1,6 @@
 'use client';
 import PageLayout from '@/components/PageLayout';
-import { VenueMap } from './venue-map/VenueMap2';
+import { VenueMap } from './venue-map/VenueMap';
 import React from 'react';
 
 export default function MapPage() {

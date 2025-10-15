@@ -1,29 +1,55 @@
 .map {
-    // background: hsla(0, 0%, 100%, .97);
-    // backdrop-filter: blur(4px);
-    // -webkit-backdrop-filter: blur(4px);
+
+    * {
+        transition: opacity 0.3s ease;
+
+        &:not([id]) {
+            pointer-events: none;
+        }
+
+        pointer-events: auto;
+    }
+
 
     g[id='Info'] {
         opacity: 0;
-        transition: opacity 0.9s ease;
+        pointer-events: none;
     }
 
     g[id='Icons'] {
         opacity: 0;
-        transition: opacity 0.9s ease;
+        pointer-events: none;
     }
 
     &.zoomed-in {
         g[id='Info'] {
             opacity: 1;
+            pointer-events: auto;
         }
 
         g[id='Icons'] {
             opacity: 1;
+            pointer-events: auto;
         }
     }
 
+    &.highlight-active {
+        // :not(.highlighted) {
+        //     transition: all 0.3s ease;
+        //     // filter: saturate(0.3) brightness(0.7);
+        //     scale: 0.9;
+        // }
 
+        .highlighted {
+            border: 2px solid black;
+            box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        // .highlighted {
+        //     transition: filter 0.3s ease;
+        //     filter: none !important;
+        // }
+    }
 }
 
 // .has-selection-or-hover {

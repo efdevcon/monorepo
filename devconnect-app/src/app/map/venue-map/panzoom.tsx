@@ -47,12 +47,20 @@ export const PanzoomControls = (props: { pz: PanZoom | null }) => {
   );
 };
 
-export const usePanzoom = (elementId: string, setZoomLevel: any) => {
+export const usePanzoom = (
+  elementId: string,
+  setZoomLevel: any,
+  zoomLevel: string
+) => {
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
   );
   const [isZooming, setIsZooming] = React.useState(false);
   const [isPanning, setIsPanning] = React.useState(false);
+
+  const zoomLevelRef = React.useRef(zoomLevel);
+
+  zoomLevelRef.current = zoomLevel;
 
   React.useEffect(() => {
     const scene = document.getElementById(elementId);
@@ -83,15 +91,14 @@ export const usePanzoom = (elementId: string, setZoomLevel: any) => {
       //   // setPanAndZoomLevels(zoomLevels);
       // });
 
-      panzoomInstance.on('zoom', (e: any) => {
-        // console.log('zoomstart', e);
-        setIsZooming(true);
-
-        // Set a timeout to ensure the zoom animation is complete
-        setTimeout(() => {
-          setIsZooming(false);
-        }, 600);
-      });
+      // panzoomInstance.on('zoom', (e: any) => {
+      //   // console.log('zoomstart', e);)
+      //   setIsZooming(true);
+      //   // // Set a timeout to ensure the zoom animation is complete
+      //   setTimeout(() => {
+      //     setIsZooming(false);
+      //   }, 600);
+      // });
 
       // panzoomInstance.on('zoomend', (e: any) => {
       //   console.log('zoomend', e);
@@ -120,9 +127,16 @@ export const usePanzoom = (elementId: string, setZoomLevel: any) => {
         // console.log('transform', transform);
 
         if (transform.scale > 1.2) {
-          setZoomLevel('zoomed-in');
+          console.log('zoomed in', zoomLevel);
+          if (zoomLevelRef.current === 'zoomed-out') {
+            setZoomLevel('zoomed-in');
+          }
         } else {
-          setZoomLevel('zoomed-out');
+          console.log('zoomed out', zoomLevel);
+          if (zoomLevelRef.current === 'zoomed-in') {
+            console.log('setting zoomed out', zoomLevel);
+            setZoomLevel('zoomed-out');
+          }
         }
       });
 
