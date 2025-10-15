@@ -1,7 +1,7 @@
 .map {
 
     * {
-        transition: opacity 0.3s ease;
+        transition: opacity 0.3s ease, filter 0.3s ease;
 
         &:not([id]) {
             pointer-events: none;
@@ -10,28 +10,24 @@
         pointer-events: auto;
     }
 
+    // When not zoomed in, hide the info and icons and make them unclickable
+    &:not(.zoomed-in) {
+        g[id='Info'], g[id='Icons'] {
+            opacity: 0;
+            pointer-events: none !important;
 
-    g[id='Info'] {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    g[id='Icons'] {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    &.zoomed-in {
-        g[id='Info'] {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        g[id='Icons'] {
-            opacity: 1;
-            pointer-events: auto;
+            * {
+                pointer-events: none !important;
+            }
         }
     }
+
+    // &.zoomed-in {
+    //     g[id='Info'], g[id='Icons'] {
+    //         opacity: 1;
+    //         pointer-events: auto;
+    //     }
+    // }
 
     &.highlight-active {
         // :not(.highlighted) {

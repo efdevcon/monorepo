@@ -34,6 +34,7 @@ const initialFilters = {
 };
 
 export const VenueMap = () => {
+  // const router = useRouter();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [elementLookup, setElementLookup] = useState<SVGLookup>({});
@@ -61,15 +62,26 @@ export const VenueMap = () => {
   const [currentFilters, setCurrentFilters] =
     useState<typeof initialFilters>(initialFilters);
 
+  const { panzoomInstance, interactionsLocked } = usePanzoom(
+    'venue-map',
+    setZoomLevel,
+    zoomLevel
+  );
+
   useEffect(() => {
     const selection = searchParams.get('filter');
-    if (selection) {
+
+    if (selection && panzoomInstance) {
       setCurrentFilters({
         ...currentFilters,
         selection: selection,
       });
+
+      focusOnElement(selection);
+
+      // router.replace(`/map`);
     }
-  }, [searchParams]);
+  }, [searchParams, panzoomInstance]);
 
   const allPossibleFilters = useMemo(() => {
     // Get from database / api
@@ -85,86 +97,80 @@ export const VenueMap = () => {
 
   // console.log(allPossibleFilters, 'allPossibleFilters');
 
-  const selectedElement = useMemo(() => {
-    const { groups, elements } = allPossibleFilters;
+  // const selectedElement = useMemo(() => {
+  //   const { groups, elements } = allPossibleFilters;
 
-    // Selected filters
-    // const selectedFilters = currentFilters.selection.map((key) => {
-    //   // @ts-ignore
-    //   return filters[key];
-    // });
+  //   // Selected filters
+  //   // const selectedFilters = currentFilters.selection.map((key) => {
+  //   //   // @ts-ignore
+  //   //   return filters[key];
+  //   // });
 
-    return elements.find((key) => {
-      // const element = elementLookup[key];
-      const element = elementData[key];
-      // const elementGroups = element?.groups;
+  //   return elements.find((key) => {
+  //     // const element = elementLookup[key];
+  //     const element = elementData[key];
+  //     // const elementGroups = element?.groups;
 
-      // @ts-ignore
-      // const isInGroup = elementGroups
-      //   ? currentFilters.selection.some((activeGroup: string) =>
-      //       elementGroups.some((g: string) => g === activeGroup)
-      //     )
-      //   : false;
-      // @ts-ignore
-      const isSelected = currentFilters.selection === key;
+  //     // @ts-ignore
+  //     // const isInGroup = elementGroups
+  //     //   ? currentFilters.selection.some((activeGroup: string) =>
+  //     //       elementGroups.some((g: string) => g === activeGroup)
+  //     //     )
+  //     //   : false;
+  //     // @ts-ignore
+  //     const isSelected = currentFilters.selection === key;
 
-      return isSelected; // isInGroup || isSelected;
-    });
-  }, [currentFilters, allPossibleFilters]);
+  //     return isSelected; // isInGroup || isSelected;
+  //   });
+  // }, [currentFilters, allPossibleFilters]);
 
-  console.log(selectedElement, 'selectedElements');
+  // console.log(selectedElement, 'selectedElements');
 
   // console.log(selectedElements, 'selectedElements');
 
-  const { panzoomInstance, interactionsLocked } = usePanzoom(
-    'venue-map',
-    setZoomLevel,
-    zoomLevel
-  );
+  // useEffect(() => {
+  //   const elementsWithIds = svgRef.current?.querySelectorAll(
+  //     '[id]:not(svg):not(g)'
+  //   );
 
-  useEffect(() => {
-    const elementsWithIds = svgRef.current?.querySelectorAll(
-      '[id]:not(svg):not(g)'
-    );
+  //   const lookup: SVGLookup = {};
 
-    const lookup: SVGLookup = {};
+  //   elementsWithIds?.forEach((element: Element) => {
+  //     const id = element.id;
+  //     if (id) {
+  //       lookup[id] = element as unknown as ElementPosition;
+  //     }
+  //   });
 
-    elementsWithIds?.forEach((element: Element) => {
-      const id = element.id;
-      if (id) {
-        lookup[id] = element as unknown as ElementPosition;
-      }
-    });
+  //   setElementLookup(lookup);
 
-    setElementLookup(lookup);
+  //   // Wait for next frame to ensure SVG is fully rendered
+  //   // requestAnimationFrame(() => {
+  //   //   const lookup = svgToLookup(svgRef.current);
+  //   //   setElementLookup(lookup);
+  //   //   // Also get grouped data
+  //   //   // const { elements, groups } = svgToLookupWithGroups(svgRef.current);
+  //   //   // setGroupData(groups);
+  //   //   // Calculate scale between SVG viewBox and actual rendered size
+  //   //   // if (svgRef.current) {
+  //   //   //   const svgRect = svgRef.current.getBoundingClientRect();
+  //   //   //   const viewBox = svgRef.current.viewBox.baseVal;
+  //   //   //   const scaleX = svgRect.width / viewBox.width;
+  //   //   //   const scaleY = svgRect.height / viewBox.height;
+  //   //   //   setSvgScale({ scaleX, scaleY });
+  //   //   // }
+  //   // });
 
-    // Wait for next frame to ensure SVG is fully rendered
-    // requestAnimationFrame(() => {
-    //   const lookup = svgToLookup(svgRef.current);
-    //   setElementLookup(lookup);
-    //   // Also get grouped data
-    //   // const { elements, groups } = svgToLookupWithGroups(svgRef.current);
-    //   // setGroupData(groups);
-    //   // Calculate scale between SVG viewBox and actual rendered size
-    //   // if (svgRef.current) {
-    //   //   const svgRect = svgRef.current.getBoundingClientRect();
-    //   //   const viewBox = svgRef.current.viewBox.baseVal;
-    //   //   const scaleX = svgRect.width / viewBox.width;
-    //   //   const scaleY = svgRect.height / viewBox.height;
-    //   //   setSvgScale({ scaleX, scaleY });
-    //   // }
-    // });
-
-    // requestAnimationFrame(() => {
-    //   if (svgRef.current) {
-    //     const svgRect = svgRef.current.getBoundingClientRect();
-    //     const viewBox = svgRef.current.viewBox.baseVal;
-    //     const scaleX = svgRect.width / viewBox.width;
-    //     const scaleY = svgRect.height / viewBox.height;
-    //     setSvgScale({ scaleX, scaleY });
-    //   }
-    // });
-  }, []);
+  //   // requestAnimationFrame(() => {
+  //   //   if (svgRef.current) {
+  //   //     const svgRect = svgRef.current.getBoundingClientRect();
+  //   //     const viewBox = svgRef.current.viewBox.baseVal;
+  //   //     const scaleX = svgRect.width / viewBox.width;
+  //   //     const scaleY = svgRect.height / viewBox.height;
+  //   //     setSvgScale({ scaleX, scaleY });
+  //   //   }
+  //   // });
+  // }, []);
 
   const hasActiveFilters =
     currentFilters.selection !== null || currentFilters.search.length > 0;
@@ -176,29 +182,28 @@ export const VenueMap = () => {
     const svgElements = svgRef.current.querySelectorAll('[id]:not(g)');
 
     svgElements.forEach((element) => {
-      const isSelected = selectedElement === element.id;
+      const isSelected = currentFilters.selection === element.id;
       const isHovered = hoveredElement === element.id;
 
       const svgElement = element as SVGElement;
       if (isSelected || isHovered) {
         svgElement.style.opacity = '1';
-        svgElement.style.boxShadow = '0 0 10px 0 rgba(0, 0, 0, 0.5)';
+        svgElement.style.filter = 'drop-shadow(0px 0px 1px rgba(0, 0, 0, 1))';
+
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
       } else if (hasActiveFilters) {
         svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
+        svgElement.style.filter = 'none';
       } else {
-        svgElement.style.opacity = '0.15';
+        svgElement.style.opacity = '1';
+        svgElement.style.filter = 'none';
       }
     });
-  }, [selectedElement, hoveredElement, hasActiveFilters]);
+  }, [currentFilters.selection, hoveredElement, hasActiveFilters]);
 
   const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as SVGElement;
-
-    const isSelectable = target && target.id;
-
-    if (!isSelectable) return;
 
     if (
       target &&
@@ -252,6 +257,16 @@ export const VenueMap = () => {
     // Move it! (third parameter for smooth animation)
     // Offset Y slightly to account for the map pane that appears
     panzoomInstance.moveBy(deltaX, deltaY - 30, true);
+
+    const { scale: currentZoom } = panzoomInstance.getTransform();
+
+    // Zoom around the center of the container
+    panzoomInstance.smoothZoomAbs(
+      containerRect.width / 2,
+      containerRect.height / 2,
+      // Only adjust zoom level if its less than 1.3 (this is to avoid zooming out from where the user is already, but helps for zooming in when linking to a specific element)
+      Math.max(currentZoom, 2)
+    );
   };
 
   const onSVGElementClick = (
@@ -414,17 +429,19 @@ export const VenueMap = () => {
 /*
   1) All data should be fetched and ready
   
-  2) On click, set id 
-    2.1) Pane should receive the current selection
+  2) On click, set id DONE
+    2.1) Pane should receive the current selection DONE
     2.2) Pane should have different views depending on the selection
-      2.2.1) Building - show everything in the building
-      2.2.2) Stage - programming + link to stage
-      2.2.3) ???? etc etc etc
+      2.2.0) Shared building blocks - ID, share link, close button, background
+      2.2.1) Fallback - just show ID, share link, close button, etc.
+      2.2.2) Building - show everything in the building
+      2.2.3) Stage - programming + link to stage
+      2.2.4) ???? etc etc etc
 
   3) Map pane needs to block less of the view
     3.1) Zoom should be offset from the pane instead of absolute center
 
-  4) Links point to pois
+  4) Links point to pois DONE
 
   5) UI
     5.1) List
