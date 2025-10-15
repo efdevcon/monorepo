@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useSignTypedData, useSendTransaction, useSwitchChain, useSwitchAccount } from 'wagmi';
 import { toast } from 'sonner';
 import { getTokenInfo } from '@/config/tokens';
-import { useUnifiedConnection } from './useUnifiedConnection';
+import { useWalletManager } from './useWalletManager';
 import { useSignMessage } from '@getpara/react-sdk';
 import { createWalletClient, custom, hashTypedData } from 'viem';
 import { base } from 'viem/chains';
@@ -85,17 +85,9 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
   // Para SDK native signing methods
   const { signMessageAsync } = useSignMessage();
 
-  // Get Para connection functions for ensuring Para connector is active
-  const {
-    wagmiAccount,
-    paraConnector,
-    handleConnectToWallet,
-    ensureParaWagmiConnection,
-    paraWallet,
-    paraAccount,
-    connectors,
-    connections
-  } = useUnifiedConnection();
+  // Get Para wallet data from wallet manager
+  const { para } = useWalletManager();
+  const paraWallet = para.paraWallet;
 
   const resetTransaction = () => {
     setTxStatus('idle');
