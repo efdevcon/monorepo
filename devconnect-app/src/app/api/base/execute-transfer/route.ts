@@ -7,6 +7,7 @@ import {
   USDC_CONTRACT_ADDRESS 
 } from '@/lib/usdc-contract';
 import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
+import { validateSponsorshipPolicy } from '@/config/sponsor-policy';
 
 /**
  * API endpoint to execute USDC transfers using signed authorization
@@ -97,6 +98,22 @@ export async function POST(request: NextRequest) {
         details: sigError instanceof Error ? sigError.message : 'Unknown signature error'
       }, { status: 400 });
     }
+
+    // ⭐ NEW: Validate sponsorship policy
+    console.log('🔒 [POLICY] Validating sponsorship policy...');
+    const policyCheck = validateSponsorshipPolicy(from, BigInt(value), USDC_CONTRACT_ADDRESS);
+    if (!policyCheck.allowed) {
+      console.log('❌ [POLICY] Policy violation:', policyCheck.reason);
+      return NextResponse.json({
+        error: 'Sponsorship policy violation',
+        details: policyCheck.reason,
+        policy: {
+          reason: policyCheck.reason,
+          action: 'Transaction rejected'
+        }
+      }, { status: 403 });
+    }
+    console.log('✅ [POLICY] Policy checks passed');
 
     // Validate signature is a string
     if (typeof signature !== 'string') {
@@ -285,14 +302,63 @@ export async function POST(request: NextRequest) {
       console.log(`Estimated gas: ${gasEstimate.toString()}`);
     } catch (gasError) {
       console.error('Gas estimation failed:', gasError);
+
+      // Check if this is an invalid signature error that might be caused by EIP-7702 delegation
+      const errorMessage = gasError instanceof Error ? gasError.message : '';
+      const isInvalidSignature = errorMessage.includes('FiatTokenV2: invalid signature') ||
+        errorMessage.includes('invalid signature');
+
+      if (isInvalidSignature) {
+        // Check if the account has EIP-7702 delegation
+        try {
+          const code = await provider.getCode(from);
+          const hasEIP7702Delegation = code.startsWith('0xef0100');
+
+          if (hasEIP7702Delegation) {
+            console.error('❌ EIP-7702 delegation detected on account:', from);
+            console.error('🔧 User needs to clear delegation to use transferWithAuthorization');
+
+            return NextResponse.json({
+              error: 'EIP-7702 Delegation Detected',
+              message: 'Your wallet has EIP-7702 delegation active, which is incompatible with USDC transferWithAuthorization.',
+              action: 'clear_delegation',
+              details: {
+                address: from,
+                delegationCode: code,
+                reason: 'transferWithAuthorization requires a pure EOA (Externally Owned Account), but your account is currently delegated to a smart contract via EIP-7702.'
+              },
+              solutions: [
+                {
+                  title: 'Clear EIP-7702 Delegation',
+                  description: 'Use the one-click clearing button in the payment error screen. You sign, our backend relayer pays gas - NO ETH needed!',
+                  recommended: true
+                },
+                {
+                  title: 'Use EIP-7702 Mode',
+                  description: 'Enable EIP-7702 mode to use the compatible payment flow',
+                  action: 'Set NEXT_PUBLIC_ENABLE_EIP7702=true'
+                },
+                {
+                  title: 'Use Different Wallet',
+                  description: 'Connect with MetaMask or Coinbase Wallet instead'
+                }
+              ]
+            }, { status: 400 });
+          }
+        } catch (checkError) {
+          console.error('Failed to check EIP-7702 delegation:', checkError);
+        }
+      }
+
       return NextResponse.json({
         error: 'Transaction would fail - gas estimation failed',
-        details: gasError instanceof Error ? gasError.message : 'Unable to estimate gas',
+        details: errorMessage || 'Unable to estimate gas',
         possibleCauses: [
           'Insufficient USDC balance',
           'Invalid signature',
           'Nonce already used',
-          'Authorization expired'
+          'Authorization expired',
+          'EIP-7702 delegation active (incompatible with transferWithAuthorization)'
         ]
       }, { status: 400 });
     }

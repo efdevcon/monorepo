@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { getTokenInfo } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
+import { useClearEIP7702 } from '@/hooks/useClearEIP7702';
 
 // Helper function to get the correct explorer URL for a transaction
 const getTransactionExplorerUrl = (txHash: string, chainId: number): string => {
@@ -339,6 +340,16 @@ export default function StatusStep({
     {}
   );
 
+  // EIP-7702 delegation clearing hook
+  const {
+    clearDelegation,
+    isClearing: isDelegationClearing,
+    isSuccess: isDelegationSuccess,
+    isError: isDelegationError,
+    error: delegationError,
+    txHash: delegationTxHash,
+  } = useClearEIP7702();
+
   // Sync internal state with received txStatus
   useEffect(() => {
     const newState = mapTxStatusToTransactionState(txStatus, txError, isPara);
@@ -628,6 +639,11 @@ export default function StatusStep({
       txError.includes('User denied') ||
       txError.includes('User rejected');
 
+    const isEIP7702DelegationError =
+      txError.includes('EIP-7702') ||
+      txError.includes('clear-delegation') ||
+      txError.includes('delegation active');
+
     return (
       <div className="space-y-6">
         <div className="text-center">
@@ -664,9 +680,108 @@ export default function StatusStep({
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <div className="text-sm text-red-700">
               <div className="font-medium">Error Details:</div>
-              <div className="mt-2">
+              <div className="mt-2 whitespace-pre-wrap">
                 {transactionState.errorMessage || 'Unknown error occurred'}
               </div>
+            </div>
+          </div>
+        )}
+
+        {isEIP7702DelegationError && (
+          <div className="bg-emerald-50 border border-emerald-300 rounded-lg p-4">
+            <div className="text-sm">
+              <div className="font-semibold mb-2 flex items-center gap-2 text-emerald-900">
+                <CheckCircle className="h-5 w-5" />
+                Quick Fix Available
+              </div>
+              <p className="mb-3 text-emerald-800">
+                Your wallet has EIP-7702 delegation active. This prevents
+                standard USDC transfers from working.
+              </p>
+
+              {!isDelegationSuccess && !isDelegationClearing && (
+                <>
+                  <div className="bg-white border border-emerald-300 rounded p-3 mb-3">
+                    <div className="font-semibold text-emerald-900 mb-1">
+                      ✅ One-Click Solution:
+                    </div>
+                    <p className="text-emerald-700 text-xs">
+                      Click the button below to clear the delegation. You'll
+                      sign with your wallet, our backend relayer pays for gas.
+                      <strong className="text-emerald-600">
+                        {' '}
+                        NO ETH needed!
+                      </strong>
+                    </p>
+                  </div>
+                  <Button
+                    onClick={clearDelegation}
+                    disabled={isDelegationClearing}
+                    className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold"
+                  >
+                    {isDelegationClearing ? (
+                      <span className="flex items-center gap-2">
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Clearing Delegation...
+                      </span>
+                    ) : (
+                      '✅ Clear Delegation Now (Free)'
+                    )}
+                  </Button>
+                </>
+              )}
+
+              {isDelegationClearing && (
+                <div className="bg-blue-50 border border-blue-300 rounded p-3 text-blue-800">
+                  <div className="flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    <span className="font-semibold">
+                      Clearing delegation...
+                    </span>
+                  </div>
+                  <p className="text-xs mt-1">
+                    Please wait while we process your request.
+                  </p>
+                </div>
+              )}
+
+              {isDelegationSuccess && (
+                <div className="bg-emerald-100 border border-emerald-400 rounded p-3">
+                  <div className="flex items-center gap-2 text-emerald-900 font-semibold">
+                    <CheckCircle className="h-5 w-5" />
+                    Delegation Cleared Successfully!
+                  </div>
+                  <p className="text-xs text-emerald-700 mt-2">
+                    Your wallet is now back to normal mode. You can try your
+                    payment again.
+                  </p>
+                  {delegationTxHash && (
+                    <a
+                      href={`https://basescan.org/tx/${delegationTxHash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-emerald-600 hover:text-emerald-700 underline mt-1 block"
+                    >
+                      View transaction →
+                    </a>
+                  )}
+                </div>
+              )}
+
+              {isDelegationError && (
+                <div className="bg-red-50 border border-red-300 rounded p-3 text-red-800">
+                  <div className="font-semibold">
+                    Failed to clear delegation
+                  </div>
+                  <p className="text-xs mt-1">{delegationError}</p>
+                  <Button
+                    onClick={clearDelegation}
+                    className="mt-2 w-full bg-red-600 hover:bg-red-700 text-white text-xs"
+                  >
+                    Try Again
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
         )}

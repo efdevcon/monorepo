@@ -13,6 +13,7 @@ import ReceiveModal from '@/components/ReceiveModal';
 import { toast } from 'sonner';
 import { useLocalStorage } from 'usehooks-ts';
 import PaymentModal from '@/components/PaymentModal';
+import { fetchAuth } from '@/services/apiClient';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -24,6 +25,8 @@ const imgGroup = '/images/imgGroup.svg';
 const imgGroup1 = '/images/imgGroup1.svg';
 const imgKeyboardArrowDown = '/images/imgKeyboardArrowDown.svg';
 const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
+const imgPeanutLogo = '/images/peanut-logo.svg';
+const imgEnsLogo = '/images/ens-logo.svg';
 
 // Types for stored payment info
 type StoredPaymentInfo = {
@@ -193,6 +196,104 @@ export default function WalletTab() {
 
   const handleViewMoreAssets = () => {
     setShowAllAssets(!showAllAssets);
+  };
+
+  // Handle Peanut claim
+  const handlePeanutClaim = async () => {
+    // Open popup immediately with blank URL (prevents mobile popup blockers)
+    const popup = window.open(
+      'about:blank',
+      '_blank',
+      'width=470,height=750'
+    );
+
+    if (!popup) {
+      toast.error('Popup Blocked', {
+        description: 'Please allow popups for this site',
+        duration: 4000,
+      });
+      return;
+    }
+
+    try {
+      const response = await fetchAuth<{ link: string; message: string }>(
+        '/api/auth/claim-peanut'
+      );
+
+      if (response.success && response.data?.link) {
+        // Navigate popup to the actual URL
+        popup.location.href = response.data.link;
+        toast.success('Claim link opened in new tab');
+      } else {
+        // Handle error - show user-friendly message
+        const errorMessage = response.error || 'Failed to access claim link';
+
+        // Close the popup
+        popup.close();
+
+        // Check if it's an authorization error
+        if (
+          errorMessage.includes('Not authorized') ||
+          errorMessage.includes('not eligible')
+        ) {
+          toast.error('This perk is not available for your account', {
+            description: 'Only eligible users can claim this reward',
+            duration: 5000,
+          });
+        } else {
+          toast.error('Unable to open claim link', {
+            description: errorMessage,
+            duration: 4000,
+          });
+        }
+
+        console.error('Peanut claim error:', errorMessage);
+      }
+    } catch (error) {
+      console.error('Peanut claim exception:', error);
+
+      // Show error message in popup
+      if (popup && !popup.closed) {
+        popup.document.write(`
+          <html>
+            <head>
+              <title>Error</title>
+              <style>
+                body { 
+                  font-family: Arial, sans-serif; 
+                  display: flex; 
+                  justify-content: center; 
+                  align-items: center; 
+                  height: 100vh; 
+                  margin: 0; 
+                  background: #f5f5f5;
+                }
+                .error-container {
+                  text-align: center;
+                  padding: 2rem;
+                  background: white;
+                  border-radius: 8px;
+                  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                }
+                .error-title { color: #dc2626; margin-bottom: 1rem; }
+                .error-message { color: #6b7280; }
+              </style>
+            </head>
+            <body>
+              <div class="error-container">
+                <h2 class="error-title">Connection Error</h2>
+                <p class="error-message">Failed to retrieve claim link. Please try again or refresh the page.</p>
+              </div>
+            </body>
+          </html>
+        `);
+      }
+
+      toast.error('Failed to retrieve claim link', {
+        description: 'Please try again',
+        duration: 4000,
+      });
+    }
   };
 
   // Manual refresh function
@@ -535,48 +636,105 @@ export default function WalletTab() {
           </div>
         </div>
 
-        {/* Exchange Section */}
-        <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
-          <div className="space-y-2">
-            <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
-              Exchange ARS/USD for Crypto
-            </h2>
-            <p className="text-[#36364c] text-sm font-normal">
-              Fund your Ethereum wallet to fully experience the World's Fair.
-              There are two ways to add funds to your wallet:
-            </p>
+        {/* My Perks Section */}
+        <div className="flex flex-col gap-4">
+          <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
+            My Perks
+          </p>
+
+          {/* Peanut Claim Card */}
+          <div
+            className="bg-white p-4 flex flex-col gap-4 items-center w-full"
+            style={{
+              boxShadow: '4px 4px 0px black',
+              outline: '1px black solid',
+              outlineOffset: '-1px',
+            }}
+          >
+            <button
+              onClick={handlePeanutClaim}
+              className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
+              style={{
+                outline: '1px black solid',
+                outlineOffset: '-1px',
+              }}
+            >
+              <p className="text-black text-[16px] font-bold leading-4">
+                Claim $3 (USDC)
+              </p>
+              <svg
+                className="w-3.5 h-3.5 text-black flex-shrink-0"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 7h8m0 0L7 3m4 4l-4 4"
+                />
+              </svg>
+            </button>
+            <div className="flex items-center gap-3">
+              <p className="text-black text-[12px] font-normal leading-[15.6px]">
+                Sponsored by
+              </p>
+              <img
+                src={imgPeanutLogo}
+                alt="Peanut"
+                className="h-5 w-[82px] object-contain"
+                onError={(e) => {
+                  // Fallback if image doesn't exist
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.parentElement!.innerHTML +=
+                    '<span class="text-black text-xs font-bold">Peanut</span>';
+                }}
+              />
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <div className="flex gap-2">
-              <button
-                onClick={handleDigitalClick}
-                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
+          {/* ENS Claim Card */}
+          <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center">
+            <button
+              onClick={() => {
+                // TODO: Implement ENS claim functionality
+                alert('ENS claim coming soon!');
+              }}
+              className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
+            >
+              <p className="text-white text-[16px] font-bold leading-none">
+                Claim worldfair.eth name
+              </p>
+              <svg
+                className="w-3.5 h-3.5 text-white flex-shrink-0"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
               >
-                <img src={imgGroup} alt="digital" className="w-8 h-8" />
-                <div className="text-center">
-                  <div className="text-[#36364c] text-sm font-bold">
-                    Digital
-                  </div>
-                  <div className="text-[#4b4b66] text-xs font-medium">
-                    Debit/Credit Card
-                  </div>
-                </div>
-              </button>
-              <div
-                onClick={handleInPersonClick}
-                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
-              >
-                <img src={imgGroup1} alt="in-person" className="w-8 h-8" />
-                <div className="text-center">
-                  <div className="text-[#36364c] text-sm font-bold">
-                    In-Person
-                  </div>
-                  <div className="text-[#4b4b66] text-xs font-medium">
-                    Currency & Card
-                  </div>
-                </div>
-              </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 7h8m0 0L7 3m4 4l-4 4"
+                />
+              </svg>
+            </button>
+            <div className="flex items-center gap-3">
+              <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
+                Sponsored by
+              </p>
+              <img
+                src={imgEnsLogo}
+                alt="ENS"
+                className="h-5 w-[62px] object-contain"
+                onError={(e) => {
+                  // Fallback if image doesn't exist
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.parentElement!.innerHTML +=
+                    '<span class="text-[#093c52] text-xs font-bold">ENS</span>';
+                }}
+              />
             </div>
           </div>
         </div>
@@ -927,6 +1085,52 @@ export default function WalletTab() {
                   )}
               </>
             )}
+          </div>
+        </div>
+
+        {/* Exchange Section */}
+        <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
+          <div className="space-y-2">
+            <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
+              Exchange ARS/USD for Crypto
+            </h2>
+            <p className="text-[#36364c] text-sm font-normal">
+              Fund your Ethereum wallet to fully experience the World's Fair.
+              There are two ways to add funds to your wallet:
+            </p>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex gap-2">
+              <button
+                onClick={handleDigitalClick}
+                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
+              >
+                <img src={imgGroup} alt="digital" className="w-8 h-8" />
+                <div className="text-center">
+                  <div className="text-[#36364c] text-sm font-bold">
+                    Digital
+                  </div>
+                  <div className="text-[#4b4b66] text-xs font-medium">
+                    Debit/Credit Card
+                  </div>
+                </div>
+              </button>
+              <div
+                onClick={handleInPersonClick}
+                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
+              >
+                <img src={imgGroup1} alt="in-person" className="w-8 h-8" />
+                <div className="text-center">
+                  <div className="text-[#36364c] text-sm font-bold">
+                    In-Person
+                  </div>
+                  <div className="text-[#4b4b66] text-xs font-medium">
+                    Currency & Card
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
