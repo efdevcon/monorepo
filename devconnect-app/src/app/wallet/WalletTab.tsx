@@ -221,8 +221,11 @@ export default function WalletTab() {
       );
 
       if (response.success && response.data?.link) {
+        // add address to the link
+        const linkWithAddress = `${response.data.link?.replace('?', `?address=${address}&tokenAddress=0x833589fcd6edb6e08f4c7c32d4f71b54bda02913&chainId=8453&event=devconnect&`)}`;
+        console.log('linkWithAddress', linkWithAddress);
         // Navigate popup to the actual URL
-        popup.location.href = response.data.link;
+        popup.location.href = linkWithAddress;
         toast.success('Claim link opened in new tab');
       } else {
         // Handle error - show user-friendly message
