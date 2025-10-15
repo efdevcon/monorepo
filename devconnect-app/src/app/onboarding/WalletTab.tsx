@@ -3,13 +3,13 @@
 import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { useUser } from '@/hooks/useUser';
 import { useRouter } from 'next/navigation';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
-  const { isConnected, address, isPara } = useWalletManager();
+  const { isConnected, address, isPara } = useWallet();
   const { user } = useUser();
   const router = useRouter();
 

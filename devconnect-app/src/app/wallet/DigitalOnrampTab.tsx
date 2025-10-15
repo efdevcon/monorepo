@@ -1,6 +1,6 @@
 'use client';
 
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import {
@@ -9,7 +9,7 @@ import {
 } from '@/utils/coinbase';
 
 export default function OnrampTab() {
-  const { address } = useWalletManager();
+  const { address } = useWallet();
   const router = useRouter();
 
   // Generate a valid UUID v4 (required by Ripio API)

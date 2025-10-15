@@ -5,6 +5,7 @@ import '@getpara/react-sdk/styles.css';
 import NewDeployment from '@/components/NewDeployment';
 import { Toaster } from 'sonner';
 import { WalletsProviders } from '@/context/WalletProviders';
+import { WalletProvider } from '@/context/WalletContext';
 import PWAProvider from '@/components/PWAProvider';
 import { GlobalStoreProvider } from '@/app/store.provider';
 import { getAtprotoEvents } from '@/utils/atproto-events';
@@ -197,10 +198,14 @@ export default async function RootLayout({
       >
         <PWAProvider>
           <WalletsProviders>
-            <GlobalStoreProvider events={atprotoEvents} /*userData={userData}*/>
-              {children}
+            <GlobalStoreProvider
+              events={atprotoEvents} /*userData={userData}*/
+            >
+              <WalletProvider>
+                {children}
+                <NewDeployment />
+              </WalletProvider>
             </GlobalStoreProvider>
-            <NewDeployment />
           </WalletsProviders>
         </PWAProvider>
 

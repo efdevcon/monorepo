@@ -4,12 +4,12 @@ import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { NAV_ITEMS } from '@/config/nav-items';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import css from './MobileMenu.module.scss';
 import cn from 'classnames';
 
 export default function Menu() {
-  const { isConnected } = useWalletManager();
+  const { isConnected } = useWallet();
   const pathname = usePathname();
   const shouldShowNavigation = isConnected || pathname !== '/';
   const hasLoggedHidden = React.useRef(false);

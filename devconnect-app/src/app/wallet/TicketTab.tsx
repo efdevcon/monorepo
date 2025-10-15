@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import QRCode from 'qrcode';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { fetchAuth } from '@/services/apiClient';
 import { useLocalStorage } from 'usehooks-ts';
 import VoxelButton from 'lib/components/voxel-button/button';
@@ -31,7 +31,7 @@ interface Order {
 export default function TicketTab() {
   const additionalTicketEmails = useAdditionalTicketEmails();
   const setUserData = useGlobalStore((state) => state.setUserData);
-  const { para } = useWalletManager();
+  const { para } = useWallet();
   const email = (para.paraAccount as any)?.email || null;
   const [tickets, setTickets] = useLocalStorage<Order[]>('user-tickets', []);
   const [loading, setLoading] = useState(false);

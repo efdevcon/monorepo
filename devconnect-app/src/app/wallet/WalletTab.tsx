@@ -2,7 +2,7 @@
 
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { useState, useEffect } from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
@@ -67,7 +67,7 @@ export default function WalletTab() {
     paraEmail,
     supabaseEmail,
     isAuthenticated,
-  } = useWalletManager();
+  } = useWallet();
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
 
@@ -201,11 +201,7 @@ export default function WalletTab() {
   // Handle Peanut claim
   const handlePeanutClaim = async () => {
     // Open popup immediately with blank URL (prevents mobile popup blockers)
-    const popup = window.open(
-      'about:blank',
-      '_blank',
-      'width=470,height=750'
-    );
+    const popup = window.open('about:blank', '_blank', 'width=470,height=750');
 
     if (!popup) {
       toast.error('Popup Blocked', {

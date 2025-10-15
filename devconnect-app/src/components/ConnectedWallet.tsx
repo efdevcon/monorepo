@@ -22,7 +22,7 @@ import { verifySignature, truncateSignature } from '@/utils/signature';
 import LinkTicket from './LinkTicket';
 import PortfolioModal from './PortfolioModal';
 import NetworkSwitcher from './NetworkSwitcher';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { ZupassProvider } from '@/context/ZupassProvider';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -109,7 +109,7 @@ export default function ConnectedWallet() {
     paraEmail, // Para-specific email
     supabaseEmail, // Supabase-specific email
     isAuthenticated,
-  } = useWalletManager();
+  } = useWallet();
 
   // For compatibility with existing code
   const wagmiAccount = eoa.wagmiAccount;

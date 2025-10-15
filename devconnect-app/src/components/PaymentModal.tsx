@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { X, Wallet, Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
 import { toast } from 'sonner';
 import { base } from '@base-org/account';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { useTransaction } from '@/hooks/useTransaction';
 import { isEIP7702Available } from '@/config/eip7702';
 import TokenSelector from '@/components/payment/TokenSelector';
@@ -57,7 +57,7 @@ export default function PaymentModal({
     isPara,
     para,
     eoa,
-  } = useWalletManager();
+  } = useWallet();
 
   // Payment details state
   const [paymentDetails, setPaymentDetails] = useState<{

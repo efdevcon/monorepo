@@ -7,7 +7,7 @@ import LockIcon from '@/components/icons/LockIcon';
 import ChevronIcon from '@/components/icons/ChevronIcon';
 import type { ComponentQuest, QuestConditionType } from '@/types';
 import { executeQuestAction } from '@/utils/quest-actions';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 
 interface QuestItemProps {
   quest: ComponentQuest;
@@ -24,7 +24,7 @@ const QuestItem = ({
   isExpanded = false,
   onQuestSelect,
 }: QuestItemProps) => {
-  const { address } = useWalletManager();
+  const { address } = useWallet();
   const [isExecutingAction, setIsExecutingAction] = useState(false);
   const questRef = useRef<HTMLDivElement>(null);
 

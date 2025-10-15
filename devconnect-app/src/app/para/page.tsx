@@ -4,11 +4,11 @@ import { useEffect, useRef } from 'react';
 import Onboarding from '@/components/Onboarding';
 import ConnectedWallet from '@/components/ConnectedWallet';
 import ParaIntegration from '@/components/ParaIntegration';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 
 export default function HomePage() {
   // Unified connection status - trust the unified hook completely
-  const { isConnected, address, isPara } = useWalletManager();
+  const { isConnected, address, isPara } = useWallet();
 
   // Only log significant connection changes to avoid spam
   const lastLoggedState = useRef<string | null>(null);

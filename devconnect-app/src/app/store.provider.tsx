@@ -9,7 +9,8 @@ import {
   createRef,
 } from 'react';
 import { useStore } from 'zustand';
-import { useWalletManager } from '@/hooks/useWalletManager';
+// Context no longer needed here - wallet state managed by WalletProvider
+// import { useWallet } from '@/context/WalletContext';
 
 import {
   type AppState,
@@ -29,15 +30,15 @@ export interface GlobalStoreProviderProps {
   userData?: AppState['userData'];
 }
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
-  useWalletManager();
-
-  useEffect(() => {
-    console.log('AuthProvider mounted');
-  }, []);
-
-  return children;
-};
+// AuthProvider removed - authentication is now handled by WalletProvider
+// which runs at the correct level in the provider hierarchy
+// const AuthProvider = ({ children }: { children: ReactNode }) => {
+//   useWallet();
+//   useEffect(() => {
+//     console.log('AuthProvider mounted');
+//   }, []);
+//   return children;
+// };
 
 let globalStoreProvider: AppStore | null = null;
 
@@ -52,7 +53,7 @@ export const GlobalStoreProvider = ({
 
   return (
     <GlobalStoreContext.Provider value={globalStoreProvider}>
-      <AuthProvider>{children}</AuthProvider>
+      {children}
     </GlobalStoreContext.Provider>
   );
 };

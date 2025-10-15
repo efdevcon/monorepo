@@ -1,7 +1,7 @@
 'use client';
 
 import { useAppKit } from '@reown/appkit/react';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useState, useEffect, useMemo } from 'react';
 
@@ -28,7 +28,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     isDisconnecting,
     portfolioCache,
     portfolioLoading,
-  } = useWalletManager();
+  } = useWallet();
 
   // For compatibility, expose the underlying data
   const connections = eoa.eoaConnections;
@@ -38,8 +38,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const switchableConnectors = useMemo(() => {
     const wallets: any[] = [];
 
-    // Add Para if connected
-    if (para.isConnected) {
+    // Add Para if it has an address (even if not currently primary)
+    // This ensures Para shows up even when EOA is the active wallet
+    if (para.address) {
       wallets.push({
         id: 'para',
         name: 'Para',
@@ -53,13 +54,40 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     });
 
     return wallets;
-  }, [para.isConnected, para.address, eoa.eoaConnections]);
+  }, [para.address, eoa.eoaConnections]);
 
   const email = (para.paraAccount as any)?.email || null;
   const primaryConnector = isPara
     ? { id: 'para', name: 'Para', ...para.paraAccount }
     : eoa.wagmiAccount.connector;
   const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
+
+  // Debug: Log wallet state when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      console.log('🔍 [WALLET_MODAL] Modal opened - wallet state:', {
+        isPara,
+        currentAddress: address,
+        paraAddress: para.address,
+        paraIsConnected: para.isConnected,
+        eoaIsConnected: eoa.isConnected,
+        switchableConnectorsCount: switchableConnectors.length,
+        switchableConnectors: switchableConnectors.map((c: any) => ({
+          id: c.id,
+          name: c.name,
+          address: c.address,
+        })),
+      });
+    }
+  }, [
+    isOpen,
+    isPara,
+    address,
+    para.address,
+    para.isConnected,
+    eoa.isConnected,
+    switchableConnectors,
+  ]);
 
   // Identity state for avatars
   const [identities, setIdentities] = useState<
@@ -233,51 +261,30 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
 
   // Helper function to count total wallets
   const getTotalWalletCount = () => {
-    const allWallets = [];
+    let count = 0;
 
-    // Add current wallet if connected
-    if (isConnected && address && primaryConnector) {
-      allWallets.push({
-        id: primaryConnector.id,
-        name: primaryConnector.name,
-        address: address,
-        isCurrent: true,
-        connector: primaryConnector,
-      });
+    // Count current wallet if connected
+    if (isConnected && address) {
+      count++;
     }
 
-    // Add switchable connectors (excluding current one)
+    // Count unique switchable connectors (excluding current one)
     if (switchableConnectors && switchableConnectors.length > 0) {
-      // Filter out duplicates by address, keeping only unique addresses
       const seenAddresses = new Set<string>();
       if (address) seenAddresses.add(address.toLowerCase()); // Exclude current address
 
-      const uniqueConnectors = switchableConnectors.filter((connector: any) => {
+      switchableConnectors.forEach((connector: any) => {
         const connectorAddress = getConnectorAddress(connector);
         if (connectorAddress && typeof connectorAddress === 'string') {
-          if (seenAddresses.has(connectorAddress.toLowerCase())) {
-            return false; // Skip this connector as we've already seen this address
+          if (!seenAddresses.has(connectorAddress.toLowerCase())) {
+            seenAddresses.add(connectorAddress.toLowerCase());
+            count++;
           }
-          seenAddresses.add(connectorAddress.toLowerCase());
-          return true;
-        } else {
-          return false; // Skip connectors without valid addresses
         }
-      });
-
-      uniqueConnectors.forEach((connector: any) => {
-        const connectorAddress = getConnectorAddress(connector);
-        allWallets.push({
-          id: connector.id,
-          name: connector.name,
-          address: connectorAddress,
-          isCurrent: false,
-          connector: connector,
-        });
       });
     }
 
-    return allWallets.length;
+    return count;
   };
 
   const handleSwitchToWallet = async (connector: any) => {
@@ -414,7 +421,18 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   }
                 );
 
-                uniqueConnectors.forEach((connector) => {
+                // Sort to prioritize Para wallet first, then others
+                const sortedConnectors = uniqueConnectors.sort(
+                  (a: any, b: any) => {
+                    const aIsPara = a.id === 'para' || a.id === 'getpara';
+                    const bIsPara = b.id === 'para' || b.id === 'getpara';
+                    if (aIsPara && !bIsPara) return -1;
+                    if (!aIsPara && bIsPara) return 1;
+                    return 0;
+                  }
+                );
+
+                sortedConnectors.forEach((connector) => {
                   const connectorAddress = getConnectorAddress(connector);
                   allWallets.push({
                     id: connector.id,
@@ -427,6 +445,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
               }
 
               // Limit to 2 wallets (current + 1 other + add wallet slot)
+              // Para will be prioritized if it exists
               const displayWallets = allWallets.slice(0, 2);
 
               return displayWallets.map((wallet: any, index: number) => (

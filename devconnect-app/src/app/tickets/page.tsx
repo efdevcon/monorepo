@@ -12,10 +12,11 @@ import {
   useTickets,
 } from '@/app/store.hooks';
 import { useGlobalStore } from '@/app/store.provider';
+import type { Ticket, Order } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
 import { homeTabs } from '../navigation';
 import PageLayout from '@/components/PageLayout';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 import cn from 'classnames';
 import {
   Dialog as DialogRoot,
@@ -23,6 +24,17 @@ import {
   DialogHeader,
   DialogTitle,
 } from 'lib/components/ui/dialog';
+
+// Additional types not in store
+interface Addon {
+  id: string;
+  itemName: string;
+  secret: string;
+}
+
+interface QRCodes {
+  [secret: string]: string;
+}
 
 const TicketWrapper = () => {
   return (
@@ -37,16 +49,19 @@ const SwagItems = ({
   ticket,
   qrCodes,
 }: {
-  order: any;
-  ticket: any;
-  qrCodes: any;
+  order: Order;
+  ticket: Ticket;
+  qrCodes: QRCodes;
 }) => {
   const addons = ticket.addons;
-  const [selectedAddon, setSelectedAddon] = useState<any>(null);
+  const [selectedAddon, setSelectedAddon] = useState<Addon | null>(null);
+
+  // Guard against undefined addons
+  if (!addons || addons.length === 0) return null;
 
   return (
     <div className="mt-1 grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,150px)] gap-2 justify-center sm:justify-start">
-      {addons.map((addon: any) => (
+      {addons.map((addon) => (
         <div className="shrink-0" key={addon.id}>
           <div className="flex flex-col gap-4 p-3 items-center bg-white rounded-sm border border-solid border-gray-200">
             <div className="text-sm font-medium">{addon.itemName}</div>
@@ -69,7 +84,7 @@ const SwagItems = ({
           onClose={() => setSelectedAddon(null)}
           ticket={{
             attendeeName: selectedAddon.itemName,
-            itemName: ticket.attendeeName,
+            itemName: ticket.attendeeName || '',
             secret: selectedAddon.secret,
           }}
         />
@@ -168,14 +183,14 @@ const ConnectedEmails = () => {
                   : 'Got tickets on another email?'}
               </button>
               {checkYourEmail && (
-                <div className="text-sm text-gray-800 mt-2 text-center mt-6 flex flex-col items-center w-full">
+                <div className="text-sm text-gray-800 text-center mt-6 flex flex-col items-center w-full">
                   <div className="text-xs">
                     We sent a code to:{' '}
                     <span className="font-bold">{checkYourEmail}</span>
                   </div>
                   <input
                     type="text"
-                    className="border border-neutral-300 w-full border-[1px] outline-none p-2 px-4 mt-2 text-center"
+                    className="border border-neutral-300 w-full outline-none p-2 px-4 mt-2 text-center"
                     value={verificationCode}
                     placeholder="Enter verification code"
                     onChange={(e) => setVerificationCode(e.target.value)}
@@ -239,8 +254,8 @@ const SideEventTicket = ({
   ticket,
   qrCodes,
 }: {
-  ticket: any;
-  qrCodes: any;
+  ticket: Ticket;
+  qrCodes: QRCodes;
 }) => {
   return (
     <div className="relative max-w-[350px]">
@@ -258,14 +273,16 @@ const QRCodeModal = ({
   qrCode: string;
   isOpen: boolean;
   onClose: () => void;
-  ticket: any;
+  ticket: Ticket | Addon | { attendeeName: string; itemName: string; secret: string };
 }) => {
   return (
     <DialogRoot open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md p-6">
         <DialogHeader>
           <DialogTitle className="text-center">
-            {ticket.attendeeName} - QR Code
+            {'attendeeName' in ticket && ticket.attendeeName 
+              ? ticket.attendeeName 
+              : 'itemName' in ticket ? ticket.itemName : ''} - QR Code
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col items-center space-y-4">
@@ -276,7 +293,7 @@ const QRCodeModal = ({
               className="w-64 h-64 object-contain"
             />
           </div>
-          {ticket.itemName && (
+          {'itemName' in ticket && ticket.itemName && (
             <p className="text-sm font-medium text-center">{ticket.itemName}</p>
           )}
         </div>
@@ -285,7 +302,7 @@ const QRCodeModal = ({
   );
 };
 
-const Ticket = ({ ticket, qrCodes }: { ticket: any; qrCodes: any }) => {
+const Ticket = ({ ticket, qrCodes }: { ticket: Ticket; qrCodes: QRCodes }) => {
   const [isQRCodeModalOpen, setIsQRCodeModalOpen] = useState(false);
 
   return (
@@ -328,10 +345,10 @@ const SideEventTickets = ({
   orders,
   qrCodes,
 }: {
-  orders: any;
-  qrCodes: any;
+  orders: Order[];
+  qrCodes: QRCodes;
 }) => {
-  const [dates, setDates] = useState<any>([
+  const [dates, setDates] = useState<Moment[]>([
     moment('2025-11-17'),
     moment('2025-11-18'),
     moment('2025-11-19'),
@@ -340,7 +357,7 @@ const SideEventTickets = ({
     moment('2025-11-22'),
   ]);
 
-  const [selectedDates, setSelectedDates] = useState<any>(new Set());
+  const [selectedDates, setSelectedDates] = useState<Set<Moment>>(new Set());
 
   return (
     <div className="flex flex-col gap-1 py-4 grow self-start w-full md:w-auto">
@@ -351,8 +368,9 @@ const SideEventTickets = ({
         </div>
       </div>
 
-      {dates.map((date: any) => (
+      {dates.map((date) => (
         <div
+          key={date.format('YYYY-MM-DD')}
           className={cn(
             'flex items-center justify-between hover:bg-gray-50 cursor-pointer p-3 border border-solid border-gray-200 rounded-sm bg-white shadow-xs',
             selectedDates.has(date) && 'border-b border-[rgba(237,237,240,1)]'
@@ -431,7 +449,7 @@ const TicketTab = RequiresAuthHOC(() => {
             {hasTickets && (
               <div className="flex flex-col gap-8 mt-4">
                 {orders.map((order) => (
-                  <>
+                  <div key={order.orderCode}>
                     {order.tickets.map((ticket, idx) => (
                       <Ticket
                         ticket={ticket}
@@ -439,7 +457,7 @@ const TicketTab = RequiresAuthHOC(() => {
                         key={ticket.secret}
                       />
                     ))}
-                  </>
+                  </div>
                 ))}
               </div>
             )}
@@ -461,7 +479,7 @@ const TicketTab = RequiresAuthHOC(() => {
           <div className="flex flex-col gap-1">
             {orders.map((order) => {
               return (
-                <>
+                <div key={order.orderCode}>
                   {order.tickets.map((ticket) => (
                     <SwagItems
                       order={order}
@@ -470,7 +488,7 @@ const TicketTab = RequiresAuthHOC(() => {
                       key={ticket.secret}
                     />
                   ))}
-                </>
+                </div>
               );
             })}
           </div>

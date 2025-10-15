@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { createClient } from '@supabase/supabase-js';
 import { useConnect } from 'wagmi';
-import { useWalletManager } from '@/hooks/useWalletManager';
+import { useWallet } from '@/context/WalletContext';
 import { useModal, useLogout, useIssueJwt } from '@getpara/react-sdk';
 
 // Toast utility functions
@@ -61,7 +61,7 @@ export default function ParaIntegration({
   onConnect,
 }: ParaIntegrationProps) {
   const { connect, connectors } = useConnect();
-  const { para } = useWalletManager();
+  const { para } = useWallet();
   const isParaConnected = para.isConnected;
   const { openModal } = useModal();
   const [isConnectingPara, setIsConnectingPara] = useState(false);
