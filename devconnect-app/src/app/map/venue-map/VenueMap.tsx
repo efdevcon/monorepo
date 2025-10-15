@@ -192,15 +192,23 @@ export const VenueMap = () => {
 
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
       } else if (hasActiveFilters) {
+        // Selected fallback
         svgElement.style.opacity = '0.15';
         // svgElement.style.transition = 'opacity 0.5s ease-in-out';
         svgElement.style.filter = 'none';
+      } else if (hoveredElement) {
+        // Hover fallback
+        svgElement.style.opacity = '0.5';
+        svgElement.style.filter = 'none';
       } else {
+        // Reset fallback
         svgElement.style.opacity = '1';
         svgElement.style.filter = 'none';
       }
     });
   }, [currentFilters.selection, hoveredElement, hasActiveFilters]);
+
+  console.log(hoveredElement, 'hoveredElement');
 
   const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as SVGElement;
@@ -209,7 +217,8 @@ export const VenueMap = () => {
       target &&
       target.id &&
       target.tagName !== 'g' &&
-      target.tagName !== 'svg'
+      target.tagName !== 'svg' &&
+      target.id !== 'venue-map'
     ) {
       // target.classList.add('highlight-active');
       // target.classList.add(css['highlighted']);
@@ -226,7 +235,8 @@ export const VenueMap = () => {
       target &&
       target.id &&
       target.tagName !== 'g' &&
-      target.tagName !== 'svg'
+      target.tagName !== 'svg' &&
+      target.id !== 'venue-map'
     ) {
       // target.classList.remove(css['highlighted']);
       setHoveredElement(null);
