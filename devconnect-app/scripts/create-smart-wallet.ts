@@ -14,7 +14,8 @@ async function main() {
     const address = await getSmartWalletAddress();
     
     console.log('📝 Next Steps:');
-    console.log(`   1. Fund smart account: Send 0.00001+ ETH to ${address}`);
+    console.log(`   1. Fund smart account: Send 0.001+ ETH to ${address}`);
+    console.log('      (Minimum 0.001 ETH for ~100 transactions)');
     console.log('   2. Test a USDC transfer');
     console.log('   3. Monitor at https://portal.cdp.coinbase.com/\n');
   } catch (error) {

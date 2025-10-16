@@ -56,11 +56,12 @@ Copy the smart account address from output (e.g., `0xd127a1bFEdd21E04784c60070b7
 
 ### 5. Fund Smart Account
 
-Smart account needs ETH for gas deposit (even with Paymaster).
+Smart account needs ETH for EntryPoint collateral (even with Paymaster).
 
 **Mainnet:**
 ```bash
-# Send 0.00001+ ETH to your smart account address
+# Minimum: 0.001 ETH (~$3) - good for ~100 transactions
+# Recommended: 0.01 ETH (~$30) - rarely need to refill
 ```
 
 **Testnet:**
