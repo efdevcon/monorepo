@@ -873,27 +873,28 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         <div style={{ width: '100%' }}>
                           {field.value ? (
                             <ul style={{ margin: '0', padding: '0', listStyle: 'none' }}>
-                              {field.value.split(',').map((questId, index) => (
-                                <li key={questId} style={{ marginBottom: '0.5rem' }}>
-                                  <a
-                                    href={`/form/quest/${questId.trim()}`}
-                                    target="_blank"
-                                    style={{
-                                      color: '#007bff',
-                                      textDecoration: 'none',
-                                      fontSize: '0.9rem',
-                                      fontWeight: '500',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '0.5rem',
-                                    }}
-                                  >
-                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
-                                    {/* Quest {index + 1} */}
-                                    Quest form
-                                  </a>
-                                </li>
-                              ))}
+                              {field.value.split(',').map((questId, index) => {
+                                const questIds = field.value.split(',')
+                                return (
+                                  <li key={questId} style={{ marginBottom: '0.5rem' }}>
+                                    <a
+                                      href={`/form/quest/${questId.trim()}`}
+                                      target="_blank"
+                                      style={{
+                                        color: '#007bff',
+                                        textDecoration: 'none',
+                                        fontSize: '0.9rem',
+                                        fontWeight: '500',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                      }}
+                                    >
+                                      {questIds.length > 1 ? `- Quest form ${index + 1}` : 'Quest form'}
+                                    </a>
+                                  </li>
+                                )
+                              })}
                             </ul>
                           ) : (
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
@@ -1554,27 +1555,28 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         <div style={{ width: '100%' }}>
                           {field.value ? (
                             <ul style={{ margin: '0', padding: '0', listStyle: 'none' }}>
-                              {field.value.split(',').map((questId, index) => (
-                                <li key={questId} style={{ marginBottom: '0.5rem' }}>
-                                  <a
-                                    href={`/form/quest/${questId.trim()}`}
-                                    target="_blank"
-                                    style={{
-                                      color: '#007bff',
-                                      textDecoration: 'none',
-                                      fontSize: '0.9rem',
-                                      fontWeight: '500',
-                                      display: 'flex',
-                                      alignItems: 'center',
-                                      gap: '0.5rem',
-                                    }}
-                                  >
-                                    {/* <span style={{ fontSize: '1rem' }}>-</span> */}
-                                    {/* Quest {index + 1} */}
-                                    Quest form
-                                  </a>
-                                </li>
-                              ))}
+                              {field.value.split(',').map((questId, index) => {
+                                const questIds = field.value.split(',')
+                                return (
+                                  <li key={questId} style={{ marginBottom: '0.5rem' }}>
+                                    <a
+                                      href={`/form/quest/${questId.trim()}`}
+                                      target="_blank"
+                                      style={{
+                                        color: '#007bff',
+                                        textDecoration: 'none',
+                                        fontSize: '0.9rem',
+                                        fontWeight: '500',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        gap: '0.5rem',
+                                      }}
+                                    >
+                                      {questIds.length > 1 ? `- Quest form ${index + 1}` : 'Quest form'}
+                                    </a>
+                                  </li>
+                                )
+                              })}
                             </ul>
                           ) : (
                             <span style={{ color: '#666', fontStyle: 'italic' }}>No quests available</span>
