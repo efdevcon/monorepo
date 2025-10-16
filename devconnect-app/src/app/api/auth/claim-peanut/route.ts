@@ -12,35 +12,51 @@ export async function GET(request: NextRequest) {
   const { user } = authResult;
   const userEmail = user.email?.toLowerCase();
 
-  // Check if user is authorized to claim
-  const authorizedEmails = [
-    'kushagrasarathe@gmail.com',
-  ];
+  // Get Peanut links from environment variable
+  const peanutLinksEnv = process.env.PEANUT_LINKS;
   
-  const isAuthorized = 
-    authorizedEmails.includes(userEmail || '') || 
-    userEmail?.endsWith('@ethereum.org');
+  if (!peanutLinksEnv) {
+    return NextResponse.json(
+      {
+        error: 'Configuration error',
+        message: 'Peanut links not configured'
+      },
+      { status: 500 }
+    );
+  }
+
+  let peanutLinks: Record<string, string>;
+  try {
+    const parsedLinks = JSON.parse(peanutLinksEnv) as Record<string, string>;
+    // Normalize all email keys to lowercase for case-insensitive comparison
+    peanutLinks = Object.fromEntries(
+      Object.entries(parsedLinks).map(([email, link]) => [email.toLowerCase(), link])
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { 
+        error: 'Configuration error',
+        message: 'Invalid peanut links configuration'
+      },
+      { status: 500 }
+    );
+  }
+
+  // Check if user has a link assigned
+  let peanutLink = peanutLinks[userEmail || ''];
+
+  // If no specific link found, check if user has @ethereum.org email
+  if (!peanutLink && userEmail?.endsWith('@ethereum.org')) {
+    peanutLink = peanutLinks['@ethereum.org'];
+  }
   
-  if (!isAuthorized) {
+  if (!peanutLink) {
     return NextResponse.json(
       { 
         error: 'You are not eligible for this perk',
         message: 'This reward is only available to selected users'
       },
       { status: 403 }
-    );
-  }
-
-  // Get Peanut link from environment variable
-  const peanutLink = process.env.PEANUT_LINK;
-  
-  if (!peanutLink) {
-    return NextResponse.json(
-      { 
-        error: 'Configuration error',
-        message: 'Peanut link not configured'
-      },
-      { status: 500 }
     );
   }
 
