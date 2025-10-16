@@ -90,7 +90,7 @@ const Pane = ({
           )}
 
           <div className="flex flex-col gap-1 pr-2">
-            <div className="font-medium text-base break-word leading-none flex items-center gap-1">
+            <div className="font-medium text-base break-all leading-none flex items-center gap-1">
               {selection}
             </div>
             {subtitle && (
@@ -185,7 +185,7 @@ const MapPane = (props: {
                 {Array.from({ length: 15 }, (_, i) =>
                   apps.map((app, index) => (
                     <div
-                      className="font-medium text-xs break-all leading-none flex items-center gap-1.5"
+                      className="font-medium text-xs leading-none flex items-center gap-1.5"
                       key={`${i}-${index}`}
                     >
                       <Image

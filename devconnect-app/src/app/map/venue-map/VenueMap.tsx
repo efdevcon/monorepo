@@ -1,29 +1,14 @@
 'use client';
 // https://github.com/timmywil/panzoom
-import React, {
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { usePanzoom, PanzoomControls } from './panzoom';
 import MapWrapper from './maps/MapWrapper';
-import {
-  svgToLookup,
-  svgToLookupWithGroups,
-  SVGLookup,
-  ElementPosition,
-} from './utils/svgToLookup';
-import { Pin } from './components/Pin';
-import { SupporterInfo } from './components/SupporterInfo';
 import cn from 'classnames';
 import css from './map.module.scss';
-import { X } from 'lucide-react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { getViewportPosition } from './utils/svgToLookup';
-import FlexibleDrawer from 'lib/components/flexible-drawer';
 import MapPane from './components/panes';
+import { SurfaceFilters, ListFilters } from './components/filters';
 
 const initialFilters = {
   search: '', // Search term, not supported yet but added for future use
@@ -41,6 +26,7 @@ export const VenueMap = () => {
   // const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const searchParams = useSearchParams();
+  const [listFiltersOpen, setListFiltersOpen] = useState(false);
   // const [elementData, setElementData] = useState<{ [key: string]: any }>({
   //   'art-exhibition': {
   //     groups: ['art'],
@@ -312,10 +298,12 @@ export const VenueMap = () => {
       onClick={(e) => {
         e.stopPropagation();
         setCurrentFilters(initialFilters);
+        setListFiltersOpen(false);
       }}
       onTouchEnd={(e) => {
         e.stopPropagation();
         setCurrentFilters(initialFilters);
+        setListFiltersOpen(false);
       }}
     >
       {/* Panzoom container */}
@@ -354,7 +342,6 @@ export const VenueMap = () => {
           })
         }
       />
-
       {/* Filters */}
       <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
         {/* {allPossibleFilters.groups.map((group) => (
@@ -382,7 +369,7 @@ export const VenueMap = () => {
       </div>
 
       {/* Zoom controls */}
-      <div className="absolute top-4 right-4 flex flex-col gap-2 z-10">
+      <div className="absolute bottom-2 right-2 flex flex-col gap-2 z-10">
         <button
           className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
           onMouseDown={(e) => e.stopPropagation()}
@@ -413,6 +400,9 @@ export const VenueMap = () => {
           Reset View
         </button>
       </div>
+
+      <SurfaceFilters />
+      <ListFilters open={listFiltersOpen} setOpen={setListFiltersOpen} />
     </div>
   );
 };
