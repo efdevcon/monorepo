@@ -8,7 +8,7 @@ import React, {
   useMemo,
 } from 'react';
 import { usePanzoom, PanzoomControls } from './panzoom';
-import MapTest from './maps/MapWrapper';
+import MapWrapper from './maps/MapWrapper';
 import {
   svgToLookup,
   svgToLookupWithGroups,
@@ -37,24 +37,24 @@ export const VenueMap = () => {
   // const router = useRouter();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [elementLookup, setElementLookup] = useState<SVGLookup>({});
+  // const [elementLookup, setElementLookup] = useState<SVGLookup>({});
   // const [svgScale, setSvgScale] = useState({ scaleX: 1, scaleY: 1 });
   const [hoveredElement, setHoveredElement] = useState<string | null>(null);
   const searchParams = useSearchParams();
-  const [elementData, setElementData] = useState<{ [key: string]: any }>({
-    'art-exhibition': {
-      groups: ['art'],
-    },
-    'entrance-1': {
-      groups: ['art'],
-    },
-    'cowork-8': {
-      groups: ['coworks'],
-    },
-    'cowork-1': {
-      groups: ['coworks'],
-    },
-  });
+  // const [elementData, setElementData] = useState<{ [key: string]: any }>({
+  //   'art-exhibition': {
+  //     groups: ['art'],
+  //   },
+  //   'entrance-1': {
+  //     groups: ['art'],
+  //   },
+  //   'cowork-8': {
+  //     groups: ['coworks'],
+  //   },
+  //   'cowork-1': {
+  //     groups: ['coworks'],
+  //   },
+  // });
   const [zoomLevel, setZoomLevel] = useState<'zoomed-in' | 'zoomed-out'>(
     'zoomed-out'
   );
@@ -83,17 +83,17 @@ export const VenueMap = () => {
     }
   }, [searchParams, panzoomInstance]);
 
-  const allPossibleFilters = useMemo(() => {
-    // Get from database / api
-    const groups = ['art', 'coworks'];
+  // const allPossibleFilters = useMemo(() => {
+  //   // Get from database / api
+  //   const groups = ['art', 'coworks'];
 
-    const elementKeys = Object.keys(elementLookup);
+  //   const elementKeys = Object.keys(elementLookup);
 
-    return {
-      groups: groups,
-      elements: elementKeys,
-    };
-  }, [elementLookup]);
+  //   return {
+  //     groups: groups,
+  //     elements: elementKeys,
+  //   };
+  // }, [elementLookup]);
 
   // console.log(allPossibleFilters, 'allPossibleFilters');
 
@@ -274,8 +274,8 @@ export const VenueMap = () => {
     panzoomInstance.smoothZoomAbs(
       containerRect.width / 2,
       containerRect.height / 2,
-      // Only adjust zoom level if its less than 1.3 (this is to avoid zooming out from where the user is already, but helps for zooming in when linking to a specific element)
-      Math.max(currentZoom, 2)
+      // Only adjust zoom level if its less than 3 (this is to avoid zooming out from where the user is already, but helps for zooming in when linking to a specific element)
+      Math.max(currentZoom, 3)
     );
   };
 
@@ -313,6 +313,8 @@ export const VenueMap = () => {
       )}
       onClick={(e) => {
         e.stopPropagation();
+        console.log(e.currentTarget, 'target dom element');
+        console.log('onClick');
         setCurrentFilters(initialFilters);
       }}
       onTouchEnd={(e) => {
@@ -327,7 +329,7 @@ export const VenueMap = () => {
         onMouseOver={handleSVGMouseOver}
         onMouseOut={handleSVGMouseOut}
       >
-        <MapTest ref={svgRef} onSVGElementClick={onSVGElementClick} />
+        <MapWrapper ref={svgRef} onSVGElementClick={onSVGElementClick} />
 
         {/* Pin layer overlay - moves with the panzoom */}
         {/* <div
@@ -359,7 +361,7 @@ export const VenueMap = () => {
 
       {/* Filters */}
       <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-        {allPossibleFilters.groups.map((group) => (
+        {/* {allPossibleFilters.groups.map((group) => (
           <button
             key={group}
             className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
@@ -380,7 +382,7 @@ export const VenueMap = () => {
           >
             {group}
           </button>
-        ))}
+        ))} */}
       </div>
 
       {/* Zoom controls */}

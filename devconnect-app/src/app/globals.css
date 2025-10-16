@@ -339,13 +339,40 @@ background-blend-mode: overlay;
   color: black;
   cursor: pointer;
 
-  
-  &.blue {
-    background-color: rgba(0, 115, 222, 1);
-    color: white;
+  &.small-button {
+    height: 32px;
+    @apply text-xs font-medium flex justify-center items-center gap-2 px-4;
+
+    &.square-button {
+      width: 32px;
+      height: 32px;
+      @apply flex justify-center items-center;
+    }
+  }
+
+  &.square-button {
+    width: 40px;
+    height: 40px;
+    @apply flex justify-center items-center p-0;
+  }
+
+  &.white-button {
+    background-color: white;
+    border: 1px solid #ededf0;
+    color: #353548;
 
     &:hover {
-      background-color: rgba(0, 115, 222, 0.8);
+      background-color: #f5f5f5;
+    }
+  }
+  
+  &.blue {
+    background-color: white;
+    color: rgba(27, 111, 174, 1);
+    border: 1px solid rgba(27, 111, 174, 1);
+
+    &:hover {
+      background-color: rgba(27, 111, 174, 0.1);
     }
   }
 

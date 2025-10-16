@@ -69,14 +69,14 @@ export const usePanzoom = (
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
         boundsPadding: 0.5,
-        maxZoom: 6,
-        zoomDoubleClickSpeed: 1,
+        maxZoom: 8,
+        zoomDoubleClickSpeed: 2,
         minZoom: 0.5,
-        beforeWheel: function (e) {
-          // allow wheel-zoom only if altKey is down. Otherwise - ignore
-          var shouldIgnore = !e.altKey && !e.ctrlKey;
-          return shouldIgnore;
-        },
+        // beforeWheel: function (e) {
+        //   // allow wheel-zoom only if altKey is down. Otherwise - ignore
+        //   var shouldIgnore = !e.altKey && !e.ctrlKey;
+        //   return shouldIgnore;
+        // },
         beforeMouseDown: function (e) {
           // Ignore mouse events on buttons and their children
           const target = e.target as Element;
@@ -126,7 +126,7 @@ export const usePanzoom = (
         const transform = e.getTransform();
         // console.log('transform', transform);
 
-        if (transform.scale > 1.2) {
+        if (transform.scale > 1.6) {
           console.log('zoomed in', zoomLevel);
           if (zoomLevelRef.current === 'zoomed-out') {
             setZoomLevel('zoomed-in');
