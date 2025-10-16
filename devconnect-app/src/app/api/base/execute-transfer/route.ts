@@ -8,6 +8,11 @@ import {
 } from '@/lib/usdc-contract';
 import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
 import { validateSponsorshipPolicy } from '@/config/sponsor-policy';
+import { COINBASE_CONFIG } from '@/config/coinbase-config';
+import {
+  executeUSDCTransferWithAuth,
+  type EIP3009Authorization
+} from '@/lib/coinbase-smart-wallet';
 
 /**
  * API endpoint to execute USDC transfers using signed authorization
@@ -99,7 +104,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // ⭐ NEW: Validate sponsorship policy
+    // ⭐ Validate sponsorship policy
     console.log('🔒 [POLICY] Validating sponsorship policy...');
     const policyCheck = validateSponsorshipPolicy(from, BigInt(value), USDC_CONTRACT_ADDRESS);
     if (!policyCheck.allowed) {
@@ -114,6 +119,97 @@ export async function POST(request: NextRequest) {
       }, { status: 403 });
     }
     console.log('✅ [POLICY] Policy checks passed');
+
+    // ⭐ NEW: Coinbase Smart Wallet Path
+    // If enabled, use Coinbase Server Smart Wallet with Paymaster gas sponsorship
+    if (COINBASE_CONFIG.ENABLED) {
+      console.log('🚀 [COINBASE] Using Coinbase Smart Wallet for gas sponsorship');
+
+      try {
+        // Validate signature is a string and split into v, r, s
+        if (typeof signature !== 'string') {
+          return NextResponse.json({
+            error: 'Signature must be a string',
+            details: `Received signature of type: ${typeof signature}`,
+          }, { status: 400 });
+        }
+
+        let v: number, r: string, s: string;
+
+        if (signature.startsWith('0x')) {
+          const sigBytes = signature.slice(2);
+
+          if (sigBytes.length !== 130) {
+            throw new Error(`Invalid signature length: ${sigBytes.length}, expected 130 hex characters`);
+          }
+
+          r = '0x' + sigBytes.slice(0, 64);
+          s = '0x' + sigBytes.slice(64, 128);
+          v = parseInt(sigBytes.slice(128, 130), 16);
+
+          if (v < 27) {
+            v += 27;
+          }
+        } else {
+          throw new Error('Signature must start with 0x');
+        }
+
+        // Build EIP-3009 authorization object for smart wallet
+        const auth: EIP3009Authorization = {
+          from,
+          to,
+          value: value.toString(),
+          validAfter: BigInt(validAfter),
+          validBefore: BigInt(validBefore),
+          nonce,
+          v,
+          r,
+          s,
+        };
+
+        // Execute via Coinbase Smart Wallet
+        const result = await executeUSDCTransferWithAuth(auth);
+
+        return NextResponse.json({
+          success: true,
+          simulation: false,
+          mode: 'coinbase-smart-wallet',
+          transaction: {
+            hash: result.transactionHash,
+            link: result.transactionLink,
+            status: result.status,
+            gasUsed: 'sponsored', // Coinbase Paymaster sponsored
+            effectiveGasPrice: '0', // No gas cost
+          },
+          transfer: {
+            from: result.from,
+            to: result.to,
+            amount: {
+              wei: result.amount,
+              formatted: formatUSDCAmount(BigInt(result.amount))
+            }
+          },
+          relayer: {
+            address: result.relayerAddress,
+            type: 'coinbase-smart-wallet',
+            gasSponsored: true,
+            sponsor: 'Coinbase Paymaster'
+          },
+          timestamp: new Date().toISOString()
+        });
+
+      } catch (coinbaseError) {
+        console.error('❌ [COINBASE] Smart wallet execution failed:', coinbaseError);
+
+        return NextResponse.json({
+          success: false,
+          mode: 'coinbase-smart-wallet',
+          error: 'Coinbase Smart Wallet execution failed',
+          details: coinbaseError instanceof Error ? coinbaseError.message : 'Unknown error',
+          fallback: 'Consider disabling NEXT_PUBLIC_USE_COINBASE_SMART_WALLET to use legacy relayer'
+        }, { status: 500 });
+      }
+    }
 
     // Validate signature is a string
     if (typeof signature !== 'string') {
@@ -167,6 +263,11 @@ export async function POST(request: NextRequest) {
         signatureLength: signature.length
       }, { status: 400 });
     }
+
+    // ⭐ Legacy EOA Relayer Path (when Coinbase Smart Wallet is disabled)
+    // Note: Authorization checks only apply to legacy relayer mode
+    // When Coinbase Smart Wallet is enabled, any EOA can request transfers
+    console.log('🔧 [LEGACY] Using legacy EOA relayer');
 
     // Get private key from environment and check wallet authorization
     const privateKey = process.env.PRIVATE_KEY;

@@ -11,7 +11,8 @@
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
     "d": "npx tsx scripts/fetch-data.ts",
-    "q": "npx tsx scripts/fetch-quests.ts"
+    "q": "npx tsx scripts/fetch-quests.ts",
+    "create-wallet": "npx tsx scripts/create-smart-wallet.ts"
   },
   "dependencies": {
     "@aa-sdk/core": "^4.70.0",
@@ -58,6 +59,7 @@
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "ethers": "^6.13.5",
     "jose": "^5.10.0",
     "lib": "workspace:*",

@@ -1,23 +1,43 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { AUTHORIZED_SPONSOR_ADDRESSES } from '@/config/config';
+import { COINBASE_CONFIG } from '@/config/coinbase-config';
 
 /**
  * API endpoint to check if the system is in simulation mode
  * GET /api/base/check-simulation-mode?wallet=0x...
  * 
  * Returns whether the system is configured for real transactions or simulation mode
- * Only allows real transactions if:
- * 1. PRIVATE_KEY is configured
- * 2. Wallet address matches the required sponsor address
+ * 
+ * When Coinbase Smart Wallet is enabled:
+ * - Always returns isSimulationMode: false (real transactions via Paymaster)
+ * - No authorization checks needed (any EOA can request transfers)
+ * 
+ * When using legacy EOA relayer:
+ * - Requires PRIVATE_KEY configured
+ * - Wallet address must match authorized sponsor address
  */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const walletAddress = searchParams.get('wallet');
 
-    const privateKey = process.env.PRIVATE_KEY;
+    // If Coinbase Smart Wallet is enabled, always allow real transactions
+    if (COINBASE_CONFIG.ENABLED) {
+      return NextResponse.json({
+        success: true,
+        isSimulationMode: false,
+        mode: 'coinbase-smart-wallet',
+        hasPrivateKey: true,
+        isCorrectWallet: true,
+        walletAddress,
+        message: 'System is configured for gasless transactions via Coinbase Smart Wallet',
+        paymasterEnabled: true,
+        timestamp: new Date().toISOString()
+      });
+    }
 
-    // Check if we have private key and wallet address matches any authorized sponsor
+    // Legacy EOA relayer checks
+    const privateKey = process.env.PRIVATE_KEY;
     const hasPrivateKey = !!privateKey;
     const isCorrectWallet = walletAddress && AUTHORIZED_SPONSOR_ADDRESSES.some(
       address => address.toLowerCase() === walletAddress.toLowerCase()
@@ -37,6 +57,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({
       success: true,
       isSimulationMode,
+      mode: 'legacy-eoa-relayer',
       hasPrivateKey,
       isCorrectWallet,
       walletAddress,
