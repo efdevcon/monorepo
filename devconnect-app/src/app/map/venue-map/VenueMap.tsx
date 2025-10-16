@@ -208,8 +208,6 @@ export const VenueMap = () => {
     });
   }, [currentFilters.selection, hoveredElement, hasActiveFilters]);
 
-  console.log(hoveredElement, 'hoveredElement');
-
   const handleSVGMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as SVGElement;
 
@@ -266,7 +264,7 @@ export const VenueMap = () => {
 
     // Move it! (third parameter for smooth animation)
     // Offset Y slightly to account for the map pane that appears
-    panzoomInstance.moveBy(deltaX, deltaY - 30, true);
+    panzoomInstance.moveBy(deltaX, deltaY - 50, true);
 
     const { scale: currentZoom } = panzoomInstance.getTransform();
 
@@ -313,8 +311,6 @@ export const VenueMap = () => {
       )}
       onClick={(e) => {
         e.stopPropagation();
-        console.log(e.currentTarget, 'target dom element');
-        console.log('onClick');
         setCurrentFilters(initialFilters);
       }}
       onTouchEnd={(e) => {

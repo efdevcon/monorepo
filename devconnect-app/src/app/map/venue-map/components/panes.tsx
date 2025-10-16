@@ -7,6 +7,8 @@ import X from './icons/x.svg';
 import FarcasterIcon from './icons/farcaster.svg';
 // import GlobeIcon from './icons/globe.svg';
 import Link from 'next/link';
+import Image from 'next/image';
+import Placeholder from './images/placeholder.png';
 
 const Pane = ({
   children,
@@ -15,6 +17,7 @@ const Pane = ({
   selection,
   setSelection,
   description,
+  subtitle,
   links,
 }: {
   children?: React.ReactNode;
@@ -24,12 +27,12 @@ const Pane = ({
   selection: string | null;
   setSelection: Dispatch<SetStateAction<string | null>>;
   description?: string;
+  subtitle?: string;
 }) => {
-  console.log(paneOpen, 'paneOpen');
-  console.log(children, 'children');
+  const imageSrc = ''; // 'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png';
 
   const LinkItems = (() => {
-    // if (!links || Object.keys(links).length === 0) return null;
+    if (!links || Object.keys(links).length === 0) return null;
 
     return (
       <div className="flex flex-col mt-4">
@@ -57,9 +60,47 @@ const Pane = ({
               </button>
             </Link>
           )}
+        </div>
+      </div>
+    );
+  })();
 
+  return (
+    <FlexibleDrawer
+      open={paneOpen}
+      onOpenChange={() => setSelection(null)}
+      className={cn('p-4', className)}
+      hideHandle={true}
+    >
+      <div className="flex justify-between mb-4">
+        <div className="flex items-center gap-2 self-start">
+          {imageSrc ? (
+            <img
+              src={imageSrc}
+              alt={selection || ''}
+              className="w-8 h-8 rounded-full object-cover shrink-0"
+            />
+          ) : (
+            <Image
+              src={Placeholder}
+              alt={selection || ''}
+              className="w-8 h-8 object-cover shrink-0"
+              style={{ filter: 'brightness(0)' }}
+            />
+          )}
+
+          <div className="flex flex-col gap-1 pr-2">
+            <div className="font-medium text-base break-word leading-none flex items-center gap-1">
+              {selection}
+            </div>
+            {subtitle && (
+              <div className="text-xs leading-tight">{subtitle}</div>
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
           <button
-            className="flex items-center gap-1 cursor-pointer basic-button white-button small-button"
+            className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
             onClick={() => {
               navigator.clipboard.writeText(
                 window.location.origin +
@@ -72,46 +113,24 @@ const Pane = ({
               });
             }}
           >
-            Copy Location
+            {/* Copy Location */}
             <MapPin className="w-4 h-4 cursor-pointer" />
+          </button>
+          <button
+            onClick={() => setSelection(null)}
+            className="flex items-center justify-center basic-button white-button small-button square-button shrink-0 cursor-pointer"
+          >
+            <XIcon className="w-4 h-4" />
           </button>
         </div>
       </div>
-    );
-  })();
-
-  return (
-    <FlexibleDrawer
-      open={paneOpen}
-      onOpenChange={() => console.log('onOpenChange', setSelection(null))}
-      className={cn('p-4', className)}
-      hideHandle={true}
-    >
-      <div className="flex justify-between">
-        <div className="flex items-center gap-2 self-start">
-          <img
-            src="https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png"
-            alt={selection || ''}
-            className="w-8 h-8 rounded-full object-cover"
-          />
-          <div className="font-medium text-sm break-all leading-none">
-            {selection}
-          </div>
-        </div>
-        <button
-          onClick={() => setSelection(null)}
-          className="flex items-center justify-center p-4 -translate-y-2 translate-x-2 shrink-0 cursor-pointer"
-        >
-          <XIcon className="w-5 h-5" />
-        </button>
-      </div>
-      {children}
       {description && (
         <div className="flex flex-col gap-1">
           <div className="font-semibold text-sm">About</div>
           <div className="text-xs">{description}</div>
         </div>
       )}
+      {children}
       {LinkItems}
     </FlexibleDrawer>
   );
@@ -134,25 +153,56 @@ const MapPane = (props: {
 
   const paneOpen = !!selection;
 
+  let selectionTest =
+    selection && selection.includes('district')
+      ? 'district'
+      : 'whatever fallback';
+
   const ActivePane = (() => {
-    switch (selection) {
-      //   case 'art-exhibition':
-      //     return <ArtExhibition />;
-      //   case 'cowork':
-      //     return <Cowork />;
-      //   case 'toilet':
-      //     return <Toilet />;
-      case 'quest':
+    switch (selectionTest) {
+      case 'district':
+        const apps = [
+          {
+            name: 'App Name',
+            description: 'App Description',
+            image:
+              'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png',
+          },
+        ];
+
         return (
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selection}
-            className="bg-gradient-to-t from-[#F6B40E] to-[#AAA7FF] bg-white/70 bg-blend-normal"
+            // description="This is a description of the selection."
+            subtitle="District Subtitle"
+            className="bg-gradient-to-t from-[rgba(136,85,204,0.3)] to-[rgba(221,102,170,0.3)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
           >
-            <div>I am a quest.</div>
+            <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)]">
+              <div className="text-sm font-medium mb-3">App Showcase</div>
+              <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
+                {Array.from({ length: 15 }, (_, i) =>
+                  apps.map((app, index) => (
+                    <div
+                      className="font-medium text-xs break-all leading-none flex items-center gap-1.5"
+                      key={`${i}-${index}`}
+                    >
+                      <Image
+                        src={Placeholder}
+                        alt={app.name}
+                        className="w-[16px] h-[16px] object-cover"
+                        style={{ filter: 'brightness(0)' }}
+                      />
+                      {app.name}
+                    </div>
+                  ))
+                ).flat()}
+              </div>
+            </div>
           </Pane>
         );
+
       default:
         return (
           <Pane
