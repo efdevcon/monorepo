@@ -14,7 +14,7 @@ import NetworkSelector from '@/components/payment/NetworkSelector';
 import StatusStep from '@/components/payment/StatusStep';
 import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
-import { AUTHORIZED_SPONSOR_ADDRESSES, PAYMENT_CONFIG } from '@/config/config';
+import { PAYMENT_CONFIG } from '@/config/config';
 import {
   useAccount as useParaAccount,
   useWallet as useParaWallet,

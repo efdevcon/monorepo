@@ -1,6 +1,6 @@
-# Data Fetch Scripts
+# Scripts
 
-These scripts fetch data from various API endpoints and save them as TypeScript files in the `src/data/` directory.
+Utility scripts for data fetching and wallet management.
 
 ## Scripts Overview
 
@@ -11,6 +11,10 @@ Fetches supporter and POI data from the `/api/data` endpoint and processes it in
 ### `fetch-quests.ts`
 
 Fetches quest data from the `/api/quests` endpoint and processes it with group/district mapping.
+
+### `create-smart-wallet.ts`
+
+Creates a CDP v2 Smart Account for gasless USDC transfers. See [COINBASE_SETUP.md](../COINBASE_SETUP.md) for details.
 
 ## Usage
 
@@ -41,6 +45,16 @@ pnpm run fetch-quests
 ```bash
 pnpm exec tsx scripts/fetch-quests.ts
 ```
+
+### Wallet Script
+
+#### Using pnpm script (recommended)
+
+```bash
+pnpm create-wallet
+```
+
+Creates a CDP v2 Smart Account. Requires CDP credentials in `.env.local`.
 
 ## What the scripts do
 
