@@ -22,7 +22,7 @@ export default function HomePageContent() {
   }, [router]);
 
   return (
-    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
+    <PageLayout title="Ethereum World's Fair - Dashboard" tabs={homeTabs()}>
       <div className="bg-[rgba(246,250,254,1)] grow pb-8">
         <LoopingHeader />
         <WelcomeSection />

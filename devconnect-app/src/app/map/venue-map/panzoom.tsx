@@ -72,11 +72,23 @@ export const usePanzoom = (
         maxZoom: 8,
         zoomDoubleClickSpeed: 2,
         minZoom: 0.5,
-        // beforeWheel: function (e) {
-        //   // allow wheel-zoom only if altKey is down. Otherwise - ignore
-        //   var shouldIgnore = !e.altKey && !e.ctrlKey;
-        //   return shouldIgnore;
-        // },
+        beforeWheel: function (e) {
+          const preventInteractionElement = (e.target as Element).closest(
+            '[data-prevent-interaction-element="true"]'
+          );
+
+          console.log('preventInteractionElement', preventInteractionElement);
+
+          if (preventInteractionElement) {
+            return true;
+          }
+
+          return false;
+
+          // allow wheel-zoom only if altKey is down. Otherwise - ignore
+          // var shouldIgnore = !e.altKey && !e.ctrlKey;
+          // return shouldIgnore;
+        },
         beforeMouseDown: function (e) {
           // Ignore mouse events on buttons and their children
           const target = e.target as Element;

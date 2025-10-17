@@ -80,6 +80,8 @@ const FlexibleDrawer = ({
     <Drawer open={open} onOpenChange={onOpenChange}>
       <DrawerContent
         className={className}
+        // Let people interact when the drawer is open, otherwise the overlay will block all interactions
+        overlayClassName="!pointer-events-none"
         hideHandle={hideHandle}
         onClick={(e: React.MouseEvent) => e.stopPropagation()}
         onTouchEnd={(e: React.TouchEvent) => e.stopPropagation()}

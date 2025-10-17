@@ -1,0 +1,125 @@
+import { useState } from 'react';
+import FlexibleDrawer from 'lib/components/flexible-drawer';
+import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
+import { ChevronDownIcon, FilterIcon, XIcon } from 'lucide-react';
+
+const filters = [
+  { key: 'coffee', label: 'Coffee' },
+  { key: 'community-hubs', label: 'Community Hubs' },
+  { key: 'coworking', label: 'Coworking' },
+  { key: 'districts', label: 'Districts' },
+  { key: 'entertainment', label: 'Entertainment' },
+  { key: 'food-beverage', label: 'Food & Beverage' },
+  { key: 'meeting-rooms', label: 'Meeting rooms' },
+  { key: 'onboarding', label: 'Onboarding' },
+  { key: 'onramps', label: 'Onramps' },
+  { key: 'toilets', label: 'Toilets' },
+  { key: 'stages', label: 'Stages' },
+];
+
+export const SurfaceFilters = () => {
+  return (
+    <div
+      className="flex items-center gap-1 absolute top-0 left-0 px-2 pr-4 right-0 z-10 touch-only:!px-0"
+      style={{
+        maskImage:
+          'linear-gradient(to right, transparent 0%, white 8px, white calc(100% - 24px), transparent 100%)',
+      }}
+      data-prevent-interaction-element={true}
+    >
+      <SwipeToScroll>
+        <div
+          className="flex items-center py-2"
+          onClick={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation();
+            e.preventDefault();
+          }}
+        >
+          {filters.map((filter, index) => (
+            <button
+              key={filter.key}
+              className={`text-xs shrink-0 basic-button white-button small-button ml-2 ${
+                index === filters.length - 1 ? 'mr-8' : 'mr-0'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      </SwipeToScroll>
+    </div>
+  );
+};
+
+export const ListFilters = ({
+  open,
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) => {
+  return (
+    <>
+      <button
+        className="absolute bottom-2 left-2 flex items-center gap-1 cursor-pointer z-10 basic-button white-button small-button"
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          setOpen(!open);
+        }}
+        onTouchEnd={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
+          setOpen(!open);
+        }}
+        data-prevent-interaction-element={true}
+      >
+        List
+        <FilterIcon className="w-4 h-4" />
+      </button>
+      <FlexibleDrawer
+        open={open}
+        onOpenChange={setOpen}
+        hideHandle={true}
+        className=""
+      >
+        <div className="flex flex-col">
+          <div className="flex items-center justify-center border-b border-gray-100 px-4 pb-2.5 pt-3">
+            <h2 className="text-sm font-semibold text-[rgba(53,53,72,1)]">
+              Find Location
+            </h2>
+            {/* <button
+              className="basic-button white-button small-button square-button"
+              onClick={() => setOpen(false)}
+            > */}
+            <XIcon
+              className="w-3.5 h-3.5 text-gray-500 absolute right-4"
+              onClick={() => setOpen(false)}
+            />
+            {/* </button> */}
+          </div>
+          <div className="flex flex-col overflow-hidden bg-white mb-2">
+            {filters.map((filter, index) => (
+              <button
+                key={filter.key}
+                className={`
+                  flex items-center justify-between py-1.5 text-left px-4 pr-4
+                  hover:bg-gray-50 transition-colors duration-150
+                  border-b border-gray-100 last:border-b-0 font-medium
+                  text-xs
+                `}
+              >
+                <span>{filter.label}</span>
+                <ChevronDownIcon className="w-[14px] h-[14px] text-[rgba(0,115,222,1)]" />
+              </button>
+            ))}
+          </div>
+        </div>
+      </FlexibleDrawer>
+    </>
+  );
+};

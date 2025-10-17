@@ -9,10 +9,10 @@ import { WalletProvider } from '@/context/WalletContext';
 import PWAProvider from '@/components/PWAProvider';
 import { GlobalStoreProvider } from '@/app/store.provider';
 import { getAtprotoEvents } from '@/utils/atproto-events';
-import { unstable_cache } from 'next/cache';
-import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
-import { headers } from 'next/headers';
-import { ensureUser } from '@/app/api/auth/user-data/ensure-user';
+// import { unstable_cache } from 'next/cache';
+// import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
+// import { headers } from 'next/headers';
+// import { ensureUser } from '@/app/api/auth/user-data/ensure-user';
 
 // Remove config import to avoid Para SDK import in server component
 // import { APP_CONFIG, APP_NAME, APP_DESCRIPTION } from '@/config/config';
@@ -198,9 +198,7 @@ export default async function RootLayout({
       >
         <PWAProvider>
           <WalletsProviders>
-            <GlobalStoreProvider
-              events={atprotoEvents} /*userData={userData}*/
-            >
+            <GlobalStoreProvider events={atprotoEvents} /*userData={userData}*/>
               <WalletProvider>
                 {children}
                 <NewDeployment />
