@@ -14,6 +14,11 @@ import DoubleTreeImage from './images/hilton.jpg'
 import VanAlImage from './images/van-al.jpg'
 import TripshaImage from './images/tripsha-1.jpeg'
 import TripshaCar from './images/tripsha-car.jpeg'
+import Ready1Image from './images/ready-1.png'
+import Ready2Image from './images/ready-2.png'
+import PoloImage from './images/polo.jpg'
+import KoinxImage from './images/koinx.jpg'
+import GuestGenieImage from './images/guest-genie.jpg'
 
 type Perk = {
   coupon_collection: string
@@ -96,25 +101,6 @@ const perks: Perk[] = [
     ],
     zupass_proof_id: 'Devconnect ARG',
   },
-  // Edge city
-  {
-    coupon_collection: 'edgy-city-patagonia-2025',
-    name: 'Edge City Patagonia 2025',
-    requires: 'Devconnect ARG ticket',
-    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
-    issuer: 'Edge City',
-    image: EdgeCityImage,
-    zupass_proof_id: 'Devconnect ARG',
-    global_coupon: 'ECP25-DEVCONNECT20',
-    instructions: 'Use the code at checkout',
-    urls: [
-      {
-        text: 'Edge City Patagonia',
-        url: 'https://www.edgecity.live/patagonia',
-      },
-    ],
-  },
-
   // EtherFI travel
   {
     coupon_collection: 'etherfi-travel-2025',
@@ -123,7 +109,7 @@ const perks: Perk[] = [
     description: 'Unlock Ether.fi Travel - Up to 60% off Hotels in Buenos Aires',
     issuer: 'ether.fi',
     image: EtherfiImage,
-    instructions: 'Special rates available when following the link:',
+    instructions: 'Special rates available at the following link:',
     zupass_proof_id: 'Devconnect ARG',
     urls: [
       {
@@ -157,7 +143,7 @@ const perks: Perk[] = [
     description: 'Enjoy a special preferred rate - with full buffet breakfast',
     issuer: 'Hotel DoubleTree by Hilton',
     image: DoubleTreeImage,
-    instructions: 'Special rates available when following the link:',
+    instructions: 'Special rates available at the following link:',
     zupass_proof_id: 'Devconnect ARG',
     urls: [
       {
@@ -181,6 +167,57 @@ const perks: Perk[] = [
       {
         text: 'Visit Precog',
         url: 'https://core.precog.market/claim/8453/mate?ref=devconnect',
+      },
+    ],
+  },
+  {
+    coupon_collection: 'ready-lite',
+    name: 'Ready Free',
+    description: 'Free Ready Lite Card',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Unlock your crypto card for free',
+    urls: [
+      {
+        text: 'Visit Ready',
+        url: 'https://www.ready.co/download-ready?utm_source=devconnect&utm_campaign=lite_free',
+      },
+    ],
+    issuer: 'Ready',
+    image: Ready1Image,
+  },
+  {
+    coupon_collection: 'ready-metal-2025',
+    name: 'Ready Metal',
+    description: '30% off Ready Metal Card',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    urls: [
+      {
+        text: 'Visit Ready',
+        url: 'https://www.ready.co/download-ready?utm_source=devconnect&utm_campaign=metal_30',
+      },
+    ],
+    issuer: 'Ready',
+    instructions: 'Order now and get 10% cashback during Devconnect week',
+    global_coupon: 'DEVC30',
+    image: Ready2Image,
+  },
+  // Edge city
+  {
+    coupon_collection: 'edgy-city-patagonia-2025',
+    name: 'Edge City Patagonia 2025',
+    requires: 'Devconnect ARG ticket',
+    description: '20% off Edge City Patagonia (Oct18 - Nov15)',
+    issuer: 'Edge City',
+    image: EdgeCityImage,
+    zupass_proof_id: 'Devconnect ARG',
+    global_coupon: 'ECP25-DEVCONNECT20',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Edge City Patagonia',
+        url: 'https://www.edgecity.live/patagonia',
       },
     ],
   },
@@ -244,6 +281,58 @@ const perks: Perk[] = [
       },
     ],
   },
+  {
+    coupon_collection: 'koinx-2025',
+    name: 'Koinx',
+    description: 'FREE Crypto Tax Reports for first 500 users!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use code at Tax Report checkout',
+    global_coupon: 'DEVCONNECT',
+    urls: [
+      {
+        text: 'Visit Koinx',
+        url: 'https://app.koinx.com/?r=perks-portal&d=DEVCONNECT',
+      },
+    ],
+    issuer: 'KoinX',
+    image: KoinxImage,
+  },
+  {
+    coupon_collection: 'argentinapoloday-2025',
+    name: 'Argentina Polo Day',
+    description: 'Get 10% off on any polo experience',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    issuer: 'Argentina Polo Day',
+    global_coupon: 'DEVCONPOLO10',
+    instructions: 'Refer to code during enquiry',
+    urls: [
+      {
+        text: 'Visit Argentina Polo Day',
+        url: 'https://argentinapoloday.com.ar/',
+      },
+    ],
+    image: PoloImage,
+  },
+  {
+    coupon_collection: 'guest-genie-2025',
+    name: 'Guest Genie',
+    description: '15% off Virtual Concierge - Experience BA like a Local',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Guest Genie',
+        url: 'https://guestgenie.com/',
+      },
+    ],
+    global_coupon: 'devcon15',
+    issuer: 'GuestGenie',
+    image: GuestGenieImage,
+  },
+
   {
     coupon_collection: 'protocol-guild-free-ticket',
     // Technically not a zupass proof ID, but it's an exception so not worth the effort to rename this field

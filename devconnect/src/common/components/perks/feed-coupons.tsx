@@ -18,8 +18,8 @@ const CouponFeed: React.FC<CouponFeedProps> = ({ onCouponsUploaded }) => {
   const [success, setSuccess] = useState<string | null>(null)
 
   const couponToUpload = {
-    url: '/dont-push-coupons/defi-today.csv',
-    collection: 'defi-today',
+    url: '/dont-push-coupons/ready-lite.csv',
+    collection: 'ready-lite',
     zk_proof_id: 'Devconnect ARG', // Must match the proof ID used in the perks system
   }
 
