@@ -9,6 +9,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { getViewportPosition } from './utils/svgToLookup';
 import MapPane from './components/panes';
 import { SurfaceFilters, ListFilters } from './components/filters';
+import { HomeIcon } from 'lucide-react';
 
 const initialFilters = {
   search: '', // Search term, not supported yet but added for future use
@@ -54,10 +55,17 @@ export const VenueMap = () => {
     zoomLevel
   );
 
+  const reset = () => {
+    setCurrentFilters(initialFilters);
+    setListFiltersOpen(false);
+  };
+
   useEffect(() => {
     const selection = searchParams.get('filter');
 
     if (selection && panzoomInstance) {
+      setListFiltersOpen(false);
+
       setCurrentFilters({
         ...currentFilters,
         selection: selection,
@@ -273,6 +281,8 @@ export const VenueMap = () => {
 
     // console.log(id, 'id');
 
+    setListFiltersOpen(false);
+
     setCurrentFilters({
       ...currentFilters,
       selection: id,
@@ -297,13 +307,11 @@ export const VenueMap = () => {
       )}
       onClick={(e) => {
         e.stopPropagation();
-        setCurrentFilters(initialFilters);
-        setListFiltersOpen(false);
+        reset();
       }}
       onTouchEnd={(e) => {
         e.stopPropagation();
-        setCurrentFilters(initialFilters);
-        setListFiltersOpen(false);
+        reset();
       }}
     >
       {/* Panzoom container */}
@@ -370,13 +378,33 @@ export const VenueMap = () => {
 
       {/* Zoom controls */}
       <div className="absolute bottom-2 right-2 flex flex-col gap-2 z-10">
-        <button
+        {/* <button
           className="basic-button white-button small-button"
           onMouseDown={(e) => e.stopPropagation()}
+          data-prevent-interaction-element={true}
           onClick={(e) => {
             e.stopPropagation();
             if (panzoomInstance) {
-              setCurrentFilters(initialFilters);
+              panzoomInstance.smoothZoom(0, 0, 1.1);
+            }
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation();
+            if (panzoomInstance) {
+              panzoomInstance.smoothZoom(0, 0, 1.1);
+            }
+          }}
+        >
+          +
+        </button>
+        <button
+          className="basic-button white-button small-button"
+          onMouseDown={(e) => e.stopPropagation()}
+          data-prevent-interaction-element={true}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (panzoomInstance) {
+              reset();
 
               panzoomInstance.pause();
 
@@ -389,7 +417,7 @@ export const VenueMap = () => {
           onTouchEnd={(e) => {
             e.stopPropagation();
             if (panzoomInstance) {
-              setCurrentFilters(initialFilters);
+              reset();
               panzoomInstance.pause();
               panzoomInstance.moveTo(0, 0);
               panzoomInstance.zoomAbs(0, 0, 1);
@@ -397,7 +425,40 @@ export const VenueMap = () => {
             }
           }}
         >
-          Reset View
+          -
+        </button> */}
+        <button
+          className="basic-button white-button small-button"
+          data-prevent-interaction-element={true}
+          onMouseDown={(e) => e.stopPropagation()}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (panzoomInstance) {
+              reset();
+
+              panzoomInstance.pause();
+
+              panzoomInstance.moveTo(0, 0);
+              panzoomInstance.zoomAbs(0, 0, 1);
+
+              panzoomInstance.resume();
+            }
+          }}
+          onTouchEnd={(e) => {
+            e.stopPropagation();
+            if (panzoomInstance) {
+              reset();
+
+              panzoomInstance.pause();
+
+              panzoomInstance.moveTo(0, 0);
+              panzoomInstance.zoomAbs(0, 0, 1);
+
+              panzoomInstance.resume();
+            }
+          }}
+        >
+          <HomeIcon className="w-4 h-4 !text-[rgba(0,115,222,1)]" />
         </button>
       </div>
 

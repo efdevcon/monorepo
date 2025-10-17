@@ -83,7 +83,7 @@ export const usePanzoom = (
             return true;
           }
 
-          return false;
+          // return true;
 
           // allow wheel-zoom only if altKey is down. Otherwise - ignore
           // var shouldIgnore = !e.altKey && !e.ctrlKey;

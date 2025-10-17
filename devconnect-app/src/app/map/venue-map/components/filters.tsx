@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FlexibleDrawer from 'lib/components/flexible-drawer';
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
-import { ChevronDownIcon, FilterIcon, XIcon } from 'lucide-react';
+import { ChevronDownIcon, TextSearch, XIcon } from 'lucide-react';
 
 const filters = [
   { key: 'coffee', label: 'Coffee' },
@@ -20,7 +20,7 @@ const filters = [
 export const SurfaceFilters = () => {
   return (
     <div
-      className="flex items-center gap-1 absolute top-0 left-0 px-2 pr-4 right-0 z-10 touch-only:!px-0"
+      className="flex items-center absolute top-0 left-0 px-2 pr-4 right-0 z-10 touch-only:!px-0"
       style={{
         maskImage:
           'linear-gradient(to right, transparent 0%, white 8px, white calc(100% - 24px), transparent 100%)',
@@ -42,9 +42,9 @@ export const SurfaceFilters = () => {
           {filters.map((filter, index) => (
             <button
               key={filter.key}
-              className={`text-xs shrink-0 basic-button white-button small-button ml-2 ${
+              className={`text-xs shrink-0 basic-button white-button small-button ml-1 ${
                 index === filters.length - 1 ? 'mr-8' : 'mr-0'
-              }`}
+              } ${index === 0 ? '!ml-0' : 'ml-1'}`}
             >
               {filter.label}
             </button>
@@ -65,7 +65,7 @@ export const ListFilters = ({
   return (
     <>
       <button
-        className="absolute bottom-2 left-2 flex items-center gap-1 cursor-pointer z-10 basic-button white-button small-button"
+        className="absolute bottom-2 left-2 flex items-center !text-[rgba(0,115,222,1)] !gap-1 !px-3s cursor-pointer z-10 basic-button white-button small-button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -78,8 +78,8 @@ export const ListFilters = ({
         }}
         data-prevent-interaction-element={true}
       >
-        List
-        <FilterIcon className="w-4 h-4" />
+        <TextSearch className="w-4 h-4" />
+        <div className="text-sm font-medium">List</div>
       </button>
       <FlexibleDrawer
         open={open}
