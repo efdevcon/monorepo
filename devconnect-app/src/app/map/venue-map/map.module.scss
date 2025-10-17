@@ -13,7 +13,7 @@
 
     // When not zoomed in, hide the info and icons and make them unclickable
     &:not(.zoomed-in) {
-        g[id='Info'], g[id='Icons'] {
+        g[id='INFO'], g[id='ICONS'] {
             opacity: 0;
             pointer-events: none !important;
 

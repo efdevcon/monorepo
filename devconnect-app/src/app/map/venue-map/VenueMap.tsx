@@ -296,7 +296,7 @@ export const VenueMap = () => {
       ref={containerRef}
       id="venue-container"
       className={cn(
-        'relative w-full overflow-hidden grow flex py-8 md:h-[80vh]',
+        'relative w-full overflow-hidden grow flex py-8 px-4 md:h-[80vh]',
         'gradient-background',
         css.map,
         zoomLevel === 'zoomed-in' && css['zoomed-in'],
@@ -505,6 +505,10 @@ export const VenueMap = () => {
     5.2) Shortcut
     5.3) Zoom controls
 
+
+  6) UX
+    if panning or zooming, prevent clicks / selections
+    zooming sometimes goes haywire and pans somewhere crazy 
 */
 
 /*
