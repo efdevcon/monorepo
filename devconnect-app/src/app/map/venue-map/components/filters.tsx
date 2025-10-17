@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FlexibleDrawer from 'lib/components/flexible-drawer';
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
-import { FilterIcon } from 'lucide-react';
+import { ChevronDownIcon, FilterIcon, XIcon } from 'lucide-react';
 
 const filters = [
   { key: 'coffee', label: 'Coffee' },
@@ -85,9 +85,40 @@ export const ListFilters = ({
         open={open}
         onOpenChange={setOpen}
         hideHandle={true}
-        className="p-4"
+        className=""
       >
-        hello?
+        <div className="flex flex-col">
+          <div className="flex items-center justify-center border-b border-gray-100 px-4 pb-2.5 pt-3">
+            <h2 className="text-sm font-semibold text-[rgba(53,53,72,1)]">
+              Find Location
+            </h2>
+            {/* <button
+              className="basic-button white-button small-button square-button"
+              onClick={() => setOpen(false)}
+            > */}
+            <XIcon
+              className="w-3.5 h-3.5 text-gray-500 absolute right-4"
+              onClick={() => setOpen(false)}
+            />
+            {/* </button> */}
+          </div>
+          <div className="flex flex-col overflow-hidden bg-white mb-2">
+            {filters.map((filter, index) => (
+              <button
+                key={filter.key}
+                className={`
+                  flex items-center justify-between py-1.5 text-left px-4 pr-4
+                  hover:bg-gray-50 transition-colors duration-150
+                  border-b border-gray-100 last:border-b-0 font-medium
+                  text-xs
+                `}
+              >
+                <span>{filter.label}</span>
+                <ChevronDownIcon className="w-[14px] h-[14px] text-[rgba(0,115,222,1)]" />
+              </button>
+            ))}
+          </div>
+        </div>
       </FlexibleDrawer>
     </>
   );

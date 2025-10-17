@@ -343,8 +343,8 @@ export const VenueMap = () => {
         }
       />
       {/* Filters */}
-      <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-        {/* {allPossibleFilters.groups.map((group) => (
+      {/* <div className="absolute top-4 left-4 flex flex-col gap-2 z-10"> */}
+      {/* {allPossibleFilters.groups.map((group) => (
           <button
             key={group}
             className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
@@ -366,12 +366,12 @@ export const VenueMap = () => {
             {group}
           </button>
         ))} */}
-      </div>
+      {/* </div> */}
 
       {/* Zoom controls */}
       <div className="absolute bottom-2 right-2 flex flex-col gap-2 z-10">
         <button
-          className="bg-white px-4 py-2 rounded shadow hover:bg-gray-100 text-xs"
+          className="basic-button white-button small-button"
           onMouseDown={(e) => e.stopPropagation()}
           onClick={(e) => {
             e.stopPropagation();
