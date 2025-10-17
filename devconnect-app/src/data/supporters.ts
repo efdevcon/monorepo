@@ -6,14 +6,14 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "0xbow-privacy-pools",
     "logo": "",
     "description": "",
-    "districtId": "7",
+    "districtId": "3",
     "locationId": "3"
   },
   "254638cdc41580cf8c7ed2b6327a89ad": {
     "name": "1inch",
     "layerName": "1inch",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T11-30-04-598Z-new-brand-logo.svg",
-    "description": "",
+    "description": "1inch is the DeFi ecosystem building financial freedom for everyone.\n1inch products help users and builders trade, hold and track digital assets - with the self-custody, comprehensive security and the intuitive user experience they need to unlock the potential of true crypto ownership.\n1inch protocols and APIs provide core infrastructure across the DeFi industry and beyond.\n1inch takes a leading role in advocating for integrated, transparent and compliant DeFi as the future of global finance.",
     "districtId": "3",
     "locationId": "1"
   },
@@ -24,14 +24,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "3",
     "locationId": "1"
-  },
-  "287638cdc41580098b24fecdc95bee77": {
-    "name": "Ai 8",
-    "layerName": "ai-8",
-    "logo": "",
-    "description": "",
-    "districtId": "1",
-    "locationId": null
   },
   "254638cdc41580be910bd11367d15f83": {
     "name": "Ambire",
@@ -60,8 +52,8 @@ export const supportersData: Record<string, Supporter> = {
   "241638cdc41580858795dfc9f5630277": {
     "name": "Aztec",
     "layerName": "aztec",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T14-01-56-571Z-Aztec%20Symbol_Square.png",
+    "description": "Aztec is a fully decentralized, privacy-preserving L2 on Ethereum. Developers write smart contracts using our popular Noir programming language, making it easy to seamlessly integrate public and private state. ",
     "districtId": "7",
     "locationId": "3"
   },
@@ -168,14 +160,6 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "3",
     "locationId": "1"
-  },
-  "272638cdc41580f9a607f340a8c64a30": {
-    "name": "Edge & Node / The Graph",
-    "layerName": "edge-node-the-graph",
-    "logo": "",
-    "description": "",
-    "districtId": "3",
-    "locationId": null
   },
   "254638cdc4158098bc20c52a9ec59c9a": {
     "name": "elizaOS",
@@ -356,8 +340,8 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415806799b2c11b3fbfe78a": {
     "name": "Nouns",
     "layerName": "nouns",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-14T00-45-24-235Z-nouns_logo_300x300.svg",
+    "description": "Nouns is a community-owned brand that makes a positive impact by funding ideas and fostering collaboration. From collectors and technologists, to non-profits and brands, Nouns is for everyone.",
     "districtId": "2",
     "locationId": "1"
   },
@@ -388,8 +372,8 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415800fb6ece44a8f14ecba": {
     "name": "Offramp",
     "layerName": "offramp",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-15T19-06-07-649Z-logo.svg",
+    "description": "Pay like a local in Argentina with your stablecoins. Use Offramp’s QR to pay for everything. ",
     "districtId": "3",
     "locationId": "1"
   },
@@ -428,8 +412,8 @@ export const supportersData: Record<string, Supporter> = {
   "271638cdc41580499f92f0eb9a5bc8b1": {
     "name": "Pistachio",
     "layerName": "pistachio",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T22-10-36-635Z-1.svg",
+    "description": "Pistachio Fi, the self-custodial crypto neobank on Ethereum. Instantly buy, earn, send and spend onchain.",
     "districtId": "3",
     "locationId": null
   },
@@ -450,20 +434,12 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "25d638cdc415803ba79cfdf2f7353ded": {
-    "name": "Privacy 7 - PSE",
-    "layerName": "privacy-7-pse",
+    "name": "PSE",
+    "layerName": "pse",
     "logo": "",
     "description": "",
     "districtId": "7",
     "locationId": "3"
-  },
-  "287638cdc415803580f1feed1fd67f6a": {
-    "name": "Privacy 8 TBD",
-    "layerName": "privacy-8-tbd",
-    "logo": "",
-    "description": "",
-    "districtId": "7",
-    "locationId": null
   },
   "256638cdc4158003aadde80270c59050": {
     "name": "R3alblocks",
@@ -525,7 +501,7 @@ export const supportersData: Record<string, Supporter> = {
     "name": "Rotki",
     "layerName": "rotki",
     "logo": "",
-    "description": "",
+    "description": "rotki is an open source, self-hosted portfolio manager, accounting and analytics tool that protects your privacy",
     "districtId": "3",
     "locationId": "1"
   },
@@ -540,6 +516,14 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158068af74cda68f195c2f": {
     "name": "Seer",
     "layerName": "seer",
+    "logo": "",
+    "description": "",
+    "districtId": "1",
+    "locationId": "1"
+  },
+  "28d638cdc415803b9647ea84dfed6038": {
+    "name": "Space Ai",
+    "layerName": "space-ai",
     "logo": "",
     "description": "",
     "districtId": "1",
@@ -568,6 +552,22 @@ export const supportersData: Record<string, Supporter> = {
     "description": "",
     "districtId": "8",
     "locationId": "1"
+  },
+  "272638cdc41580f9a607f340a8c64a30": {
+    "name": "The Graph",
+    "layerName": "the-graph",
+    "logo": "",
+    "description": "",
+    "districtId": "3",
+    "locationId": null
+  },
+  "28e638cdc41580189eebe05dcfec511c": {
+    "name": "UNICEF",
+    "layerName": "unicef",
+    "logo": "",
+    "description": "",
+    "districtId": "3",
+    "locationId": null
   },
   "254638cdc41580b89861dfe7cb275fa4": {
     "name": "Uphold",
@@ -636,8 +636,8 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580b0bd59e6e5713b80f0": {
     "name": "Zyfai",
     "layerName": "zyfai",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T13-53-04-808Z-Zyfai%20Icon%20Primary.svg",
+    "description": "ZyFAI is an Agent platform designed to optimize and enhance yield in DeFi. Secured by personalized smart accounts and session keys, it offers a next-generation alternative to traditional vaults in the on-chain capital allocation ecosystem.",
     "districtId": "1",
     "locationId": "1"
   }
