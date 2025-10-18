@@ -9,6 +9,12 @@ import FarcasterIcon from './icons/farcaster.svg';
 import Link from 'next/link';
 import Image from 'next/image';
 import Placeholder from './images/placeholder.png';
+import { poisData } from '@/data/pois';
+import { districtsData } from '@/data/districts';
+import { poiGroupsData } from '@/data/poiGroups';
+import { supportersData } from '@/data/supporters';
+import { questsData } from '@/data/quests';
+import { questGroupsData } from '@/data/questGroups';
 
 const Pane = ({
   children,
@@ -72,7 +78,7 @@ const Pane = ({
       className={cn('p-4', className)}
       hideHandle={true}
     >
-      <div className="flex justify-between mb-4">
+      <div className="flex justify-between">
         <div className="flex items-center gap-2 self-start">
           {imageSrc ? (
             <img
@@ -151,15 +157,86 @@ const MapPane = (props: {
   //     window.location.href = '/quests/app-showcase#14';
   //   };
 
+  console.log('poisData', poisData);
+  console.log('districtsData', districtsData);
+  console.log('poiGroupsData', poiGroupsData);
+  console.log('supportersData', supportersData);
+  console.log('questsData', questsData);
+  console.log('questGroupsData', questGroupsData);
+
+  /*
+    A selection 
+      - has an id (group or district id or POI id)
+      - is part of group or part of district
+      - has description
+      - has links
+    if the selection is a group, then show resolve the pois which contain that group
+    if the selection is a district, then show resolve the pois which contain that district
+  */
+
   const paneOpen = !!selection;
 
-  let selectionTest =
-    selection && selection.includes('district')
-      ? 'district'
-      : 'whatever fallback';
+  if (!selection) {
+    return null;
+  }
 
   const ActivePane = (() => {
-    switch (selectionTest) {
+    let selectionData:
+      | {
+          name: string;
+          pane_type: 'poi' | 'district' | 'group' | 'fallback (no notion data)';
+          [key: string]: any;
+        }
+      | undefined;
+
+    const poiData = poisData.find((poi) => poi.name === selection);
+
+    if (poiData) {
+      selectionData = {
+        ...poiData,
+        pane_type: 'poi',
+      };
+    }
+
+    // No POI match
+    if (!poiData) {
+      // Look at district match
+      const districtData = Object.values(districtsData).find(
+        (district: any) => district.name === selection
+      );
+
+      if (districtData) {
+        selectionData = {
+          ...districtData,
+          pane_type: 'district',
+        };
+      }
+
+      // No district match
+      if (!districtData) {
+        // Look at group match
+        const groupData = Object.values(poiGroupsData).find(
+          (group: any) => group.name === selection
+        );
+
+        if (groupData) {
+          selectionData = {
+            ...groupData,
+            pane_type: 'group',
+          };
+        }
+      }
+    }
+
+    if (!selectionData) {
+      selectionData = {
+        name: selection,
+        pane_type: 'fallback (no notion data)',
+      };
+    }
+
+    switch (selectionData.pane_type) {
+      case 'group':
       case 'district':
         const apps = [
           {
@@ -175,11 +252,11 @@ const MapPane = (props: {
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selection}
-            // description="This is a description of the selection."
-            subtitle="District Subtitle"
+            description={selectionData.description}
+            subtitle={selectionData.pane_type}
             className="bg-gradient-to-t from-[rgba(136,85,204,0.3)] to-[rgba(221,102,170,0.3)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
           >
-            <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)]">
+            <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4">
               <div className="text-sm font-medium mb-3">App Showcase</div>
               <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
                 {Array.from({ length: 15 }, (_, i) =>
@@ -203,18 +280,27 @@ const MapPane = (props: {
           </Pane>
         );
 
+      case 'poi':
+        return (
+          <Pane
+            paneOpen={paneOpen}
+            setSelection={setSelection}
+            selection={selectionData.name}
+            description={selectionData.description}
+            subtitle={selectionData.pane_type}
+            links={selectionData.links}
+          ></Pane>
+        );
+
       default:
         return (
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
-            selection={selection}
-            links={{
-              website: 'aa',
-              x: 'bb',
-              farcaster: 'cc',
-            }}
-            description="This is a description of the selection."
+            selection={selectionData.name}
+            description={selectionData.description}
+            subtitle={selectionData.pane_type}
+            links={selectionData.links}
           >
             {/* <div>{selection}</div> */}
           </Pane>
