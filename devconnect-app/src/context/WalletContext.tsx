@@ -31,7 +31,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     return {
       ...wallet,
       // Add any memoized computed values here if needed
-      displayAddress: wallet.address 
+      displayAddress: wallet.address
         ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
         : null,
     };
@@ -42,6 +42,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     wallet.chainId,
     wallet.email,
     wallet.isDisconnecting,
+    wallet.portfolioRefreshTrigger, // CRITICAL: Include to force re-render when portfolio updates
     // Include other primitive values that change frequently
   ]);
   

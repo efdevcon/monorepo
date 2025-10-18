@@ -248,6 +248,7 @@ export default function PaymentModal({
     txStatus,
     txError,
     txHash,
+    userOpHash,
     isSimulation,
     simulationDetails,
     resetTransaction,
@@ -1600,6 +1601,7 @@ export default function PaymentModal({
             chainId={paymentData.chainId || (isPara ? 8453 : selectedChainId)}
             connectedAddress={connectedAddress || undefined}
             txHash={txHash || undefined}
+            userOpHash={userOpHash || undefined}
             isSimulation={isSimulation}
             simulationDetails={simulationDetails}
             onDone={handleStatusDone}

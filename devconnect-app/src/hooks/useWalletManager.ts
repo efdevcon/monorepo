@@ -434,6 +434,9 @@ export function useWalletManager() {
     Record<string, PortfolioData>
   >('portfolio', {});
 
+  // Refresh trigger to force useMemo recomputation when portfolio is updated
+  const [portfolioRefreshTrigger, setPortfolioRefreshTrigger] = useState(0);
+
   const [portfolioLoading, setPortfolioLoading] = useState(false);
   const [portfolioError, setPortfolioError] = useState<string | null>(null);
   const portfolioFetchingRef = useRef(false);
@@ -449,9 +452,10 @@ export function useWalletManager() {
       hasPortfolio: !!result,
       totalValue: result?.totalValue,
       cachedAddresses: Object.keys(portfolioCache).length,
+      refreshTrigger: portfolioRefreshTrigger,
     });
     return result;
-  }, [address, portfolioCache, hookId]);
+  }, [address, portfolioCache, portfolioRefreshTrigger, hookId]);
 
   // Fetch portfolio only when explicitly called (manual refresh only)
   const fetchPortfolio = useCallback(async () => {
@@ -498,6 +502,9 @@ export function useWalletManager() {
         ...prev,
         [addressKey]: data,
       }));
+
+      // Increment refresh trigger to force useMemo recomputation
+      setPortfolioRefreshTrigger(prev => prev + 1);
 
       console.log(
         `✅ [WALLET_MANAGER] Portfolio fetched and cached for ${address.slice(0, 10)}...`
@@ -733,6 +740,7 @@ export function useWalletManager() {
     // Portfolio data
     portfolio, // Current address's portfolio only
     portfolioCache, // All cached portfolios by address
+    portfolioRefreshTrigger, // Trigger to force useMemo recomputation
     portfolioLoading,
     portfolioError,
     refreshPortfolio: fetchPortfolio, // Manual refresh to update existing data

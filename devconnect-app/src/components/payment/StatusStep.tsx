@@ -9,7 +9,27 @@ import { useLocalStorage } from 'usehooks-ts';
 import { useClearEIP7702 } from '@/hooks/useClearEIP7702';
 
 // Helper function to get the correct explorer URL for a transaction
-const getTransactionExplorerUrl = (txHash: string, chainId: number): string => {
+// Prefers UserOp Hash when available (for ERC-4337 transactions)
+const getTransactionExplorerUrl = (
+  txHash: string,
+  chainId: number,
+  userOpHash?: string | null
+): string => {
+  // If UserOp Hash is available, use JiffyScan (ERC-4337 explorer)
+  if (userOpHash) {
+    const networkMap: Record<number, string> = {
+      1: 'mainnet',
+      8453: 'base',
+      10: 'optimism',
+      137: 'polygon',
+      42161: 'arbitrum',
+      84532: 'base-sepolia',
+    };
+    const network = networkMap[chainId] || 'base';
+    return `https://jiffyscan.xyz/userOpHash/${userOpHash}?network=${network}`;
+  }
+
+  // Otherwise use regular block explorer with transaction hash
   switch (chainId) {
     case 1: // Ethereum
       return `https://etherscan.io/tx/${txHash}`;
@@ -62,6 +82,7 @@ type StoredPaymentInfo = {
   token: string;
   chainId: number;
   txHash: string | null;
+  userOpHash?: string | null;
   timestamp: number;
   orderId?: string;
   recipient?: string;
@@ -81,6 +102,7 @@ interface StatusStepProps {
   chainId?: number;
   connectedAddress?: string;
   txHash?: string | null;
+  userOpHash?: string | null;
   isSimulation?: boolean;
   simulationDetails?: {
     estimatedGas: string;
@@ -321,6 +343,7 @@ export default function StatusStep({
   chainId = 8453,
   connectedAddress,
   txHash,
+  userOpHash,
   isSimulation,
   simulationDetails,
   onDone,
@@ -385,6 +408,7 @@ export default function StatusStep({
           token,
           chainId,
           txHash,
+          userOpHash: userOpHash || null,
           timestamp: Date.now(), // Set timestamp only on first confirmation
           orderId,
           recipient: 'Devconnect',
@@ -392,6 +416,9 @@ export default function StatusStep({
         };
 
         console.log('💾 [PAYMENT_STORAGE] Saving NEW payment:', paymentInfo);
+        if (userOpHash) {
+          console.log('💾 [PAYMENT_STORAGE] UserOp Hash:', userOpHash);
+        }
 
         return {
           ...prev,
@@ -406,6 +433,7 @@ export default function StatusStep({
     token,
     chainId,
     txHash,
+    userOpHash,
     orderId,
     connectedAddress,
     isSimulation,
@@ -452,6 +480,8 @@ export default function StatusStep({
     const displayToken = token || storedPaymentInfo?.token || 'USDC';
     const displayChainId = chainId || storedPaymentInfo?.chainId || 8453;
     const displayTxHash = txHash || storedPaymentInfo?.txHash || null;
+    const displayUserOpHash =
+      userOpHash || storedPaymentInfo?.userOpHash || null;
     const displayOrderId = orderId || storedPaymentInfo?.orderId || null;
     const displayTimestamp = storedPaymentInfo?.timestamp
       ? new Date(storedPaymentInfo.timestamp)
@@ -514,7 +544,11 @@ export default function StatusStep({
         <div className="flex gap-3 w-full max-w-[345px]">
           {displayTxHash && !isSimulation && (
             <a
-              href={getTransactionExplorerUrl(displayTxHash, displayChainId)}
+              href={getTransactionExplorerUrl(
+                displayTxHash,
+                displayChainId,
+                displayUserOpHash
+              )}
               target="_blank"
               rel="noopener noreferrer"
               className="flex-1 bg-[#EAF3FA] hover:bg-[#D5E7F4] transition-colors flex items-center justify-center gap-2 px-6 py-3 rounded-[1px] text-[#44445D] font-bold text-[16px] no-underline"
@@ -523,7 +557,11 @@ export default function StatusStep({
                 boxShadow: '0px 4px 0px 0px #595978',
               }}
             >
-              {displayChainId === 8453 ? 'BaseScan' : 'Explorer'}
+              {displayUserOpHash
+                ? 'JiffyScan'
+                : displayChainId === 8453
+                  ? 'BaseScan'
+                  : 'Explorer'}
               <svg
                 width="16"
                 height="16"

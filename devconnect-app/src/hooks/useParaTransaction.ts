@@ -24,6 +24,11 @@ interface SimulationDetails {
   message: string;
 }
 
+interface UserOpDetails {
+  userOpHash: string;
+  transactionHash: string;
+}
+
 /**
  * Para Transaction Hook
  * Handles transactions using Para SDK directly - no wagmi coordination
@@ -36,6 +41,7 @@ export function useParaTransaction() {
   const [txStatus, setTxStatus] = useState<TransactionStatus>('idle');
   const [txError, setTxError] = useState<string>('');
   const [txHash, setTxHash] = useState<string | null>(null);
+  const [userOpHash, setUserOpHash] = useState<string | null>(null);
   const [isSimulation, setIsSimulation] = useState<boolean>(false);
   const [simulationDetails, setSimulationDetails] = useState<SimulationDetails | null>(null);
 
@@ -63,6 +69,7 @@ export function useParaTransaction() {
     setTxStatus('idle');
     setTxError('');
     setTxHash(null);
+    setUserOpHash(null);
     setIsSimulation(false);
     setSimulationDetails(null);
   };
@@ -182,7 +189,10 @@ export function useParaTransaction() {
       } else {
         // Real transaction
         console.log('✅ [PARA_TX] Transfer executed');
+        console.log('✅ [PARA_TX] Transaction Hash:', executeData.transaction?.hash);
+        console.log('✅ [PARA_TX] UserOp Hash:', executeData.transaction?.userOpHash);
         setTxHash(executeData.transaction?.hash || null);
+        setUserOpHash(executeData.transaction?.userOpHash || null);
         setTxStatus('confirming');
 
         // Wait for confirmation
@@ -217,6 +227,7 @@ export function useParaTransaction() {
     txStatus,
     txError,
     txHash,
+    userOpHash,
     isSimulation,
     simulationDetails,
     

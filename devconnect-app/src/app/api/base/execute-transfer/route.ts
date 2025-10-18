@@ -177,6 +177,7 @@ export async function POST(request: NextRequest) {
           transaction: {
             hash: result.transactionHash,
             link: result.transactionLink,
+            userOpHash: result.userOpHash,
             status: result.status,
             gasUsed: 'sponsored', // Coinbase Paymaster sponsored
             effectiveGasPrice: '0', // No gas cost

@@ -108,6 +108,7 @@ export interface EIP3009Authorization {
 export interface TransferResult {
   transactionHash: string;
   transactionLink: string;
+  userOpHash: string;
   status: 'pending' | 'complete' | 'failed';
   from: string;
   to: string;
@@ -237,11 +238,13 @@ export async function executeUSDCTransferWithAuth(
 
     if (userOp.status === 'complete' && userOp.transactionHash) {
       console.log(`   Transaction: ${userOp.transactionHash}`);
+      console.log(`   UserOp Hash: ${result.userOpHash}`);
       const amountStr = typeof auth.value === 'bigint' ? auth.value.toString() : auth.value;
       
       return {
         transactionHash: userOp.transactionHash,
         transactionLink: `${base.blockExplorers.default.url}/tx/${userOp.transactionHash}`,
+        userOpHash: result.userOpHash,
         status: 'complete',
         from: auth.from,
         to: auth.to,

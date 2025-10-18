@@ -27,6 +27,7 @@ export function useTransaction() {
       // Add default values for properties that don't exist in Para
       isSimulation: paraTransaction.isSimulation || false,
       simulationDetails: paraTransaction.simulationDetails || null,
+      userOpHash: paraTransaction.userOpHash || null,
     };
   } else {
     return {
@@ -35,6 +36,7 @@ export function useTransaction() {
       // Add default values for properties that don't exist in EOA
       isSimulation: false,
       simulationDetails: null,
+      userOpHash: null,
     };
   }
 }

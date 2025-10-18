@@ -61,6 +61,7 @@ export function useParaEIP7702Transaction() {
   const [txStatus, setTxStatus] = useState<TransactionStatus>('idle');
   const [txError, setTxError] = useState<string>('');
   const [txHash, setTxHash] = useState<string | null>(null);
+  const [userOpHash, setUserOpHash] = useState<string | null>(null);
   const [isSimulation, setIsSimulation] = useState<boolean>(false);
   const [simulationDetails, setSimulationDetails] = useState<SimulationDetails | null>(null);
 
@@ -88,6 +89,7 @@ export function useParaEIP7702Transaction() {
     setTxStatus('idle');
     setTxError('');
     setTxHash(null);
+    setUserOpHash(null);
     setIsSimulation(false);
     setSimulationDetails(null);
   };
@@ -289,7 +291,9 @@ export function useParaEIP7702Transaction() {
       }
 
       console.log('✅ [EIP-7702] UserOperation submitted:', userOperationResult.hash);
+      console.log('✅ [EIP-7702] UserOp Hash:', userOperationResult.hash);
       
+      setUserOpHash(userOperationResult.hash);
       setTxStatus('confirming');
 
       // Step 7: Wait for UserOperation to be confirmed
@@ -340,6 +344,7 @@ export function useParaEIP7702Transaction() {
     txStatus,
     txError,
     txHash,
+    userOpHash,
     isSimulation,
     simulationDetails,
     

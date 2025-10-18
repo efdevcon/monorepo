@@ -3,7 +3,7 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useRouter } from 'next/navigation';
 import { useWallet } from '@/context/WalletContext';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { getNetworkConfig, getNetworkLogo } from '@/config/networks';
 import { useNetworkSwitcher } from '@/hooks/useNetworkSwitcher';
 import NetworkLogo from '@/components/NetworkLogo';
@@ -35,6 +35,7 @@ type StoredPaymentInfo = {
   token: string;
   chainId: number;
   txHash: string | null;
+  userOpHash?: string | null;
   timestamp: number;
   orderId?: string;
   recipient?: string;
@@ -48,6 +49,7 @@ type StoredPayments = {
 export default function WalletTab() {
   const { open } = useAppKit();
   const router = useRouter();
+  const walletData = useWallet();
   const {
     address,
     isPara,
@@ -57,8 +59,8 @@ export default function WalletTab() {
     chainId,
     identity,
     identityLoading,
-    portfolio, // Current address's portfolio
     portfolioCache, // All cached portfolios by address (e.g., portfolioCache[address])
+    portfolioRefreshTrigger, // Trigger to force useMemo recomputation
     portfolioLoading,
     portfolioError,
     isConnected,
@@ -67,7 +69,44 @@ export default function WalletTab() {
     paraEmail,
     supabaseEmail,
     isAuthenticated,
-  } = useWallet();
+  } = walletData;
+
+  // Debug: Log the refresh trigger value received from useWallet
+  console.log('🔍 [WALLET_TAB] Received from useWallet:', {
+    address: address?.slice(0, 10),
+    portfolioRefreshTrigger,
+    portfolioCacheKeys: Object.keys(portfolioCache).length,
+  });
+
+  // Get portfolio for current address from cache
+  const portfolio = useMemo(() => {
+    const addressKey = address?.toLowerCase();
+
+    console.log('📊 [WALLET_TAB] Portfolio computing with trigger:', {
+      addressKey,
+      refreshTrigger: portfolioRefreshTrigger,
+      cacheKeys: Object.keys(portfolioCache),
+      hasAddressInCache: addressKey ? !!portfolioCache[addressKey] : false,
+    });
+
+    const result = addressKey ? portfolioCache[addressKey] || null : null;
+
+    // Deep log the portfolio cache to understand what's happening
+    console.log('📊 [WALLET_TAB] Portfolio computed:', {
+      address: addressKey,
+      hasPortfolio: !!result,
+      totalValue: result?.totalValue,
+      tokenBalancesCount: result?.tokenBalances?.length,
+      activityCount: result?.recentActivity?.length,
+      cacheKeys: Object.keys(portfolioCache),
+      refreshTrigger: portfolioRefreshTrigger,
+      recentActivitySample: result?.recentActivity?.slice(0, 3).map((a) => ({
+        hash: a.transaction?.hash?.slice(0, 10),
+        timestamp: a.transaction?.timestamp,
+      })),
+    });
+    return result;
+  }, [address, portfolioCache, portfolioRefreshTrigger]);
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
     useNetworkSwitcher();
 
@@ -119,6 +158,106 @@ export default function WalletTab() {
     'devconnect-payments',
     {}
   );
+
+  // Merge stored payments with portfolio activity
+  // This ensures locally stored payments appear immediately without waiting for API refresh
+  const mergedActivity = useMemo(() => {
+    console.log('🔄 [WALLET_TAB] mergedActivity computing...', {
+      hasPortfolio: !!portfolio,
+      portfolioActivityCount: portfolio?.recentActivity?.length,
+      storedPaymentsCount: Object.keys(storedPayments).length,
+      storedPaymentsKeys: Object.keys(storedPayments),
+      storedPaymentsDetails: Object.values(storedPayments).map((p) => ({
+        paymentId: p.paymentId,
+        txHash: p.txHash?.slice(0, 10),
+        timestamp: p.timestamp,
+        amount: p.amount,
+      })),
+    });
+
+    if (!portfolio) {
+      console.log('⚠️ [WALLET_TAB] No portfolio, returning empty activity');
+      return [];
+    }
+
+    // Convert stored payments to activity format
+    const localPaymentsActivity = Object.values(storedPayments)
+      .filter((payment) => payment.txHash && payment.timestamp) // Only payments with txHash
+      .map((payment) => ({
+        transaction: {
+          hash: payment.txHash!,
+          timestamp: payment.timestamp,
+          chainId: payment.chainId,
+        },
+        interpretation: {
+          processedDescription: `Transferred ${payment.amount} ${payment.token}`,
+        },
+        // Mark as local payment for identification
+        isLocalPayment: true,
+        paymentId: payment.paymentId,
+        userOpHash: payment.userOpHash,
+      }));
+
+    console.log('🔄 [WALLET_TAB] Merging activity:', {
+      portfolioActivityCount: portfolio.recentActivity?.length || 0,
+      localPaymentsCount: localPaymentsActivity.length,
+      localPaymentsHashes: localPaymentsActivity.map((p) =>
+        p.transaction.hash.slice(0, 10)
+      ),
+    });
+
+    // Merge with portfolio activity, removing duplicates by hash
+    const activityMap = new Map();
+
+    // Add portfolio activity first (from API)
+    const portfolioActivity = portfolio.recentActivity || [];
+    console.log('🔄 [WALLET_TAB] Processing portfolio activity:', {
+      count: portfolioActivity.length,
+      sample: portfolioActivity.slice(0, 2).map((a) => ({
+        hash: a.transaction?.hash?.slice(0, 10),
+        timestamp: a.transaction?.timestamp,
+      })),
+    });
+
+    portfolioActivity.forEach((activity) => {
+      if (activity.transaction?.hash) {
+        activityMap.set(activity.transaction.hash.toLowerCase(), {
+          ...activity,
+          isLocalPayment: false,
+        });
+      }
+    });
+
+    // Add/override with local payments (more recent/accurate)
+    localPaymentsActivity.forEach((activity) => {
+      activityMap.set(activity.transaction.hash.toLowerCase(), activity);
+      console.log('✅ [WALLET_TAB] Added local payment to activity:', {
+        hash: activity.transaction.hash.substring(0, 10) + '...',
+        timestamp: new Date(activity.transaction.timestamp).toISOString(),
+        paymentId: activity.paymentId,
+      });
+    });
+
+    // Convert back to array and sort by timestamp (newest first)
+    const merged = Array.from(activityMap.values()).sort((a, b) => {
+      const timeA = a.transaction?.timestamp || 0;
+      const timeB = b.transaction?.timestamp || 0;
+      return timeB - timeA;
+    });
+
+    console.log('✅ [WALLET_TAB] Final merged activity:', {
+      count: merged.length,
+      hashes: merged.slice(0, 5).map((a) => ({
+        hash: a.transaction?.hash?.slice(0, 10),
+        timestamp: a.transaction?.timestamp,
+        isLocal: a.isLocalPayment,
+        paymentId: a.paymentId,
+      })),
+      refreshTrigger: portfolioRefreshTrigger,
+    });
+
+    return merged;
+  }, [portfolio, storedPayments, portfolioRefreshTrigger]);
 
   // Debug logging - track if component is receiving props
   console.log('🏠 [WALLET_TAB] Component render:', {
@@ -297,9 +436,16 @@ export default function WalletTab() {
 
   // Manual refresh function
   const handleRefresh = async () => {
+    console.log('🔄 [WALLET_TAB] Manual refresh started for:', address);
     setIsRefreshing(true);
-    await refreshPortfolio();
-    setIsRefreshing(false);
+    try {
+      await refreshPortfolio();
+      console.log('✅ [WALLET_TAB] Manual refresh completed');
+    } catch (error) {
+      console.error('❌ [WALLET_TAB] Manual refresh failed:', error);
+    } finally {
+      setIsRefreshing(false);
+    }
   };
 
   // Copy address to clipboard
@@ -915,25 +1061,15 @@ export default function WalletTab() {
                         Retry
                       </button>
                     </div>
-                  ) : portfolio &&
-                    portfolio.recentActivity.filter(
-                      (activity) => activity.transaction?.hash
-                    ).length > 0 ? (
-                    // Dynamic activity from portfolio data
-                    portfolio.recentActivity
-                      .filter((activity) => activity.transaction?.hash) // Only show activities with hash
-                      .slice(
-                        0,
-                        showAllActivity
-                          ? portfolio.recentActivity.filter(
-                              (activity) => activity.transaction?.hash
-                            ).length
-                          : 3
-                      )
-                      .map((activity, index) => {
+                  ) : mergedActivity.length > 0 ? (
+                    // Dynamic activity from merged portfolio + local payments
+                    mergedActivity
+                      .slice(0, showAllActivity ? mergedActivity.length : 3)
+                      .map((activity: any, index: number) => {
                         const hash = activity.transaction?.hash;
                         const timestamp = activity.transaction?.timestamp;
                         const chainId = activity.transaction?.chainId;
+                        const paymentId = (activity as any).paymentId;
                         const networkConfig = chainId
                           ? getNetworkConfig(chainId)
                           : null;
@@ -943,9 +1079,25 @@ export default function WalletTab() {
                           activity.interpretation?.processedDescription;
 
                         // Check if this transaction matches a stored order
-                        const matchedOrder = hash
+                        // First check by hash, then by paymentId (for local payments)
+                        let matchedOrder = hash
                           ? findOrderForTxHash(hash)
                           : null;
+
+                        // If not found by hash and we have a paymentId, use it directly
+                        if (
+                          !matchedOrder &&
+                          paymentId &&
+                          storedPayments[paymentId]
+                        ) {
+                          matchedOrder = storedPayments[paymentId];
+                        }
+
+                        // Get UserOp Hash if available (for ERC-4337 transactions)
+                        // Check both the activity object and matched order
+                        const userOpHash =
+                          (activity as any).userOpHash ||
+                          matchedOrder?.userOpHash;
 
                         return (
                           <div key={`${hash}-${index}`} className="space-y-2">
@@ -953,17 +1105,33 @@ export default function WalletTab() {
                               className="p-3 bg-gray-50 rounded-lg hover:bg-gray-200 transition-colors cursor-pointer"
                               onClick={() => {
                                 if (hash && chainId) {
-                                  // Get explorer URL dynamically from network config
-                                  const networkConfig =
-                                    getNetworkConfig(chainId);
-                                  const explorerUrl =
-                                    networkConfig?.blockExplorers?.default?.url;
-                                  if (explorerUrl) {
-                                    window.open(
-                                      `${explorerUrl}/tx/${hash}`,
-                                      '_blank'
-                                    );
+                                  let explorerUrl: string;
+
+                                  // Use JiffyScan for User Operations (ERC-4337)
+                                  if (userOpHash) {
+                                    const networkMap: Record<number, string> = {
+                                      1: 'mainnet',
+                                      8453: 'base',
+                                      10: 'optimism',
+                                      137: 'polygon',
+                                      42161: 'arbitrum',
+                                      84532: 'base-sepolia',
+                                    };
+                                    const network =
+                                      networkMap[chainId] || 'base';
+                                    explorerUrl = `https://jiffyscan.xyz/userOpHash/${userOpHash}?network=${network}`;
+                                  } else {
+                                    // Regular block explorer for standard transactions
+                                    const networkConfig =
+                                      getNetworkConfig(chainId);
+                                    const baseUrl =
+                                      networkConfig?.blockExplorers?.default
+                                        ?.url;
+                                    if (!baseUrl) return;
+                                    explorerUrl = `${baseUrl}/tx/${hash}`;
                                   }
+
+                                  window.open(explorerUrl, '_blank');
                                 }
                               }}
                             >
@@ -976,7 +1144,7 @@ export default function WalletTab() {
                                   )}
                                   {hash && (
                                     <p className="text-xs text-gray-600 font-mono mb-1">
-                                      {truncateHash(hash)} ↗
+                                      {truncateHash(userOpHash || hash)} ↗
                                     </p>
                                   )}
                                   {chainId && timestamp && (
@@ -1067,21 +1235,18 @@ export default function WalletTab() {
                 </div>
 
                 {/* View More Activity Button */}
-                {portfolio &&
-                  portfolio.recentActivity.filter(
-                    (activity) => activity.transaction?.hash
-                  ).length > 3 && (
-                    <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
-                      <button
-                        onClick={handleViewMoreActivity}
-                        className="text-[#36364c] text-base font-bold cursor-pointer"
-                      >
-                        {showAllActivity
-                          ? 'Show Less Activity'
-                          : 'View More Activity'}
-                      </button>
-                    </div>
-                  )}
+                {mergedActivity.length > 3 && (
+                  <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
+                    <button
+                      onClick={handleViewMoreActivity}
+                      className="text-[#36364c] text-base font-bold cursor-pointer"
+                    >
+                      {showAllActivity
+                        ? 'Show Less Activity'
+                        : 'View More Activity'}
+                    </button>
+                  </div>
+                )}
               </>
             )}
           </div>
