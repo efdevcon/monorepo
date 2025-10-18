@@ -38,6 +38,7 @@ const imgGroup1 = '/images/imgGroup1.svg';
 const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
 const imgPeanutLogo = '/images/peanut-logo.svg';
 const imgEnsLogo = '/images/ens-logo.svg';
+const imgZapperLogo = '/images/power-zap-gray.svg';
 
 // Types for stored payment info
 type StoredPaymentInfo = {
@@ -706,7 +707,7 @@ export default function WalletTab() {
                 </span>
                 {paraEmail && supabaseEmail && (
                   <span className="text-[#8b8b99] text-xs">
-                    {isPara ? '(Para)' : ''}
+                    {paraEmail ? '(Para)' : ''}
                   </span>
                 )}
               </div>
@@ -850,12 +851,6 @@ export default function WalletTab() {
                 src={imgPeanutLogo}
                 alt="Peanut"
                 className="h-5 w-[82px] object-contain"
-                onError={(e) => {
-                  // Fallback if image doesn't exist
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML +=
-                    '<span class="text-black text-xs font-bold">Peanut</span>';
-                }}
               />
             </div>
           </div>
@@ -894,12 +889,6 @@ export default function WalletTab() {
                 src={imgEnsLogo}
                 alt="ENS"
                 className="h-5 w-[62px] object-contain"
-                onError={(e) => {
-                  // Fallback if image doesn't exist
-                  e.currentTarget.style.display = 'none';
-                  e.currentTarget.parentElement!.innerHTML +=
-                    '<span class="text-[#093c52] text-xs font-bold">ENS</span>';
-                }}
               />
             </div>
           </div>
@@ -947,9 +936,18 @@ export default function WalletTab() {
           <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-6">
             {activeTab === 'assets' ? (
               <>
-                <h3 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
-                  My Assets
-                </h3>
+                <div className="flex gap-6 items-center w-full">
+                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
+                    My Assets
+                  </h3>
+                  <div className="h-6 w-[113px] shrink-0">
+                    <img
+                      src={imgZapperLogo}
+                      alt="Powered by Zapper"
+                      className="block w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
 
                 <div className="space-y-4">
                   {portfolioLoading ? (
@@ -1052,9 +1050,18 @@ export default function WalletTab() {
               </>
             ) : (
               <>
-                <h3 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
-                  Recent Activity
-                </h3>
+                <div className="flex gap-6 items-center w-full">
+                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
+                    Recent Activity
+                  </h3>
+                  <div className="h-6 w-[113px] shrink-0">
+                    <img
+                      src={imgZapperLogo}
+                      alt="Powered by Zapper"
+                      className="block w-full h-full object-contain"
+                    />
+                  </div>
+                </div>
 
                 <div className="space-y-3">
                   {portfolioLoading ? (
