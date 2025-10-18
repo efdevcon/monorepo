@@ -7,4 +7,4 @@ export function formatBalance(balance: string, decimals = 4): string {
   const num = parseFloat(balance);
   if (isNaN(num)) return "0";
   return num.toFixed(decimals);
-} 
+}

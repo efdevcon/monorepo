@@ -14,16 +14,27 @@ import { toast } from 'sonner';
 import { useLocalStorage } from 'usehooks-ts';
 import PaymentModal from '@/components/PaymentModal';
 import { fetchAuth } from '@/services/apiClient';
+import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
+import Icon from '@mdi/react';
+import {
+  mdiSendOutline,
+  mdiCallReceived,
+  mdiCurrencyUsd,
+  mdiQrcodeScan,
+  mdiCached,
+  mdiChevronDown,
+  mdiContentCopy,
+  mdiCheck,
+  mdiEmail,
+  mdiWalletPlusOutline,
+  mdiWalletOutline,
+  mdiSwapHorizontal,
+} from '@mdi/js';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
-const imgSend = '/images/imgSend.svg';
-const imgCallReceived = '/images/imgCallReceived.svg';
-const imgSwapVert = '/images/imgSwapVert.svg';
-const imgQrCodeScanner = '/images/imgQrCodeScanner.svg';
 const imgGroup = '/images/imgGroup.svg';
 const imgGroup1 = '/images/imgGroup1.svg';
-const imgKeyboardArrowDown = '/images/imgKeyboardArrowDown.svg';
 const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
 const imgPeanutLogo = '/images/peanut-logo.svg';
 const imgEnsLogo = '/images/ens-logo.svg';
@@ -575,9 +586,9 @@ export default function WalletTab() {
         <div className="space-y-4">
           {/* Profile Info */}
           <div className="space-y-1 text-center" key={address || 'no-address'}>
-            <div className="flex items-center justify-center gap-2 px-3 py-2 rounded-[1px] relative">
+            <div className="flex items-center justify-center gap-2 py-2 rounded-[1px] relative">
               {/* Network Status - positioned on the left */}
-              <div className="absolute left-0 flex items-center gap-1 px-2 py-1 rounded">
+              <div className="absolute left-0 flex items-center gap-1 py-1 rounded">
                 {isPara ? (
                   // Show Base network icon when connected with Para
                   <div className="flex items-center gap-1 p-1">
@@ -590,17 +601,17 @@ export default function WalletTab() {
                     className="flex items-center gap-1 p-1 hover:bg-gray-100 rounded transition-colors"
                   >
                     <NetworkLogo chainId={currentChainId} size="sm" />
-                    <img
-                      src={imgKeyboardArrowDown}
-                      alt="dropdown"
-                      className="w-4 h-4"
+                    <Icon
+                      path={mdiChevronDown}
+                      size={0.7}
+                      className="text-[#20202b]"
                     />
                   </button>
                 )}
               </div>
 
-              {/* Wallet Info - centered with dropdown */}
-              <div className="flex items-center gap-1">
+              {/* Wallet Info - centered with copy functionality */}
+              <div className="flex items-center">
                 <button
                   onClick={() => {
                     if (!address) {
@@ -611,25 +622,21 @@ export default function WalletTab() {
                   }}
                   className="flex items-center gap-2 px-2 py-1 hover:bg-gray-100 rounded transition-colors"
                 >
-                  {identity?.avatar ? (
-                    <img
-                      src={identity.avatar}
-                      alt="avatar"
-                      className="w-5 h-5 rounded-full"
-                    />
-                  ) : (
-                    <img src={imgPara} alt="checkbox" className="w-5 h-5" />
-                  )}
-                  <span className="text-[#242436] text-base font-normal">
-                    {address
-                      ? identity?.name ||
-                        `${address.slice(0, 6)}...${address.slice(-4)}`
-                      : 'Not connected'}
-                  </span>
-                  <img
-                    src={imgKeyboardArrowDown}
-                    alt="dropdown"
-                    className="w-4 h-4"
+                  <WalletAvatar
+                    address={address}
+                    fallbackSrc={imgPara}
+                    alt="wallet"
+                    className="w-5 h-5 rounded-full"
+                  />
+                </button>
+                <button
+                  onClick={handleCopyAddress}
+                  className="px-1 py-1 hover:bg-gray-100 rounded transition-colors"
+                  title={addressCopied ? 'Copied!' : 'Click to copy address'}
+                >
+                  <WalletDisplay
+                    address={address}
+                    className="text-[#242436] text-base font-normal"
                   />
                 </button>
                 {address && (
@@ -639,56 +646,62 @@ export default function WalletTab() {
                     title={addressCopied ? 'Copied!' : 'Copy address'}
                   >
                     {addressCopied ? (
-                      <svg
-                        className="w-4 h-4 text-green-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                      <Icon
+                        path={mdiCheck}
+                        size={0.7}
+                        className="text-green-600"
+                      />
                     ) : (
-                      <svg
-                        className="w-4 h-4 text-[#36364c]"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                        />
-                      </svg>
+                      <Icon
+                        path={mdiContentCopy}
+                        size={0.7}
+                        className="text-[#353548]"
+                      />
                     )}
                   </button>
                 )}
+              </div>
+
+              {/* Add/Switch Wallet Button - positioned on the right */}
+              <div className="absolute right-0 flex items-center gap-1 py-1 rounded">
+                <button
+                  onClick={() => setShowWalletModal(true)}
+                  className="flex items-center gap-1 py-1 hover:bg-gray-100 rounded transition-colors"
+                >
+                  {para.isConnected && eoa.isConnected ? (
+                    <>
+                      <Icon
+                        path={mdiWalletOutline}
+                        size={0.8}
+                        className="text-[#0073de] mr-[-6px]"
+                      />
+                      <Icon
+                        path={mdiSwapHorizontal}
+                        size={0.8}
+                        className="text-[#0073de]"
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Icon
+                        path={mdiWalletPlusOutline}
+                        size={0.8}
+                        className="text-[#0073de]"
+                      />
+                      <span className="text-[#0073de] text-base font-semibold">
+                        Add
+                      </span>
+                    </>
+                  )}
+                </button>
               </div>
             </div>
 
             {/* Email Display */}
             {email && (
               <div className="flex items-center justify-center gap-2 text-sm">
-                <svg
-                  className="w-4 h-4 text-[#36364c]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <span className="text-[#36364c] text-sm font-normal">
+                <Icon path={mdiEmail} size={0.7} className="text-[#353548]" />
+                <span className="text-[#353548] text-sm font-normal">
                   {email}
                 </span>
                 {paraEmail && supabaseEmail && (
@@ -712,22 +725,14 @@ export default function WalletTab() {
               <button
                 onClick={handleRefresh}
                 disabled={isRefreshing || portfolioLoading || !address}
-                className="p-2 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="p-1 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 title="Refresh portfolio data"
               >
-                <svg
-                  className={`w-5 h-5 text-[#36364c] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                  />
-                </svg>
+                <Icon
+                  path={mdiCached}
+                  size={1}
+                  className={`text-[#20202b] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                />
               </button>
             </div>
           </div>
@@ -737,44 +742,60 @@ export default function WalletTab() {
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleSendClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <img src={imgSend} alt="send" className="w-8 h-8" />
+                <Icon
+                  path={mdiSendOutline}
+                  size={1.3}
+                  className="text-[#0073de]"
+                />
               </button>
-              <span className="text-[#36364c] text-sm font-medium tracking-[-0.1px]">
+              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
                 Send
               </span>
             </div>
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleReceiveClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <img src={imgCallReceived} alt="receive" className="w-8 h-8" />
+                <Icon
+                  path={mdiCallReceived}
+                  size={1.3}
+                  className="text-[#0073de]"
+                />
               </button>
-              <span className="text-[#36364c] text-sm font-medium tracking-[-0.1px]">
+              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
                 Receive
               </span>
             </div>
-            {/* <div className="flex-1 flex flex-col items-center gap-2">
+            <div className="flex-1 flex flex-col items-center gap-2">
               <button
-                onClick={handleSwapClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                onClick={handleDigitalClick}
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <img src={imgSwapVert} alt="swap" className="w-8 h-8" />
+                <Icon
+                  path={mdiCurrencyUsd}
+                  size={1.3}
+                  className="text-[#0073de]"
+                />
               </button>
-              <span className="text-[#36364c] text-sm font-medium tracking-[-0.1px]">
-                Swap
+              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                Add
               </span>
-            </div> */}
+            </div>
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleScanClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-4 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
               >
-                <img src={imgQrCodeScanner} alt="scan" className="w-8 h-8" />
+                <Icon
+                  path={mdiQrcodeScan}
+                  size={1.3}
+                  className="text-[#0073de]"
+                />
               </button>
-              <span className="text-[#36364c] text-sm font-medium tracking-[-0.1px]">
+              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
                 Scan
               </span>
             </div>

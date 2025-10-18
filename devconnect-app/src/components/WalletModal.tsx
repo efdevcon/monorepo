@@ -3,7 +3,11 @@
 import { useAppKit } from '@reown/appkit/react';
 import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
-import { useState, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
+import {
+  WalletDisplay,
+  WalletAvatarWithFallback,
+} from '@/components/WalletDisplay';
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
@@ -22,6 +26,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     disconnect: hookDisconnect,
     para,
     eoa,
+    paraEmail,
     primaryType,
     switchWallet,
     hasMultipleWallets,
@@ -56,11 +61,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     return wallets;
   }, [para.address, eoa.eoaConnections]);
 
-  const email = (para.paraAccount as any)?.email || null;
   const primaryConnector = isPara
     ? { id: 'para', name: 'Para', ...para.paraAccount }
     : eoa.wagmiAccount.connector;
-  const primaryConnectorId = isPara ? 'para' : eoa.connectorId;
 
   // Debug: Log wallet state when modal opens
   useEffect(() => {
@@ -88,47 +91,6 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     eoa.isConnected,
     switchableConnectors,
   ]);
-
-  // Identity state for avatars
-  const [identities, setIdentities] = useState<
-    Record<string, { name: string | null; avatar: string | null }>
-  >({});
-
-  // Load identity from AppKit's local storage
-  const loadIdentities = () => {
-    try {
-      const identityCache = localStorage.getItem('@appkit/identity_cache');
-      if (identityCache) {
-        const cache = JSON.parse(identityCache);
-        const newIdentities: Record<
-          string,
-          { name: string | null; avatar: string | null }
-        > = {};
-
-        // Load identities for all addresses we have
-        Object.keys(cache).forEach((addr) => {
-          const addressData = cache[addr];
-          if (addressData?.identity) {
-            newIdentities[addr] = {
-              name: addressData.identity.name,
-              avatar: addressData.identity.avatar,
-            };
-          }
-        });
-
-        setIdentities(newIdentities);
-      }
-    } catch (error) {
-      console.error('Error loading identities from cache:', error);
-    }
-  };
-
-  // Load identities when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      loadIdentities();
-    }
-  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -464,58 +426,19 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                           : 'bg-gray-200 hover:bg-gray-300'
                       }`}
                     >
-                      {(() => {
-                        // Prioritize identity avatar first
-                        if (
-                          wallet.address &&
-                          identities[wallet.address]?.avatar
-                        ) {
-                          return (
-                            <img
-                              src={identities[wallet.address].avatar!}
-                              alt="avatar"
-                              className="w-16 h-16 rounded-lg object-cover"
-                            />
-                          );
+                      <WalletAvatarWithFallback
+                        address={wallet.address}
+                        walletId={wallet.id}
+                        connectorIcon={
+                          isPara
+                            ? '/images/paraLogo.png'
+                            : wallet.connector?.icon ||
+                              wallet.connector?.connector?.icon ||
+                              wallet.connector?.provider?.icon ||
+                              '/images/icons/injected.png'
                         }
-
-                        // Fallback to connector icon
-                        const connectorIcon = isPara
-                          ? '/images/paraLogo.png'
-                          : wallet.connector?.icon ||
-                            wallet.connector?.connector?.icon ||
-                            wallet.connector?.provider?.icon ||
-                            '/images/icons/injected.png';
-
-                        if (connectorIcon) {
-                          return (
-                            <img
-                              src={connectorIcon}
-                              alt={wallet.name}
-                              className="w-16 h-16 rounded-lg object-cover"
-                            />
-                          );
-                        }
-
-                        // Final fallback to browser icon
-                        return (
-                          <div className="w-16 h-16 rounded-lg bg-gray-100 flex items-center justify-center">
-                            <svg
-                              className="w-8 h-8 text-gray-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"
-                              />
-                            </svg>
-                          </div>
-                        );
-                      })()}
+                        walletName={wallet.name}
+                      />
                     </div>
                     {wallet.isCurrent && (
                       <div className="absolute -right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
@@ -535,13 +458,11 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-[#242436] tracking-[0.1px]">
-                      {wallet.address && identities[wallet.address]?.name
-                        ? identities[wallet.address].name
-                        : wallet.id === 'para'
-                          ? email
-                          : wallet.address
-                            ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
-                            : 'No address'}
+                      {wallet.id === 'para' && paraEmail ? (
+                        paraEmail
+                      ) : (
+                        <WalletDisplay address={wallet.address} />
+                      )}
                     </div>
                     <div className="text-sm text-[#4b4b66]">
                       {wallet.address
@@ -551,12 +472,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                     <div className="text-xs text-[#4b4b66] flex justify-center items-center gap-1">
                       {/* Wallet icon next to type indicator */}
                       {(() => {
-                        const connectorIcon = isPara
-                          ? '/images/paraLogo.png'
-                          : wallet.connector?.icon ||
-                            wallet.connector?.connector?.icon ||
-                            wallet.connector?.provider?.icon ||
-                            '/images/icons/injected.png';
+                        const connectorIcon =
+                          wallet.id === 'para'
+                            ? '/images/paraLogo.png'
+                            : wallet.connector?.icon ||
+                              wallet.connector?.connector?.icon ||
+                              wallet.connector?.provider?.icon ||
+                              '/images/icons/injected.png';
 
                         if (connectorIcon) {
                           return (

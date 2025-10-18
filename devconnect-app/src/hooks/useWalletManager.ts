@@ -300,9 +300,9 @@ export function useWalletManager() {
   // ============================================
   // Identity Resolution (ENS) - Store per address
   // ============================================
-  const [identityMap, setIdentityMap] = useState<
+  const [identityMap, setIdentityMap] = useLocalStorage<
     Record<string, WalletIdentity | null>
-  >({});
+    >('wallet_identity_map', {});
   const [identityLoading, setIdentityLoading] = useState(false);
   const identityFetchingRef = useRef<Set<string>>(new Set());
 
@@ -320,52 +320,28 @@ export function useWalletManager() {
     return result;
   }, [address, identityMap, hookId]);
 
-  useEffect(() => {
-    if (!address) {
-      return;
-    }
+  // Resolve identity for a specific address
+  const resolveIdentityForAddress = useCallback(
+    async (targetAddress: string) => {
+      const addressKey = targetAddress.toLowerCase();
 
-    const addressKey = address.toLowerCase();
+      // If we already have identity for this address, skip
+      if (identityMap[addressKey] !== undefined) {
+        return;
+      }
 
-    // If we already have identity for this address, skip
-    if (identityMap[addressKey] !== undefined) {
-      return;
-    }
+      // If we're already fetching this address, skip
+      if (identityFetchingRef.current.has(addressKey)) {
+        return;
+      }
 
-    // If we're already fetching this address, skip
-    if (identityFetchingRef.current.has(addressKey)) {
-      return;
-    }
-
-    let isCancelled = false;
-
-    const resolveIdentity = async () => {
       identityFetchingRef.current.add(addressKey);
       setIdentityLoading(true);
 
       try {
-        // Check cache first (1 hour TTL)
-        const cacheKey = `wallet_identity_${addressKey}`;
-        const cached = localStorage.getItem(cacheKey);
-
-        if (cached) {
-          try {
-            const parsedCache = JSON.parse(cached);
-            if (Date.now() - parsedCache.timestamp < 3600000) {
-              if (!isCancelled) {
-                setIdentityMap((prev) => ({
-                  ...prev,
-                  [addressKey]: parsedCache.identity,
-                }));
-                setIdentityLoading(false);
-                identityFetchingRef.current.delete(addressKey);
-              }
-              return;
-            }
-          } catch {
-            // Invalid cache, continue
-          }
-        }
+        console.log(
+          `🔍 [WALLET_MANAGER] Resolving identity for ${addressKey.slice(0, 10)}...`
+        );
 
         // Resolve ENS on mainnet
         const publicClient = createPublicClient({
@@ -393,39 +369,51 @@ export function useWalletManager() {
           avatar: ensAvatar,
         };
 
-        if (!isCancelled) {
-          setIdentityMap((prev) => ({
-            ...prev,
-            [addressKey]: resolvedIdentity,
-          }));
+        setIdentityMap((prev) => ({
+          ...prev,
+          [addressKey]: resolvedIdentity,
+        }));
 
-          // Cache result
-          localStorage.setItem(
-            cacheKey,
-            JSON.stringify({
-              identity: resolvedIdentity,
-              timestamp: Date.now(),
-            })
-          );
-          setIdentityLoading(false);
-          identityFetchingRef.current.delete(addressKey);
-        }
+        console.log(
+          `✅ [WALLET_MANAGER] Identity resolved for ${addressKey.slice(0, 10)}:`,
+          { name: ensName, hasAvatar: !!ensAvatar }
+        );
       } catch (err) {
         console.error('Error resolving identity:', err);
-        if (!isCancelled) {
-          setIdentityMap((prev) => ({ ...prev, [addressKey]: null }));
-          setIdentityLoading(false);
-          identityFetchingRef.current.delete(addressKey);
-        }
+        setIdentityMap((prev) => ({ ...prev, [addressKey]: null }));
+      } finally {
+        setIdentityLoading(false);
+        identityFetchingRef.current.delete(addressKey);
       }
-    };
+    },
+    [identityMap, setIdentityMap]
+  );
 
-    resolveIdentity();
+  // Auto-resolve identities for all connected wallets
+  useEffect(() => {
+    const addressesToResolve: string[] = [];
 
-    return () => {
-      isCancelled = true;
-    };
-  }, [address, identityMap]);
+    // Add Para address if connected
+    if (para.isConnected && para.address) {
+      addressesToResolve.push(para.address);
+    }
+
+    // Add EOA address if connected
+    if (eoa.isConnected && eoa.address) {
+      addressesToResolve.push(eoa.address);
+    }
+
+    // Resolve identity for each address
+    addressesToResolve.forEach((addr) => {
+      resolveIdentityForAddress(addr);
+    });
+  }, [
+    para.isConnected,
+    para.address,
+    eoa.isConnected,
+    eoa.address,
+    resolveIdentityForAddress,
+  ]);
 
   // ============================================
   // Portfolio Data - Store all portfolios in single global cache
