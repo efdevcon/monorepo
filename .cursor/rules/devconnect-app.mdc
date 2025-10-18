@@ -1,0 +1,16 @@
+---
+description: Rules specific to the devconnect-app project
+globs:
+  - "devconnect-app/**/*"
+---
+
+Icon Libraries:
+
+- Always prefer Material Design Icons (@mdi/react + @mdi/js) for icon usage
+- Import icons from @mdi/js: `import { mdiIconName } from '@mdi/js'`
+- Use Icon component from @mdi/react: `import Icon from '@mdi/react'`
+- Example usage: `<Icon path={mdiIconName} size={1} />`
+- Browse icons at: <https://pictogrammers.com/library/mdi/>
+- Icon names use PascalCase with 'mdi' prefix (e.g., 'arrow-left' → `mdiArrowLeft`)
+- Only import icons you need (tree-shakeable)
+- Fallback to lucide-react only if MDI doesn't have the needed icon
