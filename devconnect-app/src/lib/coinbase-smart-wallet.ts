@@ -3,8 +3,13 @@
  * 
  * Uses CDP v2 API for smart accounts with:
  * - CDP-managed security (no private keys to manage!)
- * - Gas sponsorship via Paymaster
+ * - Gas sponsorship via CDP Paymaster (up to $10k/month in Coinbase credits)
  * - EIP-3009 USDC transfers
+ * 
+ * Gas Sponsorship on Base Mainnet:
+ * Requires CDP_PAYMASTER_URL and contract allowlist configuration.
+ * Paymaster must have USDC contract (0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913)
+ * and transferWithAuthorization function (0xe3ee160e) in allowlist.
  */
 
 import { CdpClient } from '@coinbase/cdp-sdk';
@@ -71,17 +76,15 @@ function getCdpClient(): CdpClient {
 /**
  * Get network ID from env and map to CDP API format
  */
-function getNetworkId(): 'base' | 'base-sepolia' {
-  const networkId = process.env.CDP_NETWORK_ID || 'base-sepolia';
+function getNetworkId(): 'base' {
+  const networkId = process.env.CDP_NETWORK_ID || 'base-mainnet';
   
   // Map to CDP API format
-  if (networkId === 'base-mainnet') {
+  if (networkId === 'base-mainnet' || networkId === 'base') {
     return 'base';
-  } else if (networkId === 'base-sepolia') {
-    return 'base-sepolia';
   }
   
-  throw new Error(`Invalid network: ${networkId}. Use 'base-mainnet' or 'base-sepolia'`);
+  throw new Error(`Invalid network: ${networkId}. Only 'base-mainnet' is supported.`);
 }
 
 /**
@@ -122,11 +125,10 @@ async function getOrCreateSmartAccount(): Promise<any> {
 
   const cdp = getCdpClient();
   const networkId = getNetworkId();
-  const envNetwork = process.env.CDP_NETWORK_ID || 'base-sepolia';
   
   // Use fixed names for persistence across restarts
-  const OWNER_NAME = `devconnect-owner-${envNetwork}`;
-  const SMART_ACCOUNT_NAME = `devconnect-smart-${envNetwork}`;
+  const OWNER_NAME = `devconnect-owner-base-mainnet`;
+  const SMART_ACCOUNT_NAME = `devconnect-smart-base-mainnet`;
 
   try {
     // Get or create owner account with persistent name
@@ -140,6 +142,7 @@ async function getOrCreateSmartAccount(): Promise<any> {
     });
     
     console.log('🔄 [CDP] Using smart account:', smartAccount.address);
+    console.log('🔄 [CDP] Network: Base Mainnet');
 
     smartAccountInstance = smartAccount;
     return smartAccount;
@@ -163,15 +166,22 @@ export async function executeUSDCTransferWithAuth(
   const cdp = getCdpClient();
   const smartAccount = await getOrCreateSmartAccount();
   const networkId = getNetworkId();
-  const envNetwork = process.env.CDP_NETWORK_ID || 'base-sepolia';
   const paymasterUrl = process.env.CDP_PAYMASTER_URL;
 
   try {
-    console.log('🚀 [CDP] Sending UserOperation with Paymaster...');
-    console.log(`   Network: ${envNetwork} (CDP API: ${networkId})`);
-    console.log(`   Smart Account: ${smartAccount.address}`);
-    if (paymasterUrl) {
-      console.log(`   Paymaster: ${paymasterUrl.substring(0, 50)}...`);
+    // Check Paymaster configuration
+    if (!paymasterUrl) {
+      console.log('⚠️  [CDP] No Paymaster configured!');
+      console.log(`   Network: Base Mainnet (CDP API: ${networkId})`);
+      console.log(`   Smart Account: ${smartAccount.address}`);
+      console.log(`   💸 Gas payment: Smart account will pay (NOT sponsored)`);
+      console.log(`   ⚠️  Set CDP_PAYMASTER_URL to enable gas sponsorship`);
+    } else {
+      console.log('🚀 [CDP] Sending UserOperation with Paymaster sponsorship...');
+      console.log(`   Network: Base Mainnet (CDP API: ${networkId})`);
+      console.log(`   Smart Account: ${smartAccount.address}`);
+      console.log(`   💰 Gas sponsorship: CDP Paymaster (up to $10k/month in credits)`);
+      console.log(`   Paymaster URL: ${paymasterUrl.substring(0, 50)}...`);
     }
 
     // Prepare call data for transferWithAuthorization
@@ -199,16 +209,23 @@ export async function executeUSDCTransferWithAuth(
       },
     ];
 
-    // Send user operation (CDP v2 API)
-    const result = await cdp.evm.sendUserOperation({
-      smartAccount,
-      network: networkId, // 'base' or 'base-sepolia'
+    // Send user operation with Paymaster sponsorship (if configured)
+    const sendOptions: any = {
+      network: networkId,
       calls,
-      ...(paymasterUrl && { paymasterUrl }),
-    });
+    };
+
+    // Add paymasterUrl if configured (enables sponsorship)
+    if (paymasterUrl) {
+      sendOptions.paymasterUrl = paymasterUrl;
+    }
+
+    const result = await smartAccount.sendUserOperation(sendOptions);
 
     console.log('⏳ [CDP] Waiting for confirmation...');
     console.log(`   UserOp Hash: ${result.userOpHash}`);
+    console.log(`   Function: transferWithAuthorization (0xe3ee160e)`);
+    console.log(`   Target Contract: ${USDC_CONFIG.address}`);
 
     // Wait for transaction
     const userOp = await smartAccount.waitForUserOperation({
@@ -241,11 +258,55 @@ export async function executeUSDCTransferWithAuth(
     const errorMsg = error instanceof Error ? error.message : String(error);
     const errorObj = error as any;
 
-    // Handle specific errors
-    if (errorMsg.includes('contract address is not allowed') || errorObj?.apiMessage?.includes('contract address is not allowed')) {
+    // Log full error details for debugging
+    console.error('📋 [CDP] Error Details:', {
+      message: errorMsg,
+      apiMessage: errorObj?.apiMessage,
+      code: errorObj?.code,
+      method: errorObj?.method,
+    });
+
+    // Handle Paymaster-specific errors
+    if (errorMsg.includes('called method not in allowlist') || errorMsg.includes('method not in allowed methods')) {
+      const methodSelector = errorMsg.match(/0x[a-fA-F0-9]{8}/)?.[0] || '0xe3ee160e';
       throw new Error(
-        'Gas policy error: USDC contract not allowlisted. ' +
-        'Add 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 to your gas policy at https://portal.cdp.coinbase.com/products/bundler-and-paymaster'
+        '❌ Paymaster Policy Error: Function not allowlisted!\n\n' +
+        `The function "${methodSelector}" (transferWithAuthorization) is NOT in your Paymaster allowlist.\n\n` +
+        'Fix:\n' +
+        '1. Go to https://portal.cdp.coinbase.com/products/bundler-and-paymaster\n' +
+        '2. Select "Base Mainnet" network\n' +
+        '3. Find USDC contract: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\n' +
+        '4. Click "Add Function" and enter:\n' +
+        '   transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\n' +
+        '5. Save and try again\n\n' +
+        'OR leave functions empty to allow ALL functions on this contract.'
+      );
+    }
+
+    if (errorMsg.includes('contract address is not allowed') || errorMsg.includes('target address not in allowed contracts') || errorObj?.apiMessage?.includes('contract address is not allowed')) {
+      throw new Error(
+        '❌ Paymaster Policy Error: Contract not allowlisted!\n\n' +
+        'USDC contract is NOT in your Paymaster allowlist.\n\n' +
+        'Fix:\n' +
+        '1. Go to https://portal.cdp.coinbase.com/products/bundler-and-paymaster\n' +
+        '2. Select "Base Mainnet" network\n' +
+        '3. Click "Add" to add contract\n' +
+        '4. Enter: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\n' +
+        '5. Add function (optional): transferWithAuthorization(address,address,uint256,uint256,uint256,bytes32,uint8,bytes32,bytes32)\n' +
+        '6. Save and try again'
+      );
+    }
+
+    if (errorMsg.includes('request denied') || errorMsg.includes('denied')) {
+      throw new Error(
+        '❌ Paymaster Request Denied!\n\n' +
+        'Paymaster rejected this transaction. Possible causes:\n' +
+        '- Contract not in allowlist\n' +
+        '- Function not in allowlist (0xe3ee160e = transferWithAuthorization)\n' +
+        '- Spending limits exceeded\n' +
+        '- Paymaster not enabled\n\n' +
+        'Check CDP Dashboard: https://portal.cdp.coinbase.com/products/bundler-and-paymaster\n' +
+        'View logs at: Paymaster → Logs to see rejection reason'
       );
     }
 
@@ -253,9 +314,9 @@ export async function executeUSDCTransferWithAuth(
       const requiredWei = errorMsg.match(/at least (\d+)/)?.[1];
       const requiredEth = requiredWei ? (Number(requiredWei) / 1e18).toFixed(6) : '0.01';
       throw new Error(
-        `Smart account needs ETH for gas. ` +
-        `Send ~${requiredEth} ETH to ${smartAccount.address} on Base ${envNetwork === 'base-mainnet' ? 'mainnet' : 'testnet'}. ` +
-        `Even with Paymaster, smart accounts need initial ETH for deployment/operations.`
+        `Smart account needs ETH for EntryPoint collateral. ` +
+        `Send ~${requiredEth} ETH to ${smartAccount.address} on Base Mainnet. ` +
+        `Even with Paymaster gas sponsorship, smart accounts need ETH for EntryPoint operations.`
       );
     }
 
@@ -276,16 +337,18 @@ export async function executeUSDCTransferWithAuth(
  */
 export async function getSmartWalletAddress(): Promise<string> {
   const smartAccount = await getOrCreateSmartAccount();
-  const envNetwork = process.env.CDP_NETWORK_ID || 'base-sepolia';
   console.log('');
   console.log('================================================================================');
   console.log('🎉 SMART ACCOUNT READY!');
   console.log('================================================================================');
   console.log('Smart Account Address:', smartAccount.address);
-  console.log('Network:', envNetwork);
+  console.log('Network: Base Mainnet');
   console.log('');
   console.log('💡 CDP manages keys securely - no manual configuration needed!');
   console.log('   Accounts are retrieved automatically by name on subsequent runs.');
+  console.log('');
+  console.log('⚠️  Configure CDP_PAYMASTER_URL for gas sponsorship');
+  console.log('   See COINBASE_SETUP.md for allowlist configuration');
   console.log('================================================================================');
   console.log('');
   return smartAccount.address;
