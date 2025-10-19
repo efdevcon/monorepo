@@ -390,13 +390,31 @@ export function useWalletManager() {
         const name = ensName || basename;
         let avatar: string | null = null;
 
-        if (name) {
+        // Try to get avatar for ENS first (prioritized)
+        if (ensName) {
           try {
+            console.log(`[identity] Trying ENS avatar for ${ensName}`);
             avatar = await publicClient.getEnsAvatar({
-              name: normalize(name),
+              name: normalize(ensName),
+              gatewayUrls: ['https://ccip.ens.xyz'],
             });
+            console.log(`[identity] ENS avatar result:`, avatar ? 'found' : 'null');
           } catch (err) {
-            console.warn('[identity] Failed to resolve avatar:', err instanceof Error ? err.message : String(err));
+            console.warn('[identity] ENS avatar lookup failed:', err instanceof Error ? err.message : String(err));
+          }
+        }
+
+        // If no ENS avatar, try basename avatar as fallback
+        if (!avatar && basename) {
+          try {
+            console.log(`[identity] Trying basename avatar for ${basename}`);
+            avatar = await publicClient.getEnsAvatar({
+              name: normalize(basename),
+              gatewayUrls: ['https://ccip.ens.xyz'],
+            });
+            console.log(`[identity] Basename avatar result:`, avatar ? 'found' : 'null');
+          } catch (err) {
+            console.warn('[identity] Basename avatar lookup failed:', err instanceof Error ? err.message : String(err));
           }
         }
 
