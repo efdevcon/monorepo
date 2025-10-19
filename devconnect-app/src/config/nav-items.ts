@@ -65,6 +65,10 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet',
       },
       {
+        label: 'Stampbook',
+        href: '/wallet/stampbook',
+      },
+      {
         label: 'Debug',
         href: '/wallet/debug',
       },
@@ -72,7 +76,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Onramp',
         href: '/wallet/onramp',
         hide: true,
-      }
+      },
     ],
   },
 ];

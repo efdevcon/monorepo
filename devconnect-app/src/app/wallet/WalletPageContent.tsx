@@ -2,8 +2,8 @@
 import PageLayout from '@/components/PageLayout';
 import { NAV_ITEMS, TabItem } from '@/config/nav-items';
 import WalletTab from './WalletTab';
-// import TicketTab from './TicketTab';
 import OnrampTab from './OnrampTab';
+import StampbookTab from './StampbookTab';
 import DebugTab from './DebugTab';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState, useMemo } from 'react';
@@ -15,9 +15,9 @@ const navLabel = navItem?.label || 'Wallet';
 // Map tab labels to components
 const tabComponents: Record<string, React.ComponentType<any>> = {
   Wallet: WalletTab as React.ComponentType<any>,
-  Debug: DebugTab as React.ComponentType<any>,
-  // Tickets: TicketTab as React.ComponentType<any>,
   Onramp: OnrampTab as React.ComponentType<any>,
+  Stampbook: StampbookTab as React.ComponentType<any>,
+  Debug: DebugTab as React.ComponentType<any>,
 };
 
 // Create tabs from nav-items configuration

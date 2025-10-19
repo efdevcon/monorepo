@@ -19,11 +19,15 @@ export default function OnboardingPage() {
 
   // Local storage for quest status and locked state
   const [questStates, setQuestStates] = useLocalStorage<
-    Record<string, {
-      status: 'completed' | 'active' | 'locked';
-      is_locked: boolean;
-      isCheckedIn?: boolean;
-    }>
+    Record<
+      string,
+      {
+        status: 'completed' | 'active' | 'locked';
+        is_locked: boolean;
+        isCheckedIn?: boolean;
+        completedAt?: number;
+      }
+    >
   >('quest-states', {});
 
   // Function to update quest status
@@ -40,6 +44,8 @@ export default function OnboardingPage() {
         status,
         is_locked,
         ...(isCheckedIn !== undefined && { isCheckedIn }),
+        // Add completedAt timestamp when status is completed
+        ...(status === 'completed' && { completedAt: Date.now() }),
       },
     }));
   };

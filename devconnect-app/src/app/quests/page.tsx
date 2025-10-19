@@ -41,6 +41,7 @@ export default function QuestsPage() {
         status: 'completed' | 'active' | 'locked';
         is_locked: boolean;
         isCheckedIn?: boolean;
+        completedAt?: number;
       }
     >
   >('quest-states', {});
@@ -59,6 +60,8 @@ export default function QuestsPage() {
         status,
         is_locked,
         ...(isCheckedIn !== undefined && { isCheckedIn }),
+        // Add completedAt timestamp when status is completed
+        ...(status === 'completed' && { completedAt: Date.now() }),
       },
     }));
   };
