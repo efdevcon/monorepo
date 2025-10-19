@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
+import { districtsData } from '@/data/districts';
 import type { Quest, QuestGroup } from '@/types';
 
 interface QuestGroupDetailProps {
@@ -51,6 +53,8 @@ export default function QuestGroupDetail({
   questStates,
   updateQuestStatus,
 }: QuestGroupDetailProps) {
+  const router = useRouter();
+
   // Get all quests for this group, sorted by order
   const groupQuests = questsData
     .filter((quest) => quest.groupId === group.id)
@@ -101,6 +105,16 @@ export default function QuestGroupDetail({
     }
     // For other actions, just complete the quest
     handleQuestAction(quest);
+  };
+
+  const handlePoapLocationClick = (quest: Quest, e: React.MouseEvent) => {
+    e.stopPropagation();
+    // Get the supporter/layer name for this quest
+    const supporterId = quest.supporterId?.toString();
+    if (supporterId && supportersData[supporterId]) {
+      const supporter = supportersData[supporterId];
+      router.push(`/map?filter=${supporter.layerName}`);
+    }
   };
 
   return (
@@ -225,22 +239,50 @@ export default function QuestGroupDetail({
                       </div>
 
                       {/* Completion Status */}
-                      {isCompleted && (
-                        <div className="w-6 h-6 flex-shrink-0 ml-2">
-                          {quest.poapImageLink ? (
+                      {quest.poapImageLink ? (
+                        <div
+                          className={`w-6 h-6 flex-shrink-0 ml-2 ${
+                            !isCompleted ? 'cursor-pointer' : ''
+                          }`}
+                          onClick={
+                            !isCompleted
+                              ? (e) => handlePoapLocationClick(quest, e)
+                              : undefined
+                          }
+                        >
+                          {isCompleted ? (
                             <img
                               src={quest.poapImageLink}
                               alt="POAP"
                               className="w-full h-full object-cover rounded-full"
                             />
                           ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-[#f0f0f4] rounded-full border border-[#c7c7d0] hover:bg-[#e5e5e9] transition-colors">
+                              <svg
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                                  fill="#4b4b66"
+                                />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
+                      ) : (
+                        isCompleted && (
+                          <div className="w-6 h-6 flex-shrink-0 ml-2">
                             <img
                               src="/images/icons/check-circle.svg"
                               alt="Completed"
                               className="w-full h-full"
                             />
-                          )}
-                        </div>
+                          </div>
+                        )
                       )}
                     </div>
                   </div>

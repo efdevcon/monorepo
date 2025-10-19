@@ -484,8 +484,8 @@ export const supportersData: Record<string, Supporter> = {
   "271638cdc415805abaf2df8f5e558212": {
     "name": "Ripio",
     "layerName": "ripio",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T18-41-30-780Z-ripio-iso-icon_color.svg",
+    "description": "Buy or swap for wARS and claim your Ripio POAP to join the Argentine DeFi wave",
     "districtId": "3",
     "locationId": null
   },
@@ -498,9 +498,9 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": null
   },
   "256638cdc41580709456cb1417e645eb": {
-    "name": "Rotki",
+    "name": "rotki",
     "layerName": "rotki",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-19T08-43-26-955Z-profile.jpg",
     "description": "rotki is an open source, self-hosted portfolio manager, accounting and analytics tool that protects your privacy",
     "districtId": "3",
     "locationId": "1"

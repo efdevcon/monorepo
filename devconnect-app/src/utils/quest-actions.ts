@@ -41,16 +41,20 @@ export async function numberOfCryptoPayment(questId: string, conditionValues: st
  * @param questId - The ID of the quest
  * @param conditionValues - POAP drop ID to verify
  * @param userAddresses - Array of user addresses to check
- * @returns Promise<boolean> - True if POAP is verified
+ * @returns Promise<{completed: boolean, mintedOn?: number}> - Verification result with minting date (Unix timestamp)
  */
-export async function verifyPoap(questId: string, conditionValues: string, userAddresses?: string[]): Promise<boolean> {
+export async function verifyPoap(
+  questId: string,
+  conditionValues: string,
+  userAddresses?: string[]
+): Promise<{ completed: boolean; mintedOn?: number }> {
   try {
     if (!userAddresses || userAddresses.length === 0) {
       toast.info('⚠️ No Addresses', {
         description: 'No user addresses provided for POAP verification',
         duration: 3000,
       });
-      return false;
+      return { completed: false };
     }
 
     if (!conditionValues) {
@@ -58,7 +62,7 @@ export async function verifyPoap(questId: string, conditionValues: string, userA
         description: 'No POAP drop ID provided for verification',
         duration: 3000,
       });
-      return false;
+      return { completed: false };
     }
 
     // Call the API endpoint to check POAP ownership
@@ -69,48 +73,89 @@ export async function verifyPoap(questId: string, conditionValues: string, userA
       },
       body: JSON.stringify({
         addresses: userAddresses,
-        dropId: conditionValues
-      })
+        dropId: conditionValues,
+      }),
     });
 
     if (!response.ok) {
-      throw new Error(`POAP API request failed: ${response.status} ${response.statusText}`);
+      throw new Error(
+        `POAP API request failed: ${response.status} ${response.statusText}`
+      );
     }
 
     const data = await response.json();
 
     if (data.error) {
       console.error('POAP API error:', data.error);
-      return false;
+      return { completed: false };
     }
 
     const hasPoap = data.hasPoap;
+    const mintedOn = data.mintedOn; // Unix timestamp from POAP API
+
+    // TETMP: return fake data for testing (unix timestamp)
+    toast.success('🎉 FAKE POAP Verification Successful!', {
+      description: 'Congratulations! You have completed this quest!',
+      duration: 6000,
+    });
+    return { completed: true, mintedOn: Math.floor(Date.now() / 1000) };
 
     if (hasPoap) {
-      console.log(`✅ POAP verification successful for quest ${questId} with drop ID ${conditionValues}`);
+      console.log(
+        `✅ POAP verification successful for quest ${questId} with drop ID ${conditionValues}`
+      );
+      if (mintedOn) {
+        console.log(`POAP was minted on: ${mintedOn} (Unix timestamp)`);
+      }
+
+      // Store the POAP minting metadata in local storage for the stampbook
+      if (
+        typeof window !== 'undefined' &&
+        typeof localStorage !== 'undefined' &&
+        mintedOn
+      ) {
+        try {
+          const poapMetadata = JSON.parse(
+            localStorage.getItem('poap-metadata') || '{}'
+          );
+          poapMetadata[questId] = {
+            dropId: conditionValues,
+            mintedOn: mintedOn, // Store as Unix timestamp
+            verifiedAt: new Date().toISOString(),
+          };
+          localStorage.setItem('poap-metadata', JSON.stringify(poapMetadata));
+        } catch (e) {
+          console.error('Error storing POAP metadata:', e);
+        }
+      }
+
       // Show success feedback to user
       toast.success('🎉 POAP Verified!', {
         description: 'Congratulations! You have completed this quest!',
         duration: 6000,
       });
+
+      return { completed: true, mintedOn };
     } else {
-      console.log(`❌ POAP verification failed for quest ${questId} with drop ID ${conditionValues}`);
+      console.log(
+        `❌ POAP verification failed for quest ${questId} with drop ID ${conditionValues}`
+      );
       // Show helpful feedback to user
       toast.warning('🔍 POAP Not Found', {
         description: `You don't currently own the required POAP (ID: ${conditionValues}). Visit the quest location to claim it.`,
         duration: 6000,
       });
+      return { completed: false };
     }
-
-    return hasPoap;
   } catch (error) {
     console.error(`Error verifying POAP for quest ${questId}:`, error);
     // Show error feedback to user
     toast.error('⚠️ Verification Error', {
-      description: 'Unable to verify POAP ownership at this time. Please try again later.',
+      description:
+        'Unable to verify POAP ownership at this time. Please try again later.',
       duration: 5000,
     });
-    return false;
+    return { completed: false };
   }
 }
 
@@ -268,8 +313,11 @@ export async function executeQuestAction(
       return verifyBasename(questId, conditionValues);
     case 'numberOfCryptoPayment':
       return numberOfCryptoPayment(questId, conditionValues);
-    case 'verifyPoap':
-      return verifyPoap(questId, conditionValues, userAddresses);
+    case 'verifyPoap': {
+      // verifyPoap returns an object, extract the completed boolean
+      const result = await verifyPoap(questId, conditionValues, userAddresses);
+      return result.completed;
+    }
     case 'isWalletConnected':
       return isWalletConnected(questId, conditionValues);
     case 'isTicketAssociated':

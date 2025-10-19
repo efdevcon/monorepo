@@ -23,9 +23,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const hasPoap = await checkPoapOwnership(addresses, dropId);
+    const result = await checkPoapOwnership(addresses, dropId);
 
-    return NextResponse.json({ hasPoap });
+    return NextResponse.json(result);
   } catch (error) {
     console.error('POAP verification API error:', error);
     return NextResponse.json(
@@ -39,9 +39,9 @@ export async function POST(request: NextRequest) {
  * Check if user owns the specified POAP
  * @param addresses - Array of user addresses to check
  * @param dropId - POAP drop ID to verify
- * @returns Promise<boolean> - True if user owns the POAP
+ * @returns Promise<{hasPoap: boolean, mintedOn?: string}> - Result with ownership status and minting date
  */
-async function checkPoapOwnership(addresses: string[], dropId: string): Promise<boolean> {
+async function checkPoapOwnership(addresses: string[], dropId: string): Promise<{ hasPoap: boolean, mintedOn?: string }> {
   const POAP_API_URL = 'https://public.compass.poap.tech/v1/graphql';
   
   const query = `query GetPOAPs($addresses: [String!]!, $dropIds: [bigint!]!) {
@@ -55,6 +55,7 @@ async function checkPoapOwnership(addresses: string[], dropId: string): Promise<
     collector_address
     drop_id
     chain
+    minted_on
   }
 }`;
 
@@ -87,18 +88,24 @@ async function checkPoapOwnership(addresses: string[], dropId: string): Promise<
     
     if (data.errors) {
       console.error('POAP API errors:', data.errors);
-      return false;
+      return { hasPoap: false };
     }
 
     // Check if any POAPs were found for the user addresses
     const poaps = data.data?.poaps || [];
     const hasPoap = poaps.length > 0;
     
+    // Get the minted_on timestamp from the first POAP found
+    const mintedOn = hasPoap && poaps[0]?.minted_on ? poaps[0].minted_on : undefined;
+
     console.log(`POAP check result: ${hasPoap ? 'Found' : 'Not found'} POAP ${dropId} for addresses:`, addresses);
+    if (mintedOn) {
+      console.log(`POAP minted on: ${mintedOn}`);
+    }
     
-    return hasPoap;
+    return { hasPoap, mintedOn };
   } catch (error) {
     console.error('Error checking POAP ownership:', error);
-    return false;
+    return { hasPoap: false };
   }
 }
