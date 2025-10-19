@@ -33,8 +33,8 @@ import {
 
 // Image assets from local public/images directory
 const imgPara = '/images/paraLogo.png';
-const imgGroup = '/images/imgGroup.svg';
-const imgGroup1 = '/images/imgGroup1.svg';
+const imgOnrampDigital = '/images/onramp-digital.svg';
+const imgOnrampCash = '/images/onramp-cash.svg';
 const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
 const imgPeanutLogo = '/images/peanut-logo.svg';
 const imgEnsLogo = '/images/ens-logo.svg';
@@ -334,11 +334,18 @@ export default function WalletTab() {
   };
 
   const handleDigitalClick = () => {
-    router.push('/wallet/digital-onramp');
+    router.push('/wallet/onramp');
   };
 
   const handleInPersonClick = () => {
-    router.push('/wallet/in-person-onramp');
+    router.push('/wallet/onramp#in-person');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById('in-person-section');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
   };
 
   const handleViewMoreActivity = () => {
@@ -1281,47 +1288,60 @@ export default function WalletTab() {
         </div>
 
         {/* Exchange Section */}
-        <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
-          <div className="space-y-2">
-            <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
-              Exchange ARS/USD for Crypto
-            </h2>
-            <p className="text-[#36364c] text-sm font-normal">
-              Fund your Ethereum wallet to fully experience the World's Fair.
-              There are two ways to add funds to your wallet:
-            </p>
-          </div>
+        <div className="pb-4">
+          <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
+            <div className="space-y-2">
+              <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
+                Exchange ARS/USD for Crypto
+              </h2>
+              <p className="text-[#36364c] text-sm font-normal">
+                Fund your Ethereum wallet to fully experience the World's Fair.
+                There are two ways to add funds to your wallet:
+              </p>
+            </div>
 
-          <div className="space-y-3">
-            <div className="flex gap-2">
-              <button
-                onClick={handleDigitalClick}
-                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
-              >
-                <img src={imgGroup} alt="digital" className="w-8 h-8" />
-                <div className="text-center">
-                  <div className="text-[#36364c] text-sm font-bold">
-                    Digital
+            <div className="space-y-3">
+              <div className="flex gap-2">
+                <button
+                  onClick={handleDigitalClick}
+                  className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                >
+                  <img
+                    src={imgOnrampDigital}
+                    alt="digital"
+                    className="w-10 h-10"
+                  />
+                  <div className="text-center">
+                    <div className="text-[#36364c] text-sm font-bold">
+                      Digital
+                    </div>
+                    <div className="text-[#4b4b66] text-xs font-medium">
+                      Debit/Credit Card
+                    </div>
                   </div>
-                  <div className="text-[#4b4b66] text-xs font-medium">
-                    Debit/Credit Card
+                </button>
+                <button
+                  onClick={handleInPersonClick}
+                  className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                >
+                  <img
+                    src={imgOnrampCash}
+                    alt="in-person"
+                    className="w-10 h-10"
+                  />
+                  <div className="text-center">
+                    <div className="text-[#36364c] text-sm font-bold">
+                      In-Person
+                    </div>
+                    <div className="text-[#4b4b66] text-xs font-medium">
+                      Currency & Card
+                    </div>
                   </div>
-                </div>
-              </button>
-              <div
-                onClick={handleInPersonClick}
-                className="flex-1 bg-gradient-to-b from-[#e9f4fc] to-[#d2e9f9] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:from-[#d2e9f9] hover:to-[#b8dff0] transition-colors cursor-pointer"
-              >
-                <img src={imgGroup1} alt="in-person" className="w-8 h-8" />
-                <div className="text-center">
-                  <div className="text-[#36364c] text-sm font-bold">
-                    In-Person
-                  </div>
-                  <div className="text-[#4b4b66] text-xs font-medium">
-                    Currency & Card
-                  </div>
-                </div>
+                </button>
               </div>
+              <p className="text-[#4b4b66] text-[10px] font-normal italic text-center leading-[1.3]">
+                Our partner exchanges are registered as VASP in Argentina
+              </p>
             </div>
           </div>
         </div>

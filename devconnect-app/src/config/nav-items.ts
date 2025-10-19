@@ -69,15 +69,10 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet/debug',
       },
       {
-        label: 'Digital Onramp',
-        href: '/wallet/digital-onramp',
+        label: 'Onramp',
+        href: '/wallet/onramp',
         hide: true,
-      },
-      {
-        label: 'In-person Onramp',
-        href: '/wallet/in-person-onramp',
-        hide: true,
-      },
+      }
     ],
   },
 ];
