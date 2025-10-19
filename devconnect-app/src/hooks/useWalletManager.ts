@@ -7,9 +7,10 @@ import { useUser } from './useUser';
 import { ensureUserData, useEnsureUserData } from '@/app/store.hooks';
 import { useAutoParaJwtExchange } from './useAutoParaJwtExchange';
 import { normalize } from 'viem/ens';
-import { mainnet } from 'viem/chains';
-import { createPublicClient, http } from 'viem';
+import { mainnet, base } from 'viem/chains';
+import { createPublicClient, http, toCoinType } from 'viem';
 import { useLocalStorage } from 'usehooks-ts';
+import { APP_CONFIG } from '@/config/config';
 
 const PRIMARY_WALLET_TYPE_KEY = 'devconnect_primary_wallet_type';
 
@@ -322,11 +323,11 @@ export function useWalletManager() {
 
   // Resolve identity for a specific address
   const resolveIdentityForAddress = useCallback(
-    async (targetAddress: string) => {
+    async (targetAddress: string, force: boolean = false) => {
       const addressKey = targetAddress.toLowerCase();
 
-      // If we already have identity for this address, skip
-      if (identityMap[addressKey] !== undefined) {
+      // If we already have identity for this address, skip (unless forced)
+      if (!force && identityMap[addressKey] !== undefined) {
         return;
       }
 
@@ -340,33 +341,68 @@ export function useWalletManager() {
 
       try {
         console.log(
-          `🔍 [WALLET_MANAGER] Resolving identity for ${addressKey.slice(0, 10)}...`
+          `🔍 [WALLET_MANAGER] [identity] Resolving identity for ${addressKey}`
         );
 
-        // Resolve ENS on mainnet
+        const rpcUrl = APP_CONFIG.ALCHEMY_APIKEY
+          ? `https://eth-mainnet.g.alchemy.com/v2/${APP_CONFIG.ALCHEMY_APIKEY}`
+          : 'https://cloudflare-eth.com'; // Public fallback
+
+        console.log(`[identity] Using RPC: ${rpcUrl.split('/').slice(0, -1).join('/')}/***`);
+
         const publicClient = createPublicClient({
           chain: mainnet,
-          transport: http(),
+          transport: http(rpcUrl),
         });
 
-        const ensName = await publicClient.getEnsName({
-          address: addressKey as `0x${string}`,
-        });
+        // Try ENS on mainnet first (prioritized)
+        let ensName: string | null = null;
+        try {
+          console.log(`[identity] Trying ENS lookup for ${addressKey}`);
+          ensName = await publicClient.getEnsName({
+            address: addressKey as `0x${string}`,
+            gatewayUrls: ['https://ccip.ens.xyz'],
+          });
+          console.log(`[identity] ENS result:`, ensName);
+        } catch (err) {
+          // ENS not found or lookup failed
+          console.warn('[identity] ENS lookup failed:', err instanceof Error ? err.message : String(err));
+        }
 
-        let ensAvatar: string | null = null;
-        if (ensName) {
+        // If no ENS, try basename on Base as fallback
+        let basename: string | null = null;
+        if (!ensName) {
           try {
-            ensAvatar = await publicClient.getEnsAvatar({
-              name: normalize(ensName),
+            const coinType = toCoinType(base.id);
+            console.log(`[identity] Trying basename lookup for ${addressKey}, coinType: ${coinType}`);
+            basename = await publicClient.getEnsName({
+              address: addressKey as `0x${string}`,
+              coinType,
+              gatewayUrls: ['https://ccip.ens.xyz'],
+            });
+            console.log(`[identity] Basename result:`, basename);
+          } catch (err) {
+            // Basename not found or contract reverted - this is normal
+            console.warn('[identity] Basename lookup failed:', err instanceof Error ? err.message : String(err));
+          }
+        }
+
+        const name = ensName || basename;
+        let avatar: string | null = null;
+
+        if (name) {
+          try {
+            avatar = await publicClient.getEnsAvatar({
+              name: normalize(name),
             });
           } catch (err) {
-            console.warn('Failed to resolve ENS avatar:', err);
+            console.warn('[identity] Failed to resolve avatar:', err instanceof Error ? err.message : String(err));
           }
         }
 
         const resolvedIdentity: WalletIdentity = {
-          name: ensName,
-          avatar: ensAvatar,
+          name,
+          avatar,
         };
 
         setIdentityMap((prev) => ({
@@ -375,11 +411,11 @@ export function useWalletManager() {
         }));
 
         console.log(
-          `✅ [WALLET_MANAGER] Identity resolved for ${addressKey.slice(0, 10)}:`,
-          { name: ensName, hasAvatar: !!ensAvatar }
+          `✅ [WALLET_MANAGER] [identity] Identity resolved for ${addressKey}:`,
+          { name, hasAvatar: !!avatar, type: ensName ? 'ENS' : basename ? 'basename' : 'none' }
         );
       } catch (err) {
-        console.error('Error resolving identity:', err);
+        console.error('[identity] Error resolving identity:', err instanceof Error ? err.message : String(err));
         setIdentityMap((prev) => ({ ...prev, [addressKey]: null }));
       } finally {
         setIdentityLoading(false);
@@ -414,6 +450,16 @@ export function useWalletManager() {
     eoa.address,
     resolveIdentityForAddress,
   ]);
+
+  // Force refresh identity when active address changes (wallet switching)
+  const prevAddressRef = useRef<string | null>(null);
+  useEffect(() => {
+    if (address && address !== prevAddressRef.current) {
+      console.log(`[identity] Active address changed from ${prevAddressRef.current} to ${address}, forcing refresh`);
+      resolveIdentityForAddress(address, true); // Force refresh
+      prevAddressRef.current = address;
+    }
+  }, [address, resolveIdentityForAddress]);
 
   // ============================================
   // Portfolio Data - Store all portfolios in single global cache
