@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
@@ -25,6 +26,7 @@ interface StampCategory {
 }
 
 export default function StampbookTab() {
+  const router = useRouter();
   const [expandedCategory, setExpandedCategory] = useState<string | null>('0'); // First category expanded by default
   const [selectedPoap, setSelectedPoap] = useState<{
     id: number;
@@ -54,11 +56,37 @@ export default function StampbookTab() {
     return questState?.status === 'completed';
   };
 
-  // Helper function to get completion date
+  // Helper function to get completion date (returns ISO string for display)
   const getCompletionDate = (questId: number): string | undefined => {
     const questState = questStates[questId.toString()];
-    if (questState?.status === 'completed' && questState.completedAt) {
-      return new Date(questState.completedAt).toISOString();
+    if (questState?.status === 'completed') {
+      // First check if we have POAP metadata with the actual minted date
+      try {
+        const poapMetadata = JSON.parse(
+          localStorage.getItem('poap-metadata') || '{}'
+        );
+        const metadata = poapMetadata[questId.toString()];
+        if (metadata?.mintedOn) {
+          // mintedOn could be Unix timestamp (number) or ISO string
+          const mintedOn = metadata.mintedOn;
+          if (typeof mintedOn === 'number') {
+            // Convert Unix timestamp to ISO string
+            return new Date(mintedOn * 1000).toISOString();
+          }
+          // Return the actual POAP minting date as-is if it's already a string
+          return mintedOn;
+        }
+      } catch (e) {
+        console.error('Error reading POAP metadata:', e);
+      }
+
+      // Fall back to the completedAt timestamp from quest-states
+      if (questState.completedAt) {
+        return new Date(questState.completedAt).toISOString();
+      }
+
+      // If collected but no date available, use current timestamp
+      return new Date().toISOString();
     }
     return undefined;
   };
@@ -74,9 +102,16 @@ export default function StampbookTab() {
     name: string;
     image: string;
   }) => {
-    // Find the quest data for this stamp to get description
-    const quest = questsData.find((q) => q.id === stamp.id);
     const isCompleted = isQuestCompleted(stamp.id);
+
+    // If not claimed/completed, navigate to the quest detail page
+    if (!isCompleted) {
+      router.push(`/quests/app-showcase#${stamp.id}`);
+      return;
+    }
+
+    // If claimed/completed, show the modal
+    const quest = questsData.find((q) => q.id === stamp.id);
     const completedAt = getCompletionDate(stamp.id);
 
     setSelectedPoap({

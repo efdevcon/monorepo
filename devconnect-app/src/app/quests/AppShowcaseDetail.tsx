@@ -12,6 +12,7 @@ import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
+import PoapModal from '@/components/PoapModal';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: QuestAction) => {
@@ -45,6 +46,7 @@ interface AppShowcaseDetailProps {
       status: 'completed' | 'active' | 'locked';
       is_locked: boolean;
       isCheckedIn?: boolean;
+      completedAt?: number;
     }
   >;
   updateQuestStatus: (
@@ -163,6 +165,14 @@ export default function AppShowcaseDetail({
   const hasInitialized = useRef(false);
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const [selectedPoap, setSelectedPoap] = useState<{
+    id: number;
+    name: string;
+    image: string;
+    description?: string;
+    collected: boolean;
+    stampedDate?: string;
+  } | null>(null);
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -297,6 +307,72 @@ export default function AppShowcaseDetail({
   // Get supporter by ID
   const getSupporterById = (supporterId: string) => {
     return supportersData[supporterId] || null;
+  };
+
+  // Helper function to get completion date (returns ISO string for display)
+  const getCompletionDate = (questId: number): string | undefined => {
+    const questState = questStates[questId.toString()];
+    if (questState?.status === 'completed') {
+      // First check if we have POAP metadata with the actual minted date
+      try {
+        const poapMetadata = JSON.parse(
+          localStorage.getItem('poap-metadata') || '{}'
+        );
+        const metadata = poapMetadata[questId.toString()];
+        if (metadata?.mintedOn) {
+          // mintedOn could be Unix timestamp (number) or ISO string
+          const mintedOn = metadata.mintedOn;
+          if (typeof mintedOn === 'number') {
+            // Convert Unix timestamp to ISO string
+            return new Date(mintedOn * 1000).toISOString();
+          }
+          // Return the actual POAP minting date as-is if it's already a string
+          return mintedOn;
+        }
+      } catch (e) {
+        console.error('Error reading POAP metadata:', e);
+      }
+
+      // Fall back to the completedAt timestamp from quest-states
+      if (questState.completedAt) {
+        return new Date(questState.completedAt).toISOString();
+      }
+
+      // If collected but no date available, use current timestamp
+      return new Date().toISOString();
+    }
+    return undefined;
+  };
+
+  // Handle POAP image click to show modal or navigate to map
+  const handlePoapClick = (quest: Quest, e: React.MouseEvent) => {
+    e.stopPropagation();
+
+    const isCompleted = isQuestCompleted(quest);
+
+    // If not completed, navigate to map with supporter filter
+    if (!isCompleted) {
+      const supporterId = quest.supporterId?.toString();
+      if (supporterId && supportersData[supporterId]) {
+        const supporter = supportersData[supporterId];
+        router.push(`/map?filter=${supporter.layerName}`);
+      }
+      return;
+    }
+
+    // If completed, show modal
+    const completedAt = getCompletionDate(quest.id);
+    const FALLBACK_IMAGE =
+      'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg';
+
+    setSelectedPoap({
+      id: quest.id,
+      name: quest.name,
+      image: quest.poapImageLink || FALLBACK_IMAGE,
+      description: quest.instructions || undefined,
+      collected: true,
+      stampedDate: completedAt,
+    });
   };
 
   const toggleQuestExpansion = (questId: number) => {
@@ -487,7 +563,11 @@ export default function AppShowcaseDetail({
   };
 
   const handleViewQuestLocation = (quest: Quest) => {
-    router.push(`/map?filter=defi-aave`);
+    const supporterId = quest.supporterId?.toString();
+    if (supporterId && supportersData[supporterId]) {
+      const supporter = supportersData[supporterId];
+      router.push(`/map?filter=${supporter.layerName}`);
+    }
     setShowSupporterInfo(null);
   };
 
@@ -618,81 +698,32 @@ export default function AppShowcaseDetail({
           />
         </div>
         {/* Reward Section */}
-        <div className="bg-white border-gray-200 w-full px-4 pb-4">
-          <div className="flex flex-col gap-2">
-            {/* <div className="flex flex-col gap-1">
-              <h2 className="text-base font-bold text-gray-800 tracking-[-0.1px]">
-                Complete 10 quests
-              </h2>
-              <p className="text-sm text-gray-600">
-                <span className="font-bold">Reward:</span>{' '}
-                <span className="font-normal">Spin the Prize Wheel!</span>
-              </p>
-            </div> */}
-            <div className="flex flex-col gap-4">
-              <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
+        <div className="bg-white border-b border-[#eeeeee] w-full px-6 pt-4 pb-5">
+          <div className="flex flex-col gap-4">
+            {/* Progress Info */}
+            <div className="flex items-start justify-between w-full text-sm">
+              <p
+                className="font-medium text-[#353548] tracking-[-0.1px] leading-none"
+                style={{ fontFamily: 'Roboto Mono, monospace' }}
+              >
                 {overallProgress.completed}/{overallProgress.total} completed
-              </div>
-              <div className="relative w-full h-2 bg-gray-100 rounded">
-                <div
-                  className="absolute top-0 left-0 h-2 bg-blue-600 rounded"
-                  style={{ width: `${overallProgress.percentage}%` }}
-                />
-                {/* Milestone markers */}
-                {[10, 30, 50, 83].map((milestone, index) => {
-                  // Only show milestone if it's less than or equal to the total quests
-                  if (milestone <= overallProgress.total) {
-                    const isCompleted = overallProgress.completed >= milestone;
-                    const size = isCompleted ? 32 : 24;
-                    return (
-                      <div
-                        key={milestone}
-                        className="absolute"
-                        style={{
-                          left: `calc(${(milestone / overallProgress.total) * 100}% - ${size / 2}px)`,
-                          top: `${isCompleted ? '-10.5px' : `-${size / 3}px`}`,
-                          width: `${size}px`,
-                          height: `${size}px`,
-                        }}
-                      >
-                        <div
-                          className="flex items-center justify-center"
-                          style={{
-                            width: `${size}px`,
-                            height: `${size}px`,
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: `${size}px`,
-                              height: `${size}px`,
-                            }}
-                          >
-                            {isCompleted ? (
-                              <Image
-                                src="/images/icons/star-completed.svg"
-                                alt="Completed milestone"
-                                width={size}
-                                height={size}
-                                className="w-full h-full"
-                              />
-                            ) : (
-                              <Image
-                                src="/images/icons/star.svg"
-                                alt="Milestone"
-                                width={size}
-                                height={size}
-                                className="w-full h-full"
-                              />
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  }
-                  return null;
-                })}
-              </div>
+              </p>
+              <button
+                onClick={() => router.push('/wallet/stampbook')}
+                className="font-semibold text-[#0073de] leading-none hover:underline cursor-pointer"
+                style={{ fontFamily: 'Roboto, sans-serif' }}
+              >
+                View Stampbook
+              </button>
+            </div>
+            {/* Progress Bar */}
+            <div className="w-full h-2 bg-[#eaf4fb] rounded-full overflow-hidden">
+              <div
+                className="h-full bg-[#1b6fae]"
+                style={{
+                  width: `${overallProgress.total > 0 ? (overallProgress.completed / overallProgress.total) * 100 : 0}%`,
+                }}
+              />
             </div>
           </div>
         </div>
@@ -805,12 +836,21 @@ export default function AppShowcaseDetail({
 
                           {/* Completion Status */}
                           {isCompleted && (
-                            <div className="w-6 h-6 flex-shrink-0 ml-2">
+                            <div
+                              className={`w-6 h-6 flex-shrink-0 ml-2 ${
+                                quest.poapImageLink ? 'cursor-pointer' : ''
+                              }`}
+                              onClick={
+                                quest.poapImageLink
+                                  ? (e) => handlePoapClick(quest, e)
+                                  : undefined
+                              }
+                            >
                               {quest.poapImageLink ? (
                                 <img
                                   src={quest.poapImageLink}
                                   alt="POAP"
-                                  className="w-full h-full object-cover rounded-full"
+                                  className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
                                 />
                               ) : (
                                 <img
@@ -852,7 +892,6 @@ export default function AppShowcaseDetail({
           )}
         </div>
       </div>
-      {/* District Sections */}
       <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
         {filteredDistricts.map((district) => {
           const quests = questsByDistrict[district.id] || [];
@@ -984,27 +1023,30 @@ export default function AppShowcaseDetail({
                               </p>
                             </div>
                             <div
-                              className={`flex flex-col items-center gap-2 ${!isCompleted ? 'cursor-pointer' : ''}`}
-                              onClick={
-                                !isCompleted
-                                  ? (e) => {
-                                      e.stopPropagation();
-                                      handleQuestAction(quest);
-                                    }
-                                  : undefined
-                              }
+                              className="flex flex-col items-center gap-2 cursor-pointer"
+                              onClick={(e) => handlePoapClick(quest, e)}
                             >
-                              <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
-                                <img
-                                  src={
-                                    quest.poapImageLink ||
-                                    'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg'
-                                  }
-                                  alt="POAP"
-                                  width={40}
-                                  height={40}
-                                  className={`w-full h-full object-cover rounded-full ${isCompleted ? '' : 'grayscale opacity-50'}`}
-                                />
+                              <div className="w-10 h-10 flex items-center justify-center relative">
+                                {isCompleted ? (
+                                  <img
+                                    src={
+                                      quest.poapImageLink ||
+                                      'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg'
+                                    }
+                                    alt="POAP"
+                                    width={40}
+                                    height={40}
+                                    className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
+                                  />
+                                ) : (
+                                  <img
+                                    src="/images/poap-location.svg"
+                                    alt="Quest Location"
+                                    width={40}
+                                    height={40}
+                                    className="w-full h-full hover:opacity-80 transition-opacity"
+                                  />
+                                )}
                               </div>
                               <div className="text-center w-14">
                                 {isCompleted ? (
@@ -1076,7 +1118,6 @@ export default function AppShowcaseDetail({
           );
         })}
       </div>
-      {/* Reset Button */}
       <div className="w-full px-4 pb-4">
         <button
           onClick={handleReset}
@@ -1085,6 +1126,20 @@ export default function AppShowcaseDetail({
           Reset All Progress
         </button>
       </div>
+      {/* POAP Modal */}
+      {selectedPoap && (
+        <PoapModal
+          isOpen={!!selectedPoap}
+          onClose={() => setSelectedPoap(null)}
+          poapData={{
+            name: selectedPoap.name,
+            image: selectedPoap.image,
+            description: selectedPoap.description,
+            collected: selectedPoap.collected,
+            stampedDate: selectedPoap.stampedDate,
+          }}
+        />
+      )}
     </div>
   );
 }
