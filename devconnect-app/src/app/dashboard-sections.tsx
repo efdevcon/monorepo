@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
 import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
+import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
 // import { useTranslations } from 'next-intl';
 
 export const LoopingHeader = () => {
@@ -62,7 +63,7 @@ export function WelcomeSection() {
   );
 }
 
-export function TodaysSchedule() {
+export const TodaysSchedule = withParcnetProvider(() => {
   const email = useGlobalStore((state) => state.userData?.email);
   const events = useEvents();
   const [favorites] = useFavorites();
@@ -94,6 +95,7 @@ export function TodaysSchedule() {
             setExports={() => {}}
             className="w-full"
             isDialog
+            noZupass
           />
         </div>
       )}
@@ -138,4 +140,4 @@ export function TodaysSchedule() {
       )}
     </div>
   );
-}
+});

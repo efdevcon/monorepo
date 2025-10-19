@@ -117,6 +117,7 @@ const Layout = (props: CalendarLayoutProps) => {
             favoriteEvents={props.favoriteEvents}
             toggleFavoriteEvent={props.toggleFavoriteEvent}
             noUrlRouting
+            noZupass
           />
         </div>
       </div>

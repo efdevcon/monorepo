@@ -53,6 +53,7 @@ type EventProps = {
   setExports: (exports: EventType[] | null) => void;
   toggleFavoriteEvent?: (eventId: string) => void;
   favoriteEvents?: string[];
+  noZupass?: boolean;
 };
 
 const formatTime = (isoString: string) => {
@@ -237,6 +238,7 @@ function Event({
   setExports,
   toggleFavoriteEvent,
   favoriteEvents,
+  noZupass,
 }: EventProps): React.JSX.Element {
   const [showMobileProgramming, setShowMobileProgramming] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -697,10 +699,33 @@ function Event({
                       (shop) => shop.supabase_id === event.id.toString()
                     ) && (
                       <>
-                        <ZupassConnection
-                          eventId={event.id}
-                          shopUrl={event.ticketsUrl || event.eventLink}
-                        />
+                        {noZupass ? (
+                          <div className="flex flex-col">
+                            <div className="text-sm font-semibold">
+                              This event requires tickets. Follow the link to
+                              register:
+                            </div>
+                            <Link
+                              href={`https://devconnect.org/calendar?event=${event.id}`}
+                              className="self-start"
+                            >
+                              <VoxelButton
+                                color="blue-1"
+                                size="sm"
+                                fill
+                                className="shrink-0  mt-3 self-start cursor-pointer"
+                              >
+                                Get tickets
+                                <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                              </VoxelButton>
+                            </Link>
+                          </div>
+                        ) : (
+                          <ZupassConnection
+                            eventId={event.id}
+                            shopUrl={event.ticketsUrl || event.eventLink}
+                          />
+                        )}
 
                         <Separator className="my-4" />
                       </>

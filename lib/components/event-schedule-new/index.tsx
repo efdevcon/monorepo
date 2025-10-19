@@ -35,6 +35,7 @@ export const customUrlTransforms = [
   { from: "trustlessagentsday", to: "136" },
   { from: "apptownhall", to: "142" },
   { from: "eip-summit", to: "162" },
+  { from: "creator-economy", to: "168" },
   // { from: 'stableconnect', to: '112' },
   // { from: 'pacificonnect', to: '112' },
 ];
@@ -45,6 +46,7 @@ export type ScheduleProps = {
   toggleFavoriteEvent?: (eventId: string) => void;
   events: EventType[];
   noUrlRouting?: boolean;
+  noZupass?: boolean;
 };
 
 // Utility function for tracking placed nodes in the grid
@@ -198,6 +200,7 @@ const NewScheduleIndexInner = ({
   events,
   viewMode,
   noUrlRouting,
+  noZupass,
 }: ScheduleProps & { viewMode: "list" | "grid" }) => {
   // Opt out of url based routing
   const [selectedEventInlineState, setSelectedEventInlineState] = useState<
@@ -358,6 +361,7 @@ const NewScheduleIndexInner = ({
     <>
       {selectedEventForDialog && (
         <Event
+          noZupass={noZupass}
           event={selectedEventForDialog?.event}
           isDialog={true}
           selectedEvent={selectedEvent || null}
@@ -457,6 +461,7 @@ const NewScheduleIndexInner = ({
                     <div className="flex flex-col gap-1 pb-2 pt-1">
                       {dayEvents.map((placement) => (
                         <Event
+                          noZupass={noZupass}
                           key={`${date}-${placement.event.id}`}
                           event={placement.event}
                           selectedEvent={selectedEvent || null}
@@ -549,6 +554,7 @@ const NewScheduleIndexInner = ({
                       className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
                     >
                       <Event
+                        noZupass={noZupass}
                         event={placement.event}
                         isDialog={false}
                         // className={
