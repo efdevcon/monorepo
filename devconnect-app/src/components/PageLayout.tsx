@@ -12,6 +12,7 @@ import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useIsScrolled } from 'lib/hooks/useIsScrolled';
+import { useTranslations } from 'next-intl';
 
 interface TabItem {
   label: string;
@@ -183,7 +184,7 @@ export default function PageLayout({
 }: PageLayoutProps) {
   const pathname = usePathname();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
-
+  const t = useTranslations();
   // Use external state if provided, otherwise use internal state
   const activeIndex =
     externalActiveIndex !== undefined
@@ -328,7 +329,7 @@ export default function PageLayout({
                               active={isActive}
                               color={isActive ? '#232336' : '#4B4B66'}
                             />
-                            {item.label}
+                            {t(item.label)}
                           </Link>
                         );
                       }

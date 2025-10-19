@@ -11,8 +11,10 @@ import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
 import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
+// import { useTranslations } from 'next-intl';
 
 export const LoopingHeader = () => {
+  // const t = useTranslations();
   const items = [
     'Nov 17 - 22, 2025',
     'La Rural, Buenos Aires, Argentina',
@@ -71,8 +73,6 @@ export function TodaysSchedule() {
   );
 
   const hasEventsToShow = filteredEvents.length > 0;
-
-  console.log(hasEventsToShow, 'hasEventsToShow');
 
   return (
     <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)]">

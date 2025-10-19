@@ -9,6 +9,10 @@ import { WalletProvider } from '@/context/WalletContext';
 import PWAProvider from '@/components/PWAProvider';
 import { GlobalStoreProvider } from '@/app/store.provider';
 import { getAtprotoEvents } from '@/utils/atproto-events';
+import { NextIntlClientProvider } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
+import { LanguageSwitcher } from '@/i18n/language-switcher';
+
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
 // import { headers } from 'next/headers';
@@ -64,14 +68,6 @@ export async function generateMetadata(): Promise<Metadata> {
       'apple-touch-fullscreen': 'yes',
       'msapplication-navbutton-color': '#fbf5ee',
     } as Record<string, string>,
-    // viewport: {
-    //   width: 'device-width',
-    //   initialScale: 1,
-    //   minimumScale: 1,
-    //   maximumScale: 1,
-    //   userScalable: false,
-    //   viewportFit: 'cover',
-    // },
     openGraph: {
       images: [
         {
@@ -128,10 +124,8 @@ export default async function RootLayout({
   //   }
   // )();
 
+  const t = await getTranslations();
   const atprotoEvents = await getAtprotoEvents();
-
-  // console.log(atprotoEvents, 'atprotoEvents');
-  // console.log(userData, 'userData');
 
   return (
     <html lang="en">
@@ -197,14 +191,19 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <PWAProvider>
-          <WalletsProviders>
-            <GlobalStoreProvider events={atprotoEvents} /*userData={userData}*/>
-              <WalletProvider>
-                {children}
-                <NewDeployment />
-              </WalletProvider>
-            </GlobalStoreProvider>
-          </WalletsProviders>
+          <NextIntlClientProvider>
+            <WalletsProviders>
+              <GlobalStoreProvider
+                events={atprotoEvents} /*userData={userData}*/
+              >
+                <WalletProvider>
+                  {children}
+                  <NewDeployment />
+                  <LanguageSwitcher />
+                </WalletProvider>
+              </GlobalStoreProvider>
+            </WalletsProviders>
+          </NextIntlClientProvider>
         </PWAProvider>
 
         <Toaster />
