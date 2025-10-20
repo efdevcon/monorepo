@@ -64,6 +64,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
         >
           <ChevronRightIcon
             className="text-xs"
+            // @ts-ignore
             style={{ '--color-icon': '#7D52F4', fontSize: '12px' }}
           />
         </div>
