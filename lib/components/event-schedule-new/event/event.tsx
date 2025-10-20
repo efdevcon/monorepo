@@ -814,7 +814,14 @@ function Event({
 
                 <div className="flex flex-col w-full">
                   <div className="flex justify-between gap-2">
-                    <div className="md:line-clamp-none">{eventName}</div>
+                    <div
+                      className={cn(
+                        "md:line-clamp-none",
+                        compact && "leading-tight"
+                      )}
+                    >
+                      {eventName}
+                    </div>
                     {toggleFavoriteEvent && (
                       <FavoriteEvent
                         event={event}
@@ -843,7 +850,12 @@ function Event({
                 </div>
               )}
 
-              <div className="line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end">
+              <div
+                className={cn(
+                  "line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end",
+                  compact && "text-[11px]"
+                )}
+              >
                 {event.organizer}
               </div>
 

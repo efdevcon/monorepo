@@ -7,12 +7,16 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       "border-[#125181] bg-[#1B6FAE] text-white hover:bg-[rgba(60,138,197,1)] disabled:opacity-70 disabled:pointer-events-none";
     // TODO: add more colors
     if (color === "blue-1") return defaultColor;
+    if (color === "blue-2")
+      return "bg-[rgba(0,115,222)] border-[#125181] text-white hover:bg-[rgba(60,138,197,1)] disabled:opacity-70 disabled:pointer-events-none";
     if (color === "green-1")
       return "border-[#0D5424] bg-[#127331] text-white hover:bg-[#127331] disabled:opacity-70 disabled:pointer-events-none";
     if (color === "red-1")
       return "border-[#991b1b] bg-[#dc2626] text-white hover:bg-[rgba(239,68,68,1)]";
     if (color === "white-1")
       return "border-gray-300 bg-white text-black hover:bg-gray-50";
+    if (color === "white-2")
+      return "bg-[rgba(234,243,250)] text-black border-[rgba(89,89,120,1)]";
     if (color === "purple-1")
       return "border-[rgba(106,43,159)] bg-[rgb(120,52,208)] text-white hover:bg-[rgba(136,85,204,0.8)] disabled:opacity-70 disabled:pointer-events-none";
 
@@ -22,7 +26,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
   // TODO: implement sizes
   const size = (() => {
     if (fat) return "px-4 py-2";
-    if (props.size === "sm") return "px-4 py-1 text-sm border-b-[5px]";
+    if (props.size === "sm") return "px-4 py-1 text-sm border-b-[4px]";
 
     return "px-8 py-2";
   })();

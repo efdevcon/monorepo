@@ -12,6 +12,7 @@ import { useGlobalStore } from './store.provider';
 import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
+import cn from 'classnames';
 // import { useTranslations } from 'next-intl';
 
 export const LoopingHeader = () => {
@@ -46,17 +47,21 @@ export function WelcomeSection() {
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 mb-4 mx-4">
+    <div className="flex flex-col items-start justify-start gap-1 mb-4 mx-4">
       <div className="flex justify-between w-full  gap-1">
         <div className="text-2xl font-semibold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
-        <div className="font-semibold text-xs text-neutral-600">
+        {/* <div className="font-semibold text-xs text-neutral-600">
           {formattedDate} Buenos Aires (GMT-3)
-        </div>
+        </div> */}
       </div>
-      <div className="text-lg leading-tight font-medium mt-2">{dummyEmail}</div>
-      <div className="font-medium leading-tight">
+      {email && (
+        <div className="text-lg leading-tight font-medium mt-3">
+          {email || 'Anon'}
+        </div>
+      )}
+      <div className="font-medium text-sm leading-none">
         Welcome to the Ethereum World&apos;s Fair!{' '}
       </div>
     </div>
@@ -76,32 +81,35 @@ export const TodaysSchedule = withParcnetProvider(() => {
   const hasEventsToShow = filteredEvents.length > 0;
 
   return (
-    <div className="flex flex-col items-start justify-start gap-2 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)]">
-      <div className="flex w-full items-center justify-between gap-2">
+    <div
+      className={cn(
+        `flex flex-col items-start justify-start gap-1 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto`
+        // hasEventsToShow && 'max-h-[400px]' // add this later with "show more option when more than 3 events here"
+      )}
+    >
+      <div className="flex w-full items-center justify-between gap-2 shrink-0">
         <p className="font-semibold">Today&apos;s Schedule</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
       </div>
-      <p className="text-sm mb-2">
+      <p className="text-xs mb-2 shrink-0">
         These are your recommended events for today. Build your own schedule by
         adding events to your favorites.
       </p>
 
       {selectedEvent && (
-        <div className="flex flex-col items-center justify-center gap-2 w-full">
-          <Event
-            event={selectedEvent}
-            selectedEvent={selectedEvent}
-            setSelectedEvent={setSelectedEvent}
-            setExports={() => {}}
-            className="w-full"
-            isDialog
-            noZupass
-          />
-        </div>
+        <Event
+          event={selectedEvent}
+          selectedEvent={selectedEvent}
+          setSelectedEvent={setSelectedEvent}
+          setExports={() => {}}
+          className="w-full"
+          isDialog
+          noZupass
+        />
       )}
 
       {hasEventsToShow && (
-        <div className="flex flex-col items-stretch gap-2 w-full">
+        <div className="flex flex-col items-stretch gap-1 w-full shrink-0">
           {filteredEvents.map((event) => (
             <Event
               compact
@@ -116,7 +124,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
         </div>
       )}
       {!hasEventsToShow && (
-        <div className="flex flex-col items-center justify-center gap-2 w-full ">
+        <div className="flex flex-col items-center justify-center gap-2 w-full">
           <Image
             src={NoEventsImage}
             alt="No events"
@@ -125,16 +133,22 @@ export const TodaysSchedule = withParcnetProvider(() => {
         </div>
       )}
 
-      <Link href="/schedule" className="w-full md:w-auto self-start mt-2">
-        <Button size="sm" className="w-full" color="green-1">
-          View full Schedule
+      <Link
+        href="/schedule"
+        className="w-full md:w-auto self-start mt-4 shrink-0"
+      >
+        <Button size="sm" className="w-full font-medium" color="blue-2">
+          View Full Schedule
         </Button>
       </Link>
 
       {email && (
-        <Link href="/schedule" className="w-full md:w-auto self-start mt-1">
-          <Button size="sm" className="w-full">
-            View Tickets
+        <Link
+          href="/schedule"
+          className="w-full md:w-auto self-start mt-2 mb-2 shrink-0"
+        >
+          <Button size="sm" className="w-full font-medium" color="white-2">
+            View my Tickets
           </Button>
         </Link>
       )}

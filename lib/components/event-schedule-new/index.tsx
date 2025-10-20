@@ -432,7 +432,9 @@ const NewScheduleIndexInner = ({
                     )}
                     onClick={() => toggleDayCollapse(date)}
                   >
-                    <span>{moment(date).format("dddd, MMMM D")}</span>
+                    <span className="text-lg font-medium">
+                      {moment(date).format("dddd, MMMM D")}
+                    </span>
                     <div className="flex items-center gap-2">
                       <span className="text-sm">
                         {dayEvents.length} event
