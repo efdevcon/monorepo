@@ -308,7 +308,7 @@ export default function WalletTab() {
 
   const handleSendClick = () => {
     if (isPara) {
-      alert('TODO: Send tokens with Para');
+      router.push('/wallet/send');
     } else {
       open({ view: 'WalletSend' });
     }
