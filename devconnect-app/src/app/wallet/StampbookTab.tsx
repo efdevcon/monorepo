@@ -171,9 +171,15 @@ export default function StampbookTab() {
   }, [questStates]); // Recalculate when quest states change
 
   return (
-    <div className="bg-[#f6fafe] min-h-screen w-full">
+    <div
+      className="min-h-screen w-full"
+      style={{
+        background:
+          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+      }}
+    >
       {/* Content */}
-      <div className="px-5 pt-6 pb-6 space-y-6">
+      <div className="px-5 pt-6 space-y-6">
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-[#20202b] text-[22px] font-bold leading-[1.2] tracking-[-0.1px]">
@@ -186,25 +192,31 @@ export default function StampbookTab() {
 
         {/* Categories */}
         <div className="space-y-3">
-          {categories.map((category) => {
+          {categories.map((category, index) => {
             const isExpanded = expandedCategory === category.id;
+            const isLast = index === categories.length - 1;
 
             return (
-              <div key={category.id} className="space-y-0">
+              <div
+                key={category.id}
+                className={isLast ? '' : 'border-b border-[#e0e0eb]'}
+              >
                 {/* Category Header */}
                 <button
                   onClick={() => toggleCategory(category.id)}
-                  className="w-full bg-white border border-[#f0f0f4] rounded-[2px] px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors cursor-pointer"
+                  className={`w-full flex items-center gap-2 pb-3 ${
+                    isExpanded ? 'border-b border-[#e0e0eb]' : ''
+                  } hover:opacity-80 transition-opacity cursor-pointer`}
                 >
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#20202b] text-base font-bold tracking-[-0.1px]">
+                  <div className="flex-1 flex items-center gap-2 text-[18px] leading-[1.3]">
+                    <span className="flex-1 text-left text-[#353548] font-bold">
                       {category.name}
                     </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[#4b4b66] text-base font-normal tracking-[-0.1px]">
+                    <span className="text-[#4b4b66] font-normal whitespace-nowrap text-right">
                       {category.collected}/{category.total}
                     </span>
+                  </div>
+                  <div className="flex items-center justify-center">
                     <Icon
                       path={isExpanded ? mdiChevronUp : mdiChevronDown}
                       size={0.8}
@@ -215,7 +227,7 @@ export default function StampbookTab() {
 
                 {/* Category Content */}
                 {isExpanded && category.stamps.length > 0 && (
-                  <div className="bg-white border-x border-b border-[#f0f0f4] rounded-b-[2px] p-4">
+                  <div className="py-4">
                     <div className="grid grid-cols-3 gap-4">
                       {category.stamps.map((stamp) => {
                         const isCompleted = isQuestCompleted(stamp.id);
@@ -223,9 +235,9 @@ export default function StampbookTab() {
                           <button
                             key={stamp.id}
                             onClick={() => handlePoapClick(stamp)}
-                            className="flex flex-col items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+                            className="flex flex-col items-center justify-center gap-3 cursor-pointer hover:opacity-80 transition-opacity"
                           >
-                            <div className="relative w-20 h-20 rounded-full overflow-hidden bg-gray-100 flex items-center justify-center">
+                            <div className="relative w-20 h-20 overflow-hidden flex items-center justify-center">
                               <img
                                 src={stamp.image}
                                 alt={stamp.name}
@@ -239,7 +251,7 @@ export default function StampbookTab() {
                               />
                             </div>
                             <p
-                              className={`text-[#353548] text-xs text-center tracking-[-0.1px] leading-[1.3] max-w-[106px] line-clamp-2 ${
+                              className={`text-[#353548] text-[14px] leading-none text-center w-[106px] ${
                                 isCompleted ? 'font-bold' : 'font-normal'
                               }`}
                             >
