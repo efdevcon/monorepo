@@ -54,6 +54,44 @@ interface ApiResponse {
   timestamp: string;
 }
 
+/**
+ * Check if a URL is a Notion-hosted temporary image URL
+ */
+function isNotionTemporaryUrl(url: string): boolean {
+  return url.includes('X-Amz-Security-Token');
+}
+
+/**
+ * Check for Notion temporary URLs in an object and log warnings
+ */
+function checkForNotionUrls(data: any[], dataType: string): void {
+  let foundNotionUrls = 0;
+
+  data.forEach((item: any, index: number) => {
+    const itemId = item.id || item.name || index;
+
+    // Check logo field
+    if (item.logo && typeof item.logo === 'string' && isNotionTemporaryUrl(item.logo)) {
+      console.warn(`⚠️  WARNING: Notion temporary URL detected in ${dataType}[${itemId}].logo`);
+      console.warn(`   This URL will expire and should be replaced with a permanent hosted image.`);
+      foundNotionUrls++;
+    }
+
+    // Check poapImageLink field
+    if (item.poapImageLink && typeof item.poapImageLink === 'string' && isNotionTemporaryUrl(item.poapImageLink)) {
+      console.warn(`⚠️  WARNING: Notion temporary URL detected in ${dataType}[${itemId}].poapImageLink`);
+      console.warn(`   This URL will expire and should be replaced with a permanent hosted image.`);
+      foundNotionUrls++;
+    }
+  });
+
+  if (foundNotionUrls > 0) {
+    console.warn(`⚠️  TOTAL: Found ${foundNotionUrls} Notion temporary URL(s) in ${dataType}`);
+    console.warn(`   These URLs contain X-Amz-Security-Token and will expire.`);
+    console.warn('');
+  }
+}
+
 async function fetchQuests(): Promise<ApiResponse> {
   console.log(`Fetching quest data from: ${API_ENDPOINT}`);
   
@@ -78,6 +116,10 @@ async function saveQuests(data: ApiResponse): Promise<void> {
   }
 
   const { quests } = data;
+
+  // Check for Notion temporary URLs before saving
+  console.log('\n🔍 Checking for Notion temporary URLs...\n');
+  checkForNotionUrls(quests, 'quests');
 
   // Ensure data directory exists
   await fs.mkdir(DATA_DIR, { recursive: true });
