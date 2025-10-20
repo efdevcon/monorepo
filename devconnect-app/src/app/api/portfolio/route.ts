@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
           const amount = Math.abs(tokenInfo.amount);
 
           // Check if this is a sponsored transaction (from the sponsor address)
-          if (node.from?.address === '0x4319981de8f8027cb9aedad8a770d658e9eb28ca') {
+          if (node.to?.address === '0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789') {
             // This is a sponsored send transaction
             node.interpretation = {
               processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
