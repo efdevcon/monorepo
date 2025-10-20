@@ -308,8 +308,8 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415808faaebea619bb6a1b7": {
     "name": "Mimic",
     "layerName": "mimic",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T12-42-30-228Z-Mimic%20Main%20Logo%20-%20Dark.svg",
+    "description": "Mimic is the abstraction and automation engine for onchain execution. A protocol that lets developers create programmable onchain tasks using TypeScript, with any logic and conditions, and automate their execution securely across chains.",
     "districtId": "3",
     "locationId": "1"
   },
@@ -468,8 +468,8 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580bdb769f95a7058adfa": {
     "name": "Rarimo (Unforgettable)",
     "layerName": "rarimo-unforgettable",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T09-04-35-474Z-Screen.png",
+    "description": "Unforgettable: a new wallet recovery primitive for crypto. No need to store seed phrases anymore. Use passwords, biometrics, or objects to back up your wallets safely.",
     "districtId": "7",
     "locationId": "3"
   },
