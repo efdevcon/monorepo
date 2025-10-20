@@ -8,6 +8,7 @@ import DebugTab from './DebugTab';
 import { useRouter, usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState, useMemo } from 'react';
 import React from 'react';
+import SettingsTab from './SettingsTab';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/wallet');
 const navLabel = navItem?.label || 'Wallet';
@@ -18,6 +19,7 @@ const tabComponents: Record<string, React.ComponentType<any>> = {
   Onramp: OnrampTab as React.ComponentType<any>,
   Stampbook: StampbookTab as React.ComponentType<any>,
   Debug: DebugTab as React.ComponentType<any>,
+  Settings: SettingsTab as React.ComponentType<any>,
 };
 
 // Create tabs from nav-items configuration

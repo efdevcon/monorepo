@@ -9,7 +9,7 @@ import QRCode from 'qrcode';
 
 /**
  * SWR-based hooks for server data
- * 
+ *
  * Benefits:
  * - Automatic caching across components
  * - Request deduplication (90% fewer API calls)
@@ -30,18 +30,20 @@ export interface UserData {
  * Fetch and cache user data from Supabase
  * Automatically revalidates on window focus
  */
-export function useUserData() {
-  const { data, error, isLoading, mutate } = useSWR<{ success: boolean; data: UserData }>(
-    '/api/auth/user-data',
-    fetchAuth,
-    {
-      revalidateOnFocus: true,  // Refresh when tab regains focus
-      dedupingInterval: 5000,   // Dedupe requests within 5 seconds
-      onError: (err) => {
-        console.error('Failed to fetch user data:', err);
-      },
-    }
-  );
+export function useUserData(fallbackData?: UserData) {
+  const { data, error, isLoading, mutate } = useSWR<{
+    success: boolean;
+    data: UserData;
+  }>('/api/auth/user-data', fetchAuth, {
+    fallbackData: fallbackData
+      ? { success: true, data: fallbackData }
+      : undefined,
+    revalidateOnFocus: true, // Refresh when tab regains focus
+    dedupingInterval: 5000, // Dedupe requests within 5 seconds
+    onError: (err) => {
+      console.error('Failed to fetch user data:', err);
+    },
+  });
 
   return {
     userData: data?.data || null,
@@ -66,17 +68,24 @@ interface TicketsResponse {
 /**
  * Fetch and cache tickets with auto-generated QR codes
  * Only fetches when user email is available
+ * Accepts fallback data from localStorage to avoid regenerating QR codes
  */
-export function useTickets() {
-  const { email } = useUserData();  // Wait for email before fetching tickets
+export function useTickets(
+  fallbackData?: Order[],
+  fallbackQrCodes?: { [key: string]: string }
+) {
+  const { email } = useUserData(); // Wait for email before fetching tickets
 
   const { data, error, isLoading, mutate } = useSWR<TicketsResponse>(
     // Only fetch if email exists (dependency on user being logged in)
     email ? '/api/auth/tickets' : null,
     fetchAuth,
     {
-      revalidateOnFocus: false,  // Don't refetch tickets on focus (expensive QR generation)
-      dedupingInterval: 10000,   // Dedupe within 10 seconds
+      fallbackData: fallbackData
+        ? { success: true, data: { tickets: fallbackData } }
+        : undefined,
+      revalidateOnFocus: false, // Don't refetch tickets on focus (expensive QR generation)
+      dedupingInterval: 10000, // Dedupe within 10 seconds
       onError: (err) => {
         console.error('Error fetching tickets:', err);
         toast.error('Failed to load tickets');
@@ -84,8 +93,10 @@ export function useTickets() {
     }
   );
 
-  // Generate QR codes from ticket data
-  const [qrCodes, setQrCodes] = useState<{ [key: string]: string }>({});
+  // Generate QR codes from ticket data (use persisted codes as initial state)
+  const [qrCodes, setQrCodes] = useState<{ [key: string]: string }>(
+    fallbackQrCodes || {}
+  );
 
   useEffect(() => {
     const generateQRCodes = async () => {
@@ -95,7 +106,7 @@ export function useTickets() {
       }
 
       const newQrCodes: { [key: string]: string } = {};
-      
+
       for (const order of data.data.tickets) {
         for (const ticket of order.tickets) {
           if (ticket.secret) {
@@ -126,7 +137,7 @@ export function useTickets() {
           }
         }
       }
-      
+
       setQrCodes(newQrCodes);
     };
 
@@ -199,4 +210,3 @@ export function useFavorites() {
     updateFavorite,
   };
 }
-

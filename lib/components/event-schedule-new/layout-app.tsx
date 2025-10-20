@@ -28,13 +28,8 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events, false, props.favoriteEvents);
 
   return (
-    <div
-      className={cn(
-        "flex flex-col gap-4 w-full bg-white",
-        layoutCss["layout-app"]
-      )}
-    >
-      <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 touch-only:mx-4">
+    <div className={cn("flex flex-col gap-4 w-full", layoutCss["layout-app"])}>
+      {/* <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 touch-only:mx-4">
         <div
           className={cn(
             "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center w-full",
@@ -55,7 +50,7 @@ const Layout = (props: CalendarLayoutProps) => {
           }
         >
           <div className="flex flex-col text-center md:text-left md:flex-row items-center gap-2 text-white">
-            {/* <TicketPurple className="h-[26px] w-[26px] mr-2 shrink-0 hidden md:inline-block" /> */}
+            {/* <TicketPurple className="h-[26px] w-[26px] mr-2 shrink-0 hidden md:inline-block" /> 
             <div className="flex flex-col">
               <div className="font-semibold leading-tight">
                 These events are hosted inside La Rural and require a Devconnect
@@ -68,7 +63,7 @@ const Layout = (props: CalendarLayoutProps) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <ActionBar
         isCommunityCalendar={props.isCommunityCalendar}

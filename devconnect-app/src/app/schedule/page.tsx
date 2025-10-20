@@ -12,7 +12,12 @@ export default function ProgrammePageContent() {
 
   return (
     <PageLayout title="Ethereum World's Fair — Schedule" tabs={homeTabs()}>
-      <div className={cn('text-left touch-only:px-0 p-4', css['schedule-tab'])}>
+      <div
+        className={cn(
+          'text-left touch-only:px-0 p-4 w-full',
+          css['schedule-tab']
+        )}
+      >
         <ScheduleLayout
           isCommunityCalendar={false}
           events={events}

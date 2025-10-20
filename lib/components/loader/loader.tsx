@@ -8,7 +8,7 @@ const Loader = (props: any) => {
 
   if (props.children) {
     return (
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center">
         <div>{spinner}</div>
         <div>{props.children}</div>
       </div>

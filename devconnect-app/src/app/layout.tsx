@@ -11,7 +11,6 @@ import { GlobalStoreProvider } from '@/app/store.provider';
 import { getAtprotoEvents } from '@/utils/atproto-events';
 import { NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
-import { LanguageSwitcher } from '@/i18n/language-switcher';
 
 // import { unstable_cache } from 'next/cache';
 // import { verifyAuthWithHeaders } from '@/app/api/auth/middleware';
@@ -199,7 +198,6 @@ export default async function RootLayout({
                 <WalletProvider>
                   {children}
                   <NewDeployment />
-                  <LanguageSwitcher />
                 </WalletProvider>
               </GlobalStoreProvider>
             </WalletsProviders>

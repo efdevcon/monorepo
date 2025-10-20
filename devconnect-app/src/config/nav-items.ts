@@ -69,6 +69,10 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet/stampbook',
       },
       {
+        label: 'Settings',
+        href: '/wallet/settings',
+      },
+      {
         label: 'Debug',
         href: '/wallet/debug',
       },

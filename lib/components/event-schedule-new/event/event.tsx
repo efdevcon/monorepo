@@ -808,7 +808,10 @@ function Event({
                   <Image
                     src={ethDayLogo}
                     alt="ETH Day"
-                    className="w-[26px] object-contain md:hidden"
+                    className={cn(
+                      "w-[26px] object-contain md:hidden",
+                      compact && "!block w-[30px]"
+                    )}
                   />
                 )}
 
@@ -859,40 +862,47 @@ function Event({
                 {event.organizer}
               </div>
 
-              <Separator className="my-1.5 hidden md:block" />
+              {!compact && (
+                <>
+                  <Separator className="my-1.5 hidden md:block" />
 
-              <div
-                className={cn("hidden md:flex gap-4 justify-end", {
-                  "justify-between": !isCoworking || isMultiDay,
-                })}
-              >
-                <div
-                  className={cn(
-                    "flex gap-2 grow items-end text-[9px] flex-wrap",
-                    { "justify-between": isMultiDay }
-                  )}
-                >
-                  {(showTicketTag || event.amountPeople) && (
-                    <div className="flex gap-1 items-center">
-                      {showTicketTag && <TicketTag event={event} />}
-                      {event.amountPeople && (
-                        <div
-                          className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
-                        >
-                          <Users className="w-3 h-3" />
-                          {event.amountPeople}
+                  <div
+                    className={cn("hidden md:flex gap-4 justify-end", {
+                      "justify-between": !isCoworking || isMultiDay,
+                    })}
+                  >
+                    <div
+                      className={cn(
+                        "flex gap-2 grow items-end text-[9px] flex-wrap",
+                        { "justify-between": isMultiDay }
+                      )}
+                    >
+                      {(showTicketTag || event.amountPeople) && (
+                        <div className="flex gap-1 items-center">
+                          {showTicketTag && <TicketTag event={event} />}
+                          {event.amountPeople && (
+                            <div
+                              className={`rounded text-[11px] px-1.5 py-0.5 flex gap-1 font-medium items-center`}
+                            >
+                              <Users className="w-3 h-3" />
+                              {event.amountPeople}
+                            </div>
+                          )}
                         </div>
                       )}
+
+                      <div className="flex gap-2">
+                        <TypeTag category={event.eventType} size="sm" />
+
+                        <DifficultyTag
+                          difficulty={event.difficulty}
+                          size="sm"
+                        />
+                      </div>
                     </div>
-                  )}
-
-                  <div className="flex gap-2">
-                    <TypeTag category={event.eventType} size="sm" />
-
-                    <DifficultyTag difficulty={event.difficulty} size="sm" />
                   </div>
-                </div>
-              </div>
+                </>
+              )}
             </div>
           </div>
         </div>

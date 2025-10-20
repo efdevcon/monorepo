@@ -34,18 +34,19 @@ export function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex justify-center items-center mb-8 gap-4">
+    <div className="flex justify-center items-center gap-2">
       {validLocales.map((loc) => (
         <div
           key={loc}
           className={cn(
-            'cursor-pointer basic-button white-button small-button',
-            locale === loc && '!blue-button'
+            'cursor-pointer p-0.5 px-1.5 text-[11px] border border-solid border-gray-700 bg-white opacity-60 hover:opacity-100 transition-opacity',
+            locale === loc && 'opacity-100 font-semibold'
           )}
           onClick={() => handleChange(loc)}
         >
           {loc === 'en' && 'English'}
           {loc === 'es' && 'Español'}
+          {loc === 'pt' && 'Português'}
         </div>
       ))}
     </div>

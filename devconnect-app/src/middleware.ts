@@ -16,8 +16,6 @@ const languageMiddleware = async (request: NextRequest) => {
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-locale', validLocale);
 
-  console.log(locale, 'LOCALE NEXTJS HELLO OMG');
-
   return NextResponse.next({
     request: {
       headers: requestHeaders,

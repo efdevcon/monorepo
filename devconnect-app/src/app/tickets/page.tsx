@@ -24,6 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from 'lib/components/ui/dialog';
+import Loader from '@/components/Loader';
 
 // Additional types not in store
 interface Addon {
@@ -273,16 +274,22 @@ const QRCodeModal = ({
   qrCode: string;
   isOpen: boolean;
   onClose: () => void;
-  ticket: Ticket | Addon | { attendeeName: string; itemName: string; secret: string };
+  ticket:
+    | Ticket
+    | Addon
+    | { attendeeName: string; itemName: string; secret: string };
 }) => {
   return (
     <DialogRoot open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-md p-6">
         <DialogHeader>
           <DialogTitle className="text-center">
-            {'attendeeName' in ticket && ticket.attendeeName 
-              ? ticket.attendeeName 
-              : 'itemName' in ticket ? ticket.itemName : ''} - QR Code
+            {'attendeeName' in ticket && ticket.attendeeName
+              ? ticket.attendeeName
+              : 'itemName' in ticket
+                ? ticket.itemName
+                : ''}{' '}
+            - QR Code
           </DialogTitle>
         </DialogHeader>
         <div className="flex flex-col items-center space-y-4">
@@ -396,6 +403,7 @@ const TicketTab = RequiresAuthHOC(() => {
   // Use the tickets hook from store
   const { tickets: orders, loading, qrCodes } = useTickets();
   const hasTickets = orders && orders.length > 0;
+  const isLoading = loading && !hasTickets;
 
   return (
     <div
@@ -405,18 +413,15 @@ const TicketTab = RequiresAuthHOC(() => {
       )}
     >
       <div className="w-full">
-        <div className="w-full space-y-2">
-          {loading && !hasTickets && (
-            <div className="w-full bg-gray-50 border border-gray-200 text-gray-600 px-4 py-8 rounded-lg">
-              <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-gray-600 mb-4"></div>
-                <div>Loading tickets...</div>
-              </div>
+        <div className="w-full">
+          {isLoading && (
+            <div className="my-4">
+              <Loader className="">Refreshing Tickets...</Loader>
             </div>
           )}
 
-          {!loading && orders.length === 0 && (
-            <div className="bg-gray-50 border border-gray-200 font-medium text-gray-600 px-4 py-3 mb-4 rounded">
+          {!isLoading && !hasTickets && (
+            <div className="text-center flex flex-col items-center gap-2">
               No tickets found for your connected email addresses.
             </div>
           )}

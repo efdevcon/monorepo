@@ -2,12 +2,12 @@
 
 /**
  * Global Store (Zustand)
- * 
+ *
  * ARCHITECTURE UPDATE:
  * - Server data (userData, tickets) is now managed by SWR (see src/hooks/useServerData.ts)
  * - This store is kept mainly for backward compatibility and static data (events)
  * - New code should use SWR hooks directly for better caching and performance
- * 
+ *
  * Migration Status:
  * ✅ userData → useSWR (useUserData hook)
  * ✅ tickets → useSWR (useTickets hook)
@@ -147,6 +147,7 @@ export const createGlobalStore = (
         partialize: (state) => ({
           userData: state.userData,
           tickets: state.tickets,
+          ticketsLoading: state.ticketsLoading,
           qrCodes: state.qrCodes,
         }),
       }) as StateCreator<AppState>

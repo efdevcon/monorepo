@@ -1,1 +1,1 @@
-export const validLocales = ['en', 'es'];
+export const validLocales = ['en', 'es', 'pt'];

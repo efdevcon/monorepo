@@ -5,7 +5,7 @@ import { useGlobalStore } from './store.provider';
 import {
   useUserData as useUserDataSWR,
   useTickets as useTicketsSWR,
-  useFavorites as useFavoritesSWR
+  useFavorites as useFavoritesSWR,
 } from '@/hooks/useServerData';
 import { AppState } from './store';
 // import { useWalletManager } from '@/hooks/useWalletManager';
@@ -59,7 +59,7 @@ export const useEnsureUserData = (email: string | undefined) => {
   // We just need to use the hook - it will fetch when email is available
   const { userData, refresh } = useUserDataSWR();
 
-// Optionally sync to Zustand for backward compatibility
+  // Optionally sync to Zustand for backward compatibility
   const setUserData = useGlobalStore((state) => state.setUserData);
 
   useEffect(() => {
@@ -74,18 +74,30 @@ export const useEnsureUserData = (email: string | undefined) => {
 /**
  * Hook to fetch and manage tickets (now using SWR)
  * SWR automatically handles caching, deduplication, and revalidation
+ * Uses Zustand's persisted localStorage data as fallback for instant loading
  */
 export const useTickets = () => {
-  const { tickets, qrCodes, loading, refresh } = useTicketsSWR();
+  // Get persisted data from Zustand to use as fallback
+  const persistedTickets = useGlobalStore((state) => state.tickets);
+  const persistedQrCodes = useGlobalStore((state) => state.qrCodes);
 
-  // Optionally sync to Zustand for backward compatibility
+  // Initialize SWR with persisted data so tickets and QR codes appear instantly on page load
+  const { tickets, qrCodes, loading, refresh } = useTicketsSWR(
+    persistedTickets || undefined,
+    persistedQrCodes
+  );
+
+  // Sync fresh data back to Zustand for persistence
   const setTickets = useGlobalStore((state) => state.setTickets);
   const setQrCodes = useGlobalStore((state) => state.setQrCodes);
   const setTicketsLoading = useGlobalStore((state) => state.setTicketsLoading);
 
   useEffect(() => {
-    setTickets(tickets);
-    setQrCodes(qrCodes);
+    // Only update Zustand if we have actual data (not just fallback)
+    if (tickets && tickets.length > 0) {
+      setTickets(tickets);
+      setQrCodes(qrCodes);
+    }
     setTicketsLoading(loading);
   }, [tickets, qrCodes, loading, setTickets, setQrCodes, setTicketsLoading]);
 

@@ -25,7 +25,7 @@ export const LoopingHeader = () => {
   ];
 
   return (
-    <div className="bg-[rgba(58,54,94,1)] text-white md:border-b md:bg-white md:text-black w-screen mb-4 py-2">
+    <div className="bg-[rgba(58,54,94,1)] text-white md:border-b w-screen mb-4 py-2">
       <InfiniteScroll nDuplications={4} speed="100s">
         <div className="flex flex-row">
           {items.map((item, j) => (
@@ -88,12 +88,12 @@ export const TodaysSchedule = withParcnetProvider(() => {
       )}
     >
       <div className="flex w-full items-center justify-between gap-2 shrink-0">
-        <p className="font-semibold">Today&apos;s Schedule</p>
+        <p className="font-semibold">Your Events</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
       </div>
       <p className="text-xs mb-2 shrink-0">
-        These are your recommended events for today. Build your own schedule by
-        adding events to your favorites.
+        These are your recommended events. Build your own schedule by adding
+        events to your favorites.
       </p>
 
       {selectedEvent && (
@@ -133,25 +133,28 @@ export const TodaysSchedule = withParcnetProvider(() => {
         </div>
       )}
 
-      <Link
-        href="/schedule"
-        className="w-full md:w-auto self-start mt-4 shrink-0"
-      >
-        <Button size="sm" className="w-full font-medium" color="blue-2">
-          View Full Schedule
-        </Button>
-      </Link>
-
-      {email && (
-        <Link
-          href="/schedule"
-          className="w-full md:w-auto self-start mt-2 mb-2 shrink-0"
-        >
-          <Button size="sm" className="w-full font-medium" color="white-2">
-            View my Tickets
+      <div className="flex flex-col md:flex-row items-center justify-center w-full shrink-0 mt-4 gap-4">
+        <Link href="/schedule" className="w-full md:w-auto self-start shrink-0">
+          <Button size="sm" className="w-full font-medium px-8" color="blue-2">
+            View Full Schedule
           </Button>
         </Link>
-      )}
+
+        {email && (
+          <Link
+            href="/schedule"
+            className="w-full md:w-auto self-start mb-2 shrink-0"
+          >
+            <Button
+              size="sm"
+              className="w-full font-medium px-8"
+              color="white-2"
+            >
+              View my Tickets
+            </Button>
+          </Link>
+        )}
+      </div>
     </div>
   );
 });
