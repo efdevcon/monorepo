@@ -77,6 +77,11 @@ export const NAV_ITEMS: NavItem[] = [
         href: '/wallet/onramp',
         hide: true,
       },
+      {
+        label: 'Send',
+        href: '/wallet/send',
+        hide: true,
+      },
     ],
   },
 ];
