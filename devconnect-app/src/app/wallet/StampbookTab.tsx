@@ -8,6 +8,7 @@ import { questsData } from '@/data/quests';
 import Icon from '@mdi/react';
 import { mdiChevronDown, mdiChevronUp } from '@mdi/js';
 import PoapModal from '@/components/PoapModal';
+import { cn } from '@/utils/shadcn';
 
 // Fallback image for empty POAP links
 const FALLBACK_IMAGE =
@@ -172,14 +173,17 @@ export default function StampbookTab() {
 
   return (
     <div
-      className="min-h-screen w-full"
+      className={cn(
+        'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto grow',
+        'grow pb-8'
+      )}
       style={{
         background:
           'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
       }}
     >
       {/* Content */}
-      <div className="px-5 pt-6 space-y-6">
+      <div className="space-y-6">
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-[#20202b] text-[22px] font-bold leading-[1.2] tracking-[-0.1px]">
