@@ -68,14 +68,11 @@ export default function WalletTab() {
     isDisconnecting,
     para,
     eoa,
-    chainId,
     identity,
-    identityLoading,
     portfolioCache, // All cached portfolios by address (e.g., portfolioCache[address])
     portfolioRefreshTrigger, // Trigger to force useMemo recomputation
     portfolioLoading,
     portfolioError,
-    isConnected,
     refreshPortfolio,
     email,
     paraEmail,
@@ -548,7 +545,13 @@ export default function WalletTab() {
   // This prevents showing "Connect Your Wallet" during disconnect
   if (shouldShowDisconnecting) {
     return (
-      <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
+      <div
+        className="min-h-screen w-full flex items-center justify-center"
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+        }}
+      >
         <div className="text-center space-y-6">
           <div className="flex items-center justify-center gap-3">
             <div className="animate-spin w-6 h-6 border-2 border-blue-600 border-t-transparent rounded-full"></div>
@@ -564,7 +567,13 @@ export default function WalletTab() {
   // Show login screen when not connected
   if (!para.isConnected && !eoa.isConnected) {
     return (
-      <div className="bg-[#f6fafe] min-h-screen w-full flex items-center justify-center">
+      <div
+        className="min-h-screen w-full flex items-center justify-center"
+        style={{
+          background:
+            'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+        }}
+      >
         <div className="text-center space-y-6">
           <div className="space-y-2">
             <h1 className="text-[#242436] text-2xl font-bold tracking-[-0.1px]">
@@ -587,7 +596,13 @@ export default function WalletTab() {
   }
 
   return (
-    <div className="bg-[#f6fafe] min-h-screen w-full">
+    <div
+      className="min-h-screen w-full"
+      style={{
+        background:
+          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+      }}
+    >
       {/* Main Content */}
       <div className="px-6 pt-6 space-y-6">
         {/* Profile Section */}
@@ -706,7 +721,7 @@ export default function WalletTab() {
             </div>
 
             {/* Email Display */}
-            {email && (
+            {/* {email && (
               <div className="flex items-center justify-center gap-2 text-sm">
                 <Icon path={mdiEmail} size={0.7} className="text-[#353548]" />
                 <span className="text-[#353548] text-sm font-normal">
@@ -718,10 +733,10 @@ export default function WalletTab() {
                   </span>
                 )}
               </div>
-            )}
+            )} */}
 
-            <div className="flex items-center justify-center gap-3">
-              <span className="text-[#242436] text-[36px] font-bold tracking-[-0.1px]">
+            <div className="relative flex items-center justify-center gap-3">
+              <span className="text-[#20202b] text-[36px] font-bold tracking-[-0.1px] leading-[1.2]">
                 {portfolioLoading ? (
                   <div className="animate-pulse bg-gray-200 h-9 w-32 rounded"></div>
                 ) : portfolio ? (
@@ -733,13 +748,13 @@ export default function WalletTab() {
               <button
                 onClick={handleRefresh}
                 disabled={isRefreshing || portfolioLoading || !address}
-                className="p-1 rounded-full hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 title="Refresh portfolio data"
               >
                 <Icon
                   path={mdiCached}
                   size={1}
-                  className={`text-[#20202b] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                  className={`text-[#0073de] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
                 />
               </button>
             </div>
