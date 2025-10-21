@@ -227,7 +227,7 @@ export default function PageLayout({
                       <BackButton />
                     </div> */}
                     <h1
-                      className="flex-1 text-lg font-bold text-center tracking-[-0.1px]"
+                      className="flex-1 text-lg font-semibold text-center tracking-[-0.1px]"
                       style={{ textShadow: 'rgba(0,0,0,0.15) 0px 1px 3px' }}
                     >
                       {title}

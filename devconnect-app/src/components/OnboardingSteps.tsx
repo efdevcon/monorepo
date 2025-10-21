@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRightIcon } from 'lucide-react';
 import { DotsSelector } from 'lib/components/dots-selector';
 // import { Button } from './ui/button';
-import FirstSlideImage from '@/images/voxel-1.jpg';
-import SecondSlideImage from '@/images/voxel-2.jpg';
-import ThirdSlideImage from '@/images/voxel-car.jpg';
+import CommunityEventsImage from '@/images/onboarding-steps/community-events-wide.jpg';
+import WorldsFairImage from '@/images/onboarding-steps/worlds-fair-image-wide.jpg';
+import EthDayImage from '@/images/onboarding-steps/eth-day-image-wide.jpg';
 import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
 import cn from 'classnames';
@@ -23,18 +23,26 @@ interface OnboardingStepsProps {
   rightContent?: React.ReactNode[];
 }
 
-const Slide = ({ title, description }: { title: string; description: any }) => {
+const Slide = ({
+  title,
+  description,
+  image,
+}: {
+  title: string;
+  description: any;
+  image: any;
+}) => {
   return (
     <div className="flex flex-col">
       <div className="aspect-[480/194] relative w-full">
         <Image
-          src={FirstSlideImage}
+          src={image}
           alt="voxel art"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="mt-4">
-        <div className="text-lg font-semibold leading-tight mb-2">{title}</div>
+      <div className="mt-5 leading-tight">
+        <div className="text-xl font-semibold leading-tight mb-2 ">{title}</div>
         {description}
       </div>
     </div>
@@ -46,10 +54,10 @@ const Block = ({
   description,
 }: {
   icon: React.ReactNode;
-  description: string;
+  description: React.ReactNode;
 }) => {
   return (
-    <div className="flex p-2 sm:p-4 w-full gap-4 bg-white items-center">
+    <div className="flex p-2 px-3 sm:p-4 w-full gap-4 bg-white items-center">
       <div className="shrink-0 flex items-center justify-center">{icon}</div>
       <div className="grow text-xs md:text-base leading-tight">
         {description}
@@ -62,8 +70,9 @@ const defaultSteps = [
   <Slide
     key="step1"
     title="Welcome to Devconnect ARG: the first Ethereum World's Fair"
+    image={WorldsFairImage}
     description={
-      <div className="flex flex-col gap-4 mt-2 text-sm sm:text-base">
+      <div className="flex flex-col gap-2 mt-4 text-sm sm:text-base">
         <div>
           You're joining 15,000+ builders, developers and users from around the
           world as we imagine the city of the future, built on Ethereum.
@@ -80,22 +89,46 @@ const defaultSteps = [
   <Slide
     key="step2"
     title="About The World's Fair"
+    image={EthDayImage}
     description={
       <div className="text-sm sm:text-base">
         During Devconnect, La Rural will be transformed into the first Ethereum
         World's Fair:
-        <div className="flex flex-col gap-2 sm:gap-4 mt-4 items-center">
+        <div className="flex flex-col gap-2 mt-4 items-center">
           <Block
             icon={<MicrophoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Join events featuring industry leaders and builders working on Ethereum today"
+            description={
+              <div>
+                Join events featuring{' '}
+                <span className="font-semibold">industry leaders </span> and
+                builders working on Ethereum today
+              </div>
+            }
           />
           <Block
             icon={<PhoneIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Discover cutting-edge, real-world Ethereum apps at the App Showcase"
+            description={
+              <div>
+                Discover cutting-edge,
+                <span className="font-semibold">
+                  {' '}
+                  real-world Ethereum apps
+                </span>{' '}
+                at the App Showcase
+              </div>
+            }
           />
           <Block
             icon={<CupIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Recharge and refuel at the many local coffee and food merchants on-site (all accepting crypto as payment)"
+            description={
+              <div>
+                Recharge and refuel at the many local{' '}
+                <span className="font-semibold">
+                  coffee and food merchants on-site
+                </span>{' '}
+                (all accepting crypto as payment)
+              </div>
+            }
           />
         </div>
       </div>
@@ -104,24 +137,41 @@ const defaultSteps = [
   <Slide
     key="step3"
     title="Take part in Quests and earn real rewards!"
+    image={CommunityEventsImage}
     description={
       <div className="text-sm sm:text-base">
         <div>
-          We’ve created dedicated quest systems to help you explore the World's
+          We've created dedicated quest systems to help you explore the World's
           Fair, regardless of your experience level.
         </div>
-        <div className="flex flex-col gap-2 sm:gap-4 mt-4 items-center">
+        <div className="flex flex-col gap-2 mt-4 items-center">
           <Block
             icon={<RocketIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Master the basics of Ethereum through our Onboarding quests"
+            description={
+              <div>
+                Master the basics of Ethereum through our{' '}
+                <span className="font-semibold">Onboarding</span> quests
+              </div>
+            }
           />
           <Block
             icon={<LuggageIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Grab your collectible 'stamp' from each booth at the App Showcase"
+            description={
+              <div>
+                Grab your collectible 'stamp' from each booth at the{' '}
+                <span className="font-semibold">App Showcase</span>
+              </div>
+            }
           />
           <Block
             icon={<CupIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description="Earn physical rewards, with special prizes for top collectors!"
+            description={
+              <div>
+                Earn physical rewards, with{' '}
+                <span className="font-semibold">special prizes</span> for top
+                collectors!
+              </div>
+            }
           />
         </div>
       </div>
@@ -163,7 +213,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   return (
     <div className="section h-screen py-3 sm:py-8 gradient-background">
       <div className="flex flex-col h-full justify-center items-center">
-        <div className="flex flex-col justify-center items-center gap-4 shrink-0">
+        <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
             {currentStep === 0 && 'Welcome'}
             {currentStep === 1 && 'Worlds Fair'}

@@ -71,7 +71,7 @@ export const DotsSelector = ({
               index === activeIndex ? "bg-[rgba(27,111,174,1)]" : "bg-gray-400"
             }`}
             animate={{
-              width: index === activeIndex ? "80px" : "20px",
+              width: index === activeIndex ? "100px" : "30px",
               // borderRadius: index === activeIndex ? "8px" : "4px",
             }}
             transition={{ duration: 0.3 }}
