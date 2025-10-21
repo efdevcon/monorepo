@@ -3,11 +3,23 @@ import MapIcon from '@/components/icons/MapIcon';
 import ScanIcon from '@/components/icons/ScanIcon';
 import QuestIcon from '@/components/icons/QuestIcon';
 import WalletIcon from '@/components/icons/WalletIcon';
+import { createElement } from 'react';
+import Icon from '@mdi/react';
+import { mdiWallet, mdiImageMultiple, mdiCog } from '@mdi/js';
+
+// Icon wrapper components for wallet tabs
+const WalletTabIcon = ({ color }: { color?: string }) =>
+  createElement(Icon, { path: mdiWallet, size: 0.65, color });
+const StampbookTabIcon = ({ color }: { color?: string }) =>
+  createElement(Icon, { path: mdiImageMultiple, size: 0.65, color });
+const SettingsTabIcon = ({ color }: { color?: string }) =>
+  createElement(Icon, { path: mdiCog, size: 0.65, color });
 
 export type TabItem = {
   label: string;
   href?: string;
   hide?: boolean;
+  icon?: React.ComponentType<any>;
 };
 
 export type NavItem = {
@@ -63,14 +75,17 @@ export const NAV_ITEMS: NavItem[] = [
       {
         label: 'Wallet',
         href: '/wallet',
+        icon: WalletTabIcon,
       },
       {
         label: 'Stampbook',
         href: '/wallet/stampbook',
+        icon: StampbookTabIcon,
       },
       {
         label: 'Settings',
         href: '/wallet/settings',
+        icon: SettingsTabIcon,
       },
       {
         label: 'Debug',

@@ -29,12 +29,14 @@ const createTabsFromNavItems = (
   label: string;
   href?: string;
   hide?: boolean;
+  labelIcon?: React.ComponentType<any>;
   component: React.ComponentType<any>;
 }> => {
   return tabItems.map((tabItem) => ({
     label: tabItem.label,
     href: tabItem.href, // Include href for navigation
     hide: tabItem.hide,
+    labelIcon: tabItem.icon, // Pass the icon to be used as labelIcon in PageLayout
     component:
       tabComponents[tabItem.label] ||
       ((() => (

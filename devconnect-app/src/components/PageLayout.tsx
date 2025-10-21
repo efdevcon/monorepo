@@ -150,10 +150,12 @@ const Tabs = ({
               <div
                 className={cn(
                   'text-center justify-center text-sm font-medium leading-tight flex gap-2 font-medium items-center',
-                  isActive ? '' : 'cursor-pointer'
+                  isActive ? 'text-[#165a8d]' : 'text-[#4b4b66] cursor-pointer'
                 )}
               >
-                {tab.labelIcon && <tab.labelIcon size={14} />}
+                {tab.labelIcon && (
+                  <tab.labelIcon color={isActive ? '#165a8d' : '#4b4b66'} />
+                )}
                 {tab.label}
               </div>
             </button>
