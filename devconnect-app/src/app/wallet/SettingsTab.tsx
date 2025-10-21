@@ -15,6 +15,7 @@ import {
   mdiClose,
   mdiOpenInNew,
   mdiCodeBraces,
+  mdiLockReset,
 } from '@mdi/js';
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
@@ -88,6 +89,29 @@ export default function SettingsTab() {
 
   const handleDebugClick = () => {
     router.push('/wallet/debug');
+  };
+
+  const handleResetEarlyAccess = async () => {
+    try {
+      // Call API to delete the httpOnly cookie
+      const response = await fetch('/api/early-access/reset', {
+        method: 'POST',
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Early access cookie cleared');
+
+        // Redirect to coming soon page if mode is enabled
+        router.push('/coming-soon');
+        router.refresh();
+      } else {
+        toast.error('Failed to reset early access');
+      }
+    } catch (error) {
+      toast.error('Something went wrong');
+    }
   };
 
   return (
@@ -176,6 +200,20 @@ export default function SettingsTab() {
             Provide feedback
           </p>
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
+        </button>
+
+        {/* Reset Early Access */}
+        <button
+          onClick={handleResetEarlyAccess}
+          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+        >
+          <div className="w-8 h-8 flex items-center justify-center">
+            <Icon path={mdiLockReset} size={1} className="text-[#353548]" />
+          </div>
+          <p className="flex-1 text-left text-[#353548] text-base font-medium">
+            Reset early access
+          </p>
+          <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
         </button>
       </div>
 

@@ -62,7 +62,7 @@ export const NAV_ITEMS: NavItem[] = [
   },
   {
     label: 'Quests',
-    href: '/quests/app-showcase',
+    href: '/quests',
     icon: QuestIcon,
     backgroundColor: 'rgba(246, 180, 14, 0.15)',
   },
@@ -81,6 +81,7 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Stampbook',
         href: '/wallet/stampbook',
         icon: StampbookTabIcon,
+        hide: process.env.NEXT_PUBLIC_BETA === 'true',
       },
       {
         label: 'Settings',
