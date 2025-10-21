@@ -1,7 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useWallet } from '@/context/WalletContext';
+import {
+  useExportPrivateKey,
+  useWallet as useParaWallet,
+  useAccount as useParaAccount,
+  useModal,
+  ModalStep,
+} from '@getpara/react-sdk';
 import cn from 'classnames';
 import Icon from '@mdi/react';
 import {
@@ -42,10 +48,20 @@ const imgPara = '/images/paraLogo.png';
 const imgParaFullColor = '/images/PARA - logo Full Color 1.svg';
 
 export default function SettingsTab() {
-  const { address, email } = useWallet();
+  // Always get Para wallet data directly from Para SDK
+  const paraAccount = useParaAccount();
+  const { data: paraWallet } = useParaWallet();
+  const { mutate: exportPrivateKey, isPending: isExportingKey } =
+    useExportPrivateKey();
+  const { openModal } = useModal();
   const router = useRouter();
   const [locale, setLocale] = useState<string>('en');
   const [showLanguageModal, setShowLanguageModal] = useState(false);
+
+  // Extract Para wallet information
+  const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
+  const paraAddress = paraWallet?.address || null;
+  const paraEmail = (paraAccount as any)?.embedded?.email || null;
 
   // Initialize locale from cookie on mount
   useEffect(() => {
@@ -65,14 +81,25 @@ export default function SettingsTab() {
   };
 
   const handleCopyAddress = () => {
-    if (address) {
-      navigator.clipboard.writeText(address);
+    if (paraAddress) {
+      navigator.clipboard.writeText(paraAddress);
       toast.success('Address copied to clipboard');
     }
   };
 
   const handleExportPrivateKey = () => {
-    toast.info('Export Private Key - Coming soon');
+    // Check if Para wallet is connected
+    if (!isParaConnected || !paraWallet?.id) {
+      toast.error(
+        'Private key export is only available when Para wallet is connected'
+      );
+      return;
+    }
+
+    // Export private key using Para SDK
+    exportPrivateKey({
+      walletId: paraWallet.id,
+    });
   };
 
   const handleReplaceRecoverySecret = () => {
@@ -80,7 +107,7 @@ export default function SettingsTab() {
   };
 
   const handleBackupKit = () => {
-    toast.info('Backup Kit - Coming soon');
+    openModal({ step: ModalStep.SECRET });
   };
 
   const handleProvideFeedback = () => {
@@ -125,40 +152,6 @@ export default function SettingsTab() {
           'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
       }}
     >
-      {/* Account Details Card */}
-      <div className="bg-white border border-[#ededf0] rounded-[4px] p-4 mb-6">
-        <div className="flex gap-4 items-start">
-          {/* Profile Avatar */}
-          <div className="relative w-8 h-8 shrink-0">
-            <WalletAvatar
-              address={address}
-              fallbackSrc={imgPara}
-              alt="wallet"
-              className="w-8 h-8 rounded-full"
-            />
-          </div>
-
-          {/* Account Info */}
-          <div className="flex-1 min-w-0">
-            <p className="text-[#4b4b66] text-xs mb-2">Account details</p>
-            <p className="text-[#20202b] text-sm font-medium mb-2 truncate">
-              {email || 'Not connected'}
-            </p>
-          </div>
-        </div>
-        {address && (
-          <div className="flex items-center gap-2 text-[#20202b] text-xs font-medium">
-            {address}
-            <button
-              onClick={handleCopyAddress}
-              className="cursor-pointer hover:opacity-70 transition-opacity"
-            >
-              <Icon path={mdiContentCopy} size={0.55} color="#0073DE" />
-            </button>
-          </div>
-        )}
-      </div>
-
       {/* App Section */}
       <div className="mb-6">
         <h2 className="text-[#20202b] text-lg font-bold mb-3">App</h2>
@@ -221,22 +214,71 @@ export default function SettingsTab() {
       <div className="mb-6">
         <h2 className="text-[#20202b] text-lg font-bold mb-3">Wallet</h2>
 
+        {/* Account Details Card - Always shows Para wallet info */}
+        <div className="bg-white border border-[#ededf0] rounded-[4px] p-4 mb-4">
+          <div className="flex gap-4 items-start">
+            {/* Profile Avatar */}
+            <div className="relative w-8 h-8 shrink-0">
+              <WalletAvatar
+                address={paraAddress}
+                fallbackSrc={imgPara}
+                alt="Para wallet"
+                className="w-8 h-8 rounded-full"
+              />
+            </div>
+
+            {/* Account Info */}
+            <div className="flex-1 min-w-0">
+              <p className="text-[#4b4b66] text-xs mb-2">Para Wallet Account</p>
+              <p className="text-[#20202b] text-sm font-medium mb-2 truncate">
+                {paraEmail || (isParaConnected ? 'Connected' : 'Not connected')}
+              </p>
+            </div>
+          </div>
+          {paraAddress && (
+            <div className="flex items-center gap-2 text-[#20202b] text-xs font-medium">
+              {paraAddress}
+              <button
+                onClick={handleCopyAddress}
+                className="cursor-pointer hover:opacity-70 transition-opacity"
+              >
+                <Icon path={mdiContentCopy} size={0.55} color="#0073DE" />
+              </button>
+            </div>
+          )}
+        </div>
+
         {/* Export Private Key */}
         <button
           onClick={handleExportPrivateKey}
-          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          disabled={isExportingKey || !isParaConnected}
+          className={cn(
+            'w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 transition-colors',
+            isExportingKey || !isParaConnected
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-50 cursor-pointer'
+          )}
         >
           <div className="w-8 h-8 flex items-center justify-center">
             <Icon path={mdiKeyArrowRight} size={1} className="text-[#353548]" />
           </div>
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
             Export Private Key
+            {!isParaConnected && (
+              <span className="block text-xs text-[#8b8b99] font-normal mt-0.5">
+                Connect Para wallet to export
+              </span>
+            )}
           </p>
-          <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
+          {isExportingKey ? (
+            <span className="text-[#4b4b66] text-xs">Opening...</span>
+          ) : (
+            <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
+          )}
         </button>
 
         {/* Replace Recovery Secret */}
-        <button
+        {/* <button
           onClick={handleReplaceRecoverySecret}
           className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
         >
@@ -251,7 +293,7 @@ export default function SettingsTab() {
             Replace recovery secret
           </p>
           <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        </button> */}
 
         {/* Backup Kit */}
         <button
@@ -264,7 +306,7 @@ export default function SettingsTab() {
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
             Backup kit
           </p>
-          <Icon path={mdiOpenInNew} size={0.65} className="text-[#4b4b66]" />
+          <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
         </button>
 
         {/* Debug */}

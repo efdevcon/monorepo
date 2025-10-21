@@ -626,7 +626,7 @@ export default function AppShowcaseDetail({
   }, [setupQuests, appShowcaseQuests, questStates]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col justify-start items-start relative bg-[#f6fafe]">
+    <div className="w-full mx-auto flex flex-col justify-start items-start relative bg-[#f6fafe]">
       {/* SupporterInfo Modal */}
       {showSupporterInfo && (
         <div className="fixed inset-0 z-51 flex items-end justify-center">
