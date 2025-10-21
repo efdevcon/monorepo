@@ -735,28 +735,30 @@ export default function WalletTab() {
               </div>
             )} */}
 
-            <div className="relative flex items-center justify-center gap-3">
-              <span className="text-[#20202b] text-[36px] font-bold tracking-[-0.1px] leading-[1.2]">
-                {portfolioLoading ? (
-                  <div className="animate-pulse bg-gray-200 h-9 w-32 rounded"></div>
-                ) : portfolio ? (
-                  formatUSD(portfolio.totalValue)
-                ) : (
-                  '$0.00'
-                )}
-              </span>
-              <button
-                onClick={handleRefresh}
-                disabled={isRefreshing || portfolioLoading || !address}
-                className="disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-                title="Refresh portfolio data"
-              >
-                <Icon
-                  path={mdiCached}
-                  size={1}
-                  className={`text-[#0073de] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
-                />
-              </button>
+            <div className="flex items-center justify-center">
+              <div className="relative inline-flex items-center">
+                <span className="text-[#20202b] text-[36px] font-bold tracking-[-0.1px] leading-[1.2]">
+                  {portfolioLoading ? (
+                    <div className="animate-pulse bg-gray-200 h-9 w-32 rounded"></div>
+                  ) : portfolio ? (
+                    formatUSD(portfolio.totalValue)
+                  ) : (
+                    '$0.00'
+                  )}
+                </span>
+                <button
+                  onClick={handleRefresh}
+                  disabled={isRefreshing || portfolioLoading || !address}
+                  className="absolute left-full ml-[14px] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  title="Refresh portfolio data"
+                >
+                  <Icon
+                    path={mdiCached}
+                    size={1}
+                    className={`text-[#0073de] ${isRefreshing || portfolioLoading ? 'animate-spin' : ''}`}
+                  />
+                </button>
+              </div>
             </div>
           </div>
 
