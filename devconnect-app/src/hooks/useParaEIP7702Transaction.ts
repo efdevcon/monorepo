@@ -101,7 +101,8 @@ export function useParaEIP7702Transaction() {
     recipient: string,
     amount: string,
     token?: string,
-    chainId?: number
+    chainId?: number,
+    transactionType?: 'payment' | 'send'
   ) => {
     const paraWalletAddress = paraWallet?.data?.address;
 

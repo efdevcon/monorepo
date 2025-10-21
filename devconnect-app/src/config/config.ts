@@ -47,4 +47,10 @@ export const AUTHORIZED_SPONSOR_ADDRESSES = [
 export const PAYMENT_CONFIG = {
   MERCHANT_ID: '6603276727aaa6386588474d',
   SIMPLEFI_BASE_URL: 'https://www.pagar.simplefi.tech'
+};
+
+// Coinbase CDP Smart Accounts (Base Mainnet)
+export const CDP_SMART_ACCOUNTS = {
+  PAYMENT: '0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7', // For payment transactions
+  SEND: '0x407AC50a73F1649D4939c2b12697b418873f6896',    // For send transactions
 }; 

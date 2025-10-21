@@ -82,7 +82,8 @@ export function useParaTransaction() {
     recipient: string,
     amount: string,
     token?: string,
-    chainId?: number
+    chainId?: number,
+    transactionType?: 'payment' | 'send'
   ) => {
     const paraWalletAddress = paraWallet?.data?.address;
 
@@ -95,6 +96,7 @@ export function useParaTransaction() {
 
     try {
       console.log('🔄 [PARA_TX] Starting Para wallet transaction');
+      console.log('🔄 [PARA_TX] Type:', transactionType || 'payment');
       console.log('🔄 [PARA_TX] From:', paraWalletAddress);
       console.log('🔄 [PARA_TX] To:', recipient);
       console.log('🔄 [PARA_TX] Amount:', amount);
@@ -162,6 +164,7 @@ export function useParaTransaction() {
         body: JSON.stringify({
           signature,
           authorization: authData.authorization,
+          transactionType: transactionType || 'payment',
         }),
       });
 

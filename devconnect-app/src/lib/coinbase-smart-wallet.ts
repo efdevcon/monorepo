@@ -118,23 +118,35 @@ export interface TransferResult {
 }
 
 /**
+ * Transaction Purpose (determines which smart account to use)
+ */
+export type TransactionPurpose = 'payment' | 'send';
+
+// Cache for different smart account instances
+const smartAccountInstances: Map<TransactionPurpose, any> = new Map();
+
+/**
  * Get or create smart account (v2)
  * Uses persistent names so CDP can retrieve existing accounts
+ * Supports separate accounts for different transaction purposes
  */
-async function getOrCreateSmartAccount(): Promise<any> {
-  if (smartAccountInstance) return smartAccountInstance;
+async function getOrCreateSmartAccount(purpose: TransactionPurpose = 'payment'): Promise<any> {
+  // Check cache first
+  if (smartAccountInstances.has(purpose)) {
+    return smartAccountInstances.get(purpose);
+  }
 
   const cdp = getCdpClient();
   const networkId = getNetworkId();
   
-  // Use fixed names for persistence across restarts
-  const OWNER_NAME = `devconnect-owner-base-mainnet`;
-  const SMART_ACCOUNT_NAME = `devconnect-smart-base-mainnet`;
+  // Use different names based on transaction purpose
+  const OWNER_NAME = `devconnect-${purpose}-owner`;
+  const SMART_ACCOUNT_NAME = `devconnect-${purpose}`;
 
   try {
     // Get or create owner account with persistent name
     const owner = await cdp.evm.getOrCreateAccount({ name: OWNER_NAME });
-    console.log('🔄 [CDP] Owner account:', owner.address);
+    console.log(`🔄 [CDP] ${purpose.toUpperCase()} owner account:`, owner.address);
 
     // Get or create smart account with persistent name
     const smartAccount = await cdp.evm.getOrCreateSmartAccount({ 
@@ -142,13 +154,14 @@ async function getOrCreateSmartAccount(): Promise<any> {
       owner 
     });
     
-    console.log('🔄 [CDP] Using smart account:', smartAccount.address);
+    console.log(`🔄 [CDP] Using ${purpose.toUpperCase()} smart account:`, smartAccount.address);
     console.log('🔄 [CDP] Network: Base Mainnet');
 
-    smartAccountInstance = smartAccount;
+    // Cache the instance
+    smartAccountInstances.set(purpose, smartAccount);
     return smartAccount;
   } catch (error) {
-    console.error('❌ [CDP] Failed to get/create smart account:', error);
+    console.error(`❌ [CDP] Failed to get/create ${purpose} smart account:`, error);
     throw error;
   }
 }
@@ -157,15 +170,16 @@ async function getOrCreateSmartAccount(): Promise<any> {
  * Execute USDC transfer using EIP-3009 authorization via CDP v2
  */
 export async function executeUSDCTransferWithAuth(
-  auth: EIP3009Authorization
+  auth: EIP3009Authorization,
+  purpose: TransactionPurpose = 'payment'
 ): Promise<TransferResult> {
-  console.log('🔄 [CDP] Executing USDC transfer via Smart Account...');
+  console.log(`🔄 [CDP] Executing USDC transfer via Smart Account (${purpose.toUpperCase()})...`);
   console.log(`   From: ${auth.from}`);
   console.log(`   To: ${auth.to}`);
   console.log(`   Amount: ${auth.value} USDC (raw)`);
 
   const cdp = getCdpClient();
-  const smartAccount = await getOrCreateSmartAccount();
+  const smartAccount = await getOrCreateSmartAccount(purpose);
   const networkId = getNetworkId();
   const paymasterUrl = process.env.CDP_PAYMASTER_URL;
 
@@ -338,14 +352,15 @@ export async function executeUSDCTransferWithAuth(
 /**
  * Get smart account address
  */
-export async function getSmartWalletAddress(): Promise<string> {
-  const smartAccount = await getOrCreateSmartAccount();
+export async function getSmartWalletAddress(purpose: TransactionPurpose = 'payment'): Promise<string> {
+  const smartAccount = await getOrCreateSmartAccount(purpose);
   console.log('');
   console.log('================================================================================');
-  console.log('🎉 SMART ACCOUNT READY!');
+  console.log(`🎉 ${purpose.toUpperCase()} SMART ACCOUNT READY!`);
   console.log('================================================================================');
   console.log('Smart Account Address:', smartAccount.address);
   console.log('Network: Base Mainnet');
+  console.log('Purpose:', purpose);
   console.log('');
   console.log('💡 CDP manages keys securely - no manual configuration needed!');
   console.log('   Accounts are retrieved automatically by name on subsequent runs.');
