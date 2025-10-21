@@ -11,6 +11,9 @@ export interface Supporter {
   supporterId?: string;
   logo: string;
   description: string;
+  websiteLink?: string;
+  twitterLink?: string;
+  farcasterLink?: string;
 }
 
 export interface POI {
@@ -21,6 +24,9 @@ export interface POI {
   groupId: string | null;
   logo: string;
   description: string;
+  websiteLink?: string;
+  twitterLink?: string;
+  farcasterLink?: string;
 }
 
 export interface District {

@@ -111,6 +111,9 @@ export async function GET(request: NextRequest) {
         logo: getPropertyValue('Logo'),
         description: getPropertyValue('Project description'),
         group: getPropertyValue('POI'),
+        websiteLink: getPropertyValue('Website link'),
+        twitterLink: getPropertyValue('Twitter link'),
+        farcasterLink: getPropertyValue('Farcaster link'),
       };
 
       if (!result.group)

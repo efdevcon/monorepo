@@ -6,6 +6,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "0xbow-privacy-pools",
     "logo": "",
     "description": "",
+    "websiteLink": "https://0xbow.io/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "3"
   },
@@ -14,6 +17,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "1inch",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T11-30-04-598Z-new-brand-logo.svg",
     "description": "1inch is the DeFi ecosystem building financial freedom for everyone.\n1inch products help users and builders trade, hold and track digital assets - with the self-custody, comprehensive security and the intuitive user experience they need to unlock the potential of true crypto ownership.\n1inch protocols and APIs provide core infrastructure across the DeFi industry and beyond.\n1inch takes a leading role in advocating for integrated, transparent and compliant DeFi as the future of global finance.",
+    "websiteLink": "https://1inch.com",
+    "twitterLink": "https://x.com/1inch",
+    "farcasterLink": "https://farcaster.xyz/1inchnetwork",
     "districtId": "3",
     "locationId": "1"
   },
@@ -22,6 +28,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "aave",
     "logo": "",
     "description": "",
+    "websiteLink": "https://app.aave.com/",
+    "twitterLink": "https://x.com/aave",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -30,14 +39,20 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "ambire",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.ambire.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
   "241638cdc415806ba33fe5f130141655": {
     "name": "Arbitrum",
     "layerName": "arbitrum",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T18-52-04-542Z-AF_logomark.png",
+    "description": "Arbitrum is the leading Ethereum Layer-2, delivering ultra-fast, low-cost transactions secured by Ethereum. With Orbit for customizable chains and Stylus enabling Rust and C++ smart contracts, Arbitrum is shaping the next generation of onchain innovation.",
+    "websiteLink": "https://arbitrum.io/",
+    "twitterLink": "https://x.com/arbitrum",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -46,6 +61,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "axie-ronin",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "4",
     "locationId": "3"
   },
@@ -54,6 +72,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "aztec",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T14-01-56-571Z-Aztec%20Symbol_Square.png",
     "description": "Aztec is a fully decentralized, privacy-preserving L2 on Ethereum. Developers write smart contracts using our popular Noir programming language, making it easy to seamlessly integrate public and private state. ",
+    "websiteLink": "https://aztec.network/",
+    "twitterLink": "https://x.com/aztecnetwork",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -62,6 +83,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "barter",
     "logo": "",
     "description": "",
+    "websiteLink": "https://barterswap.xyz/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -70,6 +94,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "base",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.base.org/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -78,6 +105,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "beam",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -86,6 +116,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "belo",
     "logo": "",
     "description": "",
+    "websiteLink": "https://belo.app/en/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -94,6 +127,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "boulder",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -102,6 +138,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "burner",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.burner.pro/eth",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -110,6 +149,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "celo",
     "logo": "",
     "description": "",
+    "websiteLink": "https://celo.org/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -118,6 +160,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "chromar",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-12T23-07-19-270Z-logo_split.svg",
     "description": "SPARK-A1 is a Web3 Copilot",
+    "websiteLink": "https://chrom.ar/spark-a1",
+    "twitterLink": "https://x.com/chromar_spark",
+    "farcasterLink": "https://farcaster.xyz/spark-a1",
     "districtId": "1",
     "locationId": "1"
   },
@@ -126,6 +171,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "cow-swap",
     "logo": "",
     "description": "",
+    "websiteLink": "https://swap.cow.fi/",
+    "twitterLink": "https://x.com/CoWSwap",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -134,6 +182,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "dappnode",
     "logo": "",
     "description": "",
+    "websiteLink": "https://dappnode.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -142,6 +193,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "dark-forest-punk",
     "logo": "",
     "description": "",
+    "websiteLink": "https://x.com/dfarchon",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "4",
     "locationId": "3"
   },
@@ -150,6 +204,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "defi-saver",
     "logo": "",
     "description": "",
+    "websiteLink": "https://defisaver.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -158,6 +215,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "dipe",
     "logo": "",
     "description": "",
+    "websiteLink": "?",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -166,6 +226,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "elizaos",
     "logo": "",
     "description": "",
+    "websiteLink": "elizalabs.ai",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -174,6 +237,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "ens",
     "logo": "",
     "description": "",
+    "websiteLink": "https://ens.domains/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -182,6 +248,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "espresso",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.espressosys.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -190,6 +259,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "ethereum-follow-protocol-efp",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-11T17-38-49-709Z-efp-logo.svg",
     "description": "Ethereum Follow Protocol (EFP) is an onchain social graph protocol for Ethereum accounts that complements ENS.",
+    "websiteLink": "https://efp.app/",
+    "twitterLink": "https://x.com/efp",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -198,6 +270,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "exa",
     "logo": "",
     "description": "",
+    "websiteLink": "https://exact.ly/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -206,6 +281,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "farcaster",
     "logo": "",
     "description": "",
+    "websiteLink": "https://farcaster.xyz/",
+    "twitterLink": "https://x.com/farcaster_xyz",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -214,6 +292,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "fileverse",
     "logo": "",
     "description": "",
+    "websiteLink": "https://fileverse.io/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -222,6 +303,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "fluidkey",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.fluidkey.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -230,6 +314,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "franklin",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.hellofranklin.co/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -238,6 +325,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "freedom-factory-ethos",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.freedomfactory.io/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -246,6 +336,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "gainforest",
     "logo": "",
     "description": "",
+    "websiteLink": "https://gainforest.earth/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -254,6 +347,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "gitcoin",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.gitcoin.co/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -262,6 +358,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "gnosis",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.gnosis.io/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -270,6 +369,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "hats-protocol",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.hatsprotocol.xyz/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -278,6 +380,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "holonym",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T10-52-43-393Z-Brand=human.tech,%20Type=Default.svg",
     "description": "Holonym’s mission is the foundation of natural digital rights for privacy, security, and data ownership. human.tech is a project by Holonym to proliferate humanistic technology through applied cryptography.",
+    "websiteLink": "https://human.tech/",
+    "twitterLink": "https://x.com/0xHolonym",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -286,6 +391,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "idriss",
     "logo": "",
     "description": "",
+    "websiteLink": "https://idriss.xyz/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -294,6 +402,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "ledger",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.ledger.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -302,6 +413,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "lemon",
     "logo": "",
     "description": "",
+    "websiteLink": "https://lemon.me/en/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -310,6 +424,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "mimic",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T12-42-30-228Z-Mimic%20Main%20Logo%20-%20Dark.svg",
     "description": "Mimic is the abstraction and automation engine for onchain execution. A protocol that lets developers create programmable onchain tasks using TypeScript, with any logic and conditions, and automate their execution securely across chains.",
+    "websiteLink": "https://www.mimic.fi/",
+    "twitterLink": "https://x.com/mimicfi",
+    "farcasterLink": "https://farcaster.xyz/mimicfi",
     "districtId": "3",
     "locationId": "1"
   },
@@ -318,6 +435,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "morpho",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T11-32-42-750Z-Morpho-with-background-logo%20(6)%201.png",
     "description": "Morpho is the universal lending network with $12B+ in deposits. ",
+    "websiteLink": "https://app.morpho.org",
+    "twitterLink": "https://x.com/morpholabs",
+    "farcasterLink": "https://farcaster.xyz/morpho",
     "districtId": "3",
     "locationId": "1"
   },
@@ -326,6 +446,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "nethermind",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.gaianet.ai/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -334,6 +457,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "noice",
     "logo": "",
     "description": "",
+    "websiteLink": "https://noice.so/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -342,6 +468,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "nouns",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-14T00-45-24-235Z-nouns_logo_300x300.svg",
     "description": "Nouns is a community-owned brand that makes a positive impact by funding ideas and fostering collaboration. From collectors and technologists, to non-profits and brands, Nouns is for everyone.",
+    "websiteLink": "https://devconnect.nouns.wtf/",
+    "twitterLink": "https://x.com/nounsdao/",
+    "farcasterLink": "https://farcaster.xyz/~/channel/nouns",
     "districtId": "2",
     "locationId": "1"
   },
@@ -350,6 +479,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "nym",
     "logo": "",
     "description": "",
+    "websiteLink": "https://nym.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -358,14 +490,20 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "obol",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
   "254638cdc41580bbb285dfd0c726271a": {
     "name": "Octant",
     "layerName": "octant",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-21T01-07-31-261Z-logo%20dark.svg",
+    "description": "Octant allows ecosystems to earn, allocate, and grow with DeFi.",
+    "websiteLink": "https://octant.app/",
+    "twitterLink": "https://x.com/OctantApp",
+    "farcasterLink": "https://farcaster.xyz/octant",
     "districtId": "3",
     "locationId": "1"
   },
@@ -374,6 +512,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "offramp",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-15T19-06-07-649Z-logo.svg",
     "description": "Pay like a local in Argentina with your stablecoins. Use Offramp’s QR to pay for everything. ",
+    "websiteLink": "https://www.offramp.xyz/",
+    "twitterLink": "https://x.com/OfframpXYZ",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -382,6 +523,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "open-arts-gallery",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "2",
     "locationId": "1"
   },
@@ -390,6 +534,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "open-gaming-space",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "4",
     "locationId": null
   },
@@ -398,6 +545,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "para",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.getpara.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": null
   },
@@ -406,6 +556,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "peanut",
     "logo": "",
     "description": "",
+    "websiteLink": "https://peanut.me/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -414,6 +567,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "pistachio",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-13T22-10-36-635Z-1.svg",
     "description": "Pistachio Fi, the self-custodial crypto neobank on Ethereum. Instantly buy, earn, send and spend onchain.",
+    "websiteLink": "https://www.pistachio.fi/download",
+    "twitterLink": "https://x.com/PistachioFi",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -422,6 +578,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "pond",
     "logo": "",
     "description": "",
+    "websiteLink": "https://cryptopond.xyz/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -430,6 +589,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "precog-market",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.precog.market/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -438,6 +600,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "pse",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -446,6 +611,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "r3alblocks",
     "logo": "",
     "description": "",
+    "websiteLink": "r3alblocks.io",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -454,6 +622,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "radicle-drip",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.drips.network/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -462,6 +633,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "railgun",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.railgun.org/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -470,6 +644,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "rarimo-unforgettable",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T09-04-35-474Z-Screen.png",
     "description": "Unforgettable: a new wallet recovery primitive for crypto. No need to store seed phrases anymore. Use passwords, biometrics, or objects to back up your wallets safely.",
+    "websiteLink": "https://rarimo.com/",
+    "twitterLink": "https://x.com/unforgetapp",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -478,6 +655,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "replicats",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.replicats.ai/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -486,6 +666,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "ripio",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T18-41-30-780Z-ripio-iso-icon_color.svg",
     "description": "Buy or swap for wARS and claim your Ripio POAP to join the Argentine DeFi wave",
+    "websiteLink": "https://www.ripio.com/es",
+    "twitterLink": "https://x.com/RipioApp",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -494,6 +677,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "rise",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": null
   },
@@ -502,6 +688,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "rotki",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-19T08-43-26-955Z-profile.jpg",
     "description": "rotki is an open source, self-hosted portfolio manager, accounting and analytics tool that protects your privacy",
+    "websiteLink": "https://rotki.com/",
+    "twitterLink": "https://x.com/rotkiapp",
+    "farcasterLink": "https://farcaster.xyz/rotki",
     "districtId": "3",
     "locationId": "1"
   },
@@ -510,6 +699,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "santiment",
     "logo": "",
     "description": "",
+    "websiteLink": "https://santiment.net/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -518,6 +710,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "seer",
     "logo": "",
     "description": "",
+    "websiteLink": "https://seer.pm/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -526,6 +721,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "space-ai",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -534,6 +732,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "starknet",
     "logo": "",
     "description": "",
+    "websiteLink": "https://starkware.co/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -542,6 +743,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "statuskeycard",
     "logo": "",
     "description": "",
+    "websiteLink": "https://status.app/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -550,6 +754,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "tally",
     "logo": "",
     "description": "",
+    "websiteLink": "https://www.tally.xyz/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -558,6 +765,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "the-graph",
     "logo": "",
     "description": "",
+    "websiteLink": "https://thegraph.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -566,6 +776,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "unicef",
     "logo": "",
     "description": "",
+    "websiteLink": "https://thegraph.com/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null
   },
@@ -574,6 +787,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "uphold",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
   },
@@ -582,6 +798,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "virtuals",
     "logo": "",
     "description": "",
+    "websiteLink": "https://app.virtuals.io/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": "1"
   },
@@ -590,6 +809,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "walletconnect",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
   },
@@ -598,6 +820,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "world",
     "logo": "",
     "description": "",
+    "websiteLink": "https://world.org/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
   },
@@ -606,6 +831,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "xmtp",
     "logo": "",
     "description": "",
+    "websiteLink": "xmtp.com",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": "1"
   },
@@ -614,6 +842,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "zkp2p",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-10T10-24-38-472Z-zkp2p%20logo.png",
     "description": "ZKP2P is a peer-to-peer, non-custodial protocol that enables seamless crypto <> fiat on/off ramping powered by zero-knowledge proofs. ",
+    "websiteLink": "https://www.zkp2p.xyz/",
+    "twitterLink": "https://x.com/zkp2p",
+    "farcasterLink": "https://farcaster.xyz/zkp2p",
     "districtId": "3",
     "locationId": "1"
   },
@@ -622,6 +853,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "zkpassport",
     "logo": "",
     "description": "",
+    "websiteLink": "https://zkpassport.id/",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
   },
@@ -630,6 +864,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "zora",
     "logo": "",
     "description": "",
+    "websiteLink": "ourzora.com",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": null
   },
@@ -638,6 +875,9 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "zyfai",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-17T13-53-04-808Z-Zyfai%20Icon%20Primary.svg",
     "description": "ZyFAI is an Agent platform designed to optimize and enhance yield in DeFi. Secured by personalized smart accounts and session keys, it offers a next-generation alternative to traditional vaults in the on-chain capital allocation ecosystem.",
+    "websiteLink": "https://www.zyf.ai/",
+    "twitterLink": "https://x.com/zyfai_",
+    "farcasterLink": "https://farcaster.xyz/zyfai",
     "districtId": "1",
     "locationId": "1"
   }

@@ -6,6 +6,9 @@ export const poisData: POI[] = [
     "layerName": "account-abstraction",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-27-33-208Z-AA-Logo.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -15,6 +18,9 @@ export const poisData: POI[] = [
     "layerName": "activation-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "6",
     "groupId": "1"
@@ -24,6 +30,9 @@ export const poisData: POI[] = [
     "layerName": "ai-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "1",
     "locationId": null,
     "groupId": "14"
@@ -33,6 +42,9 @@ export const poisData: POI[] = [
     "layerName": "childcare-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "3"
@@ -42,6 +54,9 @@ export const poisData: POI[] = [
     "layerName": "chill-out-area-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "4"
@@ -51,6 +66,9 @@ export const poisData: POI[] = [
     "layerName": "cowork-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "4",
     "groupId": "5"
@@ -60,6 +78,9 @@ export const poisData: POI[] = [
     "layerName": "coffee-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "6"
@@ -69,6 +90,9 @@ export const poisData: POI[] = [
     "layerName": "collectibles-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "2",
     "locationId": null,
     "groupId": "14"
@@ -78,6 +102,9 @@ export const poisData: POI[] = [
     "layerName": "defi-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "3",
     "locationId": null,
     "groupId": "14"
@@ -87,6 +114,9 @@ export const poisData: POI[] = [
     "layerName": "discussion-corner-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "5",
     "groupId": "8"
@@ -96,6 +126,9 @@ export const poisData: POI[] = [
     "layerName": "enterprise-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-48-59-757Z-Enterprise-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -105,6 +138,9 @@ export const poisData: POI[] = [
     "layerName": "fintech-onchain-banking",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-54-49-797Z-Onchain-Fintech.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -114,6 +150,9 @@ export const poisData: POI[] = [
     "layerName": "food-beverage-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "1",
     "groupId": "10"
@@ -123,6 +162,9 @@ export const poisData: POI[] = [
     "layerName": "football-area-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "2"
@@ -132,6 +174,9 @@ export const poisData: POI[] = [
     "layerName": "future-cities-hubs",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-54-55-465Z-Future-Cities-Hubs.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -141,6 +186,9 @@ export const poisData: POI[] = [
     "layerName": "gaming-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "4",
     "locationId": null,
     "groupId": "14"
@@ -150,6 +198,9 @@ export const poisData: POI[] = [
     "layerName": "governance-geeks",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-05-838Z-Governance-Geeks.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -159,6 +210,9 @@ export const poisData: POI[] = [
     "layerName": "hardware-wallets-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "5",
     "locationId": null,
     "groupId": "14"
@@ -168,6 +222,9 @@ export const poisData: POI[] = [
     "layerName": "interview-room-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "11"
@@ -177,6 +234,9 @@ export const poisData: POI[] = [
     "layerName": "l2-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "6",
     "locationId": null,
     "groupId": "14"
@@ -186,6 +246,9 @@ export const poisData: POI[] = [
     "layerName": "latam-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-13-292Z-LatamCommunityHub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -195,6 +258,9 @@ export const poisData: POI[] = [
     "layerName": "legal-tech-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-25-025Z-Legal-Tech-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -204,6 +270,9 @@ export const poisData: POI[] = [
     "layerName": "main-entrance",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "3",
     "groupId": "9"
@@ -213,6 +282,9 @@ export const poisData: POI[] = [
     "layerName": "meeting-room-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "12"
@@ -222,6 +294,9 @@ export const poisData: POI[] = [
     "layerName": "music-stage-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "13"
@@ -231,6 +306,9 @@ export const poisData: POI[] = [
     "layerName": "node-operators",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-32-691Z-Node-Operator.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -240,6 +318,9 @@ export const poisData: POI[] = [
     "layerName": "onchain-art-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-38-042Z-Onchain-Art-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -249,6 +330,9 @@ export const poisData: POI[] = [
     "layerName": "onramp-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": "2",
     "groupId": "15"
@@ -258,6 +342,9 @@ export const poisData: POI[] = [
     "layerName": "open-cinema-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "2"
@@ -267,6 +354,9 @@ export const poisData: POI[] = [
     "layerName": "open-source-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-44-723Z-OS-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -276,6 +366,9 @@ export const poisData: POI[] = [
     "layerName": "privacy-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-49-711Z-privacy-hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -285,6 +378,9 @@ export const poisData: POI[] = [
     "layerName": "privacy-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "7",
     "locationId": null,
     "groupId": "14"
@@ -294,6 +390,9 @@ export const poisData: POI[] = [
     "layerName": "qrcode-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "16"
@@ -303,6 +402,9 @@ export const poisData: POI[] = [
     "layerName": "regen-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-54-012Z-Regen-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -312,6 +414,9 @@ export const poisData: POI[] = [
     "layerName": "rwa",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-57-230Z-RWA-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -321,6 +426,9 @@ export const poisData: POI[] = [
     "layerName": "social-onboarding",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": "8",
     "locationId": null,
     "groupId": "14"
@@ -330,6 +438,9 @@ export const poisData: POI[] = [
     "layerName": "stage-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "18"
@@ -339,6 +450,9 @@ export const poisData: POI[] = [
     "layerName": "swag-station-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "17"
@@ -348,6 +462,9 @@ export const poisData: POI[] = [
     "layerName": "toilet-1",
     "logo": "",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "19"
@@ -357,6 +474,9 @@ export const poisData: POI[] = [
     "layerName": "women-in-web3-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-56-01-631Z-Women-In-Web-3.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
@@ -366,6 +486,9 @@ export const poisData: POI[] = [
     "layerName": "world-of-desci",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-56-12-379Z-DeSci-Hub.png",
     "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
     "districtId": null,
     "locationId": null,
     "groupId": "7"
