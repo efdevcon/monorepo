@@ -180,7 +180,8 @@ export default function AppShowcaseDetail({
   // Helper function to scroll element into view accounting for sticky header and tabs
   const scrollToElement = (element: HTMLElement) => {
     // Get the actual sticky header and tabs heights
-    const stickyTop = pwa === true ? 108 : 48; // Sticky position from top
+    // Header is now: safe-area-inset-top + h1(~24px) + pb-3(12px) = ~99px in PWA, ~36px regular
+    const stickyTop = pwa === true ? 61 : 52; // Sticky position from top (updated for new header height)
     const tabsElement = document.querySelector('[class*="sticky"]');
     const tabsHeight = tabsElement ? tabsElement.clientHeight : 60;
 
@@ -679,7 +680,7 @@ export default function AppShowcaseDetail({
       <div
         className="bg-white border-b border-[#ededf0] w-full z-20 sticky"
         style={{
-          top: pwa === true ? '108px' : '48px', // PWA mode: 108px, regular mode: 59px
+          top: pwa === true ? '99px' : '52px', // PWA mode: 99px (safe-area + h1 + pb-3), regular mode: 52px (updated for new header height)
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
         }}
       >

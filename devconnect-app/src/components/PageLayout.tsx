@@ -11,8 +11,8 @@ import { useRouter } from 'next/navigation';
 import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
-import { useIsScrolled } from 'lib/hooks/useIsScrolled';
 import { useTranslations } from 'next-intl';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface TabItem {
   label: string;
@@ -68,7 +68,7 @@ const BackButton = () => {
   return (
     <div
       className={cn(
-        'lg:w-[30px] flex w-[20px] justify-start items-center text-xl shrink-0 absolute left-0',
+        'flex justify-start items-center text-xl absolute left-0 top-1/2 -translate-y-1/2',
         canBack && 'hover:scale-110'
       )}
     >
@@ -119,7 +119,7 @@ const Tabs = ({
         className
       )}
     >
-      <div className="flex md:rounded w-[fit-content] shrink-0 flex gap-2">
+      <div className="flex md:rounded w-[fit-content] shrink-0 gap-2">
         {tabs.map((tab, idx) => {
           let isActive;
 
@@ -138,7 +138,7 @@ const Tabs = ({
               type="button"
               data-tab-index={idx}
               className={cn(
-                'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap flex-shrink-0 border-b-2 border-b-solid border-b-transparent',
+                'shrink-0 cursor-pointer px-3 py-1.5 flex justify-center items-center whitespace-nowrap border-b-2 border-b-solid border-b-transparent',
                 'hover:!bg-[rgba(234,244,251,1)]',
                 isActive
                   ? 'rounded-[1px] shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] !bg-[rgba(234,244,251,1)] !border-b-2 !border-b-solid !border-[rgba(22,90,141,1))]'
@@ -149,7 +149,7 @@ const Tabs = ({
             >
               <div
                 className={cn(
-                  'text-center justify-center text-sm font-medium leading-tight flex gap-2 font-medium items-center',
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-2 items-center',
                   isActive ? 'text-[#165a8d]' : 'text-[#4b4b66] cursor-pointer'
                 )}
               >
@@ -196,8 +196,7 @@ export default function PageLayout({
 
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
-
-  const isScrolled = useIsScrolled(20);
+  const [pwa] = useLocalStorage<boolean | null>('pwa', null);
 
   return (
     <>
@@ -208,49 +207,47 @@ export default function PageLayout({
             className="relative md:hidden grow flex flex-col"
             data-type="layout-mobile"
           >
-            {title && (
-              <div
-                data-page="Header"
-                className={cn(
-                  'w-full shrink-0 relative flex flex-col items-start gradient-header transition-transform text-white translate-y-[0px] duration-300 px-4 gap-5 sticky top-0 z-[999998]',
-                  isScrolled ? '!translate-y-[-10px] !text-black !bg-white' : ''
-                )}
-                style={{
-                  background: isScrolled ? 'white' : ``,
-                  backgroundBlendMode: 'normal, normal, overlay, normal',
-                  backdropFilter: isScrolled ? 'blur(0px)' : 'blur(4px)',
-                  paddingTop: 'calc(0px + max(0px, env(safe-area-inset-top)))',
-                }}
-              >
+            <div className="w-full shrink-0 flex flex-col sticky top-0 z-[999999]">
+              {title && (
                 <div
-                  className={cn(
-                    'relative flex items-center  transition-transform duration-300 h-[59px] translate-y-[0px] justify-center w-full gap-3 font-medium'
-                  )}
+                  data-page="Header"
+                  className="w-full flex flex-col items-start gradient-header text-white"
+                  style={{
+                    backgroundBlendMode: 'normal, normal, overlay, normal',
+                    backdropFilter: 'blur(4px)',
+                    paddingTop:
+                      'calc(0px + max(0px, env(safe-area-inset-top)))',
+                  }}
                 >
-                  <BackButton />
-                  {title}
+                  <div
+                    className="flex items-center justify-between w-full px-6 pb-3"
+                    style={{ paddingTop: pwa ? '0' : '0.75rem' }}
+                  >
+                    {/* <div className="relative w-[20px] lg:w-[30px] shrink-0">
+                      <BackButton />
+                    </div> */}
+                    <h1
+                      className="flex-1 text-lg font-bold text-center tracking-[-0.1px]"
+                      style={{ textShadow: 'rgba(0,0,0,0.15) 0px 1px 3px' }}
+                    >
+                      {title}
+                    </h1>
+                    <div className="w-[20px] lg:w-[30px] shrink-0" />
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
 
-            {tabs.length > 1 && (
-              <div
-                className={cn(
-                  'px-4 text-lg z-[1] font-bold border-b border-b-solid border-[#8855CC26] transition-transform translate-y-[0px] duration-300 sticky bg-white md:rounded-t-sm z-[999999]',
-                  isScrolled ? '!translate-y-[-25px]' : ''
-                )}
-                style={{
-                  top: 'calc(59px + max(0px, env(safe-area-inset-top)))',
-                }}
-              >
-                <Tabs
-                  tabs={tabs}
-                  activeIndex={activeIndex}
-                  setActiveIndex={setActiveIndex}
-                  onTabClick={onTabClick}
-                />
-              </div>
-            )}
+              {tabs.length > 1 && (
+                <div className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] bg-white md:rounded-t-sm">
+                  <Tabs
+                    tabs={tabs}
+                    activeIndex={activeIndex}
+                    setActiveIndex={setActiveIndex}
+                    onTabClick={onTabClick}
+                  />
+                </div>
+              )}
+            </div>
 
             {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
             <div className="w-full flex flex-col items-center justify-start grow relative">
