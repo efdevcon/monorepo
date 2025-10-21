@@ -36,7 +36,7 @@ export default function Menu() {
       {/* Spacer for the bottom of the screen to counteract fixed position of menu */}
       <div
         className="md:hidden pointer-events-none"
-        style={{ height: 'calc(72px + max(0px, env(safe-area-inset-bottom)))' }}
+        style={{ height: 'calc(59px + max(0px, env(safe-area-inset-bottom)))' }}
       ></div>
       <nav
         className={cn(
@@ -45,7 +45,7 @@ export default function Menu() {
         )}
         style={{
           paddingBottom: 'calc(0px + max(0px, env(safe-area-inset-bottom)))',
-          height: 'calc(72px + max(0px, env(safe-area-inset-bottom)))',
+          height: 'calc(59px + max(0px, env(safe-area-inset-bottom)))',
         }}
       >
         {NAV_ITEMS.map((item) => {
