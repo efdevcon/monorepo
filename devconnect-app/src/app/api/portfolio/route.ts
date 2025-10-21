@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { chains, getReadableNetworkName, convertNetworkToChainId } from '@/config/networks';
+import { chains, convertNetworkToChainId } from '@/config/networks';
+import { ENTRYPOINT_ADDRESS } from '@/config/config';
 
 const ZAPPER_API_KEY = process.env.ZAPPER_API_KEY;
 
@@ -169,22 +170,20 @@ export async function POST(request: NextRequest) {
           const symbol = tokenInfo.token?.symbol || 'Unknown Token';
           const amount = Math.abs(tokenInfo.amount);
 
-          // Check if this is a sponsored transaction (from the sponsor address)
-          if (node.to?.address === '0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789') {
+          // Check if this is a sponsored transaction (to EntryPoint)
+          if (node.subject?.toLowerCase() === address.toLowerCase() && node.to?.address?.toLowerCase() === ENTRYPOINT_ADDRESS.toLowerCase()) {
             // This is a sponsored send transaction
             node.interpretation = {
               processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
             };
+          } else if (node.from?.address?.toLowerCase() === address.toLowerCase()) {
+            node.interpretation = {
+              processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
+            };
           } else {
-            if (node.from?.address?.toLowerCase() === address.toLowerCase()) {
-              node.interpretation = {
-                processedDescription: `Sent ${amount.toFixed(4)} ${symbol}`
-              };
-            } else {
-              node.interpretation = {
-                processedDescription: `Received ${amount.toFixed(4)} ${symbol}`
-              };
-            }
+            node.interpretation = {
+              processedDescription: `Received ${amount.toFixed(4)} ${symbol}`
+            };
           }
         }
 

@@ -202,7 +202,7 @@ export default function WalletTab() {
           chainId: payment.chainId,
         },
         interpretation: {
-          processedDescription: `Transferred ${payment.amount} ${payment.token}`,
+          processedDescription: `Paid ${payment.amount} ${payment.token}`,
         },
         // Mark as local payment for identification
         isLocalPayment: true,

@@ -53,4 +53,7 @@ export const PAYMENT_CONFIG = {
 export const CDP_SMART_ACCOUNTS = {
   PAYMENT: '0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7', // For payment transactions
   SEND: '0x407AC50a73F1649D4939c2b12697b418873f6896',    // For send transactions
-}; 
+};
+
+// ERC-4337 EntryPoint (used for identifying sponsored transactions)
+export const ENTRYPOINT_ADDRESS = '0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789'; 

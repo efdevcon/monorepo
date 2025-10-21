@@ -95,6 +95,8 @@ Copy the smart account address from output.
 - Payment: `0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7` (PaymentModal)
 - Send: `0x407AC50a73F1649D4939c2b12697b418873f6896` (Send page)
 
+Addresses are configured in `src/config/config.ts` as `CDP_SMART_ACCOUNTS`.
+
 ### 6. Fund Smart Account
 
 **Important**: Even though Coinbase sponsors gas via credits, the smart account still needs a small ETH balance for EntryPoint collateral.
@@ -137,6 +139,8 @@ Frontend (Para Wallet)
 - **CDP Bundler**: Coinbase service that collects and submits UserOperations to the blockchain
 - **CDP Paymaster**: Coinbase service that automatically sponsors gas fees (up to $10k/month in credits)
 - **USDC Contract** (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`): Base mainnet USDC token
+
+All addresses configured in `src/config/config.ts`.
 
 **Gas Sponsorship:**
 
