@@ -107,7 +107,7 @@ export default function StampbookTab() {
 
     // If not claimed/completed, navigate to the quest detail page
     if (!isCompleted) {
-      router.push(`/quests/app-showcase#${stamp.id}`);
+      router.push(`/quests#${stamp.id}`);
       return;
     }
 

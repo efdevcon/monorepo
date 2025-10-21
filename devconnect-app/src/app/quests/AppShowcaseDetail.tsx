@@ -99,9 +99,12 @@ const Tabs = ({
   }, [activeDistrictId, isSetupTabActive, isSetupSectionExpanded]);
 
   return (
-    <div className="py-4 md:py-2 w-full">
-      <div ref={scrollContainerRef} className="overflow-x-auto scrollbar-hide">
-        <div className="flex gap-2 w-max min-w-full">
+    <div className="py-3 w-full">
+      <div
+        ref={scrollContainerRef}
+        className="px-5 overflow-x-auto scrollbar-hide"
+      >
+        <div className="flex gap-3 w-max min-w-full">
           {/* Setup & app tour tab */}
           {showSetupTab && (
             <button
@@ -110,12 +113,12 @@ const Tabs = ({
               className={cn(
                 'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
                 isSetupTabActive && isSetupSectionExpanded
-                  ? 'bg-[#165a8d] text-white'
-                  : 'bg-[#ededf0] text-[#4b4b66] hover:bg-[#e0e0e5]'
+                  ? 'bg-[#165a8d] text-white font-semibold'
+                  : 'bg-white border border-[#ededf0] text-[#4b4b66] font-medium hover:bg-gray-50'
               )}
               onClick={onSetupTabSelect}
             >
-              <span className="text-sm font-medium leading-none tracking-[-0.1px]">
+              <span className="text-sm leading-none tracking-[-0.1px]">
                 Setup & app tour
               </span>
             </button>
@@ -130,12 +133,12 @@ const Tabs = ({
               className={cn(
                 'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
                 activeDistrictId === district.id
-                  ? 'bg-[#165a8d] text-white'
-                  : 'bg-[#ededf0] text-[#4b4b66] hover:bg-[#e0e0e5]'
+                  ? 'bg-[#165a8d] text-white font-semibold'
+                  : 'bg-white border border-[#ededf0] text-[#4b4b66] font-medium hover:bg-gray-50'
               )}
               onClick={() => onDistrictSelect(district.id)}
             >
-              <span className="text-sm font-medium leading-none tracking-[-0.1px]">
+              <span className="text-sm leading-none tracking-[-0.1px]">
                 {district.name}
               </span>
             </button>
@@ -173,6 +176,26 @@ export default function AppShowcaseDetail({
     collected: boolean;
     stampedDate?: string;
   } | null>(null);
+
+  // Helper function to scroll element into view accounting for sticky header and tabs
+  const scrollToElement = (element: HTMLElement) => {
+    // Get the actual sticky header and tabs heights
+    const stickyTop = pwa === true ? 108 : 48; // Sticky position from top
+    const tabsElement = document.querySelector('[class*="sticky"]');
+    const tabsHeight = tabsElement ? tabsElement.clientHeight : 60;
+
+    // Calculate scroll position
+    const elementRect = element.getBoundingClientRect();
+    const currentScroll =
+      window.pageYOffset || document.documentElement.scrollTop;
+    const targetScroll =
+      currentScroll + elementRect.top - stickyTop - tabsHeight - 70;
+
+    window.scrollTo({
+      top: targetScroll,
+      behavior: 'smooth',
+    });
+  };
 
   // Get all App Showcase quests (groupId === 4)
   const appShowcaseQuests = questsData.filter((quest) => quest.groupId === 4);
@@ -243,17 +266,7 @@ export default function AppShowcaseDetail({
           setTimeout(() => {
             const questElement = questRefs.current[quest.id];
             if (questElement) {
-              // Calculate offset to account for sticky tabs and menu
-              const stickyTabsHeight = pwa === true ? 108 : 48; // PWA mode: 108px, regular mode: 59px
-              const menuHeight = 30; // Additional 30px for menu
-              const elementTop = questElement.offsetTop;
-              const offsetPosition =
-                elementTop - stickyTabsHeight - menuHeight - 45; // Extra 45px padding
-
-              window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth',
-              });
+              scrollToElement(questElement);
             }
           }, 200); // Increased delay to ensure DOM updates are complete
         }
@@ -453,15 +466,7 @@ export default function AppShowcaseDetail({
     setTimeout(() => {
       const setupElement = document.getElementById('setup-section');
       if (setupElement) {
-        // Calculate offset to account for sticky tabs (59px + some padding)
-        const stickyTabsHeight = 135; // 59px + some padding
-        const elementTop = setupElement.offsetTop;
-        const offsetPosition = elementTop - stickyTabsHeight;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth',
-        });
+        scrollToElement(setupElement);
       }
     }, 100);
   };
@@ -493,15 +498,7 @@ export default function AppShowcaseDetail({
           `district-${districtId}`
         );
         if (districtElement) {
-          // Calculate offset to account for sticky tabs (59px + some padding)
-          const stickyTabsHeight = 135; // 59px + some padding
-          const elementTop = districtElement.offsetTop;
-          const offsetPosition = elementTop - stickyTabsHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth',
-          });
+          scrollToElement(districtElement);
         }
       }, 100);
     }
@@ -670,23 +667,23 @@ export default function AppShowcaseDetail({
         </div>
       )}
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
+      {/* <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">
           <h1 className="text-base font-bold text-gray-800 tracking-[-0.1px] flex-1 text-center">
             {group.name}
           </h1>
-          <div className="w-5" /> {/* Spacer for centering */}
+          <div className="w-5" />
         </div>
-      </div>
-      {/* District Tabs */}
+      </div> */}
+      {/* District Tabs & Reward Section - Sticky */}
       <div
-        className="bg-white border-b border-gray-200 w-full px-4 z-20 sticky"
+        className="bg-white border-b border-[#ededf0] w-full z-20 sticky"
         style={{
           top: pwa === true ? '108px' : '48px', // PWA mode: 108px, regular mode: 59px
           transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
         }}
       >
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto relative">
           <Tabs
             districts={districtsWithQuests}
             activeDistrictId={expandedDistrict}
@@ -696,9 +693,18 @@ export default function AppShowcaseDetail({
             isSetupSectionExpanded={isSetupSectionExpanded}
             onSetupTabSelect={selectSetupTab}
           />
+          {/* Gradient overlay to show peek of hidden tabs */}
+          <div
+            className="absolute top-0 right-0 h-full w-[20px] pointer-events-none"
+            style={{
+              background:
+                'linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%)',
+            }}
+          />
         </div>
+
         {/* Reward Section */}
-        <div className="bg-white border-b border-[#eeeeee] w-full px-6 pt-4 pb-5">
+        <div className="bg-white border-t border-[#eeeeee] w-full px-6 pt-4 pb-5">
           <div className="flex flex-col gap-4">
             {/* Progress Info */}
             <div className="flex items-start justify-between w-full text-sm">
@@ -729,7 +735,7 @@ export default function AppShowcaseDetail({
         </div>
       </div>
       {/* Setup & app tour Section */}
-      <div className="w-full py-3">
+      <div className="w-full pt-3">
         <div id="setup-section" className="bg-white border border-gray-200">
           {/* Setup Section Header - Clickable */}
           <button

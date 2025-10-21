@@ -154,7 +154,7 @@ const MapPane = (props: {
   //   };
 
   //   const handleBack = () => {
-  //     window.location.href = '/quests/app-showcase#14';
+  //     window.location.href = '/quests#14';
   //   };
 
   console.log('poisData', poisData);
