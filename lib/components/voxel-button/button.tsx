@@ -36,13 +36,13 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
       {...props}
       className={cn(
         computedColor,
-        "border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:!border-opacity-0 flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
+        "cursor-pointer border-solid border-b-[6px] group px-8 py-2 text-lg transition-colors hover:!border-transparent flex items-center justify-center disabled:pointer-events-none disabled:opacity-70",
         size,
         props.className
       )}
       disabled={disabled}
     >
-      <div className="group-hover:translate-y-[3px] pt-0.5 transition-transform flex items-center justify-center gap-2">
+      <div className="group-hover:!translate-y-[3px] pt-0.5 transition-transform flex items-center justify-center gap-2">
         {props.children}
       </div>
     </button>
