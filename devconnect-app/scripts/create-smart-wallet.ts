@@ -11,19 +11,17 @@ async function main() {
   console.log('🚀 CDP v2 Smart Account Setup\n');
   
   try {
-    const address = await getSmartWalletAddress();
+    const paymentAddress = await getSmartWalletAddress('payment');
+    const sendAddress = await getSmartWalletAddress('send');
     
-    console.log('📝 Next Steps:');
-    console.log(`   1. Fund smart account: Send 0.001+ ETH to ${address}`);
-    console.log('      (Minimum 0.001 ETH for ~100 transactions)');
-    console.log('   2. Test a USDC transfer');
-    console.log('   3. Monitor at https://portal.cdp.coinbase.com/\n');
+    console.log('\n📋 Smart Accounts Created:');
+    console.log(`Payment: ${paymentAddress}`);
+    console.log(`Send:    ${sendAddress}`);
+    console.log('\n📝 Next: Fund both accounts with 0.001+ ETH');
+    console.log('Monitor: https://portal.cdp.coinbase.com/\n');
   } catch (error) {
     console.error('\n❌ Error:', error);
-    console.error('\nMake sure you have in .env.local:');
-    console.error('   - CDP_API_KEY_ID');
-    console.error('   - CDP_API_KEY_SECRET');
-    console.error('   - CDP_WALLET_SECRET');
+    console.error('\nRequired in .env.local: CDP_API_KEY_ID, CDP_API_KEY_SECRET, CDP_WALLET_SECRET');
     process.exit(1);
   }
 }

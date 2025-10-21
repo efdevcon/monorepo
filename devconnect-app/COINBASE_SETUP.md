@@ -91,7 +91,9 @@ pnpm create-wallet
 
 Copy the smart account address from output.
 
-**Current Smart Account:** `0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7` (Base Mainnet)
+**Smart Accounts (2 for payment/send tracking):**
+- Payment: `0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7` (PaymentModal)
+- Send: `0x407AC50a73F1649D4939c2b12697b418873f6896` (Send page)
 
 ### 6. Fund Smart Account
 
@@ -100,6 +102,7 @@ Copy the smart account address from output.
 The EntryPoint contract (`0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789`) manages the ERC-4337 account abstraction flow and requires a small ETH deposit for validation. This is **separate from gas fees** - think of it as a security deposit.
 
 ```bash
+# Fund both accounts with 0.001+ ETH each
 # Minimum: 0.001 ETH (~$3) - good for ~100 transactions
 # Recommended: 0.01 ETH (~$30) - rarely need to refill
 
@@ -129,7 +132,7 @@ Frontend (Para Wallet)
 
 **Key Components:**
 
-- **Smart Account** (`0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7`): ERC-4337 smart contract wallet managed by CDP
+- **Smart Accounts**: Payment (`0xd127...76c7`) and Send (`0x407A...6896`) - ERC-4337 smart contract wallets managed by CDP
 - **EntryPoint** (`0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789`): Standard ERC-4337 contract that orchestrates UserOperations
 - **CDP Bundler**: Coinbase service that collects and submits UserOperations to the blockchain
 - **CDP Paymaster**: Coinbase service that automatically sponsors gas fees (up to $10k/month in credits)
@@ -171,12 +174,13 @@ To track sponsored USDC transactions onchain, query by Smart Account address:
 **Basescan:**
 
 ```
-https://basescan.org/address/0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7
+Payment: https://basescan.org/address/0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7
+Send:    https://basescan.org/address/0x407AC50a73F1649D4939c2b12697b418873f6896
 ```
 
 **Filter for EntryPoint interactions:**
 
-- **From:** `0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7` (Smart Account)
+- **From:** Smart Account address
 - **To:** `0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789` (EntryPoint)
 - **Method:** `handleOps` (batches UserOperations)
 
@@ -189,7 +193,7 @@ Each sponsored transaction creates multiple related hashes:
 
 The onchain transaction shows:
 
-- **From:** Smart Account (`0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7`)
+- **From:** Smart Account
 - **To:** EntryPoint contract (`0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789`)
 - **Internal Call:** EntryPoint → USDC contract (`0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`)
 
@@ -231,7 +235,7 @@ When the bundler batches **multiple UserOperations** in a single `handleOps` tra
 
 1. Open the transaction → "Logs" tab
 2. Look for `UserOperationEvent` (emitted by EntryPoint)
-3. Filter by your `userOpHash` or Smart Account address (`0xd127a1bFEdd21E04784c60070b7c8A2F2Ff176c7`)
+3. Filter by your `userOpHash` or Smart Account address
 4. Each UserOperation has its own `UserOperationEvent` with:
    - `userOpHash`: Your unique operation ID
    - `sender`: Your Smart Account address

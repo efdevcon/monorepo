@@ -224,7 +224,14 @@ export default function SendPage() {
       });
 
       // Send the transaction (gas-free for Para wallets)
-      await sendTransaction(recipientAddress.trim(), amount, token, chainId);
+      // Pass 'send' as transaction type for Send page
+      await sendTransaction(
+        recipientAddress.trim(),
+        amount,
+        token,
+        chainId,
+        'send'
+      );
     } catch (error) {
       console.error('Transaction failed:', error);
       // Error handling is done through txStatus and txError state

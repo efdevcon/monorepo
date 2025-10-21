@@ -189,7 +189,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendParaTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
+  const sendParaTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send') => {
     if (!isConnected || !connectedAddress) {
       throw new Error('Wallet not connected');
     }
@@ -198,6 +198,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
 
     try {
       console.log('🔄 [PARA_TX] Starting Para wallet transaction');
+      console.log('🔄 [PARA_TX] Type:', transactionType || 'payment');
       setCurrentTransactionWallet('para');
       setTxStatus('preparing');
       
@@ -275,6 +276,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
         body: JSON.stringify({
           signature,
           authorization: authData.authorization,
+          transactionType: transactionType || 'payment',
         }),
       });
 
@@ -334,10 +336,10 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendTransaction = async (recipient: string, amount: string, token?: string, chainId?: number) => {
+  const sendTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send') => {
     try {
       if (isPara) {
-        await sendParaTransaction(recipient, amount, token, chainId);
+        await sendParaTransaction(recipient, amount, token, chainId, transactionType);
       } else {
         await sendRegularTransaction(recipient, amount, token, chainId);
       }

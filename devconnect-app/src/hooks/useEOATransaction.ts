@@ -96,7 +96,8 @@ export function useEOATransaction() {
     recipient: string,
     amount: string,
     token: string,
-    chainId: number
+    chainId: number,
+    transactionType?: 'payment' | 'send'
   ) => {
     if (!isConnected || !address) {
       const error = 'Wallet not connected';
@@ -107,6 +108,7 @@ export function useEOATransaction() {
 
     try {
       console.log('🔄 [EOA_TX] Starting EOA wallet transaction');
+      console.log('🔄 [EOA_TX] Type:', transactionType || 'payment');
       console.log('🔄 [EOA_TX] From:', address);
       console.log('🔄 [EOA_TX] To:', recipient);
       console.log('🔄 [EOA_TX] Amount:', amount);

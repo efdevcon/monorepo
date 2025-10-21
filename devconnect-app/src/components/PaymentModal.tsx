@@ -1085,7 +1085,14 @@ export default function PaymentModal({
 
       // For now, we'll use the existing sendTransaction but with Para's native signing
       // The key is to ensure the transaction goes through Para's signing mechanism
-      return await sendTransaction(recipient, amount, token, chainId);
+      // Pass 'payment' as transaction type for PaymentModal
+      return await sendTransaction(
+        recipient,
+        amount,
+        token,
+        chainId,
+        'payment'
+      );
     },
     [
       paraAccount,
@@ -1129,7 +1136,7 @@ export default function PaymentModal({
         // For non-Para wallets, use standard flow
         setPaymentData({ recipient, amount, token, chainId });
         setCurrentStep('status');
-        sendTransaction(recipient, amount, token, chainId);
+        sendTransaction(recipient, amount, token, chainId, 'payment');
       }
     },
     [isPara, paraAccount, paraWallet, handleParaTransaction, sendTransaction]

@@ -11,7 +11,8 @@ import { validateSponsorshipPolicy } from '@/config/sponsor-policy';
 import { COINBASE_CONFIG } from '@/config/coinbase-config';
 import {
   executeUSDCTransferWithAuth,
-  type EIP3009Authorization
+  type EIP3009Authorization,
+  type TransactionPurpose
 } from '@/lib/coinbase-smart-wallet';
 
 /**
@@ -27,7 +28,7 @@ import {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json();
-    let { signature, authorization } = requestBody;
+    let { signature, authorization, transactionType } = requestBody;
 
     // Handle case where signature comes wrapped in an object
     if (signature && typeof signature === 'object' && signature.signature) {
@@ -123,7 +124,12 @@ export async function POST(request: NextRequest) {
     // ⭐ NEW: Coinbase Smart Wallet Path
     // If enabled, use Coinbase Server Smart Wallet with Paymaster gas sponsorship
     if (COINBASE_CONFIG.ENABLED) {
-      console.log('🚀 [COINBASE] Using Coinbase Smart Wallet for gas sponsorship');
+      // Determine transaction purpose - default to 'payment' if not specified
+      const purpose: TransactionPurpose = (transactionType === 'send' || transactionType === 'payment')
+        ? transactionType as TransactionPurpose
+        : 'payment';
+
+      console.log(`🚀 [COINBASE] Using Coinbase Smart Wallet for gas sponsorship (${purpose.toUpperCase()})`);
 
       try {
         // Validate signature is a string and split into v, r, s
@@ -167,8 +173,8 @@ export async function POST(request: NextRequest) {
           s,
         };
 
-        // Execute via Coinbase Smart Wallet
-        const result = await executeUSDCTransferWithAuth(auth);
+        // Execute via Coinbase Smart Wallet with appropriate purpose
+        const result = await executeUSDCTransferWithAuth(auth, purpose);
 
         return NextResponse.json({
           success: true,
