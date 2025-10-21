@@ -187,7 +187,7 @@ const perks: Perk[] = [
     image: Ready1Image,
   },
   {
-    coupon_collection: 'ready-metal-2025',
+    coupon_collection: 'ready-metal',
     name: 'Ready Metal',
     description: '30% off Ready Metal Card',
     requires: 'Devconnect ARG ticket',
@@ -199,8 +199,7 @@ const perks: Perk[] = [
       },
     ],
     issuer: 'Ready',
-    instructions: 'Order now and get 10% cashback during Devconnect week',
-    global_coupon: 'DEVC30',
+    instructions: 'Use the code at checkout',
     image: Ready2Image,
   },
   // Edge city

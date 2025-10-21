@@ -49,7 +49,7 @@ export const DotsSelector = ({
 
   return (
     <div
-      className="flex gap-1.5 items-center"
+      className="flex gap-1 items-center"
       role="tablist"
       aria-label="Notification steps"
     >
@@ -67,11 +67,11 @@ export const DotsSelector = ({
           tabIndex={index === activeIndex ? 0 : -1}
         >
           <motion.div
-            className={`h-[6px] rounded-full cursor-pointer ${
-              index === activeIndex ? "bg-[#6B39F4]" : "bg-gray-400"
+            className={`h-[5px] cursor-pointer ${
+              index === activeIndex ? "bg-[rgba(27,111,174,1)]" : "bg-gray-400"
             }`}
             animate={{
-              width: index === activeIndex ? "32px" : "6px",
+              width: index === activeIndex ? "80px" : "40px",
               // borderRadius: index === activeIndex ? "8px" : "4px",
             }}
             transition={{ duration: 0.3 }}

@@ -416,7 +416,7 @@ const TicketTab = RequiresAuthHOC(() => {
         <div className="w-full">
           {isLoading && (
             <div className="my-4">
-              <Loader className="">Refreshing Tickets...</Loader>
+              <Loader>Refreshing Tickets...</Loader>
             </div>
           )}
 
@@ -426,7 +426,7 @@ const TicketTab = RequiresAuthHOC(() => {
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row justify-between gap-4 sm:items-center">
+          <div className="flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold">
                 Your Devconnect Ticket
