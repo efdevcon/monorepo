@@ -11,43 +11,38 @@ export const getProgramming = (event: Event) => {
     const dummySessions = [
       {
         title: "Opening Ceremony",
-        speakers: "[to be announced]",
-        time: "9:00",
+        speakers: "Devconnect Team",
       },
       {
         title: "EF & Ethereum Update",
         speakers: "Tomasz K. Stańczak",
-        time: "9:30",
       },
       {
         title: "Ethereum Ecosystem overview",
-        speakers: "[to be announced]",
-        time: "10:00",
+        speakers: "Jason Chaskin",
+      },
+      {
+        title: "Ethereum is for Institutions and Enterprises",
+        speakers: "Danny Ryan",
       },
       {
         title: "Ethereum In 30 minutes",
         speakers: "Vitalik Buterin",
-        time: "10:30",
       },
       {
         title: "Ethereum Protocol",
         speakers: "Dankrad Feist",
-        time: "11:00",
       },
       {
         title: "Privacy in Ethereum",
         speakers: "[to be announced]",
-        time: "13:00",
       },
       {
         title: "The Trillion Dollar Security Initiative",
-        speakers: "[to be announced]",
-        time: "14:00",
+        speakers: "Mehdi Zerouali",
       },
       {
         title: "Stay tuned for more programming - and speaker announcements 👀",
-        // speakers: "[to be announced]",
-        time: "14:30",
         faded: true,
       },
     ];
