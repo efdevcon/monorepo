@@ -35,7 +35,7 @@ export const getProgramming = (event: Event) => {
       },
       {
         title: "Privacy in Ethereum",
-        speakers: "[to be announced]",
+        speakers: "Peter Van Valkenburgh",
       },
       {
         title: "The Trillion Dollar Security Initiative",

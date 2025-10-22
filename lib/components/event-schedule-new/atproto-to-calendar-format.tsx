@@ -63,6 +63,10 @@ export const atprotoToCalendarFormat = (event: any) => {
     manualOverrides.spanRows = 2;
   }
 
+  if (event.id === 72) {
+    manualOverrides.priority = 1;
+  }
+
   const socials = event.socials || {};
 
   return {

@@ -106,7 +106,7 @@ const computeEventPlacements = (
       if (a.isCoreEvent && !b.isCoreEvent) return -1;
       if (!a.isCoreEvent && b.isCoreEvent) return 1;
 
-      return a.priority - b.priority;
+      return (a.priority ?? 0) > (b.priority ?? 0) ? -1 : 1;
     }
 
     if (isSameDay) {
