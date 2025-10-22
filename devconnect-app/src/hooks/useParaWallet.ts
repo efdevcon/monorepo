@@ -36,12 +36,24 @@ export function useParaWalletConnection() {
 
       // If no primary wallet is set, automatically make Para primary
       if (!currentPrimary) {
-        console.log('🔄 [PARA] Auto-switching to Para (no primary wallet set)');
+        console.log('🔄 [PARA] Auto-switching to Para (no primary wallet set):', {
+          paraAddress: address,
+          walletId,
+          email,
+          action: 'switching to Para',
+        });
         localStorage.setItem('devconnect_primary_wallet_type', 'para');
         window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: 'para' }));
+        console.log('✅ [PARA] Auto-switch completed - Para is now primary');
+      } else {
+        console.log('ℹ️ [PARA] Para connected but not auto-switching:', {
+          currentPrimary,
+          paraAddress: address,
+          note: 'Another wallet is already primary',
+        });
       }
     }
-  }, [isConnected]);
+  }, [isConnected, address, walletId, email]);
 
   /**
    * Disconnect Para wallet

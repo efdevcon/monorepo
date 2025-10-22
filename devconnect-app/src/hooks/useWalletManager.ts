@@ -287,7 +287,7 @@ export function useWalletManager() {
     isPara,
   ]);
 
-  // Debug: Log address computation
+  // Debug: Log address computation and multi-wallet state
   console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
     address: address ? address.slice(0, 10) + '...' : null,
     fullAddress: address,
@@ -296,6 +296,10 @@ export function useWalletManager() {
     isEOAActive,
     paraAddress: para.address?.slice(0, 10) + '...',
     eoaAddress: eoa.address?.slice(0, 10) + '...',
+    paraFullAddress: para.address,
+    eoaFullAddress: eoa.address,
+    hasMultipleWallets: !!(para.address && eoa.address),
+    primaryType,
   });
 
   // ============================================
@@ -821,6 +825,6 @@ export function useWalletManager() {
     ...userMethods, // sendOtp, verifyOtp, signOut, supabase
 
     // Status flags
-    hasMultipleWallets: para.isConnected && eoa.isConnected,
+    hasMultipleWallets: para.address && eoa.address,
   };
 }

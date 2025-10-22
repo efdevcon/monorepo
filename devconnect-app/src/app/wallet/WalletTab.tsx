@@ -78,7 +78,11 @@ export default function WalletTab() {
     paraEmail,
     supabaseEmail,
     isAuthenticated,
+    hasMultipleWallets,
   } = walletData;
+
+  // Check if beta mode is enabled
+  const isBetaMode = process.env.NEXT_PUBLIC_BETA === 'true';
 
   // Debug: Log the refresh trigger value received from useWallet
   console.log('🔍 [WALLET_TAB] Received from useWallet:', {
@@ -279,7 +283,15 @@ export default function WalletTab() {
     paraEmail,
     supabaseEmail,
     isAuthenticated,
-    para,
+    hasMultipleWallets,
+    para: {
+      isConnected: para.isConnected,
+      address: para.address,
+    },
+    eoa: {
+      isConnected: eoa.isConnected,
+      address: eoa.address,
+    },
   });
 
   // Debug logging for wallet state changes
@@ -691,7 +703,7 @@ export default function WalletTab() {
                   onClick={() => setShowWalletModal(true)}
                   className="flex items-center gap-1 py-1 hover:bg-gray-100 rounded transition-colors"
                 >
-                  {para.isConnected && eoa.isConnected ? (
+                  {hasMultipleWallets ? (
                     <>
                       <Icon
                         path={mdiWalletOutline}
@@ -794,21 +806,23 @@ export default function WalletTab() {
                 Receive
               </span>
             </div>
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <button
-                onClick={handleDigitalClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
-              >
-                <Icon
-                  path={mdiCurrencyUsd}
-                  size={1.3}
-                  className="text-[#0073de]"
-                />
-              </button>
-              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
-                Add
-              </span>
-            </div>
+            {!isBetaMode && (
+              <div className="flex-1 flex flex-col items-center gap-2">
+                <button
+                  onClick={handleDigitalClick}
+                  className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  <Icon
+                    path={mdiCurrencyUsd}
+                    size={1.3}
+                    className="text-[#0073de]"
+                  />
+                </button>
+                <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                  Add
+                </span>
+              </div>
+            )}
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleScanClick}
@@ -828,98 +842,102 @@ export default function WalletTab() {
         </div>
 
         {/* My Perks Section */}
-        <div className="flex flex-col gap-4">
-          <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
-            My Perks
-          </p>
+        {!isBetaMode && (
+          <>
+            <div className="flex flex-col gap-4">
+              <p className="text-[#20202b] text-[18px] font-bold tracking-[-0.1px] leading-[1.2]">
+                My Perks
+              </p>
 
-          {/* Peanut Claim Card */}
-          <div
-            className="bg-white p-4 flex flex-col gap-4 items-center w-full"
-            style={{
-              boxShadow: '4px 4px 0px black',
-              outline: '1px black solid',
-              outlineOffset: '-1px',
-            }}
-          >
-            <button
-              onClick={handlePeanutClaim}
-              className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
-              style={{
-                outline: '1px black solid',
-                outlineOffset: '-1px',
-              }}
-            >
-              <p className="text-black text-[16px] font-bold leading-4">
-                Claim $3 (USDC)
-              </p>
-              <svg
-                className="w-3.5 h-3.5 text-black flex-shrink-0"
-                viewBox="0 0 14 14"
-                fill="none"
-                stroke="currentColor"
+              {/* Peanut Claim Card */}
+              <div
+                className="bg-white p-4 flex flex-col gap-4 items-center w-full"
+                style={{
+                  boxShadow: '4px 4px 0px black',
+                  outline: '1px black solid',
+                  outlineOffset: '-1px',
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 7h8m0 0L7 3m4 4l-4 4"
-                />
-              </svg>
-            </button>
-            <div className="flex items-center gap-3">
-              <p className="text-black text-[12px] font-normal leading-[15.6px]">
-                Sponsored by
-              </p>
-              <img
-                src={imgPeanutLogo}
-                alt="Peanut"
-                className="h-5 w-[82px] object-contain"
-              />
-            </div>
-          </div>
+                <button
+                  onClick={handlePeanutClaim}
+                  className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
+                  style={{
+                    outline: '1px black solid',
+                    outlineOffset: '-1px',
+                  }}
+                >
+                  <p className="text-black text-[16px] font-bold leading-4">
+                    Claim $3 (USDC)
+                  </p>
+                  <svg
+                    className="w-3.5 h-3.5 text-black flex-shrink-0"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 7h8m0 0L7 3m4 4l-4 4"
+                    />
+                  </svg>
+                </button>
+                <div className="flex items-center gap-3">
+                  <p className="text-black text-[12px] font-normal leading-[15.6px]">
+                    Sponsored by
+                  </p>
+                  <img
+                    src={imgPeanutLogo}
+                    alt="Peanut"
+                    className="h-5 w-[82px] object-contain"
+                  />
+                </div>
+              </div>
 
-          {/* ENS Claim Card */}
-          <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center">
-            <button
-              onClick={() => {
-                // TODO: Implement ENS claim functionality
-                alert('ENS claim coming soon!');
-              }}
-              className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
-            >
-              <p className="text-white text-[16px] font-bold leading-none">
-                Claim worldfair.eth name
-              </p>
-              <svg
-                className="w-3.5 h-3.5 text-white flex-shrink-0"
-                viewBox="0 0 14 14"
-                fill="none"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 7h8m0 0L7 3m4 4l-4 4"
-                />
-              </svg>
-            </button>
-            <div className="flex items-center gap-3">
-              <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
-                Sponsored by
-              </p>
-              <img
-                src={imgEnsLogo}
-                alt="ENS"
-                className="h-5 w-[62px] object-contain"
-              />
+              {/* ENS Claim Card */}
+              <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center">
+                <button
+                  onClick={() => {
+                    // TODO: Implement ENS claim functionality
+                    alert('ENS claim coming soon!');
+                  }}
+                  className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
+                >
+                  <p className="text-white text-[16px] font-bold leading-none">
+                    Claim worldfair.eth name
+                  </p>
+                  <svg
+                    className="w-3.5 h-3.5 text-white flex-shrink-0"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 7h8m0 0L7 3m4 4l-4 4"
+                    />
+                  </svg>
+                </button>
+                <div className="flex items-center gap-3">
+                  <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
+                    Sponsored by
+                  </p>
+                  <img
+                    src={imgEnsLogo}
+                    alt="ENS"
+                    className="h-5 w-[62px] object-contain"
+                  />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
 
         {/* Assets Section */}
-        <div className="space-y-1">
+        <div className="space-y-1 mb-0 pb-5">
           {/* Tabs */}
           <div className="bg-[#e5f1fb] p-1 rounded-[2px] flex gap-2">
             <button
@@ -956,7 +974,7 @@ export default function WalletTab() {
             </button>
           </div>
 
-          {/* Content */}
+          {/* Assets and Activity Sections */}
           <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-6">
             {activeTab === 'assets' ? (
               <>
@@ -1266,7 +1284,9 @@ export default function WalletTab() {
                                   </div>
                                   <p
                                     className="text-[14px] font-bold text-[#0073de] tracking-[-0.1px] flex-shrink-0"
-                                    style={{ fontFamily: 'Roboto, sans-serif' }}
+                                    style={{
+                                      fontFamily: 'Roboto, sans-serif',
+                                    }}
                                   >
                                     View
                                   </p>
@@ -1305,63 +1325,65 @@ export default function WalletTab() {
         </div>
 
         {/* Exchange Section */}
-        <div className="pb-4">
-          <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
-            <div className="space-y-2">
-              <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
-                Exchange ARS/USD for Crypto
-              </h2>
-              <p className="text-[#36364c] text-sm font-normal">
-                Fund your Ethereum wallet to fully experience the World's Fair.
-                There are two ways to add funds to your wallet:
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex gap-2">
-                <button
-                  onClick={handleDigitalClick}
-                  className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
-                >
-                  <img
-                    src={imgOnrampDigital}
-                    alt="digital"
-                    className="w-10 h-10"
-                  />
-                  <div className="text-center">
-                    <div className="text-[#36364c] text-sm font-bold">
-                      Digital
-                    </div>
-                    <div className="text-[#4b4b66] text-xs font-medium">
-                      Debit/Credit Card
-                    </div>
-                  </div>
-                </button>
-                <button
-                  onClick={handleInPersonClick}
-                  className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
-                >
-                  <img
-                    src={imgOnrampCash}
-                    alt="in-person"
-                    className="w-10 h-10"
-                  />
-                  <div className="text-center">
-                    <div className="text-[#36364c] text-sm font-bold">
-                      In-Person
-                    </div>
-                    <div className="text-[#4b4b66] text-xs font-medium">
-                      Currency & Card
-                    </div>
-                  </div>
-                </button>
+        {!isBetaMode && (
+          <div className="pb-5">
+            <div className="bg-white border border-[#f0f0f4] rounded-[2px] p-5 space-y-5">
+              <div className="space-y-2">
+                <h2 className="text-[#242436] text-lg font-bold tracking-[-0.1px]">
+                  Exchange ARS/USD for Crypto
+                </h2>
+                <p className="text-[#36364c] text-sm font-normal">
+                  Fund your Ethereum wallet to fully experience the World's
+                  Fair. There are two ways to add funds to your wallet:
+                </p>
               </div>
-              <p className="text-[#4b4b66] text-[10px] font-normal italic text-center leading-[1.3]">
-                Our partner exchanges are registered as VASP in Argentina
-              </p>
+
+              <div className="space-y-3">
+                <div className="flex gap-2">
+                  <button
+                    onClick={handleDigitalClick}
+                    className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                  >
+                    <img
+                      src={imgOnrampDigital}
+                      alt="digital"
+                      className="w-10 h-10"
+                    />
+                    <div className="text-center">
+                      <div className="text-[#36364c] text-sm font-bold">
+                        Digital
+                      </div>
+                      <div className="text-[#4b4b66] text-xs font-medium">
+                        Debit/Credit Card
+                      </div>
+                    </div>
+                  </button>
+                  <button
+                    onClick={handleInPersonClick}
+                    className="flex-1 bg-[#eaf4fb] border border-[#1b6fae] rounded-[2px] p-3 flex flex-col items-center gap-2 hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                  >
+                    <img
+                      src={imgOnrampCash}
+                      alt="in-person"
+                      className="w-10 h-10"
+                    />
+                    <div className="text-center">
+                      <div className="text-[#36364c] text-sm font-bold">
+                        In-Person
+                      </div>
+                      <div className="text-[#4b4b66] text-xs font-medium">
+                        Currency & Card
+                      </div>
+                    </div>
+                  </button>
+                </div>
+                <p className="text-[#4b4b66] text-[10px] font-normal italic text-center leading-[1.3]">
+                  Our partner exchanges are registered as VASP in Argentina
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Network Switching Modal */}
