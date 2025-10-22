@@ -13,7 +13,6 @@ import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
 import cn from 'classnames';
-// import { useTranslations } from 'next-intl';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -48,8 +47,8 @@ export function WelcomeSection() {
 
   return (
     <div className="flex flex-col items-start justify-start gap-1 mb-4 mx-4">
-      <div className="flex justify-between w-full  gap-1">
-        <div className="text-2xl font-semibold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
+      <div className="flex justify-between w-full  gap-2">
+        <div className="text-2xl font-semibold leading-tight mb-2 bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
         {/* <div className="font-semibold text-xs text-neutral-600">
@@ -67,6 +66,8 @@ export function WelcomeSection() {
     </div>
   );
 }
+
+// Announcements component is now imported from @/components/Announcements
 
 export const TodaysSchedule = withParcnetProvider(() => {
   const email = useGlobalStore((state) => state.userData?.email);

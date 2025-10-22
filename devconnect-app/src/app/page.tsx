@@ -7,6 +7,7 @@ import {
   TodaysSchedule,
   LoopingHeader,
 } from './dashboard-sections';
+import Announcements from '@/components/Announcements';
 import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
@@ -17,7 +18,7 @@ export default function HomePageContent() {
 
     if (!isSkipped) {
       console.log('🔄 [HOME] Redirecting to onboarding');
-      router.push('/onboarding');
+      // router.push('/onboarding');
     }
   }, [router]);
 
@@ -26,6 +27,7 @@ export default function HomePageContent() {
       <div className="bg-[rgba(246,250,254,1)] grow pb-8">
         <LoopingHeader />
         <WelcomeSection />
+        <Announcements />
         <TodaysSchedule />
       </div>
     </PageLayout>
