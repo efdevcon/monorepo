@@ -8,6 +8,7 @@ import {
   LoopingHeader,
 } from './dashboard-sections';
 import { homeTabs } from './navigation';
+import Link from 'next/link';
 
 export default function HomePageContent() {
   const router = useRouter();

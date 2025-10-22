@@ -378,3 +378,21 @@ background-blend-mode: overlay;
     color: white;
   }
 }
+
+.screen-height {
+  position: relative;
+
+  min-height: 100svh;
+
+  @media (display-mode: standalone) {
+    min-height: 100vh !important;
+  }
+
+  padding-top: calc(12px + max(0px, env(safe-area-inset-top)));
+  padding-bottom: calc(12px + max(0px, env(safe-area-inset-bottom)));
+
+  @media (min-width: 768px) {
+    padding-top: calc(32px + max(0px, env(safe-area-inset-top)));
+    padding-bottom: calc(32px + max(0px, env(safe-area-inset-bottom)));
+  }  
+}

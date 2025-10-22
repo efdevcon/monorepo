@@ -211,7 +211,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   };
 
   return (
-    <div className="section h-screen py-3 sm:py-8 gradient-background">
+    <div className="section screen-height py-3 sm:py-8 gradient-background">
       <div className="flex flex-col h-full justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
