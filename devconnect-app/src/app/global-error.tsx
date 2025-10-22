@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { openReportIssue } from '@/utils/reportIssue';
 
 export default function GlobalError({
   error,
@@ -107,6 +108,13 @@ export default function GlobalError({
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     go back to home
+                  </button>{' '}
+                  or{' '}
+                  <button
+                    onClick={openReportIssue}
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    report this issue
                   </button>
                 </p>
               </div>
@@ -122,7 +130,8 @@ export default function GlobalError({
             box-sizing: border-box;
           }
           body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+            font-family:
+              -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
               'Helvetica Neue', Arial, sans-serif;
           }
         `}</style>

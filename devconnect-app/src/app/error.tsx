@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { REPORT_ISSUE_URL } from '@/config/config';
+import { openReportIssue } from '@/utils/reportIssue';
 
 export default function Error({
   error,
@@ -104,11 +104,10 @@ export default function Error({
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 go back to home
-              </button> or <button
-                onClick={() => {
-                  const email = localStorage.getItem('email')?.replaceAll('"', '');
-                  window.open(`${REPORT_ISSUE_URL}?email=${email}`, '_blank');
-                }}
+              </button>{' '}
+              or{' '}
+              <button
+                onClick={openReportIssue}
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
                 report this issue
