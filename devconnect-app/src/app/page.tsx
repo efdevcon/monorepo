@@ -7,7 +7,8 @@ import {
   TodaysSchedule,
   LoopingHeader,
 } from './dashboard-sections';
-import Announcements from '@/components/Announcements';
+import HighlightsContainer from '@/components/Highlights';
+import AnnouncementsWrapper from '@/components/Announcements';
 import { homeTabs } from './navigation';
 
 export default function HomePageContent() {
@@ -24,10 +25,11 @@ export default function HomePageContent() {
 
   return (
     <PageLayout title="World's Fair" tabs={homeTabs()}>
-      <div className="bg-[rgba(246,250,254,1)] grow pb-8">
+      <div className="bg-[rgba(246,250,254,1)] grow pb-2">
         <LoopingHeader />
         <WelcomeSection />
-        <Announcements />
+        <HighlightsContainer />
+        <AnnouncementsWrapper />
         <TodaysSchedule />
       </div>
     </PageLayout>

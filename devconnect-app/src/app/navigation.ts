@@ -1,6 +1,12 @@
 import { createElement } from 'react';
 import Icon from '@mdi/react';
-import { mdiHome, mdiCalendarRangeOutline, mdiTicket, mdiBullhorn } from '@mdi/js';
+import {
+  mdiHome,
+  mdiCalendarRangeOutline,
+  mdiTicket,
+  mdiBullhorn,
+  mdiBellAlert,
+} from '@mdi/js';
 
 // Icon wrapper components for home tabs
 const HomeTabIcon = ({ color }: { color?: string }) =>
@@ -9,8 +15,8 @@ const ScheduleTabIcon = ({ color }: { color?: string }) =>
   createElement(Icon, { path: mdiCalendarRangeOutline, size: 0.65, color });
 const TicketsTabIcon = ({ color }: { color?: string }) =>
   createElement(Icon, { path: mdiTicket, size: 0.65, color });
-// const AnnouncementsTabIcon = ({ color }: { color?: string }) =>
-//   createElement(Icon, { path: mdiBullhorn, size: 0.65, color });
+const AnnouncementsTabIcon = ({ color }: { color?: string }) =>
+  createElement(Icon, { path: mdiBullhorn, size: 0.65, color });
 
 export const homeTabs = () => [
   {
@@ -34,12 +40,11 @@ export const homeTabs = () => [
     component: () => null,
     isActive: (pathname: string) => pathname === '/tickets',
   },
-  // {
-  //   label: 'Announcements',
-  //   labelIcon: AnnouncementsTabIcon,
-  //   href: '/announcements',
-  //   component: () => null,
-  //   isActive: (pathname: string) => pathname === '/announcements',
-  // },
+  {
+    label: 'Announcements',
+    labelIcon: AnnouncementsTabIcon,
+    href: '/announcements',
+    component: () => null,
+    isActive: (pathname: string) => pathname === '/announcements',
+  },
 ];
-

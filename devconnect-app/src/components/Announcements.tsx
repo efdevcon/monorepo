@@ -1,127 +1,172 @@
 'use client';
 import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
 import cn from 'classnames';
-import Image9 from '@/images/announcements/09.jpg';
-import Image6 from '@/images/announcements/06.jpg';
-import Image1 from '@/images/announcements/01.jpg';
-import Image12 from '@/images/announcements/12.jpg';
-import { StaticImageData } from 'next/image';
+import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 
-// Placeholder images - you can replace these with actual highlight images
-// const PlaceholderImage = '/images/quest-app-showcase.png';
-
-type HighlightCardProps = {
+type NotificationCardProps = {
   title: string;
-  to: string;
-  description: string;
-  image: StaticImageData;
+  message: string;
+  sendAt: string;
+  seen?: boolean;
+  to?: string;
   className?: string;
 };
 
-const HighlightCard = ({
+const NotificationCard = ({
   title,
+  message,
+  sendAt,
+  seen = false,
   to,
-  description,
-  image,
   className,
-}: HighlightCardProps) => {
+}: NotificationCardProps) => {
+  const getTimeAgo = (sendAt: string) => {
+    const now = moment.utc();
+    const sentDate = moment.utc(sendAt);
+    const diffInSeconds = Math.floor(sentDate.diff(now, 'seconds'));
+
+    if (diffInSeconds > 0) {
+      if (diffInSeconds < 60) return `In ${diffInSeconds} seconds`;
+      if (diffInSeconds < 3600)
+        return `In ${Math.floor(diffInSeconds / 60)} minutes`;
+      if (diffInSeconds < 86400)
+        return `In ${Math.floor(diffInSeconds / 3600)} hours`;
+      if (diffInSeconds < 2592000)
+        return `In ${Math.floor(diffInSeconds / 86400)} days`;
+      return `In ${Math.floor(diffInSeconds / 2592000)} months`;
+    }
+
+    const pastDiffInSeconds = Math.abs(diffInSeconds);
+    if (pastDiffInSeconds < 60) return `${pastDiffInSeconds} seconds ago`;
+    if (pastDiffInSeconds < 3600)
+      return `${Math.floor(pastDiffInSeconds / 60)}m ago`;
+    if (pastDiffInSeconds < 86400)
+      return `${Math.floor(pastDiffInSeconds / 3600)}h ago`;
+    if (pastDiffInSeconds < 2592000)
+      return `${Math.floor(pastDiffInSeconds / 86400)}d ago`;
+    if (pastDiffInSeconds < 31536000)
+      return `${Math.floor(pastDiffInSeconds / 2592000)} months ago`;
+
+    return `${Math.floor(pastDiffInSeconds / 31536000)} years ago`;
+  };
+
   const draggableLink = useDraggableLink();
-  return (
-    <Link
-      href={to}
+
+  const CardContent = () => (
+    <div
       className={cn(
-        'shrink-0 bg-white border border-solid border-[#E4E6EB] w-[295px] overflow-hidden group',
+        'shrink-0 flex flex-col justify-between gap-0 border border-solid border-gray-200 p-4 w-[280px] bg-white relative group transition-all duration-300',
+        // !seen && 'ring-2  ring-opacity-20',
         className
       )}
-      {...draggableLink}
     >
-      <Image
-        src={image}
-        alt={title}
-        width={295}
-        height={150}
-        className="aspect-[4/2] object-cover group-hover:scale-105 transition-all duration-500 will-change-transform cursor-pointer"
-      />
-      <div className="flex flex-col bg-white z-[10] relative">
-        <p className="font-semibold text-sm px-4 py-2 pb-1">{title}</p>
-        <div className="text-xs px-4 pb-4">{description}</div>
+      <div className="flex flex-col gap-1 flex-1 min-w-0">
+        <p className="text-sm font-semibold pr-11 truncate">{title}</p>
+        <p className="text-xs pr-4 line-clamp-2">{message}</p>
       </div>
-    </Link>
+      <div className="flex gap-1 shrink-0 justify-between mt-2">
+        <p className="text-xs text-[#7D52F4] shrink-0 font-semibold">
+          {getTimeAgo(sendAt)}
+        </p>
+        {!seen && (
+          <div className="text-[#7D52F4] h-[12px] flex items-center justify-center text-base">
+            ●
+          </div>
+        )}
+      </div>
+    </div>
   );
+
+  if (to) {
+    return (
+      <Link href={to} className="block shrink-0" {...draggableLink}>
+        <CardContent />
+      </Link>
+    );
+  }
+
+  return <CardContent />;
 };
 
-export const Highlights = () => {
-  const highlights = [
+export const AnnouncementsWrapper = () => {
+  // Sample notification data - replace with real data from your API
+  const notifications = [
     {
-      title: 'The Ethereum Worlds Fair App',
+      id: '1',
+      title: "Welcome to the World's Fair!",
+      message:
+        'Your account has been created successfully. Start exploring the fair and mark your favorite events.',
+      sendAt: '2025-11-15T10:00:00Z',
+      seen: false,
       to: '/quests',
-      description:
-        'Download the Ethereum Worlds Fair App to explore the fair, earn rewards, and plan your visit.',
-      image: Image9,
     },
     {
-      title: 'Pre-Fair Planning',
-      to: '/schedule',
-      description:
-        'Create your Worlds Fair account, mark your favorite events, load your wallet & tickets, and more.',
-      image: Image12,
-    },
-    {
-      title: 'Ethereum Day',
+      id: '2',
+      title: 'Ethereum Day Starting Soon',
+      message:
+        "The opening ceremonies begin in 30 minutes. Don't miss this historic moment!",
+      sendAt: '2025-11-17T08:30:00Z',
+      seen: false,
       to: '/schedule/ethday',
-      description:
-        "Mark your calendar for November 17th. You don't want to miss the opening ceremonies of the Ethereum World's Fair!",
-      image: Image6,
     },
-    // {
-    //   title: 'Networking Events',
-    //   to: '/schedule',
-    //   description:
-    //     'Connect with fellow developers, builders, and Ethereum enthusiasts.',
-    //   image: Image6,
-    // },
-    // {
-    //   title: 'City Guide',
-    //   to: '/map',
-    //   description:
-    //     'Explore Buenos Aires and discover the best spots for Ethereum community members.',
-    //   image: Image6,
-    // },
+    {
+      id: '3',
+      title: 'New App Showcase Available',
+      message:
+        'Check out the latest applications built on Ethereum. Discover innovative projects and interact with creators.',
+      sendAt: '2025-11-16T14:00:00Z',
+      seen: true,
+      to: '/quests',
+    },
+    {
+      id: '4',
+      title: 'Workshop Reminder',
+      message:
+        'Your selected workshop "Building on Ethereum" starts in 1 hour. Location: Pavilion 3, Room A.',
+      sendAt: '2025-11-18T09:00:00Z',
+      seen: true,
+      to: '/schedule',
+    },
+    {
+      id: '5',
+      title: 'Networking Event Tonight',
+      message:
+        'Join us for the official networking event at 7 PM. Great opportunity to meet fellow developers!',
+      sendAt: '2025-11-17T18:00:00Z',
+      seen: false,
+      to: '/schedule',
+    },
   ];
 
   return (
-    <div className="flex flex-col gap-2 touch-only:w-screen touch-only:overflow-hidden">
-      <SwipeToScroll>
-        <div className="flex no-wrap gap-2 ml-4 pr-4">
-          {highlights.map((highlight, index) => (
-            <HighlightCard
-              key={index}
-              title={highlight.title}
-              to={highlight.to}
-              description={highlight.description}
-              image={highlight.image}
-            />
-          ))}
-          {/* <div className="shrink-0 w-[16px]"></div> */}
-        </div>
-      </SwipeToScroll>
-    </div>
-  );
-};
-
-const Announcements = () => {
-  return (
-    <div className="flex flex-col mb-4">
-      <div className="flex justify-between gap-2 font-semibold border-top mb-2 ml-4">
-        Highlights
+    <div className="flex flex-col mb-4 mt-4">
+      <div className="flex justify-between gap-2 font-bold border-top ml-4">
+        Announcements
       </div>
-      <Highlights />
+      <div className="text-[11px] mb-2 ml-4 leading-none">
+        With ❤️ from the Devconnect Team
+      </div>
+      <div className="flex w-screen md:w-auto overflow-hidden md:overflow-visible">
+        <SwipeToScroll>
+          <div className="flex no-wrap gap-2 ml-4 pr-4">
+            {notifications.map((notification) => (
+              <NotificationCard
+                key={notification.id}
+                title={notification.title}
+                message={notification.message}
+                sendAt={notification.sendAt}
+                seen={notification.seen}
+                to={notification.to}
+              />
+            ))}
+          </div>
+        </SwipeToScroll>
+      </div>
     </div>
   );
 };
 
-export default Announcements;
+export default AnnouncementsWrapper;

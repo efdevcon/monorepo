@@ -13,23 +13,30 @@ import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
 import cn from 'classnames';
+import CameraIcon from '@/components/icons/onboarding-steps/camera.svg';
+import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
+import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
+import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
   const items = [
-    'Nov 17 - 22, 2025',
-    'La Rural, Buenos Aires, Argentina',
-    '15,000+ attendees',
-    '80+ applications',
+    { label: 'Nov 17 - 22, 2025', icon: CalendarIcon },
+    { label: 'La Rural, Buenos Aires, Argentina', icon: PinIcon },
+    { label: '15,000+ attendees', icon: PhoneIcon },
+    { label: '40+ events', icon: CameraIcon },
   ];
 
   return (
     <div className="bg-[rgba(58,54,94,1)] text-white md:border-b w-screen mb-4 py-2">
-      <InfiniteScroll nDuplications={4} speed="100s">
+      <InfiniteScroll nDuplications={4} speed="160s">
         <div className="flex flex-row">
           {items.map((item, j) => (
-            <div className="shrink-0 ml-6" key={j}>
-              {item}
+            <div
+              className="shrink-0 ml-8 text-sm flex items-center gap-2 py-0.5"
+              key={j}
+            >
+              <item.icon className="w-[24px] h-[24px]" /> {item.label}
             </div>
           ))}
         </div>
@@ -47,27 +54,25 @@ export function WelcomeSection() {
 
   return (
     <div className="flex flex-col items-start justify-start gap-1 mb-4 mx-4">
-      <div className="flex justify-between w-full  gap-2">
-        <div className="text-2xl font-semibold leading-tight mb-2 bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
+      <div className="flex justify-between w-full gap-2">
+        <div className="text-2xl font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
         {/* <div className="font-semibold text-xs text-neutral-600">
           {formattedDate} Buenos Aires (GMT-3)
         </div> */}
       </div>
-      {email && (
-        <div className="text-lg leading-tight font-medium mt-3">
-          {email || 'Anon'}
-        </div>
-      )}
-      <div className="font-medium text-sm leading-none">
+
+      <div className="text-2xl leading-none text-[rgba(53,53,72,1)] font-medium italic">
+        {email || 'Anon'}
+      </div>
+
+      <div className="text-sm leading-none mt-2">
         Welcome to the Ethereum World&apos;s Fair!{' '}
       </div>
     </div>
   );
 }
-
-// Announcements component is now imported from @/components/Announcements
 
 export const TodaysSchedule = withParcnetProvider(() => {
   const email = useGlobalStore((state) => state.userData?.email);
@@ -80,6 +85,8 @@ export const TodaysSchedule = withParcnetProvider(() => {
   );
 
   const hasEventsToShow = filteredEvents.length > 0;
+
+  if (!hasEventsToShow) return null;
 
   return (
     <div

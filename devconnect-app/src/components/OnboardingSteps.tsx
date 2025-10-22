@@ -17,7 +17,6 @@ import LuggageIcon from './icons/onboarding-steps/luggage.svg';
 import MicrophoneIcon from './icons/onboarding-steps/microphone.svg';
 import PhoneIcon from './icons/onboarding-steps/phone.svg';
 import RocketIcon from './icons/onboarding-steps/rocket.svg';
-
 interface OnboardingStepsProps {
   steps?: React.ReactNode[];
   rightContent?: React.ReactNode[];

@@ -115,11 +115,13 @@ const Tabs = ({
   return (
     <div
       className={cn(
-        'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded overflow-auto w-full',
+        'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
+        '[mask-image:linear-gradient(to_right,black_0%,black_90%,transparent_100%)]',
+        tabs.length > 3 && 'justify-start',
         className
       )}
     >
-      <div className="flex md:rounded w-[fit-content] shrink-0 gap-2">
+      <div className="flex md:rounded shrink-0 gap-2">
         {tabs.map((tab, idx) => {
           let isActive;
 
@@ -238,7 +240,7 @@ export default function PageLayout({
               )}
 
               {tabs.length > 1 && (
-                <div className="px-4 text-lg font-bold border-b border-b-solid border-[#8855CC26] bg-white md:rounded-t-sm">
+                <div className="text-lg font-bold border-b border-b-solid border-[#8855CC26] bg-white md:rounded-t-sm">
                   <Tabs
                     tabs={tabs}
                     activeIndex={activeIndex}
@@ -342,7 +344,7 @@ export default function PageLayout({
                 </div>
                 <div className="flex-1 border border-solid border-[#8855CC26] h-[fit-content] rounded-sm relative">
                   {tabs.length > 1 && (
-                    <div className="px-4 py-2 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky rounded-t-sm top-0 bg-white z-[100]">
+                    <div className="py-1.5 text-lg font-bold border-b border-b-solid border-[#8855CC26] w-full sticky rounded-t-sm top-0 bg-white z-[100]">
                       <Tabs
                         tabs={tabs}
                         activeIndex={activeIndex}
