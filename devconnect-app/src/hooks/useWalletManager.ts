@@ -181,6 +181,17 @@ export function useWalletManager() {
       ? eoa.chainId
       : null;
 
+  // Store primary address in localStorage for error reporting
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (address) {
+        localStorage.setItem('devconnect_primary_address', address);
+      } else {
+        localStorage.removeItem('devconnect_primary_address');
+      }
+    }
+  }, [address]);
+
   // Unified authentication state
   const paraEmail = para.email;
   const supabaseEmail = supabaseUser?.email || null;

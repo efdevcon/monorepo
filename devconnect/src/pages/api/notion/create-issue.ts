@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { email, wallet_type, browser, system, path, connector } = req.body;
+  const { email, wallet_type, browser, system, path, eoa_connector, address } = req.body;
   const databaseId = '294638cdc41580cb8908f333cab466a0';
 
   const notion = new Client({ auth: process.env.NOTION_SECRET });
@@ -55,10 +55,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       };
     }
 
-    // Add connector as hidden field if provided
-    if (connector) {
-      properties['[hidden] connector'] = {
-        rich_text: [{ text: { content: connector } }],
+    // Add eoa_connector as hidden field if provided
+    if (eoa_connector) {
+      properties['[hidden] eoa_connector'] = {
+        rich_text: [{ text: { content: eoa_connector } }],
+      };
+    }
+
+    // Add address as hidden field if provided
+    if (address) {
+      properties['[hidden] wallet_address'] = {
+        rich_text: [{ text: { content: address } }],
       };
     }
 

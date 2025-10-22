@@ -381,7 +381,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
           const browser = router.query.browser as string | undefined
           const system = router.query.system as string | undefined
           const path = router.query.path as string | undefined
-          const connector = router.query.connector as string | undefined
+          const eoa_connector = router.query.eoa_connector as string | undefined
+          const address = router.query.address as string | undefined
 
           const res = await fetch('/api/notion/create-issue', {
             method: 'POST',
@@ -392,7 +393,8 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
               browser: browser || '',
               system: system || '',
               path: path || '',
-              connector: connector || '',
+              eoa_connector: eoa_connector || '',
+              address: address || '',
             }),
           })
 

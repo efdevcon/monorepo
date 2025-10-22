@@ -83,13 +83,19 @@ export function buildReportIssueUrl(): string {
   // Get wallet connector info
   const eoaConnector = getLocalStorageValue('devconnect_eoa_connector');
   if (eoaConnector) {
-    params.append('connector', eoaConnector);
+    params.append('eoa_connector', eoaConnector);
   }
 
   // Get primary wallet type
   const walletType = getLocalStorageValue('devconnect_primary_wallet_type');
   if (walletType) {
     params.append('wallet_type', walletType);
+  }
+
+  // Get wallet address
+  const address = getLocalStorageValue('devconnect_primary_address');
+  if (address) {
+    params.append('address', address);
   }
 
   // Get browser info
