@@ -14,6 +14,8 @@ import {
   useLogout,
   type AuthState,
   useModal,
+  getPortalBaseURL,
+  useClient,
 } from '@getpara/react-sdk';
 import { useUser } from '@/hooks/useUser';
 import { useLocalStorage } from 'usehooks-ts';
@@ -39,6 +41,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { openModal } = useModal();
   const router = useRouter();
   const [EOA_FLOW, setEOA_FLOW] = useState(false);
+  const [iFrameState, setIFrameState] = useState<
+    'closed' | 'loading' | 'loaded'
+  >('closed');
+  const paraClient = useClient();
+  const [isResetting, setIsResetting] = useState(false);
 
   // Handle hydration
   useEffect(() => {
@@ -117,6 +124,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   const shouldCancelPolling = useRef(false);
 
+  const isIframeLoading = iFrameState === 'loading';
+  const isIframeClosed = iFrameState === 'closed';
+
   // Setup polling for the Para login process to complete
   const pollLogin = () => {
     // Reset the cancellation flag
@@ -166,6 +176,38 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         },
       }
     );
+  };
+
+  const setupIframeListener = () => {
+    const handleMessage = (event: MessageEvent) => {
+      if (!paraClient) {
+        return;
+      }
+
+      const portalBase = getPortalBaseURL(paraClient.ctx);
+
+      if (!event.origin.startsWith(portalBase)) {
+        return; // Ignore messages from untrusted origins
+      }
+
+      if (event.data) {
+        if (event.data.type === 'LOADED') {
+          setIFrameState('loaded');
+        }
+        // Optionally can listen for height changes of the iframe content
+        // if (event.data.type === 'HEIGHT') {
+        //   setHeight(event.data.height);
+        // }
+        if (event.data?.type === 'CLOSE_WINDOW') {
+          if (event.data.success) {
+            setIFrameState('closed');
+          }
+          // Cleanup once the closed event is handled
+          window.removeEventListener('message', handleMessage);
+        }
+      }
+    };
+    window.addEventListener('message', handleMessage);
   };
 
   const handleWalletConnect = async () => {
@@ -220,21 +262,13 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleEmailSubmit = () => {
-    console.log('[EMAIL_SUBMIT] Starting email submission with email:', email);
     if (!email || !email.includes('@')) {
-      console.log(
-        '[EMAIL_SUBMIT] Email validation failed - email:',
-        email,
-        'isValid:',
-        email && email.includes('@')
-      );
       setEmailError('Please enter a valid email address');
       return;
     }
 
     // Clear previous errors
     setEmailError('');
-    console.log('[EMAIL_SUBMIT] Calling signUpOrLogIn...');
 
     signUpOrLogIn(
       {
@@ -242,12 +276,26 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       },
       {
         onSuccess: (authState) => {
-          console.log('[EMAIL_SUBMIT] Success! AuthState:', authState);
+          switch (authState?.stage) {
+            case 'verify':
+              // Only start polling for passkey/password/PIN users when loginUrl is present
+              if (!!authState.loginUrl) {
+                setIFrameState('loading');
+                setupIframeListener();
+
+                if (authState.nextStage === 'signup') {
+                  pollSignUp();
+                } else if (authState.nextStage === 'login') {
+                  pollLogin();
+                }
+              }
+              break;
+          }
+
           // Set the state here so the UI reflects properly
           setAuthState(authState);
         },
         onError: (error) => {
-          console.error('[EMAIL_SUBMIT] Error:', error);
           if (error?.message) {
             setEmailError(error.message);
           } else {
@@ -278,8 +326,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           setAuthState(authState);
         },
         onError: (error: any) => {
-          console.log('🚀 ~ handleVerificationCodeSubmit ~ error:', error);
-
           // Handle specific error cases
           if (
             error?.message?.includes('Account already exists') ||
@@ -310,7 +356,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       setIsResent(true);
       setTimeout(() => setIsResent(false), 3000);
     } catch (error) {
-      console.error('Resend failed:', error);
+      // Handle resend error silently
     }
   };
 
@@ -339,33 +385,37 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   const handleSkip = () => {
-    console.log('handleSkip called');
     // Set skipped state to allow navigation without connection
     onConnect?.();
     localStorage.setItem('loginIsSkipped', 'true');
     router.push('/');
-    console.log('onConnect callback called');
   };
 
   const handleReset = () => {
-    console.log('[ONBOARDING] Resetting onboarding state');
     // Set the cancellation flag
     shouldCancelPolling.current = true;
+    setIsResetting(true);
     setAuthState(undefined);
     setVerificationCode('');
     setOtp('');
     setOtpSent(false);
     setOtpVerified(false);
-    console.log(
-      '[ONBOARDING] Resetting onboarding state and redirecting to onboarding'
-    );
+    setIFrameState('closed');
+    // Note: Email is preserved so user doesn't have to re-enter it
     localStorage.removeItem('loginIsSkipped');
+
+    // Clear the resetting flag after a brief delay to allow hooks to reset
+    setTimeout(() => {
+      setIsResetting(false);
+    }, 100);
+
     router.push('/onboarding');
   };
 
   const handleLogout = async () => {
     // Set the cancellation flag before logging out
     shouldCancelPolling.current = true;
+    setIsResetting(true);
 
     try {
       await logout();
@@ -373,22 +423,35 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
       // Reset the onboarding state after logout
       localStorage.removeItem('loginIsSkipped');
       setAuthState(undefined);
-      setEmail('');
+      // Note: Email is preserved so user doesn't have to re-enter it
       setVerificationCode('');
       setOtp('');
       setOtpSent(false);
       setOtpVerified(false);
+      setIFrameState('closed');
+
+      // Clear the resetting flag after a brief delay to allow hooks to reset
+      setTimeout(() => {
+        setIsResetting(false);
+      }, 100);
     } catch (error) {
-      console.error('Logout failed:', error);
+      setIsResetting(false);
     }
   };
 
   const handleBack = () => {
     // Set the cancellation flag when going back
     shouldCancelPolling.current = true;
+    setIsResetting(true);
     setAuthState(undefined);
     setVerificationCode('');
     setVerificationError('');
+    setIFrameState('closed');
+
+    // Clear the resetting flag after a brief delay to allow hooks to reset
+    setTimeout(() => {
+      setIsResetting(false);
+    }, 100);
   };
 
   // HACK: Hide the w3m-connect-external-widget (Para)
@@ -487,11 +550,18 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   };
 
   // Show loading state when processing
+  // BUT: Don't show loading if we're in verify stage with iframe - let iframe render while polling happens in background
+  // OR if we're resetting - let the reset complete and show the initial screen
+  const isPollingWithIframe =
+    authState?.stage === 'verify' && !!(authState as any).loginUrl;
+
   if (
-    isSigningUpOrLoggingIn ||
-    isVerifyingNewAccount ||
-    isWaitingForLogin ||
-    isWaitingForWalletCreation
+    (isSigningUpOrLoggingIn ||
+      isVerifyingNewAccount ||
+      isWaitingForLogin ||
+      isWaitingForWalletCreation) &&
+    !isPollingWithIframe &&
+    !isResetting
   ) {
     return (
       <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
@@ -963,24 +1033,32 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Verification content */}
           <div className="flex flex-col gap-8 items-start justify-start p-0 relative w-full">
             {authState.loginUrl ? (
-              /* Show button to open login URL for passkey/password flow */
-              <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-                <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
-                  <div className="font-normal text-[#36364c] text-[14px] w-full">
-                    We&apos;ve sent a verification email to
+              /* Show iframe for passkey/password/PIN flow */
+              <div
+                className="flex flex-col gap-6 items-center justify-start p-0 relative w-full"
+                style={{ minHeight: '350px' }}
+              >
+                {(isIframeLoading || isIframeClosed) && (
+                  <div
+                    className="flex flex-col gap-4 items-center justify-center w-full"
+                    style={{ height: '350px' }}
+                  >
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae]"></div>
+                    <div className="font-normal text-[#4b4b66] text-[14px]">
+                      Loading authentication...
+                    </div>
                   </div>
-                  <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                    {mounted ? email : ''}
-                  </div>
-                </div>
-                <button
-                  onClick={handleOpenWindowClick(authState.loginUrl)}
-                  className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
-                >
-                  <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                    {authState.nextStage === 'login' ? 'Login' : 'Signup'}
-                  </span>
-                </button>
+                )}
+                <iframe
+                  src={authState.loginUrl}
+                  style={{
+                    border: 'none',
+                    borderRadius: '1px',
+                    width: isIframeLoading ? 0 : '100%',
+                    height: isIframeLoading ? 0 : '100%',
+                    opacity: isIframeLoading ? 0 : 1,
+                  }}
+                />
               </div>
             ) : (
               /* Show verification code input for basic email auth */
