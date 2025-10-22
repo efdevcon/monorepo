@@ -55,14 +55,22 @@ export function useEOAWalletConnection() {
   useEffect(() => {
     if (isConnected && connectorId && typeof window !== 'undefined') {
       const currentEOAConnector = localStorage.getItem(PRIMARY_EOA_CONNECTOR_KEY);
+      const currentPrimaryType = localStorage.getItem('devconnect_primary_wallet_type');
 
       // Auto-switch to newly connected EOA if it's a different connector than the last one
       // This means: always switch to a newly connected wallet
       if (currentEOAConnector !== connectorId) {
-        console.log('🔄 [EOA] Auto-switching to newly connected EOA:', connectorName);
+        console.log('🔄 [EOA] Auto-switching to newly connected EOA:', {
+          connectorName,
+          connectorId,
+          previousPrimaryType: currentPrimaryType,
+          previousEOAConnector: currentEOAConnector,
+          action: 'switching to EOA',
+        });
         localStorage.setItem('devconnect_primary_wallet_type', 'eoa');
         localStorage.setItem(PRIMARY_EOA_CONNECTOR_KEY, connectorId);
         window.dispatchEvent(new CustomEvent('primaryWalletTypeChange', { detail: 'eoa' }));
+        console.log('✅ [EOA] Auto-switch completed - EOA is now primary');
       }
     }
   }, [isConnected, connectorId, connectorName]);

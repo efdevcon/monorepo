@@ -163,6 +163,9 @@ export default function ConnectedWallet() {
     cancelled: false,
   });
 
+  // Test state to trigger render-time crash
+  const [shouldCrash, setShouldCrash] = useState(false);
+
   const resetSigningState = () => {
     setSigningState('idle');
     signingControllerRef.current = {
@@ -578,6 +581,12 @@ export default function ConnectedWallet() {
     );
   }
 
+  // TEST: Simulate render-time crash (like isBetaMode undefined)
+  if (shouldCrash) {
+    // @ts-ignore - intentionally referencing undefined variable during render
+    console.log(undefinedRenderVariable.someProperty);
+  }
+
   return (
     <div className="bg-white p-4 space-y-4 rounded-lg">
       <div className="text-center">
@@ -950,6 +959,15 @@ export default function ConnectedWallet() {
           </Button>
         )}
 
+        <Button
+          onClick={() => {
+            // This will trigger a render-time crash on next render
+            setShouldCrash(true);
+          }}
+          variant="destructive"
+        >
+          💥 CRASH APP
+        </Button>
         <div className="flex flex-row gap-2 items-center border-t pt-4">
           {address && (
             <Button

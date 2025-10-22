@@ -27,6 +27,7 @@ import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
+import { openReportIssue } from '@/utils/reportIssue';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -111,7 +112,7 @@ export default function SettingsTab() {
   };
 
   const handleProvideFeedback = () => {
-    window.open('https://github.com/efdevcon/monorepo/issues', '_blank');
+    openReportIssue();
   };
 
   const handleDebugClick = () => {
