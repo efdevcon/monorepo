@@ -463,19 +463,23 @@ async function handleGet(req: NextApiRequest, res: NextApiResponse, pageId: stri
         }
         // Extract select options if this is a select field
         if (fieldType === 'select' && propertySchema.select && propertySchema.select.options) {
-          options = propertySchema.select.options.map((option: any) => ({
-            name: option.name,
-            color: option.color
-          }));
+          options = propertySchema.select.options
+            .map((option: any) => ({
+              name: option.name,
+              color: option.color
+            }))
+            .sort((a: any, b: any) => a.name.localeCompare(b.name));
         }
       } else if (fieldType === 'select') {
         // Fallback: try to get options directly from the property if database schema is not available
         const propertyAny = property as any;
         if (propertyAny.select && propertyAny.select.options) {
-          options = propertyAny.select.options.map((option: any) => ({
-            name: option.name,
-            color: option.color
-          }));
+          options = propertyAny.select.options
+            .map((option: any) => ({
+              name: option.name,
+              color: option.color
+            }))
+            .sort((a: any, b: any) => a.name.localeCompare(b.name));
         }
       }
 

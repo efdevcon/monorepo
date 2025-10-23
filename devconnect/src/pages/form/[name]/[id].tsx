@@ -536,7 +536,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
       // For issue forms, mark as submitted and show thank you message
       if (pageName === 'issue') {
         setIsIssueSubmitted(true)
-        addNotification('success', 'Thank you! Your issue has been submitted successfully.')
+        // addNotification('success', 'Thank you! Your issue has been submitted successfully.')
       } else {
         addNotification('success', 'Form updated successfully!')
       }
@@ -809,7 +809,7 @@ export default function UpdatePage({ params }: { params?: { name: string; id: st
                         ) : (
                           <span
                             style={{
-                              display: 'inline-block',
+                              display: pageName === 'issue' ? 'none' : 'inline-block',
                               backgroundColor: '#28a745',
                               color: 'white',
                               padding: '0.25rem 0.5rem',
