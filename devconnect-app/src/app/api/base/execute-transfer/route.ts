@@ -28,7 +28,7 @@ import {
 export async function POST(request: NextRequest) {
   try {
     const requestBody = await request.json();
-    let { signature, authorization, transactionType } = requestBody;
+    let { signature, authorization, transactionType, simulation } = requestBody;
 
     // Handle case where signature comes wrapped in an object
     if (signature && typeof signature === 'object' && signature.signature) {
@@ -124,6 +124,129 @@ export async function POST(request: NextRequest) {
     // ⭐ NEW: Coinbase Smart Wallet Path
     // If enabled, use Coinbase Server Smart Wallet with Paymaster gas sponsorship
     if (COINBASE_CONFIG.ENABLED) {
+      // Parse signature first (needed for both simulation and real execution)
+      let v: number, r: string, s: string;
+
+      // Validate signature is a string and split into v, r, s
+      if (typeof signature !== 'string') {
+        return NextResponse.json({
+          error: 'Signature must be a string',
+          details: `Received signature of type: ${typeof signature}`,
+        }, { status: 400 });
+      }
+
+      if (signature.startsWith('0x')) {
+        const sigBytes = signature.slice(2);
+
+        if (sigBytes.length !== 130) {
+          throw new Error(`Invalid signature length: ${sigBytes.length}, expected 130 hex characters`);
+        }
+
+        r = '0x' + sigBytes.slice(0, 64);
+        s = '0x' + sigBytes.slice(64, 128);
+        v = parseInt(sigBytes.slice(128, 130), 16);
+
+        if (v < 27) {
+          v += 27;
+        }
+      } else {
+        throw new Error('Signature must start with 0x');
+      }
+
+      // Check if simulation mode is requested
+      if (simulation === true) {
+        console.log('🔄 [COINBASE] Simulation mode requested - generating simulation response');
+
+        // Create provider for simulation
+        const provider = new ethers.JsonRpcProvider(process.env.NEXT_PUBLIC_BASE_RPC_URL || 'https://mainnet.base.org');
+
+        // Create a dummy wallet for simulation
+        const dummyWallet = new ethers.Wallet(ethers.hexlify(ethers.randomBytes(32)), provider);
+
+        console.log(`🔄 [COINBASE] Simulation mode - Dummy wallet address: ${dummyWallet.address}`);
+        console.log(`🔄 [COINBASE] Simulating USDC transfer: ${from} -> ${to}, ${formatUSDCAmount(value)} USDC`);
+
+        // Create USDC contract instance for simulation
+        const usdcContract = createUSDCContract(dummyWallet);
+
+        // Estimate gas for the transaction
+        let gasEstimate: bigint;
+        try {
+          gasEstimate = await usdcContract.transferWithAuthorization.estimateGas(
+            from,
+            to,
+            value,
+            validAfter,
+            validBefore,
+            nonce,
+            v,
+            r,
+            s
+          );
+          console.log(`🔄 [COINBASE] Simulation - Estimated gas: ${gasEstimate.toString()}`);
+        } catch (gasError) {
+          console.error('🔄 [COINBASE] Simulation - Gas estimation failed:', gasError);
+          return NextResponse.json({
+            error: 'Transaction would fail - gas estimation failed',
+            details: gasError instanceof Error ? gasError.message : 'Unable to estimate gas',
+            possibleCauses: [
+              'Insufficient USDC balance',
+              'Invalid signature',
+              'Nonce already used',
+              'Authorization expired'
+            ]
+          }, { status: 400 });
+        }
+
+        // Get current gas price data
+        const feeData = await provider.getFeeData();
+        const maxFeePerGas = feeData.maxFeePerGas || ethers.parseUnits('0.1', 'gwei');
+        const maxPriorityFeePerGas = feeData.maxPriorityFeePerGas || ethers.parseUnits('0.05', 'gwei');
+
+        // Calculate estimated cost using max fee per gas
+        const estimatedCost = gasEstimate * maxFeePerGas;
+
+        console.log(`🔄 [COINBASE] Simulation completed - Estimated gas: ${gasEstimate.toString()}`);
+        console.log(`🔄 [COINBASE] Estimated cost: ${ethers.formatEther(estimatedCost)} ETH`);
+
+        return NextResponse.json({
+          success: true,
+          simulation: true,
+          mode: 'coinbase-smart-wallet-simulation',
+          transaction: {
+            hash: '0x' + '0'.repeat(64), // Dummy hash for simulation
+            blockNumber: 0,
+            gasUsed: gasEstimate.toString(),
+            effectiveGasPrice: maxFeePerGas.toString(),
+            status: 'simulation'
+          },
+          transfer: {
+            from,
+            to,
+            amount: {
+              wei: value.toString(),
+              formatted: formatUSDCAmount(value)
+            }
+          },
+          relayer: {
+            address: dummyWallet.address,
+            type: 'coinbase-smart-wallet-simulation',
+            gasSponsored: true,
+            sponsor: 'Coinbase Paymaster (Simulation)'
+          },
+          simulationDetails: {
+            estimatedGas: gasEstimate.toString(),
+            estimatedCost: ethers.formatEther(estimatedCost),
+            gasPrice: ethers.formatUnits(maxFeePerGas, 'gwei') + ' gwei',
+            success: true,
+            message: 'Coinbase Smart Wallet simulation completed successfully',
+            reason: 'Simulation mode requested by client',
+            mode: 'coinbase-smart-wallet'
+          },
+          timestamp: new Date().toISOString()
+        });
+      }
+
       // Determine transaction purpose - default to 'payment' if not specified
       const purpose: TransactionPurpose = (transactionType === 'send' || transactionType === 'payment')
         ? transactionType as TransactionPurpose
@@ -132,34 +255,6 @@ export async function POST(request: NextRequest) {
       console.log(`🚀 [COINBASE] Using Coinbase Smart Wallet for gas sponsorship (${purpose.toUpperCase()})`);
 
       try {
-        // Validate signature is a string and split into v, r, s
-        if (typeof signature !== 'string') {
-          return NextResponse.json({
-            error: 'Signature must be a string',
-            details: `Received signature of type: ${typeof signature}`,
-          }, { status: 400 });
-        }
-
-        let v: number, r: string, s: string;
-
-        if (signature.startsWith('0x')) {
-          const sigBytes = signature.slice(2);
-
-          if (sigBytes.length !== 130) {
-            throw new Error(`Invalid signature length: ${sigBytes.length}, expected 130 hex characters`);
-          }
-
-          r = '0x' + sigBytes.slice(0, 64);
-          s = '0x' + sigBytes.slice(64, 128);
-          v = parseInt(sigBytes.slice(128, 130), 16);
-
-          if (v < 27) {
-            v += 27;
-          }
-        } else {
-          throw new Error('Signature must start with 0x');
-        }
-
         // Build EIP-3009 authorization object for smart wallet
         const auth: EIP3009Authorization = {
           from,
@@ -285,9 +380,14 @@ export async function POST(request: NextRequest) {
       address => address.toLowerCase() === from.toLowerCase()
     );
 
-    if (!hasPrivateKey || !isCorrectWallet) {
-      // Simulation mode - either no private key or unauthorized wallet
-      const reason = !hasPrivateKey ? 'no private key available' : 'wallet not authorized';
+    // Force simulation mode if simulation parameter is true
+    if (simulation === true || !hasPrivateKey || !isCorrectWallet) {
+      // Simulation mode - either forced by parameter, no private key, or unauthorized wallet
+      const reason = simulation === true
+        ? 'simulation mode requested by client'
+        : !hasPrivateKey
+          ? 'no private key available'
+          : 'wallet not authorized';
       console.log(`${reason}, generating simulation transaction`);
 
       // Create provider for simulation
@@ -342,7 +442,9 @@ export async function POST(request: NextRequest) {
       console.log(`Simulation completed - Estimated gas: ${gasEstimate.toString()}`);
       console.log(`Estimated cost: ${ethers.formatEther(estimatedCost)} ETH`);
 
-      const simulationReason = !hasPrivateKey
+      const simulationReason = simulation === true
+        ? 'Simulation mode requested by client'
+        : !hasPrivateKey
         ? 'No PRIVATE_KEY configured'
         : `Wallet ${from} is not authorized. Only authorized sponsor addresses can execute real transactions.`;
 

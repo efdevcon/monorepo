@@ -171,6 +171,11 @@ export default function ScanPage() {
       );
 
       if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error(
+            'No payment available for this merchant at the moment.'
+          );
+        }
         const errorData = await response.json();
         throw new Error(errorData.error || 'Failed to fetch payment request');
       }
@@ -234,7 +239,7 @@ export default function ScanPage() {
               {isLoadingManualPayment ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                'Pay'
+                'Load Payment'
               )}
             </button>
           </div>
@@ -259,13 +264,13 @@ export default function ScanPage() {
                 <option value="" className="text-[#868698]">
                   Select merchant
                 </option>
-                {MERCHANTS.map((merchant) => (
+                {Object.values(MERCHANTS).map((merchant) => (
                   <option
                     key={merchant.id}
                     value={merchant.id}
                     className="text-[#353548]"
                   >
-                    {merchant.name}
+                    [{merchant.posNumber}] {merchant.name}
                   </option>
                 ))}
               </select>
@@ -289,7 +294,7 @@ export default function ScanPage() {
               {isLoadingMerchantPayment ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                'Pay'
+                'Load Payment'
               )}
             </button>
           </div>
