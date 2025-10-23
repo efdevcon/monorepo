@@ -6,6 +6,7 @@ import {
   WelcomeSection,
   TodaysSchedule,
   LoopingHeader,
+  PracticalInfo,
 } from './dashboard-sections';
 import HighlightsContainer from '@/components/Highlights';
 import AnnouncementsWrapper from '@/components/Announcements';
@@ -25,12 +26,13 @@ export default function HomePageContent() {
 
   return (
     <PageLayout title="World's Fair" tabs={homeTabs()}>
-      <div className="bg-[#74ACDF10] md:!bg-white grow pb-2">
+      <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
         <LoopingHeader />
         <WelcomeSection />
         <HighlightsContainer />
         <AnnouncementsWrapper />
         <TodaysSchedule />
+        <PracticalInfo />
       </div>
     </PageLayout>
   );

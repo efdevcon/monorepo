@@ -53,7 +53,7 @@ export function WelcomeSection() {
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-1 mb-4 mx-4">
+    <div className="flex flex-col items-start justify-start gap-1 mb-5 mx-4">
       <div className="flex justify-between w-full gap-2">
         <div className="text-2xl font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
@@ -73,6 +73,17 @@ export function WelcomeSection() {
     </div>
   );
 }
+
+export const PracticalInfo = () => {
+  return (
+    <div className="flex flex-col items-start justify-start gap-1 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto mt-4">
+      <div className="flex w-full items-center justify-between gap-2 shrink-0">
+        <p className="font-semibold">Practical Info</p>
+        <div>Wifi Password</div>
+      </div>
+    </div>
+  );
+};
 
 export const TodaysSchedule = withParcnetProvider(() => {
   const email = useGlobalStore((state) => state.userData?.email);

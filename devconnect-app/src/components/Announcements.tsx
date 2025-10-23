@@ -5,14 +5,16 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
 import cn from 'classnames';
 import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
+import { ArrowUpRightIcon } from 'lucide-react';
 
 type NotificationCardProps = {
   title: string;
   message: string;
   sendAt: string;
   seen?: boolean;
-  to?: string;
   className?: string;
+  cta?: string;
+  ctaLink?: string;
 };
 
 const NotificationCard = ({
@@ -20,7 +22,8 @@ const NotificationCard = ({
   message,
   sendAt,
   seen = false,
-  to,
+  cta,
+  ctaLink,
   className,
 }: NotificationCardProps) => {
   const getTimeAgo = (sendAt: string) => {
@@ -58,35 +61,45 @@ const NotificationCard = ({
   const CardContent = () => (
     <div
       className={cn(
-        'shrink-0 flex flex-col justify-between gap-0 border border-solid border-gray-200 p-4 w-[280px] bg-white relative group transition-all duration-300',
+        'shrink-0 flex flex-col justify-between gap-0 border border-solid border-gray-200 p-4 min-w-[280px] bg-white relative group transition-all duration-300',
         // !seen && 'ring-2  ring-opacity-20',
         className
       )}
     >
-      <div className="flex flex-col gap-1 flex-1 min-w-0">
-        <p className="text-sm font-semibold pr-11 truncate">{title}</p>
+      <div className="flex flex-col gap-1 flex-1 min-w-0 max-w-[280px]">
+        <p className="text-sm font-semibold truncate">{title}</p>
         <p className="text-xs pr-4 line-clamp-2">{message}</p>
       </div>
-      <div className="flex gap-1 shrink-0 justify-between mt-2">
-        <p className="text-xs text-[#7D52F4] shrink-0 font-semibold">
-          {getTimeAgo(sendAt)}
-        </p>
-        {!seen && (
-          <div className="text-[#7D52F4] h-[12px] flex items-center justify-center text-base">
-            ●
-          </div>
+      <div className="flex gap-1 shrink-0 justify-between items-center mt-3">
+        <div className="flex items-center gap-1.5">
+          {!seen && (
+            <div className="text-[rgba(0,115,222,1)] flex items-center justify-center text-[8px]">
+              ●
+            </div>
+          )}
+          <p className="text-[11px] text-[rgba(75,75,102,1)] shrink-0 font-semibold">
+            {getTimeAgo(sendAt)}
+          </p>
+        </div>
+
+        {ctaLink && (
+          <Link href={ctaLink} className="block shrink-0" {...draggableLink}>
+            <p className="text-xs text-[rgba(0,115,222,1)] shrink-0 font-semibold flex items-center gap-0.5">
+              {cta} <ArrowUpRightIcon className="w-4 h-4" />
+            </p>
+          </Link>
         )}
       </div>
     </div>
   );
 
-  if (to) {
-    return (
-      <Link href={to} className="block shrink-0" {...draggableLink}>
-        <CardContent />
-      </Link>
-    );
-  }
+  // if (ctaLink) {
+  //   return (
+  //     // <Link href={ctaLink} className="block shrink-0" {...draggableLink}>
+  //       <CardContent />
+  //     // </Link>
+  //   );
+  // }
 
   return <CardContent />;
 };
@@ -96,12 +109,13 @@ export const AnnouncementsWrapper = () => {
   const notifications = [
     {
       id: '1',
-      title: "Welcome to the World's Fair!",
+      title: "Welcome to the World's Fair! 🔔",
+      cta: 'Get Started',
+      ctaLink: '/quests',
       message:
         'Your account has been created successfully. Start exploring the fair and mark your favorite events.',
       sendAt: '2025-11-15T10:00:00Z',
       seen: false,
-      to: '/quests',
     },
     {
       id: '2',
@@ -110,7 +124,6 @@ export const AnnouncementsWrapper = () => {
         "The opening ceremonies begin in 30 minutes. Don't miss this historic moment!",
       sendAt: '2025-11-17T08:30:00Z',
       seen: false,
-      to: '/schedule/ethday',
     },
     {
       id: '3',
@@ -119,7 +132,6 @@ export const AnnouncementsWrapper = () => {
         'Check out the latest applications built on Ethereum. Discover innovative projects and interact with creators.',
       sendAt: '2025-11-16T14:00:00Z',
       seen: true,
-      to: '/quests',
     },
     {
       id: '4',
@@ -128,7 +140,6 @@ export const AnnouncementsWrapper = () => {
         'Your selected workshop "Building on Ethereum" starts in 1 hour. Location: Pavilion 3, Room A.',
       sendAt: '2025-11-18T09:00:00Z',
       seen: true,
-      to: '/schedule',
     },
     {
       id: '5',
@@ -137,31 +148,40 @@ export const AnnouncementsWrapper = () => {
         'Join us for the official networking event at 7 PM. Great opportunity to meet fellow developers!',
       sendAt: '2025-11-17T18:00:00Z',
       seen: false,
-      to: '/schedule',
     },
   ];
 
   return (
-    <div className="flex flex-col mb-4 mt-4">
-      <div className="flex justify-between gap-2 font-bold border-top ml-4">
-        Announcements
-      </div>
-      <div className="text-[11px] mb-2 ml-4 leading-none">
-        With ❤️ from the Devconnect Team
+    <div className="flex flex-col mb-6 mt-5">
+      <div className="flex flex justify-between items-center gap-2 mb-4">
+        <div className="flex flex-col">
+          <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">
+            Announcements
+          </div>
+          <div className="text-[11px] ml-4 leading-none">
+            With ❤️ from the Devconnect Team
+          </div>
+        </div>
+        <div className="pr-4 text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 self-end cursor-pointer">
+          View All <ArrowUpRightIcon className="w-4 h-4" />
+        </div>
       </div>
       <div className="flex w-screen md:w-auto overflow-hidden md:overflow-visible">
         <SwipeToScroll>
-          <div className="flex no-wrap gap-2 ml-4 pr-4">
-            {notifications.map((notification) => (
+          <div className="flex no-wrap gap-2 ml-4">
+            {notifications.map((notification, index) => (
               <NotificationCard
                 key={notification.id}
                 title={notification.title}
                 message={notification.message}
                 sendAt={notification.sendAt}
                 seen={notification.seen}
-                to={notification.to}
+                cta={notification.cta}
+                ctaLink={notification.ctaLink}
+                // className={index === notifications.length - 1 ? '!mr-4' : ''}
               />
             ))}
+            <div className="w-[12px] pointer-events-none h-[1px] shrink-0" />
           </div>
         </SwipeToScroll>
       </div>

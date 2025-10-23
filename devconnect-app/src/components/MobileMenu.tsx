@@ -35,7 +35,7 @@ export default function Menu() {
     <>
       {/* Spacer for the bottom of the screen to counteract fixed position of menu */}
       <div
-        className="md:hidden pointer-events-none"
+        className="md:hidden pointer-events-none bg-[#74ACDF10]"
         style={{ height: 'calc(59px + max(0px, env(safe-area-inset-bottom)))' }}
       ></div>
       <nav

@@ -116,15 +116,4 @@ export const Highlights = () => {
   );
 };
 
-const HighlightsContainer = () => {
-  return (
-    <div className="flex flex-col mb-4">
-      <div className="flex justify-between gap-2 font-semibold border-top mb-2 ml-4">
-        Highlights
-      </div>
-      <Highlights />
-    </div>
-  );
-};
-
 export default Highlights;
