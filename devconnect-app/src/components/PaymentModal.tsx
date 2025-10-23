@@ -1239,7 +1239,7 @@ export default function PaymentModal({
   return (
     <Modal open={isOpen} close={handleClose} className="!p-0">
       <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5 bg-white">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 mt-[60px]">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Wallet className="h-5 w-5" />

@@ -26,6 +26,7 @@ export type NavItem = {
   label: string;
   longLabel?: string;
   href: string;
+  hasBackButton?: boolean;
   icon: React.ComponentType<{ active: boolean }>;
   isActive?: (pathname: string) => boolean;
   backgroundColor: string;
@@ -57,6 +58,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Scan',
     href: '/scan',
+    hasBackButton: true,
     icon: ScanIcon,
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
