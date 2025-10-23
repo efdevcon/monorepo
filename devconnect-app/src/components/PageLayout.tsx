@@ -234,7 +234,7 @@ export default function PageLayout({
                     >
                       {title}
                     </h1>
-                    <div className="w-[20px] lg:w-[30px] shrink-0" />
+                    {/* <div className="w-[20px] lg:w-[30px] shrink-0" /> */}
                   </div>
                 </div>
               )}
@@ -268,7 +268,7 @@ export default function PageLayout({
       {/* Desktop layout */}
       {!isMobile && (
         <div
-          className="hidden md:flex flex-col items-center justify-center my-8"
+          className="hidden md:flex flex-col items-start justify-start py-8 bg-[#f6fafe] !min-h-screen"
           data-type="layout-desktop"
         >
           <div className="section relative">
@@ -284,7 +284,7 @@ export default function PageLayout({
                     className="w-auto h-[45px]"
                   />
 
-                  <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm">
+                  <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm bg-white">
                     {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
                       (item) => {
                         let isActive =
@@ -354,7 +354,7 @@ export default function PageLayout({
                     </div>
                   )}
                   {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
-                  <div className="overflow-auto">
+                  <div className="overflow-auto bg-white">
                     {activeTab && activeTab.component && (
                       <activeTab.component activeIndex={activeIndex} />
                     )}
