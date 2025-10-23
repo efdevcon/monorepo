@@ -8,73 +8,84 @@ const hubData = [
   {
     name: 'Account Abstraction Hub',
     slug: 'account-abstraction-hub',
-    iframeUrl: 'https://sheets.fileverse.io/0x98DbBf35363bC25916102378985bB5cae100980D/2#key=qfv1YxPyQp_BFC4z6b5FAAE3vftuWRxpHI9I99NYE7d-4QFNs2Myn7omHmNUyS-3'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Enterprise Hub',
     slug: 'enterprise-hub',
-    iframeUrl: 'https://sheets.fileverse.io/0x98DbBf35363bC25916102378985bB5cae100980D/3#key=QAuUh_Kyzcdvj8KWTF25VitnbHNXbje_BPajt2cl27x0qSRXq4v_WZ7dCnGyx7I0'
+    iframeUrl:
+      'https://sheets.fileverse.io/0x3fc1296afb147C0d7C45b091b0b30bddDafa1bA2/0#key=jMZyROt2cuPoDvEJNLIk91Q6LjnCYLQuLPIBjUS3DyAehPUctjtqJa6WlZjILhHh',
   },
   {
     name: 'Fintech & Onchain Banking',
     slug: 'fintech-onchain-banking',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Governance Geeks Hub',
     slug: 'governance-geeks-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'LATAM Hub',
     slug: 'latam-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xD5163Be90431A96Ad4dcD585de1c6744B64cc653/1#key=m3i4dVPL7bXag53tKzzR0L7_WrsHn9-CLCKVzJxiMNdKCE3lio9uf16fTogWD2oP'
+    iframeUrl:
+      'https://sheets.fileverse.io/0x70f8c0B16Bd3F0806df9FA2Feb224ff8feA8d5EA/0#key=ia8zHKbr-Au-HUpiP-svhx7AHWw9C14oZ5skscMqifL31RXz5y9t1ABkXGdb5UiX',
+  },
+  {
+    name: 'Legal Tech Hub',
+    slug: 'legal-tech-hub',
+    iframeUrl:
+      'https://sheets.fileverse.io/0xf8Bf774665BF3A048961B42d3817537245765db9/0#key=K0zVPDpXwd2nMfsXCIViTDrYBbM3DT38E4hsz_blD8MTyLy4sEqey8dxBtDIpmJ2',
   },
   {
     name: 'Node Operators Hub',
     slug: 'node-operators-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl:
+      'https://sheets.fileverse.io/0xdeBC4b48512d9DBC0E85160C5554F6562A72A3AF/0#key=RFUd7u9ZMQhnzwECgdz2r3t5Yh__tWvRfpQgNFbYKjh-454emesTsKjnFM-Ju4tN',
   },
   {
     name: 'Onchain Art Hub',
     slug: 'onchain-art-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Open Source Community Hub',
     slug: 'open-source-community-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Pop-Up Cities',
     slug: 'pop-up-cities',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Privacy Hub',
     slug: 'privacy-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xD5163Be90431A96Ad4dcD585de1c6744B64cc653/0#key=v0ddsTX0pWD2D7R_ZknUFf36Dz7iiIuiZpg7YR2vG1GKKkN649h7ORmkl7ypZj5X'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Regen Hub',
     slug: 'regen-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl:
+      'https://regensunite.notion.site/ebd/27a859725d2980909ba6ee9aab4029e2?v=27a859725d298011bd65000c9b79dd0a',
   },
   {
     name: 'RWA Hub',
     slug: 'rwa-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl: '/community-hubs/coming-soon',
   },
   {
     name: 'Women in Web3 Hub',
     slug: 'women-in-web3-hub',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
+    iframeUrl:
+      'https://sheets.fileverse.io/0xf8Bf774665BF3A048961B42d3817537245765db9/1#key=xqD5J3X2kp-WoKtsIjA_KUpGDY_qYyta0SjrGct_91Ws3DYXNPXOiDE6mx7DZlog',
   },
   {
     name: 'World of DeSci',
     slug: 'world-of-desci',
-    iframeUrl: 'https://docs.fileverse.io/0xa71a99940Bd85C173397c8aE3986960785c762B6/2#key=W0074ipXQf-mB7755hgizLDiXO3i8WGocceiwvjlQ6VmkxVs98G7xI-sBbrPbkAx'
-  }
+    iframeUrl: '/community-hubs/coming-soon',
+  },
 ]
 
 const CommunityHubsPage = () => {
