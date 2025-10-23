@@ -45,15 +45,14 @@ const getTransactionExplorerUrl = (
       return `https://basescan.org/tx/${txHash}`; // Default to Base
   }
 };
+import { CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
+import Icon from '@mdi/react';
 import {
-  Settings,
-  Pen,
-  Radio,
-  Clock,
-  CheckCircle,
-  AlertTriangle,
-  Loader2,
-} from 'lucide-react';
+  mdiNetworkPos,
+  mdiFolderKeyNetworkOutline,
+  mdiSignalVariant,
+  mdiLockCheckOutline,
+} from '@mdi/js';
 
 type TransactionStatusBadge =
   | 'completed'
@@ -116,6 +115,8 @@ interface StatusStepProps {
   paymentId?: string;
   orderId?: string;
   isAlreadyCompleted?: boolean;
+  recipient?: string;
+  merchantName?: string;
 }
 
 const getParaSteps = (isPara: boolean) => {
@@ -123,28 +124,23 @@ const getParaSteps = (isPara: boolean) => {
     return [
       {
         id: 'preparing',
-        label: 'Preparing Authorization',
-        icon: <Settings className="w-4 h-4" />,
+        label: 'Creating authorization',
+        icon: <Icon path={mdiNetworkPos} size={0.67} />,
       },
       {
         id: 'signing',
-        label: 'Signing Authorization',
-        icon: <Pen className="w-4 h-4" />,
+        label: 'Signing authorization',
+        icon: <Icon path={mdiFolderKeyNetworkOutline} size={0.67} />,
       },
       {
         id: 'executing',
-        label: 'Executing Transfer',
-        icon: <Radio className="w-4 h-4" />,
+        label: 'Executing transfer',
+        icon: <Icon path={mdiSignalVariant} size={0.67} />,
       },
       {
         id: 'confirming',
         label: 'Confirming',
-        icon: <Clock className="w-4 h-4" />,
-      },
-      {
-        id: 'confirmed',
-        label: 'Confirmed',
-        icon: <CheckCircle className="w-4 h-4" />,
+        icon: <Icon path={mdiLockCheckOutline} size={0.67} />,
       },
     ];
   } else {
@@ -152,7 +148,7 @@ const getParaSteps = (isPara: boolean) => {
       {
         id: 'transfer',
         label: 'Transfer',
-        icon: <Radio className="w-4 h-4" />,
+        icon: <Icon path={mdiSignalVariant} size={0.67} />,
       },
       {
         id: 'confirmed',
@@ -167,22 +163,22 @@ const getStatusBadge = (status: TransactionStatusBadge) => {
   switch (status) {
     case 'completed':
       return (
-        <Badge className="bg-[#3ea331] hover:bg-[#3ea331] text-white text-xs px-2 py-1 rounded-full">
+        <div className="bg-[#137c59] text-white text-[12px] px-3 py-2 rounded-[2px] font-bold flex items-center justify-center tracking-[0.1px] whitespace-nowrap">
           Completed
-        </Badge>
+        </div>
       );
     case 'in-progress':
       return (
-        <Badge className="bg-[#f01888] hover:bg-[#f01888] text-white text-xs px-2 py-1 rounded-full">
+        <div className="bg-[#ededf0] text-[#353548] text-[12px] px-3 py-2 rounded-[2px] font-bold flex items-center justify-center tracking-[0.1px] whitespace-nowrap">
           In Progress
-        </Badge>
+        </div>
       );
     case 'failed':
       return (
-        <Badge className="bg-[#dc2626] hover:bg-[#dc2626] text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+        <div className="bg-[#dc2626] text-white text-[12px] px-3 py-2 rounded-[2px] font-bold flex items-center justify-center gap-1 tracking-[0.1px] whitespace-nowrap">
           <AlertTriangle className="w-3 h-3" />
           Failed
-        </Badge>
+        </div>
       );
     case 'pending':
       return null;
@@ -194,22 +190,22 @@ const getStepLineColor = (status: TransactionStatusBadge, isLast: boolean) => {
 
   switch (status) {
     case 'completed':
-      return '#3ea331';
+      return '#137c59';
     case 'in-progress':
-      return '#f01888';
+      return '#353548';
     case 'failed':
       return '#dc2626';
     case 'pending':
-      return '#363636';
+      return '#ededf0';
   }
 };
 
 const getStepIconColor = (status: TransactionStatusBadge) => {
   switch (status) {
     case 'completed':
-      return 'text-[#3ea331]';
+      return 'text-[#137c59]';
     case 'in-progress':
-      return 'text-[#f01888]';
+      return 'text-[#353548]';
     case 'failed':
       return 'text-[#dc2626]';
     case 'pending':
@@ -219,7 +215,7 @@ const getStepIconColor = (status: TransactionStatusBadge) => {
 
 const getStepIcon = (step: any, status: TransactionStatusBadge) => {
   if (status === 'in-progress') {
-    return <Loader2 className="w-4 h-4 animate-spin text-[#f01888]" />;
+    return <Loader2 className="w-4 h-4 animate-spin text-[#353548]" />;
   }
   return step.icon;
 };
@@ -235,7 +231,6 @@ const mapTxStatusToTransactionState = (
       signing: 1,
       executing: 2,
       confirming: 3,
-      confirmed: 4,
     };
 
     switch (txStatus) {
@@ -266,7 +261,7 @@ const mapTxStatusToTransactionState = (
         };
       case 'confirmed':
         return {
-          currentStepIndex: 4,
+          currentStepIndex: 3,
           overallStatus: 'completed',
         };
       case 'error':
@@ -351,6 +346,7 @@ export default function StatusStep({
   paymentId,
   orderId,
   isAlreadyCompleted = false,
+  merchantName = 'Devconnect',
 }: StatusStepProps) {
   const [transactionState, setTransactionState] = useState<TransactionState>({
     currentStepIndex: 0,
@@ -411,7 +407,7 @@ export default function StatusStep({
           userOpHash: userOpHash || null,
           timestamp: Date.now(), // Set timestamp only on first confirmation
           orderId,
-          recipient: 'Devconnect',
+          recipient: merchantName,
           connectedAddress,
         };
 
@@ -515,7 +511,7 @@ export default function StatusStep({
                 {displayAmount} {displayToken}
               </span>
               {' to '}
-              <span className="font-bold text-[#20202B]">Devconnect</span>
+              <span className="font-bold text-[#20202B]">{merchantName}</span>
             </p>
           </div>
 
@@ -606,7 +602,16 @@ export default function StatusStep({
     );
   }
 
+  // Debug simulation state
+  console.log('🔍 [STATUS_STEP] Simulation state:', {
+    isPara,
+    isSimulation,
+    simulationDetails,
+    txStatus,
+  });
+
   if (isPara && isSimulation && simulationDetails) {
+    console.log('✅ [STATUS_STEP] Rendering simulation UI');
     return (
       <div className="space-y-6">
         <div className="text-center">
@@ -846,11 +851,9 @@ export default function StatusStep({
       </div>
 
       <div className="text-center">
-        <h2 className="text-xl font-semibold mb-2">Processing Payment</h2>
+        <h2 className="text-xl font-semibold mb-2">Paying...</h2>
         <p className="text-sm text-gray-600">
-          {isPara
-            ? 'Processing your authorization and transfer...'
-            : 'Processing your transaction...'}
+          Paying {amount} {token} to {merchantName}
         </p>
         {isPara && isSimulation && (
           <div className="mt-2 inline-flex items-center gap-2 bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-xs font-medium">
@@ -872,7 +875,7 @@ export default function StatusStep({
         )}
       </div>
 
-      <div className="space-y-0">
+      <div className="space-y-3">
         {steps.map((step, index) => {
           const isLast = index === steps.length - 1;
           const lineColor = getStepLineColor(step.status, isLast);
@@ -880,19 +883,37 @@ export default function StatusStep({
 
           return (
             <div key={step.id} className="relative">
-              <div className="flex items-center gap-4 py-4">
-                <div className={`flex-shrink-0 ${iconColor}`}>
-                  {getStepIcon(initialSteps[index], step.status)}
+              <div
+                className={`bg-white border rounded-[4px] p-[12px] flex items-center justify-between ${
+                  step.status === 'completed'
+                    ? 'border-[#137c59]'
+                    : step.status === 'in-progress'
+                      ? 'border-[#353548]'
+                      : 'border-[#ededf0]'
+                }`}
+              >
+                <div className="flex items-center gap-[12px]">
+                  <div
+                    className={`flex-shrink-0 w-[32px] h-[32px] rounded-[2px] flex items-center justify-center ${
+                      step.status === 'completed'
+                        ? 'bg-[#e8fded]'
+                        : 'bg-transparent'
+                    }`}
+                  >
+                    <div className={iconColor}>
+                      {getStepIcon(initialSteps[index], step.status)}
+                    </div>
+                  </div>
+                  <span className="font-medium text-[#353548] text-[16px] leading-none tracking-[-0.1px] whitespace-nowrap">
+                    {step.label}
+                  </span>
                 </div>
-                <div className="flex-1 flex items-center justify-between">
-                  <span className="font-medium">{step.label}</span>
-                  {getStatusBadge(step.status)}
-                </div>
+                {getStatusBadge(step.status)}
               </div>
 
               {!isLast && (
                 <div
-                  className="absolute left-2 top-12 w-px h-4"
+                  className="absolute left-4 top-[60px] w-px h-3"
                   style={{ backgroundColor: lineColor }}
                 />
               )}

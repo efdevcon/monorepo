@@ -189,7 +189,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendParaTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send') => {
+  const sendParaTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send', simulation?: boolean) => {
     if (!isConnected || !connectedAddress) {
       throw new Error('Wallet not connected');
     }
@@ -277,6 +277,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
           signature,
           authorization: authData.authorization,
           transactionType: transactionType || 'payment',
+          simulation: simulation || false,
         }),
       });
 
@@ -304,6 +305,7 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
       // Check if this is a simulation response
       if (executeData.simulation) {
         console.log('🔄 [PARA_TX] Transfer simulation completed');
+        console.log('🔍 [PARA_TX] Simulation details:', executeData.simulationDetails);
         setIsSimulation(true);
         setSimulationDetails(executeData.simulationDetails);
         setTxStatus('confirmed');
@@ -336,10 +338,10 @@ export function usePaymentTransaction({ isPara }: UsePaymentTransactionProps) {
     }
   };
 
-  const sendTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send') => {
+  const sendTransaction = async (recipient: string, amount: string, token?: string, chainId?: number, transactionType?: 'payment' | 'send', simulation?: boolean) => {
     try {
       if (isPara) {
-        await sendParaTransaction(recipient, amount, token, chainId, transactionType);
+        await sendParaTransaction(recipient, amount, token, chainId, transactionType, simulation);
       } else {
         await sendRegularTransaction(recipient, amount, token, chainId);
       }

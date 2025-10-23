@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Search } from 'lucide-react';
 import { useWallet } from '@/context/WalletContext';
 import { PAYMENT_CONFIG } from '@/config/config';
+import { MERCHANTS } from '@/config/merchants';
 
 interface PaymentRequest {
   id: string;
@@ -45,6 +46,12 @@ export default function ScanPage() {
     null
   );
   const [paymentRequestId, setPaymentRequestId] = useState<string>('');
+  const [selectedMerchant, setSelectedMerchant] = useState<string>('');
+  const [isLoadingMerchantPayment, setIsLoadingMerchantPayment] =
+    useState(false);
+  const [merchantPaymentError, setMerchantPaymentError] = useState<
+    string | null
+  >(null);
   const { isPara } = useWallet();
 
   // Function to parse EIP-681 URL and extract payment data
@@ -148,43 +155,158 @@ export default function ScanPage() {
     setManualPaymentError(null);
   };
 
+  // Function to handle merchant payment request
+  const handleMerchantPaymentRequest = async () => {
+    if (!selectedMerchant) {
+      setMerchantPaymentError('Please select a merchant');
+      return;
+    }
+
+    setIsLoadingMerchantPayment(true);
+    setMerchantPaymentError(null);
+
+    try {
+      const response = await fetch(
+        `/api/payment-request/last/${selectedMerchant}`
+      );
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error(
+            'No payment available for this merchant at the moment.'
+          );
+        }
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to fetch payment request');
+      }
+
+      const paymentRequest = await response.json();
+
+      if (paymentRequest && paymentRequest.id) {
+        setPaymentRequestId(paymentRequest.id);
+        setIsManualPaymentOpen(true);
+        setSelectedMerchant(''); // Clear the selection
+      } else {
+        throw new Error('No payment request found for this merchant');
+      }
+    } catch (error) {
+      console.error('Error fetching merchant payment request:', error);
+      setMerchantPaymentError(
+        error instanceof Error
+          ? error.message
+          : 'Failed to fetch payment request'
+      );
+    } finally {
+      setIsLoadingMerchantPayment(false);
+    }
+  };
+
   return (
-    <PageLayout title="Scan">
+    <PageLayout title="Scan" hasBackButton={true}>
       <div className="max-w-xl mx-auto flex flex-col items-center p-8">
         {/* Manual Payment Request ID Input */}
-        <div className="w-full mt-6 p-4 border border-gray-200 rounded-lg">
-          <h2 className="text-lg font-medium text-black mb-3">
-            Manual Payment Request
-          </h2>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              placeholder="Enter payment request ID"
-              value={manualPaymentRequestId}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setManualPaymentRequestId(e.target.value)
-              }
-              className="flex-1 h-10 rounded-md border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
-                if (e.key === 'Enter') {
-                  handleManualPaymentRequest();
+        <div className="w-full mt-6 bg-white border border-[#c7c7d0] rounded-[4px] p-4">
+          <div className="mb-4">
+            <h2 className="text-[#353548] text-base font-bold tracking-[-0.1px]">
+              Manual payment request
+            </h2>
+          </div>
+
+          <div className="flex gap-3 mb-4">
+            <div className="flex-1 bg-white border border-[#ededf0] rounded-[2px] p-3">
+              <input
+                type="text"
+                placeholder="Enter your payment ID"
+                value={manualPaymentRequestId}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setManualPaymentRequestId(e.target.value)
                 }
-              }}
-            />
-            <Button
+                className="w-full text-[#868698] text-base font-normal tracking-[-0.1px] focus:outline-none"
+                onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (e.key === 'Enter') {
+                    handleManualPaymentRequest();
+                  }
+                }}
+              />
+            </div>
+            <button
               onClick={handleManualPaymentRequest}
-              disabled={isLoadingManualPayment}
-              className="bg-blue-600 hover:bg-blue-700"
+              disabled={
+                isLoadingManualPayment || !manualPaymentRequestId.trim()
+              }
+              className="bg-[#0073de] text-white px-4 py-3 rounded-[1px] font-bold text-base disabled:opacity-40 disabled:cursor-not-allowed"
             >
               {isLoadingManualPayment ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                <Search className="h-4 w-4" />
+                'Load Payment'
               )}
-            </Button>
+            </button>
           </div>
+
+          {/* OR Divider */}
+          <div className="flex items-center mb-4">
+            <div className="flex-1 h-px bg-[#ededf0]"></div>
+            <div className="px-2">
+              <span className="text-[#4b4b66] text-xs font-normal">OR</span>
+            </div>
+            <div className="flex-1 h-px bg-[#ededf0]"></div>
+          </div>
+
+          {/* Merchant Selection */}
+          <div className="flex gap-3">
+            <div className="flex-1 relative">
+              <select
+                value={selectedMerchant}
+                onChange={(e) => setSelectedMerchant(e.target.value)}
+                className="w-full bg-white border border-[#ededf0] rounded-[2px] px-4 py-3 text-base font-normal tracking-[-0.1px] appearance-none cursor-pointer focus:outline-none focus:border-[#0073de]"
+              >
+                <option value="" className="text-[#868698]">
+                  Select merchant
+                </option>
+                {Object.values(MERCHANTS).map((merchant) => (
+                  <option
+                    key={merchant.id}
+                    value={merchant.id}
+                    className="text-[#353548]"
+                  >
+                    [{merchant.posNumber}] {merchant.name}
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
+                  <path
+                    d="M4 6L8 10L12 6"
+                    stroke="#868698"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <button
+              onClick={handleMerchantPaymentRequest}
+              disabled={isLoadingMerchantPayment || !selectedMerchant}
+              className="bg-[#0073de] text-white px-4 py-3 rounded-[1px] font-bold text-base disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              {isLoadingMerchantPayment ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              ) : (
+                'Load Payment'
+              )}
+            </button>
+          </div>
+
+          {merchantPaymentError && (
+            <div className="text-red-600 text-sm mt-3">
+              {merchantPaymentError}
+            </div>
+          )}
+
           {manualPaymentError && (
-            <div className="text-red-600 text-sm mt-2">
+            <div className="text-red-600 text-sm mt-3">
               {manualPaymentError}
             </div>
           )}

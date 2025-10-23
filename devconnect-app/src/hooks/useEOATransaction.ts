@@ -97,7 +97,8 @@ export function useEOATransaction() {
     amount: string,
     token: string,
     chainId: number,
-    transactionType?: 'payment' | 'send'
+    transactionType?: 'payment' | 'send',
+    simulation?: boolean
   ) => {
     if (!isConnected || !address) {
       const error = 'Wallet not connected';

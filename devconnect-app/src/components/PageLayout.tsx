@@ -29,6 +29,7 @@ interface PageLayoutProps {
   activeIndex?: number;
   setActiveIndex?: (index: number) => void;
   onTabClick?: (tabItem: any, index: number) => void;
+  hasBackButton?: boolean;
 }
 
 interface TabsProps {
@@ -185,6 +186,7 @@ export default function PageLayout({
   activeIndex: externalActiveIndex,
   setActiveIndex: externalSetActiveIndex,
   onTabClick,
+  hasBackButton,
 }: PageLayoutProps) {
   const pathname = usePathname();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
@@ -225,9 +227,11 @@ export default function PageLayout({
                     className="flex items-center justify-between w-full px-6 pb-3"
                     style={{ paddingTop: pwa ? '0' : '0.75rem' }}
                   >
-                    {/* <div className="relative w-[20px] lg:w-[30px] shrink-0">
-                      <BackButton />
-                    </div> */}
+                    {hasBackButton && (
+                      <div className="relative w-[20px] lg:w-[30px] shrink-0">
+                        <BackButton />
+                      </div>
+                    )}
                     <h1
                       className="flex-1 text-lg font-semibold text-center tracking-[-0.1px]"
                       style={{ textShadow: 'rgba(0,0,0,0.15) 0px 1px 3px' }}

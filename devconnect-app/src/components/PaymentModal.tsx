@@ -15,6 +15,7 @@ import StatusStep from '@/components/payment/StatusStep';
 import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
 import { PAYMENT_CONFIG } from '@/config/config';
+import { getMerchantName } from '@/config/merchants';
 import {
   useAccount as useParaAccount,
   useWallet as useParaWallet,
@@ -65,6 +66,8 @@ export default function PaymentModal({
     orderStatus?: string;
     orderStatusDetail?: string;
     arsAmount?: number;
+    merchantId?: string;
+    merchantName?: string;
     priceDetails?: {
       currency: string;
       currency_amount: number;
@@ -603,6 +606,10 @@ export default function PaymentModal({
           orderStatus: details.status,
           orderStatusDetail: details.status_detail,
           arsAmount: details.ars_amount,
+          merchantId: details.merchant_id,
+          merchantName: details.merchant_id
+            ? getMerchantName(details.merchant_id)
+            : 'Devconnect',
           priceDetails: transactionToUse.price_details,
           recipient: transactionToUse.address,
           amount:
@@ -799,6 +806,10 @@ export default function PaymentModal({
               orderStatus: details.status,
               orderStatusDetail: details.status_detail,
               arsAmount: details.ars_amount,
+              merchantId: details.merchant_id,
+              merchantName: details.merchant_id
+                ? getMerchantName(details.merchant_id)
+                : 'Devconnect',
               priceDetails: transaction.price_details,
               recipient: transaction.address,
               amount:
@@ -1239,7 +1250,7 @@ export default function PaymentModal({
   return (
     <Modal open={isOpen} close={handleClose} className="!p-0">
       <ModalContent className="w-[100vw] max-w-xl !h-[100vh] !max-h-[100vh] overflow-y-auto p-5 bg-white">
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-4 mt-[60px]">
           <div className="flex items-center gap-2">
             <h2 className="text-xl font-semibold flex items-center gap-2">
               <Wallet className="h-5 w-5" />
@@ -1343,7 +1354,7 @@ export default function PaymentModal({
                   {/* Merchant Information */}
                   <div className="text-center space-y-2">
                     <h2 className="text-[#20202b] text-base font-bold">
-                      Devconnect
+                      {paymentDetails.merchantName || 'Devconnect'}
                     </h2>
                     {paymentDetails.orderId && (
                       <p className="text-[#353548] text-xs">
@@ -1557,7 +1568,7 @@ export default function PaymentModal({
                     ) : (
                       <>
                         <Send className="h-4 w-4 mr-2" />
-                        Pay Devconnect{' '}
+                        Pay {paymentDetails.merchantName || 'Devconnect'}{' '}
                         {paymentDetails.priceDetails?.final_amount?.toFixed(
                           6
                         ) || amount}{' '}
@@ -1568,6 +1579,56 @@ export default function PaymentModal({
                       </>
                     )}
                   </Button>
+
+                  {/* Simulation Button */}
+                  {isPara && (
+                    <Button
+                      onClick={() => {
+                        // Set payment data and move to status step
+                        setPaymentData({
+                          recipient: paymentDetails.recipient || recipient,
+                          amount: paymentDetails.amount || amount,
+                          token: isPara ? 'USDC' : selectedToken,
+                          chainId: isPara ? 8453 : selectedChainId,
+                        });
+                        setCurrentStep('status');
+                        // Trigger the same transaction flow with simulation parameter
+                        console.log(
+                          '🔄 [SIMULATION] Starting simulation transaction...'
+                        );
+                        sendTransaction(
+                          paymentDetails.recipient || recipient,
+                          paymentDetails.amount || amount,
+                          isPara ? 'USDC' : selectedToken,
+                          isPara ? 8453 : selectedChainId,
+                          'payment',
+                          true // Force simulation mode
+                        );
+                      }}
+                      disabled={
+                        !isRecipientValid ||
+                        !isAmountValid ||
+                        !amount ||
+                        isPending
+                      }
+                      className="w-full bg-[#eaf3fa] hover:bg-[#d5e7f4] text-[#44445d] font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors disabled:opacity-50"
+                    >
+                      <svg
+                        className="h-4 w-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                        />
+                      </svg>
+                      Simulate Payment
+                    </Button>
+                  )}
                 </>
               )}
             </div>
@@ -1596,6 +1657,8 @@ export default function PaymentModal({
               paymentId={paymentRequestId || paymentDetails.orderId}
               orderId={paymentDetails.orderId}
               isAlreadyCompleted={true}
+              recipient={paymentDetails.recipient || paymentData.recipient}
+              merchantName={paymentDetails.merchantName || 'Devconnect'}
             />
           )}
         {currentStep === 'status' && (
@@ -1615,6 +1678,10 @@ export default function PaymentModal({
             onTryAgain={handleTryAgain}
             paymentId={paymentRequestId || paymentDetails.orderId}
             orderId={paymentDetails.orderId}
+            recipient={
+              paymentData.recipient || paymentDetails.recipient || recipient
+            }
+            merchantName={paymentDetails.merchantName || 'Devconnect'}
           />
         )}
       </ModalContent>

@@ -83,7 +83,8 @@ export function useParaTransaction() {
     amount: string,
     token?: string,
     chainId?: number,
-    transactionType?: 'payment' | 'send'
+    transactionType?: 'payment' | 'send',
+    simulation?: boolean
   ) => {
     const paraWalletAddress = paraWallet?.data?.address;
 
@@ -165,6 +166,7 @@ export function useParaTransaction() {
           signature,
           authorization: authData.authorization,
           transactionType: transactionType || 'payment',
+          simulation: simulation || false,
         }),
       });
 
@@ -186,6 +188,7 @@ export function useParaTransaction() {
       // Check if this is a simulation response
       if (executeData.simulation) {
         console.log('✅ [PARA_TX] Transfer simulation completed');
+        console.log('🔍 [PARA_TX] Simulation details:', executeData.simulationDetails);
         setIsSimulation(true);
         setSimulationDetails(executeData.simulationDetails);
         setTxStatus('confirmed');
