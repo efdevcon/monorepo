@@ -25,7 +25,7 @@ export default function HomePageContent() {
 
   return (
     <PageLayout title="World's Fair" tabs={homeTabs()}>
-      <div className="bg-[rgba(246,250,254,1)] grow pb-2">
+      <div className="bg-[#74ACDF10] md:!bg-white grow pb-2">
         <LoopingHeader />
         <WelcomeSection />
         <HighlightsContainer />

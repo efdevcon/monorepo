@@ -63,7 +63,7 @@ export function WelcomeSection() {
         </div> */}
       </div>
 
-      <div className="text-2xl leading-none text-[rgba(53,53,72,1)] font-medium italic">
+      <div className="text-2xl leading-none text-[rgba(53,53,72,1)] font-medium italic max-w-[80vw] break-all">
         {email || 'Anon'}
       </div>
 
