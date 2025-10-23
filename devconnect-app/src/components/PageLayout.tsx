@@ -122,7 +122,7 @@ const Tabs = ({
         className
       )}
     >
-      <div className="flex md:rounded shrink-0 gap-2">
+      <div className="flex md:rounded shrink-0 gap-2 mr-3">
         {tabs.map((tab, idx) => {
           let isActive;
 

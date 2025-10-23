@@ -14,7 +14,7 @@ import {
 import { useGlobalStore } from '@/app/store.provider';
 import type { Ticket, Order } from '@/app/store';
 import { RequiresAuthHOC } from '@/components/RequiresAuthHOC';
-import { homeTabs } from '../navigation';
+import { homeTabs } from '../../navigation';
 import PageLayout from '@/components/PageLayout';
 import moment, { Moment } from 'moment';
 import cn from 'classnames';
@@ -39,9 +39,9 @@ interface QRCodes {
 
 const TicketWrapper = () => {
   return (
-    <PageLayout title="Ethereum World's Fair — Tickets" tabs={homeTabs()}>
-      <TicketTab />
-    </PageLayout>
+    // <PageLayout title="Ethereum World's Fair — Tickets" tabs={homeTabs()}>
+    <TicketTab />
+    // </PageLayout>
   );
 };
 

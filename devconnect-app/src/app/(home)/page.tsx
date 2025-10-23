@@ -7,10 +7,10 @@ import {
   TodaysSchedule,
   LoopingHeader,
   PracticalInfo,
-} from './dashboard-sections';
+} from '../dashboard-sections';
 import HighlightsContainer from '@/components/Highlights';
 import AnnouncementsWrapper from '@/components/Announcements';
-import { homeTabs } from './navigation';
+import { homeTabs } from '../navigation';
 
 export default function HomePageContent() {
   const router = useRouter();
@@ -25,15 +25,15 @@ export default function HomePageContent() {
   }, [router]);
 
   return (
-    <PageLayout title="World's Fair" tabs={homeTabs()}>
-      <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
-        <LoopingHeader />
-        <WelcomeSection />
-        <HighlightsContainer />
-        <AnnouncementsWrapper />
-        <TodaysSchedule />
-        <PracticalInfo />
-      </div>
-    </PageLayout>
+    // <PageLayout title="World's Fair" tabs={homeTabs()}>
+    <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
+      <LoopingHeader />
+      <WelcomeSection />
+      <HighlightsContainer />
+      <AnnouncementsWrapper />
+      <TodaysSchedule />
+      <PracticalInfo />
+    </div>
+    // </PageLayout>
   );
 }
