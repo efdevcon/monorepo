@@ -36,6 +36,8 @@ export const customUrlTransforms = [
   { from: "apptownhall", to: "142" },
   { from: "eip-summit", to: "162" },
   { from: "creator-economy", to: "168" },
+  { from: "applications-to-fhe", to: "193" },
+  { from: "obfuscation-day", to: "194" },
   // { from: 'stableconnect', to: '112' },
   // { from: 'pacificonnect', to: '112' },
 ];
