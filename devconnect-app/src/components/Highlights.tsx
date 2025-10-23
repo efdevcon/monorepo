@@ -109,7 +109,7 @@ export const Highlights = () => {
               image={highlight.image}
             />
           ))}
-          {/* <div className="shrink-0 w-[16px]"></div> */}
+          <div className="w-[12px] pointer-events-none h-[1px] shrink-0" />
         </div>
       </SwipeToScroll>
     </div>
