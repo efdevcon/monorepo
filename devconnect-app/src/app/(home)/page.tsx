@@ -1,7 +1,6 @@
 'use client';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import PageLayout from '@/components/PageLayout';
 import {
   WelcomeSection,
   TodaysSchedule,
@@ -10,7 +9,6 @@ import {
 } from '../dashboard-sections';
 import HighlightsContainer from '@/components/Highlights';
 import AnnouncementsWrapper from '@/components/Announcements';
-import { homeTabs } from '../navigation';
 
 export default function HomePageContent() {
   const router = useRouter();
@@ -25,7 +23,6 @@ export default function HomePageContent() {
   }, [router]);
 
   return (
-    // <PageLayout title="World's Fair" tabs={homeTabs()}>
     <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
       <LoopingHeader />
       <WelcomeSection />
@@ -34,6 +31,5 @@ export default function HomePageContent() {
       <TodaysSchedule />
       <PracticalInfo />
     </div>
-    // </PageLayout>
   );
 }

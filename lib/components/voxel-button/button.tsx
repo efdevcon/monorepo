@@ -26,7 +26,7 @@ const Button = ({ color, fill, disabled, fat, ...props }: any) => {
   // TODO: implement sizes
   const size = (() => {
     if (fat) return "px-4 py-2";
-    if (props.size === "sm") return "px-4 py-1 text-sm border-b-[4px]";
+    if (props.size === "sm") return "px-4 py-1.5 text-sm border-b-[4px]";
 
     return "px-8 py-2";
   })();

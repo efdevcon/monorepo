@@ -17,6 +17,7 @@ import CameraIcon from '@/components/icons/onboarding-steps/camera.svg';
 import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
 import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
+import { ArrowUpRightIcon } from 'lucide-react';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -76,11 +77,32 @@ export function WelcomeSection() {
 
 export const PracticalInfo = () => {
   return (
-    <div className="flex flex-col items-start justify-start gap-1 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto mt-4">
-      <div className="flex w-full items-center justify-between gap-2 shrink-0">
-        <p className="font-semibold">Practical Info</p>
-        <div>Wifi Password</div>
+    <div className="flex flex-col items-start justify-start gap-4 p-4 pb-3 bg-white border mx-4 border-[rgba(234,234,234,1)] mt-4">
+      <h2 className="font-bold">Event information</h2>
+
+      <div className="flex flex-col gap-0.5 w-full">
+        <div className="flex justify-between items-center">
+          <span className="font-semibold text-sm">Wifi Network:</span>
+          <span className="text-sm">LA-RURAL-WIFI-BA25</span>
+        </div>
+
+        <div className="flex justify-between items-center">
+          <span className="font-semibold text-sm">Wifi Password:</span>
+          <span className="text-sm">E7H3R3UM-DEVCONNECT</span>
+        </div>
       </div>
+
+      <div className="flex flex-col gap-2 w-full">
+        <div className="font-bold">Need help?</div>
+        <div className="text-xs leading-relaxed">
+          Our friendly Support Staff are available throughout the event to help
+          with technical issues, navigation, and general questions.
+        </div>
+      </div>
+
+      <Button className="w-full font-semibold" color="white-2" size="sm">
+        View more info
+      </Button>
     </div>
   );
 };
@@ -102,13 +124,20 @@ export const TodaysSchedule = withParcnetProvider(() => {
   return (
     <div
       className={cn(
-        `flex flex-col items-start justify-start gap-1 p-4 pt-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto`
+        `flex flex-col items-start justify-start gap-1 p-4 pb-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto`
         // hasEventsToShow && 'max-h-[400px]' // add this later with "show more option when more than 3 events here"
       )}
     >
       <div className="flex w-full items-center justify-between gap-2 shrink-0">
-        <p className="font-semibold">Your Events</p>
+        <p className="font-bold">Your Events</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
+
+        <Link
+          href="/schedule"
+          className="text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 cursor-pointer"
+        >
+          View Schedule <ArrowUpRightIcon className="w-4 h-4" />
+        </Link>
       </div>
       <p className="text-xs mb-2 shrink-0">
         These are your recommended events. Build your own schedule by adding
@@ -154,12 +183,12 @@ export const TodaysSchedule = withParcnetProvider(() => {
 
       <div className="flex flex-col md:flex-row items-center justify-center w-full shrink-0 mt-4 gap-4">
         <Link href="/schedule" className="w-full md:w-auto self-start shrink-0">
-          <Button size="sm" className="w-full font-medium px-8" color="blue-2">
+          <Button size="sm" className="w-full font-medium px-8" color="white-2">
             View Full Schedule
           </Button>
         </Link>
 
-        {email && (
+        {/* {email && (
           <Link
             href="/schedule"
             className="w-full md:w-auto self-start mb-2 shrink-0"
@@ -172,7 +201,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
               View my Tickets
             </Button>
           </Link>
-        )}
+        )} */}
       </div>
     </div>
   );
