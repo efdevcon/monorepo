@@ -1,10 +1,8 @@
 'use client';
 
 import React from 'react';
-import Button from 'lib/components/voxel-button/button';
 import { createRoot } from 'react-dom/client';
 import Link from 'next/link';
-import Offline from '@/images/state/offline.png';
 import Image from 'next/image';
 
 export const RequiresAuthContent = ({
@@ -18,33 +16,57 @@ export const RequiresAuthContent = ({
 }) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center h-full gap-4 ${
-        asModal ? '' : 'my-16 mx-8'
+      className={`flex items-center justify-center px-4 w-full ${
+        asModal ? 'h-full' : 'flex-1'
       }`}
+      style={{
+        background:
+          'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
+      }}
     >
-      <div className="bg-white p-5 shadow-xl max-w-md w-full flex flex-col relative">
-        <h2 className="text-lg font-bold mb-1">Authentication Required</h2>
-        <p className="mb-4 max-w-[70%] z-1">{message}</p>
+      <div className="bg-white border border-[#ededf0] rounded-[4px] max-w-[560px] min-w-[320px] w-full mx-auto">
+        <div className="flex flex-col gap-4 items-center justify-center px-4 py-6">
+          {/* Key illustration */}
+          <div className="relative h-[169px] w-[297px] shrink-0">
+            <Image
+              src="/images/key-illustration.png"
+              alt="Sign in required"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          </div>
 
-        <div className="flex gap-2 items-end">
-          <Link href="/onboarding">
-            <Button size="sm" color="green-1">
-              Sign in
-            </Button>
-          </Link>
+          {/* Content */}
+          <div className="flex flex-col gap-4 items-center w-full">
+            <h2 className="font-bold text-2xl text-[#20202b] text-center tracking-[-0.1px] leading-[1.2] w-full">
+              Sign in required
+            </h2>
+            <div className="flex flex-col gap-3 items-start w-full">
+              <p className="font-normal text-base text-[#353548] text-center tracking-[-0.1px] leading-[1.3] w-full">
+                {message || 'To access this page, sign in to your account.'}
+              </p>
+            </div>
 
-          {onSkip && (
-            <Button onClick={onSkip} size="sm" color="blue-1">
-              Skip
-            </Button>
-          )}
+            {/* Sign in button */}
+            <Link href="/onboarding" className="w-full">
+              <button className="bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] cursor-pointer hover:bg-[#0060c0] transition-colors">
+                <span className="font-bold text-base text-center text-white">
+                  Sign in
+                </span>
+              </button>
+            </Link>
+
+            {onSkip && (
+              <button
+                onClick={onSkip}
+                className="text-[#0073de] text-sm font-medium underline cursor-pointer"
+              >
+                Skip
+              </button>
+            )}
+          </div>
         </div>
-
-        <Image
-          src={Offline}
-          alt="Offline"
-          className="w-[40%] sm:w-[35%] shrink-0 self-center mb-4 absolute bottom-0 right-0 sm:right-4"
-        />
       </div>
     </div>
   );

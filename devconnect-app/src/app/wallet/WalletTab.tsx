@@ -16,6 +16,7 @@ import PaymentModal from '@/components/PaymentModal';
 import { fetchAuth } from '@/services/apiClient';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 import { hasBetaAccess } from '@/utils/cookies';
+import { RequiresAuthContent } from '@/components/RequiresAuth';
 import Icon from '@mdi/react';
 import {
   mdiSendOutline,
@@ -580,31 +581,10 @@ export default function WalletTab() {
   // Show login screen when not connected
   if (!para.isConnected && !eoa.isConnected) {
     return (
-      <div
-        className="flex-1 w-full flex items-center justify-center"
-        style={{
-          background:
-            'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
-        }}
-      >
-        <div className="text-center space-y-6">
-          <div className="space-y-2">
-            <h1 className="text-[#242436] text-2xl font-bold tracking-[-0.1px]">
-              Connect Your Wallet
-            </h1>
-            <p className="text-[#36364c] text-base">
-              Connect your wallet to access your portfolio and manage your
-              assets
-            </p>
-          </div>
-          <button
-            onClick={() => router.push('/onboarding')}
-            className="bg-[#165a8d] text-white px-8 py-3 rounded-[4px] font-semibold text-base hover:bg-[#0f4a73] transition-colors cursor-pointer"
-          >
-            Login
-          </button>
-        </div>
-      </div>
+      <RequiresAuthContent
+        message="Connect your wallet to access your portfolio and manage your assets."
+        asModal={false}
+      />
     );
   }
 

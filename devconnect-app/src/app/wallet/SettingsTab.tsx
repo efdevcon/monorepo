@@ -265,11 +265,6 @@ export default function SettingsTab() {
           </div>
           <p className="flex-1 text-left text-[#353548] text-base font-medium">
             Export Private Key
-            {!isParaConnected && (
-              <span className="block text-xs text-[#8b8b99] font-normal mt-0.5">
-                Connect Para wallet to export
-              </span>
-            )}
           </p>
           {isExportingKey ? (
             <span className="text-[#4b4b66] text-xs">Opening...</span>
@@ -299,7 +294,13 @@ export default function SettingsTab() {
         {/* Backup Kit */}
         <button
           onClick={handleBackupKit}
-          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          disabled={isExportingKey || !isParaConnected}
+          className={cn(
+            'w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 transition-colors',
+            isExportingKey || !isParaConnected
+              ? 'opacity-50 cursor-not-allowed'
+              : 'hover:bg-gray-50 cursor-pointer'
+          )}
         >
           <div className="w-8 h-8 flex items-center justify-center">
             <Icon path={mdiCloudUpload} size={1} className="text-[#353548]" />
