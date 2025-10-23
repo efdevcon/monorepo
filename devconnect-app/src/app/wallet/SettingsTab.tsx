@@ -212,7 +212,7 @@ export default function SettingsTab() {
       </div>
 
       {/* Wallet Section */}
-      <div className="mb-6">
+      <div className="">
         <h2 className="text-[#20202b] text-lg font-bold mb-3">Wallet</h2>
 
         {/* Account Details Card - Always shows Para wallet info */}

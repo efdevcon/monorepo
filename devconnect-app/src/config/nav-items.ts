@@ -83,7 +83,6 @@ export const NAV_ITEMS: NavItem[] = [
         label: 'Stampbook',
         href: '/wallet/stampbook',
         icon: StampbookTabIcon,
-        hide: process.env.NEXT_PUBLIC_BETA === 'true',
       },
       {
         label: 'Settings',

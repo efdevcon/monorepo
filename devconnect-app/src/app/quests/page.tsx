@@ -8,6 +8,7 @@ import AppShowcaseDetail from './AppShowcaseDetail';
 import ComingSoonMessage from '@/components/ComingSoonMessage';
 import { questGroupsData } from '@/data/questGroups';
 import { NAV_ITEMS } from '@/config/nav-items';
+import { hasBetaAccess } from '@/utils/cookies';
 
 const navItem = NAV_ITEMS.find((item) => item.href === '/quests');
 const navLabel = navItem?.label || 'Quests';
@@ -18,8 +19,8 @@ export default function QuestsPage() {
   const [selectedGroup, setSelectedGroup] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
-  // Check if beta mode is enabled
-  const isBetaMode = process.env.NEXT_PUBLIC_BETA === 'true';
+  // Check if beta mode is enabled (hide for beta users)
+  const isBetaMode = hasBetaAccess();
 
   // Local storage for quest status and locked state
   const [questStates, setQuestStates] = useLocalStorage<

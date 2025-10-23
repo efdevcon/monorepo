@@ -43,28 +43,27 @@ export default function PasswordForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 w-full max-w-xs mx-auto px-4">
+    <form onSubmit={handleSubmit} className="mt-4 w-full max-w-md mx-auto px-4">
       <div className="space-y-3">
-        <label 
-          htmlFor="password" 
-          className="block text-center text-sm font-medium"
-          style={{ color: '#353548' }}
-        >
-          Have early access?
-        </label>
-        <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row gap-2 md:items-center">
+          <label
+            htmlFor="password"
+            className="block text-center md:text-left text-sm font-medium md:whitespace-nowrap"
+            style={{ color: '#353548' }}
+          >
+            Have early access?
+          </label>
           <input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Enter password"
-            className="flex-1 px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm min-w-0"
-            style={{ 
+            className="flex-1 px-4 py-2 border-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+            style={{
               borderColor: '#353548',
               backgroundColor: 'white',
               color: '#353548',
-              maxWidth: '240px'
             }}
             disabled={isLoading}
           />
@@ -77,9 +76,7 @@ export default function PasswordForm() {
             {isLoading ? '...' : 'Enter'}
           </button>
         </div>
-        {error && (
-          <p className="text-red-600 text-sm text-center">{error}</p>
-        )}
+        {error && <p className="text-red-600 text-sm text-center">{error}</p>}
       </div>
     </form>
   );

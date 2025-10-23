@@ -78,11 +78,16 @@ export async function middleware(request: NextRequest) {
       }
 
       // Check for early access password in cookie
-      const cookiePassword = request.cookies.get('earlyAccess')?.value;
-      const correctPassword = process.env.EARLY_ACCESS_PASSWORD;
+      const earlyAccessCookie = request.cookies.get('earlyAccess')?.value;
+      const betaAccessCookie = request.cookies.get('betaAccess')?.value;
+      const earlyAccessPassword = process.env.EARLY_ACCESS_PASSWORD;
+      const betaAccessPassword = process.env.BETA_ACCESS_PASSWORD;
 
-      // If password matches and is configured, allow access
-      if (correctPassword && cookiePassword === correctPassword) {
+      // If either password matches and is configured, allow access
+      const hasEarlyAccess = earlyAccessPassword && earlyAccessCookie === earlyAccessPassword;
+      const hasBetaAccess = betaAccessPassword && betaAccessCookie === betaAccessPassword;
+
+      if (hasEarlyAccess || hasBetaAccess) {
         return await languageMiddleware(request);
       }
 

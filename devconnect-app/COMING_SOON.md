@@ -1,5 +1,3 @@
-.........................................................................................
-.........................................................................................
 ............................@@@@@@:......................................................
 ........................:@@@@::::+@@@@...................................................
 ......................@@@@::::::::::+@@@@................................................
@@ -51,8 +49,6 @@
 ..........................@@@@@@@@@@.....................................................
 .............................:@@#........................................................
 .........................................................................................
-.........................................................................................
-.........................................................................................
 
 #########################################################################################
 #                                                                                       #
@@ -86,6 +82,7 @@ Set the environment variables:
 ```
 NEXT_PUBLIC_COMING_SOON=true
 EARLY_ACCESS_PASSWORD=yourSecretPassword
+BETA_ACCESS_PASSWORD=yourBetaSecretPassword  # Optional: for beta testers
 ```
 
 **To Disable (Normal App Access):**
@@ -98,10 +95,15 @@ Or remove the variable entirely.
 **Behavior:**
 - When enabled, all routes redirect to `/coming-soon`
 - A password form appears at the bottom for early access
-- Correct password grants access via HttpOnly cookie
+- Correct password grants access via cookies (accessible by JavaScript)
+- **Two password tiers:**
+  - `EARLY_ACCESS_PASSWORD`: Grants full access to the app
+  - `BETA_ACCESS_PASSWORD`: Grants access BUT hides certain features (beta mode)
+- Both passwords set an `earlyAccess` cookie for site access
+- Beta password also sets a `betaAccess` cookie to identify beta users
 - **Password must be set in environment variables** - no default
-- If password is not configured, all access is blocked
-- Cookie persists until browser closes
+- If neither password is configured, all access is blocked
+- Cookies persist for 30 days
 - Static assets (images, fonts, etc.) still load normally
 - This is useful for pre-launch periods or maintenance
 
@@ -109,30 +111,41 @@ Or remove the variable entirely.
 
 ## Beta Mode for Individual Features
 
-To show "Coming Soon" messages on specific features that are under development:
+Beta mode is now controlled by the `betaAccess` cookie, which is automatically set when a user logs in with the `BETA_ACCESS_PASSWORD`.
 
-```
-NEXT_PUBLIC_BETA=true
-```
-
-**When enabled:**
+**When a user has the betaAccess cookie:**
 - Features marked as beta will show a "Coming Soon" message instead of full content
-- Currently applies to: `/quests`, `/map`
-- `/wallet/stampbook` tab is hidden from navigation
+- Currently applies to: `/quests`, `/map`, wallet perks/onramp features
 - Uses the reusable `ComingSoonMessage` component
 - Can be easily applied to other routes
 
 **Usage in components:**
 ```typescript
 import ComingSoonMessage from '@/components/ComingSoonMessage';
+import { hasBetaAccess } from '@/utils/cookies';
 
 // In your component
-if (process.env.NEXT_PUBLIC_BETA === 'true') {
+const isBetaMode = hasBetaAccess();
+
+if (isBetaMode) {
   return <ComingSoonMessage message="Custom message (optional)" />;
 }
+```
+
+**Utility Functions:**
+
+```typescript
+import { hasBetaAccess, getCookie } from '@/utils/cookies';
+
+// Check if user has beta access
+const isBeta = hasBetaAccess(); // Returns boolean
+
+// Get any cookie value
+const cookieValue = getCookie('betaAccess'); // Returns string | null
 ```
 
 **Notes:**
 - This is different from `NEXT_PUBLIC_COMING_SOON` which blocks the entire app
 - Beta mode only affects specific features while allowing access to the rest of the app
 - Useful for gradual feature rollouts or hiding incomplete features
+- Beta users can still access the app, they just see limited features

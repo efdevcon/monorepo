@@ -5,27 +5,43 @@ export async function POST(request: NextRequest) {
     const { password } = await request.json();
 
     // Server-side password check - not exposed to client
-    const correctPassword = process.env.EARLY_ACCESS_PASSWORD;
+    const earlyAccessPassword = process.env.EARLY_ACCESS_PASSWORD;
+    const betaAccessPassword = process.env.BETA_ACCESS_PASSWORD;
 
-    // If no password is set, always deny access
-    if (!correctPassword) {
+    // If no passwords are set, always deny access
+    if (!earlyAccessPassword && !betaAccessPassword) {
       return NextResponse.json(
         { success: false, error: 'Early access is not configured' },
         { status: 403 }
       );
     }
 
-    if (password === correctPassword) {
+    const isEarlyAccess = earlyAccessPassword && password === earlyAccessPassword;
+    const isBetaAccess = betaAccessPassword && password === betaAccessPassword;
+
+    if (isEarlyAccess || isBetaAccess) {
       // Create response with success
       const response = NextResponse.json({ success: true });
       
-      // Set cookie with the password itself
+      // Set earlyAccess cookie for both types
       response.cookies.set('earlyAccess', password, {
-        httpOnly: true, // Can't be accessed by JavaScript
+        httpOnly: false, // Can be accessed by JavaScript
         secure: process.env.NODE_ENV === 'production',
         sameSite: 'lax',
         path: '/',
+        maxAge: 60 * 60 * 24 * 30, // 30 days in seconds
       });
+
+      // If beta access, also set betaAccess cookie
+      if (isBetaAccess) {
+        response.cookies.set('betaAccess', password, {
+          httpOnly: false, // Can be accessed by JavaScript
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: '/',
+          maxAge: 60 * 60 * 24 * 30, // 30 days in seconds
+        });
+      }
 
       return response;
     } else {

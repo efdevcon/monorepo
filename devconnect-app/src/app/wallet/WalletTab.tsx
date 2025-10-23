@@ -15,6 +15,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import PaymentModal from '@/components/PaymentModal';
 import { fetchAuth } from '@/services/apiClient';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
+import { hasBetaAccess } from '@/utils/cookies';
 import Icon from '@mdi/react';
 import {
   mdiSendOutline,
@@ -81,8 +82,8 @@ export default function WalletTab() {
     hasMultipleWallets,
   } = walletData;
 
-  // Check if beta mode is enabled
-  const isBetaMode = process.env.NEXT_PUBLIC_BETA === 'true';
+  // Check if beta mode is enabled (hide features for beta users)
+  const isBetaMode = hasBetaAccess();
 
   // Debug: Log the refresh trigger value received from useWallet
   console.log('🔍 [WALLET_TAB] Received from useWallet:', {
@@ -558,7 +559,7 @@ export default function WalletTab() {
   if (shouldShowDisconnecting) {
     return (
       <div
-        className="min-h-screen w-full flex items-center justify-center"
+        className="flex-1 w-full flex items-center justify-center"
         style={{
           background:
             'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
@@ -580,7 +581,7 @@ export default function WalletTab() {
   if (!para.isConnected && !eoa.isConnected) {
     return (
       <div
-        className="min-h-screen w-full flex items-center justify-center"
+        className="flex-1 w-full flex items-center justify-center"
         style={{
           background:
             'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',
@@ -609,7 +610,7 @@ export default function WalletTab() {
 
   return (
     <div
-      className="min-h-screen w-full"
+      className="flex-1 w-full"
       style={{
         background:
           'linear-gradient(0deg, rgba(246, 182, 19, 0.15) 6.87%, rgba(255, 133, 166, 0.15) 14.79%, rgba(152, 148, 255, 0.15) 22.84%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.97%), #FFF',

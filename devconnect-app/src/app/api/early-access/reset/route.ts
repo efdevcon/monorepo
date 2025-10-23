@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
     
     // Delete the cookie by setting it with an expired date
     response.cookies.delete('earlyAccess');
+    response.cookies.delete('betaAccess');
 
     return response;
   } catch (error) {
