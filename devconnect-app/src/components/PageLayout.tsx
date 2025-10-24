@@ -118,6 +118,7 @@ const Tabs = ({
 
   return (
     <div
+      id="page-tabs"
       className={cn(
         'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
         '[mask-image:linear-gradient(to_right,black_0%,black_90%,transparent_100%)]',
