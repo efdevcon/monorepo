@@ -3,12 +3,10 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocalStorage } from 'usehooks-ts';
-import Image from 'next/image';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
 import type { Quest, QuestAction, QuestGroup } from '@/types';
-import cn from 'classnames';
 import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
@@ -57,98 +55,6 @@ interface AppShowcaseDetailProps {
   ) => void;
 }
 
-interface TabsProps {
-  districts: Array<{ id: string; name: string; layerName: string }>;
-  activeDistrictId: string;
-  onDistrictSelect: (districtId: string) => void;
-  showSetupTab?: boolean;
-  isSetupTabActive?: boolean;
-  isSetupSectionExpanded?: boolean;
-  onSetupTabSelect?: () => void;
-}
-
-const Tabs = ({
-  districts,
-  activeDistrictId,
-  onDistrictSelect,
-  showSetupTab = false,
-  isSetupTabActive = false,
-  isSetupSectionExpanded = false,
-  onSetupTabSelect,
-}: TabsProps) => {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const activeTabRef = useRef<HTMLButtonElement>(null);
-
-  // Scroll to active tab when it changes
-  useEffect(() => {
-    if (activeTabRef.current && scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const activeTab = activeTabRef.current;
-
-      const containerRect = container.getBoundingClientRect();
-      const tabRect = activeTab.getBoundingClientRect();
-
-      const scrollLeft =
-        activeTab.offsetLeft - containerRect.width / 2 + tabRect.width / 2;
-
-      container.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth',
-      });
-    }
-  }, [activeDistrictId, isSetupTabActive, isSetupSectionExpanded]);
-
-  return (
-    <div className="py-3 w-full">
-      <div
-        ref={scrollContainerRef}
-        className="px-5 overflow-x-auto scrollbar-hide"
-      >
-        <div className="flex gap-3 w-max min-w-full">
-          {/* Setup & app tour tab */}
-          {showSetupTab && (
-            <button
-              ref={isSetupTabActive ? activeTabRef : null}
-              type="button"
-              className={cn(
-                'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
-                isSetupTabActive && isSetupSectionExpanded
-                  ? 'bg-[#165a8d] text-white font-semibold'
-                  : 'bg-white border border-[#ededf0] text-[#4b4b66] font-medium hover:bg-gray-50'
-              )}
-              onClick={onSetupTabSelect}
-            >
-              <span className="text-sm leading-none tracking-[-0.1px]">
-                Setup & app tour
-              </span>
-            </button>
-          )}
-
-          {/* District tabs */}
-          {districts.map((district) => (
-            <button
-              key={district.id}
-              ref={activeDistrictId === district.id ? activeTabRef : null}
-              type="button"
-              className={cn(
-                'flex-shrink-0 cursor-pointer px-4 py-2 flex justify-center items-center whitespace-nowrap rounded-[2px] min-w-max transition-colors',
-                activeDistrictId === district.id
-                  ? 'bg-[#165a8d] text-white font-semibold'
-                  : 'bg-white border border-[#ededf0] text-[#4b4b66] font-medium hover:bg-gray-50'
-              )}
-              onClick={() => onDistrictSelect(district.id)}
-            >
-              <span className="text-sm leading-none tracking-[-0.1px]">
-                {district.name}
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function AppShowcaseDetail({
   group,
   onBack,
@@ -162,7 +68,6 @@ export default function AppShowcaseDetail({
   const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(
     null
   );
-  const [isSetupTabActive, setIsSetupTabActive] = useState<boolean>(false);
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
     useState<boolean>(false);
   const hasInitialized = useRef(false);
@@ -177,20 +82,17 @@ export default function AppShowcaseDetail({
     stampedDate?: string;
   } | null>(null);
 
-  // Helper function to scroll element into view accounting for sticky header and tabs
+  // Helper function to scroll element into view accounting for sticky header
   const scrollToElement = (element: HTMLElement) => {
-    // Get the actual sticky header and tabs heights
+    // Get the actual sticky header height
     // Header is now: safe-area-inset-top + h1(~24px) + pb-3(12px) = ~99px in PWA, ~36px regular
     const stickyTop = pwa === true ? 61 : 52; // Sticky position from top (updated for new header height)
-    const tabsElement = document.querySelector('[class*="sticky"]');
-    const tabsHeight = tabsElement ? tabsElement.clientHeight : 60;
 
     // Calculate scroll position
     const elementRect = element.getBoundingClientRect();
     const currentScroll =
       window.pageYOffset || document.documentElement.scrollTop;
-    const targetScroll =
-      currentScroll + elementRect.top - stickyTop - tabsHeight - 70;
+    const targetScroll = currentScroll + elementRect.top - stickyTop - 70;
 
     window.scrollTo({
       top: targetScroll,
@@ -276,19 +178,9 @@ export default function AppShowcaseDetail({
       }
     }
 
-    // Default: show setup tab if no hash
-    if (!expandedDistrict && !isSetupTabActive) {
-      setIsSetupTabActive(true);
-      setIsSetupSectionExpanded(true);
-      hasInitialized.current = true;
-    }
-  }, [
-    districtsWithQuests,
-    appShowcaseQuests,
-    expandedDistrict,
-    pwa,
-    isSetupTabActive,
-  ]);
+    // Default: don't expand anything on first load
+    hasInitialized.current = true;
+  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict, pwa]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -412,8 +304,23 @@ export default function AppShowcaseDetail({
       setExpandedDistrict('');
       setExpandedQuests(new Set());
     } else {
-      // Use selectDistrict to ensure tab selection and quest expansion
-      selectDistrict(districtId);
+      // Expand the district and collapse any expanded setup section
+      setExpandedDistrict(districtId);
+      setIsSetupSectionExpanded(false);
+
+      // Find the first uncompleted quest in this district
+      const quests = questsByDistrict[districtId] || [];
+      const firstUncompletedQuest = quests.find((quest) => {
+        const questState = questStates[quest.id.toString()];
+        return questState?.status !== 'completed';
+      });
+
+      // Auto-expand the first uncompleted quest if found
+      if (firstUncompletedQuest) {
+        setExpandedQuests(new Set([firstUncompletedQuest.id]));
+      } else {
+        setExpandedQuests(new Set());
+      }
     }
   };
 
@@ -428,7 +335,6 @@ export default function AppShowcaseDetail({
       // Expand the setup section and collapse any expanded district
       setIsSetupSectionExpanded(true);
       setExpandedDistrict(''); // Collapse any expanded district
-      setIsSetupTabActive(true); // Ensure setup tab is highlighted
 
       // Find the first uncompleted quest in setup quests
       const firstUncompletedQuest = setupQuests.find((quest) => {
@@ -436,72 +342,12 @@ export default function AppShowcaseDetail({
         return questState?.status !== 'completed';
       });
 
-      // Expand the first uncompleted quest if found, otherwise clear expansions
+      // Auto-expand the first uncompleted quest if found
       if (firstUncompletedQuest) {
         setExpandedQuests(new Set([firstUncompletedQuest.id]));
       } else {
-        setExpandedQuests(new Set()); // Clear quest expansions if all are completed
+        setExpandedQuests(new Set());
       }
-    }
-  };
-
-  const selectSetupTab = () => {
-    setIsSetupTabActive(true);
-    setExpandedDistrict('');
-    setIsSetupSectionExpanded(true);
-
-    // Find the first uncompleted quest in setup quests
-    const firstUncompletedQuest = setupQuests.find((quest) => {
-      const questState = questStates[quest.id.toString()];
-      return questState?.status !== 'completed';
-    });
-
-    // Expand the first uncompleted quest if found, otherwise clear expansions
-    if (firstUncompletedQuest) {
-      setExpandedQuests(new Set([firstUncompletedQuest.id]));
-    } else {
-      setExpandedQuests(new Set()); // Clear quest expansions if all are completed
-    }
-
-    // Scroll to the setup section after a brief delay to allow state update
-    setTimeout(() => {
-      const setupElement = document.getElementById('setup-section');
-      if (setupElement) {
-        scrollToElement(setupElement);
-      }
-    }, 100);
-  };
-
-  const selectDistrict = (districtId: string) => {
-    setIsSetupTabActive(false);
-    setIsSetupSectionExpanded(false); // Collapse setup section when selecting a district
-    const district = districtsWithQuests.find((d) => d.id === districtId);
-    if (district) {
-      setExpandedDistrict(districtId);
-
-      // Find the first uncompleted quest in this district
-      const quests = questsByDistrict[districtId] || [];
-      const firstUncompletedQuest = quests.find((quest) => {
-        const questState = questStates[quest.id.toString()];
-        return questState?.status !== 'completed';
-      });
-
-      // Expand the first uncompleted quest if found, otherwise clear expansions
-      if (firstUncompletedQuest) {
-        setExpandedQuests(new Set([firstUncompletedQuest.id]));
-      } else {
-        setExpandedQuests(new Set()); // Clear quest expansions if all are completed
-      }
-
-      // Scroll to the district section after a brief delay to allow state update
-      setTimeout(() => {
-        const districtElement = document.getElementById(
-          `district-${districtId}`
-        );
-        if (districtElement) {
-          scrollToElement(districtElement);
-        }
-      }, 100);
     }
   };
 
@@ -626,7 +472,7 @@ export default function AppShowcaseDetail({
   }, [setupQuests, appShowcaseQuests, questStates]);
 
   return (
-    <div className="w-full mx-auto flex flex-col justify-start items-start relative bg-[#f6fafe]">
+    <div className="w-full mx-auto flex flex-col gap-1 justify-start items-start relative bg-[#f6fafe] mt-4">
       {/* SupporterInfo Modal */}
       {showSupporterInfo && (
         <div className="fixed inset-0 z-51 flex items-end justify-center">
@@ -654,8 +500,8 @@ export default function AppShowcaseDetail({
                 showSupporterInfo.instructions ||
                 (showSupporterInfo.supporterId
                   ? getSupporterById(showSupporterInfo.supporterId)
-                      ?.description || 'Complete this quest to earn points'
-                  : 'Complete this quest to earn points')
+                      ?.description || 'Quest instructions missing...'
+                  : 'Quest instructions missing...')
               }
               supporterLogo={
                 showSupporterInfo.supporterId
@@ -676,39 +522,405 @@ export default function AppShowcaseDetail({
           <div className="w-5" />
         </div>
       </div> */}
-      {/* District Tabs & Reward Section - Sticky */}
-      <div
-        className="bg-white border-b border-[#ededf0] w-full z-20 sticky"
-        style={{
-          top: pwa === true ? '99px' : '52px', // PWA mode: 99px (safe-area + h1 + pb-3), regular mode: 52px (updated for new header height)
-          transform: 'translate3d(0, 0, 0)', // Force hardware acceleration for smooth rendering
-        }}
-      >
-        <div className="max-w-2xl mx-auto relative">
-          <Tabs
-            districts={districtsWithQuests}
-            activeDistrictId={expandedDistrict}
-            onDistrictSelect={selectDistrict}
-            showSetupTab={true}
-            isSetupTabActive={isSetupTabActive}
-            isSetupSectionExpanded={isSetupSectionExpanded}
-            onSetupTabSelect={selectSetupTab}
-          />
-          {/* Gradient overlay to show peek of hidden tabs */}
-          <div
-            className="absolute top-0 right-0 h-full w-[20px] pointer-events-none"
-            style={{
-              background:
-                'linear-gradient(270deg, #FFF 0%, rgba(255, 255, 255, 0.00) 100%)',
-            }}
-          />
-        </div>
+      {/* Setup & app tour Section */}
+      <div id="setup-section" className="bg-[#cbdfec] w-full">
+        {/* Setup Section Header - Clickable */}
+        <button
+          onClick={toggleSetupSectionExpansion}
+          className="w-full pt-6 pb-1 px-6 text-left cursor-pointer flex flex-col gap-4 items-center"
+        >
+          <div className="flex gap-3 items-center w-full">
+            <div className="flex-1 flex flex-col gap-2">
+              <h3 className="text-[20px] font-bold text-[#20202b] tracking-[-0.1px] leading-none">
+                Setup & app tour
+              </h3>
+              <div className="flex flex-col gap-2 w-full">
+                <p
+                  className="text-xs font-medium text-[#353548] tracking-[-0.1px] leading-[1.2]"
+                  style={{ fontFamily: 'Roboto Mono, monospace' }}
+                >
+                  {setupProgress.completed}/{setupProgress.total} completed
+                </p>
+                <div className="w-full h-[6px] bg-white overflow-hidden rounded-full">
+                  <div
+                    className="h-full bg-[#1b6fae]"
+                    style={{ width: `${setupProgress.percentage}%` }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center justify-center w-4 h-4">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className={`transform transition-transform ${
+                isSetupSectionExpanded ? 'rotate-180' : ''
+              }`}
+            >
+              <path
+                d="M5 7.5L10 12.5L15 7.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+        </button>
 
-        {/* Reward Section */}
-        <div className="bg-white border-t border-[#eeeeee] w-full px-6 pt-4 pb-5">
+        {/* Setup Quest List - Only show when section is expanded */}
+        {isSetupSectionExpanded && (
+          <div className="px-4 pb-4 space-y-3">
+            {setupQuests.map((quest) => {
+              const isCompleted = isQuestCompleted(quest);
+
+              return (
+                <div
+                  key={quest.id}
+                  ref={(el) => {
+                    questRefs.current[quest.id] = el;
+                  }}
+                  className="bg-white border border-[#e2e2e9] rounded"
+                >
+                  <div className="flex items-start gap-3 p-4">
+                    {/* Quest Icon */}
+                    <div className="w-6 h-6 flex-shrink-0">
+                      {quest.supporterId ? (
+                        (() => {
+                          const supporter = getSupporterById(quest.supporterId);
+                          return supporter?.logo ? (
+                            <img
+                              src={supporter.logo}
+                              alt={supporter.name}
+                              className="w-full h-full object-cover rounded"
+                            />
+                          ) : (
+                            <img
+                              src={getQuestIcon(quest.action)}
+                              alt={quest.name}
+                              className="w-full h-full"
+                            />
+                          );
+                        })()
+                      ) : (
+                        <img
+                          src={getQuestIcon(quest.action)}
+                          alt={quest.name}
+                          className="w-full h-full"
+                        />
+                      )}
+                    </div>
+
+                    {/* Quest Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
+                            {quest.name}
+                          </h3>
+                          <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3] line-clamp-2">
+                            {quest.instructions ||
+                              'Quest instructions missing...'}
+                          </p>
+                        </div>
+
+                        {/* Completion Status */}
+                        {isCompleted && (
+                          <div
+                            className={`w-6 h-6 flex-shrink-0 ml-2 ${
+                              quest.poapImageLink ? 'cursor-pointer' : ''
+                            }`}
+                            onClick={
+                              quest.poapImageLink
+                                ? (e) => handlePoapClick(quest, e)
+                                : undefined
+                            }
+                          >
+                            {quest.poapImageLink ? (
+                              <img
+                                src={quest.poapImageLink}
+                                alt="POAP"
+                                className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
+                              />
+                            ) : (
+                              <img
+                                src="/images/icons/check-circle.svg"
+                                alt="Completed"
+                                className="w-full h-full"
+                              />
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Action Button */}
+                  {!isCompleted && (
+                    <div className="w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
+                      <div className="w-full flex justify-start items-center gap-3">
+                        <div
+                          data-icon="false"
+                          data-state="default"
+                          data-type="Secondary"
+                          className="w-full bg-[#eaf3fa] border border-white rounded px-3 
+                          py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-
+                          [#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer"
+                          onClick={() => handleQuestAction(quest)}
+                        >
+                          <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
+                            {quest.button || 'Verify'}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+      {/* District Sections */}
+      {filteredDistricts.map((district) => {
+        const quests = questsByDistrict[district.id] || [];
+        const progress = getDistrictProgress(district.id);
+        const isDistrictExpanded = expandedDistrict === district.id;
+
+        return (
+          <div
+            key={district.id}
+            id={`district-${district.id}`}
+            className="w-full"
+            style={{
+              backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%), ${district.backgroundColor || 'linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)'}`,
+            }}
+          >
+            {/* District Header - Clickable */}
+            <button
+              onClick={() => toggleDistrictExpansion(district.id)}
+              className="w-full pt-6 pb-1 px-6 text-left cursor-pointer flex flex-col gap-2 items-center"
+            >
+              <div className="flex gap-3 items-center w-full">
+                <div className="w-14 h-14">
+                  <img
+                    src={`/images/districts/${district.layerName}.svg`}
+                    alt={district.name}
+                    width={56}
+                    height={56}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                <div className="flex-1 flex flex-col gap-2">
+                  <h3 className="text-[20px] font-bold text-[#20202b] tracking-[-0.1px] leading-none">
+                    {district.name}
+                  </h3>
+                  <div className="flex flex-col gap-2 w-full">
+                    <p
+                      className="text-xs font-medium text-[#353548] tracking-[-0.1px] leading-[1.2]"
+                      style={{ fontFamily: 'Roboto Mono, monospace' }}
+                    >
+                      {progress.completed}/{progress.total} completed
+                    </p>
+                    <div className="w-full h-[6px] bg-[#f6fafe] rounded-full overflow-hidden">
+                      <div
+                        className="h-full bg-[#1b6fae]"
+                        style={{ width: `${progress.percentage}%` }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex items-center justify-center w-4 h-4">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`transform transition-transform ${
+                    isDistrictExpanded ? 'rotate-180' : ''
+                  }`}
+                >
+                  <path
+                    d="M5 7.5L10 12.5L15 7.5"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+            </button>
+
+            {/* Quest List - Only show when district is expanded */}
+            {isDistrictExpanded && (
+              <div className="px-4 pb-4 space-y-3">
+                {quests.map((quest) => {
+                  const isCompleted = isQuestCompleted(quest);
+                  const isExpanded = expandedQuests.has(quest.id);
+
+                  return (
+                    <div
+                      key={quest.id}
+                      ref={(el) => {
+                        questRefs.current[quest.id] = el;
+                      }}
+                      className={`bg-white border rounded cursor-pointer hover:bg-gray-50 transition-colors ${
+                        isExpanded ? 'border-[#1b6fae]' : 'border-[#f0f0f4]'
+                      }`}
+                      onClick={() => toggleQuestExpansion(quest.id)}
+                    >
+                      {/* Quest Card */}
+                      <div className="p-4">
+                        <div className="flex gap-3 items-start">
+                          <div className="w-8 h-8 rounded flex-shrink-0 overflow-hidden">
+                            {quest.supporterId ? (
+                              (() => {
+                                const supporter = getSupporterById(
+                                  quest.supporterId
+                                );
+                                return supporter?.logo ? (
+                                  <img
+                                    src={supporter.logo}
+                                    alt={supporter.name}
+                                    width={32}
+                                    height={32}
+                                    className="w-full h-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
+                                    <span className="text-xs text-gray-600">
+                                      {supporter?.name?.charAt(0) || '?'}
+                                    </span>
+                                  </div>
+                                );
+                              })()
+                            ) : (
+                              <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
+                                <span className="text-xs text-gray-600">?</span>
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-bold text-gray-800 mb-1">
+                              {quest.name}
+                            </h4>
+                            <p
+                              className={`text-xs text-gray-600 leading-[1.3] ${!isExpanded ? 'line-clamp-2' : ''}`}
+                            >
+                              {quest.instructions ||
+                                'Quest instructions missing...'}
+                            </p>
+                          </div>
+                          <div
+                            className="flex flex-col items-center gap-2 cursor-pointer"
+                            onClick={(e) => handlePoapClick(quest, e)}
+                          >
+                            <div className="w-10 h-10 flex items-center justify-center relative">
+                              {isCompleted ? (
+                                <img
+                                  src={
+                                    quest.poapImageLink ||
+                                    'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg'
+                                  }
+                                  alt="POAP"
+                                  width={40}
+                                  height={40}
+                                  className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
+                                />
+                              ) : (
+                                <img
+                                  src="/images/poap-location.svg"
+                                  alt="Quest Location"
+                                  width={40}
+                                  height={40}
+                                  className="w-full h-full hover:opacity-80 transition-opacity"
+                                />
+                              )}
+                            </div>
+                            <div className="text-center w-14">
+                              {isCompleted ? (
+                                <span className="text-green-600 text-[10px] font-bold">
+                                  COLLECTED
+                                </span>
+                              ) : (
+                                <p
+                                  className="text-[#4B4B66] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
+                                  style={{ fontFamily: 'Roboto, sans-serif' }}
+                                >
+                                  TO DO
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Expanded Quest Actions */}
+                      {isExpanded && (
+                        <div onClick={(e) => e.stopPropagation()}>
+                          <div className="bg-[#daebfb] box-border content-stretch flex flex-col items-center justify-center p-4 relative rounded-bl-[2px] rounded-br-[2px] size-full">
+                            <div className="content-stretch flex gap-3 items-center relative shrink-0 w-full">
+                              <div className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shrink-0">
+                                <div
+                                  aria-hidden="true"
+                                  className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978]"
+                                />
+                                <button
+                                  onClick={() => handleAboutClick(quest)}
+                                  className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-[#44445d] text-sm text-center text-nowrap w-full"
+                                  style={{
+                                    fontVariationSettings: "'wdth' 100",
+                                  }}
+                                >
+                                  <p className="leading-none whitespace-pre">
+                                    About
+                                  </p>
+                                </button>
+                                <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc]" />
+                              </div>
+                              {!isCompleted && (
+                                <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
+                                  <button
+                                    onClick={() => handleQuestAction(quest)}
+                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
+                                    style={{
+                                      fontVariationSettings: "'wdth' 100",
+                                    }}
+                                  >
+                                    <p className="leading-none whitespace-pre">
+                                      Verify
+                                    </p>
+                                  </button>
+                                  <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      {/* Progress Section */}
+      <div className="w-full bg-white border-t border-[#eeeeee] p-6">
+        <div className="flex flex-col gap-4">
+          <h3 className="text-base font-bold text-[#20202b] tracking-[-0.1px] leading-none">
+            Progress
+          </h3>
           <div className="flex flex-col gap-4">
-            {/* Progress Info */}
-            <div className="flex items-start justify-between w-full text-sm">
+            <div className="flex items-center justify-between w-full text-sm">
               <p
                 className="font-medium text-[#353548] tracking-[-0.1px] leading-none"
                 style={{ fontFamily: 'Roboto Mono, monospace' }}
@@ -716,15 +928,15 @@ export default function AppShowcaseDetail({
                 {overallProgress.completed}/{overallProgress.total} completed
               </p>
               <button
+                type="button"
                 onClick={() => router.push('/wallet/stampbook')}
-                className="font-semibold text-[#0073de] leading-none hover:underline cursor-pointer"
+                className="font-semibold text-[#0073de] hover:underline cursor-pointer whitespace-nowrap"
                 style={{ fontFamily: 'Roboto, sans-serif' }}
               >
                 View Stampbook
               </button>
             </div>
-            {/* Progress Bar */}
-            <div className="w-full h-2 bg-[#eaf4fb] rounded-full overflow-hidden">
+            <div className="w-full h-[6px] bg-[#eaf4fb] overflow-hidden">
               <div
                 className="h-full bg-[#1b6fae]"
                 style={{
@@ -735,397 +947,7 @@ export default function AppShowcaseDetail({
           </div>
         </div>
       </div>
-      {/* Setup & app tour Section */}
-      <div className="w-full pt-3">
-        <div id="setup-section" className="bg-white border border-gray-200">
-          {/* Setup Section Header - Clickable */}
-          <button
-            onClick={toggleSetupSectionExpansion}
-            className="w-full p-4 text-left hover:bg-gray-50 transition-colors cursor-pointer"
-          >
-            <div className="flex gap-3 items-center">
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
-                  Setup & app tour
-                </h3>
-                <div className="flex flex-col gap-2">
-                  <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
-                    {setupProgress.completed}/{setupProgress.total} completed
-                  </div>
-                  <div className="w-full h-2 bg-blue-50 rounded">
-                    <div
-                      className="h-2 bg-blue-600 rounded"
-                      style={{ width: `${setupProgress.percentage}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center justify-center w-4 h-4 mx-auto mt-2">
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className={`transform transition-transform ${
-                  isSetupSectionExpanded ? 'rotate-180' : ''
-                }`}
-              >
-                <path
-                  d="M5 7.5L10 12.5L15 7.5"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </button>
-
-          {/* Setup Quest List - Only show when section is expanded */}
-          {isSetupSectionExpanded && (
-            <div className="px-4 pb-4 space-y-3">
-              {setupQuests.map((quest) => {
-                const isCompleted = isQuestCompleted(quest);
-
-                return (
-                  <div
-                    key={quest.id}
-                    ref={(el) => {
-                      questRefs.current[quest.id] = el;
-                    }}
-                    className="bg-white border border-[#e2e2e9] rounded"
-                  >
-                    <div className="flex items-start gap-3 p-4">
-                      {/* Quest Icon */}
-                      <div className="w-6 h-6 flex-shrink-0">
-                        {quest.supporterId ? (
-                          (() => {
-                            const supporter = getSupporterById(
-                              quest.supporterId
-                            );
-                            return supporter?.logo ? (
-                              <img
-                                src={supporter.logo}
-                                alt={supporter.name}
-                                className="w-full h-full object-cover rounded"
-                              />
-                            ) : (
-                              <img
-                                src={getQuestIcon(quest.action)}
-                                alt={quest.name}
-                                className="w-full h-full"
-                              />
-                            );
-                          })()
-                        ) : (
-                          <img
-                            src={getQuestIcon(quest.action)}
-                            alt={quest.name}
-                            className="w-full h-full"
-                          />
-                        )}
-                      </div>
-
-                      {/* Quest Content */}
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h3 className="text-base font-bold text-[#242436] tracking-[-0.1px] mb-1 leading-[1.3]">
-                              {quest.name}
-                            </h3>
-                            <p className="text-sm text-[#36364c] tracking-[-0.1px] leading-[1.3]">
-                              {quest.instructions ||
-                                'Complete this quest to earn points'}
-                            </p>
-                          </div>
-
-                          {/* Completion Status */}
-                          {isCompleted && (
-                            <div
-                              className={`w-6 h-6 flex-shrink-0 ml-2 ${
-                                quest.poapImageLink ? 'cursor-pointer' : ''
-                              }`}
-                              onClick={
-                                quest.poapImageLink
-                                  ? (e) => handlePoapClick(quest, e)
-                                  : undefined
-                              }
-                            >
-                              {quest.poapImageLink ? (
-                                <img
-                                  src={quest.poapImageLink}
-                                  alt="POAP"
-                                  className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
-                                />
-                              ) : (
-                                <img
-                                  src="/images/icons/check-circle.svg"
-                                  alt="Completed"
-                                  className="w-full h-full"
-                                />
-                              )}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action Button */}
-                    {!isCompleted && (
-                      <div className="w-full p-4 bg-gradient-to-br from-[#f6b513]/40 via-[#ff85a6]/40 via-32% to-[#74acdf]/40 rounded-bl-xs rounded-br-xs flex flex-col justify-center items-center">
-                        <div className="w-full flex justify-start items-center gap-3">
-                          <div
-                            data-icon="false"
-                            data-state="default"
-                            data-type="Secondary"
-                            className="w-full bg-[#eaf3fa] border border-white rounded px-3 
-                          py-3 text-sm font-bold text-[#36364c] tracking-[-0.1px] hover:bg-
-                          [#d4e7f5] transition-colors shadow-[0px_4px_0px_0px_#595978] cursor-pointer"
-                            onClick={() => handleQuestAction(quest)}
-                          >
-                            <div className="text-center justify-start text-[#36364c] text-sm font-bold font-['Roboto'] leading-[14px]">
-                              {quest.button || 'Verify'}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
-      <div className="w-full space-y-3 py-3 bg-[#f6fafe]">
-        {filteredDistricts.map((district) => {
-          const quests = questsByDistrict[district.id] || [];
-          const progress = getDistrictProgress(district.id);
-          const isDistrictExpanded = expandedDistrict === district.id;
-
-          return (
-            <div
-              key={district.id}
-              id={`district-${district.id}`}
-              className="border border-gray-200"
-              style={{
-                backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.7) 100%), ${district.backgroundColor || 'linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)'}`,
-              }}
-            >
-              {/* District Header - Clickable */}
-              <button
-                onClick={() => toggleDistrictExpansion(district.id)}
-                className="w-full p-4 text-left hover:bg-white/20 transition-colors cursor-pointer"
-              >
-                <div className="flex gap-3 items-center">
-                  <div className="w-14 h-14 rounded overflow-hidden">
-                    <img
-                      src={`/images/districts/${district.layerName}.svg`}
-                      alt={district.name}
-                      width={56}
-                      height={56}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-800 tracking-[-0.1px] mb-2">
-                      {district.name}
-                    </h3>
-                    <div className="flex flex-col gap-2">
-                      <div className="text-xs font-medium text-gray-600 tracking-[-0.1px]">
-                        {progress.completed}/{progress.total} completed
-                      </div>
-                      <div className="w-full h-2 bg-blue-50 rounded">
-                        <div
-                          className="h-2 bg-blue-600 rounded"
-                          style={{ width: `${progress.percentage}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center justify-center w-4 h-4 mx-auto mt-2">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className={`transform transition-transform ${
-                      isDistrictExpanded ? 'rotate-180' : ''
-                    }`}
-                  >
-                    <path
-                      d="M5 7.5L10 12.5L15 7.5"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </button>
-
-              {/* Quest List - Only show when district is expanded */}
-              {isDistrictExpanded && (
-                <div className="px-4 pb-4 space-y-3">
-                  {quests.map((quest) => {
-                    const isCompleted = isQuestCompleted(quest);
-                    const isExpanded = expandedQuests.has(quest.id);
-
-                    return (
-                      <div
-                        key={quest.id}
-                        ref={(el) => {
-                          questRefs.current[quest.id] = el;
-                        }}
-                        className={`bg-white border rounded cursor-pointer hover:bg-gray-50 transition-colors ${
-                          isExpanded ? 'border-[#1b6fae]' : 'border-[#f0f0f4]'
-                        }`}
-                        onClick={() => toggleQuestExpansion(quest.id)}
-                      >
-                        {/* Quest Card */}
-                        <div className="p-4">
-                          <div className="flex gap-3 items-start">
-                            <div className="w-8 h-8 rounded flex-shrink-0 overflow-hidden">
-                              {quest.supporterId ? (
-                                (() => {
-                                  const supporter = getSupporterById(
-                                    quest.supporterId
-                                  );
-                                  return supporter?.logo ? (
-                                    <img
-                                      src={supporter.logo}
-                                      alt={supporter.name}
-                                      width={32}
-                                      height={32}
-                                      className="w-full h-full object-cover"
-                                    />
-                                  ) : (
-                                    <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
-                                      <span className="text-xs text-gray-600">
-                                        {supporter?.name?.charAt(0) || '?'}
-                                      </span>
-                                    </div>
-                                  );
-                                })()
-                              ) : (
-                                <div className="w-full h-full bg-gray-300 rounded flex items-center justify-center">
-                                  <span className="text-xs text-gray-600">
-                                    ?
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="text-sm font-bold text-gray-800 mb-1">
-                                {quest.name}
-                              </h4>
-                              <p className="text-xs text-gray-600 leading-[1.3]">
-                                {quest.instructions ||
-                                  'Complete this quest to earn points'}
-                              </p>
-                            </div>
-                            <div
-                              className="flex flex-col items-center gap-2 cursor-pointer"
-                              onClick={(e) => handlePoapClick(quest, e)}
-                            >
-                              <div className="w-10 h-10 flex items-center justify-center relative">
-                                {isCompleted ? (
-                                  <img
-                                    src={
-                                      quest.poapImageLink ||
-                                      'https://images.reactbricks.com/original/a77a7ed1-cb3e-4b3b-98d5-865a66629009.svg'
-                                    }
-                                    alt="POAP"
-                                    width={40}
-                                    height={40}
-                                    className="w-full h-full object-cover rounded-full hover:opacity-80 transition-opacity"
-                                  />
-                                ) : (
-                                  <img
-                                    src="/images/poap-location.svg"
-                                    alt="Quest Location"
-                                    width={40}
-                                    height={40}
-                                    className="w-full h-full hover:opacity-80 transition-opacity"
-                                  />
-                                )}
-                              </div>
-                              <div className="text-center w-14">
-                                {isCompleted ? (
-                                  <span className="text-green-600 text-[10px] font-bold">
-                                    COLLECTED
-                                  </span>
-                                ) : (
-                                  <p
-                                    className="text-[#4B4B66] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
-                                    style={{ fontFamily: 'Roboto, sans-serif' }}
-                                  >
-                                    TO DO
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Expanded Quest Actions */}
-                        {isExpanded && (
-                          <div onClick={(e) => e.stopPropagation()}>
-                            <div className="bg-[#daebfb] box-border content-stretch flex flex-col items-center justify-center p-4 relative rounded-bl-[2px] rounded-br-[2px] size-full">
-                              <div className="content-stretch flex gap-3 items-center relative shrink-0 w-full">
-                                <div className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shrink-0">
-                                  <div
-                                    aria-hidden="true"
-                                    className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978]"
-                                  />
-                                  <button
-                                    onClick={() => handleAboutClick(quest)}
-                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-[#44445d] text-sm text-center text-nowrap w-full"
-                                    style={{
-                                      fontVariationSettings: "'wdth' 100",
-                                    }}
-                                  >
-                                    <p className="leading-none whitespace-pre">
-                                      About
-                                    </p>
-                                  </button>
-                                  <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc]" />
-                                </div>
-                                {!isCompleted && (
-                                  <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
-                                    <button
-                                      onClick={() => handleQuestAction(quest)}
-                                      className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
-                                      style={{
-                                        fontVariationSettings: "'wdth' 100",
-                                      }}
-                                    >
-                                      <p className="leading-none whitespace-pre">
-                                        Verify
-                                      </p>
-                                    </button>
-                                    <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-      <div className="w-full px-4 pb-4">
+      <div className="w-full px-4 pb-4 bg-white">
         <button
           onClick={handleReset}
           className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"

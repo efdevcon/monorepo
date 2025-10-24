@@ -81,10 +81,10 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc415804c8099e0415b0c4169": {
     "name": "Barter",
     "layerName": "barter",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T16-19-24-165Z-icon-logo-2.svg",
+    "description": "Barter is one of the largest routers on Ethereum, delivering best price across all intent order flow channels, and Superposition is our liquidity layer that turns any wallet into a market maker, unifying liquidity for consistently better swaps.",
     "websiteLink": "https://barterswap.xyz/",
-    "twitterLink": "",
+    "twitterLink": "https://x.com/BarterDeFi",
     "farcasterLink": "",
     "districtId": "3",
     "locationId": "1"
@@ -400,10 +400,10 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc41580e69a97f635ca4a9099": {
     "name": "Ledger",
     "layerName": "ledger",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T14-26-57-452Z-Ledger%20POAP%20-%20Devconnect%20Supporters%20Quest.png",
+    "description": "Come and interact with the Ledger ecosystem to earn the quest!",
     "websiteLink": "https://www.ledger.com/",
-    "twitterLink": "",
+    "twitterLink": "https://x.com/Ledger",
     "farcasterLink": "",
     "districtId": "5",
     "locationId": "1"
@@ -464,8 +464,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "1"
   },
   "254638cdc415806799b2c11b3fbfe78a": {
-    "name": "Nouns",
-    "layerName": "nouns",
+    "name": "Nouns DAO",
+    "layerName": "nouns-dao",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-14T00-45-24-235Z-nouns_logo_300x300.svg",
     "description": "Nouns is a community-owned brand that makes a positive impact by funding ideas and fostering collaboration. From collectors and technologists, to non-profits and brands, Nouns is for everyone.",
     "websiteLink": "https://devconnect.nouns.wtf/",
@@ -776,7 +776,7 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "unicef",
     "logo": "",
     "description": "",
-    "websiteLink": "https://thegraph.com/",
+    "websiteLink": "",
     "twitterLink": "",
     "farcasterLink": "",
     "districtId": "3",
@@ -851,10 +851,10 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580ada463d35d72185d2a": {
     "name": "ZKPassport",
     "layerName": "zkpassport",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T16-02-47-775Z-ZKPassport_logo_horizontal.svg",
+    "description": "ZKPassport enables privacy-first verification, allowing users to confirm identity or credentials without exposing personal data.",
     "websiteLink": "https://zkpassport.id/",
-    "twitterLink": "",
+    "twitterLink": "https://x.com/ZKPassport",
     "farcasterLink": "",
     "districtId": "7",
     "locationId": "3"
