@@ -1,7 +1,7 @@
 'use client';
 import { useAnnouncements } from '@/app/store.hooks';
 import { NotificationCard } from '@/components/Announcements';
-import { useEffect, useMemo } from 'react';
+import { Fragment, useEffect, useMemo } from 'react';
 import moment from 'moment';
 import { Separator } from 'lib/components/ui/separator';
 
@@ -101,6 +101,17 @@ export default function AnnouncementsPageContent() {
     return groups;
   }, [announcements]);
 
+  useEffect(() => {
+    const tabsContainer = document.getElementById('page-tabs');
+
+    if (tabsContainer) {
+      tabsContainer.scrollTo({
+        left: tabsContainer.scrollWidth,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
   return (
     <div className="mt-2 w-full pb-8 px-4 gradient-background grow">
       <div className="flex justify-center md:justify-start gap-1 mb-4 w-full text-center text-xs text-gray-600">
@@ -113,7 +124,7 @@ export default function AnnouncementsPageContent() {
             <h2 className="text-base font-bold">{dateLabel}</h2>
             <div className="flex flex-col gap-2">
               {items.map((announcement, index) => (
-                <>
+                <Fragment key={announcement.id}>
                   <NotificationCard
                     withoutContainer
                     key={announcement.id}
@@ -128,7 +139,7 @@ export default function AnnouncementsPageContent() {
                   {index < items.length - 1 && (
                     <Separator className="w-full my-2" />
                   )}
-                </>
+                </Fragment>
               ))}
             </div>
           </div>
