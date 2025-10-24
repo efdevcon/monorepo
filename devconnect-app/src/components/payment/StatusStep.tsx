@@ -406,7 +406,7 @@ export default function StatusStep({
     if (txStatus === 'confirmed' && paymentId && !isSimulation && txHash) {
       setStoredPayments((prev) => {
         // If payment already exists, don't overwrite anything
-        if (prev[paymentId]) {
+        if (prev[paymentId]?.txHash && prev[paymentId]?.txHash?.length > 0) {
           console.log(
             'ℹ️ [PAYMENT_STORAGE] Payment already exists, skipping save:',
             paymentId
