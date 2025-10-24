@@ -247,9 +247,9 @@ export default function PageLayout({
                     className="flex items-center justify-between w-full px-6 pb-3 relative"
                     style={{ paddingTop: pwa ? '0' : '0.75rem' }}
                   >
-                    {/* Left side: Bug report button OR Back button */}
+                    {/* Left side: Bug report button (only if questProgress exists) OR Back button */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
-                      {isComingSoon && (
+                      {isComingSoon && questProgress && (
                         <button
                           onClick={() => {
                             triggerHaptic(200);
@@ -286,17 +286,28 @@ export default function PageLayout({
                       )}
                     </div>
 
-                    {/* Right side: Quest completion count */}
-                    {questProgress && (
-                      <div className="absolute right-6 flex items-center gap-1">
+                    {/* Right side: Quest completion count OR Bug report button */}
+                    <div className="absolute right-6 flex items-center gap-1">
+                      {questProgress ? (
                         <p
                           className="text-base font-medium text-white tracking-[-0.1px] whitespace-nowrap"
                           style={{ fontFamily: 'Roboto Mono, monospace' }}
                         >
                           {questProgress.completed}/{questProgress.total}
                         </p>
-                      </div>
-                    )}
+                      ) : isComingSoon ? (
+                        <button
+                          onClick={() => {
+                            triggerHaptic(200);
+                            openReportIssue();
+                          }}
+                          className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
+                          aria-label="Report issue"
+                        >
+                          <Icon path={mdiBug} size={1} />
+                        </button>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               )}
