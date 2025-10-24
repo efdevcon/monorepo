@@ -19,6 +19,10 @@ import Ready2Image from './images/ready-2.png'
 import PoloImage from './images/polo.jpg'
 import KoinxImage from './images/koinx.jpg'
 import GuestGenieImage from './images/guest-genie.jpg'
+import NomadaCafeImage from './images/cafenomada.png'
+import BanklessImage from './images/bankless-perk.png'
+import MetanaImage from './images/metana.jpg'
+import ChainstackImage from './images/chainstack.png'
 
 type Perk = {
   coupon_collection: string
@@ -202,6 +206,23 @@ const perks: Perk[] = [
     instructions: 'Use the code at checkout',
     image: Ready2Image,
   },
+  {
+    coupon_collection: 'bankless-2025',
+    name: 'Bankless',
+    description: 'Get an exclusive 15% off Bankless Citizenship',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Bankless',
+        url: 'https://www.bankless.com/join',
+      },
+    ],
+    global_coupon: 'DEVCON',
+    issuer: 'Bankless',
+    image: BanklessImage,
+  },
   // Edge city
   {
     coupon_collection: 'edgy-city-patagonia-2025',
@@ -314,6 +335,7 @@ const perks: Perk[] = [
     ],
     image: PoloImage,
   },
+
   {
     coupon_collection: 'guest-genie-2025',
     name: 'Guest Genie',
@@ -330,6 +352,60 @@ const perks: Perk[] = [
     global_coupon: 'devcon15',
     issuer: 'GuestGenie',
     image: GuestGenieImage,
+  },
+
+  {
+    coupon_collection: 'nomada-cafe-2025',
+    name: 'Nómada Café',
+    description: '10% OFF on all menu items at Nómada Café',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code in store',
+    urls: [
+      {
+        text: 'View Instagram',
+        url: 'https://www.instagram.com/cafe.nomada.ar/',
+      },
+    ],
+    global_coupon: 'devconnect2025',
+    issuer: 'Nómada Café',
+    image: NomadaCafeImage,
+  },
+
+  {
+    coupon_collection: 'chainstack-2025',
+    name: 'Chainstack',
+    description: 'Free Growth plan for 3 months',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Register and use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Chainstack',
+        url: 'https://chainstack.com/',
+      },
+    ],
+    global_coupon: 'DEVARG25',
+    issuer: 'Chainstack',
+    image: ChainstackImage,
+  },
+
+  {
+    coupon_collection: 'metana-2025',
+    name: 'Metana',
+    description: 'Get $20% off on all Metana Web3 Bootcamps!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Metana',
+        url: 'https://metana.io/web3-solidity-bootcamp-ethereum-blockchain/',
+      },
+    ],
+    global_coupon: 'DCXMETANA',
+    issuer: 'Metana',
+    image: MetanaImage,
   },
 
   {
