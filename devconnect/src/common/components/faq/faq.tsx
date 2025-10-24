@@ -511,7 +511,7 @@ const FAQ = (props: any) => {
                 }}
                 key={question}
                 className={cn(
-                  'w-full flex flex-col mb-2 border border-solid border-slate-300 hover:bg-[rgba(27,111,174,0.1)] relative',
+                  'w-full flex flex-col mb-2 border bg-white border-solid border-slate-300 hover:bg-[rgb(250,250,250)] relative',
                   open ? 'bg-[rgba(27,111,174,0.1)] border-b-[4px] border-b-[rgba(27,111,174)]' : '',
                   isLastVisible ? 'mask-fade-bottom' : ''
                 )}
@@ -557,15 +557,15 @@ const FAQ = (props: any) => {
           })}
 
           {hasMoreThanFive && !showAll && (
-            <div className="relative -mt-12 pt-12 flex justify-center">
-              <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" />
+            <div className="relative -mt-12 pt-12 flex justify-center pointer-events-none">
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none" /> */}
               <button
                 onClick={() => setShowAll(true)}
                 className={cn(
                   'mb-2 z-10 border border-solid border-b-[3px] group px-3 py-1 border-[rgb(54,54,76)] font-bold text-[rgba(54,54,76,1)] text-sm bg-[white] hover:bg-[rgb(227,241,255,1)] transition-colors hover:border-opacity-0'
                 )}
               >
-                <div className="group-hover:translate-y-[2px] transition-transform uppercase flex items-center gap-2">
+                <div className="group-hover:translate-y-[2px] pointer-events-auto transition-transform uppercase flex items-center gap-2">
                   View All ({questions.length} questions)
                 </div>
               </button>
