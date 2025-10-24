@@ -25,6 +25,10 @@ const Pane = ({
   description,
   subtitle,
   links,
+  logo,
+  districtBadge,
+  questAvailable,
+  backgroundColor,
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -34,34 +38,57 @@ const Pane = ({
   setSelection: Dispatch<SetStateAction<string | null>>;
   description?: string;
   subtitle?: string;
+  logo?: string;
+  districtBadge?: string;
+  questAvailable?: boolean;
+  backgroundColor?: string;
 }) => {
-  const imageSrc = ''; // 'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png';
+  const imageSrc = logo || '';
+
+  // Combine white overlay with district gradient
+  const backgroundStyle = backgroundColor
+    ? {
+        backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.5) 100%), ${backgroundColor}`,
+      }
+    : undefined;
 
   const LinkItems = (() => {
     if (!links || Object.keys(links).length === 0) return null;
 
     return (
-      <div className="flex flex-col mt-4">
-        <div className="font-semibold text-sm mb-1">Links</div>
-        <div className="flex items-center gap-2 mt-1">
+      <div className="flex flex-col gap-1 mt-4">
+        <p className="font-bold text-base text-[#20202B] leading-[1.5] tracking-[-0.1px]">
+          Links
+        </p>
+        <div className="flex items-start gap-2">
           {links && links.website && (
-            <Link href={links.website}>
-              <button className="flex items-center gap-1 cursor-pointer basic-button white-button small-button">
-                Visit Website
-                <GlobeIcon className="w-4 h-4 shrink-0" />
+            <Link
+              href={links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2">
+                <span className="font-bold text-sm text-[#0073DE]">
+                  Visit Website
+                </span>
+                <GlobeIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
               </button>
             </Link>
           )}
           {links && links.x && (
-            <Link href={links.x}>
-              <button className="flex items-center justify-center gap-1 cursor-pointer basic-button white-button small-button square-button overflow-visible">
+            <Link href={links.x} target="_blank" rel="noopener noreferrer">
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px]">
                 <X className="!h-4 !w-auto shrink-0 icon" />
               </button>
             </Link>
           )}
           {links && links.farcaster && (
-            <Link href={links.farcaster}>
-              <button className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button">
+            <Link
+              href={links.farcaster}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px]">
                 <FarcasterIcon className="!h-4 !w-auto shrink-0 icon" />
               </button>
             </Link>
@@ -75,69 +102,110 @@ const Pane = ({
     <FlexibleDrawer
       open={paneOpen}
       onOpenChange={() => setSelection(null)}
-      className={cn('p-4', className)}
+      className={cn('p-0', className)}
       hideHandle={true}
     >
-      <div className="flex justify-between">
-        <div className="flex items-center gap-2 self-start">
-          {imageSrc ? (
-            <img
-              src={imageSrc}
-              alt={selection || ''}
-              className="w-8 h-8 rounded-full object-cover shrink-0"
-            />
-          ) : (
-            <Image
-              src={Placeholder}
-              alt={selection || ''}
-              className="w-8 h-8 object-cover shrink-0"
-              style={{ filter: 'brightness(0)' }}
-            />
-          )}
-
-          <div className="flex flex-col gap-1 pr-2">
-            <div className="font-medium text-base break-all leading-none flex items-center gap-1">
-              {selection}
-            </div>
-            {subtitle && (
-              <div className="text-xs leading-tight">{subtitle}</div>
+      <div className="p-4" style={backgroundStyle}>
+        <div className="flex justify-between">
+          <div className="flex items-center gap-3 self-start">
+            {imageSrc ? (
+              <div
+                className={cn(
+                  'shrink-0 w-[44px] h-[44px] overflow-hidden flex items-center justify-center',
+                  districtBadge ? 'border-2 border-[#74ACDF] rounded-[4px]' : ''
+                )}
+              >
+                <img
+                  src={imageSrc}
+                  alt={selection || ''}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            ) : (
+              <Image
+                src={Placeholder}
+                alt={selection || ''}
+                className="w-8 h-8 object-cover shrink-0"
+                style={{ filter: 'brightness(0)' }}
+              />
             )}
+
+            <div className="flex flex-col gap-1.5 pr-2 justify-center">
+              <div className="flex gap-1.5 items-center">
+                <p className="font-bold text-[18px] leading-none text-[#20202B]">
+                  {selection}
+                </p>
+                {districtBadge && (
+                  <div className="border border-[#353548] px-1 py-0.5">
+                    <p className="text-[10px] font-semibold text-[#353548] leading-[1.3] tracking-[0.2px]">
+                      {districtBadge}
+                    </p>
+                  </div>
+                )}
+              </div>
+              {questAvailable ? (
+                <div className="flex gap-1 items-center">
+                  <svg
+                    className="w-4 h-4"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8 1L10.163 5.382L15 6.135L11.5 9.545L12.326 14.365L8 12.082L3.674 14.365L4.5 9.545L1 6.135L5.837 5.382L8 1Z"
+                      stroke="#353548"
+                      strokeWidth="1"
+                      fill="none"
+                    />
+                  </svg>
+                  <p className="text-xs font-medium text-[#353548] font-mono">
+                    Quest available
+                  </p>
+                </div>
+              ) : (
+                subtitle && (
+                  <div className="text-xs leading-tight">{subtitle}</div>
+                )
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
+              onClick={() => {
+                navigator.clipboard.writeText(
+                  window.location.origin +
+                    '/map?filter=' +
+                    encodeURIComponent(selection || '')
+                );
+
+                toast.success('Location link copied to clipboard', {
+                  duration: 1000,
+                });
+              }}
+            >
+              {/* Copy Location */}
+              <MapPin className="w-4 h-4 cursor-pointer" />
+            </button>
+            <button
+              onClick={() => setSelection(null)}
+              className="flex items-center justify-center basic-button white-button small-button square-button shrink-0 cursor-pointer"
+            >
+              <XIcon className="w-4 h-4" />
+            </button>
           </div>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
-          <button
-            className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
-            onClick={() => {
-              navigator.clipboard.writeText(
-                window.location.origin +
-                  '/map?filter=' +
-                  encodeURIComponent(selection || '')
-              );
-
-              toast.success('Location link copied to clipboard', {
-                duration: 1000,
-              });
-            }}
-          >
-            {/* Copy Location */}
-            <MapPin className="w-4 h-4 cursor-pointer" />
-          </button>
-          <button
-            onClick={() => setSelection(null)}
-            className="flex items-center justify-center basic-button white-button small-button square-button shrink-0 cursor-pointer"
-          >
-            <XIcon className="w-4 h-4" />
-          </button>
-        </div>
+        {children}
+        {description && (
+          <div className="flex flex-col gap-1 leading-[1.5] mt-4">
+            <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
+              About
+            </p>
+            <p className="text-sm text-[#353548] font-normal">{description}</p>
+          </div>
+        )}
+        {LinkItems}
       </div>
-      {description && (
-        <div className="flex flex-col gap-1">
-          <div className="font-semibold text-sm">About</div>
-          <div className="text-xs">{description}</div>
-        </div>
-      )}
-      {children}
-      {LinkItems}
     </FlexibleDrawer>
   );
 };
@@ -189,20 +257,38 @@ const MapPane = (props: {
         }
       | undefined;
 
-    const poiData = poisData.find((poi) => poi.name === selection);
+    const poiData = poisData.find((poi) => poi.layerName === selection);
+    const supporterData = Object.values(supportersData).find(
+      (supporter) => supporter.layerName === selection
+    );
 
     if (poiData) {
       selectionData = {
         ...poiData,
         pane_type: 'poi',
+        links: {
+          website: poiData.websiteLink || '',
+          x: poiData.twitterLink || '',
+          farcaster: poiData.farcasterLink || '',
+        },
+      };
+    } else if (supporterData) {
+      selectionData = {
+        ...supporterData,
+        pane_type: 'poi',
+        links: {
+          website: supporterData.websiteLink || '',
+          x: supporterData.twitterLink || '',
+          farcaster: supporterData.farcasterLink || '',
+        },
       };
     }
 
-    // No POI match
-    if (!poiData) {
+    // No POI or supporter match
+    if (!poiData && !supporterData) {
       // Look at district match
       const districtData = Object.values(districtsData).find(
-        (district: any) => district.name === selection
+        (district: any) => district.layerName === selection
       );
 
       if (districtData) {
@@ -216,7 +302,7 @@ const MapPane = (props: {
       if (!districtData) {
         // Look at group match
         const groupData = Object.values(poiGroupsData).find(
-          (group: any) => group.name === selection
+          (group: any) => group.layerName === selection
         );
 
         if (groupData) {
@@ -238,14 +324,15 @@ const MapPane = (props: {
     switch (selectionData.pane_type) {
       case 'group':
       case 'district':
-        const apps = [
-          {
-            name: 'App Name',
-            description: 'App Description',
-            image:
-              'https://storage.googleapis.com/zapper-fi-assets/apps%2Faave-v3.png',
-          },
-        ];
+        // Get the district ID for the selected district
+        const districtId = Object.entries(districtsData).find(
+          ([id, district]) => district.layerName === selection
+        )?.[0];
+
+        // Filter supporters by district
+        const districtSupporters = Object.values(supportersData).filter(
+          (supporter) => supporter.districtId === districtId
+        );
 
         return (
           <Pane
@@ -254,42 +341,181 @@ const MapPane = (props: {
             selection={selection}
             description={selectionData.description}
             subtitle={selectionData.pane_type}
-            className="bg-gradient-to-t from-[rgba(136,85,204,0.3)] to-[rgba(221,102,170,0.3)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
+            logo={selectionData.logo}
+            backgroundColor={selectionData.backgroundColor}
+            className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
           >
-            <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4">
-              <div className="text-sm font-medium mb-3">App Showcase</div>
-              <div className="grid md:grid-cols-4 grid-cols-2 gap-2">
-                {Array.from({ length: 15 }, (_, i) =>
-                  apps.map((app, index) => (
-                    <div
-                      className="font-medium text-xs leading-none flex items-center gap-1.5"
-                      key={`${i}-${index}`}
-                    >
-                      <Image
-                        src={Placeholder}
-                        alt={app.name}
-                        className="w-[16px] h-[16px] object-cover"
-                        style={{ filter: 'brightness(0)' }}
-                      />
-                      {app.name}
-                    </div>
-                  ))
-                ).flat()}
+            {districtSupporters.length > 0 && (
+              <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4">
+                <div className="text-base font-bold mb-3 text-[#353548]">
+                  App Showcase
+                </div>
+                <div className="flex gap-4 items-start w-full">
+                  {/* Split supporters into two columns */}
+                  <div className="flex-1 flex flex-col gap-2">
+                    {districtSupporters
+                      .slice(0, Math.ceil(districtSupporters.length / 2))
+                      .map((supporter, index) => {
+                        // Find quest for this supporter
+                        const supporterQuest = questsData.find(
+                          (quest) =>
+                            quest.supporterId ===
+                            Object.keys(supportersData).find(
+                              (key) => supportersData[key] === supporter
+                            )
+                        );
+
+                        const content = (
+                          <>
+                            {supporter.logo ? (
+                              <div className="shrink-0 w-[24px] h-[24px] border border-[#74ACDF] rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
+                                <img
+                                  src={supporter.logo}
+                                  alt={supporter.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ) : (
+                              <div className="shrink-0 w-[24px] h-[24px] border border-[#74ACDF] rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
+                                <Image
+                                  src={Placeholder}
+                                  alt={supporter.name}
+                                  className="w-4 h-4 object-cover"
+                                  style={{ filter: 'brightness(0)' }}
+                                />
+                              </div>
+                            )}
+                            <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
+                              {supporter.name}
+                            </p>
+                          </>
+                        );
+
+                        return supporterQuest ? (
+                          <Link
+                            href={`/quests#${supporterQuest.id}`}
+                            key={index}
+                            className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
+                          >
+                            {content}
+                          </Link>
+                        ) : (
+                          <div
+                            className="flex gap-2 items-center py-0.5 w-full"
+                            key={index}
+                          >
+                            {content}
+                          </div>
+                        );
+                      })}
+                  </div>
+                  <div className="flex-1 flex flex-col gap-2">
+                    {districtSupporters
+                      .slice(Math.ceil(districtSupporters.length / 2))
+                      .map((supporter, index) => {
+                        // Find quest for this supporter
+                        const supporterQuest = questsData.find(
+                          (quest) =>
+                            quest.supporterId ===
+                            Object.keys(supportersData).find(
+                              (key) => supportersData[key] === supporter
+                            )
+                        );
+
+                        const content = (
+                          <>
+                            {supporter.logo ? (
+                              <div className="shrink-0 w-[24px] h-[24px] border border-[#74ACDF] rounded-[1px] overflow-hidden flex items-center justify-center bg-white">
+                                <img
+                                  src={supporter.logo}
+                                  alt={supporter.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                            ) : (
+                              <div className="shrink-0 w-[24px] h-[24px] border border-[#74ACDF] rounded-[1px] overflow-hidden flex items-center justify-center bg-white opacity-25">
+                                <Image
+                                  src={Placeholder}
+                                  alt={supporter.name}
+                                  className="w-4 h-4 object-cover"
+                                  style={{ filter: 'brightness(0)' }}
+                                />
+                              </div>
+                            )}
+                            <p className="flex-1 text-sm leading-none text-[#353548] font-normal">
+                              {supporter.name}
+                            </p>
+                          </>
+                        );
+
+                        return supporterQuest ? (
+                          <Link
+                            href={`/quests#${supporterQuest.id}`}
+                            key={index}
+                            className="flex gap-2 items-center py-0.5 w-full cursor-pointer hover:opacity-80 transition-opacity"
+                          >
+                            {content}
+                          </Link>
+                        ) : (
+                          <div
+                            className="flex gap-2 items-center py-0.5 w-full"
+                            key={index}
+                          >
+                            {content}
+                          </div>
+                        );
+                      })}
+                  </div>
+                </div>
               </div>
-            </div>
+            )}
           </Pane>
         );
 
       case 'poi':
+        // Get district name if supporter has a district
+        const supporterDistrict = selectionData.districtId
+          ? districtsData[selectionData.districtId]
+          : null;
+
+        // Find the quest for this supporter
+        const supporterId = Object.keys(supportersData).find(
+          (key) => supportersData[key].layerName === selection
+        );
+        const supporterQuest = supporterId
+          ? questsData.find((quest) => quest.supporterId === supporterId)
+          : null;
+
         return (
           <Pane
             paneOpen={paneOpen}
             setSelection={setSelection}
             selection={selectionData.name}
             description={selectionData.description}
-            subtitle={selectionData.pane_type}
+            subtitle={
+              !selectionData.districtId ? selectionData.pane_type : undefined
+            }
             links={selectionData.links}
-          ></Pane>
+            logo={selectionData.logo}
+            districtBadge={supporterDistrict?.name}
+            questAvailable={!!supporterQuest}
+            backgroundColor={supporterDistrict?.backgroundColor}
+            className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
+          >
+            {/* View Quest Button for supporters with quests */}
+            {supporterQuest && (
+              <Link href={`/quests#${supporterQuest.id}`}>
+                <button
+                  className="w-full bg-[#0073DE] text-white font-bold text-base py-3 px-6 rounded-[1px] mt-4"
+                  style={{
+                    boxShadow: '0px 4px 0px 0px #005493',
+                  }}
+                >
+                  View Quest
+                </button>
+              </Link>
+            )}
+          </Pane>
         );
 
       default:
@@ -301,6 +527,7 @@ const MapPane = (props: {
             description={selectionData.description}
             subtitle={selectionData.pane_type}
             links={selectionData.links}
+            logo={selectionData.logo}
           >
             {/* <div>{selection}</div> */}
           </Pane>
