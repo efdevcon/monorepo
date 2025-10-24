@@ -239,7 +239,7 @@ export default function ScanPage() {
               {isLoadingManualPayment ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                'Load Payment'
+                'Get Order'
               )}
             </button>
           </div>
@@ -294,7 +294,7 @@ export default function ScanPage() {
               {isLoadingMerchantPayment ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
-                'Load Payment'
+                'Get Order'
               )}
             </button>
           </div>

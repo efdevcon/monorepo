@@ -124,7 +124,7 @@ export const getReadableNetworkName = (networkName: string): string => {
     return 'Celo';
   }
   if (lowerName.includes('polygon') || lowerName.includes('matic')) {
-    return 'Polygon';
+    return 'Polygon PoS';
   }
   if (lowerName.includes('worldchain')) {
     return 'World Chain';
