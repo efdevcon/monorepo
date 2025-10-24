@@ -247,7 +247,7 @@ export default function StampbookTab() {
                               <img
                                 src={stamp.image}
                                 alt={stamp.name}
-                                className={`w-full h-full object-cover ${
+                                className={`w-full h-full object-cover rounded-full ${
                                   isCompleted ? '' : 'grayscale opacity-50'
                                 }`}
                                 onError={(e) => {
