@@ -430,7 +430,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                         address={wallet.address}
                         walletId={wallet.id}
                         connectorIcon={
-                          isPara
+                          wallet.id === 'para'
                             ? '/images/paraLogo.png'
                             : wallet.connector?.icon ||
                               wallet.connector?.connector?.icon ||
@@ -458,17 +458,13 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
                   </div>
                   <div className="text-center">
                     <div className="text-sm font-semibold text-[#242436] tracking-[0.1px]">
-                      {wallet.id === 'para' && paraEmail ? (
-                        paraEmail
-                      ) : (
-                        <WalletDisplay address={wallet.address} />
-                      )}
+                      <WalletDisplay address={wallet.address} />
                     </div>
-                    <div className="text-sm text-[#4b4b66]">
+                    {/* <div className="text-sm text-[#4b4b66]">
                       {wallet.address
                         ? `${wallet.address.slice(0, 6)}...${wallet.address.slice(-4)}`
                         : 'No address'}
-                    </div>
+                    </div> */}
                     <div className="text-xs text-[#4b4b66] flex justify-center items-center gap-1">
                       {/* Wallet icon next to type indicator */}
                       {(() => {
