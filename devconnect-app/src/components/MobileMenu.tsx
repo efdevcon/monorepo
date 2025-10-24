@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { triggerHaptic } from 'tactus';
 import { NAV_ITEMS } from '@/config/nav-items';
 import { useWallet } from '@/context/WalletContext';
 import css from './MobileMenu.module.scss';
@@ -63,6 +64,7 @@ export default function Menu() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => triggerHaptic(200)}
               className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors text-transparent rounded-[2px] ${isActive ? 'font-bold' : 'font-normal'}`}
               style={{
                 backgroundColor: isActive

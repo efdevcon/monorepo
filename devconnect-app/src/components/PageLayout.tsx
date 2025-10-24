@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { triggerHaptic } from 'tactus';
 import WorldsFairLogo from '@/images/worlds-fair-logo.png';
 import { NAV_ITEMS } from '@/config/nav-items';
 import Link from 'next/link';
@@ -59,6 +60,7 @@ const BackButton = () => {
   }, [sessionId]);
 
   const handleBackClick = () => {
+    triggerHaptic(200);
     if (canBack) {
       router.back();
     } else {
@@ -103,6 +105,7 @@ const Tabs = ({
   const pathname = usePathname();
 
   const handleTabClick = (tab: TabItem, idx: number) => {
+    triggerHaptic(200);
     if (onTabClick) {
       onTabClick(tab, idx);
     } else if (tab.href) {
@@ -166,7 +169,11 @@ const Tabs = ({
 
           if (hasHref) {
             return (
-              <Link href={tab.href || ''} key={tab.label}>
+              <Link
+                href={tab.href || ''}
+                key={tab.label}
+                onClick={() => triggerHaptic(200)}
+              >
                 {tabBody}
               </Link>
             );
@@ -304,6 +311,7 @@ export default function PageLayout({
                           <Link
                             key={item.href}
                             href={item.href}
+                            onClick={() => triggerHaptic(200)}
                             className={cn(
                               'p-1.5 px-2 text-sm flex gap-2 items-center rounded transition-colors duration-200',
                               isActive
