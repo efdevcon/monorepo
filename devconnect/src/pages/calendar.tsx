@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCalendarStore } from 'store/calendar'
 import { Footer, Header, withTranslations } from 'pages/index'
 import { client } from '../../tina/__generated__/client'
@@ -21,6 +21,14 @@ import { ArrowUpRight } from 'lucide-react'
 const Argentina = (props: any) => {
   // const [selectedEvent, setSelectedEvent] = useState<any>(null)
   const { data }: { data: any } = useTina(props.content)
+
+  const [isSafari, setIsSafari] = useState(false)
+
+  useEffect(() => {
+    const isSafari =
+      typeof window !== 'undefined' && /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
+    setIsSafari(isSafari)
+  }, [])
 
   const events = props.events
 
@@ -50,7 +58,7 @@ const Argentina = (props: any) => {
         <div className={styles['devconnect-overlay']}></div>
         {/* <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div> */}
       </div>
-      <div className="flex flex-col text-black mt-6">
+      <div className={cn('flex flex-col text-black mt-6', isSafari && 'overflow-x-hidden')}>
         <CalendarLayout
           events={events} // .filter((event: any) => event.isCoreEvent)}
           isCommunityCalendar={false}

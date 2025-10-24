@@ -77,15 +77,10 @@ export const NotificationCard = ({
           withoutContainer && '!max-w-none'
         )}
       >
-        <p
-          className={cn(
-            'text-sm font-semibold',
-            !withoutContainer && 'truncate'
-          )}
-        >
+        <p className={cn('text-sm font-semibold', !withoutContainer && '')}>
           {title}
         </p>
-        <p className="text-xs pr-4 line-clamp-2">{message}</p>
+        <p className={cn('text-xs pr-4', !withoutContainer && '')}>{message}</p>
       </div>
       <div className="flex gap-1 shrink-0 justify-between items-center mt-3">
         <div className="flex items-center gap-1.5">
