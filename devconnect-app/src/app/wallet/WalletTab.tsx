@@ -41,6 +41,8 @@ const imgDevconnectLogo = '/images/Devconnect-Logo-Square.svg';
 const imgPeanutLogo = '/images/peanut-logo.svg';
 const imgEnsLogo = '/images/ens-logo.svg';
 const imgZapperLogo = '/images/power-zap-gray.svg';
+const imgNoAssetsIcon = '/images/no-assets-icon.svg';
+const imgNoActivityIcon = '/images/no-activity-icon.svg';
 
 // Types for stored payment info
 type StoredPaymentInfo = {
@@ -197,7 +199,12 @@ export default function WalletTab() {
 
     // Convert stored payments to activity format
     const localPaymentsActivity = Object.values(storedPayments)
-      .filter((payment) => payment.txHash && payment.timestamp) // Only payments with txHash
+      .filter(
+        (payment) =>
+          payment.txHash &&
+          payment.timestamp &&
+          payment.connectedAddress?.toLowerCase() === address?.toLowerCase()
+      ) // Only payments with txHash and matching connected address
       .map((payment) => ({
         transaction: {
           hash: payment.txHash!,
@@ -963,7 +970,7 @@ export default function WalletTab() {
                   <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
                     My Assets
                   </h3>
-                  <div className="h-6 w-[113px] shrink-0">
+                  <div className="h-7 shrink-0">
                     <img
                       src={imgZapperLogo}
                       alt="Powered by Zapper"
@@ -1053,8 +1060,21 @@ export default function WalletTab() {
                       ))
                   ) : (
                     // No assets found
-                    <div className="text-center py-4">
-                      <p className="text-gray-500 text-sm">No assets found</p>
+                    <div className="flex flex-col items-center gap-3 py-4">
+                      <img
+                        src={imgNoAssetsIcon}
+                        alt="No assets"
+                        className="w-12 h-12"
+                      />
+                      <p className="text-[#353548] text-base font-bold tracking-[-0.1px]">
+                        No assets to show
+                      </p>
+                      <button
+                        onClick={handleDigitalClick}
+                        className="bg-[#0073de] text-white text-sm font-bold px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] hover:bg-[#005493] transition-colors"
+                      >
+                        View Add options
+                      </button>
                     </div>
                   )}
                 </div>
@@ -1077,7 +1097,7 @@ export default function WalletTab() {
                   <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
                     Recent Activity
                   </h3>
-                  <div className="h-6 w-[113px] shrink-0">
+                  <div className="h-7 shrink-0">
                     <img
                       src={imgZapperLogo}
                       alt="Powered by Zapper"
@@ -1279,9 +1299,14 @@ export default function WalletTab() {
                       })
                   ) : (
                     // No activity found
-                    <div className="text-center py-4">
-                      <p className="text-gray-500 text-sm">
-                        No recent activity found
+                    <div className="flex flex-col items-center gap-3 py-4">
+                      <img
+                        src={imgNoActivityIcon}
+                        alt="No activity"
+                        className="w-12 h-12"
+                      />
+                      <p className="text-[#353548] text-base font-bold tracking-[-0.1px]">
+                        No activity to show
                       </p>
                     </div>
                   )}
