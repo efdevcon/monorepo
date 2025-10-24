@@ -22,6 +22,17 @@ export default function HomePageContent() {
     }
   }, [router]);
 
+  useEffect(() => {
+    const tabsContainer = document.getElementById('page-tabs');
+
+    if (tabsContainer) {
+      tabsContainer.scrollTo({
+        left: 0,
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
   return (
     <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
       <LoopingHeader />
