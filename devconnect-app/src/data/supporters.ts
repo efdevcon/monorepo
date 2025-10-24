@@ -607,8 +607,8 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": "3"
   },
   "256638cdc4158003aadde80270c59050": {
-    "name": "R3alblocks",
-    "layerName": "r3alblocks",
+    "name": "R3al Blocks",
+    "layerName": "r3al-blocks",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-21T19-01-25-178Z-RB-brand-Web-exportar_RB-En%20Bandera.svg",
     "description": "Tokenizing real-world assets to open financial access in LATAM through simple, secure, onchain solutions.",
     "websiteLink": "https://r3al.io/en",

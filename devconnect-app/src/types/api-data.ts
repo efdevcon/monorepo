@@ -33,6 +33,7 @@ export interface District {
   name: string;
   layerName: string;
   backgroundColor?: string;
+  logo?: string;
 }
 
 export interface Location {
