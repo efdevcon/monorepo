@@ -10,10 +10,13 @@ import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
 import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
+import Icon from '@mdi/react';
+import { mdiBug, mdiInformation, mdiClose } from '@mdi/js';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
 import { useLocalStorage } from 'usehooks-ts';
+import { openReportIssue } from '@/utils/reportIssue';
 
 interface TabItem {
   label: string;
@@ -31,6 +34,11 @@ interface PageLayoutProps {
   setActiveIndex?: (index: number) => void;
   onTabClick?: (tabItem: any, index: number) => void;
   hasBackButton?: boolean;
+  infoModalContent?: React.ReactNode;
+  questProgress?: {
+    completed: number;
+    total: number;
+  };
 }
 
 interface TabsProps {
@@ -195,9 +203,12 @@ export default function PageLayout({
   setActiveIndex: externalSetActiveIndex,
   onTabClick,
   hasBackButton,
+  infoModalContent,
+  questProgress,
 }: PageLayoutProps) {
   const pathname = usePathname();
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
+  const [showInfoModal, setShowInfoModal] = useState(false);
   const t = useTranslations();
   // Use external state if provided, otherwise use internal state
   const activeIndex =
@@ -209,6 +220,7 @@ export default function PageLayout({
   const activeTab = tabs[activeIndex];
   const isMobile = useIsMobile();
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
+  const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
   return (
     <>
@@ -232,21 +244,59 @@ export default function PageLayout({
                   }}
                 >
                   <div
-                    className="flex items-center justify-between w-full px-6 pb-3"
+                    className="flex items-center justify-between w-full px-6 pb-3 relative"
                     style={{ paddingTop: pwa ? '0' : '0.75rem' }}
                   >
-                    {hasBackButton && (
-                      <div className="relative w-[20px] lg:w-[30px] shrink-0">
-                        <BackButton />
+                    {/* Left side: Bug report button OR Back button */}
+                    <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
+                      {isComingSoon && (
+                        <button
+                          onClick={() => {
+                            triggerHaptic(200);
+                            openReportIssue();
+                          }}
+                          className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
+                          aria-label="Report issue"
+                        >
+                          <Icon path={mdiBug} size={1} />
+                        </button>
+                      )}
+                      {hasBackButton && !isComingSoon && <BackButton />}
+                    </div>
+
+                    {/* Center: Title with Info button */}
+                    <div className="flex-1 flex items-center justify-center gap-1">
+                      <h1
+                        className="text-lg font-semibold text-center tracking-[-0.1px]"
+                        style={{ textShadow: 'rgba(0,0,0,0.15) 0px 1px 3px' }}
+                      >
+                        {title}
+                      </h1>
+                      {infoModalContent && (
+                        <button
+                          onClick={() => {
+                            triggerHaptic(200);
+                            setShowInfoModal(true);
+                          }}
+                          className="w-[18px] h-[18px] shrink-0 flex items-center justify-center"
+                          aria-label="Quest information"
+                        >
+                          <Icon path={mdiInformation} size={0.75} />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Right side: Quest completion count */}
+                    {questProgress && (
+                      <div className="absolute right-6 flex items-center gap-1">
+                        <p
+                          className="text-base font-medium text-white tracking-[-0.1px] whitespace-nowrap"
+                          style={{ fontFamily: 'Roboto Mono, monospace' }}
+                        >
+                          {questProgress.completed}/{questProgress.total}
+                        </p>
                       </div>
                     )}
-                    <h1
-                      className="flex-1 text-lg font-semibold text-center tracking-[-0.1px]"
-                      style={{ textShadow: 'rgba(0,0,0,0.15) 0px 1px 3px' }}
-                    >
-                      {title}
-                    </h1>
-                    {/* <div className="w-[20px] lg:w-[30px] shrink-0" /> */}
                   </div>
                 </div>
               )}
@@ -377,6 +427,32 @@ export default function PageLayout({
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Info Modal */}
+      {showInfoModal && infoModalContent && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/30"
+            onClick={() => setShowInfoModal(false)}
+          />
+
+          {/* Modal */}
+          <div className="relative bg-white border border-[#c7c7d0] rounded max-w-[353px] w-[calc(100%-40px)] mx-5">
+            {/* Close button */}
+            <button
+              onClick={() => setShowInfoModal(false)}
+              className="absolute right-3 top-3 cursor-pointer hover:opacity-70 transition-opacity z-10"
+              aria-label="Close modal"
+            >
+              <Icon path={mdiClose} size={1} className="text-[#4b4b66]" />
+            </button>
+
+            {/* Content */}
+            <div className="pt-4 pb-0 px-0">{infoModalContent}</div>
           </div>
         </div>
       )}

@@ -708,11 +708,14 @@ export default function AppShowcaseDetail({
               <div className="flex gap-3 items-center w-full">
                 <div className="w-14 h-14">
                   <img
-                    src={`/images/districts/${district.layerName}.svg`}
+                    src={
+                      district.logo ||
+                      `/images/districts/${district.layerName}.svg`
+                    }
                     alt={district.name}
                     width={56}
                     height={56}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
 
@@ -952,7 +955,7 @@ export default function AppShowcaseDetail({
           onClick={handleReset}
           className="w-full bg-white border border-[#e0e0e0] rounded-lg px-4 py-3 text-[#36364c] font-medium hover:bg-gray-50 hover:border-[#d0d0d0] transition-colors"
         >
-          Reset All Progress
+          Debug: Reset All Progress
         </button>
       </div>
       {/* POAP Modal */}
