@@ -3,7 +3,7 @@ import { chains } from './networks';
 // Token addresses by network
 const tokenAddresses: Record<string, Record<number, string>> = {
   ETH: {
-    // 1: '0x0000000000000000000000000000000000000000', // Ethereum mainnet (native)
+    1: '0x0000000000000000000000000000000000000000', // Ethereum mainnet (native)
     // 42161: '0x0000000000000000000000000000000000000000', // Arbitrum (native)
     8453: '0x0000000000000000000000000000000000000000', // Base (native)
     10: '0x0000000000000000000000000000000000000000', // Optimism (native)
@@ -17,8 +17,8 @@ const tokenAddresses: Record<string, Record<number, string>> = {
     1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // Ethereum mainnet
     8453: '0x833589fcd6edb6e08f4c7c32d4f71b54bda02913', // Base
     10: '0x0b2c639c533813f4aa9d7837caf62653d097ff85', // Optimism
-    // 42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
-    // 42220: '0xceba9300f2b948710d2653dd7b07f33a8b32118c', // Celo
+    42161: '0xaf88d065e77c8cc2239327c5edb3a432268e5831', // Arbitrum
+    42220: '0xceba9300f2b948710d2653dd7b07f33a8b32118c', // Celo
     137: '0x3c499c542cef5e3811e1192ce70d8cc03d5c3359', // Polygon (native) // bridged: 0x2791bca1f2de4661ed88a30c99a7a9449aa84174
     // 480: '0x79a02482a880bce3f13e09da970dc34db4cd24d1', // World Chain
   },
