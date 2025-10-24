@@ -856,7 +856,7 @@ function Event({
               <div
                 className={cn(
                   "line-clamp-1 mt-2 text-xs uppercase font-medium grow flex items-end",
-                  compact && "text-[11px]"
+                  compact && "hidden text-[11px]"
                 )}
               >
                 {event.organizer}

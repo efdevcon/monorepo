@@ -1,13 +1,15 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
 import cn from 'classnames';
 import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
 import { ArrowUpRightIcon } from 'lucide-react';
+import { useAnnouncements } from '@/app/store.hooks';
 
 type NotificationCardProps = {
+  withoutContainer?: boolean;
   title: string;
   message: string;
   sendAt: string;
@@ -17,12 +19,13 @@ type NotificationCardProps = {
   ctaLink?: string;
 };
 
-const NotificationCard = ({
+export const NotificationCard = ({
+  withoutContainer = false,
   title,
   message,
   sendAt,
-  seen = false,
   cta,
+  seen,
   ctaLink,
   className,
 }: NotificationCardProps) => {
@@ -61,13 +64,27 @@ const NotificationCard = ({
   const CardContent = () => (
     <div
       className={cn(
-        'shrink-0 flex flex-col justify-between gap-0 border border-solid border-gray-200 p-4 min-w-[280px] bg-white relative group transition-all duration-300',
+        'shrink-0 flex flex-col justify-between gap-0 border border-solid border-gray-200 p-4 !min-w-[280px] bg-white relative group transition-all duration-300',
         // !seen && 'ring-2  ring-opacity-20',
-        className
+        className,
+        withoutContainer &&
+          '!border-none !min-w-auto !p-0 !bg-transparent !relative !group !transition-all !duration-300'
       )}
     >
-      <div className="flex flex-col gap-1 flex-1 min-w-0 max-w-[280px]">
-        <p className="text-sm font-semibold truncate">{title}</p>
+      <div
+        className={cn(
+          'flex flex-col gap-1 flex-1 min-w-0 max-w-[280px]',
+          withoutContainer && '!max-w-none'
+        )}
+      >
+        <p
+          className={cn(
+            'text-sm font-semibold',
+            !withoutContainer && 'truncate'
+          )}
+        >
+          {title}
+        </p>
         <p className="text-xs pr-4 line-clamp-2">{message}</p>
       </div>
       <div className="flex gap-1 shrink-0 justify-between items-center mt-3">
@@ -105,51 +122,7 @@ const NotificationCard = ({
 };
 
 export const AnnouncementsWrapper = () => {
-  // Sample notification data - replace with real data from your API
-  const notifications = [
-    {
-      id: '1',
-      title: "Welcome to the World's Fair! 🔔",
-      cta: 'Get Started',
-      ctaLink: '/quests',
-      message:
-        'Your account has been created successfully. Start exploring the fair and mark your favorite events.',
-      sendAt: '2025-11-15T10:00:00Z',
-      seen: false,
-    },
-    {
-      id: '2',
-      title: 'Ethereum Day Starting Soon',
-      message:
-        "The opening ceremonies begin in 30 minutes. Don't miss this historic moment!",
-      sendAt: '2025-11-17T08:30:00Z',
-      seen: false,
-    },
-    {
-      id: '3',
-      title: 'New App Showcase Available',
-      message:
-        'Check out the latest applications built on Ethereum. Discover innovative projects and interact with creators.',
-      sendAt: '2025-11-16T14:00:00Z',
-      seen: true,
-    },
-    {
-      id: '4',
-      title: 'Workshop Reminder',
-      message:
-        'Your selected workshop "Building on Ethereum" starts in 1 hour. Location: Pavilion 3, Room A.',
-      sendAt: '2025-11-18T09:00:00Z',
-      seen: true,
-    },
-    {
-      id: '5',
-      title: 'Networking Event Tonight',
-      message:
-        'Join us for the official networking event at 7 PM. Great opportunity to meet fellow developers!',
-      sendAt: '2025-11-17T18:00:00Z',
-      seen: false,
-    },
-  ];
+  const announcements = useAnnouncements();
 
   return (
     <div className="flex flex-col mb-6 mt-5">
@@ -162,22 +135,25 @@ export const AnnouncementsWrapper = () => {
             With ❤️ from the Devconnect Team
           </div>
         </div>
-        <div className="pr-4 text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 self-end cursor-pointer">
+        <Link
+          href="/announcements"
+          className="pr-4 text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 self-end cursor-pointer"
+        >
           View All <ArrowUpRightIcon className="w-4 h-4" />
-        </div>
+        </Link>
       </div>
       <div className="flex w-screen md:w-auto overflow-hidden md:overflow-visible">
         <SwipeToScroll>
           <div className="flex no-wrap gap-2 ml-4">
-            {notifications.map((notification, index) => (
+            {announcements.map((announcement, index) => (
               <NotificationCard
-                key={notification.id}
-                title={notification.title}
-                message={notification.message}
-                sendAt={notification.sendAt}
-                seen={notification.seen}
-                cta={notification.cta}
-                ctaLink={notification.ctaLink}
+                key={announcement.id}
+                title={announcement.title}
+                message={announcement.message}
+                sendAt={announcement.sendAt}
+                seen={announcement.seen}
+                cta={announcement.cta}
+                ctaLink={announcement.ctaLink}
                 // className={index === notifications.length - 1 ? '!mr-4' : ''}
               />
             ))}

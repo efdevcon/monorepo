@@ -48,6 +48,7 @@ export interface AppState {
   tickets: Order[] | null;
   ticketsLoading: boolean;
   qrCodes: { [key: string]: string };
+  announcements: any[];
 
   // Actions (mostly for backward compatibility)
   // @deprecated Use SWR hooks for automatic caching and revalidation
@@ -63,6 +64,7 @@ export type AppStore = ReturnType<typeof createGlobalStore>;
 
 export const initGlobalStore = (
   events?: any[],
+  announcements?: any[],
   userData?: AppState['userData']
 ): Omit<
   AppState,
@@ -74,6 +76,7 @@ export const initGlobalStore = (
   | 'logout'
 > => ({
   events: events,
+  announcements: announcements || [],
   userData: userData || null,
   tickets: null,
   ticketsLoading: false,
