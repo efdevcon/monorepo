@@ -29,21 +29,38 @@ const getTransactionExplorerUrl = (
     return `https://jiffyscan.xyz/userOpHash/${userOpHash}?network=${network}`;
   }
 
-  // Otherwise use regular block explorer with transaction hash
-  switch (chainId) {
-    case 1: // Ethereum
-      return `https://etherscan.io/tx/${txHash}`;
-    case 8453: // Base
-      return `https://basescan.org/tx/${txHash}`;
-    case 10: // Optimism
-      return `https://optimistic.etherscan.io/tx/${txHash}`;
-    case 137: // Polygon
-      return `https://polygonscan.com/tx/${txHash}`;
-    case 42161: // Arbitrum
-      return `https://arbiscan.io/tx/${txHash}`;
-    default:
-      return `https://basescan.org/tx/${txHash}`; // Default to Base
+  // Use viem's block explorer configuration dynamically
+  const networkConfig = getNetworkConfig(chainId);
+  const defaultExplorer = networkConfig.blockExplorers?.default;
+
+  if (defaultExplorer?.url) {
+    return `${defaultExplorer.url}/tx/${txHash}`;
   }
+
+  // Fallback to Base explorer if no configuration found
+  return `https://basescan.org/tx/${txHash}`;
+};
+
+// Helper function to get the block explorer name dynamically
+const getBlockExplorerName = (
+  chainId: number,
+  userOpHash?: string | null
+): string => {
+  // If UserOp Hash is available, use JiffyScan
+  if (userOpHash) {
+    return 'JiffyScan';
+  }
+
+  // Use viem's block explorer configuration dynamically
+  const networkConfig = getNetworkConfig(chainId);
+  const defaultExplorer = networkConfig.blockExplorers?.default;
+
+  if (defaultExplorer?.name) {
+    return defaultExplorer.name;
+  }
+
+  // Fallback to generic "Explorer"
+  return 'Explorer';
 };
 import { CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
 import Icon from '@mdi/react';
@@ -553,11 +570,7 @@ export default function StatusStep({
                 boxShadow: '0px 4px 0px 0px #595978',
               }}
             >
-              {displayUserOpHash
-                ? 'JiffyScan'
-                : displayChainId === 8453
-                  ? 'BaseScan'
-                  : 'Explorer'}
+              Transaction
               <svg
                 width="16"
                 height="16"
@@ -800,7 +813,10 @@ export default function StatusStep({
                   </p>
                   {delegationTxHash && (
                     <a
-                      href={`https://basescan.org/tx/${delegationTxHash}`}
+                      href={getTransactionExplorerUrl(
+                        delegationTxHash,
+                        chainId
+                      )}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-emerald-600 hover:text-emerald-700 underline mt-1 block"
