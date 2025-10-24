@@ -13,7 +13,7 @@ export default function HomePageLayout({
   children: React.ReactNode;
 }) {
   return (
-    <PageLayout title="World's Fair" tabs={homeTabs()}>
+    <PageLayout title="Ethereum World's Fair" tabs={homeTabs()}>
       {children}
     </PageLayout>
   );

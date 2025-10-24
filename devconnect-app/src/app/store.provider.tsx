@@ -27,6 +27,7 @@ export const GlobalStoreContext = createContext<AppStore | undefined>(
 export interface GlobalStoreProviderProps {
   children: ReactNode;
   events: AppState['events'];
+  announcements?: AppState['announcements'];
   userData?: AppState['userData'];
 }
 
@@ -44,11 +45,14 @@ let globalStoreProvider: AppStore | null = null;
 
 export const GlobalStoreProvider = ({
   events,
+  announcements,
   userData,
   children,
 }: GlobalStoreProviderProps) => {
   if (globalStoreProvider === null) {
-    globalStoreProvider = createGlobalStore(initGlobalStore(events, userData));
+    globalStoreProvider = createGlobalStore(
+      initGlobalStore(events, announcements, userData)
+    );
   }
 
   return (

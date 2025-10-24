@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useGlobalStore } from './store.provider';
 import {
   useUserData as useUserDataSWR,
@@ -30,6 +30,28 @@ export const useAdditionalTicketEmails = () => {
 export const useEvents = () => {
   const events = useGlobalStore((state) => state.events);
   return events || [];
+};
+
+export const useAnnouncements = () => {
+  const announcements = useGlobalStore((state) => state.announcements);
+  const [seenAnnouncements, setSeenAnnouncements] = useState<string[]>([]);
+
+  const firstRun = useRef(true);
+
+  useEffect(() => {
+    // Visiting /announcements marks all announcements as seen, but we only want them to be seen *after* they are seen (aka not immediately/on the first render)
+    // ...so we only check for seen announcements on the very first render when visiting a page that uses useAnnouncements
+    if (firstRun.current) {
+      const seen = localStorage.getItem('seenAnnouncements');
+      setSeenAnnouncements(seen ? JSON.parse(seen) : []);
+      firstRun.current = false;
+    }
+  }, []);
+
+  return announcements.map((announcement) => ({
+    ...announcement,
+    seen: seenAnnouncements.includes(announcement.id),
+  }));
 };
 
 /**

@@ -100,9 +100,9 @@ export const PracticalInfo = () => {
         </div>
       </div>
 
-      <Button className="w-full font-semibold" color="white-2" size="sm">
+      {/* <Button className="w-full font-semibold" color="white-2" size="sm">
         View more info
-      </Button>
+      </Button> */}
     </div>
   );
 };
@@ -132,12 +132,12 @@ export const TodaysSchedule = withParcnetProvider(() => {
         <p className="font-bold">Your Events</p>
         {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
 
-        <Link
+        {/* <Link
           href="/schedule"
           className="text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 cursor-pointer"
         >
           View Schedule <ArrowUpRightIcon className="w-4 h-4" />
-        </Link>
+        </Link> */}
       </div>
       <p className="text-xs mb-2 shrink-0">
         These are your recommended events. Build your own schedule by adding
