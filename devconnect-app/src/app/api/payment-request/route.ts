@@ -86,6 +86,7 @@ export async function POST(request: NextRequest) {
         },
         card_payment: false,
         merchant_id: PAYMENT_CONFIG.MERCHANT_ID,
+        // memo: 'DEVCONNECT-TEST-1-11',
       }),
     });
 
