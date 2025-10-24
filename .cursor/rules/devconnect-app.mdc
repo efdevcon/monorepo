@@ -14,3 +14,16 @@ Icon Libraries:
 - Icon names use PascalCase with 'mdi' prefix (e.g., 'arrow-left' → `mdiArrowLeft`)
 - Only import icons you need (tree-shakeable)
 - Fallback to lucide-react only if MDI doesn't have the needed icon
+
+Custom Images/Icons:
+
+- For custom SVG icons not available in MDI, place them in `devconnect-app/public/images/`
+- Download custom icons using curl from the local asset server:
+
+  ```bash
+  cd devconnect-app/public/images/icons
+  curl -o icon-name.svg "http://localhost:3845/assets/{hash}.svg"
+  ```
+
+- Example: `curl -o book-quest-info.svg "http://localhost:3845/assets/0701a8f6ec9ddf685dd525802711649034fc87ae.svg"`
+- Reference in code: `/images/image-name.svg`
