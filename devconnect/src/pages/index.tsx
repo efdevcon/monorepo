@@ -1093,24 +1093,7 @@ const Home: NextPage = (props: any) => {
             </div>
           </div>
 
-          <div className={`section relative bg-white`}>
-            <div
-              className="absolute top-[-50px] left-0 w-full h-[1px] bg-black pointer-events-none opacity-0"
-              id="faq"
-            ></div>
-            <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="h-full flex flex-col justify-between gap-4">
-                <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
-                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
-              </div>
-
-              <div className={`${css['accordion']} tab-content`}>
-                <FAQComponent questions={data.pages.faq} />
-              </div>
-            </div>
-          </div>
-
-          <div className="section relative py-8 md:py-12 bg-[#74ACDF] bg-opacity-50">
+          <div className="section relative py-8 md:py-12 bg-white">
             <div className="mb-8">
               <h2 className="section-header black mb-6">OUR MEDIA PARTNERS</h2>
 
@@ -1186,6 +1169,23 @@ const Home: NextPage = (props: any) => {
               </div>
               <div className="flex items-center justify-center p-4">
                 <Image src={IProUpLogo} alt="iPro Up" className="max-h-12 w-auto" />
+              </div>
+            </div>
+          </div>
+
+          <div className={`section relative bg-[#74ACDF]  bg-opacity-50`}>
+            <div
+              className="absolute top-[-50px] left-0 w-full h-[1px] bg-black pointer-events-none opacity-0"
+              id="faq"
+            ></div>
+            <div className="mt-0 pt-16 pb-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="h-full flex flex-col justify-between gap-4">
+                <h1 className="section-header">{(globalThis as any).translations.frequently_asked_questions}</h1>
+                <Image src={EthGlyph} alt="ETH Gly" className="object-contain w-[65px] hidden md:block" />
+              </div>
+
+              <div className={`${css['accordion']} tab-content`}>
+                <FAQComponent questions={data.pages.faq} />
               </div>
             </div>
           </div>
