@@ -29,10 +29,10 @@ export const getProgramming = (event: Event) => {
         title: "Ethereum In 30 minutes",
         speakers: "Vitalik Buterin",
       },
-      {
-        title: "Ethereum Protocol",
-        speakers: "Dankrad Feist",
-      },
+      // {
+      //   title: "Ethereum Protocol",
+      //   speakers: "",
+      // },
       {
         title: "Privacy in Ethereum",
         speakers: "Peter Van Valkenburgh",
