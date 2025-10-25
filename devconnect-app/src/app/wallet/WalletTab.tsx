@@ -86,45 +86,45 @@ export default function WalletTab() {
   } = walletData;
 
   // Debug: Log hasMultipleWallets value
-  console.log('🎯 [WALLET_TAB] hasMultipleWallets:', hasMultipleWallets);
+  // console.log('🎯 [WALLET_TAB] hasMultipleWallets:', hasMultipleWallets);
 
   // Check if beta mode is enabled (hide features for beta users)
   const isBetaMode = hasBetaAccess();
 
   // Debug: Log the refresh trigger value received from useWallet
-  console.log('🔍 [WALLET_TAB] Received from useWallet:', {
-    address: address?.slice(0, 10),
-    portfolioRefreshTrigger,
-    portfolioCacheKeys: Object.keys(portfolioCache).length,
-  });
+  // console.log('🔍 [WALLET_TAB] Received from useWallet:', {
+  //   address: address?.slice(0, 10),
+  //   portfolioRefreshTrigger,
+  //   portfolioCacheKeys: Object.keys(portfolioCache).length,
+  // });
 
   // Get portfolio for current address from cache
   const portfolio = useMemo(() => {
     const addressKey = address?.toLowerCase();
 
-    console.log('📊 [WALLET_TAB] Portfolio computing with trigger:', {
-      addressKey,
-      refreshTrigger: portfolioRefreshTrigger,
-      cacheKeys: Object.keys(portfolioCache),
-      hasAddressInCache: addressKey ? !!portfolioCache[addressKey] : false,
-    });
+    // console.log('📊 [WALLET_TAB] Portfolio computing with trigger:', {
+    //   addressKey,
+    //   refreshTrigger: portfolioRefreshTrigger,
+    //   cacheKeys: Object.keys(portfolioCache),
+    //   hasAddressInCache: addressKey ? !!portfolioCache[addressKey] : false,
+    // });
 
     const result = addressKey ? portfolioCache[addressKey] || null : null;
 
     // Deep log the portfolio cache to understand what's happening
-    console.log('📊 [WALLET_TAB] Portfolio computed:', {
-      address: addressKey,
-      hasPortfolio: !!result,
-      totalValue: result?.totalValue,
-      tokenBalancesCount: result?.tokenBalances?.length,
-      activityCount: result?.recentActivity?.length,
-      cacheKeys: Object.keys(portfolioCache),
-      refreshTrigger: portfolioRefreshTrigger,
-      recentActivitySample: result?.recentActivity?.slice(0, 3).map((a) => ({
-        hash: a.transaction?.hash?.slice(0, 10),
-        timestamp: a.transaction?.timestamp,
-      })),
-    });
+    // console.log('📊 [WALLET_TAB] Portfolio computed:', {
+    //   address: addressKey,
+    //   hasPortfolio: !!result,
+    //   totalValue: result?.totalValue,
+    //   tokenBalancesCount: result?.tokenBalances?.length,
+    //   activityCount: result?.recentActivity?.length,
+    //   cacheKeys: Object.keys(portfolioCache),
+    //   refreshTrigger: portfolioRefreshTrigger,
+    //   recentActivitySample: result?.recentActivity?.slice(0, 3).map((a) => ({
+    //     hash: a.transaction?.hash?.slice(0, 10),
+    //     timestamp: a.transaction?.timestamp,
+    //   })),
+    // });
     return result;
   }, [address, portfolioCache, portfolioRefreshTrigger]);
   const { currentChainId, getCurrentNetwork, switchToNetwork } =
@@ -182,18 +182,18 @@ export default function WalletTab() {
   // Merge stored payments with portfolio activity
   // This ensures locally stored payments appear immediately without waiting for API refresh
   const mergedActivity = useMemo(() => {
-    console.log('🔄 [WALLET_TAB] mergedActivity computing...', {
-      hasPortfolio: !!portfolio,
-      portfolioActivityCount: portfolio?.recentActivity?.length,
-      storedPaymentsCount: Object.keys(storedPayments).length,
-      storedPaymentsKeys: Object.keys(storedPayments),
-      storedPaymentsDetails: Object.values(storedPayments).map((p) => ({
-        paymentId: p.paymentId,
-        txHash: p.txHash?.slice(0, 10),
-        timestamp: p.timestamp,
-        amount: p.amount,
-      })),
-    });
+    // console.log('🔄 [WALLET_TAB] mergedActivity computing...', {
+    //   hasPortfolio: !!portfolio,
+    //   portfolioActivityCount: portfolio?.recentActivity?.length,
+    //   storedPaymentsCount: Object.keys(storedPayments).length,
+    //   storedPaymentsKeys: Object.keys(storedPayments),
+    //   storedPaymentsDetails: Object.values(storedPayments).map((p) => ({
+    //     paymentId: p.paymentId,
+    //     txHash: p.txHash?.slice(0, 10),
+    //     timestamp: p.timestamp,
+    //     amount: p.amount,
+    //   })),
+    // });
 
     if (!portfolio) {
       console.log('⚠️ [WALLET_TAB] No portfolio, returning empty activity');
@@ -223,26 +223,26 @@ export default function WalletTab() {
         userOpHash: payment.userOpHash,
       }));
 
-    console.log('🔄 [WALLET_TAB] Merging activity:', {
-      portfolioActivityCount: portfolio.recentActivity?.length || 0,
-      localPaymentsCount: localPaymentsActivity.length,
-      localPaymentsHashes: localPaymentsActivity.map((p) =>
-        p.transaction.hash.slice(0, 10)
-      ),
-    });
+    // console.log('🔄 [WALLET_TAB] Merging activity:', {
+    //   portfolioActivityCount: portfolio.recentActivity?.length || 0,
+    //   localPaymentsCount: localPaymentsActivity.length,
+    //   localPaymentsHashes: localPaymentsActivity.map((p) =>
+    //     p.transaction.hash.slice(0, 10)
+    //   ),
+    // });
 
     // Merge with portfolio activity, removing duplicates by hash
     const activityMap = new Map();
 
     // Add portfolio activity first (from API)
     const portfolioActivity = portfolio.recentActivity || [];
-    console.log('🔄 [WALLET_TAB] Processing portfolio activity:', {
-      count: portfolioActivity.length,
-      sample: portfolioActivity.slice(0, 2).map((a) => ({
-        hash: a.transaction?.hash?.slice(0, 10),
-        timestamp: a.transaction?.timestamp,
-      })),
-    });
+    // console.log('🔄 [WALLET_TAB] Processing portfolio activity:', {
+    //   count: portfolioActivity.length,
+    //   sample: portfolioActivity.slice(0, 2).map((a) => ({
+    //     hash: a.transaction?.hash?.slice(0, 10),
+    //     timestamp: a.transaction?.timestamp,
+    //   })),
+    // });
 
     portfolioActivity.forEach((activity) => {
       if (activity.transaction?.hash) {
@@ -256,11 +256,11 @@ export default function WalletTab() {
     // Add/override with local payments (more recent/accurate)
     localPaymentsActivity.forEach((activity) => {
       activityMap.set(activity.transaction.hash.toLowerCase(), activity);
-      console.log('✅ [WALLET_TAB] Added local payment to activity:', {
-        hash: activity.transaction.hash.substring(0, 10) + '...',
-        timestamp: new Date(activity.transaction.timestamp).toISOString(),
-        paymentId: activity.paymentId,
-      });
+      // console.log('✅ [WALLET_TAB] Added local payment to activity:', {
+      //   hash: activity.transaction.hash.substring(0, 10) + '...',
+      //   timestamp: new Date(activity.transaction.timestamp).toISOString(),
+      //   paymentId: activity.paymentId,
+      // });
     });
 
     // Convert back to array and sort by timestamp (newest first)
@@ -270,62 +270,62 @@ export default function WalletTab() {
       return timeB - timeA;
     });
 
-    console.log('✅ [WALLET_TAB] Final merged activity:', {
-      count: merged.length,
-      hashes: merged.slice(0, 5).map((a) => ({
-        hash: a.transaction?.hash?.slice(0, 10),
-        timestamp: a.transaction?.timestamp,
-        isLocal: a.isLocalPayment,
-        paymentId: a.paymentId,
-      })),
-      refreshTrigger: portfolioRefreshTrigger,
-    });
+    // console.log('✅ [WALLET_TAB] Final merged activity:', {
+    //   count: merged.length,
+    //   hashes: merged.slice(0, 5).map((a) => ({
+    //     hash: a.transaction?.hash?.slice(0, 10),
+    //     timestamp: a.transaction?.timestamp,
+    //     isLocal: a.isLocalPayment,
+    //     paymentId: a.paymentId,
+    //   })),
+    //   refreshTrigger: portfolioRefreshTrigger,
+    // });
 
     return merged;
   }, [portfolio, storedPayments, portfolioRefreshTrigger]);
 
   // Debug logging - track if component is receiving props
-  console.log('🏠 [WALLET_TAB] Component render:', {
-    address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
-    fullAddress: address,
-    isPara,
-    hasIdentity: !!identity,
-    hasPortfolio: !!portfolio,
-    email,
-    paraEmail,
-    supabaseEmail,
-    isAuthenticated,
-    hasMultipleWallets,
-    para: {
-      isConnected: para.isConnected,
-      address: para.address,
-    },
-    eoa: {
-      isConnected: eoa.isConnected,
-      address: eoa.address,
-    },
-  });
+  // console.log('🏠 [WALLET_TAB] Component render:', {
+  //   address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
+  //   fullAddress: address,
+  //   isPara,
+  //   hasIdentity: !!identity,
+  //   hasPortfolio: !!portfolio,
+  //   email,
+  //   paraEmail,
+  //   supabaseEmail,
+  //   isAuthenticated,
+  //   hasMultipleWallets,
+  //   para: {
+  //     isConnected: para.isConnected,
+  //     address: para.address,
+  //   },
+  //   eoa: {
+  //     isConnected: eoa.isConnected,
+  //     address: eoa.address,
+  //   },
+  // });
 
   // Debug logging for wallet state changes
-  useEffect(() => {
-    console.log('🏠 [WALLET_TAB] Wallet state update (useEffect):', {
-      address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
-      fullAddress: address,
-      isPara,
-      identity: identity
-        ? { name: identity.name, hasAvatar: !!identity.avatar }
-        : null,
-      portfolio: portfolio
-        ? {
-            totalValue: portfolio.totalValue,
-            assetsCount: portfolio.tokenBalances.length,
-            activityCount: portfolio.recentActivity.length,
-          }
-        : null,
-      portfolioLoading,
-      portfolioError,
-    });
-  }, [address, isPara, identity, portfolio, portfolioLoading, portfolioError]);
+  // useEffect(() => {
+  //   console.log('🏠 [WALLET_TAB] Wallet state update (useEffect):', {
+  //     address: address ? `${address.slice(0, 6)}...${address.slice(-4)}` : null,
+  //     fullAddress: address,
+  //     isPara,
+  //     identity: identity
+  //       ? { name: identity.name, hasAvatar: !!identity.avatar }
+  //       : null,
+  //     portfolio: portfolio
+  //       ? {
+  //           totalValue: portfolio.totalValue,
+  //           assetsCount: portfolio.tokenBalances.length,
+  //           activityCount: portfolio.recentActivity.length,
+  //         }
+  //       : null,
+  //     portfolioLoading,
+  //     portfolioError,
+  //   });
+  // }, [address, isPara, identity, portfolio, portfolioLoading, portfolioError]);
 
   const handleSendClick = () => {
     if (isPara) {
