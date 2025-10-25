@@ -43,6 +43,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     wallet.email,
     wallet.isDisconnecting,
     wallet.portfolioRefreshTrigger, // CRITICAL: Include to force re-render when portfolio updates
+    wallet.hasMultipleWallets, // CRITICAL: Include to force re-render when multiple wallets state changes
     // Include other primitive values that change frequently
   ]);
   

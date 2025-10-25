@@ -69,6 +69,21 @@ export function useWalletManager() {
   // Track disconnecting state at manager level for better UI control
   const [isDisconnecting, setIsDisconnecting] = useState(false);
 
+  // Track multiple wallets state to ensure reactivity
+  const [hasMultipleWallets, setHasMultipleWallets] = useState(false);
+
+  // Update hasMultipleWallets when addresses change
+  useEffect(() => {
+    const newValue = !!(para.address && eoa.address);
+    console.log('💎 [WALLET_MANAGER] hasMultipleWallets updating:', {
+      paraAddress: para.address,
+      eoaAddress: eoa.address,
+      oldValue: hasMultipleWallets,
+      newValue,
+    });
+    setHasMultipleWallets(newValue);
+  }, [para.address, eoa.address, hasMultipleWallets]);
+
   // Load primary wallet type from localStorage
   const [primaryType, setPrimaryTypeState] = useState<WalletType>(() => {
     if (typeof window !== 'undefined') {
@@ -628,6 +643,7 @@ export function useWalletManager() {
 
   // Debug logging for address changes
   useEffect(() => {
+    const hasMultiple = !!(para.address && eoa.address);
     console.log('🔍 [WALLET_MANAGER] State update:', {
       primaryType,
       isParaActive,
@@ -637,7 +653,18 @@ export function useWalletManager() {
       paraAddress: para.address,
       eoaAddress: eoa.address,
       finalAddress: address,
+      hasMultipleWallets: hasMultiple,
     });
+
+    // Extra log when both wallets are connected
+    if (para.isConnected && eoa.isConnected) {
+      console.log('🔥 [WALLET_MANAGER] BOTH WALLETS CONNECTED!', {
+        paraAddress: para.address,
+        eoaAddress: eoa.address,
+        hasMultipleWallets: hasMultiple,
+        calculation: `!!(${para.address} && ${eoa.address}) = ${hasMultiple}`,
+      });
+    }
   }, [
     primaryType,
     isParaActive,
@@ -836,6 +863,6 @@ export function useWalletManager() {
     ...userMethods, // sendOtp, verifyOtp, signOut, supabase
 
     // Status flags
-    hasMultipleWallets: para.address && eoa.address,
+    hasMultipleWallets,
   };
 }

@@ -85,6 +85,9 @@ export default function WalletTab() {
     hasMultipleWallets,
   } = walletData;
 
+  // Debug: Log hasMultipleWallets value
+  console.log('🎯 [WALLET_TAB] hasMultipleWallets:', hasMultipleWallets);
+
   // Check if beta mode is enabled (hide features for beta users)
   const isBetaMode = hasBetaAccess();
 
@@ -764,21 +767,23 @@ export default function WalletTab() {
 
           {/* Action Buttons */}
           <div className="flex gap-4">
-            <div className="flex-1 flex flex-col items-center gap-2">
-              <button
-                onClick={handleSendClick}
-                className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
-              >
-                <Icon
-                  path={mdiSendOutline}
-                  size={1.3}
-                  className="text-[#0073de]"
-                />
-              </button>
-              <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
-                Send
-              </span>
-            </div>
+            {isPara && (
+              <div className="flex-1 flex flex-col items-center gap-2">
+                <button
+                  onClick={handleSendClick}
+                  className="bg-white border border-[#f0f0f4] rounded-[4px] p-5 w-full aspect-square flex items-center justify-center hover:bg-gray-50 transition-colors cursor-pointer"
+                >
+                  <Icon
+                    path={mdiSendOutline}
+                    size={1.3}
+                    className="text-[#0073de]"
+                  />
+                </button>
+                <span className="text-[#353548] text-sm font-medium tracking-[-0.1px]">
+                  Send
+                </span>
+              </div>
+            )}
             <div className="flex-1 flex flex-col items-center gap-2">
               <button
                 onClick={handleReceiveClick}
