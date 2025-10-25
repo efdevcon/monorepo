@@ -25,6 +25,10 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
   const [lastShownTimestamp, setLastShownTimestamp] = useLocalStorage<
     number | null
   >('pwaPopupLastShown', null);
+  const [shownCount, setShownCount] = useLocalStorage<number>(
+    'pwaPopupShownCount',
+    0
+  );
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
@@ -42,13 +46,23 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     // Check if 24 hours have passed since last shown
     const now = Date.now();
     const oneDayInMs = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-    const canShowToday =
+    const has24HoursPassed =
       !lastShownTimestamp || now - lastShownTimestamp >= oneDayInMs;
 
-    // Only show PWA prompt if not already installed, showInstallPWA is true, and it hasn't been shown today
-    if (pwa === false && showInstallPWA === true && canShowToday) {
+    // Reset counter if 24 hours have passed
+    if (has24HoursPassed && shownCount >= 3) {
+      setShownCount(0);
+      setLastShownTimestamp(null);
+    }
+
+    // Show popup if:
+    // 1. PWA not already installed
+    // 2. showInstallPWA is true
+    // 3. Shown less than 3 times OR 24 hours have passed since it was last hidden
+    const canShow = shownCount < 3 || has24HoursPassed;
+
+    if (pwa === false && showInstallPWA === true && canShow) {
       setShowPopup(true);
-      setLastShownTimestamp(now); // Update the timestamp when showing
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -59,7 +73,14 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
         handleBeforeInstallPrompt
       );
     };
-  }, [pwa, showInstallPWA, lastShownTimestamp, setLastShownTimestamp]);
+  }, [
+    pwa,
+    showInstallPWA,
+    lastShownTimestamp,
+    shownCount,
+    setLastShownTimestamp,
+    setShownCount,
+  ]);
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
@@ -75,6 +96,16 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
   const handleCloseClick = () => {
     setShowPopup(false);
     setShowInstallPWA(false);
+
+    // Increment the shown count
+    const newCount = shownCount + 1;
+    setShownCount(newCount);
+
+    // If we've shown it 3 times, start the 24-hour cooldown
+    if (newCount >= 3) {
+      setLastShownTimestamp(Date.now());
+    }
+
     if (onClose) {
       onClose();
     }
