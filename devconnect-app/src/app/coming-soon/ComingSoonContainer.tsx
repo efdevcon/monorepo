@@ -19,10 +19,10 @@ export default function ComingSoonContainer({ content, children }: ComingSoonCon
         marginTop: pwa ? '60px' : '0',
       }}
     >
-      <div className="flex flex-col items-center gap-10 w-full max-w-[345px]">
+      <div className="flex flex-col items-center gap-10 w-full max-w-[345px] lg:max-w-2xl">
         <div className="flex flex-col gap-3 items-center w-full">
           <pre
-            className="text-[0.4rem] lg:text-[0.55rem] leading-tight max-w-full select-text"
+            className="text-[0.4rem] lg:text-[0.45rem] leading-tight max-w-full select-text text-center"
             style={{
               fontFamily: 'var(--font-geist-mono), monospace',
               color: '#353548',

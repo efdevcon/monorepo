@@ -10,7 +10,7 @@ async function getComingSoonContent() {
 
     // Extract just the ASCII art (before the --- separator if it exists)
     const parts = content.split('---');
-    return parts[0].trim();
+    return parts[0];
   } catch (error) {
     console.error('Error reading COMING_SOON.md:', error);
     return 'Coming Soon...';
