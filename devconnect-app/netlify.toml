@@ -13,3 +13,9 @@
 [build.environment]
 PNPM_FLAGS = "--filter devconnect-app..."
 NODE_OPTIONS = "--max-old-space-size=4096"
+
+[[redirects]]
+  from = "https://devconnect-pwa.netlify.app/*"
+  to = "https://app.devconnect.org/:splat"
+  status = 301
+  force = true
