@@ -94,22 +94,27 @@ button, a, [role="button"] {
 
 /* Prevent zooming on the entire page */
 html, body {
-  touch-action: manipulation;
+  /* touch-action: manipulation; */ /* Disabled: can interfere with scrolling on iOS */
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  /* Removed user-select: none as it can interfere with touch scrolling on iOS */
 }
 
-/* Allow text selection in inputs only */
+/* Allow text selection in inputs and other content */
 input, textarea {
   -webkit-user-select: text;
   -khtml-user-select: text;
   -moz-user-select: text;
   -ms-user-select: text;
   user-select: text;
+}
+
+/* Prevent text selection on buttons and interactive elements only */
+button, a, [role="button"] {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Hide scrollbars for webkit browsers */
@@ -257,17 +262,17 @@ body {
   }
 
   overflow-x: hidden;
+  overflow-y: auto; /* Ensure body can scroll */
   overscroll-behavior-y: contain;
   position: relative;
-  /* Prevent zooming */
-  touch-action: manipulation;
+  /* Removed touch-action to allow normal scrolling */
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  user-select: none;
   /* Prevent iOS Safari zoom */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
+  /* Enable smooth scrolling on iOS */
+  -webkit-overflow-scrolling: touch;
 }
 
 .section {

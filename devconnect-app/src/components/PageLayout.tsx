@@ -228,10 +228,13 @@ export default function PageLayout({
       {isMobile && (
         <>
           <div
-            className="relative md:hidden grow flex flex-col"
+            className="relative md:hidden grow flex flex-col pt-[100px]"
             data-type="layout-mobile"
+            style={{
+              paddingTop: title ? (tabs.length > 1 ? pwa ? '146px' : '100px' : pwa ? '98px' : '52px') : '0px',
+            }}
           >
-            <div className="w-full shrink-0 flex flex-col sticky top-0 z-[999999]">
+            <div className="w-full shrink-0 flex flex-col fixed top-0 left-0 right-0 z-[100]">
               {title && (
                 <div
                   data-page="Header"
