@@ -23,6 +23,7 @@ import NomadaCafeImage from './images/cafenomada.png'
 import BanklessImage from './images/bankless-perk.png'
 import MetanaImage from './images/metana.jpg'
 import ChainstackImage from './images/chainstack.png'
+import FortaImage from './images/forta.png'
 
 type Perk = {
   coupon_collection: string
@@ -242,13 +243,21 @@ const perks: Perk[] = [
     ],
   },
   {
-    coupon_collection: 'aleph-devconnect-2025',
-    name: 'Aleph Cloud',
-    description: 'Cloud service credits by Aleph Cloud',
+    coupon_collection: 'nomada-cafe-2025',
+    name: 'Nómada Café',
+    description: '10% OFF on all menu items at Nómada Café',
     requires: 'Devconnect ARG ticket',
-    issuer: 'Aleph Cloud',
-    image: AlephImage,
     zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code in store',
+    urls: [
+      {
+        text: 'View Instagram',
+        url: 'https://www.instagram.com/cafe.nomada.ar/',
+      },
+    ],
+    global_coupon: 'devconnect2025',
+    issuer: 'Nómada Café',
+    image: NomadaCafeImage,
   },
   {
     coupon_collection: 'van-al',
@@ -300,6 +309,15 @@ const perks: Perk[] = [
         url: 'https://app.tripsha.com/event/68cd411de35f2900024f7f53',
       },
     ],
+  },
+  {
+    coupon_collection: 'aleph-devconnect-2025',
+    name: 'Aleph Cloud',
+    description: 'Cloud service credits by Aleph Cloud',
+    requires: 'Devconnect ARG ticket',
+    issuer: 'Aleph Cloud',
+    image: AlephImage,
+    zupass_proof_id: 'Devconnect ARG',
   },
   {
     coupon_collection: 'koinx-2025',
@@ -355,24 +373,6 @@ const perks: Perk[] = [
   },
 
   {
-    coupon_collection: 'nomada-cafe-2025',
-    name: 'Nómada Café',
-    description: '10% OFF on all menu items at Nómada Café',
-    requires: 'Devconnect ARG ticket',
-    zupass_proof_id: 'Devconnect ARG',
-    instructions: 'Use the code in store',
-    urls: [
-      {
-        text: 'View Instagram',
-        url: 'https://www.instagram.com/cafe.nomada.ar/',
-      },
-    ],
-    global_coupon: 'devconnect2025',
-    issuer: 'Nómada Café',
-    image: NomadaCafeImage,
-  },
-
-  {
     coupon_collection: 'chainstack-2025',
     name: 'Chainstack',
     description: 'Free Growth plan for 3 months',
@@ -406,6 +406,24 @@ const perks: Perk[] = [
     global_coupon: 'DCXMETANA',
     issuer: 'Metana',
     image: MetanaImage,
+  },
+
+  {
+    coupon_collection: 'forta-2025',
+    name: 'Forta',
+    description: 'Security & Compliance 50% off!',
+    requires: 'Devconnect ARG ticket',
+    zupass_proof_id: 'Devconnect ARG',
+    instructions: 'Use the code at checkout',
+    urls: [
+      {
+        text: 'Visit Forta',
+        url: 'https://www.forta.org/',
+      },
+    ],
+    global_coupon: 'FORTDEVCON50',
+    issuer: 'Forta',
+    image: FortaImage,
   },
 
   {

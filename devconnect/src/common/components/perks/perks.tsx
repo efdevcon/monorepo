@@ -418,7 +418,9 @@ const Perk = ({
     let signature = ''
 
     try {
-      signature = await signMessageAsync({ message: 'I own this wallet and want to prove it.' })
+      signature = await signMessageAsync({
+        message: 'I own this wallet and want to prove it in order to get my Devconnect 2025 ARG ticket.',
+      })
       console.log('signature', signature)
     } catch (error) {
       console.error('Error signing message:', error)

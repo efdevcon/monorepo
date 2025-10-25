@@ -9,7 +9,7 @@ const config = createConfig({
   },
 })
 
-const message = 'I own this wallet and want to prove it.'
+const message = 'I own this wallet and want to prove it in order to get my Devconnect 2025 ARG ticket.'
 
 export const proveWalletOwnership = async (signature: string, address: string) => {
   const isPGWallet = pgWallets.some(wallet => wallet.toLowerCase() === address.toLowerCase())
