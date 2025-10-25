@@ -654,8 +654,15 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
   // Redirect to /onboarding/intro when connected
   if (isConnected) {
-    router.push('/onboarding/intro');
-    return null;
+    if (localStorage.getItem('showOnboardingIntro') !== 'true') {
+      localStorage.setItem('showOnboardingIntro', 'true');
+      router.push('/onboarding/intro');
+      return null;
+    } else {
+      // If user has already seen the intro, redirect to home
+      router.push('/');
+      return null;
+    }
   }
 
   // Show loading state for first 2 seconds
