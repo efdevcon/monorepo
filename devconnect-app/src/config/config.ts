@@ -16,7 +16,6 @@ export const APP_CONFIG = {
       : 'BETA',
 
   BASE_RPC_URL: `https://base-mainnet.infura.io/v3/${process.env.NEXT_PUBLIC_INFURA_APIKEY}` || "https://mainnet.base.org",
-  SOCIAL_IMAGE: `${process.env.NEXT_PUBLIC_APP_URL}/social.jpg`,
 };
 
 // AppKit specific constants
