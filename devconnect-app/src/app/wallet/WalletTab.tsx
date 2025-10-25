@@ -972,14 +972,14 @@ export default function WalletTab() {
             {activeTab === 'assets' ? (
               <>
                 <div className="flex gap-6 items-center w-full">
-                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
+                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px] whitespace-nowrap">
                     My Assets
                   </h3>
-                  <div className="h-7 shrink-0">
+                  <div className="shrink-0 w-auto max-w-[140px]">
                     <img
                       src={imgZapperLogo}
                       alt="Powered by Zapper"
-                      className="block w-full h-full object-contain"
+                      className="block w-full h-auto object-contain"
                     />
                   </div>
                 </div>
@@ -1099,14 +1099,14 @@ export default function WalletTab() {
             ) : (
               <>
                 <div className="flex gap-6 items-center w-full">
-                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px]">
+                  <h3 className="flex-grow text-[#20202b] text-lg font-bold tracking-[-0.1px] whitespace-nowrap">
                     Recent Activity
                   </h3>
-                  <div className="h-7 shrink-0">
+                  <div className="shrink-0 w-auto max-w-[140px]">
                     <img
                       src={imgZapperLogo}
                       alt="Powered by Zapper"
-                      className="block w-full h-full object-contain"
+                      className="block w-full h-auto object-contain"
                     />
                   </div>
                 </div>
