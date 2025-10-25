@@ -56,11 +56,12 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     }
 
     // Show popup if:
-    // 1. PWA not already installed
+    // 1. PWA not already installed (pwa is false)
     // 2. showInstallPWA is true
     // 3. Shown less than 3 times OR 24 hours have passed since it was last hidden
     const canShow = shownCount < 3 || has24HoursPassed;
 
+    // Display if pwa is explicitly false (not installed)
     if (pwa === false && showInstallPWA === true && canShow) {
       setShowPopup(true);
     }
