@@ -63,7 +63,7 @@ export default function SettingsTab() {
   const [showLanguageModal, setShowLanguageModal] = useState(false);
 
   // Get disconnect function from WalletContext
-  const { disconnect, isDisconnecting, isPara } = useWallet();
+  const { disconnect, isDisconnecting, address } = useWallet();
 
   // Extract Para wallet information
   const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
@@ -311,26 +311,26 @@ export default function SettingsTab() {
             onClick={handleLogout}
             disabled={isDisconnecting}
             className={cn(
-              'bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] transition-colors',
+              'w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 transition-colors',
               isDisconnecting
                 ? 'opacity-50 cursor-not-allowed'
-                : 'cursor-pointer hover:bg-[#0060c0]'
+                : 'hover:bg-gray-50 cursor-pointer'
             )}
           >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiLogout} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Logout
+            </p>
             {isDisconnecting ? (
-              <>
-                <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
-                <span className="font-bold text-base text-center text-white">
-                  Logging out...
-                </span>
-              </>
+              <span className="text-[#4b4b66] text-xs">Logging out...</span>
             ) : (
-              <>
-                <Icon path={mdiLogout} size={0.8} className="text-white" />
-                <span className="font-bold text-base text-center text-white">
-                  Logout
-                </span>
-              </>
+              <Icon
+                path={mdiChevronRight}
+                size={0.65}
+                className="text-[#4b4b66]"
+              />
             )}
           </button>
         ) : (
@@ -407,18 +407,24 @@ export default function SettingsTab() {
         </button>
 
         {/* Debug */}
-        <button
-          onClick={handleDebugClick}
-          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
-        >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <Icon path={mdiCodeBraces} size={1} className="text-[#353548]" />
-          </div>
-          <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Debug
-          </p>
-          <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        {address && (
+          <button
+            onClick={handleDebugClick}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiCodeBraces} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Debug
+            </p>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-[#4b4b66]"
+            />
+          </button>
+        )}
 
         {/* Provided by Para */}
         <div className="flex items-center justify-center gap-3 mt-4">
