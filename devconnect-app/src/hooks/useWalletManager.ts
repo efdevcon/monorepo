@@ -314,19 +314,19 @@ export function useWalletManager() {
   ]);
 
   // Debug: Log address computation and multi-wallet state
-  console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
-    address: address ? address.slice(0, 10) + '...' : null,
-    fullAddress: address,
-    isPara,
-    isParaActive,
-    isEOAActive,
-    paraAddress: para.address?.slice(0, 10) + '...',
-    eoaAddress: eoa.address?.slice(0, 10) + '...',
-    paraFullAddress: para.address,
-    eoaFullAddress: eoa.address,
-    hasMultipleWallets: !!(para.address && eoa.address),
-    primaryType,
-  });
+  // console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
+  //   address: address ? address.slice(0, 10) + '...' : null,
+  //   fullAddress: address,
+  //   isPara,
+  //   isParaActive,
+  //   isEOAActive,
+  //   paraAddress: para.address?.slice(0, 10) + '...',
+  //   eoaAddress: eoa.address?.slice(0, 10) + '...',
+  //   paraFullAddress: para.address,
+  //   eoaFullAddress: eoa.address,
+  //   hasMultipleWallets: !!(para.address && eoa.address),
+  //   primaryType,
+  // });
 
   // ============================================
   // Identity Resolution (ENS) - Store per address
