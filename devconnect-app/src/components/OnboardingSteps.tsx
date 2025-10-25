@@ -11,7 +11,6 @@ import Image from 'next/image';
 import Button from 'lib/components/voxel-button/button';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
-import CakeIcon from './icons/onboarding-steps/cake.svg';
 import CupIcon from './icons/onboarding-steps/cup.svg';
 import LuggageIcon from './icons/onboarding-steps/luggage.svg';
 import MicrophoneIcon from './icons/onboarding-steps/microphone.svg';
@@ -66,6 +65,26 @@ const Block = ({
 };
 
 const defaultSteps = [
+  <div key="step0" className="flex flex-col items-center text-center">
+    <div className="aspect-[480/480] max-h-[360px] max-w-[360px] relative w-full mb-6">
+      <Image
+        src="/images/wallet-loaded.gif"
+        alt="Wallet connected"
+        width={480}
+        height={480}
+        className="w-full h-full object-contain mix-blend-multiply"
+        unoptimized
+      />
+    </div>
+    <div className="leading-tight">
+      <div className="text-xl font-semibold leading-tight mb-2">
+        Your wallet is connected!
+      </div>
+      <div className="text-sm sm:text-base">
+        Final steps: let's learn about the World's Fair!
+      </div>
+    </div>
+  </div>,
   <Slide
     key="step1"
     title="Welcome to Devconnect ARG: the first Ethereum World's Fair"
@@ -73,14 +92,14 @@ const defaultSteps = [
     description={
       <div className="flex flex-col gap-2 mt-4 text-sm sm:text-base">
         <div>
-          You're joining 15,000+ builders, developers and users from around the
-          world as we imagine the city of the future, built on Ethereum.
+          You're joining 15,000+ builders and users from around the world as we
+          imagine the city of the future, built on Ethereum.
         </div>
         <div>
           <span className="font-semibold">
             Ethereum is ready for the real world
           </span>{' '}
-          - we're excited to show you how.
+          – we're excited to show you how.
         </div>
       </div>
     }
@@ -99,7 +118,7 @@ const defaultSteps = [
             description={
               <div>
                 Join events featuring{' '}
-                <span className="font-semibold">industry leaders </span> and
+                <span className="font-semibold">industry leaders</span> and
                 builders working on Ethereum today
               </div>
             }
@@ -157,18 +176,8 @@ const defaultSteps = [
             icon={<LuggageIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
             description={
               <div>
-                Grab your collectible 'stamp' from each booth at the{' '}
+                Grab your collectible 'Stamp' from each booth at the{' '}
                 <span className="font-semibold">App Showcase</span>
-              </div>
-            }
-          />
-          <Block
-            icon={<CupIcon className="w-6 h-6 sm:w-8 sm:h-8" />}
-            description={
-              <div>
-                Earn physical rewards, with{' '}
-                <span className="font-semibold">special prizes</span> for top
-                collectors!
               </div>
             }
           />
@@ -214,9 +223,10 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
       <div className="flex flex-col h-full justify-center items-center">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
-            {currentStep === 0 && 'Welcome'}
-            {currentStep === 1 && 'Worlds Fair'}
-            {currentStep === 2 && 'Quests & Rewards'}
+            {currentStep === 0 && 'Setup'}
+            {currentStep === 1 && 'Welcome'}
+            {currentStep === 2 && "World's Fair"}
+            {currentStep === 3 && 'Quests & rewards'}
           </div>
           <DotsSelector
             items={stepItems}
