@@ -1,6 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
+import Icon from '@mdi/react';
+import { mdiAlertOutline } from '@mdi/js';
 import { openReportIssue } from '@/utils/reportIssue';
 
 export default function GlobalError({
@@ -21,100 +24,155 @@ export default function GlobalError({
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
       <body>
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-4">
-          <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8">
-            <div className="flex flex-col items-center text-center space-y-6">
+        <div
+          className="min-h-screen flex flex-col items-center justify-center p-4 overflow-clip relative flex-1 gap-8"
+          style={{
+            backgroundImage:
+              'linear-gradient(-8.90443e-07deg, rgba(246, 182, 19, 0.15) 0%, rgba(255, 133, 166, 0.15) 9.0741%, rgba(152, 148, 255, 0.15) 18.289%, rgba(116, 172, 223, 0.15) 42.138%, rgba(242, 249, 255, 0.15) 55.067%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
+          }}
+        >
+          {/* Logo at the top */}
+          <div className="absolute top-8 left-1/2 -translate-x-1/2">
+            <Image
+              src="/images/devconnect-arg-logo.svg"
+              alt="Devconnect ARG Logo"
+              width={161}
+              height={41}
+              className="w-auto h-[41px]"
+            />
+          </div>
+
+          <div
+            className="w-full max-w-[560px] min-w-[320px] bg-white border border-solid box-border flex flex-col items-center justify-center"
+            style={{
+              borderColor: '#ededf0',
+              borderRadius: '4px',
+              width: 'min(353px, 100%)',
+            }}
+          >
+            <div className="box-border flex flex-col gap-4 items-center justify-center p-6 w-full">
               {/* Error Icon */}
-              <div className="w-20 h-20 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-10 h-10 text-red-600 dark:text-red-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                  />
-                </svg>
+              <div
+                className="flex items-center justify-center overflow-clip relative shrink-0"
+                style={{
+                  backgroundColor: '#ffe3e2',
+                  borderRadius: '360px',
+                  width: '88px',
+                  height: '88px',
+                }}
+              >
+                <Icon path={mdiAlertOutline} size="40px" color="#E53935" />
               </div>
 
-              {/* Error Message */}
-              <div className="space-y-2">
-                <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {/* Error Content */}
+              <div className="flex flex-col gap-3 items-center w-full">
+                <h1
+                  className="font-bold text-center tracking-[-0.1px] w-full"
+                  style={{
+                    color: '#20202b',
+                    fontSize: '24px',
+                    lineHeight: '1.2',
+                    fontFamily: 'var(--font-geist-sans, sans-serif)',
+                  }}
+                >
                   Critical Error
                 </h1>
-                <p className="text-gray-600 dark:text-gray-400">
-                  We encountered a critical error. Please refresh the page to
-                  continue.
-                </p>
-              </div>
+                <div
+                  className="font-normal text-center tracking-[-0.1px] w-full"
+                  style={{
+                    color: '#353548',
+                    fontSize: '16px',
+                    lineHeight: '1.3',
+                    fontFamily: 'var(--font-geist-sans, sans-serif)',
+                  }}
+                >
+                  <p className="mb-0">We encountered a critical error.</p>
+                  <p>Please refresh the page to continue.</p>
+                </div>
 
-              {/* Error Details (only in development) */}
-              {process.env.NODE_ENV === 'development' && (
-                <div className="w-full p-4 bg-gray-50 dark:bg-gray-900 rounded-md">
-                  <p className="text-xs text-left text-gray-700 dark:text-gray-300 font-mono break-all">
+                {/* Error Details */}
+                <div
+                  className="box-border flex gap-2 items-center justify-center p-4 w-full"
+                  style={{
+                    backgroundColor: '#ffe3e2',
+                  }}
+                >
+                  <p
+                    className="font-normal tracking-[-0.1px] break-words"
+                    style={{
+                      color: '#353548',
+                      fontSize: '14px',
+                      lineHeight: '1.3',
+                      fontFamily: 'var(--font-geist-mono, monospace)',
+                    }}
+                  >
                     {error.message}
                   </p>
-                  {error.digest && (
-                    <p className="text-xs text-left text-gray-500 dark:text-gray-400 mt-2">
-                      Error ID: {error.digest}
-                    </p>
-                  )}
                 </div>
-              )}
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-3 w-full">
-                <button
-                  onClick={() => reset()}
-                  className="flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-10 px-6 bg-primary text-primary-foreground shadow-xs hover:bg-primary/90"
-                >
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-3 items-start w-full">
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="w-full px-6 py-3 box-border flex gap-2 items-center justify-center font-bold text-white transition-all hover:opacity-90"
+                    style={{
+                      backgroundColor: '#0073de',
+                      borderRadius: '1px',
+                      boxShadow: '0px 4px 0px 0px #005493',
+                      fontSize: '16px',
+                      fontFamily: 'var(--font-geist-sans, sans-serif)',
+                      border: 'none',
+                      cursor: 'pointer',
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                    />
-                  </svg>
-                  Try Again
-                </button>
-                <button
-                  onClick={() => window.location.reload()}
-                  className="flex-1 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all h-10 px-6 border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground"
-                >
-                  Refresh Page
-                </button>
-              </div>
+                    Refresh page
+                  </button>
+                  <button
+                    onClick={openReportIssue}
+                    className="w-full px-6 py-3 box-border flex gap-2 items-center justify-center font-bold transition-all hover:opacity-90"
+                    style={{
+                      backgroundColor: '#eaf3fa',
+                      color: '#44445d',
+                      borderRadius: '1px',
+                      boxShadow: '0px 4px 0px 0px #595978',
+                      fontSize: '16px',
+                      fontFamily: 'var(--font-geist-sans, sans-serif)',
+                      border: 'none',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Report issue
+                  </button>
+                </div>
 
-              {/* Additional Help */}
-              <div className="text-sm text-gray-500 dark:text-gray-400">
-                <p>
-                  If the problem persists,{' '}
+                {/* Additional Help */}
+                <p
+                  className="font-normal text-center tracking-[-0.1px] w-full"
+                  style={{
+                    color: '#4b4b66',
+                    fontSize: '14px',
+                    lineHeight: '1.3',
+                    fontFamily: 'var(--font-geist-sans, sans-serif)',
+                  }}
+                >
+                  <span>If the problem persists, </span>
                   <button
                     onClick={() => {
                       window.location.href = '/';
                     }}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="font-bold underline"
+                    style={{
+                      color: '#0073de',
+                      textUnderlinePosition: 'from-font',
+                      textDecoration: 'underline solid',
+                      fontFamily: 'var(--font-geist-sans, sans-serif)',
+                      border: 'none',
+                      background: 'none',
+                      cursor: 'pointer',
+                      padding: 0,
+                    }}
                   >
-                    go back to home
-                  </button>{' '}
-                  or{' '}
-                  <button
-                    onClick={openReportIssue}
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    report this issue
+                    go back to Home
                   </button>
                 </p>
               </div>
