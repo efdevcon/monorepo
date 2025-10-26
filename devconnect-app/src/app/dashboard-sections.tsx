@@ -18,14 +18,15 @@ import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
 import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 import { ArrowUpRightIcon } from 'lucide-react';
+import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
   const items = [
     { label: 'Nov 17 - 22, 2025', icon: CalendarIcon },
     { label: 'La Rural, Buenos Aires, Argentina', icon: PinIcon },
-    { label: '15,000+ attendees', icon: PhoneIcon },
-    { label: '40+ events', icon: CameraIcon },
+    { label: '15,000+ Attendees', icon: PhoneIcon },
+    { label: '40+ Events', icon: CameraIcon },
   ];
 
   return (
@@ -34,7 +35,7 @@ export const LoopingHeader = () => {
         <div className="flex flex-row">
           {items.map((item, j) => (
             <div
-              className="shrink-0 ml-8 text-sm flex items-center gap-2 py-0.5"
+              className="shrink-0 ml-8 text-sm flex items-center gap-2 py-0.5 font-medium"
               key={j}
             >
               <item.icon className="w-[24px] h-[24px]" /> {item.label}
@@ -54,20 +55,23 @@ export function WelcomeSection() {
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex flex-col items-start justify-start gap-1 mb-5 mx-4">
-      <div className="flex justify-between w-full gap-2">
-        <div className="text-2xl font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
+    <div className="flex justify-between items-center gap-2 mb-5 px-4 max-w-screen">
+      <div className="flex flex-col shrink-1 overflow-hidden">
+        <div className="text-xl self-start font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
-        {/* <div className="font-semibold text-xs text-neutral-600">
-          {formattedDate} Buenos Aires (GMT-3)
-        </div> */}
+        <div className="text-base text-[rgba(53,53,72,1)] font-medium italic truncate">
+          {email || 'Anon'}
+        </div>
       </div>
 
-      <div className="text-2xl leading-none text-[rgba(53,53,72,1)] font-medium italic max-w-[80vw] break-all">
-        {email || 'Anon'}
-      </div>
-
+      <Image
+        src={EthereumWorldsFairLogo}
+        alt="Ethereum World's Fair"
+        className="aspect-[244/77] w-[150px] object-contain shrink-0"
+        width={244}
+        height={77}
+      />
       {/* <div className="text-sm leading-none mt-2">
         Welcome to the Ethereum World&apos;s Fair!{' '}
       </div> */}
@@ -92,9 +96,9 @@ export const PracticalInfo = () => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-2 w-full">
-        <div className="font-bold">Need help?</div>
-        <div className="text-xs leading-relaxed">
+      <div className="flex flex-col gap-1 w-full">
+        <div className="font-bold text-sm">Need help?</div>
+        <div className="text-sm leading-relaxed">
           Our friendly Support Staff are available throughout the event to help
           with technical issues, navigation, and general questions.
         </div>

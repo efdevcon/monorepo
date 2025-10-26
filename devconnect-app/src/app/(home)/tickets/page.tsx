@@ -125,7 +125,9 @@ const ConnectedEmails = () => {
           onClick={() => setExpanded(!expanded)}
         >
           <div className="flex flex-col">
-            <div className="text-sm font-medium mb-1">Connected emails</div>
+            <div className="text-sm font-medium mb-1 select-none">
+              Connected emails
+            </div>
             <div>{email}</div>
             {additionalTicketEmails.map((email: string) => (
               <div key={email} className="">
@@ -414,23 +416,12 @@ const TicketTab = RequiresAuthHOC(() => {
     >
       <div className="w-full">
         <div className="w-full">
-          {isLoading && (
-            <div className="my-4">
-              <Loader>Refreshing Tickets...</Loader>
-            </div>
-          )}
-
-          {!isLoading && !hasTickets && (
-            <div className="text-center flex flex-col items-center gap-2">
-              No tickets found for your connected email addresses.
-            </div>
-          )}
-
           <div className="flex flex-col sm:flex-row justify-between gap-4">
             <div className="flex flex-col gap-1 order-2 sm:order-1">
               <div className="text-lg font-semibold">
                 Your Devconnect Ticket
               </div>
+
               {hasTickets && (
                 <div className="text-sm">
                   Grants access to La Rural, the Ethereum World’s Fair, and any
@@ -441,7 +432,7 @@ const TicketTab = RequiresAuthHOC(() => {
               {!hasTickets && (
                 <div className="text-sm">
                   You can load your tickets into the World's Fair app by
-                  connecting your email addresses you used to purchase your
+                  connecting the email addresses you used to purchase your
                   tickets.
                 </div>
               )}
@@ -449,6 +440,18 @@ const TicketTab = RequiresAuthHOC(() => {
 
             <ConnectedEmails />
           </div>
+
+          {isLoading && (
+            <div className="my-4">
+              <Loader>Refreshing Tickets...</Loader>
+            </div>
+          )}
+
+          {!isLoading && !hasTickets && (
+            <div className="italic flex flex-col items-center gap-2 mt-6 mb-2 font-medium">
+              No tickets found on your currently connected email address(es).
+            </div>
+          )}
 
           <div className="flex flex-col md:flex-row gap-8 lg:items-center items-center">
             {hasTickets && (

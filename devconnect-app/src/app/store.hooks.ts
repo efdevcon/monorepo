@@ -116,7 +116,7 @@ export const useTickets = () => {
 
   useEffect(() => {
     // Only update Zustand if we have actual data (not just fallback)
-    if (tickets && tickets.length > 0) {
+    if (tickets) {
       setTickets(tickets);
       setQrCodes(qrCodes);
     }

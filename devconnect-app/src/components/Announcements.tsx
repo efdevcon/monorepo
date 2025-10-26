@@ -68,7 +68,7 @@ export const NotificationCard = ({
         // !seen && 'ring-2  ring-opacity-20',
         className,
         withoutContainer &&
-          '!border-none !min-w-auto !p-0 !bg-transparent !relative !group !transition-all !duration-300'
+          '!border-none !min-w-auto !p-0 !bg-transparent !relative !group !transition-all !duration-300 !pl-2'
       )}
     >
       <div
@@ -77,10 +77,17 @@ export const NotificationCard = ({
           withoutContainer && '!max-w-none'
         )}
       >
-        <p className={cn('text-sm font-semibold', !withoutContainer && '')}>
+        <p
+          className={cn(
+            'text-sm font-semibold',
+            withoutContainer && '!text-sm'
+          )}
+        >
           {title}
         </p>
-        <p className={cn('text-xs pr-4', !withoutContainer && '')}>{message}</p>
+        <p className={cn('text-xs pr-4', withoutContainer && '!text-sm')}>
+          {message}
+        </p>
       </div>
       <div className="flex gap-1 shrink-0 justify-between items-center mt-3">
         <div className="flex items-center gap-1.5">
@@ -120,7 +127,7 @@ export const AnnouncementsWrapper = () => {
   const announcements = useAnnouncements();
 
   return (
-    <div className="flex flex-col mb-6 mt-5">
+    <div className="flex flex-col mb-6 mt-4">
       <div className="flex flex justify-between items-center gap-2 mb-4">
         <div className="flex flex-col">
           <div className="flex justify-between items-center gap-2 font-bold border-top ml-4">

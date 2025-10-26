@@ -9,6 +9,7 @@ import {
 } from '../dashboard-sections';
 import HighlightsContainer from '@/components/Highlights';
 import AnnouncementsWrapper from '@/components/Announcements';
+import { Separator } from 'lib/components/ui/separator';
 
 export default function HomePageContent() {
   const router = useRouter();
@@ -18,7 +19,7 @@ export default function HomePageContent() {
 
     if (!isSkipped) {
       console.log('🔄 [HOME] Redirecting to onboarding');
-      // router.push('/onboarding');
+      router.push('/onboarding');
     }
   }, [router]);
 
@@ -34,10 +35,13 @@ export default function HomePageContent() {
   }, []);
 
   return (
-    <div className="bg-[#74ACDF10] md:!bg-white grow pb-8">
+    <div className="bg-[#74ACDF10] gradient-background md:!bg-white grow pb-8">
       <LoopingHeader />
+
       <WelcomeSection />
+
       <HighlightsContainer />
+      <Separator className="mt-6 mb-0 mx-4 !w-auto" />
       <AnnouncementsWrapper />
       <TodaysSchedule />
       <PracticalInfo />

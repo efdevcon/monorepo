@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 // import ChevronRightIcon from 'assets/icons/chevron_right.svg'
 import { ChevronRightIcon } from 'lucide-react';
@@ -36,6 +36,8 @@ const Slide = ({
         <Image
           src={image}
           alt="voxel art"
+          width={480}
+          height={194}
           className="w-full h-full object-cover"
         />
       </div>
@@ -66,7 +68,7 @@ const Block = ({
 
 const defaultSteps = [
   <div key="step0" className="flex flex-col items-center text-center">
-    <div className="aspect-[480/480] max-h-[360px] max-w-[360px] relative w-full mb-6">
+    <div className="aspect-[480/480] relative w-full mb-6">
       <Image
         src="/images/wallet-loaded.gif"
         alt="Wallet connected"
@@ -74,6 +76,7 @@ const defaultSteps = [
         height={480}
         className="w-full h-full object-contain mix-blend-multiply"
         unoptimized
+        priority
       />
     </div>
     <div className="leading-tight">
@@ -193,6 +196,24 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   const [currentStep, setCurrentStep] = useState(0);
   const router = useRouter();
 
+  // Prefetch images for subsequent slides
+  useEffect(() => {
+    // Prefetch the remaining images when component mounts
+    const imagesToPreload = [
+      WorldsFairImage.src,
+      EthDayImage.src,
+      CommunityEventsImage.src,
+    ];
+
+    imagesToPreload.forEach((src) => {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'image';
+      link.href = src;
+      document.head.appendChild(link);
+    });
+  }, []);
+
   const stepItems = steps.map((_, index) => ({
     label: `Step ${index + 1}`,
     onClick: () => setCurrentStep(index),
@@ -235,7 +256,7 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
             onActiveIndexChange={setCurrentStep}
           />
         </div>
-        <div className="flex flex-col items-center justify-center relative grow max-w-[580px] ">
+        <div className="flex flex-col items-center justify-center relative grow w-[580px] max-w-[calc(100%-32px)] ">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentStep}

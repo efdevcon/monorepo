@@ -1482,7 +1482,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   return (
     <div className="relative size-full overflow-y-auto">
       {/* Background Image */}
-      <div className="absolute inset-0 h-full w-full">
+      {/* <div className="absolute inset-0 h-full w-full">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -1491,7 +1491,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             backgroundPosition: 'center',
           }}
         />
-      </div>
+      </div> */}
 
       {/* Content Wrapper - centered container for logo, main content, and install PWA */}
       <div className="relative min-h-full flex flex-col items-center justify-center gap-6 py-8">

@@ -152,6 +152,8 @@ export default function SettingsTab() {
     try {
       await disconnect();
 
+      router.refresh();
+
       toast.success(
         <div className="space-y-1">
           <div className="font-semibold text-green-800">🔓 Logged Out</div>

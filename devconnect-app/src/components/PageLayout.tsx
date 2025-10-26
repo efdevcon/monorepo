@@ -9,7 +9,7 @@ import Link from 'next/link';
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 // import { sessionIdAtom } from '@/store/sessionId';
-import { ArrowBigLeft, Blend as AppIcon, Undo2 } from 'lucide-react';
+import { Blend as AppIcon, Undo2 } from 'lucide-react';
 import Icon from '@mdi/react';
 import { mdiBug, mdiInformation, mdiClose } from '@mdi/js';
 import Menu from '@/components/MobileMenu';
