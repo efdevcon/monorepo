@@ -557,7 +557,7 @@ function Event({
                         ))}
                       </div>
 
-                      <div className="flex items-center gap-3 mr-2">
+                      <div className="flex items-center gap-3 pr-6">
                         <ShareEvent event={event} isDialog />
                         <ExportEvent
                           event={event}

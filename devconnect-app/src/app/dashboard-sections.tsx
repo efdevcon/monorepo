@@ -68,9 +68,9 @@ export function WelcomeSection() {
         {email || 'Anon'}
       </div>
 
-      <div className="text-sm leading-none mt-2">
+      {/* <div className="text-sm leading-none mt-2">
         Welcome to the Ethereum World&apos;s Fair!{' '}
-      </div>
+      </div> */}
     </div>
   );
 }

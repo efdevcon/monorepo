@@ -14,6 +14,7 @@ import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import DevconnectCubeLogo from "./images/cube-logo.png";
 // import { eventShops } from "./zupass/event-shops-list";
 import { useIsMobile } from "lib/hooks/useIsMobile";
+import { useNow } from "lib/hooks/useNow";
 import Export from "./export";
 
 export const customUrlTransforms = [
@@ -215,6 +216,7 @@ const NewScheduleIndexInner = ({
   const eventRange = computeCalendarRange(events);
   // const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
+  const now = useNow("2025-11-20");
 
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
@@ -356,8 +358,9 @@ const NewScheduleIndexInner = ({
       (placement) => placement.event.id === selectedEvent?.id
     ) || null;
 
-  // State for managing collapsed days in list view
-  const [collapsedDays, setCollapsedDays] = useState<Set<string>>(new Set());
+  // State for managing open days in list view - closed by default
+  const today = now.format("YYYY-MM-DD");
+  const [openDays, setOpenDays] = useState<Set<string>>(new Set([today]));
 
   return (
     <>
@@ -405,9 +408,9 @@ const NewScheduleIndexInner = ({
               }
             });
 
-            // Toggle function for collapsing/expanding days
-            const toggleDayCollapse = (date: string) => {
-              setCollapsedDays((prev) => {
+            // Toggle function for opening/closing days
+            const toggleDayOpen = (date: string) => {
+              setOpenDays((prev) => {
                 const newSet = new Set(prev);
                 if (newSet.has(date)) {
                   newSet.delete(date);
@@ -421,31 +424,35 @@ const NewScheduleIndexInner = ({
             // Render each date with its events
             const entries = Array.from(eventsByDate.entries());
             return entries.map(([date, dayEvents], index) => {
-              const isCollapsed = collapsedDays.has(date);
+              const isOpen = openDays.has(date);
               const isLast = index === entries.length - 1;
+              const isToday = date === today;
               return (
                 <div key={date} className="relative">
                   {/* Sticky date header */}
                   <div
                     data-type="list-day-header"
                     className={cn(
-                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2 border-solid bg-white cursor-pointer flex items-center justify-between",
-                      !isLast && "border-b border-[rgba(224,224,235,1)]"
+                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2.5 border-solid bg-white cursor-pointer flex items-center justify-between",
+                      !isLast && "border-b border-[rgba(224,224,235,1)]",
+                      isToday && "text-[#165a8d] !font-bold"
                     )}
-                    onClick={() => toggleDayCollapse(date)}
+                    onClick={() => toggleDayOpen(date)}
                   >
-                    <span className="text-lg font-medium">
-                      {moment(date).format("dddd, MMMM D")}
+                    <span className="text-base">
+                      {isToday
+                        ? "Today 👀"
+                        : moment(date).format("dddd, MMMM D")}
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="text-sm">
+                      <span className="text-xs">
                         {dayEvents.length} event
                         {dayEvents.length !== 1 ? "s" : ""}
                       </span>
                       <svg
                         className={cn(
                           "w-4 h-4 transition-transform",
-                          isCollapsed && "rotate-180"
+                          !isOpen && "rotate-180"
                         )}
                         fill="none"
                         stroke="currentColor"
@@ -461,7 +468,7 @@ const NewScheduleIndexInner = ({
                     </div>
                   </div>
                   {/* Events for this date */}
-                  {!isCollapsed && (
+                  {isOpen && (
                     <div className="flex flex-col gap-1 pb-2 pt-1">
                       {dayEvents.map((placement) => (
                         <Event

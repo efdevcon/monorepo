@@ -228,7 +228,7 @@ const ExportToIcs: React.FC<ExportToIcsProps> = ({ events, setExports }) => {
             </DialogDescription>
           )}
           {events.length === 1 && (
-            <DialogDescription>
+            <DialogDescription className="text-start text-navy-100">
               Export {events[0].name} to your calendar
             </DialogDescription>
           )}
@@ -247,20 +247,14 @@ const ExportToIcs: React.FC<ExportToIcsProps> = ({ events, setExports }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between text-xs text-red-400">
-          Be mindful that event changes and updates will not be reflected once
-          you export to your own calendar. It is important to check back closer
-          to the event date to make sure your calendar matches the schedule.
-        </div>
-
         <div className="">
           <div className="space-y-3">
             <div className="flex items-center justify-between p-4 border rounded-lg hover:bg-gray-50 transition-colors">
               <div className="flex items-center gap-3">
                 <Download className="h-5 w-5 text-blue-600" />
                 <div>
-                  <h3 className="font-medium">Download .ics file</h3>
-                  <p className="text-sm text-gray-600">
+                  <h3 className="font-medium text-sm">Download .ics file</h3>
+                  <p className="text-xs text-gray-600">
                     Import into any calendar app
                   </p>
                 </div>
@@ -280,8 +274,10 @@ const ExportToIcs: React.FC<ExportToIcsProps> = ({ events, setExports }) => {
                 <div className="flex items-center gap-3">
                   <ExternalLink className="h-5 w-5 text-green-600" />
                   <div>
-                    <h3 className="font-medium">Add to Google Calendar</h3>
-                    <p className="text-sm text-gray-600">
+                    <h3 className="font-medium text-sm">
+                      Add to Google Calendar
+                    </h3>
+                    <p className="text-xs text-gray-600">
                       Opens event in Google Calendar
                     </p>
                   </div>
@@ -297,6 +293,12 @@ const ExportToIcs: React.FC<ExportToIcsProps> = ({ events, setExports }) => {
                 </Button>
               </div>
             )}
+          </div>
+          <div className="flex items-center justify-between text-[11px] leading-tight mt-4">
+            Be mindful that event changes and updates will not be reflected once
+            you export to your own calendar. It is important to check back
+            closer to the event date to make sure your calendar matches the
+            schedule.
           </div>
         </div>
       </DialogContent>
