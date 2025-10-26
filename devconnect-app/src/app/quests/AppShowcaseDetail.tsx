@@ -708,10 +708,7 @@ export default function AppShowcaseDetail({
               <div className="flex gap-3 items-center w-full">
                 <div className="w-14 h-14">
                   <img
-                    src={
-                      district.logo ||
-                      `/images/districts/${district.layerName}.svg`
-                    }
+                    src={district.logo}
                     alt={district.name}
                     width={56}
                     height={56}
