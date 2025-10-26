@@ -125,10 +125,10 @@ export const supportersData: Record<string, Supporter> = {
   "280638cdc41580c9869fc31f2895acfe": {
     "name": "Boulder",
     "layerName": "boulder",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T22-00-18-013Z-icon_BT.png",
+    "description": "Tokenizing public and private markets across Latin America. Bringing Latam on-chain.",
+    "websiteLink": "https://www.bouldertech.fi/",
+    "twitterLink": "https://x.com/_BoulderTech",
     "farcasterLink": "",
     "districtId": "3",
     "locationId": null
@@ -235,11 +235,11 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158040af1dc672ed5a7588": {
     "name": "ENS",
     "layerName": "ens",
-    "logo": "",
-    "description": "",
-    "websiteLink": "https://ens.domains/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T20-39-17-058Z-ens-logo-Blue%20(1).svg",
+    "description": "ENS maps names like 'alice.eth' to Ethereum addresses, other cryptocurrency addresses, content, DNS, and more.",
+    "websiteLink": "https://app.ens.domains/",
+    "twitterLink": "https://x.com/ensdomains",
+    "farcasterLink": "https://farcaster.xyz/ensdomains",
     "districtId": "8",
     "locationId": "1"
   },
@@ -279,11 +279,11 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc415802c97d8f585214603ad": {
     "name": "Farcaster",
     "layerName": "farcaster",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-25T04-04-38-464Z-Arch%202.0.svg",
+    "description": "Farcaster is the best place to find new people, projects, and ideas in crypto. It's a social network and crypto wallet reimagined.",
     "websiteLink": "https://farcaster.xyz/",
     "twitterLink": "https://x.com/farcaster_xyz",
-    "farcasterLink": "",
+    "farcasterLink": "https://farcaster.xyz/farcaster",
     "districtId": "8",
     "locationId": "1"
   },
@@ -301,11 +301,11 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc4158070972cfd5538ea6247": {
     "name": "Fluidkey",
     "layerName": "fluidkey",
-    "logo": "",
-    "description": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T19-26-20-662Z-fluidkeyIcon.svg",
+    "description": "Fluidkey is your onchain account with stealth address privacy, instant yield, bank transfers, swaps, and biometric security.",
     "websiteLink": "https://www.fluidkey.com/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "twitterLink": "https://x.com/fluidkey",
+    "farcasterLink": "https://farcaster.xyz/fluidkey",
     "districtId": "7",
     "locationId": "3"
   },
@@ -543,7 +543,7 @@ export const supportersData: Record<string, Supporter> = {
   "27f638cdc41580fe8426c3c803901027": {
     "name": "Para",
     "layerName": "para",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-23T20-08-47-088Z-Mark%20-%20Magnetica%20(4).png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T18-44-21-112Z-image%20(115).png",
     "description": "Para is the most comprehensive wallet and authentication suite for crypto developers and apps.",
     "websiteLink": "https://www.getpara.com/",
     "twitterLink": "https://x.com/get_para",
@@ -587,11 +587,11 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580329e97e5d7b49497d8": {
     "name": "Precog Market",
     "layerName": "precog-market",
-    "logo": "",
-    "description": "",
-    "websiteLink": "https://www.precog.market/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-25T23-13-27-670Z-precogLogo.png",
+    "description": "Precog is a prediction market protocol where you can trade on future outcomes, launch new markets, and invest in their success. ",
+    "websiteLink": "https://core.precog.market/",
+    "twitterLink": "https://x.com/precogmarket/",
+    "farcasterLink": "https://farcaster.xyz/miniapps/eW4MEO4qxbEL/precog",
     "districtId": "8",
     "locationId": "1"
   },
@@ -675,10 +675,10 @@ export const supportersData: Record<string, Supporter> = {
   "284638cdc4158082b4f5eb3ce920eb59": {
     "name": "Rise",
     "layerName": "rise",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T20-34-19-625Z-RISE-square-logo.svg",
+    "description": "The World Markets Engine — a High Speed Layer 2 with a native, fully onchain Orderbook Infrastructure, bringing Capital Velocity to Ethereum",
+    "websiteLink": "https://risechain.com/",
+    "twitterLink": "https://x.com/RISE_chain",
     "farcasterLink": "",
     "districtId": "6",
     "locationId": null
