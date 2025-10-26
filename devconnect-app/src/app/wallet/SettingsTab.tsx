@@ -31,6 +31,7 @@ import { toast } from 'sonner';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 import { openReportIssue } from '@/utils/reportIssue';
 import { useWallet } from '@/context/WalletContext';
+import { useGlobalStore } from '../store.provider';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -61,6 +62,7 @@ export default function SettingsTab() {
   const router = useRouter();
   const [locale, setLocale] = useState<string>('en');
   const [showLanguageModal, setShowLanguageModal] = useState(false);
+  const storeLogout = useGlobalStore((state) => state.logout);
 
   // Get disconnect function from WalletContext
   const { disconnect, isDisconnecting, address } = useWallet();
@@ -152,27 +154,29 @@ export default function SettingsTab() {
     try {
       await disconnect();
 
-      router.refresh();
+      localStorage.removeItem('loginIsSkipped');
+      storeLogout();
+      router.push('/');
 
-      toast.success(
-        <div className="space-y-1">
-          <div className="font-semibold text-green-800">🔓 Logged Out</div>
-          <div className="text-sm text-green-700">
-            Wallet disconnected successfully
-          </div>
-        </div>,
-        {
-          duration: 3000,
-          dismissible: true,
-          closeButton: true,
-          style: {
-            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
-            border: '1px solid #bbf7d0',
-            borderRadius: '8px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-          },
-        }
-      );
+      // toast.success(
+      //   <div className="space-y-1">
+      //     <div className="font-semibold text-green-800">🔓 Logged Out</div>
+      //     <div className="text-sm text-green-700">
+      //       Wallet disconnected successfully
+      //     </div>
+      //   </div>,
+      //   {
+      //     duration: 3000,
+      //     dismissible: true,
+      //     closeButton: true,
+      //     style: {
+      //       background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+      //       border: '1px solid #bbf7d0',
+      //       borderRadius: '8px',
+      //       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+      //     },
+      //   }
+      // );
     } catch (err) {
       console.error('Logout failed:', err);
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';

@@ -57,7 +57,7 @@ export interface AppState {
   setTickets: (tickets: Order[] | null) => void;
   setTicketsLoading: (loading: boolean) => void;
   setQrCodes: (qrCodes: { [key: string]: string }) => void;
-  logout: (state: AppState) => void;
+  logout: () => void;
 }
 
 export type AppStore = ReturnType<typeof createGlobalStore>;
@@ -133,13 +133,14 @@ export const createGlobalStore = (
         qrCodes,
       })),
 
-    logout: (state: AppState) =>
-      set({
+    logout: () =>
+      set((state) => ({
         ...state,
         userData: null,
         tickets: null,
+        ticketsLoading: false,
         qrCodes: {},
-      }),
+      })),
   });
 
   if (typeof window !== 'undefined') {
