@@ -19,6 +19,8 @@ import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 import { ArrowUpRightIcon } from 'lucide-react';
 import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
+// import DevconnectLogo from '@/images/devconnect-logo.png';
+import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -56,7 +58,7 @@ export function WelcomeSection() {
 
   return (
     <div className="flex justify-between items-center gap-2 mb-5 px-4 max-w-screen">
-      <div className="flex flex-col shrink-1 overflow-hidden">
+      <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1">
         <div className="text-xl self-start font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
         </div>
@@ -65,13 +67,17 @@ export function WelcomeSection() {
         </div>
       </div>
 
-      <Image
-        src={EthereumWorldsFairLogo}
+      <div className="w-[160px] shrink-0">
+        <DevconnectLogoWhite />
+      </div>
+
+      {/* <Image
+        src={DevconnectLogoWhite}
         alt="Ethereum World's Fair"
         className="aspect-[244/77] w-[150px] object-contain shrink-0"
         width={244}
         height={77}
-      />
+      /> */}
       {/* <div className="text-sm leading-none mt-2">
         Welcome to the Ethereum World&apos;s Fair!{' '}
       </div> */}

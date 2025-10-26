@@ -110,6 +110,7 @@ const Pane = ({
         style={{
           ...backgroundStyle,
           maxHeight: '66.67vh',
+          paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
         }}
       >
         <div className="flex justify-between">
