@@ -105,7 +105,13 @@ const Pane = ({
       className={cn('p-0', className)}
       hideHandle={true}
     >
-      <div className="p-4" style={backgroundStyle}>
+      <div
+        className="p-4 overflow-y-auto"
+        style={{
+          ...backgroundStyle,
+          maxHeight: '66.67vh',
+        }}
+      >
         <div className="flex justify-between">
           <div className="flex items-center gap-3 self-start">
             {imageSrc ? (

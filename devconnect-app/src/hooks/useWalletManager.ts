@@ -69,6 +69,21 @@ export function useWalletManager() {
   // Track disconnecting state at manager level for better UI control
   const [isDisconnecting, setIsDisconnecting] = useState(false);
 
+  // Track multiple wallets state to ensure reactivity
+  const [hasMultipleWallets, setHasMultipleWallets] = useState(false);
+
+  // Update hasMultipleWallets when addresses change
+  useEffect(() => {
+    const newValue = !!(para.address && eoa.address);
+    // console.log('💎 [WALLET_MANAGER] hasMultipleWallets updating:', {
+    //   paraAddress: para.address,
+    //   eoaAddress: eoa.address,
+    //   oldValue: hasMultipleWallets,
+    //   newValue,
+    // });
+    setHasMultipleWallets(newValue);
+  }, [para.address, eoa.address, hasMultipleWallets]);
+
   // Load primary wallet type from localStorage
   const [primaryType, setPrimaryTypeState] = useState<WalletType>(() => {
     if (typeof window !== 'undefined') {
@@ -83,10 +98,10 @@ export function useWalletManager() {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === PRIMARY_WALLET_TYPE_KEY) {
         const newValue = e.newValue as WalletType;
-        console.log(`🔄 [WALLET_MANAGER #${hookId}] Storage change detected:`, {
-          oldValue: e.oldValue,
-          newValue,
-        });
+        // console.log(`🔄 [WALLET_MANAGER #${hookId}] Storage change detected:`, {
+        //   oldValue: e.oldValue,
+        //   newValue,
+        // });
         setPrimaryTypeState(newValue);
       }
     };
@@ -94,10 +109,10 @@ export function useWalletManager() {
     // Also listen for custom events (for same-window updates)
     const handleCustomEvent = (e: CustomEvent) => {
       const newValue = e.detail as WalletType;
-      console.log(`🔄 [WALLET_MANAGER #${hookId}] Custom event received:`, {
-        newValue,
-        currentValue: primaryType,
-      });
+      // console.log(`🔄 [WALLET_MANAGER #${hookId}] Custom event received:`, {
+      //   newValue,
+      //   currentValue: primaryType,
+      // });
       setPrimaryTypeState(newValue);
     };
 
@@ -299,19 +314,19 @@ export function useWalletManager() {
   ]);
 
   // Debug: Log address computation and multi-wallet state
-  console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
-    address: address ? address.slice(0, 10) + '...' : null,
-    fullAddress: address,
-    isPara,
-    isParaActive,
-    isEOAActive,
-    paraAddress: para.address?.slice(0, 10) + '...',
-    eoaAddress: eoa.address?.slice(0, 10) + '...',
-    paraFullAddress: para.address,
-    eoaFullAddress: eoa.address,
-    hasMultipleWallets: !!(para.address && eoa.address),
-    primaryType,
-  });
+  // console.log(`🔍 [WALLET_MANAGER #${hookId}] Address computed:`, {
+  //   address: address ? address.slice(0, 10) + '...' : null,
+  //   fullAddress: address,
+  //   isPara,
+  //   isParaActive,
+  //   isEOAActive,
+  //   paraAddress: para.address?.slice(0, 10) + '...',
+  //   eoaAddress: eoa.address?.slice(0, 10) + '...',
+  //   paraFullAddress: para.address,
+  //   eoaFullAddress: eoa.address,
+  //   hasMultipleWallets: !!(para.address && eoa.address),
+  //   primaryType,
+  // });
 
   // ============================================
   // Identity Resolution (ENS) - Store per address
@@ -325,14 +340,14 @@ export function useWalletManager() {
   // Get identity for current address (memoized to prevent unnecessary re-renders)
   const identity = useMemo(() => {
     const result = address ? identityMap[address.toLowerCase()] || null : null;
-    console.log(`🔍 [WALLET_MANAGER #${hookId}] Identity lookup:`, {
-      address: address ? address.slice(0, 10) + '...' : null,
-      hasIdentity: !!result,
-      identityName: result?.name,
-      identityMapKeys: Object.keys(identityMap).map(
-        (k) => k.slice(0, 10) + '...'
-      ),
-    });
+    // console.log(`🔍 [WALLET_MANAGER #${hookId}] Identity lookup:`, {
+    //   address: address ? address.slice(0, 10) + '...' : null,
+    //   hasIdentity: !!result,
+    //   identityName: result?.name,
+    //   identityMapKeys: Object.keys(identityMap).map(
+    //     (k) => k.slice(0, 10) + '...'
+    //   ),
+    // });
     return result;
   }, [address, identityMap, hookId]);
 
@@ -363,7 +378,7 @@ export function useWalletManager() {
           ? `https://eth-mainnet.g.alchemy.com/v2/${APP_CONFIG.ALCHEMY_APIKEY}`
           : 'https://cloudflare-eth.com'; // Public fallback
 
-        console.log(`[identity] Using RPC: ${rpcUrl.split('/').slice(0, -1).join('/')}/***`);
+        // console.log(`[identity] Using RPC: ${rpcUrl.split('/').slice(0, -1).join('/')}/***`);
 
         const publicClient = createPublicClient({
           chain: mainnet,
@@ -514,13 +529,13 @@ export function useWalletManager() {
   const portfolio = useMemo(() => {
     const addressKey = address?.toLowerCase();
     const result = addressKey ? portfolioCache[addressKey] || null : null;
-    console.log(`🔍 [WALLET_MANAGER #${hookId}] Portfolio lookup:`, {
-      address: address ? address.slice(0, 10) + '...' : null,
-      hasPortfolio: !!result,
-      totalValue: result?.totalValue,
-      cachedAddresses: Object.keys(portfolioCache).length,
-      refreshTrigger: portfolioRefreshTrigger,
-    });
+    // console.log(`🔍 [WALLET_MANAGER #${hookId}] Portfolio lookup:`, {
+    //   address: address ? address.slice(0, 10) + '...' : null,
+    //   hasPortfolio: !!result,
+    //   totalValue: result?.totalValue,
+    //   cachedAddresses: Object.keys(portfolioCache).length,
+    //   refreshTrigger: portfolioRefreshTrigger,
+    // });
     return result;
   }, [address, portfolioCache, portfolioRefreshTrigger, hookId]);
 
@@ -628,16 +643,28 @@ export function useWalletManager() {
 
   // Debug logging for address changes
   useEffect(() => {
-    console.log('🔍 [WALLET_MANAGER] State update:', {
-      primaryType,
-      isParaActive,
-      isEOAActive,
-      paraConnected: para.isConnected,
-      eoaConnected: eoa.isConnected,
-      paraAddress: para.address,
-      eoaAddress: eoa.address,
-      finalAddress: address,
-    });
+    const hasMultiple = !!(para.address && eoa.address);
+    // console.log('🔍 [WALLET_MANAGER] State update:', {
+    //   primaryType,
+    //   isParaActive,
+    //   isEOAActive,
+    //   paraConnected: para.isConnected,
+    //   eoaConnected: eoa.isConnected,
+    //   paraAddress: para.address,
+    //   eoaAddress: eoa.address,
+    //   finalAddress: address,
+    //   hasMultipleWallets: hasMultiple,
+    // });
+
+    // Extra log when both wallets are connected
+    // if (para.isConnected && eoa.isConnected) {
+    //   console.log('🔥 [WALLET_MANAGER] BOTH WALLETS CONNECTED!', {
+    //     paraAddress: para.address,
+    //     eoaAddress: eoa.address,
+    //     hasMultipleWallets: hasMultiple,
+    //     calculation: `!!(${para.address} && ${eoa.address}) = ${hasMultiple}`,
+    //   });
+    // }
   }, [
     primaryType,
     isParaActive,
@@ -836,6 +863,6 @@ export function useWalletManager() {
     ...userMethods, // sendOtp, verifyOtp, signOut, supabase
 
     // Status flags
-    hasMultipleWallets: para.address && eoa.address,
+    hasMultipleWallets,
   };
 }

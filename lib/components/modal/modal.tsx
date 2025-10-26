@@ -34,6 +34,9 @@ export const ModalContent = (props: ModalContentProps) => {
 
   if (props.className) className += ` ${props.className}`;
 
+  // Extract known props to avoid passing them as DOM attributes
+  const { className: _, close, children, noBodyScroll, ...restProps } = props;
+
   return (
     <motion.div
       className={className}
@@ -42,6 +45,7 @@ export const ModalContent = (props: ModalContentProps) => {
       }}
       initial={{ opacity: 0.8, scale: 0.7 }}
       animate={{ opacity: 1, scale: 1 }}
+      {...restProps}
     >
       {props.close && (
         <div
@@ -64,16 +68,21 @@ export const Modal = (props: ModalProps): any => {
 
   if (props.className) className += ` ${props.className}`;
 
+  // Extract known props, including style to handle it explicitly
+  const { open, className: _, close, children, style, ...restProps } = props;
+
   return createPortal(
     <motion.div
       className={className}
       data-type="modal-portal"
+      style={style}
       onClick={(e: React.MouseEvent) => {
         e.stopPropagation();
         props.close();
       }}
       initial={{ opacity: 0.8 }}
       animate={{ opacity: 1 }}
+      {...restProps}
     >
       {props.children}
     </motion.div>,

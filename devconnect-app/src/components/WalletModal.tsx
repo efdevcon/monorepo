@@ -4,6 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import {
   WalletDisplay,
   WalletAvatarWithFallback,
@@ -66,69 +67,72 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     : eoa.wagmiAccount.connector;
 
   // Debug: Log wallet state when modal opens
-  useEffect(() => {
-    if (isOpen) {
-      console.log('🔍 [WALLET_MODAL] Modal opened - wallet state:', {
-        isPara,
-        currentAddress: address,
-        paraAddress: para.address,
-        paraIsConnected: para.isConnected,
-        eoaIsConnected: eoa.isConnected,
-        switchableConnectorsCount: switchableConnectors.length,
-        switchableConnectors: switchableConnectors.map((c: any) => ({
-          id: c.id,
-          name: c.name,
-          address: c.address,
-        })),
-      });
-    }
-  }, [
-    isOpen,
-    isPara,
-    address,
-    para.address,
-    para.isConnected,
-    eoa.isConnected,
-    switchableConnectors,
-  ]);
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     console.log('🔍 [WALLET_MODAL] Modal opened - wallet state:', {
+  //       isPara,
+  //       currentAddress: address,
+  //       paraAddress: para.address,
+  //       paraIsConnected: para.isConnected,
+  //       eoaIsConnected: eoa.isConnected,
+  //       switchableConnectorsCount: switchableConnectors.length,
+  //       switchableConnectors: switchableConnectors.map((c: any) => ({
+  //         id: c.id,
+  //         name: c.name,
+  //         address: c.address,
+  //       })),
+  //     });
+  //   }
+  // }, [
+  //   isOpen,
+  //   isPara,
+  //   address,
+  //   para.address,
+  //   para.isConnected,
+  //   eoa.isConnected,
+  //   switchableConnectors,
+  // ]);
 
   if (!isOpen) return null;
 
+  // Portal requires document to exist (client-side only)
+  if (typeof document === 'undefined') return null;
+
   // Debug each connector's properties
-  if (switchableConnectors && switchableConnectors.length > 0) {
-    switchableConnectors.forEach((connector: any, index: number) => {
-      console.log(`🔌 [WALLET_MODAL] Connector ${index}:`, {
-        id: connector.id,
-        name: connector.name,
-        address: connector.address,
-        type: connector.type,
-        uid: connector.uid,
-        allProperties: Object.keys(connector),
-        // Check for nested address properties
-        accounts: connector.accounts,
-        getAccounts: connector.getAccounts,
-        // Check if address is in a different property
-        connectorAddress: connector.connector?.address,
-        providerAddress: connector.provider?.address,
-        // Full connector object for inspection
-        fullConnector: connector,
-      });
-    });
-  }
+  // if (switchableConnectors && switchableConnectors.length > 0) {
+  //   switchableConnectors.forEach((connector: any, index: number) => {
+  //     console.log(`🔌 [WALLET_MODAL] Connector ${index}:`, {
+  //       id: connector.id,
+  //       name: connector.name,
+  //       address: connector.address,
+  //       type: connector.type,
+  //       uid: connector.uid,
+  //       allProperties: Object.keys(connector),
+  //       // Check for nested address properties
+  //       accounts: connector.accounts,
+  //       getAccounts: connector.getAccounts,
+  //       // Check if address is in a different property
+  //       connectorAddress: connector.connector?.address,
+  //       providerAddress: connector.provider?.address,
+  //       // Full connector object for inspection
+  //       fullConnector: connector,
+  //     });
+  //   });
+  // }
 
   // Debug connections array
-  if (connections && connections.length > 0) {
-    console.log('🔌 [WALLET_MODAL] Connections array:', connections);
-    connections.forEach((connection: any, index: number) => {
-      console.log(`🔌 [WALLET_MODAL] Connection ${index}:`, {
-        connector: connection.connector?.id,
-        connectorName: connection.connector?.name,
-        accounts: connection.accounts,
-        chainId: connection.chainId,
-        allProperties: Object.keys(connection),
-      });
-    });
-  }
+  // if (connections && connections.length > 0) {
+  //   console.log('🔌 [WALLET_MODAL] Connections array:', connections);
+  //   connections.forEach((connection: any, index: number) => {
+  //     console.log(`🔌 [WALLET_MODAL] Connection ${index}:`, {
+  //       connector: connection.connector?.id,
+  //       connectorName: connection.connector?.name,
+  //       accounts: connection.accounts,
+  //       chainId: connection.chainId,
+  //       allProperties: Object.keys(connection),
+  //     });
+  //   });
+  // }
 
   const handleAddWallet = () => {
     open({ view: 'Connect' });
@@ -304,9 +308,10 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     }
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 bg-black/33 flex items-end justify-center z-[999999]"
+      className="fixed inset-0 bg-black/33 flex items-end justify-center"
+      style={{ zIndex: 10000000 }}
       onClick={onClose}
     >
       <div
@@ -592,6 +597,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

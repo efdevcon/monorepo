@@ -10,43 +10,34 @@ import css from './MobileMenu.module.scss';
 import cn from 'classnames';
 
 export default function Menu() {
-  const { isConnected } = useWallet();
   const pathname = usePathname();
-  const shouldShowNavigation = isConnected || pathname !== '/';
-  const hasLoggedHidden = React.useRef(false);
-
-  // Only log once when navigation becomes hidden to avoid spam
-  React.useEffect(() => {
-    if (!shouldShowNavigation && !hasLoggedHidden.current) {
-      console.log('Menu: hiding navigation');
-      hasLoggedHidden.current = true;
-    } else if (shouldShowNavigation) {
-      hasLoggedHidden.current = false; // Reset when navigation becomes visible
-    }
-  }, [shouldShowNavigation]);
-
-  // Hide navigation until user connects or skips
-  // if (!shouldShowNavigation) {
-  //   return null;
-  // }
-
-  // const selectedItem = NAV_ITEMS.find((item) => item.href === pathname);
 
   return (
     <>
-      {/* Spacer for the bottom of the screen to counteract fixed position of menu */}
-      <div
-        className="md:hidden pointer-events-none bg-[#74ACDF10]"
-        style={{ height: 'calc(59px + max(0px, env(safe-area-inset-bottom)))' }}
-      ></div>
+      {/* Spacer for content to not be hidden behind fixed menu */}
+      {/* <div className="md:hidden h-[59px] pointer-events-none" /> */}
+
+      {/*
+       * Mobile Navigation Menu - Fixed at Absolute Bottom
+       * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
+       *
+       * The calc formula positions menu at absolute screen bottom (852px on iPhone 14 Pro):
+       * - 100vh = 852px (full screen with viewport-fit: cover)
+       * - 100dvh = 793px (dynamic viewport / innerHeight)
+       * - calc(0px - (100vh - 100dvh)) = calc(0px - 59px) = -59px
+       * - This pushes the menu down 59px to reach absolute bottom (no white gap)
+       */}
       <nav
         className={cn(
           css['menu'],
-          'md:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center items-center border-t border-gray-200 gap-2 px-2'
+          'md:hidden fixed left-0 right-0 z-50',
+          'flex justify-center items-center',
+          'border-t border-gray-200 gap-2 px-2'
         )}
         style={{
-          paddingBottom: 'calc(0px + max(0px, env(safe-area-inset-bottom)))',
-          height: 'calc(59px + max(0px, env(safe-area-inset-bottom)))',
+          bottom: '0',
+          height: 'calc(59px + env(safe-area-inset-bottom, 0px))',
+          paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}
       >
         {NAV_ITEMS.map((item) => {
@@ -60,12 +51,17 @@ export default function Menu() {
 
           const Icon = item.icon;
           const isScan = item.label === 'Scan';
+
           return (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => triggerHaptic(200)}
-              className={`flex flex-col items-center flex-1 py-1 gap-1 text-xs transition-colors text-transparent rounded-[2px] ${isActive ? 'font-bold' : 'font-normal'}`}
+              className={cn(
+                'flex flex-col items-center flex-1 py-1 gap-1',
+                'text-xs transition-colors rounded-[2px]',
+                isActive ? 'font-bold' : 'font-normal'
+              )}
               style={{
                 backgroundColor: isActive
                   ? item.backgroundColor
@@ -73,7 +69,10 @@ export default function Menu() {
               }}
             >
               <span
-                className={`${isScan ? 'size-12' : 'size-7'} flex items-center justify-center overflow-hidden`}
+                className={cn(
+                  'flex items-center justify-center overflow-hidden',
+                  isScan ? 'size-12' : 'size-7'
+                )}
               >
                 <Icon active={isActive} />
               </span>

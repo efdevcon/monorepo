@@ -22,12 +22,15 @@ import {
   mdiOpenInNew,
   mdiCodeBraces,
   mdiLockReset,
+  mdiLogout,
+  mdiLogin,
 } from '@mdi/js';
 import { validLocales } from '@/i18n/locales';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { WalletDisplay, WalletAvatar } from '@/components/WalletDisplay';
 import { openReportIssue } from '@/utils/reportIssue';
+import { useWallet } from '@/context/WalletContext';
 
 // Helper function to read cookie value
 function getCookie(name: string): string | null {
@@ -58,6 +61,9 @@ export default function SettingsTab() {
   const router = useRouter();
   const [locale, setLocale] = useState<string>('en');
   const [showLanguageModal, setShowLanguageModal] = useState(false);
+
+  // Get disconnect function from WalletContext
+  const { disconnect, isDisconnecting, address } = useWallet();
 
   // Extract Para wallet information
   const isParaConnected = paraAccount?.isConnected && !!paraWallet?.address;
@@ -140,6 +146,56 @@ export default function SettingsTab() {
     } catch (error) {
       toast.error('Something went wrong');
     }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await disconnect();
+
+      toast.success(
+        <div className="space-y-1">
+          <div className="font-semibold text-green-800">🔓 Logged Out</div>
+          <div className="text-sm text-green-700">
+            Wallet disconnected successfully
+          </div>
+        </div>,
+        {
+          duration: 3000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)',
+            border: '1px solid #bbf7d0',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    } catch (err) {
+      console.error('Logout failed:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unknown error';
+      toast.error(
+        <div className="space-y-1">
+          <div className="font-semibold text-red-800">❌ Logout Failed</div>
+          <div className="text-sm text-red-700">{errorMessage}</div>
+        </div>,
+        {
+          duration: 4000,
+          dismissible: true,
+          closeButton: true,
+          style: {
+            background: 'linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%)',
+            border: '1px solid #fecaca',
+            borderRadius: '8px',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          },
+        }
+      );
+    }
+  };
+
+  const handleSignIn = () => {
+    router.push('/onboarding');
   };
 
   return (
@@ -249,6 +305,45 @@ export default function SettingsTab() {
           )}
         </div>
 
+        {/* Logout or Sign In */}
+        {isParaConnected ? (
+          <button
+            onClick={handleLogout}
+            disabled={isDisconnecting}
+            className={cn(
+              'w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 transition-colors',
+              isDisconnecting
+                ? 'opacity-50 cursor-not-allowed'
+                : 'hover:bg-gray-50 cursor-pointer'
+            )}
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiLogout} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Logout
+            </p>
+            {isDisconnecting ? (
+              <span className="text-[#4b4b66] text-xs">Logging out...</span>
+            ) : (
+              <Icon
+                path={mdiChevronRight}
+                size={0.65}
+                className="text-[#4b4b66]"
+              />
+            )}
+          </button>
+        ) : (
+          <button
+            onClick={handleSignIn}
+            className="bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] cursor-pointer hover:bg-[#0060c0] transition-colors"
+          >
+            <span className="font-bold text-base text-center text-white">
+              Sign in
+            </span>
+          </button>
+        )}
+
         {/* Export Private Key */}
         <button
           onClick={handleExportPrivateKey}
@@ -312,18 +407,24 @@ export default function SettingsTab() {
         </button>
 
         {/* Debug */}
-        <button
-          onClick={handleDebugClick}
-          className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
-        >
-          <div className="w-8 h-8 flex items-center justify-center">
-            <Icon path={mdiCodeBraces} size={1} className="text-[#353548]" />
-          </div>
-          <p className="flex-1 text-left text-[#353548] text-base font-medium">
-            Debug
-          </p>
-          <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        {address && (
+          <button
+            onClick={handleDebugClick}
+            className="w-full border-b border-[#ededf0] flex items-center gap-4 px-4 py-3 hover:bg-gray-50 transition-colors"
+          >
+            <div className="w-8 h-8 flex items-center justify-center">
+              <Icon path={mdiCodeBraces} size={1} className="text-[#353548]" />
+            </div>
+            <p className="flex-1 text-left text-[#353548] text-base font-medium">
+              Debug
+            </p>
+            <Icon
+              path={mdiChevronRight}
+              size={0.65}
+              className="text-[#4b4b66]"
+            />
+          </button>
+        )}
 
         {/* Provided by Para */}
         <div className="flex items-center justify-center gap-3 mt-4">

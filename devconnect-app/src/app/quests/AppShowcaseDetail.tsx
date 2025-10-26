@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { useLocalStorage } from 'usehooks-ts';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
@@ -11,6 +10,7 @@ import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
 import PoapModal from '@/components/PoapModal';
+import { HEIGHT_HEADER } from '@/config/config';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: QuestAction) => {
@@ -71,8 +71,9 @@ export default function AppShowcaseDetail({
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
     useState<boolean>(false);
   const hasInitialized = useRef(false);
-  const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const questRefs = useRef<Record<number, HTMLDivElement | null>>({});
+  const setupSectionRef = useRef<HTMLDivElement | null>(null);
+  const districtRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [selectedPoap, setSelectedPoap] = useState<{
     id: number;
     name: string;
@@ -83,21 +84,53 @@ export default function AppShowcaseDetail({
   } | null>(null);
 
   // Helper function to scroll element into view accounting for sticky header
-  const scrollToElement = (element: HTMLElement) => {
-    // Get the actual sticky header height
-    // Header is now: safe-area-inset-top + h1(~24px) + pb-3(12px) = ~99px in PWA, ~36px regular
-    const stickyTop = pwa === true ? 61 : 52; // Sticky position from top (updated for new header height)
+  const scrollToElement = (element: HTMLElement, section = false) => {
+    // Find the scrollable container (in mobile it's the PageLayout content div, not window)
+    const scrollContainer =
+      typeof window !== 'undefined'
+        ? document.querySelector('[data-type="layout-mobile"]') ||
+          document.querySelector('[data-type="layout-desktop"]') ||
+          window
+        : window;
+
+    // Calculate safe area inset by reading the container's computed padding
+    // PageLayout applies: paddingTop: calc(HEIGHT_HEADER + env(safe-area-inset-top))
+    let safeAreaInsetTop = 0;
+    if (scrollContainer && !(scrollContainer instanceof Window)) {
+      const computedPaddingTop = parseInt(
+        getComputedStyle(scrollContainer as HTMLElement).paddingTop || '0'
+      );
+      // Subtract HEIGHT_HEADER to get just the safe area inset
+      safeAreaInsetTop = Math.max(0, computedPaddingTop - HEIGHT_HEADER);
+    }
 
     // Calculate scroll position
     const elementRect = element.getBoundingClientRect();
     const currentScroll =
-      window.pageYOffset || document.documentElement.scrollTop;
-    const targetScroll = currentScroll + elementRect.top - stickyTop - 70;
+      scrollContainer instanceof Window
+        ? window.pageYOffset || document.documentElement.scrollTop
+        : (scrollContainer as HTMLElement).scrollTop;
 
-    window.scrollTo({
-      top: targetScroll,
-      behavior: 'smooth',
-    });
+    // Account for sticky header height + extra visual spacing
+    const stickyHeaderOffset = HEIGHT_HEADER;
+    // Base offsets + safe area inset for PWA mode
+    const baseOffset = section ? 4 : 11;
+    const extraOffset = baseOffset + safeAreaInsetTop;
+    const targetScroll =
+      currentScroll + elementRect.top - stickyHeaderOffset - extraOffset;
+
+    // Scroll the correct element
+    if (scrollContainer instanceof Window) {
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth',
+      });
+    } else {
+      (scrollContainer as HTMLElement).scrollTo({
+        top: targetScroll,
+        behavior: 'smooth',
+      });
+    }
   };
 
   // Get all App Showcase quests (groupId === 4)
@@ -180,7 +213,7 @@ export default function AppShowcaseDetail({
 
     // Default: don't expand anything on first load
     hasInitialized.current = true;
-  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict, pwa]);
+  }, [districtsWithQuests, appShowcaseQuests, expandedDistrict]);
 
   // Use all districts since we're not filtering anymore
   const filteredDistricts = districtsWithQuests;
@@ -303,6 +336,14 @@ export default function AppShowcaseDetail({
       // Collapse the district
       setExpandedDistrict('');
       setExpandedQuests(new Set());
+
+      // Scroll to the district section after collapse
+      setTimeout(() => {
+        const districtElement = districtRefs.current[districtId];
+        if (districtElement) {
+          scrollToElement(districtElement, true);
+        }
+      }, 100);
     } else {
       // Expand the district and collapse any expanded setup section
       setExpandedDistrict(districtId);
@@ -321,6 +362,14 @@ export default function AppShowcaseDetail({
       } else {
         setExpandedQuests(new Set());
       }
+
+      // Scroll to the district section after expansion
+      setTimeout(() => {
+        const districtElement = districtRefs.current[districtId];
+        if (districtElement) {
+          scrollToElement(districtElement, true);
+        }
+      }, 100);
     }
   };
 
@@ -331,6 +380,13 @@ export default function AppShowcaseDetail({
       // Collapse the setup section
       setIsSetupSectionExpanded(false);
       setExpandedQuests(new Set());
+
+      // Scroll to the setup section after collapse
+      setTimeout(() => {
+        if (setupSectionRef.current) {
+          scrollToElement(setupSectionRef.current, true);
+        }
+      }, 100);
     } else {
       // Expand the setup section and collapse any expanded district
       setIsSetupSectionExpanded(true);
@@ -348,6 +404,13 @@ export default function AppShowcaseDetail({
       } else {
         setExpandedQuests(new Set());
       }
+
+      // Scroll to the setup section after expansion
+      setTimeout(() => {
+        if (setupSectionRef.current) {
+          scrollToElement(setupSectionRef.current, true);
+        }
+      }, 100);
     }
   };
 
@@ -523,7 +586,11 @@ export default function AppShowcaseDetail({
         </div>
       </div> */}
       {/* Setup & app tour Section */}
-      <div id="setup-section" className="bg-[#cbdfec] w-full">
+      <div
+        id="setup-section"
+        ref={setupSectionRef}
+        className="bg-[#cbdfec] w-full"
+      >
         {/* Setup Section Header - Clickable */}
         <button
           onClick={toggleSetupSectionExpansion}
@@ -695,6 +762,9 @@ export default function AppShowcaseDetail({
           <div
             key={district.id}
             id={`district-${district.id}`}
+            ref={(el) => {
+              districtRefs.current[district.id] = el;
+            }}
             className="w-full"
             style={{
               backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.3) 100%), ${district.backgroundColor || 'linear-gradient(0deg, rgb(170, 167, 255) 0%, rgb(246, 180, 14) 100%)'}`,
@@ -708,10 +778,7 @@ export default function AppShowcaseDetail({
               <div className="flex gap-3 items-center w-full">
                 <div className="w-14 h-14">
                   <img
-                    src={
-                      district.logo ||
-                      `/images/districts/${district.layerName}.svg`
-                    }
+                    src={district.logo}
                     alt={district.name}
                     width={56}
                     height={56}

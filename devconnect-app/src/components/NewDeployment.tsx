@@ -62,10 +62,13 @@ export default function NewDeployment() {
 
   return (
     <nav
-      className="fixed bottom-0 left-0 right-0 z-51 flex justify-around items-center bg-white border-t border-gray-200 h-[90px] pb-[34px] pt-[4px]"
+      className="fixed left-0 right-0 z-51 flex justify-around items-center bg-white border-t border-gray-200 pt-[4px]"
       style={{
         background: selectedItem?.backgroundColor,
         backdropFilter: 'blur(8px)',
+        bottom: 'calc(0px - (100vh - 100dvh))', // 100vh=852, 100dvh=793, diff=59px → bottom: -59px
+        height: 'calc(90px + env(safe-area-inset-bottom, 0px))',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
     >
       <div className="flex items-center gap-2 justify-center flex-1 py-1">
