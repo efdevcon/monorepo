@@ -58,3 +58,9 @@ export const CDP_SMART_ACCOUNTS = {
 export const ENTRYPOINT_ADDRESS = '0x5ff137d4b0fdcd49dca30c7cf57e578a026d2789'; 
 
 export const REPORT_ISSUE_URL = 'http://devconnect.org/form/issue/new';
+
+// Heights for the header and menu on mobile
+export const HEIGHT_HEADER = 52; // Displays page title
+export const HEIGHT_HEADER_TABS = 48; // HEIGHT_HEADER + HEIGHT_HEADER_TABS = 100
+export const HEIGHT_HEADER_PWA_DIFF = -12; // in PWA we remove the top padding of 12px
+export const HEIGHT_MENU = 59;

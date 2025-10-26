@@ -17,6 +17,12 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
 import { openReportIssue } from '@/utils/reportIssue';
 import { useLocalStorage } from 'usehooks-ts';
+import {
+  HEIGHT_HEADER,
+  HEIGHT_HEADER_TABS,
+  HEIGHT_HEADER_PWA_DIFF,
+  HEIGHT_MENU,
+} from '@/config/config';
 
 interface TabItem {
   label: string;
@@ -222,14 +228,19 @@ export default function PageLayout({
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
-  /* 
+  /*
    * iOS PWA Viewport Fix
    * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
-   * 
+   *
    * No JavaScript needed! Window scrolling is prevented via CSS (html/body overflow: hidden).
    * Content div handles all scrolling, preventing iOS auto-scroll from affecting fixed elements.
    * Menu stays at absolute bottom (852px) at all times, keyboard overlays it when open.
    */
+
+  const heightHeaderTabsCalc = tabs.length > 0 ? HEIGHT_HEADER_TABS : 0;
+  const heightHeaderCalc = pwa
+    ? HEIGHT_HEADER + heightHeaderTabsCalc + HEIGHT_HEADER_PWA_DIFF
+    : HEIGHT_HEADER + heightHeaderTabsCalc;
 
   return (
     <>
@@ -249,7 +260,9 @@ export default function PageLayout({
                     paddingTop: 'env(safe-area-inset-top, 0px)',
                   }}
                 >
-                  <div className="flex items-center justify-between w-full px-6 p-3 relative">
+                  <div
+                    className={`flex items-center justify-between w-full px-6 p-3 ${pwa ? 'pt-0' : 'pt-3'} relative`}
+                  >
                     {/* Left side: Bug report button (only if questProgress exists) OR Back button */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
                       {isComingSoon && questProgress && (
@@ -328,30 +341,28 @@ export default function PageLayout({
             </div>
           )}
 
-          {/* 
-            * Scrollable Content Area - iOS PWA Viewport Fix
-            * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
-            * 
-            * This div handles ALL scrolling (body/html have overflow: hidden).
-            * Key properties:
-            * - flex-1: Takes all remaining vertical space
-            * - overflow-y: auto: Makes this div scrollable (not window)
-            * - WebkitOverflowScrolling: touch: Enables smooth iOS momentum scrolling
-            * - paddingTop/Bottom: Creates space for fixed header/menu
-            * 
-            * When input is focused, iOS scrolls THIS div (not window), so fixed
-            * elements (header/menu) stay in position. window.scrollY always = 0.
-            */}
+          {/*
+           * Scrollable Content Area - iOS PWA Viewport Fix
+           * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
+           *
+           * This div handles ALL scrolling (body/html have overflow: hidden).
+           * Key properties:
+           * - flex-1: Takes all remaining vertical space
+           * - overflow-y: auto: Makes this div scrollable (not window)
+           * - WebkitOverflowScrolling: touch: Enables smooth iOS momentum scrolling
+           * - paddingTop/Bottom: Creates space for fixed header/menu
+           *
+           * When input is focused, iOS scrolls THIS div (not window), so fixed
+           * elements (header/menu) stay in position. window.scrollY always = 0.
+           */}
           <div
             className="relative md:hidden flex-1 overflow-y-auto overflow-x-hidden flex flex-col"
             data-type="layout-mobile"
             style={{
               paddingTop: title
-                ? 'calc(100px + env(safe-area-inset-top, 0px))'
-                : tabs.length > 1
-                ? 'calc(47px + env(safe-area-inset-top, 0px))' // Just tabs, no header
-                : '0px',
-              paddingBottom: 'calc(59px + env(safe-area-inset-bottom, 0px))', // Menu height + safe area
+                ? `calc(${heightHeaderCalc}px + env(safe-area-inset-top, 0px))`
+                : `calc(${heightHeaderTabsCalc}px + env(safe-area-inset-top, 0px))`,
+              paddingBottom: `calc(${HEIGHT_MENU}px + env(safe-area-inset-bottom, 0px))`, // Menu height + safe area
               WebkitOverflowScrolling: 'touch', // Smooth iOS momentum scrolling
             }}
           >
