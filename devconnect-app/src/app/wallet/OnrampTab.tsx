@@ -399,11 +399,11 @@ export default function OnrampTab() {
       className="min-h-screen overflow-auto"
       style={{
         backgroundImage:
-          "linear-gradient(-1.29174e-06deg, rgba(246, 182, 19, 0.15) 6.8662%, rgba(255, 133, 166, 0.15) 14.794%, rgba(152, 148, 255, 0.15) 22.844%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.975%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)",
+          'linear-gradient(-1.29174e-06deg, rgba(246, 182, 19, 0.15) 6.8662%, rgba(255, 133, 166, 0.15) 14.794%, rgba(152, 148, 255, 0.15) 22.844%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.975%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       }}
     >
       {/* Header */}
-      <div className="bg-white border-b border-[#ededf0] px-5 py-4">
+      <div className="bg-white border-b border-[#ededf0] px-5 py-2">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.push('/wallet')}
@@ -603,8 +603,8 @@ export default function OnrampTab() {
           <div className="flex-1 text-[#492e09] text-sm leading-[1.4] tracking-[0.1px]">
             <div className="font-bold mb-1">Need help?</div>
             <div className="font-normal">
-              Contact our support team if you're having trouble with our
-              digital exchange options. Alternatively, you can visit our{' '}
+              Contact our support team if you're having trouble with our digital
+              exchange options. Alternatively, you can visit our{' '}
               <span className="font-bold underline">
                 in-person exchange page
               </span>{' '}

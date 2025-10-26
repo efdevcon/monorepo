@@ -14,7 +14,7 @@ import NetworkSelector from '@/components/payment/NetworkSelector';
 import StatusStep from '@/components/payment/StatusStep';
 import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
-import { PAYMENT_CONFIG } from '@/config/config';
+import { HEIGHT_HEADER_PWA_DIFF, PAYMENT_CONFIG } from '@/config/config';
 import { getMerchantName } from '@/config/merchants';
 import {
   useAccount as useParaAccount,
@@ -1248,205 +1248,222 @@ export default function PaymentModal({
   }, [txStatus, onClose]);
 
   return (
-    <Modal open={isOpen} close={handleClose} className="!p-0 sm:!p-8 !z-[10000000]">
-      <ModalContent className="w-full h-full max-w-full max-h-full sm:max-w-md sm:max-h-[90vh] sm:rounded-lg sm:shadow-xl bg-white overflow-hidden flex flex-col">
-        <div className="flex items-center justify-between p-5 pb-4 shrink-0 border-b border-gray-200">
-          <div className="flex items-center gap-2">
-            <h2 className="text-xl font-semibold flex items-center gap-2">
-              <Wallet className="h-5 w-5" />
-              Payment
-            </h2>
-            {isPara && isSystemSimulationMode === null && (
-              <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
-                <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
-                Checking...
-              </div>
-            )}
-            {isPara && isSystemSimulationMode && (
-              <div className="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
-                <svg
-                  className="h-3 w-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                Simulation Mode
-              </div>
-            )}
-            {isPara && isUsingEIP7702 && !isSystemSimulationMode && (
-              <div className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
-                <svg
-                  className="h-3 w-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-                EIP-7702
-              </div>
-            )}
+    <Modal
+      open={isOpen}
+      close={handleClose}
+      className="!p-0 sm:!p-8 !z-[10000000] !bg-transparent"
+    >
+      <div
+        style={{
+          paddingTop: 'max(env(safe-area-inset-top, 0px), 0px)',
+          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <ModalContent className="w-full h-full max-w-full max-h-full sm:max-w-md sm:max-h-[90vh] sm:rounded-lg sm:shadow-xl bg-white overflow-hidden flex flex-col">
+          <div className="flex items-center justify-between p-5 pb-4 shrink-0 border-b border-gray-200">
+            <div className="flex items-center gap-2">
+              <h2 className="text-xl font-semibold flex items-center gap-2">
+                <Wallet className="h-5 w-5" />
+                Payment
+              </h2>
+              {isPara && isSystemSimulationMode === null && (
+                <div className="inline-flex items-center gap-1 bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs font-medium">
+                  <div className="animate-spin rounded-full h-3 w-3 border-b-2 border-gray-600"></div>
+                  Checking...
+                </div>
+              )}
+              {isPara && isSystemSimulationMode && (
+                <div className="inline-flex items-center gap-1 bg-orange-100 text-orange-800 px-2 py-1 rounded-full text-xs font-medium">
+                  <svg
+                    className="h-3 w-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  Simulation Mode
+                </div>
+              )}
+              {isPara && isUsingEIP7702 && !isSystemSimulationMode && (
+                <div className="inline-flex items-center gap-1 bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                  <svg
+                    className="h-3 w-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  EIP-7702
+                </div>
+              )}
+            </div>
+
+            <button
+              onClick={handleClose}
+              className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
 
-          <button
-            onClick={handleClose}
-            className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
-          >
-            <X className="h-4 w-4" />
-          </button>
-        </div>
-
-        {/* Step Content - Scrollable Container */}
-        <div className="flex-1 overflow-y-auto overflow-x-hidden p-5">
-          {currentStep === 'form' &&
-            paymentDetails.orderStatus !== 'approved' && (
-              <div className="space-y-6">
-                {/* Loading State */}
-                {isLoadingPaymentDetails && (
-                  <div className="text-center py-8">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-                    <p className="text-gray-600">Loading payment details...</p>
-                  </div>
-                )}
-
-                {/* Error State */}
-                {paymentDetailsError && (
-                  <div className="text-center py-8">
-                    <div className="text-red-600 mb-4">
-                      <svg
-                        className="h-12 w-12 mx-auto mb-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"
-                        />
-                      </svg>
-                      <p className="font-semibold">
-                        Error loading payment details
+          {/* Step Content - Scrollable Container */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden p-5">
+            {currentStep === 'form' &&
+              paymentDetails.orderStatus !== 'approved' && (
+                <div className="space-y-6">
+                  {/* Loading State */}
+                  {isLoadingPaymentDetails && (
+                    <div className="text-center py-8">
+                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                      <p className="text-gray-600">
+                        Loading payment details...
                       </p>
-                      <p className="text-sm">{paymentDetailsError}</p>
                     </div>
-                    <Button onClick={onClose} variant="outline">
-                      Close
-                    </Button>
-                  </div>
-                )}
+                  )}
 
-                {/* Payment Form */}
-                {!isLoadingPaymentDetails && !paymentDetailsError && (
-                  <>
-                    {/* Merchant Information */}
-                    <div className="text-center space-y-2">
-                      <h2 className="text-[#20202b] text-base font-bold">
-                        {paymentDetails.merchantName || 'Devconnect'}
-                      </h2>
-                      {paymentDetails.orderId && (
-                        <p className="text-[#353548] text-xs">
-                          <span className="font-bold">Order ID:</span>{' '}
-                          {paymentDetails.orderId}
+                  {/* Error State */}
+                  {paymentDetailsError && (
+                    <div className="text-center py-8">
+                      <div className="text-red-600 mb-4">
+                        <svg
+                          className="h-12 w-12 mx-auto mb-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"
+                          />
+                        </svg>
+                        <p className="font-semibold">
+                          Error loading payment details
                         </p>
-                      )}
-                      <div className="space-y-2">
-                        <div className="flex items-end justify-center gap-1">
-                          <span className="text-[#4b4b66] text-xl">
-                            {paymentDetails.priceDetails?.currency || 'ARS'}
-                          </span>
-                          <span className="text-[#20202b] text-2xl font-bold">
-                            {paymentDetails.priceDetails?.currency_final_amount?.toLocaleString() ||
-                              paymentDetails.arsAmount?.toLocaleString() ||
-                              '15'}
-                          </span>
-                        </div>
-                        <div className="flex items-end justify-center gap-1">
-                          <span className="text-[#4b4b66] text-base">
-                            {isPara ? 'USDC' : selectedToken}
-                          </span>
-                          <span className="text-[#20202b] text-xl font-bold">
-                            {paymentDetails.priceDetails?.final_amount?.toFixed(
-                              6
-                            ) ||
-                              paymentDetails.amount ||
-                              amount}
-                          </span>
+                        <p className="text-sm">{paymentDetailsError}</p>
+                      </div>
+                      <Button onClick={onClose} variant="outline">
+                        Close
+                      </Button>
+                    </div>
+                  )}
+
+                  {/* Payment Form */}
+                  {!isLoadingPaymentDetails && !paymentDetailsError && (
+                    <>
+                      {/* Merchant Information */}
+                      <div className="text-center space-y-2">
+                        <h2 className="text-[#20202b] text-base font-bold">
+                          {paymentDetails.merchantName || 'Devconnect'}
+                        </h2>
+                        {paymentDetails.orderId && (
+                          <p className="text-[#353548] text-xs">
+                            <span className="font-bold">Order ID:</span>{' '}
+                            {paymentDetails.orderId}
+                          </p>
+                        )}
+                        <div className="space-y-2">
+                          <div className="flex items-end justify-center gap-1">
+                            <span className="text-[#4b4b66] text-xl">
+                              {paymentDetails.priceDetails?.currency || 'ARS'}
+                            </span>
+                            <span className="text-[#20202b] text-2xl font-bold">
+                              {paymentDetails.priceDetails?.currency_final_amount?.toLocaleString() ||
+                                paymentDetails.arsAmount?.toLocaleString() ||
+                                '15'}
+                            </span>
+                          </div>
+                          <div className="flex items-end justify-center gap-1">
+                            <span className="text-[#4b4b66] text-base">
+                              {isPara ? 'USDC' : selectedToken}
+                            </span>
+                            <span className="text-[#20202b] text-xl font-bold">
+                              {paymentDetails.priceDetails?.final_amount?.toFixed(
+                                6
+                              ) ||
+                                paymentDetails.amount ||
+                                amount}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Payment Method Section */}
-                    <div className="space-y-3">
-                      <h3 className="text-[#353548] text-base font-semibold">
-                        Payment method
-                      </h3>
-                      <div className="relative">
-                        <TokenSelector
-                          selectedToken={isPara ? 'USDC' : selectedToken}
-                          onTokenChange={handleTokenChange}
-                          chainId={isPara ? 8453 : selectedChainId}
-                          isPara={isPara}
-                        />
-                        {isAddingTransaction && (
-                          <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-md">
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                              Adding transaction...
+                      {/* Payment Method Section */}
+                      <div className="space-y-3">
+                        <h3 className="text-[#353548] text-base font-semibold">
+                          Payment method
+                        </h3>
+                        <div className="relative">
+                          <TokenSelector
+                            selectedToken={isPara ? 'USDC' : selectedToken}
+                            onTokenChange={handleTokenChange}
+                            chainId={isPara ? 8453 : selectedChainId}
+                            isPara={isPara}
+                          />
+                          {isAddingTransaction && (
+                            <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-md">
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                                Adding transaction...
+                              </div>
                             </div>
-                          </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Network Section */}
+                      <div className="space-y-3">
+                        <h3 className="text-[#353548] text-base font-semibold">
+                          Network
+                        </h3>
+                        <div className="relative">
+                          <NetworkSelector
+                            selectedChainId={isPara ? 8453 : selectedChainId}
+                            onNetworkChange={handleNetworkChange}
+                            isPara={isPara}
+                            selectedToken={isPara ? 'USDC' : selectedToken}
+                          />
+                          {isAddingTransaction && (
+                            <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-md">
+                              <div className="flex items-center gap-2 text-sm text-gray-600">
+                                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
+                                Adding transaction...
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        {isPara && (
+                          <p className="text-xs text-[#4b4b66] bg-gray-50 p-2 rounded">
+                            Network is automatically selected based on the
+                            chosen payment method
+                          </p>
                         )}
                       </div>
-                    </div>
 
-                    {/* Network Section */}
-                    <div className="space-y-3">
-                      <h3 className="text-[#353548] text-base font-semibold">
-                        Network
-                      </h3>
-                      <div className="relative">
-                        <NetworkSelector
-                          selectedChainId={isPara ? 8453 : selectedChainId}
-                          onNetworkChange={handleNetworkChange}
-                          isPara={isPara}
-                          selectedToken={isPara ? 'USDC' : selectedToken}
-                        />
-                        {isAddingTransaction && (
-                          <div className="absolute inset-0 bg-white/80 flex items-center justify-center rounded-md">
-                            <div className="flex items-center gap-2 text-sm text-gray-600">
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600"></div>
-                              Adding transaction...
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                      {isPara && (
-                        <p className="text-xs text-[#4b4b66] bg-gray-50 p-2 rounded">
-                          Network is automatically selected based on the chosen
-                          payment method
-                        </p>
-                      )}
-                    </div>
-
-                    {/* Wallet Section */}
-                    <div className="space-y-3">
-                      <h3 className="text-[#353548] text-base font-semibold">
-                        Wallet
-                      </h3>
-                      {/* <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
+                      {/* Wallet Section */}
+                      <div className="space-y-3">
+                        <h3 className="text-[#353548] text-base font-semibold">
+                          Wallet
+                        </h3>
+                        {/* <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
                       <div className="flex items-center gap-3">
                         {(() => {
                           const connectorIcon = isPara
@@ -1468,227 +1485,231 @@ export default function PaymentModal({
                       </div>
                       <ChevronDown className="w-5 h-5 text-[#353548]" />
                     </div> */}
-                      {/* Connection Status */}
-                      <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white text-base font-semibold">
-                            Connected to:
-                          </span>
-                          <div className="flex items-center gap-2">
-                            {(() => {
-                              const connectorIcon = isPara
-                                ? '/images/paraLogo.png'
-                                : wagmiAccount.connector?.icon ||
-                                  '/images/icons/injected.png';
-
-                              return (
-                                <img
-                                  src={connectorIcon}
-                                  alt="wallet"
-                                  className="w-5 h-5 rounded object-cover"
-                                />
-                              );
-                            })()}
-                            <span className="text-white text-sm">
-                              {connectedAddress
-                                ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
-                                : 'Not connected'}
+                        {/* Connection Status */}
+                        <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-white text-base font-semibold">
+                              Connected to:
                             </span>
-                          </div>
-                        </div>
-                        {isPara && (
-                          <div className="space-y-1">
-                            <p className="text-[#ededf0] text-xs text-center">
-                              <span className="font-bold">Para: </span>
-                              <span className="font-normal">
-                                This transaction is gas-free
-                              </span>
-                            </p>
-                            {isUsingEIP7702 && (
-                              <p className="text-[#f6b613] text-xs text-center flex items-center justify-center gap-1">
-                                <svg
-                                  className="h-3 w-3"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"
+                            <div className="flex items-center gap-2">
+                              {(() => {
+                                const connectorIcon = isPara
+                                  ? '/images/paraLogo.png'
+                                  : wagmiAccount.connector?.icon ||
+                                    '/images/icons/injected.png';
+
+                                return (
+                                  <img
+                                    src={connectorIcon}
+                                    alt="wallet"
+                                    className="w-5 h-5 rounded object-cover"
                                   />
-                                </svg>
-                                <span className="font-semibold">
-                                  EIP-7702 Enabled
+                                );
+                              })()}
+                              <span className="text-white text-sm">
+                                {connectedAddress
+                                  ? `${connectedAddress.slice(0, 6)}...${connectedAddress.slice(-4)}`
+                                  : 'Not connected'}
+                              </span>
+                            </div>
+                          </div>
+                          {isPara && (
+                            <div className="space-y-1">
+                              <p className="text-[#ededf0] text-xs text-center">
+                                <span className="font-bold">Para: </span>
+                                <span className="font-normal">
+                                  This transaction is gas-free
                                 </span>
                               </p>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                      {/* <button className="text-[#1b6fae] text-sm font-medium">
+                              {isUsingEIP7702 && (
+                                <p className="text-[#f6b613] text-xs text-center flex items-center justify-center gap-1">
+                                  <svg
+                                    className="h-3 w-3"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                                    />
+                                  </svg>
+                                  <span className="font-semibold">
+                                    EIP-7702 Enabled
+                                  </span>
+                                </p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        {/* <button className="text-[#1b6fae] text-sm font-medium">
                       SWITCH WALLET (2)
                     </button> */}
-                    </div>
-
-                    {/* Amount to Pay */}
-                    <div className="border-t border-[#c7c7d0] pt-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[#353548] text-base font-semibold">
-                          Amount to pay
-                        </span>
-                        <span className="text-[#353548] text-base">
-                          {paymentDetails.priceDetails?.final_amount?.toFixed(
-                            6
-                          ) || amount}{' '}
-                          {getTokenInfo(
-                            isPara ? 'USDC' : selectedToken,
-                            isPara ? 8453 : selectedChainId
-                          )?.symbol || (isPara ? 'USDC' : selectedToken)}
-                        </span>
                       </div>
-                    </div>
 
-                    {/* Pay Button */}
-                    <Button
-                      onClick={handleSendPayment}
-                      disabled={
-                        !isRecipientValid ||
-                        !isAmountValid ||
-                        !amount ||
-                        isPending
-                      }
-                      className="w-full bg-[#137c59] hover:bg-[#0c5039] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#0c5039] transition-colors disabled:opacity-50"
-                    >
-                      {isPending ? (
-                        <>
-                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                          Processing...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4 mr-2" />
-                          Pay {paymentDetails.merchantName || 'Devconnect'}{' '}
-                          {paymentDetails.priceDetails?.final_amount?.toFixed(
-                            6
-                          ) || amount}{' '}
-                          {getTokenInfo(
-                            isPara ? 'USDC' : selectedToken,
-                            isPara ? 8453 : selectedChainId
-                          )?.symbol || (isPara ? 'USDC' : selectedToken)}
-                        </>
-                      )}
-                    </Button>
+                      {/* Amount to Pay */}
+                      <div className="border-t border-[#c7c7d0] pt-3">
+                        <div className="flex items-center justify-between">
+                          <span className="text-[#353548] text-base font-semibold">
+                            Amount to pay
+                          </span>
+                          <span className="text-[#353548] text-base">
+                            {paymentDetails.priceDetails?.final_amount?.toFixed(
+                              6
+                            ) || amount}{' '}
+                            {getTokenInfo(
+                              isPara ? 'USDC' : selectedToken,
+                              isPara ? 8453 : selectedChainId
+                            )?.symbol || (isPara ? 'USDC' : selectedToken)}
+                          </span>
+                        </div>
+                      </div>
 
-                    {/* Simulation Button */}
-                    {isPara && (
+                      {/* Pay Button */}
                       <Button
-                        onClick={() => {
-                          // Set payment data and move to status step
-                          setPaymentData({
-                            recipient: paymentDetails.recipient || recipient,
-                            amount: paymentDetails.amount || amount,
-                            token: isPara ? 'USDC' : selectedToken,
-                            chainId: isPara ? 8453 : selectedChainId,
-                          });
-                          setCurrentStep('status');
-                          // Trigger the same transaction flow with simulation parameter
-                          console.log(
-                            '🔄 [SIMULATION] Starting simulation transaction...'
-                          );
-                          sendTransaction(
-                            paymentDetails.recipient || recipient,
-                            paymentDetails.amount || amount,
-                            isPara ? 'USDC' : selectedToken,
-                            isPara ? 8453 : selectedChainId,
-                            'payment',
-                            true // Force simulation mode
-                          );
-                        }}
+                        onClick={handleSendPayment}
                         disabled={
                           !isRecipientValid ||
                           !isAmountValid ||
                           !amount ||
                           isPending
                         }
-                        className="w-full bg-[#eaf3fa] hover:bg-[#d5e7f4] text-[#44445d] font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors disabled:opacity-50"
+                        className="w-full bg-[#137c59] hover:bg-[#0c5039] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#0c5039] transition-colors disabled:opacity-50"
                       >
-                        <svg
-                          className="h-4 w-4 mr-2"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        Simulate Payment
+                        {isPending ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                            Processing...
+                          </>
+                        ) : (
+                          <>
+                            <Send className="h-4 w-4 mr-2" />
+                            Pay {paymentDetails.merchantName ||
+                              'Devconnect'}{' '}
+                            {paymentDetails.priceDetails?.final_amount?.toFixed(
+                              6
+                            ) || amount}{' '}
+                            {getTokenInfo(
+                              isPara ? 'USDC' : selectedToken,
+                              isPara ? 8453 : selectedChainId
+                            )?.symbol || (isPara ? 'USDC' : selectedToken)}
+                          </>
+                        )}
                       </Button>
-                    )}
-                  </>
-                )}
-              </div>
-            )}
 
-          {currentStep === 'form' &&
-            paymentDetails.orderStatus === 'approved' && (
+                      {/* Simulation Button */}
+                      {isPara && (
+                        <Button
+                          onClick={() => {
+                            // Set payment data and move to status step
+                            setPaymentData({
+                              recipient: paymentDetails.recipient || recipient,
+                              amount: paymentDetails.amount || amount,
+                              token: isPara ? 'USDC' : selectedToken,
+                              chainId: isPara ? 8453 : selectedChainId,
+                            });
+                            setCurrentStep('status');
+                            // Trigger the same transaction flow with simulation parameter
+                            console.log(
+                              '🔄 [SIMULATION] Starting simulation transaction...'
+                            );
+                            sendTransaction(
+                              paymentDetails.recipient || recipient,
+                              paymentDetails.amount || amount,
+                              isPara ? 'USDC' : selectedToken,
+                              isPara ? 8453 : selectedChainId,
+                              'payment',
+                              true // Force simulation mode
+                            );
+                          }}
+                          disabled={
+                            !isRecipientValid ||
+                            !isAmountValid ||
+                            !amount ||
+                            isPending
+                          }
+                          className="w-full bg-[#eaf3fa] hover:bg-[#d5e7f4] text-[#44445d] font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors disabled:opacity-50"
+                        >
+                          <svg
+                            className="h-4 w-4 mr-2"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                            />
+                          </svg>
+                          Simulate Payment
+                        </Button>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
+
+            {currentStep === 'form' &&
+              paymentDetails.orderStatus === 'approved' && (
+                <StatusStep
+                  txStatus="confirmed"
+                  txError=""
+                  isPara={isPara}
+                  amount={paymentData.amount || paymentDetails.amount || '0'}
+                  token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
+                  chainId={
+                    paymentData.chainId || (isPara ? 8453 : selectedChainId)
+                  }
+                  connectedAddress={connectedAddress || undefined}
+                  txHash={
+                    // Get the actual blockchain transaction hash from payments
+                    paymentDetails.payments?.[0]?.hash ||
+                    paymentDetails.transactions?.[0]?.payments?.[0]?.hash ||
+                    txHash ||
+                    undefined
+                  }
+                  isSimulation={false}
+                  simulationDetails={null}
+                  onDone={handleClose}
+                  paymentId={paymentRequestId || paymentDetails.orderId}
+                  orderId={paymentDetails.orderId}
+                  isAlreadyCompleted={true}
+                  recipient={paymentDetails.recipient || paymentData.recipient}
+                  merchantName={paymentDetails.merchantName || 'Devconnect'}
+                />
+              )}
+            {currentStep === 'status' && (
               <StatusStep
-                txStatus="confirmed"
-                txError=""
+                txStatus={txStatus}
+                txError={txError}
                 isPara={isPara}
-                amount={paymentData.amount || paymentDetails.amount || '0'}
+                amount={paymentData.amount}
                 token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
                 chainId={
                   paymentData.chainId || (isPara ? 8453 : selectedChainId)
                 }
                 connectedAddress={connectedAddress || undefined}
-                txHash={
-                  // Get the actual blockchain transaction hash from payments
-                  paymentDetails.payments?.[0]?.hash ||
-                  paymentDetails.transactions?.[0]?.payments?.[0]?.hash ||
-                  txHash ||
-                  undefined
-                }
-                isSimulation={false}
-                simulationDetails={null}
-                onDone={handleClose}
+                txHash={txHash || undefined}
+                userOpHash={userOpHash || undefined}
+                isSimulation={isSimulation}
+                simulationDetails={simulationDetails}
+                onDone={handleStatusDone}
+                onTryAgain={handleTryAgain}
                 paymentId={paymentRequestId || paymentDetails.orderId}
                 orderId={paymentDetails.orderId}
-                isAlreadyCompleted={true}
-                recipient={paymentDetails.recipient || paymentData.recipient}
+                recipient={
+                  paymentData.recipient || paymentDetails.recipient || recipient
+                }
                 merchantName={paymentDetails.merchantName || 'Devconnect'}
               />
             )}
-          {currentStep === 'status' && (
-            <StatusStep
-              txStatus={txStatus}
-              txError={txError}
-              isPara={isPara}
-              amount={paymentData.amount}
-              token={paymentData.token || (isPara ? 'USDC' : selectedToken)}
-              chainId={paymentData.chainId || (isPara ? 8453 : selectedChainId)}
-              connectedAddress={connectedAddress || undefined}
-              txHash={txHash || undefined}
-              userOpHash={userOpHash || undefined}
-              isSimulation={isSimulation}
-              simulationDetails={simulationDetails}
-              onDone={handleStatusDone}
-              onTryAgain={handleTryAgain}
-              paymentId={paymentRequestId || paymentDetails.orderId}
-              orderId={paymentDetails.orderId}
-              recipient={
-                paymentData.recipient || paymentDetails.recipient || recipient
-              }
-              merchantName={paymentDetails.merchantName || 'Devconnect'}
-            />
-          )}
-        </div>
-      </ModalContent>
+          </div>
+        </ModalContent>
+      </div>
     </Modal>
   );
 } 

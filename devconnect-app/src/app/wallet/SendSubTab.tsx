@@ -320,7 +320,7 @@ export default function SendPage() {
       }}
     >
       {/* Header */}
-      <div className="bg-white border-b border-[#ededf0] px-5 py-4">
+      <div className="bg-white border-b border-[#ededf0] px-5 py-2">
         <div className="flex items-center justify-between">
           <button
             onClick={() => router.push('/wallet')}
@@ -350,156 +350,157 @@ export default function SendPage() {
       {/* Main Content */}
       {currentStep === 'form' && (
         <div className="px-6 py-6 space-y-8">
-        {/* From and To Section */}
-        <div className="space-y-3">
-          {/* From Field */}
-          <div className="flex gap-5 items-center">
-            <p className="text-[#353548] text-base font-semibold tracking-[-0.1px] whitespace-nowrap">
-              From:
-            </p>
-            <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-4 flex gap-2 items-center flex-1">
-              <div className="relative w-4 h-4 flex-shrink-0 rounded-full overflow-hidden">
-                <img
-                  src={imgPara}
-                  alt="Para"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <p className="text-[#353548] text-sm font-normal">
-                {formatAddress(address)}{' '}
-                <span className="font-bold">(Para)</span>
+          {/* From and To Section */}
+          <div className="space-y-3">
+            {/* From Field */}
+            <div className="flex gap-5 items-center">
+              <p className="text-[#353548] text-base font-semibold tracking-[-0.1px] whitespace-nowrap">
+                From:
               </p>
-            </div>
-          </div>
-
-          {/* To Field */}
-          <div className="flex gap-5 items-start">
-            <p className="text-[#353548] text-base font-semibold tracking-[-0.1px] whitespace-nowrap pt-3">
-              To:
-            </p>
-            <div className="flex-1 space-y-1">
-              <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 flex gap-3 items-center">
-                <input
-                  type="text"
-                  value={recipientAddress}
-                  onChange={(e) => {
-                    setRecipientAddress(e.target.value);
-                    // Clear error when user starts typing
-                    if (addressError) {
-                      setAddressError(null);
-                    }
-                  }}
-                  onBlur={handleAddressBlur}
-                  placeholder="Paste address (0x) or ENS"
-                  disabled={isResolvingAddress}
-                  className="flex-1 text-[#353548] text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50"
-                />
-                {isResolvingAddress ? (
-                  <div className="flex items-center gap-2 px-3 py-1.5">
-                    <div className="animate-spin w-3 h-3 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
-                    <span className="text-[#0073de] text-xs font-bold">
-                      Resolving...
-                    </span>
-                  </div>
-                ) : recipientAddress ? (
-                  <button
-                    onClick={handleClear}
-                    className="bg-[#eaf3fa] px-3 py-1.5 rounded-[1px] text-[#44445d] text-xs font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer flex-shrink-0"
-                  >
-                    Clear
-                  </button>
-                ) : (
-                  <button
-                    onClick={handlePaste}
-                    className="bg-[#0073de] px-3 py-1.5 rounded-[1px] text-white text-xs font-bold hover:bg-[#005bb5] transition-colors cursor-pointer flex-shrink-0"
-                  >
-                    Paste
-                  </button>
-                )}
-              </div>
-              {addressError && (
-                <p className="text-red-600 text-xs leading-[1.3] px-1">
-                  {addressError}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Amount Section */}
-        <div className="space-y-4">
-          <p className="text-[#353548] text-base font-semibold tracking-[-0.1px]">
-            Amount
-          </p>
-
-          <div className="space-y-2">
-            {/* Amount Input */}
-            <div className="bg-white border border-[#ededf0] rounded-[2px] px-4 py-4 flex gap-3 items-center">
-              <div className="flex-1">
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="0"
-                  className="w-full text-[#353548] text-xl font-bold outline-none placeholder:text-[#353548]"
-                  step="0.01"
-                  min="0"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={handleMax}
-                  className="text-[#0073de] text-sm font-bold hover:underline cursor-pointer"
-                >
-                  MAX
-                </button>
-                <span className="text-[#353548] text-xl font-bold">USDC</span>
-              </div>
-            </div>
-
-            {/* Token Selection */}
-            <div className="bg-white border border-[#ededf0] rounded-[2px] px-4 py-3 flex gap-3 items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="relative w-5 h-5">
+              <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-4 flex gap-2 items-center flex-1">
+                <div className="relative w-4 h-4 flex-shrink-0 rounded-full overflow-hidden">
                   <img
-                    src={imgUSDC}
-                    alt="USDC"
-                    className="w-full h-full rounded-full"
-                  />
-                  {/* Base network indicator */}
-                  <img
-                    src={imgBase}
-                    alt="Base"
-                    className="rounded-full absolute -bottom-1 -left-1 w-3 h-3 border border-white"
+                    src={imgPara}
+                    alt="Para"
+                    className="w-full h-full object-cover"
                   />
                 </div>
-                <span className="text-[#353548] text-base font-normal tracking-[-0.1px]">
-                  USDC (Base)
-                </span>
+                <p className="text-[#353548] text-sm font-normal">
+                  {formatAddress(address)}{' '}
+                  <span className="font-bold">(Para)</span>
+                </p>
               </div>
-              <p className="text-[#4b4b66] text-sm font-normal">
-                <span className="font-bold">Available:</span> {usdcBalance.toFixed(6)}
+            </div>
+
+            {/* To Field */}
+            <div className="flex gap-5 items-start">
+              <p className="text-[#353548] text-base font-semibold tracking-[-0.1px] whitespace-nowrap pt-3">
+                To:
               </p>
+              <div className="flex-1 space-y-1">
+                <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 flex gap-3 items-center">
+                  <input
+                    type="text"
+                    value={recipientAddress}
+                    onChange={(e) => {
+                      setRecipientAddress(e.target.value);
+                      // Clear error when user starts typing
+                      if (addressError) {
+                        setAddressError(null);
+                      }
+                    }}
+                    onBlur={handleAddressBlur}
+                    placeholder="Paste address (0x) or ENS"
+                    disabled={isResolvingAddress}
+                    className="flex-1 text-[#353548] text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50"
+                  />
+                  {isResolvingAddress ? (
+                    <div className="flex items-center gap-2 px-3 py-1.5">
+                      <div className="animate-spin w-3 h-3 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
+                      <span className="text-[#0073de] text-xs font-bold">
+                        Resolving...
+                      </span>
+                    </div>
+                  ) : recipientAddress ? (
+                    <button
+                      onClick={handleClear}
+                      className="bg-[#eaf3fa] px-3 py-1.5 rounded-[1px] text-[#44445d] text-xs font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer flex-shrink-0"
+                    >
+                      Clear
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handlePaste}
+                      className="bg-[#0073de] px-3 py-1.5 rounded-[1px] text-white text-xs font-bold hover:bg-[#005bb5] transition-colors cursor-pointer flex-shrink-0"
+                    >
+                      Paste
+                    </button>
+                  )}
+                </div>
+                {addressError && (
+                  <p className="text-red-600 text-xs leading-[1.3] px-1">
+                    {addressError}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Confirm Button */}
-        <button
-          onClick={handleConfirmSend}
-          disabled={!canSend}
-          className={`w-full px-6 py-3 rounded-[1px] flex items-center justify-center gap-2 transition-colors ${
-            canSend
-              ? 'bg-[#137c59] hover:bg-[#0f6347] cursor-pointer'
-              : 'bg-[#137c59] opacity-40 cursor-not-allowed'
-          }`}
-        >
-          <Icon path={mdiLockOutline} size={0.65} className="text-white" />
-          <span className="text-white text-base font-bold">
-            Confirm and send
-          </span>
-        </button>
-      </div>
+          {/* Amount Section */}
+          <div className="space-y-4">
+            <p className="text-[#353548] text-base font-semibold tracking-[-0.1px]">
+              Amount
+            </p>
+
+            <div className="space-y-2">
+              {/* Amount Input */}
+              <div className="bg-white border border-[#ededf0] rounded-[2px] px-4 py-4 flex gap-3 items-center">
+                <div className="flex-1">
+                  <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="0"
+                    className="w-full text-[#353548] text-xl font-bold outline-none placeholder:text-[#353548]"
+                    step="0.01"
+                    min="0"
+                  />
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleMax}
+                    className="text-[#0073de] text-sm font-bold hover:underline cursor-pointer"
+                  >
+                    MAX
+                  </button>
+                  <span className="text-[#353548] text-xl font-bold">USDC</span>
+                </div>
+              </div>
+
+              {/* Token Selection */}
+              <div className="bg-white border border-[#ededf0] rounded-[2px] px-4 py-3 flex gap-3 items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="relative w-5 h-5">
+                    <img
+                      src={imgUSDC}
+                      alt="USDC"
+                      className="w-full h-full rounded-full"
+                    />
+                    {/* Base network indicator */}
+                    <img
+                      src={imgBase}
+                      alt="Base"
+                      className="rounded-full absolute -bottom-1 -left-1 w-3 h-3 border border-white"
+                    />
+                  </div>
+                  <span className="text-[#353548] text-base font-normal tracking-[-0.1px]">
+                    USDC (Base)
+                  </span>
+                </div>
+                <p className="text-[#4b4b66] text-sm font-normal">
+                  <span className="font-bold">Available:</span>{' '}
+                  {usdcBalance.toFixed(6)}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Confirm Button */}
+          <button
+            onClick={handleConfirmSend}
+            disabled={!canSend}
+            className={`w-full px-6 py-3 rounded-[1px] flex items-center justify-center gap-2 transition-colors ${
+              canSend
+                ? 'bg-[#137c59] hover:bg-[#0f6347] cursor-pointer'
+                : 'bg-[#137c59] opacity-40 cursor-not-allowed'
+            }`}
+          >
+            <Icon path={mdiLockOutline} size={0.65} className="text-white" />
+            <span className="text-white text-base font-bold">
+              Confirm and send
+            </span>
+          </button>
+        </div>
       )}
 
       {/* Transaction Status Step */}
@@ -507,9 +508,9 @@ export default function SendPage() {
         <div className="px-6 py-6">
           <div className="space-y-6">
             {/* Status Display */}
-            {(txStatus === 'preparing' || 
-              txStatus === 'signing' || 
-              txStatus === 'executing' || 
+            {(txStatus === 'preparing' ||
+              txStatus === 'signing' ||
+              txStatus === 'executing' ||
               txStatus === 'confirming' ||
               txStatus === 'building' ||
               txStatus === 'broadcasting' ||
@@ -566,7 +567,9 @@ export default function SendPage() {
                   </p>
                   {txHash && (
                     <div className="space-y-2">
-                      <p className="text-xs text-[#4b4b66]">Transaction Hash:</p>
+                      <p className="text-xs text-[#4b4b66]">
+                        Transaction Hash:
+                      </p>
                       <a
                         href={`${getNetworkConfig(8453).blockExplorers?.default.url}/tx/${txHash}`}
                         target="_blank"
@@ -624,7 +627,8 @@ export default function SendPage() {
                     Transaction Failed
                   </h3>
                   <p className="text-[#353548] text-sm mb-2">
-                    {txError || 'An error occurred while processing your transaction'}
+                    {txError ||
+                      'An error occurred while processing your transaction'}
                   </p>
                 </div>
                 <div className="space-y-2">

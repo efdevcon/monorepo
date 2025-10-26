@@ -3,6 +3,7 @@
 import { QRCodeSVG } from 'qrcode.react';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface ReceiveModalProps {
   isOpen: boolean;
@@ -21,6 +22,9 @@ export default function ReceiveModal({
 
   if (!isOpen) return null;
 
+  // Portal requires document to exist (client-side only)
+  if (typeof document === 'undefined') return null;
+
   const handleCopyAddress = async () => {
     if (address) {
       await navigator.clipboard.writeText(address);
@@ -32,9 +36,10 @@ export default function ReceiveModal({
     }
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 bg-black/33 flex items-end justify-center z-[999999]"
+      className="fixed inset-0 bg-black/33 flex items-end justify-center"
+      style={{ zIndex: 10000000 }}
       onClick={onClose}
     >
       <div
@@ -146,7 +151,8 @@ export default function ReceiveModal({
           </button>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

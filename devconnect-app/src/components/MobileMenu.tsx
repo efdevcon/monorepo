@@ -35,7 +35,7 @@ export default function Menu() {
           'border-t border-gray-200 gap-2 px-2'
         )}
         style={{
-          bottom: 'calc(0px - (100vh - 100dvh))',
+          bottom: '0',
           height: 'calc(59px + env(safe-area-inset-bottom, 0px))',
           paddingBottom: 'env(safe-area-inset-bottom, 0px)',
         }}

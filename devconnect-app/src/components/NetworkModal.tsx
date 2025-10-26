@@ -7,6 +7,7 @@ import {
   getReadableNetworkName,
 } from '@/config/networks';
 import NetworkLogo from './NetworkLogo';
+import { createPortal } from 'react-dom';
 
 interface NetworkModalProps {
   isOpen: boolean;
@@ -18,6 +19,9 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
 
   if (!isOpen) return null;
 
+  // Portal requires document to exist (client-side only)
+  if (typeof document === 'undefined') return null;
+
   const handleNetworkSwitch = async (chainId: number) => {
     if (chainId !== currentChainId) {
       await switchToNetwork(chainId);
@@ -25,12 +29,13 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
     onClose();
   };
 
-  return (
-    <div 
-      className="fixed inset-0 bg-black/33 flex items-end justify-center z-[999999]"
+  return createPortal(
+    <div
+      className="fixed inset-0 bg-black/33 flex items-end justify-center"
+      style={{ zIndex: 10000000 }}
       onClick={onClose}
     >
-      <div 
+      <div
         className="bg-white w-full max-w-[393px] rounded-t-lg shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
@@ -46,8 +51,18 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
@@ -61,7 +76,7 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
             {chains.map((chain) => {
               const config = getNetworkConfig(chain.id);
               const isCurrentChain = chain.id === currentChainId;
-              
+
               return (
                 <button
                   key={chain.id}
@@ -86,6 +101,7 @@ export default function NetworkModal({ isOpen, onClose }: NetworkModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -4,6 +4,7 @@ import { useAppKit } from '@reown/appkit/react';
 import { useWallet } from '@/context/WalletContext';
 import { toast } from 'sonner';
 import { useEffect, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import {
   WalletDisplay,
   WalletAvatarWithFallback,
@@ -93,6 +94,9 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
   // ]);
 
   if (!isOpen) return null;
+
+  // Portal requires document to exist (client-side only)
+  if (typeof document === 'undefined') return null;
 
   // Debug each connector's properties
   // if (switchableConnectors && switchableConnectors.length > 0) {
@@ -304,9 +308,10 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
     }
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 bg-black/33 flex items-end justify-center z-[999999]"
+      className="fixed inset-0 bg-black/33 flex items-end justify-center"
+      style={{ zIndex: 10000000 }}
       onClick={onClose}
     >
       <div
@@ -592,6 +597,7 @@ export default function WalletModal({ isOpen, onClose }: WalletModalProps) {
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
