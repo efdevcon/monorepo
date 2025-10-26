@@ -1,6 +1,13 @@
 .menu {
-    // background: hsla(0, 0%, 100%, .9);
-      background: white;
+  background: white;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+  /* Menu pushed to absolute bottom via: bottom: calc(0px - (100vh - 100dvh)) */
+    /* This covers the home indicator (852px) instead of stopping at innerHeight (793px) */
+    /* paddingBottom set inline via env(safe-area-inset-bottom) to keep content tappable */
+  
+    /* Hardware acceleration for smooth rendering */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }

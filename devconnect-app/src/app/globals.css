@@ -127,7 +127,7 @@ button, a, [role="button"] {
   scrollbar-width: none;
   -ms-overflow-style: none;
   box-sizing: border-box;
-  min-height: 0;
+  /* min-height: 0; */
   min-width: 0;
 }
 
@@ -165,6 +165,50 @@ button, a, [role="button"] {
 
   body {
     overscroll-behavior-y: contain;
+  }
+}
+
+/* 
+ * iOS PWA Viewport Fix
+ * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
+ * 
+ * Lock html/body to prevent window scrolling - content div handles all scrolling.
+ * This prevents iOS Safari from auto-scrolling the page when inputs are focused,
+ * which would cause fixed header/menu to move out of position.
+ */
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* iOS Safari/PWA specific fixes */
+@supports (-webkit-touch-callout: none) {
+  @media screen and (max-width: 768px) and (pointer: coarse) {
+    html {
+      height: 100%;
+    }
+   
+    body {
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+    }
+    
+    /* 
+     * Pattern for position: fixed bottom elements with viewport-fit: cover:
+     * 
+     * The visual viewport (where position: fixed renders) is smaller than 
+     * the layout viewport (100vh) by the amount of UI chrome (address bar, etc).
+     * 
+     * To reach the absolute bottom: bottom: calc(0px - (100vh - 100dvh))
+     * Then add safe-area-inset-bottom padding to keep content above home indicator.
+     */
   }
 }
 

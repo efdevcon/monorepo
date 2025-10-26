@@ -15,8 +15,8 @@ import { mdiBug, mdiInformation, mdiClose } from '@mdi/js';
 import Menu from '@/components/MobileMenu';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
-import { useLocalStorage } from 'usehooks-ts';
 import { openReportIssue } from '@/utils/reportIssue';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface TabItem {
   label: string;
@@ -128,7 +128,7 @@ const Tabs = ({
     <div
       id="page-tabs"
       className={cn(
-        'py-2 md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
+        'py-2 h-[47px] md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
         '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-16px),transparent_100%)]',
         tabs.length > 3 && 'justify-start',
         className
@@ -222,18 +222,22 @@ export default function PageLayout({
   const [pwa] = useLocalStorage<boolean | null>('pwa', null);
   const isComingSoon = process.env.NEXT_PUBLIC_COMING_SOON === 'true';
 
+  /* 
+   * iOS PWA Viewport Fix
+   * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
+   * 
+   * No JavaScript needed! Window scrolling is prevented via CSS (html/body overflow: hidden).
+   * Content div handles all scrolling, preventing iOS auto-scroll from affecting fixed elements.
+   * Menu stays at absolute bottom (852px) at all times, keyboard overlays it when open.
+   */
+
   return (
     <>
       {/* Mobile layout */}
       {isMobile && (
         <>
-          <div
-            className="relative md:hidden grow flex flex-col pt-[100px]"
-            data-type="layout-mobile"
-            style={{
-              paddingTop: title ? (tabs.length > 1 ? pwa ? '146px' : '100px' : pwa ? '98px' : '52px') : '0px',
-            }}
-          >
+          {/* Header - Outside scrollable layout */}
+          {(title || tabs.length > 1) && (
             <div className="w-full shrink-0 flex flex-col fixed top-0 left-0 right-0 z-[100]">
               {title && (
                 <div
@@ -242,14 +246,10 @@ export default function PageLayout({
                   style={{
                     backgroundBlendMode: 'normal, normal, overlay, normal',
                     backdropFilter: 'blur(4px)',
-                    paddingTop:
-                      'calc(0px + max(0px, env(safe-area-inset-top)))',
+                    paddingTop: 'env(safe-area-inset-top, 0px)',
                   }}
                 >
-                  <div
-                    className="flex items-center justify-between w-full px-6 pb-3 relative"
-                    style={{ paddingTop: pwa ? '0' : '0.75rem' }}
-                  >
+                  <div className="flex items-center justify-between w-full px-6 p-3 relative">
                     {/* Left side: Bug report button (only if questProgress exists) OR Back button */}
                     <div className="absolute left-6 w-[20px] h-[20px] shrink-0 flex items-center justify-center">
                       {isComingSoon && questProgress && (
@@ -326,7 +326,35 @@ export default function PageLayout({
                 </div>
               )}
             </div>
+          )}
 
+          {/* 
+            * Scrollable Content Area - iOS PWA Viewport Fix
+            * See: /devconnect-app/IOS_PWA_VIEWPORT_FIX.md
+            * 
+            * This div handles ALL scrolling (body/html have overflow: hidden).
+            * Key properties:
+            * - flex-1: Takes all remaining vertical space
+            * - overflow-y: auto: Makes this div scrollable (not window)
+            * - WebkitOverflowScrolling: touch: Enables smooth iOS momentum scrolling
+            * - paddingTop/Bottom: Creates space for fixed header/menu
+            * 
+            * When input is focused, iOS scrolls THIS div (not window), so fixed
+            * elements (header/menu) stay in position. window.scrollY always = 0.
+            */}
+          <div
+            className="relative md:hidden flex-1 overflow-y-auto overflow-x-hidden flex flex-col"
+            data-type="layout-mobile"
+            style={{
+              paddingTop: title
+                ? 'calc(100px + env(safe-area-inset-top, 0px))'
+                : tabs.length > 1
+                ? 'calc(47px + env(safe-area-inset-top, 0px))' // Just tabs, no header
+                : '0px',
+              paddingBottom: 'calc(59px + env(safe-area-inset-bottom, 0px))', // Menu height + safe area
+              WebkitOverflowScrolling: 'touch', // Smooth iOS momentum scrolling
+            }}
+          >
             {/* Do not use padding left/right here, it will reduce flexibility for children that need to reach the edges of the screen */}
             <div className="w-full flex flex-col items-center justify-start grow relative">
               {activeTab && activeTab.component && (
