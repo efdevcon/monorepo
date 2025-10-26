@@ -9,7 +9,6 @@ import { useNow } from 'lib/hooks/useNow';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useGlobalStore } from './store.provider';
-import styles from './dashboard-sections.module.scss';
 import InfiniteScroll from 'lib/components/infinite-scroll/infinite-scroll';
 import { withParcnetProvider } from 'lib/components/event-schedule-new/zupass/zupass';
 import cn from 'classnames';
@@ -17,9 +16,6 @@ import CameraIcon from '@/components/icons/onboarding-steps/camera.svg';
 import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
 import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
-import { ArrowUpRightIcon } from 'lucide-react';
-import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
-// import DevconnectLogo from '@/images/devconnect-logo.png';
 import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
 
 export const LoopingHeader = () => {

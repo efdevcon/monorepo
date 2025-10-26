@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { triggerHaptic } from 'tactus';
-import WorldsFairLogo from '@/images/worlds-fair-logo.png';
+// import WorldsFairLogo from '@/images/worlds-fair-logo.png';
+import EthereumWorldsFairLogo from '@/images/ethereum-worlds-fair-logo.png';
 import { NAV_ITEMS } from '@/config/nav-items';
 import Link from 'next/link';
 import cn from 'classnames';
@@ -394,9 +395,9 @@ export default function PageLayout({
               >
                 <div className="flex flex-col sticky top-4 items-center gap-4">
                   <Image
-                    src={WorldsFairLogo}
-                    alt="Worlds Fair Logo"
-                    className="w-auto h-[45px]"
+                    src={EthereumWorldsFairLogo}
+                    alt="Ethereum World's Fair Logo"
+                    className="w-auto h-[50px]"
                   />
 
                   <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm bg-white">
