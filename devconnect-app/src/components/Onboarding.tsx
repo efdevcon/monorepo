@@ -18,7 +18,9 @@ import {
   useClient,
 } from '@getpara/react-sdk';
 import { useUser } from '@/hooks/useUser';
+import { Separator } from 'lib/components/ui/separator';
 import { useLocalStorage } from 'usehooks-ts';
+import Loader from 'src/components/Loader';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -576,8 +578,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const renderFooter = () => {
     return (
       <>
-        <div className="flex flex-row gap-2 items-center justify-center pt-[6px] relative w-full border-[#36364c]">
-          <p className="font-normal text-[12px] text-center leading-[1.4] m-4">
+        <div className="flex flex-row gap-2 items-center justify-center relative w-full border-[#36364c] mt-2">
+          <p className="font-normal text-[11px] text-center leading-[1.4] m-4 my-0">
             <span className="text-[#4b4b66]">
               By logging in, you agree to our{' '}
             </span>
@@ -591,7 +593,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             <span className="text-[#4b4b66]">.</span>
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center pb-4 relative w-full border-[#36364c]">
+        <div className="flex flex-row items-center justify-center pb-2 relative w-full border-[#36364c] mt-5">
           <img src="/images/para.png" alt="Para" className="h-4 w-auto" />
         </div>
       </>
@@ -627,7 +629,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
         <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
           {/* Loading spinner */}
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae] mb-4"></div>
+          <Loader className="mb-4" />
 
           {/* Loading text */}
           <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
@@ -1017,7 +1019,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Email verification screen
   if (authState?.stage === 'verify') {
     return (
-      <div className="relative size-full overflow-y-auto">
+      <div className="relative size-full overflow-y-auto pb-4">
         {/* Background Image */}
         <div className="absolute inset-0 h-full w-full">
           <div
@@ -1031,9 +1033,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         </div>
 
         {/* Content Wrapper */}
-        <div className="relative min-h-full flex flex-col items-center justify-center gap-6 py-8">
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
           {/* Logo */}
-          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0">
+          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
             <img
               src="/images/ethereum-worlds-fair-logo.png"
               alt="Ethereum World's Fair"
@@ -1043,7 +1045,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
           {/* Main Content Container */}
           <div
-            className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0"
+            className="box-border flex flex-col gap-0 items-center justify-center py-4 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0"
             style={{
               background: authState.loginUrl
                 ? '#FFF'
@@ -1053,7 +1055,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {/* Main border with shadow */}
             <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
-            <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+            <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
               {/* Header */}
               <div className="flex flex-row items-center justify-between p-0 relative w-full">
                 <button
@@ -1100,11 +1102,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   /* Show iframe for passkey/password/PIN flow */
                   <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
                     {(isIframeLoading || isIframeClosed) && (
-                      <div className="flex flex-col gap-4 items-center justify-center w-full py-8">
-                        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae]"></div>
-                        <div className="font-normal text-[#4b4b66] text-[14px]">
-                          Loading authentication...
-                        </div>
+                      <div className="flex flex-col gap-4 items-center justify-center w-full py-2">
+                        <Loader>Getting Ready...</Loader>
+                        {/* <div className="font-normal text-[#4b4b66] text-[14px]">
+                          Getting ready...
+                        </div> */}
                       </div>
                     )}
                     <iframe
@@ -1385,7 +1387,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   if (authState?.stage === 'signup' || authState?.stage === 'login') {
     return (
       <div
-        className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full"
+        className="box-border flex flex-col items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full pb-4"
         style={{
           background:
             'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
@@ -1419,7 +1421,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           </div>
 
           {/* Method selection */}
-          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
             {authState.isPasskeySupported && authState.passkeyUrl && (
               <button
                 onClick={handleOpenWindowClick(authState.passkeyUrl)}
@@ -1513,7 +1515,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Main border with shadow */}
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
-          <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
+          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
             {/* Header */}
             <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
               Get started
@@ -1574,7 +1576,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             )}
 
             {/* Choose your authentication method */}
-            <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+            <div className="flex flex-col items-start justify-start p-0 relative w-full">
               {EOA_FLOW && (
                 <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
                   <>
@@ -1597,7 +1599,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   !email.includes('@') ||
                   isSigningUpOrLoggingIn
                 }
-                className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-[#1b6fae] mb-6 flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 title={
                   mounted
                     ? `Email: "${email}", Valid: ${email && email.includes('@')}, Disabled: ${!email || !email.includes('@') || isSigningUpOrLoggingIn}`
@@ -1646,22 +1648,30 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               )}
             </div>
 
+            <div className="flex items-center w-full gap-4 mb-1.5">
+              <Separator className="grow w-auto bg-[rgba(54,54,76,0.2)]" />
+              <span className="font-normal text-[12px] text-center leading-none shrink-0">
+                OR
+              </span>
+              <Separator className="grow w-auto bg-[rgba(54,54,76,0.2)]" />
+            </div>
+
             {/* OR Divider */}
-            <div className="relative w-full">
+            {/* <div className="relative w-full">
               <div className="h-0 relative w-full">
                 <div className="absolute bottom-[-0.5px] left-0 right-0 top-[-0.5px] border-t border-[#4b4b66] border-dashed"></div>
               </div>
-              <div className="bg-white flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <div className="flex flex-col gap-2 items-center justify-center px-2 py-0 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <span className="font-normal text-[#4b4b66] text-[12px] text-center leading-none">
                   OR
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* Skip for now */}
             <button
               onClick={handleSkip}
-              className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-6"
+              className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-6 "
             >
               Skip for now
             </button>
