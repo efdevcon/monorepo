@@ -7,6 +7,9 @@ import { getTokenInfo } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
 import { useLocalStorage } from 'usehooks-ts';
 import { useClearEIP7702 } from '@/hooks/useClearEIP7702';
+import Lottie from 'lottie-react';
+import WalletConnectedAnimation from '@/images/Wallet-Connected.json';
+import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
 
 // Helper function to get the correct explorer URL for a transaction
 // Prefers UserOp Hash when available (for ERC-4337 transactions)
@@ -503,11 +506,11 @@ export default function StatusStep({
     return (
       <div className="flex flex-col items-center gap-8 py-6">
         {/* Wallet Icon with Check Mark */}
-        <div className="relative">
-          <img
-            src="/images/wallet-loaded.gif"
-            alt="Wallet loaded with checkmark"
-            className="w-[280px] h-[280px] object-contain"
+        <div className="relative w-[280px] h-[280px]">
+          <Lottie
+            animationData={WalletConnectedAnimation}
+            loop={false}
+            className="w-full h-full object-contain"
           />
         </div>
 
@@ -858,11 +861,11 @@ export default function StatusStep({
   return (
     <div className="space-y-6">
       {/* Wallet Loading Animation */}
-      <div className="flex justify-center">
-        <img
-          src="/images/wallet-loading.gif"
-          alt="Processing payment"
-          className="w-[280px] h-[280px] object-contain"
+      <div className="flex justify-center w-[280px] h-[280px] mx-auto">
+        <Lottie
+          animationData={WalletLoadingAnimation}
+          loop={true}
+          className="w-full h-full object-contain"
         />
       </div>
 
