@@ -411,7 +411,7 @@ const TicketTab = RequiresAuthHOC(() => {
     <div
       className={cn(
         'w-full py-4 sm:py-5 px-4 sm:px-6 mx-auto grow',
-        'gradient-background'
+        'gradient-background always-gradient'
       )}
     >
       <div className="w-full">

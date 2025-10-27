@@ -397,10 +397,10 @@ export default function PageLayout({
                   <Image
                     src={EthereumWorldsFairLogo}
                     alt="Ethereum World's Fair Logo"
-                    className="w-auto h-[50px]"
+                    className="w-[89%]"
                   />
 
-                  <div className="flex flex-col gap-2 border border-solid border-[#EFEFF5] self-start p-3 w-[160px] rounded-sm bg-white">
+                  <div className="flex flex-col gap-2 border border-solid border-[#8855CC26] self-start p-3 w-[160px] rounded-sm bg-white">
                     {NAV_ITEMS.filter((item) => item.label !== 'Scan').map(
                       (item) => {
                         let isActive =
