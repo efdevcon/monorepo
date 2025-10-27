@@ -18,6 +18,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import { useTranslations } from 'next-intl';
 import { openReportIssue } from '@/utils/reportIssue';
 import { useLocalStorage } from 'usehooks-ts';
+import { useAnnouncements } from '@/app/store.hooks';
 import {
   HEIGHT_HEADER,
   HEIGHT_HEADER_TABS,
@@ -118,6 +119,13 @@ const Tabs = ({
 }: TabsProps) => {
   const router = useRouter();
   const pathname = usePathname();
+  const announcements = useAnnouncements(true);
+
+  const numberUnseenAnnouncements = announcements.filter(
+    (announcement) => !announcement.seen
+  ).length;
+
+  console.log('numberUnseenAnnouncements', numberUnseenAnnouncements);
 
   const handleTabClick = (tab: TabItem, idx: number) => {
     triggerHaptic(200);
@@ -178,7 +186,10 @@ const Tabs = ({
                 {tab.labelIcon && (
                   <tab.labelIcon color={isActive ? '#165a8d' : '#4b4b66'} />
                 )}
-                {tab.label}
+                {tab.label}{' '}
+                {numberUnseenAnnouncements > 0 &&
+                  tab.href === '/announcements' &&
+                  `(${numberUnseenAnnouncements})`}
               </div>
             </button>
           );

@@ -8,6 +8,7 @@ import {
   useFavorites as useFavoritesSWR,
 } from '@/hooks/useServerData';
 import { AppState } from './store';
+import { usePathname } from 'next/navigation';
 // import { useWalletManager } from '@/hooks/useWalletManager';
 
 /**
@@ -32,13 +33,15 @@ export const useEvents = () => {
   return events || [];
 };
 
-export const useAnnouncements = () => {
+export const useAnnouncements = (updateOnPathnameChange = false) => {
+  const pathname = usePathname();
   const announcements = useGlobalStore((state) => state.announcements);
   const [seenAnnouncements, setSeenAnnouncements] = useState<string[]>([]);
 
   const firstRun = useRef(true);
 
   useEffect(() => {
+    // if (!updateOnPathnameChange) return;
     // Visiting /announcements marks all announcements as seen, but we only want them to be seen *after* they are seen (aka not immediately/on the first render)
     // ...so we only check for seen announcements on the very first render when visiting a page that uses useAnnouncements
     if (firstRun.current) {
@@ -47,6 +50,16 @@ export const useAnnouncements = () => {
       firstRun.current = false;
     }
   }, []);
+
+  useEffect(() => {
+    if (updateOnPathnameChange && pathname === '/announcements') {
+      return () => {
+        setSeenAnnouncements(
+          announcements.map((announcement) => announcement.id)
+        );
+      };
+    }
+  }, [pathname]);
 
   return announcements.map((announcement) => ({
     ...announcement,

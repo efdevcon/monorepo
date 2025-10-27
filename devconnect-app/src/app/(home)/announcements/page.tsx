@@ -10,7 +10,6 @@ export default function AnnouncementsPageContent() {
 
   useEffect(() => {
     // Upon visiting this route, mark all announcements as seen in localStorage
-
     const seenIds = announcements.map((a) => a.id);
     localStorage.setItem('seenAnnouncements', JSON.stringify(seenIds));
   }, [announcements]);

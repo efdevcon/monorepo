@@ -62,6 +62,7 @@ import EpicenterLogo from 'assets/images/ba/media-partners/epicenter.png'
 import IProUpLogo from 'assets/images/ba/media-partners/iproup.png'
 import TheDefiantLogo from 'assets/images/ba/media-partners/the_defiant.png'
 import TheRollupLogo from 'assets/images/ba/media-partners/the_rollup.png'
+import { toast } from 'sonner'
 
 // const Cube = dynamic(() => import('common/components/cube'), {
 //   ssr: false,
@@ -204,7 +205,13 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
             <div className="section">
               <div className={`${css['bottom']}`}>
                 <div className={css['crafted-by']}>
-                  <p className="tiny-text">Crafted and curated with passion ♥ ✨ at the Ethereum Foundation.</p>
+                  <p className="tiny-text shrink-0">
+                    Crafted and curated with passion ♥ ✨ at the{' '}
+                    <Link href="https://ethereum.foundation" className="font-medium">
+                      Ethereum Foundation
+                    </Link>
+                    .
+                  </p>
                   <p className={`${css['copyright']} tiny-text`}>
                     © {new Date().getFullYear()} — Ethereum Foundation. All Rights Reserved.
                   </p>
@@ -213,16 +220,41 @@ export const Footer = ({ inFoldoutMenu, onClickMenuItem }: FooterProps) => {
                 <div className={css['links']}>
                   <Link href="https://devcon.org">Devcon</Link>
                   <Link href="mailto:support@devconnect.org">Contact Us</Link>
-                  <Link href="https://ethereum.foundation">Ethereum Foundation</Link>
+                  {/* <Link href="https://ethereum.foundation">Ethereum Foundation</Link> */}
                   <Link href="/devconnect-code-of-conduct.pdf" target="_blank">
                     Code of Conduct
                   </Link>
                   <Link href="/devconnect-terms-and-conditions.pdf" target="_blank">
                     Terms and Conditions
                   </Link>
+                  <Link href="/devconnect-attendee-guidelines.pdf">Attendee Guidelines</Link>
                   <Link href="https://ethereum.org/en/privacy-policy/">Privacy policy</Link>
                   <Link href="https://ethereum.org/en/terms-of-use/">Terms of use</Link>
                   <Link href="https://ethereum.org/en/cookie-policy/">Cookie policy</Link>
+
+                  {/* <Link
+                    href="https://ethereum.org/en/cookie-policy/"
+                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                      e.preventDefault()
+                      toast(
+                        <div>
+                          Under the Argentine Securities and Exchanges Commission (“CNV”) Resolution No. 1058/2025,
+                          certain solicitation, marketing, and/or promotional activities relating to digital assets are
+                          prohibited in Argentina.
+                          <br /> <br />
+                          These Attendee Guidelines [LINK] set out the prohibitions in more detail. They apply to all
+                          attendees and organisers of Devconnect ARG. Please familiarise yourself with these guidelines
+                        </div>,
+                        {
+                          position: 'bottom-center',
+                          className: 'true',
+                          duration: Infinity,
+                        }
+                      )
+                    }}
+                  >
+                    Attendee Guidelines
+                  </Link> */}
                 </div>
               </div>
             </div>
