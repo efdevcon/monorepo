@@ -9,7 +9,7 @@ export const supportersData: Record<string, Supporter> = {
     "websiteLink": "https://0xbow.io/",
     "twitterLink": "",
     "farcasterLink": "",
-    "districtId": "3",
+    "districtId": "7",
     "locationId": "3"
   },
   "254638cdc41580cf8c7ed2b6327a89ad": {
@@ -673,7 +673,7 @@ export const supportersData: Record<string, Supporter> = {
     "locationId": null
   },
   "284638cdc4158082b4f5eb3ce920eb59": {
-    "name": "Rise",
+    "name": "RISE",
     "layerName": "rise",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-24T20-34-19-625Z-RISE-square-logo.svg",
     "description": "The World Markets Engine — a High Speed Layer 2 with a native, fully onchain Orderbook Infrastructure, bringing Capital Velocity to Ethereum",
@@ -741,11 +741,11 @@ export const supportersData: Record<string, Supporter> = {
   "241638cdc41580428e05c81e9c9337b7": {
     "name": "Status/Keycard",
     "layerName": "statuskeycard",
-    "logo": "",
-    "description": "",
-    "websiteLink": "https://status.app/",
-    "twitterLink": "",
-    "farcasterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-27T15-46-23-086Z-Mark_01.webp",
+    "description": "Build your digital freedom: Status App for privacy, Keycard for security, and Status Network for gasless onchain actions.",
+    "websiteLink": "https://linktr.ee/Status_Collective",
+    "twitterLink": "https://x.com/StatusL2",
+    "farcasterLink": "https://farcaster.xyz/ethstatus",
     "districtId": "5",
     "locationId": "1"
   },
