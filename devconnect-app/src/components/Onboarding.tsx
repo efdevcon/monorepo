@@ -48,6 +48,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [otpVerified, setOtpVerified] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isRedirecting, setIsRedirecting] = useState(false);
   const { openModal } = useModal();
   const router = useRouter();
   const [EOA_FLOW, setEOA_FLOW] = useState(false);
@@ -153,6 +154,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Handle delayed redirects (1.5 seconds)
   useEffect(() => {
     if (isConnected) {
+      // Set redirecting state immediately when connected
+      setIsRedirecting(true);
+
       const redirectTimer = setTimeout(
         () => {
           if (localStorage.getItem('showOnboardingIntro') !== 'true') {
@@ -167,7 +171,10 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         isInitialLoading ? 800 : 0
       );
 
-      return () => clearTimeout(redirectTimer);
+      return () => {
+        clearTimeout(redirectTimer);
+        setIsRedirecting(false);
+      };
     }
   }, [isConnected, isInitialLoading, router]);
 
@@ -198,9 +205,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                   //   '🚀 ~ pollLogin ~ recoverySecret:',
                   //   recoverySecret
                   // );
+                  // Set redirecting state immediately when wallet creation succeeds
+                  setIsRedirecting(true);
                 },
               }
             );
+          } else {
+            // Set redirecting state immediately when login succeeds (no wallet needed)
+            setIsRedirecting(true);
           }
         },
       }
@@ -220,6 +232,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         onSuccess: ({ recoverySecret }) => {
           // Can optionally give this recovery secret to the user here
           // console.log('🚀 ~ pollSignUp ~ recoverySecret:', recoverySecret);
+          // Set redirecting state immediately when signup succeeds
+          setIsRedirecting(true);
         },
       }
     );
@@ -692,7 +706,42 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     );
   }
 
-  // Redirects are now handled by useEffect with 1.5s delay
+  // Show redirecting state when connected and about to redirect
+  if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
+    return (
+      <div
+        className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full"
+        style={{
+          background:
+            'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+        }}
+      >
+        {/* Main border with shadow */}
+        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+          {/* Wallet Loading Animation */}
+          <Lottie
+            animationData={WalletLoadingAnimation}
+            loop={true}
+            className="w-full h-full object-contain"
+          />
+
+          {/* Loading text */}
+          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
+            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
+              Connecting your wallet to the World’s Fair App...
+            </div>
+            <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
+              This should only take a moment.
+            </div>
+          </div>
+        </div>
+
+        {renderFooter()}
+      </div>
+    );
+  }
 
   // OTP verification screen for external wallet connection
   if (otpSent) {
@@ -1103,13 +1152,31 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 {authState.loginUrl ? (
                   /* Show iframe for passkey/password/PIN flow */
                   <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-                    {(isIframeLoading || isIframeClosed) && (
+                    {isIframeLoading ? (
                       <div className="flex flex-col gap-4 items-center justify-center w-full py-2">
-                        <Loader>Getting Ready...</Loader>
-                        {/* <div className="font-normal text-[#4b4b66] text-[14px]">
-                          Getting ready...
-                        </div> */}
+                        <Loader>Sending verification code...</Loader>
                       </div>
+                    ) : (
+                      isIframeClosed && (
+                        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+                          {/* Wallet Loading Animation */}
+                          <Lottie
+                            animationData={WalletLoadingAnimation}
+                            loop={true}
+                            className="w-full h-full object-contain"
+                          />
+
+                          {/* Loading text */}
+                          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
+                            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
+                              Connecting your wallet to the World’s Fair App...
+                            </div>
+                            <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
+                              This should only take a moment.
+                            </div>
+                          </div>
+                        </div>
+                      )
                     )}
                     <iframe
                       src={authState.loginUrl}
