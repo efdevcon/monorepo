@@ -4,6 +4,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Link from 'next/link';
 import Image from 'next/image';
+import KeyIllustration from '@/images/key-illustration.png';
 
 export const RequiresAuthContent = ({
   message,
@@ -29,7 +30,7 @@ export const RequiresAuthContent = ({
           {/* Key illustration */}
           <div className="relative h-[169px] w-[297px] shrink-0">
             <Image
-              src="/images/key-illustration.png"
+              src={KeyIllustration}
               alt="Sign in required"
               fill
               className="object-cover object-center"

@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import ChefsCookingImage from '@/images/chefs-cooking.png';
 
 interface ComingSoonMessageProps {
   message?: string;
@@ -26,7 +27,7 @@ export default function ComingSoonMessage({
             {/* Chef cooking image */}
             <div className="relative w-full aspect-[2912/1632]">
               <Image
-                src="/images/chefs-cooking.png"
+                src={ChefsCookingImage}
                 alt="Chefs cooking"
                 fill
                 className="object-cover object-center"
