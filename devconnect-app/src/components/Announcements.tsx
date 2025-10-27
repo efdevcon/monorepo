@@ -144,7 +144,12 @@ export const AnnouncementsWrapper = () => {
           View All →
         </Link>
       </div>
-      <div className="flex w-screen md:w-auto overflow-hidden md:overflow-visible">
+      <div
+        className={cn(
+          'flex w-screen md:w-auto overflow-hidden md:overflow-visible',
+          '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]'
+        )}
+      >
         <SwipeToScroll>
           <div className="flex no-wrap gap-2 ml-4">
             {announcements.map((announcement, index) => (
