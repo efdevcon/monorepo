@@ -21,6 +21,8 @@ import { useUser } from '@/hooks/useUser';
 import { Separator } from 'lib/components/ui/separator';
 import { useLocalStorage } from 'usehooks-ts';
 import Loader from 'src/components/Loader';
+import Lottie from 'lottie-react';
+import LoadingAnimation from '@/images/loading-animation.json';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -69,7 +71,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
-    }, 2000);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -136,6 +138,24 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const { logout } = useLogout();
 
   const shouldCancelPolling = useRef(false);
+
+  // Handle delayed redirects (1.5 seconds)
+  useEffect(() => {
+    if (isConnected) {
+      // Wait 1.5 seconds before redirecting
+      const redirectTimer = setTimeout(() => {
+        if (localStorage.getItem('showOnboardingIntro') !== 'true') {
+          localStorage.setItem('showOnboardingIntro', 'true');
+          router.push('/onboarding/intro');
+        } else {
+          // If user has already seen the intro, redirect to home
+          router.push('/');
+        }
+      }, 800);
+
+      return () => clearTimeout(redirectTimer);
+    }
+  }, [isConnected, router]);
 
   const isIframeLoading = iFrameState === 'loading';
   const isIframeClosed = iFrameState === 'closed';
@@ -654,43 +674,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     );
   }
 
-  // Redirect to /onboarding/intro when connected
-  if (isConnected) {
-    if (localStorage.getItem('showOnboardingIntro') !== 'true') {
-      localStorage.setItem('showOnboardingIntro', 'true');
-      router.push('/onboarding/intro');
-      return null;
-    } else {
-      // If user has already seen the intro, redirect to home
-      router.push('/');
-      return null;
-    }
-  }
-
-  // Show loading state for first 2 seconds
-  // if (isInitialLoading) {
-  //   return (
-  //     <div className="bg-white box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full">
-  //       {/* Main border with shadow */}
-  //       <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
-
-  //       <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-  //         {/* Loading spinner */}
-  //         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#1b6fae] mb-4"></div>
-
-  //         {/* Loading text */}
-  //         <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-  //           <div className="font-bold text-[#242436] text-[18px] tracking-[-0.1px] w-full">
-  //             Loading...
-  //           </div>
-  //           <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
-  //             Please wait while we prepare everything for you...
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  // Redirects are now handled by useEffect with 1.5s delay
 
   // OTP verification screen for external wallet connection
   if (otpSent) {
@@ -1718,6 +1702,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           </button>
         )}
       </div>
+
+      {/* Loading overlay - shows for 2 seconds while page renders underneath */}
+      {isInitialLoading && (
+        <div className="bg-[#F7FBFD] fixed inset-0 flex flex-col items-center justify-center z-50 w-screen h-screen">
+          <Lottie
+            animationData={LoadingAnimation}
+            loop={true}
+            className="w-full h-full object-contain"
+          />
+        </div>
+      )}
     </div>
   );
 }
