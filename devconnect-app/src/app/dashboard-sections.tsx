@@ -53,7 +53,7 @@ export function WelcomeSection() {
   const formattedDate = buenosAiresTime.format('h:mm A');
 
   return (
-    <div className="flex justify-between items-center gap-2 mb-5 px-4 max-w-screen">
+    <div className="flex justify-between items-center gap-4 mb-5 px-4 max-w-screen">
       <div className="flex flex-col shrink-1 justify-center overflow-hidden mt-1">
         <div className="text-xl self-start font-bold leading-none bg-clip-text text-transparent bg-[linear-gradient(90.78deg,#F6B40E_2.23%,#FF85A6_25.74%,#74ACDF_86.85%)]">
           ¡Buen dia!
@@ -63,7 +63,7 @@ export function WelcomeSection() {
         </div>
       </div>
 
-      <div className="w-[160px] shrink-0">
+      <div className="w-[120px] md:w-[140px] shrink-0">
         <DevconnectLogoWhite />
       </div>
 

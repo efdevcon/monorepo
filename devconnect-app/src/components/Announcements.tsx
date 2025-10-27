@@ -5,7 +5,7 @@ import SwipeToScroll from 'lib/components/event-schedule/swipe-to-scroll';
 import cn from 'classnames';
 import moment from 'moment';
 import { useDraggableLink } from 'lib/hooks/useDraggableLink';
-import { ArrowUpRightIcon } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { useAnnouncements } from '@/app/store.hooks';
 
 type NotificationCardProps = {
@@ -104,7 +104,7 @@ export const NotificationCard = ({
         {ctaLink && (
           <Link href={ctaLink} className="block shrink-0" {...draggableLink}>
             <p className="text-xs text-[rgba(0,115,222,1)] shrink-0 font-semibold flex items-center gap-0.5">
-              {cta} <ArrowUpRightIcon className="w-4 h-4" />
+              {cta} →
             </p>
           </Link>
         )}
@@ -141,7 +141,7 @@ export const AnnouncementsWrapper = () => {
           href="/announcements"
           className="pr-4 text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 self-end cursor-pointer"
         >
-          View All <ArrowUpRightIcon className="w-4 h-4" />
+          View All →
         </Link>
       </div>
       <div className="flex w-screen md:w-auto overflow-hidden md:overflow-visible">
