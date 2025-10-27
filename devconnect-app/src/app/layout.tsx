@@ -63,11 +63,11 @@ export async function generateMetadata(): Promise<Metadata> {
       capable: true,
       statusBarStyle: 'black-translucent',
     },
-    // themeColor: '#fbf5ee',
+    themeColor: '#F7FBFD',
     other: {
       'mobile-web-app-capable': 'yes',
       'apple-touch-fullscreen': 'yes',
-      'msapplication-navbutton-color': '#fbf5ee',
+      'msapplication-navbutton-color': '#F7FBFD',
     } as Record<string, string>,
     openGraph: {
       images: [
