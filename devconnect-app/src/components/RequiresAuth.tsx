@@ -50,7 +50,7 @@ export const RequiresAuthContent = ({
             </div>
 
             {/* Sign in button */}
-            <Link href="/onboarding" className="w-full">
+            <Link href="/onboarding?noLoading=true" className="w-full">
               <button className="bg-[#0073de] w-full flex gap-2 items-center justify-center px-6 py-3 rounded-[1px] shadow-[0px_4px_0px_0px_#005493] cursor-pointer hover:bg-[#0060c0] transition-colors">
                 <span className="font-bold text-base text-center text-white">
                   Sign in
