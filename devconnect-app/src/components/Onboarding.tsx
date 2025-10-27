@@ -23,6 +23,7 @@ import { useLocalStorage } from 'usehooks-ts';
 import Loader from 'src/components/Loader';
 import Lottie from 'lottie-react';
 import LoadingAnimation from '@/images/loading-animation.json';
+import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
 
 interface OnboardingProps {
   onConnect?: () => void;
@@ -67,8 +68,18 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     setMounted(true);
   }, []);
 
-  // Handle initial loading state for 2 seconds
+  // Handle initial loading state for 2.5 seconds (skip if noLoading=true)
   useEffect(() => {
+    // Check if noLoading parameter is present
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('noLoading') === 'true') {
+        // Skip loading animation for noLoading
+        setIsInitialLoading(false);
+        return;
+      }
+    }
+
     const timer = setTimeout(() => {
       setIsInitialLoading(false);
     }, 2500);
@@ -142,20 +153,23 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Handle delayed redirects (1.5 seconds)
   useEffect(() => {
     if (isConnected) {
-      // Wait 1.5 seconds before redirecting
-      const redirectTimer = setTimeout(() => {
-        if (localStorage.getItem('showOnboardingIntro') !== 'true') {
-          localStorage.setItem('showOnboardingIntro', 'true');
-          router.push('/onboarding/intro');
-        } else {
-          // If user has already seen the intro, redirect to home
-          router.push('/');
-        }
-      }, 800);
+      const redirectTimer = setTimeout(
+        () => {
+          if (localStorage.getItem('showOnboardingIntro') !== 'true') {
+            localStorage.setItem('showOnboardingIntro', 'true');
+            router.push('/onboarding/intro');
+          } else {
+            // If user has already seen the intro, redirect to home
+            router.push('/');
+          }
+        },
+        // Wait 800ms before redirecting if initial loading, otherwise wait 0ms
+        isInitialLoading ? 800 : 0
+      );
 
       return () => clearTimeout(redirectTimer);
     }
-  }, [isConnected, router]);
+  }, [isConnected, isInitialLoading, router]);
 
   const isIframeLoading = iFrameState === 'loading';
   const isIframeClosed = iFrameState === 'closed';
@@ -648,16 +662,20 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
         <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
         <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-          {/* Loading spinner */}
-          <Loader className="mb-4" />
+          {/* Wallet Loading Animation */}
+          <Lottie
+            animationData={WalletLoadingAnimation}
+            loop={true}
+            className="w-full h-full object-contain"
+          />
 
           {/* Loading text */}
           <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-            <div className="font-bold text-[#242436] text-[18px] tracking-[-0.1px] w-full">
-              Loading...
+            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
+              Connecting your wallet to the World’s Fair App...
             </div>
-            <div className="font-normal text-[#4b4b66] text-[14px] w-full mb-2">
-              Please wait while we set up your account...
+            <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
+              This should only take a moment.
             </div>
           </div>
 
