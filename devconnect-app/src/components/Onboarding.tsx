@@ -22,7 +22,6 @@ import { Separator } from 'lib/components/ui/separator';
 import { useLocalStorage } from 'usehooks-ts';
 import Loader from 'src/components/Loader';
 import Lottie from 'lottie-react';
-import LoadingAnimation from '@/images/loading-animation.json';
 import WalletLoadingAnimation from '@/images/Wallet-Loading.json';
 
 interface OnboardingProps {
@@ -32,6 +31,39 @@ interface OnboardingProps {
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
+// Hook to expose loading states for use in parent components
+export function useOnboardingLoading() {
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [hasExistingWallet, setHasExistingWallet] = useState(false);
+  const [isPwaParam, setIsPwaParam] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const walletType = localStorage.getItem('devconnect_primary_wallet_type');
+      setHasExistingWallet(!!walletType);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      setIsPwaParam(urlParams.get('pwa') === 'true');
+
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('noLoading') === 'true') {
+        setIsInitialLoading(false);
+        return;
+      }
+    }
+
+    const timer = setTimeout(() => {
+      setIsInitialLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const shouldSkipWalletAnimation = hasExistingWallet && isPwaParam;
+
+  return { isInitialLoading, shouldSkipWalletAnimation };
 }
 
 export default function Onboarding({ onConnect }: OnboardingProps) {
@@ -671,27 +703,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Determine if we should skip the wallet loading animation
   const shouldSkipWalletAnimation = hasExistingWallet && isPwaParam;
 
-  // If user has existing wallet and pwa=true, skip all wallet UI and show only loading overlay
-  if (
-    shouldSkipWalletAnimation &&
-    (isSigningUpOrLoggingIn ||
-      isVerifyingNewAccount ||
-      isWaitingForLogin ||
-      isWaitingForWalletCreation ||
-      isRedirecting)
-  ) {
-    // Show only the loading overlay, same as initial loading
-    return (
-      <div className="bg-[#F7FBFD] fixed inset-0 flex flex-col items-center justify-center z-50 w-screen h-screen">
-        <Lottie
-          animationData={LoadingAnimation}
-          loop={true}
-          className="w-full h-full object-contain"
-        />
-      </div>
-    );
-  }
-
   if (
     (isSigningUpOrLoggingIn ||
       isVerifyingNewAccount ||
@@ -747,7 +758,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <Lottie
                 animationData={WalletLoadingAnimation}
                 loop={true}
-                className="w-[280px] h-[280px] object-contain"
+                className="w-[260px] h-[260px] object-contain"
               />
 
               {/* Loading text */}
@@ -816,7 +827,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <Lottie
                 animationData={WalletLoadingAnimation}
                 loop={true}
-                className="w-[280px] h-[280px] object-contain"
+                className="w-[260px] h-[260px] object-contain"
               />
 
               {/* Loading text */}
@@ -1242,7 +1253,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                           <Lottie
                             animationData={WalletLoadingAnimation}
                             loop={true}
-                            className="w-[280px] h-[280px] object-contain"
+                            className="w-[260px] h-[260px] object-contain"
                           />
 
                           {/* Loading text */}
@@ -1868,17 +1879,6 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           </button>
         )}
       </div>
-
-      {/* Loading overlay - shows for 2 seconds while page renders underneath */}
-      {isInitialLoading && (
-        <div className="bg-[#F7FBFD] fixed inset-0 flex flex-col items-center justify-center z-50 w-screen h-screen">
-          <Lottie
-            animationData={LoadingAnimation}
-            loop={true}
-            className="w-full h-full object-contain"
-          />
-        </div>
-      )}
     </div>
   );
 }
