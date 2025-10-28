@@ -63,10 +63,23 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
   const [isIOS, setIsIOS] = useState(false);
+  const [hasExistingWallet, setHasExistingWallet] = useState(false);
+  const [isPwaParam, setIsPwaParam] = useState(false);
 
   // Handle hydration
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  // Check for existing wallet type and pwa parameter
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const walletType = localStorage.getItem('devconnect_primary_wallet_type');
+      setHasExistingWallet(!!walletType);
+
+      const urlParams = new URLSearchParams(window.location.search);
+      setIsPwaParam(urlParams.get('pwa') === 'true');
+    }
   }, []);
 
   // Handle initial loading state for 2.5 seconds (skip if noLoading=true)
@@ -655,6 +668,30 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   const isPollingWithIframe =
     authState?.stage === 'verify' && !!(authState as any).loginUrl;
 
+  // Determine if we should skip the wallet loading animation
+  const shouldSkipWalletAnimation = hasExistingWallet && isPwaParam;
+
+  // If user has existing wallet and pwa=true, skip all wallet UI and show only loading overlay
+  if (
+    shouldSkipWalletAnimation &&
+    (isSigningUpOrLoggingIn ||
+      isVerifyingNewAccount ||
+      isWaitingForLogin ||
+      isWaitingForWalletCreation ||
+      isRedirecting)
+  ) {
+    // Show only the loading overlay, same as initial loading
+    return (
+      <div className="bg-[#F7FBFD] fixed inset-0 flex flex-col items-center justify-center z-50 w-screen h-screen">
+        <Lottie
+          animationData={LoadingAnimation}
+          loop={true}
+          className="w-full h-full object-contain"
+        />
+      </div>
+    );
+  }
+
   if (
     (isSigningUpOrLoggingIn ||
       isVerifyingNewAccount ||
@@ -686,7 +723,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Loading text */}
           <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
             <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
-              Connecting your wallet to the World’s Fair App...
+              Connecting your wallet to the World's Fair App...
             </div>
             <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
               This should only take a moment.
@@ -730,7 +767,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Loading text */}
           <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
             <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
-              Connecting your wallet to the World’s Fair App...
+              Connecting your wallet to the World's Fair App...
             </div>
             <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
               This should only take a moment.
@@ -1169,7 +1206,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                           {/* Loading text */}
                           <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
                             <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
-                              Connecting your wallet to the World’s Fair App...
+                              Connecting your wallet to the World's Fair App...
                             </div>
                             <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
                               This should only take a moment.
