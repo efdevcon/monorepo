@@ -1135,9 +1135,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           <div
             className="box-border flex flex-col gap-0 items-center justify-center py-4 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0"
             style={{
-              background: authState.loginUrl
-                ? '#FFF'
-                : 'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+              background:
+                'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
             }}
           >
             {/* Main border with shadow */}
@@ -1188,7 +1187,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               <div className="flex flex-col gap-8 items-start justify-start p-0 relative w-full">
                 {authState.loginUrl ? (
                   /* Show iframe for passkey/password/PIN flow */
-                  <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
+                  <div
+                    className={`flex flex-col gap-6 items-center justify-start p-0 relative w-full ${!isIframeLoading && !isIframeClosed ? 'py-2 my-5 bg-white rounded-[10px] border-solid border-[#d6d6d6] border-[1px]' : ''}`}
+                  >
                     {isIframeLoading ? (
                       <div className="flex flex-col gap-4 items-center justify-center w-full py-2">
                         <Loader>Sending verification code...</Loader>
