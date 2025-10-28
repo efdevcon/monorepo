@@ -16,6 +16,10 @@ import { getTokenInfo, getSupportedTokens, tokens } from '@/config/tokens';
 import { getNetworkConfig } from '@/config/networks';
 import { HEIGHT_HEADER_PWA_DIFF, PAYMENT_CONFIG } from '@/config/config';
 import { getMerchantName } from '@/config/merchants';
+import { triggerHaptic } from 'tactus';
+import Icon from '@mdi/react';
+import { mdiBug } from '@mdi/js';
+import { openReportIssue } from '@/utils/reportIssue';
 import {
   useAccount as useParaAccount,
   useWallet as useParaWallet,
@@ -1024,6 +1028,24 @@ export default function PaymentModal({
     }
   }, [isOpen, checkSimulationMode, isPara]); // Remove resetTransaction from dependencies
 
+  // Manage URL hash when modal opens/closes
+  useEffect(() => {
+    if (isOpen && paymentRequestId) {
+      // Add hash to URL when modal opens
+      const newHash = `#payment_${paymentRequestId}`;
+      if (window.location.hash !== newHash) {
+        window.history.pushState(null, '', newHash);
+      }
+    } else if (!isOpen && window.location.hash.startsWith('#payment_')) {
+      // Remove hash when modal closes
+      window.history.pushState(
+        null,
+        '',
+        window.location.pathname + window.location.search
+      );
+    }
+  }, [isOpen, paymentRequestId]);
+
   // Validate recipient and amount when they change
   useEffect(() => {
     setIsRecipientValid(validateAddress(recipient));
@@ -1349,12 +1371,21 @@ export default function PaymentModal({
               )}
             </div>
 
-            <button
-              onClick={handleClose}
-              className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={openReportIssue}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
+                aria-label="Report issue"
+              >
+                <Icon path={mdiBug} size={0.75} className="text-gray-600" />
+              </button>
+              <button
+                onClick={handleClose}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors cursor-pointer"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
           {/* Step Content - Scrollable Container */}

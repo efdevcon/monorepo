@@ -280,7 +280,6 @@ export default function PageLayout({
                       {isComingSoon && questProgress && (
                         <button
                           onClick={() => {
-                            triggerHaptic(200);
                             openReportIssue();
                           }}
                           className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"
@@ -303,7 +302,6 @@ export default function PageLayout({
                       {infoModalContent && (
                         <button
                           onClick={() => {
-                            triggerHaptic(200);
                             setShowInfoModal(true);
                           }}
                           className="w-[18px] h-[18px] shrink-0 flex items-center justify-center"
@@ -326,7 +324,6 @@ export default function PageLayout({
                       ) : isComingSoon ? (
                         <button
                           onClick={() => {
-                            triggerHaptic(200);
                             openReportIssue();
                           }}
                           className="w-[24px] h-[24px] shrink-0 flex items-center justify-center"

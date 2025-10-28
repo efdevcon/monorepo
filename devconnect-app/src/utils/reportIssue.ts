@@ -110,9 +110,9 @@ export function buildReportIssueUrl(): string {
     params.append('system', system);
   }
 
-  // Get current path
+  // Get current path (including hash for context like #payment_id)
   if (typeof window !== 'undefined') {
-    const currentPath = window.location.pathname + window.location.search;
+    const currentPath = window.location.pathname + window.location.search + window.location.hash;
     if (currentPath) {
       params.append('path', currentPath);
     }
