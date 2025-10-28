@@ -27,9 +27,9 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events, true);
 
   return (
-    <div className="section overflow-visible touch-only:!contents text-left">
-      <div className="flex flex-col gap-4 w-full bg-white">
-        <div className="mouse-only:!contents section">
+    <div className="text-left">
+      <div className="section">
+        <div className="flex flex-col gap-4 w-full bg-white">
           <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-4 md:mb-1 mb-4">
             <div className="text-3xl font-secondary shrink-0">
               {props.isCommunityCalendar ? (
@@ -134,17 +134,16 @@ const Layout = (props: CalendarLayoutProps) => {
               <div className={filterCss["fade"]} />
             </>
           )}
-
-          <div className="grow relative">
-            {/* white gradient to indicate more events on the right for mobile */}
-            <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
-            <NewScheduleIndex
-              {...props}
-              events={filteredEvents}
-              viewMode={viewMode}
-            />
-          </div>
         </div>
+      </div>
+      <div className="grow relative mt-4">
+        {/* white gradient to indicate more events on the right for mobile */}
+        <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10"></div>
+        <NewScheduleIndex
+          {...props}
+          events={filteredEvents}
+          viewMode={viewMode}
+        />
       </div>
     </div>
   );

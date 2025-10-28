@@ -28,8 +28,9 @@ const Layout = (props: CalendarLayoutProps) => {
   } = useFilters(props.events, false, props.favoriteEvents);
 
   return (
-    <div className={cn("flex flex-col gap-4 w-full", layoutCss["layout-app"])}>
-      {/* <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 touch-only:mx-4">
+    <>
+      <div className={cn("gap-4 w-full p-4", layoutCss["layout-app"])}>
+        {/* <div className="flex-col md:flex-row flex justify-between gap-4 md:mt-1 md:mb-1 mb-1 touch-only:mx-4">
         <div
           className={cn(
             "text-sm overflow-hidden px-4 py-2 text-[#36364C] self-center w-full",
@@ -65,58 +66,60 @@ const Layout = (props: CalendarLayoutProps) => {
         </div>
       </div> */}
 
-      <ActionBar
-        isCommunityCalendar={props.isCommunityCalendar}
-        filterOpen={filterOpen}
-        setFilterOpen={setFilterOpen}
-        filterableValues={filterableValues}
-        filterActive={filterActive}
-        setFilter={setFilter}
-        resetFilter={resetFilter}
-        filter={filter}
-        events={props.events}
-        viewMode={viewMode}
-        setViewMode={setViewMode}
-        hideCommunityByDefault
-        favorites={props.favoriteEvents}
-      />
+        <ActionBar
+          isCommunityCalendar={props.isCommunityCalendar}
+          filterOpen={filterOpen}
+          setFilterOpen={setFilterOpen}
+          filterableValues={filterableValues}
+          filterActive={filterActive}
+          setFilter={setFilter}
+          resetFilter={resetFilter}
+          filter={filter}
+          events={props.events}
+          viewMode={viewMode}
+          setViewMode={setViewMode}
+          hideCommunityByDefault
+          favorites={props.favoriteEvents}
+        />
 
-      <div className="relative flex">
-        {filterOpen && (
-          <>
-            <div className="relative shrink-0 z-10 w-[min(315px,100%)] h-full mr-3 contents">
-              <Filter
-                events={props.events}
-                filterOpen={filterOpen}
-                keysToFilterOn={keysToFilterOn}
-                filterableValues={filterableValues}
-                setFilterOpen={setFilterOpen}
-                filter={filter}
-                setFilter={setFilter}
-                resetFilter={resetFilter}
-                filterActive={filterActive}
-                showFavorites
-              />
-            </div>
-            <div className={filterCss["fade"]} />
-          </>
-        )}
-
-        <div className="grow relative">
-          {/* white gradient to indicate more events on the right for mobile */}
-          <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10 mouse-only:hidden"></div>
-          <NewScheduleIndex
-            {...props}
-            events={filteredEvents}
-            viewMode={viewMode}
-            favoriteEvents={props.favoriteEvents}
-            toggleFavoriteEvent={props.toggleFavoriteEvent}
-            noUrlRouting
-            noZupass
-          />
+        <div className="relative flex">
+          {filterOpen && (
+            <>
+              <div className="relative shrink-0 z-10 w-[min(315px,100%)] h-full mr-3 contents">
+                <Filter
+                  events={props.events}
+                  filterOpen={filterOpen}
+                  keysToFilterOn={keysToFilterOn}
+                  filterableValues={filterableValues}
+                  setFilterOpen={setFilterOpen}
+                  filter={filter}
+                  setFilter={setFilter}
+                  resetFilter={resetFilter}
+                  filterActive={filterActive}
+                  showFavorites
+                />
+              </div>
+              <div className={filterCss["fade"]} />
+            </>
+          )}
         </div>
       </div>
-    </div>
+
+      <div className={cn("grow relative", layoutCss["layout-app"])}>
+        {/* white gradient to indicate more events on the right for mobile */}
+        <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10"></div>
+        <NewScheduleIndex
+          {...props}
+          events={filteredEvents}
+          viewMode={viewMode}
+          favoriteEvents={props.favoriteEvents}
+          toggleFavoriteEvent={props.toggleFavoriteEvent}
+          noUrlRouting
+          noZupass
+        />
+        <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-white via-white/60 to-transparent pointer-events-none z-10"></div>
+      </div>
+    </>
   );
 };
 

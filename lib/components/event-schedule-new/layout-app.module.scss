@@ -1,17 +1,11 @@
 .layout-app {
-  // [data-type="list-day-header"] {
-  //   top: calc(99px + max(0px, env(safe-area-inset-top)));
+  [data-type="list-day-header"] {
+    background: #f7fcff;
+  }
 
-  //   @media (display-mode: standalone) {
-  //     top: calc(85px + max(0px, env(safe-area-inset-top)));
-  //   }
-  // }
-  // [data-type="list-day-header"] {
-    //   top: calc(max(0px, env(safe-area-inset-top)));
-    // }
-
-  // [data-type="action-bar"] {
-  //   padding-left: 16px;
-  //   padding-right: 16px;
-  // }
+  [data-type="schedule-container"] {
+    display: flex !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
 }

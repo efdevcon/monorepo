@@ -11,12 +11,7 @@ export default function ProgrammePageContent() {
   const [favoriteEvents, toggleFavoriteEvent] = useFavorites();
 
   return (
-    <div
-      className={cn(
-        'text-left touch-only:px-0 p-4 w-full',
-        css['schedule-tab']
-      )}
-    >
+    <div className={cn('text-left w-full', css['schedule-tab'])}>
       <ScheduleLayout
         isCommunityCalendar={false}
         events={events}

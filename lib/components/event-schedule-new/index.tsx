@@ -3,7 +3,7 @@ import React, { useEffect, useState, Suspense, useRef } from "react";
 import moment from "moment";
 import Event from "./event/event";
 import { computeCalendarRange } from "./calendar.utils";
-import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll";
+import SwipeToScroll from "lib/components/event-schedule/swipe-to-scroll-native";
 import { Event as EventType } from "./model";
 import { format, parseISO } from "date-fns";
 import cn from "classnames";
@@ -216,7 +216,7 @@ const NewScheduleIndexInner = ({
   const eventRange = computeCalendarRange(events);
   // const [hoveredDate, setHoveredDate] = useState<string | null>(null);
   const isMobile = useIsMobile(768);
-  const now = useNow("2025-11-20");
+  const now = useNow();
 
   // Compute event placements for the unified grid
   const eventPlacements = computeEventPlacements(events, eventRange, isMobile);
@@ -382,7 +382,7 @@ const NewScheduleIndexInner = ({
       )}
 
       {listView && (
-        <div className="flex flex-col w-full touch-only:px-4">
+        <div className="flex flex-col w-full px-4">
           {(() => {
             // Group events by the dates they cover
             const eventsByDate = new Map<string, typeof eventPlacements>();
@@ -433,7 +433,7 @@ const NewScheduleIndexInner = ({
                   <div
                     data-type="list-day-header"
                     className={cn(
-                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2.5 border-solid bg-white cursor-pointer flex items-center justify-between",
+                      "sticky top-0 z-[11] w-[calc(100%+2px)] translate-x-[-1px] text-base text-[#3A365E] font-medium py-2.5 border-solid cursor-pointer flex items-center justify-between",
                       !isLast && "border-b border-[rgba(224,224,235,1)]",
                       isToday && "text-[#165a8d] !font-bold"
                     )}
@@ -493,24 +493,25 @@ const NewScheduleIndexInner = ({
 
       {!listView && (
         <SwipeToScroll noBounds>
-          <div className="text-black flex">
-            {/* padding hack for mobile */}
-            <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div>
-            <div className="w-full flex">
-              <div
-                className="grid shrink-0 min-w-full"
-                style={{
-                  gridTemplateColumns: columnTemplate,
-                  gridTemplateRows: "auto 1fr",
-                }}
-              >
-                {/* Header row with dates */}
-                <div className="contents relative">
+          <div className="section w-full" data-type="schedule-container">
+            <div className="text-black flex">
+              {/* padding hack for mobile */}
+              {/* <div className="hidden touch-only:block w-4 md:w-0 h-[1px]"></div> */}
+              <div className="w-full flex">
+                <div
+                  className="grid shrink-0 min-w-full"
+                  style={{
+                    gridTemplateColumns: columnTemplate,
+                    gridTemplateRows: "auto 1fr",
+                  }}
+                >
+                  {/* Header row with dates */}
+                  {/* <div className="contents relative"> */}
                   {eventRange.map((date) => (
                     <div
                       key={date}
                       className={cn(
-                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mx-0.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300 mb-1",
+                        "text-sm cursorr-pointer flex items-center justify-between hoverr:bg-gray-100 font-medium py-2 px-3 mr-1 mb-1.5 lg:sticky lg:top-[4px] bg-white z-50 border border-solid border-neutral-300 transiation-all duration-300",
                         !isDateInDevconnectRange(date) && "!bg-blue-50"
                         // selectedDay === date && "!bg-slate-100 !opacity-100",
                         // selectedDay !== null && "opacity-20"
@@ -540,9 +541,9 @@ const NewScheduleIndexInner = ({
                       </div>
                     </div>
                   ))}
-                </div>
+                  {/* </div> */}
 
-                {/* <div
+                  {/* <div
                 className="left-0 z-[9] top-[100%] mt-2"
                 style={{
                   gridColumn: `1 / span ${eventRange.length}`, // Span all columns
@@ -552,7 +553,7 @@ const NewScheduleIndexInner = ({
                 {selectedDay && <MapComponent />}
               </div> */}
 
-                <div className={cn("contents")}>
+                  {/* <div className={cn("contents")}> */}
                   {eventPlacements.map((placement, idx) => (
                     <div
                       key={`event-${placement.event.id}-${idx}`}
@@ -562,7 +563,7 @@ const NewScheduleIndexInner = ({
                         }`,
                         gridColumn: `${placement.gridPosition.column} / span ${placement.gridPosition.duration}`,
                       }}
-                      className={`bg-white rounded-lg border m-0.5 mt-0 relative transition-all duration-200]`}
+                      className={`bg-white rounded-lg border mr-1 mt-0.5 relative transition-all duration-200]`}
                     >
                       <Event
                         noZupass={noZupass}
@@ -581,9 +582,10 @@ const NewScheduleIndexInner = ({
                       />
                     </div>
                   ))}
+                  {/* </div> */}
                 </div>
+                <div className="w-4 md:w-8 h-[1px] shrink-0"></div>
               </div>
-              <div className="w-4 md:w-0 h-[1px] shrink-0"></div>
             </div>
           </div>
         </SwipeToScroll>

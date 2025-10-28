@@ -63,7 +63,7 @@ const ActionBar = ({
       <div className="flex items-center gap-2 shrink-0">
         <button
           className={cn(
-            "flex items-center gap-2 text-sm font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2 transition-colors duration-300 shrink-0",
+            "flex items-center gap-2 text-sm bg-white font-medium border border-[rgba(224,224,235,1)] border-solid p-4 py-2 transition-colors duration-300 shrink-0",
             (filterActive || filterOpen) && "bg-blue-50"
           )}
           onClick={() => setFilterOpen(!filterOpen)}
@@ -111,7 +111,7 @@ const ActionBar = ({
       <div className="flex md:hidden items-center gap-2 shrink-0 grow justify-end">
         <div
           className={cn(
-            "text-sm h-[40px] w-[40px] font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
+            "text-sm h-[40px] w-[40px] bg-white font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
             viewMode === "list" && "bg-blue-50"
           )}
           onClick={() => setViewMode("list")}
@@ -121,7 +121,7 @@ const ActionBar = ({
         </div>
         <div
           className={cn(
-            "text-sm h-[40px] w-[40px] font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
+            "text-sm h-[40px] w-[40px] bg-white font-medium flex items-center border border-solid border-[rgba(224,224,235,1)] cursor-pointer gap-1.5 justify-center",
             viewMode === "grid" && "bg-blue-50"
           )}
           onClick={() => setViewMode("grid")}
