@@ -97,13 +97,14 @@ export default function SendPage() {
       return;
     }
 
-    const trimmedAddress = recipientAddress.trim();
-    
+    // Already normalized in onChange handler
+    const trimmedAddress = recipientAddress;
+
     // Check if it's an ENS name
-    if (trimmedAddress.endsWith('.eth')) {
+    if (trimmedAddress.includes('.')) {
       setIsResolvingAddress(true);
       setAddressError(null);
-      
+
       try {
         toast.info('Resolving ENS name...', {
           description: trimmedAddress,
@@ -124,10 +125,11 @@ export default function SendPage() {
         });
 
         if (resolvedAddress) {
-          setRecipientAddress(resolvedAddress);
+          const normalizedResolvedAddress = resolvedAddress.toLowerCase();
+          setRecipientAddress(normalizedResolvedAddress);
           setAddressError(null);
           toast.success('ENS name resolved!', {
-            description: `${trimmedAddress} → ${resolvedAddress}`,
+            description: `${trimmedAddress} → ${normalizedResolvedAddress}`,
             duration: 3000,
           });
         } else {
@@ -150,15 +152,21 @@ export default function SendPage() {
     } else {
       // Validate Ethereum address format
       if (!isAddress(trimmedAddress)) {
-        setAddressError('Invalid Ethereum address. Please enter a valid address (0x...) or ENS name.');
+        setAddressError(
+          'Invalid Ethereum address. Please enter a valid address (0x...) or ENS name.'
+        );
         toast.error('Invalid address', {
-          description: 'Please enter a valid Ethereum address (0x...) or ENS name',
+          description:
+            'Please enter a valid Ethereum address (0x...) or ENS name',
           duration: 4000,
         });
       } else if (trimmedAddress.length !== 42) {
-        setAddressError('Address length incorrect. Ethereum addresses should be 42 characters (including 0x).');
+        setAddressError(
+          'Address length incorrect. Ethereum addresses should be 42 characters (including 0x).'
+        );
         toast.warning('Address length incorrect', {
-          description: 'Ethereum addresses should be 42 characters (including 0x)',
+          description:
+            'Ethereum addresses should be 42 characters (including 0x)',
           duration: 4000,
         });
       } else {
@@ -174,12 +182,13 @@ export default function SendPage() {
   };
 
   // Check if address is valid
-  const isAddressValid = useMemo(() => 
-    recipientAddress &&
-    !addressError &&
-    !isResolvingAddress &&
-    isAddress(recipientAddress.trim()) &&
-    recipientAddress.trim().length === 42,
+  const isAddressValid = useMemo(
+    () =>
+      recipientAddress &&
+      !addressError &&
+      !isResolvingAddress &&
+      isAddress(recipientAddress.trim()) &&
+      recipientAddress.trim().length === 42,
     [recipientAddress, addressError, isResolvingAddress]
   );
 
@@ -191,7 +200,7 @@ export default function SendPage() {
       });
       return;
     }
-    
+
     if (!amount || parseFloat(amount) <= 0) {
       toast.error('Invalid amount', {
         description: 'Please enter a valid amount',
@@ -246,11 +255,12 @@ export default function SendPage() {
   ]);
 
   // Check if send is valid
-  const canSend = useMemo(() =>
-    isAddressValid &&
-    amount &&
-    parseFloat(amount) > 0 &&
-    parseFloat(amount) <= usdcBalance,
+  const canSend = useMemo(
+    () =>
+      isAddressValid &&
+      amount &&
+      parseFloat(amount) > 0 &&
+      parseFloat(amount) <= usdcBalance,
     [isAddressValid, amount, usdcBalance]
   );
 
@@ -383,7 +393,11 @@ export default function SendPage() {
                     type="text"
                     value={recipientAddress}
                     onChange={(e) => {
-                      setRecipientAddress(e.target.value);
+                      // Normalize: trim and lowercase while typing
+                      const normalizedValue = e.target.value
+                        .trim()
+                        .toLowerCase();
+                      setRecipientAddress(normalizedValue);
                       // Clear error when user starts typing
                       if (addressError) {
                         setAddressError(null);
