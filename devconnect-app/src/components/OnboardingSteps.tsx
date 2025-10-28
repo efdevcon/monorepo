@@ -16,6 +16,8 @@ import LuggageIcon from './icons/onboarding-steps/luggage.svg';
 import MicrophoneIcon from './icons/onboarding-steps/microphone.svg';
 import PhoneIcon from './icons/onboarding-steps/phone.svg';
 import RocketIcon from './icons/onboarding-steps/rocket.svg';
+import Lottie from 'lottie-react';
+import WalletConnectedAnimation from '@/images/Wallet-Connected.json';
 interface OnboardingStepsProps {
   steps?: React.ReactNode[];
   rightContent?: React.ReactNode[];
@@ -69,14 +71,10 @@ const Block = ({
 const defaultSteps = [
   <div key="step0" className="flex flex-col items-center text-center">
     <div className="aspect-[480/480] relative w-full mb-6">
-      <Image
-        src="/images/wallet-loaded.gif"
-        alt="Wallet connected"
-        width={480}
-        height={480}
+      <Lottie
+        animationData={WalletConnectedAnimation}
+        loop={false}
         className="w-full h-full object-contain mix-blend-multiply"
-        unoptimized
-        priority
       />
     </div>
     <div className="leading-tight">

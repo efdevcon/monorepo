@@ -63,11 +63,11 @@ export async function generateMetadata(): Promise<Metadata> {
       capable: true,
       statusBarStyle: 'black-translucent',
     },
-    // themeColor: '#fbf5ee',
+    // themeColor: '#F7FBFD',
     other: {
       'mobile-web-app-capable': 'yes',
       'apple-touch-fullscreen': 'yes',
-      'msapplication-navbutton-color': '#fbf5ee',
+      'msapplication-navbutton-color': '#F7FBFD',
     } as Record<string, string>,
     openGraph: {
       images: [
@@ -279,13 +279,13 @@ export default async function RootLayout({
         {/* <link rel="apple-touch-icon" href="/app-icon.png" /> */}
 
         {/* Meta tags now handled by generateMetadata function above */}
+        <meta name="theme-color" content="#F7FBFD" />
         {/*
         <meta name="apple-mobile-web-app-title" content="Devconnect" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="application-name" content="Devconnect" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#fbf5ee" />
         <meta name="msapplication-navbutton-color" content="#fbf5ee" />
         <meta
           name="viewport"

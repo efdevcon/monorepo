@@ -156,7 +156,7 @@ export default function SettingsTab() {
 
       localStorage.removeItem('loginIsSkipped');
       storeLogout();
-      router.push('/onboarding');
+      router.push('/onboarding?noLoading=true');
 
       // toast.success(
       //   <div className="space-y-1">
@@ -201,7 +201,7 @@ export default function SettingsTab() {
   };
 
   const handleSignIn = () => {
-    router.push('/onboarding');
+    router.push('/onboarding?noLoading=true');
   };
 
   return (

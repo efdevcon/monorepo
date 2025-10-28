@@ -641,7 +641,7 @@ export default function WalletTab() {
                 <button
                   onClick={() => {
                     if (!address) {
-                      router.push('/onboarding');
+                      router.push('/onboarding?noLoading=true');
                     } else {
                       setShowWalletModal(true);
                     }
