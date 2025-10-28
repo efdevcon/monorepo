@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Modal, ModalContent } from 'lib/components/modal';
 import { Button } from '@/components/ui/button';
 import { X, Wallet, Copy, DollarSign, Send, ChevronDown } from 'lucide-react';
@@ -1258,6 +1258,23 @@ export default function PaymentModal({
     }
   }, [txStatus, onClose]);
 
+  // Check if user has insufficient balance (memoized to avoid recalculation)
+  const hasInsufficientBalance = useMemo(() => {
+    const tokenSymbol = isPara ? 'USDC' : selectedToken;
+    const balance = getTokenBalance(tokenSymbol);
+    const amountToPay = parseFloat(
+      paymentDetails.priceDetails?.final_amount?.toString() || amount
+    );
+    // If balance is null (not loaded) or less than amount needed, treat as insufficient
+    return balance === null || balance < amountToPay;
+  }, [
+    isPara,
+    selectedToken,
+    getTokenBalance,
+    paymentDetails.priceDetails?.final_amount,
+    amount,
+  ]);
+
   return (
     <Modal
       open={isOpen}
@@ -1267,7 +1284,7 @@ export default function PaymentModal({
       <div
         style={{
           paddingTop: 'max(env(safe-area-inset-top, 0px), 0px)',
-          paddingBottom: 'max(env(safe-area-inset-bottom, 0px), 0px)',
+          paddingBottom: '0',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -1467,12 +1484,6 @@ export default function PaymentModal({
                             </div>
                           )}
                         </div>
-                        {isPara && (
-                          <p className="text-xs text-[#4b4b66] bg-gray-50 p-2 rounded">
-                            Network is automatically selected based on the
-                            chosen payment method
-                          </p>
-                        )}
                       </div>
 
                       {/* Wallet Section */}
@@ -1510,34 +1521,43 @@ export default function PaymentModal({
                           </div>
 
                           {/* Available Balance Display */}
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="text-[#ededf0] text-xs font-normal">
-                              Available:
-                            </span>
-                            <div className="flex items-center gap-2">
-                              {balanceLoading ? (
-                                <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full"></div>
-                              ) : balanceError ? (
-                                <span className="text-red-300 text-xs">
-                                  Error
-                                </span>
-                              ) : (
-                                <span className="text-white text-sm font-bold">
-                                  {(() => {
-                                    const tokenSymbol = isPara
-                                      ? 'USDC'
-                                      : selectedToken;
-                                    const balance = getFormattedTokenBalance(
-                                      tokenSymbol,
-                                      6
-                                    );
-                                    return balance !== null
-                                      ? `${balance} ${tokenSymbol}`
-                                      : `0 ${tokenSymbol}`;
-                                  })()}
-                                </span>
-                              )}
+                          <div className="mb-2">
+                            <div className="flex items-center justify-between">
+                              <span className="text-[#ededf0] text-xs font-normal">
+                                Available:
+                              </span>
+                              <div className="flex items-center gap-2">
+                                {balanceLoading ? (
+                                  <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full"></div>
+                                ) : balanceError ? (
+                                  <span className="text-red-300 text-xs">
+                                    Error
+                                  </span>
+                                ) : (
+                                  <span
+                                    className={`text-sm font-bold ${hasInsufficientBalance ? 'text-red-400' : 'text-white'}`}
+                                  >
+                                    {(() => {
+                                      const tokenSymbol = isPara
+                                        ? 'USDC'
+                                        : selectedToken;
+                                      const balance = getFormattedTokenBalance(
+                                        tokenSymbol,
+                                        6
+                                      );
+                                      return balance !== null
+                                        ? `${balance} ${tokenSymbol}`
+                                        : `0 ${tokenSymbol}`;
+                                    })()}
+                                  </span>
+                                )}
+                              </div>
                             </div>
+                            {hasInsufficientBalance && (
+                              <p className="text-red-400 text-xs mt-1 text-right font-medium">
+                                Insufficient balance
+                              </p>
+                            )}
                           </div>
 
                           {isPara && (
@@ -1598,7 +1618,8 @@ export default function PaymentModal({
                           !isRecipientValid ||
                           !isAmountValid ||
                           !amount ||
-                          isPending
+                          isPending ||
+                          hasInsufficientBalance
                         }
                         className="w-full bg-[#137c59] hover:bg-[#0c5039] text-white font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#0c5039] transition-colors disabled:opacity-50"
                       >
@@ -1652,7 +1673,8 @@ export default function PaymentModal({
                             !isRecipientValid ||
                             !isAmountValid ||
                             !amount ||
-                            isPending
+                            isPending ||
+                            hasInsufficientBalance
                           }
                           className="w-full bg-[#eaf3fa] hover:bg-[#d5e7f4] text-[#44445d] font-bold py-3 px-6 rounded-[1px] shadow-[0px_4px_0px_0px_#595978] transition-colors disabled:opacity-50"
                         >
