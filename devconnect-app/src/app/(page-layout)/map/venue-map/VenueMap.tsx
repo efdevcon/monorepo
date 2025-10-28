@@ -6,7 +6,7 @@ import MapWrapper from './maps/MapWrapper';
 import cn from 'classnames';
 import css from './map.module.scss';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { getViewportPosition } from './utils/svgToLookup';
+// import { getViewportPosition } from './utils/svgToLookup';
 import MapPane from './components/panes';
 import { SurfaceFilters, ListFilters } from './components/filters';
 import { HomeIcon } from 'lucide-react';
@@ -235,40 +235,57 @@ export const VenueMap = () => {
     }
   };
 
+  const zoomToElement = (id: string) => {
+    const svgElement = document.getElementById(id);
+    if (!svgElement || !panzoomInstance || !containerRef.current) return;
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const targetCenterX = containerRect.left + containerRect.width / 2;
+    const targetCenterY = containerRect.top + containerRect.height / 2;
+
+    const { scale: currentZoom } = panzoomInstance.getTransform();
+
+    panzoomInstance.zoomAbs(
+      targetCenterX,
+      targetCenterY,
+      Math.max(currentZoom, 3)
+    );
+  };
+
+  const moveToElement = (id: string, smooth: boolean = true) => {
+    const svgElement = document.getElementById(id);
+    if (!svgElement || !panzoomInstance || !containerRef.current) return;
+    const elementRect = svgElement.getBoundingClientRect();
+    const containerRect = containerRef.current.getBoundingClientRect();
+    const elementCenterX = elementRect.left + elementRect.width / 2;
+    const elementCenterY = elementRect.top + elementRect.height / 2;
+    const targetCenterX = containerRect.left + containerRect.width / 2;
+    const targetCenterY = containerRect.top + containerRect.height / 2;
+
+    const deltaX = targetCenterX - elementCenterX;
+    const deltaY = targetCenterY - elementCenterY;
+
+    if (smooth) {
+      panzoomInstance.moveBy(deltaX, deltaY - 50, true);
+    } else {
+      panzoomInstance.moveBy(deltaX, deltaY - 50, false);
+    }
+  };
+
   const focusOnElement = (id: string) => {
     const svgElement = document.getElementById(id);
 
     if (!svgElement || !panzoomInstance || !containerRef.current) return;
 
-    // Get actual screen positions - no scaling needed!
-    const elementRect = svgElement.getBoundingClientRect();
-    const containerRect = containerRef.current.getBoundingClientRect();
+    const currentZoom = panzoomInstance.getTransform().scale;
 
-    // Where is the element center on screen right now?
-    const elementCenterX = elementRect.left + elementRect.width / 2;
-    const elementCenterY = elementRect.top + elementRect.height / 2;
-
-    // Where do we want it? (center of container)
-    const targetCenterX = containerRect.left + containerRect.width / 2;
-    const targetCenterY = containerRect.top + containerRect.height / 2;
-
-    // How far to move?
-    const deltaX = targetCenterX - elementCenterX;
-    const deltaY = targetCenterY - elementCenterY;
-
-    // Move it! (third parameter for smooth animation)
-    // Offset Y slightly to account for the map pane that appears
-    panzoomInstance.moveBy(deltaX, deltaY - 50, true);
-
-    const { scale: currentZoom } = panzoomInstance.getTransform();
-
-    // Zoom around the center of the container
-    panzoomInstance.smoothZoomAbs(
-      containerRect.width / 2,
-      containerRect.height / 2,
-      // Only adjust zoom level if its less than 3 (this is to avoid zooming out from where the user is already, but helps for zooming in when linking to a specific element)
-      Math.max(currentZoom, 3)
-    );
+    if (currentZoom < 3) {
+      zoomToElement(id);
+      setTimeout(() => {
+        moveToElement(id, false);
+      }, 50);
+    } else {
+      moveToElement(id, true);
+    }
   };
 
   const onSVGElementClick = (
