@@ -542,7 +542,7 @@ const EventVoucher = ({
           >
             Buy Devconnect ticket <SquareArrowOutUpRight size={16} />
           </VoxelButton>
-          <div className="text-[11px] text-[#4B4B66] mt-1">
+          <div className="text-xs text-[#4B4B66] mt-1">
             If you have a Devconnect ticket, connect to Zupass using the same
             email used to purchase your ticket. Still having issues? Reach out
             to us at{" "}
