@@ -11,15 +11,22 @@ const hubData = [
     iframeUrl: 'https://aa-hub-arg.erc4337.io/',
   },
   {
+    name: 'DeSci Hub',
+    slug: 'desci-hub',
+    iframeUrl:
+      'https://docs.fileverse.io/0xcfE93795a36912643355Cc1Be236ca8b7C62d57f/2#key=HPDG4NKjNpX1z-brUZgytf580tWoYX8jbRPkT_zKawGkmCiiYcoqrqeWfWUGHQF2',
+  },
+  {
     name: 'Enterprise Hub',
     slug: 'enterprise-hub',
     iframeUrl:
       'https://sheets.fileverse.io/0x3fc1296afb147C0d7C45b091b0b30bddDafa1bA2/0#key=jMZyROt2cuPoDvEJNLIk91Q6LjnCYLQuLPIBjUS3DyAehPUctjtqJa6WlZjILhHh',
   },
   {
-    name: 'Fintech & Onchain Banking',
-    slug: 'fintech-onchain-banking',
-    iframeUrl: '/community-hubs/coming-soon',
+    name: 'Future Cities & Hubs',
+    slug: 'future-cities-hubs',
+    iframeUrl:
+      'https://sheets.fileverse.io/0x18ebF62443415a370944b95623E3Df2dB972A51d/1#key=NUQMtJPkl3MsGv4na8Q_Bcs_v3ufFVeN0Vv0vNhqRH3-uCYPqSmh0_8EL5xANMwQ',
   },
   {
     name: 'Governance Geeks Hub',
@@ -48,22 +55,30 @@ const hubData = [
   {
     name: 'Onchain Art Hub',
     slug: 'onchain-art-hub',
+    iframeUrl:
+      'https://sheets.fileverse.io/0xb2648b31cB0E32f9a2499AC1d2eb76527cB28E04/5#key=OuJktJlaUsuEcJ-u5K3imFc5_71zh0_XISZEtefwWWuEcqg3oZIxN9qmvQC-CBEM',
+  },
+  {
+    name: 'Onchain Fintech Hub',
+    slug: 'onchain-fintech-hub',
     iframeUrl: '/community-hubs/coming-soon',
   },
   {
-    name: 'Open Source Community Hub',
-    slug: 'open-source-community-hub',
-    iframeUrl: '/community-hubs/coming-soon',
-  },
-  {
-    name: 'Pop-Up Cities',
-    slug: 'pop-up-cities',
-    iframeUrl: '/community-hubs/coming-soon',
+    name: 'Open Source Hub',
+    slug: 'open-source-hub',
+    iframeUrl:
+      'https://sheets.fileverse.io/0x06Cc230df1c166Da28892B7d92D01773d1b6B63f/3#key=NEaP5yPHPWLf1yvPxB06LoSkVT_ZaMNL23pH1hw3WQILZ1mJZjDgAyc-imfNADQP',
   },
   {
     name: 'Privacy Hub',
     slug: 'privacy-hub',
     iframeUrl: '/community-hubs/coming-soon',
+  },
+  {
+    name: 'Real World Assets Hub',
+    slug: 'real-world-assets-hub',
+    iframeUrl:
+      'https://sheets.fileverse.io/0xf67a5a6B6cF7Df1699Fd86F264d99D4ED2088239/0#key=n8vAQv0ih06phF4E5b6x2vsfHutRk4rrHeDrGaO7N1acLCnvQTjqjTJNW81bU7dy',
   },
   {
     name: 'Regen Hub',
@@ -72,20 +87,10 @@ const hubData = [
       'https://regensunite.notion.site/ebd/27a859725d2980909ba6ee9aab4029e2?v=27a859725d298011bd65000c9b79dd0a',
   },
   {
-    name: 'RWA Hub',
-    slug: 'rwa-hub',
-    iframeUrl: '/community-hubs/coming-soon',
-  },
-  {
     name: 'Women in Web3 Hub',
     slug: 'women-in-web3-hub',
     iframeUrl:
       'https://sheets.fileverse.io/0xf8Bf774665BF3A048961B42d3817537245765db9/1#key=xqD5J3X2kp-WoKtsIjA_KUpGDY_qYyta0SjrGct_91Ws3DYXNPXOiDE6mx7DZlog',
-  },
-  {
-    name: 'World of DeSci',
-    slug: 'world-of-desci',
-    iframeUrl: '/community-hubs/coming-soon',
   },
 ]
 

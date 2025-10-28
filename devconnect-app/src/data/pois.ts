@@ -2,8 +2,8 @@ import type { POI } from '@/types/api-data';
 
 export const poisData: POI[] = [
   {
-    "name": "Account Abstraction",
-    "layerName": "account-abstraction",
+    "name": "Account Abstraction Hub",
+    "layerName": "account-abstraction-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-27-33-208Z-AA-Logo.png",
     "description": "",
     "websiteLink": "",
@@ -110,6 +110,18 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
+    "name": "DeSci Hub",
+    "layerName": "desci-hub",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-56-12-379Z-DeSci-Hub.png",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
     "name": "Discussion corner 1",
     "layerName": "discussion-corner-1",
     "logo": "",
@@ -125,18 +137,6 @@ export const poisData: POI[] = [
     "name": "Enterprise Hub",
     "layerName": "enterprise-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-48-59-757Z-Enterprise-Hub.png",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "7"
-  },
-  {
-    "name": "Fintech & Onchain Banking",
-    "layerName": "fintech-onchain-banking",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-54-49-797Z-Onchain-Fintech.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -194,8 +194,8 @@ export const poisData: POI[] = [
     "groupId": "14"
   },
   {
-    "name": "Governance Geeks",
-    "layerName": "governance-geeks",
+    "name": "Governance Geeks Hub",
+    "layerName": "governance-geeks-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-05-838Z-Governance-Geeks.png",
     "description": "",
     "websiteLink": "",
@@ -302,8 +302,8 @@ export const poisData: POI[] = [
     "groupId": "13"
   },
   {
-    "name": "Node Operators",
-    "layerName": "node-operators",
+    "name": "Node Operators Hub",
+    "layerName": "node-operators-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-32-691Z-Node-Operator.png",
     "description": "",
     "websiteLink": "",
@@ -317,6 +317,18 @@ export const poisData: POI[] = [
     "name": "Onchain Art Hub",
     "layerName": "onchain-art-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-38-042Z-Onchain-Art-Hub.png",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": null,
+    "locationId": null,
+    "groupId": "7"
+  },
+  {
+    "name": "Onchain Fintech Hub",
+    "layerName": "onchain-fintech-hub",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-54-49-797Z-Onchain-Fintech.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -422,9 +434,9 @@ export const poisData: POI[] = [
     "groupId": "16"
   },
   {
-    "name": "Regen Hub",
-    "layerName": "regen-hub",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-54-012Z-Regen-Hub.png",
+    "name": "Real World Assets Hub",
+    "layerName": "real-world-assets-hub",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-57-230Z-RWA-Hub.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -434,9 +446,9 @@ export const poisData: POI[] = [
     "groupId": "7"
   },
   {
-    "name": "RWA",
-    "layerName": "rwa",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-57-230Z-RWA-Hub.png",
+    "name": "Regen Hub",
+    "layerName": "regen-hub",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-55-54-012Z-Regen-Hub.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
@@ -497,18 +509,6 @@ export const poisData: POI[] = [
     "name": "Women in Web3 Hub",
     "layerName": "women-in-web3-hub",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-56-01-631Z-Women-In-Web-3.png",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": null,
-    "locationId": null,
-    "groupId": "7"
-  },
-  {
-    "name": "World of DeSci",
-    "layerName": "world-of-desci",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T17-56-12-379Z-DeSci-Hub.png",
     "description": "",
     "websiteLink": "",
     "twitterLink": "",
