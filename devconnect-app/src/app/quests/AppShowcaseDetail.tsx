@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
@@ -537,45 +538,48 @@ export default function AppShowcaseDetail({
   return (
     <div className="w-full mx-auto flex flex-col gap-1 justify-start items-start relative bg-[#f6fafe] mt-4">
       {/* SupporterInfo Modal */}
-      {showSupporterInfo && (
-        <div className="fixed inset-0 z-51 flex items-end justify-center">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/50"
-            onClick={handleSupporterInfoClose}
-          />
-
-          {/* Modal Content */}
-          <div className="relative w-full max-w-md rounded-t-lg shadow-lg">
-            <SupporterInfo
-              onClose={handleSupporterInfoClose}
-              onBack={handleSupporterInfoBack}
-              hideBackButton={true}
-              buttonText="View Quest Location"
-              onButtonClick={() => handleViewQuestLocation(showSupporterInfo)}
-              supporterName={
-                showSupporterInfo.supporterId
-                  ? getSupporterById(showSupporterInfo.supporterId)?.name ||
-                    'Unknown'
-                  : 'Quest'
-              }
-              supporterDescription={
-                showSupporterInfo.instructions ||
-                (showSupporterInfo.supporterId
-                  ? getSupporterById(showSupporterInfo.supporterId)
-                      ?.description || 'Quest instructions missing...'
-                  : 'Quest instructions missing...')
-              }
-              supporterLogo={
-                showSupporterInfo.supporterId
-                  ? getSupporterById(showSupporterInfo.supporterId)?.logo
-                  : undefined
-              }
-              category="Quest"
+      {showSupporterInfo &&
+        typeof window !== 'undefined' &&
+        createPortal(
+          <div className="fixed inset-0 z-[9999] flex items-end justify-center">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/50"
+              onClick={handleSupporterInfoClose}
             />
-          </div>
-        </div>
-      )}
+
+            {/* Modal Content */}
+            <div className="relative w-full max-w-md rounded-t-lg shadow-lg">
+              <SupporterInfo
+                onClose={handleSupporterInfoClose}
+                onBack={handleSupporterInfoBack}
+                hideBackButton={true}
+                buttonText="View Quest Location"
+                onButtonClick={() => handleViewQuestLocation(showSupporterInfo)}
+                supporterName={
+                  showSupporterInfo.supporterId
+                    ? getSupporterById(showSupporterInfo.supporterId)?.name ||
+                      'Unknown'
+                    : 'Quest'
+                }
+                supporterDescription={
+                  showSupporterInfo.instructions ||
+                  (showSupporterInfo.supporterId
+                    ? getSupporterById(showSupporterInfo.supporterId)
+                        ?.description || 'About missing...'
+                    : 'About missing...')
+                }
+                supporterLogo={
+                  showSupporterInfo.supporterId
+                    ? getSupporterById(showSupporterInfo.supporterId)?.logo
+                    : undefined
+                }
+                category="Quest"
+              />
+            </div>
+          </div>,
+          document.body
+        )}
       {/* Header */}
       {/* <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">

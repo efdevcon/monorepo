@@ -34,17 +34,20 @@ export const SupporterInfo: React.FC<SupporterInfoProps> = ({
   category = "AI"
 }) => {
   return (
-    <div 
+    <div
       className="box-border content-stretch flex flex-col gap-4 items-start pb-3 pt-5 px-5 relative size-full"
       style={{
         borderTop: '1px solid rgba(255, 255, 255, 0.70)',
         background:
           'linear-gradient(0deg, rgba(255, 255, 255, 0.70) 0%, rgba(255, 255, 255, 0.70) 100%), linear-gradient(0deg, #AAA7FF 0%, #F6B40E 100%)',
         boxShadow: '0 -2px 4px 0 rgba(54, 54, 76, 0.10)',
+        paddingBottom: 'env(safe-area-inset-bottom, 0px)',
       }}
     >
       {/* Header with back button and close button */}
-      <div className={`flex items-center w-full ${hideBackButton ? 'justify-end' : 'justify-between'}`}>
+      <div
+        className={`flex items-center w-full ${hideBackButton ? 'justify-end' : 'justify-between'}`}
+      >
         {/* Back button - only show if not hidden */}
         {!hideBackButton && (
           <button
@@ -112,14 +115,14 @@ export const SupporterInfo: React.FC<SupporterInfoProps> = ({
                     className="w-full h-full object-cover rounded"
                   />
                 ) : (
-                  <div 
-                    className="w-full h-full bg-center bg-cover bg-no-repeat rounded" 
-                    style={{ backgroundImage: `url('${logo}')` }} 
+                  <div
+                    className="w-full h-full bg-center bg-cover bg-no-repeat rounded"
+                    style={{ backgroundImage: `url('${logo}')` }}
                   />
                 )}
               </div>
             </div>
-            
+
             {/* Title and category info */}
             <div className="basis-0 content-stretch flex flex-col gap-1.5 grow items-start justify-center min-h-px min-w-px relative shrink-0">
               <div className="content-stretch flex gap-1.5 items-center relative shrink-0 w-full">
@@ -127,17 +130,24 @@ export const SupporterInfo: React.FC<SupporterInfoProps> = ({
                   <p className="leading-none whitespace-pre">{supporterName}</p>
                 </div>
                 <div className="box-border content-stretch flex gap-1 items-center px-1 py-px relative shrink-0">
-                  <div aria-hidden="true" className="absolute border border-[#4b4b66] border-solid inset-0 pointer-events-none" />
+                  <div
+                    aria-hidden="true"
+                    className="absolute border border-[#4b4b66] border-solid inset-0 pointer-events-none"
+                  />
                   <div className="font-['Roboto:SemiBold',_sans-serif] font-semibold leading-[0] relative shrink-0 text-[#353548] text-[10px] text-nowrap tracking-[0.2px]">
                     <p className="leading-[1.3] whitespace-pre">{category}</p>
                   </div>
                 </div>
               </div>
-              
+
               {/* Quest available indicator */}
               <div className="content-stretch flex gap-1 items-center relative shrink-0">
                 <div className="relative shrink-0 size-4">
-                  <img alt="" className="block max-w-none size-full" src={imgAwardStar} />
+                  <img
+                    alt=""
+                    className="block max-w-none size-full"
+                    src={imgAwardStar}
+                  />
                 </div>
                 <div className="font-['Roboto_Mono:Medium',_sans-serif] font-medium leading-[0] relative shrink-0 text-[#36364c] text-xs text-center text-nowrap tracking-[-0.1px]">
                   <p className="leading-none whitespace-pre">Quest available</p>
@@ -195,32 +205,49 @@ export const SupporterInfo: React.FC<SupporterInfoProps> = ({
           <div className="content-stretch flex gap-2 items-start relative shrink-0">
             {/* Visit Website button */}
             <div className="bg-white box-border content-stretch flex gap-2 h-10 items-center justify-center px-4 py-2 relative shrink-0">
-              <div aria-hidden="true" className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none" />
+              <div
+                aria-hidden="true"
+                className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none"
+              />
               <div className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-[#353548] text-sm text-center text-nowrap">
                 <p className="leading-none whitespace-pre">Visit Website</p>
               </div>
               <div className="overflow-clip relative shrink-0 size-4">
                 <div className="absolute bottom-[20.83%] left-[20.84%] right-[24.99%] top-1/4">
-                  <img alt="" className="block max-w-none size-full" src={linkArrow} />
+                  <img
+                    alt=""
+                    className="block max-w-none size-full"
+                    src={linkArrow}
+                  />
                 </div>
               </div>
             </div>
-            
+
             {/* Social media buttons */}
             <div className="bg-white box-border content-stretch flex gap-2 items-center justify-center p-2 relative shrink-0 size-10">
-              <div aria-hidden="true" className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none" />
+              <div
+                aria-hidden="true"
+                className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none"
+              />
               <div className="overflow-clip relative shrink-0 size-4">
                 <div className="absolute bottom-[3.18%] left-0 right-0 top-[6.46%]">
                   <img alt="" className="block max-w-none size-full" src={x} />
                 </div>
               </div>
             </div>
-            
+
             <div className="bg-white box-border content-stretch flex gap-2 items-center justify-center p-2 relative shrink-0 size-10">
-              <div aria-hidden="true" className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none" />
+              <div
+                aria-hidden="true"
+                className="absolute border border-[#ededf0] border-solid inset-0 pointer-events-none"
+              />
               <div className="relative shrink-0 size-4">
                 <div className="absolute bottom-[5.56%] left-0 right-0 top-[2.78%]">
-                  <img alt="" className="block max-w-none size-full" src={farcaster} />
+                  <img
+                    alt=""
+                    className="block max-w-none size-full"
+                    src={farcaster}
+                  />
                 </div>
               </div>
             </div>
