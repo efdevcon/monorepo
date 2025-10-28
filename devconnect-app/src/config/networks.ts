@@ -13,6 +13,15 @@ const zapperLogos: Record<number, string> = {
   480: 'https://storage.googleapis.com/zapper-fi-assets/networks/worldchain-icon.png',
 };
 
+// Map chain IDs to Alchemy network names
+export const CHAIN_ID_TO_ALCHEMY_NETWORK: Record<number, string> = {
+  1: 'eth-mainnet',
+  8453: 'base-mainnet',
+  10: 'opt-mainnet',
+  137: 'polygon-mainnet',
+  42161: 'arb-mainnet',
+};
+
 // Network name to chain ID mapping for API responses
 export const networkToChainId: Record<string, number> = {
   'BASE_MAINNET': 8453,

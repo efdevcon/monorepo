@@ -12,11 +12,14 @@ import { mainnet } from 'viem/chains';
 import { APP_CONFIG } from '@/config/config';
 import { useTransaction } from '@/hooks/useTransaction';
 import { getNetworkConfig } from '@/config/networks';
+import { useAlchemyBalance } from '@/hooks/useAlchemyBalance';
 
 // Image assets
 const imgPara = '/images/paraLogo.png';
-const imgUSDC = 'https://storage.googleapis.com/zapper-fi-assets/tokens/base/0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.png';
-const imgBase = 'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png';
+const imgUSDC =
+  'https://storage.googleapis.com/zapper-fi-assets/tokens/base/0x833589fcd6edb6e08f4c7c32d4f71b54bda02913.png';
+const imgBase =
+  'https://storage.googleapis.com/zapper-fi-assets/networks/base-icon.png';
 
 type SendStep = 'form' | 'status';
 
@@ -42,23 +45,34 @@ export default function SendPage() {
     isPending,
   } = useTransaction();
 
-  // Get USDC balance from portfolio (Base chain)
+  // Fetch live balance using Alchemy (Base chain for Para wallets)
+  const {
+    balance: alchemyBalance,
+    loading: balanceLoading,
+    error: balanceError,
+    getTokenBalance,
+  } = useAlchemyBalance(8453); // Base chain
+
+  // Get USDC balance from Alchemy (live) or fallback to portfolio cache
   const usdcBalance = useMemo(() => {
+    // Prefer live Alchemy balance
+    const liveBalance = getTokenBalance('USDC');
+    if (liveBalance !== null) {
+      return liveBalance;
+    }
+
+    // Fallback to portfolio cache
     if (!portfolio || !address) return 0;
     const usdcToken = portfolio.tokenBalances.find(
-      (token) =>
-        token.symbol === 'USDC' &&
-        token.chainId === 8453 // Base chain
+      (token) => token.symbol === 'USDC' && token.chainId === 8453 // Base chain
     );
     return usdcToken?.balance || 0;
-  }, [portfolio, address]);
+  }, [getTokenBalance, portfolio, address]);
 
   const usdcBalanceUSD = useMemo(() => {
     if (!portfolio || !address) return 0;
     const usdcToken = portfolio.tokenBalances.find(
-      (token) =>
-        token.symbol === 'USDC' &&
-        token.chainId === 8453 // Base chain
+      (token) => token.symbol === 'USDC' && token.chainId === 8453 // Base chain
     );
     return usdcToken?.balanceUSD || 0;
   }, [portfolio, address]);
@@ -97,13 +111,14 @@ export default function SendPage() {
       return;
     }
 
-    const trimmedAddress = recipientAddress.trim();
-    
+    // Already normalized in onChange handler
+    const trimmedAddress = recipientAddress;
+
     // Check if it's an ENS name
-    if (trimmedAddress.endsWith('.eth')) {
+    if (trimmedAddress.includes('.')) {
       setIsResolvingAddress(true);
       setAddressError(null);
-      
+
       try {
         toast.info('Resolving ENS name...', {
           description: trimmedAddress,
@@ -124,10 +139,11 @@ export default function SendPage() {
         });
 
         if (resolvedAddress) {
-          setRecipientAddress(resolvedAddress);
+          const normalizedResolvedAddress = resolvedAddress.toLowerCase();
+          setRecipientAddress(normalizedResolvedAddress);
           setAddressError(null);
           toast.success('ENS name resolved!', {
-            description: `${trimmedAddress} → ${resolvedAddress}`,
+            description: `${trimmedAddress} → ${normalizedResolvedAddress}`,
             duration: 3000,
           });
         } else {
@@ -150,15 +166,21 @@ export default function SendPage() {
     } else {
       // Validate Ethereum address format
       if (!isAddress(trimmedAddress)) {
-        setAddressError('Invalid Ethereum address. Please enter a valid address (0x...) or ENS name.');
+        setAddressError(
+          'Invalid Ethereum address. Please enter a valid address (0x...) or ENS name.'
+        );
         toast.error('Invalid address', {
-          description: 'Please enter a valid Ethereum address (0x...) or ENS name',
+          description:
+            'Please enter a valid Ethereum address (0x...) or ENS name',
           duration: 4000,
         });
       } else if (trimmedAddress.length !== 42) {
-        setAddressError('Address length incorrect. Ethereum addresses should be 42 characters (including 0x).');
+        setAddressError(
+          'Address length incorrect. Ethereum addresses should be 42 characters (including 0x).'
+        );
         toast.warning('Address length incorrect', {
-          description: 'Ethereum addresses should be 42 characters (including 0x)',
+          description:
+            'Ethereum addresses should be 42 characters (including 0x)',
           duration: 4000,
         });
       } else {
@@ -174,12 +196,13 @@ export default function SendPage() {
   };
 
   // Check if address is valid
-  const isAddressValid = useMemo(() => 
-    recipientAddress &&
-    !addressError &&
-    !isResolvingAddress &&
-    isAddress(recipientAddress.trim()) &&
-    recipientAddress.trim().length === 42,
+  const isAddressValid = useMemo(
+    () =>
+      recipientAddress &&
+      !addressError &&
+      !isResolvingAddress &&
+      isAddress(recipientAddress.trim()) &&
+      recipientAddress.trim().length === 42,
     [recipientAddress, addressError, isResolvingAddress]
   );
 
@@ -191,7 +214,7 @@ export default function SendPage() {
       });
       return;
     }
-    
+
     if (!amount || parseFloat(amount) <= 0) {
       toast.error('Invalid amount', {
         description: 'Please enter a valid amount',
@@ -246,11 +269,12 @@ export default function SendPage() {
   ]);
 
   // Check if send is valid
-  const canSend = useMemo(() =>
-    isAddressValid &&
-    amount &&
-    parseFloat(amount) > 0 &&
-    parseFloat(amount) <= usdcBalance,
+  const canSend = useMemo(
+    () =>
+      isAddressValid &&
+      amount &&
+      parseFloat(amount) > 0 &&
+      parseFloat(amount) <= usdcBalance,
     [isAddressValid, amount, usdcBalance]
   );
 
@@ -321,7 +345,7 @@ export default function SendPage() {
     >
       {/* Header */}
       <div className="bg-white border-b border-[#ededf0] px-5 py-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-w-md mx-auto">
           <button
             onClick={() => router.push('/wallet')}
             className="w-6 h-6 flex items-center justify-center hover:bg-gray-100 rounded transition-colors cursor-pointer"
@@ -349,7 +373,7 @@ export default function SendPage() {
 
       {/* Main Content */}
       {currentStep === 'form' && (
-        <div className="px-6 py-6 space-y-8">
+        <div className="px-6 py-6 space-y-8 max-w-md mx-auto">
           {/* From and To Section */}
           <div className="space-y-3">
             {/* From Field */}
@@ -378,12 +402,16 @@ export default function SendPage() {
                 To:
               </p>
               <div className="flex-1 space-y-1">
-                <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 flex gap-3 items-center">
+                <div className="bg-white border border-[#ededf0] rounded-[1px] px-3 py-3 flex gap-3 items-center min-h-[48px]">
                   <input
                     type="text"
                     value={recipientAddress}
                     onChange={(e) => {
-                      setRecipientAddress(e.target.value);
+                      // Normalize: trim and lowercase while typing
+                      const normalizedValue = e.target.value
+                        .trim()
+                        .toLowerCase();
+                      setRecipientAddress(normalizedValue);
                       // Clear error when user starts typing
                       if (addressError) {
                         setAddressError(null);
@@ -392,30 +420,32 @@ export default function SendPage() {
                     onBlur={handleAddressBlur}
                     placeholder="Paste address (0x) or ENS"
                     disabled={isResolvingAddress}
-                    className="flex-1 text-[#353548] text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50"
+                    className="flex-1 text-[#353548] text-sm font-normal outline-none placeholder:text-[#4b4b66] leading-[1.2] disabled:opacity-50 min-w-0"
                   />
-                  {isResolvingAddress ? (
-                    <div className="flex items-center gap-2 px-3 py-1.5">
-                      <div className="animate-spin w-3 h-3 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
-                      <span className="text-[#0073de] text-xs font-bold">
-                        Resolving...
-                      </span>
-                    </div>
-                  ) : recipientAddress ? (
-                    <button
-                      onClick={handleClear}
-                      className="bg-[#eaf3fa] px-3 py-1.5 rounded-[1px] text-[#44445d] text-xs font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer flex-shrink-0"
-                    >
-                      Clear
-                    </button>
-                  ) : (
-                    <button
-                      onClick={handlePaste}
-                      className="bg-[#0073de] px-3 py-1.5 rounded-[1px] text-white text-xs font-bold hover:bg-[#005bb5] transition-colors cursor-pointer flex-shrink-0"
-                    >
-                      Paste
-                    </button>
-                  )}
+                  <div className="flex-shrink-0 w-[85px]">
+                    {isResolvingAddress ? (
+                      <div className="flex items-center gap-2 justify-center">
+                        <div className="animate-spin w-3 h-3 border-2 border-[#0073de] border-t-transparent rounded-full"></div>
+                        <span className="text-[#0073de] text-xs font-bold whitespace-nowrap">
+                          Resolving...
+                        </span>
+                      </div>
+                    ) : recipientAddress ? (
+                      <button
+                        onClick={handleClear}
+                        className="bg-[#eaf3fa] px-3 py-1.5 rounded-[1px] text-[#44445d] text-xs font-bold hover:bg-[#d5e7f4] transition-colors cursor-pointer w-full"
+                      >
+                        Clear
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handlePaste}
+                        className="bg-[#0073de] px-3 py-1.5 rounded-[1px] text-white text-xs font-bold hover:bg-[#005bb5] transition-colors cursor-pointer w-full"
+                      >
+                        Paste
+                      </button>
+                    )}
+                  </div>
                 </div>
                 {addressError && (
                   <p className="text-red-600 text-xs leading-[1.3] px-1">
@@ -477,10 +507,15 @@ export default function SendPage() {
                     USDC (Base)
                   </span>
                 </div>
-                <p className="text-[#4b4b66] text-sm font-normal">
-                  <span className="font-bold">Available:</span>{' '}
-                  {usdcBalance.toFixed(6)}
-                </p>
+                <div className="flex items-center gap-2">
+                  {balanceLoading && (
+                    <div className="animate-spin w-3 h-3 border-2 border-blue-600 border-t-transparent rounded-full"></div>
+                  )}
+                  <p className="text-[#4b4b66] text-sm font-normal">
+                    <span className="font-bold">Available:</span>{' '}
+                    {usdcBalance.toFixed(6)}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -505,7 +540,7 @@ export default function SendPage() {
 
       {/* Transaction Status Step */}
       {currentStep === 'status' && (
-        <div className="px-6 py-6">
+        <div className="px-6 py-6 max-w-md mx-auto">
           <div className="space-y-6">
             {/* Status Display */}
             {(txStatus === 'preparing' ||

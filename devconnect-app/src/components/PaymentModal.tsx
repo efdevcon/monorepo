@@ -21,6 +21,7 @@ import {
   useWallet as useParaWallet,
   useSignMessage,
 } from '@getpara/react-sdk';
+import { useAlchemyBalance } from '@/hooks/useAlchemyBalance';
 
 type PaymentStep = 'form' | 'status';
 
@@ -172,6 +173,16 @@ export default function PaymentModal({
     }
     return 8453; // Base
   });
+
+  // Fetch live balance using Alchemy
+  const {
+    balance: alchemyBalance,
+    loading: balanceLoading,
+    error: balanceError,
+    refresh: refreshBalance,
+    getTokenBalance,
+    getFormattedTokenBalance,
+  } = useAlchemyBalance(isPara ? 8453 : selectedChainId);
 
   const productUrl = `${PAYMENT_CONFIG.SIMPLEFI_BASE_URL}/${PAYMENT_CONFIG.MERCHANT_ID}/products/688ba8db51fc6c100f32cd63`;
 
@@ -1264,7 +1275,13 @@ export default function PaymentModal({
           justifyContent: 'center',
         }}
       >
-        <ModalContent className="w-full h-full max-w-full max-h-full sm:max-w-md sm:max-h-[90vh] sm:rounded-lg sm:shadow-xl bg-white overflow-hidden flex flex-col">
+        <ModalContent
+          className="w-full h-full max-w-full max-h-full sm:max-w-md sm:max-h-[90vh] sm:rounded-lg sm:shadow-xl bg-white overflow-hidden flex flex-col"
+          style={{
+            backgroundImage:
+              'linear-gradient(-7.43299e-07deg, rgba(246, 182, 19, 0.15) 6.8662%, rgba(255, 133, 166, 0.15) 14.794%, rgba(152, 148, 255, 0.15) 22.844%, rgba(116, 172, 223, 0.15) 43.68%, rgba(238, 247, 255, 0.15) 54.975%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
+          }}
+        >
           <div className="flex items-center justify-between p-5 pb-4 shrink-0 border-b border-gray-200">
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-semibold flex items-center gap-2">
@@ -1463,28 +1480,6 @@ export default function PaymentModal({
                         <h3 className="text-[#353548] text-base font-semibold">
                           Wallet
                         </h3>
-                        {/* <div className="bg-white border border-[#c7c7d0] rounded-[2px] px-4 py-3 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        {(() => {
-                          const connectorIcon = isPara
-                            ? '/images/paraLogo.png'
-                            : wagmiAccount.connector?.icon ||
-                              '/images/icons/injected.png';
-
-                          return (
-                            <img
-                              src={connectorIcon}
-                              alt="wallet"
-                              className="w-8 h-8 rounded-lg object-cover"
-                            />
-                          );
-                        })()}
-                        <span className="text-[#353548] text-base font-normal">
-                          {isPara ? 'Embedded Wallet' : 'External Wallet'}
-                        </span>
-                      </div>
-                      <ChevronDown className="w-5 h-5 text-[#353548]" />
-                    </div> */}
                         {/* Connection Status */}
                         <div className="bg-[#3a365e] border border-[#f6b613] rounded-[2px] p-4">
                           <div className="flex items-center justify-between mb-2">
@@ -1513,6 +1508,38 @@ export default function PaymentModal({
                               </span>
                             </div>
                           </div>
+
+                          {/* Available Balance Display */}
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-[#ededf0] text-xs font-normal">
+                              Available:
+                            </span>
+                            <div className="flex items-center gap-2">
+                              {balanceLoading ? (
+                                <div className="animate-spin w-3 h-3 border-2 border-white border-t-transparent rounded-full"></div>
+                              ) : balanceError ? (
+                                <span className="text-red-300 text-xs">
+                                  Error
+                                </span>
+                              ) : (
+                                <span className="text-white text-sm font-bold">
+                                  {(() => {
+                                    const tokenSymbol = isPara
+                                      ? 'USDC'
+                                      : selectedToken;
+                                    const balance = getFormattedTokenBalance(
+                                      tokenSymbol,
+                                      6
+                                    );
+                                    return balance !== null
+                                      ? `${balance} ${tokenSymbol}`
+                                      : `0 ${tokenSymbol}`;
+                                  })()}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
                           {isPara && (
                             <div className="space-y-1">
                               <p className="text-[#ededf0] text-xs text-center">
@@ -1544,9 +1571,6 @@ export default function PaymentModal({
                             </div>
                           )}
                         </div>
-                        {/* <button className="text-[#1b6fae] text-sm font-medium">
-                      SWITCH WALLET (2)
-                    </button> */}
                       </div>
 
                       {/* Amount to Pay */}

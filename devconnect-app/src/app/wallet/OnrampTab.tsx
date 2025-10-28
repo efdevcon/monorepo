@@ -122,61 +122,63 @@ export default function OnrampTab() {
       logoImage: 'ripio-logo.png',
       fees: 'Low% - Based on rate',
       onClick: async () => {
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
+        showErrorToast('❌ Ripio is not available yet');
+        return;
+        // if (!address) {
+        //   showErrorToast(
+        //     '❌ No Address Available',
+        //     'Please connect your wallet first'
+        //   );
+        //   return;
+        // }
 
-        const popup = window.open(
-          'about:blank',
-          '_blank',
-          'width=470,height=750'
-        );
+        // const popup = window.open(
+        //   'about:blank',
+        //   '_blank',
+        //   'width=470,height=750'
+        // );
 
-        if (!popup) {
-          showErrorToast(
-            '❌ Popup Blocked',
-            'Please allow popups for this site'
-          );
-          return;
-        }
+        // if (!popup) {
+        //   showErrorToast(
+        //     '❌ Popup Blocked',
+        //     'Please allow popups for this site'
+        //   );
+        //   return;
+        // }
 
-        try {
-          const externalRef = generateUUID();
-          const authToken = await generateAuthToken(externalRef);
+        // try {
+        //   const externalRef = generateUUID();
+        //   const authToken = await generateAuthToken(externalRef);
 
-          if (!authToken) {
-            throw new Error('Failed to generate authentication token');
-          }
+        //   if (!authToken) {
+        //     throw new Error('Failed to generate authentication token');
+        //   }
 
-          const widgetUrl = new URL(
-            'https://b2b-widget-onramp.sandbox.ripio.com'
-          );
-          widgetUrl.searchParams.set('_to', authToken);
-          widgetUrl.searchParams.set('_addr', address);
-          widgetUrl.searchParams.set('_net', 'ETHEREUM_SEPOLIA');
-          widgetUrl.searchParams.set('_amount', '2100');
-          widgetUrl.searchParams.set('_crypto', 'RTEST');
-          widgetUrl.searchParams.set('_tracking_session', externalRef);
+        //   const widgetUrl = new URL(
+        //     'https://b2b-widget-onramp.sandbox.ripio.com'
+        //   );
+        //   widgetUrl.searchParams.set('_to', authToken);
+        //   widgetUrl.searchParams.set('_addr', address);
+        //   widgetUrl.searchParams.set('_net', 'ETHEREUM_SEPOLIA');
+        //   widgetUrl.searchParams.set('_amount', '2100');
+        //   widgetUrl.searchParams.set('_crypto', 'RTEST');
+        //   widgetUrl.searchParams.set('_tracking_session', externalRef);
 
-          popup.location.href = widgetUrl.toString();
-          showInfoToast(
-            '🚀 Ripio Opened',
-            'Complete your purchase in the new tab'
-          );
-        } catch (error) {
-          console.error('Failed to open Ripio onramp:', error);
-          if (popup && !popup.closed) {
-            popup.close();
-          }
-          showErrorToast(
-            '❌ Ripio Error',
-            'Failed to connect to Ripio. Please try again.'
-          );
-        }
+        //   popup.location.href = widgetUrl.toString();
+        //   showInfoToast(
+        //     '🚀 Ripio Opened',
+        //     'Complete your purchase in the new tab'
+        //   );
+        // } catch (error) {
+        //   console.error('Failed to open Ripio onramp:', error);
+        //   if (popup && !popup.closed) {
+        //     popup.close();
+        //   }
+        //   showErrorToast(
+        //     '❌ Ripio Error',
+        //     'Failed to connect to Ripio. Please try again.'
+        //   );
+        // }
       },
     },
     {
@@ -298,22 +300,24 @@ export default function OnrampTab() {
       logoImage: 'transak-logo.png',
       fees: '0.99% – 3.99%',
       onClick: () => {
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
+        showErrorToast('❌ Transak is not available yet');
+        return;
+        // if (!address) {
+        //   showErrorToast(
+        //     '❌ No Address Available',
+        //     'Please connect your wallet first'
+        //   );
+        //   return;
+        // }
 
-        const currentDomain = window.location.origin;
-        const transakUrl = `https://global-stg.transak.com/?environment=STAGING&defaultFiatAmount=5&defaultFiatCurrency=USD&defaultCryptoCurrency=USDC&network=base&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=transak&confirm=true')}&productsAvailed=BUY&theme=dark&colorMode=DARK`;
+        // const currentDomain = window.location.origin;
+        // const transakUrl = `https://global-stg.transak.com/?environment=STAGING&defaultFiatAmount=5&defaultFiatCurrency=USD&defaultCryptoCurrency=USDC&network=base&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=transak&confirm=true')}&productsAvailed=BUY&theme=dark&colorMode=DARK`;
 
-        window.open(transakUrl, '_blank', 'noopener,noreferrer');
-        showInfoToast(
-          '🔄 Transak Opened',
-          'Complete your purchase in the new tab'
-        );
+        // window.open(transakUrl, '_blank', 'noopener,noreferrer');
+        // showInfoToast(
+        //   '🔄 Transak Opened',
+        //   'Complete your purchase in the new tab'
+        // );
       },
     },
     {
@@ -324,21 +328,23 @@ export default function OnrampTab() {
       logoImage: 'zkp2p-logo.png',
       fees: 'Based on rate/pool',
       onClick: () => {
-        if (!address) {
-          showErrorToast(
-            '❌ No Address Available',
-            'Please connect your wallet first'
-          );
-          return;
-        }
-        const currentDomain = window.location.origin;
-        const zkp2pUrl = `https://www.zkp2p.xyz/swap?referrer=Devconnect+App&referrerLogo=https%3A%2F%2Fpartner-assets.beta.getpara.com%2Ficons%2F7766a9b6-0afd-477e-9501-313f384e3e19%2Fkey-logos%2FDevconnect%2520Project-icon.jpg&callbackUrl=${encodeURIComponent(currentDomain + '/onramp?type=zkp2p&confirm=true')}&inputCurrency=USD&inputAmount=10&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&recipientAddress=${address}&tab=buy`;
+        showErrorToast('❌ ZKP2P is not available yet');
+        return;
+        // if (!address) {
+        //   showErrorToast(
+        //     '❌ No Address Available',
+        //     'Please connect your wallet first'
+        //   );
+        //   return;
+        // }
+        // const currentDomain = window.location.origin;
+        // const zkp2pUrl = `https://www.zkp2p.xyz/swap?referrer=Devconnect+App&referrerLogo=https%3A%2F%2Fpartner-assets.beta.getpara.com%2Ficons%2F7766a9b6-0afd-477e-9501-313f384e3e19%2Fkey-logos%2FDevconnect%2520Project-icon.jpg&callbackUrl=${encodeURIComponent(currentDomain + '/onramp?type=zkp2p&confirm=true')}&inputCurrency=USD&inputAmount=10&toToken=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913&recipientAddress=${address}&tab=buy`;
 
-        window.open(zkp2pUrl, '_blank', 'noopener,noreferrer');
-        showInfoToast(
-          '🔒 zkp2p Opened',
-          'Complete your purchase in the new tab'
-        );
+        // window.open(zkp2pUrl, '_blank', 'noopener,noreferrer');
+        // showInfoToast(
+        //   '🔒 zkp2p Opened',
+        //   'Complete your purchase in the new tab'
+        // );
       },
     },
   ];
@@ -360,8 +366,7 @@ export default function OnrampTab() {
     },
     {
       name: 'BitBase',
-      description:
-        'Blurb for Bitbase lorem ipsum dolor sit amet consectetur.',
+      description: 'Blurb for Bitbase lorem ipsum dolor sit amet consectetur.',
       gradient:
         'linear-gradient(103.512deg, rgba(40, 108, 255, 0.2) 51.957%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'calypso-logo.png',
@@ -380,7 +385,7 @@ export default function OnrampTab() {
               Connect Your Wallet
             </h1>
             <p className="text-[#36364c] text-base">
-              Connect your wallet to buy crypto
+              Connect your wallet to add funds
             </p>
           </div>
           <button
@@ -424,7 +429,7 @@ export default function OnrampTab() {
             </svg>
           </button>
           <h1 className="text-[#353548] text-lg font-bold tracking-[-0.1px]">
-            Buy
+            Add Funds
           </h1>
           <div className="w-6 h-6" />
         </div>
@@ -437,7 +442,7 @@ export default function OnrampTab() {
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 space-y-2">
               <h2 className="text-[#20202b] text-xl font-bold leading-[1.2] tracking-[-0.1px]">
-                Buy crypto digitally
+                Add crypto digitally
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
                 Partners accept Debit/Credit card only
@@ -509,7 +514,7 @@ export default function OnrampTab() {
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 space-y-2">
               <h2 className="text-[#20202b] text-xl font-bold leading-[1.2] tracking-[-0.1px]">
-                Buy crypto in-person
+                Add crypto in-person
               </h2>
               <p className="text-[#353548] text-sm leading-[1.3] tracking-[-0.1px]">
                 Partners accept Debit/Credit card only
@@ -563,6 +568,10 @@ export default function OnrampTab() {
                       <div
                         key={locIndex}
                         className="flex-1 bg-white border border-[#1b6fae] rounded-[2px] px-2 py-1 flex flex-col items-center gap-0.5"
+                        onClick={() => {
+                          showErrorToast('❌ In-person is not available yet');
+                          return;
+                        }}
                       >
                         <div className="w-5 h-5">
                           <img
