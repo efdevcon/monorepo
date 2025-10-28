@@ -702,424 +702,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
     authState !== undefined
   ) {
     return (
-      <div
-        className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full"
-        style={{
-          background:
-            'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
-        }}
-      >
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
-
-        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-          {/* Wallet Loading Animation */}
-          <Lottie
-            animationData={WalletLoadingAnimation}
-            loop={true}
-            className="w-full h-full object-contain"
-          />
-
-          {/* Loading text */}
-          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
-              Connecting your wallet to the World's Fair App...
-            </div>
-            <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
-              This should only take a moment.
-            </div>
-          </div>
-
-          <button
-            onClick={handleLogout}
-            className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
-          >
-            Start Over
-          </button>
-        </div>
-
-        {renderFooter()}
-      </div>
-    );
-  }
-
-  // Show redirecting state when connected and about to redirect
-  if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
-    return (
-      <div
-        className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full"
-        style={{
-          background:
-            'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
-        }}
-      >
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
-
-        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-          {/* Wallet Loading Animation */}
-          <Lottie
-            animationData={WalletLoadingAnimation}
-            loop={true}
-            className="w-full h-full object-contain"
-          />
-
-          {/* Loading text */}
-          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
-              Connecting your wallet to the World's Fair App...
-            </div>
-            <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
-              This should only take a moment.
-            </div>
-          </div>
-        </div>
-
-        {renderFooter()}
-      </div>
-    );
-  }
-
-  // OTP verification screen for external wallet connection
-  if (otpSent) {
-    return (
-      <div
-        className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full"
-        style={{
-          background:
-            'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
-        }}
-      >
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
-
-        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
-          {/* Header */}
-          <div className="flex flex-row items-center justify-between p-0 relative w-full">
-            <button
-              onClick={handleBackToWallet}
-              className="overflow-clip relative shrink-0 size-5"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#36364c"
-                strokeWidth="2"
-              >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-            </button>
-            <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
-              {otpVerified ? 'Connect Wallet' : 'Verify Code'}
-            </div>
-            <div className="overflow-clip relative shrink-0 size-5">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#36364c"
-                strokeWidth="2"
-              >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-            </div>
-          </div>
-
-          {/* Email notification image */}
-          <div className="bg-[position:0%_40%] bg-no-repeat bg-size-[100%_115.87%] h-[120px] shadow-[-2px_4px_8px_0px_rgba(0,0,0,0.2)] shrink-0 w-[140px] rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-            <svg
-              width="48"
-              height="48"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#1b6fae"
-              strokeWidth="2"
-            >
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-          </div>
-
-          {/* Verification content */}
-          <div className="flex flex-col gap-8 items-start justify-start p-0 relative w-full">
-            <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-              {/* Email sent message */}
-              <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
-                <div className="font-normal text-[#36364c] text-[14px] w-full">
-                  We&apos;ve sent a verification code to
-                </div>
-                <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
-                  {mounted ? email : ''}
-                </div>
-              </div>
-
-              {/* OTP Input - only show when not verified */}
-              {!otpVerified && (
-                <div className="flex flex-row gap-1 items-center justify-start p-0 relative">
-                  <div className="flex flex-row gap-1 items-center justify-start">
-                    {[0, 1, 2].map((index) => (
-                      <div key={index} className="relative shrink-0 size-10">
-                        <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
-                          <input
-                            ref={(el) => {
-                              if (el) {
-                                // Store ref for focus management
-                                (el as any)._index = index;
-                              }
-                            }}
-                            type="text"
-                            maxLength={1}
-                            className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
-                            value={otp[index] || ''}
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              const newOtp = otp.split('');
-                              newOtp[index] = value;
-                              const updatedOtp = newOtp.join('');
-                              setOtp(updatedOtp);
-
-                              // Move focus to next input if character entered
-                              if (value && index < 5) {
-                                const target = e.target as HTMLInputElement;
-                                const nextInput =
-                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                    'input'
-                                  ) ||
-                                  target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                    'input'
-                                  );
-                                if (nextInput) {
-                                  (nextInput as HTMLInputElement).focus();
-                                }
-                              }
-                            }}
-                            onKeyDown={(e) => {
-                              // Handle backspace to move to previous input
-                              if (
-                                e.key === 'Backspace' &&
-                                !otp[index] &&
-                                index > 0
-                              ) {
-                                const target = e.target as HTMLInputElement;
-                                const prevInput =
-                                  target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                    'input'
-                                  ) ||
-                                  target.parentElement?.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                    'input'
-                                  );
-                                if (prevInput) {
-                                  (prevInput as HTMLInputElement).focus();
-                                }
-                              }
-                            }}
-                            onPaste={(e) => {
-                              e.preventDefault();
-                              const pastedData =
-                                e.clipboardData.getData('text');
-                              const digits = pastedData
-                                .replace(/\D/g, '')
-                                .slice(0, 6);
-
-                              if (digits.length === 6) {
-                                setOtp(digits);
-                                // Focus the last input after paste
-                                const inputs =
-                                  document.querySelectorAll(
-                                    'input[type="text"]'
-                                  );
-                                const lastInput = inputs[
-                                  inputs.length - 1
-                                ] as HTMLInputElement;
-                                if (lastInput) {
-                                  lastInput.focus();
-                                }
-                              }
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="flex flex-row gap-1 items-center justify-start">
-                    {[3, 4, 5].map((index) => (
-                      <div key={index} className="relative shrink-0 size-10">
-                        <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
-                          <input
-                            ref={(el) => {
-                              if (el) {
-                                // Store ref for focus management
-                                (el as any)._index = index;
-                              }
-                            }}
-                            type="text"
-                            maxLength={1}
-                            className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
-                            value={otp[index] || ''}
-                            onChange={(e) => {
-                              const value = e.target.value;
-                              const newOtp = otp.split('');
-                              newOtp[index] = value;
-                              const updatedOtp = newOtp.join('');
-                              setOtp(updatedOtp);
-
-                              // Move focus to next input if character entered
-                              if (value && index < 5) {
-                                const target = e.target as HTMLInputElement;
-                                const nextInput =
-                                  target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
-                                    'input'
-                                  );
-                                if (nextInput) {
-                                  (nextInput as HTMLInputElement).focus();
-                                }
-                              }
-                            }}
-                            onKeyDown={(e) => {
-                              // Handle backspace to move to previous input
-                              if (
-                                e.key === 'Backspace' &&
-                                !otp[index] &&
-                                index > 0
-                              ) {
-                                const target = e.target as HTMLInputElement;
-                                const prevInput =
-                                  target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
-                                    'input'
-                                  );
-                                if (prevInput) {
-                                  (prevInput as HTMLInputElement).focus();
-                                }
-                              }
-                            }}
-                            onPaste={(e) => {
-                              e.preventDefault();
-                              const pastedData =
-                                e.clipboardData.getData('text');
-                              const digits = pastedData
-                                .replace(/\D/g, '')
-                                .slice(0, 6);
-
-                              if (digits.length === 6) {
-                                setOtp(digits);
-                                // Focus the last input after paste
-                                const inputs =
-                                  document.querySelectorAll(
-                                    'input[type="text"]'
-                                  );
-                                const lastInput = inputs[
-                                  inputs.length - 1
-                                ] as HTMLInputElement;
-                                if (lastInput) {
-                                  lastInput.focus();
-                                }
-                              }
-                            }}
-                          />
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Verify OTP Button or Connect Wallet Button */}
-              {!otpVerified ? (
-                <button
-                  onClick={handleOtpSubmit}
-                  disabled={!otp || otp.length !== 6 || !!loading}
-                  className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                    {loading ? 'Verifying...' : 'Verify'}
-                  </span>
-                </button>
-              ) : (
-                <button
-                  onClick={handleConnectWallet}
-                  className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
-                >
-                  <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                    Connect Wallet
-                  </span>
-                </button>
-              )}
-            </div>
-
-            {/* Success message when verified */}
-            {otpVerified && (
-              <div className="flex flex-col gap-[5px] items-center justify-start text-center w-full">
-                <div className="font-normal text-[#16a34a] text-[14px] w-full">
-                  ✓ Email verified successfully!
-                </div>
-                <div className="font-normal text-[#4b4b66] text-[12px] w-full">
-                  Now connect your wallet to continue
-                </div>
-              </div>
-            )}
-
-            {/* Resend code - only show when not verified */}
-            {!otpVerified && (
-              <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
-                <div className="font-normal text-[#4b4b66] text-[12px] w-full">
-                  Didn&apos;t receive a code?
-                </div>
-                <button
-                  onClick={handleResendOtp}
-                  disabled={!!loading}
-                  className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
-                >
-                  {loading ? 'Sending...' : 'Resend code'}
-                </button>
-              </div>
-            )}
-
-            {/* Back Button - only show when not verified */}
-            {!otpVerified && (
-              <button
-                onClick={handleBackToWallet}
-                className="font-bold text-[#1b6fae] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
-              >
-                Back to wallet connection
-              </button>
-            )}
-
-            {/* Error Display */}
-            {error && (
-              <div className="text-red-500 text-[14px] text-center w-full">
-                {error}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Footer */}
-        {renderFooter()}
-      </div>
-    );
-  }
-
-  // Email verification screen
-  if (authState?.stage === 'verify') {
-    return (
-      <div className="relative size-full overflow-y-auto pb-4">
-        {/* Background Image */}
-        <div className="absolute inset-0 h-full w-full">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage: 'url(/images/onboarding-bg.png)',
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-        </div>
-
+      <div className="relative size-full overflow-y-auto">
         {/* Content Wrapper */}
         <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
           {/* Logo */}
@@ -1133,7 +716,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
           {/* Main Content Container */}
           <div
-            className="box-border flex flex-col gap-0 items-center justify-center py-4 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0"
+            className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
             style={{
               background:
                 'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
@@ -1142,33 +725,491 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {/* Main border with shadow */}
             <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
+            {/* Back button - position absolute */}
+            <button
+              onClick={handleLogout}
+              className="absolute top-4 left-3 overflow-clip shrink-0 size-5 z-10"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#36364c"
+                strokeWidth="2"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
             <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
-              {/* Header */}
-              <div className="flex flex-row items-center justify-between p-0 relative w-full">
-                <button
-                  onClick={handleBack}
-                  className="overflow-clip relative shrink-0 size-5"
+              {/* Wallet Loading Animation */}
+              <Lottie
+                animationData={WalletLoadingAnimation}
+                loop={true}
+                className="w-[280px] h-[280px] object-contain"
+              />
+
+              {/* Loading text */}
+              <div className="flex flex-col gap-2 items-center justify-start text-center w-full mt-2">
+                <div className="font-bold text-[#242436] text-[20px] tracking-[-0.1px] w-full">
+                  Connecting your wallet to the World's Fair App...
+                </div>
+                <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
+                  This should only take a moment.
+                </div>
+              </div>
+            </div>
+
+            {renderFooter()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Show redirecting state when connected and about to redirect
+  if (isRedirecting && !isWaitingForLogin && !isWaitingForWalletCreation) {
+    return (
+      <div className="relative size-full overflow-y-auto">
+        {/* Content Wrapper */}
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+          {/* Logo */}
+          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
+            <img
+              src="/images/ethereum-worlds-fair-logo.png"
+              alt="Ethereum World's Fair"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Main Content Container */}
+          <div
+            className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
+            style={{
+              background:
+                'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+            }}
+          >
+            {/* Main border with shadow */}
+            <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+            {/* Back button - position absolute */}
+            <button
+              onClick={handleLogout}
+              className="absolute top-4 left-3 overflow-clip shrink-0 size-5 z-10"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#36364c"
+                strokeWidth="2"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
+              {/* Wallet Loading Animation */}
+              <Lottie
+                animationData={WalletLoadingAnimation}
+                loop={true}
+                className="w-[280px] h-[280px] object-contain"
+              />
+
+              {/* Loading text */}
+              <div className="flex flex-col gap-2 items-center justify-start text-center w-full mt-2">
+                <div className="font-bold text-[#242436] text-[20px] tracking-[-0.1px] w-full">
+                  Connecting your wallet to the World's Fair App...
+                </div>
+                <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
+                  This should only take a moment.
+                </div>
+              </div>
+            </div>
+
+            {renderFooter()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // OTP verification screen for external wallet connection
+  if (otpSent) {
+    return (
+      <div className="relative size-full overflow-y-auto">
+        {/* Content Wrapper */}
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+          {/* Logo */}
+          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
+            <img
+              src="/images/ethereum-worlds-fair-logo.png"
+              alt="Ethereum World's Fair"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Main Content Container */}
+          <div
+            className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-6 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
+            style={{
+              background:
+                'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+            }}
+          >
+            {/* Main border with shadow */}
+            <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+            {/* Back button - position absolute */}
+            <button
+              onClick={handleBackToWallet}
+              className="absolute top-4 left-6 overflow-clip shrink-0 size-5 z-10"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#36364c"
+                strokeWidth="2"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
+              {/* Email notification image */}
+              <div className="bg-[position:0%_40%] bg-no-repeat bg-size-[100%_115.87%] h-[120px] shadow-[-2px_4px_8px_0px_rgba(0,0,0,0.2)] shrink-0 w-[140px] rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mb-6">
+                <svg
+                  width="48"
+                  height="48"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#1b6fae"
+                  strokeWidth="2"
                 >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#36364c"
-                    strokeWidth="2"
-                  >
-                    <path d="M15 18l-6-6 6-6" />
-                  </svg>
-                </button>
-                {/* <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
-                  Check your email
-                </div> */}
-                <div className="overflow-clip relative shrink-0 size-5"></div>
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
               </div>
 
+              {/* Verification content */}
+              <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
+                <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
+                  {/* Email sent message */}
+                  <div className="flex flex-col gap-[5px] items-start justify-start text-center w-full">
+                    <div className="font-normal text-[#36364c] text-[14px] w-full">
+                      We&apos;ve sent a verification code to
+                    </div>
+                    <div className="font-bold text-[#242436] text-[16px] tracking-[-0.1px] w-full">
+                      {mounted ? email : ''}
+                    </div>
+                  </div>
+
+                  {/* OTP Input - only show when not verified */}
+                  {!otpVerified && (
+                    <div className="flex flex-row gap-1 items-center justify-start p-0 relative">
+                      <div className="flex flex-row gap-1 items-center justify-start">
+                        {[0, 1, 2].map((index) => (
+                          <div
+                            key={index}
+                            className="relative shrink-0 size-10"
+                          >
+                            <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
+                              <input
+                                ref={(el) => {
+                                  if (el) {
+                                    // Store ref for focus management
+                                    (el as any)._index = index;
+                                  }
+                                }}
+                                type="text"
+                                maxLength={1}
+                                className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
+                                value={otp[index] || ''}
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  const newOtp = otp.split('');
+                                  newOtp[index] = value;
+                                  const updatedOtp = newOtp.join('');
+                                  setOtp(updatedOtp);
+
+                                  // Move focus to next input if character entered
+                                  if (value && index < 5) {
+                                    const target = e.target as HTMLInputElement;
+                                    const nextInput =
+                                      target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                        'input'
+                                      ) ||
+                                      target.parentElement?.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                        'input'
+                                      );
+                                    if (nextInput) {
+                                      (nextInput as HTMLInputElement).focus();
+                                    }
+                                  }
+                                }}
+                                onKeyDown={(e) => {
+                                  // Handle backspace to move to previous input
+                                  if (
+                                    e.key === 'Backspace' &&
+                                    !otp[index] &&
+                                    index > 0
+                                  ) {
+                                    const target = e.target as HTMLInputElement;
+                                    const prevInput =
+                                      target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                        'input'
+                                      ) ||
+                                      target.parentElement?.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                        'input'
+                                      );
+                                    if (prevInput) {
+                                      (prevInput as HTMLInputElement).focus();
+                                    }
+                                  }
+                                }}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                  const pastedData =
+                                    e.clipboardData.getData('text');
+                                  const digits = pastedData
+                                    .replace(/\D/g, '')
+                                    .slice(0, 6);
+
+                                  if (digits.length === 6) {
+                                    setOtp(digits);
+                                    // Focus the last input after paste
+                                    const inputs =
+                                      document.querySelectorAll(
+                                        'input[type="text"]'
+                                      );
+                                    const lastInput = inputs[
+                                      inputs.length - 1
+                                    ] as HTMLInputElement;
+                                    if (lastInput) {
+                                      lastInput.focus();
+                                    }
+                                  }
+                                }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-row gap-1 items-center justify-start">
+                        {[3, 4, 5].map((index) => (
+                          <div
+                            key={index}
+                            className="relative shrink-0 size-10"
+                          >
+                            <div className="absolute bg-[#ffffff] left-0 rounded-[1px] size-10 top-0 border border-[#d6d6d6]">
+                              <input
+                                ref={(el) => {
+                                  if (el) {
+                                    // Store ref for focus management
+                                    (el as any)._index = index;
+                                  }
+                                }}
+                                type="text"
+                                maxLength={1}
+                                className="w-full h-full text-center text-[20px] font-normal text-[#36364c] bg-transparent border-none outline-none"
+                                value={otp[index] || ''}
+                                onChange={(e) => {
+                                  const value = e.target.value;
+                                  const newOtp = otp.split('');
+                                  newOtp[index] = value;
+                                  const updatedOtp = newOtp.join('');
+                                  setOtp(updatedOtp);
+
+                                  // Move focus to next input if character entered
+                                  if (value && index < 5) {
+                                    const target = e.target as HTMLInputElement;
+                                    const nextInput =
+                                      target.parentElement?.parentElement?.parentElement?.nextElementSibling?.querySelector(
+                                        'input'
+                                      );
+                                    if (nextInput) {
+                                      (nextInput as HTMLInputElement).focus();
+                                    }
+                                  }
+                                }}
+                                onKeyDown={(e) => {
+                                  // Handle backspace to move to previous input
+                                  if (
+                                    e.key === 'Backspace' &&
+                                    !otp[index] &&
+                                    index > 0
+                                  ) {
+                                    const target = e.target as HTMLInputElement;
+                                    const prevInput =
+                                      target.parentElement?.parentElement?.parentElement?.previousElementSibling?.querySelector(
+                                        'input'
+                                      );
+                                    if (prevInput) {
+                                      (prevInput as HTMLInputElement).focus();
+                                    }
+                                  }
+                                }}
+                                onPaste={(e) => {
+                                  e.preventDefault();
+                                  const pastedData =
+                                    e.clipboardData.getData('text');
+                                  const digits = pastedData
+                                    .replace(/\D/g, '')
+                                    .slice(0, 6);
+
+                                  if (digits.length === 6) {
+                                    setOtp(digits);
+                                    // Focus the last input after paste
+                                    const inputs =
+                                      document.querySelectorAll(
+                                        'input[type="text"]'
+                                      );
+                                    const lastInput = inputs[
+                                      inputs.length - 1
+                                    ] as HTMLInputElement;
+                                    if (lastInput) {
+                                      lastInput.focus();
+                                    }
+                                  }
+                                }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Verify OTP Button or Connect Wallet Button */}
+                  {!otpVerified ? (
+                    <button
+                      onClick={handleOtpSubmit}
+                      disabled={!otp || otp.length !== 6 || !!loading}
+                      className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                        {loading ? 'Verifying...' : 'Verify'}
+                      </span>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleConnectWallet}
+                      className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors"
+                    >
+                      <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                        Connect Wallet
+                      </span>
+                    </button>
+                  )}
+                </div>
+
+                {/* Success message when verified */}
+                {otpVerified && (
+                  <div className="flex flex-col gap-[5px] items-center justify-start text-center w-full">
+                    <div className="font-normal text-[#16a34a] text-[14px] w-full">
+                      ✓ Email verified successfully!
+                    </div>
+                    <div className="font-normal text-[#4b4b66] text-[12px] w-full">
+                      Now connect your wallet to continue
+                    </div>
+                  </div>
+                )}
+
+                {/* Resend code - only show when not verified */}
+                {!otpVerified && (
+                  <div className="flex flex-col gap-1 items-center justify-start text-center w-full">
+                    <div className="font-normal text-[#4b4b66] text-[12px] w-full">
+                      Didn&apos;t receive a code?
+                    </div>
+                    <button
+                      onClick={handleResendOtp}
+                      disabled={!!loading}
+                      className="font-bold text-[#1b6fae] text-[14px] tracking-[-0.1px] w-full hover:underline disabled:opacity-50"
+                    >
+                      {loading ? 'Sending...' : 'Resend code'}
+                    </button>
+                  </div>
+                )}
+
+                {/* Back Button - only show when not verified */}
+                {!otpVerified && (
+                  <button
+                    onClick={handleBackToWallet}
+                    className="font-bold text-[#1b6fae] text-[14px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+                  >
+                    Back to wallet connection
+                  </button>
+                )}
+
+                {/* Error Display */}
+                {error && (
+                  <div className="text-red-500 text-[14px] text-center w-full">
+                    {error}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Footer */}
+            {renderFooter()}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Email verification screen
+  if (authState?.stage === 'verify') {
+    return (
+      <div className="relative size-full overflow-y-auto">
+        {/* Content Wrapper */}
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+          {/* Logo */}
+          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
+            <img
+              src="/images/ethereum-worlds-fair-logo.png"
+              alt="Ethereum World's Fair"
+              className="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Main Content Container */}
+          <div
+            className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-3 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
+            style={{
+              background:
+                'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+            }}
+          >
+            {/* Main border with shadow */}
+            <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+            {/* Back button - position absolute */}
+            <button
+              onClick={handleBack}
+              className="absolute top-4 left-3 overflow-clip shrink-0 size-5 z-10"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#36364c"
+                strokeWidth="2"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
               {/* Email notification image - hide when showing iframe */}
               {!authState.loginUrl && (
-                <div className="bg-[position:0%_40%] bg-no-repeat bg-size-[100%_115.87%] h-[120px] shadow-[-2px_4px_8px_0px_rgba(0,0,0,0.2)] shrink-0 w-[140px] rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center">
+                <div className="bg-[position:0%_40%] bg-no-repeat bg-size-[100%_115.87%] h-[120px] shadow-[-2px_4px_8px_0px_rgba(0,0,0,0.2)] shrink-0 w-[140px] rounded-lg bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center mb-6">
                   <svg
                     width="48"
                     height="48"
@@ -1184,11 +1225,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               )}
 
               {/* Verification content */}
-              <div className="flex flex-col gap-8 items-start justify-start p-0 relative w-full">
+              <div className="flex flex-col gap-6 items-start justify-start p-0 relative w-full">
                 {authState.loginUrl ? (
                   /* Show iframe for passkey/password/PIN flow */
                   <div
-                    className={`flex flex-col gap-6 items-center justify-start p-0 relative w-full ${!isIframeLoading && !isIframeClosed ? 'py-2 my-5 bg-white rounded-[10px] border-solid border-[#d6d6d6] border-[1px]' : ''}`}
+                    className={`flex flex-col gap-0 items-center justify-start p-0 relative w-full ${!isIframeLoading && !isIframeClosed ? 'py-2 my-5 bg-white rounded-[10px] border-solid border-[#d6d6d6] border-[1px]' : ''}`}
                   >
                     {isIframeLoading ? (
                       <div className="flex flex-col gap-4 items-center justify-center w-full py-2">
@@ -1196,17 +1237,17 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                       </div>
                     ) : (
                       isIframeClosed && (
-                        <div className="flex flex-col gap-6 items-center justify-center p-0 relative w-full">
+                        <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
                           {/* Wallet Loading Animation */}
                           <Lottie
                             animationData={WalletLoadingAnimation}
                             loop={true}
-                            className="w-full h-full object-contain"
+                            className="w-[280px] h-[280px] object-contain"
                           />
 
                           {/* Loading text */}
-                          <div className="flex flex-col gap-2 items-center justify-start text-center w-full">
-                            <div className="font-bold text-[#242436] text-[24px] tracking-[-0.1px] w-full">
+                          <div className="flex flex-col gap-2 items-center justify-start text-center w-full mt-2">
+                            <div className="font-bold text-[#242436] text-[20px] tracking-[-0.1px] w-full">
                               Connecting your wallet to the World's Fair App...
                             </div>
                             <div className="font-normal text-[#4b4b66] text-[16px] w-full mb-2">
@@ -1493,22 +1534,33 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Signup/Login method selection screen
   if (authState?.stage === 'signup' || authState?.stage === 'login') {
     return (
-      <div
-        className="box-border flex flex-col items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full pb-4"
-        style={{
-          background:
-            'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
-        }}
-      >
-        {/* Main border with shadow */}
-        <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+      <div className="relative size-full overflow-y-auto">
+        {/* Content Wrapper */}
+        <div className="relative min-h-full flex flex-col items-center justify-center gap-0 py-8 pt-0">
+          {/* Logo */}
+          <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0 mb-6">
+            <img
+              src="/images/ethereum-worlds-fair-logo.png"
+              alt="Ethereum World's Fair"
+              className="w-full h-full object-contain"
+            />
+          </div>
 
-        <div className="flex flex-col gap-6 items-center justify-start p-0 relative w-full">
-          {/* Header */}
-          <div className="flex flex-row items-center justify-between p-0 relative w-full">
+          {/* Main Content Container */}
+          <div
+            className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-6 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
+            style={{
+              background:
+                'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
+            }}
+          >
+            {/* Main border with shadow */}
+            <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
+
+            {/* Back button - position absolute */}
             <button
               onClick={handleBack}
-              className="overflow-clip relative shrink-0 size-5"
+              className="absolute top-4 left-6 overflow-clip shrink-0 size-5 z-10"
             >
               <svg
                 width="20"
@@ -1521,66 +1573,69 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                 <path d="M15 18l-6-6 6-6" />
               </svg>
             </button>
-            <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px]">
-              {authState.stage === 'signup' ? 'Create Account' : 'Sign In'}
+
+            <div className="flex flex-col gap-0 items-center justify-center p-0 relative w-full">
+              {/* Title centered */}
+              <div className="font-semibold text-[#36364c] text-[18px] text-center tracking-[-0.1px] mb-6">
+                {authState.stage === 'signup' ? 'Create Account' : 'Sign In'}
+              </div>
+
+              {/* Method selection */}
+              <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
+                {authState.isPasskeySupported && authState.passkeyUrl && (
+                  <button
+                    onClick={handleOpenWindowClick(authState.passkeyUrl)}
+                    disabled={isWaitingForLogin || isWaitingForWalletCreation}
+                    className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
+                  >
+                    <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
+                      {isWaitingForLogin || isWaitingForWalletCreation
+                        ? 'Setting up...'
+                        : authState.stage === 'login'
+                          ? 'Login with Passkey'
+                          : 'Signup with Passkey'}
+                    </span>
+                  </button>
+                )}
+
+                {authState.passwordUrl && (
+                  <button
+                    onClick={handleOpenWindowClick(authState.passwordUrl)}
+                    disabled={isWaitingForLogin || isWaitingForWalletCreation}
+                    className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
+                  >
+                    <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+                      {isWaitingForLogin || isWaitingForWalletCreation
+                        ? 'Setting up...'
+                        : authState.stage === 'login'
+                          ? 'Login with Password'
+                          : 'Signup with Password'}
+                    </span>
+                  </button>
+                )}
+
+                {authState.pinUrl && (
+                  <button
+                    onClick={handleOpenWindowClick(authState.pinUrl)}
+                    disabled={isWaitingForLogin || isWaitingForWalletCreation}
+                    className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
+                  >
+                    <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
+                      {isWaitingForLogin || isWaitingForWalletCreation
+                        ? 'Setting up...'
+                        : authState.stage === 'login'
+                          ? 'Login with PIN'
+                          : 'Signup with PIN'}
+                    </span>
+                  </button>
+                )}
+              </div>
             </div>
-            <div className="overflow-clip relative shrink-0 size-5"></div>
-          </div>
 
-          {/* Method selection */}
-          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
-            {authState.isPasskeySupported && authState.passkeyUrl && (
-              <button
-                onClick={handleOpenWindowClick(authState.passkeyUrl)}
-                disabled={isWaitingForLogin || isWaitingForWalletCreation}
-                className="bg-[#1b6fae] flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] w-full hover:bg-[#125181] transition-colors disabled:opacity-50"
-              >
-                <span className="font-bold text-white text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isWaitingForLogin || isWaitingForWalletCreation
-                    ? 'Setting up...'
-                    : authState.stage === 'login'
-                      ? 'Login with Passkey'
-                      : 'Signup with Passkey'}
-                </span>
-              </button>
-            )}
-
-            {authState.passwordUrl && (
-              <button
-                onClick={handleOpenWindowClick(authState.passwordUrl)}
-                disabled={isWaitingForLogin || isWaitingForWalletCreation}
-                className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isWaitingForLogin || isWaitingForWalletCreation
-                    ? 'Setting up...'
-                    : authState.stage === 'login'
-                      ? 'Login with Password'
-                      : 'Signup with Password'}
-                </span>
-              </button>
-            )}
-
-            {authState.pinUrl && (
-              <button
-                onClick={handleOpenWindowClick(authState.pinUrl)}
-                disabled={isWaitingForLogin || isWaitingForWalletCreation}
-                className="bg-white flex flex-row gap-2 items-center justify-center p-[16px] relative rounded-[1px] w-full border border-[#4b4b66] shadow-[0px_4px_0px_0px_#4b4b66] hover:bg-gray-50 transition-colors disabled:opacity-50"
-              >
-                <span className="font-bold text-[#36364c] text-[16px] text-center tracking-[-0.1px] leading-none">
-                  {isWaitingForLogin || isWaitingForWalletCreation
-                    ? 'Setting up...'
-                    : authState.stage === 'login'
-                      ? 'Login with PIN'
-                      : 'Signup with PIN'}
-                </span>
-              </button>
-            )}
+            {/* Footer */}
+            {renderFooter()}
           </div>
         </div>
-
-        {/* Footer */}
-        {renderFooter()}
       </div>
     );
   }
@@ -1588,20 +1643,8 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
   // Get Started Container
   return (
     <div className="relative size-full overflow-y-auto">
-      {/* Background Image */}
-      {/* <div className="absolute inset-0 h-full w-full">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(/images/onboarding-bg.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
-      </div> */}
-
       {/* Content Wrapper - centered container for logo, main content, and install PWA */}
-      <div className="relative min-h-full flex flex-col items-center justify-center gap-6 py-8">
+      <div className="relative min-h-full flex flex-col items-center justify-center gap-6 py-8 pt-0">
         {/* Logo */}
         <div className="w-full max-w-[244px] h-auto aspect-[244/77] flex-shrink-0">
           <img
@@ -1613,7 +1656,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
 
         {/* Main Content Container */}
         <div
-          className="box-border flex flex-col gap-6 items-center justify-center pb-0 pt-6 px-6 relative rounded-[1px] w-full max-w-[353px] flex-shrink-0"
+          className="box-border flex flex-col gap-0 items-center justify-center pt-6 px-6 relative rounded-[1px] w-full max-w-[450px] flex-shrink-0 min-h-[500px]"
           style={{
             background:
               'linear-gradient(127deg, rgba(242, 249, 255, 0.35) 8.49%, rgba(116, 172, 223, 0.35) 100%), #FFF',
@@ -1622,14 +1665,14 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
           {/* Main border with shadow */}
           <div className="absolute border border-white border-solid inset-[-0.5px] pointer-events-none rounded-[1.5px] shadow-[0px_8px_0px_0px_#36364c]" />
 
-          <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+          <div className="flex flex-col gap-0 items-start justify-start p-0 relative w-full">
             {/* Header */}
-            <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3]">
+            <h1 className="font-bold text-[#242436] text-[24px] text-left tracking-[-0.1px] w-full leading-[1.3] mb-4">
               Get started
             </h1>
 
             {/* First, enter your email address */}
-            <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full">
+            <div className="flex flex-col gap-4 items-start justify-start p-0 relative w-full mb-4">
               <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
                 <h2 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
                   First, enter your email address
@@ -1683,9 +1726,9 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             )}
 
             {/* Choose your authentication method */}
-            <div className="flex flex-col items-start justify-start p-0 relative w-full">
+            <div className="flex flex-col items-start justify-start p-0 relative w-full mb-4">
               {EOA_FLOW && (
-                <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full">
+                <div className="flex flex-col gap-2 items-start justify-start text-[#242436] text-left w-full mb-4">
                   <>
                     <h3 className="font-bold text-[16px] tracking-[-0.1px] w-full leading-[1.5]">
                       Choose your authentication method
@@ -1755,7 +1798,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
               )}
             </div>
 
-            <div className="flex items-center w-full gap-4 mb-1.5">
+            <div className="flex items-center w-full gap-4 mb-4">
               <Separator className="grow w-auto bg-[rgba(54,54,76,0.2)]" />
               <span className="font-normal text-[12px] text-center leading-none shrink-0">
                 OR
@@ -1778,7 +1821,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {/* Skip for now */}
             <button
               onClick={handleSkip}
-              className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-6 "
+              className="font-bold text-[#1b6fae] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-4"
             >
               Skip for now
             </button>
@@ -1787,7 +1830,7 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
             {user && (
               <button
                 onClick={handleLogout}
-                className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline"
+                className="font-bold text-[#dc2626] text-[16px] text-center tracking-[-0.1px] w-full leading-none hover:underline mb-4"
               >
                 Account logout
               </button>
