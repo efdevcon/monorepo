@@ -6,7 +6,7 @@ import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
 import type { Quest, QuestAction, QuestGroup } from '@/types';
-import { SupporterInfo } from '@/app/map/venue-map/components/SupporterInfo';
+import { SupporterInfo } from '@/app/(page-layout)/map/venue-map/components/SupporterInfo';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
 import PoapModal from '@/components/PoapModal';
