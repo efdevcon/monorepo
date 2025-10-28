@@ -8,7 +8,7 @@ const hubData = [
   {
     name: 'Account Abstraction Hub',
     slug: 'account-abstraction-hub',
-    iframeUrl: '/community-hubs/coming-soon',
+    iframeUrl: 'https://aa-hub-arg.erc4337.io/',
   },
   {
     name: 'Enterprise Hub',
@@ -24,7 +24,8 @@ const hubData = [
   {
     name: 'Governance Geeks Hub',
     slug: 'governance-geeks-hub',
-    iframeUrl: '/community-hubs/coming-soon',
+    iframeUrl:
+      'https://sheets.fileverse.io/0x6077c53D8aCc8516182A8C027513E09d526e946f/0#key=Wb-JHetK4P97uaGFwk0INhtspmQx0JGqi2Wsf8CDDS6kSjZEJUxidbp8LSdjw6Vs',
   },
   {
     name: 'LATAM Hub',
