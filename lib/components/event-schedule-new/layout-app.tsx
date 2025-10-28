@@ -105,7 +105,7 @@ const Layout = (props: CalendarLayoutProps) => {
         </div>
       </div>
 
-      <div className={cn("grow relative", layoutCss["layout-app"])}>
+      <div className={cn("grow relative pb-12", layoutCss["layout-app"])}>
         {/* white gradient to indicate more events on the right for mobile */}
         <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-white via-white/60 to-transparent pointer-events-none z-10"></div>
         <NewScheduleIndex

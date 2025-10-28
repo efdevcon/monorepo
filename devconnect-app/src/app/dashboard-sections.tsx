@@ -17,6 +17,8 @@ import PhoneIcon from '@/components/icons/onboarding-steps/phone.svg';
 import PinIcon from '@/components/icons/onboarding-steps/pin.svg';
 import CalendarIcon from '@/components/icons/onboarding-steps/calendar.svg';
 import DevconnectLogoWhite from '@/images/devconnect-arg-logo.svg';
+import { toast } from 'sonner';
+import { ChevronDownIcon, Copy } from 'lucide-react';
 
 export const LoopingHeader = () => {
   // const t = useTranslations();
@@ -82,33 +84,152 @@ export function WelcomeSection() {
 }
 
 export const PracticalInfo = () => {
+  const [openSection, setOpenSection] = useState<string | null>('essentials');
+
+  const sections = [
+    {
+      id: 'venue',
+      title: 'Venue & Facilities 🏛️',
+      content: (
+        <div className="text-sm">
+          <p>Venue and facilities information coming soon...</p>
+        </div>
+      ),
+    },
+    {
+      id: 'city',
+      title: 'City Guide 🌶️',
+      content: (
+        <div className="text-sm">
+          <p>City guide information coming soon...</p>
+        </div>
+      ),
+    },
+    {
+      id: 'perks',
+      title: 'Perks 🎁',
+      content: (
+        <div className="text-sm">
+          <p>Perks information coming soon...</p>
+        </div>
+      ),
+    },
+    {
+      id: 'community',
+      title: 'Community 🌍',
+      content: (
+        <div className="text-sm">
+          <p>Community information coming soon...</p>
+        </div>
+      ),
+    },
+    {
+      id: 'safety',
+      title: 'Safety & Conduct ⚠️',
+      content: (
+        <div className="text-sm">
+          <p>Safety and conduct information coming soon...</p>
+        </div>
+      ),
+    },
+  ];
+
   return (
-    <div className="flex flex-col items-start justify-start gap-4 p-4 pb-3 bg-white border mx-4 border-[rgba(234,234,234,1)] mt-4">
-      <h2 className="font-bold">Event information</h2>
+    <div className="flex flex-col items-start justify-start bg-white border mx-4 border-[rgba(234,234,234,1)] mt-4">
+      <h2 className="font-bold p-4 pb-0">Event information</h2>
 
-      <div className="flex flex-col gap-0.5 w-full">
-        <div className="flex justify-between items-center">
-          <span className="font-semibold text-sm">Wifi Network:</span>
-          <span className="text-sm">LA-RURAL-WIFI-BA25</span>
-        </div>
+      <div className="p-4 pb-0 w-full">
+        <div className="flex flex-col lg:flex-row lg:gap-24">
+          {/* left col on desktop, top on mobile */}
+          <div className="flex flex-col gap-1 lg:flex-1 lg:gap-0.5">
+            <div className="flex justify-between items-center group">
+              <span className="font-semibold text-sm">Wi-Fi:</span>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('LA-RURAL-WIFI-BA25');
+                  toast('Copied wifi name to clipboard', {
+                    position: 'bottom-center',
+                  });
+                }}
+                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)]"
+              >
+                <span>LA-RURAL-WIFI-BA25</span>
+                <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
+              </button>
+            </div>
+            <div className="flex justify-between items-center group">
+              <span className="font-semibold text-sm">Wifi Password:</span>
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText('E7H3R3UM-DEVCONNECT');
+                  toast('Copied wifi password to clipboard', {
+                    position: 'bottom-center',
+                  });
+                }}
+                className="text-sm flex items-center gap-1 hover:text-[rgba(0,115,222,1)]"
+              >
+                <span>E7H3R3UM-DEVCONNECT</span>
+                <Copy className="w-3.5 h-3.5 group-hover:opacity-100 transition-opacity" />
+              </button>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="font-semibold text-sm">Venue address:</span>
+              <Link
+                target="_blank"
+                href="https://maps.app.goo.gl/NKqKSiteNnPwbmTs9"
+                className="text-sm text-[rgba(0,115,222,1)]"
+              >
+                <span>View on map ↗</span>
+              </Link>
+            </div>
+          </div>
 
-        <div className="flex justify-between items-center">
-          <span className="font-semibold text-sm">Wifi Password:</span>
-          <span className="text-sm">E7H3R3UM-DEVCONNECT</span>
+          {/* right col on desktop, below on mobile */}
+          <div className="flex flex-col mt-4 lg:mt-0 text-sm lg:flex-1">
+            <span className="font-semibold mb-1 lg:mb-0.5">Need help?</span>
+            <span>
+              Read our{' '}
+              <Link
+                target="_blank"
+                href="https://devconnect.com/support"
+                className="text-[rgba(0,115,222,1)]"
+              >
+                Support FAQ
+              </Link>{' '}
+              or visit the{' '}
+              <Link
+                target="_blank"
+                href="https://devconnect.com/onboarding"
+                className="text-[rgba(0,115,222,1)]"
+              >
+                Onboarding Area
+              </Link>
+            </span>
+          </div>
         </div>
       </div>
 
-      <div className="flex flex-col gap-1 w-full">
-        <div className="font-bold text-sm">Need help?</div>
-        <div className="text-sm leading-relaxed">
-          Our friendly Support Staff are available throughout the event to help
-          with technical issues, navigation, and general questions.
-        </div>
+      <div className="flex flex-col w-full p-4">
+        {sections.map((section) => (
+          <div
+            key={section.id}
+            className="border-b border-[rgba(234,234,234,1)] last:border-b-0"
+          >
+            <button
+              onClick={() =>
+                setOpenSection(openSection === section.id ? null : section.id)
+              }
+              className="w-full flex items-center justify-between py-2 text-left cursor-pointer"
+            >
+              <span className="font-semibold text-sm">{section.title}</span>
+              <ChevronDownIcon className="w-4 h-4 text-[rgba(0,115,222,1)]" />
+            </button>
+            {openSection === section.id && (
+              <div className="pb-4">{section.content}</div>
+            )}
+          </div>
+        ))}
       </div>
-
-      {/* <Button className="w-full font-semibold" color="white-2" size="sm">
-        View more info
-      </Button> */}
     </div>
   );
 };
@@ -130,7 +251,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
   return (
     <div
       className={cn(
-        `flex flex-col items-start justify-start gap-1 p-4 pb-3 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto`
+        `flex flex-col items-start justify-start gap-1 p-4 bg-white border mx-4 border-[rgba(234,234,234,1)] overflow-auto`
         // hasEventsToShow && 'max-h-[400px]' // add this later with "show more option when more than 3 events here"
       )}
     >
@@ -144,6 +265,14 @@ export const TodaysSchedule = withParcnetProvider(() => {
         >
           View Schedule <ArrowUpRightIcon className="w-4 h-4" />
         </Link> */}
+        <Link
+          href="/schedule"
+          className="w-full md:w-auto self-start shrink-0 hidden md:block"
+        >
+          <Button size="sm" className="w-full font-medium px-8" color="white-2">
+            View Full Schedule
+          </Button>
+        </Link>
       </div>
       <p className="text-xs mb-2 shrink-0">
         These are your recommended events. Build your own schedule by adding
@@ -187,7 +316,7 @@ export const TodaysSchedule = withParcnetProvider(() => {
         </div>
       )}
 
-      <div className="flex flex-col md:flex-row items-center justify-center w-full shrink-0 mt-4 gap-4">
+      <div className="flex flex-col md:hidden items-center justify-center w-full shrink-0 mt-4 gap-4">
         <Link href="/schedule" className="w-full md:w-auto self-start shrink-0">
           <Button size="sm" className="w-full font-medium px-8" color="white-2">
             View Full Schedule
