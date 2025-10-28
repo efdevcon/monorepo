@@ -12,17 +12,17 @@ export default function MapPage() {
   // Show coming soon message if beta mode is enabled
   if (isBetaMode) {
     return (
-      <PageLayout title="La Rural - Venue Map">
-        <ComingSoonMessage />
-      </PageLayout>
+      // <PageLayout title="La Rural - Venue Map">
+      <ComingSoonMessage />
+      // </PageLayout>
     );
   }
 
   return (
-    <PageLayout title="La Rural - Venue Map">
-      <React.Suspense fallback={<div>Loading...</div>}>
-        <VenueMap />
-      </React.Suspense>
-    </PageLayout>
+    // <PageLayout title="La Rural - Venue Map">
+    <React.Suspense fallback={<div>Loading...</div>}>
+      <VenueMap />
+    </React.Suspense>
+    // </PageLayout>
   );
 }

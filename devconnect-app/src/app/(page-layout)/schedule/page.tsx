@@ -11,7 +11,6 @@ export default function ProgrammePageContent() {
   const [favoriteEvents, toggleFavoriteEvent] = useFavorites();
 
   return (
-    // <PageLayout title="Ethereum World's Fair — Schedule" tabs={homeTabs()}>
     <div
       className={cn(
         'text-left touch-only:px-0 p-4 w-full',
@@ -25,6 +24,5 @@ export default function ProgrammePageContent() {
         toggleFavoriteEvent={toggleFavoriteEvent}
       />
     </div>
-    // </PageLayout>
   );
 }

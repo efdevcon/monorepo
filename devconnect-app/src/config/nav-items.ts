@@ -6,6 +6,7 @@ import WalletIcon from '@/components/icons/WalletIcon';
 import { createElement } from 'react';
 import Icon from '@mdi/react';
 import { mdiWallet, mdiImageMultiple, mdiCog } from '@mdi/js';
+import { homeTabs } from '@/app/navigation';
 
 // Icon wrapper components for wallet tabs
 const WalletTabIcon = ({ color }: { color?: string }) =>
@@ -40,18 +41,20 @@ export const NAV_ITEMS: NavItem[] = [
     href: '/',
     icon: ProgrammeIcon,
     backgroundColor: 'rgba(255, 133, 166, 0.15)',
+    tabItems: homeTabs(),
     isActive: (pathname) => {
       return (
         pathname === '/' ||
         pathname.split('/').pop() === 'schedule' ||
         pathname.split('/').pop() === 'tickets' ||
-        pathname.split('/').pop() === 'announcements'
+        pathname.split('/').pop() === 'announcements' ||
+        pathname.split('/').pop() === 'stages'
       );
     },
   },
   {
     label: 'Map',
-    longLabel: 'La Rural Map',
+    longLabel: 'La Rural - Venue Map',
     href: '/map',
     icon: MapIcon,
     backgroundColor: 'rgba(116, 172, 223, 0.15)',
