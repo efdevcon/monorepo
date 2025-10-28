@@ -644,7 +644,7 @@ export const supportersData: Record<string, Supporter> = {
     "layerName": "rarimo-unforgettable",
     "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-20T09-04-35-474Z-Screen.png",
     "description": "Unforgettable: a new wallet recovery primitive for crypto. No need to store seed phrases anymore. Use passwords, biometrics, or objects to back up your wallets safely.",
-    "websiteLink": "https://rarimo.com/",
+    "websiteLink": "https://unforgettable.app/",
     "twitterLink": "https://x.com/unforgetapp",
     "farcasterLink": "",
     "districtId": "7",
@@ -697,7 +697,7 @@ export const supportersData: Record<string, Supporter> = {
   "25d638cdc41580488b40d8633f8c324d": {
     "name": "Santiment",
     "layerName": "santiment",
-    "logo": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-27T17-52-20-595Z-SanbaseIcon_Full.svg",
     "description": "A crypto investor's dream. Santiment helps you make smarter decisions by providing a suite of amazing tools for analyzing, tracking, and comparing social, on-chain, and financial data for all your favorite assets. ",
     "websiteLink": "https://santiment.net/",
     "twitterLink": "https://x.com/santimentfeed",
@@ -730,10 +730,10 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc4158045a5f4e7bc71ded71c": {
     "name": "Starknet",
     "layerName": "starknet",
-    "logo": "",
-    "description": "",
-    "websiteLink": "https://starkware.co/",
-    "twitterLink": "",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-28T13-30-07-847Z-SN-Stacked-Gradient.png",
+    "description": "Starknet is a Validity-Rollup (aka ZK-Rollup) Layer 2 network that operates on top of Ethereum, enabling dApps to massively scale without compromising on security.",
+    "websiteLink": "https://www.starknet.io/",
+    "twitterLink": "https://x.com/Starknet",
     "farcasterLink": "",
     "districtId": "6",
     "locationId": "4"
