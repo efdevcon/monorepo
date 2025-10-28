@@ -50,7 +50,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
       !lastShownTimestamp || now - lastShownTimestamp >= oneDayInMs;
 
     // Reset counter if 24 hours have passed
-    if (has24HoursPassed && shownCount >= 3) {
+    if (has24HoursPassed && shownCount >= 2) {
       setShownCount(0);
       setLastShownTimestamp(null);
     }
@@ -58,8 +58,8 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     // Show popup if:
     // 1. PWA not already installed (pwa is false)
     // 2. showInstallPWA is true
-    // 3. Shown less than 3 times OR 24 hours have passed since it was last hidden
-    const canShow = shownCount < 3 || has24HoursPassed;
+    // 3. Shown less than 2 times (only the first time) OR 24 hours have passed since it was last hidden
+    const canShow = shownCount < 2 || has24HoursPassed;
 
     // Display if pwa is explicitly false (not installed)
     if (pwa === false && showInstallPWA === true && canShow) {
@@ -102,8 +102,8 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
     const newCount = shownCount + 1;
     setShownCount(newCount);
 
-    // If we've shown it 3 times, start the 24-hour cooldown
-    if (newCount >= 3) {
+    // If we've shown it 2 times, start the 24-hour cooldown
+    if (newCount >= 2) {
       setLastShownTimestamp(Date.now());
     }
 
