@@ -414,8 +414,7 @@ export default function WalletTab() {
           errorMessage.includes('Not authorized') ||
           errorMessage.includes('not eligible')
         ) {
-          toast.error('This perk is not available for your account', {
-            description: 'Only eligible users can claim this reward',
+          toast.error('This perk is not available yet', {
             duration: 5000,
           });
         } else {
@@ -900,7 +899,8 @@ export default function WalletTab() {
                 <button
                   onClick={() => {
                     // TODO: Implement ENS claim functionality
-                    alert('ENS claim coming soon!');
+                     toast.error('❌ ENS claim is not available yet');
+                     return;
                   }}
                   className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
                 >
