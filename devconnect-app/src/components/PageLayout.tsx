@@ -144,12 +144,12 @@ const Tabs = ({
       id="page-tabs"
       className={cn(
         'py-2 h-[47px] md:py-2 flex items-center justify-center md:justify-start md:rounded shrink-0 px-4 overflow-auto',
-        '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-16px),transparent_100%)]',
+        '[mask-image:linear-gradient(to_right,transparent_0%,black_16px,black_calc(100%-32px),transparent_100%)]',
         tabs.length > 3 && 'justify-start',
         className
       )}
     >
-      <div className="flex md:rounded shrink-0 gap-2 mr-3">
+      <div className="flex md:rounded shrink-0 gap-1.5 mr-3">
         {tabs.map((tab, idx) => {
           let isActive;
 
@@ -179,7 +179,7 @@ const Tabs = ({
             >
               <div
                 className={cn(
-                  'text-center justify-center text-sm font-medium leading-tight flex gap-2 items-center',
+                  'text-center justify-center text-sm font-medium leading-tight flex gap-1.5 items-center',
                   isActive ? 'text-[#165a8d]' : 'text-[#4b4b66] cursor-pointer'
                 )}
               >

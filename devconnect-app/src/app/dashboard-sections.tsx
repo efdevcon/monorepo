@@ -255,29 +255,25 @@ export const TodaysSchedule = withParcnetProvider(() => {
         // hasEventsToShow && 'max-h-[400px]' // add this later with "show more option when more than 3 events here"
       )}
     >
-      <div className="flex w-full items-center justify-between gap-2 shrink-0">
-        <p className="font-bold">Your Events</p>
-        {/* <p className="text-xs">{moment().format('dddd, D MMMM')}</p> */}
-
-        {/* <Link
-          href="/schedule"
-          className="text-xs text-[rgba(0,115,222,1)] font-semibold flex items-center gap-0.5 cursor-pointer"
-        >
-          View Schedule <ArrowUpRightIcon className="w-4 h-4" />
-        </Link> */}
+      <div className="flex w-full items-center justify-between gap-2 shrink-0 mb-1">
+        <div className="flex flex-col">
+          <div className="font-bold text-base">
+            Your Events {/* - {moment().format('dddd, D MMMM')} */}
+          </div>
+          <p className="text-xs mb-2 shrink-0">
+            These are your recommended events. Build your own schedule by adding
+            events to your favorites.
+          </p>
+        </div>
         <Link
           href="/schedule"
-          className="w-full md:w-auto self-start shrink-0 hidden md:block"
+          className="w-full md:w-auto shrink-0 hidden md:block"
         >
-          <Button size="sm" className="w-full font-medium px-8" color="white-2">
+          <Button size="sm" className="w-full font-medium px-5" color="white-2">
             View Full Schedule
           </Button>
         </Link>
       </div>
-      <p className="text-xs mb-2 shrink-0">
-        These are your recommended events. Build your own schedule by adding
-        events to your favorites.
-      </p>
 
       {selectedEvent && (
         <Event
