@@ -393,7 +393,7 @@ const perks: Perk[] = [
   {
     coupon_collection: 'metana-2025',
     name: 'Metana',
-    description: 'Get $20% off on all Metana Web3 Bootcamps!',
+    description: 'Get $2500 off on all Metana Web3 Bootcamps!',
     requires: 'Devconnect ARG ticket',
     zupass_proof_id: 'Devconnect ARG',
     instructions: 'Use the code at checkout',
