@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { districtsData } from '@/data/districts';
 import { questsData } from '@/data/quests';
 import { supportersData } from '@/data/supporters';
 import type { Quest, QuestAction, QuestGroup } from '@/types';
-import { SupporterInfo } from '@/app/(page-layout)/map/venue-map/components/SupporterInfo';
+import MapPane from '@/app/(page-layout)/map/venue-map/components/panes';
 import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
 import PoapModal from '@/components/PoapModal';
@@ -66,7 +65,7 @@ export default function AppShowcaseDetail({
   const { address } = useWallet();
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
-  const [showSupporterInfo, setShowSupporterInfo] = useState<Quest | null>(
+  const [selectedSupporter, setSelectedSupporter] = useState<string | null>(
     null
   );
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
@@ -459,24 +458,22 @@ export default function AppShowcaseDetail({
   };
 
   const handleAboutClick = (quest: Quest) => {
-    setShowSupporterInfo(quest);
-  };
-
-  const handleSupporterInfoClose = () => {
-    setShowSupporterInfo(null);
-  };
-
-  const handleSupporterInfoBack = () => {
-    setShowSupporterInfo(null);
-  };
-
-  const handleViewQuestLocation = (quest: Quest) => {
     const supporterId = quest.supporterId?.toString();
-    if (supporterId && supportersData[supporterId]) {
-      const supporter = supportersData[supporterId];
-      router.push(`/map?filter=${supporter.layerName}`);
+
+    if (!supporterId) {
+      return;
     }
-    setShowSupporterInfo(null);
+
+    const supporter = supportersData[supporterId];
+    if (!supporter) {
+      return;
+    }
+
+    if (!supporter.layerName) {
+      return;
+    }
+
+    setSelectedSupporter(supporter.layerName);
   };
 
   // Reset function to clear all quest states for App Showcase and Setup quests
@@ -537,49 +534,12 @@ export default function AppShowcaseDetail({
 
   return (
     <div className="w-full mx-auto flex flex-col gap-1 justify-start items-start relative bg-[#f6fafe] mt-4">
-      {/* SupporterInfo Modal */}
-      {showSupporterInfo &&
-        typeof window !== 'undefined' &&
-        createPortal(
-          <div className="fixed inset-0 z-[9999] flex items-end justify-center">
-            {/* Backdrop */}
-            <div
-              className="absolute inset-0 bg-black/50"
-              onClick={handleSupporterInfoClose}
-            />
-
-            {/* Modal Content */}
-            <div className="relative w-full max-w-md rounded-t-lg shadow-lg">
-              <SupporterInfo
-                onClose={handleSupporterInfoClose}
-                onBack={handleSupporterInfoBack}
-                hideBackButton={true}
-                buttonText="View Quest Location"
-                onButtonClick={() => handleViewQuestLocation(showSupporterInfo)}
-                supporterName={
-                  showSupporterInfo.supporterId
-                    ? getSupporterById(showSupporterInfo.supporterId)?.name ||
-                      'Unknown'
-                    : 'Quest'
-                }
-                supporterDescription={
-                  showSupporterInfo.instructions ||
-                  (showSupporterInfo.supporterId
-                    ? getSupporterById(showSupporterInfo.supporterId)
-                        ?.description || 'About missing...'
-                    : 'About missing...')
-                }
-                supporterLogo={
-                  showSupporterInfo.supporterId
-                    ? getSupporterById(showSupporterInfo.supporterId)?.logo
-                    : undefined
-                }
-                category="Quest"
-              />
-            </div>
-          </div>,
-          document.body
-        )}
+      {/* MapPane for supporter info */}
+      <MapPane
+        fromQuests={true}
+        selection={selectedSupporter}
+        setSelection={setSelectedSupporter}
+      />
       {/* Header */}
       {/* <div className="bg-white border-b border-gray-200 w-full px-4 py-4">
         <div className="flex items-center justify-between">
@@ -938,17 +898,34 @@ export default function AppShowcaseDetail({
 
                       {/* Expanded Quest Actions */}
                       {isExpanded && (
-                        <div onClick={(e) => e.stopPropagation()}>
+                        <div
+                          onClick={(e) => e.stopPropagation()}
+                          onMouseDown={(e) => e.stopPropagation()}
+                          onTouchStart={(e) => e.stopPropagation()}
+                        >
                           <div className="bg-[#daebfb] box-border content-stretch flex flex-col items-center justify-center p-4 relative rounded-bl-[2px] rounded-br-[2px] size-full">
                             <div className="content-stretch flex gap-3 items-center relative shrink-0 w-full">
-                              <div className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shrink-0">
+                              <div
+                                className="basis-0 bg-[#eaf3fa] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shrink-0"
+                                onClick={(e) => e.stopPropagation()}
+                              >
                                 <div
                                   aria-hidden="true"
-                                  className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978]"
+                                  className="absolute border border-solid border-white inset-0 pointer-events-none rounded-[1px] shadow-[0px_4px_0px_0px_#595978] z-0"
                                 />
                                 <button
-                                  onClick={() => handleAboutClick(quest)}
-                                  className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-[#44445d] text-sm text-center text-nowrap w-full"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    handleAboutClick(quest);
+                                  }}
+                                  onMouseDown={(e) => {
+                                    e.stopPropagation();
+                                  }}
+                                  onTouchStart={(e) => {
+                                    e.stopPropagation();
+                                  }}
+                                  className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-[#44445d] text-sm text-center text-nowrap w-full h-full cursor-pointer z-10 flex items-center justify-center p-3"
                                   style={{
                                     fontVariationSettings: "'wdth' 100",
                                   }}
@@ -957,13 +934,13 @@ export default function AppShowcaseDetail({
                                     About
                                   </p>
                                 </button>
-                                <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc]" />
+                                <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                               </div>
                               {!isCompleted && (
-                                <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px p-3 relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
+                                <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
                                   <button
                                     onClick={() => handleQuestAction(quest)}
-                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative shrink-0 text-sm text-center text-nowrap text-white w-full"
+                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3"
                                     style={{
                                       fontVariationSettings: "'wdth' 100",
                                     }}
