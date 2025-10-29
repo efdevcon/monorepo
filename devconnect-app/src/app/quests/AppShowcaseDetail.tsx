@@ -11,6 +11,7 @@ import { executeQuestAction } from '@/utils/quest-actions';
 import { useWallet } from '@/context/WalletContext';
 import PoapModal from '@/components/PoapModal';
 import { HEIGHT_HEADER } from '@/config/config';
+import confetti from 'canvas-confetti';
 
 // Quest icons mapping based on action type
 const getQuestIcon = (action: QuestAction) => {
@@ -66,6 +67,9 @@ export default function AppShowcaseDetail({
   const [expandedQuests, setExpandedQuests] = useState<Set<number>>(new Set());
   const [expandedDistrict, setExpandedDistrict] = useState<string>('');
   const [selectedSupporter, setSelectedSupporter] = useState<string | null>(
+    null
+  );
+  const [verifyingQuestId, setVerifyingQuestId] = useState<string | null>(
     null
   );
   const [isSetupSectionExpanded, setIsSetupSectionExpanded] =
@@ -414,6 +418,51 @@ export default function AppShowcaseDetail({
     }
   };
 
+  // Trigger full page confetti
+  const triggerDistrictConfetti = (districtId: string | undefined, questId: string) => {
+    const duration = 3000; // 3 seconds
+    const animationEnd = Date.now() + duration;
+    const defaults = {
+      startVelocity: 15,
+      spread: 360,
+      ticks: 120,
+      zIndex: 0,
+      gravity: 0.5,
+      colors: ['#FFD700', '#FFA500', '#FF69B4', '#87CEEB', '#98FB98'],
+    };
+
+    setVerifyingQuestId(questId);
+
+    const interval = setInterval(() => {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        setVerifyingQuestId(null);
+        return;
+      }
+
+      const particleCount = 100 * (timeLeft / duration);
+
+      // Trigger confetti from multiple points for full page effect
+      confetti({
+        ...defaults,
+        particleCount: particleCount / 3,
+        origin: { x: Math.random() * 0.3, y: Math.random() * 0.5 },
+      });
+      confetti({
+        ...defaults,
+        particleCount: particleCount / 3,
+        origin: { x: 0.4 + Math.random() * 0.2, y: Math.random() * 0.5 },
+      });
+      confetti({
+        ...defaults,
+        particleCount: particleCount / 3,
+        origin: { x: 0.7 + Math.random() * 0.3, y: Math.random() * 0.5 },
+      });
+    }, 250);
+  };
+
   const handleQuestAction = async (quest: Quest) => {
     const currentStatus = getQuestStatus(quest);
     if (currentStatus === 'completed') return;
@@ -444,6 +493,9 @@ export default function AppShowcaseDetail({
       if (isCompleted) {
         // Update quest status to completed if the action was successful
         updateQuestStatus(quest.id.toString(), 'completed', false);
+        
+        // Trigger confetti (in district section or at quest card)
+        triggerDistrictConfetti(quest.districtId, quest.id.toString());
       } else {
         // Quest action failed - you might want to show an error message
         // alert(`Quest action failed for quest ${quest.id}: ${quest.name}`);
@@ -883,6 +935,10 @@ export default function AppShowcaseDetail({
                                 <span className="text-green-600 text-[10px] font-bold">
                                   COLLECTED
                                 </span>
+                              ) : !quest.conditionValues ? (
+                                <span className="text-red-600 text-[10px] font-bold">
+                                  NO POAP
+                                </span>
                               ) : (
                                 <p
                                   className="text-[#4B4B66] text-[10px] font-normal leading-none tracking-[0.1px] hover:text-blue-800 transition-colors"
@@ -936,17 +992,18 @@ export default function AppShowcaseDetail({
                                 </button>
                                 <div className="absolute inset-0 pointer-events-none shadow-[0px_4px_6px_0px_inset_#f3f8fc,0px_-3px_6px_0px_inset_#f3f8fc] z-0" />
                               </div>
-                              {!isCompleted && (
+                              {(!isCompleted || verifyingQuestId === quest.id.toString()) && (
                                 <div className="basis-0 bg-[#1b6fae] box-border content-stretch flex gap-2 grow items-center justify-center min-h-px min-w-px relative rounded-[1px] shadow-[0px_4px_0px_0px_#125181] shrink-0">
                                   <button
                                     onClick={() => handleQuestAction(quest)}
-                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3"
+                                    disabled={verifyingQuestId === quest.id.toString()}
+                                    className="font-['Roboto:Bold',_sans-serif] font-bold leading-[0] relative text-sm text-center text-nowrap text-white w-full h-full cursor-pointer flex items-center justify-center p-3 disabled:cursor-not-allowed"
                                     style={{
                                       fontVariationSettings: "'wdth' 100",
                                     }}
                                   >
                                     <p className="leading-none whitespace-pre">
-                                      Verify
+                                      {verifyingQuestId === quest.id.toString() ? 'Verifying...' : 'Verify'}
                                     </p>
                                   </button>
                                   <div className="absolute inset-0 pointer-events-none shadow-[0px_2px_1px_0px_inset_#3898e0,0px_-1px_1px_0px_inset_#3898e0,0px_4px_8px_0px_inset_#3898e0,0px_-3px_6px_0px_inset_#3898e0]" />
