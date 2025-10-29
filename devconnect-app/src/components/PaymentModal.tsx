@@ -1259,6 +1259,17 @@ export default function PaymentModal({
   };
 
   const handleStatusDone = useCallback(() => {
+    // Remove hash before closing
+    if (
+      typeof window !== 'undefined' &&
+      window.location.hash.startsWith('#payment_')
+    ) {
+      window.history.pushState(
+        null,
+        '',
+        window.location.pathname + window.location.search
+      );
+    }
     onClose();
   }, [onClose]);
 
@@ -1276,6 +1287,17 @@ export default function PaymentModal({
       txStatus === 'confirmed' ||
       txStatus === 'error'
     ) {
+      // Remove hash before closing
+      if (
+        typeof window !== 'undefined' &&
+        window.location.hash.startsWith('#payment_')
+      ) {
+        window.history.pushState(
+          null,
+          '',
+          window.location.pathname + window.location.search
+        );
+      }
       onClose();
     }
   }, [txStatus, onClose]);
