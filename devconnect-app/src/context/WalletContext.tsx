@@ -44,6 +44,15 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     wallet.isDisconnecting,
     wallet.portfolioRefreshTrigger, // CRITICAL: Include to force re-render when portfolio updates
     wallet.hasMultipleWallets, // CRITICAL: Include to force re-render when multiple wallets state changes
+    wallet.primaryType, // CRITICAL: Include to force re-render when switching wallets
+    // Para wallet properties
+    wallet.para.isConnected,
+    wallet.para.address,
+    wallet.para.isDisconnecting,
+    // EOA wallet properties
+    wallet.eoa.isConnected,
+    wallet.eoa.address,
+    wallet.eoa.isDisconnecting,
     // Include other primitive values that change frequently
   ]);
   
