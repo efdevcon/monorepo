@@ -49,10 +49,13 @@ export const VenueMap = () => {
   const [currentFilters, setCurrentFilters] =
     useState<typeof initialFilters>(initialFilters);
 
+  const selection = searchParams.get('filter');
+
   const { panzoomInstance, interactionsLocked } = usePanzoom(
     'venue-map',
     setZoomLevel,
-    zoomLevel
+    zoomLevel,
+    selection ? 3 : undefined
   );
 
   const reset = () => {
@@ -71,7 +74,11 @@ export const VenueMap = () => {
         selection: selection,
       });
 
-      focusOnElement(selection);
+      setTimeout(() => {
+        moveToElement(selection, false);
+      }, 50);
+
+      // focusOnElement(selection);
 
       // router.replace(`/map`);
     }
@@ -278,14 +285,21 @@ export const VenueMap = () => {
 
     const currentZoom = panzoomInstance.getTransform().scale;
 
-    if (currentZoom < 3) {
-      zoomToElement(id);
-      setTimeout(() => {
-        moveToElement(id, false);
-      }, 50);
-    } else {
-      moveToElement(id, true);
-    }
+    console.log(currentZoom, 'currentZoom');
+
+    moveToElement(id, true);
+
+    // if (currentZoom < 3) {
+    //   console.log('zooming to element', id);
+    //   zoomToElement(id);
+    //   setTimeout(() => {
+    //     moveToElement(id, false);
+    //   // }, 0);
+    // } else {
+    //   console.log('moving to element', id);
+
+    //   moveToElement(id, true);
+    // }
   };
 
   const onSVGElementClick = (

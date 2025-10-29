@@ -50,7 +50,8 @@ export const PanzoomControls = (props: { pz: PanZoom | null }) => {
 export const usePanzoom = (
   elementId: string,
   setZoomLevel: any,
-  zoomLevel: string
+  zoomLevel: string,
+  initialZoom?: number
 ) => {
   const [panzoomInstance, setPanzoomInstance] = React.useState<PanZoom | null>(
     null
@@ -68,10 +69,12 @@ export const usePanzoom = (
     if (scene) {
       const panzoomInstance = Panzoom(scene, {
         bounds: true,
-        boundsPadding: 0.5,
+        boundsPadding: 0.1,
         maxZoom: 8,
         zoomDoubleClickSpeed: 2,
-        minZoom: 0.5,
+        initialZoom: initialZoom || undefined,
+        // startScale: 3,
+        minZoom: 1,
         beforeWheel: function (e) {
           const preventInteractionElement = (e.target as Element).closest(
             '[data-prevent-interaction-element="true"]'

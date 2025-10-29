@@ -379,6 +379,8 @@ const MapPane = (props: {
                                 <img
                                   src={supporter.logo}
                                   alt={supporter.name}
+                                  width={24}
+                                  height={24}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
@@ -436,6 +438,8 @@ const MapPane = (props: {
                                 <img
                                   src={supporter.logo}
                                   alt={supporter.name}
+                                  width={24}
+                                  height={24}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
