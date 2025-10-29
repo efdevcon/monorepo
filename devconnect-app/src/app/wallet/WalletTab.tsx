@@ -404,27 +404,30 @@ export default function WalletTab() {
         toast.success('Claim link opened in new tab');
       } else {
         // Handle error - show user-friendly message
-        const errorMessage = response.error || 'Failed to access claim link';
+        const errorTitle = response.error || 'Failed to access claim link';
+        const errorMessage = response.message || 'Please try again';
 
         // Close the popup
         popup.close();
 
-        // Check if it's an authorization error
-        if (
-          errorMessage.includes('Not authorized') ||
-          errorMessage.includes('not eligible')
-        ) {
-          toast.error('This perk is not available yet', {
+        // Show error toast with dynamic content from API
+        // Use info toast for "already claimed" scenarios
+        if (errorTitle.toLowerCase().includes('already claimed')) {
+          toast.info(errorTitle, {
+            description: errorMessage,
             duration: 5000,
           });
         } else {
-          toast.error('Unable to open claim link', {
+          toast.error(errorTitle, {
             description: errorMessage,
-            duration: 4000,
+            duration: 5000,
           });
         }
 
-        console.error('Peanut claim error:', errorMessage);
+        console.error('Peanut claim error:', {
+          error: errorTitle,
+          message: errorMessage,
+        });
       }
     } catch (error) {
       console.error('Peanut claim exception:', error);
