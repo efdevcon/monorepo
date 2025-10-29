@@ -78,7 +78,7 @@ export const ensureUserData = async (
   const { fetchAuth } = await import('@/services/apiClient');
   const userData = await fetchAuth('/api/auth/user-data');
 
-  if (userData.success) {
+  if (userData.success && userData.data) {
     setUserData(userData.data);
   } else {
     console.error('Failed to fetch user data from supabase');
