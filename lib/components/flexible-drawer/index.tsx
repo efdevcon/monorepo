@@ -58,12 +58,14 @@ const FlexibleDrawer = ({
         {/* Drawer content */}
         <div
           className={cn(
-            "absolute left-0 bottom-0 right-0 w-full bg-white shadow-xl z-50 overflow-auto transition-transform duration-300 ease-in-out",
+            "absolute left-0 bottom-0 right-0 w-full bg-white shadow-xl z-50 transition-transform duration-300 ease-in-out",
             open ? "translate-y-0" : "translate-y-full",
             className
           )}
+          style={{
+            willChange: open ? "transform" : "auto",
+          }}
           onClick={(e) => {
-            console.log("onClick innedrawer");
             e.stopPropagation();
           }}
           onTouchEnd={(e) => e.stopPropagation()}

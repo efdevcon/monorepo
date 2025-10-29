@@ -1,5 +1,5 @@
 import FlexibleDrawer from 'lib/components/flexible-drawer';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 import cn from 'classnames';
 import { MapPin, GlobeIcon, XIcon } from 'lucide-react';
 import { toast } from 'sonner';
@@ -106,11 +106,13 @@ const Pane = ({
       hideHandle={true}
     >
       <div
-        className="p-4 overflow-y-auto"
+        className="p-4"
         style={{
           ...backgroundStyle,
-          maxHeight: '66.67vh',
+          // maxHeight: '66.67vh',
           paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+          contain: 'layout style paint',
+          transform: 'translateZ(0)',
         }}
       >
         <div className="flex justify-between">
@@ -126,6 +128,10 @@ const Pane = ({
                   src={imageSrc}
                   alt={selection || ''}
                   className="w-full h-full object-cover"
+                  loading="eager"
+                  width={44}
+                  height={44}
+                  style={{ contentVisibility: 'auto' }}
                 />
               </div>
             ) : (
@@ -232,13 +238,6 @@ const MapPane = (props: {
   //     window.location.href = '/quests#14';
   //   };
 
-  console.log('poisData', poisData);
-  console.log('districtsData', districtsData);
-  console.log('poiGroupsData', poiGroupsData);
-  console.log('supportersData', supportersData);
-  console.log('questsData', questsData);
-  console.log('questGroupsData', questGroupsData);
-
   /*
     A selection 
       - has an id (group or district id or POI id)
@@ -255,7 +254,8 @@ const MapPane = (props: {
     return null;
   }
 
-  const ActivePane = (() => {
+  // Memoize the active pane to prevent recalculation on every render
+  const ActivePane = useMemo(() => {
     let selectionData:
       | {
           name: string;
@@ -382,6 +382,8 @@ const MapPane = (props: {
                                   width={24}
                                   height={24}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
+                                  decoding="async"
                                 />
                               </div>
                             ) : (
@@ -441,6 +443,8 @@ const MapPane = (props: {
                                   width={24}
                                   height={24}
                                   className="w-full h-full object-cover"
+                                  loading="lazy"
+                                  decoding="async"
                                 />
                               </div>
                             ) : (
@@ -544,7 +548,7 @@ const MapPane = (props: {
           </Pane>
         );
     }
-  })();
+  }, [selection, paneOpen, setSelection]);
 
   return ActivePane;
 };
