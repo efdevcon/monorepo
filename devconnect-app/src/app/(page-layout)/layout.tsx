@@ -1,12 +1,7 @@
 'use client';
-// import { useEffect } from 'react';
-// import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 import PageLayout from '@/components/PageLayout';
 import { NAV_ITEMS } from '@/config/nav-items';
-
-// import HighlightsContainer from '@/components/Highlights';
-// import AnnouncementsWrapper from '@/components/Announcements';
 
 export default function HomePageLayout({
   children,

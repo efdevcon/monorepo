@@ -408,7 +408,11 @@ export const VenueMap = () => {
       {/* </div> */}
 
       {/* Zoom controls */}
-      <div className="absolute bottom-2 right-2 flex flex-col gap-2 z-10">
+      <div
+        className="absolute bottom-2 right-2 flex flex-col gap-2 z-10"
+        onTouchStartCapture={(e) => e.stopPropagation()}
+        onPointerDownCapture={(e) => e.stopPropagation()}
+      >
         {/* <button
           className="basic-button white-button small-button"
           onMouseDown={(e) => e.stopPropagation()}
