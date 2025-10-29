@@ -1,5 +1,5 @@
 import FlexibleDrawer from 'lib/components/flexible-drawer';
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { Dispatch, SetStateAction, useMemo, useState, useEffect } from 'react';
 import cn from 'classnames';
 import { MapPin, GlobeIcon, XIcon } from 'lucide-react';
 import { toast } from 'sonner';
@@ -29,6 +29,7 @@ const Pane = ({
   districtBadge,
   questAvailable,
   backgroundColor,
+  showAsModal = false,
 }: {
   children?: React.ReactNode;
   className?: string;
@@ -42,6 +43,7 @@ const Pane = ({
   districtBadge?: string;
   questAvailable?: boolean;
   backgroundColor?: string;
+  showAsModal?: boolean;
 }) => {
   const imageSrc = logo || '';
 
@@ -67,7 +69,7 @@ const Pane = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2">
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center gap-2 h-[40px] px-4 py-2 cursor-pointer">
                 <span className="font-bold text-sm text-[#0073DE]">
                   Visit Website
                 </span>
@@ -77,7 +79,7 @@ const Pane = ({
           )}
           {links && links.x && (
             <Link href={links.x} target="_blank" rel="noopener noreferrer">
-              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px]">
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px] cursor-pointer">
                 <X className="!h-4 !w-auto shrink-0 icon" />
               </button>
             </Link>
@@ -88,7 +90,7 @@ const Pane = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px]">
+              <button className="bg-white border border-[#EDEDF0] flex items-center justify-center p-2 size-[40px] cursor-pointer">
                 <FarcasterIcon className="!h-4 !w-auto shrink-0 icon" />
               </button>
             </Link>
@@ -98,6 +100,152 @@ const Pane = ({
     );
   })();
 
+  const paneContent = (
+    <div
+      className="p-4"
+      style={{
+        ...backgroundStyle,
+        // maxHeight: '66.67vh',
+        paddingBottom: showAsModal
+          ? '16px'
+          : 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
+        contain: 'layout style paint',
+        transform: 'translateZ(0)',
+      }}
+    >
+      <div className="flex justify-between">
+        <div className="flex items-center gap-3 self-start">
+          {imageSrc ? (
+            <div
+              className={cn(
+                'shrink-0 w-[44px] h-[44px] overflow-hidden flex items-center justify-center',
+                districtBadge ? 'border-2 border-[#74ACDF] rounded-[4px]' : ''
+              )}
+            >
+              <img
+                src={imageSrc}
+                alt={selection || ''}
+                className="w-full h-full object-cover"
+                loading="eager"
+                width={44}
+                height={44}
+                style={{ contentVisibility: 'auto' }}
+              />
+            </div>
+          ) : (
+            <Image
+              src={Placeholder}
+              alt={selection || ''}
+              className="w-8 h-8 object-cover shrink-0"
+              style={{ filter: 'brightness(0)' }}
+            />
+          )}
+
+          <div className="flex flex-col gap-1.5 pr-2 justify-center">
+            <div className="flex gap-1.5 items-center">
+              <p className="font-bold text-[18px] leading-none text-[#20202B]">
+                {selection}
+              </p>
+              {districtBadge && (
+                <div className="border border-[#353548] px-1 py-0.5">
+                  <p className="text-[10px] font-semibold text-[#353548] leading-[1.3] tracking-[0.2px]">
+                    {districtBadge}
+                  </p>
+                </div>
+              )}
+            </div>
+            {questAvailable ? (
+              <div className="flex gap-1 items-center">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8 1L10.163 5.382L15 6.135L11.5 9.545L12.326 14.365L8 12.082L3.674 14.365L4.5 9.545L1 6.135L5.837 5.382L8 1Z"
+                    stroke="#353548"
+                    strokeWidth="1"
+                    fill="none"
+                  />
+                </svg>
+                <p className="text-xs font-medium text-[#353548] font-mono">
+                  Quest available
+                </p>
+              </div>
+            ) : (
+              subtitle && (
+                <div className="text-xs leading-tight">{subtitle}</div>
+              )
+            )}
+          </div>
+        </div>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
+            onClick={() => {
+              try {
+                navigator.clipboard.writeText(
+                  window.location.origin +
+                    '/map?filter=' +
+                    encodeURIComponent(selection || '')
+                );
+              } catch (error) {
+                alert('Error copying location link');
+              }
+
+              toast.success('Location link copied to clipboard', {
+                duration: 5000,
+                position: 'top-center',
+              });
+            }}
+          >
+            {/* Copy Location */}
+            <MapPin className="w-4 h-4 cursor-pointer" />
+          </button>
+          <button
+            onClick={() => setSelection(null)}
+            className="flex items-center justify-center basic-button white-button small-button square-button shrink-0 cursor-pointer"
+          >
+            <XIcon className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+      {children}
+      {description && (
+        <div className="flex flex-col gap-1 leading-[1.5] mt-4">
+          <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
+            About
+          </p>
+          <p className="text-sm text-[#353548] font-normal">{description}</p>
+        </div>
+      )}
+      {LinkItems}
+    </div>
+  );
+
+  if (showAsModal) {
+    return paneOpen ? (
+      <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+        {/* Backdrop */}
+        <div
+          className="absolute inset-0 bg-black/50"
+          onClick={() => setSelection(null)}
+        />
+
+        {/* Modal Content */}
+        <div
+          className={cn(
+            'relative w-full max-w-md rounded-lg shadow-lg overflow-hidden',
+            className
+          )}
+        >
+          {paneContent}
+        </div>
+      </div>
+    ) : null;
+  }
+
   return (
     <FlexibleDrawer
       open={paneOpen}
@@ -105,125 +253,7 @@ const Pane = ({
       className={cn('p-0', className)}
       hideHandle={true}
     >
-      <div
-        className="p-4"
-        style={{
-          ...backgroundStyle,
-          // maxHeight: '66.67vh',
-          paddingBottom: 'calc(16px + max(0px, env(safe-area-inset-bottom)))',
-          contain: 'layout style paint',
-          transform: 'translateZ(0)',
-        }}
-      >
-        <div className="flex justify-between">
-          <div className="flex items-center gap-3 self-start">
-            {imageSrc ? (
-              <div
-                className={cn(
-                  'shrink-0 w-[44px] h-[44px] overflow-hidden flex items-center justify-center',
-                  districtBadge ? 'border-2 border-[#74ACDF] rounded-[4px]' : ''
-                )}
-              >
-                <img
-                  src={imageSrc}
-                  alt={selection || ''}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  width={44}
-                  height={44}
-                  style={{ contentVisibility: 'auto' }}
-                />
-              </div>
-            ) : (
-              <Image
-                src={Placeholder}
-                alt={selection || ''}
-                className="w-8 h-8 object-cover shrink-0"
-                style={{ filter: 'brightness(0)' }}
-              />
-            )}
-
-            <div className="flex flex-col gap-1.5 pr-2 justify-center">
-              <div className="flex gap-1.5 items-center">
-                <p className="font-bold text-[18px] leading-none text-[#20202B]">
-                  {selection}
-                </p>
-                {districtBadge && (
-                  <div className="border border-[#353548] px-1 py-0.5">
-                    <p className="text-[10px] font-semibold text-[#353548] leading-[1.3] tracking-[0.2px]">
-                      {districtBadge}
-                    </p>
-                  </div>
-                )}
-              </div>
-              {questAvailable ? (
-                <div className="flex gap-1 items-center">
-                  <svg
-                    className="w-4 h-4"
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M8 1L10.163 5.382L15 6.135L11.5 9.545L12.326 14.365L8 12.082L3.674 14.365L4.5 9.545L1 6.135L5.837 5.382L8 1Z"
-                      stroke="#353548"
-                      strokeWidth="1"
-                      fill="none"
-                    />
-                  </svg>
-                  <p className="text-xs font-medium text-[#353548] font-mono">
-                    Quest available
-                  </p>
-                </div>
-              ) : (
-                subtitle && (
-                  <div className="text-xs leading-tight">{subtitle}</div>
-                )
-              )}
-            </div>
-          </div>
-          <div className="flex items-center gap-2 shrink-0">
-            <button
-              className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
-              onClick={() => {
-                try {
-                  navigator.clipboard.writeText(
-                    window.location.origin +
-                      '/map?filter=' +
-                      encodeURIComponent(selection || '')
-                  );
-                } catch (error) {
-                  alert('Error copying location link');
-                }
-
-                toast.success('Location link copied to clipboard', {
-                  duration: 5000,
-                  position: 'top-center',
-                });
-              }}
-            >
-              {/* Copy Location */}
-              <MapPin className="w-4 h-4 cursor-pointer" />
-            </button>
-            <button
-              onClick={() => setSelection(null)}
-              className="flex items-center justify-center basic-button white-button small-button square-button shrink-0 cursor-pointer"
-            >
-              <XIcon className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
-        {children}
-        {description && (
-          <div className="flex flex-col gap-1 leading-[1.5] mt-4">
-            <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
-              About
-            </p>
-            <p className="text-sm text-[#353548] font-normal">{description}</p>
-          </div>
-        )}
-        {LinkItems}
-      </div>
+      {paneContent}
     </FlexibleDrawer>
   );
 };
@@ -231,8 +261,35 @@ const Pane = ({
 const MapPane = (props: {
   selection: string | null;
   setSelection: Dispatch<SetStateAction<string | null>>;
+  fromQuests?: boolean;
 }) => {
-  const { selection, setSelection } = props;
+  const { selection, setSelection, fromQuests = false } = props;
+
+  // Hooks must be called before any conditional returns
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768); // md breakpoint
+    };
+
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  // Handle Escape key to close the pane
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selection) {
+        setSelection(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
+  }, [selection, setSelection]);
 
   //   const handleClose = () => {
   //     setCurrentFilters(initialFilters);
@@ -255,12 +312,12 @@ const MapPane = (props: {
 
   const paneOpen = !!selection;
 
-  if (!selection) {
-    return null;
-  }
-
   // Memoize the active pane to prevent recalculation on every render
   const ActivePane = useMemo(() => {
+    if (!selection) {
+      return null;
+    }
+
     let selectionData:
       | {
           name: string;
@@ -356,6 +413,7 @@ const MapPane = (props: {
             logo={selectionData.logo}
             backgroundColor={selectionData.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
+            showAsModal={isDesktop && fromQuests}
           >
             {districtSupporters.length > 0 && (
               <div className="bg-[rgba(255,255,255,0.4)] p-3 shadow-[0_2px_4px_0_rgba(54,54,76,0.10)] mt-4">
@@ -521,17 +579,24 @@ const MapPane = (props: {
             questAvailable={!!supporterQuest}
             backgroundColor={supporterDistrict?.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
+            showAsModal={isDesktop && fromQuests}
           >
-            {/* View Quest Button for supporters with quests */}
+            {/* View Quest/Map Button for supporters with quests */}
             {supporterQuest && (
-              <Link href={`/quests#${supporterQuest.id}`}>
+              <Link
+                href={
+                  fromQuests
+                    ? `/map?filter=${selection}`
+                    : `/quests#${supporterQuest.id}`
+                }
+              >
                 <button
-                  className="w-full bg-[#0073DE] text-white font-bold text-base py-3 px-6 rounded-[1px] mt-4"
+                  className="w-full bg-[#0073DE] text-white font-bold text-base py-3 px-6 rounded-[1px] mt-4 cursor-pointer"
                   style={{
                     boxShadow: '0px 4px 0px 0px #005493',
                   }}
                 >
-                  View Quest
+                  {fromQuests ? 'View Map' : 'View Quest'}
                 </button>
               </Link>
             )}
@@ -548,12 +613,13 @@ const MapPane = (props: {
             subtitle={selectionData.pane_type}
             links={selectionData.links}
             logo={selectionData.logo}
+            showAsModal={isDesktop && fromQuests}
           >
             {/* <div>{selection}</div> */}
           </Pane>
         );
     }
-  }, [selection, paneOpen, setSelection]);
+  }, [selection, paneOpen, setSelection, isDesktop, fromQuests]);
 
   return ActivePane;
 };
