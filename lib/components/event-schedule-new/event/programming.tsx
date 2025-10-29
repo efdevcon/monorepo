@@ -18,8 +18,8 @@ export const getProgramming = (event: Event) => {
         speakers: "Tomasz K. Stańczak",
       },
       {
-        title: "Ethereum Ecosystem overview",
-        speakers: "Jason Chaskin",
+        title: "The Trillion Dollar Security initiative",
+        speakers: "Mehdi Zerouali",
       },
       {
         title: "Ethereum is for Institutions and Enterprises",
@@ -29,17 +29,37 @@ export const getProgramming = (event: Event) => {
         title: "Ethereum In 30 minutes",
         speakers: "Vitalik Buterin",
       },
-      // {
-      //   title: "Ethereum Protocol",
-      //   speakers: "",
-      // },
+      {
+        title: "Ethereum Ecosystem overview",
+        speakers: "Jason Chaskin",
+      },
+      {
+        title: "Stablecoins and Argentina",
+        speakers: "Mariano Conti",
+      },
+      {
+        title: "Local Web3 Companies (Lambda Class)",
+        speakers: "Fede",
+      },
+      {
+        title: "Local Web3 Companies (POAP)",
+        speakers: "Isabel Gonzalez",
+      },
+      {
+        title: "Argentina talk",
+        speakers: "Santiago Palladino",
+      },
+      {
+        title: "Defi: AAVE",
+        speakers: "Stani",
+      },
+      {
+        title: "App: Farcaster",
+        speakers: "Linda Xie",
+      },
       {
         title: "Privacy in Ethereum",
         speakers: "Peter Van Valkenburgh",
-      },
-      {
-        title: "The Trillion Dollar Security Initiative",
-        speakers: "Mehdi Zerouali",
       },
       {
         title: "Stay tuned for more programming - and speaker announcements 👀",

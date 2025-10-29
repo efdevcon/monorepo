@@ -22,6 +22,17 @@ Fetches quest data from the `/api/quests` endpoint and processes it with group/d
 
 Creates a CDP v2 Smart Account for gasless USDC transfers. See [COINBASE_SETUP.md](../COINBASE_SETUP.md) for details.
 
+### `import-claiming-links.ts`
+
+Imports claiming links from CSV files into the database for distribution to users.
+
+**Features:**
+
+- Reads claiming links from CSV file (one URL per line)
+- Bulk inserts into `devconnect_app_claiming_links` table
+- Configurable amount per link
+- Batch processing to handle large files efficiently
+
 ## Usage
 
 ### Data Script
@@ -74,6 +85,40 @@ pnpm create-wallet
 ```
 
 Creates a CDP v2 Smart Account. Requires CDP credentials in `.env.local`.
+
+### Import Claiming Links Script
+
+#### Using pnpm script (recommended)
+
+```bash
+pnpm l <amount> <csv-file>
+```
+
+#### Using tsx directly
+
+```bash
+pnpm exec tsx scripts/import-claiming-links.ts <amount> <csv-file>
+```
+
+**Example:**
+
+```bash
+# Import links from links_1.csv with 5 USDC per link (automatically looks in scripts/csv/)
+pnpm l 5 links_1.csv
+
+# Or use full path
+pnpm l 5 scripts/csv/links_1.csv
+```
+
+**Arguments:**
+
+- `amount` - The amount (in USDC or other currency) for each claiming link
+- `csv-file` - CSV filename (automatically looks in `scripts/csv/` directory) or full path
+
+**Requirements:**
+
+- `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_KEY` must be set in `.env.local`
+- CSV file should contain one claiming link URL per line
 
 ## What the scripts do
 
@@ -132,11 +177,33 @@ When Notion temporary image URLs are detected, the script automatically:
 - Sorts quests by ID for consistent ordering
 - Calculates statistics (quests with groups, districts, total points)
 
+### Import Claiming Links Script (`import-claiming-links.ts`)
+
+1. **Reads CSV file** containing claiming links (one URL per line)
+2. **Parses and validates** the amount and file path from command line arguments
+3. **Bulk inserts** into the `devconnect_app_claiming_links` database table:
+   - Each link is stored with the specified amount
+   - Links are initially unclaimed (null values for claimed fields)
+   - Processes in batches of 100 records for efficiency
+
+**Data Inserted:**
+
+- `link` - The claiming link URL
+- `amount` - Amount specified via command line
+- `claimed_by_user_email` - NULL (unclaimed)
+- `claimed_by_address` - NULL (unclaimed)
+- `claimed_date` - NULL (unclaimed)
+- `ticket_secret_proof` - NULL (unclaimed)
+
 ## Configuration
 
 The scripts use the following environment variables:
 
 - `API_BASE_URL` - Base URL for the API (defaults to `http://localhost:3000`)
+- `NEXT_PUBLIC_SUPABASE_URL` - Supabase project URL (required for `import-claiming-links.ts`)
+- `SUPABASE_KEY` - Supabase service role key (required for `import-claiming-links.ts`)
+- `NOTION_SECRET` - Notion API key (required for automatic image processing in `fetch-data.ts`)
+- CDP credentials - Required for `create-smart-wallet.ts` (see [COINBASE_SETUP.md](../COINBASE_SETUP.md))
 
 ## Output
 

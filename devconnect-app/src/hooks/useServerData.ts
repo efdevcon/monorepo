@@ -33,7 +33,7 @@ export interface UserData {
 export function useUserData(fallbackData?: UserData) {
   const { data, error, isLoading, mutate } = useSWR<{
     success: boolean;
-    data: UserData;
+    data?: UserData;
   }>('/api/auth/user-data', fetchAuth, {
     fallbackData: fallbackData
       ? { success: true, data: fallbackData }
@@ -60,7 +60,7 @@ export function useUserData(fallbackData?: UserData) {
 
 interface TicketsResponse {
   success: boolean;
-  data: {
+  data?: {
     tickets: Order[];
   };
 }

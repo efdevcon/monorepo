@@ -69,7 +69,7 @@ export default function TicketTab() {
         '/api/auth/tickets'
       );
 
-      if (!response.success) {
+      if (!response.success || !response.data) {
         throw new Error(response.error || 'Failed to fetch tickets');
       }
 

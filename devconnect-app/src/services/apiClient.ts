@@ -19,7 +19,8 @@ export interface ApiRequestOptions extends RequestInit {
 }
 
 export interface ApiResponse<T = any> {
-  data: T;
+  data?: T;
+  message?: string;
   success: boolean;
   error?: string;
 }
@@ -59,8 +60,18 @@ class ApiClient {
       });
 
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-        throw new Error(errorData.error || `HTTP ${response.status}: ${response.statusText}`);
+        const errorData = await response.json().catch(() => ({ 
+          error: 'Unknown error',
+          message: `HTTP ${response.status}: ${response.statusText}`
+        }));
+        
+        // Return structured error response
+        return {
+          data: null as T,
+          success: false,
+          error: errorData.error || 'Unknown error',
+          message: errorData.message || `HTTP ${response.status}: ${response.statusText}`,
+        };
       }
 
       const data = await response.json();
@@ -69,10 +80,12 @@ class ApiClient {
         success: true,
       };
     } catch (error) {
+      console.error('API Client fetch error:', error);
       return {
         data: null as T,
         success: false,
-        error: error instanceof Error ? error.message : 'Unknown error',
+        error: 'Network error',
+        message: error instanceof Error ? error.message : 'Failed to connect to server',
       };
     }
   }

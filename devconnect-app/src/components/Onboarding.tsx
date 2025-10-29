@@ -1716,6 +1716,11 @@ export default function Onboarding({ onConnect }: OnboardingProps) {
                     placeholder="Enter your email"
                     value={mounted ? email : ''}
                     onChange={(e) => setEmail(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' && mounted && email) {
+                        handleEmailSubmit();
+                      }
+                    }}
                     className="flex flex-col font-['Inter'] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#7c7c99] text-[14px] text-left w-full bg-transparent border-none outline-none placeholder:text-[#7c7c99]"
                   />
                 </div>
