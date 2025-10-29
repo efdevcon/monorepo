@@ -4,7 +4,7 @@ import CollectiblesDistrictLogo from '@/images/districts/collectibles.png';
 import DefiDistrictLogo from '@/images/districts/defi.png';
 import GamingDistrictLogo from '@/images/districts/gaming.png';
 import HardwareWalletsDistrictLogo from '@/images/districts/hardware-wallets.png';
-import L2sDistrictLogo from '@/images/districts/l2s.png';
+import L2DistrictLogo from '@/images/districts/l2.png';
 import PrivacyDistrictLogo from '@/images/districts/privacy.png';
 import SocialDistrictLogo from '@/images/districts/social.png';
 
@@ -40,10 +40,10 @@ export const districtsData: Districts = {
     "logo": HardwareWalletsDistrictLogo.src
   },
   "6": {
-    "name": "L2s",
-    "layerName": "l2s-district",
+    "name": "L2",
+    "layerName": "l2-district",
     "backgroundColor": "linear-gradient(0deg, rgb(68, 221, 187) 0%, rgb(116, 172, 223) 100%)",
-    "logo": L2sDistrictLogo.src
+    "logo": L2DistrictLogo.src
   },
   "7": {
     "name": "Privacy",
