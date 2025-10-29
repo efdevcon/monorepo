@@ -393,7 +393,7 @@ export default function SettingsTab() {
         </button> */}
 
         {/* Backup Kit */}
-        <button
+        {/* <button
           onClick={handleBackupKit}
           disabled={isExportingKey || !isParaConnected}
           className={cn(
@@ -410,7 +410,7 @@ export default function SettingsTab() {
             Backup kit
           </p>
           <Icon path={mdiChevronRight} size={0.65} className="text-[#4b4b66]" />
-        </button>
+        </button> */}
 
         {/* Debug */}
         {address && (

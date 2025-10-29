@@ -265,6 +265,17 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "8",
     "locationId": "1"
   },
+  "25d638cdc4158033ad04f20813ae1431": {
+    "name": "Ethluminal Gallery",
+    "layerName": "ethluminal-gallery",
+    "logo": "",
+    "description": "",
+    "websiteLink": "",
+    "twitterLink": "",
+    "farcasterLink": "",
+    "districtId": "2",
+    "locationId": "1"
+  },
   "254638cdc41580458186d64625f2c8ea": {
     "name": "EXA",
     "layerName": "exa",
@@ -518,17 +529,6 @@ export const supportersData: Record<string, Supporter> = {
     "districtId": "3",
     "locationId": "1"
   },
-  "25d638cdc4158033ad04f20813ae1431": {
-    "name": "Open Arts Gallery",
-    "layerName": "open-arts-gallery",
-    "logo": "",
-    "description": "",
-    "websiteLink": "",
-    "twitterLink": "",
-    "farcasterLink": "",
-    "districtId": "2",
-    "locationId": "1"
-  },
   "27e638cdc41580acb2e3d4c9af1a355f": {
     "name": "Open Gaming Space",
     "layerName": "open-gaming-space",
@@ -730,7 +730,7 @@ export const supportersData: Record<string, Supporter> = {
   "254638cdc4158045a5f4e7bc71ded71c": {
     "name": "Starknet",
     "layerName": "starknet",
-    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-28T13-30-07-847Z-SN-Stacked-Gradient.png",
+    "logo": "https://mealmslwugsqqyoesrxd.supabase.co/storage/v1/object/public/notion/2025-10-29T08-33-55-232Z-dark.png",
     "description": "Starknet is a Validity-Rollup (aka ZK-Rollup) Layer 2 network that operates on top of Ethereum, enabling dApps to massively scale without compromising on security.",
     "websiteLink": "https://www.starknet.io/",
     "twitterLink": "https://x.com/Starknet",

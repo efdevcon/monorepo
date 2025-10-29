@@ -8,7 +8,8 @@ const hubData = [
   {
     name: 'Account Abstraction Hub',
     slug: 'account-abstraction-hub',
-    iframeUrl: 'https://aa-hub-arg.erc4337.io/',
+    iframeUrl:
+      'https://sheets.fileverse.io/0x6a38400092405042218429eC8CCC356AE6281159/0#key=aDDz3aWDUHXBZEbtzh8K23cy_3Y7dIH_fM8UaI2AJZ2eEw77nViozkLNSH2YHzPT',
   },
   {
     name: 'DeSci Hub',
@@ -61,7 +62,8 @@ const hubData = [
   {
     name: 'Onchain Fintech Hub',
     slug: 'onchain-fintech-hub',
-    iframeUrl: '/community-hubs/coming-soon',
+    iframeUrl:
+      'https://sheets.fileverse.io/0xEf5CF44678A758bd4169effEdD587E9B1B782595/0#key=BjYlUfeiUwGF5ZwuBsuJ4S5TFhmhVR9MWZnYvy98Z8DcysXkoyAfja-OEALSrVIu',
   },
   {
     name: 'Open Source Hub',

@@ -130,20 +130,25 @@ export default function StampbookTab() {
 
   // Build categories: First one hardcoded, then districts
   const categories: StampCategory[] = useMemo(() => {
+    // Get quest 28 (Devconnect POAP)
+    const devconnectQuest = questsData.find((quest) => quest.id === 28);
+
     const cats: StampCategory[] = [
-      // Hardcoded first category - Devconnect ARG (id: 0 is special)
+      // Hardcoded first category - Devconnect ARG (using quest id 28)
       {
         id: '0',
         name: 'Devconnect ARG',
         total: 1,
-        collected: 0, // This is a special hardcoded POAP, not tracked in quest states
-        stamps: [
-          {
-            id: 0,
-            name: 'Devconnect Arg',
-            image: FALLBACK_IMAGE,
-          },
-        ],
+        collected: devconnectQuest ? (isQuestCompleted(28) ? 1 : 0) : 0,
+        stamps: devconnectQuest
+          ? [
+              {
+                id: 28,
+                name: devconnectQuest.name,
+                image: devconnectQuest.poapImageLink || FALLBACK_IMAGE,
+              },
+            ]
+          : [],
       },
     ];
 
