@@ -848,88 +848,90 @@ export default function WalletTab() {
                 My Perks
               </p>
 
-              {/* Peanut Claim Card */}
-              <div
-                className="bg-white p-4 flex flex-col gap-4 items-center w-full"
-                style={{
-                  boxShadow: '4px 4px 0px black',
-                  outline: '1px black solid',
-                  outlineOffset: '-1px',
-                }}
-              >
-                <button
-                  onClick={handlePeanutClaim}
-                  className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
+              <div className="flex flex-col md:flex-row gap-4">
+                {/* Peanut Claim Card */}
+                <div
+                  className="bg-white p-4 flex flex-col gap-4 items-center w-full md:flex-1"
                   style={{
+                    boxShadow: '4px 4px 0px black',
                     outline: '1px black solid',
                     outlineOffset: '-1px',
                   }}
                 >
-                  <p className="text-black text-[16px] font-bold leading-4">
-                    Claim $3 (USDC)
-                  </p>
-                  <svg
-                    className="w-3.5 h-3.5 text-black flex-shrink-0"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
+                  <button
+                    onClick={handlePeanutClaim}
+                    className="w-full bg-[#ff91e9] rounded-[1px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#ff7de3] transition-colors cursor-pointer"
+                    style={{
+                      outline: '1px black solid',
+                      outlineOffset: '-1px',
+                    }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 7h8m0 0L7 3m4 4l-4 4"
+                    <p className="text-black text-[16px] font-bold leading-4">
+                      Claim $3 (USDC)
+                    </p>
+                    <svg
+                      className="w-3.5 h-3.5 text-black flex-shrink-0"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 7h8m0 0L7 3m4 4l-4 4"
+                      />
+                    </svg>
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <p className="text-black text-[12px] font-normal leading-[15.6px]">
+                      Sponsored by
+                    </p>
+                    <img
+                      src={imgPeanutLogo}
+                      alt="Peanut"
+                      className="h-5 w-[82px] object-contain"
                     />
-                  </svg>
-                </button>
-                <div className="flex items-center gap-3">
-                  <p className="text-black text-[12px] font-normal leading-[15.6px]">
-                    Sponsored by
-                  </p>
-                  <img
-                    src={imgPeanutLogo}
-                    alt="Peanut"
-                    className="h-5 w-[82px] object-contain"
-                  />
+                  </div>
                 </div>
-              </div>
 
-              {/* ENS Claim Card */}
-              <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center">
-                <button
-                  onClick={() => {
-                    // TODO: Implement ENS claim functionality
-                     toast.error('❌ ENS claim is not available yet');
-                     return;
-                  }}
-                  className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
-                >
-                  <p className="text-white text-[16px] font-bold leading-none">
-                    Claim worldfair.eth name
-                  </p>
-                  <svg
-                    className="w-3.5 h-3.5 text-white flex-shrink-0"
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    stroke="currentColor"
+                {/* ENS Claim Card */}
+                <div className="bg-white border border-[#0080bc] rounded-[12px] p-4 flex flex-col gap-4 items-center w-full md:flex-1">
+                  <button
+                    onClick={() => {
+                      // TODO: Implement ENS claim functionality
+                      toast.error('❌ ENS claim is not available yet');
+                      return;
+                    }}
+                    className="w-full bg-[#247cff] rounded-[6px] px-6 py-3 flex items-center justify-center gap-2 hover:bg-[#1a69e6] transition-colors cursor-pointer"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M3 7h8m0 0L7 3m4 4l-4 4"
+                    <p className="text-white text-[16px] font-bold leading-none">
+                      Claim worldfair.eth name
+                    </p>
+                    <svg
+                      className="w-3.5 h-3.5 text-white flex-shrink-0"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 7h8m0 0L7 3m4 4l-4 4"
+                      />
+                    </svg>
+                  </button>
+                  <div className="flex items-center gap-3">
+                    <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
+                      Sponsored by
+                    </p>
+                    <img
+                      src={imgEnsLogo}
+                      alt="ENS"
+                      className="h-5 w-[62px] object-contain"
                     />
-                  </svg>
-                </button>
-                <div className="flex items-center gap-3">
-                  <p className="text-[#093c52] text-[12px] font-normal leading-[1.3]">
-                    Sponsored by
-                  </p>
-                  <img
-                    src={imgEnsLogo}
-                    alt="ENS"
-                    className="h-5 w-[62px] object-contain"
-                  />
+                  </div>
                 </div>
               </div>
             </div>
@@ -1093,14 +1095,14 @@ export default function WalletTab() {
 
                 {/* View More Assets Button */}
                 {portfolio && portfolio.tokenBalances.length > 3 && (
-                  <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
-                    <button
-                      onClick={handleViewMoreAssets}
-                      className="text-[#36364c] text-base font-bold cursor-pointer"
-                    >
+                  <button
+                    onClick={handleViewMoreAssets}
+                    className="w-full bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                  >
+                    <span className="text-[#36364c] text-base font-bold">
                       {showAllAssets ? 'Show Less Assets' : 'View More Assets'}
-                    </button>
-                  </div>
+                    </span>
+                  </button>
                 )}
               </>
             ) : (
@@ -1326,16 +1328,16 @@ export default function WalletTab() {
 
                 {/* View More Activity Button */}
                 {mergedActivity.length > 3 && (
-                  <div className="bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center">
-                    <button
-                      onClick={handleViewMoreActivity}
-                      className="text-[#36364c] text-base font-bold cursor-pointer"
-                    >
+                  <button
+                    onClick={handleViewMoreActivity}
+                    className="w-full bg-[#eaf3fa] border border-white shadow-[0px_4px_0px_0px_#595978] rounded-[1px] px-6 py-3 flex items-center justify-center hover:bg-[#d5e7f4] transition-colors cursor-pointer"
+                  >
+                    <span className="text-[#36364c] text-base font-bold">
                       {showAllActivity
                         ? 'Show Less Activity'
                         : 'View More Activity'}
-                    </button>
-                  </div>
+                    </span>
+                  </button>
                 )}
               </>
             )}
