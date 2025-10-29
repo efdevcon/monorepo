@@ -186,14 +186,19 @@ const Pane = ({
             <button
               className="flex items-center gap-1 cursor-pointer basic-button white-button small-button square-button"
               onClick={() => {
-                navigator.clipboard.writeText(
-                  window.location.origin +
-                    '/map?filter=' +
-                    encodeURIComponent(selection || '')
-                );
+                try {
+                  navigator.clipboard.writeText(
+                    window.location.origin +
+                      '/map?filter=' +
+                      encodeURIComponent(selection || '')
+                  );
+                } catch (error) {
+                  alert('Error copying location link');
+                }
 
                 toast.success('Location link copied to clipboard', {
-                  duration: 1000,
+                  duration: 5000,
+                  position: 'top-center',
                 });
               }}
             >

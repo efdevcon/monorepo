@@ -96,7 +96,10 @@ export const usePanzoom = (
           // Ignore mouse events on buttons and their children
           const target = e.target as Element;
           const isButton = target.closest('button');
-          return !!isButton; // Return true to ignore the event
+          const preventInteractionElement = target.closest(
+            '[data-prevent-interaction-element="true"]'
+          );
+          return !!isButton || !!preventInteractionElement; // Return true to ignore the event
         },
       });
 
