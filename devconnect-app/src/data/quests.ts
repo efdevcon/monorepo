@@ -54,19 +54,6 @@ export const questsData: Quest[] = [
     "groupId": 1
   },
   {
-    "id": 5,
-    "name": "Learn how to fund your wallet",
-    "order": 7,
-    "instructions": "View the in-app onramp options to learn how to add funds to your wallet",
-    "action": "visit-link",
-    "button": "View Exchange options",
-    "conditionType": "isLinkVisited",
-    "conditionValues": "/wallet/onramp",
-    "supporterId": "",
-    "poapImageLink": "",
-    "groupId": 1
-  },
-  {
     "id": 10,
     "name": "Pay with crypto at the venue",
     "order": 3,
@@ -94,16 +81,16 @@ export const questsData: Quest[] = [
   },
   {
     "id": 13,
-    "name": "Add funds to your wallet",
-    "order": 2,
-    "instructions": "…",
-    "action": "",
-    "button": "",
-    "conditionType": "",
-    "conditionValues": "",
+    "name": "Learn how to fund your wallet",
+    "order": 5,
+    "instructions": "View the in-app onramp options to learn how to add funds to your wallet",
+    "action": "visit-link",
+    "button": "View Exchange options",
+    "conditionType": "isLinkVisited",
+    "conditionValues": "/wallet/onramp",
     "supporterId": "",
     "poapImageLink": "",
-    "groupId": 2
+    "groupId": 1
   },
   {
     "id": 14,
@@ -163,15 +150,15 @@ export const questsData: Quest[] = [
   {
     "id": 28,
     "name": "Collect the Devconnect POAP",
-    "order": 1,
-    "instructions": "",
-    "action": "",
-    "button": "",
-    "conditionType": "",
-    "conditionValues": "",
+    "order": 8,
+    "instructions": "Find the limited edition card at the entrance Onboarding area",
+    "action": "claim-poap",
+    "button": "Verify",
+    "conditionType": "verifyPoap",
+    "conditionValues": "191854",
     "supporterId": "",
-    "poapImageLink": "",
-    "groupId": 2
+    "poapImageLink": "https://assets.poap.xyz/devconnect-buenos-aires-2025-logo-1761218362393.png?size=large",
+    "groupId": 1
   },
   {
     "id": 30,
@@ -288,7 +275,7 @@ export const questsData: Quest[] = [
   {
     "id": 40,
     "name": "Claim your starter fund",
-    "order": 5,
+    "order": 6,
     "instructions": "Claim 3$ of USDC thanks to Peanut",
     "action": "verify-balance",
     "button": "Claim Starter Fund",
@@ -301,7 +288,7 @@ export const questsData: Quest[] = [
   {
     "id": 41,
     "name": "Claim your World’s Fair ENS",
-    "order": 6,
+    "order": 9,
     "instructions": "Claim your free worldfair.eth subname",
     "action": "verify-ens",
     "button": "Claim ENS",
