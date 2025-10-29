@@ -573,7 +573,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "211504",
     "supporterId": "254638cdc415800680e4ccda38fe7b85",
-    "poapImageLink": "https://assets.poap.xyz/d150b2a5-01ad-416b-b57d-6a0499635144.png?size=large",
+    "poapImageLink": "https://assets.poap.xyz/f83258db-5854-46b7-9b6a-4b71dd365f0c.png?size=large",
     "groupId": 4,
     "districtId": "7"
   },
@@ -1049,7 +1049,7 @@ export const questsData: Quest[] = [
     "conditionType": "verifyPoap",
     "conditionValues": "212242",
     "supporterId": "254638cdc4158045a5f4e7bc71ded71c",
-    "poapImageLink": "https://assets.poap.xyz/64a1a074-c80d-48ad-9b63-fe31cf9ea0dc.png?size=large",
+    "poapImageLink": "https://assets.poap.xyz/8159bace-abda-49a6-b05e-07caa9fd58cf.png?size=large",
     "groupId": 4,
     "districtId": "6"
   },
