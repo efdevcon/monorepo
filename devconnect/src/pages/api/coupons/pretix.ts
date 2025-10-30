@@ -15,7 +15,7 @@ export async function getPaidTicketsByEmail(email: string) {
   const url = `${baseUrl}/api/v1/organizers/${organizerSlug}/events/${eventSlug}/orders`
 
   const params = new URLSearchParams({
-    // email: email,
+    // email: 'lasse.jacobsen@ethereum.org',
     status: 'p', // 'p' for paid orders
     search: email,
   })
@@ -34,10 +34,11 @@ export async function getPaidTicketsByEmail(email: string) {
   }
 
   const data = await response.json()
+  console.log(data)
   const orders = data.results || []
 
   // Return simplified ticket data, filtering out positions without attendee names
-  return orders
+  const tickets = orders
     .map((order: any) => ({
       orderCode: order.code,
       orderDate: order.datetime,
@@ -53,4 +54,9 @@ export async function getPaidTicketsByEmail(email: string) {
         })),
     }))
     .filter((ticket: any) => ticket.tickets.length > 0)
+
+  // console.log('Tickets:', tickets.length)
+  // console.log(tickets)
+  // return false
+  return tickets
 }

@@ -1,5 +1,5 @@
 import express from "express";
-import { BskyAgent, AppBskyFeedPost } from "@atproto/api";
+import AtpAgent, { BskyAgent, AppBskyFeedPost } from "@atproto/api";
 import { createClient } from "@supabase/supabase-js";
 import dotenv from "dotenv";
 import WebSocket from "ws";
@@ -690,6 +690,108 @@ app.post(
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 
-  startFirehose();
+  if (process.env.NODE_ENV !== "development") {
+    startFirehose();
+  } else {
+    // backfillData();
+  }
   // api.addSchema();
 });
+
+const backfillData = async () => {
+  // console.log("Backfilling data");
+  // const agent = new AtpAgent({ service: "https://bsky.social" });
+  // const devconnectDid = "did:plc:l26dgtpir4fydulvmuoee2sn";
+  // let cursor: string | undefined;
+  // let allRecords: any[] = [];
+  // do {
+  //   const response = await agent.com.atproto.repo.listRecords({
+  //     repo: devconnectDid,
+  //     collection: "org.devcon.event",
+  //     cursor,
+  //   });
+  //   allRecords = allRecords.concat(response.data.records);
+  //   cursor = response.data.cursor;
+  // } while (cursor);
+  // console.log("All records:", allRecords.length, allRecords.pop());
+  // const getRecordToSave = (record: any) => {
+  //   //     rkey = yes
+  //   //     rev = no
+  //   // record = yes (record.value)
+  //   // lexicon = org.devcon.event
+  //   // record_needs_review = yes (record.value)
+  //   // cursor = no, null
+  //   // message = yes (use some dummy message, its not used anyway)
+  //   // did = yes (devconnectDid)
+  //   // reviewed = no (false)
+  //   return {
+  //     rkey: record.uri.split("/").pop()!,
+  //     rev: "backfilled",
+  //     record: record.value,
+  //     lexicon: "org.devcon.event",
+  //     record_needs_review: record.value,
+  //     cursor: null,
+  //     message: JSON.stringify({
+  //       backfilled: "no message since this was backfilled",
+  //     }),
+  //     did: devconnectDid,
+  //     reviewed: false,
+  //   };
+  // };
+  // const objectsToSave = allRecords.map(getRecordToSave);
+  // console.log("Objects to save:", objectsToSave.length, objectsToSave.pop());
+  // const arbitrumEvents = objectsToSave.filter((event) =>
+  //   event.record.title.toLowerCase().includes("arbi")
+  // );
+  // console.log("Arbitrum events:", arbitrumEvents.length, arbitrumEvents);
+  // console.log(
+  //   "All records:",
+  //   allRecords.slice(0, 5).map((record) => record.value.title)
+  // );
+  // const results = await Promise.all(objectsToSave.map(saveEvent));
+  // console.log("Results:", results);
+  // const lastRecord = allRecords.pop();
+  // const record = await agent.com.atproto.repo.getRecord({
+  //   repo: devconnectDid,
+  //   collection: "org.devcon.event",
+  //   rkey: lastRecord.uri.split("/").pop()!,
+  // });
+  // const response = await agent.com.atproto.sync.getRepo({
+  //   did: devconnectDid,
+  // });
+  // console.log("Record:", record);
+  // console.log("Repo:", response);
+  /*
+    paths:
+      if exists and all data is the same -> nothing happens
+      if exists and data is different -> record_needs_review = true
+      if does not exist -> record_needs_review = true, new record created
+  */
+  /*
+
+
+                  const result = (await saveEvent({
+                    rkey: message.commit.rkey,
+                    rev: message.commit.rev,
+                    record: message.commit.record,
+                    lexicon: message.commit.collection,
+                    record_needs_review: message.commit.record,
+                    cursor: message.time_us || null,
+                    message: message,
+                    did: message.did,
+                    reviewed: false,
+                  })) as any;
+  */
+  /*
+1760831280621828 <---- last successful cursor, herdao on oct 19
+  */
+  // uri:...
+  // cid:bafyreidvlazh533ccs2gigucmqhy34bjk7xlvkyzhhkseg3vpcn7lfmcge'
+  /* 
+(1761648705000735)
+1760785062321 <--- 2nd last processed cursor
+
+    Get all records posted after date X 1761648705000735
+    -> Write them "record_needs_review"
+  */
+};

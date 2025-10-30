@@ -623,21 +623,21 @@ function Event({
 
                     <div className="flex justify-between items-center gap-2 flex-wrap">
                       <div className="flex gap-2 items-center flex-wrap">
-                        {showVisitSite &&
-                          !hideVisitSite &&
-                          !isCommunityHubs && (
-                            <Link href={event.eventLink} className="self-start">
-                              <VoxelButton
-                                color="blue-1"
-                                size="sm"
-                                fill
-                                className="shrink-0  mt-3 self-start"
-                              >
-                                Visit Site
-                                <ArrowUpRight className="w-4 h-4 mb-0.5" />
-                              </VoxelButton>
-                            </Link>
-                          )}
+                        {showVisitSite && !hideVisitSite && (
+                          <Link href={event.eventLink} className="self-start">
+                            <VoxelButton
+                              color="blue-1"
+                              size="sm"
+                              fill
+                              className="shrink-0  mt-3 self-start"
+                            >
+                              {isCommunityHubs
+                                ? "View Community Hubs"
+                                : "Visit Site"}
+                              <ArrowUpRight className="w-4 h-4 mb-0.5" />
+                            </VoxelButton>
+                          </Link>
+                        )}
 
                         {showBuyTickets && !isGated && (
                           <Link href={event.ticketsUrl} className="self-start">
