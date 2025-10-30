@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import CloseIcon from '@/components/icons/CloseIcon';
 import Image from 'next/image';
@@ -16,6 +17,7 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
+  const pathname = usePathname();
   const [showPopup, setShowPopup] = useState(false);
   const [showInstallPWA, setShowInstallPWA] = useLocalStorage(
     'showInstallPWA',
@@ -34,6 +36,10 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
   const [isIOS, setIsIOS] = useState(false);
 
   useEffect(() => {
+    // Never show on /pos route
+    if (pathname === '/pos') {
+      return;
+    }
     const handleBeforeInstallPrompt = (e: Event) => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
@@ -75,6 +81,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
       );
     };
   }, [
+    pathname,
     pwa,
     showInstallPWA,
     lastShownTimestamp,
@@ -151,8 +158,7 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
               (Progressive Web Application)
             </p>
             <p className="text-[#36364c] text-[20px] leading-[1.3] tracking-[-0.25px]">
-
-            For the best experience, install the app on your smartphone.
+              For the best experience, install the app on your smartphone.
             </p>
           </div>
 
@@ -181,8 +187,10 @@ const InstallPWA: React.FC<InstallPWAProps> = ({ onClose }) => {
             <div className="text-white text-[13px] leading-[17px] flex-1">
               {isIOS ? (
                 <p>
-                  On iOS, open this website <span className="font-bold">in Safari</span> and tap <span className="font-bold">Share</span>,{' '}
-                  then <span className="font-bold">Add to Home Screen</span>.
+                  On iOS, open this website{' '}
+                  <span className="font-bold">in Safari</span> and tap{' '}
+                  <span className="font-bold">Share</span>, then{' '}
+                  <span className="font-bold">Add to Home Screen</span>.
                 </p>
               ) : (
                 <p>
