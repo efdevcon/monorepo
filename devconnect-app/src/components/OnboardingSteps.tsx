@@ -239,7 +239,10 @@ export const OnboardingSteps: React.FC<OnboardingStepsProps> = ({
   };
 
   return (
-    <div className="section min-h-screen gradient-background always-gradient overflow-y-auto flex flex-col">
+    <div
+      className="section gradient-background always-gradient overflow-y-auto flex flex-col"
+      style={{ minHeight: '100svh' }}
+    >
       <div className="flex flex-col flex-1 items-center py-3 sm:py-8">
         <div className="flex flex-col justify-center items-center gap-2 shrink-0">
           <div className="text-lg font-semibold">
