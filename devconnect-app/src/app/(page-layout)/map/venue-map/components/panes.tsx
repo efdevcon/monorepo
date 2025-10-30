@@ -1,7 +1,7 @@
 import FlexibleDrawer from 'lib/components/flexible-drawer';
 import { Dispatch, SetStateAction, useMemo, useState, useEffect } from 'react';
 import cn from 'classnames';
-import { MapPin, GlobeIcon, XIcon } from 'lucide-react';
+import { MapPin, GlobeIcon, XIcon, ArrowUpRightIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import X from './icons/x.svg';
 import FarcasterIcon from './icons/farcaster.svg';
@@ -15,6 +15,8 @@ import { poiGroupsData } from '@/data/poiGroups';
 import { supportersData } from '@/data/supporters';
 import { questsData } from '@/data/quests';
 import { questGroupsData } from '@/data/questGroups';
+import { District } from '@/types/api-data';
+import { useRouter } from 'next/navigation';
 
 const Pane = ({
   children,
@@ -27,6 +29,7 @@ const Pane = ({
   links,
   logo,
   districtBadge,
+  districtData,
   questAvailable,
   backgroundColor,
   showAsModal = false,
@@ -41,12 +44,13 @@ const Pane = ({
   subtitle?: string;
   logo?: string;
   districtBadge?: string;
+  districtData?: District | null;
   questAvailable?: boolean;
   backgroundColor?: string;
   showAsModal?: boolean;
 }) => {
   const imageSrc = logo || '';
-
+  const router = useRouter();
   // Combine white overlay with district gradient
   const backgroundStyle = backgroundColor
     ? {
@@ -73,7 +77,7 @@ const Pane = ({
                 <span className="font-bold text-sm text-[#0073DE]">
                   Visit Website
                 </span>
-                <GlobeIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
+                <ArrowUpRightIcon className="w-4 h-4 shrink-0 text-[#0073DE]" />
               </button>
             </Link>
           )}
@@ -147,7 +151,15 @@ const Pane = ({
                 {selection}
               </p>
               {districtBadge && (
-                <div className="border border-[#353548] px-1 py-0.5">
+                <div
+                  className="border border-[#353548] px-1 py-0.5"
+                  onClick={() => {
+                    router.push(
+                      '/map?filter=' +
+                        encodeURIComponent(districtData?.layerName || '')
+                    );
+                  }}
+                >
                   <p className="text-[10px] font-semibold text-[#353548] leading-[1.3] tracking-[0.2px]">
                     {districtBadge}
                   </p>
@@ -217,7 +229,27 @@ const Pane = ({
           <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
             About
           </p>
-          <p className="text-sm text-[#353548] font-normal">{description}</p>
+          <p
+            className="text-sm text-[#353548] font-normal"
+            style={{
+              display: '-webkit-box',
+              WebkitLineClamp: 4,
+              WebkitBoxOrient: 'vertical',
+              overflow: 'hidden',
+            }}
+          >
+            {description}
+          </p>
+        </div>
+      )}
+      {description && (
+        <div className="flex flex-col gap-1 leading-[1.5] mt-4">
+          <p className="font-bold text-base text-[#20202B] tracking-[-0.1px]">
+            Quest
+          </p>
+          <p className="text-sm text-[#353548] font-normal">
+            Visit the booth to learn more about the quest!
+          </p>
         </div>
       )}
       {LinkItems}
@@ -576,6 +608,7 @@ const MapPane = (props: {
             links={selectionData.links}
             logo={selectionData.logo}
             districtBadge={supporterDistrict?.name}
+            districtData={supporterDistrict}
             questAvailable={!!supporterQuest}
             backgroundColor={supporterDistrict?.backgroundColor}
             className="border-t border-[rgba(255,255,255,0.8)] shadow-[0_-2px_4px_0_rgba(54,54,76,0.10)]"
