@@ -293,31 +293,31 @@ export default function OnrampTab() {
       },
     },
     {
-      name: 'Transak',
+      name: 'Transak (⚠️ Staging Environment)',
       description: 'Good rates, simple flow and light KYC.',
       gradient:
         'linear-gradient(114.577deg, rgba(52, 138, 237, 0.2) 51.882%, rgba(255, 255, 255, 0.2) 101.74%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)',
       logoImage: 'transak-logo.png',
       fees: '0.99% – 3.99%',
       onClick: () => {
-        showErrorToast('❌ Transak is not available yet');
-        return;
-        // if (!address) {
-        //   showErrorToast(
-        //     '❌ No Address Available',
-        //     'Please connect your wallet first'
-        //   );
-        //   return;
-        // }
+        // showErrorToast('❌ Transak is not available yet');
+        // return;
+        if (!address) {
+          showErrorToast(
+            '❌ No Address Available',
+            'Please connect your wallet first'
+          );
+          return;
+        }
 
-        // const currentDomain = window.location.origin;
-        // const transakUrl = `https://global-stg.transak.com/?environment=STAGING&defaultFiatAmount=5&defaultFiatCurrency=USD&defaultCryptoCurrency=USDC&network=base&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=transak&confirm=true')}&productsAvailed=BUY&theme=dark&colorMode=DARK`;
+        const currentDomain = window.location.origin;
+        const transakUrl = `https://global-stg.transak.com/?environment=STAGING&defaultFiatAmount=5&defaultFiatCurrency=USD&defaultCryptoCurrency=USDC&network=base&walletAddress=${address}&redirectURL=${encodeURIComponent(currentDomain + '/onramp?type=transak&confirm=true')}&productsAvailed=BUY&theme=dark&colorMode=DARK`;
 
-        // window.open(transakUrl, '_blank', 'noopener,noreferrer');
-        // showInfoToast(
-        //   '🔄 Transak Opened',
-        //   'Complete your purchase in the new tab'
-        // );
+        window.open(transakUrl, '_blank', 'noopener,noreferrer');
+        showInfoToast(
+          '🔄 Transak Opened',
+          'Complete your purchase in the new tab'
+        );
       },
     },
     {
